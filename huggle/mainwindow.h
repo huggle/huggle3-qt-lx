@@ -63,11 +63,14 @@ public:
     ProcessList *Queries;
     QStringList UnwrittenLogs;
     QMutex lUnwrittenLogs;
+    QMenu *RevertSummaries;
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     void Render();
     bool Revert();
     bool Warn();
+    QString GetSummaryKey(QString item);
+    QString GetSummaryText(QString text);
 
 
 private slots:

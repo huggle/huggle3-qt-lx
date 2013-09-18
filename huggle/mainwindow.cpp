@@ -55,6 +55,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::PrimaryFeedProvider->Start();
     }
+    if (Configuration::LocalConfig_RevertSummaries.count() > 0)
+    {
+        this->RevertSummaries = new QMenu(this);
+        int r=0;
+        while (r<Configuration::LocalConfig_RevertSummaries.count())
+        {
+            QAction *action = new QAction(this->GetSummaryKey(Configuration::LocalConfig_RevertSummaries.at(r)), this);
+            this->RevertSummaries->addAction(action);
+            r++;
+        }
+        ui->actionRevert->setMenu(this->RevertSummaries);
+    }
+
     this->timer1 = new QTimer(this);
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
@@ -62,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
     delete this->aboutForm;
@@ -157,6 +171,31 @@ bool MainWindow::Revert()
 bool MainWindow::Warn()
 {
     return true;
+}
+
+QString MainWindow::GetSummaryKey(QString item)
+{
+    if (item.contains(";"))
+    {
+        QString type = item.mid(0, item.indexOf(";"));
+        int c=0;
+        while(c < Configuration::LocalConfig_WarningTypes.count())
+        {
+            QString x = Configuration::LocalConfig_WarningTypes.at(c);
+            if (x.startsWith(type + ";"))
+            {
+                x = Configuration::LocalConfig_WarningTypes.at(c);
+                x = x.mid(x.indexOf(";") + 1);
+                if (x.endsWith(","))
+                {
+                    x = x.mid(0, x.length() - 1);
+                }
+                return x;
+            }
+            c++;
+        }
+    }
+    return item;
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -380,4 +419,23 @@ void MainWindow::on_actionBack_triggered()
         return;
     }
     this->ProcessEdit(this->CurrentEdit->Previous, true);
+}
+
+QString MainWindow::GetSummaryText(QString text)
+{
+    int id=0;
+    while (id<Configuration::LocalConfig_RevertSummaries.count())
+    {
+        if (text == this->GetSummaryKey(Configuration::LocalConfig_RevertSummaries.at(id)))
+        {
+            QString data = Configuration::LocalConfig_RevertSummaries.at(id);
+            if (data.contains(";"))
+            {
+                data = data.mid(data.indexOf(";") + 1);
+            }
+            return data;
+        }
+        id++;
+    }
+    return Configuration::LocalConfig_DefaultSummary;
 }

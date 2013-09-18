@@ -83,6 +83,7 @@ QStringList Configuration::LocalConfig_Assisted;
 QStringList Configuration::LocalConfig_Ignores;
 QStringList Configuration::LocalConfig_RevertPatterns;
 QStringList Configuration::LocalConfig_IgnorePatterns;
+QStringList Configuration::LocalConfig_WarningTypes;
 
 bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;

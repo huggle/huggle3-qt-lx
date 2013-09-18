@@ -41,6 +41,7 @@ void Core::Init()
     Core::LoadConfig();
     Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
     Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
+    Configuration::LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
     Core::Python = new PythonEngine();
@@ -480,6 +481,8 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
     Configuration::LocalConfig_UseIrc = Core::SafeBool(Core::ConfigurationParse("irc", config));
     Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
+    Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
+    Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     return true;
 }
 

@@ -101,6 +101,7 @@ public:
     static int LocalConfig_BotScore;
     static int LocalConfig_IPScore;
     static int LocalConfig_WarningScore;
+    static QStringList LocalConfig_WarningTypes;
 
     //////////////////////////////////////////////
     // Global config
