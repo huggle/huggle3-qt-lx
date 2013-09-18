@@ -35,6 +35,7 @@ WikiEdit::WikiEdit()
     this->ProcessingRevs = false;
     this->DiffText = "";
     this->Priority = 20;
+    this->Score = 0;
     this->Previous = NULL;
     this->Next = NULL;
 }
@@ -74,6 +75,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->Priority = edit.Priority;
     this->Previous = NULL;
     this->Next = NULL;
+    this->Score = edit.Score;
 }
 
 WikiEdit::WikiEdit(WikiEdit *edit)
@@ -111,6 +113,7 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->Priority = edit->Priority;
     this->Previous = NULL;
     this->Next = NULL;
+    this->Score = edit->Score;
 }
 
 WikiEdit::~WikiEdit()
@@ -247,6 +250,17 @@ bool WikiEdit::FinalizePostProcessing()
     this->DifferenceQuery = NULL;
     //delete this->ProcessingQuery;
     //this->ProcessingQuery = NULL;
+
+    // score
+    if (this->User->IP)
+    {
+        this->Score += Configuration::LocalConfig_IPScore;
+    }
+    if (this->Bot)
+    {
+        this->Score += Configuration::LocalConfig_BotScore;
+    }
+
     this->Status = StatusPostProcessed;
     this->PostProcessing = false;
     return true;

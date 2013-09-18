@@ -31,7 +31,7 @@ public:
     HuggleQueue *ParentQueue;
     void SetName(QString name);
     QString GetName();
-    void Process();
+    void Process(QLayoutItem *qi = NULL);
     WikiEdit *page;
     static int Count;
     

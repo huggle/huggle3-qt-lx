@@ -76,6 +76,7 @@ public:
     bool OwnEdit;
     WikiEdit *Previous;
     WikiEdit *Next;
+    int Score;
 private:
     bool PostProcessing;
     bool ProcessingRevs;

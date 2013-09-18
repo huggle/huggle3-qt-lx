@@ -88,6 +88,10 @@ bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
 int Configuration::HistorySize = 600;
 
+int Configuration::LocalConfig_IPScore = 800;
+int Configuration::LocalConfig_BotScore = -200;
+int Configuration::LocalConfig_WarningScore = 2000;
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

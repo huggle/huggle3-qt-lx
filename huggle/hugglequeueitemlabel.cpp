@@ -54,6 +54,12 @@ void HuggleQueueItemLabel::SetName(QString name)
             ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
             return;
         }
+
+        if (this->page->User->IP)
+        {
+            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
+            return;
+        }
     }
 }
 
@@ -62,7 +68,7 @@ QString HuggleQueueItemLabel::GetName()
     return ui->label_2->text();
 }
 
-void HuggleQueueItemLabel::Process()
+void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 {
     HuggleQueueItemLabel::Count--;
     if (this->ParentQueue->Items.contains(this))
@@ -70,8 +76,8 @@ void HuggleQueueItemLabel::Process()
         this->ParentQueue->Items.removeOne(this);
     }
     Core::ProcessEdit(this->page);
-    this->hide();
     this->close();
+    ParentQueue->Delete(this, qi);
 }
 
 void HuggleQueueItemLabel::on_label_2_linkActivated(const QString &link)

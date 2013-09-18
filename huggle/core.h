@@ -104,6 +104,7 @@ public:
     static bool SafeBool(QString value);
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
     static QString Trim(QString text);
+    static void DeleteEdit(WikiEdit *edit);
 private:
     static QList<QString> *RingLog;
 };

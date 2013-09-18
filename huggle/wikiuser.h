@@ -12,6 +12,7 @@
 #define WIKIUSER_H
 
 #include <QString>
+#include <QRegExp>
 
 class WikiUser
 {
@@ -22,6 +23,8 @@ public:
     WikiUser(QString user);
     QString Username;
     bool IP;
+private:
+    static QRegExp IPv4Regex;
 };
 
 #endif // WIKIUSER_H

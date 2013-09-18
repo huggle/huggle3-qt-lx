@@ -184,6 +184,34 @@ QString Core::Trim(QString text)
     return text;
 }
 
+void Core::DeleteEdit(WikiEdit *edit)
+{
+    if (edit == NULL)
+    {
+        return;
+    }
+
+    if (edit->Previous != NULL && edit->Next != NULL)
+    {
+        edit->Previous->Next = edit->Next;
+        edit->Next->Previous = edit->Previous;
+        delete edit;
+        return;
+    }
+
+    if (edit->Previous != NULL)
+    {
+        edit->Previous->Next = NULL;
+    }
+
+    if (edit->Next != NULL)
+    {
+        edit->Next->Previous = NULL;
+    }
+
+    delete edit;
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;

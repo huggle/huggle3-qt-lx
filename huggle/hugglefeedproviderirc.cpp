@@ -186,6 +186,18 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("upload"))
+    {
+        delete edit;
+        return;
+    }
+
+    if (flags.contains("feature"))
+    {
+        delete edit;
+        return;
+    }
+
     if (flags.contains("noaction"))
     {
         delete edit;

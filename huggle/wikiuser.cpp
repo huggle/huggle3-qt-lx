@@ -10,6 +10,8 @@
 
 #include "wikiuser.h"
 
+QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+
 WikiUser::WikiUser()
 {
     this->Username = "";
@@ -30,6 +32,6 @@ WikiUser::WikiUser(const WikiUser &u)
 
 WikiUser::WikiUser(QString user)
 {
-    this->IP = false;
+    this->IP = WikiUser::IPv4Regex.exactMatch(user);
     this->Username = user;
 }

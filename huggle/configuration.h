@@ -98,6 +98,10 @@ public:
     static QStringList LocalConfig_Templates;
     static QStringList LocalConfig_IgnorePatterns;
 
+    static int LocalConfig_BotScore;
+    static int LocalConfig_IPScore;
+    static int LocalConfig_WarningScore;
+
     //////////////////////////////////////////////
     // Global config
     //////////////////////////////////////////////

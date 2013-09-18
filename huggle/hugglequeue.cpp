@@ -42,7 +42,22 @@ void HuggleQueue::AddItem(WikiEdit *page)
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     label->page = page;
     label->SetName(page->Page->PageName);
-    this->layout->addWidget(label);
+    if (page->Score <= -999999)
+    {
+        this->layout->addWidget(label);
+    } else
+    {
+        int id = 2;
+        while (GetScore(id) > page->Score)
+        {
+            id++;
+        }
+        if (id >= this->layout->count() && this->layout->count() > 0)
+        {
+            id = this->layout->count() - 1;
+        }
+        this->layout->insertWidget(id, label);
+    }
     this->Items.append(label);
     HuggleQueueItemLabel::Count++;
 }
@@ -55,6 +70,44 @@ void HuggleQueue::Next()
     }
     QLayoutItem *i = this->layout->itemAt(1);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
-    label->Process();
+    label->Process(i);
     this->layout->removeItem(i);
+}
+
+void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
+{
+    if (qi != NULL)
+    {
+        this->layout->removeItem(qi);
+        return;
+    }
+    int curr=1;
+    while(curr<this->layout->count())
+    {
+        QLayoutItem *i = this->layout->itemAt(curr);
+        HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
+        if (label == item)
+        {
+            this->layout->removeItem(i);
+            return;
+        }
+
+        curr++;
+    }
+}
+
+int HuggleQueue::GetScore(int id)
+{
+    if (this->layout->count() <= id)
+    {
+        return -999999;
+    }
+
+    QLayoutItem *i = this->layout->itemAt(id);
+    HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
+    if (label->page == NULL)
+    {
+        return -999999;
+    }
+    return label->page->Score;
 }

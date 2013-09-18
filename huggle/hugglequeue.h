@@ -39,8 +39,10 @@ public:
     ~HuggleQueue();
     void AddItem(WikiEdit *page);
     void Next();
+    void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
 
 private:
+    int GetScore(int id);
     Ui::HuggleQueue *ui;
     QVBoxLayout *layout;
     QWidget *xx;
