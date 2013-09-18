@@ -20,6 +20,7 @@ Query::Query()
     this->Status = Null;
     this->ID = this->LastID;
     this->LastID++;
+    this->CustomStatus = "";
 }
 
 Query::~Query()
@@ -55,6 +56,11 @@ QString Query::QueryTargetToString()
 
 QString Query::QueryStatusToString()
 {
+    if (this->CustomStatus != "")
+    {
+        return CustomStatus;
+    }
+
     switch (this->Status)
     {
     case Null:

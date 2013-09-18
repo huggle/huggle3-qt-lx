@@ -233,6 +233,7 @@ void MainWindow::on_Tick()
         this->UnwrittenLogs.clear();
     }
     this->lUnwrittenLogs.unlock();
+    this->Queries->RemoveExpired();
 }
 
 void MainWindow::on_actionNext_triggered()

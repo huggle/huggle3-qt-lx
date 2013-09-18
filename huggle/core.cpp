@@ -217,13 +217,18 @@ void Core::CheckQueries()
         {
             Finished.append(q);
             Core::DebugLog("Query finished with: " + q->Result->Data);
+            q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+            Core::Main->Queries->UpdateQuery(q);
+            Core::Main->Queries->RemoveQuery(q);
         }
         curr++;
     }
     curr = 0;
     while (curr < Finished.count())
     {
-        Core::RunningQueries.removeOne(Finished.at(curr));
+        Query *item = Finished.at(curr);
+        Core::RunningQueries.removeOne(item);
+        delete item;
         curr++;
     }
 }
@@ -275,5 +280,28 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
     }
 
     return query;
+}
+
+QString Core::GetCustomRevertStatus(QString RevertData)
+{
+    QDomDocument d;
+    d.setContent(RevertData);
+    QDomNodeList l = d.elementsByTagName("error");
+    if (l.count() > 0)
+    {
+        if (l.at(0).toElement().attributes().contains("errorcode"))
+        {
+            QString Error = "";
+            Error = l.at(0).toElement().attribute("errorcode");
+
+            if (Error == "alreadyrolled")
+            {
+                return "Reverted by someone else - skip";
+            }
+
+            return "In error (" + Error +")";
+        }
+    }
+    return "Reverted";
 }
 

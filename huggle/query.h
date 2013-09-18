@@ -42,6 +42,7 @@ public:
     unsigned int ID;
     //! Current status
     enum _Status Status;
+    QString CustomStatus;
     QueryType Type;
     //! Return true in case this query has been finished
     static QNetworkAccessManager NetworkManager;

@@ -20,7 +20,10 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
     ui->tableWidget->setShowGrid(false);
+    this->Removed = new QList<ProcessListRemovedItem*> ();
 }
 
 void ProcessList::InsertQuery(Query *q)
@@ -39,6 +42,7 @@ void ProcessList::InsertQuery(Query *q)
 
 void ProcessList::Clear()
 {
+    delete this->Removed;
     ui->tableWidget->clear();
 }
 
@@ -49,7 +53,10 @@ bool ProcessList::ContainsQuery(Query *q)
 
 void ProcessList::RemoveQuery(Query *q)
 {
-
+    if (!IsExpired(q))
+    {
+        this->Removed->append(new ProcessListRemovedItem(q->ID));
+    }
 }
 
 void ProcessList::UpdateQuery(Query *q)
@@ -59,6 +66,56 @@ void ProcessList::UpdateQuery(Query *q)
     {
         this->InsertQuery(q);
         return;
+    }
+
+    ui->tableWidget->setItem(query, 0, new QTableWidgetItem(QString::number(q->ID)));
+    ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
+    ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
+    ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
+}
+
+bool ProcessList::IsExpired(Query *q)
+{
+    int i = 0;
+    while (i<Removed->count())
+    {
+        if (Removed->at(i)->GetID() == q->ID)
+        {
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
+void ProcessList::RemoveExpired()
+{
+    if (Removed->count() == 0)
+    {
+        return;
+    }
+    QList<ProcessListRemovedItem*> rm;
+    int i = 0;
+    while (i<Removed->count())
+    {
+        if (Removed->at(i)->Expired())
+        {
+            rm.append(Removed->at(i));
+        }
+        i++;
+    }
+    i = 0;
+    while (i<rm.count())
+    {
+        ProcessListRemovedItem *item = rm.at(i);
+        Removed->removeOne(item);
+        int row = this->GetItem(item->GetID());
+        if (row != -1)
+        {
+            ui->tableWidget->removeRow(row);
+        }
+        delete item;
+        i++;
     }
 }
 
@@ -77,7 +134,38 @@ int ProcessList::GetItem(Query *q)
     return -1;
 }
 
+int ProcessList::GetItem(int Id)
+{
+    int curr = 0;
+    int size = ui->tableWidget->rowCount();
+    while (curr < size)
+    {
+        if (ui->tableWidget->item(curr,0)->text() == QString::number(Id))
+        {
+            return curr;
+        }
+        curr++;
+    }
+    return -1;
+}
+
 ProcessList::~ProcessList()
 {
     delete ui;
+}
+
+ProcessListRemovedItem::ProcessListRemovedItem(int ID)
+{
+    this->id = ID;
+    this->time = QDateTime::currentDateTime();
+}
+
+int ProcessListRemovedItem::GetID()
+{
+    return id;
+}
+
+bool ProcessListRemovedItem::Expired()
+{
+    return this->time < QDateTime::currentDateTime().addSecs(-60);
 }

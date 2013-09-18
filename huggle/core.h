@@ -94,6 +94,7 @@ public:
     //! Check if we can revert this edit
     static bool PreflightCheck(WikiEdit *_e);
     static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
+    static QString GetCustomRevertStatus(QString RevertData);
     static void LoadDB();
 private:
     static QList<QString> *RingLog;

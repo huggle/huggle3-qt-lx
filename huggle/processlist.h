@@ -13,6 +13,8 @@
 
 #include <QList>
 #include <QTableWidgetItem>
+#include <QDateTime>
+#include <QHeaderView>
 #include <QDockWidget>
 #include "query.h"
 #include "exception.h"
@@ -20,6 +22,17 @@
 namespace Ui {
 class ProcessList;
 }
+
+class ProcessListRemovedItem
+{
+private:
+    QDateTime time;
+    int id;
+public:
+    ProcessListRemovedItem(int ID);
+    int GetID();
+    bool Expired();
+};
 
 class ProcessList : public QDockWidget
 {
@@ -32,10 +45,14 @@ public:
     bool ContainsQuery(Query *q);
     void RemoveQuery(Query *q);
     void UpdateQuery(Query *q);
+    bool IsExpired(Query *q);
+    void RemoveExpired();
     int GetItem(Query *q);
+    int GetItem(int Id);
     ~ProcessList();
     
 private:
+    QList<ProcessListRemovedItem*> *Removed;
     Ui::ProcessList *ui;
 };
 
