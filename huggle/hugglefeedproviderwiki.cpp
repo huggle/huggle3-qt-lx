@@ -79,7 +79,7 @@ void HuggleFeedProviderWiki::Refresh()
     Refreshing = true;
     q = new ApiQuery();
     q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=10";
+    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=20";
     q->Process();
 }
 
@@ -102,8 +102,14 @@ void HuggleFeedProviderWiki::Process(QString data)
     d.setContent(data);
     QDomNodeList l = d.elementsByTagName("rc");
     int CurrentNode = 0;
+    if (l.count() == 0)
+    {
+        Core::Log("Error, wiki provider returned: " + data);
+        return;
+    }
     // recursively scan all RC changes
     QDateTime t = this->LatestTime;
+    bool Changed = false;
     while (CurrentNode < l.count())
     {
         // get a time of rc change
@@ -140,6 +146,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (time > t)
         {
+            Changed = true;
             t = time;
         }
 
@@ -200,7 +207,10 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         CurrentNode++;
     }
-    this->LatestTime = t.addSecs(1);
+    if (Changed)
+    {
+        this->LatestTime = t.addSecs(2);
+    }
 }
 
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit edit)

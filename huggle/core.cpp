@@ -289,10 +289,10 @@ QString Core::GetCustomRevertStatus(QString RevertData)
     QDomNodeList l = d.elementsByTagName("error");
     if (l.count() > 0)
     {
-        if (l.at(0).toElement().attributes().contains("errorcode"))
+        if (l.at(0).toElement().attributes().contains("code"))
         {
             QString Error = "";
-            Error = l.at(0).toElement().attribute("errorcode");
+            Error = l.at(0).toElement().attribute("code");
 
             if (Error == "alreadyrolled")
             {
@@ -303,5 +303,16 @@ QString Core::GetCustomRevertStatus(QString RevertData)
         }
     }
     return "Reverted";
+}
+
+bool Core::ParseGlobalConfig(QString config)
+{
+    DebugLog(config);
+    return true;
+}
+
+bool Core::ParseLocalConfig(QString config)
+{
+    return true;
 }
 

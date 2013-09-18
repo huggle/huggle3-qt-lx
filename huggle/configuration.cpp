@@ -41,6 +41,9 @@ QString Configuration::WikiDB = Configuration::GetConfigurationPath() + "wikidb.
 QString Configuration::DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
 QStringList Configuration::WhiteList;
 
+
+QString Configuration::GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

@@ -52,6 +52,7 @@ public:
     static QString WikiDB;
     static QString GetConfigurationPath();
     static QStringList WhiteList;
+    static QString GlobalConfigurationWikiAddress;
 
     ///////////////////////////
     // Login

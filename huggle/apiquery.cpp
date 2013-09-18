@@ -16,7 +16,14 @@ void ApiQuery::ConstructUrl()
     {
         throw new Exception("No action provided for api request");
     }
-    URL = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
+    if (OverrideWiki == "")
+    {
+        URL = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
+    }
+    else
+    {
+        URL = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
+    }
     if (this->Parameters != "")
     {
         URL = URL + "&" + this->Parameters;
@@ -51,6 +58,7 @@ ApiQuery::ApiQuery()
     this->Parameters = "";
     this->UsingPOST = false;
     this->Target = "none";
+    this->OverrideWiki = "";
 }
 
 void ApiQuery::Finished()

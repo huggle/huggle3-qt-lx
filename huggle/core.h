@@ -95,6 +95,8 @@ public:
     static bool PreflightCheck(WikiEdit *_e);
     static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
     static QString GetCustomRevertStatus(QString RevertData);
+    static bool ParseGlobalConfig(QString config);
+    static bool ParseLocalConfig(QString config);
     static void LoadDB();
 private:
     static QList<QString> *RingLog;

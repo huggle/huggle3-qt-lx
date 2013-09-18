@@ -73,6 +73,7 @@ public:
     QString QueryTargetToString();
     QString QueryTypeToString();
     QString Target;
+    QString OverrideWiki;
 };
 
 #endif // APIQUERY_H
