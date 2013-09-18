@@ -398,7 +398,7 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&summary=" + QUrl::toPercentEncoding(summary);
         query->Target = _e->Page->PageName;
         query->UsingPOST = true;
-        DebugLog("Rolling back " + _e->Page->PageName + " using token " + token);
+        DebugLog("Rolling back " + _e->Page->PageName);
         query->Process();
         Core::RunningQueries.append(query);
     }
