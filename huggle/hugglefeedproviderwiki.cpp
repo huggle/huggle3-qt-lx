@@ -79,7 +79,7 @@ void HuggleFeedProviderWiki::Refresh()
     Refreshing = true;
     q = new ApiQuery();
     q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=40";
+    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=200";
     q->Process();
 }
 
@@ -208,7 +208,7 @@ void HuggleFeedProviderWiki::Process(QString data)
     }
     if (Changed)
     {
-        this->LatestTime = t.addSecs(2);
+        this->LatestTime = t.addSecs(1);
     }
 }
 
