@@ -87,8 +87,21 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
         }
         if (!IgnoreHistory)
         {
-            this->CurrentEdit->Next = e;
-            e->Previous = this->CurrentEdit;
+            if (this->CurrentEdit->Next != NULL)
+            {
+                // now we need to get to last edit in chain
+                WikiEdit *latest = CurrentEdit;
+                while (latest->Next != NULL)
+                {
+                    latest = latest->Next;
+                }
+                latest->Next = e;
+                e->Previous = latest;
+            } else
+            {
+                this->CurrentEdit->Next = e;
+                e->Previous = this->CurrentEdit;
+            }
         }
     }
     this->CurrentEdit = e;
