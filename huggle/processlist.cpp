@@ -25,7 +25,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    ui->tableWidget->horizontalHeader()->setsetResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
     ui->tableWidget->setShowGrid(false);
