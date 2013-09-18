@@ -16,6 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>362</width>
+    <height>518</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>362</width>
+    <height>518</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Huggle</string>
   </property>

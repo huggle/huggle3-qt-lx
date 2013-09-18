@@ -40,7 +40,7 @@ void HuggleQueueItemLabel::SetName(QString name)
         {
         case WarningLevelNone:
             ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
-            return;
+            break;
         case WarningLevel1:
             ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
             return;
