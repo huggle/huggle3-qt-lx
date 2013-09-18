@@ -17,10 +17,10 @@
 #include <QtXml/QtXml>
 #include <QObject>
 #include <QThread>
+#include "query.h"
 #include "configuration.h"
 #include "core.h"
 #include "exception.h"
-#include "query.h"
 
 enum Action
 {
@@ -73,6 +73,7 @@ public:
     QString QueryTargetToString();
     QString QueryTypeToString();
     QString Target;
+    QString OverrideWiki;
 };
 
 #endif // APIQUERY_H

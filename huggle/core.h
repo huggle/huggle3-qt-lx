@@ -12,7 +12,9 @@
 #define CORE_H
 
 #include "configuration.h"
+#include "query.h"
 #include "wikiedit.h"
+#include "login.h"
 #include "mainwindow.h"
 
 #ifdef PYTHONENGINE
@@ -95,7 +97,13 @@ public:
     static bool PreflightCheck(WikiEdit *_e);
     static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
     static QString GetCustomRevertStatus(QString RevertData);
+    static bool ParseGlobalConfig(QString config);
+    static bool ParseLocalConfig(QString config);
+    static QString ConfigurationParse(QString key, QString content);
     static void LoadDB();
+    static bool SafeBool(QString value);
+    static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+    static QString Trim(QString text);
 private:
     static QList<QString> *RingLog;
 };

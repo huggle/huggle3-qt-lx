@@ -15,9 +15,10 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QUrl>
+#include <QtXml>
 #include <QTimer>
-#include "oauthloginquery.h"
 #include "core.h"
+#include "oauthloginquery.h"
 #include "wlquery.h"
 #include "apiquery.h"
 #include "configuration.h"
@@ -28,6 +29,8 @@ class Login;
 
 enum Status
 {
+    RetrievingGlobalConfig,
+    RetrievingLocalConfig,
     LoggingIn,
     WaitingForLoginQuery,
     WaitingForToken,
@@ -78,6 +81,8 @@ private:
     void FinishLogin();
     void FinishToken();
     void RetrieveWhitelist();
+    void RetrieveLocalConfig();
+    void RetrieveGlobalConfig();
     void DeveloperMode();
     void DisplayError(QString message);
     void Finish();

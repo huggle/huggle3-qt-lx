@@ -169,7 +169,7 @@ void Login::FinishToken()
         this->LoginQuery = NULL;
         return;
     }
-    this->Progress(60);
+    this->Progress(40);
 
     // this is last step but in fact we should load the config now
     Core::DebugLog(this->LoginQuery->Result->Data, 6);
@@ -194,17 +194,143 @@ void Login::RetrieveWhitelist()
             Configuration::WhiteList = wq->Result->Data.split("|");
             delete wq;
             wq = NULL;
-            this->_Status = LoginDone;
-            Finish();
+            // Now global config
+            this->_Status = RetrievingGlobalConfig;
+            return;
+        }
+        return;
+    }
+    this->Progress(42);
+    ui->label_6->setText("Retrieving whitelist");
+    wq = new WLQuery();
+    wq->Process();
+    return;
+}
+
+void Login::RetrieveLocalConfig()
+{
+    if (this->LoginQuery != NULL)
+    {
+        if (this->LoginQuery->Processed())
+        {
+            if (this->LoginQuery->Result->Failed)
+            {
+                ui->label_6->setText("Login failed unable to retrieve local config: " + this->LoginQuery->Result->ErrorMessage);
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomDocument d;
+            d.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList l = d.elementsByTagName("rev");
+            if (l.count() == 0)
+            {
+                ui->label_6->setText("Login failed unable to retrieve local config, the api query returned no data");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomElement data = l.at(0).toElement();
+            if (Core::ParseLocalConfig(data.text()))
+            {
+                if (!Configuration::LocalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because huggle is disabled");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                this->_Status = LoginDone;
+                Finish();
+                return;
+            }
+            ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
+            Core::DebugLog(data.text());
+            this->Progress(0);
+            this->_Status = LoginFailed;
+            delete this->LoginQuery;
+            this->LoginQuery = NULL;
             return;
         }
         return;
     }
     this->Progress(80);
-    ui->label_6->setText("Retrieving whitelist");
-    wq = new WLQuery();
-    wq->Process();
-    return;
+    ui->label_6->setText("Retrieving local config");
+    this->LoginQuery = new ApiQuery();
+    this->LoginQuery->SetAction(ActionQuery);
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
+    this->LoginQuery->Process();
+}
+
+void Login::RetrieveGlobalConfig()
+{
+    if (this->LoginQuery != NULL)
+    {
+        if (this->LoginQuery->Processed())
+        {
+            if (this->LoginQuery->Result->Failed)
+            {
+                ui->label_6->setText("Login failed unable to retrieve global config: " + this->LoginQuery->Result->ErrorMessage);
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomDocument d;
+            d.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList l = d.elementsByTagName("rev");
+            if (l.count() == 0)
+            {
+                ui->label_6->setText("Login failed unable to retrieve global config, the api query returned no data");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomElement data = l.at(0).toElement();
+            if (Core::ParseGlobalConfig(data.text()))
+            {
+                if (!Configuration::GlobalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because huggle is globally disabled");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                this->_Status = RetrievingLocalConfig;
+                return;
+            }
+            ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
+            Core::DebugLog(data.text());
+            this->Progress(0);
+            this->_Status = LoginFailed;
+            delete this->LoginQuery;
+            this->LoginQuery = NULL;
+            return;
+        }
+        return;
+    }
+    this->Progress(62);
+    ui->label_6->setText("Retrieving global config");
+    this->LoginQuery = new ApiQuery();
+    this->LoginQuery->SetAction(ActionQuery);
+    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
+    this->LoginQuery->Process();
 }
 
 void Login::DeveloperMode()
@@ -340,6 +466,12 @@ void Login::on_Time()
     case WaitingForToken:
         FinishToken();
         break;
+    case RetrievingGlobalConfig:
+        RetrieveGlobalConfig();
+        break;
+    case RetrievingLocalConfig:
+        RetrieveLocalConfig();
+        break;
     case LoggedIn:
     case Nothing:
     case Cancelling:
@@ -347,6 +479,8 @@ void Login::on_Time()
     case LoginDone:
         break;
     }
+
+
     if (this->_Status == LoginFailed)
     {
         this->Enable();

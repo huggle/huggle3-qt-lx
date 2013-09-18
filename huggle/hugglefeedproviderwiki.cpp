@@ -79,7 +79,7 @@ void HuggleFeedProviderWiki::Refresh()
     Refreshing = true;
     q = new ApiQuery();
     q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=10";
+    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=200";
     q->Process();
 }
 
@@ -101,60 +101,66 @@ void HuggleFeedProviderWiki::Process(QString data)
     QDomDocument d;
     d.setContent(data);
     QDomNodeList l = d.elementsByTagName("rc");
-    int CurrentNode = 0;
+    int CurrentNode = l.count();
+    if (l.count() == 0)
+    {
+        Core::Log("Error, wiki provider returned: " + data);
+        return;
+    }
     // recursively scan all RC changes
     QDateTime t = this->LatestTime;
-    while (CurrentNode < l.count())
+    bool Changed = false;
+    while (CurrentNode > 0)
     {
+        CurrentNode--;
         // get a time of rc change
         QDomElement item = l.at(CurrentNode).toElement();
 
         if (item.nodeName() != "rc")
         {
-            CurrentNode++;
+            CurrentNode--;
             continue;
         }
 
         if (!item.attributes().contains("timestamp"))
         {
             Core::Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
-            CurrentNode++;
+            CurrentNode--;
             continue;
         }
 
         QDateTime time = QDateTime::fromString(item.attribute("timestamp"), "yyyy-MM-ddThh:mm:ssZ");
 
-        if (time < this->LatestTime)
+        if (time < t)
         {
             // this record is older than latest parsed record, so we don't want to parse it
-            CurrentNode++;
+            CurrentNode--;
             continue;
+        } else
+        {
+            Changed = true;
+            t = time;
         }
 
         if (!item.attributes().contains("type"))
         {
             Core::Log("RC Feed: Item was missing type attribute: " + item.text());
-            CurrentNode++;
+            CurrentNode--;
             continue;
-        }
-
-        if (time > t)
-        {
-            t = time;
         }
 
         QString type = item.attribute("type");
 
         if (type != "edit" && type != "new")
         {
-            CurrentNode++;
+            CurrentNode--;
             continue;
         }
 
         if (!item.attributes().contains("title"))
         {
             Core::Log("RC Feed: Item was missing title attribute: " + item.text());
-            CurrentNode++;
+            CurrentNode--;
             continue;
         }
 
@@ -198,9 +204,12 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         this->InsertEdit(edit);
 
-        CurrentNode++;
+        CurrentNode--;
     }
-    this->LatestTime = t.addSecs(1);
+    if (Changed)
+    {
+        this->LatestTime = t.addSecs(1);
+    }
 }
 
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit edit)

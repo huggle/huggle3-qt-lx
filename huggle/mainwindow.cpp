@@ -33,9 +33,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->CurrentEdit = NULL;
     this->setWindowTitle("Huggle 3 QT-LX");
     ui->verticalLayout->addWidget(this->Browser);
+    this->Ignore = NULL;
     DisplayWelcomeMessage();
     // initialise queues
-    if (Configuration::UsingIRC)
+    if (!Configuration::LocalConfig_UseIrc)
+    {
+        Core::Log("Feed: irc is disabled by project config");
+    }
+    if (Configuration::UsingIRC && Configuration::LocalConfig_UseIrc)
     {
         Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
         if (!Core::PrimaryFeedProvider->Start())
@@ -60,6 +65,7 @@ MainWindow::~MainWindow()
     delete this->Queries;
     delete this->preferencesForm;
     delete this->aboutForm;
+    delete this->Ignore;
     delete this->Queue1;
     delete this->SystemLog;
     delete this->Status;
@@ -68,12 +74,35 @@ MainWindow::~MainWindow()
     delete this->tb;
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e)
+void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
 {
     // we need to safely delete the edit later
     if (this->CurrentEdit != NULL)
     {
-        Core::ProcessedEdits.append(this->CurrentEdit);
+        // we need to track all edits so that we prevent
+        // any possible leak
+        if (!Core::ProcessedEdits.contains(this->CurrentEdit))
+        {
+            Core::ProcessedEdits.append(this->CurrentEdit);
+        }
+        if (!IgnoreHistory)
+        {
+            if (this->CurrentEdit->Next != NULL)
+            {
+                // now we need to get to last edit in chain
+                WikiEdit *latest = CurrentEdit;
+                while (latest->Next != NULL)
+                {
+                    latest = latest->Next;
+                }
+                latest->Next = e;
+                e->Previous = latest;
+            } else
+            {
+                this->CurrentEdit->Next = e;
+                e->Previous = this->CurrentEdit;
+            }
+        }
     }
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
@@ -193,12 +222,17 @@ void MainWindow::on_Tick()
             c++;
         }
     }
-    this->Status->setText("Currently processing " + QString::number(Core::ProcessingEdits.count())
-                          + " edits and " + QString::number(Core::RunningQueries.count()) + " queries"
-                          + " I have " + QString::number(Configuration::WhiteList.size())
-                          + " whitelisted users and you have "
-                          + QString::number(HuggleQueueItemLabel::Count)
-                          + " edits waiting in queue");
+    QString t = "Currently processing " + QString::number(Core::ProcessingEdits.count())
+            + " edits and " + QString::number(Core::RunningQueries.count()) + " queries"
+            + " I have " + QString::number(Configuration::WhiteList.size())
+            + " whitelisted users and you have "
+            + QString::number(HuggleQueueItemLabel::Count)
+            + " edits waiting in queue";
+    if (Configuration::Verbosity > 0)
+    {
+        t += " QGC: " + QString::number(QueryGC::qgc.count());
+    }
+    this->Status->setText(t);
     // let's refresh the edits that are being post processed
     if (Core::ProcessingEdits.count() > 0)
     {
@@ -310,4 +344,40 @@ void MainWindow::on_actionRevert_triggered()
         return;
     }
     this->Revert();
+}
+
+void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
+{
+    if (this->Ignore != NULL)
+    {
+        delete this->Ignore;
+    }
+    this->Ignore = new IgnoreList(this);
+    this->Ignore->show();
+}
+
+void MainWindow::on_actionForward_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Next == NULL)
+    {
+        return;
+    }
+    this->ProcessEdit(this->CurrentEdit->Next, true);
+}
+
+void MainWindow::on_actionBack_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Previous == NULL)
+    {
+        return;
+    }
+    this->ProcessEdit(this->CurrentEdit->Previous, true);
 }

@@ -21,10 +21,28 @@ HuggleQueueFilter::HuggleQueueFilter(HuggleQueue *Parent)
     this->IgnoreMinor = false;
     this->IgnoreNP = false;
     this->IgnoreUsers = false;
+    this->IgnoreTalk = true;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
+    if (edit->Page->IsTalk() && this->IgnoreTalk)
+    {
+        return false;
+    }
+    int i = 0;
+    while (i < Configuration::LocalConfig_IgnorePatterns.count())
+    {
+        if (edit->Page->PageName.contains(Configuration::LocalConfig_IgnorePatterns.at(i)))
+        {
+            return false;
+        }
+        i++;
+    }
+    if (Configuration::LocalConfig_Ignores.contains(edit->Page->PageName))
+    {
+        return false;
+    }
     if (edit->Whitelisted && this->IgnoreWL)
     {
         return false;

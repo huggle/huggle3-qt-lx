@@ -74,6 +74,8 @@ public:
     bool Whitelisted;
     //! Edit was made by you
     bool OwnEdit;
+    WikiEdit *Previous;
+    WikiEdit *Next;
 private:
     bool PostProcessing;
     bool ProcessingRevs;

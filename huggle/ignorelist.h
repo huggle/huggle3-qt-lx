@@ -8,23 +8,31 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef WIKIPAGE_H
-#define WIKIPAGE_H
+#ifndef IGNORELIST_H
+#define IGNORELIST_H
 
-#include <QString>
+#include <QDialog>
+#include <QStandardItemModel>
 #include "configuration.h"
-#include "wikisite.h"
 
-class WikiPage
+namespace Ui {
+class IgnoreList;
+}
+
+class IgnoreList : public QDialog
 {
+    Q_OBJECT
+
 public:
-    WikiPage();
-    WikiPage(QString name);
-    WikiPage(WikiPage *page);
-    WikiPage(const WikiPage& page);
-    QString PageName;
-    WikiSite *Site;
-    bool IsTalk();
+    explicit IgnoreList(QWidget *parent = 0);
+    ~IgnoreList();
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    QStandardItemModel *model;
+    Ui::IgnoreList *ui;
 };
 
-#endif // WIKIPAGE_H
+#endif // IGNORELIST_H

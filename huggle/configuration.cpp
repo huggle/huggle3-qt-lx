@@ -31,15 +31,62 @@ QString Configuration::IRCIdent = "huggle";
 QString Configuration::IRCServer = "irc.wikimedia.org";
 QString Configuration::IRCNick = "huggle";
 quint16 Configuration::IRCPort = 6667;
-unsigned int Configuration::ProviderCache = 2000;
+int Configuration::ProviderCache = 2000;
 QString Configuration::HuggleVersion = "3.0.0.0";
-unsigned int Configuration::RingLogMaxSize = 2000;
+int Configuration::RingLogMaxSize = 2000;
 QString Configuration::HomePath = QDir::currentPath();
 QString Configuration::EditSuffixOfHuggle = "([[WP:HG]])";
 QStringList Configuration::EditRegexOfTools;
 QString Configuration::WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
 QString Configuration::DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
 QStringList Configuration::WhiteList;
+
+// Global
+QString Configuration::GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
+bool Configuration::GlobalConfig_EnableAll = true;
+QString Configuration::GlobalConfig_MinVersion = "3.0.0.0";
+QString Configuration::GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
+QString Configuration::GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
+QString Configuration::GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
+QString Configuration::GlobalConfig_UserConf = "Special:Mypage/huggle.css";
+
+// Local
+
+QString Configuration::LocalConfig_MinimalVersion = "3.0.0.0";
+bool Configuration::LocalConfig_UseIrc = false;
+bool Configuration::LocalConfig_RequireRollback = false;
+bool Configuration::LocalConfig_RequireAdmin = false;
+bool Configuration::LocalConfig_EnableAll = false;
+int Configuration::LocalConfig_RequireEdits = 0;
+
+// Reverting
+
+QString Configuration::LocalConfig_ManualRevertSummary = "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2";
+QString Configuration::LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
+QStringList Configuration::LocalConfig_RevertSummaries;
+QStringList Configuration::LocalConfig_TemplateSummary;
+bool Configuration::LocalConfig_RollbackPossible = true;
+QString Configuration::LocalConfig_RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
+QString Configuration::LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
+QString Configuration::LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
+QString Configuration::LocalConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
+
+// Warnings
+
+QString Configuration::LocalConfig_AgfRevert;
+QString Configuration::LocalConfig_WarnSummary;
+QString Configuration::LocalConfig_WarnSummary2;
+QString Configuration::LocalConfig_WarnSummary3;
+QString Configuration::LocalConfig_WarnSummary4;
+
+QStringList Configuration::LocalConfig_Assisted;
+QStringList Configuration::LocalConfig_Ignores;
+QStringList Configuration::LocalConfig_RevertPatterns;
+QStringList Configuration::LocalConfig_IgnorePatterns;
+
+bool Configuration::TrackInfoApiQ = true;
+int Configuration::QueryListTimeLimit = 2;
+int Configuration::HistorySize = 600;
 
 QString Configuration::GetURLProtocolPrefix()
 {

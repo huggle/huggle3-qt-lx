@@ -39,6 +39,8 @@ void Core::Init()
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
     Core::LoadConfig();
+    Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
+    Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
     Core::Python = new PythonEngine();
@@ -64,6 +66,122 @@ void Core::LoadDB()
         QDomDocument *d = new QDomDocument();
         d->setContent(&db);
     }
+}
+
+bool Core::SafeBool(QString value)
+{
+    if (value.toLower() == "true")
+    {
+        return true;
+    }
+    return false;
+}
+
+QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
+{
+    QStringList list;
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = Core::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (Core::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(Core::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    } else if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = Core::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (Core::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(Core::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    }
+    return list;
+}
+
+QString Core::Trim(QString text)
+{
+    while (text.startsWith(" "))
+    {
+        if (text == "")
+        {
+            break;
+        }
+        text = text.mid(1);
+    }
+
+    return text;
 }
 
 void Core::Log(QString Message)
@@ -123,11 +241,13 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
+    Core::SaveConfig();
 #ifdef PYTHONENGINE
     Core::Log("Unloading python");
     delete Core::Python;
 #endif
     delete Core::f_Login;
+    Core::f_Login = NULL;
     QApplication::quit();
 }
 
@@ -216,8 +336,11 @@ void Core::CheckQueries()
         if (q->Processed())
         {
             Finished.append(q);
-            Core::DebugLog("Query finished with: " + q->Result->Data);
-            q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+            Core::DebugLog("Query finished with: " + q->Result->Data, 6);
+            if (q->QueryTypeToString() == "ApiQuery (rollback)")
+            {
+                q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+            }
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
         }
@@ -228,7 +351,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
-        delete item;
+        item->SafeDelete();
         curr++;
     }
 }
@@ -273,8 +396,9 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&token=" + token
                 + "&user=" + QUrl::toPercentEncoding(_e->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(summary);
+        query->Target = _e->Page->PageName;
         query->UsingPOST = true;
-        DebugLog("Rolling back " + _e->Page->PageName + " using token " + token);
+        DebugLog("Rolling back " + _e->Page->PageName);
         query->Process();
         Core::RunningQueries.append(query);
     }
@@ -289,10 +413,10 @@ QString Core::GetCustomRevertStatus(QString RevertData)
     QDomNodeList l = d.elementsByTagName("error");
     if (l.count() > 0)
     {
-        if (l.at(0).toElement().attributes().contains("errorcode"))
+        if (l.at(0).toElement().attributes().contains("code"))
         {
             QString Error = "";
-            Error = l.at(0).toElement().attribute("errorcode");
+            Error = l.at(0).toElement().attribute("code");
 
             if (Error == "alreadyrolled")
             {
@@ -303,5 +427,56 @@ QString Core::GetCustomRevertStatus(QString RevertData)
         }
     }
     return "Reverted";
+}
+
+bool Core::ParseGlobalConfig(QString config)
+{
+    Configuration::GlobalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
+    QString temp = Core::ConfigurationParse("documentation", config);
+    if (temp != "")
+    {
+        Configuration::GlobalConfig_DocumentationPath = temp;
+    }
+    temp = Core::ConfigurationParse("feedback", config);
+    if (temp != "")
+    {
+        Configuration::GlobalConfig_FeedbackPath = temp;
+    }
+    return true;
+}
+
+bool Core::ParseLocalConfig(QString config)
+{
+    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
+    Configuration::LocalConfig_RequireAdmin = Core::SafeBool(Core::ConfigurationParse("require-admin", config));
+    Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
+    Configuration::LocalConfig_UseIrc = Core::SafeBool(Core::ConfigurationParse("irc", config));
+    Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
+    return true;
+}
+
+QString Core::ConfigurationParse(QString key, QString content)
+{
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+
+    // make sure it's not inside of some string
+    if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+    return "";
 }
 
