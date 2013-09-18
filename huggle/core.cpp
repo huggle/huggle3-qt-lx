@@ -66,6 +66,123 @@ void Core::LoadDB()
     }
 }
 
+bool Core::SafeBool(QString value)
+{
+    if (value.toLower() == "true")
+    {
+        return true;
+    }
+    return false;
+}
+
+QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
+{
+    QStringList list;
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = Core::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (Core::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(Core::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    } else if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = Core::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (Core::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(Core::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    }
+    return list;
+}
+
+QString Core::Trim(QString text)
+{
+    while (text.startsWith(" "))
+    {
+        if (text == "")
+        {
+            break;
+        }
+        text = text.mid(1);
+    }
+
+
+    return text;
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -128,6 +245,7 @@ void Core::Shutdown()
     delete Core::Python;
 #endif
     delete Core::f_Login;
+    Core::f_Login = NULL;
     QApplication::quit();
 }
 
@@ -307,12 +425,52 @@ QString Core::GetCustomRevertStatus(QString RevertData)
 
 bool Core::ParseGlobalConfig(QString config)
 {
-    DebugLog(config);
+    Configuration::GlobalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
+    QString temp = Core::ConfigurationParse("documentation", config);
+    if (temp != "")
+    {
+        Configuration::GlobalConfig_DocumentationPath = temp;
+    }
+    temp = Core::ConfigurationParse("feedback", config);
+    if (temp != "")
+    {
+        Configuration::GlobalConfig_FeedbackPath = temp;
+    }
     return true;
 }
 
 bool Core::ParseLocalConfig(QString config)
 {
+    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
+    Configuration::LocalConfig_RequireAdmin = Core::SafeBool(Core::ConfigurationParse("require-admin", config));
+    Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
+    Configuration::LocalConfig_UseIrc = Core::SafeBool(Core::ConfigurationParse("irc", config));
+    Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
     return true;
+}
+
+QString Core::ConfigurationParse(QString key, QString content)
+{
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+
+    // make sure it's not inside of some string
+    if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+    return "";
 }
 

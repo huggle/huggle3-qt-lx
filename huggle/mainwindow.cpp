@@ -33,9 +33,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->CurrentEdit = NULL;
     this->setWindowTitle("Huggle 3 QT-LX");
     ui->verticalLayout->addWidget(this->Browser);
+    this->Ignore = NULL;
     DisplayWelcomeMessage();
     // initialise queues
-    if (Configuration::UsingIRC)
+    if (!Configuration::LocalConfig_UseIrc)
+    {
+        Core::Log("Feed: irc is disabled by project config");
+    }
+    if (Configuration::UsingIRC && Configuration::LocalConfig_UseIrc)
     {
         Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
         if (!Core::PrimaryFeedProvider->Start())
@@ -60,6 +65,7 @@ MainWindow::~MainWindow()
     delete this->Queries;
     delete this->preferencesForm;
     delete this->aboutForm;
+    delete this->Ignore;
     delete this->Queue1;
     delete this->SystemLog;
     delete this->Status;
@@ -310,4 +316,14 @@ void MainWindow::on_actionRevert_triggered()
         return;
     }
     this->Revert();
+}
+
+void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
+{
+    if (this->Ignore != NULL)
+    {
+        delete this->Ignore;
+    }
+    this->Ignore = new IgnoreList(this);
+    this->Ignore->show();
 }

@@ -25,6 +25,10 @@ HuggleQueueFilter::HuggleQueueFilter(HuggleQueue *Parent)
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
+    if (Configuration::LocalConfig_Ignores.contains(edit->Page->PageName))
+    {
+        return false;
+    }
     if (edit->Whitelisted && this->IgnoreWL)
     {
         return false;

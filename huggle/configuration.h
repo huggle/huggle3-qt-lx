@@ -23,9 +23,9 @@
 class Configuration
 {
 public:
-    ///////////////////////////
+    ////////////////////////////////////////////
     // System
-    ///////////////////////////
+    ////////////////////////////////////////////
     //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
     static unsigned int Verbosity;
     //! Version
@@ -45,8 +45,8 @@ public:
     //! Whether python is available
     static bool PythonEngine;
     //! Size of feed
-    static unsigned int ProviderCache;
-    static unsigned int RingLogMaxSize;
+    static int ProviderCache;
+    static int RingLogMaxSize;
     //! Path where huggle contains its data
     static QString HomePath;
     static QString WikiDB;
@@ -54,9 +54,57 @@ public:
     static QStringList WhiteList;
     static QString GlobalConfigurationWikiAddress;
 
-    ///////////////////////////
+    //////////////////////////////////////////////
+    // Local config
+    //////////////////////////////////////////////
+
+    static QString LocalConfig_MinimalVersion;
+    static bool LocalConfig_UseIrc;
+    static bool LocalConfig_RequireRollback;
+    static bool LocalConfig_RequireAdmin;
+    static bool LocalConfig_EnableAll;
+    static int LocalConfig_RequireEdits;
+
+    // Reverting
+
+    static QString LocalConfig_ManualRevertSummary;
+    static QString LocalConfig_MultipleRevertSummary;
+    static QStringList LocalConfig_RevertSummaries;
+    static QStringList LocalConfig_TemplateSummary;
+    static bool LocalConfig_RollbackPossible;
+    static QString LocalConfig_RollbackSummary;
+    static QString LocalConfig_DefaultSummary;
+    static QString LocalConfig_SingleRevert;
+    static QString LocalConfig_UndoSummary;
+
+    // Warnings
+
+    static QString LocalConfig_AgfRevert;
+    static QString LocalConfig_WarnSummary;
+    static QString LocalConfig_WarnSummary2;
+    static QString LocalConfig_WarnSummary3;
+    static QString LocalConfig_WarnSummary4;
+
+    // Definitions
+
+    static QStringList LocalConfig_Ignores;
+    static QStringList LocalConfig_RevertPatterns;
+    static QStringList LocalConfig_Assisted;
+    static QStringList LocalConfig_Templates;
+
+    //////////////////////////////////////////////
+    // Global config
+    //////////////////////////////////////////////
+    static bool GlobalConfig_EnableAll;
+    static QString GlobalConfig_MinVersion;
+    static QString GlobalConfig_LocalConfigWikiPath;
+    static QString GlobalConfig_DocumentationPath;
+    static QString GlobalConfig_FeedbackPath;
+    static QString GlobalConfig_UserConf;
+
+    //////////////////////////////////////////////
     // Login
-    ///////////////////////////
+    //////////////////////////////////////////////
 
     //! User name
     static QString UserName;
@@ -67,9 +115,9 @@ public:
     //! Password
     static QString Password;
 
-    /////////////////////////////
+    //////////////////////////////////////////////
     // IRC
-    /////////////////////////////
+    //////////////////////////////////////////////
 
     //! Whether IRC is being used
     static bool UsingIRC;
@@ -83,17 +131,17 @@ public:
     static quint16 IRCPort;
     Configuration();
 
-    ////////////////////////////
+    //////////////////////////////////////////////
     // Friends
-    ////////////////////////////
+    //////////////////////////////////////////////
     //! Suffix used by huggle
     static QString EditSuffixOfHuggle;
     //! Regexes that other tools can be identified with
     static QStringList EditRegexOfTools;
 
-    ///////////////////////////////
+    //////////////////////////////////////////////
     // Reverting
-    ///////////////////////////////
+    //////////////////////////////////////////////
 
     static QString DefaultRevertSummary;
     static QString GetDefaultRevertSummary(QString source);

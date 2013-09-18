@@ -13,6 +13,7 @@
 
 #include "configuration.h"
 #include "wikiedit.h"
+#include "login.h"
 #include "mainwindow.h"
 
 #ifdef PYTHONENGINE
@@ -97,7 +98,11 @@ public:
     static QString GetCustomRevertStatus(QString RevertData);
     static bool ParseGlobalConfig(QString config);
     static bool ParseLocalConfig(QString config);
+    static QString ConfigurationParse(QString key, QString content);
     static void LoadDB();
+    static bool SafeBool(QString value);
+    static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+    static QString Trim(QString text);
 private:
     static QList<QString> *RingLog;
 };

@@ -237,6 +237,15 @@ void Login::RetrieveLocalConfig()
             QDomElement data = l.at(0).toElement();
             if (Core::ParseLocalConfig(data.text()))
             {
+                if (!Configuration::LocalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because huggle is disabled");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
                 this->_Status = LoginDone;
@@ -257,7 +266,7 @@ void Login::RetrieveLocalConfig()
     ui->label_6->setText("Retrieving local config");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&rvparse=&titles=Project:Huggle/Config";
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
     this->LoginQuery->Process();
 }
 
@@ -291,6 +300,15 @@ void Login::RetrieveGlobalConfig()
             QDomElement data = l.at(0).toElement();
             if (Core::ParseGlobalConfig(data.text()))
             {
+                if (!Configuration::GlobalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because huggle is globally disabled");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
                 this->_Status = RetrievingLocalConfig;
@@ -311,7 +329,7 @@ void Login::RetrieveGlobalConfig()
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
-    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&rvparse=&titles=Huggle/Config";
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 }
 
@@ -461,6 +479,8 @@ void Login::on_Time()
     case LoginDone:
         break;
     }
+
+
     if (this->_Status == LoginFailed)
     {
         this->Enable();

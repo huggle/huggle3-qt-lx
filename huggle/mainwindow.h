@@ -28,6 +28,7 @@
 #include "wikipage.h"
 #include "processlist.h"
 #include "wikiuser.h"
+#include "ignorelist.h"
 #include "exception.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
@@ -55,6 +56,7 @@ public:
     HuggleWeb *Browser;
     HuggleTool *tb;
     Preferences *preferencesForm;
+    IgnoreList *Ignore;
     AboutForm *aboutForm;
     WikiEdit *CurrentEdit;
     ProcessList *Queries;
@@ -82,6 +84,8 @@ private slots:
     void on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered();
     void on_actionRevert_and_warn_triggered();
     void on_actionRevert_triggered();
+
+    void on_actionShow_ignore_list_of_current_wiki_triggered();
 
 private:
     Ui::MainWindow *ui;

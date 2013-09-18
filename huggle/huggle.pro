@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     wikiedit.cpp \
     hugglefeedproviderwiki.cpp \
     wlquery.cpp \
-    processlist.cpp
+    processlist.cpp \
+    ignorelist.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -78,7 +79,8 @@ HEADERS  += mainwindow.h \
     wikiedit.h \
     hugglefeedproviderwiki.h \
     wlquery.h \
-    processlist.h
+    processlist.h \
+    ignorelist.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -91,7 +93,8 @@ FORMS    += mainwindow.ui \
     huggleweb.ui \
     proxy.ui \
     hugglequeueitemlabel.ui \
-    processlist.ui
+    processlist.ui \
+    ignorelist.ui
 
 RESOURCES += \
     pictures.qrc
