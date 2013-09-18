@@ -9,9 +9,9 @@
 //GNU General Public License for more details.
 
 #include <QApplication>
-#include "login.h"
 #include "core.h"
 #include "terminalparser.h"
+#include "login.h"
 #include "exception.h"
 
 int main(int argc, char *argv[])

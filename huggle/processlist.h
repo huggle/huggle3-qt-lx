@@ -18,6 +18,7 @@
 #include <QDockWidget>
 #include "query.h"
 #include "exception.h"
+#include "configuration.h"
 
 namespace Ui {
 class ProcessList;

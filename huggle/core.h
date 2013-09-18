@@ -12,6 +12,7 @@
 #define CORE_H
 
 #include "configuration.h"
+#include "query.h"
 #include "wikiedit.h"
 #include "login.h"
 #include "mainwindow.h"

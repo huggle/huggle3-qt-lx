@@ -32,3 +32,12 @@ WikiPage::WikiPage(const WikiPage &page)
     this->PageName = page.PageName;
     this->Site = page.Site;
 }
+
+bool WikiPage::IsTalk()
+{
+    if (PageName.contains("Talk:") || PageName.contains("talk:"))
+    {
+        return true;
+    }
+    return false;
+}

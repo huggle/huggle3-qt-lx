@@ -39,6 +39,8 @@ void Core::Init()
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
     Core::LoadConfig();
+    Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
+    Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
     Core::Python = new PythonEngine();
@@ -334,8 +336,11 @@ void Core::CheckQueries()
         if (q->Processed())
         {
             Finished.append(q);
-            Core::DebugLog("Query finished with: " + q->Result->Data);
-            q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+            Core::DebugLog("Query finished with: " + q->Result->Data, 6);
+            if (q->QueryTypeToString() == "ApiQuery (rollback)")
+            {
+                q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+            }
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
         }
@@ -346,7 +351,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
-        delete item;
+        item->SafeDelete();
         curr++;
     }
 }
@@ -391,6 +396,7 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&token=" + token
                 + "&user=" + QUrl::toPercentEncoding(_e->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(summary);
+        query->Target = _e->Page->PageName;
         query->UsingPOST = true;
         DebugLog("Rolling back " + _e->Page->PageName + " using token " + token);
         query->Process();

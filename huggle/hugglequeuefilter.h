@@ -33,6 +33,7 @@ private:
     bool IgnoreBots;
     bool IgnoreNP;
     bool IgnoreFriends;
+    bool IgnoreTalk;
 };
 
 #endif // HUGGLEQUEUEFILTER_H

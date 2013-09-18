@@ -17,8 +17,8 @@
 #include <QUrl>
 #include <QtXml>
 #include <QTimer>
-#include "oauthloginquery.h"
 #include "core.h"
+#include "oauthloginquery.h"
 #include "wlquery.h"
 #include "apiquery.h"
 #include "configuration.h"

@@ -21,6 +21,7 @@ Query::Query()
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
+    this->DeleteLater = false;
 }
 
 Query::~Query()
@@ -73,4 +74,15 @@ QString Query::QueryStatusToString()
         return "InError";
     }
     return "Unknown";
+}
+
+void Query::SafeDelete()
+{
+    if (!DeleteLater)
+    {
+        delete this;
+        return;
+    }
+
+    QueryGC::qgc.append(this);
 }

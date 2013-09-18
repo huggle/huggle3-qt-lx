@@ -173,5 +173,5 @@ int ProcessListRemovedItem::GetID()
 
 bool ProcessListRemovedItem::Expired()
 {
-    return this->time < QDateTime::currentDateTime().addSecs(-60);
+    return this->time < QDateTime::currentDateTime().addSecs(-Configuration::QueryListTimeLimit);
 }

@@ -82,6 +82,10 @@ QString Configuration::LocalConfig_WarnSummary4;
 QStringList Configuration::LocalConfig_Assisted;
 QStringList Configuration::LocalConfig_Ignores;
 QStringList Configuration::LocalConfig_RevertPatterns;
+QStringList Configuration::LocalConfig_IgnorePatterns;
+
+bool Configuration::TrackInfoApiQ = true;
+int Configuration::QueryListTimeLimit = 2;
 
 QString Configuration::GetURLProtocolPrefix()
 {

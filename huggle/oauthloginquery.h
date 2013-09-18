@@ -13,7 +13,6 @@
 
 #include <QString>
 #include "query.h"
-#include "core.h"
 
 class OAuthLoginQuery : public Query
 {

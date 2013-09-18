@@ -15,6 +15,7 @@
 #include <QString>
 #include <QNetworkAccessManager>
 #include "queryresult.h"
+#include "querygc.h"
 
 enum _Status
 {
@@ -52,6 +53,8 @@ public:
     virtual QString QueryTypeToString();
     virtual QString QueryTargetToString();
     virtual QString QueryStatusToString();
+    virtual void SafeDelete();
+    bool DeleteLater;
 private:
     static unsigned int LastID;
 };

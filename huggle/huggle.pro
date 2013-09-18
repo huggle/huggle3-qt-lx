@@ -47,7 +47,8 @@ SOURCES += main.cpp\
     hugglefeedproviderwiki.cpp \
     wlquery.cpp \
     processlist.cpp \
-    ignorelist.cpp
+    ignorelist.cpp \
+    querygc.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -80,7 +81,8 @@ HEADERS  += mainwindow.h \
     hugglefeedproviderwiki.h \
     wlquery.h \
     processlist.h \
-    ignorelist.h
+    ignorelist.h \
+    querygc.h
 
 FORMS    += mainwindow.ui \
     login.ui \

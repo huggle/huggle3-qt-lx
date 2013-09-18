@@ -8,23 +8,21 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef WIKIPAGE_H
-#define WIKIPAGE_H
+#include "querygc.h"
 
-#include <QString>
-#include "configuration.h"
-#include "wikisite.h"
+QList<Query*> QueryGC::qgc;
 
-class WikiPage
+void QueryGC::DeleteOld()
 {
-public:
-    WikiPage();
-    WikiPage(QString name);
-    WikiPage(WikiPage *page);
-    WikiPage(const WikiPage& page);
-    QString PageName;
-    WikiSite *Site;
-    bool IsTalk();
-};
-
-#endif // WIKIPAGE_H
+    int curr=0;
+    QList<Query*> list(QueryGC::qgc);
+    while(curr<list.count())
+    {
+        if (!list.at(curr)->DeleteLater)
+        {
+            QueryGC::qgc.removeOne(list.at(curr));
+            delete list.at(curr);
+        }
+        curr++;
+    }
+}

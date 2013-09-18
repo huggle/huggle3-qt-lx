@@ -53,6 +53,9 @@ public:
     static QString GetConfigurationPath();
     static QStringList WhiteList;
     static QString GlobalConfigurationWikiAddress;
+    static bool TrackInfoApiQ;
+    //! Number of seconds for which the processed queries remain in list of processes
+    static int QueryListTimeLimit;
 
     //////////////////////////////////////////////
     // Local config
@@ -91,6 +94,7 @@ public:
     static QStringList LocalConfig_RevertPatterns;
     static QStringList LocalConfig_Assisted;
     static QStringList LocalConfig_Templates;
+    static QStringList LocalConfig_IgnorePatterns;
 
     //////////////////////////////////////////////
     // Global config

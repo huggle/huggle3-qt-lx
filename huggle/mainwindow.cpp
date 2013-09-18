@@ -199,12 +199,17 @@ void MainWindow::on_Tick()
             c++;
         }
     }
-    this->Status->setText("Currently processing " + QString::number(Core::ProcessingEdits.count())
-                          + " edits and " + QString::number(Core::RunningQueries.count()) + " queries"
-                          + " I have " + QString::number(Configuration::WhiteList.size())
-                          + " whitelisted users and you have "
-                          + QString::number(HuggleQueueItemLabel::Count)
-                          + " edits waiting in queue");
+    QString t = "Currently processing " + QString::number(Core::ProcessingEdits.count())
+            + " edits and " + QString::number(Core::RunningQueries.count()) + " queries"
+            + " I have " + QString::number(Configuration::WhiteList.size())
+            + " whitelisted users and you have "
+            + QString::number(HuggleQueueItemLabel::Count)
+            + " edits waiting in queue";
+    if (Configuration::Verbosity > 0)
+    {
+        t += " QGC: " + QString::number(QueryGC::qgc.count());
+    }
+    this->Status->setText(t);
     // let's refresh the edits that are being post processed
     if (Core::ProcessingEdits.count() > 0)
     {

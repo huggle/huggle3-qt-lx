@@ -32,6 +32,7 @@
 #include "exception.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
+#include "querygc.h"
 
 namespace Ui {
 class MainWindow;
