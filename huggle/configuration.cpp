@@ -86,6 +86,7 @@ QStringList Configuration::LocalConfig_IgnorePatterns;
 
 bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
+int Configuration::HistorySize = 600;
 
 QString Configuration::GetURLProtocolPrefix()
 {

@@ -56,6 +56,8 @@ public:
     static bool TrackInfoApiQ;
     //! Number of seconds for which the processed queries remain in list of processes
     static int QueryListTimeLimit;
+    //! Number of edits to keep in history stack
+    static int HistorySize;
 
     //////////////////////////////////////////////
     // Local config

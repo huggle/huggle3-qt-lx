@@ -74,12 +74,22 @@ MainWindow::~MainWindow()
     delete this->tb;
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e)
+void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
 {
     // we need to safely delete the edit later
     if (this->CurrentEdit != NULL)
     {
-        Core::ProcessedEdits.append(this->CurrentEdit);
+        // we need to track all edits so that we prevent
+        // any possible leak
+        if (!Core::ProcessedEdits.contains(this->CurrentEdit))
+        {
+            Core::ProcessedEdits.append(this->CurrentEdit);
+        }
+        if (!IgnoreHistory)
+        {
+            this->CurrentEdit->Next = e;
+            e->Previous = this->CurrentEdit;
+        }
     }
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
@@ -331,4 +341,30 @@ void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
     }
     this->Ignore = new IgnoreList(this);
     this->Ignore->show();
+}
+
+void MainWindow::on_actionForward_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Next == NULL)
+    {
+        return;
+    }
+    this->ProcessEdit(this->CurrentEdit->Next, true);
+}
+
+void MainWindow::on_actionBack_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Previous == NULL)
+    {
+        return;
+    }
+    this->ProcessEdit(this->CurrentEdit->Previous, true);
 }

@@ -64,7 +64,7 @@ public:
     QStringList UnwrittenLogs;
     QMutex lUnwrittenLogs;
     //! Recreate interface, should be called everytime you do anything with main form
-    void ProcessEdit(WikiEdit *e);
+    void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     void Render();
     bool Revert();
     bool Warn();
@@ -87,6 +87,10 @@ private slots:
     void on_actionRevert_triggered();
 
     void on_actionShow_ignore_list_of_current_wiki_triggered();
+
+    void on_actionForward_triggered();
+
+    void on_actionBack_triggered();
 
 private:
     Ui::MainWindow *ui;

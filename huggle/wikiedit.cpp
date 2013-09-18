@@ -35,6 +35,8 @@ WikiEdit::WikiEdit()
     this->ProcessingRevs = false;
     this->DiffText = "";
     this->Priority = 20;
+    this->Previous = NULL;
+    this->Next = NULL;
 }
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
@@ -70,6 +72,8 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->ProcessingRevs = false;
     this->DiffText = edit.DiffText;
     this->Priority = edit.Priority;
+    this->Previous = NULL;
+    this->Next = NULL;
 }
 
 WikiEdit::WikiEdit(WikiEdit *edit)
@@ -105,6 +109,8 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->ProcessingRevs = false;
     this->DiffText = edit->DiffText;
     this->Priority = edit->Priority;
+    this->Previous = NULL;
+    this->Next = NULL;
 }
 
 WikiEdit::~WikiEdit()
@@ -240,7 +246,7 @@ bool WikiEdit::FinalizePostProcessing()
     this->DifferenceQuery->DeleteLater = false;
     this->DifferenceQuery = NULL;
     //delete this->ProcessingQuery;
-   // this->ProcessingQuery = NULL;
+    //this->ProcessingQuery = NULL;
     this->Status = StatusPostProcessed;
     this->PostProcessing = false;
     return true;

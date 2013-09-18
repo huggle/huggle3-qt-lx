@@ -181,7 +181,6 @@ QString Core::Trim(QString text)
         text = text.mid(1);
     }
 
-
     return text;
 }
 
@@ -242,6 +241,7 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
+    Core::SaveConfig();
 #ifdef PYTHONENGINE
     Core::Log("Unloading python");
     delete Core::Python;

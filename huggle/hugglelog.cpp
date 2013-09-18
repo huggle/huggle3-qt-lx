@@ -24,7 +24,6 @@ void HuggleLog::InsertText(QString text)
     QString t = ui->textEdit->toPlainText();
     t.prepend(text + "\n");
 
-    //ui->textEdit->moveCursor(QTextCursor::start, 0);
     ui->textEdit->setPlainText(t);
 }
 
