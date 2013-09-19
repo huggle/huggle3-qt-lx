@@ -68,7 +68,7 @@ void HuggleQueue::Next()
     {
         return;
     }
-    QLayoutItem *i = this->layout->itemAt(1);
+    QLayoutItem *i = this->layout->itemAt(0);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
     this->layout->removeItem(i);
@@ -81,8 +81,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         this->layout->removeItem(qi);
         return;
     }
-    int curr=1;
-    while(curr<this->layout->count())
+    int curr=0;
+    while(curr<(this->layout->count()-1))
     {
         QLayoutItem *i = this->layout->itemAt(curr);
         HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();

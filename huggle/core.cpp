@@ -225,7 +225,7 @@ QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)
         }
         id++;
     }
-    return key;
+    return Configuration::DefaultRevertSummary;
 }
 
 QString Core::GetNameOfWarningTypeFromWarningKey(QString key)
@@ -255,7 +255,7 @@ QString Core::GetKeyOfWarningTypeFromWarningName(QString id)
         }
         i++;
     }
-    return Configuration::LocalConfig_DefaultSummary;
+    return id;
 }
 
 QString Core::GetValueFromKey(QString item)
@@ -480,6 +480,8 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
     {
         summary = Configuration::GetDefaultRevertSummary(_e->User->Username);
     }
+
+    summary = summary.replace("$1", _e->User->Username);
 
     if (rollback)
     {

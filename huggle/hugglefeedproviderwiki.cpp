@@ -85,13 +85,13 @@ void HuggleFeedProviderWiki::Refresh()
 
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
 {
-    if (this->Buffer->size() == 0)
+    if (this->Buffer->size() < 1)
     {
         return NULL;
     }
     WikiEdit *edit = new WikiEdit(this->Buffer->at(0));
-    Core::PostProcessEdit(edit);
     this->Buffer->removeAt(0);
+    Core::PostProcessEdit(edit);
     return edit;
 }
 
