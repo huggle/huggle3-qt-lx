@@ -99,6 +99,11 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
         if (!Core::ProcessedEdits.contains(this->CurrentEdit))
         {
             Core::ProcessedEdits.append(this->CurrentEdit);
+            while (Core::ProcessedEdits.count() > Configuration::HistorySize)
+            {
+                Core::DeleteEdit(Core::ProcessedEdits.at(0));
+                Core::ProcessedEdits.removeAt(0);
+            }
         }
         if (!IgnoreHistory)
         {

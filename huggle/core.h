@@ -117,6 +117,7 @@ public:
     static QString GetKeyFromValue(QString item);
     static void ParseWords(QString text);
     static ApiQuery *MessageUser(WikiUser *user, QString message, bool minor = false, bool section = false);
+    static void LoadDefs();
 private:
     static QList<QString> *RingLog;
 };

@@ -421,6 +421,11 @@ ApiQuery *Core::MessageUser(WikiUser *user, QString message, bool minor, bool se
     return q;
 }
 
+void Core::LoadDefs()
+{
+
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
