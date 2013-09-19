@@ -109,6 +109,8 @@ public:
     static QString GetSummaryOfWarningTypeFromWarningKey(QString key);
     static QString GetNameOfWarningTypeFromWarningKey(QString key);
     static QString GetKeyOfWarningTypeFromWarningName(QString id);
+    //! Parse a part patterns for score words
+    static void ParsePats(QString text);
     static QString GetValueFromKey(QString item);
     static QString GetKeyFromValue(QString item);
     static void ParseWords(QString text);

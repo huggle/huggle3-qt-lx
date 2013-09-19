@@ -100,6 +100,7 @@ public:
 
     // Definitions
 
+    static QList<ScoreWord> LocalConfig_ScoreParts;
     static QList<ScoreWord> LocalConfig_ScoreWords;
     static int LocalConfig_ScoreFlag;
     static QStringList LocalConfig_Ignores;
@@ -107,6 +108,7 @@ public:
     static QStringList LocalConfig_Assisted;
     static QStringList LocalConfig_Templates;
     static QStringList LocalConfig_IgnorePatterns;
+    static int LocalConfig_TalkPageWarningScore;
 
     static int LocalConfig_BotScore;
     static int LocalConfig_IPScore;

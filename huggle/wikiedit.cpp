@@ -261,6 +261,16 @@ bool WikiEdit::FinalizePostProcessing()
         this->Score += Configuration::LocalConfig_BotScore;
     }
 
+    if (this->Page->IsUserpage())
+    {
+        this->Score -= 200;
+    }
+
+    if (this->Page->IsTalk())
+    {
+        this->Score -= 2000;
+    }
+
     ProcessWords();
 
     this->Status = StatusPostProcessed;
@@ -272,12 +282,23 @@ void WikiEdit::ProcessWords()
 {
     int xx = 0;
     QString text = this->DiffText.toLower();
+    while (xx<Configuration::LocalConfig_ScoreParts.count())
+    {
+        QString w = Configuration::LocalConfig_ScoreParts.at(xx).word;
+        if (text.contains(w))
+        {
+            this->Score += Configuration::LocalConfig_ScoreParts.at(xx).score;
+            ScoreWords.append(w);
+        }
+        xx++;
+    }
+    xx = 0;
     while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
         QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
         if (text.contains(" " + w + " ") ||text.contains(" " + w + ".")
                 || text.contains(" " + w + ",") || text.contains(" " + w + "!")
-                || text.contains(" " + w + "\n"))
+                || text.contains(" " + w + "\n") || text.contains("\n" + w + "\n"))
         {
             this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
             ScoreWords.append(w);

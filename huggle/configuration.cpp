@@ -92,8 +92,10 @@ int Configuration::HistorySize = 600;
 int Configuration::LocalConfig_IPScore = 800;
 int Configuration::LocalConfig_BotScore = -200;
 int Configuration::LocalConfig_WarningScore = 2000;
+int Configuration::LocalConfig_TalkPageWarningScore = -800;
+QList<ScoreWord> Configuration::LocalConfig_ScoreParts;
 QList<ScoreWord> Configuration::LocalConfig_ScoreWords;
-int Configuration::LocalConfig_ScoreFlag;
+int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
 

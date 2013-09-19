@@ -258,6 +258,67 @@ QString Core::GetKeyOfWarningTypeFromWarningName(QString id)
     return id;
 }
 
+void Core::ParsePats(QString text)
+{
+    Configuration::LocalConfig_ScoreParts.clear();
+    while (text.contains("score-parts("))
+    {
+        text = text.mid(text.indexOf("score-parts(") + 12);
+        if (!text.contains(")"))
+        {
+            return;
+        }
+        int score = text.mid(0, text.indexOf(")")).toInt();
+
+        if (score == 0)
+        {
+            continue;
+        }
+
+        QStringList word;
+
+        if (!text.contains(":"))
+        {
+            return;
+        }
+
+        text = text.mid(text.indexOf(":") + 1);
+
+        QStringList lines = text.split("\n");
+
+        int line = 1;
+        while (line < lines.count())
+        {
+            QString l = lines.at(line);
+            QStringList items = l.split(",");
+            int CurrentItem = 0;
+            while ( CurrentItem < items.count() )
+            {
+                QString w = Core::Trim(items.at(CurrentItem));
+                if (w == "")
+                {
+                    CurrentItem++;
+                    continue;
+                }
+                word.append(w);
+                CurrentItem++;
+            }
+            if (!l.endsWith(",") || Core::Trim(l) == "")
+            {
+                break;
+            }
+            line++;
+        }
+
+        line = 0;
+        while (line < word.count())
+        {
+            Configuration::LocalConfig_ScoreParts.append(ScoreWord(word.at(line), score));
+            line++;
+        }
+    }
+}
+
 QString Core::GetValueFromKey(QString item)
 {
     if (item.contains(";"))
@@ -646,6 +707,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config).toInt();
+    Core::ParsePats(config);
     Core::ParseWords(config);
     return true;
 }
