@@ -271,7 +271,7 @@ bool WikiEdit::FinalizePostProcessing()
 void WikiEdit::ProcessWords()
 {
     int xx = 0;
-    while (xx<Configuration::LocalConfig_ScoreWords)
+    while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
         if (this->DiffText.contains(Configuration::LocalConfig_ScoreWords
                                     .at(xx).word))
