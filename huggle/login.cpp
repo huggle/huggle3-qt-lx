@@ -17,6 +17,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
 {
     ui->setupUi(this);
     this->_Status = Nothing;
+    this->LoginQuery = NULL;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(on_Time()));
     this->setWindowTitle("Huggle 3 QT");
@@ -86,11 +87,6 @@ void Login::Disable()
 
 void Login::PressOK()
 {
-    if (ui->lineEdit_2->text() == "Developer Mode")
-    {
-        DeveloperMode();
-        return;
-    }
     if (ui->tab->isVisible())
     {
         QMessageBox mb;
@@ -101,10 +97,15 @@ void Login::PressOK()
         return;
     }
     Configuration::Project = Configuration::ProjectList.at(ui->Project->currentIndex());
+    Configuration::UsingSSL = ui->checkBox->isChecked();
+    if (ui->lineEdit_2->text() == "Developer Mode")
+    {
+        DeveloperMode();
+        return;
+    }
     Configuration::UserName = ui->lineEdit_2->text();
     Configuration::Password = ui->lineEdit_3->text();
     this->_Status = LoggingIn;
-    Configuration::UsingSSL = ui->checkBox->isChecked();
     this->Disable();
     ui->ButtonOK->setText("Cancel");
     // First of all, we need to login to the site

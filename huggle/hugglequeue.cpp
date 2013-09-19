@@ -47,7 +47,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
         this->layout->addWidget(label);
     } else
     {
-        int id = 2;
+        int id = 0;
         while (GetScore(id) > page->Score)
         {
             id++;
@@ -98,7 +98,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 
 int HuggleQueue::GetScore(int id)
 {
-    if (this->layout->count() <= id)
+    if (this->layout->count() - 1 <= id)
     {
         return -999999;
     }

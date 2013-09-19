@@ -105,6 +105,12 @@ public:
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
     static QString Trim(QString text);
     static void DeleteEdit(WikiEdit *edit);
+    // the mess bellow exist because of a way how huggle config stores the lists
+    static QString GetSummaryOfWarningTypeFromWarningKey(QString key);
+    static QString GetNameOfWarningTypeFromWarningKey(QString key);
+    static QString GetKeyOfWarningTypeFromWarningName(QString id);
+    static QString GetValueFromKey(QString item);
+    static QString GetKeyFromValue(QString item);
 private:
     static QList<QString> *RingLog;
 };

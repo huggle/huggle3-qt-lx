@@ -213,6 +213,75 @@ void Core::DeleteEdit(WikiEdit *edit)
     delete edit;
 }
 
+QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)
+{
+    int id=0;
+    while (id<Configuration::LocalConfig_RevertSummaries.count())
+    {
+        QString line = Configuration::LocalConfig_RevertSummaries.at(id);
+        if (line.startsWith(key) + ";")
+        {
+            return Core::GetValueFromKey(line);
+        }
+        id++;
+    }
+    return key;
+}
+
+QString Core::GetNameOfWarningTypeFromWarningKey(QString key)
+{
+    int id=0;
+    while (id<Configuration::LocalConfig_WarningTypes.count())
+    {
+        QString line = Configuration::LocalConfig_WarningTypes.at(id);
+        if (line.startsWith(key) + ";")
+        {
+            return Core::GetValueFromKey(line);
+        }
+        id++;
+    }
+    return key;
+}
+
+QString Core::GetKeyOfWarningTypeFromWarningName(QString id)
+{
+    int i=0;
+    while (i<Configuration::LocalConfig_WarningTypes.count())
+    {
+        QString line = Configuration::LocalConfig_WarningTypes.at(i);
+        if (line.endsWith(id) || line.endsWith(id) + ",")
+        {
+            return Core::GetKeyFromValue(line);
+        }
+        i++;
+    }
+    return Configuration::LocalConfig_DefaultSummary;
+}
+
+QString Core::GetValueFromKey(QString item)
+{
+    if (item.contains(";"))
+    {
+        QString type = item.mid(item.indexOf(";") + 1);
+        if (type.endsWith(","))
+        {
+            type = type.mid(0, type.length() - 1);
+        }
+        return type;
+    }
+    return item;
+}
+
+QString Core::GetKeyFromValue(QString item)
+{
+    if (item.contains(";"))
+    {
+        QString type = item.mid(0, item.indexOf(";"));
+        return type;
+    }
+    return item;
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -340,7 +409,12 @@ void Core::PreProcessEdit(WikiEdit *_e)
 
 void Core::SaveConfig()
 {
-
+    QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        Core::Log("Unable to save configuration because the file can't be open");
+        return;
+    }
 }
 
 void Core::PostProcessEdit(WikiEdit *_e)

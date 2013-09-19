@@ -55,14 +55,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::PrimaryFeedProvider->Start();
     }
-    if (Configuration::LocalConfig_RevertSummaries.count() > 0)
+    if (Configuration::LocalConfig_WarningTypes.count() > 0)
     {
         this->RevertSummaries = new QMenu(this);
         int r=0;
-        while (r<Configuration::LocalConfig_RevertSummaries.count())
+        while (r<Configuration::LocalConfig_WarningTypes.count())
         {
-            QAction *action = new QAction(this->GetSummaryKey(Configuration::LocalConfig_RevertSummaries.at(r)), this);
+            QAction *action = new QAction(Core::GetValueFromKey(Configuration::LocalConfig_WarningTypes.at(r)), this);
             this->RevertSummaries->addAction(action);
+            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
             r++;
         }
         ui->actionRevert->setMenu(this->RevertSummaries);
@@ -139,7 +140,7 @@ void MainWindow::Render()
     this->tb->SetTitle(this->Browser->CurrentPageName());
 }
 
-bool MainWindow::Revert()
+bool MainWindow::Revert(QString summary)
 {
     bool rollback = true;
     if (this->CurrentEdit == NULL)
@@ -162,7 +163,7 @@ bool MainWindow::Revert()
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
-        Core::RevertEdit(this->CurrentEdit);
+        Core::RevertEdit(this->CurrentEdit, summary);
         return true;
     }
     return false;
@@ -419,6 +420,13 @@ void MainWindow::on_actionBack_triggered()
         return;
     }
     this->ProcessEdit(this->CurrentEdit->Previous, true);
+}
+
+void MainWindow::CustomRevert()
+{
+    QAction *revert = (QAction*) QObject::sender();
+    QString rs = Core::GetSummaryOfWarningTypeFromWarningKey(Core::GetKeyOfWarningTypeFromWarningName(revert->text()));
+    this->Revert(rs);
 }
 
 QString MainWindow::GetSummaryText(QString text)

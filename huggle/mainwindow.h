@@ -67,7 +67,7 @@ public:
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     void Render();
-    bool Revert();
+    bool Revert(QString summary = "");
     bool Warn();
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
@@ -88,12 +88,11 @@ private slots:
     void on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered();
     void on_actionRevert_and_warn_triggered();
     void on_actionRevert_triggered();
-
     void on_actionShow_ignore_list_of_current_wiki_triggered();
-
     void on_actionForward_triggered();
-
     void on_actionBack_triggered();
+
+    void CustomRevert();
 
 private:
     Ui::MainWindow *ui;
