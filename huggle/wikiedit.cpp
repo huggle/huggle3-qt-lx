@@ -276,8 +276,8 @@ void WikiEdit::ProcessWords()
         if (this->DiffText.contains(Configuration::LocalConfig_ScoreWords
                                     .at(xx).word))
         {
-            this->Score += Configuration::LocalConfig_ScoreWords
-                    .at(xx).score;
+            this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
+            ScoreWords.append(Configuration::LocalConfig_ScoreWords.at(xx).word);
         }
         xx++;
     }

@@ -134,7 +134,25 @@ void MainWindow::Render()
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetUser(this->CurrentEdit->User->Username);
-        this->tb->SetInfo("Diff of page: " + this->CurrentEdit->Page->PageName);
+        QString word = "";
+        if (this->CurrentEdit->ScoreWords.count() != 0)
+        {
+            word = " words: ";
+            int x = 0;
+            while (x < this->CurrentEdit->ScoreWords.count())
+            {
+                word += this->CurrentEdit->ScoreWords.at(x) + ", ";
+                x++;
+            }
+            if (word.endsWith(", "))
+            {
+                word = word.mid(0, word.length() - 2);
+            }
+        }
+
+        this->tb->SetInfo("Diff of page: " + this->CurrentEdit->Page->PageName
+                          + " (score: " + QString::number(this->CurrentEdit->Score)
+                          + word + ")");
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());

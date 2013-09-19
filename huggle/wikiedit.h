@@ -77,6 +77,7 @@ public:
     WikiEdit *Previous;
     WikiEdit *Next;
     int Score;
+    QStringList ScoreWords;
 private:
     bool PostProcessing;
     bool ProcessingRevs;
