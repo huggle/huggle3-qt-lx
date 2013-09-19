@@ -318,7 +318,12 @@ void Core::ParseWords(QString text)
             int CurrentItem = 0;
             while ( CurrentItem < items.count() )
             {
-                word.append(Core::Trim(items.at(CurrentItem)));
+                QString w = Core::Trim(items.at(CurrentItem));
+                if (w == "")
+                {
+                    continue;
+                }
+                word.append(w);
                 CurrentItem++;
             }
             if (!l.endsWith(",") || Core::Trim(l) == "")

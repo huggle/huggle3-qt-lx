@@ -271,11 +271,12 @@ bool WikiEdit::FinalizePostProcessing()
 void WikiEdit::ProcessWords()
 {
     int xx = 0;
+    QString text = this->DiffText.toLower();
     while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
         QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
-        if (this->DiffText.contains(" " + w + " ") || this->DiffText.contains(" " + w + ".")
-                || this->DiffText.contains(" " + w + ",") || this->DiffText.contains(" " + w + "!"))
+        if (text.contains(" " + w + " ") ||text.contains(" " + w + ".")
+                || text.contains(" " + w + ",") || text.contains(" " + w + "!"))
         {
             this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
             ScoreWords.append(w);
