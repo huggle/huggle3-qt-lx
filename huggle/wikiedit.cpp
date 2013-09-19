@@ -273,11 +273,12 @@ void WikiEdit::ProcessWords()
     int xx = 0;
     while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
-        if (this->DiffText.contains(Configuration::LocalConfig_ScoreWords
-                                    .at(xx).word))
+        QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
+        if (this->DiffText.contains(" " + w + " ") || this->DiffText.contains(" " + w + ".")
+                || this->DiffText.contains(" " + w + ",") || this->DiffText.contains(" " + w + "!"))
         {
             this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
-            ScoreWords.append(Configuration::LocalConfig_ScoreWords.at(xx).word);
+            ScoreWords.append(w);
         }
         xx++;
     }
