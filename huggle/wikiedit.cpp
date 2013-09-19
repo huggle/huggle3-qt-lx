@@ -38,6 +38,8 @@ WikiEdit::WikiEdit()
     this->Score = 0;
     this->Previous = NULL;
     this->Next = NULL;
+    this->ProcessingByWorkerThread = false;
+    this->ProcessedByWorkerThread = false;
 }
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
@@ -76,6 +78,8 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->Previous = NULL;
     this->Next = NULL;
     this->Score = edit.Score;
+    this->ProcessingByWorkerThread = false;
+    this->ProcessedByWorkerThread = false;
 }
 
 WikiEdit::WikiEdit(WikiEdit *edit)
@@ -114,6 +118,8 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->Previous = NULL;
     this->Next = NULL;
     this->Score = edit->Score;
+    this->ProcessingByWorkerThread = false;
+    this->ProcessedByWorkerThread = false;
 }
 
 WikiEdit::~WikiEdit()
@@ -126,58 +132,20 @@ WikiEdit::~WikiEdit()
 
 bool WikiEdit::FinalizePostProcessing()
 {
+    if (this->ProcessedByWorkerThread)
+    {
+        return true;
+    }
+
+    if (this->ProcessingByWorkerThread)
+    {
+        return false;
+    }
+
     if (!this->PostProcessing)
     {
         return true;
     }
-    //if (this->ProcessingQuery == NULL)
-    //{
-    //    return false;
-    //}
-    //if (this->ProcessingRevs)
-//    {
-//        // check if api was processed
-//        if (!this->ProcessingQuery->Processed())
-//        {
-//            return false;
-//        }
-
-//        if (this->ProcessingQuery->Result->Failed)
-//        {
-//            // whoa it ended in error, we need to get rid of this edit somehow now
-//            delete this->ProcessingQuery;
-//            this->ProcessingQuery = NULL;
-//            this->PostProcessing = false;
-//            return true;
-//        }
-
-//        // so we can parse the data from query now
-
-//        QDomDocument d;
-//        d.setContent(this->ProcessingQuery->Result->Data);
-//        QDomNodeList l = d.elementsByTagName("rev");
-//        // get last id
-//        if (l.count() > 0)
-//        {
-//            QDomElement e = l.at(0).toElement();
-//            if (e.nodeName() == "rev")
-//            {
-//                // check if this revision matches our user
-//                if (e.attributes().contains("user"))
-//                {
-//                    if (e.attribute("user") == this->User->Username)
-//                    {
-//                        if (e.attributes().contains("rollbacktoken"))
-//                        {
-//                            // finally we managed to get a rollback token
-//                            this->RollbackToken = e.attribute("rollbacktoken");
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        this->ProcessingRevs = false;
-//    }
 
     if (this->ProcessingDiff)
     {
@@ -248,34 +216,11 @@ bool WikiEdit::FinalizePostProcessing()
 
     this->DifferenceQuery->DeleteLater = false;
     this->DifferenceQuery = NULL;
-    //delete this->ProcessingQuery;
-    //this->ProcessingQuery = NULL;
-
-    // score
-    if (this->User->IP)
-    {
-        this->Score += Configuration::LocalConfig_IPScore;
-    }
-    if (this->Bot)
-    {
-        this->Score += Configuration::LocalConfig_BotScore;
-    }
-
-    if (this->Page->IsUserpage())
-    {
-        this->Score -= 200;
-    }
-
-    if (this->Page->IsTalk())
-    {
-        this->Score -= 2000;
-    }
-
-    ProcessWords();
-
-    this->Status = StatusPostProcessed;
-    this->PostProcessing = false;
-    return true;
+    this->ProcessingByWorkerThread = true;
+    ProcessorThread::EditLock.lock();
+    ProcessorThread::PendingEdits.append(this);
+    ProcessorThread::EditLock.unlock();
+    return false;
 }
 
 void WikiEdit::ProcessWords()
@@ -338,5 +283,54 @@ bool WikiEdit::IsPostProcessed()
         return true;
     }
     return false;
+}
+
+QMutex ProcessorThread::EditLock;
+QList<WikiEdit*> ProcessorThread::PendingEdits;
+
+void ProcessorThread::run()
+{
+    while(true)
+    {
+        ProcessorThread::EditLock.lock();
+        int e=0;
+        while (e<ProcessorThread::PendingEdits.count())
+        {
+            this->Process(PendingEdits.at(e));
+            e++;
+        }
+        PendingEdits.clear();
+        ProcessorThread::EditLock.unlock();
+        QThread::usleep(200000);
+    }
+}
+
+void ProcessorThread::Process(WikiEdit *edit)
+{
+    // score
+    if (edit->User->IP)
+    {
+        edit->Score += Configuration::LocalConfig_IPScore;
+    }
+    if (edit->Bot)
+    {
+        edit->Score += Configuration::LocalConfig_BotScore;
+    }
+
+    if (edit->Page->IsUserpage())
+    {
+        edit->Score -= 200;
+    }
+
+    if (edit->Page->IsTalk())
+    {
+        edit->Score -= 2000;
+    }
+
+    edit->ProcessWords();
+
+    edit->Status = StatusPostProcessed;
+    edit->PostProcessing = false;
+    edit->ProcessedByWorkerThread = true;
 }
 

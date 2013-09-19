@@ -40,6 +40,7 @@ class WikiSite;
 class WikiPage;
 class WikiUser;
 class WikiEdit;
+class ProcessorThread;
 
 class Core
 {
@@ -59,6 +60,7 @@ public:
     //! This is a list of all edits that are being processed by some way
     //! whole list needs to be checked and probed everytime once a while
     static QList<WikiEdit*> ProcessingEdits;
+    static ProcessorThread * Processor;
 
 #ifdef PYTHONENGINE
     static PythonEngine *Python;

@@ -33,11 +33,14 @@ QList<QString> *Core::RingLog = new QList<QString>();
 QList<Query*> Core::RunningQueries;
 QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
+ProcessorThread *Core::Processor = NULL;
 
 void Core::Init()
 {
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
+    Processor = new ProcessorThread();
+    Processor->start();
     Core::LoadConfig();
     Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
     Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
@@ -475,6 +478,9 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
+    Processor->terminate();
+    delete Processor;
+    Processor = NULL;
     Core::SaveConfig();
 #ifdef PYTHONENGINE
     Core::Log("Unloading python");

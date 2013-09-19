@@ -13,6 +13,7 @@
 
 #include <QString>
 #include <QThread>
+#include <QMutex>
 #include <QtXml>
 #include "apiquery.h"
 #include "wikiuser.h"
@@ -35,10 +36,17 @@ enum WEStatus
     StatusPostProcessed
 };
 
+class WikiEdit;
+
 class ProcessorThread :  public QThread
 {
     Q_OBJECT
 public:
+    static QList<WikiEdit *> PendingEdits;
+    static QMutex EditLock;
+    void Process(WikiEdit *edit);
+protected:
+    void run();
 };
 
 class Query;
@@ -85,13 +93,15 @@ public:
     WikiEdit *Next;
     int Score;
     QStringList ScoreWords;
-private:
+    void ProcessWords();
     bool PostProcessing;
+    bool ProcessingByWorkerThread;
+    bool ProcessedByWorkerThread;
+private:
     bool ProcessingRevs;
     bool ProcessingDiff;
     ApiQuery* ProcessingQuery;
     ApiQuery* DifferenceQuery;
-    void ProcessWords();
 };
 
 #endif // WIKIEDIT_H
