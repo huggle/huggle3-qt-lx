@@ -83,6 +83,7 @@ private:
     bool ProcessingDiff;
     ApiQuery* ProcessingQuery;
     ApiQuery* DifferenceQuery;
+    void ProcessWords();
 };
 
 #endif // WIKIEDIT_H

@@ -20,6 +20,14 @@
 #include <QString>
 #include "wikisite.h"
 
+class ScoreWord
+{
+public:
+    ScoreWord(QString Word, int Score);
+    QString word;
+    int score;
+};
+
 class Configuration
 {
 public:
@@ -92,6 +100,8 @@ public:
 
     // Definitions
 
+    static QList<ScoreWord> LocalConfig_ScoreWords;
+    static int LocalConfig_ScoreFlag;
     static QStringList LocalConfig_Ignores;
     static QStringList LocalConfig_RevertPatterns;
     static QStringList LocalConfig_Assisted;

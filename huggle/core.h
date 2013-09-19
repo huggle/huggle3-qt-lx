@@ -111,6 +111,7 @@ public:
     static QString GetKeyOfWarningTypeFromWarningName(QString id);
     static QString GetValueFromKey(QString item);
     static QString GetKeyFromValue(QString item);
+    static void ParseWords(QString text);
 private:
     static QList<QString> *RingLog;
 };

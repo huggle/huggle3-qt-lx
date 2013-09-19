@@ -92,6 +92,8 @@ int Configuration::HistorySize = 600;
 int Configuration::LocalConfig_IPScore = 800;
 int Configuration::LocalConfig_BotScore = -200;
 int Configuration::LocalConfig_WarningScore = 2000;
+QList<ScoreWord> Configuration::LocalConfig_ScoreWords;
+int Configuration::LocalConfig_ScoreFlag;
 
 QString Configuration::GetURLProtocolPrefix()
 {
@@ -114,4 +116,11 @@ Configuration::Configuration()
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
     return Configuration::DefaultRevertSummary.replace("$1", source) + " " + Configuration::EditSuffixOfHuggle;
+}
+
+
+ScoreWord::ScoreWord(QString Word, int Score)
+{
+    this->score = Score;
+    this->word = Word;
 }

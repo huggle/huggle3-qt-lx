@@ -282,6 +282,61 @@ QString Core::GetKeyFromValue(QString item)
     return item;
 }
 
+void Core::ParseWords(QString text)
+{
+    Configuration::LocalConfig_ScoreWords.clear();
+    while (text.contains("score-words("))
+    {
+        text = text.mid(text.indexOf("score-words(") + 12);
+        if (!text.contains(")"))
+        {
+            return;
+        }
+        int score = text.mid(0, text.indexOf(")")).toInt();
+
+        if (score == 0)
+        {
+            continue;
+        }
+
+        QStringList word;
+
+        if (!text.contains(":"))
+        {
+            return;
+        }
+
+        text = text.mid(text.indexOf(":") + 1);
+
+        QStringList lines = text.split("\n");
+
+        int line = 1;
+        while (line < lines.count())
+        {
+            QString l = lines.at(line);
+            QStringList items = l.split(",");
+            int CurrentItem = 0;
+            while ( CurrentItem < items.count() )
+            {
+                word.append(Core::Trim(items.at(CurrentItem)));
+                CurrentItem++;
+            }
+            if (!l.endsWith(",") || Core::Trim(l) == "")
+            {
+                break;
+            }
+            line++;
+        }
+
+        line = 0;
+        while (line < word.count())
+        {
+            Configuration::LocalConfig_ScoreWords.append(ScoreWord(word.at(line), score));
+            line++;
+        }
+    }
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -559,6 +614,8 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
+    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config).toInt();
+    Core::ParseWords(config);
     return true;
 }
 

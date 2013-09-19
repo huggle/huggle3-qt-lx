@@ -261,9 +261,26 @@ bool WikiEdit::FinalizePostProcessing()
         this->Score += Configuration::LocalConfig_BotScore;
     }
 
+    ProcessWords();
+
     this->Status = StatusPostProcessed;
     this->PostProcessing = false;
     return true;
+}
+
+void WikiEdit::ProcessWords()
+{
+    int xx = 0;
+    while (xx<Configuration::LocalConfig_ScoreWords)
+    {
+        if (this->DiffText.contains(Configuration::LocalConfig_ScoreWords
+                                    .at(xx).word))
+        {
+            this->Score += Configuration::LocalConfig_ScoreWords
+                    .at(xx).score;
+        }
+        xx++;
+    }
 }
 
 void WikiEdit::PostProcess()

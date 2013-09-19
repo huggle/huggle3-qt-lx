@@ -36,6 +36,12 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->page->Score > 1000)
+        {
+            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warning.png"));
+            return;
+        }
+
         switch (this->page->CurrentUserWarningLevel)
         {
         case WarningLevelNone:
