@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -94,9 +85,17 @@
     <addaction name="actionOpen_page_in_browser"/>
     <addaction name="actionOpen_page_history_in_browser"/>
    </widget>
+   <widget class="QMenu" name="menuUser">
+    <property name="title">
+     <string>User</string>
+    </property>
+    <addaction name="actionIncrease_badness_score_by_20"/>
+    <addaction name="actionDecrease_badness_score_by_20"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
+   <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -117,6 +116,7 @@
    <addaction name="separator"/>
    <addaction name="actionWelcome_user"/>
    <addaction name="actionOpen_in_a_browser"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
@@ -247,6 +247,16 @@
   <action name="actionOpen_page_history_in_browser">
    <property name="text">
     <string>Open page history in browser</string>
+   </property>
+  </action>
+  <action name="actionIncrease_badness_score_by_20">
+   <property name="text">
+    <string>Increase badness score by 20</string>
+   </property>
+  </action>
+  <action name="actionDecrease_badness_score_by_20">
+   <property name="text">
+    <string>Decrease badness score by 20</string>
    </property>
   </action>
  </widget>

@@ -11,17 +11,22 @@
 #ifndef WIKIUSER_H
 #define WIKIUSER_H
 
+#include <QList>
 #include <QString>
 #include <QRegExp>
 
 class WikiUser
 {
 public:
+    static QList<WikiUser*> ProblematicUsers;
+    static void UpdateUser(WikiUser *us);
     WikiUser();
     WikiUser(WikiUser *u);
     WikiUser(const WikiUser& u);
     WikiUser(QString user);
     QString Username;
+    int BadnessScore;
+    int WarningLevel;
     bool IP;
 private:
     static QRegExp IPv4Regex;

@@ -241,9 +241,10 @@ void WikiEdit::ProcessWords()
     while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
         QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
-        if (text.contains(" " + w + " ") ||text.contains(" " + w + ".")
+        if (text.contains(" " + w + " ") || text.contains(" " + w + ".")
                 || text.contains(" " + w + ",") || text.contains(" " + w + "!")
-                || text.contains(" " + w + "\n") || text.contains("\n" + w + "\n"))
+                || text.contains(" " + w + "\n") || text.contains("\n" + w + "\n")
+                || text.contains("\n" + w + " "))
         {
             this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
             ScoreWords.append(w);
@@ -326,6 +327,8 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score -= 2000;
     }
+
+    edit->Score += edit->User->BadnessScore;
 
     edit->ProcessWords();
 

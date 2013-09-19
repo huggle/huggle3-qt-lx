@@ -11,27 +11,63 @@
 #include "wikiuser.h"
 
 QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+QList<WikiUser*> WikiUser::ProblematicUsers;
+
+void WikiUser::UpdateUser(WikiUser *us)
+{
+    int c=0;
+    while (c<ProblematicUsers.count())
+    {
+        if (ProblematicUsers.at(c)->Username == us->Username)
+        {
+            ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
+            ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
+            return;
+        }
+        c++;
+    }
+    ProblematicUsers.append(us);
+}
 
 WikiUser::WikiUser()
 {
     this->Username = "";
     this->IP = true;
+    this->BadnessScore = 0;
+    this->WarningLevel = 0;
 }
 
 WikiUser::WikiUser(WikiUser *u)
 {
     this->IP = u->IP;
     this->Username = u->Username;
+    this->WarningLevel = u->WarningLevel;
+    this->BadnessScore = u->BadnessScore;
 }
 
 WikiUser::WikiUser(const WikiUser &u)
 {
+    this->WarningLevel = u.WarningLevel;
     this->IP = u.IP;
     this->Username = u.Username;
+    this->BadnessScore = u.BadnessScore;
 }
 
 WikiUser::WikiUser(QString user)
 {
     this->IP = WikiUser::IPv4Regex.exactMatch(user);
     this->Username = user;
+    int c=0;
+    while (c<ProblematicUsers.count())
+    {
+        if (ProblematicUsers.at(c)->Username == this->Username)
+        {
+            this->BadnessScore = ProblematicUsers.at(c)->BadnessScore;
+            this->WarningLevel = ProblematicUsers.at(c)->WarningLevel;
+            return;
+        }
+        c++;
+    }
+    this->BadnessScore = 0;
+    this->WarningLevel = 0;
 }

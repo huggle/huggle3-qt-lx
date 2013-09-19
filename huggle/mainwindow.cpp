@@ -487,3 +487,21 @@ void MainWindow::on_actionOpen_page_history_in_browser_triggered()
                                   + "?action=history");
     }
 }
+
+void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        this->CurrentEdit->User->BadnessScore += 20;
+        WikiUser::UpdateUser(this->CurrentEdit->User);
+    }
+}
+
+void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        this->CurrentEdit->User->BadnessScore -=20;
+        WikiUser::UpdateUser(this->CurrentEdit->User);
+    }
+}

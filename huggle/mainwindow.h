@@ -101,6 +101,10 @@ private slots:
 
     void on_actionOpen_page_history_in_browser_triggered();
 
+    void on_actionIncrease_badness_score_by_20_triggered();
+
+    void on_actionDecrease_badness_score_by_20_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
