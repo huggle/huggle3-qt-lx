@@ -17,6 +17,7 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
     q = NULL;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
     LatestTime = QDateTime::currentDateTime().addDays(-1);
+    LastRefresh = QDateTime::currentDateTime().addDays(-1);
 }
 
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
@@ -45,7 +46,11 @@ bool HuggleFeedProviderWiki::ContainsEdit()
 {
     if (this->Buffer->size() == 0)
     {
-        Refresh();
+        if (!(this->LastRefresh.addSecs(6) > QDateTime::currentDateTime()))
+        {
+            Refresh();
+            this->LastRefresh = QDateTime::currentDateTime();
+        }
         return false;
     }
     return true;
@@ -64,13 +69,13 @@ void HuggleFeedProviderWiki::Refresh()
         {
             // failed to obtain the data
             Core::Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
-            delete this->q;
+            q->DeleteLater = false;
             this->q = NULL;
             Refreshing = false;
             return;
         }
         this->Process(q->Result->Data);
-        delete this->q;
+        q->DeleteLater = false;
         this->q = NULL;
         Refreshing = false;
         return;
@@ -80,6 +85,9 @@ void HuggleFeedProviderWiki::Refresh()
     q = new ApiQuery();
     q->SetAction(ActionQuery);
     q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=200";
+    q->Target = "Recent changes refresh";
+    Core::RunningQueries.append(q);
+    q->DeleteLater = true;
     q->Process();
 }
 

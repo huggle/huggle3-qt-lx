@@ -37,6 +37,7 @@ public:
     bool ContainsEdit();
     void Refresh();
     WikiEdit *RetrieveEdit();
+    QDateTime LastRefresh;
 private:
     QDateTime LatestTime;
     void Process(QString data);
