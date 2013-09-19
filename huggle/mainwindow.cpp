@@ -465,3 +465,25 @@ QString MainWindow::GetSummaryText(QString text)
     }
     return Configuration::LocalConfig_DefaultSummary;
 }
+
+void MainWindow::on_actionWelcome_user_triggered()
+{
+
+}
+
+void MainWindow::on_actionOpen_in_a_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName ));
+    }
+}
+
+void MainWindow::on_actionOpen_page_history_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
+                                  + "?action=history");
+    }
+}

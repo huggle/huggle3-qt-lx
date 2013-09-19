@@ -14,6 +14,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QLabel>
+#include <QDesktopServices>
 #include <QMutex>
 #include <QSplitter>
 #include <QDockWidget>
@@ -93,6 +94,12 @@ private slots:
     void on_actionBack_triggered();
 
     void CustomRevert();
+
+    void on_actionWelcome_user_triggered();
+
+    void on_actionOpen_in_a_browser_triggered();
+
+    void on_actionOpen_page_history_in_browser_triggered();
 
 private:
     Ui::MainWindow *ui;

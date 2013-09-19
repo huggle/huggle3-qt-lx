@@ -94,6 +94,8 @@ int Configuration::LocalConfig_BotScore = -200;
 int Configuration::LocalConfig_WarningScore = 2000;
 QList<ScoreWord> Configuration::LocalConfig_ScoreWords;
 int Configuration::LocalConfig_ScoreFlag;
+QStringList Configuration::LocalConfig_WelcomeTypes;
+bool Configuration::WarnUserSpaceRoll = true;
 
 QString Configuration::GetURLProtocolPrefix()
 {

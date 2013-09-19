@@ -41,3 +41,12 @@ bool WikiPage::IsTalk()
     }
     return false;
 }
+
+bool WikiPage::IsUserpage()
+{
+    if (PageName.contains("User:") || PageName.contains("User:"))
+    {
+        return true;
+    }
+    return false;
+}

@@ -25,6 +25,7 @@ public:
     QString PageName;
     WikiSite *Site;
     bool IsTalk();
+    bool IsUserpage();
 };
 
 #endif // WIKIPAGE_H

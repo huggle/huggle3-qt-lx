@@ -12,6 +12,7 @@
 #define WIKIEDIT_H
 
 #include <QString>
+#include <QThread>
 #include <QtXml>
 #include "apiquery.h"
 #include "wikiuser.h"
@@ -32,6 +33,12 @@ enum WEStatus
     StatusNone,
     StatusProcessed,
     StatusPostProcessed
+};
+
+class ProcessorThread :  public QThread
+{
+    Q_OBJECT
+public:
 };
 
 class Query;

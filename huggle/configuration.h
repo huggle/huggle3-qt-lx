@@ -112,6 +112,7 @@ public:
     static int LocalConfig_IPScore;
     static int LocalConfig_WarningScore;
     static QStringList LocalConfig_WarningTypes;
+    static QStringList LocalConfig_WelcomeTypes;
 
     //////////////////////////////////////////////
     // Global config
@@ -166,6 +167,8 @@ public:
 
     static QString DefaultRevertSummary;
     static QString GetDefaultRevertSummary(QString source);
+    //! Warn you in case you want to revert a user page
+    static bool WarnUserSpaceRoll;
 
 };
 

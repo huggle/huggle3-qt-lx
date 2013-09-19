@@ -276,7 +276,8 @@ void WikiEdit::ProcessWords()
     {
         QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
         if (text.contains(" " + w + " ") ||text.contains(" " + w + ".")
-                || text.contains(" " + w + ",") || text.contains(" " + w + "!"))
+                || text.contains(" " + w + ",") || text.contains(" " + w + "!")
+                || text.contains(" " + w + "\n"))
         {
             this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
             ScoreWords.append(w);

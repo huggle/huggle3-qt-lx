@@ -343,6 +343,20 @@ void Core::ParseWords(QString text)
     }
 }
 
+ApiQuery *Core::MessageUser(WikiUser *user, QString message, bool minor, bool section)
+{
+    if (user == NULL)
+    {
+        Core::Log("Cowardly refusing to message NULL user");
+        return NULL;
+    }
+
+    ApiQuery *q = new ApiQuery();
+
+
+    return q;
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -522,6 +536,17 @@ void Core::CheckQueries()
 
 bool Core::PreflightCheck(WikiEdit *_e)
 {
+    if (Configuration::WarnUserSpaceRoll && _e->Page->IsUserpage())
+    {
+        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
+                      , "This page is in userspace, so even if it looks like it is a vandalism,"\
+                      " it may not be, are you sure you want to revert it?"
+                      , QMessageBox::Yes|QMessageBox::No);
+        if (q == QMessageBox::No)
+        {
+            return false;
+        }
+    }
     return true;
 }
 
