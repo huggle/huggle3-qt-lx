@@ -505,3 +505,12 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
+
+void MainWindow::on_actionGood_edit_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        this->CurrentEdit->User->BadnessScore -=20;
+        WikiUser::UpdateUser(this->CurrentEdit->User);
+    } this->Queue1->Next();
+}

@@ -117,6 +117,7 @@
    <addaction name="actionWelcome_user"/>
    <addaction name="actionOpen_in_a_browser"/>
    <addaction name="separator"/>
+   <addaction name="actionGood_edit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
@@ -257,6 +258,15 @@
   <action name="actionDecrease_badness_score_by_20">
    <property name="text">
     <string>Decrease badness score by 20</string>
+   </property>
+  </action>
+  <action name="actionGood_edit">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/sight-and-next.png</normaloff>:/huggle/pictures/Resources/sight-and-next.png</iconset>
+   </property>
+   <property name="text">
+    <string>Good edit</string>
    </property>
   </action>
  </widget>
