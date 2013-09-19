@@ -10,7 +10,7 @@
 
 #include "terminalparser.h"
 
-TerminalParser::TerminalParser(int argc_, char *argv_[])
+TerminalParser::TerminalParser(int argc_, QStringList argv)
 {
     this->argc = argc_;
 }

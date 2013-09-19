@@ -11,14 +11,17 @@
 #ifndef TERMINALPARSER_H
 #define TERMINALPARSER_H
 
+#include <QStringList>
+#include <QString>
+
 class TerminalParser
 {
 public:
-    TerminalParser(int argc_, char *argv_[]);
+    TerminalParser(int argc_, QStringList argv);
     bool Parse();
 private:
     int argc;
-    char *argv[];
+    QStringList args;
 };
 
 #endif // TERMINALPARSER_H

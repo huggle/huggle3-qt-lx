@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include <QApplication>
+#include <QStringList>
+#include <QString>
 #include "core.h"
 #include "terminalparser.h"
 #include "login.h"
@@ -18,7 +20,14 @@ int main(int argc, char *argv[])
 {
     try
     {
-        TerminalParser *p = new TerminalParser(argc, argv);
+        QStringList args;
+        int i=0;
+        while (i<argc)
+        {
+            args.append(QString(argv[i]));
+            i++;
+        }
+        TerminalParser *p = new TerminalParser(argc, args);
         if (p->Parse())
         {
             delete p;
