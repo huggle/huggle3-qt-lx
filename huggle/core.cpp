@@ -321,6 +321,7 @@ void Core::ParseWords(QString text)
                 QString w = Core::Trim(items.at(CurrentItem));
                 if (w == "")
                 {
+                    CurrentItem++;
                     continue;
                 }
                 word.append(w);
