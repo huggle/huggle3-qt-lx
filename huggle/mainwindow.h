@@ -64,6 +64,8 @@ public:
     ProcessList *Queries;
     QStringList UnwrittenLogs;
     QMutex lUnwrittenLogs;
+    QMenu *RevertWarn;
+    QMenu *WarnMenu;
     QMenu *RevertSummaries;
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
@@ -96,15 +98,10 @@ private slots:
     void CustomRevertWarn();
     void CustomWarn();
     void on_actionWelcome_user_triggered();
-
     void on_actionOpen_in_a_browser_triggered();
-
     void on_actionOpen_page_history_in_browser_triggered();
-
     void on_actionIncrease_badness_score_by_20_triggered();
-
     void on_actionDecrease_badness_score_by_20_triggered();
-
     void on_actionGood_edit_triggered();
 
 private:

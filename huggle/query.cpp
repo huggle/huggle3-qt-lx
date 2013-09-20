@@ -84,5 +84,8 @@ void Query::SafeDelete()
         return;
     }
 
-    QueryGC::qgc.append(this);
+    if (!QueryGC::qgc.contains(this))
+    {
+        QueryGC::qgc.append(this);
+    }
 }

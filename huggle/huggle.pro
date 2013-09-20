@@ -48,7 +48,8 @@ SOURCES += main.cpp\
     wlquery.cpp \
     processlist.cpp \
     ignorelist.cpp \
-    querygc.cpp
+    querygc.cpp \
+    message.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -82,7 +83,8 @@ HEADERS  += mainwindow.h \
     wlquery.h \
     processlist.h \
     ignorelist.h \
-    querygc.h
+    querygc.h \
+    message.h
 
 FORMS    += mainwindow.ui \
     login.ui \

@@ -153,7 +153,6 @@ public:
     static QString IRCIdent;
     //! Port
     static quint16 IRCPort;
-    Configuration();
 
     //////////////////////////////////////////////
     // Friends

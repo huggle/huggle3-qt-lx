@@ -58,15 +58,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (Configuration::LocalConfig_WarningTypes.count() > 0)
     {
         this->RevertSummaries = new QMenu(this);
+        this->WarnMenu = new QMenu(this);
+        this->RevertWarn = new QMenu(this);
         int r=0;
         while (r<Configuration::LocalConfig_WarningTypes.count())
         {
             QAction *action = new QAction(Core::GetValueFromKey(Configuration::LocalConfig_WarningTypes.at(r)), this);
+            QAction *actiona = new QAction(Core::GetValueFromKey(Configuration::LocalConfig_WarningTypes.at(r)), this);
+            QAction *actionb = new QAction(Core::GetValueFromKey(Configuration::LocalConfig_WarningTypes.at(r)), this);
+            this->RevertWarn->addAction(actiona);
+            this->WarnMenu->addAction(actionb);
             this->RevertSummaries->addAction(action);
             connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
             r++;
         }
+        ui->actionWarn->setMenu(this->WarnMenu);
         ui->actionRevert->setMenu(this->RevertSummaries);
+        ui->actionRevert_and_warn->setMenu(this->RevertWarn);
     }
 
     this->timer1 = new QTimer(this);
@@ -76,6 +84,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->RevertWarn;
+    delete this->WarnMenu;
     delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
@@ -187,6 +197,7 @@ bool MainWindow::Revert(QString summary)
     if (Core::PreflightCheck(this->CurrentEdit))
     {
         Core::RevertEdit(this->CurrentEdit, summary);
+        this->Queue1->Next();
         return true;
     }
     return false;
@@ -293,7 +304,8 @@ void MainWindow::on_Tick()
             + " edits waiting in queue";
     if (Configuration::Verbosity > 0)
     {
-        t += " QGC: " + QString::number(QueryGC::qgc.count());
+        t += " QGC: " + QString::number(QueryGC::qgc.count())
+                + "U: " + QString::number(WikiUser::ProblematicUsers.count());
     }
     this->Status->setText(t);
     // let's refresh the edits that are being post processed

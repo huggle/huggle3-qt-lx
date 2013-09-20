@@ -75,6 +75,7 @@ void HuggleFeedProviderWiki::Refresh()
             return;
         }
         this->Process(q->Result->Data);
+        q->SafeDelete();
         q->DeleteLater = false;
         this->q = NULL;
         Refreshing = false;

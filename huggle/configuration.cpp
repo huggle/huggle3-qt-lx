@@ -110,11 +110,12 @@ QString Configuration::GetURLProtocolPrefix()
 
 QString Configuration::GetConfigurationPath()
 {
+    QDir conf(Configuration::HomePath + QDir::separator() + "Configuration");
+    if (!conf.exists())
+    {
+        conf.mkdir(Configuration::HomePath + QDir::separator() + "Configuration");
+    }
     return Configuration::HomePath + QDir::separator() + "Configuration" + QDir::separator();
-}
-
-Configuration::Configuration()
-{
 }
 
 QString Configuration::GetDefaultRevertSummary(QString source)

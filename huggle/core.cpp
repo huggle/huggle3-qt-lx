@@ -42,6 +42,8 @@ void Core::Init()
     Processor = new ProcessorThread();
     Processor->start();
     Core::LoadConfig();
+    Core::DebugLog("Loading defs");
+    Core::LoadDefs();
     Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
     Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
     Configuration::LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
@@ -322,6 +324,27 @@ void Core::ParsePats(QString text)
     }
 }
 
+void Core::SaveDefs()
+{
+    QFile file(Configuration::GetConfigurationPath() + "users.xml");
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
+        return;
+    }
+    QString xx = "<definitions>\n";
+    int x = 0;
+    while (x<WikiUser::ProblematicUsers.count())
+    {
+        xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
+                QString::number(WikiUser::ProblematicUsers.at(x)->BadnessScore) +"\"></user>\n";
+        x++;
+    }
+    xx += "</definitions>";
+    file.write(xx.toUtf8());
+    file.close();
+}
+
 QString Core::GetValueFromKey(QString item)
 {
     if (item.contains(";"))
@@ -423,7 +446,38 @@ ApiQuery *Core::MessageUser(WikiUser *user, QString message, bool minor, bool se
 
 void Core::LoadDefs()
 {
-
+    QFile defs(Configuration::GetConfigurationPath() + "users.xml");
+    if (!defs.exists())
+    {
+        return;
+    }
+    defs.open(QIODevice::ReadOnly);
+    QString Contents(defs.readAll());
+    QDomDocument list;
+    list.setContent(Contents);
+    QDomNodeList l = list.elementsByTagName("user");
+    if (l.count() > 0)
+    {
+        int i=0;
+        while (i<l.count())
+        {
+            WikiUser *user;
+            QDomElement e = l.at(i).toElement();
+            if (!e.attributes().contains("name"))
+            {
+                i++;
+                continue;
+            }
+            user = new WikiUser(e.attribute("name"));
+            if (e.attributes().contains("badness"))
+            {
+                user->BadnessScore = e.attribute("badness").toInt();
+            }
+            WikiUser::ProblematicUsers.append(user);
+            i++;
+        }
+    }
+    defs.close();
 }
 
 void Core::Log(QString Message)
@@ -486,6 +540,7 @@ void Core::Shutdown()
     Processor->terminate();
     delete Processor;
     Processor = NULL;
+    Core::SaveDefs();
     Core::SaveConfig();
 #ifdef PYTHONENGINE
     Core::Log("Unloading python");

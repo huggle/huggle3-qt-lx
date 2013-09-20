@@ -16,6 +16,7 @@
 #include "wikiedit.h"
 #include "login.h"
 #include "mainwindow.h"
+#include "message.h"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.h"
@@ -113,6 +114,7 @@ public:
     static QString GetKeyOfWarningTypeFromWarningName(QString id);
     //! Parse a part patterns for score words
     static void ParsePats(QString text);
+    static void SaveDefs();
     static QString GetValueFromKey(QString item);
     static QString GetKeyFromValue(QString item);
     static void ParseWords(QString text);
