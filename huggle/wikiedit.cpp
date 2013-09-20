@@ -40,6 +40,7 @@ WikiEdit::WikiEdit()
     this->Next = NULL;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
+    this->RevID = -1;
 }
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
@@ -80,6 +81,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->Score = edit.Score;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
+    this->RevID = edit.RevID;
 }
 
 WikiEdit::WikiEdit(WikiEdit *edit)
@@ -267,8 +269,16 @@ void WikiEdit::PostProcess()
     //this->ProcessingQuery->Process();
     this->DifferenceQuery = new ApiQuery();
     this->DifferenceQuery->SetAction(ActionQuery);
-    this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvdiffto=prev&titles=" +
+    if (this->RevID != -1)
+    {
+        this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvstart=" +
+                                  QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
+                                  QUrl::toPercentEncoding(this->Page->PageName);
+    } else
+    {
+        this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(this->Page->PageName);
+    }
     this->DifferenceQuery->Target = Page->PageName;
     this->DifferenceQuery->UsingPOST = true;
     Core::RunningQueries.append(this->DifferenceQuery);

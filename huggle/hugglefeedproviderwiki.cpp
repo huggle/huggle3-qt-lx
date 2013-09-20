@@ -206,6 +206,15 @@ void HuggleFeedProviderWiki::Process(QString data)
             edit.User->IP = true;
         }
 
+        if (item.attributes().contains("revid"))
+        {
+            edit.RevID = QString(item.attribute("revid").toInt());
+            if (edit.RevID == 0)
+            {
+                edit.RevID = -1;
+            }
+        }
+
         if (item.attributes().contains("minor"))
         {
             edit.Minor = true;
