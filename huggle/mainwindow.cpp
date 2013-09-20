@@ -497,7 +497,7 @@ void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore += 20;
+        this->CurrentEdit->User->BadnessScore += 200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
@@ -506,7 +506,7 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore -=20;
+        this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
@@ -515,7 +515,7 @@ void MainWindow::on_actionGood_edit_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore -=20;
+        this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     } this->Queue1->Next();
 }

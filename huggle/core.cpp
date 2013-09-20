@@ -641,7 +641,7 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
 
     summary = summary.replace("$1", _e->User->Username);
 
-    _e->User->BadnessScore += 20;
+    _e->User->BadnessScore += 200;
     WikiUser::UpdateUser(_e->User);
 
     if (rollback)

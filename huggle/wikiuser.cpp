@@ -26,7 +26,7 @@ void WikiUser::UpdateUser(WikiUser *us)
         }
         c++;
     }
-    ProblematicUsers.append(us);
+    ProblematicUsers.append(new WikiUser(us));
 }
 
 WikiUser::WikiUser()
