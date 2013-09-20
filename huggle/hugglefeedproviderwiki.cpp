@@ -84,7 +84,8 @@ void HuggleFeedProviderWiki::Refresh()
     Refreshing = true;
     q = new ApiQuery();
     q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=200";
+    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|"\
+            "ids|sizes&rcshow=!bot&rclimit=200";
     q->Target = "Recent changes refresh";
     q->DeleteLater = true;
     Core::RunningQueries.append(q);
@@ -203,6 +204,15 @@ void HuggleFeedProviderWiki::Process(QString data)
         if (item.attributes().contains("anon"))
         {
             edit.User->IP = true;
+        }
+
+        if (item.attributes().contains("revid"))
+        {
+            edit.RevID = QString(item.attribute("revid")).toInt();
+            if (edit.RevID == 0)
+            {
+                edit.RevID = -1;
+            }
         }
 
         if (item.attributes().contains("minor"))

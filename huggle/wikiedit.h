@@ -76,6 +76,7 @@ public:
     int Diff;
     int Priority;
     int OldID;
+    int RevID;
     WEStatus Status;
     WarningLevel CurrentUserWarningLevel;
     QString Summary;
