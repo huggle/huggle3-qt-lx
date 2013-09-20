@@ -101,4 +101,5 @@ FORMS    += mainwindow.ui \
     ignorelist.ui
 
 RESOURCES += \
-    pictures.qrc
+    pictures.qrc \
+    Version.qrc

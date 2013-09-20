@@ -38,6 +38,11 @@ QList<Message*> Core::Messages;
 
 void Core::Init()
 {
+    QFile vf(":/huggle/git/version.txt");
+    vf.open(QIODevice::ReadOnly);
+    QString version(vf.readAll());
+    Configuration::HuggleVersion += " " + version;
+    vf.close();
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
     Processor = new ProcessorThread();
