@@ -92,9 +92,9 @@ private slots:
     void on_actionShow_ignore_list_of_current_wiki_triggered();
     void on_actionForward_triggered();
     void on_actionBack_triggered();
-
     void CustomRevert();
-
+    void CustomRevertWarn();
+    void CustomWarn();
     void on_actionWelcome_user_triggered();
 
     void on_actionOpen_in_a_browser_triggered();

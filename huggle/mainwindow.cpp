@@ -447,9 +447,25 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
     QAction *revert = (QAction*) QObject::sender();
-    QString rs = Core::GetSummaryOfWarningTypeFromWarningKey(Core::GetKeyOfWarningTypeFromWarningName(revert->text()));
+    QString k = Core::GetKeyOfWarningTypeFromWarningName(revert->text());
+    QString rs = Core::GetSummaryOfWarningTypeFromWarningKey(k);
     this->Revert(rs);
+}
+
+void MainWindow::CustomRevertWarn()
+{
+
+}
+
+void MainWindow::CustomWarn()
+{
+
 }
 
 QString MainWindow::GetSummaryText(QString text)

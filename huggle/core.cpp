@@ -222,7 +222,7 @@ QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)
     while (id<Configuration::LocalConfig_RevertSummaries.count())
     {
         QString line = Configuration::LocalConfig_RevertSummaries.at(id);
-        if (line.startsWith(key) + ";")
+        if (line.startsWith(key + ";"))
         {
             return Core::GetValueFromKey(line);
         }
@@ -252,7 +252,7 @@ QString Core::GetKeyOfWarningTypeFromWarningName(QString id)
     while (i<Configuration::LocalConfig_WarningTypes.count())
     {
         QString line = Configuration::LocalConfig_WarningTypes.at(i);
-        if (line.endsWith(id) || line.endsWith(id) + ",")
+        if (line.endsWith(id) || line.endsWith(id + ","))
         {
             return Core::GetKeyFromValue(line);
         }
