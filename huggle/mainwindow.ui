@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -91,6 +100,9 @@
     </property>
     <addaction name="actionIncrease_badness_score_by_20"/>
     <addaction name="actionDecrease_badness_score_by_20"/>
+    <addaction name="separator"/>
+    <addaction name="actionTalk_page"/>
+    <addaction name="actionUser_page"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -267,6 +279,16 @@
    </property>
    <property name="text">
     <string>Good edit</string>
+   </property>
+  </action>
+  <action name="actionTalk_page">
+   <property name="text">
+    <string>Talk page</string>
+   </property>
+  </action>
+  <action name="actionUser_page">
+   <property name="text">
+    <string>User page</string>
    </property>
   </action>
  </widget>

@@ -267,6 +267,7 @@ void MainWindow::on_MainWindow_destroyed()
 
 void MainWindow::on_Tick()
 {
+    Core::FinalizeMessages();
     if (Core::PrimaryFeedProvider->ContainsEdit())
     {
         // we take the edit and start post processing it
@@ -501,7 +502,11 @@ QString MainWindow::GetSummaryText(QString text)
 
 void MainWindow::on_actionWelcome_user_triggered()
 {
-
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user (using huggle)", true);
 }
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
@@ -546,4 +551,15 @@ void MainWindow::on_actionGood_edit_triggered()
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     } this->Queue1->Next();
+}
+
+void MainWindow::on_actionTalk_page_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+    this->Browser->DisplayPreFormattedPage(page);
+    delete page;
 }

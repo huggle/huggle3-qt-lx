@@ -104,6 +104,8 @@ private slots:
     void on_actionDecrease_badness_score_by_20_triggered();
     void on_actionGood_edit_triggered();
 
+    void on_actionTalk_page_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;

@@ -71,3 +71,8 @@ WikiUser::WikiUser(QString user)
     this->BadnessScore = 0;
     this->WarningLevel = 0;
 }
+
+QString WikiUser::GetTalk()
+{
+    return "User_talk:" + this->Username;
+}

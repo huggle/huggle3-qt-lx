@@ -34,6 +34,7 @@ QList<Query*> Core::RunningQueries;
 QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
 ProcessorThread *Core::Processor = NULL;
+QList<Message*> Core::Messages;
 
 void Core::Init()
 {
@@ -430,7 +431,7 @@ void Core::ParseWords(QString text)
     }
 }
 
-ApiQuery *Core::MessageUser(WikiUser *user, QString message, bool minor, bool section)
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section)
 {
     if (user == NULL)
     {
@@ -438,10 +439,13 @@ ApiQuery *Core::MessageUser(WikiUser *user, QString message, bool minor, bool se
         return NULL;
     }
 
-    ApiQuery *q = new ApiQuery();
+    Message *m = new Message(user, message, summary);
+    m->title = title;
+    Core::Messages.append(m);
+    m->Send();
+    Core::Log("Sending message to user " + user->Username);
 
-
-    return q;
+    return m;
 }
 
 void Core::LoadDefs()
@@ -478,6 +482,30 @@ void Core::LoadDefs()
         }
     }
     defs.close();
+}
+
+void Core::FinalizeMessages()
+{
+    if (Core::Messages.count() < 1)
+    {
+        return;
+    }
+    int x=0;
+    QList<Message*> list;
+    while (x<Core::Messages.count())
+    {
+        if (Core::Messages.at(x)->Finished())
+        {
+            list.append(Core::Messages.at(x));
+        }
+        x++;
+    }
+    x=0;
+    while (x<list.count())
+    {
+        Core::Messages.removeOne(list.at(x));
+        x++;
+    }
 }
 
 void Core::Log(QString Message)
@@ -627,7 +655,6 @@ void Core::PostProcessEdit(WikiEdit *_e)
 
 void Core::CheckQueries()
 {
-     //  <?xml version="1.0"?><api servedby="mw1128"><error code="alreadyrolled" info="The page you tried to rollback was already rolled back" /></api>
     int curr = 0;
     if (Core::RunningQueries.count() == 0)
     {

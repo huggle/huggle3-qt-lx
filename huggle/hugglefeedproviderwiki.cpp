@@ -75,7 +75,6 @@ void HuggleFeedProviderWiki::Refresh()
             return;
         }
         this->Process(q->Result->Data);
-        q->SafeDelete();
         q->DeleteLater = false;
         this->q = NULL;
         Refreshing = false;
@@ -87,8 +86,8 @@ void HuggleFeedProviderWiki::Refresh()
     q->SetAction(ActionQuery);
     q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|ids|sizes&rcshow=!bot&rclimit=200";
     q->Target = "Recent changes refresh";
-    Core::RunningQueries.append(q);
     q->DeleteLater = true;
+    Core::RunningQueries.append(q);
     q->Process();
 }
 

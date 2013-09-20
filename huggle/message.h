@@ -8,29 +8,33 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef WIKIUSER_H
-#define WIKIUSER_H
+#ifndef MESSAGE_H
+#define MESSAGE_H
 
-#include <QList>
 #include <QString>
-#include <QRegExp>
+#include <QtXml>
+#include "core.h"
+#include "apiquery.h"
+#include "wikiuser.h"
 
-class WikiUser
+class Message
 {
 public:
-    static QList<WikiUser*> ProblematicUsers;
-    static void UpdateUser(WikiUser *us);
-    WikiUser();
-    WikiUser(WikiUser *u);
-    WikiUser(const WikiUser& u);
-    WikiUser(QString user);
-    QString GetTalk();
-    QString Username;
-    int BadnessScore;
-    int WarningLevel;
-    bool IP;
+    Message(WikiUser *target, QString Message, QString Summary);
+    ~Message();
+    void Send();
+    void Fail(QString reason);
+    bool Finished();
+    QString title;
+    ApiQuery *query;
+    QString token;
+    WikiUser *user;
+    QString text;
+    QString summary;
 private:
-    static QRegExp IPv4Regex;
+    void Finish();
+    bool Sending;
+    bool Done;
 };
 
-#endif // WIKIUSER_H
+#endif // MESSAGE_H

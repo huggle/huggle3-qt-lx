@@ -42,6 +42,7 @@ class WikiPage;
 class WikiUser;
 class WikiEdit;
 class ProcessorThread;
+class Message;
 
 class Core
 {
@@ -62,6 +63,7 @@ public:
     //! whole list needs to be checked and probed everytime once a while
     static QList<WikiEdit*> ProcessingEdits;
     static ProcessorThread * Processor;
+    static QList<Message *> Messages;
 
 #ifdef PYTHONENGINE
     static PythonEngine *Python;
@@ -118,8 +120,9 @@ public:
     static QString GetValueFromKey(QString item);
     static QString GetKeyFromValue(QString item);
     static void ParseWords(QString text);
-    static ApiQuery *MessageUser(WikiUser *user, QString message, bool minor = false, bool section = false);
+    static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true);
     static void LoadDefs();
+    static void FinalizeMessages();
 private:
     static QList<QString> *RingLog;
 };
