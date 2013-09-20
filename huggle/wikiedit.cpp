@@ -269,16 +269,16 @@ void WikiEdit::PostProcess()
     //this->ProcessingQuery->Process();
     this->DifferenceQuery = new ApiQuery();
     this->DifferenceQuery->SetAction(ActionQuery);
-    if (this->RevID != -1)
-    {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvstart=" +
+    //if (this->RevID != -1)
+    //{
+        //this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvstart=" +
                                   QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
                                   QUrl::toPercentEncoding(this->Page->PageName);
-    } else
-    {
+    //} else
+    //{
         this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(this->Page->PageName);
-    }
+    //}
     this->DifferenceQuery->Target = Page->PageName;
     this->DifferenceQuery->UsingPOST = true;
     Core::RunningQueries.append(this->DifferenceQuery);
