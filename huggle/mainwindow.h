@@ -106,6 +106,8 @@ private slots:
 
     void on_actionTalk_page_triggered();
 
+    void on_actionFlag_as_a_good_edit_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;

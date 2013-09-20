@@ -85,6 +85,12 @@
     <addaction name="actionRevert_currently_displayed_edit"/>
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
     <addaction name="actionWarn_the_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_this_page_in_browser"/>
+    <addaction name="actionDisplay_history_in_browser"/>
+    <addaction name="actionEdit_page_in_browser"/>
+    <addaction name="separator"/>
+    <addaction name="actionFlag_as_a_good_edit"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -192,20 +198,32 @@
    <property name="text">
     <string>Next</string>
    </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
   </action>
   <action name="actionRevert_currently_displayed_edit">
    <property name="text">
     <string>Revert currently displayed edit</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
    </property>
   </action>
   <action name="actionRevert_currently_displayed_edit_and_warn_the_user">
    <property name="text">
     <string>Revert currently displayed edit and warn the user</string>
    </property>
+   <property name="shortcut">
+    <string>Q</string>
+   </property>
   </action>
   <action name="actionWarn_the_user">
    <property name="text">
     <string>Warn the user</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
    </property>
   </action>
   <action name="actionBack">
@@ -216,6 +234,9 @@
    <property name="text">
     <string>Back</string>
    </property>
+   <property name="shortcut">
+    <string>[</string>
+   </property>
   </action>
   <action name="actionForward">
    <property name="icon">
@@ -224,6 +245,9 @@
    </property>
    <property name="text">
     <string>Forward</string>
+   </property>
+   <property name="shortcut">
+    <string>]</string>
    </property>
   </action>
   <action name="actionShow_ignore_list_of_current_wiki">
@@ -289,6 +313,29 @@
   <action name="actionUser_page">
    <property name="text">
     <string>User page</string>
+   </property>
+  </action>
+  <action name="actionDisplay_this_page_in_browser">
+   <property name="text">
+    <string>Display this page in browser</string>
+   </property>
+  </action>
+  <action name="actionDisplay_history_in_browser">
+   <property name="text">
+    <string>Display history in browser</string>
+   </property>
+  </action>
+  <action name="actionEdit_page_in_browser">
+   <property name="text">
+    <string>Edit page in browser</string>
+   </property>
+  </action>
+  <action name="actionFlag_as_a_good_edit">
+   <property name="text">
+    <string>Flag as a good edit (this action give -200 score to user)</string>
+   </property>
+   <property name="shortcut">
+    <string>G</string>
    </property>
   </action>
  </widget>

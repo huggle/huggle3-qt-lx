@@ -124,9 +124,32 @@ void Message::Finish()
         return;
     }
 
+    bool sent = false;
+
+    QDomDocument d;
+    d.setContent(query->Result->Data);
+    QDomNodeList l = d.elementsByTagName("edit");
+    if (l.count() > 0)
+    {
+        QDomElement element = l.at(0).toElement();
+        if (element.attributes().contains("result"))
+        {
+            if (element.attribute("result") == "Success")
+            {
+                Core::Log("Successfuly delivered message to " + user->Username);
+                sent = true;
+            }
+        }
+    }
+
+    if (!sent)
+    {
+        Core::Log("Failed to deliver a message to " + user->Username + " please check logs");
+        Core::DebugLog(query->Result->Data);
+    }
+
     query->SafeDelete();
     query->DeleteLater = false;
-    Core::DebugLog(query->Result->Data);
     Done = true;
     query = NULL;
 }

@@ -268,8 +268,9 @@ void WikiEdit::PostProcess()
     this->DifferenceQuery = new ApiQuery();
     this->DifferenceQuery->SetAction(ActionQuery);
     this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvdiffto=prev&titles=" +
-            this->Page->PageName;
+            QUrl::toPercentEncoding(this->Page->PageName);
     this->DifferenceQuery->Target = Page->PageName;
+    this->DifferenceQuery->UsingPOST = true;
     Core::RunningQueries.append(this->DifferenceQuery);
     this->DifferenceQuery->DeleteLater = true;
     this->DifferenceQuery->Process();
