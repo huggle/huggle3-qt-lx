@@ -338,7 +338,10 @@ void Core::SaveDefs()
         Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
-    file.copy(Configuration::GetConfigurationPath() + "users.xml~");
+    if (QFile(Configuration::GetConfigurationPath() + "users.xml").exists())
+    {
+        QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
+    }
     QString xx = "<definitions>\n";
     int x = 0;
     while (x<WikiUser::ProblematicUsers.count())
@@ -350,7 +353,7 @@ void Core::SaveDefs()
     xx += "</definitions>";
     file.write(xx.toUtf8());
     file.close();
-    file.remove(Configuration::GetConfigurationPath() + "users.xml~");
+    QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
 QString Core::GetValueFromKey(QString item)
@@ -458,13 +461,15 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
 void Core::LoadDefs()
 {
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
-    if (defs.exists(Configuration::GetConfigurationPath() + "users.xml~"))
+    if (QFile(Configuration::GetConfigurationPath() + "users.xml~").exists())
     {
         Core::Log("WARNING: recovering definitions from last session");
-        if (defs.copy(Configuration::GetConfigurationPath() + "users.xml~"
-                  , Configuration::GetConfigurationPath() + "users.xml"))
+        QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
+        if (QFile(Configuration::GetConfigurationPath()
+                   + "users.xml~").copy(Configuration::GetConfigurationPath()
+                   + "users.xml"))
         {
-            defs.remove(Configuration::GetConfigurationPath() + "users.xml~");
+            QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
         } else
         {
             Core::Log("WARNING: Unable to recover the definitions");
