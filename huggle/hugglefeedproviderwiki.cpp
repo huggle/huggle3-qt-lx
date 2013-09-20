@@ -208,7 +208,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (item.attributes().contains("revid"))
         {
-            edit.RevID = QString(item.attribute("revid").toInt());
+            edit.RevID = QString(item.attribute("revid")).toInt();
             if (edit.RevID == 0)
             {
                 edit.RevID = -1;
