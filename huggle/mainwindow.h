@@ -107,6 +107,8 @@ private slots:
     void on_actionDisplay_this_page_in_browser_triggered();
     void on_actionEdit_page_in_browser_triggered();
     void on_actionDisplay_history_in_browser_triggered();
+    void on_actionStop_feed_triggered();
+    void on_actionRemove_old_edits_triggered();
 
 private:
     Ui::MainWindow *ui;

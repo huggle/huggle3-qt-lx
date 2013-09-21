@@ -104,7 +104,7 @@ public:
     static QString GetCustomRevertStatus(QString RevertData);
     static bool ParseGlobalConfig(QString config);
     static bool ParseLocalConfig(QString config);
-    static QString ConfigurationParse(QString key, QString content);
+    static QString ConfigurationParse(QString key, QString content, QString missing = "");
     static void LoadDB();
     static bool SafeBool(QString value);
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);

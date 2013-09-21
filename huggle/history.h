@@ -8,30 +8,25 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef WIKIUSER_H
-#define WIKIUSER_H
+#ifndef HISTORY_H
+#define HISTORY_H
 
-#include <QList>
-#include <QString>
-#include <QRegExp>
+#include <QDockWidget>
 
-class WikiUser
+namespace Ui {
+class History;
+}
+
+class History : public QDockWidget
 {
+    Q_OBJECT
+    
 public:
-    static QList<WikiUser*> ProblematicUsers;
-    static void UpdateUser(WikiUser *us);
-    WikiUser();
-    WikiUser(WikiUser *u);
-    WikiUser(const WikiUser& u);
-    WikiUser(QString user);
-    QString GetTalk();
-    QString Username;
-    int BadnessScore;
-    int WarningLevel;
-    QString ContentsOfTalkPage;
-    bool IP;
+    explicit History(QWidget *parent = 0);
+    ~History();
+    
 private:
-    static QRegExp IPv4Regex;
+    Ui::History *ui;
 };
 
-#endif // WIKIUSER_H
+#endif // HISTORY_H

@@ -824,16 +824,18 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
     Configuration::LocalConfig_UseIrc = Core::SafeBool(Core::ConfigurationParse("irc", config));
     Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
+    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, "800").toInt();
+    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config).toInt();
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
-    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config).toInt();
+    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
     Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summar", config);
     Core::ParsePats(config);
     Core::ParseWords(config);
     return true;
 }
 
-QString Core::ConfigurationParse(QString key, QString content)
+QString Core::ConfigurationParse(QString key, QString content, QString missing)
 {
     if (content.startsWith(key + ":"))
     {
@@ -855,6 +857,6 @@ QString Core::ConfigurationParse(QString key, QString content)
         }
         return value;
     }
-    return "";
+    return missing;
 }
 

@@ -99,9 +99,23 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
    </widget>
+   <widget class="QMenu" name="menuQueue">
+    <property name="title">
+     <string>Queue</string>
+    </property>
+    <widget class="QMenu" name="menuWhen_queue_is_full">
+     <property name="title">
+      <string>When queue is full</string>
+     </property>
+     <addaction name="actionStop_feed"/>
+     <addaction name="actionRemove_old_edits"/>
+    </widget>
+    <addaction name="menuWhen_queue_is_full"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
+   <addaction name="menuQueue"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -325,6 +339,25 @@
    </property>
    <property name="shortcut">
     <string>G</string>
+   </property>
+  </action>
+  <action name="actionStop_feed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stop feed</string>
+   </property>
+  </action>
+  <action name="actionRemove_old_edits">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove old edits</string>
    </property>
   </action>
  </widget>

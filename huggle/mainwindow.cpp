@@ -268,12 +268,37 @@ void MainWindow::on_MainWindow_destroyed()
 void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
-    if (Core::PrimaryFeedProvider->ContainsEdit())
+    bool RetrieveEdit = true;
+    // check if queue isn't full
+    if (this->Queue1->Items.count() > Configuration::Cache_InfoSize)
     {
-        // we take the edit and start post processing it
-        WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
-        Core::PostProcessEdit(edit);
-        PendingEdits.append(edit);
+        if (ui->actionStop_feed->isChecked())
+        {
+            Core::PrimaryFeedProvider->Pause();
+            RetrieveEdit = false;
+        } else
+        {
+
+        }
+    } else
+    {
+        if (ui->actionStop_feed->isChecked())
+        {
+            if (Core::PrimaryFeedProvider->IsPaused())
+            {
+                Core::PrimaryFeedProvider->Resume();
+            }
+        }
+    }
+    if (RetrieveEdit)
+    {
+        if (Core::PrimaryFeedProvider->ContainsEdit())
+        {
+            // we take the edit and start post processing it
+            WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
+            Core::PostProcessEdit(edit);
+            PendingEdits.append(edit);
+        }
     }
     if (PendingEdits.count() > 0)
     {
@@ -588,4 +613,16 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
         QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
                                   + "?action=history");
     }
+}
+
+void MainWindow::on_actionStop_feed_triggered()
+{
+    ui->actionRemove_old_edits->setChecked(false);
+    ui->actionStop_feed->setChecked(true);
+}
+
+void MainWindow::on_actionRemove_old_edits_triggered()
+{
+    ui->actionRemove_old_edits->setChecked(true);
+    ui->actionStop_feed->setChecked(false);
 }
