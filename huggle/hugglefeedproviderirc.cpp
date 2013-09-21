@@ -12,6 +12,7 @@
 
 HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
+    Paused = false;
     this->Connected = false;
     TcpSocket = NULL;
     thread = NULL;
@@ -345,7 +346,10 @@ void HuggleFeedProviderIRC_t::run()
             continue;
         }
         Core::DebugLog("IRC Input: " + text, 6);
-        p->ParseEdit(text);
+        if (p->Paused != true)
+        {
+            p->ParseEdit(text);
+        }
         QThread::usleep(200000);
         ping--;
     }
