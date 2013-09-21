@@ -51,6 +51,7 @@ public:
     void ParseEdit(QString line);
     bool ContainsEdit();
     WikiEdit *RetrieveEdit();
+    bool IsPaused() { return Paused; }
     void Pause() { Paused = true; }
     void Resume() { Paused = false; }
 private:
