@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
@@ -9,8 +8,6 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-=======
->>>>>>> cc7f18ef413a694f83f0e42a7c7f7583cc54d0ac
 #ifndef SCOREWORDSDBFORM_H
 #define SCOREWORDSDBFORM_H
 
