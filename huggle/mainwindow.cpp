@@ -269,6 +269,17 @@ void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
     bool RetrieveEdit = true;
+    // if there is no working feed, let's try to fix it
+    if (Core::PrimaryFeedProvider->IsWorking() != true)
+    {
+        Core::Log("Failure of primary feed provider, trying to recover");
+        if (!Core::PrimaryFeedProvider->Restart())
+        {
+            delete Core::PrimaryFeedProvider;
+            Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            Core::PrimaryFeedProvider->Start();
+        }
+    }
     // check if queue isn't full
     if (this->Queue1->Items.count() > Configuration::Cache_InfoSize)
     {
