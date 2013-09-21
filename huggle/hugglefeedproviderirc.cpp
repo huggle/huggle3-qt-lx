@@ -298,7 +298,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
-    edit->User = new WikiUser();
+    edit->User = new WikiUser(name);
 
     if (line.contains(QString(QChar(3)) + "10"))
     {
