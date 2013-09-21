@@ -31,6 +31,7 @@
 #include "wikiuser.h"
 #include "ignorelist.h"
 #include "exception.h"
+#include "history.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "querygc.h"
@@ -63,6 +64,7 @@ public:
     WikiEdit *CurrentEdit;
     ProcessList *Queries;
     QStringList UnwrittenLogs;
+    History * _History;
     QMutex lUnwrittenLogs;
     QMenu *RevertWarn;
     QMenu *WarnMenu;
@@ -107,6 +109,8 @@ private slots:
     void on_actionDisplay_this_page_in_browser_triggered();
     void on_actionEdit_page_in_browser_triggered();
     void on_actionDisplay_history_in_browser_triggered();
+    void on_actionStop_feed_triggered();
+    void on_actionRemove_old_edits_triggered();
 
 private:
     Ui::MainWindow *ui;

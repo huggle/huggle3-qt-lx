@@ -273,7 +273,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Enforce SSL</string>
+    <string>Enforce SSL (requires openssl libs to be installed)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">

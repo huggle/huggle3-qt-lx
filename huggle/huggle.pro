@@ -49,7 +49,9 @@ SOURCES += main.cpp\
     processlist.cpp \
     ignorelist.cpp \
     querygc.cpp \
-    message.cpp
+    message.cpp \
+    scorewordsdbform.cpp \
+    history.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -84,7 +86,9 @@ HEADERS  += mainwindow.h \
     processlist.h \
     ignorelist.h \
     querygc.h \
-    message.h
+    message.h \
+    scorewordsdbform.h \
+    history.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -98,7 +102,9 @@ FORMS    += mainwindow.ui \
     proxy.ui \
     hugglequeueitemlabel.ui \
     processlist.ui \
-    ignorelist.ui
+    ignorelist.ui \
+    scorewordsdbform.ui \
+    history.ui
 
 RESOURCES += \
     pictures.qrc \

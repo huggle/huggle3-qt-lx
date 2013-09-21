@@ -28,7 +28,10 @@ public:
     virtual void Stop() {}
     //! Start the feed engine
     virtual bool Start() { return false; }
+    virtual void Pause() {}
+    virtual void Resume() {}
     virtual bool ContainsEdit() { return false; }
+    virtual bool IsPaused() { return false; }
     //! Return a last edit from cache or NULL
     virtual WikiEdit *RetrieveEdit() { return NULL; }
     //! Apply a filter on buffer and return last edit which is matching it

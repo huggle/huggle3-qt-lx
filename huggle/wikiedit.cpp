@@ -216,6 +216,11 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
     }
 
+    if (this->DiffText == "")
+    {
+        Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
+    }
+
     this->DifferenceQuery->DeleteLater = false;
     this->DifferenceQuery = NULL;
     this->ProcessingByWorkerThread = true;
