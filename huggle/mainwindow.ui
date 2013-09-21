@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -97,8 +88,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionShow_ignore_list_of_current_wiki"/>
-    <addaction name="actionOpen_page_in_browser"/>
-    <addaction name="actionOpen_page_history_in_browser"/>
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">

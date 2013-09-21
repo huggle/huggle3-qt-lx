@@ -210,6 +210,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("overwrite"))
+    {
+        delete edit;
+        return;
+    }
+
     if (flags.contains("hit"))
     {
         // abuse filter hit

@@ -517,15 +517,6 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
     }
 }
 
-void MainWindow::on_actionOpen_page_history_in_browser_triggered()
-{
-    if (this->CurrentEdit != NULL)
-    {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
-                                  + "?action=history");
-    }
-}
-
 void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
@@ -571,4 +562,30 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     } this->Queue1->Next();
+}
+
+void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName ));
+    }
+}
+
+void MainWindow::on_actionEdit_page_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
+                                  + "?action=edit");
+    }
+}
+
+void MainWindow::on_actionDisplay_history_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
+                                  + "?action=history");
+    }
 }

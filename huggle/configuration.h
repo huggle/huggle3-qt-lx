@@ -97,6 +97,10 @@ public:
     static QString LocalConfig_WarnSummary2;
     static QString LocalConfig_WarnSummary3;
     static QString LocalConfig_WarnSummary4;
+    static QString LocalConfig_WarningTemp;
+    static QString LocalConfig_WarningTemp2;
+    static QString LocalConfig_WarningTemp3;
+    static QString LocalConfig_WarningTemp4;
 
     // Definitions
 

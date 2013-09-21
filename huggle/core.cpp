@@ -589,7 +589,7 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
-    Processor->terminate();
+    Processor->exit();
     delete Processor;
     Processor = NULL;
     Core::SaveDefs();
@@ -827,6 +827,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config).toInt();
+    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summar", config);
     Core::ParsePats(config);
     Core::ParseWords(config);
     return true;

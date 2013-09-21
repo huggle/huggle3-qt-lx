@@ -99,14 +99,14 @@ private slots:
     void CustomWarn();
     void on_actionWelcome_user_triggered();
     void on_actionOpen_in_a_browser_triggered();
-    void on_actionOpen_page_history_in_browser_triggered();
     void on_actionIncrease_badness_score_by_20_triggered();
     void on_actionDecrease_badness_score_by_20_triggered();
     void on_actionGood_edit_triggered();
-
     void on_actionTalk_page_triggered();
-
     void on_actionFlag_as_a_good_edit_triggered();
+    void on_actionDisplay_this_page_in_browser_triggered();
+    void on_actionEdit_page_in_browser_triggered();
+    void on_actionDisplay_history_in_browser_triggered();
 
 private:
     Ui::MainWindow *ui;
