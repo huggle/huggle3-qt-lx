@@ -98,6 +98,12 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 
 void HuggleFeedProviderIRC::ParseEdit(QString line)
 {
+    // skip edits if provider is disabled
+    if (Paused)
+    {
+        return;
+    }
+
     if (!line.contains(" PRIVMSG "))
     {
         return;
@@ -346,10 +352,7 @@ void HuggleFeedProviderIRC_t::run()
             continue;
         }
         Core::DebugLog("IRC Input: " + text, 6);
-        if (p->Paused != true)
-        {
-            p->ParseEdit(text);
-        }
+        p->ParseEdit(text);
         QThread::usleep(200000);
         ping--;
     }
