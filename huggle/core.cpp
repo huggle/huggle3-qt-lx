@@ -738,6 +738,10 @@ void Core::CheckQueries()
             if (q->QueryTypeToString() == "ApiQuery (rollback)")
             {
                 q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
+                if (q->CustomStatus != "Reverted")
+                {
+                    q->Result->Failed = true;
+                }
             }
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
