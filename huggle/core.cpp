@@ -540,7 +540,7 @@ int Core::GetLevel(QString page)
     while (level > 0)
     {
         int xx=0;
-        while (xx<Configuration::LocalConfig_WarningDefs)
+        while (xx<Configuration::LocalConfig_WarningDefs.count())
         {
             QString defs=Configuration::LocalConfig_WarningDefs.at(xx);
             if (Core::GetKeyFromValue(defs).toInt() == level)
@@ -550,7 +550,7 @@ int Core::GetLevel(QString page)
                     return level;
                 }
             }
-            x++;
+            xx++;
         }
         level--;
     }
