@@ -17,6 +17,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     summary = Summary;
     Done = false;
     Sending = false;
+    this->Dependency = NULL;
     this->query = NULL;
     this->token = "none";
     title = "Message from " + Configuration::UserName;
@@ -51,6 +52,26 @@ void Message::Fail(QString reason)
 
 bool Message::Finished()
 {
+    if (this->Dependency != NULL)
+    {
+        if (!this->Dependency->Processed())
+        {
+            return false;
+        } else
+        {
+            if (this->Dependency->Result->Failed)
+            {
+                // we can't continue because the dependency is fucked
+                this->Dependency->DeleteLater = false;
+                this->Dependency = NULL;
+                this->Sending = false;
+                this->Done = true;
+                return true;
+            }
+            this->Dependency->DeleteLater = false;
+            this->Dependency = NULL;
+        }
+    }
     if (this->Sending)
     {
         Finish();

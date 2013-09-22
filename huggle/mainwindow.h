@@ -31,6 +31,7 @@
 #include "wikiuser.h"
 #include "ignorelist.h"
 #include "exception.h"
+#include "history.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "querygc.h"
@@ -63,6 +64,7 @@ public:
     WikiEdit *CurrentEdit;
     ProcessList *Queries;
     QStringList UnwrittenLogs;
+    History * _History;
     QMutex lUnwrittenLogs;
     QMenu *RevertWarn;
     QMenu *WarnMenu;
@@ -70,8 +72,8 @@ public:
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     void Render();
-    bool Revert(QString summary = "");
-    bool Warn();
+    ApiQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+    bool Warn(QString WarningType, ApiQuery *dependency);
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
 
@@ -99,14 +101,16 @@ private slots:
     void CustomWarn();
     void on_actionWelcome_user_triggered();
     void on_actionOpen_in_a_browser_triggered();
-    void on_actionOpen_page_history_in_browser_triggered();
     void on_actionIncrease_badness_score_by_20_triggered();
     void on_actionDecrease_badness_score_by_20_triggered();
     void on_actionGood_edit_triggered();
-
     void on_actionTalk_page_triggered();
-
     void on_actionFlag_as_a_good_edit_triggered();
+    void on_actionDisplay_this_page_in_browser_triggered();
+    void on_actionEdit_page_in_browser_triggered();
+    void on_actionDisplay_history_in_browser_triggered();
+    void on_actionStop_feed_triggered();
+    void on_actionRemove_old_edits_triggered();
 
 private:
     Ui::MainWindow *ui;

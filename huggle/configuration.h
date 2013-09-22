@@ -97,6 +97,8 @@ public:
     static QString LocalConfig_WarnSummary2;
     static QString LocalConfig_WarnSummary3;
     static QString LocalConfig_WarnSummary4;
+    static QStringList LocalConfig_WarningTemplates;
+    static QStringList LocalConfig_WarningDefs;
 
     // Definitions
 
@@ -170,6 +172,7 @@ public:
     static QString GetDefaultRevertSummary(QString source);
     //! Warn you in case you want to revert a user page
     static bool WarnUserSpaceRoll;
+    static bool NextOnRv;
 
 };
 

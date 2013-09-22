@@ -52,6 +52,7 @@ private:
     QNetworkReply *reply;
     void ConstructUrl();
     bool FormatIsCurrentlySupported();
+    void FinishRollback();
 private slots:
     void ReadData();
     void Finished();

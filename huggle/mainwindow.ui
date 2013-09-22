@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -97,8 +88,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionShow_ignore_list_of_current_wiki"/>
-    <addaction name="actionOpen_page_in_browser"/>
-    <addaction name="actionOpen_page_history_in_browser"/>
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">
@@ -110,9 +99,23 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
    </widget>
+   <widget class="QMenu" name="menuQueue">
+    <property name="title">
+     <string>Queue</string>
+    </property>
+    <widget class="QMenu" name="menuWhen_queue_is_full">
+     <property name="title">
+      <string>When queue is full</string>
+     </property>
+     <addaction name="actionStop_feed"/>
+     <addaction name="actionRemove_old_edits"/>
+    </widget>
+    <addaction name="menuWhen_queue_is_full"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
+   <addaction name="menuQueue"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -336,6 +339,25 @@
    </property>
    <property name="shortcut">
     <string>G</string>
+   </property>
+  </action>
+  <action name="actionStop_feed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stop feed</string>
+   </property>
+  </action>
+  <action name="actionRemove_old_edits">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove old edits</string>
    </property>
   </action>
  </widget>

@@ -51,12 +51,16 @@ public:
     void ParseEdit(QString line);
     bool ContainsEdit();
     WikiEdit *RetrieveEdit();
+    bool IsPaused() { return Paused; }
+    void Pause() { Paused = true; }
+    void Resume() { Paused = false; }
+    bool Connected;
 private:
     QMutex lock;
-    bool Connected;
     QList<WikiEdit*> Buffer;
     HuggleFeedProviderIRC_t *thread;
     QTcpSocket *TcpSocket;
+    bool Paused;
 };
 
 #endif // HUGGLEFEEDPROVIDERIRC_H

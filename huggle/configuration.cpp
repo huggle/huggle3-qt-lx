@@ -73,11 +73,11 @@ QString Configuration::LocalConfig_UndoSummary = "Undid edit by [[Special:Contri
 
 // Warnings
 
-QString Configuration::LocalConfig_AgfRevert;
-QString Configuration::LocalConfig_WarnSummary;
-QString Configuration::LocalConfig_WarnSummary2;
-QString Configuration::LocalConfig_WarnSummary3;
-QString Configuration::LocalConfig_WarnSummary4;
+QString Configuration::LocalConfig_AgfRevert = "Reverted good faith edits";
+QString Configuration::LocalConfig_WarnSummary = "Warning (level 1)";
+QString Configuration::LocalConfig_WarnSummary2 = "Warning (level 2)";
+QString Configuration::LocalConfig_WarnSummary3 = "Warning (level 3)";
+QString Configuration::LocalConfig_WarnSummary4 = "Warning (level 4)";
 
 QStringList Configuration::LocalConfig_Assisted;
 QStringList Configuration::LocalConfig_Ignores;
@@ -85,9 +85,13 @@ QStringList Configuration::LocalConfig_RevertPatterns;
 QStringList Configuration::LocalConfig_IgnorePatterns;
 QStringList Configuration::LocalConfig_WarningTypes;
 
+QStringList Configuration::LocalConfig_WarningDefs;
+
 bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
 int Configuration::HistorySize = 600;
+
+QStringList Configuration::LocalConfig_WarningTemplates;
 
 int Configuration::LocalConfig_IPScore = 800;
 int Configuration::LocalConfig_BotScore = -200;
@@ -98,6 +102,7 @@ QList<ScoreWord> Configuration::LocalConfig_ScoreWords;
 int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
+bool Configuration::NextOnRv = true;
 
 QString Configuration::GetURLProtocolPrefix()
 {

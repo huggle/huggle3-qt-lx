@@ -8,30 +8,25 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef WIKIUSER_H
-#define WIKIUSER_H
+#ifndef SCOREWORDSDBFORM_H
+#define SCOREWORDSDBFORM_H
 
-#include <QList>
-#include <QString>
-#include <QRegExp>
+#include <QDialog>
 
-class WikiUser
+namespace Ui {
+class ScoreWordsDbForm;
+}
+
+class ScoreWordsDbForm : public QDialog
 {
+    Q_OBJECT
+    
 public:
-    static QList<WikiUser*> ProblematicUsers;
-    static void UpdateUser(WikiUser *us);
-    WikiUser();
-    WikiUser(WikiUser *u);
-    WikiUser(const WikiUser& u);
-    WikiUser(QString user);
-    QString GetTalk();
-    QString Username;
-    int BadnessScore;
-    int WarningLevel;
-    QString ContentsOfTalkPage;
-    bool IP;
+    explicit ScoreWordsDbForm(QWidget *parent = 0);
+    ~ScoreWordsDbForm();
+    
 private:
-    static QRegExp IPv4Regex;
+    Ui::ScoreWordsDbForm *ui;
 };
 
-#endif // WIKIUSER_H
+#endif // SCOREWORDSDBFORM_H

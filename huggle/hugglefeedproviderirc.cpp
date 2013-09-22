@@ -12,6 +12,7 @@
 
 HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
+    Paused = false;
     this->Connected = false;
     TcpSocket = NULL;
     thread = NULL;
@@ -97,6 +98,12 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 
 void HuggleFeedProviderIRC::ParseEdit(QString line)
 {
+    // skip edits if provider is disabled
+    if (Paused)
+    {
+        return;
+    }
+
     if (!line.contains(" PRIVMSG "))
     {
         return;
@@ -210,6 +217,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("overwrite"))
+    {
+        delete edit;
+        return;
+    }
+
     if (flags.contains("hit"))
     {
         // abuse filter hit
@@ -254,6 +267,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         }
 
         edit->Diff = line.mid(0, line.indexOf("&")).toInt();
+        edit->RevID = line.mid(0, line.indexOf("&")).toInt();
     }
 
     if (!line.contains("oldid="))
@@ -344,6 +358,7 @@ void HuggleFeedProviderIRC_t::run()
         ping--;
     }
     Core::Log("IRC: Closed connection to irc feed");
+    p->Connected = false;
 }
 
 HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t(QTcpSocket *socket)

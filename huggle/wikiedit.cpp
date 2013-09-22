@@ -127,7 +127,7 @@ WikiEdit::WikiEdit(WikiEdit *edit)
 WikiEdit::~WikiEdit()
 {
     //delete this->DifferenceQuery;
-    delete this->ProcessingQuery;
+    //delete this->ProcessingQuery;
     delete this->User;
     delete this->Page;
 }
@@ -147,6 +147,36 @@ bool WikiEdit::FinalizePostProcessing()
     if (!this->PostProcessing)
     {
         return true;
+    }
+
+    if (this->ProcessingRevs)
+    {
+        // check if api was processed
+        if (!this->ProcessingQuery->Processed())
+        {
+            return false;
+        }
+
+        if (this->ProcessingQuery->Result->Failed)
+        {
+            Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+        } else
+        {
+            // parse the diff now
+            QDomDocument d;
+            d.setContent(this->ProcessingQuery->Result->Data);
+            QDomNodeList page = d.elementsByTagName("rev");
+            // get last id
+            if (page.count() > 0)
+            {
+                QDomElement e = page.at(0).toElement();
+                if (e.nodeName() == "rev")
+                {
+                    this->User->ContentsOfTalkPage = e.text();
+                }
+            }
+        }
+        this->ProcessingRevs = false;
     }
 
     if (this->ProcessingDiff)
@@ -211,11 +241,18 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingDiff)
+    if (this->ProcessingRevs || this->ProcessingDiff)
     {
         return false;
     }
 
+    if (this->DiffText == "")
+    {
+        Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
+    }
+
+    this->ProcessingQuery->DeleteLater = false;
+    this->ProcessingQuery = NULL;
     this->DifferenceQuery->DeleteLater = false;
     this->DifferenceQuery = NULL;
     this->ProcessingByWorkerThread = true;
@@ -262,11 +299,14 @@ void WikiEdit::PostProcess()
         return;
     }
     this->PostProcessing = true;
-    //this->ProcessingQuery = new ApiQuery();
-    //this->ProcessingQuery->SetAction(ActionQuery);
-    //this->ProcessingQuery->Parameters = "prop=revisions&rvprop=ids|user&rvlimit=1&rvtoken=rollback&titles=" +
-    //        this->Page->PageName;
-    //this->ProcessingQuery->Process();
+    this->ProcessingQuery = new ApiQuery();
+    this->ProcessingQuery->SetAction(ActionQuery);
+    this->ProcessingQuery->Parameters = "prop=revisions&rvprop=timestamp|user|comment|content&titles=" +
+            this->User->GetTalk();
+    this->ProcessingQuery->DeleteLater = true;
+    Core::RunningQueries.append(this->ProcessingQuery);
+    this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
+    this->ProcessingQuery->Process();
     this->DifferenceQuery = new ApiQuery();
     this->DifferenceQuery->SetAction(ActionQuery);
     if (this->RevID != -1)
@@ -285,7 +325,13 @@ void WikiEdit::PostProcess()
     this->DifferenceQuery->DeleteLater = true;
     this->DifferenceQuery->Process();
     this->ProcessingDiff = true;
-    //this->ProcessingRevs = true;
+    this->ProcessingRevs = true;
+}
+
+QString WikiEdit::GetFullUrl()
+{
+    return Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
+            "&diff=" + QString::number(this->RevID);
 }
 
 bool WikiEdit::IsPostProcessed()
@@ -342,6 +388,33 @@ void ProcessorThread::Process(WikiEdit *edit)
     edit->Score += edit->User->BadnessScore;
 
     edit->ProcessWords();
+
+    if (edit->User->ContentsOfTalkPage != "")
+    {
+        edit->User->WarningLevel = Core::GetLevel(edit->User->ContentsOfTalkPage);
+    }
+
+    switch(edit->User->WarningLevel)
+    {
+        case 1:
+            edit->Score += 200;
+            edit->CurrentUserWarningLevel = WarningLevel1;
+            break;
+        case 2:
+            edit->Score += 1000;
+            edit->CurrentUserWarningLevel = WarningLevel2;
+            break;
+        case 3:
+            edit->Score += 2000;
+            edit->CurrentUserWarningLevel = WarningLevel3;
+            break;
+        case 4:
+            // people with 4 warnings are so much watched that someone probably revert them
+            // faster than you notice, let's put them lower than unattended vandals
+            edit->Score += 1000;
+            edit->CurrentUserWarningLevel = WarningLevel4;
+            break;
+    }
 
     edit->Status = StatusPostProcessed;
     edit->PostProcessing = false;

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SystemLog = new HuggleLog(this);
     this->Browser = new HuggleWeb(this);
     this->Queue1 = new HuggleQueue(this);
+    this->_History = new History(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
@@ -84,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;
     delete this->RevertSummaries;
@@ -173,19 +175,19 @@ void MainWindow::Render()
     this->tb->SetTitle(this->Browser->CurrentPageName());
 }
 
-bool MainWindow::Revert(QString summary)
+ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
     if (this->CurrentEdit == NULL)
     {
         Core::Log("ERROR: Unable to revert, edit is null");
-        return false;
+        return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
         Core::Log("ERROR: This edit is still being processed, please wait");
-        return false;
+        return NULL;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
@@ -196,15 +198,65 @@ bool MainWindow::Revert(QString summary)
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
-        Core::RevertEdit(this->CurrentEdit, summary);
-        this->Queue1->Next();
-        return true;
+        ApiQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, true, nd);
+        if (next)
+        {
+            this->Queue1->Next();
+        }
+        return q;
     }
-    return false;
+    return NULL;
 }
 
-bool MainWindow::Warn()
+bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
 {
+    if (this->CurrentEdit == NULL)
+    {
+        Core::DebugLog("NULL");
+        return false;
+    }
+
+    if (this->CurrentEdit->User->WarningLevel > 4)
+    {
+        Core::Log("Can't warn " + this->CurrentEdit->User->Username + " because they already received final warning");
+        return false;
+    }
+
+    // get a template
+    this->CurrentEdit->User->WarningLevel++;
+
+    QString warning = Core::RetrieveTemplateToWarn(WarningType +
+            QString::number(this->CurrentEdit->User->WarningLevel));
+
+    if (warning == "")
+    {
+        Core::Log("There is no such warning template");
+        return false;
+    }
+
+    warning = warning.replace("$2", this->CurrentEdit->GetFullUrl()).replace("$1", this->CurrentEdit->Page->PageName);
+
+    QString title = "Message re " + Configuration::EditSuffixOfHuggle;
+
+    switch (this->CurrentEdit->User->WarningLevel)
+    {
+        case 1:
+            title = Configuration::LocalConfig_WarnSummary + Configuration::EditSuffixOfHuggle;
+            break;
+        case 2:
+            title = Configuration::LocalConfig_WarnSummary2 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 3:
+            title = Configuration::LocalConfig_WarnSummary3 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 4:
+            title = Configuration::LocalConfig_WarnSummary4 + Configuration::EditSuffixOfHuggle;
+            break;
+    }
+
+    Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
+                      title, true, dependency);
+
     return true;
 }
 
@@ -268,12 +320,48 @@ void MainWindow::on_MainWindow_destroyed()
 void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
-    if (Core::PrimaryFeedProvider->ContainsEdit())
+    bool RetrieveEdit = true;
+    // if there is no working feed, let's try to fix it
+    if (Core::PrimaryFeedProvider->IsWorking() != true)
     {
-        // we take the edit and start post processing it
-        WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
-        Core::PostProcessEdit(edit);
-        PendingEdits.append(edit);
+        Core::Log("Failure of primary feed provider, trying to recover");
+        if (!Core::PrimaryFeedProvider->Restart())
+        {
+            delete Core::PrimaryFeedProvider;
+            Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            Core::PrimaryFeedProvider->Start();
+        }
+    }
+    // check if queue isn't full
+    if (this->Queue1->Items.count() > Configuration::Cache_InfoSize)
+    {
+        if (ui->actionStop_feed->isChecked())
+        {
+            Core::PrimaryFeedProvider->Pause();
+            RetrieveEdit = false;
+        } else
+        {
+
+        }
+    } else
+    {
+        if (ui->actionStop_feed->isChecked())
+        {
+            if (Core::PrimaryFeedProvider->IsPaused())
+            {
+                Core::PrimaryFeedProvider->Resume();
+            }
+        }
+    }
+    if (RetrieveEdit)
+    {
+        if (Core::PrimaryFeedProvider->ContainsEdit())
+        {
+            // we take the edit and start post processing it
+            WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
+            Core::PostProcessEdit(edit);
+            PendingEdits.append(edit);
+        }
     }
     if (PendingEdits.count() > 0)
     {
@@ -363,6 +451,7 @@ void MainWindow::on_actionWarn_triggered()
         Core::DeveloperError();
         return;
     }
+    this->Warn("warning", NULL);
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
@@ -383,6 +472,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
         Core::DeveloperError();
         return;
     }
+    this->Warn("warning", NULL);
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
@@ -393,9 +483,16 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
 
-    if (this->Revert())
-    {
+    ApiQuery *result = this->Revert("", true, false);
 
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
+
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
     }
 }
 
@@ -406,9 +503,17 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         Core::DeveloperError();
         return;
     }
-    if (this->Revert())
-    {
 
+    ApiQuery *result = this->Revert("", true, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
+
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
     }
 }
 
@@ -517,15 +622,6 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
     }
 }
 
-void MainWindow::on_actionOpen_page_history_in_browser_triggered()
-{
-    if (this->CurrentEdit != NULL)
-    {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
-                                  + "?action=history");
-    }
-}
-
 void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
@@ -550,7 +646,11 @@ void MainWindow::on_actionGood_edit_triggered()
     {
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
-    } this->Queue1->Next();
+    }
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
 }
 
 void MainWindow::on_actionTalk_page_triggered()
@@ -571,4 +671,42 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     } this->Queue1->Next();
+}
+
+void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName ));
+    }
+}
+
+void MainWindow::on_actionEdit_page_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
+                                  + "?action=edit");
+    }
+}
+
+void MainWindow::on_actionDisplay_history_in_browser_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )
+                                  + "?action=history");
+    }
+}
+
+void MainWindow::on_actionStop_feed_triggered()
+{
+    ui->actionRemove_old_edits->setChecked(false);
+    ui->actionStop_feed->setChecked(true);
+}
+
+void MainWindow::on_actionRemove_old_edits_triggered()
+{
+    ui->actionRemove_old_edits->setChecked(true);
+    ui->actionStop_feed->setChecked(false);
 }
