@@ -49,6 +49,15 @@ bool ApiQuery::FormatIsCurrentlySupported()
     return (this->RequestFormat == XML);
 }
 
+void ApiQuery::FinishRollback()
+{
+    this->CustomStatus = Core::GetCustomRevertStatus(this->Result->Data);
+    if (this->CustomStatus != "Reverted")
+    {
+        this->Result->Failed = true;
+    }
+}
+
 ApiQuery::ApiQuery()
 {
     this->RequestFormat = XML;
@@ -72,6 +81,10 @@ void ApiQuery::Finished()
         this->reply->deleteLater();
         this->reply = NULL;
         return;
+    }
+    if (this->ActionPart == "rollback")
+    {
+        FinishRollback();
     }
     this->reply->deleteLater();
     this->reply = NULL;
