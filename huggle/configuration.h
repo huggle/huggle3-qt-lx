@@ -172,6 +172,7 @@ public:
     static QString GetDefaultRevertSummary(QString source);
     //! Warn you in case you want to revert a user page
     static bool WarnUserSpaceRoll;
+    static bool NextOnRv;
 
 };
 

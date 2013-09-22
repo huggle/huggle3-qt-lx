@@ -102,6 +102,7 @@ QList<ScoreWord> Configuration::LocalConfig_ScoreWords;
 int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
+bool Configuration::NextOnRv = true;
 
 QString Configuration::GetURLProtocolPrefix()
 {

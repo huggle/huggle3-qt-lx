@@ -489,6 +489,11 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     {
         this->Warn("warning", result);
     }
+
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
 }
 
 void MainWindow::on_actionRevert_and_warn_triggered()
@@ -504,6 +509,11 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     if (result != NULL)
     {
         this->Warn("warning", result);
+    }
+
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
     }
 }
 
@@ -636,7 +646,11 @@ void MainWindow::on_actionGood_edit_triggered()
     {
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
-    } this->Queue1->Next();
+    }
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
 }
 
 void MainWindow::on_actionTalk_page_triggered()
