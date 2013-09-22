@@ -22,6 +22,11 @@ class EditQuery : public Query
 public:
     EditQuery();
     ~EditQuery();
+    void Process();
+    bool Processed();
+    QString page;
+    QString text;
+    QString summary;
     ApiQuery *Token;
     ApiQuery *Edit;
 };

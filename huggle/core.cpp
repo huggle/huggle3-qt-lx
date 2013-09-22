@@ -874,6 +874,7 @@ bool Core::ParseGlobalConfig(QString config)
     {
         Configuration::GlobalConfig_FeedbackPath = temp;
     }
+    Configuration::GlobalConfigWasLoaded = true;
     return true;
 }
 

@@ -87,7 +87,6 @@ QStringList Configuration::LocalConfig_WarningTypes;
 
 QStringList Configuration::LocalConfig_WarningDefs;
 
-bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
 int Configuration::HistorySize = 600;
 
@@ -105,6 +104,8 @@ bool Configuration::WarnUserSpaceRoll = true;
 bool Configuration::NextOnRv = true;
 QString Configuration::LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
 QString Configuration::LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
+bool Configuration::GlobalConfigWasLoaded = false;
+bool Configuration::LocalConfig_GlobalRequired = true;
 
 QString Configuration::GetURLProtocolPrefix()
 {
