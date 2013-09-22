@@ -443,7 +443,7 @@ void Core::ParseWords(QString text)
     }
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section)
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency)
 {
     if (user == NULL)
     {
@@ -453,6 +453,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
 
     Message *m = new Message(user, message, summary);
     m->title = title;
+    m->Dependency = dependency;
     Core::Messages.append(m);
     m->Send();
     Core::Log("Sending message to user " + user->Username);
@@ -557,6 +558,20 @@ int Core::GetLevel(QString page)
 
 
     return 0;
+}
+
+QString Core::RetrieveTemplateToWarn(QString type)
+{
+    int x=0;
+    while (x < Configuration::LocalConfig_WarningTemplates.count())
+    {
+        if (Core::GetKeyFromValue(Configuration::LocalConfig_WarningTemplates.at(x)) == type)
+        {
+            return Core::GetValueFromKey(Configuration::LocalConfig_WarningTemplates.at(x));
+        }
+        x++;
+    }
+    return "";
 }
 
 void Core::Log(QString Message)
@@ -755,7 +770,7 @@ bool Core::PreflightCheck(WikiEdit *_e)
     return true;
 }
 
-ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)
+ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
 {
     if (_e->User == NULL)
     {
@@ -797,9 +812,10 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&summary=" + QUrl::toPercentEncoding(summary);
         query->Target = _e->Page->PageName;
         query->UsingPOST = true;
+        query->DeleteLater = keep;
+        Core::RunningQueries.append(query);
         DebugLog("Rolling back " + _e->Page->PageName);
         query->Process();
-        Core::RunningQueries.append(query);
     }
 
     return query;
@@ -853,13 +869,34 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
     Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, "800").toInt();
     Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config).toInt();
+    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config);
+    Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config);
+    Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config);
+    Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config);
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
-    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summar", config);
     Core::ParsePats(config);
     Core::ParseWords(config);
+
+    // templates
+    int CurrentTemplate=0;
+    while (CurrentTemplate<Configuration::LocalConfig_WarningTypes.count())
+    {
+        QString type = Core::GetKeyFromValue(Configuration::LocalConfig_WarningTypes.at(CurrentTemplate));
+        int CurrentWarning = 1;
+        while (CurrentWarning <= 4)
+        {
+            QString xx = Core::ConfigurationParse(type + QString::number(CurrentWarning), config);
+            if (xx != "")
+            {
+                Configuration::LocalConfig_WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
+            }
+            CurrentWarning++;
+        }
+        CurrentTemplate++;
+    }
     return true;
 }
 

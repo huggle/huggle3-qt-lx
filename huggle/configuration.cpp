@@ -91,10 +91,7 @@ bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
 int Configuration::HistorySize = 600;
 
-QString Configuration::LocalConfig_WarningTemp = "";
-QString Configuration::LocalConfig_WarningTemp2 = "";
-QString Configuration::LocalConfig_WarningTemp3 = "";
-QString Configuration::LocalConfig_WarningTemp4 = "";
+QStringList Configuration::LocalConfig_WarningTemplates;
 
 int Configuration::LocalConfig_IPScore = 800;
 int Configuration::LocalConfig_BotScore = -200;

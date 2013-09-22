@@ -267,6 +267,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         }
 
         edit->Diff = line.mid(0, line.indexOf("&")).toInt();
+        edit->RevID = line.mid(0, line.indexOf("&")).toInt();
     }
 
     if (!line.contains("oldid="))

@@ -72,8 +72,8 @@ public:
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     void Render();
-    bool Revert(QString summary = "");
-    bool Warn();
+    ApiQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+    bool Warn(QString WarningType, ApiQuery *dependency);
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
 

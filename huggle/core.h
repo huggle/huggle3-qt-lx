@@ -101,7 +101,7 @@ public:
     static void CheckQueries();
     //! Check if we can revert this edit
     static bool PreflightCheck(WikiEdit *_e);
-    static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
+    static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
     static QString GetCustomRevertStatus(QString RevertData);
     static bool ParseGlobalConfig(QString config);
     static bool ParseLocalConfig(QString config);
@@ -121,11 +121,12 @@ public:
     static QString GetValueFromKey(QString item);
     static QString GetKeyFromValue(QString item);
     static void ParseWords(QString text);
-    static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true);
+    static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
     static void LoadDefs();
     static void FinalizeMessages();
     //! Get a level of warning from talk page
     static int GetLevel(QString page);
+    static QString RetrieveTemplateToWarn(QString type);
 private:
     static QList<QString> *RingLog;
 };

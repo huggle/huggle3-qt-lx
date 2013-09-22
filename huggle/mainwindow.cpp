@@ -175,19 +175,19 @@ void MainWindow::Render()
     this->tb->SetTitle(this->Browser->CurrentPageName());
 }
 
-bool MainWindow::Revert(QString summary)
+ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
     if (this->CurrentEdit == NULL)
     {
         Core::Log("ERROR: Unable to revert, edit is null");
-        return false;
+        return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
         Core::Log("ERROR: This edit is still being processed, please wait");
-        return false;
+        return NULL;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
@@ -198,15 +198,65 @@ bool MainWindow::Revert(QString summary)
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
-        Core::RevertEdit(this->CurrentEdit, summary);
-        this->Queue1->Next();
-        return true;
+        ApiQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, true, nd);
+        if (next)
+        {
+            this->Queue1->Next();
+        }
+        return q;
     }
-    return false;
+    return NULL;
 }
 
-bool MainWindow::Warn()
+bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
 {
+    if (this->CurrentEdit == NULL)
+    {
+        Core::DebugLog("NULL");
+        return false;
+    }
+
+    if (this->CurrentEdit->User->WarningLevel > 4)
+    {
+        Core::Log("Can't warn " + this->CurrentEdit->User->Username + " because they already received final warning");
+        return false;
+    }
+
+    // get a template
+    this->CurrentEdit->User->WarningLevel++;
+
+    QString warning = Core::RetrieveTemplateToWarn(WarningType +
+            QString::number(this->CurrentEdit->User->WarningLevel));
+
+    if (warning == "")
+    {
+        Core::Log("There is no such warning template");
+        return false;
+    }
+
+    warning = warning.replace("$2", this->CurrentEdit->GetFullUrl()).replace("$1", this->CurrentEdit->Page->PageName);
+
+    QString title = "Message re " + Configuration::EditSuffixOfHuggle;
+
+    switch (this->CurrentEdit->User->WarningLevel)
+    {
+        case 1:
+            title = Configuration::LocalConfig_WarnSummary + Configuration::EditSuffixOfHuggle;
+            break;
+        case 2:
+            title = Configuration::LocalConfig_WarnSummary2 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 3:
+            title = Configuration::LocalConfig_WarnSummary3 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 4:
+            title = Configuration::LocalConfig_WarnSummary4 + Configuration::EditSuffixOfHuggle;
+            break;
+    }
+
+    Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
+                      title, true, dependency);
+
     return true;
 }
 
@@ -401,6 +451,7 @@ void MainWindow::on_actionWarn_triggered()
         Core::DeveloperError();
         return;
     }
+    this->Warn("warning", NULL);
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
@@ -421,6 +472,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
         Core::DeveloperError();
         return;
     }
+    this->Warn("warning", NULL);
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
@@ -431,9 +483,11 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
 
-    if (this->Revert())
-    {
+    ApiQuery *result = this->Revert("", true, false);
 
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
     }
 }
 
@@ -444,9 +498,12 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         Core::DeveloperError();
         return;
     }
-    if (this->Revert())
-    {
 
+    ApiQuery *result = this->Revert("", true, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
     }
 }
 

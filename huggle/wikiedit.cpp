@@ -251,6 +251,8 @@ bool WikiEdit::FinalizePostProcessing()
         Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
+    this->ProcessingQuery->DeleteLater = false;
+    this->ProcessingQuery = NULL;
     this->DifferenceQuery->DeleteLater = false;
     this->DifferenceQuery = NULL;
     this->ProcessingByWorkerThread = true;
@@ -324,6 +326,12 @@ void WikiEdit::PostProcess()
     this->DifferenceQuery->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
+}
+
+QString WikiEdit::GetFullUrl()
+{
+    return Core::GetProjectURL() + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
+            "&diff=" + QString::number(this->RevID);
 }
 
 bool WikiEdit::IsPostProcessed()

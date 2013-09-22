@@ -61,6 +61,8 @@ public:
     ~WikiEdit();
     bool FinalizePostProcessing();
     void PostProcess();
+    //! Return a full url to edit
+    QString GetFullUrl();
     //! Return true in case this edit was post processed already
     bool IsPostProcessed();
     //! Page that was changed by edit

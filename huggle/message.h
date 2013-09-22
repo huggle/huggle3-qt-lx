@@ -17,6 +17,8 @@
 #include "apiquery.h"
 #include "wikiuser.h"
 
+class Query;
+
 class Message
 {
 public:
@@ -25,6 +27,7 @@ public:
     void Send();
     void Fail(QString reason);
     bool Finished();
+    Query *Dependency;
     QString title;
     ApiQuery *query;
     QString token;
