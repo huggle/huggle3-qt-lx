@@ -583,7 +583,11 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     }
     // retrieve a token
     EditQuery *_e = new EditQuery();
-
+    _e->page = page->PageName;
+    Core::PendingMods.append(_e);
+    _e->text = text;
+    _e->summary = summary;
+    _e->Process();
     return NULL;
 }
 

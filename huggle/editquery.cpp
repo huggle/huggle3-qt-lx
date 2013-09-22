@@ -18,3 +18,13 @@ EditQuery::~EditQuery()
 {
 
 }
+
+void EditQuery::Process()
+{
+
+}
+
+bool EditQuery::Processed()
+{
+
+}
