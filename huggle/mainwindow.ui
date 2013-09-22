@@ -327,6 +327,9 @@
    <property name="text">
     <string>Talk page</string>
    </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
   </action>
   <action name="actionUser_page">
    <property name="text">
@@ -433,6 +436,9 @@
   <action name="actionClear_talk_page_of_user">
    <property name="text">
     <string>Clear talk page of user</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+C</string>
    </property>
   </action>
  </widget>

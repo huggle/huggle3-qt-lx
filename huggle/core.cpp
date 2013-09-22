@@ -822,7 +822,10 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
         summary = Configuration::GetDefaultRevertSummary(_e->User->Username);
     }
 
-    summary = summary.replace("$1", _e->User->Username);
+    if (summary.contains("$1"))
+    {
+        summary = summary.replace("$1", _e->User->Username);
+    }
 
     _e->User->BadnessScore += 200;
     WikiUser::UpdateUser(_e->User);

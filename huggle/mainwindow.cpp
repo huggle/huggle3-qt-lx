@@ -612,6 +612,12 @@ void MainWindow::on_actionWelcome_user_triggered()
     {
         return;
     }
+    if (this->CurrentEdit->User->IP)
+    {
+        Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
+                          , "Welcome", "Welcoming user (using huggle)", true);
+        return;
+    }
     Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user (using huggle)", true);
 }
 
