@@ -14,6 +14,6 @@ Windows:
 
 Linux:
 
-* sudo apt-get install qt-qmake
+* sudo apt-get install qt4-qmake #qt5-qmake if you prefer
 * qmake
 * make
