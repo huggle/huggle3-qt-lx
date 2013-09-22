@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
+    this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     SystemLog->InsertText(Core::RingLogToText());
     this->CurrentEdit = NULL;
@@ -709,4 +710,34 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 {
     ui->actionRemove_old_edits->setChecked(true);
     ui->actionStop_feed->setChecked(false);
+}
+
+void MainWindow::on_actionQueue_triggered()
+{
+    this->Queue1->setVisible(ui->actionQueue->isChecked());
+}
+
+void MainWindow::on_actionHistory_triggered()
+{
+    this->_History->setVisible(ui->actionHistory->isChecked());
+}
+
+void MainWindow::on_actionProcesses_triggered()
+{
+    this->Queries->setVisible(ui->actionProcesses->isChecked());
+}
+
+void MainWindow::on_actionSystem_log_triggered()
+{
+    this->SystemLog->setVisible(ui->actionSystem_log->isChecked());
+}
+
+void MainWindow::on_actionTools_dock_triggered()
+{
+    this->tb->setVisible(ui->actionTools_dock->isChecked());
+}
+
+void MainWindow::on_actionClear_talk_page_of_user_triggered()
+{
+
 }

@@ -98,6 +98,7 @@
     <addaction name="separator"/>
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
+    <addaction name="actionClear_talk_page_of_user"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -112,7 +113,18 @@
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
    </widget>
+   <widget class="QMenu" name="menuDisplay">
+    <property name="title">
+     <string>Display</string>
+    </property>
+    <addaction name="actionTools_dock"/>
+    <addaction name="actionQueue"/>
+    <addaction name="actionHistory"/>
+    <addaction name="actionSystem_log"/>
+    <addaction name="actionProcesses"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuDisplay"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>
@@ -291,12 +303,15 @@
   </action>
   <action name="actionIncrease_badness_score_by_20">
    <property name="text">
-    <string>Increase badness score by 20</string>
+    <string>Increase badness score</string>
+   </property>
+   <property name="iconText">
+    <string>Increase badness score</string>
    </property>
   </action>
   <action name="actionDecrease_badness_score_by_20">
    <property name="text">
-    <string>Decrease badness score by 20</string>
+    <string>Decrease badness score</string>
    </property>
   </action>
   <action name="actionGood_edit">
@@ -358,6 +373,66 @@
    </property>
    <property name="text">
     <string>Remove old edits</string>
+   </property>
+  </action>
+  <action name="actionQueue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Queue</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>History logs</string>
+   </property>
+  </action>
+  <action name="actionSystem_log">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>System log</string>
+   </property>
+  </action>
+  <action name="actionProcesses">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Processes</string>
+   </property>
+  </action>
+  <action name="actionTools_dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tools box</string>
+   </property>
+  </action>
+  <action name="actionClear_talk_page_of_user">
+   <property name="text">
+    <string>Clear talk page of user</string>
    </property>
   </action>
  </widget>

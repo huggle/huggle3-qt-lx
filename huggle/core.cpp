@@ -35,6 +35,7 @@ QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
 ProcessorThread *Core::Processor = NULL;
 QList<Message*> Core::Messages;
+QList<EditQuery*> Core::PendingMods;
 QDateTime Core::StartupTime = QDateTime::currentDateTime();
 
 void Core::Init()
@@ -572,6 +573,18 @@ QString Core::RetrieveTemplateToWarn(QString type)
         x++;
     }
     return "";
+}
+
+EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor)
+{
+    if (page == NULL)
+    {
+        return NULL;
+    }
+    // retrieve a token
+    EditQuery *_e = new EditQuery();
+
+    return NULL;
 }
 
 void Core::Log(QString Message)

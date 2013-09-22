@@ -17,6 +17,8 @@
 #include "login.h"
 #include "mainwindow.h"
 #include "message.h"
+#include "apiquery.h"
+#include "editquery.h"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.h"
@@ -37,11 +39,12 @@ class Query;
 class ApiQuery;
 class MainWindow;
 class HuggleFeed;
+class EditQuery;
+class ProcessorThread;
 class WikiSite;
 class WikiPage;
 class WikiUser;
 class WikiEdit;
-class ProcessorThread;
 class Message;
 
 class Core
@@ -63,7 +66,8 @@ public:
     //! whole list needs to be checked and probed everytime once a while
     static QList<WikiEdit*> ProcessingEdits;
     static ProcessorThread * Processor;
-    static QList<Message *> Messages;
+    static QList<Message*> Messages;
+    static QList<EditQuery*> PendingMods;
 
 #ifdef PYTHONENGINE
     static PythonEngine *Python;
@@ -127,6 +131,7 @@ public:
     //! Get a level of warning from talk page
     static int GetLevel(QString page);
     static QString RetrieveTemplateToWarn(QString type);
+    static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
 private:
     static QList<QString> *RingLog;
 };

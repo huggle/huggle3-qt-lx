@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     querygc.cpp \
     message.cpp \
     scorewordsdbform.cpp \
-    history.cpp
+    history.cpp \
+    editquery.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -88,7 +89,8 @@ HEADERS  += mainwindow.h \
     querygc.h \
     message.h \
     scorewordsdbform.h \
-    history.h
+    history.h \
+    editquery.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -108,4 +110,5 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     pictures.qrc \
-    Version.qrc
+    Version.qrc \
+    html.qrc

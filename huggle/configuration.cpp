@@ -103,6 +103,8 @@ int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
 bool Configuration::NextOnRv = true;
+QString Configuration::LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
+QString Configuration::LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
 
 QString Configuration::GetURLProtocolPrefix()
 {

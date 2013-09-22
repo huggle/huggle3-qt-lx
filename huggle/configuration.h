@@ -89,6 +89,8 @@ public:
     static QString LocalConfig_DefaultSummary;
     static QString LocalConfig_SingleRevert;
     static QString LocalConfig_UndoSummary;
+    static QString LocalConfig_ClearTalkPageTemp;
+    static QString LocalConfig_WelcomeAnon;
 
     // Warnings
 
