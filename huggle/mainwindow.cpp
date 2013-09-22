@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SystemLog = new HuggleLog(this);
     this->Browser = new HuggleWeb(this);
     this->Queue1 = new HuggleQueue(this);
+    this->_History = new History(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
@@ -84,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;
     delete this->RevertSummaries;

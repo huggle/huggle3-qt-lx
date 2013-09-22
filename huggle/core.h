@@ -48,7 +48,7 @@ class Core
 {
 public:
     // Global variables
-    static void Init();
+    static QDateTime StartupTime;
     static MainWindow *Main;
     static Login *f_Login;
     static QString HtmlHeader;
@@ -69,6 +69,7 @@ public:
     static PythonEngine *Python;
 #endif
 
+    static void Init();
     static void Log(QString Message);
     static void DebugLog(QString Message, unsigned int Verbosity = 1);
     //! Helper function that will return URL of project in question
@@ -123,6 +124,8 @@ public:
     static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true);
     static void LoadDefs();
     static void FinalizeMessages();
+    //! Get a level of warning from talk page
+    static int GetLevel(QString page);
 private:
     static QList<QString> *RingLog;
 };

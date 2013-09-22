@@ -101,6 +101,7 @@ public:
     static QString LocalConfig_WarningTemp2;
     static QString LocalConfig_WarningTemp3;
     static QString LocalConfig_WarningTemp4;
+    static QStringList LocalConfig_WarningDefs;
 
     // Definitions
 

@@ -35,6 +35,7 @@ QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
 ProcessorThread *Core::Processor = NULL;
 QList<Message*> Core::Messages;
+QDateTime Core::StartupTime = QDateTime::currentDateTime();
 
 void Core::Init()
 {
@@ -59,6 +60,7 @@ void Core::Init()
 #endif
     Core::DebugLog("Loading wikis");
     Core::LoadDB();
+    Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 
 void Core::LoadDB()
@@ -532,6 +534,31 @@ void Core::FinalizeMessages()
     }
 }
 
+int Core::GetLevel(QString page)
+{
+    int level = 4;
+    while (level > 0)
+    {
+        int xx=0;
+        while (xx<Configuration::LocalConfig_WarningDefs)
+        {
+            QString defs=Configuration::LocalConfig_WarningDefs.at(xx);
+            if (Core::GetKeyFromValue(defs).toInt() == level)
+            {
+                if (page.contains(Core::GetValueFromKey(defs)))
+                {
+                    return level;
+                }
+            }
+            x++;
+        }
+        level--;
+    }
+
+
+    return 0;
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -828,6 +855,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config).toInt();
     Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
+    Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
     Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summar", config);
     Core::ParsePats(config);
