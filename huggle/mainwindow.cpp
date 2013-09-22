@@ -758,7 +758,8 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
 
-    Core::EditPage(page, Configuration::LocalConfig_ClearTalkPageTemp,
+    Core::EditPage(page, Configuration::LocalConfig_ClearTalkPageTemp
+                   + "\n" + Configuration::LocalConfig_WelcomeAnon,
                    "Cleaned old templates from talk page " + Configuration::EditSuffixOfHuggle);
 
     delete page;
