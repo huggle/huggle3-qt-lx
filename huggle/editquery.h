@@ -15,6 +15,8 @@
 //#include "apiquery.h"
 #include "core.h"
 
+class ApiQuery;
+
 class EditQuery : public Query
 {
 public:

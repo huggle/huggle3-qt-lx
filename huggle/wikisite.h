@@ -16,8 +16,11 @@
 class WikiSite
 {
 public:
+    //! Name of wiki, used by huggle only
     QString Name;
+    //! URL of wiki, no http prefix must be present
     QString URL;
+    //! long article path (wiki/ for example on english wp)
     QString LongPath;
     QString ScriptPath;
     QString OAuthURL;
@@ -26,7 +29,16 @@ public:
     bool SupportHttps;
     bool SupportOAuth;
     WikiSite(QString name, QString url);
-    WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString ic, QString wl);
+    //! This will create a new instance of wikisite with most of configuration
+    //! param name is a name of wiki for internal purposes
+    //! param url is relative url to wiki (no http prefix) which must be terminated with slash
+    //! param path is long path for articles, like wiki/
+    //! param script is short path w/
+    //! param https set this true if your wiki support https
+    //! param oauth set this true if your wiki support oauth
+    //! param channel irc
+    //! param wl whitelist
+    WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
 };
 
 #endif // WIKISITE_H
