@@ -128,7 +128,9 @@ QString Configuration::GetConfigurationPath()
 
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
-    return Configuration::DefaultRevertSummary.replace("$1", source) + " " + Configuration::EditSuffixOfHuggle;
+    QString summary = Configuration::DefaultRevertSummary;
+    summary = summary.replace("$1", source) + " " + Configuration::EditSuffixOfHuggle;
+    return summary;
 }
 
 
