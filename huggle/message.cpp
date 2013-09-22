@@ -128,7 +128,7 @@ void Message::Finish()
         query->SetAction(ActionEdit);
         query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->title) + "&text=" + QUrl::toPercentEncoding(this->text)
-                + QUrl::toPercentEncoding(this->title) + "&token=" + QUrl::toPercentEncoding(this->token);
+                + "&token=" + QUrl::toPercentEncoding(this->token);
         Core::RunningQueries.append(query);
         query->Process();
         return;

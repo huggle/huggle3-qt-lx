@@ -27,6 +27,7 @@ enum _Status
 
 enum QueryType
 {
+    QueryEdit,
     QueryNull,
     QueryApi
 };

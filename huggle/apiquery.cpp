@@ -64,6 +64,7 @@ ApiQuery::ApiQuery()
     this->URL = "";
     this->Type = QueryApi;
     this->ActionPart = "";
+    this->Result = NULL;
     this->Parameters = "";
     this->UsingPOST = false;
     this->Target = "none";

@@ -739,5 +739,27 @@ void MainWindow::on_actionTools_dock_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
 
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    if (!this->CurrentEdit->User->IP)
+    {
+        Core::Log("This feature is for ip users only");
+        return;
+    }
+
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+
+    Core::EditPage(page, Configuration::LocalConfig_ClearTalkPageTemp,
+                   "Cleaned old templates from talk page " + Configuration::EditSuffixOfHuggle);
+
+    delete page;
 }

@@ -27,8 +27,10 @@ public:
     QString page;
     QString text;
     QString summary;
-    ApiQuery *Token;
-    ApiQuery *Edit;
+    ApiQuery *qToken;
+    ApiQuery *qEdit;
+    bool Minor;
+    QString _Token;
 };
 
 #endif // EDITQUERY_H

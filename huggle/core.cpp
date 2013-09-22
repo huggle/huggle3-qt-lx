@@ -588,7 +588,7 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     _e->text = text;
     _e->summary = summary;
     _e->Process();
-    return NULL;
+    return _e;
 }
 
 void Core::Log(QString Message)
@@ -739,7 +739,21 @@ void Core::PostProcessEdit(WikiEdit *_e)
 void Core::CheckQueries()
 {
     int curr = 0;
-    if (Core::RunningQueries.count() == 0)
+    if (Core::PendingMods.count() > 0)
+    {
+        while (curr < Core::PendingMods.count())
+        {
+            if (Core::PendingMods.at(curr)->Processed())
+            {
+                Core::PendingMods.removeAt(curr);
+            } else
+            {
+                curr++;
+            }
+        }
+    }
+    curr = 0;
+    if (Core::RunningQueries.count() < 1)
     {
         return;
     }
