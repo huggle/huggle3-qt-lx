@@ -13,11 +13,9 @@
 
 #include <QString>
 //#include "apiquery.h"
-//#include "core.h"
+#include "core.h"
 
-class ApiQuery;
-
-class EditQuery : public ApiQuery
+class EditQuery : public Query
 {
 public:
     EditQuery();

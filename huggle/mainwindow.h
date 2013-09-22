@@ -111,19 +111,12 @@ private slots:
     void on_actionDisplay_history_in_browser_triggered();
     void on_actionStop_feed_triggered();
     void on_actionRemove_old_edits_triggered();
-
     void on_actionQueue_triggered();
-
     void on_actionHistory_triggered();
-
     void on_actionProcesses_triggered();
-
     void on_actionSystem_log_triggered();
-
     void on_actionTools_dock_triggered();
-
     void on_actionClear_talk_page_of_user_triggered();
-
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;

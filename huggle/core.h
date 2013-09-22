@@ -11,19 +11,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include "configuration.h"
-#include "query.h"
-#include "wikiedit.h"
-#include "login.h"
-#include "mainwindow.h"
-#include "message.h"
-#include "apiquery.h"
-#include "editquery.h"
-
-#ifdef PYTHONENGINE
-#include "pythonengine.h"
-#endif
-
 #include <iostream>
 #include <QApplication>
 #include <QNetworkAccessManager>
@@ -32,6 +19,17 @@
 #include <QFile>
 #include <QtXml>
 #include <QMessageBox>
+#include "configuration.h"
+#include "query.h"
+#include "wikiedit.h"
+#include "mainwindow.h"
+#include "message.h"
+#include "editquery.h"
+#include "apiquery.h"
+
+#ifdef PYTHONENGINE
+#include "pythonengine.h"
+#endif
 
 // Predeclaring some types
 class Login;
