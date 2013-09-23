@@ -106,6 +106,9 @@ QString Configuration::LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
 QString Configuration::LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
 bool Configuration::GlobalConfigWasLoaded = false;
 bool Configuration::LocalConfig_GlobalRequired = true;
+bool Configuration::LocalConfig_AIV = false;
+bool Configuration::LocalConfig_AIVExtend = true;
+QString Configuration::LocalConfig_ReportPath = "";
 
 QString Configuration::GetURLProtocolPrefix()
 {

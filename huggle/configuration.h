@@ -83,6 +83,10 @@ public:
     static bool LocalConfig_EnableAll;
     static int LocalConfig_RequireEdits;
 
+    static bool LocalConfig_AIV;
+    static bool LocalConfig_AIVExtend;
+    static QString LocalConfig_ReportPath;
+
     // Reverting
 
     static QString LocalConfig_ManualRevertSummary;

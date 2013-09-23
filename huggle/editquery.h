@@ -12,6 +12,7 @@
 #define EDITQUERY_H
 
 #include <QString>
+#include <QUrl>
 //#include "apiquery.h"
 #include "core.h"
 

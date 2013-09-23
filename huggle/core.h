@@ -25,6 +25,7 @@
 #include "wikiedit.h"
 #include "mainwindow.h"
 #include "message.h"
+#include "iextension.h"
 #include "editquery.h"
 #include "apiquery.h"
 
@@ -45,14 +46,18 @@ class WikiPage;
 class WikiUser;
 class WikiEdit;
 class Message;
+class iExtension;
 
 class Core
 {
 public:
     // Global variables
     static QDateTime StartupTime;
+    //! Pointer to main
     static MainWindow *Main;
+    //! Login form
     static Login *f_Login;
+    //! This string contains a html header
     static QString HtmlHeader;
     static QString HtmlFooter;
     static HuggleFeed *PrimaryFeedProvider;
@@ -67,6 +72,7 @@ public:
     static ProcessorThread * Processor;
     static QList<Message*> Messages;
     static QList<EditQuery*> PendingMods;
+    static QList<iExtension*> Extensions;
     static bool Running;
 
 #ifdef PYTHONENGINE
@@ -109,6 +115,7 @@ public:
     static QString GetCustomRevertStatus(QString RevertData);
     static bool ParseGlobalConfig(QString config);
     static bool ParseLocalConfig(QString config);
+    static bool ParseUserConfig(QString config);
     static QString ConfigurationParse(QString key, QString content, QString missing = "");
     static void LoadDB();
     static bool SafeBool(QString value, bool defaultvalue = false);

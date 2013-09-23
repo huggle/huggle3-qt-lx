@@ -52,7 +52,8 @@ SOURCES += main.cpp\
     message.cpp \
     scorewordsdbform.cpp \
     history.cpp \
-    editquery.cpp
+    editquery.cpp \
+    iextension.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -90,7 +91,8 @@ HEADERS  += mainwindow.h \
     message.h \
     scorewordsdbform.h \
     history.h \
-    editquery.h
+    editquery.h \
+    iextension.h
 
 FORMS    += mainwindow.ui \
     login.ui \

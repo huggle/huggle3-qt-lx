@@ -217,21 +217,22 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
         return false;
     }
 
+    // get a template
+    this->CurrentEdit->User->WarningLevel++;
+
     if (this->CurrentEdit->User->WarningLevel > 4)
     {
         Core::Log("Can't warn " + this->CurrentEdit->User->Username + " because they already received final warning");
         return false;
     }
 
-    // get a template
-    this->CurrentEdit->User->WarningLevel++;
+    QString __template = WarningType + QString::number(this->CurrentEdit->User->WarningLevel);
 
-    QString warning = Core::RetrieveTemplateToWarn(WarningType +
-            QString::number(this->CurrentEdit->User->WarningLevel));
+    QString warning = Core::RetrieveTemplateToWarn(__template);
 
     if (warning == "")
     {
-        Core::Log("There is no such warning template");
+        Core::Log("There is no such warning template " + __template);
         return false;
     }
 

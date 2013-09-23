@@ -38,6 +38,7 @@ QList<Message*> Core::Messages;
 QList<EditQuery*> Core::PendingMods;
 QDateTime Core::StartupTime = QDateTime::currentDateTime();
 bool Core::Running = true;
+QList<iExtension*> Core::Extensions;
 
 void Core::Init()
 {
@@ -711,7 +712,18 @@ void Core::DeveloperError()
 
 void Core::LoadConfig()
 {
-
+    QFile file(Configuration::GetConfigurationPath() + "huggle.xml");
+    if (!file.exists())
+    {
+        return;
+    }
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        Core::DebugLog("Unable to read config file");
+        return;
+    }
+    QDomDocument conf;
+    conf.setContent(file.readAll());
 }
 
 void Core::PreProcessEdit(WikiEdit *_e)
@@ -860,7 +872,8 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
         QString token = _e->RollbackToken;
         if (_e->RollbackToken.endsWith("+\\"))
         {
-            token = token.mid(0, token.indexOf("+")) + "%2B\\";
+            //token = token.mid(0, token.indexOf("+")) + "%2B\\";
+            token = QUrl::toPercentEncoding(token);
         }
         query->Parameters = "title=" + QUrl::toPercentEncoding(_e->Page->PageName)
                 + "&token=" + token
@@ -957,6 +970,11 @@ bool Core::ParseLocalConfig(QString config)
         }
         CurrentTemplate++;
     }
+    return true;
+}
+
+bool Core::ParseUserConfig(QString config)
+{
     return true;
 }
 

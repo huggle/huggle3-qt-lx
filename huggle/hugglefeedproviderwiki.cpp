@@ -84,8 +84,8 @@ void HuggleFeedProviderWiki::Refresh()
     Refreshing = true;
     q = new ApiQuery();
     q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|"\
-            "ids|sizes&rcshow=!bot&rclimit=200";
+    q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes") +
+            "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
     q->Target = "Recent changes refresh";
     q->Consumers.append("HuggleFeed::Refresh");
     Core::AppendQuery(q);

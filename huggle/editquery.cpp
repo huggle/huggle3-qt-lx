@@ -31,7 +31,7 @@ void EditQuery::Process()
 {
     qToken = new ApiQuery();
     qToken->SetAction(ActionQuery);
-    qToken->Parameters = "prop=info&intoken=edit&titles=" + page;
+    qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);
     qToken->Target = "Retrieving token to edit " + page;
     qToken->Consumers.append("EditQuery::Process()");
     Core::AppendQuery(qToken);

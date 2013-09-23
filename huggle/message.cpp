@@ -34,7 +34,7 @@ void Message::Send()
     Sending = true;
     query = new ApiQuery();
     query->SetAction(ActionQuery);
-    query->Parameters = "prop=info&intoken=edit&titles=" + user->GetTalk();
+    query->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(user->GetTalk());
     query->Target = "Retrieving token to edit " + user->GetTalk();
     query->Consumers.append("Message::Send()");
     Core::AppendQuery(query);
@@ -128,7 +128,8 @@ void Message::Finish()
         query->Consumers.append("Message::Finish()");
         query->SetAction(ActionEdit);
         query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                + QUrl::toPercentEncoding(this->title) + "&text=" + QUrl::toPercentEncoding(this->text)
+                + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary)
+                + "&text=" + QUrl::toPercentEncoding(this->text)
                 + "&token=" + QUrl::toPercentEncoding(this->token);
         Core::AppendQuery(query);
         query->Process();
