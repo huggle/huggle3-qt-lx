@@ -113,6 +113,7 @@
     <addaction name="actionClear_talk_page_of_user"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
+    <addaction name="actionReport_user_2"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -172,6 +173,8 @@
    <addaction name="actionOpen_in_a_browser"/>
    <addaction name="separator"/>
    <addaction name="actionGood_edit"/>
+   <addaction name="separator"/>
+   <addaction name="actionReport_user"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
@@ -515,6 +518,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionReport_user">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-report.png</normaloff>:/huggle/pictures/Resources/user-report.png</iconset>
+   </property>
+   <property name="text">
+    <string>Report user</string>
+   </property>
+  </action>
+  <action name="actionReport_user_2">
+   <property name="text">
+    <string>Report user</string>
    </property>
   </action>
  </widget>
