@@ -580,12 +580,20 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
 }
 
 void MainWindow::CustomWarn()
 {
-
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
 }
 
 QString MainWindow::GetSummaryText(QString text)
@@ -609,6 +617,11 @@ QString MainWindow::GetSummaryText(QString text)
 
 void MainWindow::on_actionWelcome_user_triggered()
 {
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
     if (this->CurrentEdit == NULL)
     {
         return;

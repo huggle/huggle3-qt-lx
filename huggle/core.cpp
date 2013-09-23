@@ -657,7 +657,10 @@ void Core::Shutdown()
 {
     Running = false;
     // grace time for subthreads to finish
-    Core::Main->hide();
+    if (Core::Main != NULL)
+    {
+        Core::Main->hide();
+    }
     QThread::sleep(2);
     if (Processor->isRunning())
     {
