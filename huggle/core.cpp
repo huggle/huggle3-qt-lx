@@ -37,6 +37,7 @@ ProcessorThread *Core::Processor = NULL;
 QList<Message*> Core::Messages;
 QList<EditQuery*> Core::PendingMods;
 QDateTime Core::StartupTime = QDateTime::currentDateTime();
+bool Core::Running = true;
 
 void Core::Init()
 {
@@ -83,13 +84,13 @@ void Core::LoadDB()
     }
 }
 
-bool Core::SafeBool(QString value)
+bool Core::SafeBool(QString value, bool defaultvalue)
 {
     if (value.toLower() == "true")
     {
         return true;
     }
-    return false;
+    return defaultvalue;
 }
 
 QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
@@ -591,6 +592,12 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     return _e;
 }
 
+void Core::AppendQuery(Query *item)
+{
+    item->Consumers.append("core");
+    Core::RunningQueries.append(item);
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -648,8 +655,15 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
-    Processor->exit();
-    delete Processor;
+    Running = false;
+    // grace time for subthreads to finish
+    Core::Main->hide();
+    QThread::sleep(2);
+    if (Processor->isRunning())
+    {
+        Processor->exit();
+    }
+    //delete Processor;
     Processor = NULL;
     Core::SaveDefs();
     Core::SaveConfig();
@@ -784,6 +798,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
+        item->Consumers.removeAll("core");
         item->SafeDelete();
         curr++;
     }
@@ -850,8 +865,11 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&summary=" + QUrl::toPercentEncoding(summary);
         query->Target = _e->Page->PageName;
         query->UsingPOST = true;
-        query->DeleteLater = keep;
-        Core::RunningQueries.append(query);
+        if (keep)
+        {
+            query->Consumers.append("keep");
+        }
+        Core::AppendQuery(query);
         DebugLog("Rolling back " + _e->Page->PageName);
         query->Process();
     }

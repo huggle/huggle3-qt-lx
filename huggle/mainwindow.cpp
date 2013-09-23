@@ -322,6 +322,7 @@ void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
     bool RetrieveEdit = true;
+    QueryGC::DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::PrimaryFeedProvider->IsWorking() != true)
     {
@@ -769,4 +770,27 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
                    "Cleaned old templates from talk page " + Configuration::EditSuffixOfHuggle);
 
     delete page;
+}
+
+void MainWindow::on_actionList_all_QGC_items_triggered()
+{
+    int xx=0;
+    while (xx<QueryGC::qgc.count())
+    {
+        Query *query = QueryGC::qgc.at(xx);
+        if (query->Consumers.count() > 0)
+        {
+            Core::Log("GC: Listing all dependencies for " + QString::number(query->ID));
+            int Item=0;
+            while (Item < query->Consumers.count())
+            {
+                Core::Log("GC: " + QString::number(query->ID) + " " + query->Consumers.at(Item));
+                Item++;
+            }
+        } else
+        {
+            Core::Log("No consumers found: " + QString::number(query->ID));
+        }
+        xx++;
+    }
 }

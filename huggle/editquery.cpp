@@ -33,8 +33,8 @@ void EditQuery::Process()
     qToken->SetAction(ActionQuery);
     qToken->Parameters = "prop=info&intoken=edit&titles=" + page;
     qToken->Target = "Retrieving token to edit " + page;
-    qToken->DeleteLater = true;
-    Core::RunningQueries.append(qToken);
+    qToken->Consumers.append("EditQuery::Process()");
+    Core::AppendQuery(qToken);
     qToken->Process();
 }
 
@@ -55,7 +55,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token, error was: " + qToken->Result->ErrorMessage;
-            this->qToken->DeleteLater = false;
+            this->qToken->Consumers.removeAll("EditQuery::Process()");
             return true;
         }
         QDomDocument d;
@@ -66,7 +66,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
-            this->qToken->DeleteLater = false;
+            this->qToken->Consumers.removeAll("EditQuery::Process()");
             return true;
         }
         QDomElement element = l.at(0).toElement();
@@ -75,17 +75,17 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
-            this->qToken->DeleteLater = false;
+            this->qToken->Consumers.removeAll("EditQuery::Process()");
             return true;
         }
         _Token = element.attribute("edittoken");
         qToken->SafeDelete();
-        qToken->DeleteLater = false;
+        qToken->Consumers.removeAll("EditQuery::Process()");
         qToken = NULL;
         qEdit = new ApiQuery();
         qEdit->Target = "Writing " + page;
         qEdit->UsingPOST = true;
-        qEdit->DeleteLater = true;
+        qEdit->Consumers.append("EditQuery::Processed()");
         qEdit->SetAction(ActionEdit);
         qEdit->Parameters = "title=" + QUrl::toPercentEncoding(page) + "&text=" + QUrl::toPercentEncoding(text) +
                 "&summary=" + QUrl::toPercentEncoding(this->summary) + "&token=" + QUrl::toPercentEncoding(_Token);
@@ -114,7 +114,7 @@ bool EditQuery::Processed()
             }
         }
         Result = new QueryResult();
-        qEdit->DeleteLater = false;
+        qEdit->Consumers.removeAll("EditQuery::Processed()");
         qEdit = NULL;
     }
     return true;

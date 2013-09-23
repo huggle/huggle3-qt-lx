@@ -69,13 +69,13 @@ void HuggleFeedProviderWiki::Refresh()
         {
             // failed to obtain the data
             Core::Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
-            q->DeleteLater = false;
+            q->Consumers.removeAll("HuggleFeed::Refresh");
             this->q = NULL;
             Refreshing = false;
             return;
         }
         this->Process(q->Result->Data);
-        q->DeleteLater = false;
+        q->Consumers.removeAll("HuggleFeed::Refresh");
         this->q = NULL;
         Refreshing = false;
         return;
@@ -87,8 +87,8 @@ void HuggleFeedProviderWiki::Refresh()
     q->Parameters = "list=recentchanges&rcprop=user|userid|comment|flags|timestamp|title|"\
             "ids|sizes&rcshow=!bot&rclimit=200";
     q->Target = "Recent changes refresh";
-    q->DeleteLater = true;
-    Core::RunningQueries.append(q);
+    q->Consumers.append("HuggleFeed::Refresh");
+    Core::AppendQuery(q);
     q->Process();
 }
 

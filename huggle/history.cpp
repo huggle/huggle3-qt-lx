@@ -37,3 +37,26 @@ History::~History()
 {
     delete ui;
 }
+
+QString HistoryItem::TypeToString(HistoryType type)
+{
+    switch (type)
+    {
+    case HistoryUnknown:
+        return "Unknown";
+    case HistoryMessage:
+        return "Message";
+    case HistoryEdit:
+        return "Edit";
+    case HistoryRollback:
+        return "Rollback";
+    }
+    return "Unknown";
+}
+
+HistoryItem::HistoryItem()
+{
+    this->ID = 0;
+    this->Target = "";
+    this->Type = HistoryUnknown;
+}

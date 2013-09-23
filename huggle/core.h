@@ -19,6 +19,7 @@
 #include <QFile>
 #include <QtXml>
 #include <QMessageBox>
+#include "login.h"
 #include "configuration.h"
 #include "query.h"
 #include "wikiedit.h"
@@ -66,6 +67,7 @@ public:
     static ProcessorThread * Processor;
     static QList<Message*> Messages;
     static QList<EditQuery*> PendingMods;
+    static bool Running;
 
 #ifdef PYTHONENGINE
     static PythonEngine *Python;
@@ -109,7 +111,7 @@ public:
     static bool ParseLocalConfig(QString config);
     static QString ConfigurationParse(QString key, QString content, QString missing = "");
     static void LoadDB();
-    static bool SafeBool(QString value);
+    static bool SafeBool(QString value, bool defaultvalue = false);
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
     static QString Trim(QString text);
     static void DeleteEdit(WikiEdit *edit);
@@ -130,6 +132,7 @@ public:
     static int GetLevel(QString page);
     static QString RetrieveTemplateToWarn(QString type);
     static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+    static void AppendQuery(Query* item);
 private:
     static QList<QString> *RingLog;
 };

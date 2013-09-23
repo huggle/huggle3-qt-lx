@@ -22,7 +22,7 @@ public:
     //! Garbage collector for old queries that should be deleted,
     //! but can't be right now
     static QList<Query*> qgc;
-    void DeleteOld();
+    static void DeleteOld();
 };
 
 #endif // QUERYGC_H

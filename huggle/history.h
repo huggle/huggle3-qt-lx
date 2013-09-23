@@ -11,11 +11,33 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
+#include <QString>
+#include <QList>
 #include <QDockWidget>
 
 namespace Ui {
 class History;
 }
+
+enum HistoryType
+{
+    HistoryUnknown,
+    HistoryEdit,
+    HistoryRollback,
+    HistoryMessage
+};
+
+class HistoryItem
+{
+public:
+    HistoryItem();
+    int ID;
+    QString Target;
+    HistoryType Type;
+    static QString TypeToString(HistoryType type);
+private:
+
+};
 
 class History : public QDockWidget
 {
@@ -23,6 +45,7 @@ class History : public QDockWidget
     
 public:
     explicit History(QWidget *parent = 0);
+    QList<HistoryItem> Items;
     ~History();
     
 private:

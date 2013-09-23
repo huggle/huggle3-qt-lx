@@ -18,7 +18,8 @@ void QueryGC::DeleteOld()
     QList<Query*> list(QueryGC::qgc);
     while(curr<list.count())
     {
-        if (!list.at(curr)->DeleteLater)
+        Query *q = list.at(curr);
+        if (q->Consumers.count() == 0)
         {
             QueryGC::qgc.removeOne(list.at(curr));
             delete list.at(curr);

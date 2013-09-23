@@ -21,7 +21,6 @@ Query::Query()
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
-    this->DeleteLater = false;
 }
 
 Query::~Query()
@@ -76,9 +75,14 @@ QString Query::QueryStatusToString()
     return "Unknown";
 }
 
-void Query::SafeDelete()
+void Query::SafeDelete(bool forced)
 {
-    if (!DeleteLater)
+    if (QueryGC::qgc.contains(this))
+    {
+        return;
+    }
+
+    if (!forced && Consumers.count() == 0)
     {
         delete this;
         return;

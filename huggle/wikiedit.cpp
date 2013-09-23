@@ -190,7 +190,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->DifferenceQuery->Result->Failed)
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            this->DifferenceQuery->DeleteLater = false;
+            this->DifferenceQuery->Consumers.removeAll("WikiEdit::PostProcess()");
             this->DifferenceQuery = NULL;
             this->PostProcessing = false;
             return true;
@@ -251,9 +251,9 @@ bool WikiEdit::FinalizePostProcessing()
         Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
-    this->ProcessingQuery->DeleteLater = false;
+    this->ProcessingQuery->Consumers.removeAll("WikiEdit::PostProcess()");
     this->ProcessingQuery = NULL;
-    this->DifferenceQuery->DeleteLater = false;
+    this->DifferenceQuery->Consumers.removeAll("WikiEdit::PostProcess()");
     this->DifferenceQuery = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
@@ -303,8 +303,8 @@ void WikiEdit::PostProcess()
     this->ProcessingQuery->SetAction(ActionQuery);
     this->ProcessingQuery->Parameters = "prop=revisions&rvprop=timestamp|user|comment|content&titles=" +
             this->User->GetTalk();
-    this->ProcessingQuery->DeleteLater = true;
-    Core::RunningQueries.append(this->ProcessingQuery);
+    this->ProcessingQuery->Consumers.append("WikiEdit::PostProcess()");
+    Core::AppendQuery(this->ProcessingQuery);
     this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
     this->ProcessingQuery->Process();
     this->DifferenceQuery = new ApiQuery();
@@ -321,8 +321,8 @@ void WikiEdit::PostProcess()
     }
     this->DifferenceQuery->Target = Page->PageName;
     this->DifferenceQuery->UsingPOST = true;
-    Core::RunningQueries.append(this->DifferenceQuery);
-    this->DifferenceQuery->DeleteLater = true;
+    Core::AppendQuery(this->DifferenceQuery);
+    this->DifferenceQuery->Consumers.append("WikiEdit::PostProcess()");
     this->DifferenceQuery->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
@@ -348,7 +348,7 @@ QList<WikiEdit*> ProcessorThread::PendingEdits;
 
 void ProcessorThread::run()
 {
-    while(true)
+    while(Core::Running)
     {
         ProcessorThread::EditLock.lock();
         int e=0;

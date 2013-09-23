@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -123,6 +132,12 @@
     <addaction name="actionSystem_log"/>
     <addaction name="actionProcesses"/>
    </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>Debug</string>
+    </property>
+    <addaction name="actionList_all_QGC_items"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDisplay"/>
    <addaction name="menuTools"/>
@@ -130,6 +145,7 @@
    <addaction name="menuQueue"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuDebug"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -439,6 +455,11 @@
    </property>
    <property name="shortcut">
     <string>Shift+C</string>
+   </property>
+  </action>
+  <action name="actionList_all_QGC_items">
+   <property name="text">
+    <string>List all QGC items</string>
    </property>
   </action>
  </widget>

@@ -117,6 +117,8 @@ private slots:
     void on_actionSystem_log_triggered();
     void on_actionTools_dock_triggered();
     void on_actionClear_talk_page_of_user_triggered();
+    void on_actionList_all_QGC_items_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
