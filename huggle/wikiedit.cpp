@@ -301,7 +301,7 @@ void WikiEdit::PostProcess()
     this->PostProcessing = true;
     this->ProcessingQuery = new ApiQuery();
     this->ProcessingQuery->SetAction(ActionQuery);
-    this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content&titles=") +
+    this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(this->User->GetTalk());
     this->ProcessingQuery->Consumers.append("WikiEdit::PostProcess()");
     Core::AppendQuery(this->ProcessingQuery);
