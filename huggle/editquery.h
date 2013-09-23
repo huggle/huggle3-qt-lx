@@ -8,22 +8,30 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "querygc.h"
+#ifndef EDITQUERY_H
+#define EDITQUERY_H
 
-QList<Query*> QueryGC::qgc;
+#include <QString>
+#include <QUrl>
+//#include "apiquery.h"
+#include "core.h"
 
-void QueryGC::DeleteOld()
+class ApiQuery;
+
+class EditQuery : public Query
 {
-    int curr=0;
-    QList<Query*> list(QueryGC::qgc);
-    while(curr<list.count())
-    {
-        Query *q = list.at(curr);
-        if (q->Consumers.count() == 0)
-        {
-            QueryGC::qgc.removeOne(list.at(curr));
-            delete list.at(curr);
-        }
-        curr++;
-    }
-}
+public:
+    EditQuery();
+    ~EditQuery();
+    void Process();
+    bool Processed();
+    QString page;
+    QString text;
+    QString summary;
+    ApiQuery *qToken;
+    ApiQuery *qEdit;
+    bool Minor;
+    QString _Token;
+};
+
+#endif // EDITQUERY_H

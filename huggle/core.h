@@ -11,17 +11,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include "configuration.h"
-#include "query.h"
-#include "wikiedit.h"
-#include "login.h"
-#include "mainwindow.h"
-#include "message.h"
-
-#ifdef PYTHONENGINE
-#include "pythonengine.h"
-#endif
-
 #include <iostream>
 #include <QApplication>
 #include <QNetworkAccessManager>
@@ -30,6 +19,19 @@
 #include <QFile>
 #include <QtXml>
 #include <QMessageBox>
+#include "login.h"
+#include "configuration.h"
+#include "query.h"
+#include "wikiedit.h"
+#include "mainwindow.h"
+#include "message.h"
+#include "iextension.h"
+#include "editquery.h"
+#include "apiquery.h"
+
+#ifdef PYTHONENGINE
+#include "pythonengine.h"
+#endif
 
 // Predeclaring some types
 class Login;
@@ -37,20 +39,25 @@ class Query;
 class ApiQuery;
 class MainWindow;
 class HuggleFeed;
+class EditQuery;
+class ProcessorThread;
 class WikiSite;
 class WikiPage;
 class WikiUser;
 class WikiEdit;
-class ProcessorThread;
 class Message;
+class iExtension;
 
 class Core
 {
 public:
     // Global variables
     static QDateTime StartupTime;
+    //! Pointer to main
     static MainWindow *Main;
+    //! Login form
     static Login *f_Login;
+    //! This string contains a html header
     static QString HtmlHeader;
     static QString HtmlFooter;
     static HuggleFeed *PrimaryFeedProvider;
@@ -63,7 +70,10 @@ public:
     //! whole list needs to be checked and probed everytime once a while
     static QList<WikiEdit*> ProcessingEdits;
     static ProcessorThread * Processor;
-    static QList<Message *> Messages;
+    static QList<Message*> Messages;
+    static QList<EditQuery*> PendingMods;
+    static QList<iExtension*> Extensions;
+    static bool Running;
 
 #ifdef PYTHONENGINE
     static PythonEngine *Python;
@@ -105,9 +115,10 @@ public:
     static QString GetCustomRevertStatus(QString RevertData);
     static bool ParseGlobalConfig(QString config);
     static bool ParseLocalConfig(QString config);
+    static bool ParseUserConfig(QString config);
     static QString ConfigurationParse(QString key, QString content, QString missing = "");
     static void LoadDB();
-    static bool SafeBool(QString value);
+    static bool SafeBool(QString value, bool defaultvalue = false);
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
     static QString Trim(QString text);
     static void DeleteEdit(WikiEdit *edit);
@@ -127,6 +138,8 @@ public:
     //! Get a level of warning from talk page
     static int GetLevel(QString page);
     static QString RetrieveTemplateToWarn(QString type);
+    static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+    static void AppendQuery(Query* item);
 private:
     static QList<QString> *RingLog;
 };

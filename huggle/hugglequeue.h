@@ -18,7 +18,6 @@
 #include <QVBoxLayout>
 #include "hugglequeuefilter.h"
 #include "hugglequeueitemlabel.h"
-#include "core.h"
 #include "wikiedit.h"
 
 namespace Ui {

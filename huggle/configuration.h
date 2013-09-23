@@ -54,14 +54,18 @@ public:
     static bool PythonEngine;
     //! Size of feed
     static int ProviderCache;
+    //! Maximum size of ringlog
     static int RingLogMaxSize;
     //! Path where huggle contains its data
     static QString HomePath;
+    //! Path to a file where information about wikis are stored
     static QString WikiDB;
+    //! Return a configuration path
     static QString GetConfigurationPath();
+    //! Data of wl
     static QStringList WhiteList;
+    //! URL of wiki that contains a global config
     static QString GlobalConfigurationWikiAddress;
-    static bool TrackInfoApiQ;
     //! Number of seconds for which the processed queries remain in list of processes
     static int QueryListTimeLimit;
     //! Number of edits to keep in history stack
@@ -71,12 +75,17 @@ public:
     // Local config
     //////////////////////////////////////////////
 
+    //! Minimal version of huggle required to use it
     static QString LocalConfig_MinimalVersion;
     static bool LocalConfig_UseIrc;
     static bool LocalConfig_RequireRollback;
     static bool LocalConfig_RequireAdmin;
     static bool LocalConfig_EnableAll;
     static int LocalConfig_RequireEdits;
+
+    static bool LocalConfig_AIV;
+    static bool LocalConfig_AIVExtend;
+    static QString LocalConfig_ReportPath;
 
     // Reverting
 
@@ -89,6 +98,8 @@ public:
     static QString LocalConfig_DefaultSummary;
     static QString LocalConfig_SingleRevert;
     static QString LocalConfig_UndoSummary;
+    static QString LocalConfig_ClearTalkPageTemp;
+    static QString LocalConfig_WelcomeAnon;
 
     // Warnings
 
@@ -112,6 +123,8 @@ public:
     static QStringList LocalConfig_IgnorePatterns;
     static int LocalConfig_TalkPageWarningScore;
 
+    static bool LocalConfig_GlobalRequired;
+
     static int LocalConfig_BotScore;
     static int LocalConfig_IPScore;
     static int LocalConfig_WarningScore;
@@ -127,6 +140,7 @@ public:
     static QString GlobalConfig_DocumentationPath;
     static QString GlobalConfig_FeedbackPath;
     static QString GlobalConfig_UserConf;
+    static bool GlobalConfigWasLoaded;
 
     //////////////////////////////////////////////
     // Login

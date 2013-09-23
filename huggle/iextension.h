@@ -8,22 +8,20 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "querygc.h"
+#ifndef IEXTENSION_H
+#define IEXTENSION_H
 
-QList<Query*> QueryGC::qgc;
+#include <QtPlugin>
+#include <QString>
+#include "configuration.h"
+#include "core.h"
 
-void QueryGC::DeleteOld()
+class iExtension
 {
-    int curr=0;
-    QList<Query*> list(QueryGC::qgc);
-    while(curr<list.count())
-    {
-        Query *q = list.at(curr);
-        if (q->Consumers.count() == 0)
-        {
-            QueryGC::qgc.removeOne(list.at(curr));
-            delete list.at(curr);
-        }
-        curr++;
-    }
-}
+public:
+    iExtension();
+};
+
+Q_DECLARE_INTERFACE(iExtension, "org.huggle.extension.qt")
+
+#endif // IEXTENSION_H

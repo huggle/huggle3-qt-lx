@@ -87,7 +87,6 @@ QStringList Configuration::LocalConfig_WarningTypes;
 
 QStringList Configuration::LocalConfig_WarningDefs;
 
-bool Configuration::TrackInfoApiQ = true;
 int Configuration::QueryListTimeLimit = 2;
 int Configuration::HistorySize = 600;
 
@@ -103,6 +102,13 @@ int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
 bool Configuration::NextOnRv = true;
+QString Configuration::LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
+QString Configuration::LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
+bool Configuration::GlobalConfigWasLoaded = false;
+bool Configuration::LocalConfig_GlobalRequired = true;
+bool Configuration::LocalConfig_AIV = false;
+bool Configuration::LocalConfig_AIVExtend = true;
+QString Configuration::LocalConfig_ReportPath = "";
 
 QString Configuration::GetURLProtocolPrefix()
 {
@@ -125,7 +131,9 @@ QString Configuration::GetConfigurationPath()
 
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
-    return Configuration::DefaultRevertSummary.replace("$1", source) + " " + Configuration::EditSuffixOfHuggle;
+    QString summary = Configuration::DefaultRevertSummary;
+    summary = summary.replace("$1", source) + " " + Configuration::EditSuffixOfHuggle;
+    return summary;
 }
 
 

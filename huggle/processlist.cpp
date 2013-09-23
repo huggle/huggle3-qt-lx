@@ -38,12 +38,14 @@ void ProcessList::InsertQuery(Query *q)
     {
         throw new Exception("NULL query");
     }
+    q->Consumers.append("ProcessList::InsertQuery");
     int size = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(size);
     ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->ID)));
     ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    q->Consumers.removeAll("ProcessList::InsertQuery");
 }
 
 void ProcessList::Clear()
@@ -54,19 +56,25 @@ void ProcessList::Clear()
 
 bool ProcessList::ContainsQuery(Query *q)
 {
-    return GetItem(q) != -1;
+    q->Consumers.append("ProcessList::ContainsQuery");
+    int result = GetItem(q);
+    q->Consumers.removeAll("ProcessList::ContainsQuery");
+    return result != -1;
 }
 
 void ProcessList::RemoveQuery(Query *q)
 {
+    q->Consumers.append("ProcessList::RemoveQuery");
     if (!IsExpired(q))
     {
         this->Removed->append(new ProcessListRemovedItem(q->ID));
     }
+    q->Consumers.removeAll("ProcessList::RemoveQuery");
 }
 
 void ProcessList::UpdateQuery(Query *q)
 {
+    q->Consumers.append("ProcessList::UpdateQuery");
     int query = GetItem(q);
     if (query == -1)
     {
@@ -78,19 +86,23 @@ void ProcessList::UpdateQuery(Query *q)
     ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    q->Consumers.removeAll("ProcessList::UpdateQuery");
 }
 
 bool ProcessList::IsExpired(Query *q)
 {
+    q->Consumers.append("ProcessList::IsExpired");
     int i = 0;
     while (i<Removed->count())
     {
         if (Removed->at(i)->GetID() == q->ID)
         {
+            q->Consumers.removeAll("ProcessList::IsExpired");
             return true;
         }
         i++;
     }
+    q->Consumers.removeAll("ProcessList::IsExpired");
     return false;
 }
 
@@ -127,16 +139,19 @@ void ProcessList::RemoveExpired()
 
 int ProcessList::GetItem(Query *q)
 {
+    q->Consumers.append("ProcessList::GetItem");
     int curr = 0;
     int size = ui->tableWidget->rowCount();
     while (curr < size)
     {
         if (ui->tableWidget->item(curr,0)->text() == QString::number(q->ID))
         {
+            q->Consumers.removeAll("ProcessList::GetItem");
             return curr;
         }
         curr++;
     }
+    q->Consumers.removeAll("ProcessList::GetItem");
     return -1;
 }
 

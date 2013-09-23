@@ -12,6 +12,7 @@
 
 HuggleFeed::HuggleFeed()
 {
+
 }
 
 HuggleFeed::~HuggleFeed()

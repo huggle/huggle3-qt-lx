@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -65,6 +74,7 @@
     </property>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
+    <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuPage">
@@ -74,7 +84,9 @@
     <addaction name="actionNext_2"/>
     <addaction name="separator"/>
     <addaction name="actionRevert_currently_displayed_edit"/>
+    <addaction name="actionRevert_currently_displayed_edit_and_stay_on_page"/>
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
+    <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
@@ -98,6 +110,9 @@
     <addaction name="separator"/>
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
+    <addaction name="actionClear_talk_page_of_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionWelcome_user_2"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -112,12 +127,30 @@
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
    </widget>
+   <widget class="QMenu" name="menuDisplay">
+    <property name="title">
+     <string>Display</string>
+    </property>
+    <addaction name="actionTools_dock"/>
+    <addaction name="actionQueue"/>
+    <addaction name="actionHistory"/>
+    <addaction name="actionSystem_log"/>
+    <addaction name="actionProcesses"/>
+   </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>Debug</string>
+    </property>
+    <addaction name="actionList_all_QGC_items"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuDisplay"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuDebug"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -145,6 +178,9 @@
    <property name="text">
     <string>Preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -154,6 +190,9 @@
   <action name="actionContents">
    <property name="text">
     <string>Contents</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -291,12 +330,21 @@
   </action>
   <action name="actionIncrease_badness_score_by_20">
    <property name="text">
-    <string>Increase badness score by 20</string>
+    <string>Increase badness score</string>
+   </property>
+   <property name="iconText">
+    <string>Increase badness score</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+I</string>
    </property>
   </action>
   <action name="actionDecrease_badness_score_by_20">
    <property name="text">
-    <string>Decrease badness score by 20</string>
+    <string>Decrease badness score</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+D</string>
    </property>
   </action>
   <action name="actionGood_edit">
@@ -312,6 +360,9 @@
    <property name="text">
     <string>Talk page</string>
    </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
   </action>
   <action name="actionUser_page">
    <property name="text">
@@ -322,15 +373,24 @@
    <property name="text">
     <string>Display this page in browser</string>
    </property>
+   <property name="shortcut">
+    <string>O</string>
+   </property>
   </action>
   <action name="actionDisplay_history_in_browser">
    <property name="text">
     <string>Display history in browser</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
   </action>
   <action name="actionEdit_page_in_browser">
    <property name="text">
     <string>Edit page in browser</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
    </property>
   </action>
   <action name="actionFlag_as_a_good_edit">
@@ -358,6 +418,103 @@
    </property>
    <property name="text">
     <string>Remove old edits</string>
+   </property>
+  </action>
+  <action name="actionQueue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Queue</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>History logs</string>
+   </property>
+  </action>
+  <action name="actionSystem_log">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>System log</string>
+   </property>
+  </action>
+  <action name="actionProcesses">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Processes</string>
+   </property>
+  </action>
+  <action name="actionTools_dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tools box</string>
+   </property>
+  </action>
+  <action name="actionClear_talk_page_of_user">
+   <property name="text">
+    <string>Clear talk page of user</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+C</string>
+   </property>
+  </action>
+  <action name="actionList_all_QGC_items">
+   <property name="text">
+    <string>List all QGC items</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_and_stay_on_page">
+   <property name="text">
+    <string>Revert currently displayed edit and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+R</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page">
+   <property name="text">
+    <string>Revert currently displayed edit, warn user and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Q</string>
+   </property>
+  </action>
+  <action name="actionFeedback">
+   <property name="text">
+    <string>Feedback</string>
+   </property>
+  </action>
+  <action name="actionWelcome_user_2">
+   <property name="text">
+    <string>Welcome user</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

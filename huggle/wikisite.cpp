@@ -23,9 +23,9 @@ WikiSite::WikiSite(QString name, QString url)
     this->WhiteList = "en.wikipedia";
 }
 
-WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString ic, QString wl)
+WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl)
 {
-    this->IRCChannel = ic;
+    this->IRCChannel = channel;
     this->LongPath = path;
     this->Name = name;
     this->SupportHttps = https;

@@ -35,7 +35,10 @@ QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
 ProcessorThread *Core::Processor = NULL;
 QList<Message*> Core::Messages;
+QList<EditQuery*> Core::PendingMods;
 QDateTime Core::StartupTime = QDateTime::currentDateTime();
+bool Core::Running = true;
+QList<iExtension*> Core::Extensions;
 
 void Core::Init()
 {
@@ -82,13 +85,13 @@ void Core::LoadDB()
     }
 }
 
-bool Core::SafeBool(QString value)
+bool Core::SafeBool(QString value, bool defaultvalue)
 {
     if (value.toLower() == "true")
     {
         return true;
     }
-    return false;
+    return defaultvalue;
 }
 
 QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
@@ -574,6 +577,28 @@ QString Core::RetrieveTemplateToWarn(QString type)
     return "";
 }
 
+EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor)
+{
+    if (page == NULL)
+    {
+        return NULL;
+    }
+    // retrieve a token
+    EditQuery *_e = new EditQuery();
+    _e->page = page->PageName;
+    Core::PendingMods.append(_e);
+    _e->text = text;
+    _e->summary = summary;
+    _e->Process();
+    return _e;
+}
+
+void Core::AppendQuery(Query *item)
+{
+    item->Consumers.append("core");
+    Core::RunningQueries.append(item);
+}
+
 void Core::Log(QString Message)
 {
     std::cout << Message.toStdString() << std::endl;
@@ -631,8 +656,18 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
-    Processor->exit();
-    delete Processor;
+    Running = false;
+    // grace time for subthreads to finish
+    if (Core::Main != NULL)
+    {
+        Core::Main->hide();
+    }
+    QThread::sleep(2);
+    if (Processor->isRunning())
+    {
+        Processor->exit();
+    }
+    //delete Processor;
     Processor = NULL;
     Core::SaveDefs();
     Core::SaveConfig();
@@ -677,7 +712,18 @@ void Core::DeveloperError()
 
 void Core::LoadConfig()
 {
-
+    QFile file(Configuration::GetConfigurationPath() + "huggle.xml");
+    if (!file.exists())
+    {
+        return;
+    }
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        Core::DebugLog("Unable to read config file");
+        return;
+    }
+    QDomDocument conf;
+    conf.setContent(file.readAll());
 }
 
 void Core::PreProcessEdit(WikiEdit *_e)
@@ -722,7 +768,21 @@ void Core::PostProcessEdit(WikiEdit *_e)
 void Core::CheckQueries()
 {
     int curr = 0;
-    if (Core::RunningQueries.count() == 0)
+    if (Core::PendingMods.count() > 0)
+    {
+        while (curr < Core::PendingMods.count())
+        {
+            if (Core::PendingMods.at(curr)->Processed())
+            {
+                Core::PendingMods.removeAt(curr);
+            } else
+            {
+                curr++;
+            }
+        }
+    }
+    curr = 0;
+    if (Core::RunningQueries.count() < 1)
     {
         return;
     }
@@ -753,6 +813,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
+        item->Consumers.removeAll("core");
         item->SafeDelete();
         curr++;
     }
@@ -791,7 +852,10 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
         summary = Configuration::GetDefaultRevertSummary(_e->User->Username);
     }
 
-    summary = summary.replace("$1", _e->User->Username);
+    if (summary.contains("$1"))
+    {
+        summary = summary.replace("$1", _e->User->Username);
+    }
 
     _e->User->BadnessScore += 200;
     WikiUser::UpdateUser(_e->User);
@@ -808,7 +872,8 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
         QString token = _e->RollbackToken;
         if (_e->RollbackToken.endsWith("+\\"))
         {
-            token = token.mid(0, token.indexOf("+")) + "%2B\\";
+            //token = token.mid(0, token.indexOf("+")) + "%2B\\";
+            token = QUrl::toPercentEncoding(token);
         }
         query->Parameters = "title=" + QUrl::toPercentEncoding(_e->Page->PageName)
                 + "&token=" + token
@@ -816,8 +881,11 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
                 + "&summary=" + QUrl::toPercentEncoding(summary);
         query->Target = _e->Page->PageName;
         query->UsingPOST = true;
-        query->DeleteLater = keep;
-        Core::RunningQueries.append(query);
+        if (keep)
+        {
+            query->Consumers.append("keep");
+        }
+        Core::AppendQuery(query);
         DebugLog("Rolling back " + _e->Page->PageName);
         query->Process();
     }
@@ -861,6 +929,7 @@ bool Core::ParseGlobalConfig(QString config)
     {
         Configuration::GlobalConfig_FeedbackPath = temp;
     }
+    Configuration::GlobalConfigWasLoaded = true;
     return true;
 }
 
@@ -901,6 +970,11 @@ bool Core::ParseLocalConfig(QString config)
         }
         CurrentTemplate++;
     }
+    return true;
+}
+
+bool Core::ParseUserConfig(QString config)
+{
     return true;
 }
 

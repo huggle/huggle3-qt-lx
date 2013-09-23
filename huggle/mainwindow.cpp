@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
+    this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     SystemLog->InsertText(Core::RingLogToText());
     this->CurrentEdit = NULL;
@@ -216,21 +217,22 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
         return false;
     }
 
+    // get a template
+    this->CurrentEdit->User->WarningLevel++;
+
     if (this->CurrentEdit->User->WarningLevel > 4)
     {
         Core::Log("Can't warn " + this->CurrentEdit->User->Username + " because they already received final warning");
         return false;
     }
 
-    // get a template
-    this->CurrentEdit->User->WarningLevel++;
+    QString __template = WarningType + QString::number(this->CurrentEdit->User->WarningLevel);
 
-    QString warning = Core::RetrieveTemplateToWarn(WarningType +
-            QString::number(this->CurrentEdit->User->WarningLevel));
+    QString warning = Core::RetrieveTemplateToWarn(__template);
 
     if (warning == "")
     {
-        Core::Log("There is no such warning template");
+        Core::Log("There is no such warning template " + __template);
         return false;
     }
 
@@ -304,7 +306,7 @@ void MainWindow::on_actionPreferences_triggered()
 
 void MainWindow::on_actionContents_triggered()
 {
-
+    QDesktopServices::openUrl(Configuration::GlobalConfig_DocumentationPath);
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -321,6 +323,7 @@ void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
     bool RetrieveEdit = true;
+    QueryGC::DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::PrimaryFeedProvider->IsWorking() != true)
     {
@@ -578,12 +581,20 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
 }
 
 void MainWindow::CustomWarn()
 {
-
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
 }
 
 QString MainWindow::GetSummaryText(QString text)
@@ -605,13 +616,29 @@ QString MainWindow::GetSummaryText(QString text)
     return Configuration::LocalConfig_DefaultSummary;
 }
 
-void MainWindow::on_actionWelcome_user_triggered()
+void MainWindow::Welcome()
 {
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
     if (this->CurrentEdit == NULL)
     {
         return;
     }
+    if (this->CurrentEdit->User->IP)
+    {
+        Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
+                          , "Welcome", "Welcoming user (using huggle)", true);
+        return;
+    }
     Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user (using huggle)", true);
+}
+
+void MainWindow::on_actionWelcome_user_triggered()
+{
+    this->Welcome();
 }
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
@@ -709,4 +736,111 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 {
     ui->actionRemove_old_edits->setChecked(true);
     ui->actionStop_feed->setChecked(false);
+}
+
+void MainWindow::on_actionQueue_triggered()
+{
+    this->Queue1->setVisible(ui->actionQueue->isChecked());
+}
+
+void MainWindow::on_actionHistory_triggered()
+{
+    this->_History->setVisible(ui->actionHistory->isChecked());
+}
+
+void MainWindow::on_actionProcesses_triggered()
+{
+    this->Queries->setVisible(ui->actionProcesses->isChecked());
+}
+
+void MainWindow::on_actionSystem_log_triggered()
+{
+    this->SystemLog->setVisible(ui->actionSystem_log->isChecked());
+}
+
+void MainWindow::on_actionTools_dock_triggered()
+{
+    this->tb->setVisible(ui->actionTools_dock->isChecked());
+}
+
+void MainWindow::on_actionClear_talk_page_of_user_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    if (!this->CurrentEdit->User->IP)
+    {
+        Core::Log("This feature is for ip users only");
+        return;
+    }
+
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+
+    Core::EditPage(page, Configuration::LocalConfig_ClearTalkPageTemp
+                   + "\n" + Configuration::LocalConfig_WelcomeAnon,
+                   "Cleaned old templates from talk page " + Configuration::EditSuffixOfHuggle);
+
+    delete page;
+}
+
+void MainWindow::on_actionList_all_QGC_items_triggered()
+{
+    int xx=0;
+    while (xx<QueryGC::qgc.count())
+    {
+        Query *query = QueryGC::qgc.at(xx);
+        if (query->Consumers.count() > 0)
+        {
+            Core::Log("GC: Listing all dependencies for " + QString::number(query->ID));
+            int Item=0;
+            while (Item < query->Consumers.count())
+            {
+                Core::Log("GC: " + QString::number(query->ID) + " " + query->Consumers.at(Item));
+                Item++;
+            }
+        } else
+        {
+            Core::Log("No consumers found: " + QString::number(query->ID));
+        }
+        xx++;
+    }
+}
+
+void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+    this->Revert("", false, false);
+}
+
+void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    ApiQuery *result = this->Revert("", true, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
+}
+
+void MainWindow::on_actionWelcome_user_2_triggered()
+{
+    this->Welcome();
 }

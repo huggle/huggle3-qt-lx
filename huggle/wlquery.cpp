@@ -12,7 +12,7 @@
 
 WLQuery::WLQuery()
 {
-
+    this->Result = NULL;
 }
 
 WLQuery::~WLQuery()

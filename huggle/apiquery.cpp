@@ -64,6 +64,7 @@ ApiQuery::ApiQuery()
     this->URL = "";
     this->Type = QueryApi;
     this->ActionPart = "";
+    this->Result = NULL;
     this->Parameters = "";
     this->UsingPOST = false;
     this->Target = "none";
@@ -100,7 +101,7 @@ void ApiQuery::Process()
     }
     this->Status = Processing;
     this->Result = new QueryResult();
-    QUrl url(this->URL);
+    QUrl url(this->URL, QUrl::StrictMode);
     QNetworkRequest request(url);
     if (UsingPOST)
     {
