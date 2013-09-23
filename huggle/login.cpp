@@ -61,6 +61,7 @@ void Login::CancelLogin()
     this->Enable();
     this->_Status = Nothing;
     ui->ButtonOK->setText("Login");
+    this->Reset();
 }
 
 void Login::Enable()
@@ -433,8 +434,7 @@ void Login::on_ButtonOK_clicked()
         this->PressOK();
         return;
     }
-
-    if (this->_Status == LoggingIn)
+    else
     {
         this->CancelLogin();
         return;
