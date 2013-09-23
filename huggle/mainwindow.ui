@@ -74,6 +74,7 @@
     </property>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
+    <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuPage">
@@ -110,6 +111,8 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionWelcome_user_2"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -499,6 +502,19 @@
    </property>
    <property name="shortcut">
     <string>Shift+Q</string>
+   </property>
+  </action>
+  <action name="actionFeedback">
+   <property name="text">
+    <string>Feedback</string>
+   </property>
+  </action>
+  <action name="actionWelcome_user_2">
+   <property name="text">
+    <string>Welcome user</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

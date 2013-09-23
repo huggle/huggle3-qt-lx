@@ -71,7 +71,6 @@ public:
     QMenu *RevertSummaries;
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
-    void Render();
     ApiQuery *Revert(QString summary = "", bool nd = false, bool next = true);
     bool Warn(QString WarningType, ApiQuery *dependency);
     QString GetSummaryKey(QString item);
@@ -120,12 +119,15 @@ private slots:
     void on_actionList_all_QGC_items_triggered();
     void on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered();
     void on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered();
+    void on_actionWelcome_user_2_triggered();
 
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
     QLabel *Status;
     void DisplayWelcomeMessage();
+    void Welcome();
+    void Render();
 };
 
 #endif // MAINWINDOW_H

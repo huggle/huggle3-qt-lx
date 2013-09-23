@@ -305,7 +305,7 @@ void MainWindow::on_actionPreferences_triggered()
 
 void MainWindow::on_actionContents_triggered()
 {
-
+    QDesktopServices::openUrl(Configuration::GlobalConfig_DocumentationPath);
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -615,7 +615,7 @@ QString MainWindow::GetSummaryText(QString text)
     return Configuration::LocalConfig_DefaultSummary;
 }
 
-void MainWindow::on_actionWelcome_user_triggered()
+void MainWindow::Welcome()
 {
     if (Configuration::Restricted)
     {
@@ -633,6 +633,11 @@ void MainWindow::on_actionWelcome_user_triggered()
         return;
     }
     Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user (using huggle)", true);
+}
+
+void MainWindow::on_actionWelcome_user_triggered()
+{
+    this->Welcome();
 }
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
@@ -832,4 +837,9 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
     {
         this->Warn("warning", result);
     }
+}
+
+void MainWindow::on_actionWelcome_user_2_triggered()
+{
+    this->Welcome();
 }

@@ -10,6 +10,8 @@
 
 #include "terminalparser.h"
 
+using namespace std;
+
 TerminalParser::TerminalParser(int argc_, QStringList argv)
 {
     this->argc = argc_;
@@ -17,5 +19,34 @@ TerminalParser::TerminalParser(int argc_, QStringList argv)
 
 bool TerminalParser::Parse()
 {
+    int x = 0;
+    while (x < this->args.count())
+    {
+        QString text = this->args.at(x);
+        if (text == "-h" || text == "--help")
+        {
+            DisplayHelp();
+            return true;
+        }
+        if (text.startsWith("-v"))
+        {
+            text = text.mid(1);
+            while (text.length() > 0 && text.startsWith("v"))
+            {
+                Configuration::Verbosity++;
+                text = text.mid(1);
+            }
+        }
+        x++;
+    }
     return false;
+}
+
+void TerminalParser::DisplayHelp()
+{
+    cout << "Huggle 3 QT-LX" << endl << endl;
+    cout << "Parameters:" << endl;
+    cout << "  -v: Increases verbosity" << endl;
+    cout << "  -h | --help: Display this help" << endl<< endl;
+    cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }

@@ -11,14 +11,17 @@
 #ifndef TERMINALPARSER_H
 #define TERMINALPARSER_H
 
+#include <iostream>
 #include <QStringList>
 #include <QString>
+#include "configuration.h"
 
 class TerminalParser
 {
 public:
     TerminalParser(int argc_, QStringList argv);
     bool Parse();
+    void DisplayHelp();
 private:
     int argc;
     QStringList args;
