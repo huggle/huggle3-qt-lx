@@ -118,6 +118,8 @@ private slots:
     void on_actionTools_dock_triggered();
     void on_actionClear_talk_page_of_user_triggered();
     void on_actionList_all_QGC_items_triggered();
+    void on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered();
+    void on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -127,4 +129,3 @@ private:
 };
 
 #endif // MAINWINDOW_H
-

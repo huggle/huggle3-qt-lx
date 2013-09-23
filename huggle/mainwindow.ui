@@ -83,7 +83,9 @@
     <addaction name="actionNext_2"/>
     <addaction name="separator"/>
     <addaction name="actionRevert_currently_displayed_edit"/>
+    <addaction name="actionRevert_currently_displayed_edit_and_stay_on_page"/>
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
+    <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
@@ -460,6 +462,22 @@
   <action name="actionList_all_QGC_items">
    <property name="text">
     <string>List all QGC items</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_and_stay_on_page">
+   <property name="text">
+    <string>Revert currently displayed edit and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+R</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page">
+   <property name="text">
+    <string>Revert currently displayed edit, warn user and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Q</string>
    </property>
   </action>
  </widget>

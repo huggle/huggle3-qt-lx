@@ -807,3 +807,29 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
         xx++;
     }
 }
+
+void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+    this->Revert("", false, false);
+}
+
+void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    ApiQuery *result = this->Revert("", true, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
+}
