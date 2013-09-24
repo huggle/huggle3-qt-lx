@@ -21,6 +21,7 @@ Query::Query()
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
+    this->Dependency = NULL;
 }
 
 Query::~Query()

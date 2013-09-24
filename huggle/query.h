@@ -55,6 +55,9 @@ public:
     virtual QString QueryTypeToString();
     virtual QString QueryTargetToString();
     virtual QString QueryStatusToString();
+    //! If you put anything in here, it either must be NULL or query
+    //! that is processed
+    Query *Dependency;
     //! Use this if you are not sure if you can delete this object in this moment
     virtual void SafeDelete(bool forced = false);
     //! Some queries are needed for dependency setup, so we need to delete them

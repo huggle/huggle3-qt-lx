@@ -338,14 +338,15 @@ void Core::ParsePats(QString text)
 void Core::SaveDefs()
 {
     QFile file(Configuration::GetConfigurationPath() + "users.xml");
+    if (QFile(Configuration::GetConfigurationPath() + "users.xml").exists())
+    {
+        QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
+        QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
+    }
     if (!file.open(QIODevice::WriteOnly))
     {
         Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
-    }
-    if (QFile(Configuration::GetConfigurationPath() + "users.xml").exists())
-    {
-        QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
     }
     QString xx = "<definitions>\n";
     int x = 0;
@@ -502,7 +503,8 @@ void Core::LoadDefs()
                 i++;
                 continue;
             }
-            user = new WikiUser(e.attribute("name"));
+            user = new WikiUser();
+            user->Username = e.attribute("name");
             if (e.attributes().contains("badness"))
             {
                 user->BadnessScore = e.attribute("badness").toInt();
@@ -662,7 +664,9 @@ void Core::Shutdown()
     {
         Core::Main->hide();
     }
-    QThread::sleep(2);
+#if QT_VERSION >= 0x050000
+    QThread::usleep(200000);
+#endif
     if (Processor->isRunning())
     {
         Processor->exit();

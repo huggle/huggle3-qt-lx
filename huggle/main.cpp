@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
             return 0;
         }
         delete p;
+        p = NULL;
         Core::Init();
         QApplication a(argc, argv);
         Core::f_Login = new Login();

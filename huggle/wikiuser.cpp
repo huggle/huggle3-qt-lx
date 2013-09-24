@@ -61,6 +61,7 @@ WikiUser::WikiUser(QString user)
     this->IP = WikiUser::IPv4Regex.exactMatch(user);
     this->Username = user;
     int c=0;
+    this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())
     {
         if (ProblematicUsers.at(c)->Username == this->Username)
@@ -73,7 +74,6 @@ WikiUser::WikiUser(QString user)
     }
     this->BadnessScore = 0;
     this->WarningLevel = 0;
-    this->ContentsOfTalkPage = "";
 }
 
 QString WikiUser::GetTalk()
