@@ -14,6 +14,7 @@
 #include <QString>
 #include <QtXml>
 #include "core.h"
+#include "history.h"
 #include "apiquery.h"
 #include "wikiuser.h"
 

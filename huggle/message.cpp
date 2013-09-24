@@ -161,6 +161,14 @@ void Message::Finish()
             {
                 Core::Log("Successfuly delivered message to " + user->Username);
                 sent = true;
+                HistoryItem item;
+                item.Result = "Success";
+                item.Type = HistoryMessage;
+                item.Target = user->Username;
+                if (Core::Main != NULL)
+                {
+                    Core::Main->_History->Prepend(item);
+                }
             }
         }
     }

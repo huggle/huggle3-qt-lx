@@ -801,6 +801,16 @@ void Core::CheckQueries()
                 if (q->CustomStatus != "Reverted")
                 {
                     q->Result->Failed = true;
+                } else
+                {
+                    HistoryItem item;
+                    item.Target = ((ApiQuery*)q)->Target;
+                    item.Type = HistoryRollback;
+                    item.Result = "Success";
+                    if (Core::Main != NULL)
+                    {
+                        Core::Main->_History->Prepend(item);
+                    }
                 }
             }
             Core::Main->Queries->UpdateQuery(q);

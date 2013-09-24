@@ -256,6 +256,7 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
             break;
     }
 
+    title = title.replace("$1", this->CurrentEdit->Page->PageName);
     Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true, dependency);
 

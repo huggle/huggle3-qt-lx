@@ -31,7 +31,10 @@ class HistoryItem
 {
 public:
     HistoryItem();
+    HistoryItem(const HistoryItem &item);
+    HistoryItem(HistoryItem * item);
     int ID;
+    QString Result;
     QString Target;
     HistoryType Type;
     static QString TypeToString(HistoryType type);
@@ -45,9 +48,16 @@ class History : public QDockWidget
     
 public:
     explicit History(QWidget *parent = 0);
-    QList<HistoryItem> Items;
     ~History();
+    //! Insert a new item to top of list
+    void Prepend(HistoryItem item);
+    void Refresh();
+    void Remove(HistoryItem item);
+    QList<HistoryItem> Items;
+    static int Last;
     
+
+
 private:
     Ui::History *ui;
 };

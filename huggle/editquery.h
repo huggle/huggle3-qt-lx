@@ -15,6 +15,7 @@
 #include <QUrl>
 //#include "apiquery.h"
 #include "core.h"
+#include "history.h"
 
 class ApiQuery;
 

@@ -109,6 +109,14 @@ bool EditQuery::Processed()
             {
                 if (element.attribute("result") == "Success")
                 {
+                    if (Core::Main != NULL)
+                    {
+                        HistoryItem item;
+                        item.Result = "Successful";
+                        item.Type = HistoryEdit;
+                        item.Target = this->page;
+                        Core::Main->_History->Prepend(item);
+                    }
                     Core::Log("Successfuly edit " + page);
                 }
             }

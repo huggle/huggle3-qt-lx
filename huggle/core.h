@@ -27,6 +27,7 @@
 #include "message.h"
 #include "iextension.h"
 #include "editquery.h"
+#include "history.h"
 #include "apiquery.h"
 
 #ifdef PYTHONENGINE
