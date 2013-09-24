@@ -179,8 +179,7 @@ void Login::FinishToken()
     // Assume login was successful
     if (this->ProcessOutput())
     {
-        // Get a whitelist
-        this->_Status = RetrievingWhitelist;
+        this->_Status = RetrievingGlobalConfig;
     }
     // that's all
     delete this->LoginQuery;
@@ -197,7 +196,7 @@ void Login::RetrieveWhitelist()
             delete wq;
             wq = NULL;
             // Now global config
-            this->_Status = RetrievingGlobalConfig;
+            this->_Status = RetrievingLocalConfig;
             return;
         }
         return;
@@ -313,7 +312,7 @@ void Login::RetrieveGlobalConfig()
                 }
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
-                this->_Status = RetrievingLocalConfig;
+                this->_Status = RetrievingWhitelist;
                 return;
             }
             ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
