@@ -30,6 +30,7 @@ class Login;
 enum Status
 {
     RetrievingGlobalConfig,
+    RetrievingUserConfig,
     RetrievingLocalConfig,
     LoggingIn,
     WaitingForLoginQuery,
@@ -83,6 +84,7 @@ private:
     void RetrieveWhitelist();
     void RetrieveLocalConfig();
     void RetrieveGlobalConfig();
+    void RetrievePrivateConfig();
     void DeveloperMode();
     void DisplayError(QString message);
     void Finish();

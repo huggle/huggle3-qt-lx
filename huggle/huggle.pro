@@ -53,7 +53,9 @@ SOURCES += main.cpp\
     scorewordsdbform.cpp \
     history.cpp \
     editquery.cpp \
-    iextension.cpp
+    iextension.cpp \
+    reportuser.cpp \
+    blockuser.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -92,7 +94,9 @@ HEADERS  += mainwindow.h \
     scorewordsdbform.h \
     history.h \
     editquery.h \
-    iextension.h
+    iextension.h \
+    reportuser.h \
+    blockuser.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -108,7 +112,9 @@ FORMS    += mainwindow.ui \
     processlist.ui \
     ignorelist.ui \
     scorewordsdbform.ui \
-    history.ui
+    history.ui \
+    reportuser.ui \
+    blockuser.ui
 
 RESOURCES += \
     pictures.qrc \

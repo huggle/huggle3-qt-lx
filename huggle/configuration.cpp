@@ -48,7 +48,7 @@ QString Configuration::GlobalConfig_MinVersion = "3.0.0.0";
 QString Configuration::GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
 QString Configuration::GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
 QString Configuration::GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
-QString Configuration::GlobalConfig_UserConf = "Special:Mypage/huggle.css";
+QString Configuration::GlobalConfig_UserConf = "User:$1/huggle.css";
 
 // Local
 
