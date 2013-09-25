@@ -141,6 +141,7 @@ public:
     static QString RetrieveTemplateToWarn(QString type);
     static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
     static void AppendQuery(Query* item);
+    static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
 private:
     static QList<QString> *RingLog;
 };

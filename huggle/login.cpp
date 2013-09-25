@@ -34,6 +34,11 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     }
     ui->Project->setCurrentIndex(0);
     wq = NULL;
+    if (!QSslSocket::supportsSsl())
+    {
+        ui->checkBox->setEnabled(false);
+        ui->checkBox->setChecked(false);
+    }
 }
 
 Login::~Login()
@@ -69,7 +74,7 @@ void Login::Enable()
     ui->lineEdit->setEnabled(true);
     ui->Language->setEnabled(true);
     ui->Project->setEnabled(true);
-    ui->checkBox->setEnabled(true);
+    ui->checkBox->setEnabled(QSslSocket::supportsSsl());
     ui->lineEdit_2->setEnabled(true);
     ui->ButtonExit->setEnabled(true);
     ui->lineEdit_3->setEnabled(true);
@@ -249,8 +254,7 @@ void Login::RetrieveLocalConfig()
                 }
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
-                this->_Status = LoginDone;
-                Finish();
+                this->_Status = RetrievingUserConfig;
                 return;
             }
             ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
@@ -331,6 +335,73 @@ void Login::RetrieveGlobalConfig()
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
+    this->LoginQuery->Process();
+}
+
+void Login::RetrievePrivateConfig()
+{
+    if (this->LoginQuery != NULL)
+    {
+        if (this->LoginQuery->Processed())
+        {
+            if (this->LoginQuery->Result->Failed)
+            {
+                ui->label_6->setText("Login failed unable to retrieve user config: " + this->LoginQuery->Result->ErrorMessage);
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomDocument d;
+            d.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList l = d.elementsByTagName("rev");
+            if (l.count() == 0)
+            {
+                Core::DebugLog(this->LoginQuery->Result->Data);
+                ui->label_6->setText("Login failed unable to retrieve user config, the api query returned no data");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomElement data = l.at(0).toElement();
+            if (Core::ParseUserConfig(data.text()))
+            {
+                if (!Configuration::LocalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because you don't have enable:true in your personal config");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                this->_Status = LoginDone;
+                Finish();
+                return;
+            }
+            ui->label_6->setText("Login failed unable to parse the user config, see debug log for more details");
+            Core::DebugLog(data.text());
+            this->Progress(0);
+            this->_Status = LoginFailed;
+            delete this->LoginQuery;
+            this->LoginQuery = NULL;
+            return;
+        }
+        return;
+    }
+    this->Progress(96);
+    ui->label_6->setText("Retrieving user config");
+    this->LoginQuery = new ApiQuery();
+    QString page = Configuration::GlobalConfig_UserConf;
+    page = page.replace("$1", Configuration::UserName);
+    this->LoginQuery->SetAction(ActionQuery);
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=" +
+            QUrl::toPercentEncoding(page);
     this->LoginQuery->Process();
 }
 
@@ -471,6 +542,9 @@ void Login::on_Time()
         break;
     case RetrievingLocalConfig:
         RetrieveLocalConfig();
+        break;
+    case RetrievingUserConfig:
+        RetrievePrivateConfig();
         break;
     case LoggedIn:
     case Nothing:

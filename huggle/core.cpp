@@ -761,6 +761,13 @@ void Core::SaveConfig()
         Core::Log("Unable to save configuration because the file can't be open");
         return;
     }
+    QXmlStreamWriter *x = new QXmlStreamWriter();
+    x->setDevice(&file);
+    x->writeStartDocument();
+    Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
+    Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
+    x->writeEndDocument();
+    delete x;
 }
 
 void Core::PostProcessEdit(WikiEdit *_e)
@@ -949,6 +956,7 @@ bool Core::ParseGlobalConfig(QString config)
 
 bool Core::ParseLocalConfig(QString config)
 {
+    Configuration::LocalConfig_AIV = Core::SafeBool(Core::ConfigurationParse("aiv-reports", config));
     Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
     Configuration::LocalConfig_RequireAdmin = Core::SafeBool(Core::ConfigurationParse("require-admin", config));
     Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
@@ -989,6 +997,7 @@ bool Core::ParseLocalConfig(QString config)
 
 bool Core::ParseUserConfig(QString config)
 {
+    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
     return true;
 }
 
@@ -1017,3 +1026,9 @@ QString Core::ConfigurationParse(QString key, QString content, QString missing)
     return missing;
 }
 
+void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
+{
+    s->writeStartElement("local");
+    s->writeAttribute(key, value);
+    s->writeEndElement();
+}

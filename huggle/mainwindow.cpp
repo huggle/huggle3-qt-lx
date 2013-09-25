@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
+    this->report = NULL;
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     SystemLog->InsertText(Core::RingLogToText());
@@ -100,6 +101,40 @@ MainWindow::~MainWindow()
     delete this->Browser;
     delete ui;
     delete this->tb;
+}
+
+void MainWindow::_ReportUser()
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    if (!Configuration::LocalConfig_AIV)
+    {
+        QMessageBox mb;
+        mb.setText("This project doesn't support AIV system");
+        mb.setWindowTitle("Function not available");
+        mb.setIcon(QMessageBox::Information);
+        mb.exec();
+        return;
+    }
+
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+
+    if (this->report != NULL)
+    {
+        delete this->report;
+        this->report = NULL;
+    }
+
+    this->report = new ReportUser(this);
+    this->report->show();
+    this->report->SetUser(this->CurrentEdit->User);
 }
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
@@ -844,4 +879,14 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
 void MainWindow::on_actionWelcome_user_2_triggered()
 {
     this->Welcome();
+}
+
+void MainWindow::on_actionReport_user_triggered()
+{
+    this->_ReportUser();
+}
+
+void MainWindow::on_actionReport_user_2_triggered()
+{
+
 }

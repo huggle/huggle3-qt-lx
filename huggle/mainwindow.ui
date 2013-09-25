@@ -111,6 +111,7 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
+    <addaction name="actionClear_template_meta_data"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
     <addaction name="actionReport_user_2"/>
@@ -532,6 +533,11 @@
   <action name="actionReport_user_2">
    <property name="text">
     <string>Report user</string>
+   </property>
+  </action>
+  <action name="actionClear_template_meta_data">
+   <property name="text">
+    <string>Clear template meta data</string>
    </property>
   </action>
  </widget>

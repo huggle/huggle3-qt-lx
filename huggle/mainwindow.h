@@ -35,6 +35,7 @@
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "querygc.h"
+#include "reportuser.h"
 
 namespace Ui {
 class MainWindow;
@@ -45,6 +46,7 @@ class HuggleWeb;
 class WikiEdit;
 class WikiPage;
 class WikiUser;
+class ReportUser;
 
 class MainWindow : public QMainWindow
 {
@@ -69,6 +71,8 @@ public:
     QMenu *RevertWarn;
     QMenu *WarnMenu;
     QMenu *RevertSummaries;
+    ReportUser *report;
+    void _ReportUser();
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
     ApiQuery *Revert(QString summary = "", bool nd = false, bool next = true);
@@ -120,6 +124,9 @@ private slots:
     void on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered();
     void on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered();
     void on_actionWelcome_user_2_triggered();
+    void on_actionReport_user_triggered();
+
+    void on_actionReport_user_2_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -131,3 +138,5 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
+
