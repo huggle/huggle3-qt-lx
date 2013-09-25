@@ -101,7 +101,8 @@ void ApiQuery::Process()
     }
     this->Status = Processing;
     this->Result = new QueryResult();
-    QUrl url(Core::ToMediawikiEncoding(this->URL), QUrl::StrictMode);
+    //QUrl url(Core::ToMediawikiEncoding(this->URL), QUrl::StrictMode);
+    QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
     QNetworkRequest request(url);
     if (UsingPOST)
     {
