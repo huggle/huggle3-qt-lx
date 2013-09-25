@@ -13,6 +13,11 @@
 #define REPORTUSER_H
 
 #include <QDialog>
+#include <QString>
+#include "core.h"
+#include "apiquery.h"
+#include "configuration.h"
+#include "wikiuser.h"
 
 namespace Ui {
 class ReportUser;
@@ -24,10 +29,13 @@ class ReportUser : public QDialog
 
 public:
     explicit ReportUser(QWidget *parent = 0);
+    bool SetUser(WikiUser *u);
+    ApiQuery *q;
     ~ReportUser();
 
 private:
     Ui::ReportUser *ui;
+    WikiUser *user;
 };
 
 #endif // REPORTUSER_H

@@ -15,9 +15,31 @@
 ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser)
 {
     ui->setupUi(this);
+    this->user = NULL;
+    this->q = NULL;
+    ui->pushButton->setEnabled(false);
+    ui->pushButton->setText("Retrieving history...");
+}
+
+bool ReportUser::SetUser(WikiUser *u)
+{
+    if (q != NULL)
+    {
+        delete q;
+        q = NULL;
+    }
+    this->user = u;
+    ui->label->setText(u->Username);
+    q = new ApiQuery();
+    q->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
+            "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
+    q->SetAction(ActionQuery);
+    q->Process();
+    return true;
 }
 
 ReportUser::~ReportUser()
 {
+    delete q;
     delete ui;
 }
