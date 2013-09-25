@@ -105,6 +105,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::_ReportUser()
 {
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    if (!Configuration::LocalConfig_AIV)
+    {
+        QMessageBox mb;
+        mb.setText("This project doesn't support AIV system");
+        mb.setWindowTitle("Function not available");
+        mb.setIcon(QMessageBox::Information);
+        mb.exec();
+        return;
+    }
+
     if (this->CurrentEdit == NULL)
     {
         return;
@@ -118,6 +134,7 @@ void MainWindow::_ReportUser()
 
     this->report = new ReportUser(this);
     this->report->show();
+    this->report->SetUser(this->CurrentEdit->User);
 }
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)

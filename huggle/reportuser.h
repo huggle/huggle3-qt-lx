@@ -13,6 +13,7 @@
 #define REPORTUSER_H
 
 #include <QDialog>
+#include <QTimer>
 #include <QString>
 #include "core.h"
 #include "apiquery.h"
@@ -32,10 +33,12 @@ public:
     bool SetUser(WikiUser *u);
     ApiQuery *q;
     ~ReportUser();
-
+private slots:
+    void Tick();
 private:
     Ui::ReportUser *ui;
     WikiUser *user;
+    QTimer *timer;
 };
 
 #endif // REPORTUSER_H

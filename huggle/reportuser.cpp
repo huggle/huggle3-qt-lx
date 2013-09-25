@@ -19,6 +19,10 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->q = NULL;
     ui->pushButton->setEnabled(false);
     ui->pushButton->setText("Retrieving history...");
+    QStringList header;
+    header << "Page" << "Time" << "Link" << "DiffID";
+    ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->timer = NULL;
 }
 
 bool ReportUser::SetUser(WikiUser *u)
@@ -35,6 +39,9 @@ bool ReportUser::SetUser(WikiUser *u)
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     q->SetAction(ActionQuery);
     q->Process();
+    this->timer = new QTimer(this);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(Tick()));
+    this->timer->start(200);
     return true;
 }
 
@@ -42,4 +49,17 @@ ReportUser::~ReportUser()
 {
     delete q;
     delete ui;
+}
+
+void ReportUser::Tick()
+{
+    if (this->q == NULL)
+    {
+        return;
+    }
+    if (q->Processed())
+    {
+        Core::DebugLog(q->Result->Data);
+        this->timer->stop();
+    }
 }

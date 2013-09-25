@@ -956,6 +956,7 @@ bool Core::ParseGlobalConfig(QString config)
 
 bool Core::ParseLocalConfig(QString config)
 {
+    Configuration::LocalConfig_AIV = Core::SafeBool(Core::ConfigurationParse("aiv-reports", config));
     Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
     Configuration::LocalConfig_RequireAdmin = Core::SafeBool(Core::ConfigurationParse("require-admin", config));
     Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
@@ -996,6 +997,7 @@ bool Core::ParseLocalConfig(QString config)
 
 bool Core::ParseUserConfig(QString config)
 {
+    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
     return true;
 }
 
