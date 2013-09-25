@@ -20,6 +20,7 @@ History::History(QWidget *parent) :
     QStringList header;
     header << "ID" << "Type" << "Target" << "Result";
     ui->tableWidget->setHorizontalHeaderLabels(header);
+    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000

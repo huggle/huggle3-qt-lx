@@ -14,6 +14,7 @@
 
 #include <QDialog>
 #include <QTimer>
+#include <QCheckBox>
 #include <QString>
 #include "core.h"
 #include "apiquery.h"
@@ -35,6 +36,12 @@ public:
     ~ReportUser();
 private slots:
     void Tick();
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_tableWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::ReportUser *ui;
     WikiUser *user;

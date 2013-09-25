@@ -19,6 +19,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     header << "ID" << "Type" << "Target" << "Status" << "Result";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
