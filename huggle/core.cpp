@@ -761,6 +761,13 @@ void Core::SaveConfig()
         Core::Log("Unable to save configuration because the file can't be open");
         return;
     }
+    QXmlStreamWriter *x = new QXmlStreamWriter();
+    x->setDevice(&file);
+    x->writeStartDocument();
+    Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
+    Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
+    x->writeEndDocument();
+    delete x;
 }
 
 void Core::PostProcessEdit(WikiEdit *_e)
@@ -1027,4 +1034,11 @@ QString Core::ToMediawikiEncoding(QString text)
     text = text.replace("%7C", "|");
     text = text.replace("%2C", ",");
     return text;
+}
+
+void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
+{
+    s->writeStartElement("local");
+    s->writeAttribute(key, value);
+    s->writeEndElement();
 }

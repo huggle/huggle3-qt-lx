@@ -34,6 +34,11 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     }
     ui->Project->setCurrentIndex(0);
     wq = NULL;
+    if (!QSslSocket::supportsSsl())
+    {
+        ui->checkBox->setEnabled(false);
+        ui->checkBox->setChecked(false);
+    }
 }
 
 Login::~Login()

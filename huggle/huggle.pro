@@ -114,3 +114,6 @@ RESOURCES += \
     pictures.qrc \
     Version.qrc \
     html.qrc
+
+OTHER_FILES += \
+    Resources/Header.txt
