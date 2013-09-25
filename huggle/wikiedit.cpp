@@ -166,13 +166,33 @@ bool WikiEdit::FinalizePostProcessing()
             QDomDocument d;
             d.setContent(this->ProcessingQuery->Result->Data);
             QDomNodeList page = d.elementsByTagName("rev");
+            QDomNodeList code = d.elementsByTagName("page");
+            bool missing = false;
+            if (code.count() > 0)
+            {
+                QDomElement e = code.at(0).toElement();
+                if (e.attributes().contains("missing"))
+                {
+                    missing = true;
+                }
+            }
             // get last id
-            if (page.count() > 0)
+            if (missing != true && page.count() > 0)
             {
                 QDomElement e = page.at(0).toElement();
                 if (e.nodeName() == "rev")
                 {
                     this->User->ContentsOfTalkPage = e.text();
+                } else
+                {
+                    Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                }
+            } else
+            {
+                if (!missing)
+                {
+                    Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Core::DebugLog(this->ProcessingQuery->Result->Data);
                 }
             }
         }

@@ -1017,3 +1017,14 @@ QString Core::ConfigurationParse(QString key, QString content, QString missing)
     return missing;
 }
 
+QString Core::ToMediawikiEncoding(QString text)
+{
+    #if QT_VERSION >= 0x050000
+        return text;
+    #endif
+    text = text.replace("%20", "_");
+    text = text.replace("%3A", ":");
+    text = text.replace("%7C", "|");
+    text = text.replace("%2C", ",");
+    return text;
+}

@@ -201,7 +201,7 @@ void Login::RetrieveWhitelist()
         }
         return;
     }
-    this->Progress(42);
+    this->Progress(62);
     ui->label_6->setText("Retrieving whitelist");
     wq = new WLQuery();
     wq->Process();
@@ -325,7 +325,7 @@ void Login::RetrieveGlobalConfig()
         }
         return;
     }
-    this->Progress(62);
+    this->Progress(42);
     ui->label_6->setText("Retrieving global config");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
