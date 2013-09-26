@@ -133,6 +133,8 @@ private slots:
     void on_actionWarning_3_triggered();
     void on_actionWarning_4_triggered();
 
+    void on_actionEdit_user_talk_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
