@@ -971,3 +971,12 @@ void MainWindow::on_actionWarning_4_triggered()
 {
     this->ForceWarn(4);
 }
+
+void MainWindow::on_actionEdit_user_talk_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
+                                  + "?action=edit");
+    }
+}

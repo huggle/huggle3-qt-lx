@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -126,6 +117,7 @@
     <addaction name="actionReport_user_2"/>
     <addaction name="separator"/>
     <addaction name="menuManual_template"/>
+    <addaction name="actionEdit_user_talk"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -569,6 +561,11 @@
   <action name="actionWarning_4">
    <property name="text">
     <string>Warning 4</string>
+   </property>
+  </action>
+  <action name="actionEdit_user_talk">
+   <property name="text">
+    <string>Edit user talk</string>
    </property>
   </action>
  </widget>

@@ -64,7 +64,11 @@ WikiUser::WikiUser(const WikiUser &u)
 
 WikiUser::WikiUser(QString user)
 {
-    this->IP = WikiUser::IPv4Regex.exactMatch(user);
+    this->IP = false;
+    if (user != "")
+    {
+        this->IP = WikiUser::IPv4Regex.exactMatch(user);
+    }
     this->Username = user;
     int c=0;
     this->ContentsOfTalkPage = "";
