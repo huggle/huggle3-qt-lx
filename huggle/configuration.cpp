@@ -16,7 +16,7 @@ bool Configuration::UsingSSL = true;
 QString Configuration::UserName = "User";
 QString Configuration::Password = "";
 QString Configuration::WelcomeMP = "Project:Huggle/Message";
-QList<WikiSite> Configuration::ProjectList;
+QList<WikiSite *> Configuration::ProjectList;
 //! This is a consumer key for "huggle" on wmf wikis
 QString Configuration::WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
 int Configuration::Cache_InfoSize = 200;

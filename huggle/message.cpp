@@ -128,7 +128,7 @@ void Message::Finish()
         query->Consumers.append("Message::Finish()");
         query->SetAction(ActionEdit);
         query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary)
+                + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
                 + "&text=" + QUrl::toPercentEncoding(this->text)
                 + "&token=" + QUrl::toPercentEncoding(this->token);
         Core::AppendQuery(query);
