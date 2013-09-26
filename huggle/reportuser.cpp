@@ -194,6 +194,8 @@ void ReportUser::Test()
         mb.exec();
         this->timer->stop();
         delete tq;
+        this->user->IsReported = true;
+        WikiUser::UpdateUser(user);
         this->tq = NULL;
         return;
     } else
