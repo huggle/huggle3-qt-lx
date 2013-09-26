@@ -89,7 +89,7 @@
    </item>
    <item>
     <widget class="QWebView" name="webView">
-     <property name="url" stdset="0">
+     <property name="url">
       <url>
        <string>about:blank</string>
       </url>
