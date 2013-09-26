@@ -36,6 +36,7 @@ WikiUser::WikiUser()
     this->BadnessScore = 0;
     this->WarningLevel = 0;
     this->ContentsOfTalkPage = "";
+    this->IsReported = false;
 }
 
 WikiUser::WikiUser(WikiUser *u)
@@ -45,11 +46,13 @@ WikiUser::WikiUser(WikiUser *u)
     this->WarningLevel = u->WarningLevel;
     this->BadnessScore = u->BadnessScore;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
+    this->IsReported = u->IsReported;
 }
 
 WikiUser::WikiUser(const WikiUser &u)
 {
     this->WarningLevel = u.WarningLevel;
+    this->IsReported = u.IsReported;
     this->IP = u.IP;
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
@@ -68,12 +71,14 @@ WikiUser::WikiUser(QString user)
         {
             this->BadnessScore = ProblematicUsers.at(c)->BadnessScore;
             this->WarningLevel = ProblematicUsers.at(c)->WarningLevel;
+            this->IsReported = ProblematicUsers.at(c)->IsReported;
             return;
         }
         c++;
     }
     this->BadnessScore = 0;
     this->WarningLevel = 0;
+    this->IsReported = false;
 }
 
 QString WikiUser::GetTalk()

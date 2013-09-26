@@ -29,6 +29,7 @@ public:
     int BadnessScore;
     int WarningLevel;
     QString ContentsOfTalkPage;
+    bool IsReported;
     bool IP;
 private:
     static QRegExp IPv4Regex;

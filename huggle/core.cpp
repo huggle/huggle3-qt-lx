@@ -39,6 +39,7 @@ QList<EditQuery*> Core::PendingMods;
 QDateTime Core::StartupTime = QDateTime::currentDateTime();
 bool Core::Running = true;
 QList<iExtension*> Core::Extensions;
+WikiPage *Core::AIVP = NULL;
 
 void Core::Init()
 {
@@ -972,6 +973,12 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
+    Configuration::LocalConfig_ReportPath = Core::ConfigurationParse("aiv", config);
+    Configuration::LocalConfig_AIVExtend = Core::SafeBool(Core::ConfigurationParse("aiv-extend", config));
+    Configuration::LocalConfig_ReportSt = Core::ConfigurationParse("aiv-section", config).toInt();
+    Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
+    Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
+    Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
 
@@ -991,6 +998,11 @@ bool Core::ParseLocalConfig(QString config)
             CurrentWarning++;
         }
         CurrentTemplate++;
+    }
+    // sanitize
+    if (Configuration::LocalConfig_ReportPath == "")
+    {
+        Configuration::LocalConfig_AIV = false;
     }
     return true;
 }

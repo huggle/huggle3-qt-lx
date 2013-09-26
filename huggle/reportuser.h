@@ -16,6 +16,7 @@
 #include <QTimer>
 #include <QCheckBox>
 #include <QString>
+#include <QList>
 #include "core.h"
 #include "apiquery.h"
 #include "configuration.h"
@@ -34,18 +35,24 @@ public:
     bool SetUser(WikiUser *u);
     ApiQuery *q;
     ~ReportUser();
+    //! Content of report
+    QString _p;
 private slots:
     void Tick();
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_tableWidget_clicked(const QModelIndex &index);
 
 private:
     Ui::ReportUser *ui;
     WikiUser *user;
     QTimer *timer;
+    QList <QCheckBox*> CheckBoxes;
+    QString report;
+    bool Loading;
+    bool Messaging;
+    bool CheckUser();
+    void InsertUser();
 };
 
 #endif // REPORTUSER_H

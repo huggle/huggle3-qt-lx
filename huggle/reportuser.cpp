@@ -26,6 +26,9 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    Messaging = false;
+    report = "";
+    Loading = false;
 #if QT_VERSION >= 0x050000
 // Qt5 code
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -70,6 +73,37 @@ void ReportUser::Tick()
     {
         return;
     }
+
+    if (Loading)
+    {
+        if (q->Processed())
+        {
+            QDomDocument d;
+            d.setContent(q->Result->Data);
+            QDomNodeList results = d.elementsByTagName("rev");
+            if (results.count() == 0)
+            {
+                ui->pushButton->setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
+                this->timer->stop();
+                return;
+            }
+            QDomElement e = results.at(0).toElement();
+            _p = e.text();
+            if (!this->CheckUser())
+            {
+                ui->pushButton->setText("This user is already reported");
+                this->timer->stop();
+                return;
+            }
+            this->InsertUser();
+            Core::EditPage(Core::AIVP, _p, "Reporting " + user->Username);
+            this->timer->stop();
+            ui->pushButton->setText("Reported");
+            return;
+        }
+        return;
+    }
+
     if (q->Processed())
     {
         Core::DebugLog(q->Result->Data);
@@ -108,6 +142,7 @@ void ReportUser::Tick()
                 ui->tableWidget->setItem(0, 2, new QTableWidgetItem(link));
                 ui->tableWidget->setItem(0, 3, new QTableWidgetItem(diff));
                 QCheckBox *Item = new QCheckBox(this);
+                this->CheckBoxes.insert(0, Item);
                 ui->tableWidget->setCellWidget(0, 4, Item);
                 xx++;
             }
@@ -120,7 +155,53 @@ void ReportUser::Tick()
 
 void ReportUser::on_pushButton_clicked()
 {
+    ui->pushButton->setEnabled(false);
+    // we need to get a report info for all selected diffs
+    QString reports = "";
+    int xx = 0;
+    int EvidenceID = 0;
+    while (xx < ui->tableWidget->rowCount())
+    {
+        QString page = ui->tableWidget->item(xx, 0)->text();
+        if (this->CheckBoxes.count() > xx)
+        {
+            if (this->CheckBoxes.at(xx)->isChecked())
+            {
+                EvidenceID++;
+                reports += "[" + QString(Core::GetProjectScriptURL() + "index.php?title=" +
+                                 QUrl::toPercentEncoding(ui->tableWidget->item(xx, 0)->text()) + "&diff="
+                                 + ui->tableWidget->item(xx, 3)->text()).toUtf8() + " Evidence #" + QString::number(EvidenceID) + "] ";
+            }
+        }
+        xx++;
+    }
+    if (reports == "")
+    {
+        QMessageBox::StandardButton mb;
+        mb = QMessageBox::question(this, "Question", "You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this "\
+                   "user is vandal or not. Are you sure you want to continue?", QMessageBox::Yes|QMessageBox::No);
+        if (mb == QMessageBox::No)
+        {
+            ui->pushButton->setEnabled(true);
+            return;
+        }
+    }
+    // obtain current page
+    Loading = true;
+    ui->pushButton->setText("Retrieving current report page");
+    if (this->q != NULL)
+    {
+        delete q;
+    }
 
+    q = new ApiQuery();
+    q->SetAction(ActionQuery);
+    q->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+            QUrl::toPercentEncoding(Configuration::LocalConfig_ReportPath);
+    q->Process();
+    this->report = reports;
+    this->timer->start(800);
+    return;
 }
 
 void ReportUser::on_pushButton_2_clicked()
@@ -133,6 +214,28 @@ void ReportUser::on_pushButton_2_clicked()
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
     QUrl u = QUrl::fromEncoded(QString(Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text()) + "&diff="
-              + ui->tableWidget->itemAt(index.row(), 4)->text()).toUtf8());
+              + ui->tableWidget->item(index.row(), 3)->text()).toUtf8());
     ui->webView->load(u);
+}
+
+bool ReportUser::CheckUser()
+{
+    if (_p.contains(this->user->Username))
+    {
+        return false;
+    }
+    return true;
+}
+
+void ReportUser::InsertUser()
+{
+    QString xx = Configuration::LocalConfig_IPVTemplateReport;
+    if (!this->user->IP)
+    {
+        xx = Configuration::LocalConfig_RUTemplateReport;
+    }
+    xx = xx.replace("$1", this->user->Username);
+    xx = xx.replace("$2", report);
+    xx = xx.replace("$3", ui->lineEdit->text());
+    _p = _p + "\n" + xx;
 }

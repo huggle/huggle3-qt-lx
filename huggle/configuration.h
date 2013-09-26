@@ -86,6 +86,12 @@ public:
     static bool LocalConfig_AIV;
     static bool LocalConfig_AIVExtend;
     static QString LocalConfig_ReportPath;
+    //! Section of report page to append template to
+    static int LocalConfig_ReportSt;
+    //! IP vandals
+    static QString LocalConfig_IPVTemplateReport;
+    //! Regular users
+    static QString LocalConfig_RUTemplateReport;
 
     // Reverting
 

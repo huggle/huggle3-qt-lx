@@ -109,6 +109,9 @@ bool Configuration::LocalConfig_GlobalRequired = true;
 bool Configuration::LocalConfig_AIV = false;
 bool Configuration::LocalConfig_AIVExtend = true;
 QString Configuration::LocalConfig_ReportPath = "";
+int Configuration::LocalConfig_ReportSt = 0;
+QString Configuration::LocalConfig_RUTemplateReport = "";
+QString Configuration::LocalConfig_IPVTemplateReport = "";
 
 QString Configuration::GetURLProtocolPrefix()
 {

@@ -74,6 +74,8 @@ public:
     static QList<Message*> Messages;
     static QList<EditQuery*> PendingMods;
     static QList<iExtension*> Extensions;
+    //! Pointer to AIV page
+    static WikiPage * AIVP;
     static bool Running;
 
 #ifdef PYTHONENGINE
