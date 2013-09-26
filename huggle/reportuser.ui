@@ -56,7 +56,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="text">
-        <string>Automatically reporting user whom edits were reverted multiple times and who was warned by at least 1 user.</string>
+        <string>Persistent vandalism and/or unconstructive edits found with [[WP:HG|Huggle 3]].</string>
        </property>
       </widget>
      </item>
@@ -88,8 +88,8 @@
     </layout>
    </item>
    <item>
-    <widget class="QWebView" name="webView">
-     <property name="url">
+    <widget class="QWebView" name="webView" native="true">
+     <property name="url" stdset="0">
       <url>
        <string>about:blank</string>
       </url>
