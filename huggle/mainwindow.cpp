@@ -976,7 +976,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->User->GetTalk() )
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
                                   + "?action=edit");
     }
 }
