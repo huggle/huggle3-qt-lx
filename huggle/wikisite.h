@@ -25,6 +25,8 @@ public:
     QString ScriptPath;
     QString OAuthURL;
     QString IRCChannel;
+    WikiSite(WikiSite *w);
+    WikiSite(const WikiSite &w);
     QString WhiteList;
     bool SupportHttps;
     bool SupportOAuth;

@@ -29,7 +29,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     int current = 0;
     while (current < Configuration::ProjectList.size())
     {
-        ui->Project->addItem(Configuration::ProjectList.at(current).Name);
+        ui->Project->addItem(Configuration::ProjectList.at(current)->Name);
         current++;
     }
     ui->Project->setCurrentIndex(0);
@@ -102,7 +102,7 @@ void Login::PressOK()
         //mb.setStyle(QStyle::SP_MessageBoxCritical);
         return;
     }
-    Configuration::Project = Configuration::ProjectList.at(ui->Project->currentIndex());
+    Configuration::Project = WikiSite(Configuration::ProjectList.at(ui->Project->currentIndex()));
     Configuration::UsingSSL = ui->checkBox->isChecked();
     if (ui->lineEdit_2->text() == "Developer Mode")
     {

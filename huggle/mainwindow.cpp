@@ -285,21 +285,21 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
 
     warning = warning.replace("$2", this->CurrentEdit->GetFullUrl()).replace("$1", this->CurrentEdit->Page->PageName);
 
-    QString title = "Message re " + Configuration::EditSuffixOfHuggle;
+    QString title = "Message re " + this->CurrentEdit->Page->PageName;
 
     switch (this->CurrentEdit->User->WarningLevel)
     {
         case 1:
-            title = Configuration::LocalConfig_WarnSummary + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary;
             break;
         case 2:
-            title = Configuration::LocalConfig_WarnSummary2 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary2;
             break;
         case 3:
-            title = Configuration::LocalConfig_WarnSummary3 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary3;
             break;
         case 4:
-            title = Configuration::LocalConfig_WarnSummary4 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary4;
             break;
     }
 

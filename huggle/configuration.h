@@ -41,7 +41,7 @@ public:
     //! currently selected project
     static WikiSite Project;
     //! List of projects
-    static QList<WikiSite> ProjectList;
+    static QList<WikiSite *> ProjectList;
     //! When this is true most of functions will not work
     static bool Restricted;
     //! Return a prefix for url

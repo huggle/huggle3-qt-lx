@@ -69,7 +69,7 @@ void Core::Init()
 
 void Core::LoadDB()
 {
-    Configuration::ProjectList << Configuration::Project;
+    Configuration::ProjectList << &Configuration::Project;
     // this is a temporary only for oauth testing
     //Configuration::ProjectList << WikiSite("testwiki", "test.wikipedia.org/");
     //Configuration::ProjectList << WikiSite("mediawiki","www.mediawiki.org/");
@@ -83,6 +83,7 @@ void Core::LoadDB()
             return;
         }
         text = QString(db.readAll());
+        db.close();
     }
 
     if (text == "")
@@ -90,10 +91,57 @@ void Core::LoadDB()
         QFile vf(":/huggle/resources/Resources/Definitions.txt");
         vf.open(QIODevice::ReadOnly);
         text = QString(vf.readAll());
+        vf.close();
     }
 
     QDomDocument d;
     d.setContent(text);
+    QDomNodeList list = d.elementsByTagName("wiki");
+    int xx=0;
+    while (xx < list.count())
+    {
+        QDomElement e = list.at(xx).toElement();
+        if (!e.attributes().contains("name"))
+        {
+            continue;
+        }
+        if (!e.attributes().contains("url"))
+        {
+            continue;
+        }
+        WikiSite *site = new WikiSite(e.attribute("name"), e.attribute("url"));
+        site->IRCChannel = "";
+        site->SupportOAuth = false;
+        site->SupportHttps = false;
+        site->WhiteList = "test";
+        // name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test
+        if (e.attributes().contains("path"))
+        {
+            site->LongPath = e.attribute("path");
+        }
+        if (e.attributes().contains("wl"))
+        {
+            site->WhiteList = e.attribute("wl");
+        }
+        if (e.attributes().contains("script"))
+        {
+            site->ScriptPath = e.attribute("script");
+        }
+        if (e.attributes().contains("https"))
+        {
+            site->SupportHttps = Core::SafeBool(e.attribute("https"));
+        }
+        if (e.attributes().contains("oauth"))
+        {
+            site->SupportOAuth = Core::SafeBool(e.attribute("oauth"));
+        }
+        if (e.attributes().contains("channel"))
+        {
+            site->IRCChannel = e.attribute("channel");
+        }
+        Configuration::ProjectList.append(site);
+        xx++;
+    }
 }
 
 bool Core::SafeBool(QString value, bool defaultvalue)

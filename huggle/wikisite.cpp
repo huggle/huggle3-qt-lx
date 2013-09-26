@@ -10,6 +10,32 @@
 
 #include "wikisite.h"
 
+WikiSite::WikiSite(const WikiSite &w)
+{
+    this->LongPath = w.LongPath;
+    this->IRCChannel = w.IRCChannel;
+    this->Name = w.Name;
+    this->OAuthURL = w.OAuthURL;
+    this->ScriptPath = w.ScriptPath;
+    this->SupportHttps = w.SupportHttps;
+    this->SupportOAuth = w.SupportOAuth;
+    this->URL = w.URL;
+    this->WhiteList = w.WhiteList;
+}
+
+WikiSite::WikiSite(WikiSite *w)
+{
+    this->LongPath = w->LongPath;
+    this->IRCChannel = w->IRCChannel;
+    this->Name = w->Name;
+    this->OAuthURL = w->OAuthURL;
+    this->WhiteList = w->WhiteList;
+    this->URL = w->URL;
+    this->SupportOAuth = w->SupportOAuth;
+    this->SupportHttps = w->SupportHttps;
+    this->ScriptPath = w->ScriptPath;
+}
+
 WikiSite::WikiSite(QString name, QString url)
 {
     this->LongPath = "wiki/";
