@@ -39,20 +39,24 @@ public:
     QString _p;
 private slots:
     void Tick();
+    void Test();
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_tableWidget_clicked(const QModelIndex &index);
+    void on_pushButton_3_clicked();
 
 private:
     Ui::ReportUser *ui;
     WikiUser *user;
     QTimer *timer;
+    QTimer *t2;
     QList <QCheckBox*> CheckBoxes;
     QString report;
     bool Loading;
     bool Messaging;
     bool CheckUser();
     void InsertUser();
+    ApiQuery *tq;
 };
 
 #endif // REPORTUSER_H

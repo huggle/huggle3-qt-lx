@@ -24,6 +24,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->tableWidget->setColumnCount(5);
     header << "Page" << "Time" << "Link" << "DiffID" << "Include in report";
     ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->tq = NULL;
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Messaging = false;
@@ -38,6 +39,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 #endif
     //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
     ui->tableWidget->setShowGrid(false);
+    this->t2 = NULL;
     this->timer = NULL;
 }
 
@@ -64,6 +66,7 @@ bool ReportUser::SetUser(WikiUser *u)
 ReportUser::~ReportUser()
 {
     delete q;
+    delete tq;
     delete ui;
 }
 
@@ -155,6 +158,55 @@ void ReportUser::Tick()
     }
 }
 
+void ReportUser::Test()
+{
+    if (this->tq == NULL)
+    {
+        this->t2->stop();
+        return;
+    }
+
+    if (!tq->Processed())
+    {
+        return;
+    }
+
+    QDomDocument d;
+    d.setContent(tq->Result->Data);
+    QDomNodeList results = d.elementsByTagName("rev");
+    ui->pushButton_3->setEnabled(true);
+    if (results.count() == 0)
+    {
+        QMessageBox mb;
+        mb.setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
+        mb.exec();
+        this->timer->stop();
+        delete tq;
+        this->tq = NULL;
+        return;
+    }
+    QDomElement e = results.at(0).toElement();
+    _p = e.text();
+    if (!this->CheckUser())
+    {
+        QMessageBox mb;
+        mb.setText("This user is already reported");
+        mb.exec();
+        this->timer->stop();
+        delete tq;
+        this->tq = NULL;
+        return;
+    } else
+    {
+        QMessageBox mb;
+        mb.setText("This user is not reported now");
+        mb.exec();
+        this->timer->stop();
+        delete tq;
+        this->tq = NULL;
+    }
+}
+
 void ReportUser::on_pushButton_clicked()
 {
     ui->pushButton->setEnabled(false);
@@ -240,4 +292,24 @@ void ReportUser::InsertUser()
     xx = xx.replace("$2", report);
     xx = xx.replace("$3", ui->lineEdit->text());
     _p = _p + "\n" + xx;
+}
+
+void ReportUser::on_pushButton_3_clicked()
+{
+    if (this->tq != NULL)
+    {
+        delete this->tq;
+    }
+
+    this->tq = new ApiQuery();
+    this->tq->SetAction(ActionQuery);
+    q->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+            QUrl::toPercentEncoding(Configuration::LocalConfig_ReportPath);
+    q->Process();
+    if (this->t2 == NULL)
+    {
+        this->t2 = new QTimer(this);
+    }
+    connect(this->t2, SIGNAL(timeout()), this, SLOT(Test()));
+    this->t2->start(100);
 }
