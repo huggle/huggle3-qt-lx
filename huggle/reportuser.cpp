@@ -303,9 +303,9 @@ void ReportUser::on_pushButton_3_clicked()
 
     this->tq = new ApiQuery();
     this->tq->SetAction(ActionQuery);
-    q->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+    this->tq->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::LocalConfig_ReportPath);
-    q->Process();
+    this->tq->Process();
     if (this->t2 == NULL)
     {
         this->t2 = new QTimer(this);
