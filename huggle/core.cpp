@@ -588,6 +588,10 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     }
     // retrieve a token
     EditQuery *_e = new EditQuery();
+    if (!summary.endsWith(Configuration::EditSuffixOfHuggle))
+    {
+        summary = summary + " " + Configuration::EditSuffixOfHuggle;
+    }
     _e->page = page->PageName;
     Core::PendingMods.append(_e);
     _e->text = text;

@@ -257,7 +257,7 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
 
     if (this->CurrentEdit->User->WarningLevel > 4)
     {
-        Core::Log("Can't warn " + this->CurrentEdit->User->Username + " because they already received final warning");
+        this->_ReportUser();
         return false;
     }
 
