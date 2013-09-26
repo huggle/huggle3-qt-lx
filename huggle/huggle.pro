@@ -122,4 +122,5 @@ RESOURCES += \
     html.qrc
 
 OTHER_FILES += \
-    Resources/Header.txt
+    Resources/Header.txt \
+    Resources/Definitions.txt

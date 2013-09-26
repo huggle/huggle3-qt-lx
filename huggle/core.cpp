@@ -71,8 +71,9 @@ void Core::LoadDB()
 {
     Configuration::ProjectList << Configuration::Project;
     // this is a temporary only for oauth testing
-    Configuration::ProjectList << WikiSite("testwiki", "test.wikipedia.org/");
-    Configuration::ProjectList << WikiSite("mediawiki","www.mediawiki.org/");
+    //Configuration::ProjectList << WikiSite("testwiki", "test.wikipedia.org/");
+    //Configuration::ProjectList << WikiSite("mediawiki","www.mediawiki.org/");
+    QString text = "";
     if (QFile::exists(Configuration::WikiDB))
     {
         QFile db(Configuration::WikiDB);
@@ -81,9 +82,18 @@ void Core::LoadDB()
             Core::Log("ERROR: Unable to read " + Configuration::WikiDB);
             return;
         }
-        QDomDocument *d = new QDomDocument();
-        d->setContent(&db);
+        text = QString(db.readAll());
     }
+
+    if (text == "")
+    {
+        QFile vf(":/huggle/resources/Resources/Definitions.txt");
+        vf.open(QIODevice::ReadOnly);
+        text = QString(vf.readAll());
+    }
+
+    QDomDocument d;
+    d.setContent(text);
 }
 
 bool Core::SafeBool(QString value, bool defaultvalue)

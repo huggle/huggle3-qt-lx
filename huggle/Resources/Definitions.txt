@@ -1,0 +1,1 @@
+<wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test"></wiki>

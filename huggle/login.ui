@@ -127,7 +127,7 @@
     <rect>
      <x>110</x>
      <y>340</y>
-     <width>241</width>
+     <width>181</width>
      <height>22</height>
     </rect>
    </property>
@@ -310,6 +310,22 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>340</y>
+     <width>51</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Download a list of wikis where huggle is enabled from internet</string>
+   </property>
+   <property name="text">
+    <string>Reload</string>
    </property>
   </widget>
  </widget>
