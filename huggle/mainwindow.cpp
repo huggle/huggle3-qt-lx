@@ -111,6 +111,12 @@ void MainWindow::_ReportUser()
         return;
     }
 
+    if (this->CurrentEdit->User->IsReported)
+    {
+        Core::Log("ERROR: This user is already reported");
+        return;
+    }
+
     if (!Configuration::LocalConfig_AIV)
     {
         QMessageBox mb;
@@ -249,6 +255,12 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
     if (this->CurrentEdit == NULL)
     {
         Core::DebugLog("NULL");
+        return false;
+    }
+
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
         return false;
     }
 
@@ -652,6 +664,55 @@ QString MainWindow::GetSummaryText(QString text)
     return Configuration::LocalConfig_DefaultSummary;
 }
 
+void MainWindow::ForceWarn(int level)
+{
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+
+    QString __template = "warning" + QString::number(level);
+
+    QString warning = Core::RetrieveTemplateToWarn(__template);
+
+    if (warning == "")
+    {
+        Core::Log("There is no such warning template " + __template);
+        return;
+    }
+
+    warning = warning.replace("$2", this->CurrentEdit->GetFullUrl()).replace("$1", this->CurrentEdit->Page->PageName);
+
+    QString title = "Message re " + Configuration::EditSuffixOfHuggle;
+
+    switch (level)
+    {
+        case 1:
+            title = Configuration::LocalConfig_WarnSummary + Configuration::EditSuffixOfHuggle;
+            break;
+        case 2:
+            title = Configuration::LocalConfig_WarnSummary2 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 3:
+            title = Configuration::LocalConfig_WarnSummary3 + Configuration::EditSuffixOfHuggle;
+            break;
+        case 4:
+            title = Configuration::LocalConfig_WarnSummary4 + Configuration::EditSuffixOfHuggle;
+            break;
+    }
+
+    title = title.replace("$1", this->CurrentEdit->Page->PageName);
+    Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
+                      title, true);
+
+}
+
 void MainWindow::Welcome()
 {
     if (Configuration::Restricted)
@@ -888,5 +949,25 @@ void MainWindow::on_actionReport_user_triggered()
 
 void MainWindow::on_actionReport_user_2_triggered()
 {
+    this->_ReportUser();
+}
 
+void MainWindow::on_actionWarning_1_triggered()
+{
+    this->ForceWarn(1);
+}
+
+void MainWindow::on_actionWarning_2_triggered()
+{
+    this->ForceWarn(2);
+}
+
+void MainWindow::on_actionWarning_3_triggered()
+{
+    this->ForceWarn(3);
+}
+
+void MainWindow::on_actionWarning_4_triggered()
+{
+    this->ForceWarn(4);
 }

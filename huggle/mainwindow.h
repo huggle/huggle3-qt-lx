@@ -79,6 +79,7 @@ public:
     bool Warn(QString WarningType, ApiQuery *dependency);
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
+    void ForceWarn(int level);
 
 
 private slots:
@@ -127,6 +128,10 @@ private slots:
     void on_actionReport_user_triggered();
 
     void on_actionReport_user_2_triggered();
+    void on_actionWarning_1_triggered();
+    void on_actionWarning_2_triggered();
+    void on_actionWarning_3_triggered();
+    void on_actionWarning_4_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -138,5 +143,3 @@ private:
 };
 
 #endif // MAINWINDOW_H
-
-

@@ -98,6 +98,8 @@ void ReportUser::Tick()
             this->InsertUser();
             Core::EditPage(Core::AIVP, _p, "Reporting " + user->Username);
             this->timer->stop();
+            this->user->IsReported = true;
+            WikiUser::UpdateUser(this->user);
             ui->pushButton->setText("Reported");
             return;
         }

@@ -20,7 +20,10 @@ void WikiUser::UpdateUser(WikiUser *us)
     {
         if (ProblematicUsers.at(c)->Username == us->Username)
         {
-            ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
+            if (us->BadnessScore > ProblematicUsers.at(c)->BadnessScore)
+            {
+                ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
+            }
             ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
             return;
         }
