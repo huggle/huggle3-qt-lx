@@ -953,12 +953,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
         return;
     }
 
-    ApiQuery *result = this->Revert("", true, false);
-
-    if (result != NULL)
-    {
-        this->Warn("warning", result);
-    }
+    this->Revert("", true, false);
 }
 
 void MainWindow::on_actionWelcome_user_2_triggered()

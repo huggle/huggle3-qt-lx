@@ -71,6 +71,8 @@ public:
     //! Number of edits to keep in history stack
     static int HistorySize;
     static QString Language;
+    static double EditCounter;
+    static double RvCounter;
 
     //////////////////////////////////////////////
     // Local config

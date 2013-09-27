@@ -82,6 +82,7 @@ void HuggleFeedProviderIRC::Stop()
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 {
+    Configuration::EditCounter++;
     Core::PreProcessEdit(edit);
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
     {
