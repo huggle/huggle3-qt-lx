@@ -115,6 +115,7 @@ QString Configuration::LocalConfig_IPVTemplateReport = "";
 QString Configuration::Language = "en";
 int Configuration::LocalConfig_WhitelistScore = -800;
 double Configuration::RvCounter = 0;
+bool Configuration::TrimOldWarnings = true;
 double Configuration::EditCounter = 0;
 bool Configuration::AskUserBeforeReport = true;
 

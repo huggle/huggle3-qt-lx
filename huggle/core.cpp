@@ -605,6 +605,88 @@ void Core::FinalizeMessages()
 
 int Core::GetLevel(QString page)
 {
+    if (Configuration::TrimOldWarnings)
+    {
+        // we need to get rid of old warnings now
+        QString orig = page;
+        int CurrentIndex = 0;
+        while (CurrentIndex < page.length())
+        {
+            if (CurrentIndex > 0)
+            {
+                page = page.mid(CurrentIndex);
+            }
+
+            if (!page.contains("(UTC)"))
+            {
+                break;
+            }
+
+            CurrentIndex = page.indexOf("(UTC)") + 5;
+            // we cut only the part of user talk that we care about
+            QString t1 = page.mid(0, CurrentIndex);
+            QString section = t1;
+
+            if (page.mid(CurrentIndex).contains("\n\n"))
+            {
+                section = page.mid(0, page.indexOf("\n\n", CurrentIndex));
+            }
+
+            if (!t1.contains("(UTC)"))
+            {
+                // whole this block of text doesn't contain any date, let's remove it
+                page = page.mid(CurrentIndex);
+                continue;
+            }
+
+            // let's parse the date now 20:00, 16 January 2013 (UTC)
+            t1 = t1.mid(0, t1.indexOf("(UTC)"));
+            if (t1.endsWith(" "))
+            {
+                // we remove trailing white space
+                t1 = t1.mid(0, t1.length() - 1);
+            }
+
+            if (!t1.contains(","))
+            {
+                // this is some borked date let's remove it
+                page = page.mid(CurrentIndex);
+                continue;
+            }
+
+            QString time = t1.mid(t1.lastIndexOf(","));
+            if (time.length() < 2)
+            {
+                // what the fuck
+                page = page.mid(CurrentIndex);
+                continue;
+            }
+
+            // we remove the comma
+            time = time.mid(2);
+            QDate date = QDate::fromString(time, "d MMMM yyyy");
+            if (!date.isValid())
+            {
+                page = page.mid(CurrentIndex);
+                continue;
+            } else
+            {
+                // now check if it's at least 1 month old
+                if (QDate::currentDate().addDays(-30) > date)
+                {
+                    // we don't want to parse this thing
+                    orig = orig.replace(section, "");
+                }
+            }
+
+            page = page.mid(CurrentIndex);
+            continue;
+        }
+
+        // let's put trimmed version to original now and we are done
+        page = orig;
+    }
+
     int level = 4;
     while (level > 0)
     {
@@ -1183,6 +1265,10 @@ void Core::LoadLocalizations()
 
 bool Core::ReportPreFlightCheck()
 {
+    if (!Configuration::AskUserBeforeReport)
+    {
+        return true;
+    }
     QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
                   , "This user has already reached warning level 4, so no further templates will be "\
                     "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
