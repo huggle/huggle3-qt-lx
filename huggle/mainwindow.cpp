@@ -273,7 +273,10 @@ bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
 
     if (this->CurrentEdit->User->WarningLevel > 4)
     {
-        this->_ReportUser();
+        if (Core::ReportPreFlightCheck())
+        {
+            this->_ReportUser();
+        }
         return false;
     }
 

@@ -159,6 +159,7 @@ public:
     static void LocalInit(QString name);
     static QString Localize(QString key);
     static void LoadLocalizations();
+    static bool ReportPreFlightCheck();
 private:
     static QList<QString> *RingLog;
 };

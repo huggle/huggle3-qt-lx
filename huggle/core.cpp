@@ -1181,6 +1181,23 @@ void Core::LoadLocalizations()
     Core::LocalInit("de");
 }
 
+bool Core::ReportPreFlightCheck()
+{
+    QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
+                  , "This user has already reached warning level 4, so no further templates will be "\
+                    "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
+                    "number of recent warnings! You can do so by clicking the \"talk page\" button in following form. "\
+                    "Keep in mind that this form and this warning is displayed no matter if your revert was successful "\
+                    "or not, so you might conflict with other users here (double check if user isn't already reported) "\
+                    "Do you want to report this user?"
+                  , QMessageBox::Yes|QMessageBox::No);
+    if (q == QMessageBox::No)
+    {
+        return false;
+    }
+    return true;
+}
+
 Language::Language(QString name)
 {
     LanguageName = name;

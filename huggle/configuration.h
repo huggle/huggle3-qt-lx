@@ -73,6 +73,7 @@ public:
     static QString Language;
     static double EditCounter;
     static double RvCounter;
+    static bool AskUserBeforeReport;
 
     //////////////////////////////////////////////
     // Local config
