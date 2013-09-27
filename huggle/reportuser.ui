@@ -56,7 +56,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="text">
-        <string>Automatically reporting user whom edits were reverted multiple times and who was warned by at least 1 user.</string>
+        <string>Persistent vandalism and/or unconstructive edits found with [[WP:HG|Huggle 3]].</string>
        </property>
       </widget>
      </item>
