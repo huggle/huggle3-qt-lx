@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/huggle/resources">
+      <file>Resources/Header.txt</file>
       <file>Resources/Definitions.txt</file>
     </qresource>
 </RCC>

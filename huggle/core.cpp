@@ -17,12 +17,7 @@ PythonEngine *Core::Python = NULL;
 // definitions
 // This needs to be moved to resource file
 
-QString Core::HtmlHeader = "<html><head><style type=\"text/css\">"\
-        "table.diff{background:white}td.diff-otitle{background:#ffffff}td.diff-ntitle{background:#ffffff}"\
-        "td.diff-addedline{background:#ccffcc;font-size:smaller;border:solid 2px black}"\
-        "td.diff-deletedline{background:#ffffaa;font-size:smaller;border:dotted 2px black}"\
-        "td.diff-context{background:#eeeeee;font-size:smaller}.diffchange{color:red;font-weight:bold;text-decoration:underline}"\
-        "</style></head><body><table class='diff diff-contentalign-left'>";
+QString Core::HtmlHeader = "";
 QString Core::HtmlFooter = "</table></body></html>";
 
 MainWindow *Core::Main = NULL;
@@ -43,11 +38,17 @@ WikiPage *Core::AIVP = NULL;
 
 void Core::Init()
 {
-    QFile vf(":/huggle/git/version.txt");
-    vf.open(QIODevice::ReadOnly);
-    QString version(vf.readAll());
+    QFile *vf = new QFile(":/huggle/git/version.txt");
+    vf->open(QIODevice::ReadOnly);
+    QString version(vf->readAll());
     Configuration::HuggleVersion += " " + version;
-    vf.close();
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/Header.txt");
+    vf->open(QIODevice::ReadOnly);
+    Core::HtmlHeader = QString(vf->readAll());
+    vf->close();
+    delete vf;
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
     Processor = new ProcessorThread();
@@ -1105,4 +1106,9 @@ void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
     s->writeStartElement("local");
     s->writeAttribute(key, value);
     s->writeEndElement();
+}
+
+void Core::ExceptionHandler(Exception *exception)
+{
+
 }

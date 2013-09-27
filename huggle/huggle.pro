@@ -55,7 +55,8 @@ SOURCES += main.cpp\
     editquery.cpp \
     iextension.cpp \
     reportuser.cpp \
-    blockuser.cpp
+    blockuser.cpp \
+    exceptionwindow.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -96,7 +97,8 @@ HEADERS  += mainwindow.h \
     editquery.h \
     iextension.h \
     reportuser.h \
-    blockuser.h
+    blockuser.h \
+    exceptionwindow.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -114,7 +116,8 @@ FORMS    += mainwindow.ui \
     scorewordsdbform.ui \
     history.ui \
     reportuser.ui \
-    blockuser.ui
+    blockuser.ui \
+    exceptionwindow.ui
 
 RESOURCES += \
     pictures.qrc \

@@ -36,6 +36,12 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->page->User->IsReported)
+        {
+            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
+            return;
+        }
+
         switch (this->page->CurrentUserWarningLevel)
         {
         case WarningLevelNone:

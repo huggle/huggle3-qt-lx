@@ -144,6 +144,7 @@ public:
     static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
     static void AppendQuery(Query* item);
     static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+    static void ExceptionHandler(Exception *exception);
 private:
     static QList<QString> *RingLog;
 };
