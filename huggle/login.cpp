@@ -20,7 +20,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->LoginQuery = NULL;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(on_Time()));
-    this->setWindowTitle("Huggle 3 QT");
+    this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleVersion + "]");
     this->Reset();
     ui->checkBox->setChecked(Configuration::UsingSSL);
     // set the language to dummy english
@@ -78,6 +78,7 @@ void Login::Enable()
     ui->lineEdit_2->setEnabled(true);
     ui->ButtonExit->setEnabled(true);
     ui->lineEdit_3->setEnabled(true);
+    ui->pushButton->setEnabled(true);
 }
 
 void Login::Disable()
@@ -89,6 +90,7 @@ void Login::Disable()
     ui->ButtonExit->setDisabled(true);
     ui->lineEdit_3->setDisabled(true);
     ui->lineEdit_2->setDisabled(true);
+    ui->pushButton->setDisabled(true);
 }
 
 void Login::PressOK()
@@ -564,3 +566,7 @@ void Login::on_Time()
     }
 }
 
+void Login::on_pushButton_clicked()
+{
+    this->Disable();
+}

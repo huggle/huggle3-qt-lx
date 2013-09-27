@@ -8,15 +8,17 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "proxy.h"
-#include "ui_proxy.h"
+#include "waitingform.h"
+#include "ui_waitingform.h"
 
-Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
+WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent),
+    ui(new Ui::WaitingForm)
 {
     ui->setupUi(this);
+    ui->progressBar->setValue(0);
 }
 
-Proxy::~Proxy()
+WaitingForm::~WaitingForm()
 {
     delete ui;
 }

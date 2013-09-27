@@ -11,9 +11,7 @@
 #include "hugglequeue.h"
 #include "ui_hugglequeue.h"
 
-HuggleQueue::HuggleQueue(QWidget *parent) :
-    QDockWidget(parent),
-    ui(new Ui::HuggleQueue)
+HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
     ui->setupUi(this);
     CurrentFilter = new HuggleQueueFilter(this);

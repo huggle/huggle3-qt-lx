@@ -36,6 +36,12 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->page->User->IsReported)
+        {
+            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
+            return;
+        }
+
         switch (this->page->CurrentUserWarningLevel)
         {
         case WarningLevelNone:
@@ -84,11 +90,6 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     Core::ProcessEdit(this->page);
     this->close();
     ParentQueue->Delete(this, qi);
-}
-
-void HuggleQueueItemLabel::on_label_2_linkActivated(const QString &link)
-{
-    QApplication::exit();
 }
 
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)

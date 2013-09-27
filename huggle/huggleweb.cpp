@@ -11,9 +11,7 @@
 #include "huggleweb.h"
 #include "ui_huggleweb.h"
 
-HuggleWeb::HuggleWeb(QWidget *parent) :
-    QFrame(parent),
-    ui(new Ui::HuggleWeb)
+HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     ui->setupUi(this);
     CurrentPage = "No page is displayed now";

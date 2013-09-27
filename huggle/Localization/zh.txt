@@ -1,0 +1,778 @@
+﻿<pre>
+name:                      中文（简体）
+</pre>
+
+=== General ===
+<pre>
+add:                       添加
+apply:                     应用
+cancel:                    取消
+clear:                     清除
+close:                     关闭
+continue:                  继续
+copy:                      复制
+delete:                    删除
+error:                     错误
+exit:                      退出
+minimizewindow:            最小化
+no:                        否
+ok:                        确定
+remove:                    移除
+rename:                    重命名
+restorewindow:             还原
+save:                      保存
+selectfile:                浏览...
+yes:                       是
+agf:                    善意推定回退，并自定义理由
+import:                 由全域设置导入
+</pre>
+
+=== Edit types ===
+<pre>
+edittype-blocknote:        封禁通知
+edittype-deletenote:       提删通知
+edittype-deletetag:        提删标记
+edittype-deletereq:        其他提删操作
+edittype-manual:           人工编辑
+edittype-message:          用户消息
+edittype-note:             其他消息
+edittype-prodtag:          提案删除
+edittype-protectreq:       保护请求
+edittype-report:           报告
+edittype-revert:           回退
+edittype-speedytag:        速删标记
+edittype-tag:              其他标记
+edittype-warning:          警告
+</pre>
+
+=== About form ===
+<pre>
+about-contributors:        贡献者:
+</pre>
+
+=== Block form ===
+<pre>
+block-title:               封禁 {0}
+block-reason:              原因:
+block-duration:            时长:
+block-message:             讨论页消息:
+block-anononly:            仅匿名用户
+block-creation:            禁止建立新账户
+block-autoblock:           启用自动封禁
+block-email:               禁止电子邮件
+block-usertalk:            讨论
+block-usercontribs:        用户贡献
+block-blockloglabel:       封禁日志:
+block-warnloglabel:        警告:
+block-sharedipwarning:     提示: {0}已被标记为共享的IP地址.
+block-sensitivewarning:    这个IP地址已经被标记为'敏感的':\n\n   {0}\n\n继续?
+block-rangeblockwarning:   {0}已经受到了自动封禁{1}的影响.\n这次封禁将会覆盖自动封禁设置. 继续?
+</pre>
+
+=== Closing form ===
+<pre>
+closing-whitelist:         更新用户白名单...
+closing-config:            更新设置页...
+</pre>
+
+=== Configuration form ===
+<pre>
+config-summ:               自定义模板回退原因
+config-title:              选项
+config-rememberme:         记住用户名
+config-rememberpassword:   记住密码
+config-autowhitelist:      自动添加用户至白名单
+config-openinbrowser:      在新浏览器窗口打开链接
+config-shownewedits:       查看选定页面的新修改
+config-preloads:           启用差异预载
+config-ircmode:            如果可能，使用IRC作为最近更改来源
+config-ircport:            IRC端口
+config-difffontsize:       差异字号
+config-logfile:            日志文件
+config-viewlocalconfig:    查看本地设置文件夹
+config-trayicon:           显示通知区域图标
+config-startupmessage:     显示启动讯息
+config-showlog:            显示日志
+config-showqueue:          显示撤销队列
+config-rightalignqueue:    在窗口右侧显示队列
+config-showtooltips:       在菜单栏显示工具提示
+config-shownewmessages:    显示新消息提示栏
+config-shortcutlist:       键盘快捷方式
+config-shortcutaction:     动作
+config-shortcut:           快捷方式
+config-changeshortcut:     修改{0}的快捷方式
+config-noshortcut:         无
+config-defaults:           默认
+config-minor:              标记为小修改
+config-watchlist:          添加到监视列表
+config-defaultsummary:     人工修改的默认编辑摘要
+config-undosummary:        撤销自身编辑的默认编辑摘要
+config-confirmmultiple:    同一用户的多个贡献时确认历史版本
+config-confirmsame:        回退用户的编辑时确认历史版本
+config-confirmselfrevert:  回退自身编辑时确认历史版本
+config-confirmwarned:      回退被警告用户编辑时确认历史版本
+config-confirmrange:       回退在同一/16范围内的匿名用户编辑时确认历史版本
+config-confirmpage:        忽略页面时确认历史版本
+config-autoadvance:        回退之后将下一个编辑移入队列
+config-userollback:        如果可用则使用回退功能
+config-revertsummaries:    回退摘要在菜单中可编辑
+config-clearsummaries:     人工输入的摘要会被记住;点击此处清除
+config-reportlinkexamples: 在报告破坏时提供链接
+config-extendreports:      更多破坏后扩展报告
+config-autoreportgroup:    自动报告
+config-autoreport:         用户的最后一次警告
+config-reportnone:         不做任何事
+config-reportprompt:       提示报告
+config-reportauto:         自动提交报告
+config-templates:          用户模板消息
+config-templatetext:       显示文字
+config-template:           模板
+config-highlightgroup:     语法高亮颜色
+config-useadminfunctions:  如果可用则使用管理员选项
+config-promptforblock:     在给用户最后一次警告时提示封禁
+config-blockreason:        默认封禁理由
+config-blocktime:          默认封禁时长
+config-blocktimeanon:      匿名用户
+config-blocktimereg:       注册用户
+config-summaryprompt:      输入摘要
+config-history:            下载所有页面的所有历史
+config-defaultsprompt:     恢复默认?
+config-logbrowsetitle:     日志文件位置
+config-shortcutconflict:   快捷方式'{0}'与已有的'{1}'冲突.
+</pre>
+
+=== Delete form ===
+<pre>
+delete-title:              删除{0}
+delete-reason:             原因:
+delete-deletionlog:        删除日志:
+delete-rem-talk:           删除相关的讨论页
+delete-notify:             通知创建者
+</pre>
+
+=== Edit form ===
+<pre>
+edit-title:                正在编辑{0}
+edit-summary:              摘要:
+edit-minor:                小修改
+edit-watch:                监视本页
+edit-page:                 页面
+edit-edit:                 编辑
+edit-view:                 查看
+edit-page-savetofile:      保存到文件...
+edit-page-save:            保存
+edit-page-cancel:          取消
+edit-edit-undo:            撤销
+edit-edit-redo:            重做
+edit-edit-cut:             剪切
+edit-edit-copy:            复制
+edit-edit-paste:           粘贴
+edit-edit-delete:          删除
+edit-edit-selectall:       全选
+edit-edit-find:            查找
+edit-view-syntax:          语法高亮
+edit-matchcase:            区分大小写
+edit-find:                 查找:
+edit-replace:              替换:
+edit-findnext:             下一个
+edit-findprevious:         上一个
+edit-replaceall:           全部替换
+edit-edittab:              编辑
+edit-previewtab:           预览
+edit-changestab:           差异
+edit-searchnotfound:       短语未找到
+edit-searchwrapstart:      已到达文章底部,从顶部继续搜索
+edit-searchwrapend:        已到达文章顶部,从底部继续搜索
+</pre>
+
+=== E-mail form ===
+<pre>
+email-title:               发送电子邮件给{0}
+email-subject:             主题:
+email-message:             信息:
+email-ccme:                给我发送一份副本
+email-send:                发送
+</pre>
+
+=== IRC feed ===
+<pre>
+irc-connected:             已连接最近更改IRC
+irc-connecting:            尝试连接最近更改IRC，请稍候…
+irc-disconnected:          与IRC连接断开，重新连接中…
+irc-nochannel:             未找到{0}的IRC连接，使用较慢的API请求
+irc-error:                 无法连接到IRC频道，使用较慢的API请求
+</pre>
+
+=== List form ===
+<pre>
+list-actions:              动作与过滤器...
+list-browsetitle:          加入文本文件到列表
+list-combine:              合并
+list-copyto:               复制到：
+list-count:                {0}个项目
+list-deleteconfirm:        删除列表'{0}'?
+list-duplicatename:        列表名'{0}'已存在，请更换一个名字
+list-intersect:            Intersect
+list-limit:                上限：
+list-listempty:            列表为空\n键入一个来源并点击‘加入’
+list-nolists:              未定义列表\n点击"添加"来创建
+list-query-cancelled:      已取消。
+list-query-fail:           请求失败
+list-query-noresults:      没有返回结果
+list-query-progress:       请求中
+list-query-results:        {0}个结果
+list-renameprompt:         输入新名字
+list-replace:              替换
+list-savefailed:           无法保存列表:
+list-savetitle:            保存列表
+list-sourcetype:           来源类型:
+list-start:                从:
+list-stop:                 停止
+list-title:                列表构建器
+</pre>
+
+=== Login ===
+<pre>
+login-language:            语言:
+login-project:             计划:
+login-username:            用户名:
+login-password:            密码:
+login-proxygroup:          代理设置
+login-proxy:               使用代理服务器
+login-proxyaddress:        地址:
+login-proxyport:           端口:
+login-proxydomain:         域:
+login-start:               登入
+login-translate:           翻译...
+login-captchatitle:        需要输入验证码
+
+login-progress-start:      登入中...
+login-progress-language:   更新消息文件...
+login-progress-global:     检查全域设置...
+login-progress-config:     检查设置页面...
+login-progress-userlist:   检查用户列表...
+login-progress-whitelist:  获取白名单...
+
+login-error-admin:         这个计划上需要管理员权限
+login-error-age:           这个计划上要求你的账户注册至少{0}天
+login-error-alldisabled:   当前Huggle被全局禁用
+login-error-approval:      这个计划上需要批准方可使用Huggle
+login-error-autoconfirmed: 这个计划要求你的账户需要是自动确认用户
+login-error-cancelled:     取消.
+login-error-captcha:       密码错误或验证码错误
+login-error-config:        载入设置页面失败
+login-error-count:         这个计划要求你至少有{0}次编辑
+login-error-disabled:      未对你的账户启用，检查用户设置页
+login-error-global:        无法载入全域设置页
+login-error-invalid:       无效的用户名
+login-error-language:      载入消息文件失败
+login-error-nocaptcha:     验证码未解开
+login-error-noconfig:      这个计划没有Huggle设置页
+login-error-nouser:        用户不存在
+login-error-password:      密码错误
+login-error-projdisabled:  这个计划Huggle被禁用
+login-error-rollback:      这个计划使用Huggle需要回退权限
+login-error-unknown:       无法登入
+login-error-userlist:      无法载入用户列表
+login-error-version:       版本过期，请更新至最新版本
+login-error-whitelist:     无法载入白名单
+</pre>
+
+=== Main window ===
+<pre>
+main-page:                 页面
+main-user:                 用户
+main-contribs:             贡献
+main-history:              历史
+main-new-messages:         你有新消息。选择系统 -> 显示新消息或者按M查看
+main-system:               系统
+main-system-messages:     显示新消息
+main-system-reconnectirc:  重新连接IRC
+main-system-savelog:       保存日志...
+main-system-lists:         列表建设器...
+main-system-requests:      请求...
+main-system-statistics:    统计...
+main-system-showlog:       显示日志
+main-system-showqueue:     显示队列
+main-system-showtwoqueues: 显示2个队列
+main-system-options:       选项...
+main-system-logout:        登出
+main-system-exit:          退出
+main-queue:                队列
+main-queue-next:           下一个
+main-queue-trim:           削减
+main-queue-clear:          清空当前的
+main-queue-count:          {0}个项目
+main-queue-query:          运行请求...
+main-queue-reset:          重设
+main-queue-clearall:       全部清除
+main-queue-options:        管理队列...
+main-goto:                 到
+main-goto-mytalk:          我的讨论页
+main-goto-mycontribs:      我的贡献
+main-revision-decline:     否决版本
+main-revision:             版本
+main-revision-view:        查看
+main-revision-revert:      回退
+main-revision-faith:       善意推定回退
+main-revision-previous:    先前
+main-revision-next:        之后
+main-revision-latest:      最新
+main-revision-sight:       Sight
+main-page-switchtotalk:    切换至讨论页
+main-page-switchtosubject: 切换到主题页
+main-page-switchtoarticle: 切换到条目
+main-page-viewlatest:      查看最新版本
+main-page-history:         收取历史
+main-page-historypage:     查看历史页
+main-page-edit:            编辑
+main-page-tag:             标记
+main-page-reqdeletion:     请求删除
+main-page-reqprotection:   请求保护
+main-page-watch:           监视
+main-page-unwatch:         取消监视
+main-page-purge:           Purge
+main-page-patrol:          标记巡查
+main-page-move:            移动...
+main-page-protect:         保护...
+main-page-delete:          删除...
+main-page-restore:         恢复这个版本
+main-user-info:            查看用户信息
+main-user-ignore:          无视
+main-user-unignore:        取消无视
+main-user-contribs:        收取贡献
+main-user-talk:            查看对话页
+main-user-message:         消息...
+main-user-email:           E-mail...
+main-user-warn:            警告...
+main-user-report:          报告
+main-user-block:           封禁...
+main-browser:              浏览器
+main-browser-newtab:       新标签
+main-browser-closetab:     关闭标签
+main-browser-closeothers:  关闭其他标签
+main-browser-back:         后退
+main-browser-forward:      前进
+main-browser-open:         用外部浏览器查看
+main-browser-newedits:     查看新编辑
+main-browser-newcontribs:  查看新贡献依据用户
+main-help:                 帮助
+main-help-documentation:   文档
+main-help-feedback:        反馈
+main-help-about:           关于Huggle...
+main-addqueue:             添加...
+main-savelogtitle:         保存日志
+main-usermessageother:     其他消息...
+main-advanced:             高级...
+main-stats:                {0}编辑/秒, {1}回退/秒
+
+main-tip-revertwarn:       回退并警告用户
+main-tip-nextdiff:         查看队列中下一个版本
+main-tip-revert:           回退这个版本
+main-tip-template:         像用户发送模板消息
+main-tip-warn:             警告用户
+main-tip-cancel:           取消所有未进行的动作
+main-tip-undo:             撤销最近的动作
+main-tip-browserback:      后退
+main-tip-browserforward:   前进
+main-tip-browseropen:      在外部浏览器打开
+main-tip-browsernewtab:    新标签
+main-tip-browserclosetab:  关闭标签
+main-tip-history:          获得页面历史
+main-tip-historyprev:      查看上一个版本
+main-tip-historynext:      查看下一个版本
+main-tip-historylast:      查看最新版本
+main-tip-historydifftocur: 查看与当前版本差异
+main-tip-contribs:         获得用户贡献
+main-tip-contribsprev:     查看该用户的上一个版本
+main-tip-contribsnext:     查看该用户的下一个版本
+main-tip-contribslast:     查看该用户的最新版本
+main-tip-pageview:         查看这个版本
+main-tip-pageedit:         编辑本页
+main-tip-pagewatch:        监视本页
+main-tip-pagetag:          标记本页
+main-tip-pagetagdelete:    提删本页
+main-tip-pagedelete:       删除本页
+main-tip-userinfo:         显示用户信息
+main-tip-usertalk:         显示用户对话页
+main-tip-usermessage:      给他发送消息
+main-tip-userignore:       忽视该用户所有贡献
+main-tip-userreport:       上报该用户
+main-tip-userblock:        警告该用户
+main-revision-acceptpend:   接受该版本
+</pre>
+
+=== Message form ===
+<pre>
+message-title:             消息{0}
+message-help:              指明标题和/或摘要。如果没有摘要，标题或被使用。如果没有标题，就不会插入标题头
+message-subject:           标题:
+message-message:           消息:
+message-summary:           摘要:
+message-autosign:          自动加入签名
+</pre>
+
+=== Move form ===
+<pre>
+move-title:                移动{0}
+move-target:               目标:
+move-reason:               原因:
+move-movetalk:             移动讨论页
+</pre>
+
+=== Prod form ===
+<pre>
+prod-title:                提删{0}
+prod-reason:               原因:
+</pre>
+
+=== Protect form ===
+<pre>
+protect-title:             保护{0}
+protect-request-title:     请求保护{0}
+protect-reason:            原因:
+protect-expiry:            到期:
+protect-log:               保护日志:
+protect-currentlevel:      当前保护级别:
+protect-type:              保护类型:
+protect-none:              无
+protect-semiprotection:    半保护
+protect-fullprotection:    全保护
+protect-moveprotection:    移动保护
+</pre>
+
+=== Queue form ===
+<pre>
+queue-title:               队列
+queue-queues:              队列:
+queue-typegroup:           队列类型
+queue-listselector:        列表:
+queue-listbuilder:         列表构建器...
+queue-sortorder:           排序顺序:
+queue-removeviewed:        查看后移除编辑
+queue-removeold:           移除同一页面旧的编辑
+queue-removeafter:         移除之后的编辑
+queue-removeaftertime:     分钟
+queue-preload:             允许选取该队列的时候预读取
+queue-ignorepages:         忽略对忽略列表中页面的编辑
+queue-traynotification:    当新的版本进入队列时显示托盘提示
+queue-diffsgroup:          差异
+queue-nodiffs:             只有查看版本的时候显示差异
+queue-preloaddiffs:        队列活跃时预读取差异
+queue-alldiffs:            载入队列中所有版本的差异
+queue-pagefiltersgroup:    页面标题过滤器
+queue-pageregex:           标题符合正则表达式:
+queue-namespaces:          名字空间:
+queue-applylabel:          点击应用来对当前列表启用过滤器.
+queue-editfiltersgroup:    编辑过滤器
+queue-userregex:           用户名符合正则表达式:
+queue-summaryregex:        摘要符合正则表达式:
+queue-filternewpage:       新页面
+queue-filterownuserspace:  用户自己的用户空间
+queue-filteranonymous:     匿名用户
+queue-filterignored:       忽略用户
+queue-filterreverts:       回退
+queue-filternotifications: 提示
+queue-filterwarnings:      警告
+queue-filtertags:          标记
+queue-filterbot:           机器人编辑
+queue-filterassisted:      协助编辑
+queue-filterhuggle:        Huggle 编辑
+queue-filterme:            我的编辑
+queue-examplelabel1:       要求这个属性
+queue-examplelabel2:       排除这个属性
+queue-examplelabel3:       不检查这个属性
+queue-usergroup:           只显示这些用户的编辑
+</pre>
+
+=== Queue trim form ===
+<pre>
+queuetrim-title:           削减队列
+queuetrim-age:             抛弃早于……的内容
+queuetrim-ageunit:         分钟
+</pre>
+
+=== Requests form ===
+<pre>
+requests-title:            请求
+requests-cancelall:        全部取消
+requests-cancelled:        已取消
+requests-inprogress:       进行中
+requests-failed:           失败
+requests-completed:        完成
+requests-time:             时间
+requests-type:             类型
+requests-query:            队列请求
+</pre>
+
+=== Report form ===
+<pre>
+report-title:              Report {0}
+report-reason:             Reason:
+report-message:            Message:
+report-log:                Warnings for this user:
+</pre>
+
+=== Revert form ===
+<pre>
+revert-title:              回退{0}
+revert-summary:            回退摘要（留空则使用默认）
+revert-currentonly:        只回退选中的版本
+</pre>
+
+=== Revert and warn form ===
+<pre>
+revertandwarn-title:       回退并警告{0}
+</pre>
+
+=== Reverting ===
+<pre>
+revert-confirm-ignored:    回退白名单用户'{0}'?
+revert-confirm-multiple:   将会回退多次编辑'{0}'. 继续?
+revert-confirm-page:       回退针对忽略页面的编辑'{0}'?
+revert-confirm-range:      目标页面的作者, {1},是和当前作者 {0}同一范围的,可能是同一个人。请确认目标版本是正确的，继续?
+revert-confirm-same:       将会回退到该用户的另一个版本 {0}. 继续?
+revert-confirm-self:       回退你自己的编辑?
+revert-confirm-warned:     将会回退至该用户的编辑： {0};他被警告过，继续?
+revert-error-first:        唯一版本无法回退.
+revert-only:               该页面的唯一编辑.
+revert-creator:            最后一次编辑是由创建者编辑的, {0}.
+revert-delete-instead:     是否删除?
+revert-speedy-instead:     标记速删?
+</pre>
+
+=== Speedy form ===
+<pre>
+speedy-title:              速删标签 {0}
+speedy-reason:             理由:
+speedy-parameters:         参数:
+speedy-notifycreator:      告知创建者
+</pre>
+
+=== Statistics form ===
+<pre>
+stats-title:               统计
+stats-actions:             本次运行的动作:
+stats-session:             时间: {0}
+stats-edits:               编辑
+stats-assisted:            协助编辑
+stats-huggle:              Huggle 编辑
+stats-reverts:             回退
+stats-warnings:            警告
+stats-reports:             上报
+stats-tags:                标记
+stats-notifications:       提醒
+stats-blocks:              封禁
+stats-deletes:             删除
+stats-protections:         保护
+stats-allusers:            所有用户
+stats-me:                  我
+stats-ignored:             忽略用户
+stats-anon:                匿名
+stats-bots:                机器人
+stats-other:               其他
+</pre>
+
+=== Tag form ===
+<pre>
+tag-title:                 标记{0}
+tag-tagselector:           添加标记:
+tag-tags:                  标记:
+tag-summary:               摘要:
+tag-insertatend:           在页面末尾插入
+</pre>
+
+=== Update form ===
+<pre>
+update-title:              有新版本
+update-notification:       当前版本已过期.
+update-required:           你需要更新至最新版本 {0}.
+update-optional:           推荐更新至新版本, {0}, 并可能在未来变成强制性.
+update-prompt:             下载并运行新版本?
+update-download:           更新
+update-progress:           下载新版本...
+update-error:              下载失败
+</pre>
+
+=== User info form ===
+<pre>
+userinfo-title:            '{0}'的用户信息
+userinfo-anonymous:        匿名:
+userinfo-ignored:          白名单的:
+userinfo-edits:            编辑次数:
+userinfo-sessionedits:     本次编辑:
+userinfo-sharedip:         共享/动态IP:
+userinfo-blocklog:         封禁:
+userinfo-warnlog:          警告:
+</pre>
+
+=== Warning form ===
+<pre>
+warning-title:             警告{0}
+warning-levelgroup:        警告层级
+warning-levelauto:         自动
+warning-level1:            层级1
+warning-level2:            层级2
+warning-level3:            层级3
+warning-level4:            层级4 (最终)
+warning-warntype:          警告类型:
+warning-warnlog:           该用户的警告:
+</pre>
+
+=== XfD form ===
+<pre>
+xfd-title:                 提交{0} 至删除
+xfd-category:              类别:
+xfd-nominationtype:        提交类别:
+xfd-notify:                告知创建者
+xfd-reason:                原因:
+</pre>
+
+=== Web requests ===
+<pre>
+error-apidisabled:         MediaWiki API被禁用
+error-exception:           收取'{0}'时出错
+error-fail:                 无法获得'{0}'
+error-loggedout:           已被登出，重新登入...
+error-noresponse:          无反应
+error-pagemissing:         页面不存在
+error-reloginfail:         无法重新登入，请尝试重新启动Huggle
+error-timeout:             请求超时
+error-unknown:             未知错误
+
+retrying:                  重试...
+
+block-done:                已封禁'{0}'
+block-fail:                未封禁 '{0}'
+block-progress:            封禁'{0}'中...
+
+blocklog-fail:             无法获得 '{0}'的封禁日志
+blocklog-none:             没有封禁日志'{0}'
+blocklog-progress:         获取封禁日志'{0}'...
+
+blocknotify-fail:          为告知'{0}'关于封禁
+blocknotify-progress:      告知'{0}' 关于封禁...
+
+delete-done:               删除'{0}'
+delete-fail:               未删除'{0}'
+delete-progress:           删除'{0}'中...
+
+deletelog-fail:            无法获得'{0}'的删除日志
+deletelog-none:             没有删除日志'{0}'
+deletelog-progress:        获取删除日志 '{0}'...
+
+diff-deleted:              该版本已被删除.
+diff-fail:                 无法获取 '{0}' 的差异
+
+reqdelete-duplicate:       页面已被标记
+reqdelete-tagfail:         为标记'{0}'为删除讨论
+reqdelete-redirectfail:    重定向页，未设置重定向页提删程序
+reqdelete-tagprogress:     标记'{0}'为提删...
+
+reqdelete-subpageprogress: 为'{0}'创建提删子页面...
+reqdelete-subpagefail:     未为 '{0}'创建提删子页面
+reqdelete-logprogress:     添加'{0}' 到提删日志
+reqdelete-logfail:         未将 '{0}'加入到提删日志
+
+edit-fail:                 编辑 '{0}'
+edit-progress:             编辑'{0}'...
+
+email-done:                e-mail 已发送给'{0}'
+email-fail:                发送至'{0}'失败
+email-progress:            正在发邮件给'{0}'...
+
+history-fail:              获取'{0}'历史失败
+history-progress:          获取 '{0}'历史中 ({1})...
+
+move-done:                 将'{0}'移动到'{1}'
+move-fail:                 未移动 '{0}'到 '{1}'
+move-progress:             移动'{0}'到 '{1}'中...
+
+notify-fail:               未告知'{0}'的创建者
+notify-unknowncreator:     无法找到页面创建者
+
+patrol-duplicate:          页面已被巡查
+patrol-done:               标记'{0}'为巡查
+patrol-fail:               未标记 '{0}'为巡查
+patrol-notfound:           无法找到最近更改ID,页面过久
+patrol-progress:           标记'{0}'为已巡查中...
+
+protect-done:              已更改'{0}'保护级别
+protect-fail:              未更改 '{0}'保护级别
+protect-progress:          正在更改'{0}'保护级别...
+
+protectlog-fail:           无法获得 '{0}'保护日志
+protectlog-none:           无保护日志 '{0}'
+protectlog-progress:       获得'{0}'保护日志中...
+
+purge-done:                Purged '{0}'
+purge-fail:                无法 purge '{0}'
+purge-progress:            Purging '{0}'
+
+queue-refresh-fail:        刷新队列'{0}'出错
+
+report-duplicate:          用户已被提交
+report-fail:               未提报'{0}'
+report-progress:           提报'{0}'...
+
+saveuserconfig-done:       已更新用户设置页
+saveuserconfig-fail:       未更新用户设置页
+saveuserconfig-progress:   更新用户设置页...
+
+loadglobalconfig-fail:     未载入全域设置页
+loadprojectconfig-fail:    无法载入计划设置页
+loaduserconfig-fail:       无法载入用户设置页
+
+reqprotection-badformat:   请求页面格式未知
+reqprotection-duplicate:   已请求保护
+reqprotection-fail:        未为 '{0}'请求保护
+reqprotection-progress:     请求保护 '{0}'...
+
+revert-cannotundo:         编辑冲突无法撤销
+revert-conflict:           页面被被忽略用户'{0}'编辑
+revert-fail:               未回退'{0}'
+revert-nochange:           目标版本和当前版本相同
+revert-nootheruser:        没有其他用户编辑过该页
+revert-progress:           回退中'{0}'...
+
+tag-alreadytagged:         页面已被标记
+tag-deleted:               页面已被删除
+tag-fail:                  未标记 '{0}'
+tag-progress:              标记'{0}'中...
+
+sight-done:                标记 '{1}' 的版本 {0} 为sighted
+sight-fail:                无法sight revision {0} of '{1}'
+sight-progress:            正在revision {0} of '{1}' as sighted
+
+speedy-fail:               未标记'{0}'为速删
+speedy-progress:           标记'{0}' 为速删...
+
+warnlog-fail:              无法获得 '{0}'警告日志
+warnlog-none:              '{0}'已被警告
+warnlog-progress:          获得'{0}'警告日志...
+
+unwatch-done:              移除'{0}'自监视列表
+unwatch-fail:              无法从监视列表移除 '{0}' 
+unwatch-progress:          移除'{0}' 自监视列表...
+
+usermessage-duplicate:     关于同一件事情的消息已经存在
+usermessage-fail:          未发送消息给 '{0}'
+usermessage-progress:      发送消息'{0}'...
+
+watch-done:                已添加'{0}' 到监视列表
+watch-fail:                未监视'{0}' 
+watch-progress:            添加'{0}' 到监视列表...
+
+warn-alreadyfinal:         已有最后警告
+warn-alreadyblocked:       用户已被封禁
+warn-alreadyreported:     用户已被上报
+warn-oldedit:              用户在最后一次被警告后未编辑
+warn-recent:               在 {0}秒前刚被警告
+warn-fail:                 未警告'{0}'
+warn-progress:             警告'{0}'...
+</pre>
+
+=== API ===
+<pre>
+api-help:                  API请求没有参数
+</pre>

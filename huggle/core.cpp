@@ -17,12 +17,7 @@ PythonEngine *Core::Python = NULL;
 // definitions
 // This needs to be moved to resource file
 
-QString Core::HtmlHeader = "<html><head><style type=\"text/css\">"\
-        "table.diff{background:white}td.diff-otitle{background:#ffffff}td.diff-ntitle{background:#ffffff}"\
-        "td.diff-addedline{background:#ccffcc;font-size:smaller;border:solid 2px black}"\
-        "td.diff-deletedline{background:#ffffaa;font-size:smaller;border:dotted 2px black}"\
-        "td.diff-context{background:#eeeeee;font-size:smaller}.diffchange{color:red;font-weight:bold;text-decoration:underline}"\
-        "</style></head><body><table class='diff diff-contentalign-left'>";
+QString Core::HtmlHeader = "";
 QString Core::HtmlFooter = "</table></body></html>";
 
 MainWindow *Core::Main = NULL;
@@ -40,14 +35,21 @@ QDateTime Core::StartupTime = QDateTime::currentDateTime();
 bool Core::Running = true;
 QList<iExtension*> Core::Extensions;
 WikiPage *Core::AIVP = NULL;
+QList<Language*> Core::LocalizationData;
 
 void Core::Init()
 {
-    QFile vf(":/huggle/git/version.txt");
-    vf.open(QIODevice::ReadOnly);
-    QString version(vf.readAll());
+    QFile *vf = new QFile(":/huggle/git/version.txt");
+    vf->open(QIODevice::ReadOnly);
+    QString version(vf->readAll());
     Configuration::HuggleVersion += " " + version;
-    vf.close();
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/Header.txt");
+    vf->open(QIODevice::ReadOnly);
+    Core::HtmlHeader = QString(vf->readAll());
+    vf->close();
+    delete vf;
     Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleVersion);
     Core::Log("Loading configuration");
     Processor = new ProcessorThread();
@@ -64,6 +66,7 @@ void Core::Init()
 #endif
     Core::DebugLog("Loading wikis");
     Core::LoadDB();
+    Core::LoadLocalizations();
     Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 
@@ -517,6 +520,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     Message *m = new Message(user, message, summary);
     m->title = title;
     m->Dependency = dependency;
+    m->Section = section;
     Core::Messages.append(m);
     m->Send();
     Core::Log("Sending message to user " + user->Username);
@@ -1072,6 +1076,21 @@ bool Core::ParseLocalConfig(QString config)
 bool Core::ParseUserConfig(QString config)
 {
     Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
+   // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
+    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString(Configuration::LocalConfig_IPScore)).toInt();
+    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString(Configuration::LocalConfig_ScoreFlag)).toInt();
+    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
+    Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
+    Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
+    Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
+    QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
+    if (l1.count() > 0)
+    {
+        Configuration::LocalConfig_TemplateSummary = l1;
+    }
+    //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
+    //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
+    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
     return true;
 }
 
@@ -1105,4 +1124,64 @@ void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
     s->writeStartElement("local");
     s->writeAttribute(key, value);
     s->writeEndElement();
+}
+
+void Core::ExceptionHandler(Exception *exception)
+{
+
+}
+
+Language *Core::MakeLanguage(QString text, QString name)
+{
+    Language *l = new Language(name);
+
+    return l;
+}
+
+void Core::LocalInit(QString name)
+{
+    QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+    f->open(QIODevice::ReadOnly);
+    Core::LocalizationData.append(Core::MakeLanguage(name, QString(f->readAll())));
+    f->close();
+    delete f;
+}
+
+QString Core::Localize(QString key)
+{
+    if (Core::LocalizationData.count() > 0)
+    {
+        int c=0;
+        while (c<Core::LocalizationData.count())
+        {
+            if (Core::LocalizationData.at(c)->LanguageName == Configuration::Language)
+            {
+                Language *l = Core::LocalizationData.at(c);
+                if (l->Messages.contains(key))
+                {
+                    return l->Messages[key];
+                }
+                // performance tweak
+                break;
+            }
+            c++;
+        }
+        if (Core::LocalizationData.at(0)->Messages.contains(key))
+        {
+            return Core::LocalizationData.at(0)->Messages[key];
+        }
+    }
+    return key;
+}
+
+void Core::LoadLocalizations()
+{
+    Core::LocalInit("en");
+    // de
+    Core::LocalInit("de");
+}
+
+Language::Language(QString name)
+{
+    LanguageName = name;
 }

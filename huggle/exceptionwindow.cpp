@@ -8,15 +8,27 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "proxy.h"
-#include "ui_proxy.h"
+#include "exceptionwindow.h"
+#include "ui_exceptionwindow.h"
 
-Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
+ExceptionWindow::ExceptionWindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ExceptionWindow)
 {
     ui->setupUi(this);
 }
 
-Proxy::~Proxy()
+ExceptionWindow::~ExceptionWindow()
 {
     delete ui;
+}
+
+void ExceptionWindow::on_pushButton_clicked()
+{
+
+}
+
+void ExceptionWindow::on_pushButton_3_clicked()
+{
+
 }

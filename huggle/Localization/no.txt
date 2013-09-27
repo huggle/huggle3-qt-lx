@@ -1,0 +1,769 @@
+﻿<pre>
+name:                      Norsk (bokmål)
+</pre>
+
+=== General ===
+<pre>
+add:                       Legg til
+apply:                     Lagre
+cancel:                    Avbryt
+clear:                     Fjern
+close:                     Avslutt
+continue:                  Fortsett
+copy:                      Kopier
+delete:                    Slett
+error:                     Feil
+exit:                      Avslutt
+minimizewindow:            Minimer vindu
+no:                        Nei
+ok:                        OK
+remove:                    Fjern
+rename:                    Gi nytt navn
+restorewindow:             Gjenåpne vindu
+save:                      Lagre
+selectfile:                Bla...
+yes:                       Ja
+</pre>
+
+=== Edit types ===
+<pre>
+edittype-blocknote:        Blokkeringsvarsler
+edittype-deletenote:       Sletteforespørsel varsel
+edittype-deletetag:        Slettediskusjn tagger
+edittype-deletereq:        Andre slettediskusjon redigeringer
+edittype-manual:           Manuelle redigeringer
+edittype-message:          Brukerdiskusjon
+edittype-note:             Andre varsler
+edittype-prodtag:          Foreslått sletting tagger
+edittype-protectreq:       Beskyttelsesforespørsler
+edittype-report:           Rapporter
+edittype-revert:           Tilbakestillinger
+edittype-speedytag:        Hurtig sletting tagger
+edittype-tag:              Andre tagger
+edittype-warning:          Advarsler
+</pre>
+
+=== About form ===
+<pre>
+about-desc:                Om Huggle
+about-contributors:        bidragende:
+</pre>
+
+=== Block form ===
+<pre>
+block-title:               Blokker {0}
+block-reason:              Begrunnelse:
+block-duration:            Varighet:
+block-message:             Brukerdiskusjon melding:
+block-anononly:            Blokker kun anonyme brukere
+block-creation:            Blokker brukeropprettelse
+block-autoblock:           Skru på autoblokkeringer
+block-email:               Blokker e-post
+block-usertalk:            Brukerdiskusjon
+block-usercontribs:        Bidrag
+block-blockloglabel:       Blokkeringslogg:
+block-warnloglabel:        Advarsler:
+block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address.
+block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?
+block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?
+</pre>
+
+=== Closing form ===
+<pre>
+closing-whitelist:         Updating user whitelist...
+closing-config:            Oppdaterer konfigurasjons-underside...
+</pre>
+
+=== Configuration form ===
+<pre>
+config-title:              Alternativer
+config-rememberme:         Husk brukernavn
+config-rememberpassword:   Husk passord
+config-autowhitelist:      Automatically whitelist users
+config-openinbrowser:      Åpne lenker i nytt nettleser-vindu
+config-shownewedits:       Vis nye redigeringer på valgt side når de blir gjort
+config-preloads:           Tillat forhåndslasting av diff'er
+config-ircmode:            Bruk IRC-strøm for siste endringer hvis mulig
+config-ircport:            IRC port
+config-difffontsize:       Diff fontstørrelse
+config-logfile:            Loggfil
+config-viewlocalconfig:    Vis lokal konfigurasjonsfolder
+config-trayicon:           Show tray icon
+config-startupmessage:     Vis oppstartsmelding
+config-showlog:            Vis logg
+config-showqueue:          Vis revisjonskø
+config-rightalignqueue:    Vis køen på høyre side av vinduet
+config-showtooltips:       Vis verktøytips på menyer
+config-shownewmessages:    Vis nye meldinger
+config-shortcutlist:       Tastatursnarveier
+config-shortcutaction:     Handling
+config-shortcut:           Snarvei
+config-changeshortcut:     Endre snarvei for {0}
+config-noshortcut:         Ingen
+config-defaults:           Standard
+config-minor:              Merk som mindre endring
+config-watchlist:          Legg til overvåkningsliste
+config-defaultsummary:     Standard sammendrag for manuelle redigeringer
+config-undosummary:        Sammendrag når egen redigering tilbakestilles
+config-confirmmultiple:    Bekreft flere tilbakestillinger av en redigering gjort av samme bruker
+config-confirmsame:        Bekreft tilbakestilling til en redigering gjort av brukeren som blir tilbakestilt
+config-confirmselfrevert:  Bekreft tilbakestilling av egne redigeringer (Unntatt angre)
+config-confirmwarned:      Bekreft tilbakestilling til en redigering gjort av en advart bruker
+config-confirmrange:       Bekreft tilbakestilling til en redigering gjort av anonym bruker i samme /16 IP-range som brukeren som ble tilbakestilt
+config-confirmpage:        Bekreft tilbakestilling av ignorerte sider
+config-autoadvance:        Etter tilbakestilling, gå til neste redigering i køen
+config-userollback:        Bruk rollback hvis tilgjengelig
+config-revertsummaries:    Tilbakestillings sammendrag tilgjengelig i menyen
+config-clearsummaries:     Manuelt skrevne sammendrag huskes mellom omstarter; klikk for å tømme disse
+config-reportlinkexamples: Inkluder lenker til tilfeller av vandalisme i rapporter
+config-extendreports:      Utvid rapporter etter ytterligere vandalisme
+config-autoreportgroup:    Auto-rapporter
+config-autoreport:         Når spurt om å advare en bruker som allerede har siste advarsel
+config-reportnone:         Ikke gjør noe
+config-reportprompt:       Spør om rapport
+config-reportauto:         Gi rapport automatisk
+config-templates:          Bruker malbeskjeder
+config-templatetext:       Vis tekst
+config-template:           Mal
+config-highlightgroup:     Syntax highlight colors
+config-useadminfunctions:  Bruk administratorfunksjoner hvis tilgjengelig
+config-promptforblock:     Spør om blokkering hvis advarsel går til bruker som har fått siste advarsel
+config-blockreason:        Standard blokkeringsgrunn
+config-blocktime:          Standard blokkeringslengde for 
+config-blocktimeanon:      anonyme brukere
+config-blocktimereg:       registrerte brukere
+config-summaryprompt:      Skriv sammendrag
+config-defaultsprompt:     Gjenopprett standarder?
+config-logbrowsetitle:     Loggfil plassering
+config-shortcutconflict:   Snarvei '{0}' konflikterer med eksisterende snarvei for '{1}'.
+</pre>
+
+=== Delete form ===
+<pre>
+delete-title:              Slett {0}
+delete-reason:             Begrunnelse:
+delete-deletionlog:        Slettingslogg:
+</pre>
+
+=== Edit form ===
+<pre>
+edit-title:                Redigerer {0}
+edit-summary:              Sammendrag:
+edit-minor:                Mindre endring
+edit-watch:                Overvåk denne siden
+edit-page:                 Side
+edit-edit:                 Rediger
+edit-view:                 Vis
+edit-page-savetofile:      Lagre til fil...
+edit-page-save:            Lagre
+edit-page-cancel:          Avbryt
+edit-edit-undo:            Angre
+edit-edit-redo:            Gjør igjen
+edit-edit-cut:             Klipp
+edit-edit-copy:            Kopier
+edit-edit-paste:           Lim
+edit-edit-delete:          Slett
+edit-edit-selectall:       Velg Alt
+edit-edit-find:            Finn
+edit-view-syntax:          Syntax colouring
+edit-matchcase:            Match case
+edit-find:                 Finn:
+edit-replace:              Erstatt:
+edit-findnext:             Neste
+edit-findprevious:         Forrige
+edit-replaceall:           Erstatt alle
+edit-edittab:              Rediger
+edit-previewtab:           Forhåndsvisning
+edit-changestab:           Endringer
+edit-searchnotfound:       Streng ikke funnet
+edit-searchwrapstart:      Nådde bunnen av siden, fortsatte fra toppen
+edit-searchwrapend:        Nådde toppen av siden, fortsatte fra bunnen
+</pre>
+
+=== E-mail form ===
+<pre>
+email-title:               E-mail {0}
+email-subject:             Emne:
+email-message:             Melding:
+email-ccme:                Send en kopi av denne meldingen til meg på E-post
+email-send:                Send
+</pre>
+
+=== IRC feed ===
+<pre>
+irc-connected:             Koblet til siste endringer-strømmen på IRC
+irc-connecting:            Forsøker å koble til IRC for siste endringer; dette kan ta noen øyeblikk...
+irc-disconnected:          Tilkobling til IRC for siste endringer mistet; kobler til på nytt...
+irc-nochannel:             IRC kanal for {0} ikke funnet, bruker tregere API-spørringer istedet
+irc-error:                 Kunne ikke koble til siste endringer-strømmen på IRC. Bruker tregere API-spørringer istedet
+</pre>
+
+=== List form ===
+<pre>
+list-actions:              Handlinger og filtre...
+list-browsetitle:          Legg til tekstfil til listen
+list-combine:              Kombiner
+list-copyto:               Kopi til:
+list-count:                {0} elementer
+list-deleteconfirm:        Slett liste '{0}'?
+list-duplicatename:        En liste med navnet '{0}' fins allerede. Velg et annet navn.
+list-intersect:            Intersect
+list-limit:                Opp til:
+list-listempty:            Ingen elementer i listen\nSkriv inn en kilde og klikk "Legg til"
+list-nolists:              Ingen lister definert\nKlikk "Legg til" for å lage en
+list-query-cancelled:      Avbrutt.
+list-query-fail:           Spørring feilet.
+list-query-noresults:      Spørringen ga ingen resultater.
+list-query-progress:       Running query...
+list-query-results:        {0} resultater mottatt.
+list-renameprompt:         Angi nytt navn:
+list-replace:              Erstatt
+list-savefailed:           Kunne ikke lagre listen:
+list-savetitle:            Lagre liste
+list-sourcetype:           Kildetype:
+list-start:                Fra:
+list-stop:                 Stopp
+list-title:                Listebygger
+</pre>
+
+=== Login ===
+<pre>
+login-language:            Språk:
+login-project:             Prosjekt:
+login-username:            Brukernavn:
+login-password:            Passord:
+login-proxygroup:          Mellomtjener innstillinger
+login-proxy:               Bruk en mellomtjener
+login-proxyaddress:        Addresse:
+login-proxyport:           Port:
+login-proxydomain:         Domene:
+login-start:               Logg på
+login-translate:           Oversett...
+login-captchatitle:        Captcha påkrevd for innlogging
+
+login-progress-start:      Logger på...
+login-progress-language:   Oppdaterer meldingsfiler...
+login-progress-global:     Sjekker global konfigurasjon...
+login-progress-config:     Sjekker konfigurasjonssider...
+login-progress-userlist:   Sjekker brukerliste...
+login-progress-whitelist:  Retrieving user whitelist...
+
+login-error-admin:         Bruk av Huggle på dette prosjektet krever en administratorkonto.
+login-error-age:           Bruk av Huggle på dette prosjektet krever en konto som er minst {0} dager gammel.
+login-error-alldisabled:   Huggle er for øyeblikket utilgjengelig på alle prosjekter.
+login-error-approval:      Bruk av Huggle på dette prosjektet krever godkjenning.
+login-error-autoconfirmed: Bruk av Huggle på dette prosjektet krever at din konto er autogodkjent.
+login-error-cancelled:     Avbrutt.
+login-error-captcha:       Feil passord eller Captcha-kode.
+login-error-config:        Kunne ikke laste konfigurasjonssider.
+login-error-count:         Bruk av Huggle på dette prosjektet krever minst {0} redigeringer.
+login-error-disabled:      Huggle er ikke skrudd på for din konto, sjekk innstillinger siden.
+login-error-global:        Kunne ikke laste global konfigurasjonsside.
+login-error-invalid:       Ugyldig brukernavn.
+login-error-language:      Kunne ikke laste meldingsfiler.
+login-error-nocaptcha:     Captcha ikke løst riktig.
+login-error-noconfig:      Dette prosjektet har ikke en Huggle konfigurasjonsside.
+login-error-nouser:        Brukeren eksisterer ikke.
+login-error-password:      Feil passord.
+login-error-projdisabled:  Huggle er for øyeblikket skrudd av på dette prosjektet.
+login-error-rollback:      Bruk av Huggle på dette prosjektet krever tilbakestillingsrettigheter.
+login-error-unknown:       Kunne ikke logge inn.
+login-error-userlist:      Kunne ikke lese brukerliste.
+login-error-version:       Utdatert versjon. Vennligst oppdater til nyeste versjon.
+login-error-whitelist:     Failed to load user whitelist.
+</pre>
+
+=== Main window ===
+<pre>
+main-page:                 Side
+main-user:                 Bruker
+main-contribs:             Bidrag
+main-history:              Historikk
+main-new-messages:         Du har nye meldinger; Gå til System -> Vis nye meldinger eller trykk M for å vise dem.
+main-system:               System
+main-system-messages:      Vis nye meldinger
+main-system-reconnectirc:  Koble til IRC-strøm på nytt
+main-system-savelog:       Lagre logg...
+main-system-lists:         Listebygger...
+main-system-requests:      Forespørsler...
+main-system-statistics:    Statistikk...
+main-system-showlog:       Vis logg
+main-system-showqueue:     Vis kø
+main-system-showtwoqueues: Vis to køer
+main-system-options:       Alternativer...
+main-system-logout:        Logg ut
+main-system-exit:          Avslutt
+main-queue:                Kø
+main-queue-next:           Neste
+main-queue-trim:           Trim
+main-queue-clear:          Tøm nåværende
+main-queue-count:          {0} elementer
+main-queue-query:          Kjører spørring...
+main-queue-reset:          Resett
+main-queue-clearall:       Tøm alle
+main-queue-options:        Behandle køer...
+main-goto:                 Gå til
+main-goto-mytalk:          Min brukerdiskusjon
+main-goto-mycontribs:      Mine bidrag
+main-revision:             Revisjon
+main-revision-view:        Vis
+main-revision-revert:      Reverter
+main-revision-previous:    Forrige
+main-revision-next:        Neste
+main-revision-latest:      Siste
+main-revision-sight:       Sikte
+main-page-switchtotalk:    Bytt til diskusjonsside
+main-page-switchtosubject: Switch to subject page
+main-page-switchtoarticle: Bytt til artikkel
+main-page-viewlatest:      Vis siste revisjon
+main-page-history:         Hent historikk
+main-page-historypage:     Vis historikkside
+main-page-edit:            Rediger
+main-page-tag:             Tagg
+main-page-reqdeletion:     Be om sletting
+main-page-reqprotection:   Be om beskyttelse
+main-page-watch:           Overvåk
+main-page-unwatch:         Avslutt overvåkning
+main-page-purge:           Tøm
+main-page-patrol:          Merk som patruljert
+main-page-move:            Flytt...
+main-page-protect:         Beskytt...
+main-page-delete:          Slett...
+main-user-info:            Vis brukerinformasjon
+main-user-ignore:          Ignorer
+main-user-unignore:        Avignorer
+main-user-contribs:        Hent bidrag
+main-user-talk:            Vis brukerdiskusjon
+main-user-message:         Melding...
+main-user-email:           E-post...
+main-user-warn:            Advar...
+main-user-report:          Rapporter
+main-user-block:           Blokker...
+main-browser:              Browser
+main-browser-newtab:       Ny fane
+main-browser-closetab:     Lukk fane
+main-browser-closeothers:  Lukk andre faner
+main-browser-back:         Tilbake
+main-browser-forward:      Fremover
+main-browser-open:         Vis i ekstern nettleser
+main-browser-newedits:     Vis nye redigeringer på siden
+main-browser-newcontribs:  Vis nye bidrag av bruker
+main-help:                 Hjelp
+main-help-documentation:   Dokumentasjon
+main-help-feedback:        Tilbakemelding
+main-help-about:           Om Huggle...
+main-addqueue:             Legg til...
+main-savelogtitle:         Lagre logg
+main-usermessageother:     Annen melding...
+main-advanced:             Avansert...
+main-stats:                {0} redigeringer per minutt, {1} tilbakestillinger per minutt
+
+main-tip-revertwarn:       Tilbakestill denne revisjonen, og send brukeren en advarsel
+main-tip-nextdiff:         Vis neste revisjon i køen
+main-tip-revert:           Tilbakestill denne revisjonen
+main-tip-template:         Send malmelding til bruker
+main-tip-warn:             Advar bruker
+main-tip-cancel:           Kanseller alle ventende handlinger
+main-tip-undo:             Tilbakestill siste handlinger
+main-tip-browserback:      Tilbake
+main-tip-browserforward:   Fremover
+main-tip-browseropen:      Vis i ekstern nettleser
+main-tip-browsernewtab:    Ny fane
+main-tip-browserclosetab:  Lukk fane
+main-tip-history:          Hent artikkelhistorikk
+main-tip-historyprev:      Vis tidligere revisjoner av denne siden
+main-tip-historynext:      Vis neste revisjon av denne siden
+main-tip-historylast:      Vis siste revisjon av denne siden
+main-tip-historydifftocur: Vis diff mellom denne revisjonen og siste revisjon av denne siden
+main-tip-contribs:         Hent brukerbidrag
+main-tip-contribsprev:     Vis forrige revisjon av denne brukeren
+main-tip-contribsnext:     Vis neste revisjon av denne brukeren
+main-tip-contribslast:     Vis siste revisjon av denne brukeren
+main-tip-pageview:         Vis denne revisjonen
+main-tip-pageedit:         Rediger denne siden
+main-tip-pagewatch:        Overvåk denne siden
+main-tip-pagetag:          Tagg denne siden
+main-tip-pagetagdelete:    Tagg denne siden for sletting
+main-tip-pagedelete:       Slett denne siden
+main-tip-userinfo:         Vis brukerinformasjon
+main-tip-usertalk:         Vis brukerdiskusjon
+main-tip-usermessage:      Send melding til denne brukeren
+main-tip-userignore:       Ignorer alle bidrag av denne brukeren
+main-tip-userreport:       Rapporter denne brukeren
+main-tip-userblock:        Blokker denne brukeren
+</pre>
+
+=== Message form ===
+<pre>
+message-title:             Melding til {0}
+message-help:              Spesifiser Emne eller Oppsummering, eller begge. Hvis ingen oppsummering blir gitt, vil intet meldingshode bli lagt til.
+message-subject:           Emne:
+message-message:           Melding:
+message-summary:           Oppsummering:
+message-autosign:          Signer automatisk
+</pre>
+
+=== Move form ===
+<pre>
+move-title:                Flytt {0}
+move-target:               Målside:
+move-reason:               Begrunnelse:
+move-movetalk:             Flytt diskusjonsside
+</pre>
+
+=== Prod form ===
+<pre>
+prod-title:                Foreslått sletting av {0}
+prod-reason:               Begrunnelse:
+</pre>
+
+=== Protect form ===
+<pre>
+protect-title:             Beskytt {0}
+protect-request-title:     Be om beskyttelse av {0}
+protect-reason:            Begrunnelse:
+protect-expiry:            Utløper:
+protect-log:               Beskyttelseslogg:
+protect-currentlevel:      Nåværende beskyttelsesnivå:
+protect-type:              Beskyttelsestype:
+protect-none:              Ingen
+protect-semiprotection:    Delvis beskyttet
+protect-fullprotection:    Fullt beskyttet
+protect-moveprotection:    Beskyttet mot flytting
+</pre>
+
+=== Queue form ===
+<pre>
+queue-title:               Kø
+queue-queues:              Køer:
+queue-typegroup:           Køtype
+queue-listselector:        Liste:
+queue-listbuilder:         Listebygger...
+queue-sortorder:           Sortering:
+queue-removeviewed:        Fjern redigeringer når de blir vist
+queue-removeold:           Fjern gamle redigeringer til samme side
+queue-removeafter:         Fjern redigeringer etter
+queue-removeaftertime:     minutter
+queue-preload:             Tillat forhåndslasting av revisjoner når denne køen er valgt
+queue-ignorepages:         Ignorer redigeringer på sider i listen over ignorerte sider
+queue-traynotification:    Vis varselikon i oppgavelinjen når en revisjon blir lagt til i denne køen
+queue-diffsgroup:          Differ
+queue-nodiffs:             Last differ kun når denne revisjonen blir vist
+queue-preloaddiffs:        Forhåndslast differ når køen er aktiv
+queue-alldiffs:            Last differ for alle revisjoner i køen
+queue-pagefiltersgroup:    Sidetittel filter
+queue-pageregex:           Tittel passer regelbasert filter:
+queue-namespaces:          Navnerom:
+queue-applylabel:          Klikk Bruk for å bruke disse filterene på den eksisterende listen over sider.
+queue-editfiltersgroup:    Redigeringsfiltre
+queue-userregex:           Brukernavn passer regelbasert filter:
+queue-summaryregex:        Oppsummering passer regelbasert filter:
+queue-filternewpage:       Ny side
+queue-filterownuserspace:  Brukers eget userspace
+queue-filteranonymous:     Anonym bruker
+queue-filterignored:       Ignorert bruker
+queue-filterreverts:       Tilbakestill
+queue-filternotifications: Varsel
+queue-filterwarnings:      Advarsel
+queue-filtertags:          Tagg
+queue-filterbot:           Robotredigering
+queue-filterassisted:      Assistert redigering
+queue-filterhuggle:        Huggle redigering
+queue-filterme:            Min redigering
+queue-examplelabel1:       Krev denne attributten
+queue-examplelabel2:       Ekskluder denne attributten
+queue-examplelabel3:       Ikke sjekk denne attributten
+queue-usergroup:           Vis kun redigeringer av disse brukerene
+</pre>
+
+=== Queue trim form ===
+<pre>
+queuetrim-title:           Trim kø
+queuetrim-age:             Forkast alle revisjoner i køen eldre enn 
+queuetrim-ageunit:         minutter
+</pre>
+
+=== Requests form ===
+<pre>
+requests-title:            Forespørsler
+requests-cancelall:        Avbryt alle
+requests-cancelled:        Avbrutt
+requests-inprogress:       Foregår
+requests-failed:           Feilet
+requests-completed:        Fullført
+requests-time:             Tid
+requests-type:             Type
+requests-query:            Spørring
+</pre>
+
+=== Report form ===
+<pre>
+report-title:              Rapporter {0}
+report-reason:             Begrunnelse:
+report-message:            Melding:
+report-log:                Advarsler for denne brukeren:
+</pre>
+
+=== Revert form ===
+<pre>
+revert-title:              Tilbakestill {0}
+revert-summary:            Tilbakestillings oppsummering (La stå blankt for standard):
+revert-currentonly:        Tilbakestill bare valgt revisjon
+</pre>
+
+=== Revert and warn form ===
+<pre>
+revertandwarn-title:       Tilbakestill og advar {0}
+</pre>
+
+=== Reverting ===
+<pre>
+revert-confirm-ignored:    Reverter redigering gjort av whitelisted bruker '{0}'?
+revert-confirm-multiple:   Dette vil tilbakestille flere redigeringer av '{0}'. Fortsett?
+revert-confirm-range:      Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, {0}, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?
+revert-confirm-page:       Tilbakestill redigering på ignorert side '{0}'?
+revert-confirm-same:       Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, {0}. Fortsett?
+revert-confirm-self:       Dette vil tilbakestille din egen redigering. Fortsett?
+revert-confirm-warned:     Dette vil tilbakestille til en revisjon av {0}, som har blitt gitt advarsler. Forsett?
+revert-error-first:        Redigeringen er den første som ble gjort på siden, kan ikke tilbakestille.
+revert-only:               Redigeringen er den eneste som er gjort på siden.
+revert-creator:            Siste redigering var av sidens opprinnelige forfatter, {0}.
+revert-delete-instead:     Slett siden istedet?
+revert-speedy-instead:     Tagg for hurtig sletting istedet?
+</pre>
+
+=== Speedy form ===
+<pre>
+speedy-title:              Hurtig tagging {0}
+speedy-reason:             Begrunnelse:
+speedy-parameters:         Parametre:
+speedy-notifycreator:      Gi beskjed til forfatter av siden
+</pre>
+
+=== Statistics form ===
+<pre>
+stats-title:               Statistikk
+stats-actions:             Handlinger denne sesjonen:
+stats-session:             Sesjonstid: {0}
+stats-edits:               Redigeringer
+stats-assisted:            Assisterte redigeringer
+stats-huggle:              Huggle redigeringer
+stats-reverts:             Tilbakestillinger
+stats-warnings:            Advarsler
+stats-reports:             Rapporteringer
+stats-tags:                Tagger
+stats-notifications:       Varslinger
+stats-blocks:              Blokkeringer
+stats-deletes:             Slettinger
+stats-protections:         Beskyttelser
+stats-allusers:            Alle brukere
+stats-me:                  Meg
+stats-ignored:             Ignorert
+stats-anon:                Anonyme
+stats-bots:                Roboter
+stats-other:               Andre
+</pre>
+
+=== Tag form ===
+<pre>
+tag-title:                 Tagg {0}
+tag-tagselector:           Legg til tagg:
+tag-tags:                  Tagg(er):
+tag-summary:               Oppsummering:
+tag-insertatend:           Sett inn på slutten av siden
+</pre>
+
+=== Update form ===
+<pre>
+update-title:              Ny versjon tilgjengelig
+update-notification:       Denne versjonen av Huggle er utdatert
+update-required:           Du må oppgradere til den nyeste versjonen, {0}.
+update-optional:           Oppdatering til den nyeste versjonen, {0}, er anbefalt og kan bli påkrevd i fremtiden.
+update-prompt:             Last ned og kjør siste versjon nå?
+update-download:           Oppdater
+update-progress:           Laster ned ny versjon...
+update-error:              Kunne ikke laste ned ny versjon
+</pre>
+
+=== User info form ===
+<pre>
+userinfo-title:            Brukerinformasjon for '{0}'
+userinfo-anonymous:        Anonym:
+userinfo-ignored:          Whitelisted:
+userinfo-edits:            Antall bidrag:
+userinfo-sessionedits:     Bidrag denne sesjonen:
+userinfo-sharedip:         Delt/dynamisk IP:
+userinfo-blocklog:         Blokkeringer:
+userinfo-warnlog:          Advarsler:
+</pre>
+
+=== Warning form ===
+<pre>
+warning-title:             Advar {0}
+warning-levelgroup:        Advarselsnivå
+warning-levelauto:         Automatisk
+warning-level1:            Nivå 1
+warning-level2:            Nivå 2
+warning-level3:            Nivå 3
+warning-level4:            Nivå 4 (final)
+warning-warntype:          Advarselstype:
+warning-warnlog:           Advarsler for denne brukeren:
+</pre>
+
+=== XfD form ===
+<pre>
+xfd-title:                 Nominer {0} for sletting
+xfd-category:              Kategori:
+xfd-nominationtype:        Nominasjonstype:
+xfd-notify:                Informer oppretter
+xfd-reason:                Grunn:
+</pre>
+
+=== Web requests ===
+<pre>
+error-apidisabled:         MediaWiki APIen er skrudd av
+error-exception:           Feil under henting av'{0}'
+error-fail:                Kunne ikke hente '{0}'
+error-loggedout:           Kontoen har blitt logget ut, logger inn igjen...
+error-noresponse:          Ingen respons
+error-pagemissing:         Siden eksisterer ikke
+error-reloginfail:         Kunne ikke logge inn igjen, prøv å starte Huggle på nytt
+error-timeout:             Forespørsel tok for lang tid
+error-unknown:             Ukjent feil
+
+retrying:                  Prøver igjen...
+
+block-done:                Blokkerte '{0}'
+block-fail:                Blokkerte ikke '{0}'
+block-progress:            Blokkerer '{0}'...
+
+blocklog-fail:             Kunne ikke hente blokkeringslogg for '{0}'
+blocklog-none:             Ingen blokkeringslogg for '{0}'
+blocklog-progress:         Henter blokkeringslogg for '{0}'...
+
+blocknotify-fail:          Varslet ikke '{0}' om blokkeringen
+blocknotify-progress:      Varsler '{0}' om blokkeringen...
+
+delete-done:               Slettet '{0}'
+delete-fail:               Slettet ikke '{0}'
+delete-progress:           Sletter '{0}'...
+
+deletelog-fail:            Kunne ikke hente slettingslogg for '{0}'
+deletelog-none:            Ingen slettingslogg for '{0}'
+deletelog-progress:        Henter slettingslogg for '{0}'...
+
+diff-deleted:              Denne revisjonen har blitt slettet.
+diff-fail:                 Kunne ikke hente diff for '{0}'
+
+reqdelete-duplicate:       Siden er allerede tagget
+reqdelete-tagfail:         Tagget ikke '{0}' for slettediskusjon
+reqdelete-redirectfail:    Denne siden er en omdirigering, og ingen slettediskusjonsprosess er definert
+reqdelete-tagprogress:     Tagger '{0}' for slettediskusjon...
+
+reqdelete-subpageprogress: Lager slettediskusjons underside for '{0}'...
+reqdelete-subpagefail:     Laget ikke slettediskusjons underside for '{0}'
+reqdelete-logprogress:     La til '{0}' til slettediskusjonsloggen...
+reqdelete-logfail:         La ikke til '{0}' til slettediskusjonsloggen
+
+edit-fail:                 Redigerte ikke '{0}'
+edit-progress:             Redigerer '{0}'...
+
+email-done:                Sendte epost til '{0}'
+email-fail:                Kunne ikke sende epost til '{0}'
+email-progress:            Sender epost til '{0}'...
+
+history-fail:              Kunne ikke hente historikk for '{0}'
+history-progress:          Henter historikk for '{0}' ({1})...
+
+move-done:                 Flyttet '{0}' til '{1}'
+move-fail:                 Flyttet ikke '{0}' til '{1}'
+move-progress:             Flytter '{0}' til '{1}'...
+
+notify-fail:               Varslet ikke den opprinnelige forfatteren av '{0}'
+notify-unknowncreator:     Kan ikke finne sidens opprinnelige forfatter
+
+patrol-duplicate:          Siden er allerede merket som patruljert
+patrol-done:               Merket '{0}' som patruljert
+patrol-fail:               Merket ikke '{0}' som patruljert
+patrol-notfound:           Finner ikke siste endringer ID, siden er for gammel
+patrol-progress:           Merker '{0}' som patruljert...
+
+protect-done:              Endret beskyttelsesnivået for '{0}'
+protect-fail:              Endret ikke beskyttelsesnivået for '{0}'
+protect-progress:          Endrer beskyttelsesnivå for '{0}'...
+
+protectlog-fail:           Kunne ikke hente beskyttelsesloggen for '{0}'
+protectlog-none:           Ingen beskyttelseslogg for '{0}'
+protectlog-progress:       Henter beskyttelseslogg for '{0}'...
+
+purge-done:                Tømte '{0}'
+purge-fail:                Kunne ikke tømme '{0}'
+purge-progress:            Tømmer '{0}'
+
+queue-refresh-fail:        Feil under oppdatering av køen '{0}'
+
+report-duplicate:          Brukeren har allerede blitt rapportert
+report-fail:               Rapporterte ikke '{0}'
+report-progress:           Rapporterer '{0}'...
+
+saveuserconfig-done:       Oppdaterte brukerkonfigurasjonssiden
+saveuserconfig-fail:       Kunne ikke oppdatere brukerkonfigurasjonssiden
+saveuserconfig-progress:   Oppdaterer brukerkonfigurasjonssiden...
+
+loadglobalconfig-fail:     Kunne ikke laste global konfigurasjonsside
+loadprojectconfig-fail:    Kunne ikke laste prosjektets konfigurasjonsside
+loaduserconfig-fail:       Kunne ikke laste bruker konfigurasjonsside
+
+reqprotection-badformat:   Formatet på forespørselssiden er ukjent
+reqprotection-duplicate:   Beskyttelses har allerede blitt forespurt
+reqprotection-fail:        Ba ikke om beskyttelse av '{0}'
+reqprotection-progress:    Ber om beskyttelse av '{0}'...
+
+revert-cannotundo:         Kan ikke tilbakestille grunnet konflikterende mellomredigeringer 
+revert-conflict:           Siden ble redigert av ignorert bruker '{0}'
+revert-fail:               Tilbakestilte ikke '{0}'
+revert-nochange:           Innholdet i målrevisjonen er identisk med nåværende revisjon
+revert-nootheruser:        Ingen andre brukere har redigert den siden
+revert-progress:           Tilbakestiller '{0}'...
+
+tag-alreadytagged:         Siden har allerede blitt tagget
+tag-deleted:               Siden har blitt slettet
+tag-fail:                  Tagget ikke '{0}'
+tag-progress:              Tagger '{0}'...
+
+sight-done:                Marked revision {0} of '{1}' as sighted
+sight-fail:                Failed to sight revision {0} of '{1}'
+sight-progress:            Marking revision {0} of '{1}' as sighted
+
+speedy-fail:               Tagget ikke '{0}' for hurtigsletting
+speedy-progress:           Tagger '{0}' for hurtigsletting...
+
+warnlog-fail:              Kunne ikke hente advarselsloggen for '{0}'
+warnlog-none:              '{0}' har ikke blitt advart
+warnlog-progress:          Henter advarselslogg for '{0}'...
+
+unwatch-done:              Fjernet '{0}' fra overvåkingslisten
+unwatch-fail:              Kunne ikke fjerne '{0}' fra overvåkingslisten
+unwatch-progress:          Fjerner '{0}' fra overvåkingslisten...
+
+usermessage-duplicate:     En melding om samme emne er allerede på siden
+usermessage-fail:          Sendte ikke melding til '{0}'
+usermessage-progress:      Sender melding til '{0}'...
+
+watch-done:                Satte '{0}' på overvåkning
+watch-fail:                Kunne ikke sette '{0}' på overvåkning
+watch-progress:            Setter '{0}' på overvåkning...
+
+warn-alreadyfinal:         Brukeren har allerede fått siste advarsel
+warn-alreadyblocked:       Brukeren har allerede blitt blokkert
+warn-alreadyreported:      Brukeren har allerede blitt rapportert
+warn-oldedit:              Brukeren har ikke redigert etter sin siste advarsel
+warn-recent:               Brukeren ble advart for mindre enn {0} sekunder siden
+warn-fail:                 Advarte ikke '{0}'
+warn-progress:             Advarer '{0}'...
+</pre>
+
+=== API ===
+<pre>
+api-help:                  Ingen parametre i API-spørringen
+</pre>

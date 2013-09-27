@@ -70,6 +70,9 @@ public:
     static int QueryListTimeLimit;
     //! Number of edits to keep in history stack
     static int HistorySize;
+    static QString Language;
+    static double EditCounter;
+    static double RvCounter;
 
     //////////////////////////////////////////////
     // Local config
@@ -136,6 +139,7 @@ public:
     static int LocalConfig_WarningScore;
     static QStringList LocalConfig_WarningTypes;
     static QStringList LocalConfig_WelcomeTypes;
+    static int LocalConfig_WhitelistScore;
 
     //////////////////////////////////////////////
     // Global config

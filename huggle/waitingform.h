@@ -8,15 +8,25 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "proxy.h"
-#include "ui_proxy.h"
+#ifndef WAITINGFORM_H
+#define WAITINGFORM_H
 
-Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
-{
-    ui->setupUi(this);
+#include <QDialog>
+
+namespace Ui {
+class WaitingForm;
 }
 
-Proxy::~Proxy()
+class WaitingForm : public QDialog
 {
-    delete ui;
-}
+    Q_OBJECT
+
+public:
+    explicit WaitingForm(QWidget *parent = 0);
+    ~WaitingForm();
+
+private:
+    Ui::WaitingForm *ui;
+};
+
+#endif // WAITINGFORM_H

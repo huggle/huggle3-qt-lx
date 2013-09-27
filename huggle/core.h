@@ -17,6 +17,7 @@
 #include <QList>
 #include <QString>
 #include <QFile>
+#include <QMap>
 #include <QtXml>
 #include <QMessageBox>
 #include "login.h"
@@ -49,6 +50,14 @@ class WikiEdit;
 class Message;
 class iExtension;
 
+class Language
+{
+public:
+    Language(QString name);
+    QString LanguageName;
+    QMap<QString, QString> Messages;
+};
+
 class Core
 {
 public:
@@ -74,6 +83,7 @@ public:
     static QList<Message*> Messages;
     static QList<EditQuery*> PendingMods;
     static QList<iExtension*> Extensions;
+    static QList<Language*> LocalizationData;
     //! Pointer to AIV page
     static WikiPage * AIVP;
     static bool Running;
@@ -144,6 +154,11 @@ public:
     static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
     static void AppendQuery(Query* item);
     static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+    static void ExceptionHandler(Exception *exception);
+    static Language *MakeLanguage(QString text, QString name);
+    static void LocalInit(QString name);
+    static QString Localize(QString key);
+    static void LoadLocalizations();
 private:
     static QList<QString> *RingLog;
 };

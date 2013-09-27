@@ -1,0 +1,778 @@
+﻿<pre>
+name:                      Khmer (ភាសាខ្មែរ)
+</pre>
+
+=== General ===
+<pre>
+add:                       Add
+apply:                     Apply
+cancel:                    Cancel
+clear:                     Clear
+close:                     Close
+continue:                  Continue
+copy:                      Copy
+delete:                    Delete
+error:                     Error
+exit:                      Exit
+minimizewindow:            Minimize
+no:                        No
+ok:                        OK
+remove:                    Remove
+rename:                    Rename
+restorewindow:             Restore
+save:                      Save
+selectfile:                Browse...
+yes:                       Yes
+agf:                    Revert as good faith edit with custom reason
+import:                 Import from global conf
+</pre>
+
+=== Edit types ===
+<pre>
+edittype-blocknote:        Block notifications
+edittype-deletenote:       Deletion request notifications
+edittype-deletetag:        Deletion discussion tags
+edittype-deletereq:        Other deletion discussion edits
+edittype-manual:           Manual edits
+edittype-message:          User messages
+edittype-note:             Other notifications
+edittype-prodtag:          Proposed deletion tags
+edittype-protectreq:       Protection requests
+edittype-report:           Reports
+edittype-revert:           Reverts
+edittype-speedytag:        Speedy deletion tags
+edittype-tag:              Other tags
+edittype-warning:          Warnings
+</pre>
+
+=== About form ===
+<pre>
+about-contributors:        Developers:
+</pre>
+
+=== Block form ===
+<pre>
+block-title:               Block {0}
+block-reason:              Reason:
+block-duration:            Duration:
+block-message:             Talk page message:
+block-anononly:            Block anonymous users only
+block-creation:            Block account creation
+block-autoblock:           Enable autoblocks
+block-email:               Block e-mail
+block-usertalk:            Talk
+block-usercontribs:        Contribs
+block-blockloglabel:       Block log:
+block-warnloglabel:        Warnings:
+block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address.
+block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?
+block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?
+</pre>
+
+=== Closing form ===
+<pre>
+closing-whitelist:         Updating user whitelist...
+closing-config:            Updating configuration subpage...
+</pre>
+
+=== Configuration form ===
+<pre>
+config-summ:               Custom revert summaries for templates
+config-title:              Options
+config-rememberme:         Remember my username
+config-rememberpassword:   Remember my password
+config-autowhitelist:      Automatically whitelist users
+config-openinbrowser:      Open browser links in new browser window
+config-shownewedits:       Show new edits to the selected page as they are made
+config-preloads:           Enable preloading of diffs
+config-ircmode:            Use IRC feed for recent changes if possible
+config-ircport:            IRC port
+config-difffontsize:       Diff font size
+config-logfile:            Log file
+config-viewlocalconfig:    View local configuration folder
+config-trayicon:           Show tray icon
+config-startupmessage:     Show startup message
+config-showlog:            Show log
+config-showqueue:          Show revision queue
+config-rightalignqueue:    Show queue on the right of the window
+config-showtooltips:       Show tooltips on menus
+config-shownewmessages:    Show new messages bar
+config-shortcutlist:       Keyboard shortcuts
+config-shortcutaction:     Action
+config-shortcut:           Shortcut
+config-changeshortcut:     Change shortcut for {0}
+config-noshortcut:         None
+config-defaults:           Defaults
+config-minor:              Mark as minor
+config-watchlist:          Add to watchlist
+config-defaultsummary:     Default summary for manual edits
+config-undosummary:        Summary when undoing own edits
+config-confirmmultiple:    Confirm multiple reversions of an edit by the same user
+config-confirmsame:        Confirm reversion to an edit by the user being reverted
+config-confirmselfrevert:  Confirm reversion of own edits (except undo)
+config-confirmwarned:      Confirm reversion to an edit by a warned user
+config-confirmrange:       Confirm reversion to edit by an anonymous user in the same /16 range as the user being reverted
+config-confirmpage:        Confirm reversion of ignored pages
+config-autoadvance:        After reverting, move to next edit in the queue
+config-userollback:        Use rollback if available
+config-revertsummaries:    Revert summaries available in menu
+config-clearsummaries:     Summaries entered manually are remembered across sessions; click to clear these
+config-reportlinkexamples: Include links to instances of vandalism in reports
+config-extendreports:      Extend reports after additional vandalism
+config-autoreportgroup:    Auto-report
+config-autoreport:         When asked to warn a user with a final warning
+config-reportnone:         Do nothing
+config-reportprompt:       Prompt for report
+config-reportauto:         Issue report automatically
+config-templates:          User template messages
+config-templatetext:       Display text
+config-template:           Template
+config-highlightgroup:     Syntax highlight colors
+config-useadminfunctions:  Use administrator functions if available
+config-promptforblock:     Prompt for block if asked to warn a user with a final warning
+config-blockreason:        Default block reason
+config-blocktime:          Default block duration for
+config-blocktimeanon:      anonymous users
+config-blocktimereg:       registered users
+config-summaryprompt:      Enter summary
+config-history:	           Download whole history of all articles
+config-defaultsprompt:     Restore defaults?
+config-logbrowsetitle:     Log file location
+config-shortcutconflict:   Shortcut '{0}' conflicts with the existing shortcut for '{1}'.
+</pre>
+
+=== Delete form ===
+<pre>
+delete-title:              Delete {0}
+delete-reason:             Reason:
+delete-deletionlog:        Deletion log:
+delete-rem-talk:           Delete associated talk
+delete-notify:             Notify creator
+</pre>
+
+=== Edit form ===
+<pre>
+edit-title:                Editing {0}
+edit-summary:              Summary:
+edit-minor:                Minor edit
+edit-watch:                Watch this page
+edit-page:                 Page
+edit-edit:                 Edit
+edit-view:                 View
+edit-page-savetofile:      Save to file...
+edit-page-save:            Save
+edit-page-cancel:          Cancel
+edit-edit-undo:            Undo
+edit-edit-redo:            Redo
+edit-edit-cut:             Cut
+edit-edit-copy:            Copy
+edit-edit-paste:           Paste
+edit-edit-delete:          Delete
+edit-edit-selectall:       Select All
+edit-edit-find:            Find
+edit-view-syntax:          Syntax colouring
+edit-matchcase:            Match case
+edit-find:                 Find:
+edit-replace:              Replace:
+edit-findnext:             Next
+edit-findprevious:         Previous
+edit-replaceall:           Replace all
+edit-edittab:              Edit
+edit-previewtab:           Preview
+edit-changestab:           Changes
+edit-searchnotfound:       Phrase not found
+edit-searchwrapstart:      Reached end of page, continued from top
+edit-searchwrapend:        Reached top of page, continued from end
+</pre>
+
+=== E-mail form ===
+<pre>
+email-title:               E-mail {0}
+email-subject:             Subject:
+email-message:             Message:
+email-ccme:                E-mail me a copy of this message
+email-send:                Send
+</pre>
+
+=== IRC feed ===
+<pre>
+irc-connected:             Connected to IRC recent changes feed
+irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
+irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
+irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
+irc-error:                 Unable to connect to IRC recent changes feed. Using slower API queries instead
+</pre>
+
+=== List form ===
+<pre>
+list-actions:              Actions and Filters...
+list-browsetitle:          Add text file to list
+list-combine:              Combine
+list-copyto:               Copy to:
+list-count:                {0} items
+list-deleteconfirm:        Delete list '{0}'?
+list-duplicatename:        A list with the name '{0}' already exists. Choose another name.
+list-intersect:            Intersect
+list-limit:                Up to:
+list-listempty:            No items in list\nEnter a source and click "Add"
+list-nolists:              No lists defined\nClick "Add" to create one
+list-query-cancelled:      Cancelled.
+list-query-fail:           Query failed.
+list-query-noresults:      Query returned no results.
+list-query-progress:       Running query...
+list-query-results:        {0} results returned.
+list-renameprompt:         Enter new name:
+list-replace:              Replace
+list-savefailed:           Unable to save list:
+list-savetitle:            Save list
+list-sourcetype:           Source type:
+list-start:                From:
+list-stop:                 Stop
+list-title:                List Builder
+</pre>
+
+=== Login ===
+<pre>
+login-language:            Language:
+login-project:             Project:
+login-username:            Username:
+login-password:            Password:
+login-proxygroup:          Proxy settings
+login-proxy:               Use a proxy server
+login-proxyaddress:        Address:
+login-proxyport:           Port:
+login-proxydomain:         Domain:
+login-start:               Login
+login-translate:           Translate...
+login-captchatitle:        Captcha required to log in
+
+login-progress-start:      Logging in...
+login-progress-language:   Updating message files...
+login-progress-global:     Checking global configuration...
+login-progress-config:     Checking configuration pages...
+login-progress-userlist:   Checking user list...
+login-progress-whitelist:  Retrieving user whitelist...
+
+login-error-admin:         Use of Huggle on this project requires an administrator account.
+login-error-age:           Use of Huggle on this project requires an account at least {0} days old.
+login-error-alldisabled:   Huggle is currently disabled on all projects.
+login-error-approval:      Use of Huggle on this project requires approval.
+login-error-autoconfirmed: Use of Huggle on this project requires that your account is autoconfirmed.
+login-error-cancelled:     Cancelled.
+login-error-captcha:       Incorrect password or confirmation code.
+login-error-config:        Failed to load configuration pages!
+login-error-count:         Use of Huggle on this project requires at least {0} edits.
+login-error-disabled:      Huggle is not enabled for your account, check user configuration page.
+login-error-global:        Failed to load global configuration page.
+login-error-invalid:       Invalid username.
+login-error-language:      Failed to load message files.
+login-error-nocaptcha:     Captcha not solved.
+login-error-noconfig:      This project does not have a Huggle configuration page.
+login-error-nouser:        User does not exist.
+login-error-password:      Incorrect password.
+login-error-projdisabled:  Huggle is currently disabled on this project.
+login-error-rollback:      Use of Huggle on this project requires rollback.
+login-error-unknown:       Unable to log in.
+login-error-userlist:      Failed to load user list.
+login-error-version:       Version is out of date. Update to the latest version.
+login-error-whitelist:     Failed to load user whitelist.
+</pre>
+
+=== Main window ===
+<pre>
+main-page:                 Page
+main-user:                 User
+main-contribs:             Contribs
+main-history:              History
+main-new-messages:         You have new messages; select System -> Show new messages or press M to view them.
+main-system:               System
+main-system-messages:      Show new messages
+main-system-reconnectirc:  Reconnect IRC feed
+main-system-savelog:       Save log...
+main-system-lists:         List Builder...
+main-system-requests:      Requests...
+main-system-statistics:    Statistics...
+main-system-showlog:       Show log
+main-system-showqueue:     Show queue
+main-system-showtwoqueues: Show two queues
+main-system-options:       Options...
+main-system-logout:        Log out
+main-system-exit:          Exit
+main-queue:                Queue
+main-queue-next:           Next
+main-queue-trim:           Trim
+main-queue-clear:          Clear current
+main-queue-count:          {0} items
+main-queue-query:          Running query...
+main-queue-reset:          Reset
+main-queue-clearall:       Clear all
+main-queue-options:        Manage Queues...
+main-goto:                 Go to
+main-goto-mytalk:          My talk page
+main-goto-mycontribs:      My contributions
+main-revision-decline:     Reject revision
+main-revision:             Revision
+main-revision-view:        View
+main-revision-revert:      Revert
+main-revision-faith:       Revert AGF
+main-revision-previous:    Previous
+main-revision-next:        Next
+main-revision-latest:      Latest
+main-revision-sight:       Sight
+main-page-switchtotalk:    Switch to talk page
+main-page-switchtosubject: Switch to subject page
+main-page-switchtoarticle: Switch to article
+main-page-viewlatest:      View latest revision
+main-page-history:         Retrieve history
+main-page-historypage:     Show history page
+main-page-edit:            Edit
+main-page-tag:             Tag
+main-page-reqdeletion:     Request deletion
+main-page-reqprotection:   Request protection
+main-page-watch:           Watch
+main-page-unwatch:         Unwatch
+main-page-purge:           Purge
+main-page-patrol:          Mark patrolled
+main-page-move:            Move...
+main-page-protect:         Protect...
+main-page-delete:          Delete...
+main-page-restore:         Restore this revision of article
+main-user-info:            Show user info
+main-user-ignore:          Ignore
+main-user-unignore:        Unignore
+main-user-contribs:        Retrieve contributions
+main-user-talk:            View talk page
+main-user-message:         Message...
+main-user-email:           E-mail...
+main-user-warn:            Warn...
+main-user-report:          Report
+main-user-block:           Block...
+main-browser:              Browser
+main-browser-newtab:       New tab
+main-browser-closetab:     Close tab
+main-browser-closeothers:  Close other tabs
+main-browser-back:         Back
+main-browser-forward:      Forward
+main-browser-open:         View this in external browser
+main-browser-newedits:     Show new edits to page
+main-browser-newcontribs:  Show new contributions by user
+main-help:                 Help
+main-help-documentation:   Documentation
+main-help-feedback:        Feedback
+main-help-about:           About Huggle...
+main-addqueue:             Add...
+main-savelogtitle:         Save log
+main-usermessageother:     Other message...
+main-advanced:             Advanced...
+main-stats:                {0} edits per minute, {1} reverts per minute
+
+main-tip-revertwarn:       Revert this revision, and issue a user warning
+main-tip-nextdiff:         Show the next revision in the queue
+main-tip-revert:           Revert this revision
+main-tip-template:         Send template message to user
+main-tip-warn:             Warn user
+main-tip-cancel:           Cancel all pending actions
+main-tip-undo:             Undo recent actions
+main-tip-browserback:      Back
+main-tip-browserforward:   Forward
+main-tip-browseropen:      View this in external browser
+main-tip-browsernewtab:    New tab
+main-tip-browserclosetab:  Close tab
+main-tip-history:          Retrieve page history
+main-tip-historyprev:      Show previous revision to this page
+main-tip-historynext:      Show next revision to this page
+main-tip-historylast:      Show latest revision to this page
+main-tip-historydifftocur: Show diff between this revision and the latest revision to this page
+main-tip-contribs:         Retrieve user contributions
+main-tip-contribsprev:     Show previous revision by this user
+main-tip-contribsnext:     Show next revision by this user
+main-tip-contribslast:     Show latest revision by this user
+main-tip-pageview:         View this revision
+main-tip-pageedit:         Edit this page
+main-tip-pagewatch:        Watch this page
+main-tip-pagetag:          Tag this page
+main-tip-pagetagdelete:    Tag this page for deletion
+main-tip-pagedelete:       Delete this page
+main-tip-userinfo:         Show user information
+main-tip-usertalk:         Show user talk page
+main-tip-usermessage:      Message this user
+main-tip-userignore:       Ignore all contributions by this user
+main-tip-userreport:       Report this user
+main-tip-userblock:        Block this user
+main-revision-acceptpend:   Accept this pending revision
+</pre>
+
+=== Message form ===
+<pre>
+message-title:             Message {0}
+message-help:              Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.
+message-subject:           Subject:
+message-message:           Message:
+message-summary:           Summary:
+message-autosign:          Automatically append signature
+</pre>
+
+=== Move form ===
+<pre>
+move-title:                Move {0}
+move-target:               Destination:
+move-reason:               Reason:
+move-movetalk:             Move talk page
+</pre>
+
+=== Prod form ===
+<pre>
+prod-title:                Proposed deletion of {0}
+prod-reason:               Reason:
+</pre>
+
+=== Protect form ===
+<pre>
+protect-title:             Protect {0}
+protect-request-title:     Request protection of {0}
+protect-reason:            Reason:
+protect-expiry:            Expiry:
+protect-log:               Protection log:
+protect-currentlevel:      Current protection level:
+protect-type:              Protection type:
+protect-none:              None
+protect-semiprotection:    Semi-protection
+protect-fullprotection:    Full protection
+protect-moveprotection:    Move protection
+</pre>
+
+=== Queue form ===
+<pre>
+queue-title:               Queues
+queue-queues:              Queues:
+queue-typegroup:           Queue type
+queue-listselector:        List:
+queue-listbuilder:         List Builder...
+queue-sortorder:           Sort order:
+queue-removeviewed:        Remove edits when viewed
+queue-removeold:           Remove old edits to the same page
+queue-removeafter:         Remove edits after
+queue-removeaftertime:     minutes
+queue-preload:             Enable preloading of revisions when this queue is selected
+queue-ignorepages:         Ignore edits to pages on the ignored pages list
+queue-traynotification:    Show tray notification when a revision is added to this queue
+queue-diffsgroup:          Diffs
+queue-nodiffs:             Load diffs only when the revision is viewed
+queue-preloaddiffs:        Preload diffs when queue is active
+queue-alldiffs:            Load diffs for every revision in the queue
+queue-pagefiltersgroup:    Page title filters
+queue-pageregex:           Title matches regular expression:
+queue-namespaces:          Namespaces:
+queue-applylabel:          Click Apply to apply these filters to the existing page list.
+queue-editfiltersgroup:    Edit filters
+queue-userregex:           Username matches regular expression:
+queue-summaryregex:        Summary matches regular expression:
+queue-filternewpage:       New page
+queue-filterownuserspace:  User's own userspace
+queue-filteranonymous:     Anonymous user
+queue-filterignored:       Ignored user
+queue-filterreverts:       Revert
+queue-filternotifications: Notification
+queue-filterwarnings:      Warning
+queue-filtertags:          Tag
+queue-filterbot:           Bot edit
+queue-filterassisted:      Assisted edit
+queue-filterhuggle:        Huggle edit
+queue-filterme:            My edit
+queue-examplelabel1:       Require this attribute
+queue-examplelabel2:       Exclude this attribute
+queue-examplelabel3:       Don't check this attribute
+queue-usergroup:           Show only edits from these users
+</pre>
+
+=== Queue trim form ===
+<pre>
+queuetrim-title:           Trim queue
+queuetrim-age:             Discard all queued revisions older than
+queuetrim-ageunit:         minutes
+</pre>
+
+=== Requests form ===
+<pre>
+requests-title:            Requests
+requests-cancelall:        Cancel all
+requests-cancelled:        Cancelled
+requests-inprogress:       In progress
+requests-failed:           Failed
+requests-completed:        Completed
+requests-time:             Time
+requests-type:             Type
+requests-query:            Query
+</pre>
+
+=== Report form ===
+<pre>
+report-title:              Report {0}
+report-reason:             Reason:
+report-message:            Message:
+report-log:                Warnings for this user:
+</pre>
+
+=== Revert form ===
+<pre>
+revert-title:              Revert {0}
+revert-summary:            Revert summary (leave blank for default):
+revert-currentonly:        Revert only the selected revision
+</pre>
+
+=== Revert and warn form ===
+<pre>
+revertandwarn-title:       Revert and warn {0}
+</pre>
+
+=== Reverting ===
+<pre>
+revert-confirm-ignored:    Revert edit by whitelisted user '{0}'?
+revert-confirm-multiple:   This will revert multiple edits by '{0}'. Continue?
+revert-confirm-page:       Revert edit to ignored page '{0}'?
+revert-confirm-range:      The author of the target revision, {1}, is in the same range as the author of the current revision, {0}, and may be the same person; ensure the target revision is correct before proceeding. Continue?
+revert-confirm-same:       This will revert to another revision by the user that is being reverted, {0}. Continue?
+revert-confirm-self:       This will revert your own edit. Continue?
+revert-confirm-warned:     This will revert to a revision by {0}; this user has previously been warned. Continue?
+revert-error-first:        Edit is the first edit to the page; unable to revert.
+revert-only:               Edit is the only edit to the page.
+revert-creator:            Last edit was made by page creator, {0}.
+revert-delete-instead:     Delete page instead?
+revert-speedy-instead:     Tag for speedy deletion instead?
+</pre>
+
+=== Speedy form ===
+<pre>
+speedy-title:              Speedy tag {0}
+speedy-reason:             Reason:
+speedy-parameters:         Parameters:
+speedy-notifycreator:      Notify page creator
+</pre>
+
+=== Statistics form ===
+<pre>
+stats-title:               Statistics
+stats-actions:             Actions this session:
+stats-session:             Session time: {0}
+stats-edits:               Edits
+stats-assisted:            Assisted edits
+stats-huggle:              Huggle edits
+stats-reverts:             Reverts
+stats-warnings:            Warnings
+stats-reports:             Reports
+stats-tags:                Tags
+stats-notifications:       Notifications
+stats-blocks:              Blocks
+stats-deletes:             Deletes
+stats-protections:         Protections
+stats-allusers:            All users
+stats-me:                  Me
+stats-ignored:             Ignored
+stats-anon:                Anonymous
+stats-bots:                Bots
+stats-other:               Other
+</pre>
+
+=== Tag form ===
+<pre>
+tag-title:                 Tag {0}
+tag-tagselector:           Add tag:
+tag-tags:                  Tag(s):
+tag-summary:               Summary:
+tag-insertatend:           Insert at the end of the page
+</pre>
+
+=== Update form ===
+<pre>
+update-title:              New version available
+update-notification:       This version of Huggle is out of date.
+update-required:           You must update to the latest version, {0}.
+update-optional:           Updating to the latest version, {0}, is recommended, and may be required in future.
+update-prompt:             Download and run the latest version now?
+update-download:           Update
+update-progress:           Downloading new version...
+update-error:              Failed to download new version
+</pre>
+
+=== User info form ===
+<pre>
+userinfo-title:            User information for '{0}'
+userinfo-anonymous:        Anonymous:
+userinfo-ignored:          Whitelisted:
+userinfo-edits:            Number of edits:
+userinfo-sessionedits:     Edits this session:
+userinfo-sharedip:         Shared/dynamic IP:
+userinfo-blocklog:         Blocks:
+userinfo-warnlog:          Warnings:
+</pre>
+
+=== Warning form ===
+<pre>
+warning-title:             Warn {0}
+warning-levelgroup:        Warning level
+warning-levelauto:         Automatic
+warning-level1:            Level 1
+warning-level2:            Level 2
+warning-level3:            Level 3
+warning-level4:            Level 4 (final)
+warning-warntype:          Warning type:
+warning-warnlog:           Warnings for this user:
+</pre>
+
+=== XfD form ===
+<pre>
+xfd-title:                 Nominate {0} for deletion
+xfd-category:              Category:
+xfd-nominationtype:        Nomination type:
+xfd-notify:                Notify creator
+xfd-reason:                Reason:
+</pre>
+
+=== Web requests ===
+<pre>
+error-apidisabled:         The MediaWiki API is disabled
+error-exception:           Error retrieving '{0}'
+error-fail:                Failed to retrieve '{0}'
+error-loggedout:           Account has been logged out, logging back in...
+error-noresponse:          No response
+error-pagemissing:         The page does not exist
+error-reloginfail:         Failed to log back in, try restarting Huggle
+error-timeout:             Request timed out
+error-unknown:             Unknown error
+
+retrying:                  Retrying...
+
+block-done:                Blocked '{0}'
+block-fail:                Did not block '{0}'
+block-progress:            Blocking '{0}'...
+
+blocklog-fail:             Failed to retrieve block log for '{0}'
+blocklog-none:             No block log for '{0}'
+blocklog-progress:         Retrieving block log for '{0}'...
+
+blocknotify-fail:          Did not notify '{0}' of block
+blocknotify-progress:      Notifying '{0}' of block...
+
+delete-done:               Deleted '{0}'
+delete-fail:               Did not delete '{0}'
+delete-progress:           Deleting '{0}'...
+
+deletelog-fail:            Failed to retrieve deletion log for '{0}'
+deletelog-none:            No deletion log for '{0}'
+deletelog-progress:        Retrieving deletion log for '{0}'...
+
+diff-deleted:              This revision has been deleted.
+diff-fail:                 Failed to retrieve diff of '{0}'
+
+reqdelete-duplicate:       The page is already tagged
+reqdelete-tagfail:         Did not tag '{0}' for deletion discussion
+reqdelete-redirectfail:    The page is a redirect and no redirect discussion process is defined
+reqdelete-tagprogress:     Tagging '{0}' for deletion discussion...
+
+reqdelete-subpageprogress: Creating deletion discussion subpage for '{0}'...
+reqdelete-subpagefail:     Did not create deletion discussion subpage for '{0}'
+reqdelete-logprogress:     Adding '{0}' to deletion discussion log...
+reqdelete-logfail:         Did not add '{0}' to deletion discussion log
+
+edit-fail:                 Did not edit '{0}'
+edit-progress:             Editing '{0}'...
+
+email-done:                Sent e-mail to '{0}'
+email-fail:                Failed to send e-mail to '{0}'
+email-progress:            Sending e-mail to '{0}'...
+
+history-fail:              Failed to retrieve history of '{0}'
+history-progress:          Retrieving history of '{0}' ({1})...
+
+move-done:                 Moved '{0}' to '{1}'
+move-fail:                 Did not move '{0}' to '{1}'
+move-progress:             Moving '{0}' to '{1}'...
+
+notify-fail:               Did not notify the creator of '{0}'
+notify-unknowncreator:     Cannot find page creator
+
+patrol-duplicate:          The page is already patrolled
+patrol-done:               Marked '{0}' as patrolled
+patrol-fail:               Did not mark '{0}' as patrolled
+patrol-notfound:           Cannot find recent-changes id, page is too old
+patrol-progress:           Marking '{0}' as patrolled...
+
+protect-done:              Changed protection level for '{0}'
+protect-fail:              Did not change protection level for '{0}'
+protect-progress:          Changing protection level for '{0}'...
+
+protectlog-fail:           Failed to retrieve protection log for '{0}'
+protectlog-none:           No protection log for '{0}'
+protectlog-progress:       Retrieving protection log for '{0}'...
+
+purge-done:                Purged '{0}'
+purge-fail:                Failed to purge '{0}'
+purge-progress:            Purging '{0}'
+
+queue-refresh-fail:        Error refreshing queue '{0}'
+
+report-duplicate:          The user has already been reported
+report-fail:               Did not report '{0}'
+report-progress:           Reporting '{0}'...
+
+saveuserconfig-done:       Updated user configuration page
+saveuserconfig-fail:       Did not update user configuration page
+saveuserconfig-progress:   Updating user configuration page...
+
+loadglobalconfig-fail:     Failed to load global configuration page
+loadprojectconfig-fail:    Failed to load project configuration page
+loaduserconfig-fail:       Failed to load user configuration page
+
+reqprotection-badformat:   Format of request page unknown
+reqprotection-duplicate:   Protection has already been requested
+reqprotection-fail:        Did not request protection of '{0}'
+reqprotection-progress:    Requesting protection of '{0}'...
+
+revert-cannotundo:         Cannot undo due to conflicting intermediate edits
+revert-conflict:           The page was edited by ignored user '{0}'
+revert-fail:               Did not revert '{0}'
+revert-nochange:           The content of the target revision is identical to that of the current revision
+revert-nootheruser:        No other user has edited the page
+revert-progress:           Reverting '{0}'...
+
+tag-alreadytagged:         The page has already been tagged
+tag-deleted:               The page has been deleted
+tag-fail:                  Did not tag '{0}'
+tag-progress:              Tagging '{0}'...
+
+sight-done:                Marked revision {0} of '{1}' as sighted
+sight-fail:                Failed to sight revision {0} of '{1}'
+sight-progress:            Marking revision {0} of '{1}' as sighted
+
+speedy-fail:               Did not tag '{0}' for speedy deletion
+speedy-progress:           Tagging '{0}' for speedy deletion...
+
+warnlog-fail:              Failed to retrieve warning log for '{0}'
+warnlog-none:              '{0}' has not been warned
+warnlog-progress:          Retrieving warning log for '{0}'...
+
+unwatch-done:              Removed '{0}' from watchlist
+unwatch-fail:              Failed to remove '{0}' from watchlist
+unwatch-progress:          Removing '{0}' from watchlist...
+
+usermessage-duplicate:     A message about the same thing was already present
+usermessage-fail:          Did not message '{0}'
+usermessage-progress:      Messaging '{0}'...
+
+watch-done:                Added '{0}' to watchlist
+watch-fail:                Failed to add '{0}' to watchlist
+watch-progress:            Adding '{0}' to watchlist...
+
+warn-alreadyfinal:         The user already has a final warning
+warn-alreadyblocked:       The user has already been blocked
+warn-alreadyreported:      The user has already been reported
+warn-oldedit:              The user has not edited since their latest warning
+warn-recent:               The user was warned less than {0} seconds ago
+warn-fail:                 Did not warn '{0}'
+warn-progress:             Warning '{0}'...
+</pre>
+
+=== API ===
+<pre>
+api-help:                  No parameters in API query
+</pre>

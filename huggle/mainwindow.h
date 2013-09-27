@@ -36,6 +36,7 @@
 #include "hugglefeedproviderirc.h"
 #include "querygc.h"
 #include "reportuser.h"
+#include "waitingform.h"
 
 namespace Ui {
 class MainWindow;
@@ -126,19 +127,18 @@ private slots:
     void on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered();
     void on_actionWelcome_user_2_triggered();
     void on_actionReport_user_triggered();
-
     void on_actionReport_user_2_triggered();
     void on_actionWarning_1_triggered();
     void on_actionWarning_2_triggered();
     void on_actionWarning_3_triggered();
     void on_actionWarning_4_triggered();
-
     void on_actionEdit_user_talk_triggered();
 
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
     QLabel *Status;
+    WaitingForm *fWaiting;
     void DisplayWelcomeMessage();
     void Welcome();
     void Render();

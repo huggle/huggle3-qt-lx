@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/huggle/text">
+	<file>Localization/en.txt</file>
+	<file>Localization/ar.txt</file>
+	<file>Localization/bg.txt</file>
+	<file>Localization/bn.txt</file>
+	<file>Localization/de.txt</file>
+	<file>Localization/es.txt</file>
+	<file>Localization/fa.txt</file>
+	<file>Localization/fr.txt</file>
+	<file>Localization/hi.txt</file>
+	<file>Localization/it.txt</file>
+	<file>Localization/ja.txt</file>
+	<file>Localization/ka.txt</file>
+	<file>Localization/km.txt</file>
+	<file>Localization/kn.txt</file>
+	<file>Localization/ko.txt</file>
+	<file>Localization/ml.txt</file>
+	<file>Localization/nl.txt</file>
+    </qresource>
+</RCC>

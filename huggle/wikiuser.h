@@ -15,6 +15,8 @@
 #include <QString>
 #include <QRegExp>
 
+#include "configuration.h"
+
 class WikiUser
 {
 public:

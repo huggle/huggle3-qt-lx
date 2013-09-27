@@ -13,6 +13,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    this->fWaiting = NULL;
     ui->setupUi(this);
     this->Status = new QLabel();
     ui->statusBar->addWidget(this->Status);
@@ -72,8 +73,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             this->RevertWarn->addAction(actiona);
             this->WarnMenu->addAction(actionb);
             this->RevertSummaries->addAction(action);
-            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
             r++;
+            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
+            connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
+            connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
         }
         ui->actionWarn->setMenu(this->WarnMenu);
         ui->actionRevert->setMenu(this->RevertSummaries);
@@ -87,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->fWaiting;
     delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;
@@ -634,6 +638,21 @@ void MainWindow::CustomRevertWarn()
         Core::DeveloperError();
         return;
     }
+
+    QAction *revert = (QAction*) QObject::sender();
+    QString k = Core::GetKeyOfWarningTypeFromWarningName(revert->text());
+    QString rs = Core::GetSummaryOfWarningTypeFromWarningKey(k);
+    ApiQuery *result = this->Revert(rs, true, false);
+
+    if (result != NULL)
+    {
+        this->Warn(k, result);
+    }
+
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
 }
 
 void MainWindow::CustomWarn()
@@ -643,6 +662,11 @@ void MainWindow::CustomWarn()
         Core::DeveloperError();
         return;
     }
+
+    QAction *revert = (QAction*) QObject::sender();
+    QString k = Core::GetKeyOfWarningTypeFromWarningName(revert->text());
+
+    this->Warn(k, NULL);
 }
 
 QString MainWindow::GetSummaryText(QString text)
@@ -929,12 +953,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
         return;
     }
 
-    ApiQuery *result = this->Revert("", true, false);
-
-    if (result != NULL)
-    {
-        this->Warn("warning", result);
-    }
+    this->Revert("", true, false);
 }
 
 void MainWindow::on_actionWelcome_user_2_triggered()

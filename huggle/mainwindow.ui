@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -56,6 +65,7 @@
      <string>File</string>
     </property>
     <addaction name="actionPreferences"/>
+    <addaction name="actionReconnect_IRC"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -158,6 +168,12 @@
    <addaction name="menuDebug"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="accessibleName">
+    <string>Toolbar</string>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -566,6 +582,11 @@
   <action name="actionEdit_user_talk">
    <property name="text">
     <string>Edit user talk</string>
+   </property>
+  </action>
+  <action name="actionReconnect_IRC">
+   <property name="text">
+    <string>Reconnect IRC</string>
    </property>
   </action>
  </widget>

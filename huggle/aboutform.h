@@ -12,6 +12,7 @@
 #define ABOUTFORM_H
 
 #include <QDialog>
+#include "configuration.h"
 
 namespace Ui {
 class AboutForm;

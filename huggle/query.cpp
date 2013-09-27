@@ -46,6 +46,8 @@ QString Query::QueryTypeToString()
             return "null";
         case QueryApi:
             return "Api Query";
+        case QueryEdit:
+            return "Edit Query";
     }
     return "Unknown";
 }
