@@ -25,8 +25,7 @@ enum WarningLevel
     WarningLevel1,
     WarningLevel2,
     WarningLevel3,
-    WarningLevel4,
-    WarningLevel5
+    WarningLevel4
 };
 
 enum WEStatus

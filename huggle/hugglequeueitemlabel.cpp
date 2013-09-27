@@ -92,11 +92,6 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     ParentQueue->Delete(this, qi);
 }
 
-void HuggleQueueItemLabel::on_label_2_linkActivated(const QString &link)
-{
-    QApplication::exit();
-}
-
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)

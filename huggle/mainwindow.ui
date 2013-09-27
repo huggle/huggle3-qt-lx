@@ -65,6 +65,7 @@
      <string>File</string>
     </property>
     <addaction name="actionPreferences"/>
+    <addaction name="actionReconnect_IRC"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -581,6 +582,11 @@
   <action name="actionEdit_user_talk">
    <property name="text">
     <string>Edit user talk</string>
+   </property>
+  </action>
+  <action name="actionReconnect_IRC">
+   <property name="text">
+    <string>Reconnect IRC</string>
    </property>
   </action>
  </widget>

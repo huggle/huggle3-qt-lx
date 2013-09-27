@@ -34,8 +34,6 @@ public:
     virtual bool IsPaused() { return false; }
     //! Return a last edit from cache or NULL
     virtual WikiEdit *RetrieveEdit() { return NULL; }
-    //! Apply a filter on buffer and return last edit which is matching it
-    virtual WikiEdit *FilterEdit(HuggleQueueFilter *filter) { return NULL; }
     HuggleQueueFilter *Filter;
 };
 

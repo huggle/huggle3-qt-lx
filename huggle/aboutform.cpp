@@ -16,6 +16,12 @@ AboutForm::AboutForm(QWidget *parent) :
     ui(new Ui::AboutForm)
 {
     ui->setupUi(this);
+    QString python = " without python support";
+    if (Configuration::PythonEngine)
+    {
+        python = " with python support";
+    }
+    ui->label_7->setText("Version: " + Configuration::HuggleVersion + python);
 }
 
 AboutForm::~AboutForm()

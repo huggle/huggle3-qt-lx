@@ -15,6 +15,7 @@ using namespace std;
 TerminalParser::TerminalParser(int argc_, QStringList argv)
 {
     this->argc = argc_;
+    this->args = argv;
 }
 
 bool TerminalParser::Parse()

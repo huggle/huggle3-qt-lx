@@ -520,6 +520,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     Message *m = new Message(user, message, summary);
     m->title = title;
     m->Dependency = dependency;
+    m->Section = section;
     Core::Messages.append(m);
     m->Send();
     Core::Log("Sending message to user " + user->Username);
@@ -1075,6 +1076,21 @@ bool Core::ParseLocalConfig(QString config)
 bool Core::ParseUserConfig(QString config)
 {
     Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
+   // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
+    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString(Configuration::LocalConfig_IPScore)).toInt();
+    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString(Configuration::LocalConfig_ScoreFlag)).toInt();
+    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
+    Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
+    Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
+    Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
+    QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
+    if (l1.count() > 0)
+    {
+        Configuration::LocalConfig_TemplateSummary = l1;
+    }
+    //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
+    //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
+    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
     return true;
 }
 
@@ -1125,7 +1141,7 @@ Language *Core::MakeLanguage(QString text, QString name)
 void Core::LocalInit(QString name)
 {
     QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
-    f->Open(QIODevice::ReadOnly);
+    f->open(QIODevice::ReadOnly);
     Core::LocalizationData.append(Core::MakeLanguage(name, QString(f->readAll())));
     f->close();
     delete f;

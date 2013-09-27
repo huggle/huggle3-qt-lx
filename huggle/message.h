@@ -32,6 +32,8 @@ public:
     QString title;
     ApiQuery *query;
     QString token;
+    //! If edit will be created in new section
+    bool Section;
     WikiUser *user;
     QString text;
     QString summary;

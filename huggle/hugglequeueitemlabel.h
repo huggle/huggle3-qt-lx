@@ -34,9 +34,6 @@ public:
     void Process(QLayoutItem *qi = NULL);
     WikiEdit *page;
     static int Count;
-    
-private slots:
-    void on_label_2_linkActivated(const QString &link);
 
 protected:
     void mousePressEvent(QMouseEvent *event);
