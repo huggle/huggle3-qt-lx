@@ -10,10 +10,14 @@ Building
 Windows:
 
 * Download QT Creator from http://qt-project.org/downloads
+* Checkout this repository
+* Create empty version.txt in folder huggle
 * Open huggle.pro in that and hit build
 
 Linux:
 
 * sudo apt-get install qt4-qmake #qt5-qmake if you prefer
+* checkout this repository
+* cd REPO/huggle, execute update.sh
 * qmake
 * make
