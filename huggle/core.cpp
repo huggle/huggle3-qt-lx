@@ -35,6 +35,7 @@ QDateTime Core::StartupTime = QDateTime::currentDateTime();
 bool Core::Running = true;
 QList<iExtension*> Core::Extensions;
 WikiPage *Core::AIVP = NULL;
+QList<Language*> Core::LocalizationData;
 
 void Core::Init()
 {
@@ -1111,4 +1112,37 @@ void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
 void Core::ExceptionHandler(Exception *exception)
 {
 
+}
+
+QString Core::Localize(QString key)
+{
+    if (Core::LocalizationData.count() > 0)
+    {
+        int c=0;
+        while (c<Core::LocalizationData.count())
+        {
+            if (Core::LocalizationData.at(c)->LanguageName == Configuration::Language)
+            {
+                Language *l = Core::LocalizationData.at(c);
+                if (l->Messages.contains(key))
+                {
+                    return l->Messages[key];
+                }
+                // performance tweak
+                break;
+            }
+            c++;
+        }
+        if (Core::LocalizationData.at(0)->Messages.contains(key))
+        {
+            return Core::LocalizationData.at(0)->Messages[key];
+        }
+    }
+    return key;
+}
+
+
+Language::Language(QString name)
+{
+    LanguageName = name;
 }

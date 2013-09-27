@@ -122,7 +122,8 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     pictures.qrc \
     Version.qrc \
-    html.qrc
+    html.qrc \
+    text.qrc
 
 OTHER_FILES += \
     Resources/Header.txt \

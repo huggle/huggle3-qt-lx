@@ -1,0 +1,776 @@
+﻿<pre>
+name:                       हिन्दी
+</pre>
+
+=== General ===
+<pre>
+add:                       जोड़ें
+apply:                     लागू करें
+cancel:                    रद्द करें
+clear:                     साफ़ करें
+close:                     बन्द करें
+continue:                  जारी रखें
+copy:                      प्रतिलिपि बनाएँ
+delete:                    मिटाएँ
+error:                     त्रुटि
+exit:                      निकास
+minimizewindow:            विण्डो लघुतम करें
+no:                        नहीं
+ok:                        ठीक है 
+remove:                    हटाएँ
+rename:                    पुनर्नामकरण
+restorewindow:             विण्डो बहाल करें
+save:                      सहेजें
+selectfile:                सञ्चिका चुनें
+yes:                       हाँ
+agf:                       रुचिगत कारण देकर अच्छी भावना से किए गए सम्पादन के रूप में पूर्ववत करें
+import:                    वैश्विक कॉनफ़िग से आयात करें
+</pre>
+
+=== Edit types ===
+<pre>
+edittype-blocknote:        सन्देश अवरोधित करें
+edittype-deletenote:       हटाने के अनुरोध के सन्देश
+edittype-deletetag:        विलोपन चर्चा टैग
+edittype-deletereq:        अन्य विलोपन चर्चा बदलाव
+edittype-manual:           मानवकृत सम्पादन
+edittype-message:          उपयोगकर्ता सन्देश
+edittype-note:             अन्य अधिसूचना
+edittype-prodtag:          प्रस्तावित विलोपन टैग
+edittype-protectreq:       रक्षा निवेदन
+edittype-report:           रपट
+edittype-revert:           पूर्वावस्थाकरण
+edittype-speedytag:        शीघ्र विलोपन टैग
+edittype-tag:              अन्य टैग 
+edittype-warning:          चेतावनी 
+</pre>
+
+=== About form ===
+<pre>
+about-contributors:        विकासकर्ता:
+</pre>
+
+=== Block form ===
+<pre>
+block-title:               {0} को अवरोधित करें
+block-reason:              कारण:
+block-duration:            अवधि:
+block-message:             वार्ता पृष्ठ सन्देश:
+block-anononly:            केवल अज्ञात सदस्यों को अवरोधित करें
+block-creation:            खाता निर्माण अवरोधित करें
+block-autoblock:           स्वतः अवरोधन सक्षम करें
+block-email:               ई-मेल अवरोधित करें
+block-usertalk:            वार्ता
+block-usercontribs:        योगदान
+block-blockloglabel:       अवरोधन लॉग:
+block-warnloglabel:        चेतावनी:
+block-sharedipwarning:     अवधान: {0} साझाकृत या गत्यात्मक आईपी पते के रूप में अंकित है।
+block-sensitivewarning:    यह आईपी पता निम्नलिखित कारण से 'संवेदनशील' सूचीबद्ध है:\n\n   {0}\n\nखैर जारी रखें?
+block-rangeblockwarning:   {0} पहले से ही {1} पर श्रृंखला अवरोधन के कारण प्रभावित है।\nयह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?
+</pre>
+
+=== Closing form ===
+<pre>
+closing-whitelist:         प्रयोक्ता श्वेतसूची को अद्यतित कर रहा है...
+closing-config:            प्रयोक्ता समाकृति उपपृष्ठ को अद्यतित कर रहा है...
+</pre>
+
+=== Configuration form ===
+<pre>
+config-summ:               साँचों के लिये सारांश को व्यक्तिगतरुप से वापस करे
+config-title:              विकल्प
+config-rememberme:         प्रयोक्तानाम स्मरण
+config-rememberpassword:   पारशब्द स्मरण
+config-autowhitelist:      प्रयोक्ताओं को स्वतः श्वेतसूचीकृत करें
+config-openinbrowser:      ब्राउज़र कड़ियाँ नई ब्राउज़र विण्डो में खोलें
+config-shownewedits:       चुने गये पन्ने पर किये गये नये संपादन दिखायें जैसे ही वह चुने गये पन्ने बनते है। 
+config-preloads:           अन्तरों की प्रीलोडिंग सक्षम करें
+config-ircmode:            अगर संभव हो तो हाल ही में हुए परिवर्तनों के लिये आई आर सी फीड प्रयोग करें 
+config-ircport:            आईआरसी पोर्ट
+config-difffontsize:       फाण्ट आकर अन्तर
+config-logfile:            लॉग सञ्चिका
+config-viewlocalconfig:    स्थानीय विन्यास फाईल देखें
+config-trayicon:           ट्रे आइकन दिखाएँ
+config-startupmessage:     आरम्भिक संदेश दिखाये
+config-showlog:            लॉग दिखाएँ
+config-showqueue:          संशोधन  पंक्ति दिखाएँ
+config-rightalignqueue:    पंक्ति को विण्डो की दाँई ओर दिखाएँ 
+config-showtooltips:       मैन्यु में टुल टिप्स दिखाये
+config-shownewmessages:    नया संदेश बार दिखाये
+config-shortcutlist:       कुञ्जीपटल लघुपथ
+config-shortcutaction:     कार्यवाही
+config-shortcut:           लघुपथ
+config-changeshortcut:     {0} के लिए लघुपथ बदलें
+config-noshortcut:         कुछ नहीं
+config-defaults:           डिफ़ाल्ट
+config-minor:              लघु रूप में चिह्नित
+config-watchlist:          ध्यानसूची में जोड़ें
+config-defaultsummary:     व्यक्तिगत संपादनों के लिये डिफ्ल्ट सारांश
+config-undosummary:        अपने परिवर्तनों को पूर्ववत करते हुए का सारांश
+config-confirmmultiple:    एक ही सदस्य के एक ही संपादन के एक से अधिक संस्करण की पुष्टि करें
+config-confirmsame:        एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें
+config-confirmselfrevert:  स्वयं के संपादन आवृति संस्करण की पुष्टि करें
+config-confirmwarned:      किसी चेताये हुए सदस्य द्वारा किये संपादन के पुनरावृति संस्करण की पुष्टि करें
+config-confirmrange:       किसी आईपी रेंज में अनामक सदस्य द्वारा किये गये पुनरावृति संपादन की पुष्टि करें
+config-confirmpage:        उपेक्षा पृष्ठों के प्रत्यावर्तन की पुष्टि करें
+config-autoadvance:        संपादन पूर्ववत करने के बाद, पंक्ति में अगले संपादन पर जायें
+config-userollback:        रोलबैक प्रयोग करें अगर उपलब्ध है तों
+config-revertsummaries:    मैन्यु में उपलब्ध सारांश को पूर्ववत करें
+config-clearsummaries:     विभिन्न सेशन्स में व्यक्तिगत रुप से भरा गया सारांश याद रखा जाता है, इसे मिटाने हेतु क्लीक करें।
+config-reportlinkexamples: उत्पात दृष्टांतों की कड़ियाँ रिपोर्टों में सम्मिलित करें
+config-extendreports:      अतिरिक्त उत्पात के पश्चात रिपोर्टें विस्तारित करें
+config-autoreportgroup:    स्वतः-रिपोर्ट
+config-autoreport:         सदस्य को अंतिम चेतावनी देने के लिये कब पूछें
+config-reportnone:         कुछ ना करें
+config-reportprompt:       प्रतिवेदन के लिए उकसाएँ
+config-reportauto:         स्वतः मुद्दा रिपोर्ट करें
+config-templates:          प्रयोक्ता साँचा सन्देश
+config-templatetext:       पाठ दर्शाएँ
+config-template:           साँचा
+config-highlightgroup:     वाक्यविन्यास प्रकाशांकित रंग
+config-useadminfunctions:  उपलब्ध रहने पर प्रशासक प्रकार्यात्मतकता का उपयोग करें
+config-promptforblock:     अगर किसी सदस्य को अंतिम चेतावनी देने के लिये पूछा जाये तो ब्लाक के लिये संकेत देवें
+config-blockreason:        डिफ़ाल्ट अवरोधन कारण
+config-blocktime:          की डिफ़ाल्ट अवरोधन अवधि
+config-blocktimeanon:      अनाम प्रयोक्ता
+config-blocktimereg:       पञ्जीकृत प्रयोक्ता
+config-summaryprompt:      सारान्श प्रविष्ट करें
+config-defaultsprompt:     डिफ़ाल्ट पुनर्स्थापित करें?
+config-logbrowsetitle:     लॉग सञ्चिका ठिकाना
+config-shortcutconflict:   लघुपथ '{0}' अस्तित्वयुक्त लघुपथ '{1}' के साथ टकराव स्थिति में है।
+</pre>
+
+=== Delete form ===
+<pre>
+delete-title:              {0} को हटाएँ 
+delete-reason:             कारण:
+delete-deletionlog:        हटाए जाने का लॉग:
+delete-rem-talk:           सम्बन्धित वार्ता हटाएँ
+delete-notify:             निर्माता को सूचित करें
+</pre>
+
+=== Edit form ===
+<pre>
+edit-title:                {0} का सम्पादन
+edit-summary:              सारांश:
+edit-minor:                लघु सम्पादन
+edit-watch:                इस पृष्ठ को ध्यानसूची में रखें
+edit-page:                 पृष्ठ
+edit-edit:                 सम्पादन
+edit-view:                 देखें
+edit-page-savetofile:      सञ्चिका में सहेजें...
+edit-page-save:            सहेजें
+edit-page-cancel:          रद्द करें
+edit-edit-undo:            अनकिया करें
+edit-edit-redo:            पुनः करें
+edit-edit-cut:             काटें
+edit-edit-copy:            प्रतिलिपि बनाएँ
+edit-edit-paste:           चिपकाएँ
+edit-edit-delete:          हटाएँ
+edit-edit-selectall:       सभी चुने
+edit-edit-find:            खोजें
+edit-view-syntax:          वाक्यविन्यास रंगकरण
+edit-matchcase:            केस मिलाएँ
+edit-find:                 खोजें:
+edit-replace:              प्रतिस्थापन करें:
+edit-findnext:             अगला
+edit-findprevious:         पिछला
+edit-replaceall:           सभी प्रतिस्थापन करें
+edit-edittab:              सम्पादन
+edit-previewtab:           पूर्वावलोकन
+edit-changestab:           परिवर्तन
+edit-searchnotfound:       वाक्यांश नहीं मिला
+edit-searchwrapstart:      पृष्ठान्त पर पहुँचे, शीर्ष से जारी
+edit-searchwrapend:        पृष्ठ शीर्ष पर पहुँचे, पृष्ठान्त से जारी
+</pre>
+
+=== E-mail form ===
+<pre>
+email-title:               {0} को ईमेल करें
+email-subject:             विषय:
+email-message:             सन्देश:
+email-ccme:                मुझे इस सन्देश की प्रतिपिलि ईमेल करें
+email-send:                भेजें
+</pre>
+
+=== IRC feed ===
+<pre>
+irc-connected:             आई आर सी हाल ही में परिवर्तन फीड से जुडे़
+irc-connecting:            आई आर सी हाल ही में परिवर्तन फीड  से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लगेगा।
+irc-disconnected:          आई आर सी हाल ही में परिवर्तन फीड से सम्पर्क टूटा; फिर से सम्पर्क किया जा रहा है...
+irc-nochannel:             {0} के लिये आई आरसी चेनल नहीं मिला; 
+irc-error:                 आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग
+</pre>
+
+=== List form ===
+<pre>
+list-actions:              कार्यवाही और छनन...
+list-browsetitle:          पाठ सञ्चिका को सूची में जोडें
+list-combine:              संघटित करें
+list-copyto:               :पर कॉपी करें
+list-count:                {0} आइटम
+list-deleteconfirm:        '{0}' को हटाएँ?
+list-duplicatename:        '{0}' नाम की सञ्चिका पहले से ही अस्तित्व में है। कोई अन्य नाम चुनें।
+list-intersect:            प्रतिच्छेदन करें
+list-limit:                तक:
+list-listempty:            सूची में कोई आइटम नहीं\nस्रोत प्रविष्ट करें और "जोड़ें" पर क्लिक करें।
+list-nolists:              कोई सूची परिभाषित नहीं है\nनिर्मित करने के लिए "जोड़ें" पर क्लिक करें
+list-query-cancelled:      रद्द किया गया।
+list-query-fail:           क्वेरी असफल रही।
+list-query-noresults:      क्वेरी ने कोई परिणाम नहीं लौटाए।
+list-query-progress:       क्वेरी चला रहा है...
+list-query-results:        {0} परिणाम लौटाए गए।
+list-renameprompt:         नया नाम प्रविष्ट करें:
+list-replace:              प्रत्यावर्त करें
+list-savefailed:           सूची सहेजने में असमर्थ:
+list-savetitle:            सूची को सहेजें
+list-sourcetype:           स्रोत प्रकार:
+list-start:                से:
+list-stop:                 रुकिए
+list-title:                सूची बनाने वाला
+</pre>
+
+=== Login ===
+<pre>
+login-language:            भाषा:
+login-project:             परियोजना:
+login-username:            प्रयोक्तानाम:
+login-password:            पारशब्द:
+login-proxygroup:          छ्द्म समायोजन
+login-proxy:               छ्द्म सर्वर का उपयोग करें
+login-proxyaddress:        पता:
+login-proxyport:           पोर्ट:
+login-proxydomain:         डोमेन:
+login-start:               लॉग इन
+login-translate:           अनुवाद...
+login-captchatitle:        लॉग इन के लिए कैप्चा की आवश्यकता है
+
+login-progress-start:      लॉग इन कर रहा है...
+login-progress-language:   सन्देश सञ्चिकाएँ अद्यतित कर रहा है...
+login-progress-global:     वैश्विक समाकृति की जाँच कर रहा है...
+login-progress-config:     समाकृति पृष्ठों की जाँच कर रहा है...
+login-progress-userlist:   प्रयोक्ता सूची की जाँच कर रहा है...
+login-progress-whitelist:  श्वेतसूची पुनः प्राप्त कर रहा है...
+
+login-error-admin:         इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।
+login-error-age:           इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम {0} दिन पुराना होना चाहिए।
+login-error-alldisabled:   वर्तमान में हूगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।
+login-error-approval:      इस परियोजना पर हूगल का उपयोग करने के लिए स्वीकृति चाहिए।
+login-error-autoconfirmed: इस परियोजना पर हूगल का उपयोग करने के लिए आपका खाता स्वतः पुष्टिकृत होना चाहिए।
+login-error-cancelled:     रद्द किया गया।
+login-error-captcha:       गलत पारशब्द या पुष्टिकरण कोड।
+login-error-config:        समाकृति पृष्ठों को लोड करने में असफल रहा!
+login-error-count:         इस परियोजना पर हूगल उपयोग के लिए कम से कम {0} सम्पादन होने चाहिए।
+login-error-disabled:      आपके खाते के लिए हूगल सक्षम नहीं किया हुआ है, प्रयोक्ता समाकृति पृष्ठ देखें।
+login-error-global:        वैश्विक समाकृति पृष्ठ लोड करने में असफल रहा।
+login-error-invalid:       अमान्य प्रयोक्तानाम।
+login-error-language:      सन्देश सञ्चिकाएँ लोड करने में असफल रहा।
+login-error-nocaptcha:     कैप्चा नहीं सुलझा।
+login-error-noconfig:      इस परियोजना का हूगल समाकृति पृष्ठ नहीं है।
+login-error-nouser:        प्रयोक्ता अस्तित्वहीन।
+login-error-password:      गलत पारशब्द।
+login-error-projdisabled:  अभी इस परियोजना पर हूगल अक्षम किया हुआ है।
+login-error-rollback:      इस परियोजना पर हूगल उपयोग के लिए रोलबैक की आवश्यकता है।
+login-error-unknown:       लॉग इन करने में असमर्थ।
+login-error-userlist:      प्रयोक्ता सूची लोड करने में असफल।
+login-error-version:       संस्करण अप्रचलित है। नवीनतम संस्करण प्राप्त करें।
+login-error-whitelist:     प्रयोक्ता श्वेतसूची लोड करने में असफल।
+</pre>
+
+=== Main window ===
+<pre>
+main-page:                 पृष्ठ
+main-user:                 प्रयोक्ता
+main-contribs:             योगदान
+main-history:              इतिहास
+main-new-messages:         आपके लिये नये संदेश ; व्यवस्था चुने -> नये संदेश दिखाये या  उन्हे देखने के लिये M दबायें।
+main-system:               प्रणाली
+main-system-messages:      नए सन्देश दिखाएँ
+main-system-reconnectirc:  आई आर सी फीड पर फीर से जुडे़
+main-system-savelog:       चिठ्ठा सहेजें
+main-system-lists:         सूची बनाने वाला
+main-system-requests:      आवेदन...
+main-system-statistics:    सांख्यिकी...
+main-system-showlog:       चिठ्ठा दिखाये
+main-system-showqueue:     पंक्ति दिखाये
+main-system-showtwoqueues: दो पंक्तियाँ दिखाये
+main-system-options:       विकल्प...
+main-system-logout:        सत्रान्त
+main-system-exit:          निकास
+main-queue:                पंक्ति
+main-queue-next:           अगला
+main-queue-trim:           छँटाई
+main-queue-clear:          वर्तमान साफ करें
+main-queue-count:          {0} वस्तुएँ
+main-queue-query:          जाँच शुरु...
+main-queue-reset:          फिर से स्थापित करें 
+main-queue-clearall:       सब साफ करें
+main-queue-options:        पंक्तियाँ व्यवस्थित करें...
+main-goto:                 पर जायें
+main-goto-mytalk:          मेरा वार्ता पृष्ठ
+main-goto-mycontribs:      मेरे योगदान
+main-revision-decline:     संशोधन अस्वीकार करें
+main-revision:             संशोधन
+main-revision-view:        देखें
+main-revision-revert:      पूर्ववत करें
+main-revision-faith:       ऐजीएफ पूर्ववत करें
+main-revision-previous:    पिछला
+main-revision-next:        अगला
+main-revision-latest:      नवीनतम
+main-revision-sight:       दृष्टि
+main-page-switchtotalk:    वार्ता पृष्ठ पर जायें
+main-page-switchtosubject: विषय पृष्ठ पर जायें
+main-page-switchtoarticle: लेख पर जायें
+main-page-viewlatest:      नवीनतम संशोधन देखें
+main-page-history:         पुन इतिहास प्राप्त करें
+main-page-historypage:     इतिहास पृष्ठ दिखाये
+main-page-edit:            सम्पादन
+main-page-tag:             टैग
+main-page-reqdeletion:     हटाने के लिये बोले
+main-page-reqprotection:   सुरक्षित करने के लिये कहें
+main-page-watch:           ध्यान दें
+main-page-unwatch:         निगरानी न रखें हुए
+main-page-purge:           पर्ज
+main-page-patrol:          पैट्रोल्ड मार्क करें
+main-page-move:            स्थानान्तरण...
+main-page-protect:         सुरक्षित करें...
+main-page-delete:          हटाएँ...
+main-page-restore:         लेख के इस संस्करण को फिर से सहेजें
+main-user-info:            सदस्य के बारे में सूचना देवें
+main-user-ignore:          उपेक्षित करें
+main-user-unignore:        अनुपेक्षित करें
+main-user-contribs:        पुनर्प्राप्त योगदान
+main-user-talk:            वार्ता पृष्ठ देखें
+main-user-message:         सन्देश...
+main-user-email:           ईमेल...
+main-user-warn:            चेतावनी दें...
+main-user-report:          विवरण
+main-user-block:           अवरोधन...
+main-browser:              ब्राउज़र
+main-browser-newtab:       नती टैब
+main-browser-closetab:     टैब बंद करें
+main-browser-closeothers:  अन्य टैब बंद करें
+main-browser-back:         पीछे
+main-browser-forward:      आगे
+main-browser-open:         बाहरी ब्राउजर में दिखायें
+main-browser-newedits:     पृष्ठ पर हुए नये संपादन दिखायें
+main-browser-newcontribs:  सदस्य द्वारा किये गये नये संपादन दिखायें
+main-help:                 सहायता
+main-help-documentation:   दस्तावेज़ीकरण
+main-help-feedback:        प्रतिक्रिया
+main-help-about:           हगल के बारे में...
+main-addqueue:             जोड़े...
+main-savelogtitle:         चिठ्ठा सुरक्षित करें
+main-usermessageother:     अन्य सन्देश...
+main-advanced:             उन्नत...
+main-stats:                प्रति मिनट {0} सम्पादन, {1} reverts per minute
+main-tip-revertwarn:       इस संशोधन को पूर्ववत कर सदस्य को चेतावनी दें
+main-tip-nextdiff:         पंक्ति में अगला संशोधन दर्शायें
+main-tip-revert:           इस संशोधन को पूर्ववत करें
+main-tip-template:         सदस्य को साँचे में संदेश भेजें
+main-tip-warn:             प्रयोक्ता को चतावनी दें
+main-tip-cancel:           सभी लम्बित कार्यवाही रद्द करें
+main-tip-undo:             हाल ही की कार्यवाही पूर्ववत करें
+main-tip-browserback:      पीछे
+main-tip-browserforward:   आगे
+main-tip-browseropen:      इसे बाहरी ब्राउजर में दिखायें
+main-tip-browsernewtab:    नया टैब
+main-tip-browserclosetab:  टैब बन्द करें
+main-tip-history:          पुनर्प्राप्त पृष्ठ इतिहास
+main-tip-historyprev:      इस पृष्ठ पर किये गये पिछले संशोधन दर्शायें
+main-tip-historynext:      अगला संशोधन दर्शायें
+main-tip-historylast:      इस पृष्ठ पर नवीनतम संशोधन दर्शायें
+main-tip-historydifftocur: इस पृष्ठ की नवीनतम संशोधन एवं वर्तमान संशोधन में अंतर दर्शायें
+main-tip-contribs:         पुनर्प्राप्त उपयोगकर्ता योगदान
+main-tip-contribsprev:     इस सदस्य द्वारा किये गये पिछ्ले संशोधन दर्शाये
+main-tip-contribsnext:     सदस्य द्वारा किया गया अगला संशोधन दर्शाये
+main-tip-contribslast:     सदस्य द्वारा किया गया नवीनतम संशोधन दर्शायें
+main-tip-pageview:         यह संशोधन देखें
+main-tip-pageedit:         यह पृष्ठ संशोधित करें
+main-tip-pagewatch:        इस पृष्ठ को ध्यान सूची में डालें
+main-tip-pagetag:          इस पृष्ठ को टैग करे
+main-tip-pagetagdelete:    इस पृष्ठ को हटाने हेतु टैग करे
+main-tip-pagedelete:       यह पृष्ठ हटाये
+main-tip-userinfo:         सदस्य सूचना दिखाये
+main-tip-usertalk:         सदस्य वार्ता पृष्ठ दिखाये
+main-tip-usermessage:      सदस्य को संदेश दें
+main-tip-userignore:       इस सदस्य द्वारा किये गये सभी संपादन अनदेखें करें
+main-tip-userreport:       इस सदस्य को सूचना दें
+main-tip-userblock:        सदस्य अवरोधित करें
+main-revision-acceptpend:   यह लम्बित संपादन स्वीकार करें
+</pre>
+
+=== Message form ===
+<pre>
+message-title:             {0} को सन्देश भेजें
+message-help:              विषय और सारान्श में से एक या दोनों जोड़ें। यदि कोई सारान्श नहीं दिया गया तो विषय का उपयोग किया जाएगा। यदि कोई विषय नहीं दिया गया तो शीर्ष (हैडर) नहीं जोड़ा जाएगा।
+message-subject:           विषय:
+message-message:           सन्देश:
+message-summary:           सारान्श:
+message-autosign:          स्वचालित रूप से हस्ताक्षर जोड़ें
+</pre>
+
+=== Move form ===
+<pre>
+move-title:                {0} का स्थानान्तरण करें
+move-target:               गन्तव्य:
+move-reason:               कारण:
+move-movetalk:             वार्ता पृष्ठ स्थानान्तरित करें
+</pre>
+
+=== Prod form ===
+<pre>
+prod-title:                {0} का हटाया जाना प्रस्तावित 
+prod-reason:               कारण:
+</pre>
+
+=== Protect form ===
+<pre>
+protect-title:             {0} को सुरक्षित करें
+protect-request-title:     {0} के लिए सुरक्षा अनुरोध करें
+protect-reason:            कारण:
+protect-expiry:            समाप्ति:
+protect-log:               सुरक्षा लॉग:
+protect-currentlevel:      वर्तमान सुरक्षा स्तर:
+protect-type:              सुरक्षा प्रकार:
+protect-none:              कोई नहीं
+protect-semiprotection:    अर्ध-सुरक्षा
+protect-fullprotection:    पुर्ण सुरक्षा
+protect-moveprotection:    सुरक्षा परिवर्तन
+</pre>
+
+=== Queue form ===
+<pre>
+queue-title:               कतारे
+queue-queues:              कतारे:
+queue-typegroup:           कतार प्रकार
+queue-listselector:        सूची:
+queue-listbuilder:         सूची बिल्डर...
+queue-sortorder:           सॉर्ट क्रम:
+queue-removeviewed:        संपादनो को देखने के बाद हटाए 
+queue-removeold:           पुराने संपादनो को समान पृष्ठ पर हटाए
+queue-removeafter:         संपादन को के बाद हटाए 
+queue-removeaftertime:     मिनट
+queue-preload:             जब यह पंक्ति चुनी जाती है तो संशोधनो की प्रीलोडिंग सक्षम करें
+queue-ignorepages:         अनदेखे किये हुए पृष्ठों पर किये गये संपादन भी अनदेखें करे
+queue-traynotification:    जब एक संशोधन पंक्ति में जोडा़ गया हो तो एक अधिसूचना दिखाये
+queue-diffsgroup:          अन्तर
+queue-nodiffs:             जब संशोधन दिखायी दें तभी अन्तर लोड करे
+queue-preloaddiffs:        जब पंक्ति सक्रिय है तभी अन्तर लोड करें
+queue-alldiffs:            इस पंक्ति में प्रत्य्रेक संशोधन के लिये अन्तर लोड करे
+queue-pagefiltersgroup:    पृष्ठ शीर्षक छनित फिल्टर
+queue-pageregex:           शीर्षक नियमित एक्सप्रेशनस से मिलता है:
+queue-namespaces:          नामस्थान:
+queue-applylabel:          इस पृष्ठ पर पडे़ समस्त पृष्ठों को इस फिल्टर को सक्षम करने के लिये सेव करे.
+queue-editfiltersgroup:    दुरुपयोग छनक
+queue-userregex:           यह सदस्य नाम नियमित एक्सप्रेशनस से मिलता है:
+queue-summaryregex:        यह सारांश नियमित एक्सप्रेशनस से मिलता है:
+queue-filternewpage:       नाया पृष्ठ
+queue-filterownuserspace:  सदस्य का अपना सदस्य पृष्ठ
+queue-filteranonymous:     अनामक सदस्य
+queue-filterignored:       सदस्य अनदेखा करें
+queue-filterreverts:       पूर्ववत
+queue-filternotifications: अधिसूचना
+queue-filterwarnings:      चेतावनी
+queue-filtertags:          टैग
+queue-filterbot:           बॉट संपादन
+queue-filterassisted:      सहायोगी संपादन
+queue-filterhuggle:        हगल संपादन
+queue-filterme:            मेरा संपादन
+queue-examplelabel1:       यह ऍट्रीब्युट चाहिये
+queue-examplelabel2:       यह ऍट्रीब्युट बाहर रखें
+queue-examplelabel3:       यह ऍट्रीब्युट जाँच मत करें
+queue-usergroup:           केवल इन सदस्यों के संपादन दर्शाये
+</pre>
+
+=== Queue trim form ===
+<pre>
+queuetrim-title:           पंक्ति कतरें
+queuetrim-age:             से पुराने सभी पंक्तिबद्ध सन्शोधन त्यागें
+queuetrim-ageunit:         मिनट
+</pre>
+
+=== Requests form ===
+<pre>
+requests-title:            अनुरोध
+requests-cancelall:        सभी रद्द करें
+requests-cancelled:        रद्द किए गए
+requests-inprogress:       प्रगति पर
+requests-failed:           असफल
+requests-completed:        पूर्ण
+requests-time:             समय
+requests-type:             प्रकार
+requests-query:            क्वेरी
+</pre>
+
+=== Report form ===
+<pre>
+report-title:              {0} को रिपिर्ट करें
+report-reason:             कारण:
+report-message:            सन्देश:
+report-log:                इस प्रयोक्ता के लिए चेतावनियाँ:
+</pre>
+
+=== Revert form ===
+<pre>
+revert-title:              {0} को पूर्ववत करें
+revert-summary:            सारान्श पूर्ववत करें (डिफ़ॉल्ट के लिए रिक्त छोड़ दें):
+revert-currentonly:        केवल चयनित संशोधन को पूर्ववत करें
+</pre>
+
+=== Revert and warn form ===
+<pre>
+revertandwarn-title:       पूर्ववत करें और {0} को चेतावनी दें
+</pre>
+
+=== Reverting ===
+<pre>
+revert-confirm-ignored:    श्वेतसूची सदस्य '{0}' द्वारा संपादन को वापस करे?
+revert-confirm-multiple:   ये '{0}' द्वारा एकाधिक संपादन को वापस ले लेगा। जारी रखें?
+revert-confirm-page:       ध्यान नहीं दिया पृष्ठ '{0}' को संपादन वापस ले?
+revert-confirm-range:      लक्षित संशोधन के लेखक, {1}, वर्तमान संशोधन के लेखक के समान सीमा में है, {0}, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?
+revert-confirm-same:       ये वापस ले हुए सदस्य, {0}, के अन्य संशोधन को वापस ले लेगा। जारी रखे?
+revert-confirm-self:       ये आपके संपादन को वापस ले लेगा। जारी रखे?
+revert-confirm-warned:     ये {0} द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?
+revert-error-first:        संपादन पृष्ठ का पहला संपादन है; वापस नहीं लिया जा सकता।
+revert-only:               संपादन पृष्ठ का एकलोता संपादन है।
+revert-creator:            आखरी संपादन पृष्ठ निर्माता, {0}, द्वारा बनाया गया था 
+revert-delete-instead:     पृष्ठ को हटा दे?
+revert-speedy-instead:     शीघ्र हटाय जाने के लिए टैग करे?
+</pre>
+
+=== Speedy form ===
+<pre>
+speedy-title:              त्वरित टैग {0}
+speedy-reason:             कारण:
+speedy-parameters:         पैरामीटर:
+speedy-notifycreator:      पृष्ठ निर्माता को सूचित करो
+</pre>
+
+=== Statistics form ===
+<pre>
+stats-title:               आंकड़े
+stats-actions:             इस अधिवेशन में चाल-चलन:
+stats-session:             सत्र समय: {0}
+stats-edits:               संपादन
+stats-assisted:            सहायता संपादन
+stats-huggle:              हघल संपादन
+stats-reverts:             वापस
+stats-warnings:            चेतावनी
+stats-reports:             रिपोर्ट
+stats-tags:                टैग
+stats-notifications:       सूचनाएँ
+stats-blocks:              ब्लॉक
+stats-deletes:             नष्टकरण
+stats-protections:         सुरक्षा
+stats-allusers:            सभी उपयोगकर्ताओं
+stats-me:                  मैं
+stats-ignored:             उपेक्षा
+stats-anon:                गुमनाम
+stats-bots:                बॉट
+stats-other:               अन्य
+</pre>
+
+=== Tag form ===
+<pre>
+tag-title:                 टैग '{0}'
+tag-tagselector:           टैग जोड़ें:
+tag-tags:                  टैग:
+tag-summary:               सारांश:
+tag-insertatend:           पृष्ठ के अंत में सम्मिलित करे
+</pre>
+
+=== Update form ===
+<pre>
+update-title:              नवीन संस्करण उपलब्ध
+update-notification:       हूगल का यह संस्करण अप्रचलित है।
+update-required:           आपको नवीनतम संस्करण {0} पर उद्यतन अवश्य कर लेना चाहिए।
+update-optional:           नवीनतम संस्करण {0} पर अद्यतन अनुग्रहित, और भविष्य में इसकी आवश्यकता हो सकती है।
+update-prompt:             नवीनतम संस्करण डाउनलोड करें और चलाएँ?
+update-download:           अद्यतित करें
+update-progress:           नवीन संस्करण डाउनलोड कर रहा है...
+update-error:              नवीन संस्करण डाउनलोड करने में असफल
+</pre>
+
+=== User info form ===
+<pre>
+userinfo-title:            '{0}' के लिए प्रयोक्ता जानकारी
+userinfo-anonymous:        नामरहित:
+userinfo-ignored:          श्वेतसूचीकृत:
+userinfo-edits:            सम्पादन संख्या:
+userinfo-sessionedits:     इस सत्र के सम्पादन:
+userinfo-sharedip:         साझाकृत/गतिशील आईपी:
+userinfo-blocklog:         अवरोधन:
+userinfo-warnlog:          चेतावनियाँ:
+</pre>
+
+=== Warning form ===
+<pre>
+warning-title:             {0} को चेतावनी दें
+warning-levelgroup:        चेतावनी स्तर
+warning-levelauto:         स्वतः
+warning-level1:            स्तर १
+warning-level2:            स्तर २
+warning-level3:            स्तर ३
+warning-level4:            स्तर ३ (अन्तिम)
+warning-warntype:          चेतावनी प्रकार:
+warning-warnlog:           इस प्रयोक्ता के लिए चेतावनियाँ:
+</pre>
+
+=== XfD form ===
+<pre>
+xfd-title:                 {0} को हटाने के लिए नामांकित करें
+xfd-category:              श्रेणी:
+xfd-nominationtype:        नामांकन प्रकार:
+xfd-notify:                लेख निर्माता को सूचित करें
+xfd-reason:                कारण:
+</pre>
+
+=== Web requests ===
+<pre>
+error-apidisabled:         मीडिया विकि एपीआई अक्षमकृत है
+error-exception:           त्रुटि पुनःप्राप्त कर रहा है '{0}'
+error-fail:                '{0}' को पुनःप्राप्त करने में असफल
+error-loggedout:           खाते से लॉग आउट किया जा चुका है, पुनः लॉग इन कर रहा है...
+error-noresponse:          कोई प्रतिक्रिया नहीं
+error-pagemissing:         पृष्ठ अस्तित्व में नहीं है
+error-reloginfail:         दोबारा लॉग इन करने में असफल, हूगल पुनः आरम्भ करने का प्रयास करें
+error-timeout:             अनुरोध का समय समाप्त हुआ
+error-unknown:             अज्ञात त्रुटि
+
+retrying:                  पुनः प्रयासरत...
+
+block-done:                '{0}' अवरोधित 
+block-fail:                '{0}' को अवरोधित नहीं किया
+block-progress:            '{0}' को अवरोधित कर रहा है...
+
+blocklog-fail:             '{0}' के लिए अवरोधन लॉग पुनःप्राप्त करने असफल
+blocklog-none:             '{0}' के लिए कोई अवरोधन लॉग नहीं
+blocklog-progress:         '{0}' के लिए अवरोधन लॉग प्राप्त कर रहा है...
+
+blocknotify-fail:          '{0}' को अवरोधन के बारे में सूचित नहीं किया
+blocknotify-progress:      '{0}' को अवरोधन के बारे में सूचित कर रहा है...
+
+delete-done:               '{0}' विलोपित 
+delete-fail:               '{0}' को विलोपित नहीं किया
+delete-progress:           '{0}' को विलोपित कर रहा है...
+
+deletelog-fail:            '{0}' के लिए विलोपन लॉग पुनःप्राप्त करने में असफल
+deletelog-none:            '{0}' के लिए विलोपन का कोई लॉग नहीं
+deletelog-progress:        '{0}' के लिए विलोपन का लॉग पुनःप्राप्त कर रहा है...
+
+diff-deleted:              यह पुनरावलोकन विलोपित कर दिया गया है।
+diff-fail:                 '{0}' के लिए अन्तर पुनःप्राप्त करने में असफल
+
+reqdelete-duplicate:       यह पृष्ठ पहले से ही अंकित है
+reqdelete-tagfail:         हटाने के चर्चा के लिए '{0}' को अंकित नहीं किया
+reqdelete-redirectfail:    यह पृष्ठ एक पुनर्निर्देशन है और कोई पुनर्निर्देशन चर्चा परिभाषित नहीं है
+reqdelete-tagprogress:     विलोपन की चर्चा के लिए '{0}' को अंकित कर रहा है...
+
+reqdelete-subpageprogress: '{0}' को हटाने के विचार-विमर्श  
+reqdelete-subpagefail:     '{0}' के लिए हटाने की चर्चा का उपपृष्ठ नहीं बनाया
+reqdelete-logprogress:     '{0}' को हटाने की चर्चा चिठठा में जोड़ा...
+reqdelete-logfail:         '{0}' को हटाने की चर्चा चिठठा में नहीं जोड़ा
+
+edit-fail:                 '{0}' को संपादित नहीं किया
+edit-progress:             '{0}' संपादित कर रहे है...
+
+email-done:                '{0}' को ई-मेल भेज दिया 
+email-fail:                '{0}' को ई-मेल भेजने में असफल
+email-progress:            '{0}' को ई-मेल भेज रहे है...
+
+history-fail:              '{0}' के इतिहास को पुनः प्राप्त करने में असफल
+history-progress:          '{0}' के इतिहास को पुनः प्राप्त कर रहे है {{1}}...
+
+move-done:                 '{0}' का '{1}' की तरफ स्थानांतरण
+move-fail:                 '{0}' का '{1}' की तरफ स्थानांतरण नहीं किया
+move-progress:             '{0}' का '{1}' की तरफ स्थानांतरण कर रहे है...
+
+notify-fail:               '{0}' के निर्माता को सूचित नहीं किया 
+notify-unknowncreator:     लेख निर्माता को खोज नहीं सकते
+
+patrol-duplicate:          ये लेख पहले से गश्त है
+patrol-done:               '{0}' को गश्त चिह्नित किया
+patrol-fail:               '{0}' को गश्त चिह्नित नहीं किया 
+patrol-notfound:           हाल में हुए परिवर्तन आईडी नहीं खोज सकते, लेख बहुत पुराना है  
+patrol-progress:           '{0}' को गश्त चिह्नित कर रहे है...
+
+protect-done:              '{0}' के सुरक्षा स्तर बदला
+protect-fail:              '{0}' के सुरक्षा स्तर को नहीं बदला 
+protect-progress:          '{0}' के सुरक्षा स्तर को बदल रहे है...
+
+protectlog-fail:           '{0}' के सुरक्षा लॉग को पुनः प्राप्त करने में असफल
+protectlog-none:           '{0}' के सुरक्षा लॉग नहीं है
+protectlog-progress:       '{0}' के सुरक्षा लॉग को पुनः प्राप्त कर रहे है...
+
+purge-done:                '{0}' को शुद्ध किया 
+purge-fail:                '{0}' को शुद्ध करने में असफल 
+purge-progress:            '{0}' को शुद्ध कर रहे है 
+
+queue-refresh-fail:        '{0}' कतार ताज़ा करने में त्रुटि
+
+report-duplicate:          ये सदस्य को पहले से रिपोर्ट कर दिया गया है 
+report-fail:               '{0}' को रिपोर्ट नहीं किया 
+report-progress:           '{0}' को रिपोर्ट कर रहे है...
+
+saveuserconfig-done:       सदस्य विन्यास पृष्ठ को अद्यतन किया
+saveuserconfig-fail:       सदस्य विन्यास पृष्ठ को अद्यतन नहीं किया 
+saveuserconfig-progress:   सदस्य विन्यास पृष्ठ को अद्यतन कर रहे है...
+
+loadglobalconfig-fail:     वैश्विक विन्यास पृष्ठ को लोड करने में असफल
+loadprojectconfig-fail:    परियोजना विन्यास पृष्ठ को लोड करने में असफल  
+loaduserconfig-fail:       सदस्य विन्यास पृष्ठ को लोड करने में असफल  
+
+reqprotection-badformat:   अनुरोध पृष्ठ का प्रारूप अज्ञात
+reqprotection-duplicate:   सुरक्षा पहले से ही अनुरोधित है
+reqprotection-fail:        '{0}' के लिए सुरक्षा अनुरोध नहीं किया
+reqprotection-progress:    '{0}' के लिए सुरक्षा अनुरोध कर रहा है...
+
+revert-cannotundo:         मध्यवर्ती परस्पर विरोधी सम्पादनों के कारण अनकिया नहीं कर सकता
+revert-conflict:           उपेक्षित सदस्य '{0}' द्वारा पृष्ठ पर सम्पादन किया गया था
+revert-fail:               '{0}' को पूर्ववत नहीं किया
+revert-nochange:           लक्ष्य संशोधन की सामग्री वर्तमान संशोधन के समान है
+revert-nootheruser:        अन्य किसी प्रयोक्ता ने पृष्ठ सम्पादित नहीं किया है
+revert-progress:           '{0}' को पूर्ववत कर रहा है...
+
+tag-alreadytagged:         यह पृष्ठ पहले ही अंकित किया जा चुका है
+tag-deleted:               यह पृष्ठ विलोपित किया जा चुका है 
+tag-fail:                  '{0}' को अंकित नहीं किया
+tag-progress:              '{0}' को अंकित कर रहा है...
+
+sight-done:                '{1}' के {0} संशोधन को देखावा चिह्नित किया
+sight-fail:                '{1}' के {0} संशोधन को देखावा चिह्नित करने में असफल
+sight-progress:            '{1}' के {0} संशोधन को देखावा चिह्नित कर रहे है
+
+speedy-fail:               '{0}' को तीव्र विलोपन के लिए अंकित नहीं किया
+speedy-progress:           '{0}' को तीव्र विलोपन के लिए अंकित कर रहा है...
+
+warnlog-fail:              '{0}' के लिए चेतावनी लॉग पुनःप्राप्त करने में असफल
+warnlog-none:              '{0}' को चेताया नहीं गया है
+warnlog-progress:          '{0}' के लिए चेतावनी लॉग पुनःप्राप्त कर रहा है...
+
+unwatch-done:              '{0}' ध्यानसूची से हटाया गया
+unwatch-fail:              '{0}' को ध्यानसूची से हटाने में असफल
+unwatch-progress:          '{0}' को ध्यानसूची से हटा रहा है...
+
+usermessage-duplicate:     उसी बारे में सन्देश पहले से उपस्थित था
+usermessage-fail:          '{0}' को सन्देश नहीं भेजा
+usermessage-progress:      '{0}' को सन्देश भेज रहा है...
+
+watch-done:                '{0}' को ध्यान्सूची में जोड़ा गया
+watch-fail:                '{0}' को ध्यानसूची में जोड़ने में असफल
+watch-progress:            '{0}' को ध्यान सूची में जोड़ रहा है...
+
+warn-alreadyfinal:         इस प्रयोक्ता को पहले ही अन्तिम चेतावनी दी जा चुकी है
+warn-alreadyblocked:       यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है
+warn-alreadyreported:      इस प्रयोक्ता की पहले ही रिपोर्ट की जा चुकी है
+warn-oldedit:              नवीनतम चेतावनी के बाद से इस प्रयोक्ता ने कोई सम्पादन नहीं किया है
+warn-recent:               इस प्रयोक्ता को {0} सेकण्ड पहले ही चेतावनी दी गई थी
+warn-fail:                 '{0}' को चतावनी नहीं दी
+warn-progress:             '{0}' को चेतावनी दे रहा है...
+</pre>
+
+=== API ===
+<pre>
+api-help:                  एपीआई पूछ में कोई मापदण्ड नहीं
+</pre>

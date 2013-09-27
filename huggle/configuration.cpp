@@ -112,6 +112,7 @@ QString Configuration::LocalConfig_ReportPath = "";
 int Configuration::LocalConfig_ReportSt = 0;
 QString Configuration::LocalConfig_RUTemplateReport = "";
 QString Configuration::LocalConfig_IPVTemplateReport = "";
+QString Configuration::Language = "en";
 
 QString Configuration::GetURLProtocolPrefix()
 {

@@ -70,6 +70,7 @@ public:
     static int QueryListTimeLimit;
     //! Number of edits to keep in history stack
     static int HistorySize;
+    static QString Language;
 
     //////////////////////////////////////////////
     // Local config
