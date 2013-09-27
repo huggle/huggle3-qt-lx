@@ -155,7 +155,10 @@ public:
     static void AppendQuery(Query* item);
     static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
     static void ExceptionHandler(Exception *exception);
+    static Language *MakeLanguage(QString text, QString name);
+    static void LocalInit(QString name);
     static QString Localize(QString key);
+    static void LoadLocalizations();
 private:
     static QList<QString> *RingLog;
 };

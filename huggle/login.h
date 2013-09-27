@@ -61,7 +61,6 @@ private slots:
     void on_ButtonExit_clicked();
     void on_Login_destroyed();
     void on_Time();
-
     void on_pushButton_clicked();
 
 private:

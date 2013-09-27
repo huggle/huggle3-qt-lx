@@ -56,7 +56,8 @@ SOURCES += main.cpp\
     iextension.cpp \
     reportuser.cpp \
     blockuser.cpp \
-    exceptionwindow.cpp
+    exceptionwindow.cpp \
+    waitingform.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -98,7 +99,8 @@ HEADERS  += mainwindow.h \
     iextension.h \
     reportuser.h \
     blockuser.h \
-    exceptionwindow.h
+    exceptionwindow.h \
+    waitingform.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -117,7 +119,8 @@ FORMS    += mainwindow.ui \
     history.ui \
     reportuser.ui \
     blockuser.ui \
-    exceptionwindow.ui
+    exceptionwindow.ui \
+    waitingform.ui
 
 RESOURCES += \
     pictures.qrc \

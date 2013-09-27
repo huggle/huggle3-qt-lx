@@ -137,6 +137,7 @@ public:
     static int LocalConfig_WarningScore;
     static QStringList LocalConfig_WarningTypes;
     static QStringList LocalConfig_WelcomeTypes;
+    static int LocalConfig_WhitelistScore;
 
     //////////////////////////////////////////////
     // Global config

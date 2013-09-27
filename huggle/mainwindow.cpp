@@ -13,6 +13,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    this->fWaiting = NULL;
     ui->setupUi(this);
     this->Status = new QLabel();
     ui->statusBar->addWidget(this->Status);
@@ -89,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->fWaiting;
     delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;

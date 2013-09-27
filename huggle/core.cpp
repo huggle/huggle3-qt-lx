@@ -66,6 +66,7 @@ void Core::Init()
 #endif
     Core::DebugLog("Loading wikis");
     Core::LoadDB();
+    Core::LoadLocalizations();
     Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 
@@ -1114,6 +1115,22 @@ void Core::ExceptionHandler(Exception *exception)
 
 }
 
+Language *Core::MakeLanguage(QString text, QString name)
+{
+    Language *l = new Language(name);
+
+    return l;
+}
+
+void Core::LocalInit(QString name)
+{
+    QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+    f->Open(QIODevice::ReadOnly);
+    Core::LocalizationData.append(Core::MakeLanguage(name, QString(f->readAll())));
+    f->close();
+    delete f;
+}
+
 QString Core::Localize(QString key)
 {
     if (Core::LocalizationData.count() > 0)
@@ -1141,6 +1158,12 @@ QString Core::Localize(QString key)
     return key;
 }
 
+void Core::LoadLocalizations()
+{
+    Core::LocalInit("en");
+    // de
+    Core::LocalInit("de");
+}
 
 Language::Language(QString name)
 {
