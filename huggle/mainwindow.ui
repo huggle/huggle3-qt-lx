@@ -405,7 +405,7 @@
     <string>Display history in browser</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+H</string>
+    <string>H</string>
    </property>
   </action>
   <action name="actionEdit_page_in_browser">
