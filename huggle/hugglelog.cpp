@@ -22,7 +22,7 @@ HuggleLog::HuggleLog(QWidget *parent) :
 void HuggleLog::InsertText(QString text)
 {
     QString t = ui->textEdit->toPlainText();
-    t.prepend(text + "\n");
+    t.prepend(QDateTime::currentDateTime().toString() + " " + text + "\n");
 
     ui->textEdit->setPlainText(t);
 }

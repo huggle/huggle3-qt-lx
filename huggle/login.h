@@ -39,6 +39,7 @@ enum Status
     Nothing,
     Cancelling,
     LoginFailed,
+    RetrievingUser,
     LoginDone,
     RetrievingWhitelist
 };

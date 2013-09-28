@@ -14,6 +14,7 @@
 #include <QString>
 #include <QCursor>
 #include <QDockWidget>
+#include <QDateTime>
 
 namespace Ui {
 class HuggleLog;

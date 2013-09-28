@@ -10,7 +10,7 @@
 
 #include "configuration.h"
 
-unsigned int Configuration::Verbosity = 1;
+unsigned int Configuration::Verbosity = 0;
 WikiSite Configuration::Project("enwiki", "en.wikipedia.org/");
 bool Configuration::UsingSSL = true;
 QString Configuration::UserName = "User";

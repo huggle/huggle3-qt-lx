@@ -768,16 +768,16 @@ void MainWindow::ForceWarn(int level)
     switch (level)
     {
         case 1:
-            title = Configuration::LocalConfig_WarnSummary + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary;
             break;
         case 2:
-            title = Configuration::LocalConfig_WarnSummary2 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary2;
             break;
         case 3:
-            title = Configuration::LocalConfig_WarnSummary3 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary3;
             break;
         case 4:
-            title = Configuration::LocalConfig_WarnSummary4 + Configuration::EditSuffixOfHuggle;
+            title = Configuration::LocalConfig_WarnSummary4;
             break;
     }
 
@@ -821,10 +821,10 @@ void MainWindow::Welcome()
     if (this->CurrentEdit->User->IP)
     {
         Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
-                          , "Welcome", "Welcoming user (using huggle)", true);
+                          , "Welcome", "Welcoming user " + Configuration::EditSuffixOfHuggle, true);
         return;
     }
-    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user (using huggle)", true);
+    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user " + Configuration::EditSuffixOfHuggle, true);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
