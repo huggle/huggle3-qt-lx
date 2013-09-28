@@ -30,6 +30,7 @@
 #include "editquery.h"
 #include "history.h"
 #include "apiquery.h"
+#include "exceptionwindow.h"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.h"

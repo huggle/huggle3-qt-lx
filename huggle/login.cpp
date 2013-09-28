@@ -223,7 +223,7 @@ void Login::RetrieveGlobalConfig()
         }
         return;
     }
-    this->Progress(28);
+    this->Progress(40);
     ui->label_6->setText("Retrieving global config");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
@@ -247,7 +247,7 @@ void Login::FinishToken()
         this->LoginQuery = NULL;
         return;
     }
-    this->Progress(40);
+    this->Progress(28);
 
     // this is last step but in fact we should load the config now
     Core::DebugLog(this->LoginQuery->Result->Data, 6);
@@ -401,7 +401,6 @@ void Login::RetrievePrivateConfig()
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
                 this->_Status = RetrievingUser;
-                Finish();
                 return;
             }
             ui->label_6->setText("Login failed unable to parse the user config, see debug log for more details");
@@ -474,6 +473,7 @@ void Login::RetrieveUserInfo()
             Finish();
             return;
         }
+        return;
     }
     this->Progress(96);
     ui->label_6->setText("Retrieving user info");
