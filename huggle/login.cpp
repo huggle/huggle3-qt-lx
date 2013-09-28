@@ -24,7 +24,12 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->Reset();
     ui->checkBox->setChecked(Configuration::UsingSSL);
     // set the language to dummy english
-    ui->Language->addItem("English");
+    int l=0;
+    while (l<Core::LocalizationData.count())
+    {
+        ui->Language->addItem(Core::LocalizationData.at(l)->LanguageName);
+        l++;
+    }
     ui->Language->setCurrentIndex(0);
     int current = 0;
     while (current < Configuration::ProjectList.size())
@@ -39,6 +44,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         ui->checkBox->setEnabled(false);
         ui->checkBox->setChecked(false);
     }
+    ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
 }
 
 Login::~Login()

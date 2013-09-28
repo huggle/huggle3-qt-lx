@@ -1309,8 +1309,32 @@ void Core::ExceptionHandler(Exception *exception)
 
 Language *Core::MakeLanguage(QString text, QString name)
 {
+    Core::Log("Loading language: " + name);
     Language *l = new Language(name);
-
+    QStringList keys = text.split("\n");
+    int p = 0;
+    while (p < keys.count())
+    {
+        if (keys.at(p).contains(":"))
+        {
+            QString line = keys.at(p);
+            while (line.startsWith(" "))
+            {
+                line = line.mid(1);
+            }
+            QString key = line.mid(0, line.indexOf(":"));
+            QString lang = line.mid(line.indexOf(":") + 1);
+            while (lang.startsWith(" "))
+            {
+                lang = lang.mid(1);
+            }
+            if (!l->Messages.contains(key))
+            {
+                l->Messages.insert(key, lang);
+            }
+        }
+        p++;
+    }
     return l;
 }
 
@@ -1318,13 +1342,22 @@ void Core::LocalInit(QString name)
 {
     QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
     f->open(QIODevice::ReadOnly);
-    Core::LocalizationData.append(Core::MakeLanguage(name, QString(f->readAll())));
+    Core::LocalizationData.append(Core::MakeLanguage(QString(f->readAll()), name));
     f->close();
     delete f;
 }
 
 QString Core::Localize(QString key)
 {
+    QString id = key;
+    if (id.endsWith("]]"))
+    {
+        id = key.mid(0, key.length() - 2);
+    }
+    if (id.startsWith("[["))
+    {
+        id = id.mid(2);
+    }
     if (Core::LocalizationData.count() > 0)
     {
         int c=0;
@@ -1333,18 +1366,18 @@ QString Core::Localize(QString key)
             if (Core::LocalizationData.at(c)->LanguageName == Configuration::Language)
             {
                 Language *l = Core::LocalizationData.at(c);
-                if (l->Messages.contains(key))
+                if (l->Messages.contains(id))
                 {
-                    return l->Messages[key];
+                    return l->Messages[id];
                 }
                 // performance tweak
                 break;
             }
             c++;
         }
-        if (Core::LocalizationData.at(0)->Messages.contains(key))
+        if (Core::LocalizationData.at(0)->Messages.contains(id))
         {
-            return Core::LocalizationData.at(0)->Messages[key];
+            return Core::LocalizationData.at(0)->Messages[id];
         }
     }
     return key;

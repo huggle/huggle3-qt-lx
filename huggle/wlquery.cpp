@@ -39,7 +39,10 @@ void WLQuery::Process()
         int p = 0;
         while (p < Configuration::WhiteList.count())
         {
-            whitelist += Configuration::WhiteList.at(p) + "|";
+            if (Configuration::WhiteList.at(p) != "")
+            {
+                whitelist += Configuration::WhiteList.at(p) + "|";
+            }
             p++;
         }
         if (whitelist.endsWith("|"))
