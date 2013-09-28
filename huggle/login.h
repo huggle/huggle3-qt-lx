@@ -56,6 +56,7 @@ public:
     ~Login();
     Status _Status;
     void Progress(int progress);
+    void Localize();
 
 private slots:
     void on_ButtonOK_clicked();
@@ -63,6 +64,7 @@ private slots:
     void on_Login_destroyed();
     void on_Time();
     void on_pushButton_clicked();
+    void on_Language_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::Login *ui;

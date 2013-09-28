@@ -17,5 +17,13 @@
 	<file>Localization/ko.txt</file>
 	<file>Localization/ml.txt</file>
 	<file>Localization/nl.txt</file>
+	<file>Localization/no.txt</file>
+	<file>Localization/oc.txt</file>
+	<file>Localization/or.txt</file>
+	<file>Localization/pt.txt</file>
+	<file>Localization/ru.txt</file>
+	<file>Localization/sv.txt</file>
+	<file>Localization/zh.txt</file>
+	<file>Localization/ptb.txt</file>
     </qresource>
 </RCC>

@@ -1336,6 +1336,10 @@ Language *Core::MakeLanguage(QString text, QString name)
         }
         p++;
     }
+    if (l->Messages.contains("name"))
+    {
+        l->LanguageID = l->Messages["name"];
+    }
     return l;
 }
 
@@ -1387,8 +1391,31 @@ QString Core::Localize(QString key)
 void Core::LoadLocalizations()
 {
     Core::LocalInit("en");
-    // de
+    Core::LocalInit("ar");
+    Core::LocalInit("bg");
+    Core::LocalInit("bn");
+    Core::LocalInit("es");
     Core::LocalInit("de");
+    Core::LocalInit("fa");
+    Core::LocalInit("fr");
+    Core::LocalInit("hi");
+    Core::LocalInit("it");
+    Core::LocalInit("ja");
+    Core::LocalInit("ka");
+    Core::LocalInit("km");
+    Core::LocalInit("kn");
+    Core::LocalInit("ko");
+    Core::LocalInit("ml");
+    Core::LocalInit("mr");
+    Core::LocalInit("nl");
+    Core::LocalInit("no");
+    Core::LocalInit("oc");
+    Core::LocalInit("or");
+    Core::LocalInit("pt");
+    Core::LocalInit("ptb");
+    Core::LocalInit("ru");
+    Core::LocalInit("sv");
+    Core::LocalInit("zh");
 }
 
 bool Core::ReportPreFlightCheck()
@@ -1415,4 +1442,5 @@ bool Core::ReportPreFlightCheck()
 Language::Language(QString name)
 {
     LanguageName = name;
+    LanguageID = name;
 }

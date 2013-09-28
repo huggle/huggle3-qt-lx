@@ -27,7 +27,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     int l=0;
     while (l<Core::LocalizationData.count())
     {
-        ui->Language->addItem(Core::LocalizationData.at(l)->LanguageName);
+        ui->Language->addItem(Core::LocalizationData.at(l)->LanguageID);
         l++;
     }
     ui->Language->setCurrentIndex(0);
@@ -45,6 +45,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         ui->checkBox->setChecked(false);
     }
     ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
+    Localize();
 }
 
 Login::~Login()
@@ -58,6 +59,13 @@ Login::~Login()
 void Login::Progress(int progress)
 {
     ui->progressBar->setValue(progress);
+}
+
+void Login::Localize()
+{
+    ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
+    ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
+    ui->checkBox->setText(Core::Localize("[[login-ssl]]"));
 }
 
 void Login::Reset()
@@ -648,4 +656,21 @@ void Login::on_Time()
 void Login::on_pushButton_clicked()
 {
     this->Disable();
+}
+
+void Login::on_Language_currentIndexChanged(const QString &arg1)
+{
+    QString lang = "en";
+    int c = 0;
+    while (c<Core::LocalizationData.count())
+    {
+        if (Core::LocalizationData.at(c)->LanguageID == arg1)
+        {
+            lang = Core::LocalizationData.at(c)->LanguageName;
+            break;
+        }
+        c++;
+    }
+    Configuration::Language = lang;
+    Localize();
 }

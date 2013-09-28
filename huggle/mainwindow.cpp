@@ -821,10 +821,10 @@ void MainWindow::Welcome()
     if (this->CurrentEdit->User->IP)
     {
         Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
-                          , "Welcome", "Welcoming user " + Configuration::EditSuffixOfHuggle, true);
+                          , "Welcome", "Welcoming user", true);
         return;
     }
-    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user " + Configuration::EditSuffixOfHuggle, true);
+    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user", true);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()

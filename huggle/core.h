@@ -56,6 +56,7 @@ class Language
 public:
     Language(QString name);
     QString LanguageName;
+    QString LanguageID;
     QMap<QString, QString> Messages;
 };
 
