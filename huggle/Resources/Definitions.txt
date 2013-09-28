@@ -1,2 +1,4 @@
-<wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt"></wiki>
-<wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test"></wiki>
+<db>
+  <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt"/>
+  <wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test"/>
+</db>
