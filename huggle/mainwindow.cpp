@@ -13,8 +13,10 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    this->wlt = NULL;
     this->fWaiting = NULL;
     ui->setupUi(this);
+    this->wq = NULL;
     this->Status = new QLabel();
     ui->statusBar->addWidget(this->Status);
     this->showMaximized();
@@ -90,6 +92,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->wq;
+    delete this->wlt;
     delete this->fWaiting;
     delete this->_History;
     delete this->RevertWarn;
@@ -344,7 +348,7 @@ QString MainWindow::GetSummaryKey(QString item)
 
 void MainWindow::on_actionExit_triggered()
 {
-    Core::Shutdown();
+    Exit();
 }
 
 void MainWindow::DisplayWelcomeMessage()
@@ -490,6 +494,48 @@ void MainWindow::on_Tick()
     }
     this->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
+}
+
+void MainWindow::on_Tick2()
+{
+    if (this->wq == NULL)
+    {
+        return;
+    }
+    if (this->wq->Save != true)
+    {
+        if (!this->wq->Processed())
+        {
+            return;
+        }
+        QString list = wq->Result->Data;
+        list = list.replace("<!-- list -->", "");
+        QStringList wl = list.split("|");
+        int c=0;
+        fWaiting->Status(40, "Merging");
+        while (c < wl.count())
+        {
+            if (wl.at(c) != "")
+            {
+                Configuration::WhiteList.append(wl.at(c));
+            }
+            c++;
+        }
+        Configuration::WhiteList.removeDuplicates();
+        this->fWaiting->Status(60, "Updating whitelist");
+        delete this->wq;
+        //this->fWaiting
+        this->wq = new WLQuery();
+        this->wq->Save = true;
+        this->wq->Process();
+        return;
+    }
+    if (!this->wq->Processed())
+    {
+        return;
+    }
+    this->wlt->stop();
+    Core::Shutdown();
 }
 
 void MainWindow::on_actionNext_triggered()
@@ -737,7 +783,22 @@ void MainWindow::ForceWarn(int level)
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
     Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true);
+}
 
+void MainWindow::Exit()
+{
+    if (this->fWaiting != NULL)
+    {
+        delete this->fWaiting;
+    }
+    this->fWaiting = new WaitingForm(this);
+    this->fWaiting->show();
+    this->fWaiting->Status(10, "Downloading new whitelist");
+    this->wq = new WLQuery();
+    this->wq->Process();
+    this->wlt = new QTimer(this);
+    connect(this->wlt, SIGNAL(timeout()), this, SLOT(on_Tick2()));
+    this->wlt->start(800);
 }
 
 void MainWindow::Welcome()
@@ -1001,4 +1062,9 @@ void MainWindow::on_actionEdit_user_talk_triggered()
         QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
                                   + "?action=edit");
     }
+}
+
+void MainWindow::on_actionReconnect_IRC_triggered()
+{
+
 }

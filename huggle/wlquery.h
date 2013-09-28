@@ -25,6 +25,7 @@ public:
     ~WLQuery();
     bool Processed();
     void Process();
+    bool Save;
 private slots:
     void ReadData();
     void Finished();

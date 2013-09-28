@@ -199,7 +199,19 @@ void Login::RetrieveWhitelist()
     {
         if (wq->Processed())
         {
-            Configuration::WhiteList = wq->Result->Data.split("|");
+            QString list = wq->Result->Data;
+            list = list.replace("<!-- list -->", "");
+            Configuration::WhiteList = list.split("|");
+            int c = 0;
+            while (c < Configuration::WhiteList.count())
+            {
+                if (Configuration::WhiteList.at(c) == "")
+                {
+                    Configuration::WhiteList.removeAt(c);
+                    continue;
+                }
+                c++;
+            }
             delete wq;
             wq = NULL;
             // Now global config

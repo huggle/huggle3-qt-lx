@@ -13,6 +13,7 @@
 WLQuery::WLQuery()
 {
     this->Result = NULL;
+    Save = false;
 }
 
 WLQuery::~WLQuery()
@@ -30,8 +31,32 @@ void WLQuery::Process()
     this->Status = Processing;
     this->Result = new QueryResult();
     QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::Project.WhiteList);
+    QString params = "";
+    if (Save)
+    {
+        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=edit&wp=" + Configuration::Project.WhiteList);
+        QString whitelist = "";
+        int p = 0;
+        while (p < Configuration::WhiteList.count())
+        {
+            whitelist += Configuration::WhiteList.at(p) + "|";
+            p++;
+        }
+        if (whitelist.endsWith("|"))
+        {
+            whitelist = whitelist.mid(0, whitelist.length() - 1);
+        }
+        params = "wl=" + QUrl::toPercentEncoding(whitelist);
+    }
     QNetworkRequest request(url);
-    this->r = Query::NetworkManager.get(request);
+    if (!Save)
+    {
+        this->r = Query::NetworkManager.get(request);
+    } else
+    {
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+        this->r = Query::NetworkManager.post(request, params.toUtf8());
+    }
     QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }

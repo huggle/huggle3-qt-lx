@@ -24,6 +24,7 @@ class WaitingForm : public QDialog
 public:
     explicit WaitingForm(QWidget *parent = 0);
     ~WaitingForm();
+    void Status(int progress, QString text);
 
 private:
     Ui::WaitingForm *ui;

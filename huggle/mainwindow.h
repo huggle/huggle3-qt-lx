@@ -37,6 +37,7 @@
 #include "querygc.h"
 #include "reportuser.h"
 #include "waitingform.h"
+#include "wlquery.h"
 
 namespace Ui {
 class MainWindow;
@@ -70,6 +71,7 @@ public:
     History * _History;
     QMutex lUnwrittenLogs;
     QMenu *RevertWarn;
+    WLQuery *wq;
     QMenu *WarnMenu;
     QMenu *RevertSummaries;
     ReportUser *report;
@@ -81,6 +83,7 @@ public:
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
     void ForceWarn(int level);
+    void Exit();
 
 
 private slots:
@@ -90,6 +93,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_MainWindow_destroyed();
     void on_Tick();
+    void on_Tick2();
     void on_actionNext_triggered();
     void on_actionNext_2_triggered();
     void on_actionWarn_triggered();
@@ -133,10 +137,13 @@ private slots:
     void on_actionWarning_3_triggered();
     void on_actionWarning_4_triggered();
     void on_actionEdit_user_talk_triggered();
+    void on_actionReconnect_IRC_triggered();
 
 private:
     Ui::MainWindow *ui;
     QTimer *timer1;
+    // Whitelist
+    QTimer *wlt;
     QLabel *Status;
     WaitingForm *fWaiting;
     void DisplayWelcomeMessage();
