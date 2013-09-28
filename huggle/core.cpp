@@ -957,22 +957,6 @@ void Core::DeveloperError()
     delete mb;
 }
 
-void Core::LoadConfig()
-{
-    QFile file(Configuration::GetConfigurationPath() + "huggle.xml");
-    if (!file.exists())
-    {
-        return;
-    }
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        Core::DebugLog("Unable to read config file");
-        return;
-    }
-    QDomDocument conf;
-    conf.setContent(file.readAll());
-}
-
 void Core::PreProcessEdit(WikiEdit *_e)
 {
     if (_e == NULL)
@@ -996,6 +980,88 @@ void Core::PreProcessEdit(WikiEdit *_e)
     _e->Status = StatusProcessed;
 }
 
+void Core::LoadConfig()
+{
+    QFile file(Configuration::GetConfigurationPath() + "huggle.xml");
+    if (!file.exists())
+    {
+        return;
+    }
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        Core::DebugLog("Unable to read config file");
+        return;
+    }
+    QDomDocument conf;
+    conf.setContent(file.readAll());
+    QDomNodeList l = conf.elementsByTagName("local");
+    int item = 0;
+    while (item < l.count())
+    {
+        QDomElement option = l.at(item).toElement();
+        QDomNamedNodeMap xx = option.attributes();
+        if (!xx.contains("text") || !xx.contains("key"))
+        {
+            continue;
+        }
+        if (option.attribute("key") == "DefaultRevertSummary")
+        {
+            Configuration::DefaultRevertSummary = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "Cache_InfoSize")
+        {
+            Configuration::Cache_InfoSize = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "GlobalConfigurationWikiAddress")
+        {
+            Configuration::GlobalConfigurationWikiAddress = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "IRCIdent")
+        {
+            Configuration::IRCIdent = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "IRCNick")
+        {
+            Configuration::IRCNick = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "IRCPort")
+        {
+            Configuration::IRCPort = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "IRCServer")
+        {
+            Configuration::IRCServer = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "Language")
+        {
+            Configuration::Language = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "ProviderCache")
+        {
+            Configuration::ProviderCache = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        item++;
+    }
+}
+
 void Core::SaveConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
@@ -1009,6 +1075,13 @@ void Core::SaveConfig()
     x->writeStartDocument();
     Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
     Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
+    Core::InsertConfig("GlobalConfigurationWikiAddress", Configuration::GlobalConfigurationWikiAddress, x);
+    Core::InsertConfig("IRCIdent", Configuration::IRCIdent, x);
+    Core::InsertConfig("IRCNick", Configuration::IRCNick, x);
+    Core::InsertConfig("IRCPort", QString(Configuration::IRCPort), x);
+    Core::InsertConfig("IRCServer", Configuration::IRCServer, x);
+    Core::InsertConfig("Language", Configuration::Language, x);
+    Core::InsertConfig("ProviderCache", QString(Configuration::ProviderCache), x);
     x->writeEndDocument();
     delete x;
 }
@@ -1126,6 +1199,12 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
 
     if (rollback)
     {
+        if (!Configuration::Rights.contains("rollback"))
+        {
+            Core::Log("You don't have rollback rights");
+            delete query;
+            return NULL;
+        }
         if (_e->RollbackToken == "")
         {
             Log("ERROR, unable to rollback, because the rollback token was empty: " + _e->Page->PageName);
@@ -1298,7 +1377,8 @@ QString Core::ConfigurationParse(QString key, QString content, QString missing)
 void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
 {
     s->writeStartElement("local");
-    s->writeAttribute(key, value);
+    s->writeAttribute("key", key);
+    s->writeAttribute("text", value);
     s->writeEndElement();
 }
 
