@@ -84,6 +84,7 @@ public:
     QString GetSummaryText(QString text);
     void ForceWarn(int level);
     void Exit();
+    bool ShuttingDown;
 
 
 private slots:

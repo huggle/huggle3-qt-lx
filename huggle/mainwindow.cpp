@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     this->wlt = NULL;
     this->fWaiting = NULL;
+    ShuttingDown = false;
     ui->setupUi(this);
     this->wq = NULL;
     this->Status = new QLabel();
@@ -787,6 +788,11 @@ void MainWindow::ForceWarn(int level)
 
 void MainWindow::Exit()
 {
+    if (ShuttingDown)
+    {
+        return;
+    }
+    ShuttingDown = true;
     if (this->fWaiting != NULL)
     {
         delete this->fWaiting;
