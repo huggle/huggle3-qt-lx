@@ -609,7 +609,103 @@ int Core::GetLevel(QString page)
     {
         // we need to get rid of old warnings now
         QString orig = page;
+        // first we split the page by sections
+        QStringList sections;
         int CurrentIndex = 0;
+        while (CurrentIndex < page.length())
+        {
+            if (!page.startsWith("==") && !page.contains("\n=="))
+            {
+                // no sections
+                sections.append(page);
+                break;
+            }
+
+            // we need to get to start of section now
+            CurrentIndex = 0;
+            if (!page.startsWith("==") && page.contains("\n=="))
+            {
+                page = page.mid(page.indexOf("\n==") + 1);
+            }
+
+            // get to bottom of it
+            int bottom = 0;
+            if (!page.mid(CurrentIndex).contains("\n=="))
+            {
+                sections.append(page);
+                break;
+            }
+            bottom = page.indexOf("\n==", CurrentIndex);
+
+            QString section = page.mid(0, bottom);
+            page = page.mid(bottom);
+            sections.append(section);
+        }
+
+        // now we browse all sections and remove these with no current date
+
+        CurrentIndex = 0;
+
+        page = orig;
+
+        while (CurrentIndex < sections.count())
+        {
+            // we need to find a date in this section
+            if (!sections.at(CurrentIndex).contains("(UTC)"))
+            {
+                // there is none
+                page = page.replace(sections.at(CurrentIndex), "");
+                CurrentIndex++;
+                continue;
+            }
+            QString section = sections.at(CurrentIndex);
+            section = section.mid(0, section.indexOf("(UTC)"));
+            if (section.endsWith(" "))
+            {
+                // we remove trailing white space
+                section = section.mid(0, section.length() - 1);
+            }
+
+            if (!section.contains(","))
+            {
+                // this is some borked date let's remove it
+                page = page.replace(sections.at(CurrentIndex), "");
+                CurrentIndex++;
+                continue;
+            }
+
+            QString time = section.mid(section.lastIndexOf(","));
+            if (time.length() < 2)
+            {
+                // what the fuck
+                page = page.replace(sections.at(CurrentIndex), "");
+                CurrentIndex++;
+                continue;
+            }
+
+            // we remove the comma
+            time = time.mid(2);
+            QDate date = QDate::fromString(time, "d MMMM yyyy");
+            if (!date.isValid())
+            {
+                page = page.replace(sections.at(CurrentIndex), "");
+                CurrentIndex++;
+                continue;
+            } else
+            {
+                // now check if it's at least 1 month old
+                if (QDate::currentDate().addDays(-30) > date)
+                {
+                    // we don't want to parse this thing
+                    page = page.replace(sections.at(CurrentIndex), "");
+                    CurrentIndex++;
+                    continue;
+                }
+            }
+            CurrentIndex++;
+        }
+
+        /*
         while (CurrentIndex < page.length())
         {
             if (CurrentIndex > 0)
@@ -682,9 +778,7 @@ int Core::GetLevel(QString page)
             page = page.mid(CurrentIndex);
             continue;
         }
-
-        // let's put trimmed version to original now and we are done
-        page = orig;
+        */
     }
 
     int level = 4;
