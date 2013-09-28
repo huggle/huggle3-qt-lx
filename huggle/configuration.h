@@ -76,6 +76,7 @@ public:
     static bool AskUserBeforeReport;
     //! This is experimental feature that removes the old templates from talk pages when they are being read
     static bool TrimOldWarnings;
+    static QStringList Rights;
 
     //////////////////////////////////////////////
     // Local config

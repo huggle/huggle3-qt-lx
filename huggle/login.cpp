@@ -130,7 +130,7 @@ void Login::PressOK()
 void Login::PerformLogin()
 {
     ui->label_6->setText("Logging in");
-    this->Progress(10);
+    this->Progress(8);
     // we create an api request to login
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
@@ -155,7 +155,7 @@ void Login::FinishLogin()
         this->LoginQuery = NULL;
         return;
     }
-    this->Progress(20);
+    this->Progress(18);
     Core::DebugLog(this->LoginQuery->Result->Data, 6);
     this->Token = this->LoginQuery->Result->Data;
     this->_Status = WaitingForToken;
@@ -166,6 +166,69 @@ void Login::FinishLogin()
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName)
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;
+    this->LoginQuery->Process();
+}
+
+void Login::RetrieveGlobalConfig()
+{
+    if (this->LoginQuery != NULL)
+    {
+        if (this->LoginQuery->Processed())
+        {
+            if (this->LoginQuery->Result->Failed)
+            {
+                ui->label_6->setText("Login failed unable to retrieve global config: " + this->LoginQuery->Result->ErrorMessage);
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomDocument d;
+            d.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList l = d.elementsByTagName("rev");
+            if (l.count() == 0)
+            {
+                ui->label_6->setText("Login failed unable to retrieve global config, the api query returned no data");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomElement data = l.at(0).toElement();
+            if (Core::ParseGlobalConfig(data.text()))
+            {
+                if (!Configuration::GlobalConfig_EnableAll)
+                {
+                    ui->label_6->setText("Login failed because huggle is globally disabled");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+                }
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                this->_Status = RetrievingWhitelist;
+                return;
+            }
+            ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
+            Core::DebugLog(data.text());
+            this->Progress(0);
+            this->_Status = LoginFailed;
+            delete this->LoginQuery;
+            this->LoginQuery = NULL;
+            return;
+        }
+        return;
+    }
+    this->Progress(28);
+    ui->label_6->setText("Retrieving global config");
+    this->LoginQuery = new ApiQuery();
+    this->LoginQuery->SetAction(ActionQuery);
+    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 }
 
@@ -226,7 +289,7 @@ void Login::RetrieveWhitelist()
         }
         return;
     }
-    this->Progress(62);
+    this->Progress(52);
     ui->label_6->setText("Retrieving whitelist");
     wq = new WLQuery();
     wq->Process();
@@ -287,74 +350,11 @@ void Login::RetrieveLocalConfig()
         }
         return;
     }
-    this->Progress(80);
+    this->Progress(68);
     ui->label_6->setText("Retrieving local config");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
-    this->LoginQuery->Process();
-}
-
-void Login::RetrieveGlobalConfig()
-{
-    if (this->LoginQuery != NULL)
-    {
-        if (this->LoginQuery->Processed())
-        {
-            if (this->LoginQuery->Result->Failed)
-            {
-                ui->label_6->setText("Login failed unable to retrieve global config: " + this->LoginQuery->Result->ErrorMessage);
-                this->Progress(0);
-                this->_Status = LoginFailed;
-                delete this->LoginQuery;
-                this->LoginQuery = NULL;
-                return;
-            }
-            QDomDocument d;
-            d.setContent(this->LoginQuery->Result->Data);
-            QDomNodeList l = d.elementsByTagName("rev");
-            if (l.count() == 0)
-            {
-                ui->label_6->setText("Login failed unable to retrieve global config, the api query returned no data");
-                this->Progress(0);
-                this->_Status = LoginFailed;
-                delete this->LoginQuery;
-                this->LoginQuery = NULL;
-                return;
-            }
-            QDomElement data = l.at(0).toElement();
-            if (Core::ParseGlobalConfig(data.text()))
-            {
-                if (!Configuration::GlobalConfig_EnableAll)
-                {
-                    ui->label_6->setText("Login failed because huggle is globally disabled");
-                    this->Progress(0);
-                    this->_Status = LoginFailed;
-                    delete this->LoginQuery;
-                    this->LoginQuery = NULL;
-                    return;
-                }
-                delete this->LoginQuery;
-                this->LoginQuery = NULL;
-                this->_Status = RetrievingWhitelist;
-                return;
-            }
-            ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
-            Core::DebugLog(data.text());
-            this->Progress(0);
-            this->_Status = LoginFailed;
-            delete this->LoginQuery;
-            this->LoginQuery = NULL;
-            return;
-        }
-        return;
-    }
-    this->Progress(42);
-    ui->label_6->setText("Retrieving global config");
-    this->LoginQuery = new ApiQuery();
-    this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
-    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 }
 
@@ -400,7 +400,7 @@ void Login::RetrievePrivateConfig()
                 }
                 delete this->LoginQuery;
                 this->LoginQuery = NULL;
-                this->_Status = LoginDone;
+                this->_Status = RetrievingUser;
                 Finish();
                 return;
             }
@@ -414,14 +414,72 @@ void Login::RetrievePrivateConfig()
         }
         return;
     }
-    this->Progress(96);
+    this->Progress(82);
     ui->label_6->setText("Retrieving user config");
     this->LoginQuery = new ApiQuery();
     QString page = Configuration::GlobalConfig_UserConf;
     page = page.replace("$1", Configuration::UserName);
     this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=" +
+    this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
             QUrl::toPercentEncoding(page);
+    this->LoginQuery->Process();
+}
+
+void Login::RetrieveUserInfo()
+{
+    if (this->LoginQuery != NULL)
+    {
+        if (this->LoginQuery->Processed())
+        {
+            if (this->LoginQuery->Result->Failed)
+            {
+                ui->label_6->setText("Login failed unable to retrieve user info: " + this->LoginQuery->Result->ErrorMessage);
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            QDomDocument d;
+            d.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList l = d.elementsByTagName("r");
+            if (l.count() == 0)
+            {
+                Core::DebugLog(this->LoginQuery->Result->Data);
+                ui->label_6->setText("Login failed unable to retrieve user info, the api query returned no data");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
+            }
+            int c=0;
+            while(c<l.count())
+            {
+                Configuration::Rights.append(l.at(c).toElement().text());
+                c++;
+            }
+            if (Configuration::LocalConfig_RequireRollback && !Configuration::Rights.contains("rollback"))
+            {
+                    ui->label_6->setText("Login failed because you don't have rollback permissions on this project");
+                    this->Progress(0);
+                    this->_Status = LoginFailed;
+                    delete this->LoginQuery;
+                    this->LoginQuery = NULL;
+                    return;
+            }
+            delete this->LoginQuery;
+            this->LoginQuery = NULL;
+            this->_Status = LoginDone;
+            Finish();
+            return;
+        }
+    }
+    this->Progress(96);
+    ui->label_6->setText("Retrieving user info");
+    this->LoginQuery = new ApiQuery();
+    this->LoginQuery->SetAction(ActionQuery);
+    this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=rights";
     this->LoginQuery->Process();
 }
 
@@ -565,6 +623,9 @@ void Login::on_Time()
         break;
     case RetrievingUserConfig:
         RetrievePrivateConfig();
+        break;
+    case RetrievingUser:
+        RetrieveUserInfo();
         break;
     case LoggedIn:
     case Nothing:

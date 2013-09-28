@@ -87,6 +87,7 @@ private:
     void RetrieveLocalConfig();
     void RetrieveGlobalConfig();
     void RetrievePrivateConfig();
+    void RetrieveUserInfo();
     void DeveloperMode();
     void DisplayError(QString message);
     void Finish();

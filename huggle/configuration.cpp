@@ -84,6 +84,7 @@ QStringList Configuration::LocalConfig_Ignores;
 QStringList Configuration::LocalConfig_RevertPatterns;
 QStringList Configuration::LocalConfig_IgnorePatterns;
 QStringList Configuration::LocalConfig_WarningTypes;
+QStringList Configuration::Rights;
 
 QStringList Configuration::LocalConfig_WarningDefs;
 
