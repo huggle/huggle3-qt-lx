@@ -40,15 +40,25 @@ void HuggleQueue::AddItem(WikiEdit *page)
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     label->page = page;
     label->SetName(page->Page->PageName);
-    if (page->Score <= -999999)
+    if (page->Score <= MINIMAL_SCORE)
     {
         this->layout->addWidget(label);
     } else
     {
         int id = 0;
-        while (GetScore(id) > page->Score)
+        if (Configuration::QueueNewEditsUp)
         {
-            id++;
+            while (GetScore(id) > page->Score && GetScore(id) > MINIMAL_SCORE)
+            {
+                id++;
+            }
+        }
+        else
+        {
+            while (GetScore(id) >= page->Score && GetScore(id) > MINIMAL_SCORE)
+            {
+                id++;
+            }
         }
         if (id >= this->layout->count() && this->layout->count() > 0)
         {
@@ -96,29 +106,34 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 
 void HuggleQueue::Trim()
 {
-    if (this->Items.count() < 1)
+    if (HuggleQueueItemLabel::Count < 1)
     {
         return;
     }
-
-    delete this->Items.last()->page;
-    this->Items.last()->page = NULL;
-    this->Delete(this->Items.last());
-    this->Items.removeLast();
+    int x = this->layout->count() - 1;
+    QLayoutItem *i = this->layout->itemAt(x);
+    if (i->widget() == this->frame)
+    {
+        x--;
+        i = this->layout->itemAt(x);
+    }
+    HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
+    label->Remove();
+    this->layout->removeItem(i);
 }
 
-int HuggleQueue::GetScore(int id)
+long HuggleQueue::GetScore(int id)
 {
     if (this->layout->count() - 1 <= id)
     {
-        return -999999;
+        return MINIMAL_SCORE;
     }
 
     QLayoutItem *i = this->layout->itemAt(id);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     if (label->page == NULL)
     {
-        return -999999;
+        return MINIMAL_SCORE;
     }
     return label->page->Score;
 }

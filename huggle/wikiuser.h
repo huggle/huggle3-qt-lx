@@ -28,7 +28,7 @@ public:
     WikiUser(QString user);
     QString GetTalk();
     QString Username;
-    int BadnessScore;
+    long BadnessScore;
     int WarningLevel;
     QString ContentsOfTalkPage;
     bool IsReported;

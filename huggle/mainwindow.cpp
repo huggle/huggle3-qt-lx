@@ -154,6 +154,10 @@ void MainWindow::_ReportUser()
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
 {
+    if (e == NULL)
+    {
+        return;
+    }
     // we need to safely delete the edit later
     if (this->CurrentEdit != NULL)
     {

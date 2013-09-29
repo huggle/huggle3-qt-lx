@@ -92,6 +92,19 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     ParentQueue->Delete(this, qi);
 }
 
+void HuggleQueueItemLabel::Remove()
+{
+    HuggleQueueItemLabel::Count--;
+    if (this->ParentQueue->Items.contains(this))
+    {
+        this->ParentQueue->Items.removeOne(this);
+    }
+    delete this->page;
+    this->page = NULL;
+    this->close();
+    ParentQueue->Delete(this);
+}
+
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)

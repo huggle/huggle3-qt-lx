@@ -93,7 +93,7 @@ public:
     bool OwnEdit;
     WikiEdit *Previous;
     WikiEdit *Next;
-    int Score;
+    long Score;
     QStringList ScoreWords;
     void ProcessWords();
     bool PostProcessing;

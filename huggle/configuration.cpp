@@ -119,6 +119,7 @@ double Configuration::RvCounter = 0;
 bool Configuration::TrimOldWarnings = true;
 double Configuration::EditCounter = 0;
 bool Configuration::AskUserBeforeReport = true;
+bool Configuration::QueueNewEditsUp = false;
 
 QString Configuration::GetURLProtocolPrefix()
 {

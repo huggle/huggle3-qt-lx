@@ -19,6 +19,7 @@
 #include "hugglequeuefilter.h"
 #include "hugglequeueitemlabel.h"
 #include "wikiedit.h"
+#include "configuration.h"
 
 namespace Ui {
 class HuggleQueue;
@@ -43,7 +44,7 @@ public:
     void Trim();
 
 private:
-    int GetScore(int id);
+    long GetScore(int id);
     Ui::HuggleQueue *ui;
     QVBoxLayout *layout;
     QWidget *xx;

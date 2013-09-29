@@ -34,6 +34,7 @@ public:
     void Process(QLayoutItem *qi = NULL);
     WikiEdit *page;
     static int Count;
+    void Remove();
 
 protected:
     void mousePressEvent(QMouseEvent *event);

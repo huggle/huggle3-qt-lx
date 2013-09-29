@@ -13,6 +13,7 @@
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
+#define MINIMAL_SCORE -999999
 
 #include <QList>
 #include <QStringList>
@@ -77,6 +78,8 @@ public:
     //! This is experimental feature that removes the old templates from talk pages when they are being read
     static bool TrimOldWarnings;
     static QStringList Rights;
+    //! Whether new edits go to top or bottom
+    static bool QueueNewEditsUp;
 
     //////////////////////////////////////////////
     // Local config

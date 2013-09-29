@@ -96,7 +96,7 @@ bool ProcessList::IsExpired(Query *q)
     int i = 0;
     while (i<Removed->count())
     {
-        if (Removed->at(i)->GetID() == q->ID)
+        if ((unsigned int)Removed->at(i)->GetID() == q->ID)
         {
             q->Consumers.removeAll("ProcessList::IsExpired");
             return true;
