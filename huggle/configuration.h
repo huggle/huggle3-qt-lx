@@ -205,6 +205,7 @@ public:
     static bool WarnUserSpaceRoll;
     static bool NextOnRv;
 
+    static QString Bool2String(bool b);
 };
 
 #endif // CONFIGURATION_H

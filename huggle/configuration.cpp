@@ -147,6 +147,15 @@ QString Configuration::GetDefaultRevertSummary(QString source)
     return summary;
 }
 
+QString Configuration::Bool2String(bool b)
+{
+    if (b)
+    {
+        return "true";
+    }
+    return "false";
+}
+
 
 ScoreWord::ScoreWord(QString Word, int Score)
 {

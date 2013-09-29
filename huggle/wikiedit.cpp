@@ -394,12 +394,10 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score += Configuration::LocalConfig_BotScore;
     }
-
     if (edit->Page->IsUserpage())
     {
         edit->Score -= 200;
     }
-
     if (edit->Page->IsTalk())
     {
         edit->Score -= 2000;

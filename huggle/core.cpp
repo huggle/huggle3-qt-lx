@@ -1063,6 +1063,18 @@ void Core::LoadConfig()
             item++;
             continue;
         }
+        if (option.attribute("key") == "AskUserBeforeReport")
+        {
+            Configuration::AskUserBeforeReport = Core::SafeBool(option.attribute("text"));
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "HistorySize")
+        {
+            Configuration::HistorySize = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
         item++;
     }
 }
@@ -1087,6 +1099,14 @@ void Core::SaveConfig()
     Core::InsertConfig("IRCServer", Configuration::IRCServer, x);
     Core::InsertConfig("Language", Configuration::Language, x);
     Core::InsertConfig("ProviderCache", QString(Configuration::ProviderCache), x);
+    Core::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::AskUserBeforeReport), x);
+    Core::InsertConfig("HistorySize", QString(Configuration::HistorySize), x);
+    Core::InsertConfig("NextOnRv", Configuration::Bool2String(Configuration::NextOnRv), x);
+    Core::InsertConfig("ProviderCache", QString(Configuration::ProviderCache), x);
+    Core::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::QueueNewEditsUp), x);
+    Core::InsertConfig("RingLogMaxSize", QString(Configuration::RingLogMaxSize), x);
+    Core::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::TrimOldWarnings), x);
+    Core::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::WarnUserSpaceRoll), x);
     x->writeEndDocument();
     delete x;
 }
@@ -1337,8 +1357,8 @@ bool Core::ParseUserConfig(QString config)
 {
     Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
    // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
-    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString(Configuration::LocalConfig_IPScore)).toInt();
-    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString(Configuration::LocalConfig_ScoreFlag)).toInt();
+    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString::number(Configuration::LocalConfig_IPScore)).toInt();
+    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString::number(Configuration::LocalConfig_ScoreFlag)).toInt();
     Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
     Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
     Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
