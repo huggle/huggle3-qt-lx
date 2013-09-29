@@ -31,13 +31,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         l++;
     }
     ui->Language->setCurrentIndex(0);
-    int current = 0;
-    while (current < Configuration::ProjectList.size())
-    {
-        ui->Project->addItem(Configuration::ProjectList.at(current)->Name);
-        current++;
-    }
-    ui->Project->setCurrentIndex(0);
+    Reload();
     wq = NULL;
     if (!QSslSocket::supportsSsl())
     {
@@ -95,6 +89,18 @@ void Login::Enable()
     ui->pushButton->setEnabled(true);
 }
 
+void Login::Reload()
+{
+    int current = 0;
+    ui->Project->clear();
+    while (current < Configuration::ProjectList.size())
+    {
+        ui->Project->addItem(Configuration::ProjectList.at(current)->Name);
+        current++;
+    }
+    ui->Project->setCurrentIndex(0);
+}
+
 void Login::DB()
 {
     if (this->LoginQuery == NULL)
@@ -121,6 +127,7 @@ void Login::DB()
                 wiki.write(l.at(0).toElement().text().toUtf8());
                 Core::LoadDB();
             }
+            Reload();
         }
         this->timer->stop();
         this->Enable();

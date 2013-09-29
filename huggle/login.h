@@ -79,6 +79,7 @@ private:
     void Reset();
     //! Enable parts of interface
     void Enable();
+    void Reload();
     void DB();
     //! Cancel currently running login attempt
     void CancelLogin();
