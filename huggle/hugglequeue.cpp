@@ -94,6 +94,19 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
     }
 }
 
+void HuggleQueue::Trim()
+{
+    if (this->Items.count() < 1)
+    {
+        return;
+    }
+
+    delete this->Items.last()->page;
+    this->Items.last()->page = NULL;
+    this->Delete(this->Items.last());
+    this->Items.removeLast();
+}
+
 int HuggleQueue::GetScore(int id)
 {
     if (this->layout->count() - 1 <= id)

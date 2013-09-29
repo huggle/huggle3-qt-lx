@@ -404,7 +404,7 @@ void MainWindow::on_Tick()
             RetrieveEdit = false;
         } else
         {
-
+            this->Queue1->Trim();
         }
     } else
     {

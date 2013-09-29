@@ -15,6 +15,13 @@ QList<WikiUser*> WikiUser::ProblematicUsers;
 
 void WikiUser::UpdateUser(WikiUser *us)
 {
+    if (!us->IP && us->BadnessScore <= Configuration::LocalConfig_WhitelistScore)
+    {
+        if (!Configuration::WhiteList.contains(us->Username))
+        {
+            Configuration::WhiteList.append(us->Username);
+        }
+    }
     int c=0;
     while (c<ProblematicUsers.count())
     {
@@ -30,13 +37,6 @@ void WikiUser::UpdateUser(WikiUser *us)
         c++;
     }
     ProblematicUsers.append(new WikiUser(us));
-    if (!us->IP && us->BadnessScore <= Configuration::LocalConfig_WhitelistScore)
-    {
-        if (!Configuration::WhiteList.contains(us->Username))
-        {
-            Configuration::WhiteList.append(us->Username);
-        }
-    }
 }
 
 WikiUser::WikiUser()

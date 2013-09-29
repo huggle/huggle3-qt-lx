@@ -39,6 +39,8 @@ public:
     void AddItem(WikiEdit *page);
     void Next();
     void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+    //! Remove 1 item
+    void Trim();
 
 private:
     int GetScore(int id);
