@@ -131,6 +131,8 @@ void Login::DB()
         }
         this->timer->stop();
         this->Enable();
+        this->_Status = Nothing;
+        this->Localize();
     }
 }
 
