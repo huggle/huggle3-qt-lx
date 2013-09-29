@@ -71,9 +71,13 @@ public:
     static Login *f_Login;
     //! This string contains a html header
     static QString HtmlHeader;
+    //! This string contains a html footer
     static QString HtmlFooter;
+    //! Pointer to primary feed provider
     static HuggleFeed *PrimaryFeedProvider;
+    //! Pointer to secondary feed provider
     static HuggleFeed *SecondaryFeedProvider;
+    //! List of all running queries
     static QList<Query*> RunningQueries;
     //! This is basically a list of edits we went through, that
     //! can be deleted from memory anytime we want
@@ -81,8 +85,11 @@ public:
     //! This is a list of all edits that are being processed by some way
     //! whole list needs to be checked and probed everytime once a while
     static QList<WikiEdit*> ProcessingEdits;
+    //! This is a post-processor for edits
     static ProcessorThread * Processor;
+    //! List of all messages that are being sent
     static QList<Message*> Messages;
+    //! Pending changes
     static QList<EditQuery*> PendingMods;
     static QList<iExtension*> Extensions;
     static QList<Language*> LocalizationData;
