@@ -34,6 +34,7 @@ enum Status
     RetrievingLocalConfig,
     LoggingIn,
     WaitingForLoginQuery,
+    Refreshing,
     WaitingForToken,
     LoggedIn,
     Nothing,
@@ -78,6 +79,7 @@ private:
     void Reset();
     //! Enable parts of interface
     void Enable();
+    void DB();
     //! Cancel currently running login attempt
     void CancelLogin();
     void Disable();

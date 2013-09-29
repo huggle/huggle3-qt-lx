@@ -46,7 +46,7 @@ bool HuggleFeedProviderWiki::ContainsEdit()
 {
     if (this->Buffer->size() == 0)
     {
-        if (!(this->LastRefresh.addSecs(6) > QDateTime::currentDateTime()))
+        if (this->LastRefresh.addSecs(6) < QDateTime::currentDateTime())
         {
             Refresh();
             this->LastRefresh = QDateTime::currentDateTime();

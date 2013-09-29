@@ -95,6 +95,38 @@ void Login::Enable()
     ui->pushButton->setEnabled(true);
 }
 
+void Login::DB()
+{
+    if (this->LoginQuery == NULL)
+    {
+        return;
+    }
+
+    if (this->LoginQuery->Processed())
+    {
+        Core::DebugLog(LoginQuery->Result->Data);
+        QDomDocument d;
+        d.setContent(this->LoginQuery->Result->Data);
+        QDomNodeList l = d.elementsByTagName("rev");
+        if (l.count() > 0)
+        {
+            Core::Log(l.at(0).toElement().text());
+            if (QFile().exists(Configuration::WikiDB))
+            {
+                QFile().remove(Configuration::WikiDB);
+            }
+            QFile wiki(Configuration::WikiDB);
+            if (wiki.open(QIODevice::WriteOnly))
+            {
+                wiki.write(l.at(0).toElement().text().toUtf8());
+                Core::LoadDB();
+            }
+        }
+        this->timer->stop();
+        this->Enable();
+    }
+}
+
 void Login::Disable()
 {
     ui->lineEdit->setDisabled(true);
@@ -115,7 +147,6 @@ void Login::PressOK()
         mb.setWindowTitle("Function not supported");
         mb.setText("This function is not available for wmf wikis in this moment");
         mb.exec();
-        //mb.setStyle(QStyle::SP_MessageBoxCritical);
         return;
     }
     Configuration::Project = WikiSite(Configuration::ProjectList.at(ui->Project->currentIndex()));
@@ -132,7 +163,6 @@ void Login::PressOK()
     ui->ButtonOK->setText("Cancel");
     // First of all, we need to login to the site
     this->timer->start(200);
-    //this->Thread->start();
 }
 
 void Login::PerformLogin()
@@ -635,6 +665,8 @@ void Login::on_Time()
     case RetrievingUser:
         RetrieveUserInfo();
         break;
+    case Refreshing:
+        DB();
     case LoggedIn:
     case Nothing:
     case Cancelling:
@@ -656,6 +688,19 @@ void Login::on_Time()
 void Login::on_pushButton_clicked()
 {
     this->Disable();
+    if(this->LoginQuery != NULL)
+    {
+        delete this->LoginQuery;
+    }
+
+    this->LoginQuery = new ApiQuery();
+    this->_Status = Refreshing;
+    this->LoginQuery->SetAction(ActionQuery);
+    this->timer->start(200);
+    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
+    this->ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
+    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/List";
+    this->LoginQuery->Process();
 }
 
 void Login::on_Language_currentIndexChanged(const QString &arg1)

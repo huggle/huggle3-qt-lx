@@ -42,7 +42,11 @@ void Core::Init()
     QFile *vf = new QFile(":/huggle/git/version.txt");
     vf->open(QIODevice::ReadOnly);
     QString version(vf->readAll());
+    version = version.replace("\n", "");
     Configuration::HuggleVersion += " " + version;
+#ifdef PRODUCTION_BUILD
+    Configuration::HuggleVersion += " production";
+#endif
     vf->close();
     delete vf;
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
@@ -72,6 +76,7 @@ void Core::Init()
 
 void Core::LoadDB()
 {
+    Configuration::ProjectList.clear();
     Configuration::ProjectList << &Configuration::Project;
     // this is a temporary only for oauth testing
     //Configuration::ProjectList << WikiSite("testwiki", "test.wikipedia.org/");
