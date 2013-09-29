@@ -21,3 +21,8 @@ Linux:
 * cd REPO/huggle, execute update.sh
 * qmake
 * make
+
+Documentation
+=============
+
+https://meta.wikimedia.org/wiki/Huggle

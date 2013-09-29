@@ -101,6 +101,7 @@ public:
     static PythonEngine *Python;
 #endif
 
+    //! Function which is called as one of first when huggle is loaded
     static void Init();
     static void Log(QString Message);
     static void DebugLog(QString Message, unsigned int Verbosity = 1);
@@ -116,7 +117,9 @@ public:
     //! Return a script url like http://en.wikipedia.org/w/
     static QString GetProjectScriptURL();
     static void ProcessEdit(WikiEdit *e);
+    //! Terminate the process, call this after you release all resources and finish all queries
     static void Shutdown();
+    //! Return a ring log represented as 1 huge string
     static QString RingLogToText();
     static void InsertToRingLog(QString text);
     static void DeveloperError();
@@ -130,19 +133,25 @@ public:
     //! Perform more expensive tasks to finalize
     //! edit processing
     static void PostProcessEdit(WikiEdit *_e);
+    //! Check if all running queries are finished and if so it removes them from list
     static void CheckQueries();
     //! Check if we can revert this edit
     static bool PreflightCheck(WikiEdit *_e);
     static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
     static QString GetCustomRevertStatus(QString RevertData);
+    //! Parse all information from global config on meta
     static bool ParseGlobalConfig(QString config);
+    //! Parse all information from local config, this function is used in login
     static bool ParseLocalConfig(QString config);
     static bool ParseUserConfig(QString config);
+    //! Parse a string from configuration which has format used by huggle 2x
     static QString ConfigurationParse(QString key, QString content, QString missing = "");
     static void LoadDB();
     static bool SafeBool(QString value, bool defaultvalue = false);
     static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+    //! Remove leading and finishing space of string
     static QString Trim(QString text);
+    //! Remove edit in proper manner
     static void DeleteEdit(WikiEdit *edit);
     // the mess bellow exist because of a way how huggle config stores the lists
     static QString GetSummaryOfWarningTypeFromWarningKey(QString key);

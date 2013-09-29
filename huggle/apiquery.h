@@ -49,14 +49,19 @@ class ApiQuery : public Query
 
 private:
     QString ActionPart;
+    //! Reply from qnet
     QNetworkReply *reply;
+    //! Generate api url
     void ConstructUrl();
+    //! Check if return format is supported by huggle
     bool FormatIsCurrentlySupported();
+    //! This is only needed when you are using rollback
     void FinishRollback();
 private slots:
     void ReadData();
     void Finished();
 public:
+    //! Creates a new instance of this class and set the defaults
     explicit ApiQuery();
     //! Whether the query will submit parameters using POST data
     bool UsingPOST;
@@ -67,13 +72,18 @@ public:
     QString URL;
     //! Parameters for action, for example page title
     QString Parameters;
+    //! Run
     void Process();
+    //! Change the action type
     void SetAction(Action action);
+    //! Set the raw action type, you should not use this unless you have to
     void SetAction(QString action);
     void Kill();
     QString QueryTargetToString();
     QString QueryTypeToString();
+    //! This is optional property which contains a label of target this query is for
     QString Target;
+    //! You can change this to url of different wiki than a project
     QString OverrideWiki;
 };
 

@@ -28,8 +28,11 @@ public:
     virtual void Stop() {}
     //! Start the feed engine
     virtual bool Start() { return false; }
+    //! This is useful to stop parsing edits from irc and like in case that queue is full
     virtual void Pause() {}
+    //! Resume edit parsing
     virtual void Resume() {}
+    //! Check if feed is containing some edits in buffer
     virtual bool ContainsEdit() { return false; }
     virtual bool IsPaused() { return false; }
     //! Return a last edit from cache or NULL
