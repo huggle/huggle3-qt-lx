@@ -29,6 +29,7 @@ public:
     int score;
 };
 
+//! Run time configuration of huggle
 class Configuration
 {
 public:

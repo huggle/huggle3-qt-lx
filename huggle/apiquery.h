@@ -43,6 +43,7 @@ enum Format
     Default
 };
 
+//! This class can be used to execute any kind of api query on any wiki
 class ApiQuery : public Query
 {
     Q_OBJECT

@@ -15,15 +15,20 @@
 #include "configuration.h"
 #include "wikisite.h"
 
+//! Mediawiki page
 class WikiPage
 {
 public:
+    //! Name of page
+    QString PageName;
+    //! Site this page is on
+    WikiSite *Site;
+    //! Create new empty instance of wiki page
     WikiPage();
     WikiPage(QString name);
     WikiPage(WikiPage *page);
     WikiPage(const WikiPage& page);
-    QString PageName;
-    WikiSite *Site;
+    //! Return true in case this is a talk page
     bool IsTalk();
     bool IsUserpage();
 };

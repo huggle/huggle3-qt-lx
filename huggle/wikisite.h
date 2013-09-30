@@ -22,14 +22,20 @@ public:
     QString URL;
     //! long article path (wiki/ for example on english wp)
     QString LongPath;
+    //! short path
     QString ScriptPath;
+    //! URL of oauth handler for this site
     QString OAuthURL;
+    //! IRC channel of this site, if it doesn't have a channel leave it empty
     QString IRCChannel;
-    WikiSite(WikiSite *w);
-    WikiSite(const WikiSite &w);
+    //! URL of whitelist, every site needs to have some, if your site doesn't have it
+    //! leave it as test
     QString WhiteList;
+    //! Whether the site supports the ssl
     bool SupportHttps;
     bool SupportOAuth;
+    WikiSite(WikiSite *w);
+    WikiSite(const WikiSite &w);
     WikiSite(QString name, QString url);
     //! This will create a new instance of wikisite with most of configuration
     //! param name is a name of wiki for internal purposes

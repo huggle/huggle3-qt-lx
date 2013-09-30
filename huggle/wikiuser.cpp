@@ -11,6 +11,9 @@
 #include "wikiuser.h"
 
 QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+QRegExp WikiUser::IPv6Regex("^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9](?>:|$)){8,})((?1)(?>:(?1)){0,6})?:"\
+                            ":(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){6,})(?3)?::(?>((?1)(?>:(?1)){0,4}):)?)"\
+                            "?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\\.(?4)){3}))$");
 QList<WikiUser*> WikiUser::ProblematicUsers;
 
 void WikiUser::UpdateUser(WikiUser *us)
@@ -74,7 +77,7 @@ WikiUser::WikiUser(QString user)
     this->IP = false;
     if (user != "")
     {
-        this->IP = WikiUser::IPv4Regex.exactMatch(user);
+        this->IP = WikiUser::IPv6Regex.exactMatch(user);
     }
     this->Username = user;
     int c=0;
