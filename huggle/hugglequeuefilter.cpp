@@ -10,9 +10,8 @@
 
 #include "hugglequeuefilter.h"
 
-HuggleQueueFilter::HuggleQueueFilter(HuggleQueue *Parent)
+HuggleQueueFilter::HuggleQueueFilter()
 {
-    this->parent = Parent;
     QueueName = "default";
     this->IgnoreBots = true;
     this->IgnoreWL = true;

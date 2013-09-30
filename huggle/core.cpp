@@ -24,7 +24,7 @@ MainWindow *Core::Main = NULL;
 Login *Core::f_Login = NULL;
 HuggleFeed *Core::SecondaryFeedProvider = NULL;
 HuggleFeed *Core::PrimaryFeedProvider = NULL;
-QList<QString> *Core::RingLog = new QList<QString>();
+QStringList Core::RingLog;
 QList<Query*> Core::RunningQueries;
 QList<WikiEdit*> Core::ProcessingEdits;
 QList<WikiEdit*> Core::ProcessedEdits;
@@ -36,6 +36,7 @@ bool Core::Running = true;
 QList<iExtension*> Core::Extensions;
 WikiPage *Core::AIVP = NULL;
 QList<Language*> Core::LocalizationData;
+QList<HuggleQueueFilter *> Core::FilterDB;
 
 void Core::Init()
 {
@@ -78,9 +79,6 @@ void Core::LoadDB()
 {
     Configuration::ProjectList.clear();
     Configuration::ProjectList << &Configuration::Project;
-    // this is a temporary only for oauth testing
-    //Configuration::ProjectList << WikiSite("testwiki", "test.wikipedia.org/");
-    //Configuration::ProjectList << WikiSite("mediawiki","www.mediawiki.org/");
     QString text = "";
     if (QFile::exists(Configuration::WikiDB))
     {
@@ -936,21 +934,26 @@ QString Core::RingLogToText()
 {
     int i = 0;
     QString text = "";
-    while (i<Core::RingLog->size())
+    while (i<Core::RingLog.size())
     {
-        text = Core::RingLog->at(i) + "\n" + text;
+        text = Core::RingLog.at(i) + "\n" + text;
         i++;
     }
     return text;
 }
 
+QStringList Core::RingLogToQStringList()
+{
+    return QStringList(Core::RingLog);
+}
+
 void Core::InsertToRingLog(QString text)
 {
-    if (Core::RingLog->size()+1 > Configuration::RingLogMaxSize)
+    if (Core::RingLog.size()+1 > Configuration::RingLogMaxSize)
     {
-        Core::RingLog->removeAt(0);
+        Core::RingLog.removeAt(0);
     }
-    Core::RingLog->append(text);
+    Core::RingLog.append(text);
 }
 
 void Core::DeveloperError()

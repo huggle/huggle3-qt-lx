@@ -14,15 +14,13 @@
 #include <QString>
 #include "wikiedit.h"
 
-class HuggleQueue;
 class WikiEdit;
 
 class HuggleQueueFilter
 {
 public:
     QString QueueName;
-    HuggleQueue *parent;
-    HuggleQueueFilter(HuggleQueue *Parent);
+    HuggleQueueFilter();
     bool Matches(WikiEdit *edit);
     bool Matches(WikiEdit edit);
 private:

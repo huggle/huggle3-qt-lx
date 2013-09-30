@@ -27,6 +27,7 @@
 #include "mainwindow.h"
 #include "message.h"
 #include "iextension.h"
+#include "hugglequeuefilter.h"
 #include "editquery.h"
 #include "history.h"
 #include "apiquery.h"
@@ -44,6 +45,7 @@ class MainWindow;
 class HuggleFeed;
 class EditQuery;
 class ProcessorThread;
+class HuggleQueueFilter;
 class WikiSite;
 class WikiPage;
 class WikiUser;
@@ -92,6 +94,7 @@ public:
     //! Pending changes
     static QList<EditQuery*> PendingMods;
     static QList<iExtension*> Extensions;
+    static QList<HuggleQueueFilter *> FilterDB;
     static QList<Language*> LocalizationData;
     //! Pointer to AIV page
     static WikiPage * AIVP;
@@ -121,6 +124,7 @@ public:
     static void Shutdown();
     //! Return a ring log represented as 1 huge string
     static QString RingLogToText();
+    static QStringList RingLogToQStringList();
     static void InsertToRingLog(QString text);
     static void DeveloperError();
     //! Save the local configuration to file
@@ -179,7 +183,7 @@ public:
     static void LoadLocalizations();
     static bool ReportPreFlightCheck();
 private:
-    static QList<QString> *RingLog;
+    static QStringList RingLog;
 };
 
 #endif // CORE_H

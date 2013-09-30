@@ -14,7 +14,7 @@
 HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
     ui->setupUi(this);
-    CurrentFilter = new HuggleQueueFilter(this);
+    CurrentFilter = new HuggleQueueFilter();
     this->layout = new QVBoxLayout(ui->scrollArea);
     this->layout->setMargin(0);
     this->layout->setSpacing(0);

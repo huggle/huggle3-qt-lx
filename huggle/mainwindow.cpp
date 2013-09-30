@@ -36,7 +36,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->report = NULL;
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    SystemLog->InsertText(Core::RingLogToText());
+    QStringList _log = Core::RingLogToQStringList();
+    int c=0;
+    while (c<_log.count())
+    {
+        SystemLog->InsertText(_log.at(c));
+        c++;
+    }
     this->CurrentEdit = NULL;
     this->setWindowTitle("Huggle 3 QT-LX");
     ui->verticalLayout->addWidget(this->Browser);
