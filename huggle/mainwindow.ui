@@ -48,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -220,7 +220,10 @@
      <normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</iconset>
    </property>
    <property name="text">
-    <string>Revert and warn</string>
+    <string>Revert and warn (Q)</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert and warn (Q)</string>
    </property>
   </action>
   <action name="actionRevert">
@@ -229,7 +232,10 @@
      <normaloff>:/huggle/pictures/Resources/diff-revert.png</normaloff>:/huggle/pictures/Resources/diff-revert.png</iconset>
    </property>
    <property name="text">
-    <string>Revert</string>
+    <string>Revert (R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert (R)</string>
    </property>
   </action>
   <action name="actionWarn">
@@ -238,7 +244,7 @@
      <normaloff>:/huggle/pictures/Resources/user-warn.png</normaloff>:/huggle/pictures/Resources/user-warn.png</iconset>
    </property>
    <property name="text">
-    <string>Warn</string>
+    <string>Warn (W)</string>
    </property>
   </action>
   <action name="actionNext">
@@ -247,7 +253,10 @@
      <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string>Next (Space)</string>
+   </property>
+   <property name="toolTip">
+    <string>Next (Space)</string>
    </property>
   </action>
   <action name="actionNext_2">
@@ -288,7 +297,10 @@
      <normaloff>:/huggle/pictures/Resources/browser-prev.png</normaloff>:/huggle/pictures/Resources/browser-prev.png</iconset>
    </property>
    <property name="text">
-    <string>Back</string>
+    <string>Back ( [ )</string>
+   </property>
+   <property name="toolTip">
+    <string>Back ( [ )</string>
    </property>
    <property name="shortcut">
     <string>[</string>
@@ -300,7 +312,7 @@
      <normaloff>:/huggle/pictures/Resources/browser-next.png</normaloff>:/huggle/pictures/Resources/browser-next.png</iconset>
    </property>
    <property name="text">
-    <string>Forward</string>
+    <string>Forward ( [ )</string>
    </property>
    <property name="shortcut">
     <string>]</string>
@@ -317,7 +329,7 @@
      <normaloff>:/huggle/pictures/Resources/user-info.png</normaloff>:/huggle/pictures/Resources/user-info.png</iconset>
    </property>
    <property name="text">
-    <string>Welcome user</string>
+    <string>Welcome user (Ctrl-H)</string>
    </property>
   </action>
   <action name="actionOpen_page_in_browser">
@@ -334,7 +346,7 @@
      <normaloff>:/huggle/pictures/Resources/page-watch.png</normaloff>:/huggle/pictures/Resources/page-watch.png</iconset>
    </property>
    <property name="text">
-    <string>Open in a browser</string>
+    <string>Open in a browser (O)</string>
    </property>
   </action>
   <action name="actionOpen_page_history_in_browser">
@@ -367,7 +379,10 @@
      <normaloff>:/huggle/pictures/Resources/sight-and-next.png</normaloff>:/huggle/pictures/Resources/sight-and-next.png</iconset>
    </property>
    <property name="text">
-    <string>Good edit</string>
+    <string>Good edit (G)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
    </property>
   </action>
   <action name="actionTalk_page">
@@ -537,7 +552,13 @@
      <normaloff>:/huggle/pictures/Resources/user-report.png</normaloff>:/huggle/pictures/Resources/user-report.png</iconset>
    </property>
    <property name="text">
-    <string>Report user</string>
+    <string>Report user (Ctrl+R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Report user (Ctrl+R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionReport_user_2">
