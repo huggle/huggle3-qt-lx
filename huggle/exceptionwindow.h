@@ -17,6 +17,7 @@ namespace Ui {
 class ExceptionWindow;
 }
 
+//! Recovery window
 class ExceptionWindow : public QDialog
 {
     Q_OBJECT

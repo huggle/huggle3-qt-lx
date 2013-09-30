@@ -16,6 +16,7 @@
 #include <QString>
 #include "configuration.h"
 
+//! Parses the data provided by user
 class TerminalParser
 {
 public:

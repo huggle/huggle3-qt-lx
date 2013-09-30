@@ -17,6 +17,7 @@ namespace Ui {
 class Proxy;
 }
 
+//! Proxy
 class Proxy : public QDialog
 {
     Q_OBJECT

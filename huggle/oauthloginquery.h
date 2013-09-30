@@ -14,6 +14,7 @@
 #include <QString>
 #include "query.h"
 
+//! This query is supposed to login user through oauth provider
 class OAuthLoginQuery : public Query
 {
 public:

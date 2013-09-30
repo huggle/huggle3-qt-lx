@@ -26,6 +26,7 @@ namespace Ui {
 class ReportUser;
 }
 
+//! Report user
 class ReportUser : public QDialog
 {
     Q_OBJECT

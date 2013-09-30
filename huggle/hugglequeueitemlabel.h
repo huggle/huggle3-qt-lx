@@ -21,6 +21,8 @@ class HuggleQueueItemLabel;
 
 class WikiEdit;
 class HuggleQueue;
+
+//! This is item of queue, it is derived from qt object
 class HuggleQueueItemLabel : public QFrame
 {
     Q_OBJECT

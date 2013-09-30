@@ -37,6 +37,7 @@ enum WEStatus
 
 class WikiEdit;
 
+//! Edits are post processed in this thread
 class ProcessorThread :  public QThread
 {
     Q_OBJECT
@@ -51,6 +52,7 @@ protected:
 class Query;
 class ApiQuery;
 
+//! Wiki edit
 class WikiEdit
 {
 public:

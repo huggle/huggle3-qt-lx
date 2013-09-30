@@ -16,6 +16,7 @@
 #include "configuration.h"
 #include "core.h"
 
+//! Extension interface
 class iExtension
 {
 public:

@@ -17,6 +17,7 @@ namespace Ui {
 class HuggleTool;
 }
 
+//! Toolbar on top of window
 class HuggleTool : public QDockWidget
 {
     Q_OBJECT

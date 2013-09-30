@@ -24,6 +24,7 @@ class HuggleWeb;
 
 class WikiEdit;
 
+//! Web browser
 class HuggleWeb : public QFrame
 {
     Q_OBJECT

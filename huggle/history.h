@@ -27,6 +27,7 @@ enum HistoryType
     HistoryMessage
 };
 
+//! History consist of these items
 class HistoryItem
 {
 public:
@@ -42,6 +43,7 @@ private:
 
 };
 
+//! History of actions done by user
 class History : public QDockWidget
 {
     Q_OBJECT
@@ -56,8 +58,6 @@ public:
     QList<HistoryItem> Items;
     static int Last;
     
-
-
 private:
     Ui::History *ui;
 };

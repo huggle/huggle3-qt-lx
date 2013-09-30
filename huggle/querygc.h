@@ -16,6 +16,7 @@
 
 class Query;
 
+//! Garbage collector
 class QueryGC
 {
 public:

@@ -25,6 +25,7 @@
 
 class ApiQuery;
 
+//! This is a very simple provider of changes that basically refresh recent changes every 6 seconds
 class HuggleFeedProviderWiki : public HuggleFeed
 {
 public:

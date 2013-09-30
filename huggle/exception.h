@@ -14,6 +14,7 @@
 #include <iostream>
 #include <QString>
 
+//! Every exception raised by huggle is defined by this class
 class Exception
 {
 public:

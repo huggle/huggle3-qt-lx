@@ -15,6 +15,8 @@
 
 class HuggleQueueFilter;
 class WikiEdit;
+
+//! Feed provider stub class every provider must be derived from this one
 class HuggleFeed
 {
 public:

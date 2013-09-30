@@ -53,15 +53,21 @@ class WikiEdit;
 class Message;
 class iExtension;
 
+//! Language container
 class Language
 {
 public:
+    //! Creates new instance of language
+    //! param name Name of language
     Language(QString name);
+    //! This is a short language name which is used by system
     QString LanguageName;
+    //! Long identifier of language that is seen by user
     QString LanguageID;
     QMap<QString, QString> Messages;
 };
 
+//! Miscelanceous system functions
 class Core
 {
 public:
@@ -93,11 +99,14 @@ public:
     static QList<Message*> Messages;
     //! Pending changes
     static QList<EditQuery*> PendingMods;
+    //! List of extensions loaded in huggle
     static QList<iExtension*> Extensions;
     static QList<HuggleQueueFilter *> FilterDB;
+    //! Languages D:
     static QList<Language*> LocalizationData;
     //! Pointer to AIV page
     static WikiPage * AIVP;
+    //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
     static bool Running;
 
 #ifdef PYTHONENGINE
@@ -106,7 +115,9 @@ public:
 
     //! Function which is called as one of first when huggle is loaded
     static void Init();
+    //! Write text to terminal as well as ring log
     static void Log(QString Message);
+    //! This log is only shown if verbosity is same or larger than requested verbosity
     static void DebugLog(QString Message, unsigned int Verbosity = 1);
     //! Helper function that will return URL of project in question
     static QString GetProjectURL(WikiSite Project);
@@ -114,6 +125,7 @@ public:
     static QString GetProjectWikiURL(WikiSite Project);
     //! Return a script url like http://en.wikipedia.org/w/
     static QString GetProjectScriptURL(WikiSite Project);
+    //! Return a base url of current project
     static QString GetProjectURL();
     //! Return a full url like http://en.wikipedia.org/wiki/
     static QString GetProjectWikiURL();
@@ -126,6 +138,7 @@ public:
     static QString RingLogToText();
     static QStringList RingLogToQStringList();
     static void InsertToRingLog(QString text);
+    //! Display a message box telling user that function is not allowed during developer mode
     static void DeveloperError();
     //! Save the local configuration to file
     static void SaveConfig();

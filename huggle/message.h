@@ -20,6 +20,7 @@
 
 class Query;
 
+//! This is similar to query, just it's more simple, you can use it to deliver messages to users
 class Message
 {
 public:

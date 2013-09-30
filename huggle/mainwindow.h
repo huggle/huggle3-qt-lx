@@ -51,31 +51,49 @@ class WaitingForm;
 class WikiUser;
 class ReportUser;
 
+//! Primary huggle window
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    //! List of edits that are being saved
     QList<WikiEdit*> PendingEdits;
+    //! Pointer to syslog
     HuggleLog *SystemLog;
+    //! Pointer to queue
     HuggleQueue *Queue1;
+    //! Pointer to browser
     HuggleWeb *Browser;
+    //! Pointer to toolbar
     HuggleTool *tb;
+    //! Pointer to options
     Preferences *preferencesForm;
+    //! Pointer to ignore list (see ignorelist.h)
     IgnoreList *Ignore;
+    //! Pointer to about dialog (see aboutform.h)
     AboutForm *aboutForm;
+    //! Pointer to current edit, if it's NULL there is no edit being displayed
     WikiEdit *CurrentEdit;
+    //! Pointer to processes
     ProcessList *Queries;
+    //! This is a list of logs that needs to be written, it exist so that logs can be written from
+    //! other threads as well, writing to syslog from other thread would crash huggle
     QStringList UnwrittenLogs;
+    //! Pointer to history
     History * _History;
+    //! Mutex we lock unwritten logs with so that only 1 thread can write to it
     QMutex lUnwrittenLogs;
+    //! Pointer to menu of revert warn button
     QMenu *RevertWarn;
+    //! This query is used to refresh white list
     WLQuery *wq;
     QMenu *WarnMenu;
     QMenu *RevertSummaries;
+    bool ShuttingDown;
     ReportUser *report;
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
     void _ReportUser();
     //! Recreate interface, should be called everytime you do anything with main form
     void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
@@ -86,7 +104,6 @@ public:
     //! Send a template to user no matter if they can be messaged or not
     void ForceWarn(int level);
     void Exit();
-    bool ShuttingDown;
 
 
 private slots:

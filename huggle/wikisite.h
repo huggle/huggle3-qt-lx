@@ -13,6 +13,7 @@
 
 #include <QString>
 
+//! Site
 class WikiSite
 {
 public:

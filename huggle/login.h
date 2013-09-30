@@ -48,6 +48,7 @@ enum Status
 class WLQuery;
 class ApiQuery;
 
+//! Window that is displayed as first when huggle is started
 class Login : public QDialog
 {
     Q_OBJECT

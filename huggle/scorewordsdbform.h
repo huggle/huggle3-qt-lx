@@ -17,6 +17,7 @@ namespace Ui {
 class ScoreWordsDbForm;
 }
 
+//! Scorewords form
 class ScoreWordsDbForm : public QDialog
 {
     Q_OBJECT

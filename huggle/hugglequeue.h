@@ -28,6 +28,7 @@ class HuggleQueue;
 class HuggleQueueFilter;
 class HuggleQueueItemLabel;
 
+//! Queue of edits
 class HuggleQueue : public QDockWidget
 {
     Q_OBJECT

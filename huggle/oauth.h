@@ -13,6 +13,7 @@
 
 #include <QString>
 
+//! Not being used now because wmf doesn't provide OAuth yet
 class OAuth
 {
 public:

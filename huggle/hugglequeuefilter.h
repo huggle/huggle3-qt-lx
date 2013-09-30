@@ -16,6 +16,7 @@
 
 class WikiEdit;
 
+//! Filter that can be applied to edit queue
 class HuggleQueueFilter
 {
 public:

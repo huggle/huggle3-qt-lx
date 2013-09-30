@@ -24,6 +24,7 @@
 
 class HuggleFeedProviderIRC;
 
+//! Thread which process the IRC feed
 class HuggleFeedProviderIRC_t : public QThread
 {
     Q_OBJECT

@@ -18,6 +18,7 @@ namespace Ui {
 class AboutForm;
 }
 
+//! Form that can be displayed from help menu, should list all developers
 class AboutForm : public QDialog
 {
     Q_OBJECT

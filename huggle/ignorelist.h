@@ -19,6 +19,7 @@ namespace Ui {
 class IgnoreList;
 }
 
+//! A window that contains ignore list
 class IgnoreList : public QDialog
 {
     Q_OBJECT

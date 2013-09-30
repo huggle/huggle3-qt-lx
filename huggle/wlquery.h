@@ -17,6 +17,7 @@
 #include "configuration.h"
 #include "query.h"
 
+//! Whitelist query :o
 class WLQuery : public Query
 {
     Q_OBJECT

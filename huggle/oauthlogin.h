@@ -17,6 +17,7 @@ namespace Ui {
 class OAuthLogin;
 }
 
+//! This form is not being used
 class OAuthLogin : public QDialog
 {
     Q_OBJECT

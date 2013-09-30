@@ -20,6 +20,7 @@ namespace Ui {
 class HuggleLog;
 }
 
+//! This window contains all the messages that are stored in ring log
 class HuggleLog : public QDockWidget
 {
     Q_OBJECT

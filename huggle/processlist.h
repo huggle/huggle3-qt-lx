@@ -24,6 +24,8 @@ namespace Ui {
 class ProcessList;
 }
 
+//! When you remove an item it should stay in list for some time so that user can notice it finished and that's
+//! why we store it to separate object and for that we have this class ;)
 class ProcessListRemovedItem
 {
 private:
@@ -35,6 +37,7 @@ public:
     bool Expired();
 };
 
+//! List of active processes, when some process finish it's collected by garbage collector
 class ProcessList : public QDockWidget
 {
     Q_OBJECT
