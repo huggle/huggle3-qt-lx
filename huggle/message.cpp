@@ -36,7 +36,7 @@ void Message::Send()
     query->SetAction(ActionQuery);
     query->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(user->GetTalk());
     query->Target = "Retrieving token to edit " + user->GetTalk();
-    query->Consumers.append("Message::Send()");
+    query->RegisterConsumer("Message::Send()");
     Core::AppendQuery(query);
     query->Process();
 }
@@ -47,7 +47,7 @@ void Message::Fail(QString reason)
     Done = true;
     Sending = false;
     query->SafeDelete(true);
-    query->Consumers.removeAll("Message::Send()");
+    query->RegisterConsumer("Message::Send()");
     query = NULL;
 }
 
@@ -63,13 +63,13 @@ bool Message::Finished()
             if (this->Dependency->Result->Failed)
             {
                 // we can't continue because the dependency is fucked
-                this->Dependency->Consumers.removeAll("keep");
+                this->Dependency->UnregisterConsumer("keep");
                 this->Dependency = NULL;
                 this->Sending = false;
                 this->Done = true;
                 return true;
             }
-            this->Dependency->Consumers.removeAll("keep");
+            this->Dependency->UnregisterConsumer("keep");
             this->Dependency = NULL;
         }
     }
@@ -121,11 +121,11 @@ void Message::Finish()
         }
         token = element.attribute("edittoken");
         query->SafeDelete(true);
-        query->Consumers.removeAll("Message::Send()");
+        query->UnregisterConsumer("Message::Send()");
         query = new ApiQuery();
         query->Target = "Writing " + user->GetTalk();
         query->UsingPOST = true;
-        query->Consumers.append("Message::Finish()");
+        query->RegisterConsumer("Message::Finish()");
         query->SetAction(ActionEdit);
         query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
@@ -180,7 +180,7 @@ void Message::Finish()
     }
 
     query->SafeDelete();
-    query->Consumers.removeAll("Message::Finish()");
+    query->UnregisterConsumer("Message::Finish()");
     Done = true;
     query = NULL;
 }

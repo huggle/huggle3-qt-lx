@@ -1077,19 +1077,7 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
     while (xx<QueryGC::qgc.count())
     {
         Query *query = QueryGC::qgc.at(xx);
-        if (query->Consumers.count() > 0)
-        {
-            Core::Log("GC: Listing all dependencies for " + QString::number(query->ID));
-            int Item=0;
-            while (Item < query->Consumers.count())
-            {
-                Core::Log("GC: " + QString::number(query->ID) + " " + query->Consumers.at(Item));
-                Item++;
-            }
-        } else
-        {
-            Core::Log("No consumers found: " + QString::number(query->ID));
-        }
+        Core::Log(query->DebugQgc());
         xx++;
     }
 }

@@ -22,10 +22,15 @@ Query::Query()
     this->LastID++;
     this->CustomStatus = "";
     this->Dependency = NULL;
+    this->Managed = false;
 }
 
 Query::~Query()
 {
+    if (this->Managed)
+    {
+        throw new Exception("Request to delete managed query");
+    }
     delete Result;
 }
 
@@ -36,6 +41,15 @@ bool Query::Processed()
         return true;
     }
     return false;
+}
+
+bool Query::IsManaged()
+{
+    if (this->Managed)
+    {
+        return true;
+    }
+    return (this->Consumers.count() > 0);
 }
 
 QString Query::QueryTypeToString()
@@ -78,21 +92,56 @@ QString Query::QueryStatusToString()
     return "Unknown";
 }
 
-void Query::SafeDelete(bool forced)
+bool Query::SafeDelete(bool forced)
 {
-    if (QueryGC::qgc.contains(this))
-    {
-        return;
-    }
+    this->Managed = true;
 
     if (!forced && Consumers.count() == 0)
     {
+        if (QueryGC::qgc.contains(this))
+        {
+            QueryGC::qgc.removeAll(this);
+        }
+        this->Managed = false;
         delete this;
-        return;
+        return true;
     }
 
     if (!QueryGC::qgc.contains(this))
     {
         QueryGC::qgc.append(this);
     }
+    return false;
+}
+
+void Query::RegisterConsumer(QString consumer)
+{
+    this->Managed = true;
+    this->Consumers.append(consumer);
+    this->Consumers.removeDuplicates();
+}
+
+void Query::UnregisterConsumer(QString consumer)
+{
+    this->Managed = true;
+    this->Consumers.removeAll(consumer);
+}
+
+QString Query::DebugQgc()
+{
+    QString result = "";
+    if (this->Consumers.count() > 0)
+    {
+        result += ("GC: Listing all dependencies for " + QString::number(this->ID)) + "\n";
+        int Item=0;
+        while (Item < this->Consumers.count())
+        {
+            result +=("GC: " + QString::number(this->ID) + " " + this->Consumers.at(Item)) + "\n";
+            Item++;
+        }
+    } else
+    {
+        result += "No consumers found: " + QString::number(this->ID);
+    }
+    return result;
 }

@@ -15,15 +15,18 @@ QList<Query*> QueryGC::qgc;
 void QueryGC::DeleteOld()
 {
     int curr=0;
-    QList<Query*> list(QueryGC::qgc);
-    while(curr<list.count())
+    while(curr<QueryGC::qgc.count())
     {
-        Query *q = list.at(curr);
-        if (q->Consumers.count() == 0)
+        Query *q = QueryGC::qgc.at(curr);
+        if (!q->IsManaged())
         {
-            QueryGC::qgc.removeOne(list.at(curr));
-            delete list.at(curr);
+            QueryGC::qgc.removeAt(curr);
+            delete q;
+            continue;
         }
-        curr++;
+        if (!q->SafeDelete())
+        {
+            curr++;
+        }
     }
 }

@@ -16,6 +16,7 @@
 #include <QStringList>
 #include <QNetworkAccessManager>
 #include "queryresult.h"
+#include "exception.h"
 #include "querygc.h"
 
 enum _Status
@@ -38,8 +39,6 @@ enum QueryType
 class Query : public QObject
 {
 public:
-    Query();
-    virtual ~Query();
     //! Result
     QueryResult *Result;
     unsigned int ID;
@@ -49,21 +48,29 @@ public:
     QueryType Type;
     //! Return true in case this query has been finished
     static QNetworkAccessManager NetworkManager;
-    virtual bool Processed();
-    virtual void Process() {}
-    virtual void Kill() {}
-    virtual QString QueryTypeToString();
-    virtual QString QueryTargetToString();
-    virtual QString QueryStatusToString();
     //! If you put anything in here, it either must be NULL or query
     //! that is processed
     Query *Dependency;
+    Query();
+    virtual ~Query();
+    virtual bool Processed();
+    virtual void Process() {}
+    virtual void Kill() {}
+    bool IsManaged();
+    virtual QString QueryTypeToString();
+    virtual QString QueryTargetToString();
+    virtual QString QueryStatusToString();
     //! Use this if you are not sure if you can delete this object in this moment
-    virtual void SafeDelete(bool forced = false);
+    virtual bool SafeDelete(bool forced = false);
+    void RegisterConsumer(QString consumer);
+    void UnregisterConsumer(QString consumer);
+    QString DebugQgc();
+
+private:
+    bool Managed;
     //! Some queries are needed for dependency setup, so we need to delete them
     //! later once the dependency is processed
     QStringList Consumers;
-private:
     static unsigned int LastID;
 };
 

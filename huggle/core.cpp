@@ -845,7 +845,7 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
 
 void Core::AppendQuery(Query *item)
 {
-    item->Consumers.append("core");
+    item->RegisterConsumer("core");
     Core::RunningQueries.append(item);
 }
 
@@ -1176,7 +1176,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
-        item->Consumers.removeAll("core");
+        item->UnregisterConsumer("core");
         item->SafeDelete();
         curr++;
     }
@@ -1252,7 +1252,7 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
         query->UsingPOST = true;
         if (keep)
         {
-            query->Consumers.append("keep");
+            query->RegisterConsumer("keep");
         }
         Core::AppendQuery(query);
         DebugLog("Rolling back " + _e->Page->PageName);

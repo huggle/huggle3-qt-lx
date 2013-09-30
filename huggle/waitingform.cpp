@@ -33,3 +33,8 @@ void WaitingForm::on_WaitingForm_destroyed()
 {
     Core::Shutdown();
 }
+
+void WaitingForm::on_WaitingForm_rejected()
+{
+    Core::Shutdown();
+}

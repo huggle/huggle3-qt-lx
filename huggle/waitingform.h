@@ -30,6 +30,8 @@ public:
 private slots:
     void on_WaitingForm_destroyed();
 
+    void on_WaitingForm_rejected();
+
 private:
     Ui::WaitingForm *ui;
 };

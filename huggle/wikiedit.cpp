@@ -210,7 +210,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->DifferenceQuery->Result->Failed)
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            this->DifferenceQuery->Consumers.removeAll("WikiEdit::PostProcess()");
+            this->DifferenceQuery->UnregisterConsumer("WikiEdit::PostProcess()");
             this->DifferenceQuery = NULL;
             this->PostProcessing = false;
             return true;
@@ -271,9 +271,9 @@ bool WikiEdit::FinalizePostProcessing()
         Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
-    this->ProcessingQuery->Consumers.removeAll("WikiEdit::PostProcess()");
+    this->ProcessingQuery->UnregisterConsumer("WikiEdit::PostProcess()");
     this->ProcessingQuery = NULL;
-    this->DifferenceQuery->Consumers.removeAll("WikiEdit::PostProcess()");
+    this->DifferenceQuery->UnregisterConsumer("WikiEdit::PostProcess()");
     this->DifferenceQuery = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
@@ -323,7 +323,7 @@ void WikiEdit::PostProcess()
     this->ProcessingQuery->SetAction(ActionQuery);
     this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(this->User->GetTalk());
-    this->ProcessingQuery->Consumers.append("WikiEdit::PostProcess()");
+    this->ProcessingQuery->RegisterConsumer("WikiEdit::PostProcess()");
     Core::AppendQuery(this->ProcessingQuery);
     this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
     this->ProcessingQuery->Process();
@@ -342,7 +342,7 @@ void WikiEdit::PostProcess()
     this->DifferenceQuery->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
     Core::AppendQuery(this->DifferenceQuery);
-    this->DifferenceQuery->Consumers.append("WikiEdit::PostProcess()");
+    this->DifferenceQuery->RegisterConsumer("WikiEdit::PostProcess()");
     this->DifferenceQuery->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
