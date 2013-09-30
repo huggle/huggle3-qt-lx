@@ -28,3 +28,8 @@ void WaitingForm::Status(int progress, QString text)
     ui->label->setText(text);
     ui->progressBar->setValue(progress);
 }
+
+void WaitingForm::on_WaitingForm_destroyed()
+{
+    Core::Shutdown();
+}

@@ -120,6 +120,9 @@ bool Configuration::TrimOldWarnings = true;
 double Configuration::EditCounter = 0;
 bool Configuration::AskUserBeforeReport = true;
 bool Configuration::QueueNewEditsUp = false;
+QString Configuration::LocalConfig_WelcomeSummary = "Welcoming user";
+QString Configuration::LocalConfig_WelcomeTitle = "Welcome";
+bool Configuration::WelcomeEmpty = true;
 
 QString Configuration::GetURLProtocolPrefix()
 {

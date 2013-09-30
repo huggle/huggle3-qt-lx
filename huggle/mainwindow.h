@@ -47,6 +47,7 @@ class HuggleQueue;
 class HuggleWeb;
 class WikiEdit;
 class WikiPage;
+class WaitingForm;
 class WikiUser;
 class ReportUser;
 
@@ -82,6 +83,7 @@ public:
     bool Warn(QString WarningType, ApiQuery *dependency);
     QString GetSummaryKey(QString item);
     QString GetSummaryText(QString text);
+    //! Send a template to user no matter if they can be messaged or not
     void ForceWarn(int level);
     void Exit();
     bool ShuttingDown;
@@ -141,6 +143,9 @@ private slots:
     void on_actionReconnect_IRC_triggered();
 
 private:
+    //! Check if huggle is shutting down or not, in case it is message box is shown as well
+    //! this function should be called before every action user can trigger
+    bool CheckExit();
     Ui::MainWindow *ui;
     QTimer *timer1;
     // Whitelist

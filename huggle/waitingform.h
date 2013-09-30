@@ -12,6 +12,7 @@
 #define WAITINGFORM_H
 
 #include <QDialog>
+#include "core.h"
 
 namespace Ui {
 class WaitingForm;
@@ -25,6 +26,9 @@ public:
     explicit WaitingForm(QWidget *parent = 0);
     ~WaitingForm();
     void Status(int progress, QString text);
+
+private slots:
+    void on_WaitingForm_destroyed();
 
 private:
     Ui::WaitingForm *ui;

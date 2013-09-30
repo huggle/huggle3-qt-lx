@@ -60,6 +60,11 @@ void Login::Localize()
     ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
     ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
     ui->checkBox->setText(Core::Localize("[[login-ssl]]"));
+    ui->label_2->setText(Core::Localize("[[login-username]]"));
+    ui->label_3->setText(Core::Localize("[[login-username]]"));
+    ui->label_4->setText(Core::Localize("[[login-project]]"));
+    ui->label_5->setText(Core::Localize("[[login-language]]"));
+    ui->label_7->setText(Core::Localize("[[login-password"));
 }
 
 void Login::Reset()
@@ -176,7 +181,7 @@ void Login::PressOK()
 
 void Login::PerformLogin()
 {
-    ui->label_6->setText("Logging in");
+    ui->label_6->setText(Core::Localize("[[login-progress-start]]"));
     this->Progress(8);
     // we create an api request to login
     this->LoginQuery = new ApiQuery();
@@ -271,7 +276,7 @@ void Login::RetrieveGlobalConfig()
         return;
     }
     this->Progress(40);
-    ui->label_6->setText("Retrieving global config");
+    ui->label_6->setText(Core::Localize("[[login-progress-global]]"));
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
@@ -337,7 +342,7 @@ void Login::RetrieveWhitelist()
         return;
     }
     this->Progress(52);
-    ui->label_6->setText("Retrieving whitelist");
+    ui->label_6->setText(Core::Localize("[[login-progress-whitelist]]"));
     wq = new WLQuery();
     wq->Process();
     return;

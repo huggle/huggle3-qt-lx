@@ -102,6 +102,7 @@ public:
     static QString LocalConfig_IPVTemplateReport;
     //! Regular users
     static QString LocalConfig_RUTemplateReport;
+    static QString LocalConfig_WelcomeSummary;
 
     // Reverting
 
@@ -116,6 +117,7 @@ public:
     static QString LocalConfig_UndoSummary;
     static QString LocalConfig_ClearTalkPageTemp;
     static QString LocalConfig_WelcomeAnon;
+    static QString LocalConfig_WelcomeTitle;
 
     // Warnings
 
@@ -204,6 +206,8 @@ public:
     //! Warn you in case you want to revert a user page
     static bool WarnUserSpaceRoll;
     static bool NextOnRv;
+    //! Send a message to user on good edit
+    static bool WelcomeEmpty;
 
     static QString Bool2String(bool b);
 };

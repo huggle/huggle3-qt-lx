@@ -555,6 +555,10 @@ void MainWindow::on_actionNext_2_triggered()
 
 void MainWindow::on_actionWarn_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -565,6 +569,10 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -576,6 +584,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 
 void MainWindow::on_actionWarn_the_user_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -586,6 +598,10 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -607,6 +623,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -628,6 +648,10 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
 void MainWindow::on_actionRevert_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -674,6 +698,10 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -687,6 +715,10 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -811,8 +843,26 @@ void MainWindow::Exit()
     this->wlt->start(800);
 }
 
+bool MainWindow::CheckExit()
+{
+    if (ShuttingDown)
+    {
+        QMessageBox mb;
+        mb.setWindowTitle("Error");
+        mb.setText("Huggle is shutting down, ignored");
+        mb.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void MainWindow::Welcome()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -825,10 +875,33 @@ void MainWindow::Welcome()
     if (this->CurrentEdit->User->IP)
     {
         Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
-                          , "Welcome", "Welcoming user", true);
+                          , Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
         return;
     }
-    Core::MessageUser(this->CurrentEdit->User, "{{subst:Huggle/WelcomeMenu}}", "Welcome", "Welcoming user", true);
+
+    if (this->CurrentEdit->User->ContentsOfTalkPage != "")
+    {
+        if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
+        {
+            return;
+        }
+    }
+
+    if (Configuration::LocalConfig_WelcomeTypes.count() == 0)
+    {
+        Core::Log("There are no welcome messages defined for this project");
+        return;
+    }
+
+    QString message = Core::GetValueFromKey(Configuration::LocalConfig_WelcomeTypes.at(0));
+
+    if (message == "")
+    {
+        Core::Log("ERROR: Invalid welcome template, ignored message");
+        return;
+    }
+
+    Core::MessageUser(this->CurrentEdit->User, message, Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -868,6 +941,10 @@ void MainWindow::on_actionGood_edit_triggered()
     {
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
+        if (this->CurrentEdit->User->ContentsOfTalkPage == "")
+        {
+            this->Welcome();
+        }
     }
     if (Configuration::NextOnRv)
     {
@@ -888,6 +965,10 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->BadnessScore -=200;
@@ -960,6 +1041,10 @@ void MainWindow::on_actionTools_dock_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (this->CurrentEdit == NULL)
     {
         return;
@@ -1011,6 +1096,10 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -1021,6 +1110,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (Configuration::Restricted)
     {
         Core::DeveloperError();

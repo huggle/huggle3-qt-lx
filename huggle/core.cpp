@@ -1107,6 +1107,7 @@ void Core::SaveConfig()
     Core::InsertConfig("RingLogMaxSize", QString(Configuration::RingLogMaxSize), x);
     Core::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::TrimOldWarnings), x);
     Core::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::WarnUserSpaceRoll), x);
+    Core::InsertConfig("UserName", Configuration::UserName, x);
     x->writeEndDocument();
     delete x;
 }
@@ -1324,6 +1325,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_ReportSt = Core::ConfigurationParse("aiv-section", config).toInt();
     Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
     Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
+    Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
