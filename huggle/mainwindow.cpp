@@ -1124,11 +1124,22 @@ void MainWindow::on_actionWelcome_user_2_triggered()
 
 void MainWindow::on_actionReport_user_triggered()
 {
+	if(this->CurrentEdit == NULL)
+    {
+		Core::Log("ERROR: No one to report");
+		return;
+	}
     this->_ReportUser();
+    
 }
 
 void MainWindow::on_actionReport_user_2_triggered()
 {
+	if(this->CurrentEdit == NULL)
+    {
+		Core::Log("ERROR: No one to report");
+		return;
+	}
     this->_ReportUser();
 }
 
