@@ -13,6 +13,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
     ShuttingDown = false;
@@ -95,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->timer1 = new QTimer(this);
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
+    this->eq = NULL;
 }
 
 MainWindow::~MainWindow()
@@ -509,44 +511,71 @@ void MainWindow::on_Tick()
 
 void MainWindow::on_Tick2()
 {
-    if (this->wq == NULL)
+    if (this->Shutdown != ShutdownOpUpdatingConf)
     {
-        return;
-    }
-    if (this->wq->Save != true)
-    {
-        if (!this->wq->Processed())
+        if (this->wq == NULL)
         {
             return;
         }
-        QString list = wq->Result->Data;
-        list = list.replace("<!-- list -->", "");
-        QStringList wl = list.split("|");
-        int c=0;
-        fWaiting->Status(40, "Merging");
-        while (c < wl.count())
+        if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
-            if (wl.at(c) != "")
+            if (!this->wq->Processed())
             {
-                Configuration::WhiteList.append(wl.at(c));
+                return;
             }
-            c++;
+            QString list = wq->Result->Data;
+            list = list.replace("<!-- list -->", "");
+            QStringList wl = list.split("|");
+            int c=0;
+            fWaiting->Status(40, "Merging");
+            while (c < wl.count())
+            {
+                if (wl.at(c) != "")
+                {
+                    Configuration::WhiteList.append(wl.at(c));
+                }
+                c++;
+            }
+            Configuration::WhiteList.removeDuplicates();
+            this->fWaiting->Status(60, "Updating whitelist");
+            this->Shutdown = ShutdownOpUpdatingWhitelist;
+            delete this->wq;
+            //this->fWaiting
+            this->wq = new WLQuery();
+            this->wq->Save = true;
+            this->wq->Process();
+            return;
         }
-        Configuration::WhiteList.removeDuplicates();
-        this->fWaiting->Status(60, "Updating whitelist");
-        delete this->wq;
-        //this->fWaiting
-        this->wq = new WLQuery();
-        this->wq->Save = true;
-        this->wq->Process();
-        return;
-    }
-    if (!this->wq->Processed())
+        if (this->Shutdown == ShutdownOpUpdatingWhitelist)
+        {
+            if (!this->wq->Processed())
+            {
+                return;
+            }
+            // we finished writing the wl
+            this->fWaiting->Status(80, "Updating user config");
+            delete this->wq;
+            // we really should delete this page somewhere I guess :o
+            this->Shutdown = ShutdownOpUpdatingConf;
+            QString page = Configuration::GlobalConfig_UserConf;
+            page = page.replace("$1", Configuration::UserName);
+            WikiPage *uc = new WikiPage(page);
+            this->eq = Core::EditPage(uc, Core::MakeLocalUserConfig(), "Writing user config", true);
+            delete uc;
+            return;
+        }
+    } else
     {
-        return;
+        // we need to check if config was written
+        if (!this->eq->Processed())
+        {
+            return;
+        }
+        Core::Log(this->eq->Result->Data);
+        delete this->eq;
+        this->wlt->stop();
+        Core::Shutdown();
     }
-    this->wlt->stop();
-    Core::Shutdown();
 }
 
 void MainWindow::on_actionNext_triggered()
@@ -835,6 +864,7 @@ void MainWindow::Exit()
         return;
     }
     ShuttingDown = true;
+    this->Shutdown = ShutdownOpRetrievingWhitelist;
     if (this->fWaiting != NULL)
     {
         delete this->fWaiting;
@@ -1174,5 +1204,20 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
-
+    if (!Configuration::UsingIRC)
+    {
+        Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");
+        return;
+    }
+    Core::Log("Reconnecting to IRC");
+    Core::PrimaryFeedProvider->Stop();
+    delete Core::PrimaryFeedProvider;
+    Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
+    if (!Core::PrimaryFeedProvider->Start())
+    {
+        Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+        delete Core::PrimaryFeedProvider;
+        Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        Core::PrimaryFeedProvider->Start();
+    }
 }

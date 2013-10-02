@@ -1329,6 +1329,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
     Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
     Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
+    Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
@@ -1547,6 +1548,29 @@ bool Core::ReportPreFlightCheck()
         return false;
     }
     return true;
+}
+
+QString Core::MakeLocalUserConfig()
+{
+    QString conf = "<nowiki>\n";
+    conf += "enable:true\n";
+    conf += "version:" + Configuration::HuggleVersion + "\n\n";
+    conf += "admin:true\n";
+    conf += "patrol-speedy:true\n";
+    conf += "speedy-message-title:Speedy deleted\n";
+    conf += "report-summary:" + Configuration::LocalConfig_ReportSummary + "\n";
+    conf += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
+    conf += "warn-summary-4:" + Configuration::LocalConfig_WarnSummary4 + "\n";
+    conf += "warn-summary-3:" + Configuration::LocalConfig_WarnSummary3 + "\n";
+    conf += "warn-summary-2:" + Configuration::LocalConfig_WarnSummary2 + "\n";
+    conf += "warn-summary:" + Configuration::LocalConfig_WarnSummary + "\n";
+    conf += "auto-advance:false\n";
+    conf += "auto-whitelist:true\n";
+    conf += "confirm-multiple:true\n";
+    conf += "confirm-range:true\n";
+    conf += "confirm-page:true\n";
+    conf += "</nowiki>";
+    return conf;
 }
 
 Language::Language(QString name)

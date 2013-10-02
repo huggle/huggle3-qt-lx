@@ -66,6 +66,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
+            Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer("EditQuery::Process()");
             return true;
         }
@@ -75,6 +76,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
+            Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer("EditQuery::Process()");
             return true;
         }

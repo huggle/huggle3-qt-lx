@@ -27,6 +27,7 @@
 #include "huggletool.h"
 #include "huggleweb.h"
 #include "wikipage.h"
+#include "editquery.h"
 #include "processlist.h"
 #include "wikiuser.h"
 #include "ignorelist.h"
@@ -47,9 +48,18 @@ class HuggleQueue;
 class HuggleWeb;
 class WikiEdit;
 class WikiPage;
+class EditQuery;
 class WaitingForm;
 class WikiUser;
 class ReportUser;
+
+enum ShutdownOp
+{
+    ShutdownOpRunning,
+    ShutdownOpRetrievingWhitelist,
+    ShutdownOpUpdatingWhitelist,
+    ShutdownOpUpdatingConf
+};
 
 //! Primary huggle window
 class MainWindow : public QMainWindow
@@ -86,11 +96,17 @@ public:
     QMutex lUnwrittenLogs;
     //! Pointer to menu of revert warn button
     QMenu *RevertWarn;
+    //! Pointer to query that is used to store user config on exit of huggle
+    EditQuery *eq;
     //! This query is used to refresh white list
     WLQuery *wq;
+    //! Warning menu
     QMenu *WarnMenu;
+    //! Revert menu
     QMenu *RevertSummaries;
     bool ShuttingDown;
+    //! If system is shutting down this is displaying which part of shutdown is currently being executed
+    ShutdownOp Shutdown;
     ReportUser *report;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

@@ -129,6 +129,7 @@ public:
     static QString LocalConfig_WarnSummary4;
     static QStringList LocalConfig_WarningTemplates;
     static QStringList LocalConfig_WarningDefs;
+    static QString LocalConfig_ReportSummary;
 
     // Definitions
 

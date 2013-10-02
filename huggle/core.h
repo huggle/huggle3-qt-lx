@@ -195,6 +195,8 @@ public:
     static QString Localize(QString key);
     static void LoadLocalizations();
     static bool ReportPreFlightCheck();
+    //! This function creates a user configuration that is stored on wiki
+    static QString MakeLocalUserConfig();
 private:
     static QStringList RingLog;
 };
