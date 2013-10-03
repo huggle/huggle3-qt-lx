@@ -7,6 +7,10 @@ Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other Wikimedi
 Building
 =========
 
+Libraries you need to have to build:
+* QT sdk (libqt4-dev qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
+* (optional) Python (libpython-dev)
+
 Windows:
 
 * Download QT Creator from http://qt-project.org/downloads
