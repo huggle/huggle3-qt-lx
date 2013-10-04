@@ -36,9 +36,11 @@ namespace Huggle
         HistoryItem();
         HistoryItem(const HistoryItem &item);
         HistoryItem(HistoryItem * item);
+        //! Unique ID of this item
         int ID;
         QString Result;
         QString Target;
+        //! Type of item
         HistoryType Type;
         static QString TypeToString(HistoryType type);
     private:

@@ -81,8 +81,11 @@ namespace Huggle
         void SetAction(Action action);
         //! Set the raw action type, you should not use this unless you have to
         void SetAction(QString action);
+        //! Terminate the query
         void Kill();
+        //! Get a query target as a string
         QString QueryTargetToString();
+        //! Returns a type of query as a string
         QString QueryTypeToString();
         //! This is optional property which contains a label of target this query is for
         QString Target;

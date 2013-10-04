@@ -23,6 +23,9 @@
 
 namespace Huggle
 {
+    //! Every score word is represented by this class, a score word is a pattern
+    //! that has some score and score of edit is incremented by sum of all scores
+    //! of all score words matched in edit
     class ScoreWord
     {
     public:
@@ -74,9 +77,13 @@ namespace Huggle
         static int QueryListTimeLimit;
         //! Number of edits to keep in history stack
         static int HistorySize;
+        //! Language selected by user this is only a language of interface
         static QString Language;
+        //! Number of edits made since you logged in
         static double EditCounter;
+        //! Number of reverts made since you logged in
         static double RvCounter;
+        //! Ask user if they really want to report someone
         static bool AskUserBeforeReport;
         //! This is experimental feature that removes the old templates from talk pages when they are being read
         static bool TrimOldWarnings;
