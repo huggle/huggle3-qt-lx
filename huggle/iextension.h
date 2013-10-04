@@ -23,6 +23,12 @@ namespace Huggle
     {
     public:
         iExtension();
+        virtual ~iExtension();
+    private:
+        QString ExtensionName;
+        QString ExtensionAuthor;
+        QString ExtensionVersion;
+        QString ExtensionDescription;
     };
 }
 

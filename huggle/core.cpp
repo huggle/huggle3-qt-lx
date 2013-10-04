@@ -72,6 +72,38 @@ void Core::Init()
     Core::DebugLog("Loading wikis");
     Core::LoadDB();
     Core::LoadLocalizations();
+    if (!Configuration::_SafeMode)
+    {
+        // get a list of plugins
+        Core::Log("Loading plugins");
+        if (QDir().exists(EXTENSION_PATH))
+        {
+            QDir d(EXTENSION_PATH);
+            QStringList extensions = d.entryList();
+            int xx = 0;
+            while (xx < extensions.count())
+            {
+                QString name = extensions.at(xx).toLower();
+                if (name.endsWith(".so") || name.endsWith(".dll"))
+                {
+                    name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                    QPluginLoader *extension = new QPluginLoader(name);
+                    if (extension->load())
+                    {
+                        Core::Log("Successfully loaded: " + extensions.at(xx));
+                    } else
+                    {
+                        Core::Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
+                        delete extension;
+                    }
+                }
+                xx++;
+            }
+        } else
+        {
+            Core::Log("There is no extensions folder, skipping load");
+        }
+    }
     Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 

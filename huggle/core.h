@@ -16,6 +16,7 @@
 #include <QNetworkAccessManager>
 #include <QList>
 #include <QString>
+#include <QPluginLoader>
 #include <QFile>
 #include <QMap>
 #include <QtXml>

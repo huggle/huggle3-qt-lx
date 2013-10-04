@@ -126,6 +126,7 @@ QString Configuration::LocalConfig_WelcomeSummary = "Welcoming user";
 QString Configuration::LocalConfig_WelcomeTitle = "Welcome";
 bool Configuration::WelcomeEmpty = true;
 QString Configuration::LocalConfig_ReportSummary = "Reporting user";
+bool Configuration::_SafeMode = false;
 
 QString Configuration::GetURLProtocolPrefix()
 {

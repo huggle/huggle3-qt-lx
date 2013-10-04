@@ -14,6 +14,7 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 #define MINIMAL_SCORE -999999
+#define EXTENSION_PATH "extensions"
 
 #include <QList>
 #include <QStringList>
@@ -90,6 +91,8 @@ namespace Huggle
         static QStringList Rights;
         //! Whether new edits go to top or bottom
         static bool QueueNewEditsUp;
+        //! If this is true some functionalities will be disabled
+        static bool _SafeMode;
 
         //////////////////////////////////////////////
         // Local config

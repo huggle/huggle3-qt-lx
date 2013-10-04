@@ -14,5 +14,17 @@ using namespace Huggle;
 
 iExtension::iExtension()
 {
+    this->ExtensionAuthor = "Unknown";
+    this->ExtensionDescription = "None";
+    this->ExtensionVersion = "0";
+    this->ExtensionName = "Unknown";
+    Core::Extensions.append(this);
+}
 
+iExtension::~iExtension()
+{
+    if (Core::Extensions.contains(this))
+    {
+        Core::Extensions.removeAll(this);
+    }
 }
