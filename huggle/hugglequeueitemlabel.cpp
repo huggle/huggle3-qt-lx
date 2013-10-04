@@ -11,6 +11,8 @@
 #include "hugglequeueitemlabel.h"
 #include "ui_hugglequeueitemlabel.h"
 
+using namespace Huggle;
+
 int HuggleQueueItemLabel::Count = 0;
 
 HuggleQueueItemLabel::HuggleQueueItemLabel(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleQueueItemLabel)

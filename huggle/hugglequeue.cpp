@@ -11,6 +11,8 @@
 #include "hugglequeue.h"
 #include "ui_hugglequeue.h"
 
+using namespace Huggle;
+
 HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
     ui->setupUi(this);

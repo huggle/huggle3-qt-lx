@@ -17,17 +17,20 @@ namespace Ui {
 class OAuthLogin;
 }
 
-//! This form is not being used
-class OAuthLogin : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! This form is not being used
+    class OAuthLogin : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit OAuthLogin(QWidget *parent = 0);
-    ~OAuthLogin();
+    public:
+        explicit OAuthLogin(QWidget *parent = 0);
+        ~OAuthLogin();
 
-private:
-    Ui::OAuthLogin *ui;
-};
+    private:
+        Ui::OAuthLogin *ui;
+    };
+}
 
 #endif // OAUTHLOGIN_H

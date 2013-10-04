@@ -11,6 +11,8 @@
 #include "aboutform.h"
 #include "ui_aboutform.h"
 
+using namespace Huggle;
+
 AboutForm::AboutForm(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AboutForm)

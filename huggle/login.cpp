@@ -11,6 +11,8 @@
 #include "login.h"
 #include "ui_login.h"
 
+using namespace Huggle;
+
 QString Login::Test = "<login result=\"NeedToken\" token=\"";
 
 Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
@@ -35,6 +37,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     wq = NULL;
     if (!QSslSocket::supportsSsl())
     {
+        Configuration::UsingSSL = false;
         ui->checkBox->setEnabled(false);
         ui->checkBox->setChecked(false);
     }
@@ -69,7 +72,7 @@ void Login::Localize()
 
 void Login::Reset()
 {
-    ui->label_6->setText("Please enter your wikipedia username and pick a project. The authentication will be processed using OAuth.");
+    ui->label_6->setText(Core::Localize("[[login-intro]]"));
 }
 
 void Login::CancelLogin()
@@ -78,7 +81,7 @@ void Login::CancelLogin()
     ui->progressBar->setValue(0);
     this->Enable();
     this->_Status = Nothing;
-    ui->ButtonOK->setText("Login");
+    ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
 }
 
 void Login::Enable()
@@ -173,7 +176,7 @@ void Login::PressOK()
     Configuration::Password = ui->lineEdit_3->text();
     this->_Status = LoggingIn;
     this->Disable();
-    ui->ButtonOK->setText("Cancel");
+    ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
     // First of all, we need to login to the site
     this->timer->start(200);
 }
@@ -199,7 +202,7 @@ void Login::FinishLogin()
     }
     if (this->LoginQuery->Result->Failed)
     {
-        ui->label_6->setText("Login failed: " + this->LoginQuery->Result->ErrorMessage);
+        ui->label_6->setText(Core::Localize("[[login-fail]]") + ": " + this->LoginQuery->Result->ErrorMessage);
         this->Progress(0);
         this->_Status = LoginFailed;
         delete this->LoginQuery;
@@ -228,7 +231,7 @@ void Login::RetrieveGlobalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                ui->label_6->setText("Login failed unable to retrieve global config: " + this->LoginQuery->Result->ErrorMessage);
+                ui->label_6->setText(Core::Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 delete this->LoginQuery;

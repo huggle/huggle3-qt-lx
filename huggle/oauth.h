@@ -13,14 +13,17 @@
 
 #include <QString>
 
-//! Not being used now because wmf doesn't provide OAuth yet
-class OAuth
+namespace Huggle
 {
-public:
-    OAuth(QString login);
-    bool CheckSubscription();
-    bool RequestSubscription();
-    QString ObtainToken();
-};
+    //! Not being used now because wmf doesn't provide OAuth yet
+    class OAuth
+    {
+    public:
+        OAuth(QString login);
+        bool CheckSubscription();
+        bool RequestSubscription();
+        QString ObtainToken();
+    };
+}
 
 #endif // OAUTH_H

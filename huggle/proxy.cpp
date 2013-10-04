@@ -11,6 +11,8 @@
 #include "proxy.h"
 #include "ui_proxy.h"
 
+using namespace Huggle;
+
 Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
 {
     ui->setupUi(this);

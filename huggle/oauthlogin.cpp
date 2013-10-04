@@ -11,6 +11,8 @@
 #include "oauthlogin.h"
 #include "ui_oauthlogin.h"
 
+using namespace Huggle;
+
 OAuthLogin::OAuthLogin(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OAuthLogin)

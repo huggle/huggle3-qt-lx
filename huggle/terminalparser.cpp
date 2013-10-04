@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "terminalparser.h"
-
+using namespace Huggle;
 using namespace std;
 
 TerminalParser::TerminalParser(int argc_, QStringList argv)

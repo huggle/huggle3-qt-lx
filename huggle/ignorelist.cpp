@@ -11,8 +11,9 @@
 #include "ignorelist.h"
 #include "ui_ignorelist.h"
 
-IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent),
-    ui(new Ui::IgnoreList)
+using namespace Huggle;
+
+IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList)
 {
     ui->setupUi(this);
     model = new QStandardItemModel(Configuration::LocalConfig_Ignores.count(), 1, this);

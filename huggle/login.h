@@ -27,79 +27,82 @@ namespace Ui {
 class Login;
 }
 
-enum Status
+namespace Huggle
 {
-    RetrievingGlobalConfig,
-    RetrievingUserConfig,
-    RetrievingLocalConfig,
-    LoggingIn,
-    WaitingForLoginQuery,
-    Refreshing,
-    WaitingForToken,
-    LoggedIn,
-    Nothing,
-    Cancelling,
-    LoginFailed,
-    RetrievingUser,
-    LoginDone,
-    RetrievingWhitelist
-};
+    enum Status
+    {
+        RetrievingGlobalConfig,
+        RetrievingUserConfig,
+        RetrievingLocalConfig,
+        LoggingIn,
+        WaitingForLoginQuery,
+        Refreshing,
+        WaitingForToken,
+        LoggedIn,
+        Nothing,
+        Cancelling,
+        LoginFailed,
+        RetrievingUser,
+        LoginDone,
+        RetrievingWhitelist
+    };
 
-class WLQuery;
-class ApiQuery;
+    class WLQuery;
+    class ApiQuery;
 
-//! Window that is displayed as first when huggle is started
-class Login : public QDialog
-{
-    Q_OBJECT
+    //! Window that is displayed as first when huggle is started
+    class Login : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit Login(QWidget *parent = 0);
-    ~Login();
-    Status _Status;
-    void Progress(int progress);
-    void Localize();
+    public:
+        explicit Login(QWidget *parent = 0);
+        ~Login();
+        Status _Status;
+        void Progress(int progress);
+        void Localize();
 
-private slots:
-    void on_ButtonOK_clicked();
-    void on_ButtonExit_clicked();
-    void on_Login_destroyed();
-    void on_Time();
-    void on_pushButton_clicked();
-    void on_Language_currentIndexChanged(const QString &arg1);
+    private slots:
+        void on_ButtonOK_clicked();
+        void on_ButtonExit_clicked();
+        void on_Login_destroyed();
+        void on_Time();
+        void on_pushButton_clicked();
+        void on_Language_currentIndexChanged(const QString &arg1);
 
-private:
-    Ui::Login *ui;
-    QTimer *timer;
-    WLQuery *wq;
-    ApiQuery *LoginQuery;
-    //! The token obtained from login
-    QString Token;
-    static QString Test;
-    //! Reset the interface to default
-    void Reset();
-    //! Enable parts of interface
-    void Enable();
-    void Reload();
-    void DB();
-    //! Cancel currently running login attempt
-    void CancelLogin();
-    void Disable();
-    void PressOK();
-    void PerformLogin();
-    void FinishLogin();
-    void FinishToken();
-    void RetrieveWhitelist();
-    void RetrieveLocalConfig();
-    void RetrieveGlobalConfig();
-    void RetrievePrivateConfig();
-    void RetrieveUserInfo();
-    void DeveloperMode();
-    void DisplayError(QString message);
-    void Finish();
-    //! This function make sure that login result is done
-    bool ProcessOutput();
-    QString GetToken();
-};
+    private:
+        Ui::Login *ui;
+        QTimer *timer;
+        WLQuery *wq;
+        ApiQuery *LoginQuery;
+        //! The token obtained from login
+        QString Token;
+        static QString Test;
+        //! Reset the interface to default
+        void Reset();
+        //! Enable parts of interface
+        void Enable();
+        void Reload();
+        void DB();
+        //! Cancel currently running login attempt
+        void CancelLogin();
+        void Disable();
+        void PressOK();
+        void PerformLogin();
+        void FinishLogin();
+        void FinishToken();
+        void RetrieveWhitelist();
+        void RetrieveLocalConfig();
+        void RetrieveGlobalConfig();
+        void RetrievePrivateConfig();
+        void RetrieveUserInfo();
+        void DeveloperMode();
+        void DisplayError(QString message);
+        void Finish();
+        //! This function make sure that login result is done
+        bool ProcessOutput();
+        QString GetToken();
+    };
+}
 
 #endif // LOGIN_H

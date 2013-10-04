@@ -10,6 +10,8 @@
 
 #include "queryresult.h"
 
+using namespace Huggle;
+
 QueryResult::QueryResult()
 {
     this->Data = "";

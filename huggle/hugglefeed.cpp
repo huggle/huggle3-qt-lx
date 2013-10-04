@@ -10,6 +10,8 @@
 
 #include "hugglefeed.h"
 
+using namespace Huggle;
+
 HuggleFeed::HuggleFeed()
 {
 

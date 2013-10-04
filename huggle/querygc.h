@@ -14,16 +14,19 @@
 #include <QList>
 #include "query.h"
 
-class Query;
-
-//! Garbage collector
-class QueryGC
+namespace Huggle
 {
-public:
-    //! Garbage collector for old queries that should be deleted,
-    //! but can't be right now
-    static QList<Query*> qgc;
-    static void DeleteOld();
-};
+    class Query;
+
+    //! Garbage collector
+    class QueryGC
+    {
+    public:
+        //! Garbage collector for old queries that should be deleted,
+        //! but can't be right now
+        static QList<Query*> qgc;
+        static void DeleteOld();
+    };
+}
 
 #endif // QUERYGC_H

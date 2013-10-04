@@ -10,6 +10,8 @@
 
 #include "querygc.h"
 
+using namespace Huggle;
+
 QList<Query*> QueryGC::qgc;
 
 void QueryGC::DeleteOld()

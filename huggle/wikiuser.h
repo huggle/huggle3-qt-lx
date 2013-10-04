@@ -17,28 +17,31 @@
 
 #include "configuration.h"
 
-//! User
-class WikiUser
+namespace Huggle
 {
-public:
-    static QList<WikiUser*> ProblematicUsers;
-    QString Username;
-    long BadnessScore;
-    int WarningLevel;
-    QString ContentsOfTalkPage;
-    bool IsReported;
-    bool IP;
-    static void UpdateUser(WikiUser *us);
-    WikiUser();
-    WikiUser(WikiUser *u);
-    WikiUser(const WikiUser& u);
-    WikiUser(QString user);
-    QString GetTalk();
-private:
-    //! Matches only IPv4
-    static QRegExp IPv4Regex;
-    //! Matches all IP
-    static QRegExp IPv6Regex;
-};
+    //! User
+    class WikiUser
+    {
+    public:
+        static QList<WikiUser*> ProblematicUsers;
+        QString Username;
+        long BadnessScore;
+        int WarningLevel;
+        QString ContentsOfTalkPage;
+        bool IsReported;
+        bool IP;
+        static void UpdateUser(WikiUser *us);
+        WikiUser();
+        WikiUser(WikiUser *u);
+        WikiUser(const WikiUser& u);
+        WikiUser(QString user);
+        QString GetTalk();
+    private:
+        //! Matches only IPv4
+        static QRegExp IPv4Regex;
+        //! Matches all IP
+        static QRegExp IPv6Regex;
+    };
+}
 
 #endif // WIKIUSER_H

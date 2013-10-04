@@ -10,6 +10,7 @@
 
 #include "waitingform.h"
 #include "ui_waitingform.h"
+using namespace Huggle;
 
 WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent),
     ui(new Ui::WaitingForm)

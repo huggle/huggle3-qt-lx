@@ -17,20 +17,23 @@ namespace Ui {
 class Preferences;
 }
 
-//! Preferences window
-class Preferences : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! Preferences window
+    class Preferences : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit Preferences(QWidget *parent = 0);
-    ~Preferences();
+    public:
+        explicit Preferences(QWidget *parent = 0);
+        ~Preferences();
 
-private slots:
-    void on_pushButton_clicked();
+    private slots:
+        void on_pushButton_clicked();
 
-private:
-    Ui::Preferences *ui;
-};
+    private:
+        Ui::Preferences *ui;
+    };
+}
 
 #endif // PREFERENCES_H

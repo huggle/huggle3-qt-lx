@@ -23,29 +23,32 @@
 #include "configuration.h"
 #include "wikiedit.h"
 
-class ApiQuery;
-
-//! This is a very simple provider of changes that basically refresh recent changes every 6 seconds
-class HuggleFeedProviderWiki : public HuggleFeed
+namespace Huggle
 {
-public:
-    HuggleFeedProviderWiki();
-    ~HuggleFeedProviderWiki();
-    bool Start();
-    bool IsWorking();
-    void Stop();
-    bool Restart() { this->Stop(); return this->Start(); }
-    bool ContainsEdit();
-    void Refresh();
-    WikiEdit *RetrieveEdit();
-    QDateTime LastRefresh;
-private:
-    QDateTime LatestTime;
-    void Process(QString data);
-    bool Refreshing;
-    QList<WikiEdit> *Buffer;
-    ApiQuery *q;
-    void InsertEdit(WikiEdit edit);
-};
+    class ApiQuery;
+
+    //! This is a very simple provider of changes that basically refresh recent changes every 6 seconds
+    class HuggleFeedProviderWiki : public HuggleFeed
+    {
+    public:
+        HuggleFeedProviderWiki();
+        ~HuggleFeedProviderWiki();
+        bool Start();
+        bool IsWorking();
+        void Stop();
+        bool Restart() { this->Stop(); return this->Start(); }
+        bool ContainsEdit();
+        void Refresh();
+        WikiEdit *RetrieveEdit();
+        QDateTime LastRefresh;
+    private:
+        QDateTime LatestTime;
+        void Process(QString data);
+        bool Refreshing;
+        QList<WikiEdit> *Buffer;
+        ApiQuery *q;
+        void InsertEdit(WikiEdit edit);
+    };
+}
 
 #endif // HUGGLEFEEDPROVIDERWIKI_H

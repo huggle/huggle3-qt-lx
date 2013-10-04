@@ -21,197 +21,200 @@
 #include <QString>
 #include "wikisite.h"
 
-class ScoreWord
+namespace Huggle
 {
-public:
-    ScoreWord(QString Word, int Score);
-    QString word;
-    int score;
-};
+    class ScoreWord
+    {
+    public:
+        ScoreWord(QString Word, int Score);
+        QString word;
+        int score;
+    };
 
-//! Run time configuration of huggle
-class Configuration
-{
-public:
-    ////////////////////////////////////////////
-    // System
-    ////////////////////////////////////////////
-    //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
-    static unsigned int Verbosity;
-    //! Version
-    static QString HuggleVersion;
-    //! currently selected project
-    static WikiSite Project;
-    //! List of projects
-    static QList<WikiSite *> ProjectList;
-    //! When this is true most of functions will not work
-    static bool Restricted;
-    //! Return a prefix for url
-    static QString GetURLProtocolPrefix();
-    //! Where the welcome message is stored
-    static QString WelcomeMP;
-    //! Size of info cache
-    static int Cache_InfoSize;
-    //! Whether python is available
-    static bool PythonEngine;
-    //! Size of feed
-    static int ProviderCache;
-    //! Maximum size of ringlog
-    static int RingLogMaxSize;
-    //! Path where huggle contains its data
-    static QString HomePath;
-    //! Path to a file where information about wikis are stored
-    static QString WikiDB;
-    //! Return a configuration path
-    static QString GetConfigurationPath();
-    //! Data of wl
-    static QStringList WhiteList;
-    //! URL of wiki that contains a global config
-    static QString GlobalConfigurationWikiAddress;
-    //! Number of seconds for which the processed queries remain in list of processes
-    static int QueryListTimeLimit;
-    //! Number of edits to keep in history stack
-    static int HistorySize;
-    static QString Language;
-    static double EditCounter;
-    static double RvCounter;
-    static bool AskUserBeforeReport;
-    //! This is experimental feature that removes the old templates from talk pages when they are being read
-    static bool TrimOldWarnings;
-    static QStringList Rights;
-    //! Whether new edits go to top or bottom
-    static bool QueueNewEditsUp;
+    //! Run time configuration of huggle
+    class Configuration
+    {
+    public:
+        ////////////////////////////////////////////
+        // System
+        ////////////////////////////////////////////
+        //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
+        static unsigned int Verbosity;
+        //! Version
+        static QString HuggleVersion;
+        //! currently selected project
+        static WikiSite Project;
+        //! List of projects
+        static QList<WikiSite *> ProjectList;
+        //! When this is true most of functions will not work
+        static bool Restricted;
+        //! Return a prefix for url
+        static QString GetURLProtocolPrefix();
+        //! Where the welcome message is stored
+        static QString WelcomeMP;
+        //! Size of info cache
+        static int Cache_InfoSize;
+        //! Whether python is available
+        static bool PythonEngine;
+        //! Size of feed
+        static int ProviderCache;
+        //! Maximum size of ringlog
+        static int RingLogMaxSize;
+        //! Path where huggle contains its data
+        static QString HomePath;
+        //! Path to a file where information about wikis are stored
+        static QString WikiDB;
+        //! Return a configuration path
+        static QString GetConfigurationPath();
+        //! Data of wl
+        static QStringList WhiteList;
+        //! URL of wiki that contains a global config
+        static QString GlobalConfigurationWikiAddress;
+        //! Number of seconds for which the processed queries remain in list of processes
+        static int QueryListTimeLimit;
+        //! Number of edits to keep in history stack
+        static int HistorySize;
+        static QString Language;
+        static double EditCounter;
+        static double RvCounter;
+        static bool AskUserBeforeReport;
+        //! This is experimental feature that removes the old templates from talk pages when they are being read
+        static bool TrimOldWarnings;
+        static QStringList Rights;
+        //! Whether new edits go to top or bottom
+        static bool QueueNewEditsUp;
 
-    //////////////////////////////////////////////
-    // Local config
-    //////////////////////////////////////////////
+        //////////////////////////////////////////////
+        // Local config
+        //////////////////////////////////////////////
 
-    //! Minimal version of huggle required to use it
-    static QString LocalConfig_MinimalVersion;
-    static bool LocalConfig_UseIrc;
-    static bool LocalConfig_RequireRollback;
-    static bool LocalConfig_RequireAdmin;
-    static bool LocalConfig_EnableAll;
-    static int LocalConfig_RequireEdits;
+        //! Minimal version of huggle required to use it
+        static QString LocalConfig_MinimalVersion;
+        static bool LocalConfig_UseIrc;
+        static bool LocalConfig_RequireRollback;
+        static bool LocalConfig_RequireAdmin;
+        static bool LocalConfig_EnableAll;
+        static int LocalConfig_RequireEdits;
 
-    static bool LocalConfig_AIV;
-    static bool LocalConfig_AIVExtend;
-    static QString LocalConfig_ReportPath;
-    //! Section of report page to append template to
-    static int LocalConfig_ReportSt;
-    //! IP vandals
-    static QString LocalConfig_IPVTemplateReport;
-    //! Regular users
-    static QString LocalConfig_RUTemplateReport;
-    static QString LocalConfig_WelcomeSummary;
+        static bool LocalConfig_AIV;
+        static bool LocalConfig_AIVExtend;
+        static QString LocalConfig_ReportPath;
+        //! Section of report page to append template to
+        static int LocalConfig_ReportSt;
+        //! IP vandals
+        static QString LocalConfig_IPVTemplateReport;
+        //! Regular users
+        static QString LocalConfig_RUTemplateReport;
+        static QString LocalConfig_WelcomeSummary;
 
-    // Reverting
+        // Reverting
 
-    static QString LocalConfig_ManualRevertSummary;
-    static QString LocalConfig_MultipleRevertSummary;
-    static QStringList LocalConfig_RevertSummaries;
-    static QStringList LocalConfig_TemplateSummary;
-    static bool LocalConfig_RollbackPossible;
-    static QString LocalConfig_RollbackSummary;
-    static QString LocalConfig_DefaultSummary;
-    static QString LocalConfig_SingleRevert;
-    static QString LocalConfig_UndoSummary;
-    static QString LocalConfig_ClearTalkPageTemp;
-    static QString LocalConfig_WelcomeAnon;
-    static QString LocalConfig_WelcomeTitle;
+        static QString LocalConfig_ManualRevertSummary;
+        static QString LocalConfig_MultipleRevertSummary;
+        static QStringList LocalConfig_RevertSummaries;
+        static QStringList LocalConfig_TemplateSummary;
+        static bool LocalConfig_RollbackPossible;
+        static QString LocalConfig_RollbackSummary;
+        static QString LocalConfig_DefaultSummary;
+        static QString LocalConfig_SingleRevert;
+        static QString LocalConfig_UndoSummary;
+        static QString LocalConfig_ClearTalkPageTemp;
+        static QString LocalConfig_WelcomeAnon;
+        static QString LocalConfig_WelcomeTitle;
 
-    // Warnings
+        // Warnings
 
-    static QString LocalConfig_AgfRevert;
-    static QString LocalConfig_WarnSummary;
-    static QString LocalConfig_WarnSummary2;
-    static QString LocalConfig_WarnSummary3;
-    static QString LocalConfig_WarnSummary4;
-    static QStringList LocalConfig_WarningTemplates;
-    static QStringList LocalConfig_WarningDefs;
-    static QString LocalConfig_ReportSummary;
+        static QString LocalConfig_AgfRevert;
+        static QString LocalConfig_WarnSummary;
+        static QString LocalConfig_WarnSummary2;
+        static QString LocalConfig_WarnSummary3;
+        static QString LocalConfig_WarnSummary4;
+        static QStringList LocalConfig_WarningTemplates;
+        static QStringList LocalConfig_WarningDefs;
+        static QString LocalConfig_ReportSummary;
 
-    // Definitions
+        // Definitions
 
-    static QList<ScoreWord> LocalConfig_ScoreParts;
-    static QList<ScoreWord> LocalConfig_ScoreWords;
-    static int LocalConfig_ScoreFlag;
-    static QStringList LocalConfig_Ignores;
-    static QStringList LocalConfig_RevertPatterns;
-    static QStringList LocalConfig_Assisted;
-    static QStringList LocalConfig_Templates;
-    static QStringList LocalConfig_IgnorePatterns;
-    static int LocalConfig_TalkPageWarningScore;
+        static QList<ScoreWord> LocalConfig_ScoreParts;
+        static QList<ScoreWord> LocalConfig_ScoreWords;
+        static int LocalConfig_ScoreFlag;
+        static QStringList LocalConfig_Ignores;
+        static QStringList LocalConfig_RevertPatterns;
+        static QStringList LocalConfig_Assisted;
+        static QStringList LocalConfig_Templates;
+        static QStringList LocalConfig_IgnorePatterns;
+        static int LocalConfig_TalkPageWarningScore;
 
-    static bool LocalConfig_GlobalRequired;
+        static bool LocalConfig_GlobalRequired;
 
-    static int LocalConfig_BotScore;
-    static int LocalConfig_IPScore;
-    static int LocalConfig_WarningScore;
-    static QStringList LocalConfig_WarningTypes;
-    static QStringList LocalConfig_WelcomeTypes;
-    static int LocalConfig_WhitelistScore;
+        static int LocalConfig_BotScore;
+        static int LocalConfig_IPScore;
+        static int LocalConfig_WarningScore;
+        static QStringList LocalConfig_WarningTypes;
+        static QStringList LocalConfig_WelcomeTypes;
+        static int LocalConfig_WhitelistScore;
 
-    //////////////////////////////////////////////
-    // Global config
-    //////////////////////////////////////////////
-    static bool GlobalConfig_EnableAll;
-    static QString GlobalConfig_MinVersion;
-    static QString GlobalConfig_LocalConfigWikiPath;
-    static QString GlobalConfig_DocumentationPath;
-    static QString GlobalConfig_FeedbackPath;
-    static QString GlobalConfig_UserConf;
-    static bool GlobalConfigWasLoaded;
+        //////////////////////////////////////////////
+        // Global config
+        //////////////////////////////////////////////
+        static bool GlobalConfig_EnableAll;
+        static QString GlobalConfig_MinVersion;
+        static QString GlobalConfig_LocalConfigWikiPath;
+        static QString GlobalConfig_DocumentationPath;
+        static QString GlobalConfig_FeedbackPath;
+        static QString GlobalConfig_UserConf;
+        static bool GlobalConfigWasLoaded;
 
-    //////////////////////////////////////////////
-    // Login
-    //////////////////////////////////////////////
+        //////////////////////////////////////////////
+        // Login
+        //////////////////////////////////////////////
 
-    //! User name
-    static QString UserName;
-    //! If SSL is being used
-    static bool UsingSSL;
-    //! Consumer key
-    static QString WmfOAuthConsumerKey;
-    //! Password
-    static QString Password;
+        //! User name
+        static QString UserName;
+        //! If SSL is being used
+        static bool UsingSSL;
+        //! Consumer key
+        static QString WmfOAuthConsumerKey;
+        //! Password
+        static QString Password;
 
-    //////////////////////////////////////////////
-    // IRC
-    //////////////////////////////////////////////
+        //////////////////////////////////////////////
+        // IRC
+        //////////////////////////////////////////////
 
-    //! Whether IRC is being used
-    static bool UsingIRC;
-    //! Server
-    static QString IRCServer;
-    //! Nick
-    static QString IRCNick;
-    //! Ident
-    static QString IRCIdent;
-    //! Port
-    static quint16 IRCPort;
+        //! Whether IRC is being used
+        static bool UsingIRC;
+        //! Server
+        static QString IRCServer;
+        //! Nick
+        static QString IRCNick;
+        //! Ident
+        static QString IRCIdent;
+        //! Port
+        static quint16 IRCPort;
 
-    //////////////////////////////////////////////
-    // Friends
-    //////////////////////////////////////////////
-    //! Suffix used by huggle
-    static QString EditSuffixOfHuggle;
-    //! Regexes that other tools can be identified with
-    static QStringList EditRegexOfTools;
+        //////////////////////////////////////////////
+        // Friends
+        //////////////////////////////////////////////
+        //! Suffix used by huggle
+        static QString EditSuffixOfHuggle;
+        //! Regexes that other tools can be identified with
+        static QStringList EditRegexOfTools;
 
-    //////////////////////////////////////////////
-    // Reverting
-    //////////////////////////////////////////////
+        //////////////////////////////////////////////
+        // Reverting
+        //////////////////////////////////////////////
 
-    static QString DefaultRevertSummary;
-    static QString GetDefaultRevertSummary(QString source);
-    //! Warn you in case you want to revert a user page
-    static bool WarnUserSpaceRoll;
-    static bool NextOnRv;
-    //! Send a message to user on good edit
-    static bool WelcomeEmpty;
+        static QString DefaultRevertSummary;
+        static QString GetDefaultRevertSummary(QString source);
+        //! Warn you in case you want to revert a user page
+        static bool WarnUserSpaceRoll;
+        static bool NextOnRv;
+        //! Send a message to user on good edit
+        static bool WelcomeEmpty;
 
-    static QString Bool2String(bool b);
-};
+        static QString Bool2String(bool b);
+    };
+}
 
 #endif // CONFIGURATION_H

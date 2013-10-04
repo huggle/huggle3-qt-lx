@@ -22,46 +22,49 @@
 #include "configuration.h"
 #include "wikiedit.h"
 
-class HuggleFeedProviderIRC;
-
-//! Thread which process the IRC feed
-class HuggleFeedProviderIRC_t : public QThread
+namespace Huggle
 {
-    Q_OBJECT
-public:
-    HuggleFeedProviderIRC_t(QTcpSocket *socket);
-    ~HuggleFeedProviderIRC_t();
-    bool Running;
-    HuggleFeedProviderIRC *p;
-protected:
-    void run();
-private:
-    QTcpSocket *s;
-};
+    class HuggleFeedProviderIRC;
 
-class HuggleFeedProviderIRC : public HuggleFeed
-{
-public:
-    HuggleFeedProviderIRC();
-    ~HuggleFeedProviderIRC();
-    bool Start();
-    bool IsWorking();
-    void Stop();
-    bool Restart() { this->Stop(); return this->Start(); }
-    void InsertEdit(WikiEdit *edit);
-    void ParseEdit(QString line);
-    bool ContainsEdit();
-    WikiEdit *RetrieveEdit();
-    bool IsPaused() { return Paused; }
-    void Pause() { Paused = true; }
-    void Resume() { Paused = false; }
-    bool Connected;
-private:
-    QMutex lock;
-    QList<WikiEdit*> Buffer;
-    HuggleFeedProviderIRC_t *thread;
-    QTcpSocket *TcpSocket;
-    bool Paused;
-};
+    //! Thread which process the IRC feed
+    class HuggleFeedProviderIRC_t : public QThread
+    {
+        Q_OBJECT
+    public:
+        HuggleFeedProviderIRC_t(QTcpSocket *socket);
+        ~HuggleFeedProviderIRC_t();
+        bool Running;
+        HuggleFeedProviderIRC *p;
+    protected:
+        void run();
+    private:
+        QTcpSocket *s;
+    };
+
+    class HuggleFeedProviderIRC : public HuggleFeed
+    {
+    public:
+        HuggleFeedProviderIRC();
+        ~HuggleFeedProviderIRC();
+        bool Start();
+        bool IsWorking();
+        void Stop();
+        bool Restart() { this->Stop(); return this->Start(); }
+        void InsertEdit(WikiEdit *edit);
+        void ParseEdit(QString line);
+        bool ContainsEdit();
+        WikiEdit *RetrieveEdit();
+        bool IsPaused() { return Paused; }
+        void Pause() { Paused = true; }
+        void Resume() { Paused = false; }
+        bool Connected;
+    private:
+        QMutex lock;
+        QList<WikiEdit*> Buffer;
+        HuggleFeedProviderIRC_t *thread;
+        QTcpSocket *TcpSocket;
+        bool Paused;
+    };
+}
 
 #endif // HUGGLEFEEDPROVIDERIRC_H

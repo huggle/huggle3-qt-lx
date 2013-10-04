@@ -10,6 +10,9 @@
 
 #include "iextension.h"
 
+using namespace Huggle;
+
 iExtension::iExtension()
 {
+
 }

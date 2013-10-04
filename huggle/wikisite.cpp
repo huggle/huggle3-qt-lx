@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikisite.h"
+using namespace Huggle;
 
 WikiSite::WikiSite(const WikiSite &w)
 {

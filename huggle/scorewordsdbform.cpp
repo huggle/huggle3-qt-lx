@@ -10,6 +10,7 @@
 
 #include "scorewordsdbform.h"
 #include "ui_scorewordsdbform.h"
+using namespace Huggle;
 
 ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) :
     QDialog(parent),

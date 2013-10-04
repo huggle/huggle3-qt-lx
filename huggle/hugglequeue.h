@@ -25,31 +25,34 @@ namespace Ui {
 class HuggleQueue;
 }
 
-class HuggleQueueFilter;
-class HuggleQueueItemLabel;
-
-//! Queue of edits
-class HuggleQueue : public QDockWidget
+namespace Huggle
 {
-    Q_OBJECT
-    
-public:
-    HuggleQueueFilter *CurrentFilter;
-    QList<HuggleQueueItemLabel*> Items;
-    explicit HuggleQueue(QWidget *parent = 0);
-    ~HuggleQueue();
-    void AddItem(WikiEdit *page);
-    void Next();
-    void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
-    //! Remove 1 item
-    void Trim();
+    class HuggleQueueFilter;
+    class HuggleQueueItemLabel;
 
-private:
-    long GetScore(int id);
-    Ui::HuggleQueue *ui;
-    QVBoxLayout *layout;
-    QWidget *xx;
-    QFrame *frame;
-};
+    //! Queue of edits
+    class HuggleQueue : public QDockWidget
+    {
+        Q_OBJECT
+
+    public:
+        HuggleQueueFilter *CurrentFilter;
+        QList<HuggleQueueItemLabel*> Items;
+        explicit HuggleQueue(QWidget *parent = 0);
+        ~HuggleQueue();
+        void AddItem(WikiEdit *page);
+        void Next();
+        void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+        //! Remove 1 item
+        void Trim();
+
+    private:
+        long GetScore(int id);
+        Ui::HuggleQueue *ui;
+        QVBoxLayout *layout;
+        QWidget *xx;
+        QFrame *frame;
+    };
+}
 
 #endif // HUGGLEQUEUE_H

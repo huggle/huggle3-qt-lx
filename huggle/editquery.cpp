@@ -10,6 +10,8 @@
 
 #include "editquery.h"
 
+using namespace Huggle;
+
 EditQuery::EditQuery()
 {
     this->summary = "";

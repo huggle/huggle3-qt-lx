@@ -10,6 +10,8 @@
 
 #include "hugglequeuefilter.h"
 
+using namespace Huggle;
+
 HuggleQueueFilter::HuggleQueueFilter()
 {
     QueueName = "default";

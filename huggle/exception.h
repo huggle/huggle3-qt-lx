@@ -14,13 +14,16 @@
 #include <iostream>
 #include <QString>
 
-//! Every exception raised by huggle is defined by this class
-class Exception
+namespace Huggle
 {
-public:
-    int ErrorCode;
-    QString Message;
-    Exception(QString Text);
-};
+    //! Every exception raised by huggle is defined by this class
+    class Exception
+    {
+    public:
+        int ErrorCode;
+        QString Message;
+        Exception(QString Text);
+    };
+}
 
 #endif // EXCEPTION_H

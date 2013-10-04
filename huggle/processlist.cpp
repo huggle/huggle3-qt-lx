@@ -11,6 +11,8 @@
 #include "processlist.h"
 #include "ui_processlist.h"
 
+using namespace Huggle;
+
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
     ui->setupUi(this);

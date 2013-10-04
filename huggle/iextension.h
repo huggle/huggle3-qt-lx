@@ -16,13 +16,16 @@
 #include "configuration.h"
 #include "core.h"
 
-//! Extension interface
-class iExtension
+namespace Huggle
 {
-public:
-    iExtension();
-};
+    //! Extension interface
+    class iExtension
+    {
+    public:
+        iExtension();
+    };
+}
 
-Q_DECLARE_INTERFACE(iExtension, "org.huggle.extension.qt")
+Q_DECLARE_INTERFACE(Huggle::iExtension, "org.huggle.extension.qt")
 
 #endif // IEXTENSION_H

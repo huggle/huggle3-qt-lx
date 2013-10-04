@@ -10,6 +10,8 @@
 
 #include "apiquery.h"
 
+using namespace Huggle;
+
 void ApiQuery::ConstructUrl()
 {
     if (this->ActionPart == "")

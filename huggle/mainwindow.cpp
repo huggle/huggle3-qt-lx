@@ -11,8 +11,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+using namespace Huggle;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    QDateTime load = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
@@ -101,6 +104,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
     this->eq = NULL;
+    Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
 }
 
 MainWindow::~MainWindow()
@@ -126,6 +130,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::_ReportUser()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
+
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -815,6 +824,11 @@ QString MainWindow::GetSummaryText(QString text)
 
 void MainWindow::ForceWarn(int level)
 {
+    if (!CheckExit())
+    {
+        return;
+    }
+
     if (Configuration::Restricted)
     {
         Core::DeveloperError();
@@ -869,6 +883,10 @@ void MainWindow::Exit()
     }
     ShuttingDown = true;
     this->Shutdown = ShutdownOpRetrievingWhitelist;
+    if (Core::PrimaryFeedProvider != NULL)
+    {
+        Core::PrimaryFeedProvider->Stop();
+    }
     if (this->fWaiting != NULL)
     {
         delete this->fWaiting;
@@ -1208,6 +1226,10 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
+    if (!CheckExit())
+    {
+        return;
+    }
     if (!Configuration::UsingIRC)
     {
         Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");

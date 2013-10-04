@@ -18,16 +18,19 @@ namespace Ui {
 class BlockUser;
 }
 
-class BlockUser : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    class BlockUser : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit BlockUser(QWidget *parent = 0);
-    ~BlockUser();
+    public:
+        explicit BlockUser(QWidget *parent = 0);
+        ~BlockUser();
 
-private:
-    Ui::BlockUser *ui;
-};
+    private:
+        Ui::BlockUser *ui;
+    };
+}
 
 #endif // BLOCKUSER_H

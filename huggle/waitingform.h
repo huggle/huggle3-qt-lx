@@ -18,23 +18,26 @@ namespace Ui {
 class WaitingForm;
 }
 
-//! This is universal form that is just displaying the progress bar and reason why we need to wait
-class WaitingForm : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! This is universal form that is just displaying the progress bar and reason why we need to wait
+    class WaitingForm : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit WaitingForm(QWidget *parent = 0);
-    ~WaitingForm();
-    void Status(int progress, QString text);
+    public:
+        explicit WaitingForm(QWidget *parent = 0);
+        ~WaitingForm();
+        void Status(int progress, QString text);
 
-private slots:
-    void on_WaitingForm_destroyed();
+    private slots:
+        void on_WaitingForm_destroyed();
 
-    void on_WaitingForm_rejected();
+        void on_WaitingForm_rejected();
 
-private:
-    Ui::WaitingForm *ui;
-};
+    private:
+        Ui::WaitingForm *ui;
+    };
+}
 
 #endif // WAITINGFORM_H

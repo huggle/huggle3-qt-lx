@@ -10,6 +10,8 @@
 
 #include "oauth.h"
 
+using namespace Huggle;
+
 OAuth::OAuth(QString login)
 {
 }

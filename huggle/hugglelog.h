@@ -20,16 +20,19 @@ namespace Ui {
 class HuggleLog;
 }
 
-//! This window contains all the messages that are stored in ring log
-class HuggleLog : public QDockWidget
+namespace Huggle
 {
-    Q_OBJECT
-public:
-    explicit HuggleLog(QWidget *parent = 0);
-    void InsertText(QString text);
-    ~HuggleLog();
-private:
-    Ui::HuggleLog *ui;
-};
+    //! This window contains all the messages that are stored in ring log
+    class HuggleLog : public QDockWidget
+    {
+        Q_OBJECT
+    public:
+        explicit HuggleLog(QWidget *parent = 0);
+        void InsertText(QString text);
+        ~HuggleLog();
+    private:
+        Ui::HuggleLog *ui;
+    };
+}
 
 #endif // HUGGLELOG_H

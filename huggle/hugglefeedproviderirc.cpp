@@ -10,6 +10,8 @@
 
 #include "hugglefeedproviderirc.h"
 
+using namespace Huggle;
+
 HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
     Paused = false;

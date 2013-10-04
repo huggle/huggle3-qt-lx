@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
             i++;
         }
         // we create a new terminal parser
-        TerminalParser *p = new TerminalParser(argc, args);
+        Huggle::TerminalParser *p = new Huggle::TerminalParser(argc, args);
         // if parser get an argument which requires app to exit (like --help or --version)
         // we can terminate it now
         if (p->Parse())
@@ -40,16 +40,16 @@ int main(int argc, char *argv[])
         delete p;
         p = NULL;
         // we load the core
-        Core::Init();
+        Huggle::Core::Init();
         // now we can start the huggle :o
         QApplication a(argc, argv);
-        Core::f_Login = new Login();
-        Core::f_Login->show();
+        Huggle::Core::f_Login = new Huggle::Login();
+        Huggle::Core::f_Login->show();
 
         return a.exec();
-    } catch (Exception fail)
+    } catch (Huggle::Exception fail)
     {
-        Core::Log("FATAL: Unhandled exception occured, description: " + fail.Message);
+        Huggle::Core::Log("FATAL: Unhandled exception occured, description: " + fail.Message);
         return fail.ErrorCode;
     }
 }

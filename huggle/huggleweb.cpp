@@ -11,6 +11,8 @@
 #include "huggleweb.h"
 #include "ui_huggleweb.h"
 
+using namespace Huggle;
+
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     ui->setupUi(this);

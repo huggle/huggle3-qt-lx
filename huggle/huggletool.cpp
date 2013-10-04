@@ -11,6 +11,8 @@
 #include "huggletool.h"
 #include "ui_huggletool.h"
 
+using namespace Huggle;
+
 HuggleTool::HuggleTool(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::HuggleTool)

@@ -11,6 +11,8 @@
 #include "preferences.h"
 #include "ui_preferences.h"
 
+using namespace Huggle;
+
 Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
 {
     ui->setupUi(this);

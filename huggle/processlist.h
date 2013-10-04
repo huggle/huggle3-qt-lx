@@ -24,40 +24,43 @@ namespace Ui {
 class ProcessList;
 }
 
-//! When you remove an item it should stay in list for some time so that user can notice it finished and that's
-//! why we store it to separate object and for that we have this class ;)
-class ProcessListRemovedItem
+namespace Huggle
 {
-private:
-    QDateTime time;
-    int id;
-public:
-    ProcessListRemovedItem(int ID);
-    int GetID();
-    bool Expired();
-};
+    //! When you remove an item it should stay in list for some time so that user can notice it finished and that's
+    //! why we store it to separate object and for that we have this class ;)
+    class ProcessListRemovedItem
+    {
+    private:
+        QDateTime time;
+        int id;
+    public:
+        ProcessListRemovedItem(int ID);
+        int GetID();
+        bool Expired();
+    };
 
-//! List of active processes, when some process finish it's collected by garbage collector
-class ProcessList : public QDockWidget
-{
-    Q_OBJECT
-    
-public:
-    explicit ProcessList(QWidget *parent = 0);
-    void InsertQuery(Query* q);
-    void Clear();
-    bool ContainsQuery(Query *q);
-    void RemoveQuery(Query *q);
-    void UpdateQuery(Query *q);
-    bool IsExpired(Query *q);
-    void RemoveExpired();
-    int GetItem(Query *q);
-    int GetItem(int Id);
-    ~ProcessList();
-    
-private:
-    QList<ProcessListRemovedItem*> *Removed;
-    Ui::ProcessList *ui;
-};
+    //! List of active processes, when some process finish it's collected by garbage collector
+    class ProcessList : public QDockWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit ProcessList(QWidget *parent = 0);
+        void InsertQuery(Query* q);
+        void Clear();
+        bool ContainsQuery(Query *q);
+        void RemoveQuery(Query *q);
+        void UpdateQuery(Query *q);
+        bool IsExpired(Query *q);
+        void RemoveExpired();
+        int GetItem(Query *q);
+        int GetItem(int Id);
+        ~ProcessList();
+
+    private:
+        QList<ProcessListRemovedItem*> *Removed;
+        Ui::ProcessList *ui;
+    };
+}
 
 #endif // PROCESSLIST_H

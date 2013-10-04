@@ -17,22 +17,25 @@ namespace Ui {
 class ExceptionWindow;
 }
 
-//! Recovery window
-class ExceptionWindow : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! Recovery window
+    class ExceptionWindow : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit ExceptionWindow(QWidget *parent = 0);
-    ~ExceptionWindow();
+    public:
+        explicit ExceptionWindow(QWidget *parent = 0);
+        ~ExceptionWindow();
 
-private slots:
-    void on_pushButton_clicked();
+    private slots:
+        void on_pushButton_clicked();
 
-    void on_pushButton_3_clicked();
+        void on_pushButton_3_clicked();
 
-private:
-    Ui::ExceptionWindow *ui;
-};
+    private:
+        Ui::ExceptionWindow *ui;
+    };
+}
 
 #endif // EXCEPTIONWINDOW_H

@@ -22,27 +22,30 @@ namespace Ui {
 class HuggleWeb;
 }
 
-class WikiEdit;
-
-//! Web browser
-class HuggleWeb : public QFrame
+namespace Huggle
 {
-    Q_OBJECT
-    
-public:
-    explicit HuggleWeb(QWidget *parent = 0);
-    ~HuggleWeb();
-    QString CurrentPageName();
-    void DisplayPreFormattedPage(WikiPage *page);
-    void DisplayPreFormattedPage(QString url);
-    void DisplayPage(QString url);
-    void RenderHtml(QString html);
-    void DisplayDiff(WikiEdit *edit);
-    
-private:
-    QString Encode(const QString &string);
-    Ui::HuggleWeb *ui;
-    QString CurrentPage;
-};
+    class WikiEdit;
+
+    //! Web browser
+    class HuggleWeb : public QFrame
+    {
+        Q_OBJECT
+
+    public:
+        explicit HuggleWeb(QWidget *parent = 0);
+        ~HuggleWeb();
+        QString CurrentPageName();
+        void DisplayPreFormattedPage(WikiPage *page);
+        void DisplayPreFormattedPage(QString url);
+        void DisplayPage(QString url);
+        void RenderHtml(QString html);
+        void DisplayDiff(WikiEdit *edit);
+
+    private:
+        QString Encode(const QString &string);
+        Ui::HuggleWeb *ui;
+        QString CurrentPage;
+    };
+}
 
 #endif // HUGGLEWEB_H

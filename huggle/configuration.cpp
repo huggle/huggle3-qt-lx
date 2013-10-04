@@ -10,6 +10,8 @@
 
 #include "configuration.h"
 
+using namespace Huggle;
+
 unsigned int Configuration::Verbosity = 0;
 WikiSite Configuration::Project("enwiki", "en.wikipedia.org/");
 bool Configuration::UsingSSL = true;

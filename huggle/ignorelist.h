@@ -19,21 +19,24 @@ namespace Ui {
 class IgnoreList;
 }
 
-//! A window that contains ignore list
-class IgnoreList : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! A window that contains ignore list
+    class IgnoreList : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit IgnoreList(QWidget *parent = 0);
-    ~IgnoreList();
+    public:
+        explicit IgnoreList(QWidget *parent = 0);
+        ~IgnoreList();
 
-private slots:
-    void on_pushButton_clicked();
+    private slots:
+        void on_pushButton_clicked();
 
-private:
-    QStandardItemModel *model;
-    Ui::IgnoreList *ui;
-};
+    private:
+        QStandardItemModel *model;
+        Ui::IgnoreList *ui;
+    };
+}
 
 #endif // IGNORELIST_H

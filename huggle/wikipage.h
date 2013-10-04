@@ -15,22 +15,25 @@
 #include "configuration.h"
 #include "wikisite.h"
 
-//! Mediawiki page
-class WikiPage
+namespace Huggle
 {
-public:
-    //! Name of page
-    QString PageName;
-    //! Site this page is on
-    WikiSite *Site;
-    //! Create new empty instance of wiki page
-    WikiPage();
-    WikiPage(QString name);
-    WikiPage(WikiPage *page);
-    WikiPage(const WikiPage& page);
-    //! Return true in case this is a talk page
-    bool IsTalk();
-    bool IsUserpage();
-};
+    //! Mediawiki page
+    class WikiPage
+    {
+    public:
+        //! Name of page
+        QString PageName;
+        //! Site this page is on
+        WikiSite *Site;
+        //! Create new empty instance of wiki page
+        WikiPage();
+        WikiPage(QString name);
+        WikiPage(WikiPage *page);
+        WikiPage(const WikiPage& page);
+        //! Return true in case this is a talk page
+        bool IsTalk();
+        bool IsUserpage();
+    };
+}
 
 #endif // WIKIPAGE_H

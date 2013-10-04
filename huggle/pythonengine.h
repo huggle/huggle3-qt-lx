@@ -19,12 +19,15 @@
 
 #include <Python.h>
 
-//! This python engine should allow users to create python modules for huggle
-class PythonEngine
+namespace Huggle
 {
-public:
-    PythonEngine();
-};
+    //! This python engine should allow users to create python modules for huggle
+    class PythonEngine
+    {
+    public:
+        PythonEngine();
+    };
+}
 
 #endif // PYTHONENGINE_H
 

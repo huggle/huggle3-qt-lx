@@ -13,41 +13,44 @@
 
 #include <QString>
 
-//! Site
-class WikiSite
+namespace Huggle
 {
-public:
-    //! Name of wiki, used by huggle only
-    QString Name;
-    //! URL of wiki, no http prefix must be present
-    QString URL;
-    //! long article path (wiki/ for example on english wp)
-    QString LongPath;
-    //! short path
-    QString ScriptPath;
-    //! URL of oauth handler for this site
-    QString OAuthURL;
-    //! IRC channel of this site, if it doesn't have a channel leave it empty
-    QString IRCChannel;
-    //! URL of whitelist, every site needs to have some, if your site doesn't have it
-    //! leave it as test
-    QString WhiteList;
-    //! Whether the site supports the ssl
-    bool SupportHttps;
-    bool SupportOAuth;
-    WikiSite(WikiSite *w);
-    WikiSite(const WikiSite &w);
-    WikiSite(QString name, QString url);
-    //! This will create a new instance of wikisite with most of configuration
-    //! param name is a name of wiki for internal purposes
-    //! param url is relative url to wiki (no http prefix) which must be terminated with slash
-    //! param path is long path for articles, like wiki/
-    //! param script is short path w/
-    //! param https set this true if your wiki support https
-    //! param oauth set this true if your wiki support oauth
-    //! param channel irc
-    //! param wl whitelist
-    WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
-};
+    //! Site
+    class WikiSite
+    {
+    public:
+        //! Name of wiki, used by huggle only
+        QString Name;
+        //! URL of wiki, no http prefix must be present
+        QString URL;
+        //! long article path (wiki/ for example on english wp)
+        QString LongPath;
+        //! short path
+        QString ScriptPath;
+        //! URL of oauth handler for this site
+        QString OAuthURL;
+        //! IRC channel of this site, if it doesn't have a channel leave it empty
+        QString IRCChannel;
+        //! URL of whitelist, every site needs to have some, if your site doesn't have it
+        //! leave it as test
+        QString WhiteList;
+        //! Whether the site supports the ssl
+        bool SupportHttps;
+        bool SupportOAuth;
+        WikiSite(WikiSite *w);
+        WikiSite(const WikiSite &w);
+        WikiSite(QString name, QString url);
+        //! This will create a new instance of wikisite with most of configuration
+        //! param name is a name of wiki for internal purposes
+        //! param url is relative url to wiki (no http prefix) which must be terminated with slash
+        //! param path is long path for articles, like wiki/
+        //! param script is short path w/
+        //! param https set this true if your wiki support https
+        //! param oauth set this true if your wiki support oauth
+        //! param channel irc
+        //! param wl whitelist
+        WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
+    };
+}
 
 #endif // WIKISITE_H

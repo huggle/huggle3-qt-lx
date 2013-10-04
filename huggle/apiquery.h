@@ -22,70 +22,73 @@
 #include "core.h"
 #include "exception.h"
 
-enum Action
+namespace Huggle
 {
-    ActionQuery,
-    ActionLogin,
-    ActionLogout,
-    ActionTokens,
-    ActionPurge,
-    ActionRollback,
-    ActionDelete,
-    ActionUndelete,
-    ActionEdit
-};
+    enum Action
+    {
+        ActionQuery,
+        ActionLogin,
+        ActionLogout,
+        ActionTokens,
+        ActionPurge,
+        ActionRollback,
+        ActionDelete,
+        ActionUndelete,
+        ActionEdit
+    };
 
-enum Format
-{
-    XML,
-    JSON,
-    PlainText,
-    Default
-};
+    enum Format
+    {
+        XML,
+        JSON,
+        PlainText,
+        Default
+    };
 
-//! This class can be used to execute any kind of api query on any wiki
-class ApiQuery : public Query
-{
-    Q_OBJECT
+    //! This class can be used to execute any kind of api query on any wiki
+    class ApiQuery : public Query
+    {
+        Q_OBJECT
 
-private:
-    QString ActionPart;
-    //! Reply from qnet
-    QNetworkReply *reply;
-    //! Generate api url
-    void ConstructUrl();
-    //! Check if return format is supported by huggle
-    bool FormatIsCurrentlySupported();
-    //! This is only needed when you are using rollback
-    void FinishRollback();
-private slots:
-    void ReadData();
-    void Finished();
-public:
-    //! Creates a new instance of this class and set the defaults
-    explicit ApiQuery();
-    //! Whether the query will submit parameters using POST data
-    bool UsingPOST;
-    //! This is a requested format in which the result should be written in
-    Format RequestFormat;
-    //! This is an url of api request, you probably don't want to change it unless
-    //! you want to construct whole api request yourself
-    QString URL;
-    //! Parameters for action, for example page title
-    QString Parameters;
-    //! Run
-    void Process();
-    //! Change the action type
-    void SetAction(Action action);
-    //! Set the raw action type, you should not use this unless you have to
-    void SetAction(QString action);
-    void Kill();
-    QString QueryTargetToString();
-    QString QueryTypeToString();
-    //! This is optional property which contains a label of target this query is for
-    QString Target;
-    //! You can change this to url of different wiki than a project
-    QString OverrideWiki;
-};
+    private:
+        QString ActionPart;
+        //! Reply from qnet
+        QNetworkReply *reply;
+        //! Generate api url
+        void ConstructUrl();
+        //! Check if return format is supported by huggle
+        bool FormatIsCurrentlySupported();
+        //! This is only needed when you are using rollback
+        void FinishRollback();
+    private slots:
+        void ReadData();
+        void Finished();
+    public:
+        //! Creates a new instance of this class and set the defaults
+        explicit ApiQuery();
+        //! Whether the query will submit parameters using POST data
+        bool UsingPOST;
+        //! This is a requested format in which the result should be written in
+        Format RequestFormat;
+        //! This is an url of api request, you probably don't want to change it unless
+        //! you want to construct whole api request yourself
+        QString URL;
+        //! Parameters for action, for example page title
+        QString Parameters;
+        //! Run
+        void Process();
+        //! Change the action type
+        void SetAction(Action action);
+        //! Set the raw action type, you should not use this unless you have to
+        void SetAction(QString action);
+        void Kill();
+        QString QueryTargetToString();
+        QString QueryTypeToString();
+        //! This is optional property which contains a label of target this query is for
+        QString Target;
+        //! You can change this to url of different wiki than a project
+        QString OverrideWiki;
+    };
+}
 
 #endif // APIQUERY_H

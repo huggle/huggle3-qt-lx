@@ -10,6 +10,8 @@
 
 #include "query.h"
 
+using namespace Huggle;
+
 unsigned int Query::LastID = 0;
 QNetworkAccessManager Query::NetworkManager;
 

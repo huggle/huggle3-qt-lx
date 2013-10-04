@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikipage.h"
+using namespace Huggle;
 
 WikiPage::WikiPage()
 {

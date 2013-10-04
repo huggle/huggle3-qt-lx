@@ -14,6 +14,8 @@
 
 #include "pythonengine.h"
 
+using namespace Huggle;
+
 PythonEngine::PythonEngine()
 {
     Py_Initialize();

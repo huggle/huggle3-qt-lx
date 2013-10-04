@@ -18,30 +18,33 @@
 #include "apiquery.h"
 #include "wikiuser.h"
 
+namespace Huggle
+{
 class Query;
 
 //! This is similar to query, just it's more simple, you can use it to deliver messages to users
 class Message
 {
-public:
-    Message(WikiUser *target, QString Message, QString Summary);
-    ~Message();
-    void Send();
-    void Fail(QString reason);
-    bool Finished();
-    Query *Dependency;
-    QString title;
-    ApiQuery *query;
-    QString token;
-    //! If edit will be created in new section
-    bool Section;
-    WikiUser *user;
-    QString text;
-    QString summary;
-private:
-    void Finish();
-    bool Sending;
-    bool Done;
-};
+    public:
+        Message(WikiUser *target, QString Message, QString Summary);
+        ~Message();
+        void Send();
+        void Fail(QString reason);
+        bool Finished();
+        Query *Dependency;
+        QString title;
+        ApiQuery *query;
+        QString token;
+        //! If edit will be created in new section
+        bool Section;
+        WikiUser *user;
+        QString text;
+        QString summary;
+    private:
+        void Finish();
+        bool Sending;
+        bool Done;
+    };
+}
 
 #endif // MESSAGE_H

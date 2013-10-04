@@ -10,6 +10,8 @@
 
 #include "oauthloginquery.h"
 
+using namespace Huggle;
+
 OAuthLoginQuery::OAuthLoginQuery()
 {
 

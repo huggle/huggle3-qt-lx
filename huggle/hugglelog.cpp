@@ -11,6 +11,8 @@
 #include "hugglelog.h"
 #include "ui_hugglelog.h"
 
+using namespace Huggle;
+
 HuggleLog::HuggleLog(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::HuggleLog)
@@ -22,7 +24,7 @@ HuggleLog::HuggleLog(QWidget *parent) :
 void HuggleLog::InsertText(QString text)
 {
     QString t = ui->textEdit->toPlainText();
-    t.prepend(QDateTime::currentDateTime().toString() + " " + text + "\n");
+    t.prepend(text + "\n");
 
     ui->textEdit->setPlainText(t);
 }

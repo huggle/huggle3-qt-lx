@@ -14,11 +14,14 @@
 #include <QString>
 #include "query.h"
 
-//! This query is supposed to login user through oauth provider
-class OAuthLoginQuery : public Query
+namespace Huggle
 {
-public:
-    OAuthLoginQuery();
-};
+    //! This query is supposed to login user through oauth provider
+    class OAuthLoginQuery : public Query
+    {
+    public:
+        OAuthLoginQuery();
+    };
+}
 
 #endif // OAUTHLOGINQUERY_H

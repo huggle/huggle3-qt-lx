@@ -11,6 +11,8 @@
 #include "exceptionwindow.h"
 #include "ui_exceptionwindow.h"
 
+using namespace Huggle;
+
 ExceptionWindow::ExceptionWindow(QWidget *parent) : QDialog(parent), ui(new Ui::ExceptionWindow)
 {
     ui->setupUi(this);

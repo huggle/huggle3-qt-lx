@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.h"
+using namespace Huggle;
 
 WikiEdit::WikiEdit()
 {

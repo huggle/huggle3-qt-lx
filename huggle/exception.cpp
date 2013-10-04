@@ -10,6 +10,8 @@
 
 #include "exception.h"
 
+using namespace Huggle;
+
 Exception::Exception(QString Text)
 {
     std::cerr << "FATAL Exception thrown: " + Text.toStdString() << std::endl;

@@ -14,25 +14,28 @@
 #include <QString>
 #include "wikiedit.h"
 
-class WikiEdit;
-
-//! Filter that can be applied to edit queue
-class HuggleQueueFilter
+namespace Huggle
 {
-public:
-    QString QueueName;
-    HuggleQueueFilter();
-    bool Matches(WikiEdit *edit);
-    bool Matches(WikiEdit edit);
-private:
-    bool IgnoreMinor;
-    bool IgnoreUsers;
-    bool IgnoreWL;
-    bool IgnoreIP;
-    bool IgnoreBots;
-    bool IgnoreNP;
-    bool IgnoreFriends;
-    bool IgnoreTalk;
-};
+    class WikiEdit;
+
+    //! Filter that can be applied to edit queue
+    class HuggleQueueFilter
+    {
+    public:
+        QString QueueName;
+        HuggleQueueFilter();
+        bool Matches(WikiEdit *edit);
+        bool Matches(WikiEdit edit);
+    private:
+        bool IgnoreMinor;
+        bool IgnoreUsers;
+        bool IgnoreWL;
+        bool IgnoreIP;
+        bool IgnoreBots;
+        bool IgnoreNP;
+        bool IgnoreFriends;
+        bool IgnoreTalk;
+    };
+}
 
 #endif // HUGGLEQUEUEFILTER_H

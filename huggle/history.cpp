@@ -11,6 +11,8 @@
 #include "history.h"
 #include "ui_history.h"
 
+using namespace Huggle;
+
 History::History(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::History)

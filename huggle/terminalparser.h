@@ -16,16 +16,19 @@
 #include <QString>
 #include "configuration.h"
 
-//! Parses the data provided by user
-class TerminalParser
+namespace Huggle
 {
-public:
-    TerminalParser(int argc_, QStringList argv);
-    bool Parse();
-    void DisplayHelp();
-private:
-    int argc;
-    QStringList args;
-};
+    //! Parses the data provided by user
+    class TerminalParser
+    {
+    public:
+        TerminalParser(int argc_, QStringList argv);
+        bool Parse();
+        void DisplayHelp();
+    private:
+        int argc;
+        QStringList args;
+    };
+}
 
 #endif // TERMINALPARSER_H

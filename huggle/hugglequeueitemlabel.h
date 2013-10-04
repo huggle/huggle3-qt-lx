@@ -19,30 +19,33 @@ namespace Ui {
 class HuggleQueueItemLabel;
 }
 
-class WikiEdit;
-class HuggleQueue;
-
-//! This is item of queue, it is derived from qt object
-class HuggleQueueItemLabel : public QFrame
+namespace Huggle
 {
-    Q_OBJECT
-    
-public:
-    explicit HuggleQueueItemLabel(QWidget *parent = 0);
-    ~HuggleQueueItemLabel();
-    HuggleQueue *ParentQueue;
-    void SetName(QString name);
-    QString GetName();
-    void Process(QLayoutItem *qi = NULL);
-    WikiEdit *page;
-    static int Count;
-    void Remove();
+    class WikiEdit;
+    class HuggleQueue;
 
-protected:
-    void mousePressEvent(QMouseEvent *event);
+    //! This is item of queue, it is derived from qt object
+    class HuggleQueueItemLabel : public QFrame
+    {
+        Q_OBJECT
 
-private:
-    Ui::HuggleQueueItemLabel *ui;
-};
+    public:
+        explicit HuggleQueueItemLabel(QWidget *parent = 0);
+        ~HuggleQueueItemLabel();
+        HuggleQueue *ParentQueue;
+        void SetName(QString name);
+        QString GetName();
+        void Process(QLayoutItem *qi = NULL);
+        WikiEdit *page;
+        static int Count;
+        void Remove();
+
+    protected:
+        void mousePressEvent(QMouseEvent *event);
+
+    private:
+        Ui::HuggleQueueItemLabel *ui;
+    };
+}
 
 #endif // HUGGLEQUEUEITEMLABEL_H

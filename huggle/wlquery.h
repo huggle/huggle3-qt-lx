@@ -17,21 +17,24 @@
 #include "configuration.h"
 #include "query.h"
 
-//! Whitelist query :o
-class WLQuery : public Query
+namespace Huggle
 {
-    Q_OBJECT
-public:
-    WLQuery();
-    ~WLQuery();
-    bool Processed();
-    void Process();
-    bool Save;
-private slots:
-    void ReadData();
-    void Finished();
-private:
-    QNetworkReply *r;
-};
+    //! Whitelist query :o
+    class WLQuery : public Query
+    {
+        Q_OBJECT
+    public:
+        WLQuery();
+        ~WLQuery();
+        bool Processed();
+        void Process();
+        bool Save;
+    private slots:
+        void ReadData();
+        void Finished();
+    private:
+        QNetworkReply *r;
+    };
+}
 
 #endif // WLQUERY_H

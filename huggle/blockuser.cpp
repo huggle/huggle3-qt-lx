@@ -12,6 +12,8 @@
 #include "blockuser.h"
 #include "ui_blockuser.h"
 
+using namespace Huggle;
+
 BlockUser::BlockUser(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BlockUser)

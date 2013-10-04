@@ -10,6 +10,8 @@
 
 #include "hugglefeedproviderwiki.h"
 
+using namespace Huggle;
+
 HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
     Buffer = new QList<WikiEdit>();
@@ -28,6 +30,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 
 bool HuggleFeedProviderWiki::Start()
 {
+    this->Resume();
     Refresh();
     return true;
 }
@@ -39,7 +42,7 @@ bool HuggleFeedProviderWiki::IsWorking()
 
 void HuggleFeedProviderWiki::Stop()
 {
-
+    this->Pause();
 }
 
 bool HuggleFeedProviderWiki::ContainsEdit()

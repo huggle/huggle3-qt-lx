@@ -10,6 +10,8 @@
 
 #include "message.h"
 
+using namespace Huggle;
+
 Message::Message(WikiUser *target, QString Message, QString Summary)
 {
     user = target;

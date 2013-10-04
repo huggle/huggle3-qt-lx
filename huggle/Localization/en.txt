@@ -233,6 +233,7 @@ list-title:                List Builder
 
 === Login ===
 <pre>
+login-intro:               Please enter your wikipedia username and pick a project. The authentication will be processed using OAuth
 login-language:            Language:
 login-project:             Project:
 login-username:            Username:
@@ -254,6 +255,7 @@ login-progress-userlist:   Checking user list...
 login-progress-whitelist:  Retrieving user whitelist...
 login-ssl:                 Enforce SSL (requires openssl libs to be installed)
 
+login-fail:                Login failed
 login-error-admin:         Use of Huggle on this project requires an administrator account.
 login-error-age:           Use of Huggle on this project requires an account at least {0} days old.
 login-error-alldisabled:   Huggle is currently disabled on all projects.
@@ -264,13 +266,13 @@ login-error-captcha:       Incorrect password or confirmation code.
 login-error-config:        Failed to load configuration pages!
 login-error-count:         Use of Huggle on this project requires at least {0} edits.
 login-error-disabled:      Huggle is not enabled for your account, check user configuration page.
-login-error-global:        Failed to load global configuration page.
-login-error-invalid:       Invalid username.
-login-error-language:      Failed to load message files.
-login-error-nocaptcha:     Captcha not solved.
-login-error-noconfig:      This project does not have a Huggle configuration page.
-login-error-nouser:        User does not exist.
-login-error-password:      Incorrect password.
+login-error-global:        Failed to load global configuration page
+login-error-invalid:       Invalid username
+login-error-language:      Failed to load message files
+login-error-nocaptcha:     Captcha not solved
+login-error-noconfig:      This project does not have a Huggle configuration page
+login-error-nouser:        User does not exist
+login-error-password:      Incorrect password
 login-error-projdisabled:  Huggle is currently disabled on this project.
 login-error-rollback:      Use of Huggle on this project requires rollback.
 login-error-unknown:       Unable to log in.

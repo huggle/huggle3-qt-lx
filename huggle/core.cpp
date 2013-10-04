@@ -14,9 +14,9 @@
 PythonEngine *Core::Python = NULL;
 #endif
 
-// definitions
-// This needs to be moved to resource file
+using namespace Huggle;
 
+// definitions
 QString Core::HtmlHeader = "";
 QString Core::HtmlFooter = "</table></body></html>";
 
@@ -849,6 +849,7 @@ void Core::AppendQuery(Query *item)
 
 void Core::Log(QString Message)
 {
+    Message = "<" + QDateTime::currentDateTime().toString() + "> " + Message;
     std::cout << Message.toStdString() << std::endl;
     Core::InsertToRingLog(Message);
     if (Core::Main != NULL)

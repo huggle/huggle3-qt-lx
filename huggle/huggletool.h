@@ -17,20 +17,23 @@ namespace Ui {
 class HuggleTool;
 }
 
-//! Toolbar on top of window
-class HuggleTool : public QDockWidget
+namespace Huggle
 {
-    Q_OBJECT
-    
-public:
-    explicit HuggleTool(QWidget *parent = 0);
-    ~HuggleTool();
-    void SetTitle(QString title);
-    void SetInfo(QString info);
-    void SetUser(QString user);
-    
-private:
-    Ui::HuggleTool *ui;
-};
+    //! Toolbar on top of window
+    class HuggleTool : public QDockWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit HuggleTool(QWidget *parent = 0);
+        ~HuggleTool();
+        void SetTitle(QString title);
+        void SetInfo(QString info);
+        void SetUser(QString user);
+
+    private:
+        Ui::HuggleTool *ui;
+    };
+}
 
 #endif // HUGGLETOOL_H
