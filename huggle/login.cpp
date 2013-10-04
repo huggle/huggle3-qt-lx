@@ -79,7 +79,6 @@ void Login::CancelLogin()
     this->Enable();
     this->_Status = Nothing;
     ui->ButtonOK->setText("Login");
-    this->Reset();
 }
 
 void Login::Enable()

@@ -27,15 +27,21 @@ int main(int argc, char *argv[])
             args.append(QString(argv[i]));
             i++;
         }
+        // we create a new terminal parser
         TerminalParser *p = new TerminalParser(argc, args);
+        // if parser get an argument which requires app to exit (like --help or --version)
+        // we can terminate it now
         if (p->Parse())
         {
             delete p;
             return 0;
         }
+        // otherwise we can delete it and continue
         delete p;
         p = NULL;
+        // we load the core
         Core::Init();
+        // now we can start the huggle :o
         QApplication a(argc, argv);
         Core::f_Login = new Login();
         Core::f_Login->show();

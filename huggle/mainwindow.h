@@ -174,6 +174,9 @@ private slots:
     void on_actionWarning_4_triggered();
     void on_actionEdit_user_talk_triggered();
     void on_actionReconnect_IRC_triggered();
+    void on_actionTag_2_triggered();
+
+    void on_actionRequest_deletion_triggered();
 
 private:
     //! Check if huggle is shutting down or not, in case it is message box is shown as well

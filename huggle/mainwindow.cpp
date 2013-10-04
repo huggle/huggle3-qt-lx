@@ -94,6 +94,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     this->timer1 = new QTimer(this);
+    this->ui->actionTag_2->setVisible(false);
+#ifdef PRODUCTION
+    this->ui->actionTag->setVisible(false);
+#endif
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
     this->eq = NULL;
@@ -1220,4 +1224,14 @@ void MainWindow::on_actionReconnect_IRC_triggered()
         Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::PrimaryFeedProvider->Start();
     }
+}
+
+void MainWindow::on_actionTag_2_triggered()
+{
+
+}
+
+void MainWindow::on_actionRequest_deletion_triggered()
+{
+
 }
