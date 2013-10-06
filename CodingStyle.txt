@@ -8,7 +8,7 @@ is easily readable and isn't a mess.
 == C++ code ==
 
 The source code written in C++ is formatted using the Allman
-(also knows as ISO) style:
+(also known as ISO) style:
 see https://en.wikipedia.org/wiki/Indent_style#Allman_style
 
 Example source code:
@@ -35,7 +35,31 @@ for code that may be hard to understand by others.
 Every function and class should be documented according to doxygen
 format http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html
 
+Try to avoid /* multiline */ comments, unless they are inline, these comments
+cause a lot of troubles, mostly, when you are trying to comment out
+large block of code temporarily you can't just use this kind of comment
+in case they are used anywhere else because the terminating
+string isn't matching the corresponding start of block
+
 
 Please respect code of others, don't change the code of others without
 consulting that with them, there may be specific reasons why something
 is written in a way it's written.
+
+=== *pointer == NULL ===
+
+When comparing a pointer to NULL you should always do
+
+if (p != NULL) { ... }
+
+instead of
+
+if (!p) { ... }
+
+because despite the first is longer, it's clear you are working with a pointer, from second
+it's not clear what data type it actually is.
+
+=== Indentations ===
+
+Use 4 spaces, no tabs
+
