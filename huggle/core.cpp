@@ -50,6 +50,7 @@ void Core::Init()
 #endif
     vf->close();
     delete vf;
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
     vf->open(QIODevice::ReadOnly);
     Core::HtmlHeader = QString(vf->readAll());
