@@ -362,7 +362,10 @@ void HuggleFeedProviderIRC_t::run()
         ping--;
     }
     Core::Log("IRC: Closed connection to irc feed");
-    p->Connected = false;
+    if (this->Running)
+    {
+        p->Connected = false;
+    }
 }
 
 HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t(QTcpSocket *socket)
