@@ -1,0 +1,41 @@
+This document is intended for huggle developers, it describes
+how the developers should write the source code.
+
+Because huggle is being developed by multiple developers
+we need to follow same standard so that the code
+is easily readable and isn't a mess.
+
+== C++ code ==
+
+The source code written in C++ is formatted using the Allman
+(also knows as ISO) style:
+see https://en.wikipedia.org/wiki/Indent_style#Allman_style
+
+Example source code:
+
+//! This function loops Bar times and then return 0
+int Foo(int Bar)
+{
+    while (Bar > 0)
+    {
+        Bar--;
+    }
+    return 0;
+}
+
+this style has huge advantage that brackets match vertically, so that
+you can easily see if starting bracket matches the ending one.
+On other hand it consumes more line than, for example K and R style.
+
+=== Comments ===
+
+Use them everywhere when you feel they should be used :-) especially
+for code that may be hard to understand by others.
+
+Every function and class should be documented according to doxygen
+format http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html
+
+
+Please respect code of others, don't change the code of others without
+consulting that with them, there may be specific reasons why something
+is written in a way it's written.
