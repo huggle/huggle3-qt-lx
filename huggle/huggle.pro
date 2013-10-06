@@ -57,7 +57,8 @@ SOURCES += main.cpp\
     reportuser.cpp \
     blockuser.cpp \
     exceptionwindow.cpp \
-    waitingform.cpp
+    waitingform.cpp \
+    speedyform.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -100,7 +101,8 @@ HEADERS  += mainwindow.h \
     reportuser.h \
     blockuser.h \
     exceptionwindow.h \
-    waitingform.h
+    waitingform.h \
+    speedyform.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -120,7 +122,8 @@ FORMS    += mainwindow.ui \
     reportuser.ui \
     blockuser.ui \
     exceptionwindow.ui \
-    waitingform.ui
+    waitingform.ui \
+    speedyform.ui
 
 RESOURCES += \
     pictures.qrc \

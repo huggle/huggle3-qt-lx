@@ -228,6 +228,10 @@ bool WikiEdit::FinalizePostProcessing()
             QDomElement e = l.at(0).toElement();
             if (e.nodeName() == "rev")
             {
+                if (e.text() != "")
+                {
+                    this->Page->Contents = e.text();
+                }
                 // check if this revision matches our user
                 if (e.attributes().contains("user"))
                 {
@@ -287,6 +291,10 @@ void WikiEdit::ProcessWords()
 {
     int xx = 0;
     QString text = this->DiffText.toLower();
+    if (this->Page->Contents != "")
+    {
+        text = this->Page->Contents.toLower();
+    }
     while (xx<Configuration::LocalConfig_ScoreParts.count())
     {
         QString w = Configuration::LocalConfig_ScoreParts.at(xx).word;
@@ -332,12 +340,13 @@ void WikiEdit::PostProcess()
     this->DifferenceQuery->SetAction(ActionQuery);
     if (this->RevID != -1)
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvstartid=" +
+        // &rvprop=content can't be used because of fuck up of mediawiki
+        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvstartid=" +
                                   QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
                                   QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvtoken=rollback&rvdiffto=prev&titles=" +
+        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->DifferenceQuery->Target = Page->PageName;

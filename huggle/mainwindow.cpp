@@ -1038,7 +1038,7 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName ));
+        QDesktopServices::openUrl(Core::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)); // + this->CurrentEdit->Page->PageName);
     }
 }
 

@@ -13,25 +13,30 @@ using namespace Huggle;
 
 WikiPage::WikiPage()
 {
-    Site = NULL;
+    this->Site = NULL;
+    this->PageName = "Unknown page";
+    this->Contents = "";
 }
 
 WikiPage::WikiPage(QString name)
 {
     PageName = name;
     Site = NULL;
+    this->Contents = "";
 }
 
 WikiPage::WikiPage(WikiPage *page)
 {
     this->PageName = page->PageName;
     this->Site = page->Site;
+    this->Contents = page->Contents;
 }
 
 WikiPage::WikiPage(const WikiPage &page)
 {
     this->PageName = page.PageName;
     this->Site = page.Site;
+    this->Contents = page.Contents;
 }
 
 bool WikiPage::IsTalk()

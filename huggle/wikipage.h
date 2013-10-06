@@ -21,6 +21,7 @@ namespace Huggle
     class WikiPage
     {
     public:
+        QString Contents;
         //! Name of page
         QString PageName;
         //! Site this page is on

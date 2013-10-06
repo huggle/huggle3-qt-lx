@@ -92,6 +92,16 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     QString Summary;
 
+    QString size;
+
+    if (edit->Size > 0)
+    {
+        size = "+" + QString::number(edit->Size);
+    } else
+    {
+        size = QString::number(edit->Size);
+    }
+
     if (edit->Summary == "")
     {
         Summary = "<font color=red>No summary was provided</font>";
@@ -99,6 +109,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         Summary = Encode(edit->Summary);
     }
+
+    Summary += "<b> Size change: " + size + "</b>";
 
     ui->webView->setHtml(Core::HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
                          + Summary + "</td></tr>" + edit->DiffText
