@@ -11,6 +11,7 @@
 #include "iextension.h"
 
 using namespace Huggle;
+QList<iExtension*> iExtension::Extensions;
 
 iExtension::iExtension()
 {
@@ -18,13 +19,13 @@ iExtension::iExtension()
     this->ExtensionDescription = "None";
     this->ExtensionVersion = "0";
     this->ExtensionName = "Unknown";
-    Core::Extensions.append(this);
+    iExtension::Extensions.append(this);
 }
 
 iExtension::~iExtension()
 {
-    if (Core::Extensions.contains(this))
+    if (iExtension::Extensions.contains(this))
     {
-        Core::Extensions.removeAll(this);
+        iExtension::Extensions.removeAll(this);
     }
 }

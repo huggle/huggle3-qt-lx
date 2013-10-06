@@ -12,9 +12,8 @@
 #define IEXTENSION_H
 
 #include <QtPlugin>
+#include <QList>
 #include <QString>
-#include "configuration.h"
-#include "core.h"
 
 namespace Huggle
 {
@@ -22,8 +21,10 @@ namespace Huggle
     class iExtension
     {
     public:
+        static QList<iExtension *> Extensions;
         iExtension();
         virtual ~iExtension();
+        virtual bool Register() { return false; }
     private:
         QString ExtensionName;
         QString ExtensionAuthor;

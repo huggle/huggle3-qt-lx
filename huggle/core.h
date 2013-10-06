@@ -120,6 +120,7 @@ namespace Huggle
         static void Init();
         //! Write text to terminal as well as ring log
         static void Log(QString Message);
+        static void ExtensionLoad();
         //! This log is only shown if verbosity is same or larger than requested verbosity
         static void DebugLog(QString Message, unsigned int Verbosity = 1);
         //! Helper function that will return URL of project in question

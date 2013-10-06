@@ -74,35 +74,8 @@ void Core::Init()
     Core::LoadLocalizations();
     if (!Configuration::_SafeMode)
     {
-        // get a list of plugins
         Core::Log("Loading plugins");
-        if (QDir().exists(EXTENSION_PATH))
-        {
-            QDir d(EXTENSION_PATH);
-            QStringList extensions = d.entryList();
-            int xx = 0;
-            while (xx < extensions.count())
-            {
-                QString name = extensions.at(xx).toLower();
-                if (name.endsWith(".so") || name.endsWith(".dll"))
-                {
-                    name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
-                    QPluginLoader *extension = new QPluginLoader(name);
-                    if (extension->load())
-                    {
-                        Core::Log("Successfully loaded: " + extensions.at(xx));
-                    } else
-                    {
-                        Core::Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
-                        delete extension;
-                    }
-                }
-                xx++;
-            }
-        } else
-        {
-            Core::Log("There is no extensions folder, skipping load");
-        }
+        Core::ExtensionLoad();
     }
     Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
@@ -890,6 +863,57 @@ void Core::Log(QString Message)
         Core::Main->UnwrittenLogs.append(Message);
         Core::Main->lUnwrittenLogs.unlock();
     }
+}
+
+void Core::ExtensionLoad()
+{
+    if (QDir().exists(EXTENSION_PATH))
+    {
+        QDir d(EXTENSION_PATH);
+        QStringList extensions = d.entryList();
+        int xx = 0;
+        while (xx < extensions.count())
+        {
+            QString name = extensions.at(xx).toLower();
+            if (name.endsWith(".so") || name.endsWith(".dll"))
+            {
+                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                QPluginLoader *extension = new QPluginLoader(name);
+                if (extension->load())
+                {
+                    QObject* root = extension->instance();
+                    if (root)
+                    {
+                        iExtension *interface = qobject_cast<iExtension*>(root);
+                        if (!interface)
+                        {
+                            Core::Log("Unable to cast the library to extension");
+                        }else
+                        {
+                            if (interface->Register())
+                            {
+                                Core::Extensions.append(interface);
+                                Core::Log("Successfully loaded: " + extensions.at(xx));
+                            }
+                            else
+                            {
+                                Core::Log("Unable to register: " + extensions.at(xx));
+                            }
+                        }
+                    }
+                } else
+                {
+                    Core::Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
+                    delete extension;
+                }
+            }
+            xx++;
+        }
+    } else
+    {
+        Core::Log("There is no extensions folder, skipping load");
+    }
+    Core::Log("Extensions: " + QString::number(Core::Extensions.count()));
 }
 
 void Core::DebugLog(QString Message, unsigned int Verbosity)

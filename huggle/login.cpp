@@ -639,6 +639,7 @@ void Login::on_ButtonOK_clicked()
     else
     {
         this->CancelLogin();
+        this->Reset();
         return;
     }
 }

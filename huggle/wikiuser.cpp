@@ -79,6 +79,13 @@ WikiUser::WikiUser(QString user)
     if (user != "")
     {
         this->IP = WikiUser::IPv6Regex.exactMatch(user);
+        if (!this->IP)
+        {
+            if (WikiUser::IPv4Regex.exactMatch(user))
+            {
+                this->IP = true;
+            }
+        }
     }
     this->Username = user;
     int c=0;
