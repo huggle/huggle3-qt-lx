@@ -14,22 +14,22 @@ using namespace Huggle;
 
 HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
-    Paused = false;
+    this->Paused = false;
     this->Connected = false;
-    TcpSocket = NULL;
-    thread = NULL;
+    this->TcpSocket = NULL;
+    this->thread = NULL;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
-    Stop();
-    delete thread;
+    this->Stop();
+    delete this->thread;
     delete TcpSocket;
 }
 
 bool HuggleFeedProviderIRC::Start()
 {
-    if (Connected)
+    if (this->Connected)
     {
         Core::DebugLog("Attempted to start connection which was already started");
         return false;
@@ -48,21 +48,25 @@ bool HuggleFeedProviderIRC::Start()
     this->TcpSocket->write(QString("USER " + Configuration::IRCNick + QString::number(qrand()) + " 8 * :" + Configuration::IRCIdent + "\n").toUtf8());
     this->TcpSocket->write(QString("NICK " + Configuration::IRCNick + QString::number(qrand()) + Configuration::UserName + "\n").toUtf8());
     this->TcpSocket->write(QString("JOIN " + Configuration::Project.IRCChannel + "\n").toUtf8());
+    if (this->thread != NULL)
+    {
+        delete this->thread;
+    }
     this->thread = new HuggleFeedProviderIRC_t(TcpSocket);
     this->thread->p = this;
     this->thread->start();
-    Connected = true;
+    this->Connected = true;
     return true;
 }
 
 bool HuggleFeedProviderIRC::IsWorking()
 {
-    return Connected;
+    return this->Connected;
 }
 
 void HuggleFeedProviderIRC::Stop()
 {
-    if (!Connected)
+    if (!this->Connected)
     {
         return;
     }
@@ -79,8 +83,6 @@ void HuggleFeedProviderIRC::Stop()
         throw new Exception("The pointer to thread was NULL during Stop() of irc provider");
     }
     this->thread->exit();
-    delete this->thread;
-    this->thread = NULL;
 }
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)

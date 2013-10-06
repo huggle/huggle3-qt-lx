@@ -23,10 +23,10 @@ namespace Huggle
 {
     enum _Status
     {
-        Null,
-        Done,
-        Processing,
-        InError
+        StatusNull,
+        StatusDone,
+        StatusProcessing,
+        StatusInError
     };
 
     enum QueryType

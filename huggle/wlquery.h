@@ -26,7 +26,6 @@ namespace Huggle
     public:
         WLQuery();
         ~WLQuery();
-        bool Processed();
         void Process();
         bool Save;
     private slots:

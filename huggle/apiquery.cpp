@@ -92,7 +92,7 @@ void ApiQuery::Finished()
     this->reply->deleteLater();
     this->reply = NULL;
     Core::DebugLog("Finished request " + URL, 2);
-    this->Status = Done;
+    this->Status = StatusDone;
 }
 
 void ApiQuery::Process()
@@ -101,7 +101,7 @@ void ApiQuery::Process()
     {
         this->ConstructUrl();
     }
-    this->Status = Processing;
+    this->Status = StatusProcessing;
     this->Result = new QueryResult();
     //QUrl url(Core::ToMediawikiEncoding(this->URL), QUrl::StrictMode);
     QUrl url = QUrl::fromEncoded(this->URL.toUtf8());

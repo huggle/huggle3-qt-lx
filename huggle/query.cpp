@@ -19,7 +19,7 @@ Query::Query()
 {
     this->Result = NULL;
     this->Type = QueryNull;
-    this->Status = Null;
+    this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
@@ -34,11 +34,12 @@ Query::~Query()
         throw new Exception("Request to delete managed query");
     }
     delete Result;
+    this->Result = NULL;
 }
 
 bool Query::Processed()
 {
-    if (this->Status == Done)
+    if (this->Status == StatusDone)
     {
         return true;
     }
@@ -82,13 +83,13 @@ QString Query::QueryStatusToString()
 
     switch (this->Status)
     {
-    case Null:
+    case StatusNull:
         return "NULL";
-    case Done:
+    case StatusDone:
         return "Done";
-    case Processing:
+    case StatusProcessing:
         return "Processing";
-    case InError:
+    case StatusInError:
         return "InError";
     }
     return "Unknown";

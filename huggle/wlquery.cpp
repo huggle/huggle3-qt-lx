@@ -19,17 +19,13 @@ WLQuery::WLQuery()
 
 WLQuery::~WLQuery()
 {
-
-}
-
-bool WLQuery::Processed()
-{
-    return this->Status == Done;
+    delete Result;
+    this->Result = NULL;
 }
 
 void WLQuery::Process()
 {
-    this->Status = Processing;
+    this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::Project.WhiteList);
     QString params = "";
@@ -84,5 +80,5 @@ void WLQuery::Finished()
     }
     this->r->deleteLater();
     this->r = NULL;
-    this->Status = Done;
+    this->Status = StatusDone;
 }
