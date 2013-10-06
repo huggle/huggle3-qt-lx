@@ -36,15 +36,16 @@ namespace Huggle
         QueryApi
     };
 
+    //! Query base class for all http queries executed by huggle
+
     //! Every request to website is processed as a query, this is a base object that all
     //! other queries are derived from
     class Query : public QObject
     {
     public:
-        //! Result
+        //! Result of query, see documentation of QueryResult for more
         QueryResult *Result;
-        unsigned int ID;
-        //! Current status
+        //! Current status of a query
         enum _Status Status;
         QString CustomStatus;
         QueryType Type;
@@ -67,12 +68,18 @@ namespace Huggle
         void RegisterConsumer(QString consumer);
         void UnregisterConsumer(QString consumer);
         QString DebugQgc();
+        //! Every query has own unique ID which can be used to work with them
+        //! this function returns that
+        unsigned int QueryID();
 
     private:
         bool Managed;
         //! Some queries are needed for dependency setup, so we need to delete them
         //! later once the dependency is processed
         QStringList Consumers;
+        //! Every query has own unique ID which can be used to work with them
+        unsigned int ID;
+        //! This is a last ID used by a constructor of a query
         static unsigned int LastID;
     };
 }

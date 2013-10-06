@@ -135,16 +135,21 @@ QString Query::DebugQgc()
     QString result = "";
     if (this->Consumers.count() > 0)
     {
-        result += ("GC: Listing all dependencies for " + QString::number(this->ID)) + "\n";
+        result += ("GC: Listing all dependencies for " + QString::number(this->QueryID())) + "\n";
         int Item=0;
         while (Item < this->Consumers.count())
         {
-            result +=("GC: " + QString::number(this->ID) + " " + this->Consumers.at(Item)) + "\n";
+            result +=("GC: " + QString::number(this->QueryID()) + " " + this->Consumers.at(Item)) + "\n";
             Item++;
         }
     } else
     {
-        result += "No consumers found: " + QString::number(this->ID);
+        result += "No consumers found: " + QString::number(this->QueryID());
     }
     return result;
+}
+
+unsigned int Query::QueryID()
+{
+    return this->ID;
 }

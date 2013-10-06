@@ -44,7 +44,7 @@ void ProcessList::InsertQuery(Query *q)
     q->RegisterConsumer("ProcessList::InsertQuery");
     int size = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(size);
-    ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->ID)));
+    ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->QueryID())));
     ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
@@ -70,7 +70,7 @@ void ProcessList::RemoveQuery(Query *q)
     q->RegisterConsumer("ProcessList::RemoveQuery");
     if (!IsExpired(q))
     {
-        this->Removed->append(new ProcessListRemovedItem(q->ID));
+        this->Removed->append(new ProcessListRemovedItem(q->QueryID()));
     }
     q->UnregisterConsumer("ProcessList::RemoveQuery");
 }
@@ -85,7 +85,7 @@ void ProcessList::UpdateQuery(Query *q)
         return;
     }
 
-    ui->tableWidget->setItem(query, 0, new QTableWidgetItem(QString::number(q->ID)));
+    ui->tableWidget->setItem(query, 0, new QTableWidgetItem(QString::number(q->QueryID())));
     ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
@@ -98,7 +98,7 @@ bool ProcessList::IsExpired(Query *q)
     int i = 0;
     while (i<Removed->count())
     {
-        if ((unsigned int)Removed->at(i)->GetID() == q->ID)
+        if ((unsigned int)Removed->at(i)->GetID() == q->QueryID())
         {
             q->UnregisterConsumer("ProcessList::IsExpired");
             return true;
@@ -147,7 +147,7 @@ int ProcessList::GetItem(Query *q)
     int size = ui->tableWidget->rowCount();
     while (curr < size)
     {
-        if (ui->tableWidget->item(curr,0)->text() == QString::number(q->ID))
+        if (ui->tableWidget->item(curr,0)->text() == QString::number(q->QueryID()))
         {
             q->UnregisterConsumer("ProcessList::GetItem");
             return curr;
