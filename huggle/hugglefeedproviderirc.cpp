@@ -70,6 +70,7 @@ void HuggleFeedProviderIRC::Stop()
     {
         throw new Exception("The pointer to TcpSocket was NULL during Stop() of irc provider");
     }
+    this->thread->Running = false;
     this->TcpSocket->close();
     delete this->TcpSocket;
     this->TcpSocket = NULL;
