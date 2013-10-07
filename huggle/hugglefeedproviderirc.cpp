@@ -86,7 +86,13 @@ void HuggleFeedProviderIRC::Stop()
     {
         throw new Exception("The pointer to thread was NULL during Stop() of irc provider");
     }
-    this->thread->exit();
+    this->thread->Running = false;
+    while (!IsStopped())
+    {
+        Core::Log("Waiting for irc feed provider to stop");
+        Sleeper::usleep(200000);
+    }
+    this->Connected = false;
 }
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)

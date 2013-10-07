@@ -1175,6 +1175,10 @@ void Core::SaveConfig()
 
 void Core::PostProcessEdit(WikiEdit *_e)
 {
+    if (_e == NULL)
+    {
+        throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
+    }
     _e->PostProcess();
     Core::ProcessingEdits.append(_e);
 }
@@ -1245,6 +1249,10 @@ void Core::CheckQueries()
 
 bool Core::PreflightCheck(WikiEdit *_e)
 {
+    if (_e == NULL)
+    {
+        throw new Exception("NULL edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
+    }
     if (Configuration::WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
         QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
@@ -1261,6 +1269,10 @@ bool Core::PreflightCheck(WikiEdit *_e)
 
 ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
 {
+    if (_e == NULL)
+    {
+        throw new Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
+    }
     if (_e->User == NULL)
     {
         throw new Exception("Object user was NULL in Core::Revert");
