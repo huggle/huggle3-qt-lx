@@ -43,9 +43,13 @@
 
 namespace Huggle
 {
-    //! Every score word is represented by this class, a score word is a pattern
-    //! that has some score and score of edit is incremented by sum of all scores
-    //! of all score words matched in edit
+    /*!
+     * \brief The ScoreWord class
+     *
+     * Every score word is represented by this class, a score word is a pattern
+     * that has some score and score of edit is incremented by sum of all scores
+     * of all score words matched in edit
+     */
     class ScoreWord
     {
     public:
@@ -61,6 +65,7 @@ namespace Huggle
         ////////////////////////////////////////////
         // System
         ////////////////////////////////////////////
+
         //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
         static unsigned int Verbosity;
         //! Version
@@ -192,6 +197,7 @@ namespace Huggle
         //////////////////////////////////////////////
         // Global config
         //////////////////////////////////////////////
+
         static bool GlobalConfig_EnableAll;
         static QString GlobalConfig_MinVersion;
         static QString GlobalConfig_LocalConfigWikiPath;
@@ -231,6 +237,7 @@ namespace Huggle
         //////////////////////////////////////////////
         // Friends
         //////////////////////////////////////////////
+
         //! Suffix used by huggle
         static QString EditSuffixOfHuggle;
         //! Regexes that other tools can be identified with
@@ -241,13 +248,22 @@ namespace Huggle
         //////////////////////////////////////////////
 
         static QString DefaultRevertSummary;
+        /*!
+         * \brief GetDefaultRevertSummary Retrieve default summary
+         * \param source User who should be replaced instead of $1
+         * \return Default revert summary
+         */
         static QString GetDefaultRevertSummary(QString source);
         //! Warn you in case you want to revert a user page
         static bool WarnUserSpaceRoll;
         static bool NextOnRv;
         //! Send a message to user on good edit
         static bool WelcomeEmpty;
-
+        /*!
+         * \brief Bool2String Convert a bool to string
+         * \param b bool
+         * \return string
+         */
         static QString Bool2String(bool b);
     };
 }

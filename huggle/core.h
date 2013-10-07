@@ -56,7 +56,9 @@ namespace Huggle
     class Message;
     class iExtension;
 
-    //! This is a workaround that allow us to use sleep
+    /*!
+     * \brief This is a workaround that allow us to use sleep
+     */
     class Sleeper : public QThread
     {
     public:
@@ -65,7 +67,9 @@ namespace Huggle
         static void sleep(unsigned long secs){QThread::sleep(secs);}
     };
 
-    //! Language container
+    /*!
+     * \brief The Language class
+     */
     class Language
     {
     public:
@@ -79,7 +83,11 @@ namespace Huggle
         QMap<QString, QString> Messages;
     };
 
-    //! Miscelanceous system functions
+    /*!
+     * \brief Miscelanceous system functions, all of these functions are static
+     *
+     * Making any instance of this class is nonsense don't do it :D
+     */
     class Core
     {
     public:
@@ -191,9 +199,22 @@ namespace Huggle
         static bool ParseLocalConfig(QString config);
         static bool ParseUserConfig(QString config);
         //! Parse a string from configuration which has format used by huggle 2x
+        /*!
+         * \param key Key
+         * \param content Text to parse from
+         * \param missing Default value in case this key is missing in text
+         * \return Value of key
+         */
         static QString ConfigurationParse(QString key, QString content, QString missing = "");
         static void LoadDB();
         static bool SafeBool(QString value, bool defaultvalue = false);
+        /*!
+         * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
+         * \param key Key
+         * \param content Text to parse key from
+         * \param CS Whether the values are separated by comma
+         * \return List of values from text or empty list
+         */
         static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
         //! Remove leading and finishing space of string
         static QString Trim(QString text);
@@ -209,6 +230,17 @@ namespace Huggle
         static QString GetValueFromKey(QString item);
         static QString GetKeyFromValue(QString item);
         static void ParseWords(QString text);
+        /*!
+         * \brief MessageUser Message user
+         * \param user Pointer to user
+         * \param message Text of message
+         * \param title Title
+         * \param summary Summary
+         * \param section Whether this message should be created in a new section
+         * \param dependency Query that is used as a dependency, if it's not NULL
+         * the system will wait for it to finish before the message is sent
+         * \return
+         */
         static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
         static void LoadDefs();
         static void FinalizeMessages();
