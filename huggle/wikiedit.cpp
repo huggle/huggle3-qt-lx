@@ -31,7 +31,6 @@ WikiEdit::WikiEdit()
     this->PostProcessing = false;
     this->DifferenceQuery = NULL;
     this->ProcessingQuery = NULL;
-    this->Whitelisted = false;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
@@ -71,7 +70,6 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->TrustworthEdit = edit.TrustworthEdit;
     this->PostProcessing = false;
     this->ProcessingQuery = NULL;
-    this->Whitelisted = edit.Whitelisted;
     this->DifferenceQuery = NULL;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
@@ -112,7 +110,6 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->TrustworthEdit = edit->TrustworthEdit;
     this->PostProcessing = false;
     this->ProcessingQuery = NULL;
-    this->Whitelisted = edit->Whitelisted;
     this->DifferenceQuery = NULL;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
@@ -127,8 +124,6 @@ WikiEdit::WikiEdit(WikiEdit *edit)
 
 WikiEdit::~WikiEdit()
 {
-    //delete this->DifferenceQuery;
-    //delete this->ProcessingQuery;
     delete this->User;
     delete this->Page;
 }

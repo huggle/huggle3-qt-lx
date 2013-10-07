@@ -55,19 +55,25 @@ namespace Huggle
     class ApiQuery;
 
     //! Wiki edit
+
+    //! Basically all changes to pages can be represented by this class
     class WikiEdit
     {
     public:
+        //! Creates a new empty wiki edit
         WikiEdit();
         WikiEdit(const WikiEdit& edit);
         WikiEdit(WikiEdit *edit);
         ~WikiEdit();
+        //! This function is called by core
         bool FinalizePostProcessing();
+        //! This function is called by internals of huggle
         void PostProcess();
         //! Return a full url to edit
         QString GetFullUrl();
         //! Return true in case this edit was post processed already
         bool IsPostProcessed();
+        void ProcessWords();
         //! Page that was changed by edit
         WikiPage *Page;
         //! User who changed the page
@@ -76,11 +82,17 @@ namespace Huggle
         bool Minor;
         //! Edit is a bot edit
         bool Bot;
+        //! Edit is a new page
         bool NewPage;
+        //! Size of change of edit
         int Size;
+        //! Diff id
         int Diff;
+        //! Priority in queue
         int Priority;
+        //! Old id
         int OldID;
+        //! Revision ID
         int RevID;
         WEStatus Status;
         WarningLevel CurrentUserWarningLevel;
@@ -92,14 +104,12 @@ namespace Huggle
         //! If this is true the edit was made by some other
         //! tool for vandalism reverting
         bool TrustworthEdit;
-        bool Whitelisted;
         //! Edit was made by you
         bool OwnEdit;
         WikiEdit *Previous;
         WikiEdit *Next;
         long Score;
         QStringList ScoreWords;
-        void ProcessWords();
         bool PostProcessing;
         bool ProcessingByWorkerThread;
         bool ProcessedByWorkerThread;

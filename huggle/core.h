@@ -128,11 +128,18 @@ namespace Huggle
         //! Function which is called as one of first when huggle is loaded
         static void Init();
         //! Write text to terminal as well as ring log
+        /*!
+         * \param Message Message to log
+         */
         static void Log(QString Message);
         static void ExtensionLoad();
         //! This log is only shown if verbosity is same or larger than requested verbosity
         static void DebugLog(QString Message, unsigned int Verbosity = 1);
         //! Helper function that will return URL of project in question
+        /*!
+         * \param Project Site
+         * \return String with url
+         */
         static QString GetProjectURL(WikiSite Project);
         //! Return a full url like http://en.wikipedia.org/wiki/
         static QString GetProjectWikiURL(WikiSite Project);
@@ -167,6 +174,15 @@ namespace Huggle
         static void CheckQueries();
         //! Check if we can revert this edit
         static bool PreflightCheck(WikiEdit *_e);
+        /*!
+         * \brief RevertEdit Reverts the edit
+         * \param _e Pointer to edit that needs to be reverted
+         * \param summary Summary to use if this is empty the default revert summary is used
+         * \param minor If revert should be considered as minor edit
+         * \param rollback If rollback feature should be used
+         * \param keep Whether the query produced by this function should not be automatically deleted
+         * \return Pointer to api query that executes this revert
+         */
         static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
         static QString GetCustomRevertStatus(QString RevertData);
         //! Parse all information from global config on meta
@@ -201,6 +217,12 @@ namespace Huggle
         static QString RetrieveTemplateToWarn(QString type);
         static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
         static void AppendQuery(Query* item);
+        /*!
+         * \brief InsertConfig
+         * \param key Configuration key
+         * \param value Value of key
+         * \param s Stream writer
+         */
         static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
         static void ExceptionHandler(Exception *exception);
         static Language *MakeLanguage(QString text, QString name);
