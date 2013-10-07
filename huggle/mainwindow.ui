@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -95,8 +86,9 @@
     <addaction name="actionEdit_page_in_browser"/>
     <addaction name="separator"/>
     <addaction name="actionFlag_as_a_good_edit"/>
+    <addaction name="separator"/>
     <addaction name="actionTag_2"/>
-    <addaction name="actionRequest_deletion"/>
+    <addaction name="actionRequest_speedy_deletion"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -617,9 +609,12 @@
     <string>Tag</string>
    </property>
   </action>
-  <action name="actionRequest_deletion">
+  <action name="actionRequest_speedy_deletion">
    <property name="text">
-    <string>Request deletion</string>
+    <string>Request speedy deletion</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
    </property>
   </action>
  </widget>
