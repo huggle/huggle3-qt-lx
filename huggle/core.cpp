@@ -10,13 +10,13 @@
 
 #include "core.h"
 
+using namespace Huggle;
+
+// definitions
 #ifdef PYTHONENGINE
 PythonEngine *Core::Python = NULL;
 #endif
 
-using namespace Huggle;
-
-// definitions
 QString Core::HtmlHeader = "";
 QString Core::HtmlFooter = "</table></body></html>";
 
