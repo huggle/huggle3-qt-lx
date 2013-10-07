@@ -180,6 +180,7 @@ namespace Huggle
         void on_actionReconnect_IRC_triggered();
         void on_actionTag_2_triggered();
         void on_actionRequest_speedy_deletion_triggered();
+        void on_actionDelete_triggered();
 
     private:
         //! Check if huggle is shutting down or not, in case it is message box is shown as well

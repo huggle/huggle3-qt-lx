@@ -1269,3 +1269,7 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 }
 
+void MainWindow::on_actionDelete_triggered()
+{
+	
+}
