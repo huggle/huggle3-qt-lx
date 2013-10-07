@@ -16,6 +16,7 @@
 #include <QLabel>
 #include <QDesktopServices>
 #include <QMutex>
+#include <QThread>
 #include <QSplitter>
 #include <QDockWidget>
 #include "configuration.h"

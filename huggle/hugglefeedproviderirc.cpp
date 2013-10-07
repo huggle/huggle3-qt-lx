@@ -45,8 +45,12 @@ bool HuggleFeedProviderIRC::Start()
         return false;
     }
     Core::Log("IRC: Successfuly connected to irc rc feed");
-    this->TcpSocket->write(QString("USER " + Configuration::IRCNick + QString::number(qrand()) + " 8 * :" + Configuration::IRCIdent + "\n").toUtf8());
-    this->TcpSocket->write(QString("NICK " + Configuration::IRCNick + QString::number(qrand()) + Configuration::UserName + "\n").toUtf8());
+    this->TcpSocket->write(QString("USER " + Configuration::IRCNick
+                       + QString::number(qrand()) + " 8 * :"
+                       + Configuration::IRCIdent + "\n").toUtf8());
+    this->TcpSocket->write(QString("NICK " + Configuration::IRCNick
+                       + QString::number(qrand()) + Configuration::UserName
+                       + "\n").toUtf8());
     this->TcpSocket->write(QString("JOIN " + Configuration::Project.IRCChannel + "\n").toUtf8());
     if (this->thread != NULL)
     {
@@ -332,6 +336,22 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     this->InsertEdit(edit);
 }
 
+bool HuggleFeedProviderIRC::IsStopped()
+{
+    if (this->IsWorking())
+    {
+        return false;
+    }
+    if (this->thread != NULL)
+    {
+        if (this->thread->Running || !this->thread->IsFinished())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool HuggleFeedProviderIRC::ContainsEdit()
 {
     return (this->Buffer.size() != 0);
@@ -341,6 +361,7 @@ void HuggleFeedProviderIRC_t::run()
 {
     if (this->p == NULL)
     {
+        this->Stopped = true;
         throw new Exception("Pointer to parent IRC feed is NULL");
     }
     int ping = 2000;
@@ -354,7 +375,7 @@ void HuggleFeedProviderIRC_t::run()
         QString text = QString::fromUtf8(this->s->readLine());
         if (text == "")
         {
-            QThread::usleep(2000000);
+            QThread::currentThread()->usleep(2000000);
             ping -= 100;
             continue;
         }
@@ -368,11 +389,13 @@ void HuggleFeedProviderIRC_t::run()
     {
         p->Connected = false;
     }
+    this->Stopped = true;
 }
 
 HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t(QTcpSocket *socket)
 {
     this->s = socket;
+    this->Stopped = false;
     Running = true;
     this->p = NULL;
 }
@@ -380,6 +403,11 @@ HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t(QTcpSocket *socket)
 HuggleFeedProviderIRC_t::~HuggleFeedProviderIRC_t()
 {
     // we must not delete the socket here, that's a job of parent object
+}
+
+bool HuggleFeedProviderIRC_t::IsFinished()
+{
+    return Stopped;
 }
 
 WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()

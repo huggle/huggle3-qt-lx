@@ -24,7 +24,6 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
-    delete q;
     delete Buffer;
 }
 

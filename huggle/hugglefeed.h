@@ -39,6 +39,11 @@ namespace Huggle
         //! Check if feed is containing some edits in buffer
         virtual bool ContainsEdit() { return false; }
         virtual bool IsPaused() { return false; }
+        //! Returns true in case that a provider is stopped and can be safely deleted
+
+        //! This is useful in case we are running some background threads and we need to
+        //! wait for them to finish before we can delete the object
+        virtual bool IsStopped() { return true; }
         //! Return a last edit from cache or NULL
         virtual WikiEdit *RetrieveEdit() { return NULL; }
         HuggleQueueFilter *Filter;

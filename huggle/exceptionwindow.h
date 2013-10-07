@@ -12,6 +12,7 @@
 #define EXCEPTIONWINDOW_H
 
 #include <QDialog>
+#include "exception.h"
 
 namespace Ui {
 class ExceptionWindow;
@@ -25,12 +26,11 @@ namespace Huggle
         Q_OBJECT
 
     public:
-        explicit ExceptionWindow(QWidget *parent = 0);
+        explicit ExceptionWindow(Exception *e);
         ~ExceptionWindow();
 
     private slots:
         void on_pushButton_clicked();
-
         void on_pushButton_3_clicked();
 
     private:

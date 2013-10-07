@@ -43,7 +43,6 @@ namespace Huggle
     class ProcessList : public QDockWidget
     {
         Q_OBJECT
-
     public:
         explicit ProcessList(QWidget *parent = 0);
         void InsertQuery(Query* q);
@@ -56,7 +55,6 @@ namespace Huggle
         int GetItem(Query *q);
         int GetItem(int Id);
         ~ProcessList();
-
     private:
         QList<ProcessListRemovedItem*> *Removed;
         Ui::ProcessList *ui;

@@ -35,10 +35,12 @@ namespace Huggle
         ~HuggleFeedProviderIRC_t();
         bool Running;
         HuggleFeedProviderIRC *p;
+        bool IsFinished();
     protected:
         void run();
     private:
         QTcpSocket *s;
+        bool Stopped;
     };
 
     class HuggleFeedProviderIRC : public HuggleFeed
@@ -52,6 +54,7 @@ namespace Huggle
         bool Restart() { this->Stop(); return this->Start(); }
         void InsertEdit(WikiEdit *edit);
         void ParseEdit(QString line);
+        bool IsStopped();
         bool ContainsEdit();
         WikiEdit *RetrieveEdit();
         bool IsPaused() { return Paused; }

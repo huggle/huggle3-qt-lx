@@ -56,6 +56,15 @@ namespace Huggle
     class Message;
     class iExtension;
 
+    //! This is a workaround that allow us to use sleep
+    class Sleeper : public QThread
+    {
+    public:
+        static void usleep(unsigned long usecs){QThread::usleep(usecs);}
+        static void msleep(unsigned long msecs){QThread::msleep(msecs);}
+        static void sleep(unsigned long secs){QThread::sleep(secs);}
+    };
+
     //! Language container
     class Language
     {

@@ -13,7 +13,7 @@
 
 using namespace Huggle;
 
-ExceptionWindow::ExceptionWindow(QWidget *parent) : QDialog(parent), ui(new Ui::ExceptionWindow)
+ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
 {
     ui->setupUi(this);
 }

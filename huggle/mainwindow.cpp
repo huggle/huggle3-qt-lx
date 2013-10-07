@@ -1237,6 +1237,11 @@ void MainWindow::on_actionReconnect_IRC_triggered()
     }
     Core::Log("Reconnecting to IRC");
     Core::PrimaryFeedProvider->Stop();
+    while (!Core::PrimaryFeedProvider->IsStopped())
+    {
+        Core::Log("Waiting for primary feed provider to stop");
+        Sleeper::usleep(200000);
+    }
     delete Core::PrimaryFeedProvider;
     Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
     if (!Core::PrimaryFeedProvider->Start())
