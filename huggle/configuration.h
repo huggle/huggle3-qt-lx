@@ -13,8 +13,27 @@
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
+//! Minimal score the edit can have
 #define MINIMAL_SCORE -999999
+//! Path where the extensions are located
 #define EXTENSION_PATH "extensions"
+#define MEDIAWIKI_DEFAULT_NS_MAIN ""
+#define MEDIAWIKI_DEFAULT_NS_TALK "Talk:"
+#define MEDIAWIKI_DEFAULT_NS_PROJECT "Project:"
+#define MEDIAWIKI_DEFAULT_NS_PROJECTTALK "Project talk:"
+#define MEDIAWIKI_DEFAULT_NS_USER "User:"
+#define MEDIAWIKI_DEFAULT_NS_USERTALK "User talk:"
+
+#define MEDIAWIKI_NSID_MAIN 0
+#define MEDIAWIKI_NSID_TALK 1
+#define MEDIAWIKI_NSID_USER 2
+#define MEDIAWIKI_NSID_USERTALK 3
+#define MEDIAWIKI_NSID_PROJECT 4
+#define MEDIAWIKI_NSID_PROJECTTALK 5
+#define MEDIAWIKI_NSID_FILE 6
+#define MEDIAWIKI_NSID_FILETALK 7
+#define MEDIAWIKI_NSID_MEDIAWIKI 8
+#define MEDIAWIKI_NSID_MEDIAWIKITALK 9
 
 #include <QList>
 #include <QStringList>
@@ -116,6 +135,11 @@ namespace Huggle
         //! Regular users
         static QString LocalConfig_RUTemplateReport;
         static QString LocalConfig_WelcomeSummary;
+        static QString LocalConfig_NSTalk;
+        static QString LocalConfig_NSUserTalk;
+        static QString LocalConfig_NSProject;
+        static QString LocalConfig_NSUser;
+        static QString LocalConfig_NSProjectTalk;
 
         // Reverting
 
@@ -161,6 +185,7 @@ namespace Huggle
         static int LocalConfig_IPScore;
         static int LocalConfig_WarningScore;
         static QStringList LocalConfig_WarningTypes;
+        static QStringList LocalConfig_DeletionTemplates;
         static QStringList LocalConfig_WelcomeTypes;
         static int LocalConfig_WhitelistScore;
 

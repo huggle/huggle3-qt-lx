@@ -128,6 +128,12 @@ bool Configuration::WelcomeEmpty = true;
 QString Configuration::LocalConfig_ReportSummary = "Reporting user";
 bool Configuration::_SafeMode = false;
 
+QString Configuration::LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
+QString Configuration::LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
+QString Configuration::LocalConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
+QString Configuration::LocalConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
+QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

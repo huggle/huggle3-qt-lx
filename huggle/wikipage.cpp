@@ -39,9 +39,34 @@ WikiPage::WikiPage(const WikiPage &page)
     this->Contents = page.Contents;
 }
 
+MediaWikiNS WikiPage::GetNS()
+{
+    if (PageName.startsWith(Configuration::LocalConfig_NSTalk) ||
+            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
+    {
+        return MediaWikiNS_Talk;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSProject) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECT))
+    {
+        return MediaWikiNS_Project;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSUser) ||
+            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
+    {
+        return MediaWikiNS_User;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSUserTalk) ||
+            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
+    {
+        return MediaWikiNS_UserTalk;
+    }
+    return MediaWikiNS_Main;
+}
+
 bool WikiPage::IsTalk()
 {
-    if (PageName.contains("Talk:") || PageName.contains("talk:"))
+    MediaWikiNS NS = this->GetNS();
+    if (NS == MediaWikiNS_Talk || NS == MediaWikiNS_HelpTalk || NS == MediaWikiNS_UserTalk)
     {
         return true;
     }
@@ -50,7 +75,7 @@ bool WikiPage::IsTalk()
 
 bool WikiPage::IsUserpage()
 {
-    if (PageName.contains("User:") || PageName.contains("User:"))
+    if (this->GetNS() == MediaWikiNS_User)
     {
         return true;
     }

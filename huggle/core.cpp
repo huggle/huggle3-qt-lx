@@ -1403,6 +1403,7 @@ bool Core::ParseLocalConfig(QString config)
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
+    QStringList namespaces = Core::ConfigurationParse_QL("namespace-names", config, true);
 
     // templates
     int CurrentTemplate=0;

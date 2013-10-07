@@ -17,6 +17,20 @@
 
 namespace Huggle
 {
+    //! Namespaces
+    enum MediaWikiNS
+    {
+        MediaWikiNS_Main,
+        MediaWikiNS_Talk,
+        MediaWikiNS_Project,
+        MediaWikiNS_ProjectTalk,
+        MediaWikiNS_User,
+        MediaWikiNS_UserTalk,
+        MediaWikiNS_Help,
+        MediaWikiNS_HelpTalk,
+        MediaWikiNS_Special
+    };
+
     //! Mediawiki page
     class WikiPage
     {
@@ -31,6 +45,7 @@ namespace Huggle
         WikiPage(QString name);
         WikiPage(WikiPage *page);
         WikiPage(const WikiPage& page);
+        MediaWikiNS GetNS();
         //! Return true in case this is a talk page
         bool IsTalk();
         bool IsUserpage();

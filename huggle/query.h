@@ -21,6 +21,7 @@
 
 namespace Huggle
 {
+    //! Status of a query
     enum _Status
     {
         StatusNull,
@@ -47,15 +48,30 @@ namespace Huggle
         QueryResult *Result;
         //! Current status of a query
         enum _Status Status;
+        //! Custom status
+
+        //! This can be used to override the current string representation of status with
+        //! some custom string, the system will still process the primary status but
+        //! user will see this custom string in a process list
         QString CustomStatus;
+        //! Type of a query
+
+        //! This is very useful when you are casting a query to different type
         QueryType Type;
         //! Return true in case this query has been finished
         static QNetworkAccessManager NetworkManager;
+        //! Dependency for query
+
         //! If you put anything in here, it either must be NULL or query
-        //! that is processed
+        //! that is processed. The query will not be flagged as processed
+        //! until the dependency is processed as well, for most types
+        //! of queries they will not even start before that
         Query *Dependency;
+        //! Creates empty query
         Query();
+        //! Destructor for query
         virtual ~Query();
+        //! Returns true in case that query is processed
         virtual bool Processed();
         virtual void Process() {}
         virtual void Kill() {}

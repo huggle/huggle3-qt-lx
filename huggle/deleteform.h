@@ -1,22 +1,37 @@
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+
 #ifndef DELETEFORM_H
 #define DELETEFORM_H
 
 #include <QDialog>
+#include "configuration.h"
 
 namespace Ui {
 class DeleteForm;
 }
 
-class DeleteForm : public QDialog
+namespace Huggle
 {
-    Q_OBJECT
+    //! This is a delete form
+    class DeleteForm : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit DeleteForm(QWidget *parent = 0);
-    ~DeleteForm();
+    public:
+        explicit DeleteForm(QWidget *parent = 0);
+        ~DeleteForm();
 
-private:
-    Ui::DeleteForm *ui;
-};
+    private:
+        Ui::DeleteForm *ui;
+    };
+}
 
 #endif // DELETEFORM_H
