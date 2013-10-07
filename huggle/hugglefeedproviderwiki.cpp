@@ -25,6 +25,13 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
     delete Buffer;
+    if (q != NULL)
+    {
+        if (!q->IsManaged())
+        {
+            delete q;
+        }
+    }
 }
 
 bool HuggleFeedProviderWiki::Start()
