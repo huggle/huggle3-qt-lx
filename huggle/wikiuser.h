@@ -36,11 +36,13 @@ namespace Huggle
         WikiUser(const WikiUser& u);
         WikiUser(QString user);
         QString GetTalk();
+        bool IsWhitelisted();
     private:
         //! Matches only IPv4
         static QRegExp IPv4Regex;
         //! Matches all IP
         static QRegExp IPv6Regex;
+        int WhitelistInfo;
     };
 }
 

@@ -51,6 +51,7 @@ WikiUser::WikiUser()
     this->WarningLevel = 0;
     this->ContentsOfTalkPage = "";
     this->IsReported = false;
+    this->WhitelistInfo = 0;
 }
 
 WikiUser::WikiUser(WikiUser *u)
@@ -61,6 +62,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->BadnessScore = u->BadnessScore;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
+    this->WhitelistInfo = u->WhitelistInfo;
 }
 
 WikiUser::WikiUser(const WikiUser &u)
@@ -71,6 +73,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
+    this->WhitelistInfo = u.WhitelistInfo;
 }
 
 WikiUser::WikiUser(QString user)
@@ -109,4 +112,25 @@ WikiUser::WikiUser(QString user)
 QString WikiUser::GetTalk()
 {
     return "User_talk:" + this->Username;
+}
+
+bool WikiUser::IsWhitelisted()
+{
+    if (this->WhitelistInfo == 1)
+    {
+        return true;
+    }
+    if (this->WhitelistInfo == 2)
+    {
+        return false;
+    }
+    if (Configuration::WhiteList.contains(this->Username))
+    {
+        this->WhitelistInfo = 1;
+        return true;
+    } else
+    {
+        this->WhitelistInfo = 2;
+        return false;
+    }
 }

@@ -44,7 +44,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     {
         return false;
     }
-    if (edit->Whitelisted && this->IgnoreWL)
+    if (edit->User->IsWhitelisted() && this->IgnoreWL)
     {
         return false;
     }
