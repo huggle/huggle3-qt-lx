@@ -239,6 +239,10 @@ bool WikiEdit::FinalizePostProcessing()
                         }
                     }
                 }
+                if (e.attributes().contains("size"))
+                {
+                    this->Size = e.attribute("size").toInt();
+                }
                 if (e.attributes().contains("comment"))
                 {
                     this->Summary = e.attribute("comment");
@@ -336,12 +340,12 @@ void WikiEdit::PostProcess()
     if (this->RevID != -1)
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
-        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvstartid=" +
+        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvprop=size&rvstartid=" +
                                   QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
                                   QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvprop=size&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->DifferenceQuery->Target = Page->PageName;
