@@ -39,7 +39,7 @@ Query::~Query()
 
 bool Query::Processed()
 {
-    if (this->Status == StatusDone)
+    if (this->Status == StatusDone || this->Status == StatusInError)
     {
         return true;
     }

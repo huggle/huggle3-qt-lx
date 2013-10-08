@@ -12,9 +12,7 @@
 #include "ui_scorewordsdbform.h"
 using namespace Huggle;
 
-ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ScoreWordsDbForm)
+ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScoreWordsDbForm)
 {
     ui->setupUi(this);
 }

@@ -30,10 +30,18 @@ namespace Huggle
         StatusInError
     };
 
+    /*!
+     * \brief The QueryType enum
+     */
     enum QueryType
     {
+        //! Edit
         QueryEdit,
+        //! Default
         QueryNull,
+        //! Whitelist
+        QueryWl,
+        //! Api
         QueryApi
     };
 
@@ -81,14 +89,27 @@ namespace Huggle
         virtual QString QueryStatusToString();
         //! Use this if you are not sure if you can delete this object in this moment
         virtual bool SafeDelete(bool forced = false);
+        /*!
+         * \brief Registers a consumer
+         *
+         * This function will store a string which prevent the object from being removed
+         * by QueryGC
+         * \param consumer String that lock the object
+         */
         void RegisterConsumer(QString consumer);
+        /*!
+         * \brief This function will remove a string which prevent the object from being removed
+         * \param consumer Unique string that unlock the object
+         */
         void UnregisterConsumer(QString consumer);
+        //! Print some debug information regarding the query into system log
         QString DebugQgc();
         //! Every query has own unique ID which can be used to work with them
         //! this function returns that
         unsigned int QueryID();
 
     private:
+        //! Internal variable that contains a cache whether object is managed
         bool Managed;
         //! Some queries are needed for dependency setup, so we need to delete them
         //! later once the dependency is processed
