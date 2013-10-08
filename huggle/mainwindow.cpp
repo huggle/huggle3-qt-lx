@@ -1264,7 +1264,12 @@ void MainWindow::on_actionTag_2_triggered()
 
 }
 
-void MainWindow::on_actionRequest_deletion_triggered()
+void MainWindow::on_actionRequest_speedy_deletion_triggered()
 {
 
+}
+
+void MainWindow::on_actionDelete_triggered()
+{
+	
 }
