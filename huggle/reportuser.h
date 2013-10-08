@@ -14,6 +14,7 @@
 
 #include <QDialog>
 #include <QTimer>
+#include <QWebView>
 #include <QCheckBox>
 #include <QString>
 #include <QList>

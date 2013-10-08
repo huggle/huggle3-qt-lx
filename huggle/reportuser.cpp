@@ -41,6 +41,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->tableWidget->setShowGrid(false);
     this->t2 = NULL;
     this->timer = NULL;
+    ui->webView->setHtml("Please select a diff in list in order to open preview");
 }
 
 bool ReportUser::SetUser(WikiUser *u)
@@ -269,6 +270,7 @@ void ReportUser::on_pushButton_2_clicked()
 
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
+    ui->webView->setHtml("Please wait...");
     QUrl u = QUrl::fromEncoded(QString(Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text()) + "&diff="
               + ui->tableWidget->item(index.row(), 3)->text()).toUtf8());
     ui->webView->load(u);
