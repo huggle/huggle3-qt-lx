@@ -40,6 +40,10 @@ QList<HuggleQueueFilter *> Core::FilterDB;
 
 void Core::Init()
 {
+    if (Configuration::_SafeMode)
+    {
+        Core::Log("DEBUG: Huggle is running in a safe mode");
+    }
     QFile *vf = new QFile(":/huggle/git/version.txt");
     vf->open(QIODevice::ReadOnly);
     QString version(vf->readAll());
@@ -77,6 +81,9 @@ void Core::Init()
     {
         Core::Log("Loading plugins");
         Core::ExtensionLoad();
+    } else
+    {
+        Core::Log("Not loading plugins in a safe mode");
     }
     Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
@@ -1572,6 +1579,11 @@ QString Core::Localize(QString key)
 void Core::LoadLocalizations()
 {
     Core::LocalInit("en");
+    if (Configuration::_SafeMode)
+    {
+        Core::Log("Skipping load of other languages, because of safe mode");
+        return;
+    }
     Core::LocalInit("ar");
     Core::LocalInit("bg");
     Core::LocalInit("bn");

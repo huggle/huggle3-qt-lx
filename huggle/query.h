@@ -21,6 +21,8 @@
 
 namespace Huggle
 {
+    class Query;
+    typedef void* (*Callback) (Query*);
     //! Status of a query
     enum _Status
     {
@@ -66,7 +68,15 @@ namespace Huggle
 
         //! This is very useful when you are casting a query to different type
         QueryType Type;
-        //! Return true in case this query has been finished
+        //! Callback
+
+        //! If this is not a NULL this function will be called by query
+        //! once it's finished, a consumer called "delegate" will be created and you
+        //! will have to either replace it or remove in your function
+        //! otherwise you create a leak in huggle
+        Callback callback;
+        //! This is a pointer to object returned by your callback function
+        void* CallbackResult;
         static QNetworkAccessManager NetworkManager;
         //! Dependency for query
 
@@ -87,6 +97,9 @@ namespace Huggle
         virtual QString QueryTypeToString();
         virtual QString QueryTargetToString();
         virtual QString QueryStatusToString();
+        //! If you inherit query you should allways call this from a signal that
+        //! you receive when the query finish
+        void ProcessCallback();
         //! Use this if you are not sure if you can delete this object in this moment
         virtual bool SafeDelete(bool forced = false);
         /*!

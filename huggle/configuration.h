@@ -183,7 +183,6 @@ namespace Huggle
         static QStringList LocalConfig_Templates;
         static QStringList LocalConfig_IgnorePatterns;
         static int LocalConfig_TalkPageWarningScore;
-
         static bool LocalConfig_GlobalRequired;
 
         static int LocalConfig_BotScore;

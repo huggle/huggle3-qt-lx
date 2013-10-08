@@ -23,8 +23,10 @@ Query::Query()
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
+    this->callback = NULL;
     this->Dependency = NULL;
     this->Managed = false;
+    this->CallbackResult = NULL;
 }
 
 Query::~Query()
@@ -34,6 +36,7 @@ Query::~Query()
         throw new Exception("Request to delete managed query");
     }
     delete Result;
+    delete CallbackResult;
     this->Result = NULL;
 }
 
@@ -93,6 +96,15 @@ QString Query::QueryStatusToString()
         return "InError";
     }
     return "Unknown";
+}
+
+void Query::ProcessCallback()
+{
+    if (this->callback != NULL)
+    {
+        this->RegisterConsumer("delegate");
+        this->CallbackResult = this->callback(this);
+    }
 }
 
 bool Query::SafeDelete(bool forced)

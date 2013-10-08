@@ -93,6 +93,7 @@ void ApiQuery::Finished()
     this->reply = NULL;
     Core::DebugLog("Finished request " + URL, 2);
     this->Status = StatusDone;
+    this->ProcessCallback();
 }
 
 void ApiQuery::Process()

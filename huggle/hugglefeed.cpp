@@ -14,7 +14,6 @@ using namespace Huggle;
 
 HuggleFeed::HuggleFeed()
 {
-
 }
 
 HuggleFeed::~HuggleFeed()
