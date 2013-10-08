@@ -1406,6 +1406,8 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
     Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
     Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
+    Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
+    Configuration::LocalConfig_DeletionTemplates = Core::ConfigurationParse_QL("speedy-options", config);
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);

@@ -103,12 +103,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 #endif
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
+    this->fRemove = NULL;
     this->eq = NULL;
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
 }
 
 MainWindow::~MainWindow()
 {
+    delete this->fRemove;
     delete this->wq;
     delete this->wlt;
     delete this->fWaiting;
@@ -249,6 +251,32 @@ void MainWindow::Render()
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());
+}
+
+void MainWindow::RequestPD()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+
+    if (this->fRemove != NULL)
+    {
+        delete this->fRemove;
+    }
+
+    this->fRemove = new SpeedyForm();
+    this->fRemove->Init(this->CurrentEdit->User, this->CurrentEdit->Page);
+    this->fRemove->show();
 }
 
 ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
@@ -1109,6 +1137,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     {
         return;
     }
+
     if (this->CurrentEdit == NULL)
     {
         return;
@@ -1266,7 +1295,7 @@ void MainWindow::on_actionTag_2_triggered()
 
 void MainWindow::on_actionRequest_speedy_deletion_triggered()
 {
-
+    this->RequestPD();
 }
 
 void MainWindow::on_actionDelete_triggered()

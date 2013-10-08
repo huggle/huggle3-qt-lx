@@ -18,6 +18,31 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
     this->Page = NULL;
     this->User = NULL;
     ui->setupUi(this);
+    int i=0;
+    while (i < Configuration::LocalConfig_DeletionTemplates.count())
+    {
+        QString item = Configuration::LocalConfig_DeletionTemplates.at(i);
+        // now we need to get first 2 items
+        QStringList vals = item.split(";");
+        if (vals.count() < 4)
+        {
+            Core::DebugLog("Invalid csd: " + item);
+            i++;
+            continue;
+        }
+        ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
+        i++;
+    }
+}
+
+void SpeedyForm::on_pushButton_clicked()
+{
+    ui->pushButton->setEnabled(false);
+}
+
+void SpeedyForm::on_pushButton_2_clicked()
+{
+    this->close();
 }
 
 SpeedyForm::~SpeedyForm()
@@ -28,5 +53,6 @@ SpeedyForm::~SpeedyForm()
 void SpeedyForm::Init(WikiUser *user, WikiPage *page)
 {
     this->User = user;
+    this->ui->label_2->setText(page->PageName);
     this->Page = page;
 }

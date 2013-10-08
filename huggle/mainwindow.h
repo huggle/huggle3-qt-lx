@@ -32,6 +32,7 @@
 #include "processlist.h"
 #include "wikiuser.h"
 #include "ignorelist.h"
+#include "speedyform.h"
 #include "exception.h"
 #include "history.h"
 #include "hugglefeedproviderwiki.h"
@@ -50,6 +51,7 @@ namespace Huggle
 {
     class HuggleQueue;
     class HuggleWeb;
+    class SpeedyForm;
     class WikiEdit;
     class WikiPage;
     class EditQuery;
@@ -89,6 +91,7 @@ namespace Huggle
         AboutForm *aboutForm;
         //! Pointer to current edit, if it's NULL there is no edit being displayed
         WikiEdit *CurrentEdit;
+        SpeedyForm* fRemove;
         //! Pointer to processes
         ProcessList *Queries;
         //! This is a list of logs that needs to be written, it exist so that logs can be written from
@@ -195,6 +198,8 @@ namespace Huggle
         void DisplayWelcomeMessage();
         void Welcome();
         void Render();
+        //! Request a page deletion csd or afd and so on
+        void RequestPD();
     };
 }
 #endif // MAINWINDOW_H

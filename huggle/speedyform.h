@@ -15,6 +15,8 @@
 #include <QDialog>
 #include "wikipage.h"
 #include "wikiuser.h"
+#include "configuration.h"
+#include "core.h"
 
 namespace Ui {
 class SpeedyForm;
@@ -32,8 +34,15 @@ namespace Huggle
         WikiPage *Page;
         WikiUser *User;
 
+    private slots:
+        void on_pushButton_2_clicked();
+
+        void on_pushButton_clicked();
+
     private:
         Ui::SpeedyForm *ui;
     };
 }
 #endif // SPEEDYFORM_H
+
+

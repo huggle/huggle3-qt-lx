@@ -12,8 +12,7 @@
 #include "ui_waitingform.h"
 using namespace Huggle;
 
-WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent),
-    ui(new Ui::WaitingForm)
+WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent), ui(new Ui::WaitingForm)
 {
     ui->setupUi(this);
     ui->progressBar->setValue(0);

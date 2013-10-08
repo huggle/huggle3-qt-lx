@@ -134,6 +134,8 @@ QString Configuration::LocalConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
 QString Configuration::LocalConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
 QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
 
+QStringList Configuration::LocalConfig_DeletionTemplates;
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

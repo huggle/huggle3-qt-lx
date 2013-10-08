@@ -59,7 +59,8 @@ SOURCES += main.cpp\
     exceptionwindow.cpp \
     waitingform.cpp \
     speedyform.cpp \
-    deleteform.cpp
+    deleteform.cpp \
+    webserverquery.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -104,7 +105,8 @@ HEADERS  += mainwindow.h \
     exceptionwindow.h \
     waitingform.h \
     speedyform.h \
-    deleteform.h
+    deleteform.h \
+    webserverquery.h
 
 FORMS    += mainwindow.ui \
     login.ui \
