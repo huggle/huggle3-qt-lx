@@ -239,10 +239,6 @@ bool WikiEdit::FinalizePostProcessing()
                         }
                     }
                 }
-                if (e.attributes().contains("size"))
-                {
-                    this->Size = e.attribute("size").toInt();
-                }
                 if (e.attributes().contains("comment"))
                 {
                     this->Summary = e.attribute("comment");
