@@ -13,9 +13,7 @@
 
 using namespace Huggle;
 
-History::History(QWidget *parent) :
-    QDockWidget(parent),
-    ui(new Ui::History)
+History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     ui->setupUi(this);
     ui->tableWidget->setColumnCount(4);

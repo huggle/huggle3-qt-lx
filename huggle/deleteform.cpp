@@ -13,9 +13,7 @@
 
 using namespace Huggle;
 
-DeleteForm::DeleteForm(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DeleteForm)
+DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
 {
     ui->setupUi(this);
 }

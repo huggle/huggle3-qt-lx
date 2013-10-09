@@ -31,9 +31,10 @@ void WLQuery::Process()
     QString params = "";
     if (Save)
     {
-        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=edit&wp=" + Configuration::Project.WhiteList);
+        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::Project.WhiteList);
         QString whitelist = "";
         int p = 0;
+        Configuration::WhiteList.sort();
         while (p < Configuration::WhiteList.count())
         {
             if (Configuration::WhiteList.at(p) != "")
@@ -46,6 +47,7 @@ void WLQuery::Process()
         {
             whitelist = whitelist.mid(0, whitelist.length() - 1);
         }
+        whitelist += "||EOW||";
         params = "wl=" + QUrl::toPercentEncoding(whitelist);
     }
     QNetworkRequest request(url);

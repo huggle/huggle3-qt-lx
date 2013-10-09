@@ -14,9 +14,7 @@
 
 using namespace Huggle;
 
-BlockUser::BlockUser(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::BlockUser)
+BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 {
     ui->setupUi(this);
 }

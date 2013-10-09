@@ -13,9 +13,7 @@
 
 using namespace Huggle;
 
-HuggleLog::HuggleLog(QWidget *parent) :
-    QDockWidget(parent),
-    ui(new Ui::HuggleLog)
+HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLog)
 {
     ui->setupUi(this);
     ui->textEdit->resize(ui->textEdit->width(), 60);

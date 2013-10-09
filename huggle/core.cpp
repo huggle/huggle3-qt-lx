@@ -44,16 +44,8 @@ void Core::Init()
     {
         Core::Log("DEBUG: Huggle is running in a safe mode");
     }
-    QFile *vf = new QFile(":/huggle/git/version.txt");
-    vf->open(QIODevice::ReadOnly);
-    QString version(vf->readAll());
-    version = version.replace("\n", "");
-    Configuration::HuggleVersion += " " + version;
-#ifdef PRODUCTION_BUILD
-    Configuration::HuggleVersion += " production";
-#endif
-    vf->close();
-    delete vf;
+    Core::VersionRead();
+    QFile *vf;
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
     vf->open(QIODevice::ReadOnly);
@@ -922,6 +914,20 @@ void Core::ExtensionLoad()
         Core::Log("There is no extensions folder, skipping load");
     }
     Core::Log("Extensions: " + QString::number(Core::Extensions.count()));
+}
+
+void Core::VersionRead()
+{
+    QFile *vf = new QFile(":/huggle/git/version.txt");
+    vf->open(QIODevice::ReadOnly);
+    QString version(vf->readAll());
+    version = version.replace("\n", "");
+    Configuration::HuggleVersion += " " + version;
+#ifdef PRODUCTION_BUILD
+    Configuration::HuggleVersion += " production";
+#endif
+    vf->close();
+    delete vf;
 }
 
 void Core::DebugLog(QString Message, unsigned int Verbosity)
