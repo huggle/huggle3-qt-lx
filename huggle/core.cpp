@@ -1361,9 +1361,13 @@ QString Core::GetCustomRevertStatus(QString RevertData)
 
             if (Error == "alreadyrolled")
             {
-                Core::Log("Reverted by someone else - skipping");
+                Core::Log("Edit was reverted by someone else - skipping");
             }
 
+            if (Error == "onlyauthor")
+            {
+                Core::Log("ERROR: Cannot rollback - page only has one author");
+            }
             Core::Log("In error (" + Error +")");
         }
     }
