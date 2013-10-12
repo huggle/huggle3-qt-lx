@@ -99,7 +99,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         size = "+" + QString::number(edit->Size);
     } else
     {
-        return;
+         size = QString::number(edit->Size);
     }
 
     if (edit->Summary == "")
