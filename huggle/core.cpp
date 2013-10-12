@@ -1230,6 +1230,7 @@ void Core::CheckQueries()
                 q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
                 if (q->CustomStatus != "Reverted")
                 {
+                    Core::Log("Unable to revert " + ((ApiQuery*)q)->Target + ": " + q->CustomStatus);
                     q->Result->Failed = true;
                     q->Result->ErrorMessage = q->CustomStatus;
                 } else
