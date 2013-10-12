@@ -33,7 +33,9 @@ namespace Huggle
         explicit BlockUser(QWidget *parent = 0);
         ~BlockUser();
         ApiQuery *b;
-
+        bool UserToBlock(WikiUser *u);
+    private slots:
+        void on_pushButton_clicked();
     private:
         Ui::BlockUser *ui;
     };

@@ -17,9 +17,16 @@ using namespace Huggle;
 BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 {
     ui->setupUi(this);
+    ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
 }
 
 BlockUser::~BlockUser()
 {
     delete ui;
+    delete b;
+}
+
+void BlockUser::on_pushButton_clicked()
+{
+
 }

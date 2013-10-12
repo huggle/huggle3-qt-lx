@@ -143,7 +143,7 @@ QString Configuration::LocalConfig_BlockTime = "indefinite";
 QString Configuration::LocalConfig_BlockTimeAnon = "31 hours";
 QString Configuration::LocalConfig_BlockMessage;
 QString Configuration::LocalConfig_BlockMessageIndef;
-QString Configuration::LocalConfig_BlockReason;
+QString Configuration::LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
 QString Configuration::LocalConfig_BlockSummary = "Notification: Blocked";
 
 QString Configuration::GetURLProtocolPrefix()
