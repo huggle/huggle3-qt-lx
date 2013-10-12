@@ -1302,3 +1302,8 @@ void MainWindow::on_actionDelete_triggered()
 {
 	
 }
+
+void MainWindow::on_actionBlock_triggered()
+{
+
+}

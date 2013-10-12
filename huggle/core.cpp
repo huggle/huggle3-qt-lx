@@ -1361,7 +1361,7 @@ QString Core::GetCustomRevertStatus(QString RevertData)
 
             if (Error == "alreadyrolled")
             {
-                return "Reverted by someone else - skip";
+                Core::Log("Reverted by someone else - skipping");
             }
 
             return "In error (" + Error +")";

@@ -157,6 +157,9 @@ void ApiQuery::SetAction(Action action)
     case ActionUndelete:
         this->ActionPart = "undelete";
         return;
+    case ActionBlock:
+        this->ActionPart = "block";
+        return;
     case ActionEdit:
         this->ActionPart = "edit";
     }

@@ -136,6 +136,16 @@ QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
 
 QStringList Configuration::LocalConfig_DeletionTemplates;
 
+// Blocking users
+bool Configuration::LocalConfig_IsAdmin = true;
+QStringList Configuration::LocalConfig_BlockExpiryOptions;
+QString Configuration::LocalConfig_BlockTime = "indefinite";
+QString Configuration::LocalConfig_BlockTimeAnon = "31 hours";
+QString Configuration::LocalConfig_BlockMessage;
+QString Configuration::LocalConfig_BlockMessageIndef;
+QString Configuration::LocalConfig_BlockReason;
+QString Configuration::LocalConfig_BlockSummary = "Notification: Blocked";
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

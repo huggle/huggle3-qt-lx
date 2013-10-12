@@ -34,6 +34,7 @@ namespace Huggle
         ActionRollback,
         ActionDelete,
         ActionUndelete,
+        ActionBlock,
         ActionEdit
     };
 

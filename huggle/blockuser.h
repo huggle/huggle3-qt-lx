@@ -13,6 +13,11 @@
 #define BLOCKUSER_H
 
 #include <QDialog>
+#include "core.h"
+#include "apiquery.h"
+#include "configuration.h"
+#include "wikiuser.h"
+
 
 namespace Ui {
 class BlockUser;
@@ -27,6 +32,7 @@ namespace Huggle
     public:
         explicit BlockUser(QWidget *parent = 0);
         ~BlockUser();
+        ApiQuery *b;
 
     private:
         Ui::BlockUser *ui;

@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -120,6 +129,7 @@
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
     <addaction name="actionReport_user_2"/>
+    <addaction name="actionBlock_user"/>
     <addaction name="separator"/>
     <addaction name="menuManual_template"/>
     <addaction name="actionEdit_user_talk"/>
@@ -618,6 +628,11 @@
   <action name="actionDelete">
    <property name="text">
     <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionBlock_user">
+   <property name="text">
+    <string>Block user</string>
    </property>
   </action>
  </widget>
