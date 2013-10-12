@@ -173,7 +173,6 @@ namespace Huggle
         static QString LocalConfig_ReportSummary;
 
         // Blocking users
-        static bool LocalConfig_IsAdmin;
         static QStringList LocalConfig_BlockExpiryOptions;
         static QString LocalConfig_BlockTime;
         static QString LocalConfig_BlockTimeAnon;

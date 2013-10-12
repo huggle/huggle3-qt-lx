@@ -137,7 +137,6 @@ QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
 QStringList Configuration::LocalConfig_DeletionTemplates;
 
 // Blocking users
-bool Configuration::LocalConfig_IsAdmin = true;
 QStringList Configuration::LocalConfig_BlockExpiryOptions;
 QString Configuration::LocalConfig_BlockTime = "indefinite";
 QString Configuration::LocalConfig_BlockTimeAnon = "31 hours";
