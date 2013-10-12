@@ -1231,6 +1231,7 @@ void Core::CheckQueries()
                 if (q->CustomStatus != "Reverted")
                 {
                     q->Result->Failed = true;
+                    q->Result->ErrorMessage = q->CustomStatus;
                 } else
                 {
                     HistoryItem item;
@@ -1369,6 +1370,7 @@ QString Core::GetCustomRevertStatus(QString RevertData)
                 Core::Log("ERROR: Cannot rollback - page only has one author");
             }
             Core::Log("In error (" + Error +")");
+            return "In error (" + Error +")";
         }
     }
     return "Reverted";
