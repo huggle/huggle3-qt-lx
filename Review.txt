@@ -1,0 +1,24 @@
+This documents describes how the review process is done
+
+Because github currently doesn't support any form of
+a code review, the review is being done as comment to
+commit.
+
+The review has following form:
+
+  REVIEW: +N
+  OPTIONAL comment
+
+for example:
+
+  REVIEW: +1
+  Change is OK but may need to require some extra work
+
+Explanation of numbers:
+
++2 - edit is OK, keep it
++1 - edit is OK, but it may require some additional work
+-1 - edit is not OK, it needs to be discussed or improved
+-2 - edit needs to be reverted, critical BUG introduced
+
+Every commit should be reviewed
