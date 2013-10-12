@@ -1364,7 +1364,7 @@ QString Core::GetCustomRevertStatus(QString RevertData)
                 Core::Log("Reverted by someone else - skipping");
             }
 
-            return "In error (" + Error +")";
+            Core::Log("In error (" + Error +")");
         }
     }
     return "Reverted";
