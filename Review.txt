@@ -1,4 +1,4 @@
-This documents describes how the review process is done
+This document describes how the review process is done
 
 Because github currently doesn't support any form of
 a code review, the review is being done as comment to
@@ -21,4 +21,4 @@ Explanation of numbers:
 -1 - edit is not OK, it needs to be discussed or improved
 -2 - edit needs to be reverted, critical BUG introduced
 
-Every commit should be reviewed
+Every commit should be reviewed by at least 1 programmer
