@@ -134,6 +134,7 @@ MainWindow::~MainWindow()
     delete this->SystemLog;
     delete this->Status;
     delete this->Browser;
+	delete this->block;
     delete ui;
     delete this->tb;
 }
@@ -1314,7 +1315,6 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-    BlockUser *block = new BlockUser(this);
+	this->block = new BlockUser(this);
     block->show();
-    // you should think of where you delete block now
 }

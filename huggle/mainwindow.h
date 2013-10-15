@@ -124,7 +124,8 @@ namespace Huggle
         bool ShuttingDown;
         //! If system is shutting down this is displaying which part of shutdown is currently being executed
         ShutdownOp Shutdown;
-        ReportUser *report;
+		ReportUser *report;
+		BlockUser *block;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         void _ReportUser();

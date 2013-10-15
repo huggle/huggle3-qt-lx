@@ -19,8 +19,8 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->user = NULL;
     this->b = NULL;
     this->tb = NULL;
-    ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
-    if (user->IP)
+	ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
+	if (user->IsIP())
     {
         ui->checkBox_5->setEnabled(true);
     }
@@ -91,7 +91,7 @@ void BlockUser::on_pushButton_clicked()
 	tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
 	tb = new ApiQuery();
 	tb->SetAction(ActionQuery);
-	if (user->IP)
+	if (user->IsIP())
 	{
 		tb->Parameters = "action=block&user=" + this->user->Username + "reason=" + Configuration::LocalConfig_BlockReason + "expiry=" +
 				QUrl::toPercentEncoding(Configuration::LocalConfig_BlockTimeAnon) + "token=" + blocktoken;
