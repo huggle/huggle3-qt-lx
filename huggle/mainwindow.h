@@ -197,7 +197,7 @@ namespace Huggle
         void on_actionBlock_user_triggered();
 
     private:
-        //! Check if huggle is shutting down or not, in case it is message box is shown as well
+        //! Check if huggle is shutting down or not, in case it is, message box is shown as well
         //! this function should be called before every action user can trigger
         bool CheckExit();
         QTimer *timer1;

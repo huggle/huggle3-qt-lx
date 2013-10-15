@@ -331,6 +331,27 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     edit->User = new WikiUser(name);
 
+    if (line.contains(QString(QChar(3)) + " ("))
+    {
+        line = line.mid(line.indexOf(QString(QChar(3)) + " (") + 3);
+        if (line.contains(")"))
+        {
+            QString xx = line.mid(0, line.indexOf(")"));
+            int size = 0;
+            if (xx.startsWith("+"))
+            {
+                xx = xx.mid(1);
+                size = xx.toInt();
+                edit->Size = size;
+            } else if (xx.startsWith("-"))
+            {
+                xx = xx.mid(1);
+                size = xx.toInt() * -1;
+                edit->Size = size;
+            }
+        }
+    }
+
     if (line.contains(QString(QChar(3)) + "10"))
     {
         line = line.mid(line.indexOf(QString(QChar(3)) + "10"));
