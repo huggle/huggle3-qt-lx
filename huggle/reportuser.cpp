@@ -288,7 +288,7 @@ bool ReportUser::CheckUser()
 void ReportUser::InsertUser()
 {
     QString xx = Configuration::LocalConfig_IPVTemplateReport;
-    if (!this->user->IP)
+    if (!this->user->IsIP())
     {
         xx = Configuration::LocalConfig_RUTemplateReport;
     }

@@ -69,7 +69,7 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
-        if (this->page->User->IP)
+        if (this->page->User->IsIP())
         {
             ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
             return;

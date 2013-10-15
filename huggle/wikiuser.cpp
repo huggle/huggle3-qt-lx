@@ -109,6 +109,16 @@ WikiUser::WikiUser(QString user)
     this->IsReported = false;
 }
 
+void WikiUser::ForceIP()
+{
+    this->IP = true;
+}
+
+bool WikiUser::IsIP()
+{
+    return IP;
+}
+
 QString WikiUser::GetTalk()
 {
     return "User_talk:" + this->Username;

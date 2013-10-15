@@ -963,7 +963,7 @@ void MainWindow::Welcome()
     {
         return;
     }
-    if (this->CurrentEdit->User->IP)
+    if (this->CurrentEdit->User->IsIP())
     {
         Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
                           , Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
@@ -1154,7 +1154,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
         return;
     }
 
-    if (!this->CurrentEdit->User->IP)
+    if (!this->CurrentEdit->User->IsIP())
     {
         Core::Log("This feature is for ip users only");
         return;

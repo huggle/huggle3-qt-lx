@@ -396,7 +396,7 @@ void ProcessorThread::run()
 void ProcessorThread::Process(WikiEdit *edit)
 {
     // score
-    if (edit->User->IP)
+    if (edit->User->IsIP())
     {
         edit->Score += Configuration::LocalConfig_IPScore;
     }
