@@ -185,7 +185,7 @@ void MainWindow::_ReportUser()
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
 {
-    if (e == NULL)
+    if (e == NULL || this->ShuttingDown)
     {
         return;
     }
@@ -447,7 +447,7 @@ void MainWindow::on_Tick()
     bool RetrieveEdit = true;
     QueryGC::DeleteOld();
     // if there is no working feed, let's try to fix it
-    if (Core::PrimaryFeedProvider->IsWorking() != true)
+    if (Core::PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
         Core::Log("Failure of primary feed provider, trying to recover");
         if (!Core::PrimaryFeedProvider->Restart())
