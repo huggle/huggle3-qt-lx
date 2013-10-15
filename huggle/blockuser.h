@@ -13,11 +13,13 @@
 #define BLOCKUSER_H
 
 #include <QDialog>
+#include <QCheckBox>
+#include <QString>
+#include <QtXml>
 #include "core.h"
 #include "apiquery.h"
 #include "configuration.h"
 #include "wikiuser.h"
-
 
 namespace Ui {
 class BlockUser;
@@ -32,12 +34,16 @@ namespace Huggle
     public:
         explicit BlockUser(QWidget *parent = 0);
         ~BlockUser();
+        ApiQuery *tb;
         ApiQuery *b;
-        bool UserToBlock(WikiUser *u);
+        QString blocktoken;
+		void GetToken();
     private slots:
         void on_pushButton_clicked();
+        void on_pushButton_2_clicked();
     private:
         Ui::BlockUser *ui;
+        WikiUser *user;
     };
 }
 
