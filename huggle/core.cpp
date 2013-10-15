@@ -1507,7 +1507,7 @@ void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
 void Core::ExceptionHandler(Exception *exception)
 {
     ExceptionWindow *w = new ExceptionWindow(exception);
-    w->show();
+    w->exec();
 }
 
 Language *Core::MakeLanguage(QString text, QString name)

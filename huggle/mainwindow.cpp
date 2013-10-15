@@ -1312,7 +1312,9 @@ void MainWindow::on_actionDelete_triggered()
 	
 }
 
-void MainWindow::on_actionBlock_triggered()
+void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-
+    BlockUser *block = new BlockUser(this);
+    block->show();
+    // you should think of where you delete block now
 }

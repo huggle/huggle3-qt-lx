@@ -35,6 +35,7 @@
 #include "speedyform.h"
 #include "exception.h"
 #include "history.h"
+#include "blockuser.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "userinfoform.h"
@@ -60,6 +61,7 @@ namespace Huggle
     class WikiPage;
     class EditQuery;
     class ProcessList;
+    class BlockUser;
     class WaitingForm;
     class WikiUser;
     class ReportUser;
@@ -192,7 +194,7 @@ namespace Huggle
         void on_actionTag_2_triggered();
         void on_actionRequest_speedy_deletion_triggered();
         void on_actionDelete_triggered();
-        void on_actionBlock_triggered();
+        void on_actionBlock_user_triggered();
 
     private:
         //! Check if huggle is shutting down or not, in case it is message box is shown as well
