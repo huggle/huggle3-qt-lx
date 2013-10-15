@@ -109,6 +109,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->timer1->start(200);
     this->fRemove = NULL;
     this->eq = NULL;
+    if (Configuration::Verbosity == 0)
+    {
+        ui->menuDebug->setVisible(false);
+    }
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
 }
 

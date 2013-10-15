@@ -12,6 +12,8 @@
 #ifndef HOOKS_H
 #define HOOKS_H
 
+#include <QString>
+
 namespace Huggle
 {
     class Hooks
