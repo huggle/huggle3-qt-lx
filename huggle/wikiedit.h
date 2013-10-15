@@ -15,6 +15,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QtXml>
+#include <QList>
 #include "apiquery.h"
 #include "wikiuser.h"
 #include "wikipage.h"
@@ -60,6 +61,8 @@ namespace Huggle
     class WikiEdit
     {
     public:
+        //! This list contains reference to all existing edits in memory
+        static QList<WikiEdit*> EditList;
         //! Creates a new empty wiki edit
         WikiEdit();
         WikiEdit(const WikiEdit& edit);

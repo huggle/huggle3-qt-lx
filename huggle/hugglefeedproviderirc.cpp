@@ -87,6 +87,7 @@ void HuggleFeedProviderIRC::Stop()
         throw new Exception("The pointer to thread was NULL during Stop() of irc provider");
     }
     this->thread->Running = false;
+    this->Connected = false;
     while (!IsStopped())
     {
         Core::Log("Waiting for irc feed provider to stop");

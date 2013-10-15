@@ -10,6 +10,7 @@
 
 #include "wikiedit.h"
 using namespace Huggle;
+QList<WikiEdit*> WikiEdit::EditList;
 
 WikiEdit::WikiEdit()
 {
@@ -41,6 +42,7 @@ WikiEdit::WikiEdit()
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = -1;
+    WikiEdit::EditList.append(this);
 }
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
@@ -81,6 +83,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = edit.RevID;
+    WikiEdit::EditList.append(this);
 }
 
 WikiEdit::WikiEdit(WikiEdit *edit)
@@ -120,10 +123,12 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->Score = edit->Score;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
+    WikiEdit::EditList.append(this);
 }
 
 WikiEdit::~WikiEdit()
 {
+    WikiEdit::EditList.removeAll(this);
     delete this->User;
     delete this->Page;
 }

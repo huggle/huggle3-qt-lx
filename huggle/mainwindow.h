@@ -37,10 +37,12 @@
 #include "history.h"
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
+#include "userinfoform.h"
 #include "querygc.h"
 #include "reportuser.h"
 #include "waitingform.h"
 #include "wlquery.h"
+#include "historyform.h"
 
 namespace Ui
 {
@@ -49,12 +51,15 @@ namespace Ui
 
 namespace Huggle
 {
+    class HistoryForm;
+    class UserinfoForm;
     class HuggleQueue;
     class HuggleWeb;
     class SpeedyForm;
     class WikiEdit;
     class WikiPage;
     class EditQuery;
+    class ProcessList;
     class WaitingForm;
     class WikiUser;
     class ReportUser;
@@ -81,6 +86,8 @@ namespace Huggle
         HuggleQueue *Queue1;
         //! Pointer to browser
         HuggleWeb *Browser;
+        HistoryForm *wHistory;
+        UserinfoForm *wUserInfo;
         //! Pointer to toolbar
         HuggleTool *tb;
         //! Pointer to options
@@ -111,6 +118,7 @@ namespace Huggle
         QMenu *WarnMenu;
         //! Revert menu
         QMenu *RevertSummaries;
+        Ui::MainWindow *ui;
         bool ShuttingDown;
         //! If system is shutting down this is displaying which part of shutdown is currently being executed
         ShutdownOp Shutdown;
@@ -190,7 +198,6 @@ namespace Huggle
         //! Check if huggle is shutting down or not, in case it is message box is shown as well
         //! this function should be called before every action user can trigger
         bool CheckExit();
-        Ui::MainWindow *ui;
         QTimer *timer1;
         // Whitelist
         QTimer *wlt;

@@ -31,10 +31,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Browser = new HuggleWeb(this);
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
+    this->wHistory = new HistoryForm(this);
+    this->wUserInfo = new UserinfoForm(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
+    this->addDockWidget(Qt::TopDockWidgetArea, this->wHistory);
+    this->addDockWidget(Qt::TopDockWidgetArea, this->wUserInfo);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->report = NULL;
@@ -214,6 +218,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             }
         }
     }
+    this->wHistory->Update(e);
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
     this->Render();
