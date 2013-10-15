@@ -212,7 +212,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (item.attributes().contains("anon"))
         {
-            edit.User->IP = true;
+            edit.User->ForceIP();
         }
 
         if (item.attributes().contains("revid"))

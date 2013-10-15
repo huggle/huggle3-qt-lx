@@ -19,11 +19,11 @@
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>113</height>
+    <height>123</height>
    </size>
   </property>
   <property name="features">
-   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   <set>QDockWidget::AllDockWidgetFeatures</set>
   </property>
   <property name="windowTitle">
    <string>Queue</string>
@@ -33,16 +33,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <item>
@@ -61,8 +52,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>207</width>
-         <height>303</height>
+         <width>205</width>
+         <height>295</height>
         </rect>
        </property>
        <property name="sizePolicy">

@@ -31,10 +31,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Browser = new HuggleWeb(this);
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
+    this->wHistory = new HistoryForm(this);
+    this->wUserInfo = new UserinfoForm(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
+    this->addDockWidget(Qt::TopDockWidgetArea, this->wHistory);
+    this->addDockWidget(Qt::TopDockWidgetArea, this->wUserInfo);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->report = NULL;
@@ -105,6 +109,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->timer1->start(200);
     this->fRemove = NULL;
     this->eq = NULL;
+    if (Configuration::Verbosity == 0)
+    {
+        ui->menuDebug->setVisible(false);
+    }
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
 }
 
@@ -177,7 +185,7 @@ void MainWindow::_ReportUser()
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
 {
-    if (e == NULL)
+    if (e == NULL || this->ShuttingDown)
     {
         return;
     }
@@ -214,6 +222,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             }
         }
     }
+    this->wHistory->Update(e);
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
     this->Render();
@@ -438,7 +447,7 @@ void MainWindow::on_Tick()
     bool RetrieveEdit = true;
     QueryGC::DeleteOld();
     // if there is no working feed, let's try to fix it
-    if (Core::PrimaryFeedProvider->IsWorking() != true)
+    if (Core::PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
         Core::Log("Failure of primary feed provider, trying to recover");
         if (!Core::PrimaryFeedProvider->Restart())
@@ -958,7 +967,7 @@ void MainWindow::Welcome()
     {
         return;
     }
-    if (this->CurrentEdit->User->IP)
+    if (this->CurrentEdit->User->IsIP())
     {
         Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
                           , Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
@@ -1149,7 +1158,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
         return;
     }
 
-    if (!this->CurrentEdit->User->IP)
+    if (!this->CurrentEdit->User->IsIP())
     {
         Core::Log("This feature is for ip users only");
         return;
@@ -1303,7 +1312,9 @@ void MainWindow::on_actionDelete_triggered()
 	
 }
 
-void MainWindow::on_actionBlock_triggered()
+void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-
+    BlockUser *block = new BlockUser(this);
+    block->show();
+    // you should think of where you delete block now
 }

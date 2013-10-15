@@ -13,11 +13,11 @@
   <property name="minimumSize">
    <size>
     <width>600</width>
-    <height>97</height>
+    <height>102</height>
    </size>
   </property>
   <property name="features">
-   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   <set>QDockWidget::AllDockWidgetFeatures</set>
   </property>
   <property name="windowTitle">
    <string>Processes</string>
@@ -27,16 +27,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>2</number>
-    </property>
-    <property name="topMargin">
-     <number>2</number>
-    </property>
-    <property name="rightMargin">
-     <number>2</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>2</number>
     </property>
     <item>

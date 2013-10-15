@@ -8,33 +8,34 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#ifndef USERINFOFORM_H
+#define USERINFOFORM_H
 
-#include <QDialog>
+#include <QDockWidget>
+#include <QString>
+#include "wikiuser.h"
 
 namespace Ui {
-class Preferences;
+class UserinfoForm;
 }
 
 namespace Huggle
 {
-    //! Preferences window
-    class Preferences : public QDialog
+    /*!
+     * \brief The UserinfoForm class is a widget that displays the information about user
+     * including their history and some other information about the user
+     */
+    class UserinfoForm : public QDockWidget
     {
         Q_OBJECT
 
     public:
-        explicit Preferences(QWidget *parent = 0);
-        ~Preferences();
-
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
+        explicit UserinfoForm(QWidget *parent = 0);
+        ~UserinfoForm();
 
     private:
-        Ui::Preferences *ui;
+        Ui::UserinfoForm *ui;
     };
 }
 
-#endif // PREFERENCES_H
+#endif // USERINFOFORM_H

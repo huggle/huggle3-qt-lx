@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>History</class>
- <widget class="QDockWidget" name="History">
+ <class>UserinfoForm</class>
+ <widget class="QDockWidget" name="UserinfoForm">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>297</width>
-    <height>256</height>
+    <width>526</width>
+    <height>54</height>
    </rect>
   </property>
-  <property name="features">
-   <set>QDockWidget::AllDockWidgetFeatures</set>
-  </property>
   <property name="windowTitle">
-   <string>History of your changes</string>
+   <string>User info</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -31,10 +28,14 @@
      <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>2</number>
+     <number>0</number>
     </property>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>No user</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

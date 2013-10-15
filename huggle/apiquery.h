@@ -38,6 +38,7 @@ namespace Huggle
         ActionEdit
     };
 
+    //! Format in which the result will be returned
     enum Format
     {
         XML,

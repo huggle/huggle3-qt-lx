@@ -8,33 +8,34 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#ifndef HISTORYFORM_H
+#define HISTORYFORM_H
 
-#include <QDialog>
+#include <QDockWidget>
+#include "wikiedit.h"
 
 namespace Ui {
-class Preferences;
+class HistoryForm;
 }
 
 namespace Huggle
 {
-    //! Preferences window
-    class Preferences : public QDialog
+    class HistoryForm : public QDockWidget
     {
         Q_OBJECT
 
     public:
-        explicit Preferences(QWidget *parent = 0);
-        ~Preferences();
+        explicit HistoryForm(QWidget *parent = 0);
+        ~HistoryForm();
+        void Update(WikiEdit* edit);
 
     private slots:
         void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
 
     private:
-        Ui::Preferences *ui;
+        Ui::HistoryForm *ui;
+        WikiEdit* CurrentEdit;
     };
 }
 
-#endif // PREFERENCES_H
+#endif // HISTORYFORM_H

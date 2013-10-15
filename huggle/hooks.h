@@ -8,33 +8,18 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
 
-#include <QDialog>
+#ifndef HOOKS_H
+#define HOOKS_H
 
-namespace Ui {
-class Preferences;
-}
+#include <QString>
 
 namespace Huggle
 {
-    //! Preferences window
-    class Preferences : public QDialog
+    class Hooks
     {
-        Q_OBJECT
-
     public:
-        explicit Preferences(QWidget *parent = 0);
-        ~Preferences();
-
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-
-    private:
-        Ui::Preferences *ui;
     };
 }
 
-#endif // PREFERENCES_H
+#endif // HOOKS_H

@@ -140,7 +140,13 @@ namespace Huggle
          * \param Message Message to log
          */
         static void Log(QString Message);
+        //! Load extensions (libraries as well as python)
         static void ExtensionLoad();
+        /*!
+         * \brief VersionRead - read the version from embedded git file
+         *
+         * This function may be called also from terminal parser
+         */
         static void VersionRead();
         //! This log is only shown if verbosity is same or larger than requested verbosity
         static void DebugLog(QString Message, unsigned int Verbosity = 1);
@@ -165,6 +171,10 @@ namespace Huggle
         static void Shutdown();
         //! Return a ring log represented as 1 huge string
         static QString RingLogToText();
+        /*!
+         * \brief Return a ring log as qstring list
+         * \return QStringList
+         */
         static QStringList RingLogToQStringList();
         static void InsertToRingLog(QString text);
         //! Display a message box telling user that function is not allowed during developer mode

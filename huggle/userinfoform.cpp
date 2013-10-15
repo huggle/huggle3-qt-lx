@@ -8,33 +8,17 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#include "userinfoform.h"
+#include "ui_userinfoform.h"
 
-#include <QDialog>
+using namespace Huggle;
 
-namespace Ui {
-class Preferences;
-}
-
-namespace Huggle
+UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
-    //! Preferences window
-    class Preferences : public QDialog
-    {
-        Q_OBJECT
-
-    public:
-        explicit Preferences(QWidget *parent = 0);
-        ~Preferences();
-
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-
-    private:
-        Ui::Preferences *ui;
-    };
+    ui->setupUi(this);
 }
 
-#endif // PREFERENCES_H
+UserinfoForm::~UserinfoForm()
+{
+    delete ui;
+}

@@ -193,3 +193,11 @@ bool ProcessListRemovedItem::Expired()
 {
     return this->time < QDateTime::currentDateTime().addSecs(-Configuration::QueryListTimeLimit);
 }
+
+void Huggle::ProcessList::on_ProcessList_visibilityChanged(bool visible)
+{
+    if (Core::Main != NULL)
+    {
+        //Core::Main->ui->actionProcesses->setChecked(visible);
+    }
+}

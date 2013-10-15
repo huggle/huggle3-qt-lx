@@ -62,7 +62,10 @@ SOURCES += main.cpp\
     waitingform.cpp \
     speedyform.cpp \
     deleteform.cpp \
-    webserverquery.cpp
+    webserverquery.cpp \
+    historyform.cpp \
+    userinfoform.cpp \
+    hooks.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -108,7 +111,10 @@ HEADERS  += mainwindow.h \
     waitingform.h \
     speedyform.h \
     deleteform.h \
-    webserverquery.h
+    webserverquery.h \
+    historyform.h \
+    userinfoform.h \
+    hooks.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -130,7 +136,9 @@ FORMS    += mainwindow.ui \
     exceptionwindow.ui \
     waitingform.ui \
     speedyform.ui \
-    deleteform.ui
+    deleteform.ui \
+    historyform.ui \
+    userinfoform.ui
 
 RESOURCES += \
     pictures.qrc \
