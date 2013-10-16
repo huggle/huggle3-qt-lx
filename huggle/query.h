@@ -79,6 +79,7 @@ namespace Huggle
         //! This is a pointer to object returned by your callback function
         void* CallbackResult;
         static QNetworkAccessManager NetworkManager;
+        bool HiddenQuery;
         //! Dependency for query
 
         //! If you put anything in here, it either must be NULL or query

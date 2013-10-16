@@ -24,6 +24,7 @@ Query::Query()
     this->LastID++;
     this->CustomStatus = "";
     this->callback = NULL;
+    this->HiddenQuery = false;
     this->Dependency = NULL;
     this->Managed = false;
     this->CallbackResult = NULL;

@@ -217,6 +217,7 @@ void Login::FinishLogin()
     this->Token = GetToken();
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
+    this->LoginQuery->HiddenQuery = true;
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName)
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;

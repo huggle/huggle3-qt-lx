@@ -91,7 +91,10 @@ void ApiQuery::Finished()
     }
     this->reply->deleteLater();
     this->reply = NULL;
-    Core::DebugLog("Finished request " + URL, 2);
+    if (!this->HiddenQuery)
+    {
+        Core::DebugLog("Finished request " + URL, 2);
+    }
     this->Status = StatusDone;
     this->ProcessCallback();
 }
@@ -119,9 +122,12 @@ void ApiQuery::Process()
     {
         this->reply = Query::NetworkManager.get(request);
     }
+    if (!this->HiddenQuery)
+    {
+        Core::DebugLog("Processing api request " + this->URL, 2);
+    }
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
-    Core::DebugLog("Processing api request " + this->URL, 2);
 }
 
 void ApiQuery::ReadData()
