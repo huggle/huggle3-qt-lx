@@ -135,6 +135,7 @@ QString Configuration::LocalConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
 QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
 
 QStringList Configuration::LocalConfig_DeletionTemplates;
+int Configuration::LocalConfig_TemplateAge = -30;
 
 // Blocking users
 QStringList Configuration::LocalConfig_BlockExpiryOptions;

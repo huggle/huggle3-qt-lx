@@ -702,7 +702,7 @@ int Core::GetLevel(QString page)
             } else
             {
                 // now check if it's at least 1 month old
-				if (QDate::currentDate().addDays(-1) > date)
+                if (QDate::currentDate().addDays(Configuration::LocalConfig_TemplateAge) > date)
                 {
                     // we don't want to parse this thing
                     page = page.replace(sections.at(CurrentIndex), "");
@@ -1420,6 +1420,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
     Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
     Configuration::LocalConfig_DeletionTemplates = Core::ConfigurationParse_QL("speedy-options", config);
+    Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
@@ -1460,6 +1461,7 @@ bool Core::ParseUserConfig(QString config)
     Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
     Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
     Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
+    Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
     if (l1.count() > 0)
     {
@@ -1468,6 +1470,7 @@ bool Core::ParseUserConfig(QString config)
     //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
+    NormalizeConf();
     return true;
 }
 
@@ -1646,6 +1649,18 @@ bool Core::ReportPreFlightCheck()
     return true;
 }
 
+void Core::NormalizeConf()
+{
+    if (Configuration::LocalConfig_TemplateAge > -1)
+    {
+        Configuration::LocalConfig_TemplateAge = -30;
+    }
+    if (Configuration::Cache_InfoSize < 10)
+    {
+        Configuration::Cache_InfoSize = 10;
+    }
+}
+
 QString Core::MakeLocalUserConfig()
 {
     QString conf = "<nowiki>\n";
@@ -1665,6 +1680,7 @@ QString Core::MakeLocalUserConfig()
     conf += "confirm-multiple:true\n";
     conf += "confirm-range:true\n";
     conf += "confirm-page:true\n";
+    conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
     conf += "</nowiki>";
     return conf;
 }

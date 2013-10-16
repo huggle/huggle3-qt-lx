@@ -278,6 +278,7 @@ namespace Huggle
         static QString Localize(QString key);
         static void LoadLocalizations();
         static bool ReportPreFlightCheck();
+        static void NormalizeConf();
         //! This function creates a user configuration that is stored on wiki
         static QString MakeLocalUserConfig();
     private:

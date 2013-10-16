@@ -145,6 +145,7 @@ namespace Huggle
         static QString LocalConfig_NSProject;
         static QString LocalConfig_NSUser;
         static QString LocalConfig_NSProjectTalk;
+        static int LocalConfig_TemplateAge;
 
         // Reverting
 
