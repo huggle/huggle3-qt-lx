@@ -23,7 +23,8 @@ Linux:
 * sudo apt-get install qt4-qmake #qt5-qmake if you prefer
 * checkout this repository
 * cd REPO/huggle, execute
-```
+
+```sh
 ./configure
 make
 ```
