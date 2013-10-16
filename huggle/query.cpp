@@ -36,7 +36,10 @@ Query::~Query()
         throw new Exception("Request to delete managed query");
     }
     delete Result;
-    delete CallbackResult;
+    if (this->CallbackResult != NULL)
+    {
+        throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
+    }
     this->Result = NULL;
 }
 
@@ -64,6 +67,8 @@ QString Query::QueryTypeToString()
     {
         case QueryNull:
             return "null";
+        case QueryWl:
+            return "Wl Query";
         case QueryApi:
             return "Api Query";
         case QueryEdit:

@@ -15,6 +15,14 @@
 #include <QList>
 #include <QString>
 
+#if _MSC_VER
+#pragma warning ( push )
+#pragma warning ( disable )
+#else
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+
 namespace Huggle
 {
     //! Extension interface
@@ -23,15 +31,41 @@ namespace Huggle
     public:
         static QList<iExtension *> Extensions;
         iExtension();
+        /*!
+         * \brief IsWorking
+         * \return if extension work
+         */
+        bool IsWorking();
         virtual ~iExtension();
         virtual bool Register() { return false; }
+        /*!
+         * \brief This is called when the extension is removed from system
+         */
+        virtual void Quit() { Working = false; }
+        /*!
+         * \brief Hook_EditPreProcess is called when edit is being pre processed
+         * \param edit is a pointer to edit in question
+         */
+        virtual void Hook_EditPreProcess(void *edit) {}
+        /*!
+         * \brief Hook_EditScore is called after edit score is calculated
+         * \param edit
+         */
+        virtual void Hook_EditScore(void *edit) {}
     private:
         QString ExtensionName;
         QString ExtensionAuthor;
         QString ExtensionVersion;
         QString ExtensionDescription;
+        bool Working;
     };
 }
+
+#if _MSC_VER
+#pragma warning ( pop )
+#else
+#pragma GCC diagnostic pop
+#endif
 
 Q_DECLARE_INTERFACE(Huggle::iExtension, "org.huggle.extension.qt")
 

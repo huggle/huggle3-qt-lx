@@ -16,6 +16,7 @@
 #include <QCheckBox>
 #include <QString>
 #include <QtXml>
+#include <QTimer>
 #include "core.h"
 #include "apiquery.h"
 #include "configuration.h"
@@ -37,13 +38,20 @@ namespace Huggle
         ApiQuery *tb;
         ApiQuery *b;
         QString blocktoken;
+        void SetWikiUser(WikiUser* User);
 		void GetToken();
+        void Failed(QString reason);
     private slots:
         void on_pushButton_clicked();
         void on_pushButton_2_clicked();
+        void onTick();
     private:
         Ui::BlockUser *ui;
+        QTimer *t0;
         WikiUser *user;
+        int QueryPhase;
+        void CheckToken();
+        void Block();
     };
 }
 

@@ -19,7 +19,13 @@ iExtension::iExtension()
     this->ExtensionDescription = "None";
     this->ExtensionVersion = "0";
     this->ExtensionName = "Unknown";
+    this->Working = true;
     iExtension::Extensions.append(this);
+}
+
+bool iExtension::IsWorking()
+{
+    return this->Working;
 }
 
 iExtension::~iExtension()

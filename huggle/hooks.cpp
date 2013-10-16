@@ -11,3 +11,16 @@
 #include "hooks.h"
 
 
+void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
+{
+    int extension = 0;
+    while (extension < Huggle::iExtension::Extensions.count())
+    {
+        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        if (e->IsWorking())
+        {
+            e->Hook_EditPreProcess((void*)Edit);
+        }
+        extension++;
+    }
+}

@@ -13,12 +13,17 @@
 #define HOOKS_H
 
 #include <QString>
+#include "wikipage.h"
+#include "iextension.h"
+#include "wikiedit.h"
 
 namespace Huggle
 {
     class Hooks
     {
     public:
+        static void EditPreProcess(WikiEdit *Edit);
+        static void EditPostProcess(WikiEdit *Edit);
     };
 }
 

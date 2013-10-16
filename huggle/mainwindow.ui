@@ -147,16 +147,6 @@
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
    </widget>
-   <widget class="QMenu" name="menuDisplay">
-    <property name="title">
-     <string>Display</string>
-    </property>
-    <addaction name="actionTools_dock"/>
-    <addaction name="actionQueue"/>
-    <addaction name="actionHistory"/>
-    <addaction name="actionSystem_log"/>
-    <addaction name="actionProcesses"/>
-   </widget>
    <widget class="QMenu" name="menuDebug">
     <property name="title">
      <string>Debug</string>
@@ -164,7 +154,6 @@
     <addaction name="actionList_all_QGC_items"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuDisplay"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>

@@ -23,6 +23,7 @@ namespace Huggle
 {
     class Query;
     typedef void* (*Callback) (Query*);
+
     //! Status of a query
     enum _Status
     {

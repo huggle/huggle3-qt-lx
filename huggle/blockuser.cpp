@@ -16,95 +16,177 @@ using namespace Huggle;
 BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 {
     ui->setupUi(this);
+    // we should initialise every variable
+    this->blocktoken = "";
     this->user = NULL;
     this->b = NULL;
+    this->t0 = NULL;
     this->tb = NULL;
 	ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
-	if (user->IsIP())
+}
+
+BlockUser::~BlockUser()
+{
+    delete t0;
+    delete ui;
+}
+
+void BlockUser::SetWikiUser(WikiUser *User)
+{
+    this->user = User;
+    if (this->user->IsIP())
     {
         ui->checkBox_5->setEnabled(true);
     }
 }
 
-BlockUser::~BlockUser()
-{
-    delete ui;
-    delete b;
-	delete tb;
-
-}
 void BlockUser::GetToken()
 {
 	// Let's get a token before anything
-	if (b == NULL)
-	{
-		delete b;
-		return;
-	}
 	b = new ApiQuery();
 	b->SetAction(ActionQuery);
-	b->Parameters = "prop=info&intoken=block&titles=User:" + this->user->Username;
+    b->Parameters = "prop=info&intoken=block&titles=User:" +
+        QUrl::toPercentEncoding(this->user->Username);
 	b->Target = "Getting token to block" + this->user->Username;
 	b->RegisterConsumer("BlockUser::GetToken");
 	Core::AppendQuery(b);
 	b->Process();
 
-	if (blocktoken == "none")
-	{
-		if (!tb->Processed())
-		{
-			return;
-		}
-		if (tb->Result->Failed)
-		{
-			return;
-		}
-		QDomDocument d;
-		d.setContent(tb->Result->Data);
-		QDomNodeList l = d.elementsByTagName("user");
-		if (l.count() == 0)
-		{
-			Core::DebugLog("No page");
-			return;
-		}
-		QDomElement element = l.at(0).toElement();
-		if (!element.attributes().contains("blocktoken"))
-		{
-			Core::DebugLog("No token");
-			return;
-		}
-	}
+    this->t0 = new QTimer(this);
+    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
+    this->QueryPhase = 0;
+    this->t0->start(200);
 }
+
 void BlockUser::on_pushButton_2_clicked()
 {
-	this->hide();
+    this->hide();
 }
+
+void BlockUser::onTick()
+{
+    switch (this->QueryPhase)
+    {
+        case 0:
+            this->CheckToken();
+            return;
+        case 1:
+            this->Block();
+            return;
+    }
+    this->t0->stop();
+}
+
+void BlockUser::CheckToken()
+{
+    if (this->b == NULL)
+    {
+        return;
+    }
+    if (!this->b->Processed())
+    {
+        return;
+    }
+    if (this->b->Result->Failed)
+    {
+        Failed("token can't be retrieved: " + this->b->Result->ErrorMessage);
+        return;
+    }
+    QDomDocument d;
+    d.setContent(this->b->Result->Data);
+    QDomNodeList l = d.elementsByTagName("user");
+    if (l.count() == 0)
+    {
+        Core::DebugLog(this->b->Result->Data);
+        Failed("no user info was present in query (are you sysop?)");
+        return;
+    }
+    QDomElement element = l.at(0).toElement();
+    if (!element.attributes().contains("blocktoken"))
+    {
+        Failed("No token");
+        return;
+    }
+    this->blocktoken = element.attribute("blocktoken");
+    this->QueryPhase++;
+    this->b->UnregisterConsumer("BlockUser::GetToken");
+    this->b = NULL;
+    Core::DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
+
+    // let's block them
+    this->tb = new ApiQuery();
+    this->tb->SetAction(ActionQuery);
+    if (user->IsIP())
+    {
+        tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
+                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockReason) + "expiry="
+                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockTimeAnon) + "token="
+                + QUrl::toPercentEncoding(blocktoken);
+
+    }else
+    {
+        tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
+                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockReason) + "token="
+                + QUrl::toPercentEncoding(blocktoken);
+    }
+    tb->Target = "Blocking" + this->user->Username;
+    tb->UsingPOST = true;
+    tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
+    Core::AppendQuery(tb);
+    tb->Process();
+}
+
+void BlockUser::Block()
+{
+    if (this->tb == NULL)
+    {
+        return;
+    }
+    if (!this->tb->Processed())
+    {
+        return;
+    }
+
+    if (this->tb->Result->Failed)
+    {
+        Failed("user can't be blocked: " + this->tb->Result->ErrorMessage);
+        return;
+    }
+    // let's assume the user was blocked
+    ui->pushButton->setText("Blocked");
+    Core::DebugLog("block result: " + this->tb->Result->Data, 2);
+    this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+    this->t0->stop();
+}
+
+void BlockUser::Failed(QString reason)
+{
+    QMessageBox *_b = new QMessageBox();
+    _b->setWindowTitle("Unable to block user");
+    _b->setText("Unable to block the user because " + reason);
+    _b->exec();
+    delete _b;
+    this->t0->stop();
+    delete this->t0;
+    this->t0 = NULL;
+    ui->pushButton->setEnabled(true);
+    if (this->b != NULL)
+    {
+        b->UnregisterConsumer("BlockUser::GetToken");
+    }
+    if (this->tb != NULL)
+    {
+        tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+    }
+    this->tb = NULL;
+    this->b = NULL;
+}
+
 void BlockUser::on_pushButton_clicked()
 {
 	this->GetToken();
-	QDomDocument d;
-	d.setContent(tb->Result->Data);
-	QDomNodeList l = d.elementsByTagName("user");
-	QDomElement element = l.at(0).toElement();
-	blocktoken = element.attribute("blocktoken");
-	tb->SafeDelete(true);
-	tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
-	tb = new ApiQuery();
-	tb->SetAction(ActionQuery);
-	if (user->IsIP())
-	{
-		tb->Parameters = "action=block&user=" + this->user->Username + "reason=" + Configuration::LocalConfig_BlockReason + "expiry=" +
-				QUrl::toPercentEncoding(Configuration::LocalConfig_BlockTimeAnon) + "token=" + blocktoken;
-
-	}else
-	{
-		tb->Parameters = "action=block&user=" + this->user->Username + "reason=" + Configuration::LocalConfig_BlockReason + "token=" + blocktoken;
-	}
-	tb->Target = "Blocking" + this->user->Username;
-	tb->UsingPOST = true;
-	tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
-	Core::AppendQuery(tb);
-	tb->Process();
+    // disable the button so that user can't click it multiple times
+    ui->pushButton->setEnabled(false);
 }
 
 

@@ -98,7 +98,9 @@ namespace Huggle
         //! Revision ID
         int RevID;
         WEStatus Status;
+        //! Current warning level
         WarningLevel CurrentUserWarningLevel;
+        //! Summary of edit
         QString Summary;
         QString RollbackToken;
         QString DiffText;

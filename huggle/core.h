@@ -259,6 +259,11 @@ namespace Huggle
         static int GetLevel(QString page);
         static QString RetrieveTemplateToWarn(QString type);
         static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+        /*!
+         * \brief Insert a query to internal list of running queries, so that they can be watched
+         * This will insert it to a process list in main form
+         * \param item Query that is about to be inserted to list of running queries
+         */
         static void AppendQuery(Query* item);
         /*!
          * \brief InsertConfig

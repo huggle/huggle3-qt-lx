@@ -1116,31 +1116,6 @@ void MainWindow::on_actionRemove_old_edits_triggered()
     ui->actionStop_feed->setChecked(false);
 }
 
-void MainWindow::on_actionQueue_triggered()
-{
-    this->Queue1->setVisible(ui->actionQueue->isChecked());
-}
-
-void MainWindow::on_actionHistory_triggered()
-{
-    this->_History->setVisible(ui->actionHistory->isChecked());
-}
-
-void MainWindow::on_actionProcesses_triggered()
-{
-    this->Queries->setVisible(ui->actionProcesses->isChecked());
-}
-
-void MainWindow::on_actionSystem_log_triggered()
-{
-    this->SystemLog->setVisible(ui->actionSystem_log->isChecked());
-}
-
-void MainWindow::on_actionTools_dock_triggered()
-{
-    this->tb->setVisible(ui->actionTools_dock->isChecked());
-}
-
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
     if (!CheckExit())
@@ -1315,6 +1290,12 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
+    if(this->CurrentEdit == NULL)
+    {
+        Core::Log("ERROR: No one to block :o");
+        return;
+    }
 	this->block = new BlockUser(this);
+    block->SetWikiUser(this->CurrentEdit->User);
     block->show();
 }

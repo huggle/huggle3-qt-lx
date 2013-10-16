@@ -174,11 +174,6 @@ namespace Huggle
         void on_actionDisplay_history_in_browser_triggered();
         void on_actionStop_feed_triggered();
         void on_actionRemove_old_edits_triggered();
-        void on_actionQueue_triggered();
-        void on_actionHistory_triggered();
-        void on_actionProcesses_triggered();
-        void on_actionSystem_log_triggered();
-        void on_actionTools_dock_triggered();
         void on_actionClear_talk_page_of_user_triggered();
         void on_actionList_all_QGC_items_triggered();
         void on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered();
