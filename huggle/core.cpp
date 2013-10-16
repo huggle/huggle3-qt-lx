@@ -702,7 +702,7 @@ int Core::GetLevel(QString page)
             } else
             {
                 // now check if it's at least 1 month old
-                if (QDate::currentDate().addDays(-30) > date)
+				if (QDate::currentDate().addDays(-1) > date)
                 {
                     // we don't want to parse this thing
                     page = page.replace(sections.at(CurrentIndex), "");
