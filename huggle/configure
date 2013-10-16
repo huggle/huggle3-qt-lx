@@ -1,19 +1,39 @@
-#!/bin/sh
+#!/bin/bash
+
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+NORMAL=$(tput sgr0)
+ok()
+{
+printf '%s%s%s\n' "$GREEN" "[OK]" "$NORMAL"
+}
+
+fail()
+{
+printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
+}
+
+text()
+{
+	MSG="$1"
+        let COL=$(tput cols)-20-${#MSG}+${#GREEN}+${#NORMAL}
+        printf '%s%*s' "$MSG" $COL
+}
 
 checkqt()
 {
-        echo -n "Checking if $1 or $2 is present... "
+        text "Checking if $1 or $2 is present... "
         if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
-            echo "OK"
+            ok
             return 0
         fi
 
         if [ "`apt-cache policy $2 | wc -l`" -gt 2 ];then
-            echo "OK"
+            ok
             return 0
         fi
 
-        echo "FAILED"
+        fail
         echo "$1 neither $2 is present"
         exit 1
 }
@@ -21,25 +41,26 @@ checkqt()
 
 checkpkg()
 {
-        echo -n "Checking if $1 is present... "
+        text "Checking if $1 is present... "
 	if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
-            echo "OK"
+            ok
             return 0
         fi
-        echo "FAILED"
+        fail
         echo "$1 is not present"
         exit 1
 }
 
 echo "Checking all required packages..."
 
-echo -n "Checking for qmake... "
+
+text "Checking for qmake... "
 if [ "`which qmake`" = "" ];then
 	echo "qt4-qmake is not installed!"
 	exit 1
 fi
 
-echo "OK"
+ok
 
 if [ "`which apt-cache`" = "" ];then
 	echo "WARNING: Unable to verify packages, let's just hope they are all installed"
@@ -49,9 +70,11 @@ else
         checkqt "libqt4-dev" "libqt5-dev"
         checkqt "libqt4-network" "libqt5-network"
         checkqt "libqt4-opengl" "libqt5-opengl"
+        checkpkg "libqtwebkit4"
+        checkpkg "libqtgui4"
 fi
 
-echo -n "Executing update.sh... "
+text "Executing update.sh... "
 if [ ! -f update.sh ];then
 	echo "update.sh is missing!"
 	exit 1
@@ -59,21 +82,21 @@ fi
 
 sh update.sh || exit 1
 
-echo "OK"
+ok
 
-echo -n "Checking if version.txt exist... "
+text "Checking if version.txt exist... "
 if [ ! -f version.txt ];then
 	echo "Error! unable to create a version file!"
 	exit 1
 fi
 
-echo "OK"
+ok
 
-echo -n "Creating makefile... "
+text "Creating makefile... "
 
 qmake || exit 1
 
-echo "OK"
+ok
 
 echo "Everything is ready, you can build huggle by typing"
 echo "make"
