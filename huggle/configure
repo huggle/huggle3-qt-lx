@@ -15,7 +15,6 @@ if [ ! -f version.txt ];then
 fi
 
 qmake || exit 1
-make
 
-echo "Everything was built, you can start huggle by typing"
-echo "./huggle"
+echo "Everything is ready, you can build huggle by typing"
+echo "make"
