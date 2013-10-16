@@ -28,6 +28,8 @@ class BlockUser;
 
 namespace Huggle
 {
+    class WikiUser;
+
     class BlockUser : public QDialog
     {
         Q_OBJECT

@@ -21,6 +21,8 @@ class UserinfoForm;
 
 namespace Huggle
 {
+    class WikiUser;
+
     /*!
      * \brief The UserinfoForm class is a widget that displays the information about user
      * including their history and some other information about the user
@@ -32,9 +34,11 @@ namespace Huggle
     public:
         explicit UserinfoForm(QWidget *parent = 0);
         ~UserinfoForm();
+        void ChangeUser(WikiUser *user);
 
     private:
         Ui::UserinfoForm *ui;
+        WikiUser *User;
     };
 }
 

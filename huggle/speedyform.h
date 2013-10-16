@@ -24,6 +24,8 @@ class SpeedyForm;
 
 namespace Huggle
 {
+    class WikiUser;
+
     class SpeedyForm : public QDialog
     {
         Q_OBJECT

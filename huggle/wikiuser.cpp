@@ -109,6 +109,15 @@ WikiUser::WikiUser(QString user)
     this->IsReported = false;
 }
 
+WikiUser::~WikiUser()
+{
+    while (this->Contributions.count() > 0)
+    {
+        delete this->Contributions.at(0);
+        this->Contributions.removeAt(0);
+    }
+}
+
 void WikiUser::ForceIP()
 {
     this->IP = true;

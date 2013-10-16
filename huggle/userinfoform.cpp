@@ -16,9 +16,17 @@ using namespace Huggle;
 UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
     ui->setupUi(this);
+    ui->pushButton->setEnabled(false);
 }
 
 UserinfoForm::~UserinfoForm()
 {
     delete ui;
+}
+
+void UserinfoForm::ChangeUser(WikiUser *user)
+{
+    this->User = user;
+    ui->pushButton->setEnabled(true);
+    ui->pushButton->setText("Retrieve info");
 }

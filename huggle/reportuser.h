@@ -29,6 +29,8 @@ class ReportUser;
 
 namespace Huggle
 {
+    class WikiUser;
+
     //! Report user
     class ReportUser : public QDialog
     {

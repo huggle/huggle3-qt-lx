@@ -16,6 +16,10 @@ using namespace Huggle;
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     QDateTime load = QDateTime::currentDateTime();
+    if (!Configuration::WhiteList.contains(Configuration::UserName))
+    {
+        Configuration::WhiteList.append(Configuration::UserName);
+    }
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
@@ -223,6 +227,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             }
         }
     }
+    this->wUserInfo->ChangeUser(e->User);
     this->wHistory->Update(e);
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
@@ -1202,7 +1207,6 @@ void MainWindow::on_actionReport_user_triggered()
 		return;
 	}
     this->_ReportUser();
-    
 }
 
 void MainWindow::on_actionReport_user_2_triggered()

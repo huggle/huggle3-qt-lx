@@ -16,9 +16,12 @@
 #include <QRegExp>
 
 #include "configuration.h"
+#include "wikiedit.h"
 
 namespace Huggle
 {
+    class WikiEdit;
+
     //! User
     class WikiUser
     {
@@ -43,6 +46,7 @@ namespace Huggle
         //! In case that we retrieved the talk page during parse of warning level, this string contains it
         QString ContentsOfTalkPage;
         bool IsReported;
+        QList<WikiEdit*> Contributions;
         /*!
          * \brief Change the IP property to true forcefully even if user isn't IP
          */
@@ -55,6 +59,7 @@ namespace Huggle
         WikiUser(WikiUser *u);
         WikiUser(const WikiUser& u);
         WikiUser(QString user);
+        ~WikiUser();
         //! Return a link to talk page of this user (like User talk:Jimbo)
         QString GetTalk();
         bool IsWhitelisted();
