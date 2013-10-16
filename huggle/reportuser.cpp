@@ -277,7 +277,7 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
         suffix = "&action=render";
     }
     QUrl u = QUrl::fromEncoded(QString(Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text()) + "&diff="
-                                       + ui->tableWidget->item(index.row(), 3)->text()).toUtf8() + suffix);
+                                       + ui->tableWidget->item(index.row(), 3)->text()).toUtf8() + suffix.toUtf8());
     ui->webView->load(u);
 }
 
