@@ -20,7 +20,6 @@ Windows:
 
 Linux:
 
-* sudo apt-get install qt4-qmake #qt5-qmake if you prefer
 * checkout this repository
 * cd REPO/huggle, execute
 
@@ -33,3 +32,9 @@ Documentation
 =============
 
 https://meta.wikimedia.org/wiki/Huggle
+
+Getting help
+=============
+
+We have a channel #huggle @chat.freenode.org so if you need any kind of help please go there
+
