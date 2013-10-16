@@ -1,5 +1,24 @@
 #!/bin/bash
 
+# first we parse all arguments we got
+
+SKIPCHECKS=0
+
+for var in "$@"
+do
+    if [ "$var" = "--help" ];then
+        echo "Configure script for huggle, parameters:"
+        echo "=========================================="
+        echo " --skip-checks: skip all package checks"
+        echo
+        echo "GNU GPL copyright by huggle team"
+        exit 0
+    fi
+    if [ "$var" = "--skip-checks" ];then
+        SKIPCHECKS=1
+    fi
+done
+
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
@@ -22,33 +41,41 @@ text()
 
 checkqt()
 {
-        text "Checking if $1 or $2 is present... "
-        if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
-            ok
-            return 0
-        fi
+    text "Checking if $1 or $2 is present... "
+    if [ "$SKIPCHECKS" = "1" ];then
+        echo "SKIP"
+        return 0
+    fi
+    if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
+        ok
+        return 0
+    fi
 
-        if [ "`apt-cache policy $2 | wc -l`" -gt 2 ];then
-            ok
-            return 0
-        fi
+    if [ "`apt-cache policy $2 | wc -l`" -gt 2 ];then
+        ok
+        return 0
+    fi
 
-        fail
-        echo "$1 neither $2 is present"
-        exit 1
+    fail
+    echo "$1 neither $2 is present, use --skip-checks to ignore this"
+    exit 1
 }
 
 
 checkpkg()
 {
-        text "Checking if $1 is present... "
-	if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
-            ok
-            return 0
-        fi
-        fail
-        echo "$1 is not present"
-        exit 1
+    text "Checking if $1 is present... "
+    if [ "$SKIPCHECKS" == "1" ];then
+        echo "SKIP"
+        return 0
+    fi
+    if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
+        ok
+        return 0
+    fi
+    fail
+    echo "$1 is not present, use --skip-checks to ignore this"
+    exit 1
 }
 
 echo "Checking all required packages..."
@@ -67,12 +94,15 @@ if [ "`which apt-cache`" = "" ];then
 	echo "WARNING: Unable to verify packages, let's just hope they are all installed"
 else
 	checkpkg "g++"
+        checkpkg "make"
         checkqt "libqt4-dbus" "libqt5-dbus"
         checkqt "libqt4-dev" "libqt5-dev"
         checkqt "libqt4-network" "libqt5-network"
         checkqt "libqt4-opengl" "libqt5-opengl"
-        checkpkg "libqtwebkit4"
-        checkpkg "libqtgui4"
+        checkqt "libqtwebkit5" "libqtwebkit4"
+        checkqt "libqtgui5" "libqtgui4"
+        checkqt "libqtcore5" "libqtcore4"
+        checkqt "libqt5-xml" "libqt4-xml"
 fi
 
 text "Executing update.sh... "
