@@ -88,6 +88,16 @@
     </layout>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Display in render mode (faster)</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QWebView" name="webView">
      <property name="url">
       <url>

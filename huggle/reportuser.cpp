@@ -271,8 +271,13 @@ void ReportUser::on_pushButton_2_clicked()
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
     ui->webView->setHtml("Please wait...");
+    QString suffix = "";
+    if (ui->checkBox->isChecked())
+    {
+        suffix = "&action=render";
+    }
     QUrl u = QUrl::fromEncoded(QString(Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text()) + "&diff="
-              + ui->tableWidget->item(index.row(), 3)->text()).toUtf8());
+                                       + ui->tableWidget->item(index.row(), 3)->text()).toUtf8() + suffix);
     ui->webView->load(u);
 }
 
