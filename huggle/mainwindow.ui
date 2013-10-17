@@ -624,11 +624,17 @@
    </property>
   </action>
   <action name="actionIRC">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>IRC</string>
    </property>
   </action>
   <action name="actionWiki">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Wiki</string>
    </property>

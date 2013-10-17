@@ -26,6 +26,9 @@ namespace Huggle
 {
     class WikiUser;
 
+    /*!
+     * \brief The window that is used to report a page for deletion
+     */
     class SpeedyForm : public QDialog
     {
         Q_OBJECT

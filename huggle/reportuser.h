@@ -38,8 +38,8 @@ namespace Huggle
 
     public:
         explicit ReportUser(QWidget *parent = 0);
+        //! Set a user
         bool SetUser(WikiUser *u);
-        ApiQuery *q;
         ~ReportUser();
         //! Content of report
         QString _p;
@@ -54,6 +54,7 @@ namespace Huggle
     private:
         Ui::ReportUser *ui;
         WikiUser *user;
+        ApiQuery *q;
         QTimer *timer;
         QTimer *t2;
         QList <QCheckBox*> CheckBoxes;
