@@ -20,8 +20,11 @@ namespace Huggle
     class Exception
     {
     public:
+        //! Error code
         int ErrorCode;
+        //! Reason for crash
         QString Message;
+        //! ctor
         Exception(QString Text);
     };
 }

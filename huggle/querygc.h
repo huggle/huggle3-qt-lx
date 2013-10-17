@@ -19,12 +19,15 @@ namespace Huggle
     class Query;
 
     //! Garbage collector
+
+    //! Garbage collector for old queries that should be deleted,
+    //! but can't be right now
     class QueryGC
     {
     public:
-        //! Garbage collector for old queries that should be deleted,
-        //! but can't be right now
+        //! List of all managed queries that qgc keeps track of
         static QList<Query*> qgc;
+        //! Function that walks through the list and delete these that can be deleted
         static void DeleteOld();
     };
 }

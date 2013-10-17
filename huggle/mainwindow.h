@@ -66,11 +66,18 @@ namespace Huggle
     class WikiUser;
     class ReportUser;
 
+    /*!
+     * \brief The ShutdownOp enum contains a various parts of shutdown so that we can keep the track of what is going on
+     */
     enum ShutdownOp
     {
+        //! Huggle is not shutting down
         ShutdownOpRunning,
+        //! Huggle is downloading a whitelist in order to update it
         ShutdownOpRetrievingWhitelist,
+        //! Huggle is updating the whitelist
         ShutdownOpUpdatingWhitelist,
+        //! Huggle is updating a config of user
         ShutdownOpUpdatingConf
     };
 
@@ -125,6 +132,7 @@ namespace Huggle
         //! If system is shutting down this is displaying which part of shutdown is currently being executed
         ShutdownOp Shutdown;
 		ReportUser *report;
+        //! Pointer to a form to block user
 		BlockUser *block;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
@@ -138,6 +146,7 @@ namespace Huggle
         //! Send a template to user no matter if they can be messaged or not
         void ForceWarn(int level);
         void Exit();
+        void ReconnectIRC();
 
 
     private slots:
@@ -191,6 +200,8 @@ namespace Huggle
         void on_actionRequest_speedy_deletion_triggered();
         void on_actionDelete_triggered();
         void on_actionBlock_user_triggered();
+        void on_actionIRC_triggered();
+        void on_actionWiki_triggered();
 
     private:
         //! Check if huggle is shutting down or not, in case it is, message box is shown as well

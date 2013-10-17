@@ -68,15 +68,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (Configuration::UsingIRC && Configuration::LocalConfig_UseIrc)
     {
         Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
+        ui->actionIRC->setChecked(true);
         if (!Core::PrimaryFeedProvider->Start())
         {
             Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
             delete Core::PrimaryFeedProvider;
+            ui->actionIRC->setChecked(false);
+            ui->actionWiki->setChecked(true);
             Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
             Core::PrimaryFeedProvider->Start();
         }
     } else
     {
+        ui->actionIRC->setChecked(false);
+        ui->actionWiki->setChecked(true);
         Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::PrimaryFeedProvider->Start();
     }
@@ -944,6 +949,39 @@ void MainWindow::Exit()
     this->wlt->start(800);
 }
 
+void MainWindow::ReconnectIRC()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    if (!Configuration::UsingIRC)
+    {
+        Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");
+        return;
+    }
+    Core::Log("Reconnecting to IRC");
+    Core::PrimaryFeedProvider->Stop();
+    while (!Core::PrimaryFeedProvider->IsStopped())
+    {
+        Core::Log("Waiting for primary feed provider to stop");
+        Sleeper::usleep(200000);
+    }
+    delete Core::PrimaryFeedProvider;
+    ui->actionIRC->setChecked(true);
+    ui->actionWiki->setChecked(false);
+    Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
+    if (!Core::PrimaryFeedProvider->Start())
+    {
+        ui->actionIRC->setChecked(false);
+        ui->actionWiki->setChecked(true);
+        Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+        delete Core::PrimaryFeedProvider;
+        Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        Core::PrimaryFeedProvider->Start();
+    }
+}
+
 bool MainWindow::CheckExit()
 {
     if (ShuttingDown)
@@ -1250,31 +1288,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
-    if (!CheckExit())
-    {
-        return;
-    }
-    if (!Configuration::UsingIRC)
-    {
-        Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");
-        return;
-    }
-    Core::Log("Reconnecting to IRC");
-    Core::PrimaryFeedProvider->Stop();
-    while (!Core::PrimaryFeedProvider->IsStopped())
-    {
-        Core::Log("Waiting for primary feed provider to stop");
-        Sleeper::usleep(200000);
-    }
-    delete Core::PrimaryFeedProvider;
-    Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
-    if (!Core::PrimaryFeedProvider->Start())
-    {
-        Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
-        delete Core::PrimaryFeedProvider;
-        Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-        Core::PrimaryFeedProvider->Start();
-    }
+    ReconnectIRC();
 }
 
 void MainWindow::on_actionTag_2_triggered()
@@ -1302,4 +1316,29 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 	this->block = new BlockUser(this);
     block->SetWikiUser(this->CurrentEdit->User);
     block->show();
+}
+
+void Huggle::MainWindow::on_actionIRC_triggered()
+{
+    ReconnectIRC();
+}
+
+void Huggle::MainWindow::on_actionWiki_triggered()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    Core::Log("Switching to wiki provider");
+    Core::PrimaryFeedProvider->Stop();
+    ui->actionIRC->setChecked(false);
+    ui->actionWiki->setChecked(true);
+    while (!Core::PrimaryFeedProvider->IsStopped())
+    {
+        Core::Log("Waiting for primary feed provider to stop");
+        Sleeper::usleep(200000);
+    }
+    delete Core::PrimaryFeedProvider;
+    Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
+    Core::PrimaryFeedProvider->Start();
 }

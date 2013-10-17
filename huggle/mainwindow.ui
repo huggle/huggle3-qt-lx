@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,16 +48,24 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuChange_provider">
+     <property name="title">
+      <string>Change provider</string>
+     </property>
+     <addaction name="actionIRC"/>
+     <addaction name="actionWiki"/>
+    </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionReconnect_IRC"/>
     <addaction name="separator"/>
+    <addaction name="menuChange_provider"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -622,6 +621,16 @@
   <action name="actionBlock_user">
    <property name="text">
     <string>Block user</string>
+   </property>
+  </action>
+  <action name="actionIRC">
+   <property name="text">
+    <string>IRC</string>
+   </property>
+  </action>
+  <action name="actionWiki">
+   <property name="text">
+    <string>Wiki</string>
    </property>
   </action>
  </widget>

@@ -29,19 +29,20 @@ class Message
         Message(WikiUser *target, QString Message, QString Summary);
         ~Message();
         void Send();
-        void Fail(QString reason);
         bool Finished();
         Query *Dependency;
         QString title;
-        ApiQuery *query;
         QString token;
         //! If edit will be created in new section
         bool Section;
+        //! User to deliver a message to
         WikiUser *user;
         QString text;
         QString summary;
     private:
+        void Fail(QString reason);
         void Finish();
+        ApiQuery *query;
         bool Sending;
         bool Done;
     };
