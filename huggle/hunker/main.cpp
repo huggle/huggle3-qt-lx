@@ -12,19 +12,29 @@ int main(int argc, char *argv[])
         return 400;
     }
     QString f(argv[1]);
-    QFile file(f);
-    if (!file.open(QIODevice::ReadWrite))
+    QFile *file = new QFile(f);
+    if (!file->open(QIODevice::ReadWrite | QIODevice::Text))
     {
         std::cout << "unable to open a file" << std::endl;
         return 400;
     }
-    QString value(file.readAll());
+    QString value(file->readAll());
+    file->close();
+    delete file;
+    file = new QFile(f);
+    if (!file->open(QIODevice::ReadWrite | QIODevice::Truncate))
+    {
+        std::cout << "unable to open a file" << std::endl;
+        return 400;
+    }
+    
     if (value.contains("install:"))
     {
         value = value.mid(0, value.indexOf("install:"));
         value += QString("\n") + QString("install:\n\t ./build/install\nuninstall:\n\t ./build/uninstall\n\nFORCE:\n");
-        file.write(value.toUtf8());
-        file.close();
+        file->write(value.toUtf8());
+        file->close();
     }
+    delete file;
     return 0;
 }
