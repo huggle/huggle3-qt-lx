@@ -46,7 +46,11 @@ void Core::Init()
     }
     Core::VersionRead();
     QFile *vf;
+#if QT_VERSION >= 0x050000
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+#else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
     vf->open(QIODevice::ReadOnly);
     Core::HtmlHeader = QString(vf->readAll());

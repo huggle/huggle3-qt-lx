@@ -19,7 +19,7 @@
 
 #include <QDialog>
 #if TRACING
-#include <execinfo.h>
+//#include <execinfo.h>
 #endif
 #include "exception.h"
 
