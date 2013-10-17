@@ -1,3 +1,10 @@
 #!/bin/sh
 
-cp huggle /usr/bin/huggle
+if [ ! -f huggle ];then
+  echo "FATAL: You need to build huggle first"
+  exit 1
+fi
+
+cp huggle /usr/bin/huggle || exit 1
+
+echo "Installed"
