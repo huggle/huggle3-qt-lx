@@ -125,9 +125,36 @@ fi
 
 ok
 
+text "Preparing makefile hunker..."
+
+if [ ! -d hunker ];then
+    fail
+    echo "There is no hunker in here"
+    exit 1
+fi
+
+cd hunker || exit 1
+qmake || exit 1
+
+ok
+
+text "Building makefile hunker..."
+
+make -s || exit 1
+cd ..
+
+ok
+
 text "Creating makefile... "
 
 qmake || exit 1
+
+ok
+
+text "Executing hunk..."
+
+cd hunker || exit 1
+./makefilehunker ../Makefile || exit 1
 
 ok
 

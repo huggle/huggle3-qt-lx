@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cp huggle /usr/bin/huggle

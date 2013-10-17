@@ -56,8 +56,7 @@ namespace Huggle
         int GetItem(Query *q);
         int GetItem(int Id);
         ~ProcessList();
-    private slots:
-        void on_ProcessList_visibilityChanged(bool visible);
+
 
     private:
         QList<ProcessListRemovedItem*> *Removed;

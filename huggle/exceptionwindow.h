@@ -11,7 +11,16 @@
 #ifndef EXCEPTIONWINDOW_H
 #define EXCEPTIONWINDOW_H
 
+#if _MSC_VER
+#define TRACING 0
+#else
+#define TRACING 1
+#endif
+
 #include <QDialog>
+#if TRACING
+#include <execinfo.h>
+#endif
 #include "exception.h"
 
 namespace Ui {
