@@ -26,6 +26,7 @@ Linux:
 ```sh
 ./configure
 make
+sudo make install
 ```
 
 Documentation
@@ -37,4 +38,9 @@ Getting help
 =============
 
 We have a channel #huggle @chat.freenode.org so if you need any kind of help please go there
+
+Reporting bugs
+===============
+
+Please use http://bugzilla.wikimedia.org/
 
