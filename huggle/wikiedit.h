@@ -14,11 +14,14 @@
 #include <QString>
 #include <QThread>
 #include <QMutex>
+#include <QDateTime>
 #include <QtXml>
 #include <QList>
 #include "apiquery.h"
 #include "wikiuser.h"
 #include "wikipage.h"
+
+#define WIKI_UNKNOWN_REVID -1
 
 namespace Huggle
 {
@@ -117,6 +120,7 @@ namespace Huggle
         QStringList ScoreWords;
         bool PostProcessing;
         bool ProcessingByWorkerThread;
+        QDateTime Time;
         bool ProcessedByWorkerThread;
     private:
         bool ProcessingRevs;

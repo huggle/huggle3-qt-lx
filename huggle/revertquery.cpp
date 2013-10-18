@@ -34,6 +34,7 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->PreflightFinished = false;
     this->RollingBack = false;
     this->timer = NULL;
+    this->IgnorePreflightCheck = false;
     this->UsingSR = false;
     this->Token = "";
     this->Summary = Configuration::GetDefaultRevertSummary(this->edit->User->Username);
@@ -82,6 +83,10 @@ void RevertQuery::Kill()
 RevertQuery::~RevertQuery()
 {
     delete timer;
+    if (this->qPreflight != NULL)
+    {
+        this->qPreflight->SafeDelete();
+    }
     if (this->qRevert != NULL)
     {
         this->qRevert->SafeDelete();
@@ -166,12 +171,148 @@ QString RevertQuery::GetCustomRevertStatus(QString RevertData)
 
 void RevertQuery::Preflight()
 {
-    this->PreflightFinished = true;
+    // check if there is more edits in queue
+    int x=0;
+    bool failed = false;
+    bool MadeBySameUser = true;
+    while (x < WikiEdit::EditList.count())
+    {
+        WikiEdit *w = WikiEdit::EditList.at(x);
+        if (w != this->edit)
+        {
+            if (w->Page->PageName != this->edit->Page->PageName)
+            {
+                x++;
+                continue;
+            }
+            if (w->Time > this->edit->Time)
+            {
+                if (w->User->Username != this->edit->User->Username)
+                {
+                    MadeBySameUser = false;
+                }
+                failed = true;
+            }
+        }
+        x++;
+    }
+    if (failed)
+    {
+        if (Configuration::AutomaticallyResolveConflicts)
+        {
+            this->Cancel();
+            return;
+        }
+        QString text;
+        if (MadeBySameUser)
+        {
+            text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
+        } else
+        {
+            text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
+        }
+        QMessageBox::StandardButton re;
+        re = QMessageBox::question(Core::Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
+        if (re == QMessageBox::No)
+        {
+            this->Cancel();
+            return;
+        } else
+        {
+            this->IgnorePreflightCheck = true;
+        }
+    }
+    this->qPreflight = new ApiQuery();
+    this->qPreflight->SetAction(ActionQuery);
+    this->qPreflight->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
+                                    + QUrl::toPercentEncoding(this->edit->Page->PageName);
+    this->qPreflight->Process();
 }
 
 void RevertQuery::CheckPreflight()
 {
+    if (this->IgnorePreflightCheck)
+    {
+        this->PreflightFinished = true;
+        return;
+    }
+    if (this->qPreflight == NULL)
+    {
+        return;
+    }
+    if (!this->qPreflight->Processed())
+    {
+        return;
+    }
+    if (this->qPreflight->Result->Failed)
+    {
+        Core::Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
+        this->Kill();
+        this->Status = StatusDone;
+        this->Result = new QueryResult();
+        this->Result->Failed = true;
+        return;
+    }
+    QDomDocument d;
+    d.setContent(this->qPreflight->Result->Data);
+    QDomNodeList l = d.elementsByTagName("rev");
+    int x=0;
+    bool MadeBySameUser = true;
+    bool passed = true;
+    while (x < l.count())
+    {
+        QDomElement e = l.at(x).toElement();
+        if (e.attributes().contains("revid"))
+        {
+            if (edit->RevID == e.attribute("revid").toInt())
+            {
+                x++;
+                continue;
+            }
+        } else
+        {
+            x++;
+            continue;
+        }
+        if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > edit->RevID)
+        {
+            passed = false;
+        }
+        x++;
+    }
 
+    if (!passed)
+    {
+        QString text = ":)";
+        if (MadeBySameUser)
+        {
+            text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them");
+        } else
+        {
+            text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
+        }
+        if (Configuration::AutomaticallyResolveConflicts)
+        {
+            this->Cancel();
+            return;
+        }
+        QMessageBox::StandardButton re;
+        re = QMessageBox::question(Core::Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
+        if (re == QMessageBox::No)
+        {
+            // abort
+            this->Exit();
+            this->CustomStatus = "Stopped";
+            this->Result = new QueryResult();
+            this->Result->Failed = true;
+            this->Result->ErrorMessage = "User requested to abort this";
+            this->Status = StatusDone;
+            this->PreflightFinished = true;
+            return;
+        }
+    }
+
+    this->PreflightFinished = true;
 }
 
 bool RevertQuery::CheckRevert()
@@ -210,6 +351,17 @@ bool RevertQuery::CheckRevert()
     this->qRevert->UnregisterConsumer("RevertQuery");
     this->qRevert = NULL;
     return true;
+}
+
+void RevertQuery::Cancel()
+{
+    this->Exit();
+    this->CustomStatus = "Stopped";
+    this->Result = new QueryResult();
+    this->Result->Failed = true;
+    this->Result->ErrorMessage = "User requested to abort this";
+    this->Status = StatusDone;
+    this->PreflightFinished = true;
 }
 
 void RevertQuery::Rollback()
