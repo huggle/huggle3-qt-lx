@@ -45,6 +45,7 @@
 #include "waitingform.h"
 #include "wlquery.h"
 #include "historyform.h"
+#include "deleteform.h"
 
 namespace Ui
 {
@@ -68,6 +69,7 @@ namespace Huggle
     class WaitingForm;
     class WikiUser;
     class ReportUser;
+	class DeleteForm;
 
     /*!
      * \brief The ShutdownOp enum contains a various parts of shutdown so that we can keep the track of what is going on
@@ -137,6 +139,10 @@ namespace Huggle
 		ReportUser *report;
         //! Pointer to a form to block user
 		BlockUser *block;
+		//! Pointer to WikiPage
+		WikiPage *Page;
+		//! Pointer to a form to delete a page
+		DeleteForm *deletef;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         void _ReportUser();
