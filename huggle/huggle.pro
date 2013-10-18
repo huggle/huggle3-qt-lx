@@ -66,7 +66,8 @@ SOURCES += main.cpp\
     historyform.cpp \
     userinfoform.cpp \
     hooks.cpp \
-    revertquery.cpp
+    revertquery.cpp \
+    protectpage.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -116,7 +117,8 @@ HEADERS  += mainwindow.h \
     historyform.h \
     userinfoform.h \
     hooks.h \
-    revertquery.h
+    revertquery.h \
+    protectpage.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -140,7 +142,8 @@ FORMS    += mainwindow.ui \
     speedyform.ui \
     deleteform.ui \
     historyform.ui \
-    userinfoform.ui
+    userinfoform.ui \
+    protectpage.ui
 
 RESOURCES += \
     pictures.qrc \
