@@ -417,7 +417,7 @@ void Core::SaveDefs()
         QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
     }
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
         Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
