@@ -334,7 +334,7 @@ void MainWindow::RequestPD()
     this->fRemove->show();
 }
 
-ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
+RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
     if (this->CurrentEdit == NULL)
@@ -357,7 +357,7 @@ ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
-        ApiQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, true, nd);
+        RevertQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
         {
             this->Queue1->Next();
@@ -367,7 +367,7 @@ ApiQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     return NULL;
 }
 
-bool MainWindow::Warn(QString WarningType, ApiQuery *dependency)
+bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 {
     if (this->CurrentEdit == NULL)
     {
@@ -739,7 +739,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
 
-    ApiQuery *result = this->Revert("", true, false);
+    RevertQuery *result = this->Revert("", true, false);
 
     if (result != NULL)
     {
@@ -764,7 +764,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         return;
     }
 
-    ApiQuery *result = this->Revert("", true, false);
+    RevertQuery *result = this->Revert("", true, false);
 
     if (result != NULL)
     {
@@ -859,7 +859,7 @@ void MainWindow::CustomRevertWarn()
     QAction *revert = (QAction*) QObject::sender();
     QString k = Core::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = Core::GetSummaryOfWarningTypeFromWarningKey(k);
-    ApiQuery *result = this->Revert(rs, true, false);
+    RevertQuery *result = this->Revert(rs, true, false);
 
     if (result != NULL)
     {

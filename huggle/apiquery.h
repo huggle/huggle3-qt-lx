@@ -18,12 +18,15 @@
 #include <QObject>
 #include <QThread>
 #include "query.h"
+#include  "revertquery.h"
 #include "configuration.h"
 #include "core.h"
 #include "exception.h"
 
 namespace Huggle
 {
+    class RevertQuery;
+
     enum Action
     {
         ActionQuery,

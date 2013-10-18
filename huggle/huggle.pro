@@ -65,7 +65,8 @@ SOURCES += main.cpp\
     webserverquery.cpp \
     historyform.cpp \
     userinfoform.cpp \
-    hooks.cpp
+    hooks.cpp \
+    revertquery.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -114,7 +115,8 @@ HEADERS  += mainwindow.h \
     webserverquery.h \
     historyform.h \
     userinfoform.h \
-    hooks.h
+    hooks.h \
+    revertquery.h
 
 FORMS    += mainwindow.ui \
     login.ui \

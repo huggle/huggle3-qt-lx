@@ -26,13 +26,14 @@
 #include "query.h"
 #include "wikiedit.h"
 #include "mainwindow.h"
+#include "exceptionwindow.h"
 #include "message.h"
 #include "iextension.h"
 #include "hugglequeuefilter.h"
 #include "editquery.h"
 #include "history.h"
 #include "apiquery.h"
-#include "exceptionwindow.h"
+#include "revertquery.h"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.h"
@@ -53,6 +54,7 @@ namespace Huggle
     class WikiPage;
     class WikiUser;
     class WikiEdit;
+    class RevertQuery;
     class Message;
     class iExtension;
 
@@ -202,8 +204,7 @@ namespace Huggle
          * \param keep Whether the query produced by this function should not be automatically deleted
          * \return Pointer to api query that executes this revert
          */
-        static ApiQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
-        static QString GetCustomRevertStatus(QString RevertData);
+        static RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
         //! Parse all information from global config on meta
         static bool ParseGlobalConfig(QString config);
         //! Parse all information from local config, this function is used in login
