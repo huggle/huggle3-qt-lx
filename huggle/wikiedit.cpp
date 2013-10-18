@@ -38,10 +38,11 @@ WikiEdit::WikiEdit()
     this->Priority = 20;
     this->Score = 0;
     this->Previous = NULL;
+    this->Time = QDateTime::currentDateTime();
     this->Next = NULL;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
-    this->RevID = -1;
+    this->RevID = WIKI_UNKNOWN_REVID;
     WikiEdit::EditList.append(this);
 }
 
@@ -69,6 +70,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
     this->RollbackToken = edit.RollbackToken;
     this->OwnEdit = edit.OwnEdit;
     this->EditMadeByHuggle = edit.EditMadeByHuggle;
+    this->Time = edit.Time;
     this->TrustworthEdit = edit.TrustworthEdit;
     this->PostProcessing = false;
     this->ProcessingQuery = NULL;
@@ -110,6 +112,7 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->Status = edit->Status;
     this->RollbackToken = edit->RollbackToken;
     this->EditMadeByHuggle = edit->EditMadeByHuggle;
+    this->Time = edit->Time;
     this->TrustworthEdit = edit->TrustworthEdit;
     this->PostProcessing = false;
     this->ProcessingQuery = NULL;
@@ -243,6 +246,10 @@ bool WikiEdit::FinalizePostProcessing()
                             this->RollbackToken = e.attribute("rollbacktoken");
                         }
                     }
+                    if (e.attributes().contains("revid"))
+                    {
+                        this->RevID = e.attribute("revid").toInt();
+                    }
                 }
                 if (e.attributes().contains("comment"))
                 {
@@ -341,12 +348,12 @@ void WikiEdit::PostProcess()
     if (this->RevID != -1)
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
-        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvstartid=" +
+        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
                                   QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
                                   QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->DifferenceQuery->Target = Page->PageName;

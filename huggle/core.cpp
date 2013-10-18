@@ -417,7 +417,7 @@ void Core::SaveDefs()
         QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
     }
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
         Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
@@ -1264,6 +1264,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_ReportSt = Core::ConfigurationParse("aiv-section", config).toInt();
     Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
     Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
+    Configuration::AutomaticallyResolveConflicts = Core::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
     Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
     Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
@@ -1309,6 +1310,7 @@ bool Core::ParseUserConfig(QString config)
     Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
     Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
     Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
+    Configuration::AutomaticallyResolveConflicts = Core::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
     if (l1.count() > 0)
@@ -1527,6 +1529,7 @@ QString Core::MakeLocalUserConfig()
     conf += "auto-whitelist:true\n";
     conf += "confirm-multiple:true\n";
     conf += "confirm-range:true\n";
+    conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::AutomaticallyResolveConflicts) + "\n";
     conf += "confirm-page:true\n";
     conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
     conf += "</nowiki>";

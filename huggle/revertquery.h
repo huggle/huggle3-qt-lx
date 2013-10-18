@@ -12,6 +12,7 @@
 #define REVERTQUERY_H
 
 #include <QString>
+#include <QtXml>
 #include <QTimer>
 #include "configuration.h"
 #include "core.h"
@@ -38,6 +39,7 @@ namespace Huggle
         //! Whether software rollback should be used instead of regular rollback
         bool UsingSR;
         QString Summary;
+        bool IgnorePreflightCheck;
         QString Token;
     public slots:
         void OnTick();
@@ -51,6 +53,7 @@ namespace Huggle
         void Preflight();
         void CheckPreflight();
         bool CheckRevert();
+        void Cancel();
         void Rollback();
         void Revert();
         void Exit();

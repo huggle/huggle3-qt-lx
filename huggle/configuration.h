@@ -117,6 +117,7 @@ namespace Huggle
         static bool QueueNewEditsUp;
         //! If this is true some functionalities will be disabled
         static bool _SafeMode;
+        static bool AutomaticallyResolveConflicts;
 
         //////////////////////////////////////////////
         // Local config
