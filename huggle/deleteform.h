@@ -12,7 +12,14 @@
 #define DELETEFORM_H
 
 #include <QDialog>
+#include <QTimer>
+#include <QString>
+#include <QtXml>
+#include <QUrl>
 #include "configuration.h"
+#include "wikipage.h"
+#include "apiquery.h"
+#include "core.h"
 
 namespace Ui {
 class DeleteForm;
@@ -20,6 +27,7 @@ class DeleteForm;
 
 namespace Huggle
 {
+	class WikiPage;
     //! This is a delete form
     class DeleteForm : public QDialog
     {
@@ -28,9 +36,24 @@ namespace Huggle
     public:
         explicit DeleteForm(QWidget *parent = 0);
         ~DeleteForm();
-
+		WikiPage *page;
+		QString deletetoken;
+		ApiQuery *delquery;
+		ApiQuery *tokenquery;
+		void getToken();
+		void Delete();
+		void checkDelToken();
+		void Failed(QString reason);
+		void setPage(WikiPage *Page);
+	private slots:
+		void on_pushButton_clicked();
+		void on_pushButton_2_clicked();
+		void onTick();
     private:
         Ui::DeleteForm *ui;
+		//! Set the page to delete
+		QTimer *dt;
+		int delQueryPhase;
     };
 }
 

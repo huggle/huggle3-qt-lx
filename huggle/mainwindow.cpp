@@ -179,6 +179,7 @@ MainWindow::~MainWindow()
     delete this->Status;
     delete this->Browser;
     delete this->block;
+	delete this->deletef;
     delete ui;
     delete this->tb;
 }
@@ -1358,7 +1359,14 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
-    
+	if (this->CurrentEdit == NULL)
+	{
+		Core::Log("ERROR: No, you cannot delete an NULL page :)");
+		return;
+	}
+	this->deletef = new DeleteForm(this);
+	deletef->setPage(this->Page);
+	deletef->show();
 }
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
@@ -1369,7 +1377,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
         return;
     }
     this->block = new BlockUser(this);
-    block->SetWikiUser(this->CurrentEdit->User);
+	block->SetWikiUser(this->CurrentEdit->User);
     block->show();
 }
 
