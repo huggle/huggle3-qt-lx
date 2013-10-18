@@ -24,3 +24,17 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
         extension++;
     }
 }
+
+void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
+{
+    int extension = 0;
+    while (extension < Huggle::iExtension::Extensions.count())
+    {
+        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        if (e->IsWorking())
+        {
+            e->Hook_EditPostProcess((void*)Edit);
+        }
+        extension++;
+    }
+}

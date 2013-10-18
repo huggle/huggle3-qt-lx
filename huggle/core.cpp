@@ -1078,6 +1078,18 @@ void Core::LoadConfig()
             item++;
             continue;
         }
+        if (option.attribute("key") == "Layout_Geom")
+        {
+            Configuration::Geometry = option.attribute("text").toUtf8();
+            item++;
+            continue;
+        }
+        if (option.attribute("key") == "Position")
+        {
+            Configuration::Position = option.attribute("text").toUtf8();
+            item++;
+            continue;
+        }
         item++;
     }
 }
@@ -1093,21 +1105,28 @@ void Core::SaveConfig()
     QXmlStreamWriter *x = new QXmlStreamWriter();
     x->setDevice(&file);
     x->writeStartDocument();
+    if (Configuration::Position != "")
+    {
+        Core::InsertConfig("Position", QString(Configuration::Position), x);
+    }
+    if (Configuration::Geometry != "")
+    {
+        Core::InsertConfig("Layout_Geom", QString(Configuration::Geometry), x);
+    }
     Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
     Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
     Core::InsertConfig("GlobalConfigurationWikiAddress", Configuration::GlobalConfigurationWikiAddress, x);
     Core::InsertConfig("IRCIdent", Configuration::IRCIdent, x);
     Core::InsertConfig("IRCNick", Configuration::IRCNick, x);
-    Core::InsertConfig("IRCPort", QString(Configuration::IRCPort), x);
+    Core::InsertConfig("IRCPort", QString::number(Configuration::IRCPort), x);
     Core::InsertConfig("IRCServer", Configuration::IRCServer, x);
     Core::InsertConfig("Language", Configuration::Language, x);
-    Core::InsertConfig("ProviderCache", QString(Configuration::ProviderCache), x);
+    Core::InsertConfig("ProviderCache", QString::number(Configuration::ProviderCache), x);
     Core::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::AskUserBeforeReport), x);
-    Core::InsertConfig("HistorySize", QString(Configuration::HistorySize), x);
+    Core::InsertConfig("HistorySize", QString::number(Configuration::HistorySize), x);
     Core::InsertConfig("NextOnRv", Configuration::Bool2String(Configuration::NextOnRv), x);
-    Core::InsertConfig("ProviderCache", QString(Configuration::ProviderCache), x);
     Core::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::QueueNewEditsUp), x);
-    Core::InsertConfig("RingLogMaxSize", QString(Configuration::RingLogMaxSize), x);
+    Core::InsertConfig("RingLogMaxSize", QString::number(Configuration::RingLogMaxSize), x);
     Core::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::TrimOldWarnings), x);
     Core::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::WarnUserSpaceRoll), x);
     Core::InsertConfig("UserName", Configuration::UserName, x);

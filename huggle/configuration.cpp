@@ -145,6 +145,8 @@ QString Configuration::LocalConfig_BlockMessage;
 QString Configuration::LocalConfig_BlockMessageIndef;
 QString Configuration::LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
 QString Configuration::LocalConfig_BlockSummary = "Notification: Blocked";
+QByteArray Configuration::Geometry = "";
+QByteArray Configuration::Position = "";
 
 QString Configuration::GetURLProtocolPrefix()
 {

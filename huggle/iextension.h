@@ -52,6 +52,8 @@ namespace Huggle
          * \param edit
          */
         virtual void Hook_EditScore(void *edit) {}
+        virtual void Hook_EditPostProcess(void *edit) {}
+        virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
     private:
         QString ExtensionName;
         QString ExtensionAuthor;

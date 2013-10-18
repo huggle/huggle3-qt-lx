@@ -118,6 +118,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->timer1->start(200);
     this->fRemove = NULL;
     this->eq = NULL;
+    if (Configuration::Position != "")
+    {
+        this->restoreState(Configuration::Position);
+    }
+    if (Configuration::Geometry != "")
+    {
+        this->restoreGeometry(Configuration::Geometry);
+    }
     if (Configuration::Verbosity == 0)
     {
         ui->menuDebug->setVisible(false);
@@ -930,6 +938,8 @@ void MainWindow::Exit()
         return;
     }
     ShuttingDown = true;
+    Configuration::Position = this->saveState();
+    Configuration::Geometry = this->saveGeometry();
     this->Shutdown = ShutdownOpRetrievingWhitelist;
     if (Core::PrimaryFeedProvider != NULL)
     {

@@ -118,6 +118,11 @@ namespace Huggle
         //! If this is true some functionalities will be disabled
         static bool _SafeMode;
 
+        //Layout
+
+        static QByteArray Geometry;
+        static QByteArray Position;
+
         //////////////////////////////////////////////
         // Local config
         //////////////////////////////////////////////

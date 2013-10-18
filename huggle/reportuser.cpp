@@ -219,7 +219,6 @@ void ReportUser::on_pushButton_clicked()
     int EvidenceID = 0;
     while (xx < ui->tableWidget->rowCount())
     {
-        QString page = ui->tableWidget->item(xx, 0)->text();
         if (this->CheckBoxes.count() > xx)
         {
             if (this->CheckBoxes.at(xx)->isChecked())
@@ -227,7 +226,7 @@ void ReportUser::on_pushButton_clicked()
                 EvidenceID++;
                 reports += "[" + QString(Core::GetProjectScriptURL() + "index.php?title=" +
                                  QUrl::toPercentEncoding(ui->tableWidget->item(xx, 0)->text()) + "&diff="
-                                 + ui->tableWidget->item(xx, 3)->text()).toUtf8() + "#" + QString::number(EvidenceID) + "] ";
+                                 + ui->tableWidget->item(xx, 3)->text()).toUtf8() + " #" + QString::number(EvidenceID) + "] ";
             }
         }
         xx++;
