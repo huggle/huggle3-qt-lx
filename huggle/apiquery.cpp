@@ -51,9 +51,10 @@ bool ApiQuery::FormatIsCurrentlySupported()
     return (this->RequestFormat == XML);
 }
 
+// TODO: move this function to RevertQuery
 void ApiQuery::FinishRollback()
 {
-    this->CustomStatus = Core::GetCustomRevertStatus(this->Result->Data);
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result->Data);
     if (this->CustomStatus != "Reverted")
     {
         this->Result->Failed = true;
@@ -101,6 +102,11 @@ void ApiQuery::Finished()
 
 void ApiQuery::Process()
 {
+    if (this->Status == StatusProcessing)
+    {
+        Core::DebugLog("Cowardly refusing to double process the query");
+        return;
+    }
     if (this->URL == "")
     {
         this->ConstructUrl();

@@ -72,6 +72,8 @@ QString Query::QueryTypeToString()
             return "Wl Query";
         case QueryApi:
             return "Api Query";
+        case QueryRevert:
+            return "Revert Query";
         case QueryEdit:
             return "Edit Query";
     }

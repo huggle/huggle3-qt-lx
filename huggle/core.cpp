@@ -1156,26 +1156,6 @@ void Core::CheckQueries()
         {
             Finished.append(q);
             Core::DebugLog("Query finished with: " + q->Result->Data, 6);
-            if (q->QueryTypeToString() == "ApiQuery (rollback)")
-            {
-                q->CustomStatus = Core::GetCustomRevertStatus(q->Result->Data);
-                if (q->CustomStatus != "Reverted")
-                {
-                    Core::Log("Unable to revert " + ((ApiQuery*)q)->Target + ": " + q->CustomStatus);
-                    q->Result->Failed = true;
-                    q->Result->ErrorMessage = q->CustomStatus;
-                } else
-                {
-                    HistoryItem item;
-                    item.Target = ((ApiQuery*)q)->Target;
-                    item.Type = HistoryRollback;
-                    item.Result = "Success";
-                    if (Core::Main != NULL)
-                    {
-                        Core::Main->_History->Prepend(item);
-                    }
-                }
-            }
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
         }
@@ -1212,7 +1192,7 @@ bool Core::PreflightCheck(WikiEdit *_e)
     return true;
 }
 
-ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
+RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
 {
     if (_e == NULL)
     {
@@ -1222,89 +1202,26 @@ ApiQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollb
     {
         throw new Exception("Object user was NULL in Core::Revert");
     }
-    ApiQuery *query = new ApiQuery();
     if (_e->Page == NULL)
     {
         throw new Exception("Object page was NULL");
     }
 
-    if (summary == "")
+    RevertQuery *query = new RevertQuery(_e);
+    if (summary != "")
     {
-        summary = Configuration::GetDefaultRevertSummary(_e->User->Username);
+        query->Summary = summary;
     }
+    Core::AppendQuery(query);
+    query->UsingSR = !rollback;
+    query->Process();
 
-    if (summary.contains("$1"))
+    if (keep)
     {
-        summary = summary.replace("$1", _e->User->Username);
-    }
-
-    _e->User->BadnessScore += 200;
-    WikiUser::UpdateUser(_e->User);
-
-    if (rollback)
-    {
-        if (!Configuration::Rights.contains("rollback"))
-        {
-            Core::Log("You don't have rollback rights");
-            delete query;
-            return NULL;
-        }
-        if (_e->RollbackToken == "")
-        {
-            Log("ERROR, unable to rollback, because the rollback token was empty: " + _e->Page->PageName);
-            delete query;
-            return NULL;
-        }
-        query->SetAction(ActionRollback);
-        QString token = _e->RollbackToken;
-        if (_e->RollbackToken.endsWith("+\\"))
-        {
-            //token = token.mid(0, token.indexOf("+")) + "%2B\\";
-            token = QUrl::toPercentEncoding(token);
-        }
-        query->Parameters = "title=" + QUrl::toPercentEncoding(_e->Page->PageName)
-                + "&token=" + token
-                + "&user=" + QUrl::toPercentEncoding(_e->User->Username)
-                + "&summary=" + QUrl::toPercentEncoding(summary);
-        query->Target = _e->Page->PageName;
-        query->UsingPOST = true;
-        if (keep)
-        {
-            query->RegisterConsumer("keep");
-        }
-        Core::AppendQuery(query);
-        DebugLog("Rolling back " + _e->Page->PageName);
-        query->Process();
+        query->RegisterConsumer("keep");
     }
 
     return query;
-}
-
-QString Core::GetCustomRevertStatus(QString RevertData)
-{
-    QDomDocument d;
-    d.setContent(RevertData);
-    QDomNodeList l = d.elementsByTagName("error");
-    if (l.count() > 0)
-    {
-        if (l.at(0).toElement().attributes().contains("code"))
-        {
-            QString Error = "";
-            Error = l.at(0).toElement().attribute("code");
-
-            if (Error == "alreadyrolled")
-            {
-                return "Edit was reverted by someone else - skipping";
-            }
-
-            if (Error == "onlyauthor")
-            {
-                return "ERROR: Cannot rollback - page only has one author";
-            }
-            return "In error (" + Error +")";
-        }
-    }
-    return "Reverted";
 }
 
 bool Core::ParseGlobalConfig(QString config)

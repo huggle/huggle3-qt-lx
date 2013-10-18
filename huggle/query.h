@@ -45,7 +45,9 @@ namespace Huggle
         //! Whitelist
         QueryWl,
         //! Api
-        QueryApi
+        QueryApi,
+        //! Revert
+        QueryRevert
     };
 
     //! Query base class for all http queries executed by huggle

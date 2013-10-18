@@ -39,6 +39,7 @@
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "userinfoform.h"
+#include "revertquery.h"
 #include "querygc.h"
 #include "reportuser.h"
 #include "waitingform.h"
@@ -58,6 +59,8 @@ namespace Huggle
     class HuggleWeb;
     class SpeedyForm;
     class WikiEdit;
+    class RevertQuery;
+    class WlQuery;
     class WikiPage;
     class EditQuery;
     class ProcessList;
@@ -139,8 +142,8 @@ namespace Huggle
         void _ReportUser();
         //! Recreate interface, should be called everytime you do anything with main form
         void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
-        ApiQuery *Revert(QString summary = "", bool nd = false, bool next = true);
-        bool Warn(QString WarningType, ApiQuery *dependency);
+        RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+        bool Warn(QString WarningType, RevertQuery *dependency);
         QString GetSummaryKey(QString item);
         QString GetSummaryText(QString text);
         //! Send a template to user no matter if they can be messaged or not
