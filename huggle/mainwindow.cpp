@@ -151,7 +151,7 @@ MainWindow::~MainWindow()
     delete this->SystemLog;
     delete this->Status;
     delete this->Browser;
-	delete this->block;
+    delete this->block;
     delete ui;
     delete this->tb;
 }
@@ -1249,21 +1249,21 @@ void MainWindow::on_actionWelcome_user_2_triggered()
 
 void MainWindow::on_actionReport_user_triggered()
 {
-	if(this->CurrentEdit == NULL)
+    if(this->CurrentEdit == NULL)
     {
-		Core::Log("ERROR: No one to report");
-		return;
-	}
+        Core::Log("ERROR: No one to report");
+        return;
+    }
     this->_ReportUser();
 }
 
 void MainWindow::on_actionReport_user_2_triggered()
 {
-	if(this->CurrentEdit == NULL)
+    if(this->CurrentEdit == NULL)
     {
-		Core::Log("ERROR: No one to report");
-		return;
-	}
+        Core::Log("ERROR: No one to report");
+        return;
+    }
     this->_ReportUser();
 }
 
@@ -1313,7 +1313,7 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
-	
+    
 }
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
@@ -1323,7 +1323,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
         Core::Log("ERROR: No one to block :o");
         return;
     }
-	this->block = new BlockUser(this);
+    this->block = new BlockUser(this);
     block->SetWikiUser(this->CurrentEdit->User);
     block->show();
 }

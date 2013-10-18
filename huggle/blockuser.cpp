@@ -22,7 +22,7 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->b = NULL;
     this->t0 = NULL;
     this->tb = NULL;
-	ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
+    ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
 }
 
 BlockUser::~BlockUser()
@@ -42,15 +42,15 @@ void BlockUser::SetWikiUser(WikiUser *User)
 
 void BlockUser::GetToken()
 {
-	// Let's get a token before anything
-	b = new ApiQuery();
-	b->SetAction(ActionQuery);
+    // Let's get a token before anything
+    b = new ApiQuery();
+    b->SetAction(ActionQuery);
     b->Parameters = "prop=info&intoken=block&titles=User:" +
         QUrl::toPercentEncoding(this->user->Username);
-	b->Target = "Getting token to block" + this->user->Username;
-	b->RegisterConsumer("BlockUser::GetToken");
-	Core::AppendQuery(b);
-	b->Process();
+    b->Target = "Getting token to block" + this->user->Username;
+    b->RegisterConsumer("BlockUser::GetToken");
+    Core::AppendQuery(b);
+    b->Process();
 
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -184,7 +184,7 @@ void BlockUser::Failed(QString reason)
 
 void BlockUser::on_pushButton_clicked()
 {
-	this->GetToken();
+    this->GetToken();
     // disable the button so that user can't click it multiple times
     ui->pushButton->setEnabled(false);
 }
