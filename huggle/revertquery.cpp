@@ -335,9 +335,14 @@ bool RevertQuery::CheckRevert()
         Core::Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
         qRevert->Result->Failed = true;
         qRevert->Result->ErrorMessage = CustomStatus;
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = CustomStatus;
+        this->Result->Failed = true;
     } else
     {
         HistoryItem item;
+        this->Result = new QueryResult();
+        this->Result->Data = this->qRevert->Result->Data;
         item.Target = this->qRevert->Target;
         item.Type = HistoryRollback;
         item.Result = "Success";
@@ -346,8 +351,6 @@ bool RevertQuery::CheckRevert()
             Core::Main->_History->Prepend(item);
         }
     }
-    this->Result = new QueryResult();
-    this->Result->Data = this->qRevert->Result->Data;
     this->qRevert->UnregisterConsumer("RevertQuery");
     this->qRevert = NULL;
     return true;
