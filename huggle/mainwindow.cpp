@@ -118,13 +118,40 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->timer1->start(200);
     this->fRemove = NULL;
     this->eq = NULL;
-    if (Configuration::Position != "")
+    QFile *layout = NULL;
+    if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
-        this->restoreState(Configuration::Position);
+        Core::DebugLog("Loading state");
+        layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
+        if (!layout->open(QIODevice::ReadOnly))
+        {
+            Core::Log("ERROR: Unable to read state from a config file");
+        } else
+        {
+            if (!this->restoreState(layout->readAll()))
+            {
+                Core::DebugLog("Failed to restore state");
+            }
+        }
+        layout->close();
+        delete layout;
     }
-    if (Configuration::Geometry != "")
+    if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_geometry"))
     {
-        this->restoreGeometry(Configuration::Geometry);
+        Core::DebugLog("Loading geometry");
+        layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
+        if (!layout->open(QIODevice::ReadOnly))
+        {
+            Core::Log("ERROR: Unable to read geometry from a config file");
+        } else
+        {
+            if (!this->restoreGeometry(layout->readAll()))
+            {
+                Core::DebugLog("Failed to restore layout");
+            }
+        }
+        layout->close();
+        delete layout;
     }
     if (Configuration::Verbosity == 0)
     {
@@ -938,8 +965,26 @@ void MainWindow::Exit()
         return;
     }
     ShuttingDown = true;
-    Configuration::Position = this->saveState();
-    Configuration::Geometry = this->saveGeometry();
+    QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
+    if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
+    {
+        Core::Log("ERROR: Unable to write state to a config file");
+    } else
+    {
+        layout->write(this->saveState());
+    }
+    layout->close();
+    delete layout;
+    layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
+    if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
+    {
+        Core::Log("ERROR: Unable to write geometry to a config file");
+    } else
+    {
+        layout->write(this->saveGeometry());
+    }
+    layout->close();
+    delete layout;
     this->Shutdown = ShutdownOpRetrievingWhitelist;
     if (Core::PrimaryFeedProvider != NULL)
     {

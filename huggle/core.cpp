@@ -989,10 +989,11 @@ void Core::PreProcessEdit(WikiEdit *_e)
 
 void Core::LoadConfig()
 {
-    QFile file(Configuration::GetConfigurationPath() + "huggle.xml");
+    QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
     Core::Log("Home: " + Configuration::GetConfigurationPath());
-    if (!file.exists())
+    if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
     {
+        Core::DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
         return;
     }
     if(!file.open(QIODevice::ReadOnly))
@@ -1078,20 +1079,9 @@ void Core::LoadConfig()
             item++;
             continue;
         }
-        if (option.attribute("key") == "Layout_Geom")
-        {
-            Configuration::Geometry = option.attribute("text").toUtf8();
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "Position")
-        {
-            Configuration::Position = option.attribute("text").toUtf8();
-            item++;
-            continue;
-        }
         item++;
     }
+    Core::DebugLog("Finished conf");
 }
 
 void Core::SaveConfig()
@@ -1105,14 +1095,6 @@ void Core::SaveConfig()
     QXmlStreamWriter *x = new QXmlStreamWriter();
     x->setDevice(&file);
     x->writeStartDocument();
-    if (Configuration::Position != "")
-    {
-        Core::InsertConfig("Position", QString(Configuration::Position), x);
-    }
-    if (Configuration::Geometry != "")
-    {
-        Core::InsertConfig("Layout_Geom", QString(Configuration::Geometry), x);
-    }
     Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
     Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
     Core::InsertConfig("GlobalConfigurationWikiAddress", Configuration::GlobalConfigurationWikiAddress, x);
