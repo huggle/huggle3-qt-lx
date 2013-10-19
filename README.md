@@ -42,5 +42,5 @@ We have a channel #huggle @chat.freenode.org so if you need any kind of help ple
 Reporting bugs
 ===============
 
-Please use http://bugzilla.wikimedia.org/
+Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
 
