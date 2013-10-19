@@ -76,6 +76,23 @@ void NetworkIrc::Exit()
     this->__Connected = false;
 }
 
+Message* NetworkIrc::GetMessage()
+{
+    Message *message;
+    this->messages_lock.lock();
+    if (this->Messages.count() == 0)
+    {
+        this->messages_lock.unlock();
+        return NULL;
+    } else
+    {
+        message = new Message(Messages.at(0));
+        this->Messages.removeAt(0);
+    }
+    this->messages_lock.unlock();
+    return message;
+}
+
 
 Message::Message(QString text, User us)
 {
@@ -190,6 +207,7 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
     }
     message.Channel = xx.mid(xx.indexOf("#"), xx.indexOf(" :"));
     message.user = user;
+    xx = xx.replace("\r\n", "");
     message.Text = xx.mid(xx.indexOf(" :") + 2);
     this->root->messages_lock.lock();
     this->root->Messages.append(message);

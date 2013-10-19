@@ -24,6 +24,8 @@ namespace Huggle
     public:
         static void EditPreProcess(WikiEdit *Edit);
         static void EditPostProcess(WikiEdit *Edit);
+        static void OnGood(WikiEdit *Edit);
+        static void OnRevert(WikiEdit *Edit);
     };
 }
 

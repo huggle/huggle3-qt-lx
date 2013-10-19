@@ -80,6 +80,7 @@ namespace IRC
         QString Nick;
         QString Ident;
         QMutex messages_lock;
+        Message* GetMessage();
         QStringList Channels;
         int Port;
         QList<Message> Messages;

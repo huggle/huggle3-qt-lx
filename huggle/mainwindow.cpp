@@ -364,6 +364,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
+        Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
         {
@@ -1141,6 +1142,7 @@ void MainWindow::on_actionGood_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->BadnessScore -=200;
+        Hooks::OnGood(this->CurrentEdit);
         WikiUser::UpdateUser(this->CurrentEdit->User);
         if (this->CurrentEdit->User->ContentsOfTalkPage == "")
         {

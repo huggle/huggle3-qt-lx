@@ -17,6 +17,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     this->Irc = new IRC::NetworkIrc(Configuration::VandalNw_Server, Configuration::UserName);
     this->ui->setupUi(this);
+    this->pref = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -35,6 +36,16 @@ void VandalNw::Connect()
     this->Irc->Connect();
 }
 
+void VandalNw::Good(WikiEdit *Edit)
+{
+    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "GOOD " + QString::number(Edit->RevID));
+}
+
+void VandalNw::Rollback(WikiEdit *Edit)
+{
+    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "ROLLBACK " + QString::number(Edit->RevID));
+}
+
 void VandalNw::onTick()
 {
     if (!this->JoinedMain && this->Irc->IsConnected())
@@ -42,6 +53,32 @@ void VandalNw::onTick()
         this->JoinedMain = true;
         this->Insert("You are now connected to huggle antivandalism network");
         this->Irc->Join(Configuration::Project.IRCChannel + ".huggle");
+    }
+    Huggle::IRC::Message *m = this->Irc->GetMessage();
+    if (m != NULL)
+    {
+        if (m->Text.startsWith(pref))
+        {
+            QString Command = m->Text;
+            if (m->Text.contains(" "))
+            {
+                Command = Command.mid(0, Command.indexOf(" "));
+                QString revid = m->Text.mid(m->Text.indexOf(" ") + 1);
+                if (Command == "GOOD")
+                {
+                    this->Insert(m->user.Nick + " seen a good edit " + revid);
+                }
+                if (Command == "ROLLBACK")
+                {
+                    this->Insert(m->user.Nick + " did a rollback of " + revid);
+                }
+            }
+
+        } else
+        {
+            this->Insert(m->user.Nick + ": " + m->Text);
+        }
+        delete m;
     }
 }
 

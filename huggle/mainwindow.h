@@ -34,6 +34,7 @@
 #include "ignorelist.h"
 #include "speedyform.h"
 #include "exception.h"
+#include "hooks.h"
 #include "history.h"
 #include "blockuser.h"
 #include "hugglefeedproviderwiki.h"

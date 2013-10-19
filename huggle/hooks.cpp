@@ -38,3 +38,13 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
         extension++;
     }
 }
+
+void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
+{
+    Core::Main->VandalDock->Good(Edit);
+}
+
+void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
+{
+    Core::Main->VandalDock->Rollback(Edit);
+}

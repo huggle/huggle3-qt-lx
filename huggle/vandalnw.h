@@ -14,6 +14,7 @@
 #include <QDockWidget>
 #include <QTimer>
 #include "networkirc.h"
+#include "wikiedit.h"
 #include "configuration.h"
 #include "core.h"
 
@@ -32,6 +33,9 @@ namespace Huggle
         ~VandalNw();
         void Insert(QString text);
         void Connect();
+        void Good(WikiEdit *Edit);
+        void Rollback(WikiEdit *Edit);
+        QString pref;
         QTimer *tm;
     private:
         Ui::VandalNw *ui;
