@@ -48,6 +48,12 @@ void VandalNw::Rollback(WikiEdit *Edit)
 
 void VandalNw::onTick()
 {
+    if (!this->Irc->IsConnected())
+    {
+        this->Insert("Lost connection to antivandalism network");
+        this->tm->stop();
+        return;
+    }
     if (!this->JoinedMain && this->Irc->IsConnected())
     {
         this->JoinedMain = true;
@@ -59,17 +65,21 @@ void VandalNw::onTick()
     {
         if (m->Text.startsWith(pref))
         {
-            QString Command = m->Text;
+            QString Command = m->Text.mid(2);
             if (m->Text.contains(" "))
             {
                 Command = Command.mid(0, Command.indexOf(" "));
                 QString revid = m->Text.mid(m->Text.indexOf(" ") + 1);
                 if (Command == "GOOD")
                 {
+                    int RevID = revid.toInt();
+                    Core::Main->Queue1->DeleteByRevID(RevID);
                     this->Insert(m->user.Nick + " seen a good edit " + revid);
                 }
                 if (Command == "ROLLBACK")
                 {
+                    int RevID = revid.toInt();
+                    Core::Main->Queue1->DeleteByRevID(RevID);
                     this->Insert(m->user.Nick + " did a rollback of " + revid);
                 }
             }

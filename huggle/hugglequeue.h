@@ -42,6 +42,7 @@ namespace Huggle
         ~HuggleQueue();
         void AddItem(WikiEdit *page);
         void Next();
+        void DeleteByRevID(int RevID);
         void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
         //! Remove 1 item
         void Trim();

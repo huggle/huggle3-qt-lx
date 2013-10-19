@@ -394,6 +394,10 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     if (this->CurrentEdit->User->WarningLevel > 4)
     {
+        if (this->CurrentEdit->User->IsReported)
+        {
+            return false;
+        }
         if (Core::ReportPreFlightCheck())
         {
             this->_ReportUser();

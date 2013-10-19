@@ -61,6 +61,10 @@ void NetworkIrc::Part(QString name)
 
 void NetworkIrc::Data(QString text)
 {
+    if (!__Connected)
+    {
+        return;
+    }
     this->writer_lock.lock();
     this->s->write((text + QString("\n")).toUtf8());
     this->writer_lock.unlock();

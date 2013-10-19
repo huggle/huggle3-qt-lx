@@ -84,6 +84,26 @@ void HuggleQueue::Next()
     this->layout->removeItem(i);
 }
 
+void HuggleQueue::DeleteByRevID(int RevID)
+{
+    int c = 0;
+    while (c < this->Items.count())
+    {
+        HuggleQueueItemLabel *item = this->Items.at(c);
+        if (item->page->RevID == RevID)
+        {
+            if (Core::Main->CurrentEdit == item->page)
+            {
+                // we can't delete item that is being reviewed now
+                return;
+            }
+            this->Delete(item);
+            return;
+        }
+        c++;
+    }
+}
+
 void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (qi != NULL)
