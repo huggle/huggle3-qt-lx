@@ -100,7 +100,7 @@ else
         checkqt "libqt4-network" "libqt5-network"
         checkqt "libqt4-opengl" "libqt5-opengl"
         checkqt "libqtwebkit5" "libqt4-webkit"
-        checkqt "libqtwebkit-dev" "libqtwebkit5-dev"
+        checkqt "libqtwebkit-dev" "libqt5webkit5-dev"
         checkqt "libqtgui5" "libqtgui4"
         checkqt "libqtcore5" "libqtcore4"
         checkqt "libqt5-xml" "libqt4-xml"
