@@ -37,12 +37,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
     this->wUserInfo = new UserinfoForm(this);
+    this->VandalDock = new VandalNw(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
     this->addDockWidget(Qt::TopDockWidgetArea, this->wHistory);
     this->addDockWidget(Qt::TopDockWidgetArea, this->wUserInfo);
+    this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->report = NULL;
@@ -158,14 +160,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->menuDebug->setVisible(false);
     }
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
+    this->VandalDock->Connect();
 }
 
 MainWindow::~MainWindow()
 {
     delete this->fRemove;
     delete this->wq;
+    delete this->wUserInfo;
+    delete this->wHistory;
     delete this->wlt;
     delete this->fWaiting;
+    delete this->VandalDock;
     delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;

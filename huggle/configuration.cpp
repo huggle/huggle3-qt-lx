@@ -146,6 +146,7 @@ QString Configuration::LocalConfig_BlockMessageIndef;
 QString Configuration::LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
 QString Configuration::LocalConfig_BlockSummary = "Notification: Blocked";
 bool Configuration::AutomaticallyResolveConflicts = false;
+QString Configuration::VandalNw_Server = "hub.tm-irc.org";
 
 QString Configuration::GetURLProtocolPrefix()
 {

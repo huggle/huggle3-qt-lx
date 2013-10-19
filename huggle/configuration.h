@@ -275,6 +275,10 @@ namespace Huggle
          * \return string
          */
         static QString Bool2String(bool b);
+
+        static QString VandalNw_Server;
+        static QString VandalNw_Ident;
+        static bool VandalNw_Login;
     };
 }
 

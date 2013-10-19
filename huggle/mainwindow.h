@@ -39,6 +39,7 @@
 #include "hugglefeedproviderwiki.h"
 #include "hugglefeedproviderirc.h"
 #include "userinfoform.h"
+#include "vandalnw.h"
 #include "revertquery.h"
 #include "querygc.h"
 #include "reportuser.h"
@@ -67,6 +68,7 @@ namespace Huggle
     class ProcessList;
     class BlockUser;
     class WaitingForm;
+    class VandalNw;
     class WikiUser;
     class ReportUser;
 	class DeleteForm;
@@ -124,6 +126,8 @@ namespace Huggle
         QMutex lUnwrittenLogs;
         //! Pointer to menu of revert warn button
         QMenu *RevertWarn;
+        //! Pointer to vandal network
+        VandalNw * VandalDock;
         //! Pointer to query that is used to store user config on exit of huggle
         EditQuery *eq;
         //! This query is used to refresh white list

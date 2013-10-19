@@ -67,7 +67,9 @@ SOURCES += main.cpp\
     userinfoform.cpp \
     hooks.cpp \
     revertquery.cpp \
-    protectpage.cpp
+    protectpage.cpp \
+    vandalnw.cpp \
+    networkirc.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -118,7 +120,9 @@ HEADERS  += mainwindow.h \
     userinfoform.h \
     hooks.h \
     revertquery.h \
-    protectpage.h
+    protectpage.h \
+    vandalnw.h \
+    networkirc.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -143,7 +147,8 @@ FORMS    += mainwindow.ui \
     deleteform.ui \
     historyform.ui \
     userinfoform.ui \
-    protectpage.ui
+    protectpage.ui \
+    vandalnw.ui
 
 RESOURCES += \
     pictures.qrc \
