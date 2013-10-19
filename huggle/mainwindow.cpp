@@ -1174,6 +1174,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     }
     if (this->CurrentEdit != NULL)
     {
+        Hooks::OnGood(this->CurrentEdit);
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
     } this->Queue1->Next();

@@ -223,10 +223,20 @@ void NetworkIrc_th::run()
 {
     this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->Ident);
     this->root->Data("NICK " + this->root->Nick + QString::number(qrand()));
+    int ping = 0;
     while (this->root->IsConnected() && this->s->isOpen())
     {
+        ping++;
+        if (ping > 200)
+        {
+            this->root->Data("PING :" + this->root->Server);
+            ping = 0;
+        }
         QString data(s->readLine());
-        this->Line(data);
+        if (data != "")
+        {
+            this->Line(data);
+        }
         this->usleep(100000);
     }
     return;
