@@ -14,7 +14,7 @@ table.diff {
 	margin: 0;
 	width: 100%;
 	/* Ensure that colums are of equal width */
-	table-layout: fixed;
+        /* table-layout: fixed; */
 }
 
 table.diff td {
@@ -31,7 +31,7 @@ table.diff col.diff-marker {
 }
 
 table.diff col.diff-content {
-	width: 48%;
+        width: 44%;
 }
 
 table.diff td div {
