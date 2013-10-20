@@ -1181,7 +1181,15 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         Hooks::OnGood(this->CurrentEdit);
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
+        if (this->CurrentEdit->User->ContentsOfTalkPage == "")
+        {
+            this->Welcome();
+        }
     } this->Queue1->Next();
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
 }
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
@@ -1417,4 +1425,9 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     delete Core::PrimaryFeedProvider;
     Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
     Core::PrimaryFeedProvider->Start();
+}
+
+void Huggle::MainWindow::on_actionShow_talk_triggered()
+{
+    this->Browser->DisplayPreFormattedPage(Core::GetProjectWikiURL() + "User_talk:" + Configuration::UserName);
 }

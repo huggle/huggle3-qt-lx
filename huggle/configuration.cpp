@@ -34,7 +34,7 @@ QString Configuration::IRCServer = "irc.wikimedia.org";
 QString Configuration::IRCNick = "huggle";
 quint16 Configuration::IRCPort = 6667;
 int Configuration::ProviderCache = 2000;
-QString Configuration::HuggleVersion = "3.0.0.0";
+QString Configuration::HuggleVersion = HUGGLE_VERSION;
 int Configuration::RingLogMaxSize = 2000;
 QString Configuration::HomePath = QDir::currentPath();
 QString Configuration::EditSuffixOfHuggle = "([[WP:HG]])";
@@ -46,7 +46,7 @@ QStringList Configuration::WhiteList;
 // Global
 QString Configuration::GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
 bool Configuration::GlobalConfig_EnableAll = true;
-QString Configuration::GlobalConfig_MinVersion = "3.0.0.0";
+QString Configuration::GlobalConfig_MinVersion = HUGGLE_VERSION;
 QString Configuration::GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
 QString Configuration::GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
 QString Configuration::GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
@@ -105,6 +105,7 @@ int Configuration::LocalConfig_ScoreFlag = -20000;
 QStringList Configuration::LocalConfig_WelcomeTypes;
 bool Configuration::WarnUserSpaceRoll = true;
 bool Configuration::NextOnRv = true;
+bool Configuration::LocalConfig_WelcomeGood = true;
 QString Configuration::LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
 QString Configuration::LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
 bool Configuration::GlobalConfigWasLoaded = false;
@@ -136,6 +137,7 @@ QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
 
 QStringList Configuration::LocalConfig_DeletionTemplates;
 int Configuration::LocalConfig_TemplateAge = -30;
+int Configuration::LocalConfig_ScoreChange = 100;
 
 // Blocking users
 QStringList Configuration::LocalConfig_BlockExpiryOptions;

@@ -15,6 +15,7 @@
 #define CONFIGURATION_H
 //! Minimal score the edit can have
 #define MINIMAL_SCORE -999999
+#define HUGGLE_VERSION "3.0.0.0"
 //! Path where the extensions are located
 #define EXTENSION_PATH "extensions"
 #define MEDIAWIKI_DEFAULT_NS_MAIN ""
@@ -173,6 +174,7 @@ namespace Huggle
         static QStringList LocalConfig_WarningTemplates;
         static QStringList LocalConfig_WarningDefs;
         static QString LocalConfig_ReportSummary;
+        static bool LocalConfig_WelcomeGood;
 
         // Blocking users
         static QStringList LocalConfig_BlockExpiryOptions;
@@ -188,6 +190,7 @@ namespace Huggle
         static QList<ScoreWord> LocalConfig_ScoreParts;
         static QList<ScoreWord> LocalConfig_ScoreWords;
         static int LocalConfig_ScoreFlag;
+        static int LocalConfig_ScoreChange;
         static QStringList LocalConfig_Ignores;
         static QStringList LocalConfig_RevertPatterns;
         static QStringList LocalConfig_Assisted;

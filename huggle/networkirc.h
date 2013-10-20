@@ -64,13 +64,18 @@ namespace IRC
         bool Stopped;
     };
 
+    /*!
+     * \brief The NetworkIrc provides connection to IRC servers
+     */
     class NetworkIrc
     {
     public:
         NetworkIrc(QString server, QString nick);
         ~NetworkIrc();
+        //! Connect to server
         void Connect();
         bool IsConnected();
+        bool IsConnecting();
         void Join(QString name);
         void Part(QString name);
         void Data(QString text);

@@ -50,6 +50,11 @@ bool NetworkIrc::IsConnected()
     return this->__Connected;
 }
 
+bool NetworkIrc::IsConnecting()
+{
+    return false;
+}
+
 void NetworkIrc::Join(QString name)
 {
     this->Data("JOIN " + name);
@@ -227,6 +232,7 @@ bool NetworkIrc_th::IsFinished()
 void NetworkIrc_th::run()
 {
     this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
+    qsrand(QTime::currentTime().msec());
     this->root->Data("NICK " + this->root->Nick + QString::number(qrand()));
     int ping = 0;
     while (this->root->IsConnected() && this->s->isOpen())

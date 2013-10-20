@@ -419,6 +419,10 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score -= 2000;
     }
+    if (edit->Size > 1200 || edit->Size < 1200)
+    {
+        edit->Score += Configuration::LocalConfig_ScoreChange;
+    }
 
     edit->Score += edit->User->BadnessScore;
 

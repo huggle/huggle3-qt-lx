@@ -64,6 +64,7 @@
     </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionReconnect_IRC"/>
+    <addaction name="actionShow_talk"/>
     <addaction name="separator"/>
     <addaction name="menuChange_provider"/>
     <addaction name="actionExit"/>
@@ -637,6 +638,11 @@
    </property>
    <property name="text">
     <string>Wiki</string>
+   </property>
+  </action>
+  <action name="actionShow_talk">
+   <property name="text">
+    <string>Show talk</string>
    </property>
   </action>
  </widget>

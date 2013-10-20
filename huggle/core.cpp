@@ -1270,6 +1270,7 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
     Configuration::LocalConfig_DeletionTemplates = Core::ConfigurationParse_QL("speedy-options", config);
     Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
+    Configuration::LocalConfig_WelcomeGood = Core::SafeBool(Core::ConfigurationParse("welcome-on-good-edit", config, "true"));
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);

@@ -15,10 +15,13 @@
 #include <QString>
 #include "wikipage.h"
 #include "iextension.h"
+#include "wikiuser.h"
 #include "wikiedit.h"
 
 namespace Huggle
 {
+    class WikiUser;
+
     class Hooks
     {
     public:
@@ -26,6 +29,8 @@ namespace Huggle
         static void EditPostProcess(WikiEdit *Edit);
         static void OnGood(WikiEdit *Edit);
         static void OnRevert(WikiEdit *Edit);
+        static void OnWarning(WikiUser *User);
+        static void BadnessScore(WikiUser *User, int Score);
     };
 }
 

@@ -217,6 +217,8 @@ namespace Huggle
         void on_actionIRC_triggered();
         void on_actionWiki_triggered();
 
+        void on_actionShow_talk_triggered();
+
     private:
         //! Check if huggle is shutting down or not, in case it is, message box is shown as well
         //! this function should be called before every action user can trigger

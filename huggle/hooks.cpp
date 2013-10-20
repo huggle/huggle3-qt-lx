@@ -48,3 +48,13 @@ void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
 {
     Core::Main->VandalDock->Rollback(Edit);
 }
+
+void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
+{
+
+}
+
+void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
+{
+
+}
