@@ -1148,7 +1148,7 @@ void MainWindow::on_actionGood_edit_triggered()
         this->CurrentEdit->User->BadnessScore -=200;
         Hooks::OnGood(this->CurrentEdit);
         WikiUser::UpdateUser(this->CurrentEdit->User);
-        if (this->CurrentEdit->User->ContentsOfTalkPage == "")
+        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->ContentsOfTalkPage == "")
         {
             this->Welcome();
         }
@@ -1181,7 +1181,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         Hooks::OnGood(this->CurrentEdit);
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
-        if (this->CurrentEdit->User->ContentsOfTalkPage == "")
+        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->ContentsOfTalkPage == "")
         {
             this->Welcome();
         }
