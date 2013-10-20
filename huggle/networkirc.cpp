@@ -18,6 +18,7 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Nick = nick;
     this->Port = 6667;
     this->Server = server;
+    this->UserName = "Huggle client";
     this->s = new QTcpSocket();
     this->NetworkThread = NULL;
     this->__Connected = false;
@@ -225,7 +226,7 @@ bool NetworkIrc_th::IsFinished()
 
 void NetworkIrc_th::run()
 {
-    this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->Ident);
+    this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
     this->root->Data("NICK " + this->root->Nick + QString::number(qrand()));
     int ping = 0;
     while (this->root->IsConnected() && this->s->isOpen())

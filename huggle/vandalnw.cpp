@@ -22,6 +22,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->tm->start(200);
+    this->Irc->UserName = Configuration::HuggleVersion;
 }
 
 VandalNw::~VandalNw()
@@ -33,7 +34,15 @@ VandalNw::~VandalNw()
 
 void VandalNw::Connect()
 {
-    this->Irc->Connect();
+    if (!Configuration::VandalNw_Login)
+    {
+        Core::Log("Vandalism network isn't allowed in options");
+        return;
+    } else
+    {
+        this->Insert("Connecting to huggle anti vandalism network");
+        this->Irc->Connect();
+    }
 }
 
 void VandalNw::Good(WikiEdit *Edit)

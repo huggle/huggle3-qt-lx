@@ -78,6 +78,7 @@ namespace IRC
         void Exit();
         QString Server;
         QString Nick;
+        QString UserName;
         QString Ident;
         QMutex messages_lock;
         Message* GetMessage();
