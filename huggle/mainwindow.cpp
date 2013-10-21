@@ -1380,6 +1380,11 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
+    if (!Configuration::Rights.contains("sysop"))
+    {
+        Core::Log("ERROR: Insufficient rights - you are not an administrator");
+        return;
+    }
 	if (this->CurrentEdit == NULL)
 	{
 		Core::Log("ERROR: No, you cannot delete an NULL page :)");
@@ -1392,6 +1397,11 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
+    if (!Configuration::Rights.contains("sysop"))
+    {
+        Core::Log("ERROR: Insufficient rights - you are not an administrator");
+        return;
+    }
     if(this->CurrentEdit == NULL)
     {
         Core::Log("ERROR: No one to block :o");
@@ -1434,6 +1444,11 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
 
 void MainWindow::on_actionProtect_triggered()
 {
+    if (!Configuration::Rights.contains("sysop"))
+    {
+        Core::Log("ERROR: Insufficient rights - you are not an administrator");
+        return;
+    }
     if (this->CurrentEdit == NULL)
     {
         Core::Log("ERROR: Cannot protect NULL page");

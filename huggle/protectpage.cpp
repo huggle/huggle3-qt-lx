@@ -116,12 +116,12 @@ void ProtectPage::checkTokenToProtect()
 
 void ProtectPage::on_pushButton_clicked()
 {
-    this->getTokenToProtect();
+    this->hide();
 }
 
 void ProtectPage::on_pushButton_2_clicked()
 {
-    this->hide();
+    this->getTokenToProtect();
 }
 
 void ProtectPage::Failed(QString reason)

@@ -19,6 +19,7 @@
 #include <QThread>
 #include <QSplitter>
 #include <QDockWidget>
+#include <QDate>
 #include "configuration.h"
 #include "core.h"
 #include "aboutform.h"
