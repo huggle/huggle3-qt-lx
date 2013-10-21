@@ -38,6 +38,7 @@ namespace Huggle
         ActionDelete,
         ActionUndelete,
         ActionBlock,
+        ActionProtect,
         ActionEdit
     };
 

@@ -172,6 +172,9 @@ void ApiQuery::SetAction(Action action)
     case ActionBlock:
         this->ActionPart = "block";
         return;
+    case ActionProtect:
+        this->ActionPart = "protect";
+        return;
     case ActionEdit:
         this->ActionPart = "edit";
     }

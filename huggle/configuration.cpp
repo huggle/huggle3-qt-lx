@@ -151,6 +151,8 @@ bool Configuration::AutomaticallyResolveConflicts = false;
 QString Configuration::VandalNw_Server = "hub.tm-irc.org";
 bool Configuration::VandalNw_Login = true;
 
+QString Configuration::LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)

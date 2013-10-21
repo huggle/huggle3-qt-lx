@@ -1431,3 +1431,15 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
     this->Browser->DisplayPreFormattedPage(Core::GetProjectWikiURL() + "User_talk:" + Configuration::UserName);
 }
+
+void MainWindow::on_actionProtect_triggered()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        Core::Log("ERROR: Cannot protect NULL page");
+        return;
+    }
+    this->protect = new ProtectPage(this);
+    protect->setPageToProtect(this->Page);
+    protect->show();
+}
