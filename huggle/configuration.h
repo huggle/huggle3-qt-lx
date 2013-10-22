@@ -186,6 +186,9 @@ namespace Huggle
         static QString LocalConfig_BlockReason;
         static QString LocalConfig_BlockSummary;
 
+        // Protecting pages
+        static QString LocalConfig_ProtectReason;
+
         // Definitions
 
         static QList<ScoreWord> LocalConfig_ScoreParts;

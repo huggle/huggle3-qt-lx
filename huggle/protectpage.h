@@ -12,6 +12,13 @@
 #define PROTECTPAGE_H
 
 #include <QDialog>
+#include <QString>
+#include <QtXml>
+#include <QTimer>
+#include "apiquery.h"
+#include "core.h"
+#include "configuration.h"
+#include "wikipage.h"
 
 namespace Ui {
 class ProtectPage;
@@ -19,6 +26,7 @@ class ProtectPage;
 
 namespace Huggle
 {
+    class WikiPage;
     class ProtectPage : public QDialog
     {
         Q_OBJECT
@@ -26,10 +34,29 @@ namespace Huggle
     public:
         explicit ProtectPage(QWidget *parent = 0);
         ~ProtectPage();
-
-    private:
+        void getTokenToProtect();
+        //! Pointer to get first token
+        ApiQuery *ptkq;
+        //! Pointer for second token
+        ApiQuery *ptkk;
+        //! Pointer for	protection
+        ApiQuery *ptpt;
+        void checkTokenToProtect();
+        void Failed(QString reason);
+        void setPageToProtect(WikiPage *Page);
+        void Protect();
+        QString protecttoken;
+    private slots:
+        void on_pushButton_clicked();
+        void on_pushButton_2_clicked();
+        void onTick();
+    private:    
         Ui::ProtectPage *ui;
+        WikiPage *ptpge;
+        QTimer *tt;
+        int PtQueryPhase;
     };
 }
 
 #endif // PROTECTPAGE_H
+

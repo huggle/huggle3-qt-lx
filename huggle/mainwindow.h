@@ -48,6 +48,7 @@
 #include "wlquery.h"
 #include "historyform.h"
 #include "deleteform.h"
+#include "protectpage.h"
 
 namespace Ui
 {
@@ -73,6 +74,7 @@ namespace Huggle
     class WikiUser;
     class ReportUser;
 	class DeleteForm;
+    class ProtectPage;
 
     /*!
      * \brief The ShutdownOp enum contains a various parts of shutdown so that we can keep the track of what is going on
@@ -148,6 +150,8 @@ namespace Huggle
 		WikiPage *Page;
 		//! Pointer to a form to delete a page
 		DeleteForm *deletef;
+        //! Pointer to a form to protect a page
+        ProtectPage *protect;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         void _ReportUser();
@@ -216,7 +220,7 @@ namespace Huggle
         void on_actionBlock_user_triggered();
         void on_actionIRC_triggered();
         void on_actionWiki_triggered();
-
+        void on_actionProtect_triggered();
         void on_actionShow_talk_triggered();
 
     private:
