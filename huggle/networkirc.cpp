@@ -14,6 +14,7 @@ using namespace Huggle::IRC;
 
 NetworkIrc::NetworkIrc(QString server, QString nick)
 {
+    this->__IsConnecting = false;
     this->Ident = "huggle";
     this->Nick = nick;
     this->Port = 6667;
@@ -33,9 +34,11 @@ NetworkIrc::~NetworkIrc()
 void NetworkIrc::Connect()
 {
     this->s->connectToHost(this->Server, this->Port);
+    this->__IsConnecting = true;
     if (!this->s->waitForConnected())
     {
         this->Exit();
+        this->__IsConnecting = false;
         return;
     }
     this->NetworkThread = new NetworkIrc_th(this->s);
@@ -52,7 +55,7 @@ bool NetworkIrc::IsConnected()
 
 bool NetworkIrc::IsConnecting()
 {
-    return false;
+    return this->__IsConnecting;
 }
 
 void NetworkIrc::Join(QString name)

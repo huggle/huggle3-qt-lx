@@ -74,6 +74,10 @@ namespace IRC
         ~NetworkIrc();
         //! Connect to server
         void Connect();
+        /*!
+         * \brief IsConnected checks for connection
+         * \return When you are connected returns true
+         */
         bool IsConnected();
         bool IsConnecting();
         void Join(QString name);
@@ -92,6 +96,7 @@ namespace IRC
         QList<Message> Messages;
     private:
         bool __Connected;
+        bool __IsConnecting;
         QMutex writer_lock;
         NetworkIrc_th *NetworkThread;
         QTcpSocket *s;

@@ -1429,5 +1429,5 @@ void Huggle::MainWindow::on_actionWiki_triggered()
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
-    this->Browser->DisplayPreFormattedPage(Core::GetProjectWikiURL() + "User_talk:" + Configuration::UserName);
+    this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::UserName);
 }
