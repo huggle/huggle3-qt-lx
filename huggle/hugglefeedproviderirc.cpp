@@ -49,7 +49,7 @@ bool HuggleFeedProviderIRC::Start()
                        + QString::number(qrand()) + " 8 * :"
                        + Configuration::IRCIdent + "\n").toUtf8());
     this->TcpSocket->write(QString("NICK " + Configuration::IRCNick
-                       + QString::number(qrand()) + Configuration::UserName
+                       + QString::number(qrand()) + Configuration::UserName.replace(" ", "")
                        + "\n").toUtf8());
     this->TcpSocket->write(QString("JOIN " + Configuration::Project.IRCChannel + "\n").toUtf8());
     if (this->thread != NULL)

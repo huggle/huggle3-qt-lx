@@ -229,14 +229,16 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
 
 bool NetworkIrc_th::IsFinished()
 {
-
+    return false;
 }
 
 void NetworkIrc_th::run()
 {
     this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
     qsrand(QTime::currentTime().msec());
-    this->root->Data("NICK " + this->root->Nick + QString::number(qrand()));
+    QString nick = this->root->Nick + QString::number(qrand());
+    nick = nick.replace(" ", "");
+    this->root->Data("NICK " + nick);
     int ping = 0;
     while (this->root->IsConnected() && this->s->isOpen())
     {
