@@ -165,6 +165,13 @@ namespace Huggle
         void ForceWarn(int level);
         void Exit();
         void ReconnectIRC();
+        //! Returns true if current page can be edited
+        bool BrowserPageIsEditable();
+        /*!
+         * \brief CheckEditableBrowserPage will check if current page is editable and if it's not it display a message box
+         * \return true on success or false in case it's not
+         */
+        bool CheckEditableBrowserPage();
 
 
     private slots:
@@ -231,6 +238,7 @@ namespace Huggle
         // Whitelist
         QTimer *wlt;
         QLabel *Status;
+        bool EditablePage;
         WaitingForm *fWaiting;
         void DisplayWelcomeMessage();
         void Welcome();

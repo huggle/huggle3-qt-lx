@@ -105,13 +105,14 @@ void ProtectPage::checkTokenToProtect()
 
     this->ptpt = new ApiQuery();
     ptpt->SetAction(ActionQuery);
-    ptpt->Parameters = "action=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName) + "&reason=" + QUrl::toPercentEncoding(Configuration::LocalConfig_ProtectReason)
-            + "&expiry=" + QUrl::toPercentEncoding(ui->comboBox_2->currentText()) + "&protections=edit=autoconfirmed|move=autoconfirmed" + "&token=" +
+    ptpt->Parameters = "action=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName)
+            + "&reason=" + QUrl::toPercentEncoding(Configuration::LocalConfig_ProtectReason)
+            + "&expiry=" + QUrl::toPercentEncoding(ui->comboBox_2->currentText())
+            + "&protections=edit=autoconfirmed|move=autoconfirmed" + "&token=" +
             QUrl::toPercentEncoding(protecttoken);
     ptpt->Target = "Protecting " + this->ptpge->PageName;
     Core::AppendQuery(ptpt);
     ptpt->Process();
-
 }
 
 void ProtectPage::on_pushButton_clicked()
@@ -163,8 +164,9 @@ void ProtectPage::Protect()
         return;
     }
     ui->label->setText("Page has been protected");
-    Core::DebugLog("The page " + ptpge->PageName + "has successfully been protected");
+    Core::DebugLog("The page " + ptpge->PageName + " has successfully been protected");
     ptpt->UnregisterConsumer("ProtectPage::checkTokenToProtect()");
     tt->stop();
+    ptpt = NULL;
 }
 

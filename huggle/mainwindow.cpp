@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
+    this->EditablePage = false;
     ShuttingDown = false;
     ui->setupUi(this);
     this->wq = NULL;
@@ -274,6 +275,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             }
         }
     }
+    this->EditablePage = true;
     this->wUserInfo->ChangeUser(e->User);
     this->wHistory->Update(e);
     this->CurrentEdit = e;
@@ -317,7 +319,7 @@ void MainWindow::Render()
 
 void MainWindow::RequestPD()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -476,6 +478,7 @@ void MainWindow::DisplayWelcomeMessage()
 {
     WikiPage *welcome = new WikiPage(Configuration::WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
+    this->EditablePage = false;
     this->Render();
 }
 
@@ -698,7 +701,7 @@ void MainWindow::on_actionNext_2_triggered()
 
 void MainWindow::on_actionWarn_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1049,6 +1052,25 @@ void MainWindow::ReconnectIRC()
     }
 }
 
+bool MainWindow::BrowserPageIsEditable()
+{
+    return this->EditablePage;
+}
+
+bool MainWindow::CheckEditableBrowserPage()
+{
+    if (!this->EditablePage)
+    {
+        QMessageBox mb;
+        mb.setWindowTitle("Page");
+        mb.setText("Current page can't be edited");
+        mb.exec();
+        return false;
+    }
+
+    return true;
+}
+
 bool MainWindow::CheckExit()
 {
     if (ShuttingDown)
@@ -1172,7 +1194,7 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1238,7 +1260,7 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1282,7 +1304,7 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1296,7 +1318,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1380,6 +1402,10 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
     if (!Configuration::Rights.contains("sysop"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
@@ -1397,6 +1423,10 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
     if (!Configuration::Rights.contains("sysop"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
@@ -1419,7 +1449,7 @@ void Huggle::MainWindow::on_actionIRC_triggered()
 
 void Huggle::MainWindow::on_actionWiki_triggered()
 {
-    if (!CheckExit())
+    if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1439,6 +1469,7 @@ void Huggle::MainWindow::on_actionWiki_triggered()
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
+    this->EditablePage = false;
     this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::UserName);
 }
 
