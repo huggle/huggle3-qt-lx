@@ -1406,11 +1406,6 @@ void MainWindow::on_actionDelete_triggered()
     {
         return;
     }
-    if (!Configuration::Rights.contains("sysop"))
-    {
-        Core::Log("ERROR: Insufficient rights - you are not an administrator");
-        return;
-    }
 	if (this->CurrentEdit == NULL)
 	{
 		Core::Log("ERROR: No, you cannot delete an NULL page :)");
