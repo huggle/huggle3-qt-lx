@@ -97,6 +97,11 @@ namespace Huggle
         virtual bool Processed();
         virtual void Process() {}
         virtual void Kill() {}
+        /*!
+         * \brief IsManaged
+         *  Managed query is deleted by GC and must not be deleted by hand
+         * \return whether the query is managed
+         */
         bool IsManaged();
         virtual QString QueryTypeToString();
         virtual QString QueryTargetToString();
@@ -110,7 +115,7 @@ namespace Huggle
          * \brief Registers a consumer
          *
          * This function will store a string which prevent the object from being removed
-         * by QueryGC
+         * by QueryGC, by calling this function you change the query type to managed
          * \param consumer String that lock the object
          */
         void RegisterConsumer(QString consumer);

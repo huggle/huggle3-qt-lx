@@ -451,3 +451,8 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     Core::PostProcessEdit(edit);
     return edit;
 }
+
+bool HuggleFeedProviderIRC::IsConnected()
+{
+    return Connected;
+}

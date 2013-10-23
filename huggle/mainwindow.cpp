@@ -671,7 +671,7 @@ void MainWindow::on_Tick2()
             QString page = Configuration::GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::UserName);
             WikiPage *uc = new WikiPage(page);
-            this->eq = Core::EditPage(uc, Core::MakeLocalUserConfig(), "Writing user config", true);
+            this->eq = Core::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
             delete uc;
             return;
         }

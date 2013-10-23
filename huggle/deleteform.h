@@ -36,14 +36,6 @@ namespace Huggle
     public:
         explicit DeleteForm(QWidget *parent = 0);
         ~DeleteForm();
-		WikiPage *page;
-		QString deletetoken;
-		ApiQuery *delquery;
-		ApiQuery *tokenquery;
-		void getToken();
-		void Delete();
-		void checkDelToken();
-		void Failed(QString reason);
 		void setPage(WikiPage *Page);
 	private slots:
 		void on_pushButton_clicked();
@@ -51,9 +43,17 @@ namespace Huggle
 		void onTick();
     private:
         Ui::DeleteForm *ui;
+        WikiPage *page;
+        QString deletetoken;
+        ApiQuery *delquery;
+        ApiQuery *tokenquery;
 		//! Set the page to delete
 		QTimer *dt;
 		int delQueryPhase;
+        void getToken();
+        void Delete();
+        void checkDelToken();
+        void Failed(QString reason);
     };
 }
 

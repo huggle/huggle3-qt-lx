@@ -60,7 +60,7 @@ void Core::Init()
     Core::Log("Loading configuration");
     Processor = new ProcessorThread();
     Processor->start();
-    Core::LoadConfig();
+    Configuration::LoadConfig();
     Core::DebugLog("Loading defs");
     Core::LoadDefs();
     Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
@@ -144,11 +144,11 @@ void Core::LoadDB()
         }
         if (e.attributes().contains("https"))
         {
-            site->SupportHttps = Core::SafeBool(e.attribute("https"));
+            site->SupportHttps = Configuration::SafeBool(e.attribute("https"));
         }
         if (e.attributes().contains("oauth"))
         {
-            site->SupportOAuth = Core::SafeBool(e.attribute("oauth"));
+            site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
         }
         if (e.attributes().contains("channel"))
         {
@@ -157,15 +157,6 @@ void Core::LoadDB()
         Configuration::ProjectList.append(site);
         xx++;
     }
-}
-
-bool Core::SafeBool(QString value, bool defaultvalue)
-{
-    if (value.toLower() == "true")
-    {
-        return true;
-    }
-    return defaultvalue;
 }
 
 QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
@@ -920,7 +911,7 @@ void Core::Shutdown()
     //delete Processor;
     Processor = NULL;
     Core::SaveDefs();
-    Core::SaveConfig();
+    Configuration::SaveConfig();
 #ifdef PYTHONENGINE
     Core::Log("Unloading python");
     delete Core::Python;
@@ -985,135 +976,6 @@ void Core::PreProcessEdit(WikiEdit *_e)
     _e->EditMadeByHuggle = _e->Summary.contains(Configuration::EditSuffixOfHuggle);
 
     _e->Status = StatusProcessed;
-}
-
-void Core::LoadConfig()
-{
-    QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
-    Core::Log("Home: " + Configuration::GetConfigurationPath());
-    if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
-    {
-        Core::DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
-        return;
-    }
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        Core::DebugLog("Unable to read config file");
-        return;
-    }
-    QDomDocument conf;
-    conf.setContent(file.readAll());
-    QDomNodeList l = conf.elementsByTagName("local");
-    int item = 0;
-    while (item < l.count())
-    {
-        QDomElement option = l.at(item).toElement();
-        QDomNamedNodeMap xx = option.attributes();
-        if (!xx.contains("text") || !xx.contains("key"))
-        {
-            continue;
-        }
-        if (option.attribute("key") == "DefaultRevertSummary")
-        {
-            Configuration::DefaultRevertSummary = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "Cache_InfoSize")
-        {
-            Configuration::Cache_InfoSize = option.attribute("text").toInt();
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "GlobalConfigurationWikiAddress")
-        {
-            Configuration::GlobalConfigurationWikiAddress = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "IRCIdent")
-        {
-            Configuration::IRCIdent = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "IRCNick")
-        {
-            Configuration::IRCNick = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "IRCPort")
-        {
-            Configuration::IRCPort = option.attribute("text").toInt();
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "IRCServer")
-        {
-            Configuration::IRCServer = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "Language")
-        {
-            Configuration::Language = option.attribute("text");
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "ProviderCache")
-        {
-            Configuration::ProviderCache = option.attribute("text").toInt();
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "AskUserBeforeReport")
-        {
-            Configuration::AskUserBeforeReport = Core::SafeBool(option.attribute("text"));
-            item++;
-            continue;
-        }
-        if (option.attribute("key") == "HistorySize")
-        {
-            Configuration::HistorySize = option.attribute("text").toInt();
-            item++;
-            continue;
-        }
-        item++;
-    }
-    Core::DebugLog("Finished conf");
-}
-
-void Core::SaveConfig()
-{
-    QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
-    if (!file.open(QIODevice::WriteOnly))
-    {
-        Core::Log("Unable to save configuration because the file can't be open");
-        return;
-    }
-    QXmlStreamWriter *x = new QXmlStreamWriter();
-    x->setDevice(&file);
-    x->writeStartDocument();
-    Core::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
-    Core::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
-    Core::InsertConfig("GlobalConfigurationWikiAddress", Configuration::GlobalConfigurationWikiAddress, x);
-    Core::InsertConfig("IRCIdent", Configuration::IRCIdent, x);
-    Core::InsertConfig("IRCNick", Configuration::IRCNick, x);
-    Core::InsertConfig("IRCPort", QString::number(Configuration::IRCPort), x);
-    Core::InsertConfig("IRCServer", Configuration::IRCServer, x);
-    Core::InsertConfig("Language", Configuration::Language, x);
-    Core::InsertConfig("ProviderCache", QString::number(Configuration::ProviderCache), x);
-    Core::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::AskUserBeforeReport), x);
-    Core::InsertConfig("HistorySize", QString::number(Configuration::HistorySize), x);
-    Core::InsertConfig("NextOnRv", Configuration::Bool2String(Configuration::NextOnRv), x);
-    Core::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::QueueNewEditsUp), x);
-    Core::InsertConfig("RingLogMaxSize", QString::number(Configuration::RingLogMaxSize), x);
-    Core::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::TrimOldWarnings), x);
-    Core::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::WarnUserSpaceRoll), x);
-    Core::InsertConfig("UserName", Configuration::UserName, x);
-    x->writeEndDocument();
-    delete x;
 }
 
 void Core::PostProcessEdit(WikiEdit *_e)
@@ -1226,7 +1088,7 @@ RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool ro
 
 bool Core::ParseGlobalConfig(QString config)
 {
-    Configuration::GlobalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
+    Configuration::GlobalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable-all", config));
     QString temp = Core::ConfigurationParse("documentation", config);
     if (temp != "")
     {
@@ -1243,11 +1105,11 @@ bool Core::ParseGlobalConfig(QString config)
 
 bool Core::ParseLocalConfig(QString config)
 {
-    Configuration::LocalConfig_AIV = Core::SafeBool(Core::ConfigurationParse("aiv-reports", config));
-    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable-all", config));
-    Configuration::LocalConfig_RequireAdmin = Core::SafeBool(Core::ConfigurationParse("require-admin", config));
-    Configuration::LocalConfig_RequireRollback = Core::SafeBool(Core::ConfigurationParse("require-rollback", config));
-    Configuration::LocalConfig_UseIrc = Core::SafeBool(Core::ConfigurationParse("irc", config));
+    Configuration::LocalConfig_AIV = Configuration::SafeBool(Core::ConfigurationParse("aiv-reports", config));
+    Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable-all", config));
+    Configuration::LocalConfig_RequireAdmin = Configuration::SafeBool(Core::ConfigurationParse("require-admin", config));
+    Configuration::LocalConfig_RequireRollback = Configuration::SafeBool(Core::ConfigurationParse("require-rollback", config));
+    Configuration::LocalConfig_UseIrc = Configuration::SafeBool(Core::ConfigurationParse("irc", config));
     Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
     Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, "800").toInt();
     Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config).toInt();
@@ -1260,17 +1122,17 @@ bool Core::ParseLocalConfig(QString config)
     Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
     Configuration::LocalConfig_ReportPath = Core::ConfigurationParse("aiv", config);
-    Configuration::LocalConfig_AIVExtend = Core::SafeBool(Core::ConfigurationParse("aiv-extend", config));
+    Configuration::LocalConfig_AIVExtend = Configuration::SafeBool(Core::ConfigurationParse("aiv-extend", config));
     Configuration::LocalConfig_ReportSt = Core::ConfigurationParse("aiv-section", config).toInt();
     Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
     Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
-    Configuration::AutomaticallyResolveConflicts = Core::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
+    Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
     Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
     Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
     Configuration::LocalConfig_DeletionTemplates = Core::ConfigurationParse_QL("speedy-options", config);
     Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
-    Configuration::LocalConfig_WelcomeGood = Core::SafeBool(Core::ConfigurationParse("welcome-on-good-edit", config, "true"));
+    Configuration::LocalConfig_WelcomeGood = Configuration::SafeBool(Core::ConfigurationParse("welcome-on-good-edit", config, "true"));
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
@@ -1303,7 +1165,7 @@ bool Core::ParseLocalConfig(QString config)
 
 bool Core::ParseUserConfig(QString config)
 {
-    Configuration::LocalConfig_EnableAll = Core::SafeBool(Core::ConfigurationParse("enable", config));
+    Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable", config));
    // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
     Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString::number(Configuration::LocalConfig_IPScore)).toInt();
     Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString::number(Configuration::LocalConfig_ScoreFlag)).toInt();
@@ -1311,7 +1173,7 @@ bool Core::ParseUserConfig(QString config)
     Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
     Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
     Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
-    Configuration::AutomaticallyResolveConflicts = Core::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
+    Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
     if (l1.count() > 0)
@@ -1321,7 +1183,7 @@ bool Core::ParseUserConfig(QString config)
     //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
     //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
-    NormalizeConf();
+    Configuration::NormalizeConf();
     return true;
 }
 
@@ -1348,14 +1210,6 @@ QString Core::ConfigurationParse(QString key, QString content, QString missing)
         return value;
     }
     return missing;
-}
-
-void Core::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
-{
-    s->writeStartElement("local");
-    s->writeAttribute("key", key);
-    s->writeAttribute("text", value);
-    s->writeEndElement();
 }
 
 void Core::ExceptionHandler(Exception *exception)
@@ -1498,43 +1352,6 @@ bool Core::ReportPreFlightCheck()
         return false;
     }
     return true;
-}
-
-void Core::NormalizeConf()
-{
-    if (Configuration::LocalConfig_TemplateAge > -1)
-    {
-        Configuration::LocalConfig_TemplateAge = -30;
-    }
-    if (Configuration::Cache_InfoSize < 10)
-    {
-        Configuration::Cache_InfoSize = 10;
-    }
-}
-
-QString Core::MakeLocalUserConfig()
-{
-    QString conf = "<nowiki>\n";
-    conf += "enable:true\n";
-    conf += "version:" + Configuration::HuggleVersion + "\n\n";
-    conf += "admin:true\n";
-    conf += "patrol-speedy:true\n";
-    conf += "speedy-message-title:Speedy deleted\n";
-    conf += "report-summary:" + Configuration::LocalConfig_ReportSummary + "\n";
-    conf += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
-    conf += "warn-summary-4:" + Configuration::LocalConfig_WarnSummary4 + "\n";
-    conf += "warn-summary-3:" + Configuration::LocalConfig_WarnSummary3 + "\n";
-    conf += "warn-summary-2:" + Configuration::LocalConfig_WarnSummary2 + "\n";
-    conf += "warn-summary:" + Configuration::LocalConfig_WarnSummary + "\n";
-    conf += "auto-advance:false\n";
-    conf += "auto-whitelist:true\n";
-    conf += "confirm-multiple:true\n";
-    conf += "confirm-range:true\n";
-    conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::AutomaticallyResolveConflicts) + "\n";
-    conf += "confirm-page:true\n";
-    conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
-    conf += "</nowiki>";
-    return conf;
 }
 
 Language::Language(QString name)

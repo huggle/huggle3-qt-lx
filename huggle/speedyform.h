@@ -24,6 +24,7 @@ class SpeedyForm;
 
 namespace Huggle
 {
+    class WikiPage;
     class WikiUser;
 
     /*!

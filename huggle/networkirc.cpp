@@ -146,26 +146,29 @@ User::User(QString nick, QString ident, QString host)
 {
     this->Nick = nick;
     this->Ident = ident;
+    this->Host = host;
 }
 
 User::User()
 {
     this->Ident = "";
     this->Nick = "";
+    this->Host = "";
 }
 
 User::User(User *user)
 {
+    this->Host = user->Host;
     this->Ident = user->Ident;
     this->Nick = user->Nick;
 }
 
 User::User(const User &user)
 {
+    this->Host = user.Host;
     this->Ident = user.Ident;
     this->Nick = user.Nick;
 }
-
 
 NetworkIrc_th::NetworkIrc_th(QTcpSocket *socket)
 {

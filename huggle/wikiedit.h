@@ -41,7 +41,9 @@ namespace Huggle
         StatusPostProcessed
     };
 
+    class WikiPage;
     class WikiEdit;
+    class WikiUser;
 
     //! Edits are post processed in this thread
     class ProcessorThread :  public QThread

@@ -44,6 +44,7 @@ namespace Huggle
         void Next();
         void DeleteByRevID(int RevID);
         void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+        void Trim(int i);
         //! Remove 1 item
         void Trim();
 

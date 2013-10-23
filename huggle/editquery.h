@@ -35,11 +35,12 @@ namespace Huggle
         QString text;
         //! Edit summary
         QString summary;
+        //! Whether the edit is minor or not
+        bool Minor;
+    private:
         ApiQuery *qToken;
         //! Api query to edit page
         ApiQuery *qEdit;
-        //! Whether the edit is minor or not
-        bool Minor;
         //! Edit token, will be retrieved during request
         QString _Token;
     };

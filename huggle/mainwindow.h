@@ -60,6 +60,7 @@ namespace Huggle
     class HistoryForm;
     class UserinfoForm;
     class HuggleQueue;
+    class AboutForm;
     class HuggleWeb;
     class SpeedyForm;
     class WikiEdit;
@@ -69,6 +70,7 @@ namespace Huggle
     class EditQuery;
     class ProcessList;
     class BlockUser;
+    class IgnoreList;
     class WaitingForm;
     class VandalNw;
     class WikiUser;

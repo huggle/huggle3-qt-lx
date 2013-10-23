@@ -13,9 +13,7 @@
 
 using namespace Huggle;
 
-OAuthLogin::OAuthLogin(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::OAuthLogin)
+OAuthLogin::OAuthLogin(QWidget *parent) : QDialog(parent), ui(new Ui::OAuthLogin)
 {
     ui->setupUi(this);
 }

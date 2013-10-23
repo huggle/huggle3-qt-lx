@@ -40,11 +40,14 @@
 #include <QList>
 #include <QStringList>
 #include <QDir>
+#include <QtXml>
 #include <QString>
+#include "core.h"
 #include "wikisite.h"
 
 namespace Huggle
 {
+    class Core;
     /*!
      * \brief The ScoreWord class
      *
@@ -194,6 +197,7 @@ namespace Huggle
         static QList<ScoreWord> LocalConfig_ScoreParts;
         static QList<ScoreWord> LocalConfig_ScoreWords;
         static int LocalConfig_ScoreFlag;
+        //! Score that is added for every edit that has really big size
         static int LocalConfig_ScoreChange;
         static QStringList LocalConfig_Ignores;
         static QStringList LocalConfig_RevertPatterns;
@@ -276,6 +280,12 @@ namespace Huggle
         static bool NextOnRv;
         //! Send a message to user on good edit
         static bool WelcomeEmpty;
+
+        static QString VandalNw_Server;
+        static QString VandalNw_Ident;
+        static bool VandalNw_Login;
+
+
         /*!
          * \brief Bool2String Convert a bool to string
          * \param b bool
@@ -283,9 +293,21 @@ namespace Huggle
          */
         static QString Bool2String(bool b);
 
-        static QString VandalNw_Server;
-        static QString VandalNw_Ident;
-        static bool VandalNw_Login;
+        //! Save the local configuration to file
+        static void SaveConfig();
+        //! Load the local configuration from disk
+        static void LoadConfig();
+        static void NormalizeConf();
+        //! This function creates a user configuration that is stored on wiki
+        static QString MakeLocalUserConfig();
+        /*!
+         * \brief InsertConfig
+         * \param key Configuration key
+         * \param value Value of key
+         * \param s Stream writer
+         */
+        static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+        static bool SafeBool(QString value, bool defaultvalue = false);
     };
 }
 

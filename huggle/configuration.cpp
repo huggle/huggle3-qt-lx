@@ -188,6 +188,200 @@ QString Configuration::Bool2String(bool b)
     return "false";
 }
 
+void Configuration::NormalizeConf()
+{
+    if (Configuration::LocalConfig_TemplateAge > -1)
+    {
+        Configuration::LocalConfig_TemplateAge = -30;
+    }
+    if (Configuration::Cache_InfoSize < 10)
+    {
+        Configuration::Cache_InfoSize = 10;
+    }
+}
+
+
+bool Configuration::SafeBool(QString value, bool defaultvalue)
+{
+    if (value.toLower() == "true")
+    {
+        return true;
+    }
+    return defaultvalue;
+}
+
+QString Configuration::MakeLocalUserConfig()
+{
+    QString conf = "<nowiki>\n";
+    conf += "enable:true\n";
+    conf += "version:" + Configuration::HuggleVersion + "\n\n";
+    conf += "admin:true\n";
+    conf += "patrol-speedy:true\n";
+    conf += "speedy-message-title:Speedy deleted\n";
+    conf += "report-summary:" + Configuration::LocalConfig_ReportSummary + "\n";
+    conf += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
+    conf += "warn-summary-4:" + Configuration::LocalConfig_WarnSummary4 + "\n";
+    conf += "warn-summary-3:" + Configuration::LocalConfig_WarnSummary3 + "\n";
+    conf += "warn-summary-2:" + Configuration::LocalConfig_WarnSummary2 + "\n";
+    conf += "warn-summary:" + Configuration::LocalConfig_WarnSummary + "\n";
+    conf += "auto-advance:false\n";
+    conf += "auto-whitelist:true\n";
+    conf += "confirm-multiple:true\n";
+    conf += "confirm-range:true\n";
+    conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::AutomaticallyResolveConflicts) + "\n";
+    conf += "confirm-page:true\n";
+    conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
+    conf += "</nowiki>";
+    return conf;
+}
+
+void Configuration::LoadConfig()
+{
+    QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
+    Core::Log("Home: " + Configuration::GetConfigurationPath());
+    if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
+    {
+        Core::DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
+        return;
+    }
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        Core::DebugLog("Unable to read config file");
+        return;
+    }
+    QDomDocument conf;
+    conf.setContent(file.readAll());
+    QDomNodeList l = conf.elementsByTagName("local");
+    int item = 0;
+    while (item < l.count())
+    {
+        QDomElement option = l.at(item).toElement();
+        QDomNamedNodeMap xx = option.attributes();
+        if (!xx.contains("text") || !xx.contains("key"))
+        {
+            continue;
+        }
+        QString key = option.attribute("key");
+        if (key == "DefaultRevertSummary")
+        {
+            Configuration::DefaultRevertSummary = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "Cache_InfoSize")
+        {
+            Configuration::Cache_InfoSize = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (key == "GlobalConfigurationWikiAddress")
+        {
+            Configuration::GlobalConfigurationWikiAddress = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "IRCIdent")
+        {
+            Configuration::IRCIdent = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "IRCNick")
+        {
+            Configuration::IRCNick = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "IRCPort")
+        {
+            Configuration::IRCPort = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (key == "IRCServer")
+        {
+            Configuration::IRCServer = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "Language")
+        {
+            Configuration::Language = option.attribute("text");
+            item++;
+            continue;
+        }
+        if (key == "ProviderCache")
+        {
+            Configuration::ProviderCache = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (key == "AskUserBeforeReport")
+        {
+            Configuration::AskUserBeforeReport = Configuration::SafeBool(option.attribute("text"));
+            item++;
+            continue;
+        }
+        if (key == "HistorySize")
+        {
+            Configuration::HistorySize = option.attribute("text").toInt();
+            item++;
+            continue;
+        }
+        if (key == "VandalNw_Login")
+        {
+            Configuration::VandalNw_Login = Configuration::SafeBool(option.attribute("text"));
+            item++;
+            continue;
+        }
+        item++;
+    }
+    Core::DebugLog("Finished conf");
+}
+
+void Configuration::SaveConfig()
+{
+    QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        Core::Log("Unable to save configuration because the file can't be open");
+        return;
+    }
+    QXmlStreamWriter *x = new QXmlStreamWriter();
+    x->setDevice(&file);
+    x->writeStartDocument();
+    Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::Cache_InfoSize), x);
+    Configuration::InsertConfig("DefaultRevertSummary", Configuration::DefaultRevertSummary, x);
+    Configuration::InsertConfig("GlobalConfigurationWikiAddress", Configuration::GlobalConfigurationWikiAddress, x);
+    Configuration::InsertConfig("IRCIdent", Configuration::IRCIdent, x);
+    Configuration::InsertConfig("IRCNick", Configuration::IRCNick, x);
+    Configuration::InsertConfig("IRCPort", QString::number(Configuration::IRCPort), x);
+    Configuration::InsertConfig("IRCServer", Configuration::IRCServer, x);
+    Configuration::InsertConfig("Language", Configuration::Language, x);
+    Configuration::InsertConfig("ProviderCache", QString::number(Configuration::ProviderCache), x);
+    Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::AskUserBeforeReport), x);
+    Configuration::InsertConfig("HistorySize", QString::number(Configuration::HistorySize), x);
+    Configuration::InsertConfig("NextOnRv", Configuration::Bool2String(Configuration::NextOnRv), x);
+    Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::QueueNewEditsUp), x);
+    Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::RingLogMaxSize), x);
+    Configuration::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::TrimOldWarnings), x);
+    Configuration::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::WarnUserSpaceRoll), x);
+    Configuration::InsertConfig("UserName", Configuration::UserName, x);
+    /////////////////////////////
+    // Vandal network
+    /////////////////////////////
+    Configuration::InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::VandalNw_Login), x);
+    x->writeEndDocument();
+    delete x;
+}
+
+void Configuration::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
+{
+    s->writeStartElement("local");
+    s->writeAttribute("key", key);
+    s->writeAttribute("text", value);
+    s->writeEndElement();
+}
 
 ScoreWord::ScoreWord(QString Word, int Score)
 {

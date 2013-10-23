@@ -57,6 +57,7 @@ namespace Huggle
     class RevertQuery;
     class Message;
     class iExtension;
+    class Configuration;
 
     /*!
      * \brief This is a workaround that allow us to use sleep
@@ -181,10 +182,6 @@ namespace Huggle
         static void InsertToRingLog(QString text);
         //! Display a message box telling user that function is not allowed during developer mode
         static void DeveloperError();
-        //! Save the local configuration to file
-        static void SaveConfig();
-        //! Load the local configuration from disk
-        static void LoadConfig();
         //! Check the edit summary and similar in order to
         //! determine several edit attributes etc
         static void PreProcessEdit(WikiEdit *_e);
@@ -219,7 +216,6 @@ namespace Huggle
          */
         static QString ConfigurationParse(QString key, QString content, QString missing = "");
         static void LoadDB();
-        static bool SafeBool(QString value, bool defaultvalue = false);
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
          * \param key Key
@@ -266,22 +262,12 @@ namespace Huggle
          * \param item Query that is about to be inserted to list of running queries
          */
         static void AppendQuery(Query* item);
-        /*!
-         * \brief InsertConfig
-         * \param key Configuration key
-         * \param value Value of key
-         * \param s Stream writer
-         */
-        static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
         static void ExceptionHandler(Exception *exception);
         static Language *MakeLanguage(QString text, QString name);
         static void LocalInit(QString name);
         static QString Localize(QString key);
         static void LoadLocalizations();
         static bool ReportPreFlightCheck();
-        static void NormalizeConf();
-        //! This function creates a user configuration that is stored on wiki
-        static QString MakeLocalUserConfig();
     private:
         //! Ring log is a buffer that contains system messages
         static QStringList RingLog;

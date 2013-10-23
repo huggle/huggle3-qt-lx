@@ -40,8 +40,8 @@ namespace Huggle
         bool ContainsEdit();
         void Refresh();
         WikiEdit *RetrieveEdit();
-        QDateTime LastRefresh;
     private:
+        QDateTime LastRefresh;
         QDateTime LatestTime;
         void Process(QString data);
         bool Refreshing;

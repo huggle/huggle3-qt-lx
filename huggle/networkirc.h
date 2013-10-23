@@ -27,8 +27,9 @@ namespace IRC
         User();
         User(User *user);
         User(const User &user);
-        QString Nick;
         QString Ident;
+        QString Nick;
+        QString Host;
     };
 
     class Message
@@ -46,6 +47,9 @@ namespace IRC
 
     class NetworkIrc;
 
+    /*!
+     * \brief The NetworkIrc_th class is a network thread for Network Irc
+     */
     class NetworkIrc_th : public QThread
     {
         Q_OBJECT

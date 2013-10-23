@@ -126,6 +126,20 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
     }
 }
 
+void HuggleQueue::Trim(int i)
+{
+    if (i < 1)
+    {
+        throw new Huggle::Exception("Parameter i must be greater than 0 in HuggleQueue::Trim(i)");
+    }
+
+    while (i > 0)
+    {
+        Trim();
+        i--;
+    }
+}
+
 void HuggleQueue::Trim()
 {
     if (HuggleQueueItemLabel::Count < 1)
