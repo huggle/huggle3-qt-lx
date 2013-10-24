@@ -11,7 +11,14 @@
 #ifndef HUGGLETOOL_H
 #define HUGGLETOOL_H
 
+#include <QString>
+#include <QTimer>
 #include <QDockWidget>
+#include <QFont>
+#include "apiquery.h"
+#include "wikipage.h"
+#include "exception.h"
+#include "configuration.h"
 
 namespace Ui {
 class HuggleTool;
@@ -30,9 +37,17 @@ namespace Huggle
         void SetTitle(QString title);
         void SetInfo(QString info);
         void SetUser(QString user);
+        void SetPage(WikiPage* page);
+
+    private slots:
+        void on_pushButton_clicked();
+        void onTick();
 
     private:
         Ui::HuggleTool *ui;
+        ApiQuery *query;
+        QTimer *tick;
+        QFont DefaultFont;
     };
 }
 

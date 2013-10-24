@@ -123,6 +123,7 @@ namespace Huggle
         //! If this is true some functionalities will be disabled
         static bool _SafeMode;
         static bool AutomaticallyResolveConflicts;
+        static int FontSize;
 
         //////////////////////////////////////////////
         // Local config
@@ -152,6 +153,11 @@ namespace Huggle
         static QString LocalConfig_NSUser;
         static QString LocalConfig_NSProjectTalk;
         static int LocalConfig_TemplateAge;
+        static bool LocalConfig_ConfirmMultipleEdits;
+        static bool LocalConfig_ConfirmRange;
+        static bool LocalConfig_ConfirmPage;
+        static bool LocalConfig_ConfirmSame;
+        static bool LocalConfig_ConfirmWarned;
 
         // Reverting
 

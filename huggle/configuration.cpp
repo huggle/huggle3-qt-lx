@@ -153,6 +153,13 @@ bool Configuration::VandalNw_Login = true;
 
 QString Configuration::LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
 
+bool Configuration::LocalConfig_ConfirmMultipleEdits = false;
+bool Configuration::LocalConfig_ConfirmRange = false;
+bool Configuration::LocalConfig_ConfirmPage = false;
+bool Configuration::LocalConfig_ConfirmSame = false;
+bool Configuration::LocalConfig_ConfirmWarned = false;
+int Configuration::FontSize = 10;
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::UsingSSL)
@@ -226,11 +233,14 @@ QString Configuration::MakeLocalUserConfig()
     conf += "warn-summary:" + Configuration::LocalConfig_WarnSummary + "\n";
     conf += "auto-advance:false\n";
     conf += "auto-whitelist:true\n";
-    conf += "confirm-multiple:true\n";
-    conf += "confirm-range:true\n";
+    conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmMultipleEdits) + "\n";
+    conf += "confirm-range:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmRange) + "\n";
     conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::AutomaticallyResolveConflicts) + "\n";
-    conf += "confirm-page:true\n";
+    conf += "confirm-page:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmPage) + "\n";
     conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
+    conf += "confirm-same:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmSame) + "\n";
+    conf += "default-summary:" + Configuration::DefaultRevertSummary + "\n";
+    conf += "diff-font-size:" + QString::number(Configuration::FontSize) + "\n";
     conf += "</nowiki>";
     return conf;
 }

@@ -12,6 +12,10 @@
 #define PREFERENCES_H
 
 #include <QDialog>
+#include <QList>
+#include "configuration.h"
+#include "iextension.h"
+#include "hugglequeuefilter.h"
 
 namespace Ui {
 class Preferences;
@@ -19,6 +23,7 @@ class Preferences;
 
 namespace Huggle
 {
+    class HuggleQueueFilter;
     //! Preferences window
     class Preferences : public QDialog
     {

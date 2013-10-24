@@ -35,6 +35,7 @@ bool HuggleFeedProviderIRC::Start()
         return false;
     }
     TcpSocket = new QTcpSocket(Core::Main);
+    qsrand(QTime::currentTime().msec());
     TcpSocket->connectToHost(Configuration::IRCServer, Configuration::IRCPort);
     if (!TcpSocket->waitForConnected())
     {

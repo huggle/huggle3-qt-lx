@@ -1422,7 +1422,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     {
         return;
     }
-    if (!Configuration::Rights.contains("sysop"))
+    if (!Configuration::Rights.contains("block"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
         return;
@@ -1470,7 +1470,11 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
 
 void MainWindow::on_actionProtect_triggered()
 {
-    if (!Configuration::Rights.contains("sysop"))
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+    if (!Configuration::Rights.contains("protect"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
         return;

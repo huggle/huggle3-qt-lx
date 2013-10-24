@@ -13,15 +13,22 @@
 
 using namespace Huggle;
 
-HuggleTool::HuggleTool(QWidget *parent) :
-    QDockWidget(parent),
-    ui(new Ui::HuggleTool)
+HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     ui->setupUi(this);
+    this->query = NULL;
+    this->tick = new QTimer(this);
+    connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
+    this->DefaultFont = ui->comboBox->lineEdit()->font();
 }
 
 HuggleTool::~HuggleTool()
 {
+    if (this->query != NULL)
+    {
+        this->query->SafeDelete();
+    }
+    delete tick;
     delete ui;
 }
 
@@ -39,4 +46,28 @@ void HuggleTool::SetInfo(QString info)
 void HuggleTool::SetUser(QString user)
 {
     ui->comboBox->lineEdit()->setText(user);
+}
+
+void HuggleTool::SetPage(WikiPage *page)
+{
+    if (page == NULL)
+    {
+        throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be null");
+    }
+    this->ui->comboBox_2->lineEdit()->setText(page->PageName);
+    this->tick->stop();
+    this->ui->pushButton->setEnabled(true);
+    // change color to default
+    this->ui->comboBox_2->lineEdit()->setStyleSheet("font-color: black;");
+}
+
+void Huggle::HuggleTool::on_pushButton_clicked()
+{
+    ui->pushButton->setEnabled(false);
+    this->ui->comboBox_2->lineEdit()->setStyleSheet("font-color: green;");
+}
+
+void HuggleTool::onTick()
+{
+
 }

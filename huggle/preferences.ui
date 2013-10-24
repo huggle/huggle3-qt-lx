@@ -10,6 +10,12 @@
     <height>440</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -26,20 +32,13 @@
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>791</width>
-         <height>131</height>
+         <x>0</x>
+         <y>7</y>
+         <width>811</width>
+         <height>191</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="text">
-           <string>Ask if you revert edit in non main space</string>
-          </property>
-         </widget>
-        </item>
         <item>
          <widget class="QCheckBox" name="checkBox_2">
           <property name="text">
@@ -65,6 +64,44 @@
          <widget class="QCheckBox" name="checkBox_5">
           <property name="text">
            <string>Use software rollback</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>Automatically resolve conflicts with other users who revert or change the page</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_11">
+          <property name="text">
+           <string>Ask if you revert a talk page</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="Feed">
+      <attribute name="title">
+       <string>Feed</string>
+      </attribute>
+      <widget class="QWidget" name="verticalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>811</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QCheckBox" name="checkBox_12">
+          <property name="text">
+           <string>Enable IRC</string>
           </property>
          </widget>
         </item>
@@ -100,7 +137,7 @@
             </size>
            </property>
            <property name="text">
-            <string>Filter out bot edits</string>
+            <string>Bot edits</string>
            </property>
           </widget>
          </item>
@@ -113,7 +150,28 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Filter out your own edits</string>
+            <string>Own edits</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_8">
+           <property name="text">
+            <string>Newly created pages (N)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_9">
+           <property name="text">
+            <string>Whitelisted users</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_10">
+           <property name="text">
+            <string>Friends (edits made by tools like huggle)</string>
            </property>
           </widget>
          </item>

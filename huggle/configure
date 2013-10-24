@@ -19,6 +19,7 @@ do
     fi
 done
 
+QMAKE_PATH=qmake
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
@@ -82,9 +83,9 @@ echo "Checking all required packages..."
 
 
 text "Checking for qmake... "
-if [ "`which qmake`" = "" ];then
+if [ "`which $QMAKE_PATH`" = "" ];then
 	fail
-	echo "qt4-qmake is not installed!"
+	echo "qmake can't be found"
 	exit 1
 fi
 
@@ -135,7 +136,7 @@ if [ ! -d hunker ];then
 fi
 
 cd hunker || exit 1
-qmake || exit 1
+$QMAKE_PATH || exit 1
 
 ok
 
@@ -148,7 +149,7 @@ ok
 
 text "Creating makefile... "
 
-qmake || exit 1
+$QMAKE_PATH || exit 1
 
 ok
 
