@@ -292,6 +292,7 @@ void MainWindow::Render()
             throw new Exception("Page of CurrentEdit can't be NULL at MainWindow::Render()");
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
+        this->tb->SetPage(this->CurrentEdit->Page);
         this->tb->SetUser(this->CurrentEdit->User->Username);
         QString word = "";
         if (this->CurrentEdit->ScoreWords.count() != 0)

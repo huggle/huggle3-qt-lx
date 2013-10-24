@@ -29,4 +29,5 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->User = user;
     ui->pushButton->setEnabled(true);
     ui->pushButton->setText("Retrieve info");
+    ui->label->setText("Score: " + QString::number(user->BadnessScore) + " level: " + QString::number(user->WarningLevel));
 }

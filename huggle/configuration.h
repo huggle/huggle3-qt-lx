@@ -314,6 +314,27 @@ namespace Huggle
          */
         static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
         static bool SafeBool(QString value, bool defaultvalue = false);
+        //! Parse all information from global config on meta
+        static bool ParseGlobalConfig(QString config);
+        //! Parse all information from local config, this function is used in login
+        static bool ParseLocalConfig(QString config);
+        static bool ParseUserConfig(QString config);
+        //! Parse a string from configuration which has format used by huggle 2x
+        /*!
+         * \param key Key
+         * \param content Text to parse from
+         * \param missing Default value in case this key is missing in text
+         * \return Value of key
+         */
+        static QString ConfigurationParse(QString key, QString content, QString missing = "");
+        /*!
+         * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
+         * \param key Key
+         * \param content Text to parse key from
+         * \param CS Whether the values are separated by comma
+         * \return List of values from text or empty list
+         */
+        static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
     };
 }
 

@@ -64,7 +64,7 @@ void HuggleTool::SetPage(WikiPage *page)
 void Huggle::HuggleTool::on_pushButton_clicked()
 {
     ui->pushButton->setEnabled(false);
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("font-color: green;");
+    this->ui->comboBox_2->lineEdit()->setStyleSheet("QLineEdit { font-color: green; }");
 }
 
 void HuggleTool::onTick()
