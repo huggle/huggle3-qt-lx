@@ -825,6 +825,12 @@ void Core::Shutdown()
 #endif
     delete Core::f_Login;
     Core::f_Login = NULL;
+    // delete all edits
+    while (WikiEdit::EditList.count() > 0)
+    {
+        delete WikiEdit::EditList.at(0);
+        WikiEdit::EditList.removeAt(0);
+    }
     QApplication::quit();
 }
 
@@ -1134,6 +1140,26 @@ bool Core::ReportPreFlightCheck()
         return false;
     }
     return true;
+}
+
+void Core::DeleteEdits()
+{
+    if (!WikiEdit::EditList.count() > Configuration::MaximumEditsInMemory)
+    {
+        return;
+    }
+    // lets delete some very old edits
+    int CurrentEdit = 0;
+    while (WikiEdit::EditList.count() > Configuration::MaximumEditsInMemory)
+    {
+        WikiEdit *edit = WikiEdit::EditList.at(CurrentEdit);
+        if (Core::Main != NULL && edit == Core::Main->CurrentEdit)
+        {
+            CurrentEdit++;
+            continue;
+        }
+        Core::DeleteEdit(edit);
+    }
 }
 
 Language::Language(QString name)

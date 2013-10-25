@@ -56,7 +56,7 @@ void HuggleTool::SetPage(WikiPage *page)
     this->DeleteQuery();
     this->ui->pushButton->setEnabled(true);
     // change color to default
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("font-color: black;");
+    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: black;");
 }
 
 void Huggle::HuggleTool::on_pushButton_clicked()
@@ -66,7 +66,7 @@ void Huggle::HuggleTool::on_pushButton_clicked()
         return;
     }
     ui->pushButton->setEnabled(false);
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("QLineEdit { font-color: green; }");
+    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: green;");
     // retrieve information about the page
     this->query = new ApiQuery();
     QueryPhase = 1;
@@ -117,6 +117,7 @@ void HuggleTool::FinishPage()
         {
             // there is no such a page
             this->DeleteQuery();
+            this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
             Core::Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
             this->tick->stop();
             return;

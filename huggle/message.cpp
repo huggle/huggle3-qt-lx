@@ -68,6 +68,10 @@ bool Message::Finished()
                 this->Dependency = NULL;
                 this->Sending = false;
                 this->Done = true;
+                if (query != NULL)
+                {
+                    query->UnregisterConsumer("Message::Send()");
+                }
                 return true;
             }
             this->Dependency->UnregisterConsumer("keep");

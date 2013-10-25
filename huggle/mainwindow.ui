@@ -154,6 +154,7 @@
      <string>Debug</string>
     </property>
     <addaction name="actionList_all_QGC_items"/>
+    <addaction name="actionEdit_info"/>
    </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
@@ -687,6 +688,11 @@
    </property>
    <property name="text">
     <string>Display user data</string>
+   </property>
+  </action>
+  <action name="actionEdit_info">
+   <property name="text">
+    <string>Edit info</string>
    </property>
   </action>
  </widget>

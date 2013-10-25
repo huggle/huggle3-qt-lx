@@ -247,6 +247,10 @@ namespace Huggle
         static QString Localize(QString key);
         static void LoadLocalizations();
         static bool ReportPreFlightCheck();
+        /*!
+         * \brief Truncate all edits that are kept in cache but aren't needed anymore so that we don't use so much memory
+         */
+        static void DeleteEdits();
     private:
         //! Ring log is a buffer that contains system messages
         static QStringList RingLog;

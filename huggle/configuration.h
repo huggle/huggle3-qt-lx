@@ -79,6 +79,8 @@ namespace Huggle
         static WikiSite Project;
         //! List of projects
         static QList<WikiSite *> ProjectList;
+        //! Number of edits allowed to be stored in memory cache
+        static unsigned int MaximumEditsInMemory;
         //! When this is true most of functions will not work
         static bool Restricted;
         //! Return a prefix for url

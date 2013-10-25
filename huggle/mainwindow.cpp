@@ -1489,3 +1489,8 @@ void MainWindow::on_actionProtect_triggered()
     protect->setPageToProtect(this->Page);
     protect->show();
 }
+
+void Huggle::MainWindow::on_actionEdit_info_triggered()
+{
+    Core::Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
+}
