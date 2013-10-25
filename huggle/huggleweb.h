@@ -40,9 +40,9 @@ namespace Huggle
         void DisplayPage(QString url);
         void RenderHtml(QString html);
         void DisplayDiff(WikiEdit *edit);
+        static QString Encode(const QString &string);
 
     private:
-        QString Encode(const QString &string);
         Ui::HuggleWeb *ui;
         QString CurrentPage;
     };
