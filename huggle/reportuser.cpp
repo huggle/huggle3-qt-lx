@@ -206,7 +206,9 @@ void ReportUser::On_DiffTick()
         }
     } else
     {
-        ui->webView->setHtml("Unable to retrieve diff because api returned no data for it");
+        Core::DebugLog(this->qd->Result->Data);
+        ui->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
+                                HuggleWeb::Encode(this->qd->Result->Data));
         this->diff->stop();
         return;
     }
@@ -355,8 +357,8 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     }
     this->qd = new ApiQuery();
     this->qd->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-            ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
-            QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text());
+            ui->tableWidget->item(index.row(), 3)->text() + "&rvendid=" + ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
+            QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
     this->qd->SetAction(ActionQuery);
     this->qd->Process();
     this->diff->start(200);
