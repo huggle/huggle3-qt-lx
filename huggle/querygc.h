@@ -11,6 +11,8 @@
 #ifndef QUERYGC_H
 #define QUERYGC_H
 
+#include <QThread>
+#include <QMutex>
 #include <QList>
 #include "query.h"
 
@@ -27,6 +29,7 @@ namespace Huggle
     public:
         //! List of all managed queries that qgc keeps track of
         static QList<Query*> qgc;
+        static QMutex Lock;
         //! Function that walks through the list and delete these that can be deleted
         static void DeleteOld();
     };

@@ -22,12 +22,15 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->pushButton->setText("Retrieving history...");
     QStringList header;
     ui->tableWidget->setColumnCount(5);
+    this->diff = new QTimer(this);
+    connect(this->diff, SIGNAL(timeout()), this, SLOT(On_DiffTick()));
     header << "Page" << "Time" << "Link" << "DiffID" << "Include in report";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     this->tq = NULL;
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Messaging = false;
+    this->qd = NULL;
     report = "";
     Loading = false;
 #if QT_VERSION >= 0x050000
@@ -66,9 +69,20 @@ bool ReportUser::SetUser(WikiUser *u)
 
 ReportUser::~ReportUser()
 {
-    delete q;
-    delete tq;
-    delete ui;
+    if (this->q != NULL)
+    {
+        this->q->SafeDelete();
+    }
+    if (this->qd != NULL)
+    {
+        this->qd->SafeDelete();
+    }
+    delete this->diff;
+    if (this->tq != NULL)
+    {
+        this->tq->SafeDelete();
+    }
+    delete this->ui;
 }
 
 void ReportUser::Tick()
@@ -157,6 +171,69 @@ void ReportUser::Tick()
         ui->pushButton->setEnabled(true);
         ui->pushButton->setText("Report");
     }
+}
+
+void ReportUser::On_DiffTick()
+{
+    if (this->qd == NULL)
+    {
+        return;
+    }
+    if (!this->qd->Processed())
+    {
+        return;
+    }
+    if (this->qd->Result->Failed)
+    {
+        ui->webView->setHtml("Unable to retrieve diff: " + this->qd->Result->ErrorMessage);
+        this->diff->stop();
+        return;
+    }
+
+    QString Summary;
+    QString Diff;
+
+    QDomDocument d;
+    d.setContent(this->qd->Result->Data);
+    QDomNodeList l = d.elementsByTagName("rev");
+    QDomNodeList diff = d.elementsByTagName("diff");
+    if (diff.count() > 0)
+    {
+        QDomElement e = diff.at(0).toElement();
+        if (e.nodeName() == "diff")
+        {
+            Diff = e.text();
+        }
+    } else
+    {
+        ui->webView->setHtml("Unable to retrieve diff because api returned no data for it");
+        this->diff->stop();
+        return;
+    }
+    // get last id
+    if (l.count() > 0)
+    {
+        QDomElement e = l.at(0).toElement();
+        if (e.nodeName() == "rev")
+        {
+            if (e.attributes().contains("comment"))
+            {
+                Summary = e.attribute("comment");
+            }
+        }
+    }
+
+    if (Summary == "")
+    {
+        Summary = "<font color=red>No summary was provided</font>";
+    } else
+    {
+        Summary = HuggleWeb::Encode(Summary);
+    }
+
+    ui->webView->setHtml(Core::HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
+                         + Summary + "</td></tr>" + Diff + Core::HtmlFooter);
+    this->diff->stop();
 }
 
 void ReportUser::Test()
@@ -270,14 +347,19 @@ void ReportUser::on_pushButton_2_clicked()
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
     ui->webView->setHtml("Please wait...");
-    QString suffix = "";
-    if (ui->checkBox->isChecked())
+    this->diff->stop();
+    if (this->qd != NULL)
     {
-        suffix = "&action=render";
+        this->qd->Kill();
+        this->qd->SafeDelete();
     }
-    QUrl u = QUrl::fromEncoded(QString(Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text()) + "&diff="
-                                       + ui->tableWidget->item(index.row(), 3)->text()).toUtf8() + suffix.toUtf8());
-    ui->webView->load(u);
+    this->qd = new ApiQuery();
+    this->qd->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
+            ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
+            QUrl::toPercentEncoding(ui->tableWidget->itemAt(index.row(), 0)->text());
+    this->qd->SetAction(ActionQuery);
+    this->qd->Process();
+    this->diff->start(200);
 }
 
 bool ReportUser::CheckUser()

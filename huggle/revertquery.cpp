@@ -83,14 +83,6 @@ void RevertQuery::Kill()
 RevertQuery::~RevertQuery()
 {
     delete timer;
-    if (this->qPreflight != NULL)
-    {
-        this->qPreflight->SafeDelete();
-    }
-    if (this->qRevert != NULL)
-    {
-        this->qRevert->SafeDelete();
-    }
 }
 
 QString RevertQuery::QueryTargetToString()

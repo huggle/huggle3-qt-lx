@@ -16,6 +16,26 @@ using namespace Huggle;
 Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
 {
     ui->setupUi(this);
+    // headers
+    ui->tableWidget->setColumnCount(4);
+    QStringList header;
+    header << "Name" << "Author" << "Description" << "Status" << "Version";
+    ui->tableWidget->setHorizontalHeaderLabels(header);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+#if QT_VERSION >= 0x050000
+// Qt5 code
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+// Qt4 code
+    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
+    ui->tableWidget->setShowGrid(false);
+    // options
+    ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
+    ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);
+    ui->checkBox_12->setChecked(Configuration::UsingIRC);
 }
 
 Preferences::~Preferences()
@@ -25,6 +45,10 @@ Preferences::~Preferences()
 
 void Preferences::on_pushButton_clicked()
 {
+    Configuration::AutomaticallyResolveConflicts = ui->checkBox->isChecked();
+    Configuration::WarnUserSpaceRoll = ui->checkBox_2->isChecked();
+    Configuration::UsingIRC = ui->checkBox_12->isChecked();
+    Configuration::SaveConfig();
     this->hide();
 }
 

@@ -159,99 +159,6 @@ void Core::LoadDB()
     }
 }
 
-QStringList Core::ConfigurationParse_QL(QString key, QString content, bool CS)
-{
-    QStringList list;
-    if (content.startsWith(key + ":"))
-    {
-        QString value = content.mid(key.length() + 1);
-        QStringList lines = value.split("\n");
-        int curr = 1;
-        while (curr < lines.count())
-        {
-            QString _line = Core::Trim(lines.at(curr));
-            if (_line.endsWith(","))
-            {
-                list.append(_line);
-            } else
-            {
-                if (_line != "")
-                {
-                    list.append(_line);
-                    break;
-                }
-            }
-            curr++;
-        }
-        if (CS)
-        {
-            // now we need to split values by comma as well
-            QStringList f;
-            int c = 0;
-            while (c<list.count())
-            {
-                QStringList xx = list.at(c).split(",");
-                int i2 = 0;
-                while (i2<xx.count())
-                {
-                    if (Core::Trim(xx.at(i2)) != "")
-                    {
-                        f.append(Core::Trim(xx.at(i2)));
-                    }
-                    i2++;
-                }
-                c++;
-            }
-            list = f;
-        }
-        return list;
-    } else if (content.contains("\n" + key + ":"))
-    {
-        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
-        QStringList lines = value.split("\n");
-        int curr = 1;
-        while (curr < lines.count())
-        {
-            QString _line = Core::Trim(lines.at(curr));
-            if (_line.endsWith(","))
-            {
-                list.append(_line);
-            } else
-            {
-                if (_line != "")
-                {
-                    list.append(_line);
-                    break;
-                }
-            }
-            curr++;
-        }
-        if (CS)
-        {
-            // now we need to split values by comma as well
-            QStringList f;
-            int c = 0;
-            while (c<list.count())
-            {
-                QStringList xx = list.at(c).split(",");
-                int i2 = 0;
-                while (i2<xx.count())
-                {
-                    if (Core::Trim(xx.at(i2)) != "")
-                    {
-                        f.append(Core::Trim(xx.at(i2)));
-                    }
-                    i2++;
-                }
-                c++;
-            }
-            list = f;
-        }
-        return list;
-    }
-    return list;
-}
-
 QString Core::Trim(QString text)
 {
     while (text.startsWith(" "))
@@ -918,6 +825,12 @@ void Core::Shutdown()
 #endif
     delete Core::f_Login;
     Core::f_Login = NULL;
+    // delete all edits
+    while (WikiEdit::EditList.count() > 0)
+    {
+        delete WikiEdit::EditList.at(0);
+        WikiEdit::EditList.removeAt(0);
+    }
     QApplication::quit();
 }
 
@@ -1028,6 +941,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
+        item->Lock();
         item->UnregisterConsumer("core");
         item->SafeDelete();
         curr++;
@@ -1084,132 +998,6 @@ RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool ro
     }
 
     return query;
-}
-
-bool Core::ParseGlobalConfig(QString config)
-{
-    Configuration::GlobalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable-all", config));
-    QString temp = Core::ConfigurationParse("documentation", config);
-    if (temp != "")
-    {
-        Configuration::GlobalConfig_DocumentationPath = temp;
-    }
-    temp = Core::ConfigurationParse("feedback", config);
-    if (temp != "")
-    {
-        Configuration::GlobalConfig_FeedbackPath = temp;
-    }
-    Configuration::GlobalConfigWasLoaded = true;
-    return true;
-}
-
-bool Core::ParseLocalConfig(QString config)
-{
-    Configuration::LocalConfig_AIV = Configuration::SafeBool(Core::ConfigurationParse("aiv-reports", config));
-    Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable-all", config));
-    Configuration::LocalConfig_RequireAdmin = Configuration::SafeBool(Core::ConfigurationParse("require-admin", config));
-    Configuration::LocalConfig_RequireRollback = Configuration::SafeBool(Core::ConfigurationParse("require-rollback", config));
-    Configuration::LocalConfig_UseIrc = Configuration::SafeBool(Core::ConfigurationParse("irc", config));
-    Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, true);
-    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, "800").toInt();
-    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config).toInt();
-    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config);
-    Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config);
-    Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config);
-    Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config);
-    Configuration::LocalConfig_RevertSummaries = Core::ConfigurationParse_QL("template-summ", config);
-    Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
-    Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
-    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, "-200000").toInt();
-    Configuration::LocalConfig_ReportPath = Core::ConfigurationParse("aiv", config);
-    Configuration::LocalConfig_AIVExtend = Configuration::SafeBool(Core::ConfigurationParse("aiv-extend", config));
-    Configuration::LocalConfig_ReportSt = Core::ConfigurationParse("aiv-section", config).toInt();
-    Configuration::LocalConfig_IPVTemplateReport = Core::ConfigurationParse("aiv-ip", config);
-    Configuration::LocalConfig_RUTemplateReport = Core::ConfigurationParse("aiv-user", config);
-    Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
-    Configuration::LocalConfig_WelcomeTypes = Core::ConfigurationParse_QL("welcome-messages", config);
-    Configuration::LocalConfig_ReportSummary = Core::ConfigurationParse("report-summary", config);
-    Configuration::LocalConfig_RequireEdits = Core::ConfigurationParse("require-edits", config, "0").toInt();
-    Configuration::LocalConfig_DeletionTemplates = Core::ConfigurationParse_QL("speedy-options", config);
-    Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
-    Configuration::LocalConfig_WelcomeGood = Configuration::SafeBool(Core::ConfigurationParse("welcome-on-good-edit", config, "true"));
-    Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
-    Core::ParsePats(config);
-    Core::ParseWords(config);
-    QStringList namespaces = Core::ConfigurationParse_QL("namespace-names", config, true);
-
-    // templates
-    int CurrentTemplate=0;
-    while (CurrentTemplate<Configuration::LocalConfig_WarningTypes.count())
-    {
-        QString type = Core::GetKeyFromValue(Configuration::LocalConfig_WarningTypes.at(CurrentTemplate));
-        int CurrentWarning = 1;
-        while (CurrentWarning <= 4)
-        {
-            QString xx = Core::ConfigurationParse(type + QString::number(CurrentWarning), config);
-            if (xx != "")
-            {
-                Configuration::LocalConfig_WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
-            }
-            CurrentWarning++;
-        }
-        CurrentTemplate++;
-    }
-    // sanitize
-    if (Configuration::LocalConfig_ReportPath == "")
-    {
-        Configuration::LocalConfig_AIV = false;
-    }
-    return true;
-}
-
-bool Core::ParseUserConfig(QString config)
-{
-    Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Core::ConfigurationParse("enable", config));
-   // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
-    Configuration::LocalConfig_IPScore = Core::ConfigurationParse("score-ip", config, QString::number(Configuration::LocalConfig_IPScore)).toInt();
-    Configuration::LocalConfig_ScoreFlag = Core::ConfigurationParse("score-flag", config, QString::number(Configuration::LocalConfig_ScoreFlag)).toInt();
-    Configuration::LocalConfig_WarnSummary = Core::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
-    Configuration::LocalConfig_WarnSummary2 = Core::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
-    Configuration::LocalConfig_WarnSummary3 = Core::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
-    Configuration::LocalConfig_WarnSummary4 = Core::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
-    Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Core::ConfigurationParse("automatically-resolve-conflicts", config), false);
-    Configuration::LocalConfig_TemplateAge = Core::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
-    QStringList l1 = Core::ConfigurationParse_QL("template-summ", config);
-    if (l1.count() > 0)
-    {
-        Configuration::LocalConfig_TemplateSummary = l1;
-    }
-    //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
-    //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
-    Configuration::LocalConfig_BotScore = Core::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
-    Configuration::NormalizeConf();
-    return true;
-}
-
-QString Core::ConfigurationParse(QString key, QString content, QString missing)
-{
-    if (content.startsWith(key + ":"))
-    {
-        QString value = content.mid(key.length() + 1);
-        if (value.contains("\n"))
-        {
-            value = value.mid(0, value.indexOf("\n"));
-        }
-        return value;
-    }
-
-    // make sure it's not inside of some string
-    if (content.contains("\n" + key + ":"))
-    {
-        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
-        if (value.contains("\n"))
-        {
-            value = value.mid(0, value.indexOf("\n"));
-        }
-        return value;
-    }
-    return missing;
 }
 
 void Core::ExceptionHandler(Exception *exception)
@@ -1352,6 +1140,26 @@ bool Core::ReportPreFlightCheck()
         return false;
     }
     return true;
+}
+
+void Core::DeleteEdits()
+{
+    if (!WikiEdit::EditList.count() > Configuration::MaximumEditsInMemory)
+    {
+        return;
+    }
+    // lets delete some very old edits
+    int CurrentEdit = 0;
+    while (WikiEdit::EditList.count() > Configuration::MaximumEditsInMemory)
+    {
+        WikiEdit *edit = WikiEdit::EditList.at(CurrentEdit);
+        if (Core::Main != NULL && edit == Core::Main->CurrentEdit)
+        {
+            CurrentEdit++;
+            continue;
+        }
+        Core::DeleteEdit(edit);
+    }
 }
 
 Language::Language(QString name)

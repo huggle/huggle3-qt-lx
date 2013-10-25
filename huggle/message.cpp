@@ -48,8 +48,7 @@ void Message::Fail(QString reason)
     Core::Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
     Done = true;
     Sending = false;
-    query->SafeDelete(true);
-    query->RegisterConsumer("Message::Send()");
+    query->UnregisterConsumer("Message::Send()");
     query = NULL;
 }
 
@@ -69,6 +68,10 @@ bool Message::Finished()
                 this->Dependency = NULL;
                 this->Sending = false;
                 this->Done = true;
+                if (query != NULL)
+                {
+                    query->UnregisterConsumer("Message::Send()");
+                }
                 return true;
             }
             this->Dependency->UnregisterConsumer("keep");
@@ -122,7 +125,6 @@ void Message::Finish()
             return;
         }
         token = element.attribute("edittoken");
-        query->SafeDelete(true);
         query->UnregisterConsumer("Message::Send()");
         query = new ApiQuery();
         query->Target = "Writing " + user->GetTalk();
@@ -181,7 +183,6 @@ void Message::Finish()
         Core::DebugLog(query->Result->Data);
     }
 
-    query->SafeDelete();
     query->UnregisterConsumer("Message::Finish()");
     Done = true;
     query = NULL;

@@ -11,8 +11,10 @@
 #ifndef QUERY_H
 #define QUERY_H
 
+#include <QThread>
 #include <QObject>
 #include <QString>
+#include <QMutex>
 #include <QStringList>
 #include <QNetworkAccessManager>
 #include "queryresult.h"
@@ -97,6 +99,9 @@ namespace Huggle
         virtual bool Processed();
         virtual void Process() {}
         virtual void Kill() {}
+        bool IsLocked();
+        void Lock();
+        void Unlock();
         /*!
          * \brief IsManaged
          *  Managed query is deleted by GC and must not be deleted by hand
@@ -110,7 +115,7 @@ namespace Huggle
         //! you receive when the query finish
         void ProcessCallback();
         //! Use this if you are not sure if you can delete this object in this moment
-        virtual bool SafeDelete(bool forced = false);
+        virtual bool SafeDelete();
         /*!
          * \brief Registers a consumer
          *
@@ -133,6 +138,7 @@ namespace Huggle
     private:
         //! Internal variable that contains a cache whether object is managed
         bool Managed;
+        void SetManaged();
         //! Some queries are needed for dependency setup, so we need to delete them
         //! later once the dependency is processed
         QStringList Consumers;
@@ -140,6 +146,10 @@ namespace Huggle
         unsigned int ID;
         //! This is a last ID used by a constructor of a query
         static unsigned int LastID;
+        QMutex QL;
+        QMutex InternalLock;
+        QThread *LockingThread;
+        bool Locked;
     };
 }
 

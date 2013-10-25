@@ -83,8 +83,9 @@ bool EditQuery::Processed()
             return true;
         }
         _Token = element.attribute("edittoken");
-        qToken->SafeDelete();
+        qToken->Lock();
         qToken->UnregisterConsumer("EditQuery::Process()");
+        qToken->SafeDelete();
         qToken = NULL;
         qEdit = new ApiQuery();
         qEdit->Target = "Writing " + page;

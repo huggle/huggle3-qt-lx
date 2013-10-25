@@ -60,6 +60,7 @@ namespace Huggle
     class HistoryForm;
     class UserinfoForm;
     class HuggleQueue;
+    class HuggleTool;
     class AboutForm;
     class HuggleWeb;
     class SpeedyForm;
@@ -69,6 +70,7 @@ namespace Huggle
     class WikiPage;
     class EditQuery;
     class ProcessList;
+    class Preferences;
     class BlockUser;
     class IgnoreList;
     class WaitingForm;
@@ -231,6 +233,8 @@ namespace Huggle
         void on_actionWiki_triggered();
         void on_actionProtect_triggered();
         void on_actionShow_talk_triggered();
+
+        void on_actionEdit_info_triggered();
 
     private:
         //! Check if huggle is shutting down or not, in case it is, message box is shown as well

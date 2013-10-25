@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -163,11 +154,22 @@
      <string>Debug</string>
     </property>
     <addaction name="actionList_all_QGC_items"/>
+    <addaction name="actionEdit_info"/>
+   </widget>
+   <widget class="QMenu" name="menuHAN">
+    <property name="title">
+     <string>HAN</string>
+    </property>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_user_messages"/>
+    <addaction name="actionDisplay_user_data"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>
+   <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
    <addaction name="menuDebug"/>
@@ -659,6 +661,38 @@
   <action name="actionProtect">
    <property name="text">
     <string>Protect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionDisplay_user_messages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display user messages</string>
+   </property>
+  </action>
+  <action name="actionDisplay_user_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display user data</string>
+   </property>
+  </action>
+  <action name="actionEdit_info">
+   <property name="text">
+    <string>Edit info</string>
    </property>
   </action>
  </widget>

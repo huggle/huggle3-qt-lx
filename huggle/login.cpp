@@ -252,7 +252,7 @@ void Login::RetrieveGlobalConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Core::ParseGlobalConfig(data.text()))
+            if (Configuration::ParseGlobalConfig(data.text()))
             {
                 if (!Configuration::GlobalConfig_EnableAll)
                 {
@@ -379,7 +379,7 @@ void Login::RetrieveLocalConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Core::ParseLocalConfig(data.text()))
+            if (Configuration::ParseLocalConfig(data.text()))
             {
                 if (!Configuration::LocalConfig_EnableAll)
                 {
@@ -442,7 +442,7 @@ void Login::RetrievePrivateConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Core::ParseUserConfig(data.text()))
+            if (Configuration::ParseUserConfig(data.text()))
             {
                 if (!Configuration::LocalConfig_EnableAll)
                 {

@@ -292,6 +292,7 @@ void MainWindow::Render()
             throw new Exception("Page of CurrentEdit can't be NULL at MainWindow::Render()");
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
+        this->tb->SetPage(this->CurrentEdit->Page);
         this->tb->SetUser(this->CurrentEdit->User->Username);
         QString word = "";
         if (this->CurrentEdit->ScoreWords.count() != 0)
@@ -1422,7 +1423,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     {
         return;
     }
-    if (!Configuration::Rights.contains("sysop"))
+    if (!Configuration::Rights.contains("block"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
         return;
@@ -1470,7 +1471,11 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
 
 void MainWindow::on_actionProtect_triggered()
 {
-    if (!Configuration::Rights.contains("sysop"))
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+    if (!Configuration::Rights.contains("protect"))
     {
         Core::Log("ERROR: Insufficient rights - you are not an administrator");
         return;
@@ -1483,4 +1488,9 @@ void MainWindow::on_actionProtect_triggered()
     this->protect = new ProtectPage(this);
     protect->setPageToProtect(this->Page);
     protect->show();
+}
+
+void Huggle::MainWindow::on_actionEdit_info_triggered()
+{
+    Core::Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }

@@ -187,7 +187,10 @@ void ApiQuery::SetAction(QString action)
 
 void ApiQuery::Kill()
 {
-    reply->abort();
+    if (this->reply != NULL)
+    {
+        this->reply->abort();
+    }
 }
 
 QString ApiQuery::QueryTargetToString()

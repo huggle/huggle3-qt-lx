@@ -15,11 +15,14 @@
 #include <QDialog>
 #include <QTimer>
 #include <QWebView>
+#include <QMutex>
+#include <QtXml>
 #include <QCheckBox>
 #include <QString>
 #include <QList>
 #include "core.h"
 #include "apiquery.h"
+#include "huggleweb.h"
 #include "configuration.h"
 #include "wikiuser.h"
 
@@ -45,6 +48,7 @@ namespace Huggle
         QString _p;
     private slots:
         void Tick();
+        void On_DiffTick();
         void Test();
         void on_pushButton_clicked();
         void on_pushButton_2_clicked();
@@ -57,6 +61,7 @@ namespace Huggle
         ApiQuery *q;
         QTimer *timer;
         QTimer *t2;
+        QTimer *diff;
         QList <QCheckBox*> CheckBoxes;
         QString report;
         bool Loading;
@@ -64,6 +69,7 @@ namespace Huggle
         bool CheckUser();
         void InsertUser();
         ApiQuery *tq;
+        ApiQuery *qd;
     };
 }
 
