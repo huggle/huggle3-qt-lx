@@ -185,12 +185,12 @@ void BlockUser::Failed(QString reason)
 void BlockUser::on_pushButton_clicked()
 {
     this->GetToken();
-    this->sendBlockNotice();
+    this->sendBlockNotice(dependency);
     // disable the button so that user can't click it multiple times
     ui->pushButton->setEnabled(false);
 }
 
-void BlockUser::sendBlockNotice()
+void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
     if (user->IsIP())
