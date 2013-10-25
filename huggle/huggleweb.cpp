@@ -68,6 +68,8 @@ QString HuggleWeb::Encode(const QString &string)
             encoded += ch;
         }
     }
+    encoded = encoded.replace("<", "&lt;");
+    encoded = encoded.replace(">", "&gt;");
     return encoded;
 }
 
