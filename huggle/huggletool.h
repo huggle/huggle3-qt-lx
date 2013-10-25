@@ -17,6 +17,7 @@
 #include <QFont>
 #include "apiquery.h"
 #include "wikipage.h"
+#include "wikiedit.h"
 #include "exception.h"
 #include "configuration.h"
 
@@ -26,6 +27,9 @@ class HuggleTool;
 
 namespace Huggle
 {
+    class WikiEdit;
+    class WikiPage;
+
     //! Toolbar on top of window
     class HuggleTool : public QDockWidget
     {
@@ -47,7 +51,12 @@ namespace Huggle
         Ui::HuggleTool *ui;
         ApiQuery *query;
         QTimer *tick;
+        WikiEdit *edit;
+        int QueryPhase;
         QFont DefaultFont;
+        void FinishPage();
+        void FinishEdit();
+        void DeleteQuery();
     };
 }
 

@@ -3,23 +3,34 @@
 # first we parse all arguments we got
 
 SKIPCHECKS=0
+QMAKE_PATH=qmake
+_QMAKE=0
 
 for var in "$@"
 do
-    if [ "$var" = "--help" ];then
+    if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
         echo " --skip-checks: skip all package checks"
+        echo " --qmake: change path to qmake"
         echo
         echo "GNU GPL copyright by huggle team"
         exit 0
     fi
+    if [ "$_QMAKE" = "1" ];then
+	QMAKE_PATH="$var"
+        continue
+    fi
+    if [ "$var" = "--qmake" ];then
+        _QMAKE=1
+        continue
+    fi
     if [ "$var" = "--skip-checks" ];then
         SKIPCHECKS=1
+        continue
     fi
 done
 
-QMAKE_PATH=qmake
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
