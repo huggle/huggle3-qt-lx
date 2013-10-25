@@ -20,9 +20,10 @@ TerminalParser::TerminalParser(int argc_, QStringList argv)
 
 bool TerminalParser::Parse()
 {
-    int x = 0;
+    int x = 1;
     while (x < this->args.count())
     {
+        bool valid = false;
         QString text = this->args.at(x);
         if (text == "-h" || text == "--help")
         {
@@ -37,10 +38,17 @@ bool TerminalParser::Parse()
                 Configuration::Verbosity++;
                 text = text.mid(1);
             }
+            valid = true;
         }
         if (text == "--safe")
         {
             Configuration::_SafeMode = true;
+            valid = true;
+        }
+        if (!valid)
+        {
+            cout << (QString("This parameter isn't valid: ") + text).toStdString() << endl;
+            return true;
         }
         x++;
     }

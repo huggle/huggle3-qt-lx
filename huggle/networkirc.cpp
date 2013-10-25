@@ -58,6 +58,22 @@ bool NetworkIrc::IsConnecting()
     return this->__IsConnecting;
 }
 
+void NetworkIrc::Disconnect()
+{
+    if (!this->IsConnected())
+    {
+        return;
+    }
+    this->Data("QUIT :Huggle, the anti vandalism software. See #huggle on irc://chat.freenode.net");
+    this->Exit();
+    if (s != NULL)
+    {
+        this->s->disconnect();
+        delete this->s;
+        s = NULL;
+    }
+}
+
 void NetworkIrc::Join(QString name)
 {
     this->Data("JOIN " + name);

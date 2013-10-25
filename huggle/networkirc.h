@@ -20,6 +20,21 @@ namespace Huggle
 {
 namespace IRC
 {
+    class Channel;
+    class User;
+    class NetworkIrc;
+
+    class Channel
+    {
+        public:
+            Channel();
+            QString Name;
+            QList<User> Users;
+    };
+
+    /*!
+     * \brief The User class represent a user of irc network
+     */
     class User
     {
     public:
@@ -44,8 +59,6 @@ namespace IRC
         QString Text;
         User user;
     };
-
-    class NetworkIrc;
 
     /*!
      * \brief The NetworkIrc_th class is a network thread for Network Irc
@@ -84,6 +97,7 @@ namespace IRC
          */
         bool IsConnected();
         bool IsConnecting();
+        void Disconnect();
         void Join(QString name);
         void Part(QString name);
         void Data(QString text);
