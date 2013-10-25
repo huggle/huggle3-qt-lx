@@ -48,12 +48,14 @@ namespace Huggle
         WikiUser *user;
         ApiQuery *tb;
         ApiQuery *b;
+        ApiQuery *dependency;
         QString blocktoken;
         int QueryPhase;
         void CheckToken();
         void GetToken();
         void Failed(QString reason);
         void Block();
+        void sendBlockNotice();
     };
 }
 

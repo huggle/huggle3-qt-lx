@@ -185,8 +185,23 @@ void BlockUser::Failed(QString reason)
 void BlockUser::on_pushButton_clicked()
 {
     this->GetToken();
+    this->sendBlockNotice();
     // disable the button so that user can't click it multiple times
     ui->pushButton->setEnabled(false);
+}
+
+void BlockUser::sendBlockNotice()
+{
+    QString blocknotice;
+    if (user->IsIP())
+    {
+        blocknotice = Configuration::LocalConfig_BlockMessage;
+    }else
+    {
+        blocknotice = Configuration::LocalConfig_BlockMessageIndef;
+    }
+    QString blocksum = Configuration::LocalConfig_BlockSummary;
+    Core::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
 }
 
 
