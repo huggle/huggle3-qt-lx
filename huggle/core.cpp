@@ -935,6 +935,7 @@ void Core::CheckQueries()
     {
         Query *item = Finished.at(curr);
         Core::RunningQueries.removeOne(item);
+        item->Lock();
         item->UnregisterConsumer("core");
         item->SafeDelete();
         curr++;

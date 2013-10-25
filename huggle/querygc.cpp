@@ -13,6 +13,7 @@
 using namespace Huggle;
 
 QList<Query*> QueryGC::qgc;
+QMutex QueryGC::Lock;
 
 void QueryGC::DeleteOld()
 {
@@ -20,6 +21,7 @@ void QueryGC::DeleteOld()
     while(curr<QueryGC::qgc.count())
     {
         Query *q = QueryGC::qgc.at(curr);
+        q->Lock();
         if (!q->IsManaged())
         {
             QueryGC::qgc.removeAt(curr);
@@ -28,6 +30,7 @@ void QueryGC::DeleteOld()
         }
         if (!q->SafeDelete())
         {
+            q->Unlock();
             curr++;
         }
     }

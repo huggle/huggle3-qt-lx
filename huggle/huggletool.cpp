@@ -24,10 +24,6 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
 
 HuggleTool::~HuggleTool()
 {
-    if (this->query != NULL)
-    {
-        this->query->SafeDelete();
-    }
     delete tick;
     delete ui;
 }
