@@ -70,7 +70,8 @@ SOURCES += main.cpp\
     protectpage.cpp \
     vandalnw.cpp \
     networkirc.cpp \
-    updateform.cpp
+    updateform.cpp \
+    uaareport.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -124,7 +125,8 @@ HEADERS  += mainwindow.h \
     protectpage.h \
     vandalnw.h \
     networkirc.h \
-    updateform.h
+    updateform.h \
+    uaareport.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -151,7 +153,8 @@ FORMS    += mainwindow.ui \
     userinfoform.ui \
     protectpage.ui \
     vandalnw.ui \
-    updateform.ui
+    updateform.ui \
+    uaareport.ui
 
 RESOURCES += \
     pictures.qrc \
