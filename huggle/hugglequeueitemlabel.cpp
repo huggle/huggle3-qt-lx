@@ -90,6 +90,7 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
         this->ParentQueue->Items.removeOne(this);
     }
     Core::ProcessEdit(this->page);
+    this->page->Enqueued = false;
     this->close();
     ParentQueue->Delete(this, qi);
 }
@@ -101,7 +102,7 @@ void HuggleQueueItemLabel::Remove()
     {
         this->ParentQueue->Items.removeOne(this);
     }
-    delete this->page;
+    Core::DeleteEdit(this->page);
     this->page = NULL;
     this->close();
     ParentQueue->Delete(this);

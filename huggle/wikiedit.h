@@ -98,6 +98,7 @@ namespace Huggle
         int Diff;
         //! Priority in queue
         int Priority;
+        bool Enqueued;
         //! Old id
         int OldID;
         //! Revision ID

@@ -39,6 +39,7 @@ WikiEdit::WikiEdit()
     this->Score = 0;
     this->Previous = NULL;
     this->Time = QDateTime::currentDateTime();
+    this->Enqueued = false;
     this->Next = NULL;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
@@ -48,6 +49,7 @@ WikiEdit::WikiEdit()
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
 {
+    this->Enqueued = edit.Enqueued;
     this->User = NULL;
     this->Page = NULL;
     this->Bot = edit.Bot;
@@ -90,6 +92,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
 
 WikiEdit::WikiEdit(WikiEdit *edit)
 {
+    this->Enqueued = edit->Enqueued;
     this->User = NULL;
     this->Page = NULL;
     this->Bot = edit->Bot;

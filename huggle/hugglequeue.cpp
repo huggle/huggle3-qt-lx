@@ -40,6 +40,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
 {
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
+    page->Enqueued = true;
     label->page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
@@ -118,6 +119,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
         if (label == item)
         {
+            label->page->Enqueued = false;
             this->layout->removeItem(i);
             return;
         }

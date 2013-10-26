@@ -1150,10 +1150,10 @@ void Core::DeleteEdits()
     }
     // lets delete some very old edits
     int CurrentEdit = 0;
-    while (WikiEdit::EditList.count() > Configuration::MaximumEditsInMemory)
+    while (WikiEdit::EditList.count() > (int)Configuration::MaximumEditsInMemory && CurrentEdit < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(CurrentEdit);
-        if (Core::Main != NULL && edit == Core::Main->CurrentEdit)
+        if (Core::Main != NULL && (edit->Enqueued || edit == Core::Main->CurrentEdit))
         {
             CurrentEdit++;
             continue;
