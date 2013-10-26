@@ -42,26 +42,31 @@ namespace Huggle
     };
 
     //! List of active processes, when some process finish it's collected by garbage collector
+    //! this is only a dialog that you see in huggle form, it doesn't contain process list
     class ProcessList : public QDockWidget
     {
         Q_OBJECT
     public:
         explicit ProcessList(QWidget *parent = 0);
+        //! Insert a query to process list, the query is automatically removed once it's done
         void InsertQuery(Query* q);
         void Clear();
+        //! Return true if there is already this in a list
         bool ContainsQuery(Query *q);
+        //! Remove a query from list no matter if it finished or not
         void RemoveQuery(Query *q);
+        //! Update information about query in list
         void UpdateQuery(Query *q);
-        bool IsExpired(Query *q);
         void RemoveExpired();
-        int GetItem(Query *q);
-        int GetItem(int Id);
         ~ProcessList();
 
 
     private:
         QList<ProcessListRemovedItem*> *Removed;
         Ui::ProcessList *ui;
+        int GetItem(Query *q);
+        int GetItem(int Id);
+        bool IsExpired(Query *q);
     };
 }
 

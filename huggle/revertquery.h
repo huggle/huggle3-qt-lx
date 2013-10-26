@@ -24,6 +24,9 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
 
+    /*!
+     * \brief The RevertQuery class can be used to rollback any edit
+     */
     class RevertQuery : public Query
     {
         Q_OBJECT
@@ -39,6 +42,7 @@ namespace Huggle
         //! Whether software rollback should be used instead of regular rollback
         bool UsingSR;
         QString Summary;
+        //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
         bool IgnorePreflightCheck;
         QString Token;
     public slots:

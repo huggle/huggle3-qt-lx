@@ -21,6 +21,10 @@ namespace Ui
 
 namespace Huggle
 {
+    /*!
+     * \brief Update form is shown when there is an update for huggle
+     * This form may work on some platforms only
+     */
     class UpdateForm : public QDialog
     {
         Q_OBJECT
