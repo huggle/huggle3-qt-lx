@@ -13,8 +13,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class OAuthLogin;
+namespace Ui
+{
+    class OAuthLogin;
 }
 
 namespace Huggle

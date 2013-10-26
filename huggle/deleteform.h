@@ -21,8 +21,9 @@
 #include "apiquery.h"
 #include "core.h"
 
-namespace Ui {
-class DeleteForm;
+namespace Ui
+{
+    class DeleteForm;
 }
 
 namespace Huggle

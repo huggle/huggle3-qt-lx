@@ -16,7 +16,9 @@
 namespace Ui {
     class UAAReport;
 }
-namespace Huggle {
+
+namespace Huggle
+{
     class UAAReport : public QDialog
     {
             Q_OBJECT
@@ -28,7 +30,6 @@ namespace Huggle {
         private:
             Ui::UAAReport *ui;
     };
-
 }
 
 #endif // UAAREPORT_H

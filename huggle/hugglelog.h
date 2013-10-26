@@ -16,8 +16,9 @@
 #include <QDockWidget>
 #include <QDateTime>
 
-namespace Ui {
-class HuggleLog;
+namespace Ui
+{
+    class HuggleLog;
 }
 
 namespace Huggle

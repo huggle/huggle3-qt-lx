@@ -14,8 +14,9 @@
 #include <QDockWidget>
 #include "wikiedit.h"
 
-namespace Ui {
-class HistoryForm;
+namespace Ui
+{
+    class HistoryForm;
 }
 
 namespace Huggle

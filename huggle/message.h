@@ -20,11 +20,11 @@
 
 namespace Huggle
 {
-class Query;
+    class Query;
 
-//! This is similar to query, just it's more simple, you can use it to deliver messages to users
-class Message
-{
+    //! This is similar to query, just it's more simple, you can use it to deliver messages to users
+    class Message
+    {
     public:
         Message(WikiUser *target, QString Message, QString Summary);
         ~Message();

@@ -13,9 +13,7 @@
 
 using namespace Huggle;
 
-AboutForm::AboutForm(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AboutForm)
+AboutForm::AboutForm(QWidget *parent) : QDialog(parent), ui(new Ui::AboutForm)
 {
     ui->setupUi(this);
     QString python = " without python support";

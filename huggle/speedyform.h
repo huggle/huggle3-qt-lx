@@ -18,8 +18,9 @@
 #include "configuration.h"
 #include "core.h"
 
-namespace Ui {
-class SpeedyForm;
+namespace Ui
+{
+    class SpeedyForm;
 }
 
 namespace Huggle

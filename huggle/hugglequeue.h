@@ -21,8 +21,9 @@
 #include "wikiedit.h"
 #include "configuration.h"
 
-namespace Ui {
-class HuggleQueue;
+namespace Ui
+{
+    class HuggleQueue;
 }
 
 namespace Huggle

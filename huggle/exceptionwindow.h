@@ -23,8 +23,9 @@
 #endif
 #include "exception.h"
 
-namespace Ui {
-class ExceptionWindow;
+namespace Ui
+{
+    class ExceptionWindow;
 }
 
 namespace Huggle

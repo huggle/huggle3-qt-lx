@@ -15,8 +15,9 @@
 #include <QList>
 #include <QDockWidget>
 
-namespace Ui {
-class History;
+namespace Ui
+{
+    class History;
 }
 
 namespace Huggle

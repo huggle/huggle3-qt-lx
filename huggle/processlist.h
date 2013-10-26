@@ -21,8 +21,9 @@
 #include "core.h"
 #include "configuration.h"
 
-namespace Ui {
-class ProcessList;
+namespace Ui
+{
+    class ProcessList;
 }
 
 namespace Huggle

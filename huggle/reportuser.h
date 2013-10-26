@@ -26,8 +26,9 @@
 #include "configuration.h"
 #include "wikiuser.h"
 
-namespace Ui {
-class ReportUser;
+namespace Ui
+{
+    class ReportUser;
 }
 
 namespace Huggle

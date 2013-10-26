@@ -15,8 +15,9 @@
 #include <QFrame>
 #include "core.h"
 
-namespace Ui {
-class HuggleQueueItemLabel;
+namespace Ui
+{
+    class HuggleQueueItemLabel;
 }
 
 namespace Huggle

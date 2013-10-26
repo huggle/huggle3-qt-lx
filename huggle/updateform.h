@@ -14,8 +14,9 @@
 #include <QDialog>
 #include "webserverquery.h"
 
-namespace Ui {
-class UpdateForm;
+namespace Ui
+{
+    class UpdateForm;
 }
 
 namespace Huggle

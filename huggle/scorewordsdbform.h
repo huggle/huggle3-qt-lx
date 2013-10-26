@@ -13,8 +13,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class ScoreWordsDbForm;
+namespace Ui
+{
+    class ScoreWordsDbForm;
 }
 
 namespace Huggle

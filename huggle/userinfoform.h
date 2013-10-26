@@ -15,8 +15,9 @@
 #include <QString>
 #include "wikiuser.h"
 
-namespace Ui {
-class UserinfoForm;
+namespace Ui
+{
+    class UserinfoForm;
 }
 
 namespace Huggle

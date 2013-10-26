@@ -18,8 +18,9 @@
 #include "exception.h"
 #include "core.h"
 
-namespace Ui {
-class HuggleWeb;
+namespace Ui
+{
+    class HuggleWeb;
 }
 
 namespace Huggle

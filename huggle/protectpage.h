@@ -20,8 +20,9 @@
 #include "configuration.h"
 #include "wikipage.h"
 
-namespace Ui {
-class ProtectPage;
+namespace Ui
+{
+    class ProtectPage;
 }
 
 namespace Huggle

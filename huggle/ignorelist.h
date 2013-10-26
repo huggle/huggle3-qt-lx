@@ -15,8 +15,9 @@
 #include <QStandardItemModel>
 #include "configuration.h"
 
-namespace Ui {
-class IgnoreList;
+namespace Ui
+{
+    class IgnoreList;
 }
 
 namespace Huggle

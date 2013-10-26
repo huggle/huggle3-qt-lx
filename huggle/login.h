@@ -23,8 +23,9 @@
 #include "apiquery.h"
 #include "configuration.h"
 
-namespace Ui {
-class Login;
+namespace Ui
+{
+    class Login;
 }
 
 namespace Huggle

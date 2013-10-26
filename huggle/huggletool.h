@@ -21,8 +21,9 @@
 #include "exception.h"
 #include "configuration.h"
 
-namespace Ui {
-class HuggleTool;
+namespace Ui
+{
+    class HuggleTool;
 }
 
 namespace Huggle

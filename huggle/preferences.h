@@ -17,8 +17,9 @@
 #include "iextension.h"
 #include "hugglequeuefilter.h"
 
-namespace Ui {
-class Preferences;
+namespace Ui
+{
+    class Preferences;
 }
 
 namespace Huggle

@@ -14,8 +14,9 @@
 #include <QDialog>
 #include "configuration.h"
 
-namespace Ui {
-class AboutForm;
+namespace Ui
+{
+    class AboutForm;
 }
 
 namespace Huggle

@@ -14,8 +14,9 @@
 #include <QDialog>
 #include "core.h"
 
-namespace Ui {
-class WaitingForm;
+namespace Ui
+{
+    class WaitingForm;
 }
 
 namespace Huggle

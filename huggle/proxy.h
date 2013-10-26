@@ -13,8 +13,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class Proxy;
+namespace Ui
+{
+    class Proxy;
 }
 
 namespace Huggle

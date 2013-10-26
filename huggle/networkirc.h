@@ -18,108 +18,108 @@
 
 namespace Huggle
 {
-namespace IRC
-{
-    class Channel;
-    class User;
-    class NetworkIrc;
-
-    class Channel
+    namespace IRC
     {
-        public:
-            Channel();
-            QString Name;
-            QList<User> Users;
-    };
+        class Channel;
+        class User;
+        class NetworkIrc;
 
-    /*!
-     * \brief The User class represent a user of irc network
-     */
-    class User
-    {
-    public:
-        User(QString nick, QString ident, QString host);
-        User();
-        User(User *user);
-        User(const User &user);
-        QString Ident;
-        QString Nick;
-        QString Host;
-    };
+        class Channel
+        {
+            public:
+                Channel();
+                QString Name;
+                QList<User> Users;
+        };
 
-    class Message
-    {
-    public:
-        Message(QString text, User us);
-        Message(QString chan, QString text, User us);
-        Message();
-        Message(Message *ms);
-        Message(const Message &ms);
-        QString Channel;
-        QString Text;
-        User user;
-    };
-
-    /*!
-     * \brief The NetworkIrc_th class is a network thread for Network Irc
-     */
-    class NetworkIrc_th : public QThread
-    {
-        Q_OBJECT
-    public:
-        NetworkIrc_th(QTcpSocket *socket);
-        ~NetworkIrc_th();
-        bool Running;
-        NetworkIrc *root;
-        void Line(QString line);
-        void ProcessPrivmsg(QString source, QString xx);
-        bool IsFinished();
-    protected:
-        void run();
-    private:
-        QTcpSocket *s;
-        bool Stopped;
-    };
-
-    /*!
-     * \brief The NetworkIrc provides connection to IRC servers
-     */
-    class NetworkIrc
-    {
-    public:
-        NetworkIrc(QString server, QString nick);
-        ~NetworkIrc();
-        //! Connect to server
-        void Connect();
         /*!
-         * \brief IsConnected checks for connection
-         * \return When you are connected returns true
+         * \brief The User class represent a user of irc network
          */
-        bool IsConnected();
-        bool IsConnecting();
-        void Disconnect();
-        void Join(QString name);
-        void Part(QString name);
-        void Data(QString text);
-        void Send(QString name, QString text);
-        void Exit();
-        QString Server;
-        QString Nick;
-        QString UserName;
-        QString Ident;
-        QMutex messages_lock;
-        Message* GetMessage();
-        QStringList Channels;
-        int Port;
-        QList<Message> Messages;
-    private:
-        bool __Connected;
-        bool __IsConnecting;
-        QMutex writer_lock;
-        NetworkIrc_th *NetworkThread;
-        QTcpSocket *s;
-    };
-}
+        class User
+        {
+        public:
+            User(QString nick, QString ident, QString host);
+            User();
+            User(User *user);
+            User(const User &user);
+            QString Ident;
+            QString Nick;
+            QString Host;
+        };
+
+        class Message
+        {
+        public:
+            Message(QString text, User us);
+            Message(QString chan, QString text, User us);
+            Message();
+            Message(Message *ms);
+            Message(const Message &ms);
+            QString Channel;
+            QString Text;
+            User user;
+        };
+
+        /*!
+         * \brief The NetworkIrc_th class is a network thread for Network Irc
+         */
+        class NetworkIrc_th : public QThread
+        {
+            Q_OBJECT
+        public:
+            NetworkIrc_th(QTcpSocket *socket);
+            ~NetworkIrc_th();
+            bool Running;
+            NetworkIrc *root;
+            void Line(QString line);
+            void ProcessPrivmsg(QString source, QString xx);
+            bool IsFinished();
+        protected:
+            void run();
+        private:
+            QTcpSocket *s;
+            bool Stopped;
+        };
+
+        /*!
+         * \brief The NetworkIrc provides connection to IRC servers
+         */
+        class NetworkIrc
+        {
+        public:
+            NetworkIrc(QString server, QString nick);
+            ~NetworkIrc();
+            //! Connect to server
+            void Connect();
+            /*!
+             * \brief IsConnected checks for connection
+             * \return When you are connected returns true
+             */
+            bool IsConnected();
+            bool IsConnecting();
+            void Disconnect();
+            void Join(QString name);
+            void Part(QString name);
+            void Data(QString text);
+            void Send(QString name, QString text);
+            void Exit();
+            QString Server;
+            QString Nick;
+            QString UserName;
+            QString Ident;
+            QMutex messages_lock;
+            Message* GetMessage();
+            QStringList Channels;
+            int Port;
+            QList<Message> Messages;
+        private:
+            bool __Connected;
+            bool __IsConnecting;
+            QMutex writer_lock;
+            NetworkIrc_th *NetworkThread;
+            QTcpSocket *s;
+        };
+    }
 }
 
 #endif // NETWORKIRC_H
