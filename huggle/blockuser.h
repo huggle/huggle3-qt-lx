@@ -55,7 +55,7 @@ namespace Huggle
         void GetToken();
         void Failed(QString reason);
         void Block();
-        void sendBlockNotice();
+        void sendBlockNotice(ApiQuery *dependency);
     };
 }
 
