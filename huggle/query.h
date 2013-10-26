@@ -55,7 +55,10 @@ namespace Huggle
     //! Query base class for all http queries executed by huggle
 
     //! Every request to website is processed as a query, this is a base object that all
-    //! other queries are derived from
+    //! other queries are derived from. The query system is using own GC see a QueryGC
+    //! That means every query is either unmanaged or managed. In case it is managed,
+    //! the GC will care about it being removed from operating memory and you must not
+    //! call a delete on it, otherwise program will crash.
     class Query : public QObject
     {
     public:
@@ -83,6 +86,8 @@ namespace Huggle
         //! This is a pointer to object returned by your callback function
         void* CallbackResult;
         static QNetworkAccessManager NetworkManager;
+        //! Query doesn't have internal data displayed in debug log, this is usefull
+        //! when you are working with passwords in parameters
         bool HiddenQuery;
         //! Dependency for query
 

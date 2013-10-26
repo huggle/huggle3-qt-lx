@@ -32,6 +32,9 @@ namespace Huggle
          * Either vandals or even good users, this list is preserved on shutdown and startup
          */
         static QList<WikiUser*> ProblematicUsers;
+        //! Update a list of problematic users
+        static void UpdateUser(WikiUser *us);
+        static WikiUser *RetrieveUser(WikiUser *user);
         //! Username
         QString Username;
         /*!
@@ -43,9 +46,29 @@ namespace Huggle
         long BadnessScore;
         //! Current warning level of user
         int WarningLevel;
-        //! In case that we retrieved the talk page during parse of warning level, this string contains it
-        QString ContentsOfTalkPage;
+        /*!
+         * \brief GetContentsOfTalkPage returns a precached content of this users talk page
+         * If there is a global instance of this user, the talk page is retrieved from it
+         * so that in case there are multiple instances of this user, they all share same
+         * cached talk page.
+         *
+         * Because this function needs to obtain the user from global cache it may be slow,
+         * in case you need to use its value multiple times, cache it as QString instead
+         * of calling this function repeatedly
+         * \return a precached content of this users talk page
+         */
+        QString GetContentsOfTalkPage();
+        /*!
+         * \brief SetContentsOfTalkPage Change a cache for talk page in local and global cache
+         * \param text New content of talk page
+         */
+        void SetContentsOfTalkPage(QString text);
+        //! Local cache that holds information if user is reported or not. This information
+        //! may be wrong, don't relly on it
         bool IsReported;
+        //! Call UpdateUser on current user
+        void Update();
+        //! Cache of contributions made by this user
         QList<WikiEdit*> Contributions;
         /*!
          * \brief Change the IP property to true forcefully even if user isn't IP
@@ -53,8 +76,6 @@ namespace Huggle
         void ForceIP();
         //! Returns true in case the current user is IP user
         bool IsIP();
-        //! Update a list of problematic users
-        static void UpdateUser(WikiUser *us);
         WikiUser();
         WikiUser(WikiUser *u);
         WikiUser(const WikiUser& u);
@@ -62,6 +83,7 @@ namespace Huggle
         ~WikiUser();
         //! Return a link to talk page of this user (like User talk:Jimbo)
         QString GetTalk();
+        //! Returns true if this user is wl
         bool IsWhitelisted();
     private:
         //! Matches only IPv4
@@ -69,6 +91,8 @@ namespace Huggle
         //! Matches all IP
         static QRegExp IPv6Regex;
         int WhitelistInfo;
+        //! In case that we retrieved the talk page during parse of warning level, this string contains it
+        QString ContentsOfTalkPage;
         bool IP;
     };
 }

@@ -1102,19 +1102,25 @@ void MainWindow::Welcome()
     {
         return;
     }
-    if (this->CurrentEdit->User->IsIP())
-    {
-        Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
-                          , Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
-        return;
-    }
 
-    if (this->CurrentEdit->User->ContentsOfTalkPage != "")
+    if (this->CurrentEdit->User->GetContentsOfTalkPage() != "")
     {
         if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
         }
+    }
+
+    if (this->CurrentEdit->User->IsIP())
+    {
+        if (this->CurrentEdit->User->GetContentsOfTalkPage() == "")
+        {
+            // write something to talk page so that we don't welcome this user twice
+            this->CurrentEdit->User->SetContentsOfTalkPage(Configuration::LocalConfig_WelcomeAnon);
+        }
+        Core::MessageUser(this->CurrentEdit->User, Configuration::LocalConfig_WelcomeAnon
+                          , Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
+        return;
     }
 
     if (Configuration::LocalConfig_WelcomeTypes.count() == 0)
@@ -1131,6 +1137,8 @@ void MainWindow::Welcome()
         return;
     }
 
+    // write something to talk page so that we don't welcome this user twice
+    this->CurrentEdit->User->SetContentsOfTalkPage(message);
     Core::MessageUser(this->CurrentEdit->User, message, Configuration::LocalConfig_WelcomeTitle, Configuration::LocalConfig_WelcomeSummary, true);
 }
 
@@ -1172,7 +1180,7 @@ void MainWindow::on_actionGood_edit_triggered()
         this->CurrentEdit->User->BadnessScore -=200;
         Hooks::OnGood(this->CurrentEdit);
         WikiUser::UpdateUser(this->CurrentEdit->User);
-        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->ContentsOfTalkPage == "")
+        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
         }
@@ -1205,7 +1213,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         Hooks::OnGood(this->CurrentEdit);
         this->CurrentEdit->User->BadnessScore -=200;
         WikiUser::UpdateUser(this->CurrentEdit->User);
-        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->ContentsOfTalkPage == "")
+        if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
         }

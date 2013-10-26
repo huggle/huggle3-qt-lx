@@ -36,6 +36,7 @@ void WikiUser::UpdateUser(WikiUser *us)
                 ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
             }
             ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
+            ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
             return;
         }
         c++;
@@ -116,6 +117,41 @@ WikiUser::~WikiUser()
         delete this->Contributions.at(0);
         this->Contributions.removeAt(0);
     }
+}
+
+WikiUser *WikiUser::RetrieveUser(WikiUser *user)
+{
+    int User = 0;
+    while (User < WikiUser::ProblematicUsers.count())
+    {
+        if (user->Username == WikiUser::ProblematicUsers.at(User)->Username)
+        {
+            return WikiUser::ProblematicUsers.at(User);
+        }
+    }
+    return NULL;
+}
+
+QString WikiUser::GetContentsOfTalkPage()
+{
+    // check if there isn't some global talk page
+    WikiUser *user = WikiUser::RetrieveUser(this);
+    if (user != NULL)
+    {
+        return user->ContentsOfTalkPage;
+    }
+    return this->ContentsOfTalkPage;
+}
+
+void WikiUser::SetContentsOfTalkPage(QString text)
+{
+    this->ContentsOfTalkPage = text;
+    this->Update();
+}
+
+void WikiUser::Update()
+{
+    WikiUser::UpdateUser(this);
 }
 
 void WikiUser::ForceIP()

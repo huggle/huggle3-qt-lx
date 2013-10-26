@@ -189,7 +189,7 @@ bool WikiEdit::FinalizePostProcessing()
                 QDomElement e = page.at(0).toElement();
                 if (e.nodeName() == "rev")
                 {
-                    this->User->ContentsOfTalkPage = e.text();
+                    this->User->SetContentsOfTalkPage(e.text());
                 } else
                 {
                     Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
@@ -431,9 +431,10 @@ void ProcessorThread::Process(WikiEdit *edit)
 
     edit->ProcessWords();
 
-    if (edit->User->ContentsOfTalkPage != "")
+    QString TalkPage = edit->User->GetContentsOfTalkPage();
+    if (TalkPage != "")
     {
-        edit->User->WarningLevel = Core::GetLevel(edit->User->ContentsOfTalkPage);
+        edit->User->WarningLevel = Core::GetLevel(TalkPage);
     }
 
     switch(edit->User->WarningLevel)
