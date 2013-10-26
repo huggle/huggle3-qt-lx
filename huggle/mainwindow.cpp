@@ -605,6 +605,7 @@ void MainWindow::on_Tick()
             Edit++;
         }
     }
+    Core::DeleteEdits();
     Core::CheckQueries();
     this->lUnwrittenLogs.lock();
     if (this->UnwrittenLogs.count() > 0)
