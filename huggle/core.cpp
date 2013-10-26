@@ -978,6 +978,7 @@ RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool ro
     {
         throw new Exception("Object user was NULL in Core::Revert");
     }
+    _e->IsReverted = true;
     if (_e->Page == NULL)
     {
         throw new Exception("Object page was NULL");
@@ -1153,8 +1154,9 @@ void Core::DeleteEdits()
     while (WikiEdit::EditList.count() > (int)Configuration::MaximumEditsInMemory && CurrentEdit < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(CurrentEdit);
-        if (Core::Main != NULL && (edit->Enqueued || edit == Core::Main->CurrentEdit))
+        if (Core::Main != NULL && (edit->Enqueued || edit == Core::Main->CurrentEdit || edit->IsReverted))
         {
+            // edit is being used now, so don't remove it
             CurrentEdit++;
             continue;
         }

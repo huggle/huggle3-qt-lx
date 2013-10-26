@@ -14,6 +14,7 @@ QList<WikiEdit*> WikiEdit::EditList;
 
 WikiEdit::WikiEdit()
 {
+    this->IsReverted = false;
     this->Bot = false;
     this->User = NULL;
     this->Minor = false;
@@ -49,6 +50,7 @@ WikiEdit::WikiEdit()
 
 WikiEdit::WikiEdit(const WikiEdit &edit)
 {
+    this->IsReverted = edit.IsReverted;
     this->Enqueued = edit.Enqueued;
     this->User = NULL;
     this->Page = NULL;
@@ -92,6 +94,7 @@ WikiEdit::WikiEdit(const WikiEdit &edit)
 
 WikiEdit::WikiEdit(WikiEdit *edit)
 {
+    this->IsReverted = edit->IsReverted;
     this->Enqueued = edit->Enqueued;
     this->User = NULL;
     this->Page = NULL;

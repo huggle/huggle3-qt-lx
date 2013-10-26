@@ -103,6 +103,7 @@ namespace Huggle
         int OldID;
         //! Revision ID
         int RevID;
+        bool IsReverted;
         WEStatus Status;
         //! Current warning level
         WarningLevel CurrentUserWarningLevel;

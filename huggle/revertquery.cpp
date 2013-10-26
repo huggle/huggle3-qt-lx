@@ -28,6 +28,7 @@ RevertQuery::RevertQuery()
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
 {
+    Edit->IsReverted = true;
     this->Type = QueryRevert;
     this->qRevert = NULL;
     this->edit = Edit;
@@ -82,6 +83,10 @@ void RevertQuery::Kill()
 
 RevertQuery::~RevertQuery()
 {
+    if (this->edit != NULL)
+    {
+        this->edit->IsReverted = false;
+    }
     delete timer;
 }
 
