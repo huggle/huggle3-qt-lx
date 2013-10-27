@@ -86,6 +86,7 @@ RevertQuery::~RevertQuery()
     if (this->edit != NULL)
     {
         this->edit->UnregisterConsumer("RevertQuery");
+        this->edit->UnregisterConsumer("Core::RevertEdit");
     }
     delete timer;
 }
