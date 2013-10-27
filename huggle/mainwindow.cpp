@@ -243,12 +243,10 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
         return;
     }
     // if there are actually some totaly old edits in history that we need to delete
-    int c = 0;
-    while (this->Historical.count() > Configuration::HistorySize && c < this->Historical.count())
+    while (this->Historical.count() > Configuration::HistorySize)
     {
         Core::DeleteEdit(this->Historical.at(c));
         this->Historical.removeAt(c);
-        c++;
     }
     // we need to safely delete the edit later
     this->Historical.append(e);
