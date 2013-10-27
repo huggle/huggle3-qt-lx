@@ -212,7 +212,6 @@ void Login::FinishLogin()
         return;
     }
     this->Progress(18);
-    Core::DebugLog(this->LoginQuery->Result->Data, 6);
     this->Token = this->LoginQuery->Result->Data;
     this->_Status = WaitingForToken;
     delete this->LoginQuery;
@@ -223,6 +222,15 @@ void Login::FinishLogin()
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName)
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;
+    // we generate a random string of same size of current password
+    QString pw = "";
+    while (pw.length() < Configuration::Password.length())
+    {
+        pw += ".";
+    }
+    // we no longer need a password since this
+    Configuration::Password = pw;
+    ui->lineEdit_3->setText(pw);
     this->LoginQuery->Process();
 }
 
@@ -305,9 +313,6 @@ void Login::FinishToken()
         return;
     }
     this->Progress(28);
-
-    // this is last step but in fact we should load the config now
-    Core::DebugLog(this->LoginQuery->Result->Data, 6);
 
     // Assume login was successful
     if (this->ProcessOutput())
