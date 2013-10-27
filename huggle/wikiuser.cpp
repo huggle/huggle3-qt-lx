@@ -16,9 +16,29 @@ QRegExp WikiUser::IPv6Regex("^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9]
                             ":(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){6,})(?3)?::(?>((?1)(?>:(?1)){0,4}):)?)"\
                             "?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\\.(?4)){3}))$");
 QList<WikiUser*> WikiUser::ProblematicUsers;
+QMutex WikiUser::ProblematicUserListLock(QMutex::Recursive);
+
+WikiUser *WikiUser::RetrieveUser(WikiUser *user)
+{
+    WikiUser::ProblematicUserListLock.lock();
+    int User = 0;
+    while (User < WikiUser::ProblematicUsers.count())
+    {
+        if (user->Username == WikiUser::ProblematicUsers.at(User)->Username)
+        {
+            WikiUser *u = WikiUser::ProblematicUsers.at(User);
+            WikiUser::ProblematicUserListLock.unlock();
+            return u;
+        }
+        User++;
+    }
+    WikiUser::ProblematicUserListLock.unlock();
+    return NULL;
+}
 
 void WikiUser::UpdateUser(WikiUser *us)
 {
+    WikiUser::ProblematicUserListLock.lock();
     if (!us->IP && us->BadnessScore <= Configuration::LocalConfig_WhitelistScore)
     {
         if (!Configuration::WhiteList.contains(us->Username))
@@ -37,15 +57,18 @@ void WikiUser::UpdateUser(WikiUser *us)
             }
             ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
+            WikiUser::ProblematicUserListLock.unlock();
             return;
         }
         c++;
     }
     ProblematicUsers.append(new WikiUser(us));
+    WikiUser::ProblematicUserListLock.unlock();
 }
 
 WikiUser::WikiUser()
 {
+    this->UserLock = new QMutex(QMutex::Recursive);
     this->Username = "";
     this->IP = true;
     this->BadnessScore = 0;
@@ -57,6 +80,7 @@ WikiUser::WikiUser()
 
 WikiUser::WikiUser(WikiUser *u)
 {
+    this->UserLock = new QMutex(QMutex::Recursive);
     this->IP = u->IP;
     this->Username = u->Username;
     this->WarningLevel = u->WarningLevel;
@@ -68,6 +92,7 @@ WikiUser::WikiUser(WikiUser *u)
 
 WikiUser::WikiUser(const WikiUser &u)
 {
+    this->UserLock = new QMutex(QMutex::Recursive);
     this->WarningLevel = u.WarningLevel;
     this->IsReported = u.IsReported;
     this->IP = u.IP;
@@ -79,6 +104,7 @@ WikiUser::WikiUser(const WikiUser &u)
 
 WikiUser::WikiUser(QString user)
 {
+    this->UserLock = new QMutex(QMutex::Recursive);
     this->IP = false;
     if (user != "")
     {
@@ -112,6 +138,7 @@ WikiUser::WikiUser(QString user)
 
 WikiUser::~WikiUser()
 {
+    delete UserLock;
     while (this->Contributions.count() > 0)
     {
         delete this->Contributions.at(0);
@@ -119,34 +146,33 @@ WikiUser::~WikiUser()
     }
 }
 
-WikiUser *WikiUser::RetrieveUser(WikiUser *user)
-{
-    int User = 0;
-    while (User < WikiUser::ProblematicUsers.count())
-    {
-        if (user->Username == WikiUser::ProblematicUsers.at(User)->Username)
-        {
-            return WikiUser::ProblematicUsers.at(User);
-        }
-    }
-    return NULL;
-}
-
 QString WikiUser::GetContentsOfTalkPage()
 {
+    // first we need to lock this object because it might be accessed from another thread in same moment
+    this->UserLock->lock();
     // check if there isn't some global talk page
     WikiUser *user = WikiUser::RetrieveUser(this);
+    // we need to copy the value to local variable so that if someone change it from different
+    // thread we are still working with same data
+    QString contents = "";
     if (user != NULL)
     {
-        return user->ContentsOfTalkPage;
+        // we return a value of user from global db instead of local
+        contents = user->ContentsOfTalkPage;
+        this->UserLock->unlock();
+        return contents;
     }
-    return this->ContentsOfTalkPage;
+    contents = this->ContentsOfTalkPage;
+    this->UserLock->unlock();
+    return contents;
 }
 
 void WikiUser::SetContentsOfTalkPage(QString text)
 {
+    this->UserLock->lock();
     this->ContentsOfTalkPage = text;
     this->Update();
+    this->UserLock->unlock();
 }
 
 void WikiUser::Update()

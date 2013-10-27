@@ -107,7 +107,7 @@ namespace Huggle
             QString Nick;
             QString UserName;
             QString Ident;
-            QMutex messages_lock;
+            QMutex *messages_lock;
             Message* GetMessage();
             QStringList Channels;
             int Port;
@@ -115,7 +115,7 @@ namespace Huggle
         private:
             bool __Connected;
             bool __IsConnecting;
-            QMutex writer_lock;
+            QMutex *writer_lock;
             NetworkIrc_th *NetworkThread;
             QTcpSocket *s;
         };

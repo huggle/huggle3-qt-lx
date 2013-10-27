@@ -109,26 +109,22 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (qi != NULL)
     {
+        item->page->Enqueued = false;
         this->layout->removeItem(qi);
         return;
     }
     int curr=0;
-    WikiEdit *e = NULL;
     while(curr<(this->layout->count()-1))
     {
         QLayoutItem *i = this->layout->itemAt(curr);
         HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
         if (label == item)
         {
-            e = label->page;
             this->layout->removeItem(i);
+            label->page->Enqueued = false;
             break;
         }
         curr++;
-    }
-    if (e != NULL)
-    {
-        e->Enqueued = false;
     }
 }
 

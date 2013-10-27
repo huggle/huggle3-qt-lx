@@ -12,6 +12,7 @@
 #define WIKIUSER_H
 
 #include <QList>
+#include <QMutex>
 #include <QString>
 #include <QRegExp>
 
@@ -35,6 +36,7 @@ namespace Huggle
         //! Update a list of problematic users
         static void UpdateUser(WikiUser *us);
         static WikiUser *RetrieveUser(WikiUser *user);
+        static QMutex ProblematicUserListLock;
         //! Username
         QString Username;
         /*!
@@ -93,6 +95,7 @@ namespace Huggle
         int WhitelistInfo;
         //! In case that we retrieved the talk page during parse of warning level, this string contains it
         QString ContentsOfTalkPage;
+        QMutex *UserLock;
         bool IP;
     };
 }

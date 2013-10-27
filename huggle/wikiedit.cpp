@@ -386,7 +386,7 @@ bool WikiEdit::IsPostProcessed()
     return false;
 }
 
-QMutex ProcessorThread::EditLock;
+QMutex ProcessorThread::EditLock(QMutex::Recursive);
 QList<WikiEdit*> ProcessorThread::PendingEdits;
 
 void ProcessorThread::run()

@@ -14,6 +14,8 @@ using namespace Huggle::IRC;
 
 NetworkIrc::NetworkIrc(QString server, QString nick)
 {
+    this->messages_lock = new QMutex(QMutex::Recursive);
+    this->writer_lock = new QMutex(QMutex::Recursive);
     this->__IsConnecting = false;
     this->Ident = "huggle";
     this->Nick = nick;
@@ -27,7 +29,9 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
 
 NetworkIrc::~NetworkIrc()
 {
+    delete this->messages_lock;
     delete this->NetworkThread;
+    delete this->writer_lock;
     delete this->s;
 }
 
@@ -90,9 +94,9 @@ void NetworkIrc::Data(QString text)
     {
         return;
     }
-    this->writer_lock.lock();
+    this->writer_lock->lock();
     this->s->write((text + QString("\n")).toUtf8());
-    this->writer_lock.unlock();
+    this->writer_lock->unlock();
 }
 
 void NetworkIrc::Send(QString name, QString text)
@@ -108,17 +112,17 @@ void NetworkIrc::Exit()
 Message* NetworkIrc::GetMessage()
 {
     Message *message;
-    this->messages_lock.lock();
+    this->messages_lock->lock();
     if (this->Messages.count() == 0)
     {
-        this->messages_lock.unlock();
+        this->messages_lock->unlock();
         return NULL;
     } else
     {
         message = new Message(Messages.at(0));
         this->Messages.removeAt(0);
     }
-    this->messages_lock.unlock();
+    this->messages_lock->unlock();
     return message;
 }
 
@@ -241,9 +245,9 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
     message.user = user;
     xx = xx.replace("\r\n", "");
     message.Text = xx.mid(xx.indexOf(" :") + 2);
-    this->root->messages_lock.lock();
+    this->root->messages_lock->lock();
     this->root->Messages.append(message);
-    this->root->messages_lock.unlock();
+    this->root->messages_lock->unlock();
 }
 
 bool NetworkIrc_th::IsFinished()
