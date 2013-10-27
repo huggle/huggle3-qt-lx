@@ -190,6 +190,7 @@ void Login::PerformLogin()
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName);
+    this->LoginQuery->HiddenQuery = true;
     this->LoginQuery->UsingPOST = true;
     this->LoginQuery->Process();
     this->_Status = WaitingForLoginQuery;
