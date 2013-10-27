@@ -106,6 +106,7 @@ void HuggleTool::FinishPage()
     }
 
     edit = new WikiEdit();
+    edit->RegisterConsumer("MainForm");
     edit->Page = new WikiPage(this->ui->comboBox_2->lineEdit()->text());
     QDomDocument d;
     d.setContent(this->query->Result->Data);

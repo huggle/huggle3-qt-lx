@@ -71,8 +71,6 @@ namespace Huggle
         static QList<WikiEdit*> EditList;
         //! Creates a new empty wiki edit
         WikiEdit();
-        WikiEdit(const WikiEdit& edit);
-        WikiEdit(WikiEdit *edit);
         ~WikiEdit();
         //! This function is called by core
         bool FinalizePostProcessing();

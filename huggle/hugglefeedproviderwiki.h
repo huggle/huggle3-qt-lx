@@ -45,9 +45,9 @@ namespace Huggle
         QDateTime LatestTime;
         void Process(QString data);
         bool Refreshing;
-        QList<WikiEdit> *Buffer;
+        QList<WikiEdit*> *Buffer;
         ApiQuery *q;
-        void InsertEdit(WikiEdit edit);
+        void InsertEdit(WikiEdit *edit);
     };
 }
 

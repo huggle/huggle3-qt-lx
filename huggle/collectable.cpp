@@ -27,7 +27,7 @@ Collectable::~Collectable()
 {
     if (this->IsManaged())
     {
-        throw new Exception("Request to delete managed query");
+        throw new Exception("Request to delete managed entity");
     }
     delete this->QL;
 }

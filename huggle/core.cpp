@@ -900,6 +900,7 @@ void Core::PostProcessEdit(WikiEdit *_e)
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
     _e->RegisterConsumer("Core::PostProcessEdit");
+    _e->UnregisterConsumer("WikiEdit");
     _e->PostProcess();
     Core::ProcessingEdits.append(_e);
 }

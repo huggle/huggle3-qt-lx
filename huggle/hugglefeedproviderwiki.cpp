@@ -14,7 +14,7 @@ using namespace Huggle;
 
 HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
-    Buffer = new QList<WikiEdit>();
+    Buffer = new QList<WikiEdit*>();
     Refreshing = false;
     q = NULL;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
@@ -24,6 +24,11 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
+    while (Buffer->count() > 0)
+    {
+        Buffer->at(0)->UnregisterConsumer("WikiEdit");
+        Buffer->removeAt(0);
+    }
     delete Buffer;
     if (q != NULL)
     {
@@ -107,7 +112,7 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
     {
         return NULL;
     }
-    WikiEdit *edit = new WikiEdit(this->Buffer->at(0));
+    WikiEdit *edit = this->Buffer->at(0);
     this->Buffer->removeAt(0);
     Core::PostProcessEdit(edit);
     return edit;
@@ -182,51 +187,51 @@ void HuggleFeedProviderWiki::Process(QString data)
             continue;
         }
 
-        WikiEdit edit;
-        edit.Page = new WikiPage(item.attribute("title"));
+        WikiEdit *edit = new WikiEdit();
+        edit->Page = new WikiPage(item.attribute("title"));
 
         if (type == "new")
         {
-            edit.NewPage = true;
+            edit->NewPage = true;
         }
 
         if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
         {
-            edit.Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
+            edit->Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
         }
 
         if (item.attributes().contains("user"))
         {
-            edit.User = new WikiUser(item.attribute("user"));
+            edit->User = new WikiUser(item.attribute("user"));
         }
 
         if (item.attributes().contains("comment"))
         {
-            edit.Summary = item.attribute("comment");
+            edit->Summary = item.attribute("comment");
         }
 
         if (item.attributes().contains("bot"))
         {
-            edit.Bot = true;
+            edit->Bot = true;
         }
 
         if (item.attributes().contains("anon"))
         {
-            edit.User->ForceIP();
+            edit->User->ForceIP();
         }
 
         if (item.attributes().contains("revid"))
         {
-            edit.RevID = QString(item.attribute("revid")).toInt();
-            if (edit.RevID == 0)
+            edit->RevID = QString(item.attribute("revid")).toInt();
+            if (edit->RevID == 0)
             {
-                edit.RevID = -1;
+                edit->RevID = -1;
             }
         }
 
         if (item.attributes().contains("minor"))
         {
-            edit.Minor = true;
+            edit->Minor = true;
         }
 
         this->InsertEdit(edit);
@@ -239,16 +244,24 @@ void HuggleFeedProviderWiki::Process(QString data)
     }
 }
 
-void HuggleFeedProviderWiki::InsertEdit(WikiEdit edit)
+void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
     Configuration::EditCounter++;
-    Core::PreProcessEdit(&edit);
+    Core::PreProcessEdit(edit);
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
     {
-        while (this->Buffer->size() > Configuration::ProviderCache)
+        if (this->Buffer->size() > Configuration::ProviderCache)
         {
-            this->Buffer->removeAt(0);
+            while (this->Buffer->size() > (Configuration::ProviderCache - 10))
+            {
+                this->Buffer->at(0)->UnregisterConsumer("WikiEdit");
+                this->Buffer->removeAt(0);
+            }
+            Core::Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
         }
         this->Buffer->append(edit);
+    } else
+    {
+        edit->UnregisterConsumer("WikiEdit");
     }
 }

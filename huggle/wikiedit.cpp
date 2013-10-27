@@ -14,6 +14,7 @@ QList<WikiEdit*> WikiEdit::EditList;
 
 WikiEdit::WikiEdit()
 {
+    this->RegisterConsumer("WikiEdit");
     this->Bot = false;
     this->User = NULL;
     this->Minor = false;
@@ -43,89 +44,6 @@ WikiEdit::WikiEdit()
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
-    WikiEdit::EditList.append(this);
-}
-
-WikiEdit::WikiEdit(const WikiEdit &edit)
-{
-    this->User = NULL;
-    this->Page = NULL;
-    this->Bot = edit.Bot;
-    this->Minor = edit.Minor;
-    this->NewPage = edit.NewPage;
-    if (edit.Page != NULL)
-    {
-        this->Page = new WikiPage(edit.Page);
-    }
-    this->Size = edit.Size;
-    if (edit.User != NULL)
-    {
-        this->User = new WikiUser(edit.User);
-    }
-    this->Diff = edit.Diff;
-    this->OldID = edit.OldID;
-    this->CurrentUserWarningLevel = edit.CurrentUserWarningLevel;
-    this->Summary = edit.Summary;
-    this->Status = edit.Status;
-    this->RollbackToken = edit.RollbackToken;
-    this->OwnEdit = edit.OwnEdit;
-    this->EditMadeByHuggle = edit.EditMadeByHuggle;
-    this->Time = edit.Time;
-    this->TrustworthEdit = edit.TrustworthEdit;
-    this->PostProcessing = false;
-    this->ProcessingQuery = NULL;
-    this->DifferenceQuery = NULL;
-    this->ProcessingDiff = false;
-    this->ProcessingRevs = false;
-    this->DiffText = edit.DiffText;
-    this->Priority = edit.Priority;
-    this->Previous = NULL;
-    this->Next = NULL;
-    this->Score = edit.Score;
-    this->ProcessingByWorkerThread = false;
-    this->ProcessedByWorkerThread = false;
-    this->RevID = edit.RevID;
-    WikiEdit::EditList.append(this);
-}
-
-WikiEdit::WikiEdit(WikiEdit *edit)
-{
-    this->User = NULL;
-    this->Page = NULL;
-    this->Bot = edit->Bot;
-    this->Minor = edit->Minor;
-    this->NewPage = edit->NewPage;
-    if (edit->Page != NULL)
-    {
-        this->Page = new WikiPage(edit->Page);
-    }
-    this->Size = edit->Size;
-    if (edit->User != NULL)
-    {
-        this->User = new WikiUser(edit->User);
-    }
-    this->OldID = edit->OldID;
-    this->CurrentUserWarningLevel = edit->CurrentUserWarningLevel;
-    this->Summary = edit->Summary;
-    this->Diff = edit->Diff;
-    this->OwnEdit = edit->OwnEdit;
-    this->Status = edit->Status;
-    this->RollbackToken = edit->RollbackToken;
-    this->EditMadeByHuggle = edit->EditMadeByHuggle;
-    this->Time = edit->Time;
-    this->TrustworthEdit = edit->TrustworthEdit;
-    this->PostProcessing = false;
-    this->ProcessingQuery = NULL;
-    this->DifferenceQuery = NULL;
-    this->ProcessingDiff = false;
-    this->ProcessingRevs = false;
-    this->DiffText = edit->DiffText;
-    this->Priority = edit->Priority;
-    this->Previous = NULL;
-    this->Next = NULL;
-    this->Score = edit->Score;
-    this->ProcessingByWorkerThread = false;
-    this->ProcessedByWorkerThread = false;
     WikiEdit::EditList.append(this);
 }
 

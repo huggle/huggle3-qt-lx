@@ -67,8 +67,3 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     return true;
 }
 
-bool HuggleQueueFilter::Matches(WikiEdit edit)
-{
-    return this->Matches(&edit);
-}
-

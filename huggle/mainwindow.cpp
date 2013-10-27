@@ -551,30 +551,27 @@ void MainWindow::on_Tick()
         {
             // we take the edit and start post processing it
             WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
-            Core::PostProcessEdit(edit);
-            PendingEdits.append(edit);
+            if (edit != NULL)
+            {
+                Core::PostProcessEdit(edit);
+                PendingEdits.append(edit);
+            }
         }
     }
     if (PendingEdits.count() > 0)
     {
         // postprocessed edits can be added to queue
-        QList<WikiEdit*> Processed;
         int c = 0;
         while (c<PendingEdits.count())
         {
             if (PendingEdits.at(c)->IsPostProcessed())
             {
-                Processed.append(PendingEdits.at(c));
+                this->Queue1->AddItem(PendingEdits.at(c));
+                PendingEdits.removeAt(c);
+            } else
+            {
+                c++;
             }
-            c++;
-        }
-        c = 0;
-        while (c< Processed.count())
-        {
-            // insert it to queue
-            this->Queue1->AddItem(Processed.at(c));
-            PendingEdits.removeOne(Processed.at(c));
-            c++;
         }
     }
     QString t = "Currently processing " + QString::number(Core::ProcessingEdits.count())

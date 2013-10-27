@@ -25,7 +25,6 @@ namespace Huggle
         QString QueueName;
         HuggleQueueFilter();
         bool Matches(WikiEdit *edit);
-        bool Matches(WikiEdit edit);
     private:
         bool IgnoreMinor;
         bool IgnoreUsers;

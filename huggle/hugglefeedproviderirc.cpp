@@ -22,6 +22,11 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
+    while (Buffer.count() > 0)
+    {
+        Buffer.at(0)->UnregisterConsumer("ProviderIRC");
+        Buffer.removeAt(0);
+    }
     this->Stop();
     delete this->thread;
     delete TcpSocket;
@@ -104,13 +109,20 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
     {
         this->lock.lock();
-        while (this->Buffer.size() > Configuration::ProviderCache)
+        if (this->Buffer.size() > Configuration::ProviderCache)
         {
-            delete this->Buffer.at(0);
-            this->Buffer.removeAt(0);
+            while (this->Buffer.size() > (Configuration::ProviderCache - 10))
+            {
+                this->Buffer.at(0)->UnregisterConsumer("ProviderIRC");
+                this->Buffer.removeAt(0);
+            }
+            Core::Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
         }
         this->Buffer.append(edit);
         this->lock.unlock();
+    } else
+    {
+        edit->UnregisterConsumer("ProviderIRC");
     }
 }
 
@@ -153,11 +165,13 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
+    edit->RegisterConsumer("ProviderIRC");
+    edit->UnregisterConsumer("WikiEdit");
 
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
         Core::DebugLog("Invalid line (no:x4:" + line);
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -171,98 +185,116 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     // but I will later use all of these actions for something too
     if (flags.contains("patrol"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("modify"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("reviewed"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("block"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("protect"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("reblock"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
+        return;
+    }
+
+    if (flags.contains("unhelpful"))
+    {
+        edit->UnregisterConsumer("ProviderIRC");
+        return;
+    }
+
+    if (flags.contains("helpful"))
+    {
+        edit->UnregisterConsumer("ProviderIRC");
+        return;
+    }
+
+    if (flags.contains("approve"))
+    {
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("resolve"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("upload"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("feature"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("noaction"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("selfadd"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("overwrite"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("hit"))
     {
         // abuse filter hit
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("create"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("delete"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
     if (flags.contains("move"))
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -271,7 +303,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("?diff="))
         {
             Core::DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
-            delete edit;
+            edit->UnregisterConsumer("ProviderIRC");
             return;
         }
 
@@ -280,7 +312,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("&"))
         {
             Core::DebugLog("Invalid line (no &):" + line);
-            delete edit;
+            edit->UnregisterConsumer("ProviderIRC");
             return;
         }
 
@@ -291,7 +323,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains("oldid="))
     {
         Core::DebugLog("Invalid line (no oldid?):" + line);
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -300,7 +332,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(003))))
     {
         Core::DebugLog("Invalid line (no termin):" + line);
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -309,7 +341,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         Core::DebugLog("Invalid line, no user: " + line);
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -318,7 +350,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(3))))
     {
         Core::DebugLog("Invalid line (no termin):" + line);
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -326,7 +358,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (name == "")
     {
-        delete edit;
+        edit->UnregisterConsumer("ProviderIRC");
         return;
     }
 
@@ -450,6 +482,7 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     this->Buffer.removeAt(0);
     this->lock.unlock();
     Core::PostProcessEdit(edit);
+    edit->UnregisterConsumer("ProviderIRC");
     return edit;
 }
 
