@@ -61,7 +61,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Language:</string>
+    <string notr="true">Language:</string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">
@@ -103,7 +103,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Login</string>
+    <string notr="true">Login</string>
    </property>
    <property name="default">
     <bool>true</bool>
@@ -119,7 +119,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string notr="true">Exit</string>
    </property>
   </widget>
   <widget class="QComboBox" name="Project">
@@ -232,7 +232,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Username</string>
+      <string notr="true">Username</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -245,7 +245,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Password</string>
+      <string notr="true">Password</string>
      </property>
     </widget>
    </widget>
@@ -260,7 +260,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Project:</string>
+    <string notr="true">Project:</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox">
@@ -286,7 +286,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://meta.wikimedia.org/wiki/Huggle/Localization&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Translate huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://meta.wikimedia.org/wiki/Huggle/Localization&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Translate huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -325,7 +325,7 @@
     <string>Download a list of wikis where huggle is enabled from internet</string>
    </property>
    <property name="text">
-    <string>Reload</string>
+    <string notr="true">Reload</string>
    </property>
   </widget>
  </widget>

@@ -19,6 +19,7 @@ no:                        No
 ok:                        OK
 remove:                    Remove
 rename:                    Rename
+reload:                    Reload
 restorewindow:             Restore
 save:                      Save
 selectfile:                Browse...

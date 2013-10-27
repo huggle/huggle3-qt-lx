@@ -64,6 +64,7 @@ void Login::Localize()
     ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
     ui->checkBox->setText(Core::Localize("[[login-ssl]]"));
     ui->label_2->setText(Core::Localize("[[login-username]]"));
+    ui->pushButton->setText(Core::Localize("[[reload]]"));
     ui->label_3->setText(Core::Localize("[[login-username]]"));
     ui->label_4->setText(Core::Localize("[[login-project]]"));
     ui->label_5->setText(Core::Localize("[[login-language]]"));
