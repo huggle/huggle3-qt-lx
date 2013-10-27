@@ -197,7 +197,7 @@ void Core::DeleteEdit(WikiEdit *edit)
         edit->Next->Previous = NULL;
     }
 
-    delete edit;
+    edit->UnregisterConsumer("MainForm");
 }
 
 QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)

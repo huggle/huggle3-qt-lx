@@ -238,15 +238,16 @@ namespace Huggle
         void on_actionEdit_info_triggered();
 
     private:
-        //! Check if huggle is shutting down or not, in case it is, message box is shown as well
-        //! this function should be called before every action user can trigger
-        bool CheckExit();
         QTimer *timer1;
         // Whitelist
         QTimer *wlt;
         QLabel *Status;
         bool EditablePage;
         WaitingForm *fWaiting;
+        QList <WikiEdit*> Historical;
+        //! Check if huggle is shutting down or not, in case it is, message box is shown as well
+        //! this function should be called before every action user can trigger
+        bool CheckExit();
         void DisplayWelcomeMessage();
         void Welcome();
         void Render();
