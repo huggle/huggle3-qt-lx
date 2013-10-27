@@ -36,6 +36,25 @@ WikiUser *WikiUser::RetrieveUser(WikiUser *user)
     return NULL;
 }
 
+void WikiUser::TrimProblematicUsersList()
+{
+    WikiUser::ProblematicUserListLock.lock();
+    int i = 0;
+    while (i < WikiUser::ProblematicUsers.count())
+    {
+        WikiUser *user = WikiUser::ProblematicUsers.at(i);
+        if (user->BadnessScore == 0 && user->WarningLevel == 0)
+        {
+            // there is no point to hold information for them
+            WikiUser::ProblematicUsers.removeAt(i);
+            delete user;
+            continue;
+        }
+        i++;
+    }
+    WikiUser::ProblematicUserListLock.unlock();
+}
+
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();

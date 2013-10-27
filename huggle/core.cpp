@@ -321,13 +321,16 @@ void Core::SaveDefs()
         return;
     }
     QString xx = "<definitions>\n";
+    WikiUser::TrimProblematicUsersList();
     int x = 0;
+    WikiUser::ProblematicUserListLock.lock();
     while (x<WikiUser::ProblematicUsers.count())
     {
         xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
                 QString::number(WikiUser::ProblematicUsers.at(x)->BadnessScore) +"\"></user>\n";
         x++;
     }
+    WikiUser::ProblematicUserListLock.unlock();
     xx += "</definitions>";
     file.write(xx.toUtf8());
     file.close();

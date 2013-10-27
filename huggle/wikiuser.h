@@ -37,6 +37,7 @@ namespace Huggle
         static void UpdateUser(WikiUser *us);
         static WikiUser *RetrieveUser(WikiUser *user);
         static QMutex ProblematicUserListLock;
+        static void TrimProblematicUsersList();
         //! Username
         QString Username;
         /*!
