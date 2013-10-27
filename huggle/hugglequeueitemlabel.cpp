@@ -103,7 +103,7 @@ void HuggleQueueItemLabel::Remove()
     {
         this->ParentQueue->Items.removeOne(this);
     }
-    Core::DeleteEdit(this->page);
+    this->page->UnregisterConsumer("HuggleQueue");
     this->page = NULL;
     this->close();
     ParentQueue->Delete(this);
