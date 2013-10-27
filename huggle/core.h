@@ -21,9 +21,9 @@
 #include <QMap>
 #include <QtXml>
 #include <QMessageBox>
+#include "query.h"
 #include "login.h"
 #include "configuration.h"
-#include "query.h"
 #include "wikiedit.h"
 #include "mainwindow.h"
 #include "exceptionwindow.h"
@@ -49,6 +49,7 @@ namespace Huggle
     class HuggleFeed;
     class EditQuery;
     class ProcessorThread;
+    class Collectable;
     class HuggleQueueFilter;
     class WikiSite;
     class WikiPage;
@@ -244,10 +245,6 @@ namespace Huggle
         static QString Localize(QString key);
         static void LoadLocalizations();
         static bool ReportPreFlightCheck();
-        /*!
-         * \brief Truncate all edits that are kept in cache but aren't needed anymore so that we don't use so much memory
-         */
-        static void DeleteEdits();
     private:
         //! Ring log is a buffer that contains system messages
         static QStringList RingLog;

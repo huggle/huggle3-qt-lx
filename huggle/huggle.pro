@@ -50,7 +50,6 @@ SOURCES += main.cpp\
     wlquery.cpp \
     processlist.cpp \
     ignorelist.cpp \
-    querygc.cpp \
     message.cpp \
     scorewordsdbform.cpp \
     history.cpp \
@@ -71,7 +70,9 @@ SOURCES += main.cpp\
     vandalnw.cpp \
     networkirc.cpp \
     updateform.cpp \
-    uaareport.cpp
+    uaareport.cpp \
+    collectable.cpp \
+    gc.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -105,7 +106,6 @@ HEADERS  += mainwindow.h \
     wlquery.h \
     processlist.h \
     ignorelist.h \
-    querygc.h \
     message.h \
     scorewordsdbform.h \
     history.h \
@@ -126,7 +126,9 @@ HEADERS  += mainwindow.h \
     vandalnw.h \
     networkirc.h \
     updateform.h \
-    uaareport.h
+    uaareport.h \
+    collectable.h \
+    gc.h
 
 FORMS    += mainwindow.ui \
     login.ui \

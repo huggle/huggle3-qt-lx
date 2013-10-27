@@ -18,6 +18,7 @@
 #include <QtXml>
 #include <QList>
 #include "apiquery.h"
+#include "collectable.h"
 #include "wikiuser.h"
 #include "wikipage.h"
 
@@ -63,7 +64,7 @@ namespace Huggle
     //! Wiki edit
 
     //! Basically all changes to pages can be represented by this class
-    class WikiEdit
+    class WikiEdit : public Collectable
     {
     public:
         //! This list contains reference to all existing edits in memory
@@ -98,16 +99,11 @@ namespace Huggle
         int Diff;
         //! Priority in queue
         int Priority;
-        bool Enqueued;
         //! Old id
         int OldID;
         //! Revision ID
         int RevID;
-        bool IsReverted;
         WEStatus Status;
-        //! Lock that prevents core from deleting this edit from memory
-        //! useful when you need to move edit between queues
-        bool DeletionLock;
         //! Current warning level
         WarningLevel CurrentUserWarningLevel;
         //! Summary of edit

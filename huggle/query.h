@@ -18,8 +18,9 @@
 #include <QStringList>
 #include <QNetworkAccessManager>
 #include "queryresult.h"
+#include "collectable.h"
 #include "exception.h"
-#include "querygc.h"
+#include "gc.h"
 
 namespace Huggle
 {
@@ -59,7 +60,7 @@ namespace Huggle
     //! That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
-    class Query : public QObject
+    class Query : public QObject, public Collectable
     {
     public:
         //! Result of query, see documentation of QueryResult for more
@@ -104,57 +105,21 @@ namespace Huggle
         virtual bool Processed();
         virtual void Process() {}
         virtual void Kill() {}
-        bool IsLocked();
-        void Lock();
-        void Unlock();
-        /*!
-         * \brief IsManaged
-         *  Managed query is deleted by GC and must not be deleted by hand
-         * \return whether the query is managed
-         */
-        bool IsManaged();
         virtual QString QueryTypeToString();
         virtual QString QueryTargetToString();
         virtual QString QueryStatusToString();
         //! If you inherit query you should allways call this from a signal that
         //! you receive when the query finish
         void ProcessCallback();
-        //! Use this if you are not sure if you can delete this object in this moment
-        virtual bool SafeDelete();
-        /*!
-         * \brief Registers a consumer
-         *
-         * This function will store a string which prevent the object from being removed
-         * by QueryGC, by calling this function you change the query type to managed
-         * \param consumer String that lock the object
-         */
-        void RegisterConsumer(QString consumer);
-        /*!
-         * \brief This function will remove a string which prevent the object from being removed
-         * \param consumer Unique string that unlock the object
-         */
-        void UnregisterConsumer(QString consumer);
-        //! Print some debug information regarding the query into system log
-        QString DebugQgc();
         //! Every query has own unique ID which can be used to work with them
         //! this function returns that
         unsigned int QueryID();
 
     private:
-        //! Internal variable that contains a cache whether object is managed
-        bool Managed;
-        void SetManaged();
-        //! Some queries are needed for dependency setup, so we need to delete them
-        //! later once the dependency is processed
-        QStringList Consumers;
         //! Every query has own unique ID which can be used to work with them
         unsigned int ID;
         //! This is a last ID used by a constructor of a query
         static unsigned int LastID;
-        QMutex QL;
-        QMutex InternalLock;
-        QThread *LockingThread;
-        bool Locked;
     };
 }
 

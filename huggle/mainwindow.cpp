@@ -245,9 +245,6 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
     // we need to safely delete the edit later
     if (this->CurrentEdit != NULL)
     {
-        // we can mark it as safe to delete just in case edit was constructed
-        // by some other function that didn't take a care of that
-        e->DeletionLock = false;
         if (!IgnoreHistory)
         {
             if (this->CurrentEdit->Next != NULL)
@@ -499,7 +496,7 @@ void MainWindow::on_Tick()
 {
     Core::FinalizeMessages();
     bool RetrieveEdit = true;
-    QueryGC::DeleteOld();
+    GC::DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
@@ -572,7 +569,7 @@ void MainWindow::on_Tick()
             + " edits waiting in queue";
     if (Configuration::Verbosity > 0)
     {
-        t += " QGC: " + QString::number(QueryGC::qgc.count())
+        t += " QGC: " + QString::number(GC::list.count())
                 + "U: " + QString::number(WikiUser::ProblematicUsers.count());
     }
     this->Status->setText(t);
@@ -597,7 +594,6 @@ void MainWindow::on_Tick()
             Edit++;
         }
     }
-    Core::DeleteEdits();
     Core::CheckQueries();
     this->lUnwrittenLogs.lock();
     if (this->UnwrittenLogs.count() > 0)
@@ -1296,10 +1292,10 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 void MainWindow::on_actionList_all_QGC_items_triggered()
 {
     int xx=0;
-    while (xx<QueryGC::qgc.count())
+    while (xx<GC::list.count())
     {
-        Query *query = QueryGC::qgc.at(xx);
-        Core::Log(query->DebugQgc());
+        Collectable *query = GC::list.at(xx);
+        Core::Log(query->DebugHgc());
         xx++;
     }
 }

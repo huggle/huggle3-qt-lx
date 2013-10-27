@@ -8,30 +8,25 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "querygc.h"
+#ifndef GC_H
+#define GC_H
 
-using namespace Huggle;
+#include <QList>
+#include <QMutex>
+#include "collectable.h"
 
-QList<Query*> QueryGC::qgc;
-QMutex QueryGC::Lock;
-
-void QueryGC::DeleteOld()
+namespace Huggle
 {
-    int curr=0;
-    while(curr<QueryGC::qgc.count())
+    class Collectable;
+    class GC
     {
-        Query *q = QueryGC::qgc.at(curr);
-        q->Lock();
-        if (!q->IsManaged())
-        {
-            QueryGC::qgc.removeAt(curr);
-            delete q;
-            continue;
-        }
-        if (!q->SafeDelete())
-        {
-            q->Unlock();
-            curr++;
-        }
-    }
+    public:
+        //! List of all managed queries that qgc keeps track of
+        static QList<Collectable*> list;
+        static QMutex Lock;
+        //! Function that walks through the list and delete these that can be deleted
+        static void DeleteOld();
+    };
 }
+
+#endif // GC_H

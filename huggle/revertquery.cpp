@@ -28,7 +28,7 @@ RevertQuery::RevertQuery()
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
 {
-    Edit->IsReverted = true;
+    Edit->RegisterConsumer("RevertQuery");
     this->Type = QueryRevert;
     this->qRevert = NULL;
     this->edit = Edit;
@@ -85,7 +85,7 @@ RevertQuery::~RevertQuery()
 {
     if (this->edit != NULL)
     {
-        this->edit->IsReverted = false;
+        this->edit->UnregisterConsumer("RevertQuery");
     }
     delete timer;
 }

@@ -159,7 +159,6 @@ bool Configuration::LocalConfig_ConfirmPage = false;
 bool Configuration::LocalConfig_ConfirmSame = false;
 bool Configuration::LocalConfig_ConfirmWarned = false;
 int Configuration::FontSize = 10;
-unsigned int Configuration::MaximumEditsInMemory = 600;
 
 QString Configuration::GetURLProtocolPrefix()
 {

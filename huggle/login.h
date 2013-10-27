@@ -17,6 +17,7 @@
 #include <QUrl>
 #include <QtXml>
 #include <QTimer>
+#include "collectable.h"
 #include "core.h"
 #include "oauthloginquery.h"
 #include "wlquery.h"
