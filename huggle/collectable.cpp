@@ -34,7 +34,7 @@ Collectable::~Collectable()
 
 bool Collectable::SafeDelete()
 {
-    if (this->Consumers.count() == 0)
+    if (this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
         GC::Lock.lock();
         if (GC::list.contains(this))
@@ -49,6 +49,25 @@ bool Collectable::SafeDelete()
 
     this->SetManaged();
     return false;
+}
+
+void Collectable::RegisterConsumer(int consumer)
+{
+    this->Lock();
+    if (!this->iConsumers.contains(consumer))
+    {
+        this->iConsumers.append(consumer);
+    }
+    this->SetManaged();
+    this->Unlock();
+}
+
+void Collectable::UnregisterConsumer(int consumer)
+{
+    this->Lock();
+    this->iConsumers.removeAll(consumer);
+    this->SetManaged();
+    this->Unlock();
 }
 
 void Collectable::RegisterConsumer(QString consumer)
@@ -73,6 +92,18 @@ unsigned long Collectable::CollectableID()
     return this->CID;
 }
 
+QString Collectable::ConsumerIdToString(int id)
+{
+    switch (id)
+    {
+    case HUGGLECONSUMER_WIKIEDIT:
+        return "WikiEdit";
+    case HUGGLECONSUMER_PROVIDERIRC:
+        return "ProviderIRC";
+    }
+    return "Unknown consumer: " + QString::number(id);
+}
+
 void Collectable::SetManaged()
 {
     this->Managed = true;
@@ -85,13 +116,19 @@ void Collectable::SetManaged()
 QString Collectable::DebugHgc()
 {
     QString result = "";
-    if (this->Consumers.count() > 0)
+    if (this->iConsumers.count() > 0 || this->Consumers.count() > 0)
     {
         result += ("GC: Listing all dependencies for " + QString::number(this->CollectableID())) + "\n";
         int Item=0;
         while (Item < this->Consumers.count())
         {
             result +=("GC: " + QString::number(this->CollectableID()) + " " + this->Consumers.at(Item)) + "\n";
+            Item++;
+        }
+        Item=0;
+        while (Item < this->iConsumers.count())
+        {
+            result +=("GC: " + QString::number(this->CollectableID()) + " " + ConsumerIdToString( this->iConsumers.at(Item)) ) + "\n";
             Item++;
         }
     } else
@@ -124,5 +161,5 @@ bool Collectable::IsManaged()
     {
         return true;
     }
-    return (this->Consumers.count() > 0);
+    return ((this->Consumers.count() > 0) || (this->iConsumers.count() > 0));
 }

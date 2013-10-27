@@ -24,7 +24,7 @@ HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
     while (Buffer.count() > 0)
     {
-        Buffer.at(0)->UnregisterConsumer("ProviderIRC");
+        Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         Buffer.removeAt(0);
     }
     this->Stop();
@@ -113,7 +113,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         {
             while (this->Buffer.size() > (Configuration::ProviderCache - 10))
             {
-                this->Buffer.at(0)->UnregisterConsumer("ProviderIRC");
+                this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
                 this->Buffer.removeAt(0);
             }
             Core::Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
@@ -122,7 +122,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         this->lock.unlock();
     } else
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     }
 }
 
@@ -165,13 +165,13 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
-    edit->RegisterConsumer("ProviderIRC");
-    edit->UnregisterConsumer("WikiEdit");
+    edit->RegisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
 
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
         Core::DebugLog("Invalid line (no:x4:" + line);
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -185,116 +185,116 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     // but I will later use all of these actions for something too
     if (flags.contains("patrol"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("modify"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("reviewed"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("block"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("protect"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("reblock"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("unhelpful"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("helpful"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("approve"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("resolve"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("upload"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("feature"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("noaction"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("selfadd"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("overwrite"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("hit"))
     {
         // abuse filter hit
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("create"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("delete"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
     if (flags.contains("move"))
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -303,7 +303,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("?diff="))
         {
             Core::DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
-            edit->UnregisterConsumer("ProviderIRC");
+            edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
             return;
         }
 
@@ -312,7 +312,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("&"))
         {
             Core::DebugLog("Invalid line (no &):" + line);
-            edit->UnregisterConsumer("ProviderIRC");
+            edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
             return;
         }
 
@@ -323,7 +323,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains("oldid="))
     {
         Core::DebugLog("Invalid line (no oldid?):" + line);
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -332,7 +332,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(003))))
     {
         Core::DebugLog("Invalid line (no termin):" + line);
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -341,7 +341,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         Core::DebugLog("Invalid line, no user: " + line);
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -350,7 +350,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains(QString(QChar(3))))
     {
         Core::DebugLog("Invalid line (no termin):" + line);
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -358,7 +358,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (name == "")
     {
-        edit->UnregisterConsumer("ProviderIRC");
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
 
@@ -482,7 +482,7 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     this->Buffer.removeAt(0);
     this->lock.unlock();
     Core::PostProcessEdit(edit);
-    edit->UnregisterConsumer("ProviderIRC");
+    edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     return edit;
 }
 

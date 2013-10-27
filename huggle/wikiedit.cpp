@@ -14,7 +14,7 @@ QList<WikiEdit*> WikiEdit::EditList;
 
 WikiEdit::WikiEdit()
 {
-    this->RegisterConsumer("WikiEdit");
+    this->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->Bot = false;
     this->User = NULL;
     this->Minor = false;

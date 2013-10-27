@@ -15,6 +15,9 @@
 #include <QMutex>
 #include "collectable.h"
 
+#define HUGGLECONSUMER_WIKIEDIT 0
+#define HUGGLECONSUMER_PROVIDERIRC 1
+
 namespace Huggle
 {
     class Collectable;
