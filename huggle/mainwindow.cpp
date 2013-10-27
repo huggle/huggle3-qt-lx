@@ -242,14 +242,23 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
     {
         return;
     }
+    // we need to safely delete the edit later
+    e->RegisterConsumer("MainForm");
     // if there are actually some totaly old edits in history that we need to delete
     while (this->Historical.count() > Configuration::HistorySize)
     {
-        Core::DeleteEdit(this->Historical.at(0));
+        WikiEdit *prev = this->Historical.at(0);
+        if (prev == e)
+        {
+            break;
+        }
         this->Historical.removeAt(0);
+        Core::DeleteEdit(prev);
     }
-    // we need to safely delete the edit later
-    this->Historical.append(e);
+    if (this->Historical.contains(e) == false)
+    {
+        this->Historical.append(e);
+    }
     if (this->CurrentEdit != NULL)
     {
         if (!IgnoreHistory)
@@ -583,22 +592,19 @@ void MainWindow::on_Tick()
     // let's refresh the edits that are being post processed
     if (Core::ProcessingEdits.count() > 0)
     {
-        QList<WikiEdit*> rm;
         int Edit = 0;
         while (Edit < Core::ProcessingEdits.count())
         {
             if (Core::ProcessingEdits.at(Edit)->FinalizePostProcessing())
             {
-                rm.append(Core::ProcessingEdits.at(Edit));
+                WikiEdit *e = Core::ProcessingEdits.at(Edit);
+                Core::ProcessingEdits.removeAt(Edit);
+                e->UnregisterConsumer("Core::PostProcessEdit");
             }
-            Edit++;
-        }
-        // remove the edits that were already processed from queue now :o
-        Edit = 0;
-        while (Edit < rm.count())
-        {
-            Core::ProcessingEdits.removeOne(rm.at(Edit));
-            Edit++;
+            else
+            {
+                Edit++;
+            }
         }
     }
     Core::CheckQueries();

@@ -183,7 +183,7 @@ void Core::DeleteEdit(WikiEdit *edit)
     {
         edit->Previous->Next = edit->Next;
         edit->Next->Previous = edit->Previous;
-        delete edit;
+        edit->UnregisterConsumer("MainForm");
         return;
     }
 
@@ -899,6 +899,7 @@ void Core::PostProcessEdit(WikiEdit *_e)
     {
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
+    _e->RegisterConsumer("Core::PostProcessEdit");
     _e->PostProcess();
     Core::ProcessingEdits.append(_e);
 }
