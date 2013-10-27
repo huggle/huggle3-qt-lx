@@ -26,7 +26,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
     while (Buffer->count() > 0)
     {
-        Buffer->at(0)->UnregisterConsumer("WikiEdit");
+        Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
         Buffer->removeAt(0);
     }
     delete Buffer;
@@ -254,7 +254,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         {
             while (this->Buffer->size() > (Configuration::ProviderCache - 10))
             {
-                this->Buffer->at(0)->UnregisterConsumer("WikiEdit");
+                this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
                 this->Buffer->removeAt(0);
             }
             Core::Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
@@ -262,6 +262,6 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         this->Buffer->append(edit);
     } else
     {
-        edit->UnregisterConsumer("WikiEdit");
+        edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     }
 }
