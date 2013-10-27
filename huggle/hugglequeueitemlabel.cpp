@@ -113,5 +113,6 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         this->Process();
+        delete this;
     }
 }

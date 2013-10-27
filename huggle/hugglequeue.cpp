@@ -83,6 +83,7 @@ void HuggleQueue::Next()
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
     this->layout->removeItem(i);
+    delete label;
 }
 
 void HuggleQueue::DeleteByRevID(int RevID)
@@ -99,6 +100,7 @@ void HuggleQueue::DeleteByRevID(int RevID)
                 return;
             }
             this->Delete(item);
+            delete item;
             return;
         }
         c++;
@@ -158,6 +160,7 @@ void HuggleQueue::Trim()
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Remove();
     this->layout->removeItem(i);
+    delete label;
 }
 
 long HuggleQueue::GetScore(int id)
