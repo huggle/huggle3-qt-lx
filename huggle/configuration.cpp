@@ -91,7 +91,7 @@ QStringList Configuration::Rights;
 QStringList Configuration::LocalConfig_WarningDefs;
 
 int Configuration::QueryListTimeLimit = 2;
-int Configuration::HistorySize = 600;
+int Configuration::HistorySize = 20;
 
 QStringList Configuration::LocalConfig_WarningTemplates;
 
