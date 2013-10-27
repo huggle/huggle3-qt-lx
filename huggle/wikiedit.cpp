@@ -15,6 +15,7 @@ QList<WikiEdit*> WikiEdit::EditList;
 WikiEdit::WikiEdit()
 {
     this->IsReverted = false;
+    this->DeletionLock = false;
     this->Bot = false;
     this->User = NULL;
     this->Minor = false;
@@ -51,6 +52,7 @@ WikiEdit::WikiEdit()
 WikiEdit::WikiEdit(const WikiEdit &edit)
 {
     this->IsReverted = edit.IsReverted;
+    this->DeletionLock = edit.DeletionLock;
     this->Enqueued = edit.Enqueued;
     this->User = NULL;
     this->Page = NULL;
@@ -132,6 +134,7 @@ WikiEdit::WikiEdit(WikiEdit *edit)
     this->Score = edit->Score;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
+    this->DeletionLock = false;
     WikiEdit::EditList.append(this);
 }
 
@@ -462,8 +465,10 @@ void ProcessorThread::Process(WikiEdit *edit)
             break;
     }
 
-    edit->Status = StatusPostProcessed;
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
+    // we lock the edit so that it can't be deleted until it's enqueued
+    edit->DeletionLock = true;
+    edit->Status = StatusPostProcessed;
 }
 

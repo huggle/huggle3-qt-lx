@@ -41,6 +41,8 @@ void HuggleQueue::AddItem(WikiEdit *page)
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->Enqueued = true;
+    // we no longer to prevent this from being deleted because we already have different lock for that
+    page->DeletionLock = false;
     label->page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)

@@ -1157,7 +1157,11 @@ void Core::DeleteEdits()
     while (WikiEdit::EditList.count() > (int)Configuration::MaximumEditsInMemory && CurrentEdit < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(CurrentEdit);
-        if (Core::Main != NULL && (edit->Enqueued || edit == Core::Main->CurrentEdit || edit->IsReverted))
+        if (Core::Main != NULL && (edit->Enqueued ||
+                                   edit == Core::Main->CurrentEdit ||
+                                   edit->IsReverted ||
+                                   edit->DeletionLock ||
+                                   !edit->IsPostProcessed()))
         {
             // edit is being used now, so don't remove it
             CurrentEdit++;

@@ -105,6 +105,9 @@ namespace Huggle
         int RevID;
         bool IsReverted;
         WEStatus Status;
+        //! Lock that prevents core from deleting this edit from memory
+        //! useful when you need to move edit between queues
+        bool DeletionLock;
         //! Current warning level
         WarningLevel CurrentUserWarningLevel;
         //! Summary of edit
