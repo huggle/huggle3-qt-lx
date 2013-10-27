@@ -27,7 +27,6 @@ HuggleFeed *Core::PrimaryFeedProvider = NULL;
 QStringList Core::RingLog;
 QList<Query*> Core::RunningQueries;
 QList<WikiEdit*> Core::ProcessingEdits;
-QList<WikiEdit*> Core::ProcessedEdits;
 ProcessorThread *Core::Processor = NULL;
 QList<Message*> Core::Messages;
 QList<EditQuery*> Core::PendingMods;

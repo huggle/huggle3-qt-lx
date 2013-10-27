@@ -245,17 +245,9 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
     // we need to safely delete the edit later
     if (this->CurrentEdit != NULL)
     {
-        // we need to track all edits so that we prevent
-        // any possible leak
-        if (!Core::ProcessedEdits.contains(this->CurrentEdit))
-        {
-            Core::ProcessedEdits.append(this->CurrentEdit);
-            while (Core::ProcessedEdits.count() > Configuration::HistorySize)
-            {
-                Core::DeleteEdit(Core::ProcessedEdits.at(0));
-                Core::ProcessedEdits.removeAt(0);
-            }
-        }
+        // we can mark it as safe to delete just in case edit was constructed
+        // by some other function that didn't take a care of that
+        e->DeletionLock = false;
         if (!IgnoreHistory)
         {
             if (this->CurrentEdit->Next != NULL)

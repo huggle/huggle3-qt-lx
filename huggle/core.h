@@ -110,9 +110,6 @@ namespace Huggle
         static HuggleFeed *SecondaryFeedProvider;
         //! List of all running queries
         static QList<Query*> RunningQueries;
-        //! This is basically a list of edits we went through, that
-        //! can be deleted from memory anytime we want
-        static QList<WikiEdit*> ProcessedEdits;
         //! This is a list of all edits that are being processed by some way
         //! whole list needs to be checked and probed everytime once a while
         static QList<WikiEdit*> ProcessingEdits;
