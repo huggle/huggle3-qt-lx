@@ -15,10 +15,11 @@
 #include <QMutex>
 #include "collectable.h"
 
-#define HUGGLECONSUMER_WIKIEDIT 0
-#define HUGGLECONSUMER_PROVIDERIRC 1
-#define HUGGLECONSUMER_QUEUE 2
-#define HUGGLECONSUMER_CORE_POSTPROCESS 3
+#define HUGGLECONSUMER_WIKIEDIT                 0
+#define HUGGLECONSUMER_PROVIDERIRC              1
+#define HUGGLECONSUMER_QUEUE                    2
+#define HUGGLECONSUMER_CORE_POSTPROCESS         3
+#define HUGGLECONSUMER_DELETEFORM               4
 
 namespace Huggle
 {

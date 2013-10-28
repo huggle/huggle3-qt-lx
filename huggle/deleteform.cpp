@@ -40,7 +40,7 @@ void DeleteForm::getToken()
 	tokenquery->SetAction(ActionQuery);
 	tokenquery->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
 	tokenquery->Target = "Getting token to delete " + this->page->PageName;
-	tokenquery->RegisterConsumer("DeleteForm::getToken()");
+    tokenquery->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	Core::AppendQuery(tokenquery);
 	tokenquery->Process();
 
@@ -96,7 +96,7 @@ void DeleteForm::checkDelToken()
 	}
 	this->deletetoken = element.attribute("deletetoken");
 	this->delQueryPhase++;
-	this->tokenquery->UnregisterConsumer("DeleteForm::getToken");
+    this->tokenquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->tokenquery = NULL;
 	Core::DebugLog("Delete token for " + this->page->PageName + ": " + this->deletetoken);
 
@@ -108,7 +108,7 @@ void DeleteForm::checkDelToken()
             + "&token=" + QUrl::toPercentEncoding(deletetoken);
 	delquery->Target = "Deleting "  + this->page->PageName;
 	delquery->UsingPOST = true;
-	delquery->RegisterConsumer("DeleteForm::on_pushButton_clicked()");
+    delquery->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	Core::AppendQuery(delquery);
 	delquery->Process();
 }
@@ -132,7 +132,7 @@ void DeleteForm::Delete()
 	// let's assume the page was deleted
 	ui->pushButton->setText("deleted");
 	Core::DebugLog("deletion result: " + this->delquery->Result->Data, 2);
-	this->delquery->UnregisterConsumer("DeleteForm::on_pushButton_clicked()");
+    this->delquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
 }
 
@@ -149,11 +149,11 @@ void DeleteForm::Failed(QString reason)
 	ui->pushButton->setEnabled(true);
 	if (this->tokenquery != NULL)
 	{
-		tokenquery->UnregisterConsumer("DeleteForm::GetToken");
+        tokenquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
 	if (this->delquery != NULL)
 	{
-		delquery->UnregisterConsumer("DeleteForm::on_pushButton_clicked()");
+        delquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
 	this->delquery = NULL;
 	this->tokenquery = NULL;

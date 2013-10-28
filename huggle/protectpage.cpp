@@ -54,7 +54,7 @@ void ProtectPage::getTokenToProtect()
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
     this->PtQueryPhase = 0;
-    tt->start(200);
+    this->tt->start(200);
 }
 
 void ProtectPage::onTick()
@@ -68,7 +68,7 @@ void ProtectPage::onTick()
         this->Protect();
         return;
     }
-    tt->stop();
+    this->tt->stop();
 }
 
 void ProtectPage::checkTokenToProtect()
@@ -106,7 +106,6 @@ void ProtectPage::checkTokenToProtect()
     this->ptkq->UnregisterConsumer("ProtectPage::getTokenToProtect");
     this->ptkq = NULL;
     Core::DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
-
     this->ptpt = new ApiQuery();
     ptpt->SetAction(ActionProtect);
     QString protection = "edit=sysop|move=sysop";
@@ -125,6 +124,7 @@ void ProtectPage::checkTokenToProtect()
             + "&protections=" + QUrl::toPercentEncoding(protection)
             + "&token=" + QUrl::toPercentEncoding(protecttoken);
     ptpt->Target = "Protecting " + this->ptpge->PageName;
+    ptpt->RegisterConsumer("ProtectPage");
     Core::AppendQuery(ptpt);
     ptpt->Process();
 }
@@ -153,11 +153,11 @@ void ProtectPage::Failed(QString reason)
     ui->pushButton->setEnabled(true);
     if (this->ptkq != NULL)
     {
-        ptkq->UnregisterConsumer("ProtectPage::getTokenToProtect");
+        this->ptkq->UnregisterConsumer("ProtectPage::getTokenToProtect");
     }
     if (this->ptpt != NULL)
     {
-        ptkq->UnregisterConsumer("ProtectPage::on_pushButton_clicked()");
+        this->ptpt->UnregisterConsumer("ProtectPage");
     }
     this->ptpt = NULL;
     this->ptkq = NULL;
@@ -180,8 +180,8 @@ void ProtectPage::Protect()
     }
     ui->pushButton_2->setText("Page has been protected");
     Core::DebugLog("The page " + ptpge->PageName + " has successfully been protected");
-    ptpt->UnregisterConsumer("ProtectPage::checkTokenToProtect()");
-    tt->stop();
+    this->ptpt->UnregisterConsumer("ProtectPage");
+    this->tt->stop();
     ptpt = NULL;
 }
 
