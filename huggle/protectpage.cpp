@@ -20,6 +20,10 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ptkq = NULL;
     this->ptpge = NULL;
     this->ptpt = NULL;
+    this->ui->comboBox_3->addItem("Everyone (no protection)");
+    this->ui->comboBox_3->addItem("Autoconfirmed (semi)");
+    this->ui->comboBox_3->addItem("Sysops (full)");
+    this->ui->comboBox_3->setCurrentIndex(2);
     this->protecttoken = "";
     this->tt = NULL;
     ui->comboBox->addItem(Configuration::LocalConfig_ProtectReason);
@@ -41,7 +45,7 @@ void ProtectPage::getTokenToProtect()
 {
     this->ptkq = new ApiQuery();
     ptkq->SetAction(ActionQuery);
-    ptkq->Parameters = "action=query&intoken=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName);
+    ptkq->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName);
     ptkq->Target = "Fetching token to protect" + this->ptpge->PageName;
     ptkq->RegisterConsumer("ProtectPage::getTokenToProtect()");
     Core::AppendQuery(ptkq);
@@ -84,7 +88,7 @@ void ProtectPage::checkTokenToProtect()
     }
     QDomDocument r;
     r.setContent(ptkq->Result->Data);
-    QDomNodeList l = r.elementsByTagName("user");
+    QDomNodeList l = r.elementsByTagName("page");
     if (l.count() == 0)
     {
         Core::DebugLog(this->ptkq->Result->Data);
@@ -104,12 +108,22 @@ void ProtectPage::checkTokenToProtect()
     Core::DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
 
     this->ptpt = new ApiQuery();
-    ptpt->SetAction(ActionQuery);
-    ptpt->Parameters = "action=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName)
+    ptpt->SetAction(ActionProtect);
+    QString protection = "edit=sysop|move=sysop";
+    switch (this->ui->comboBox_3->currentIndex())
+    {
+    case 0:
+        protection = "edit=all|move=all";
+        break;
+    case 1:
+        protection = "edit=autoconfirmed|move=autoconfirmed";
+        break;
+    }
+    ptpt->Parameters = "title=" + QUrl::toPercentEncoding(this->ptpge->PageName)
             + "&reason=" + QUrl::toPercentEncoding(Configuration::LocalConfig_ProtectReason)
             + "&expiry=" + QUrl::toPercentEncoding(ui->comboBox_2->currentText())
-            + "&protections=edit=autoconfirmed|move=autoconfirmed" + "&token=" +
-            QUrl::toPercentEncoding(protecttoken);
+            + "&protections=" + QUrl::toPercentEncoding(protection)
+            + "&token=" + QUrl::toPercentEncoding(protecttoken);
     ptpt->Target = "Protecting " + this->ptpge->PageName;
     Core::AppendQuery(ptpt);
     ptpt->Process();
@@ -123,6 +137,7 @@ void ProtectPage::on_pushButton_clicked()
 void ProtectPage::on_pushButton_2_clicked()
 {
     this->getTokenToProtect();
+    this->ui->pushButton_2->setEnabled(false);
 }
 
 void ProtectPage::Failed(QString reason)
@@ -163,7 +178,7 @@ void ProtectPage::Protect()
         Failed("The API query failed. Reason supplied was: " + ptpt->Result->ErrorMessage);
         return;
     }
-    ui->label->setText("Page has been protected");
+    ui->pushButton_2->setText("Page has been protected");
     Core::DebugLog("The page " + ptpge->PageName + " has successfully been protected");
     ptpt->UnregisterConsumer("ProtectPage::checkTokenToProtect()");
     tt->stop();

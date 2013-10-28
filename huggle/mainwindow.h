@@ -175,6 +175,7 @@ namespace Huggle
          * \return true on success or false in case it's not
          */
         bool CheckEditableBrowserPage();
+        void SuspiciousEdit();
 
 
     private slots:
@@ -233,7 +234,7 @@ namespace Huggle
         void on_actionProtect_triggered();
         void on_actionShow_talk_triggered();
         void on_actionEdit_info_triggered();
-
+        void on_actionFlag_as_suspicious_edit_triggered();
 
     private:
         QTimer *timer1;

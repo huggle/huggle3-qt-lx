@@ -54,6 +54,11 @@ void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
 
 }
 
+void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)
+{
+
+}
+
 void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
 

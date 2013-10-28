@@ -30,6 +30,7 @@ namespace Huggle
         static void OnGood(WikiEdit *Edit);
         static void OnRevert(WikiEdit *Edit);
         static void OnWarning(WikiUser *User);
+        static void Suspicious(WikiEdit *Edit);
         static void BadnessScore(WikiUser *User, int Score);
     };
 }

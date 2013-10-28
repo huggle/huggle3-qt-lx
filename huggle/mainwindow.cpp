@@ -1071,6 +1071,24 @@ bool MainWindow::CheckEditableBrowserPage()
     return true;
 }
 
+void MainWindow::SuspiciousEdit()
+{
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+    if (this->CurrentEdit != NULL)
+    {
+        Hooks::Suspicious(this->CurrentEdit);
+        this->CurrentEdit->User->BadnessScore +=1;
+        WikiUser::UpdateUser(this->CurrentEdit->User);
+    }
+    if (Configuration::NextOnRv)
+    {
+        this->Queue1->Next();
+    }
+}
+
 bool MainWindow::CheckExit()
 {
     if (ShuttingDown)
@@ -1500,4 +1518,9 @@ void MainWindow::on_actionProtect_triggered()
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
     Core::Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
+}
+
+void Huggle::MainWindow::on_actionFlag_as_suspicious_edit_triggered()
+{
+    this->SuspiciousEdit();
 }
