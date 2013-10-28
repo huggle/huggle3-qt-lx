@@ -596,7 +596,7 @@ void MainWindow::on_Tick()
             {
                 WikiEdit *e = Core::ProcessingEdits.at(Edit);
                 Core::ProcessingEdits.removeAt(Edit);
-                e->UnregisterConsumer("Core::PostProcessEdit");
+                e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
             }
             else
             {
@@ -1420,7 +1420,7 @@ void MainWindow::on_actionDelete_triggered()
 		return;
 	}
 	this->deletef = new DeleteForm(this);
-	deletef->setPage(this->Page);
+    deletef->setPage(this->CurrentEdit->Page);
 	deletef->show();
 }
 
@@ -1493,7 +1493,7 @@ void MainWindow::on_actionProtect_triggered()
         return;
     }
     this->protect = new ProtectPage(this);
-    protect->setPageToProtect(this->Page);
+    protect->setPageToProtect(this->CurrentEdit->Page);
     protect->show();
 }
 

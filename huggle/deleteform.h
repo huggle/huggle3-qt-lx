@@ -15,6 +15,7 @@
 #include <QTimer>
 #include <QString>
 #include <QtXml>
+#include <QLineEdit>
 #include <QUrl>
 #include "configuration.h"
 #include "wikipage.h"

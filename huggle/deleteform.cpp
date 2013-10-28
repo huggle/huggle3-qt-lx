@@ -81,7 +81,7 @@ void DeleteForm::checkDelToken()
 	}
 	QDomDocument d;
 	d.setContent(this->tokenquery->Result->Data);
-	QDomNodeList l = d.elementsByTagName("titles");
+    QDomNodeList l = d.elementsByTagName("page");
 	if (l.count() == 0)
 	{
 		Core::DebugLog(this->tokenquery->Result->Data);
@@ -102,8 +102,10 @@ void DeleteForm::checkDelToken()
 
 	// let's delete the page
 	this->delquery = new ApiQuery();
-	this->delquery->SetAction(ActionQuery);
-	delquery->Parameters = "action=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName) + "reason=&" + "token=" + QUrl::toPercentEncoding(deletetoken);
+    this->delquery->SetAction(ActionDelete);
+    delquery->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
+            + "&reason=" + QUrl::toPercentEncoding(ui->comboBox->lineEdit()->text())
+            + "&token=" + QUrl::toPercentEncoding(deletetoken);
 	delquery->Target = "Deleting "  + this->page->PageName;
 	delquery->UsingPOST = true;
 	delquery->RegisterConsumer("DeleteForm::on_pushButton_clicked()");
@@ -138,7 +140,7 @@ void DeleteForm::Failed(QString reason)
 {
 	QMessageBox *_b = new QMessageBox();
 	_b->setWindowTitle("Unable to delete page");
-	_b->setText("Unable to block the user because " + reason);
+    _b->setText("Unable to delete the page because " + reason);
 	_b->exec();
 	delete _b;
 	this->dt->stop();

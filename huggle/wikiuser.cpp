@@ -211,7 +211,7 @@ bool WikiUser::IsIP()
 
 QString WikiUser::GetTalk()
 {
-    return "User_talk:" + this->Username;
+    return Configuration::LocalConfig_NSUserTalk + this->Username;
 }
 
 bool WikiUser::IsWhitelisted()

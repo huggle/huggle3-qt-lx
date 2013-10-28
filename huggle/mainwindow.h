@@ -151,8 +151,6 @@ namespace Huggle
 		ReportUser *report;
         //! Pointer to a form to block user
 		BlockUser *block;
-		//! Pointer to WikiPage
-		WikiPage *Page;
 		//! Pointer to a form to delete a page
 		DeleteForm *deletef;
         //! Pointer to a form to protect a page
@@ -234,21 +232,24 @@ namespace Huggle
         void on_actionWiki_triggered();
         void on_actionProtect_triggered();
         void on_actionShow_talk_triggered();
-
         void on_actionEdit_info_triggered();
+
 
     private:
         QTimer *timer1;
         // Whitelist
         QTimer *wlt;
+        //! Status bar
         QLabel *Status;
         bool EditablePage;
         WaitingForm *fWaiting;
+        //! List of all edits that are kept in history, so that we can track them and delete them
         QList <WikiEdit*> Historical;
         //! Check if huggle is shutting down or not, in case it is, message box is shown as well
         //! this function should be called before every action user can trigger
         bool CheckExit();
         void DisplayWelcomeMessage();
+        //! Welcome user
         void Welcome();
         void Render();
         //! Request a page deletion csd or afd and so on

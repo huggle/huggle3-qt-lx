@@ -137,6 +137,7 @@ void HuggleTool::FinishPage()
         edit->User = new WikiUser();
     }
     Core::PostProcessEdit(edit);
+    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->QueryPhase = 2;
 }
 

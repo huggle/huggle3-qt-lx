@@ -82,6 +82,7 @@ void Login::CancelLogin()
     ui->progressBar->setValue(0);
     this->Enable();
     this->_Status = Nothing;
+    ui->lineEdit_3->setText("");
     ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
 }
 

@@ -13,7 +13,7 @@
 
 #include <QString>
 #include <QUrl>
-//#include "apiquery.h"
+#include "apiquery.h"
 #include "core.h"
 #include "history.h"
 
