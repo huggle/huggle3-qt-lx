@@ -126,8 +126,11 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         if (label == item)
         {
             this->layout->removeItem(i);
-            label->page->UnregisterConsumer("HuggleQueue");
-            label->page = NULL;
+            if (label->page != NULL)
+            {
+                label->page->UnregisterConsumer("HuggleQueue");
+                label->page = NULL;
+            }
             break;
         }
         curr++;
