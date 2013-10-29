@@ -25,6 +25,7 @@ WLQuery::~WLQuery()
 
 void WLQuery::Process()
 {
+    this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::Project.WhiteList);

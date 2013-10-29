@@ -20,6 +20,8 @@
 #define HUGGLECONSUMER_QUEUE                    2
 #define HUGGLECONSUMER_CORE_POSTPROCESS         3
 #define HUGGLECONSUMER_DELETEFORM               4
+#define HUGGLECONSUMER_PROCESSLIST              5
+#define HUGGLECONSUMER_HUGGLETOOL               6
 
 namespace Huggle
 {

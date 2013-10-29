@@ -34,8 +34,11 @@ namespace Huggle
         ~VandalNw();
         void Insert(QString text);
         void Connect();
+        void Disconnect();
         void Good(WikiEdit *Edit);
         void Rollback(WikiEdit *Edit);
+        void SuspiciousWikiEdit(WikiEdit *Edit);
+        void WarningSent(WikiUser *user, int Level);
         QString pref;
         QTimer *tm;
     private:

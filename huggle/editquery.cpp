@@ -34,6 +34,8 @@ EditQuery::~EditQuery()
 
 void EditQuery::Process()
 {
+    this->Status = StatusProcessing;
+    this->StartTime = QDateTime::currentDateTime();
     qToken = new ApiQuery();
     qToken->SetAction(ActionQuery);
     qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);

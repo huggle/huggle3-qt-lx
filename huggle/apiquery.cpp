@@ -107,6 +107,7 @@ void ApiQuery::Process()
         Core::DebugLog("Cowardly refusing to double process the query");
         return;
     }
+    this->StartTime = QDateTime::currentDateTime();
     if (this->URL == "")
     {
         this->ConstructUrl();

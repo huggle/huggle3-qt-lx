@@ -45,6 +45,12 @@ void VandalNw::Connect()
     }
 }
 
+void VandalNw::Disconnect()
+{
+    this->Irc->Disconnect();
+    this->Insert("You are disconnected from HAN");
+}
+
 void VandalNw::Good(WikiEdit *Edit)
 {
     this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "GOOD " + QString::number(Edit->RevID));
@@ -53,6 +59,16 @@ void VandalNw::Good(WikiEdit *Edit)
 void VandalNw::Rollback(WikiEdit *Edit)
 {
     this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "ROLLBACK " + QString::number(Edit->RevID));
+}
+
+void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
+{
+    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "SUSPICIOUS " + QString::number(Edit->RevID));
+}
+
+void VandalNw::WarningSent(WikiUser *user, int Level)
+{
+    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
 }
 
 void VandalNw::onTick()

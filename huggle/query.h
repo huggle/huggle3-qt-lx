@@ -11,6 +11,7 @@
 #ifndef QUERY_H
 #define QUERY_H
 
+#include <QDateTime>
 #include <QThread>
 #include <QObject>
 #include <QString>
@@ -87,6 +88,9 @@ namespace Huggle
         //! This is a pointer to object returned by your callback function
         void* CallbackResult;
         static QNetworkAccessManager NetworkManager;
+        bool RetryOnTimeoutFailure;
+        QDateTime StartTime;
+        int Timeout;
         //! Query doesn't have internal data displayed in debug log, this is usefull
         //! when you are working with passwords in parameters
         bool HiddenQuery;

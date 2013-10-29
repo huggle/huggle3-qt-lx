@@ -24,6 +24,7 @@ RevertQuery::RevertQuery()
     this->Token = "";
     this->Summary = "";
     this->qPreflight = NULL;
+    this->Timeout = 280;
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
@@ -40,6 +41,7 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->Token = "";
     this->Summary = Configuration::GetDefaultRevertSummary(this->edit->User->Username);
     this->qPreflight = NULL;
+    this->Timeout = 280;
 }
 
 void RevertQuery::Process()
@@ -54,6 +56,7 @@ void RevertQuery::Process()
     {
         delete timer;
     }
+    this->StartTime = QDateTime::currentDateTime();
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->timer->start(800);

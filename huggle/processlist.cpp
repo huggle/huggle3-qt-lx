@@ -41,14 +41,14 @@ void ProcessList::InsertQuery(Query *q)
     {
         throw new Exception("NULL query");
     }
-    q->RegisterConsumer("ProcessList::InsertQuery");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int size = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(size);
     ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->QueryID())));
     ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
-    q->UnregisterConsumer("ProcessList::InsertQuery");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
 void ProcessList::Clear()
@@ -59,25 +59,25 @@ void ProcessList::Clear()
 
 bool ProcessList::ContainsQuery(Query *q)
 {
-    q->RegisterConsumer("ProcessList::ContainsQuery");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int result = GetItem(q);
-    q->UnregisterConsumer("ProcessList::ContainsQuery");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     return result != -1;
 }
 
 void ProcessList::RemoveQuery(Query *q)
 {
-    q->RegisterConsumer("ProcessList::RemoveQuery");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     if (!IsExpired(q))
     {
         this->Removed->append(new ProcessListRemovedItem(q->QueryID()));
     }
-    q->UnregisterConsumer("ProcessList::RemoveQuery");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
 void ProcessList::UpdateQuery(Query *q)
 {
-    q->RegisterConsumer("ProcessList::UpdateQuery");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int query = GetItem(q);
     if (query == -1)
     {
@@ -89,23 +89,23 @@ void ProcessList::UpdateQuery(Query *q)
     ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
     ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
     ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
-    q->UnregisterConsumer("ProcessList::UpdateQuery");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
 bool ProcessList::IsExpired(Query *q)
 {
-    q->RegisterConsumer("ProcessList::IsExpired");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int i = 0;
     while (i<Removed->count())
     {
         if ((unsigned int)Removed->at(i)->GetID() == q->QueryID())
         {
-            q->UnregisterConsumer("ProcessList::IsExpired");
+            q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
             return true;
         }
         i++;
     }
-    q->UnregisterConsumer("ProcessList::IsExpired");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     return false;
 }
 
@@ -142,19 +142,19 @@ void ProcessList::RemoveExpired()
 
 int ProcessList::GetItem(Query *q)
 {
-    q->RegisterConsumer("ProcessList::GetItem");
+    q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int curr = 0;
     int size = ui->tableWidget->rowCount();
     while (curr < size)
     {
         if (ui->tableWidget->item(curr,0)->text() == QString::number(q->QueryID()))
         {
-            q->UnregisterConsumer("ProcessList::GetItem");
+            q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
             return curr;
         }
         curr++;
     }
-    q->UnregisterConsumer("ProcessList::GetItem");
+    q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     return -1;
 }
 

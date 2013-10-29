@@ -30,6 +30,7 @@ void WebserverQuery::Process()
         this->Status = StatusInError;
         return;
     }
+    this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
 

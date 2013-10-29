@@ -58,12 +58,12 @@ checkqt()
         echo "SKIP"
         return 0
     fi
-    if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
+    if [ "`apt-cache policy $1 | wc -l`" -gt 4 ];then
         ok
         return 0
     fi
 
-    if [ "`apt-cache policy $2 | wc -l`" -gt 2 ];then
+    if [ "`apt-cache policy $2 | wc -l`" -gt 4 ];then
         ok
         return 0
     fi

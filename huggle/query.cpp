@@ -26,7 +26,10 @@ Query::Query()
     this->callback = NULL;
     this->HiddenQuery = false;
     this->Dependency = NULL;
+    this->Timeout = 30;
     this->CallbackResult = NULL;
+    this->StartTime = QDateTime::currentDateTime();
+    this->RetryOnTimeoutFailure = true;
 }
 
 Query::~Query()
@@ -43,6 +46,25 @@ bool Query::Processed()
 {
     if (this->Status == StatusDone || this->Status == StatusInError)
     {
+        return true;
+    }
+    if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
+    {
+        if (this->RetryOnTimeoutFailure)
+        {
+            this->Kill();
+            this->Process();
+            return false;
+        }
+        // query is timed out
+        if (this->Result == NULL)
+        {
+            this->Result = new QueryResult();
+        }
+        this->Kill();
+        this->Result->Failed = true;
+        this->Result->ErrorMessage = "Timed out";
+        this->Status = StatusInError;
         return true;
     }
     return false;
@@ -87,6 +109,13 @@ QString Query::QueryStatusToString()
     case StatusProcessing:
         return "Processing";
     case StatusInError:
+        if (this->Result != NULL)
+        {
+            if (this->Result->Failed && this->Result->ErrorMessage != "")
+            {
+                return "In error: " + this->Result->ErrorMessage;
+            }
+        }
         return "InError";
     }
     return "Unknown";
