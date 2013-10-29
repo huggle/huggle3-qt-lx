@@ -49,6 +49,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->report = NULL;
+    this->ui->actionBlock_user->setEnabled(Configuration::Rights.contains("block"));
+    this->ui->actionDelete->setEnabled(Configuration::Rights.contains("delete"));
+    this->ui->actionProtect->setEnabled(Configuration::Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     QStringList _log = Core::RingLogToQStringList();
