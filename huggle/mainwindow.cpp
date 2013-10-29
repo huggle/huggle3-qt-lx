@@ -1453,11 +1453,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     {
         return;
     }
-    if (!Configuration::Rights.contains("block"))
-    {
-        Core::Log("ERROR: Insufficient rights - you are not an administrator");
-        return;
-    }
+
     if(this->CurrentEdit == NULL)
     {
         Core::Log("ERROR: No one to block :o");
@@ -1503,11 +1499,6 @@ void MainWindow::on_actionProtect_triggered()
 {
     if (!CheckExit() || !CheckEditableBrowserPage())
     {
-        return;
-    }
-    if (!Configuration::Rights.contains("protect"))
-    {
-        Core::Log("ERROR: Insufficient rights - you are not an administrator");
         return;
     }
     if (this->CurrentEdit == NULL)
