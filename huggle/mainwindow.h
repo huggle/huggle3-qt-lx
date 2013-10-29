@@ -235,7 +235,6 @@ namespace Huggle
         void on_actionShow_talk_triggered();
         void on_actionEdit_info_triggered();
         void on_actionFlag_as_suspicious_edit_triggered();
-
         void on_actionDisconnect_triggered();
 
     private:

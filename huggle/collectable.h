@@ -29,21 +29,24 @@ namespace Huggle
         Collectable();
         virtual ~Collectable();
         /*!
-         * \brief IsManaged
-         *  Managed class is deleted by GC and must not be deleted by hand
+         * \brief IsManaged Managed class is deleted by GC and must not be deleted by hand
          * \return whether the class is managed
          */
         bool IsManaged();
         //! Use this if you are not sure if you can delete this object in this moment
         virtual bool SafeDelete();
+        //! Whether the object is locked (other threads can't register nor unregister consumers
+        //! neither it is possible to delete this object by any other thread)
         bool IsLocked();
+        //! Lock this object so that other threads can't change consumers or modify its properties
         void Lock();
+        //! Unlock this object for deletion by other threads
         void Unlock();
         /*!
          * \brief Registers a consumer
          *
          * This function will store a string which prevent the object from being removed
-         * by QueryGC, by calling this function you change the query type to managed
+         * by GC, by calling this function you change type to managed
          * \param consumer String that lock the object
          */
         void RegisterConsumer(int consumer);
@@ -82,8 +85,6 @@ namespace Huggle
         //! Internal variable that contains a cache whether object is managed
         bool Managed;
         void SetManaged();
-        //! Some queries are needed for dependency setup, so we need to delete them
-        //! later once the dependency is processed
         QStringList Consumers;
         QList<int> iConsumers;
         QMutex *QL;
