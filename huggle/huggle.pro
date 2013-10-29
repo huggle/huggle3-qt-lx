@@ -72,7 +72,8 @@ SOURCES += main.cpp\
     updateform.cpp \
     uaareport.cpp \
     collectable.cpp \
-    gc.cpp
+    gc.cpp \
+    hugglenuke.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -128,7 +129,8 @@ HEADERS  += mainwindow.h \
     updateform.h \
     uaareport.h \
     collectable.h \
-    gc.h
+    gc.h \
+    hugglenuke.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -156,7 +158,8 @@ FORMS    += mainwindow.ui \
     protectpage.ui \
     vandalnw.ui \
     updateform.ui \
-    uaareport.ui
+    uaareport.ui \
+    hugglenuke.ui
 
 RESOURCES += \
     pictures.qrc \

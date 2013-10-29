@@ -525,6 +525,7 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::LocalConfig_DeletionTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     Configuration::LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     Configuration::LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
+
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
