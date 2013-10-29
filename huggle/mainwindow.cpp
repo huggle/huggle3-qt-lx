@@ -984,6 +984,7 @@ void MainWindow::Exit()
         return;
     }
     ShuttingDown = true;
+    this->VandalDock->Disconnect();
     QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
@@ -1527,4 +1528,9 @@ void Huggle::MainWindow::on_actionEdit_info_triggered()
 void Huggle::MainWindow::on_actionFlag_as_suspicious_edit_triggered()
 {
     this->SuspiciousEdit();
+}
+
+void Huggle::MainWindow::on_actionDisconnect_triggered()
+{
+    this->VandalDock->Disconnect();
 }

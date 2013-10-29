@@ -28,7 +28,7 @@ EditQuery::~EditQuery()
 {
     if (qToken != NULL)
     {
-        qToken->UnregisterConsumer("EditQuery");
+        qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
     }
 }
 
@@ -40,7 +40,7 @@ void EditQuery::Process()
     qToken->SetAction(ActionQuery);
     qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);
     qToken->Target = "Retrieving token to edit " + page;
-    qToken->RegisterConsumer("EditQuery");
+    qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     Core::AppendQuery(qToken);
     qToken->Process();
 }
@@ -62,7 +62,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token, error was: " + qToken->Result->ErrorMessage;
-            this->qToken->UnregisterConsumer("EditQuery");
+            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
         }
@@ -75,7 +75,7 @@ bool EditQuery::Processed()
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
             Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
-            this->qToken->UnregisterConsumer("EditQuery");
+            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
         }
@@ -86,18 +86,18 @@ bool EditQuery::Processed()
             this->Result->Failed = true;
             this->Result->ErrorMessage = "Unable to retrieve edit token";
             Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
-            this->qToken->UnregisterConsumer("EditQuery");
+            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
         }
         _Token = element.attribute("edittoken");
         qToken->Lock();
-        qToken->UnregisterConsumer("EditQuery");
+        qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         qToken = NULL;
         qEdit = new ApiQuery();
         qEdit->Target = "Writing " + page;
         qEdit->UsingPOST = true;
-        qEdit->RegisterConsumer("EditQuery");
+        qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
         qEdit->SetAction(ActionEdit);
         qEdit->Parameters = "title=" + QUrl::toPercentEncoding(page) + "&text=" + QUrl::toPercentEncoding(text) +
                 "&summary=" + QUrl::toPercentEncoding(this->summary) + "&token=" + QUrl::toPercentEncoding(_Token);
@@ -134,7 +134,7 @@ bool EditQuery::Processed()
             }
         }
         Result = new QueryResult();
-        qEdit->UnregisterConsumer("EditQuery");
+        qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         qEdit = NULL;
     }
     return true;

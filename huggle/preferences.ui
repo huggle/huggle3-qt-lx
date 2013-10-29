@@ -176,6 +176,9 @@
           </widget>
          </item>
          <item>
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
             <widget class="QPushButton" name="pushButton_6">

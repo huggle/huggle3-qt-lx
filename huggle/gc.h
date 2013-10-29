@@ -22,6 +22,8 @@
 #define HUGGLECONSUMER_DELETEFORM               4
 #define HUGGLECONSUMER_PROCESSLIST              5
 #define HUGGLECONSUMER_HUGGLETOOL               6
+#define HUGGLECONSUMER_EDITQUERY                7
+#define HUGGLECONSUMER_REVERTQUERY              8
 
 namespace Huggle
 {

@@ -12,6 +12,7 @@
 #define HUGGLEQUEUEFILTER_H
 
 #include <QString>
+#include <QList>
 #include "wikiedit.h"
 
 namespace Huggle
@@ -22,9 +23,26 @@ namespace Huggle
     class HuggleQueueFilter
     {
     public:
+        static QList<HuggleQueueFilter*> Filters;
+        static HuggleQueueFilter *DefaultFilter;
         QString QueueName;
         HuggleQueueFilter();
         bool Matches(WikiEdit *edit);
+        bool getIgnoreMinor() const;
+        void setIgnoreMinor(bool value);
+        bool getIgnoreUsers() const;
+        void setIgnoreUsers(bool value);
+        bool getIgnoreWL() const;
+        void setIgnoreWL(bool value);
+        bool getIgnoreIP() const;
+        void setIgnoreIP(bool value);
+        bool getIgnoreBots() const;
+        void setIgnoreBots(bool value);
+        bool getIgnoreNP() const;
+        void setIgnoreNP(bool value);
+        bool getIgnoreFriends() const;
+        void setIgnoreFriends(bool value);
+
     private:
         bool IgnoreMinor;
         bool IgnoreUsers;

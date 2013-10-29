@@ -32,15 +32,62 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     ui->tableWidget->setShowGrid(false);
+    int c = 0;
+    while (c < HuggleQueueFilter::Filters.count())
+    {
+        ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
+        c++;
+    }
+    this->Disable();
     // options
     ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
     ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);
     ui->checkBox_12->setChecked(Configuration::UsingIRC);
 }
 
+void Huggle::Preferences::on_listWidget_itemSelectionChanged()
+{
+    if (ui->listWidget->currentRow() == 0)
+    {
+        this->Disable();
+    } else
+    {
+        this->EnableQueues();
+    }
+    HuggleQueueFilter *f = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    ui->checkBox_7->setChecked(f->getIgnoreBots());
+    ui->lineEdit->setText(f->QueueName);
+}
+
 Preferences::~Preferences()
 {
     delete ui;
+}
+
+void Preferences::Disable()
+{
+    ui->checkBox_6->setEnabled(false);
+    ui->checkBox_7->setEnabled(false);
+    ui->checkBox_8->setEnabled(false);
+    ui->checkBox_9->setEnabled(false);
+    ui->checkBox_10->setEnabled(false);
+    ui->pushButton_4->setEnabled(false);
+    ui->pushButton_5->setEnabled(false);
+    ui->pushButton_6->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
+}
+
+void Preferences::EnableQueues()
+{
+    ui->lineEdit->setEnabled(true);
+    ui->checkBox_6->setEnabled(true);
+    ui->checkBox_7->setEnabled(true);
+    ui->checkBox_8->setEnabled(true);
+    ui->checkBox_9->setEnabled(true);
+    ui->checkBox_10->setEnabled(true);
+    ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(true);
+    ui->pushButton_6->setEnabled(true);
 }
 
 void Preferences::on_pushButton_clicked()

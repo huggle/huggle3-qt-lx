@@ -12,6 +12,9 @@
 
 using namespace Huggle;
 
+HuggleQueueFilter *HuggleQueueFilter::DefaultFilter = new HuggleQueueFilter();
+QList<HuggleQueueFilter*> HuggleQueueFilter::Filters;
+
 HuggleQueueFilter::HuggleQueueFilter()
 {
     QueueName = "default";
@@ -66,4 +69,75 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     return true;
 }
+
+bool HuggleQueueFilter::getIgnoreMinor() const
+{
+    return IgnoreMinor;
+}
+
+void HuggleQueueFilter::setIgnoreMinor(bool value)
+{
+    IgnoreMinor = value;
+}
+bool HuggleQueueFilter::getIgnoreUsers() const
+{
+    return IgnoreUsers;
+}
+
+void HuggleQueueFilter::setIgnoreUsers(bool value)
+{
+    IgnoreUsers = value;
+}
+bool HuggleQueueFilter::getIgnoreWL() const
+{
+    return IgnoreWL;
+}
+
+void HuggleQueueFilter::setIgnoreWL(bool value)
+{
+    IgnoreWL = value;
+}
+bool HuggleQueueFilter::getIgnoreIP() const
+{
+    return IgnoreIP;
+}
+
+void HuggleQueueFilter::setIgnoreIP(bool value)
+{
+    IgnoreIP = value;
+}
+bool HuggleQueueFilter::getIgnoreBots() const
+{
+    return IgnoreBots;
+}
+
+void HuggleQueueFilter::setIgnoreBots(bool value)
+{
+    IgnoreBots = value;
+}
+bool HuggleQueueFilter::getIgnoreNP() const
+{
+    return IgnoreNP;
+}
+
+void HuggleQueueFilter::setIgnoreNP(bool value)
+{
+    IgnoreNP = value;
+}
+bool HuggleQueueFilter::getIgnoreFriends() const
+{
+    return IgnoreFriends;
+}
+
+void HuggleQueueFilter::setIgnoreFriends(bool value)
+{
+    IgnoreFriends = value;
+}
+
+
+
+
+
+
+
 

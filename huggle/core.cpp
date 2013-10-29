@@ -72,6 +72,8 @@ void Core::Init()
     Core::DebugLog("Loading wikis");
     Core::LoadDB();
     Core::LoadLocalizations();
+    Core::DebugLog("Loading queue");
+    HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::_SafeMode)
     {
         Core::Log("Loading plugins");
