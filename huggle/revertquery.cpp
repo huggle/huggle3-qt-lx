@@ -24,7 +24,7 @@ RevertQuery::RevertQuery()
     this->Token = "";
     this->Summary = "";
     this->qPreflight = NULL;
-    this->Timeout = 280;
+    this->Timeout = Configuration::WriteTimeout;
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)

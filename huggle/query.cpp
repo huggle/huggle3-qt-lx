@@ -26,7 +26,7 @@ Query::Query()
     this->callback = NULL;
     this->HiddenQuery = false;
     this->Dependency = NULL;
-    this->Timeout = 30;
+    this->Timeout = 60;
     this->CallbackResult = NULL;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;

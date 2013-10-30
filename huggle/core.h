@@ -53,6 +53,7 @@ namespace Huggle
     class HuggleQueueFilter;
     class WikiSite;
     class WikiPage;
+    class OAuthLoginQuery;
     class WikiUser;
     class WikiEdit;
     class RevertQuery;
@@ -248,6 +249,7 @@ namespace Huggle
     private:
         //! Ring log is a buffer that contains system messages
         static QStringList RingLog;
+        Core() {   }
     };
 }
 

@@ -159,6 +159,8 @@ bool Configuration::LocalConfig_ConfirmPage = false;
 bool Configuration::LocalConfig_ConfirmSame = false;
 bool Configuration::LocalConfig_ConfirmWarned = false;
 int Configuration::FontSize = 10;
+int Configuration::WriteTimeout = 200;
+int Configuration::ReadTimeout = 60;
 
 QString Configuration::GetURLProtocolPrefix()
 {
@@ -205,6 +207,11 @@ void Configuration::NormalizeConf()
     {
         Configuration::Cache_InfoSize = 10;
     }
+    if (Configuration::HistorySize < 2)
+    {
+        Configuration::HistorySize = 2;
+    }
+    Configuration::EditCounter = 0;
 }
 
 

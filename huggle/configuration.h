@@ -124,6 +124,8 @@ namespace Huggle
         static bool _SafeMode;
         static bool AutomaticallyResolveConflicts;
         static int FontSize;
+        static int ReadTimeout;
+        static int WriteTimeout;
 
         //////////////////////////////////////////////
         // Local config
