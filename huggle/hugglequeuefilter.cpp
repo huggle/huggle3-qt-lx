@@ -26,6 +26,7 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->IgnoreNP = false;
     this->IgnoreUsers = false;
     this->IgnoreTalk = true;
+    this->IgnoreAFC = true;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
@@ -67,7 +68,12 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     {
         return false;
     }
+    if (edit->Page->PageName.contains("Wikipedia:Articles for creation"))
+    {
+        return false;
+    }
     return true;
+
 }
 
 bool HuggleQueueFilter::getIgnoreMinor() const

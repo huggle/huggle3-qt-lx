@@ -52,6 +52,7 @@ namespace Huggle
         bool IgnoreNP;
         bool IgnoreFriends;
         bool IgnoreTalk;
+        bool IgnoreAFC;
     };
 }
 
