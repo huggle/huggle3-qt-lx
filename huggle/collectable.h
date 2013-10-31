@@ -23,10 +23,11 @@ namespace Huggle
 {
     //! Base for all items that are supposed to be collected by garbage collector
 
-    //! In order for any item to be maintained by garbage collector it must be inherited from this class
+    //! In order for any item to be maintained by garbage collector it must be inherited from
+    //! this class.
     //! Every object by default when created is unmanaged, which means, that garbage collector doesn't
-    //! care about it, in order to change it to managed object, you have to register at least one consumer
-    //! once you do that, the class must not be explicitly deleted using delete, if you do that
+    //! care about it. In order to change it to managed object, you have to register at least one consumer.
+    //! Once you do that, the class must not be explicitly deleted using delete, if you do that
     //! unrecoverable exception will be thrown. The class which is managed (you can verify that by calling Collectable::IsManaged)
     //! can be only deleted by garbage collector when no consumers are using it. Basically every
     //! object that has 0 consumers, will be deleted.

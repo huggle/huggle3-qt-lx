@@ -35,8 +35,18 @@ namespace Huggle
         static QList<WikiUser*> ProblematicUsers;
         //! Update a list of problematic users
         static void UpdateUser(WikiUser *us);
+        /*!
+         * \brief Function that return static version of this user
+         *
+         * In case the user in question is already in list of problematic users, this function
+         * will return its instance. It compares the username against the usernames that
+         * are in this list.
+         * \param user
+         * \return static user from list of problematic users
+         */
         static WikiUser *RetrieveUser(WikiUser *user);
         static QMutex ProblematicUserListLock;
+        //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
         static void TrimProblematicUsersList();
         //! Username
         QString Username;

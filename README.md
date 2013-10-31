@@ -32,7 +32,9 @@ sudo make install
 Documentation
 =============
 
-https://meta.wikimedia.org/wiki/Huggle
+Developers: http://tools.wmflabs.org/huggle/docs/head
+
+This is a documentation for users: https://meta.wikimedia.org/wiki/Huggle
 
 Getting help
 =============

@@ -107,6 +107,9 @@ namespace Huggle
         virtual ~Query();
         //! Returns true in case that query is processed
         virtual bool Processed();
+        //! Execute query
+
+        //! This is a main() of every query, your implementation goes here
         virtual void Process() {}
         //! Terminates a query
 
