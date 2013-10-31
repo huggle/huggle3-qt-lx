@@ -21,8 +21,6 @@ namespace Ui
 namespace Huggle
 {
     //! Window that allows user to mass rollback contributions made by certain users
-namespace Huggle
-{
     class HuggleNuke : public QDialog
     {
         Q_OBJECT

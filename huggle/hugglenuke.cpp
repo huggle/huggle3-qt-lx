@@ -22,3 +22,4 @@ HuggleNuke::~HuggleNuke()
 {
     delete ui;
 }
+

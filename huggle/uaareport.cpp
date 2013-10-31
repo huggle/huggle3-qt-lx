@@ -22,3 +22,18 @@ UAAReport::~UAAReport()
 {
     delete ui;
 }
+
+void UAAReport::on_pushButton_clicked()
+{
+
+}
+
+void UAAReport::on_pushButton_2_clicked()
+{
+
+}
+
+void UAAReport::onTick()
+{
+
+}
