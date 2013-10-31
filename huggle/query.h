@@ -108,8 +108,21 @@ namespace Huggle
         //! Returns true in case that query is processed
         virtual bool Processed();
         virtual void Process() {}
+        //! Terminates a query
+
+        //! In case it's not running nothing happens, in case query is currently running
+        //! it should be immediately stopped and error result should be generated
+
+        //! This is only a virtual interface implemented in Query which does nothing by default
+        //! it is necessary for every query to implement this for it to work properly
         virtual void Kill() {}
+        //! Convert a type of this query to a string
         virtual QString QueryTypeToString();
+        //! Return a target of a query
+
+        //! Target is either explicitly defined abstract identifier that is used for statistical
+        //! purposes, or it is provided by query itself, based on a type of that query
+        //! typical example would be a page that is affected by ApiQuery
         virtual QString QueryTargetToString();
         virtual QString QueryStatusToString();
         //! If you inherit query you should allways call this from a signal that

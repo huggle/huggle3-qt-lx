@@ -212,6 +212,9 @@ namespace Huggle
         static QString GetKeyOfWarningTypeFromWarningName(QString id);
         //! Parse a part patterns for score words
         static void ParsePats(QString text);
+        //! Load a definitions of problematic users, see WikiUser::ProblematicUsers for details
+        static void LoadDefs();
+        //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
         static void SaveDefs();
         static QString GetValueFromKey(QString item);
         static QString GetKeyFromValue(QString item);
@@ -228,7 +231,6 @@ namespace Huggle
          * \return
          */
         static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
-        static void LoadDefs();
         static void FinalizeMessages();
         //! Get a level of warning from talk page
         static int GetLevel(QString page);
@@ -242,6 +244,13 @@ namespace Huggle
         static void AppendQuery(Query* item);
         static void ExceptionHandler(Exception *exception);
         static Language *MakeLanguage(QString text, QString name);
+        /*!
+         * \brief Initializes a localization with given name
+         *
+         * This function will create a new localization object using built-in localization file
+         * using Core::MakeLanguage() and insert that to language list
+         * \param name Name of a localization that is a name of language without txt suffix in localization folder
+         */
         static void LocalInit(QString name);
         static QString Localize(QString key);
         static void LoadLocalizations();
