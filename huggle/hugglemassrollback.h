@@ -8,31 +8,28 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef HUGGLENUKE_H
-#define HUGGLENUKE_H
+#ifndef HUGGLEMASSROLLBACK_H
+#define HUGGLEMASSROLLBACK_H
 
 #include <QDialog>
 
-namespace Ui
-{
-    class HuggleNuke;
+namespace Ui {
+class HuggleMassRollback;
 }
 
 namespace Huggle
 {
-    //! Window that allows user to mass rollback contributions made by certain users
-namespace Huggle
-{
-    class HuggleNuke : public QDialog
+    class HuggleMassRollback : public QDialog
     {
         Q_OBJECT
 
-        public:
-            explicit HuggleNuke(QWidget *parent = 0);
-            ~HuggleNuke();
+    public:
+        explicit HuggleMassRollback(QWidget *parent = 0);
+        ~HuggleMassRollback();
 
-        private:
-            Ui::HuggleNuke *ui;
+    private:
+        Ui::HuggleMassRollback *ui;
     };
 }
-#endif // HUGGLENUKE_H
+
+#endif // HUGGLEMASSROLLBACK_H
