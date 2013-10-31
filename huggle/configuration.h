@@ -45,6 +45,7 @@
 #include "core.h"
 #include "wikisite.h"
 
+//! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {
     class Core;

@@ -22,6 +22,7 @@ namespace Huggle
 {
     class WikiUser;
 
+    //! Hooks that can be used to attach some 3rd code to existing functions
     class Hooks
     {
     public:

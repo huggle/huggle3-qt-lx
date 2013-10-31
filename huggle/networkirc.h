@@ -18,12 +18,14 @@
 
 namespace Huggle
 {
+    //! Namespace that contains IRC objects
     namespace IRC
     {
         class Channel;
         class User;
         class NetworkIrc;
 
+        //! Represent a channel on IRC network
         class Channel
         {
             public:
@@ -47,6 +49,7 @@ namespace Huggle
             QString Host;
         };
 
+        //! Represent a message on irc network sent either to a channel or to a user
         class Message
         {
         public:

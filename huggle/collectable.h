@@ -21,8 +21,7 @@
 
 namespace Huggle
 {
-     //! Base for all items that are supposed to be
-     //! collected by garbage collector
+     //! Base for all items that are supposed to be collected by garbage collector
     class Collectable
     {
     public:

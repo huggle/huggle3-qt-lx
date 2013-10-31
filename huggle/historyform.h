@@ -21,6 +21,9 @@ namespace Ui
 
 namespace Huggle
 {
+    //! This is a small gadget that is displayed on top of main window
+
+    //! It can be used to retrieve a history of currently displayed page
     class HistoryForm : public QDockWidget
     {
         Q_OBJECT
