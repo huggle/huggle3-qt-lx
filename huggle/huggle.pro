@@ -73,6 +73,7 @@ SOURCES += main.cpp\
     uaareport.cpp \
     collectable.cpp \
     gc.cpp \
+    hugglemassrollback.cpp \
     hugglenuke.cpp
 
 HEADERS  += mainwindow.h \
@@ -130,6 +131,7 @@ HEADERS  += mainwindow.h \
     uaareport.h \
     collectable.h \
     gc.h \
+    hugglemassrollback.h \
     hugglenuke.h
 
 FORMS    += mainwindow.ui \
@@ -159,6 +161,7 @@ FORMS    += mainwindow.ui \
     vandalnw.ui \
     updateform.ui \
     uaareport.ui \
+    hugglemassrollback.ui \
     hugglenuke.ui
 
 RESOURCES += \
