@@ -43,6 +43,7 @@ namespace Huggle
         bool Stopped;
     };
 
+    //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
     class HuggleFeedProviderIRC : public HuggleFeed
     {
     public:

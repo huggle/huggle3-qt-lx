@@ -37,9 +37,13 @@ namespace Huggle
         //! Whether the object is locked (other threads can't register nor unregister consumers
         //! neither it is possible to delete this object by any other thread)
         bool IsLocked();
-        //! Lock this object so that other threads can't change consumers or modify its properties
+        /*!
+         * \brief Lock this object so that other threads can't change consumers or modify its properties
+         */
         void Lock();
-        //! Unlock this object for deletion by other threads
+        /*!
+         * \brief Unlock this object for deletion by other threads
+         */
         void Unlock();
         /*!
          * \brief Registers a consumer

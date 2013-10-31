@@ -28,6 +28,8 @@ namespace Ui
 
 namespace Huggle
 {
+    //! Removed item that was in the process list
+
     //! When you remove an item it should stay in list for some time so that user can notice it finished and that's
     //! why we store it to separate object and for that we have this class ;)
     class ProcessListRemovedItem
@@ -40,6 +42,8 @@ namespace Huggle
         int GetID();
         bool Expired();
     };
+
+    //! List of processes in a main window
 
     //! List of active processes, when some process finish it's collected by garbage collector
     //! this is only a dialog that you see in huggle form, it doesn't contain process list

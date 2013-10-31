@@ -19,6 +19,7 @@ namespace Ui {
 
 namespace Huggle
 {
+    //! DOCUMENT ME
     class UAAReport : public QDialog
     {
             Q_OBJECT

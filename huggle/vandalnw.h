@@ -25,6 +25,10 @@ namespace Ui
 
 namespace Huggle
 {
+    //! Vandalism network
+
+    //! Huggle 3 comes with a system that allows all clients to operate together in order
+    //! to be effective in reverting of vandalism
     class VandalNw : public QDockWidget
     {
         Q_OBJECT
@@ -32,10 +36,16 @@ namespace Huggle
     public:
         explicit VandalNw(QWidget *parent = 0);
         ~VandalNw();
+        /*!
+         * \brief Insert text to window
+         * \param text is a string that will be inserted to window, must not be terminated with newline
+         */
         void Insert(QString text);
         void Connect();
         void Disconnect();
+        //! This will deliver an edit to others as a good edit
         void Good(WikiEdit *Edit);
+        //! Notify others about a rollback of edit
         void Rollback(WikiEdit *Edit);
         void SuspiciousWikiEdit(WikiEdit *Edit);
         void WarningSent(WikiUser *user, int Level);
