@@ -128,6 +128,8 @@ namespace Huggle
         static QList<Language*> LocalizationData;
         //! Pointer to AIV page
         static WikiPage * AIVP;
+        //! Pointer to UAA page
+        static WikiPage *UAAP;
         //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
         static bool Running;
 

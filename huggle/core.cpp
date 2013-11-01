@@ -34,6 +34,7 @@ QDateTime Core::StartupTime = QDateTime::currentDateTime();
 bool Core::Running = true;
 QList<iExtension*> Core::Extensions;
 WikiPage *Core::AIVP = NULL;
+WikiPage *Core::UAAP = NULL;
 QList<Language*> Core::LocalizationData;
 QList<HuggleQueueFilter *> Core::FilterDB;
 

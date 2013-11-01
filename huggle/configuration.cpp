@@ -540,11 +540,14 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::LocalConfig_DeletionTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     Configuration::LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     Configuration::LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
+    Configuration::LocalConfig_UAAPath = Configuration::ConfigurationParse("uaa", config);
 
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
     QStringList namespaces = Configuration::ConfigurationParse_QL("namespace-names", config, true);
+
+    Core::UAAP = new WikiPage(Configuration::LocalConfig_UAAPath);
 
     // templates
     int CurrentTemplate=0;
@@ -567,6 +570,11 @@ bool Configuration::ParseLocalConfig(QString config)
     if (Configuration::LocalConfig_ReportPath == "")
     {
         Configuration::LocalConfig_AIV = false;
+    }
+    // Do the same for UAA as well
+    if (Configuration::LocalConfig_UAAPath == "")
+    {
+        Configuration::LocalConfig_UAAavailable = false;
     }
     return true;
 }

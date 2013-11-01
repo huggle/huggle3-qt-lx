@@ -15,10 +15,8 @@
 #include <QString>
 #include <QtXml>
 #include <QTimer>
-#include "apiquery.h"
 #include "core.h"
 #include "configuration.h"
-#include "wikiedit.h"
 #include "wikiuser.h"
 
 namespace Ui
@@ -28,11 +26,9 @@ namespace Ui
 
 namespace Huggle
 {
-    class ApiQuery;
-    class WikiEdit;
     class WikiUser;
 
-    //! DOCUMENT ME
+    //! Form to report users to UAA
     class UAAReport : public QDialog
     {
             Q_OBJECT
@@ -47,16 +43,14 @@ namespace Huggle
             void onTick();
         private:
             Ui::UAAReport *ui;
-            ApiQuery *tk;
-            ApiQuery *tkp;
-            QString uaatoken;
             QTimer *uaat;
             WikiUser *User;
-            void getTokenForUAA();
-            void checkTokenForUAA();
+            QString contentsOfUAA;
+            void whatToReport();
+            void insertUsername();
             void ReportUsername();
             void Failed(QString reason);
-            int UAAQueryPhase;
+            int reportPhase;
     };
 }
 
