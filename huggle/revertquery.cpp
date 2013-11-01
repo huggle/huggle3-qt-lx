@@ -22,23 +22,29 @@ RevertQuery::RevertQuery()
     this->timer = NULL;
     this->UsingSR = false;
     this->Token = "";
+    this->qRetrieve = NULL;
     this->Summary = "";
+    this->MinorEdit = false;
+    this->EditQuerySoftwareRollback = NULL;
     this->qPreflight = NULL;
     this->Timeout = Configuration::WriteTimeout;
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
 {
-    Edit->RegisterConsumer("RevertQuery");
+    Edit->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->Type = QueryRevert;
     this->qRevert = NULL;
     this->edit = Edit;
     this->PreflightFinished = false;
     this->RollingBack = false;
     this->timer = NULL;
+    this->qRetrieve = NULL;
     this->IgnorePreflightCheck = false;
     this->UsingSR = false;
+    this->EditQuerySoftwareRollback = NULL;
     this->Token = "";
+    this->MinorEdit = false;
     this->Summary = Configuration::GetDefaultRevertSummary(this->edit->User->Username);
     this->qPreflight = NULL;
     this->Timeout = 280;
@@ -81,6 +87,11 @@ void RevertQuery::Kill()
         this->Result->ErrorMessage = "Killed";
         this->Result->Failed = true;
     }
+    if (this->qRetrieve != NULL)
+    {
+        this->qRetrieve->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+    }
+    this->qRetrieve = NULL;
     this->Exit();
 }
 
@@ -88,7 +99,7 @@ RevertQuery::~RevertQuery()
 {
     if (this->edit != NULL)
     {
-        this->edit->UnregisterConsumer("RevertQuery");
+        this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         this->edit->UnregisterConsumer("Core::RevertEdit");
     }
     delete timer;
@@ -320,7 +331,7 @@ bool RevertQuery::CheckRevert()
 {
     if (this->UsingSR)
     {
-        return false;
+        return ProcessRevert();
     }
     if (this->qRevert == NULL)
     {
@@ -352,7 +363,7 @@ bool RevertQuery::CheckRevert()
             Core::Main->_History->Prepend(item);
         }
     }
-    this->qRevert->UnregisterConsumer("RevertQuery");
+    this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->qRevert = NULL;
     return true;
 }
@@ -366,6 +377,150 @@ void RevertQuery::Cancel()
     this->Result->ErrorMessage = "User requested to abort this";
     this->Status = StatusDone;
     this->PreflightFinished = true;
+}
+
+bool RevertQuery::ProcessRevert()
+{
+    if (this->EditQuerySoftwareRollback != NULL)
+    {
+        if (EditQuerySoftwareRollback->Processed() == false)
+        {
+            return false;
+        }
+        this->EditQuerySoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        return true;
+    }
+
+    if (this->qPreflight == NULL)
+    {
+        return false;
+    }
+
+    if (this->qPreflight->Processed() != true)
+    {
+        return false;
+    }
+
+    if (this->qPreflight->Result->Failed)
+    {
+        Core::Log("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
+        this->Kill();
+        this->Status = StatusDone;
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage;
+        this->Result->Failed = true;
+        return true;
+    }
+    QDomDocument d;
+    d.setContent(this->qPreflight->Result->Data);
+    QDomNodeList l = d.elementsByTagName("rev");
+    // we need to find a first revision that is made by a different user
+    // but first we need to check if last revision was actually made by this user, because if not
+    // it's possible that someone else already reverted them
+    if (l.count() == 0)
+    {
+        // if we have absolutely no revisions in the result, it's pretty fucked
+        Core::Log("Failed to retrieve a list of edits made to this page, query returned no data");
+        this->Kill();
+        this->Status = StatusDone;
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Failed to retrieve a list of edits made to this page, query returned no data";
+        this->Result->Failed = true;
+        return true;
+    }
+    QDomElement latest = l.at(0).toElement();
+    // if the latest revid doesn't match our revid it means that someone made an edit
+    bool passed = true;
+    int depth = 0;
+    int x = 0;
+    while (x < l.count())
+    {
+        QDomElement e = l.at(x).toElement();
+        if (e.attributes().contains("revid"))
+        {
+            if (edit->RevID == e.attribute("revid").toInt())
+            {
+                x++;
+                continue;
+            }
+        } else
+        {
+            x++;
+            continue;
+        }
+        if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > edit->RevID)
+        {
+            passed = false;
+        }
+        x++;
+    }
+    if (!passed)
+    {
+        Core::Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        this->Kill();
+        this->Status = StatusDone;
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile";
+        this->Result->Failed = true;
+        return true;
+    }
+
+    // now we need to find the first revision that was done by some different user
+    x = 0;
+    int RevID = WIKI_UNKNOWN_REVID;
+    QString content = "";
+    QString target = "";
+    // FIXME: this list needs to be sorted by RevID
+    while (x < l.count())
+    {
+        QDomElement e = l.at(x).toElement();
+        if (!e.attributes().contains("revid") || !e.attributes().contains("user"))
+        {
+            // this is fucked up piece of shit
+            Core::Log("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
+            this->Kill();
+            this->Status = StatusDone;
+            this->Result = new QueryResult();
+            this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense";
+            this->Result->Failed = true;
+            Core::DebugLog("Nonsense: " + this->qPreflight->Result->Data);
+            return true;
+        }
+        if (e.attribute("user") != this->edit->User->Username)
+        {
+            // we got it
+            RevID = e.attribute("revid").toInt();
+            target = e.attribute("user");
+            content = e.text();
+            break;
+        }
+        depth++;
+        x++;
+    }
+    // let's check if depth isn't too low
+    if (depth == 0)
+    {
+        // something is wrong
+        Core::Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        this->Kill();
+        this->Status = StatusDone;
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile";
+        this->Result->Failed = true;
+        return true;
+    }
+    // now we need to change the content of page
+    this->qRetrieve = new ApiQuery();
+    // localize me
+    QString summary = Configuration::LocalConfig_SoftwareRevertDefaultSummary;
+    summary = summary.replace("$1", this->edit->User->Username)
+            .replace("$2", target)
+            .replace("$3", QString::number(depth))
+            .replace("$4", QString::number(RevID));
+    EditQuerySoftwareRollback = Core::EditPage(this->edit->Page, content, summary, MinorEdit);
+    this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+    this->CustomStatus = "Editing page";
+    return false;
 }
 
 void RevertQuery::Rollback()
@@ -445,7 +600,12 @@ void RevertQuery::Rollback()
 
 void RevertQuery::Revert()
 {
-    Core::Log("ERROR: this is not implemented yet");
+    // Get a list of edits made to this page
+    this->qPreflight = new ApiQuery();
+    this->qPreflight->SetAction(ActionQuery);
+    this->qPreflight->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|content|size|sha1|comment")
+                                    + "&rvlimit=20&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
+    this->qPreflight->Process();
 }
 
 void RevertQuery::Exit()
@@ -454,9 +614,14 @@ void RevertQuery::Exit()
     {
         this->timer->stop();
     }
+    if (EditQuerySoftwareRollback != NULL)
+    {
+        EditQuerySoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        EditQuerySoftwareRollback = NULL;
+    }
     this->UnregisterConsumer("RevertQuery::Timer");
     if (this->qRevert != NULL)
     {
-        this->qRevert->UnregisterConsumer("RevertQuery");
+        this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     }
 }

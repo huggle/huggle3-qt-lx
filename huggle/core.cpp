@@ -669,6 +669,7 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     {
         summary = summary + " " + Configuration::EditSuffixOfHuggle;
     }
+    _e->RegisterConsumer("Core::EditPage");
     _e->page = page->PageName;
     Core::PendingMods.append(_e);
     _e->text = text;
@@ -916,7 +917,9 @@ void Core::CheckQueries()
         {
             if (Core::PendingMods.at(curr)->Processed())
             {
+                EditQuery *e = Core::PendingMods.at(curr);
                 Core::PendingMods.removeAt(curr);
+                e->UnregisterConsumer("Core::EditPage");
             } else
             {
                 curr++;
@@ -995,8 +998,15 @@ RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool ro
     {
         query->Summary = summary;
     }
+    query->MinorEdit = minor;
     Core::AppendQuery(query);
-    query->UsingSR = !rollback;
+    if (Configuration::EnforceManualSoftwareRollback)
+    {
+        query->UsingSR = true;
+    } else
+    {
+        query->UsingSR = !rollback;
+    }
     query->Process();
 
     if (keep)
