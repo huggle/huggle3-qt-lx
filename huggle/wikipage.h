@@ -45,6 +45,7 @@ namespace Huggle
         WikiPage(QString name);
         WikiPage(WikiPage *page);
         WikiPage(const WikiPage& page);
+        //! Retrieve a namespace ID for current page
         MediaWikiNS GetNS();
         //! Return true in case this is a talk page
         bool IsTalk();

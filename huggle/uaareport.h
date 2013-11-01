@@ -31,7 +31,8 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
     class WikiUser;
-            
+
+    //! DOCUMENT ME
     class UAAReport : public QDialog
     {
             Q_OBJECT
