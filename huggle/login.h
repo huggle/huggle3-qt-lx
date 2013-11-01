@@ -67,7 +67,6 @@ namespace Huggle
     private slots:
         void on_ButtonOK_clicked();
         void on_ButtonExit_clicked();
-        void on_Login_destroyed();
         void on_Time();
         void on_pushButton_clicked();
         void on_Language_currentIndexChanged(const QString &arg1);
@@ -101,6 +100,7 @@ namespace Huggle
         void DeveloperMode();
         void DisplayError(QString message);
         void Finish();
+        void reject();
         //! This function make sure that login result is done
         bool ProcessOutput();
         QString GetToken();

@@ -72,6 +72,7 @@ QString Configuration::LocalConfig_RollbackSummary = "Reverted edits by [[Specia
 QString Configuration::LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
 QString Configuration::LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
 QString Configuration::LocalConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
+QString Configuration::LocalConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 
 // Warnings
 
@@ -161,6 +162,7 @@ bool Configuration::LocalConfig_ConfirmWarned = false;
 int Configuration::FontSize = 10;
 int Configuration::WriteTimeout = 200;
 int Configuration::ReadTimeout = 60;
+bool Configuration::EnforceManualSoftwareRollback = false;
 
 QString Configuration::GetURLProtocolPrefix()
 {
@@ -248,6 +250,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "confirm-same:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmSame) + "\n";
     conf += "default-summary:" + Configuration::DefaultRevertSummary + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::FontSize) + "\n";
+    conf += "software-rollback:" + Configuration::Bool2String(Configuration::EnforceManualSoftwareRollback) + "\n";
     conf += "</nowiki>";
     return conf;
 }
@@ -575,6 +578,7 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
     Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
+    Configuration::EnforceManualSoftwareRollback = Configuration::SafeBool(Configuration::ConfigurationParse("software-rollback", config));
     QStringList l1 = Configuration::ConfigurationParse_QL("template-summ", config);
     if (l1.count() > 0)
     {

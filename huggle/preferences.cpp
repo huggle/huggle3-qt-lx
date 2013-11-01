@@ -40,6 +40,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     }
     this->Disable();
     // options
+    ui->checkBox_5->setChecked(Configuration::EnforceManualSoftwareRollback);
     ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
     ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);
     ui->checkBox_12->setChecked(Configuration::UsingIRC);
@@ -92,14 +93,15 @@ void Preferences::EnableQueues()
 
 void Preferences::on_pushButton_clicked()
 {
-    Configuration::AutomaticallyResolveConflicts = ui->checkBox->isChecked();
-    Configuration::WarnUserSpaceRoll = ui->checkBox_2->isChecked();
-    Configuration::UsingIRC = ui->checkBox_12->isChecked();
-    Configuration::SaveConfig();
     this->hide();
 }
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
+    Configuration::AutomaticallyResolveConflicts = ui->checkBox->isChecked();
+    Configuration::WarnUserSpaceRoll = ui->checkBox_2->isChecked();
+    Configuration::UsingIRC = ui->checkBox_12->isChecked();
+    Configuration::EnforceManualSoftwareRollback = ui->checkBox_5->isChecked();
+    Configuration::SaveConfig();
     this->hide();
 }

@@ -16,12 +16,14 @@
 #include <QTimer>
 #include "configuration.h"
 #include "core.h"
+#include "editquery.h"
 #include "wikiedit.h"
 #include "apiquery.h"
 
 namespace Huggle
 {
     class ApiQuery;
+    class EditQuery;
     class WikiEdit;
 
     /*!
@@ -45,11 +47,14 @@ namespace Huggle
         //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
         bool IgnorePreflightCheck;
         QString Token;
+        bool MinorEdit;
     public slots:
         void OnTick();
     private:
         ApiQuery *qPreflight;
         ApiQuery *qRevert;
+        ApiQuery *qRetrieve;
+        EditQuery *EditQuerySoftwareRollback;
         WikiEdit* edit;
         QTimer *timer;
         bool RollingBack;
@@ -58,6 +63,7 @@ namespace Huggle
         void CheckPreflight();
         bool CheckRevert();
         void Cancel();
+        bool ProcessRevert();
         void Rollback();
         void Revert();
         void Exit();
