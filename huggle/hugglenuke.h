@@ -20,7 +20,7 @@ namespace Ui
 
 namespace Huggle
 {
-    //! Window that allows user to mass rollback contributions made by certain users
+    //! Window that allows user to nuke delete pages made by certain users
     class HuggleNuke : public QDialog
     {
         Q_OBJECT
