@@ -13,9 +13,15 @@
 
 using namespace Huggle;
 
-Exception::Exception(QString Text)
+Exception::Exception(QString Text, bool __IsRecoverable)
 {
     std::cerr << "FATAL Exception thrown: " + Text.toStdString() << std::endl;
     this->Message = Text;
     this->ErrorCode = 2;
+    this->_IsRecoverable = __IsRecoverable;
+}
+
+bool Exception::IsRecoverable()
+{
+    return _IsRecoverable;
 }

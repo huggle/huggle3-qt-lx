@@ -19,6 +19,7 @@ class HuggleMassRollback;
 
 namespace Huggle
 {
+    //! DOCUMENT ME
     class HuggleMassRollback : public QDialog
     {
         Q_OBJECT

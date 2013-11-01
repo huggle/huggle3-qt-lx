@@ -25,7 +25,10 @@ namespace Huggle
         //! Reason for crash
         QString Message;
         //! ctor
-        Exception(QString Text);
+        Exception(QString Text, bool __IsRecoverable = true);
+        bool IsRecoverable();
+    private:
+        bool _IsRecoverable;
     };
 }
 
