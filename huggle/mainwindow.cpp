@@ -1249,7 +1249,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
         {
             this->Welcome();
         }
-    } this->Queue1->Next();
+    }
     if (Configuration::NextOnRv)
     {
         this->Queue1->Next();
