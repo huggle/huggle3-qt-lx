@@ -39,7 +39,7 @@ This is a documentation for users: https://meta.wikimedia.org/wiki/Huggle
 Getting help
 =============
 
-We have a channel #huggle @chat.freenode.org so if you need any kind of help please go there
+We have a channel irc://chat.freenode.org/#huggle so if you need any kind of help please go there
 
 Reporting bugs
 ===============
