@@ -72,6 +72,7 @@ QString Configuration::LocalConfig_RollbackSummary = "Reverted edits by [[Specia
 QString Configuration::LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
 QString Configuration::LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
 QString Configuration::LocalConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
+QString Configuration::LocalConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 
 // Warnings
 
@@ -161,6 +162,8 @@ bool Configuration::LocalConfig_ConfirmWarned = false;
 int Configuration::FontSize = 10;
 int Configuration::WriteTimeout = 200;
 int Configuration::ReadTimeout = 60;
+bool Configuration::EnforceManualSoftwareRollback = false;
+
 
 bool Configuration::LocalConfig_UAAavailable = false;
 QString Configuration::LocalConfig_UAAPath = "Project:Usernames for administrator attention";
@@ -251,6 +254,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
     conf += "confirm-same:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmSame) + "\n";
     conf += "default-summary:" + Configuration::DefaultRevertSummary + "\n";
+    conf += "software-rollback:" + Configuration::Bool2String(Configuration::EnforceManualSoftwareRollback) + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::FontSize) + "\n";
     conf += "</nowiki>";
     return conf;
@@ -574,6 +578,7 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, QString::number(Configuration::LocalConfig_IPScore)).toInt();
     Configuration::LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString::number(Configuration::LocalConfig_ScoreFlag)).toInt();
     Configuration::LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
+    Configuration::EnforceManualSoftwareRollback = Configuration::SafeBool(Configuration::ConfigurationParse("software-rollback", config));
     Configuration::LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config, Configuration::LocalConfig_WarnSummary2);
     Configuration::LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config, Configuration::LocalConfig_WarnSummary3);
     Configuration::LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);

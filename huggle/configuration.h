@@ -128,6 +128,9 @@ namespace Huggle
         static int ReadTimeout;
         static int WriteTimeout;
 
+        //! If this is true huggle will always use software rollback even if user has the rollback privileges
+        static bool EnforceManualSoftwareRollback;
+
         //////////////////////////////////////////////
         // Local config
         //////////////////////////////////////////////
@@ -167,6 +170,7 @@ namespace Huggle
         static QString LocalConfig_ManualRevertSummary;
         static QString LocalConfig_MultipleRevertSummary;
         static QStringList LocalConfig_RevertSummaries;
+        static QString LocalConfig_SoftwareRevertDefaultSummary;
         static QStringList LocalConfig_TemplateSummary;
         static bool LocalConfig_RollbackPossible;
         static QString LocalConfig_RollbackSummary;
