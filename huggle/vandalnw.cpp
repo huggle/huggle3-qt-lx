@@ -53,22 +53,27 @@ void VandalNw::Disconnect()
 
 void VandalNw::Good(WikiEdit *Edit)
 {
-    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "GOOD " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->pref + "GOOD " + QString::number(Edit->RevID));
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
 {
-    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "ROLLBACK " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->pref + "ROLLBACK " + QString::number(Edit->RevID));
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
-    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "SUSPICIOUS " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->pref + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
 void VandalNw::WarningSent(WikiUser *user, int Level)
 {
-    this->Irc->Send(Configuration::Project.IRCChannel + ".huggle", this->pref + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
+    this->Irc->Send(this->GetChannel(), this->pref + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
+}
+
+QString VandalNw::GetChannel()
+{
+    return Configuration::Project.IRCChannel + ".huggle";
 }
 
 void VandalNw::onTick()
@@ -83,7 +88,7 @@ void VandalNw::onTick()
     {
         this->JoinedMain = true;
         this->Insert("You are now connected to huggle antivandalism network");
-        this->Irc->Join(Configuration::Project.IRCChannel + ".huggle");
+        this->Irc->Join(this->GetChannel());
     }
     Huggle::IRC::Message *m = this->Irc->GetMessage();
     if (m != NULL)
@@ -123,4 +128,14 @@ void VandalNw::Insert(QString text)
     t.prepend(text + "\n");
 
     ui->textEdit->setPlainText(t);
+}
+
+void Huggle::VandalNw::on_pushButton_clicked()
+{
+    if (this->Irc->IsConnected())
+    {
+        this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
+        this->Insert(Configuration::UserName + ": " + ui->lineEdit->text());
+    }
+    ui->lineEdit->setText("");
 }

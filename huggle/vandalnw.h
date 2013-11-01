@@ -49,6 +49,7 @@ namespace Huggle
         void Rollback(WikiEdit *Edit);
         void SuspiciousWikiEdit(WikiEdit *Edit);
         void WarningSent(WikiUser *user, int Level);
+        QString GetChannel();
         QString pref;
         QTimer *tm;
     private:
@@ -57,6 +58,7 @@ namespace Huggle
         bool JoinedMain;
     private slots:
         void onTick();
+        void on_pushButton_clicked();
     };
 }
 
