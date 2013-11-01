@@ -29,12 +29,8 @@ void WaitingForm::Status(int progress, QString text)
     ui->progressBar->setValue(progress);
 }
 
-void WaitingForm::on_WaitingForm_destroyed()
+void WaitingForm::reject()
 {
-    Core::Shutdown();
-}
-
-void WaitingForm::on_WaitingForm_rejected()
-{
-    Core::Shutdown();
+    // this function replaces the original that hides the window so that
+    // it's not possible to reject this window
 }

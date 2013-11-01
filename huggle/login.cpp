@@ -570,6 +570,14 @@ void Login::Finish()
     Core::Main->show();
 }
 
+void Login::reject()
+{
+    if (this->_Status != StatusDone)
+    {
+        QApplication::quit();
+    }
+}
+
 bool Login::ProcessOutput()
 {
     // Check what the result was
@@ -656,11 +664,6 @@ void Login::on_ButtonOK_clicked()
 void Login::on_ButtonExit_clicked()
 {
     Core::Shutdown();
-}
-
-void Login::on_Login_destroyed()
-{
-    QApplication::quit();
 }
 
 void Login::on_Time()

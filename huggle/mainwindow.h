@@ -256,6 +256,7 @@ namespace Huggle
         void Render();
         //! Request a page deletion csd or afd and so on
         void RequestPD();
+        void closeEvent(QCloseEvent *event);
     };
 }
 #endif // MAINWINDOW_H

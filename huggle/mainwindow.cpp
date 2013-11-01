@@ -352,6 +352,17 @@ void MainWindow::RequestPD()
     this->fRemove->show();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (this->ShuttingDown)
+    {
+        event->ignore();
+        return;
+    }
+    this->Exit();
+    event->ignore();
+}
+
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
