@@ -236,6 +236,7 @@ namespace Huggle
         void on_actionEdit_info_triggered();
         void on_actionFlag_as_suspicious_edit_triggered();
         void on_actionDisconnect_triggered();
+        void on_actionReport_username_triggered();
 
     private:
         QTimer *timer1;

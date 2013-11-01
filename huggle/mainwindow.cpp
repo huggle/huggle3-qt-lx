@@ -1525,3 +1525,8 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 {
     this->VandalDock->Disconnect();
 }
+
+void MainWindow::on_actionReport_username_triggered()
+{
+
+}

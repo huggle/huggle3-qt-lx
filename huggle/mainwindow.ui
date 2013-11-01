@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -107,6 +107,7 @@
     <addaction name="actionFlag_as_a_good_edit"/>
     <addaction name="separator"/>
     <addaction name="actionTag_2"/>
+    <addaction name="separator"/>
     <addaction name="actionRequest_speedy_deletion"/>
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
@@ -140,8 +141,11 @@
     <addaction name="actionClear_template_meta_data"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
-    <addaction name="actionReport_user_2"/>
+    <addaction name="separator"/>
     <addaction name="actionBlock_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionReport_username"/>
+    <addaction name="actionReport_user_2"/>
     <addaction name="separator"/>
     <addaction name="menuManual_template"/>
     <addaction name="actionEdit_user_talk"/>
@@ -711,6 +715,11 @@
    </property>
    <property name="shortcut">
     <string>S</string>
+   </property>
+  </action>
+  <action name="actionReport_username">
+   <property name="text">
+    <string>Report username</string>
    </property>
   </action>
  </widget>
