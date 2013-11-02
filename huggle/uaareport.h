@@ -40,12 +40,12 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
-            void onTick();
         private:
             Ui::UAAReport *ui;
             QTimer *uaat;
             WikiUser *User;
             QString contentsOfUAA;
+            QString newln;
             void whatToReport();
             void insertUsername();
             void ReportUsername();
