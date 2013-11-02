@@ -82,10 +82,10 @@ void UAAReport::on_pushButton_clicked()
     {
         QMessageBox *g = new QMessageBox();
         g->setWindowTitle("No reason specified");
-        g->setText("You didn't specify a reason as to why the username is a policy violation."\
+        g->setText("You didn't specify a reason as to why the username is a policy violation. "\
                    "Please specify a reason.");
         g->exec();
-        delete g;
+        g->setAttribute(Qt::WA_DeleteOnClose);
     }
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
     Core::EditPage(Core::UAAP, contentsOfUAA, uaasum, true);
