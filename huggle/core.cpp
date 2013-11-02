@@ -675,6 +675,7 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     Core::PendingMods.append(_e);
     _e->text = text;
     _e->summary = summary;
+    _e->Minor = minor;
     _e->Process();
     return _e;
 }
