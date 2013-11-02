@@ -89,7 +89,6 @@ void UAAReport::on_pushButton_clicked()
         g->setText("You didn't specify a reason as to why the username is a policy violation."\
                    "Please specify a reason.");
         g->exec();
-        delete g;
     }
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
     Core::EditPage(Core::UAAP, contentsOfUAA, uaasum, true);
