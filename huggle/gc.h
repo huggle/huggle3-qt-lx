@@ -24,6 +24,8 @@
 #define HUGGLECONSUMER_HUGGLETOOL               6
 #define HUGGLECONSUMER_EDITQUERY                7
 #define HUGGLECONSUMER_REVERTQUERY              8
+#define HUGGLECONSUMER_MAINFORM                 9
+#define HUGGLECONSUMER_LOGINFORM                10
 
 namespace Huggle
 {

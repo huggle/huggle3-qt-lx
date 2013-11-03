@@ -665,9 +665,9 @@ void MainWindow::on_Tick2()
             Configuration::WhiteList.removeDuplicates();
             this->fWaiting->Status(60, "Updating whitelist");
             this->Shutdown = ShutdownOpUpdatingWhitelist;
-            delete this->wq;
-            //this->fWaiting
+            this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->wq = new WLQuery();
+            this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->wq->Save = true;
             this->wq->Process();
             return;
@@ -679,14 +679,16 @@ void MainWindow::on_Tick2()
                 return;
             }
             // we finished writing the wl
+            this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->fWaiting->Status(80, "Updating user config");
-            delete this->wq;
+            this->wq = NULL;
             // we really should delete this page somewhere I guess :o
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::UserName);
             WikiPage *uc = new WikiPage(page);
             this->eq = Core::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
+            this->eq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
             delete uc;
             return;
         }
@@ -698,7 +700,8 @@ void MainWindow::on_Tick2()
             return;
         }
         Core::Log(this->eq->Result->Data);
-        delete this->eq;
+        this->eq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->eq = NULL;
         this->wlt->stop();
         Core::Shutdown();
     }
@@ -1029,6 +1032,7 @@ void MainWindow::Exit()
     this->fWaiting->show();
     this->fWaiting->Status(10, "Downloading new whitelist");
     this->wq = new WLQuery();
+    this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->wq->Process();
     this->wlt = new QTimer(this);
     connect(this->wlt, SIGNAL(timeout()), this, SLOT(on_Tick2()));
