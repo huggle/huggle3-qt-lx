@@ -1,3 +1,14 @@
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+
+
 #ifndef REQUESTPROTECT_H
 #define REQUESTPROTECT_H
 
@@ -7,16 +18,20 @@ namespace Ui {
 class RequestProtect;
 }
 
-class RequestProtect : public QDialog
-{
-    Q_OBJECT
-    
-public:
-    explicit RequestProtect(QWidget *parent = 0);
-    ~RequestProtect();
-    
-private:
-    Ui::RequestProtect *ui;
-};
+namespace Huggle {
+    //! This can be used to request protection of a page
+    class RequestProtect : public QDialog
+    {
+        Q_OBJECT
+
+        public:
+            explicit RequestProtect(QWidget *parent = 0);
+            ~RequestProtect();
+
+        private:
+            Ui::RequestProtect *ui;
+    };
+}
+
 
 #endif // REQUESTPROTECT_H
