@@ -74,7 +74,8 @@ SOURCES += main.cpp\
     collectable.cpp \
     gc.cpp \
     hugglemassrollback.cpp \
-    hugglenuke.cpp
+    hugglenuke.cpp \
+    requestprotect.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -132,7 +133,8 @@ HEADERS  += mainwindow.h \
     collectable.h \
     gc.h \
     hugglemassrollback.h \
-    hugglenuke.h
+    hugglenuke.h \
+    requestprotect.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -162,7 +164,8 @@ FORMS    += mainwindow.ui \
     updateform.ui \
     uaareport.ui \
     hugglemassrollback.ui \
-    hugglenuke.ui
+    hugglenuke.ui \
+    requestprotect.ui
 
 RESOURCES += \
     pictures.qrc \
