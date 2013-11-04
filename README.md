@@ -45,4 +45,3 @@ Reporting bugs
 ===============
 
 Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
-
