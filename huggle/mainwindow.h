@@ -50,6 +50,7 @@
 #include "historyform.h"
 #include "deleteform.h"
 #include "protectpage.h"
+#include "uaareport.h"
 
 namespace Ui
 {
@@ -80,6 +81,7 @@ namespace Huggle
     class ReportUser;
 	class DeleteForm;
     class ProtectPage;
+    class UAAReport;
 
     /*!
      * \brief The ShutdownOp enum contains a various parts of shutdown so that we can keep the track of what is going on
@@ -155,6 +157,8 @@ namespace Huggle
 		DeleteForm *deletef;
         //! Pointer to a form to protect a page
         ProtectPage *protect;
+        //! Pointer to UAA dialog
+        UAAReport *uaaf;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         void _ReportUser();

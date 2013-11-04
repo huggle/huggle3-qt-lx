@@ -190,6 +190,7 @@ MainWindow::~MainWindow()
     delete this->Browser;
     delete this->block;
 	delete this->deletef;
+    delete this->uaaf;
     delete ui;
     delete this->tb;
 }
@@ -1543,5 +1544,28 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 
 void MainWindow::on_actionReport_username_triggered()
 {
-
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (Configuration::LocalConfig_UAAavailable)
+    {
+        QMessageBox dd;
+        dd.setIcon(dd.Information);
+        dd.setWindowTitle("UAA not available");
+        dd.setText("The usernames for administrator attention noticeboard is not available on your wiki.");
+        dd.exec();
+    }
+    if (this->CurrentEdit->User->IsIP())
+    {
+        Core::Log("ERROR: You can't report an IP to UAA!");
+        return;
+    }
+    this->uaaf = new UAAReport();
+    uaaf->setUserForUAA(this->CurrentEdit->User);
+    uaaf->show();
 }

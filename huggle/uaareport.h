@@ -18,6 +18,8 @@
 #include "core.h"
 #include "configuration.h"
 #include "wikiuser.h"
+#include "wikipage.h"
+#include "apiquery.h"
 
 namespace Ui
 {
@@ -27,7 +29,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
-
+    class WikiPage;
+    class ApiQuery;
     //! Form to report users to UAA
     class UAAReport : public QDialog
     {
@@ -40,17 +43,23 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
+            void onTick();
         private:
             Ui::UAAReport *ui;
             QTimer *uaat;
             WikiUser *User;
             QString contentsOfUAA;
-            QString newln;
+            QString dr;
+            QString optionalreason;
+            QString ta;
+            QString uaaReportReason;
+            WikiPage *page;
+            ApiQuery *qUAApage;
+            QTimer *uT;
+            void getPageContents();
             void whatToReport();
             void insertUsername();
-            void ReportUsername();
-            void Failed(QString reason);
-            int reportPhase;
+            void failed(QString reason);
     };
 }
 
