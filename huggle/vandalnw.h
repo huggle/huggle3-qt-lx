@@ -50,7 +50,9 @@ namespace Huggle
         void SuspiciousWikiEdit(WikiEdit *Edit);
         void WarningSent(WikiUser *user, int Level);
         QString GetChannel();
+        /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
         QString pref;
+        /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
         QTimer *tm;
     private:
         Ui::VandalNw *ui;

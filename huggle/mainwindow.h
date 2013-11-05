@@ -160,9 +160,9 @@ namespace Huggle
         DeleteForm *fDeleteForm;
 #endif
         //! Pointer to a form to protect a page
-        ProtectPage *protect;
+        ProtectPage *fProtectForm;
         //! Pointer to UAA dialog
-        UAAReport *uaaf;
+        UAAReport *fUaaReportForm;
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         void _ReportUser();

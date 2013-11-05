@@ -199,7 +199,7 @@ MainWindow::~MainWindow()
     delete this->fBlockForm;
     delete this->fDeleteForm;
 #endif
-    delete this->uaaf;
+    delete this->fUaaReportForm;
     delete ui;
     delete this->tb;
 }
@@ -1564,9 +1564,9 @@ void MainWindow::on_actionProtect_triggered()
         Core::Log("ERROR: Cannot protect NULL page");
         return;
     }
-    this->protect = new ProtectPage(this);
-    protect->setPageToProtect(this->CurrentEdit->Page);
-    protect->show();
+    this->fProtectForm = new ProtectPage(this);
+    fProtectForm->setPageToProtect(this->CurrentEdit->Page);
+    fProtectForm->show();
 }
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
@@ -1611,7 +1611,7 @@ void MainWindow::on_actionReport_username_triggered()
         Core::Log("ERROR: You can't report an IP to UAA!");
         return;
     }
-    this->uaaf = new UAAReport();
-    uaaf->setUserForUAA(this->CurrentEdit->User);
-    uaaf->show();
+    this->fUaaReportForm = new UAAReport();
+    fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
+    fUaaReportForm->show();
 }

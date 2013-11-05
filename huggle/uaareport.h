@@ -32,10 +32,10 @@ namespace Huggle
     class WikiPage;
     class ApiQuery;
     //! Form to report users to UAA
+    /// \todo This form wasn't tested by anyone so far, it must be tested before it's included in production build
     class UAAReport : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit UAAReport(QWidget *parent = 0);
             ~UAAReport();
@@ -46,15 +46,20 @@ namespace Huggle
             void onTick();
         private:
             Ui::UAAReport *ui;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
             QTimer *uaat;
             WikiUser *User;
             QString contentsOfUAA;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
             QString dr;
             QString optionalreason;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
             QString ta;
             QString uaaReportReason;
             WikiPage *page;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
             ApiQuery *qUAApage;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
             QTimer *uT;
             void getPageContents();
             void whatToReport();

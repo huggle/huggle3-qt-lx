@@ -80,6 +80,10 @@ namespace Huggle
         protected:
             void run();
         private:
+            /*!
+             * \brief Pointer to a QT Socket that is handling the connection to irc server
+             * this object is managed by parent so don't delete it
+             */
             QTcpSocket *s;
             bool Stopped;
         };
@@ -120,6 +124,9 @@ namespace Huggle
             bool __IsConnecting;
             QMutex *writer_lock;
             NetworkIrc_th *NetworkThread;
+            /*!
+             * \brief Pointer to a QT Socket that is handling the connection to irc server owned by this class
+             */
             QTcpSocket *s;
         };
     }
