@@ -1,5 +1,5 @@
 <pre>
-name:                      PortuguÍs
+name:                      Portugu√™s
 </pre>
 
 === General ===
@@ -15,7 +15,7 @@ delete:                    Eliminar
 error:                     Erro
 exit:                      Sair
 minimizewindow:            Minimizar
-no:                        N„o
+no:                        N√£o
 ok:                        OK
 remove:                    Remover
 rename:                    Renomear
@@ -23,25 +23,25 @@ restorewindow:             Restaurar
 save:                      Gravar
 selectfile:                Selecionar...
 yes:                       Sim
-agf:                       Reverter como ediÁ„o de boa fÈ com motivo personalizado
-import:                    Importar da configuraÁ„o global
+agf:                       Reverter como edi√ß√£o de boa f√© com motivo personalizado
+import:                    Importar da configura√ß√£o global
 </pre>
 
 === Edit types ===
 <pre>
-edittype-blocknote:        NotificaÁıes de bloqueio
-edittype-deletenote:       NotificaÁıes de pedidos de eliminaÁ„o
-edittype-deletetag:        MarcaÁıes em discussıes de propostas para eliminaÁ„o
-edittype-deletereq:        Outras ediÁıes em discussıes de propostas para eliminaÁ„o
-edittype-manual:           EdiÁıes manuais
-edittype-message:          Mensagens de usu·rio
-edittype-note:             Outras notificaÁıes
-edittype-prodtag:          MarcaÁıes de eliminaÁ„o semirr·pida
-edittype-protectreq:       Pedidos de proteÁ„o
+edittype-blocknote:        Notifica√ß√µes de bloqueio
+edittype-deletenote:       Notifica√ß√µes de pedidos de elimina√ß√£o
+edittype-deletetag:        Marca√ß√µes em discuss√µes de propostas para elimina√ß√£o
+edittype-deletereq:        Outras edi√ß√µes em discuss√µes de propostas para elimina√ß√£o
+edittype-manual:           Edi√ß√µes manuais
+edittype-message:          Mensagens de usu√°rio
+edittype-note:             Outras notifica√ß√µes
+edittype-prodtag:          Marca√ß√µes de elimina√ß√£o semirr√°pida
+edittype-protectreq:       Pedidos de prote√ß√£o
 edittype-report:           Reportar a administradores
-edittype-revert:           Reversıes
-edittype-speedytag:        MarcaÁıes de eliminaÁ„o r·pida
-edittype-tag:              Outras marcaÁıes
+edittype-revert:           Revers√µes
+edittype-speedytag:        Marca√ß√µes de elimina√ß√£o r√°pida
+edittype-tag:              Outras marca√ß√µes
 edittype-warning:          Avisos
 </pre>
 
@@ -53,112 +53,112 @@ about-contributors:        Colaboradores:
 === Block form ===
 <pre>
 block-title:               Bloquear {0}
-block-reason:              Raz„o:
-block-duration:            DuraÁ„o:
-block-message:             Mensagem na p·gina de discuss„o:
-block-anononly:            Bloquear apenas anÛnimos
-block-creation:            Bloquear criaÁ„o de conta
+block-reason:              Raz√£o:
+block-duration:            Dura√ß√£o:
+block-message:             Mensagem na p√°gina de discuss√£o:
+block-anononly:            Bloquear apenas an√≥nimos
+block-creation:            Bloquear cria√ß√£o de conta
 block-autoblock:           Ativar autobloqueios
 block-email:               Bloquear email
 block-usertalk:            Disc
 block-usercontribs:        Contribs
-block-blockloglabel:       RelatÛrio de bloqueios:
+block-blockloglabel:       Relat√≥rio de bloqueios:
 block-warnloglabel:        Avisos:
-block-sharedipwarning:     Nota: {0} est· marcado como sendo um IP partilhado.
-block-sensitivewarning:    Este endereÁo IP est· marcado como 'sensÌvel' pela seguinte raz„o:\n\n   {0}\n\nContinuar?
-block-rangeblockwarning:   {0} j· È afetado por um bloqueio de gama em {1}.\nEste bloqueio substituir· o efeito do bloqueio de gama. Continuar?
+block-sharedipwarning:     Nota: {0} est√° marcado como sendo um IP partilhado.
+block-sensitivewarning:    Este endere√ßo IP est√° marcado como 'sens√≠vel' pela seguinte raz√£o:\n\n   {0}\n\nContinuar?
+block-rangeblockwarning:   {0} j√° √© afetado por um bloqueio de gama em {1}.\nEste bloqueio substituir√° o efeito do bloqueio de gama. Continuar?
 </pre>
 
 === Closing form ===
 <pre>
-closing-whitelist:         AtualizaÁ„o autom·tica da lista...
-closing-config:            AtualizaÁ„o autom·tica da configuraÁ„o...
+closing-whitelist:         Atualiza√ß√£o autom√°tica da lista...
+closing-config:            Atualiza√ß√£o autom√°tica da configura√ß√£o...
 </pre>
 
 === Configuration form ===
 <pre>
-config-summ:               Sum·rios personalizados de revers„o para predefiniÁıes
-config-title:              OpÁıes
-config-rememberme:         Lembrar o meu nome de usu·rio
+config-summ:               Sum√°rios personalizados de revers√£o para predefini√ß√µes
+config-title:              Op√ß√µes
+config-rememberme:         Lembrar o meu nome de usu√°rio
 config-rememberpassword:   Lembrar a minha palavra-chave
-config-autowhitelist:      Adicionar automaticamente usu·rios ‡ lista branca
-config-openinbrowser:      Abrir hiperligaÁıes numa nova janela do navegador externo
-config-shownewedits:       Mostrar automaticamente novas ediÁıes na p·gina caso elas ocorram
-config-preloads:           Ativar prÈ-carregamento de difs
-config-ircmode:            Usar se possÌvel o feed IRC para as mudanÁas recentes
+config-autowhitelist:      Adicionar automaticamente usu√°rios √† lista branca
+config-openinbrowser:      Abrir hiperliga√ß√µes numa nova janela do navegador externo
+config-shownewedits:       Mostrar automaticamente novas edi√ß√µes na p√°gina caso elas ocorram
+config-preloads:           Ativar pr√©-carregamento de difs
+config-ircmode:            Usar se poss√≠vel o feed IRC para as mudan√ßas recentes
 config-ircport:            Porta do IRC
 config-difffontsize:       Tamanho da fonte
-config-logfile:            Ficheiro de relatÛrios
-config-viewlocalconfig:    Ver pasta de configuraÁ„o local
-config-trayicon:           Mostrar Ìcone na barra de tarefas do Windows
-config-startupmessage:     Mostrar mensagem de inicializaÁ„o do Huggle
-config-showlog:            Mostrar relatÛrio de aÁıes do Huggle
-config-showqueue:          Mostrar fila de ediÁıes a rever
-config-rightalignqueue:    Deslocar fila de ediÁıes a rever para o lado direito
+config-logfile:            Ficheiro de relat√≥rios
+config-viewlocalconfig:    Ver pasta de configura√ß√£o local
+config-trayicon:           Mostrar √≠cone na barra de tarefas do Windows
+config-startupmessage:     Mostrar mensagem de inicializa√ß√£o do Huggle
+config-showlog:            Mostrar relat√≥rio de a√ß√µes do Huggle
+config-showqueue:          Mostrar fila de edi√ß√µes a rever
+config-rightalignqueue:    Deslocar fila de edi√ß√µes a rever para o lado direito
 config-showtooltips:       Mostrar tooltips nos menus
-config-shownewmessages:    Mostrar barra de novas mensagens caso editem a minha p·gina de discuss„o
+config-shownewmessages:    Mostrar barra de novas mensagens caso editem a minha p√°gina de discuss√£o
 config-shortcutlist:       Teclas de atalhos
-config-shortcutaction:     AÁ„o
+config-shortcutaction:     A√ß√£o
 config-shortcut:           Atalho
 config-changeshortcut:     Alterar atalho para {0}
 config-noshortcut:         Nenhum
 config-defaults:           Restaurar
-config-minor:              Marcar como ediÁ„o menor
-config-watchlist:          Adicionar ‡s p·ginas vigiadas
-config-defaultsummary:     Sum·rio padr„o para ediÁıes manuais
-config-undosummary:        Sum·rio para ediÁıes minhas que eu cancelar
-config-confirmmultiple:    Pedir confirmaÁ„o ao reverter v·rias ediÁıes do mesmo usu·rio
-config-confirmsame:        Pedir confirmaÁ„o ao reverter para uma ediÁ„o do mesmo usu·rio
-config-confirmselfrevert:  Pedir confirmaÁ„o ao reverter ediÁıes minhas (excluindo desfazer)
-config-confirmwarned:      Pedir confirmaÁ„o ao reverter para uma ediÁ„o de um usu·rio com avisos
-config-confirmrange:       Pedir confirmaÁ„o ao reverter uma ediÁ„o de um IP para outra de um IP da mesma gama /16
-config-confirmpage:        Pedir confirmaÁ„o ao reverter ediÁıes nas p·ginas ignoradas como a p·g. de testes
-config-autoadvance:        ApÛs reverter, mostrar automaticamente a prÛxima ediÁ„o a rever
-config-userollback:        Usar rollback caso esteja disponÌvel
-config-revertsummaries:    Sum·rios de ediÁ„o disponÌveis no menu
-config-clearsummaries:     Sum·rios introduzidos manualmente s„o memorizados entre sessıes; clicar no bot„o ao lado para os apagar
-config-reportlinkexamples: Incluir ligaÁıes para ediÁıes de vandalismo ao reportar v‚ndalos aos administradores
-config-extendreports:      ApÛs vandalismo posterior acrescentar novas ligaÁıes na p·gina de reportar v‚ndalos
+config-minor:              Marcar como edi√ß√£o menor
+config-watchlist:          Adicionar √†s p√°ginas vigiadas
+config-defaultsummary:     Sum√°rio padr√£o para edi√ß√µes manuais
+config-undosummary:        Sum√°rio para edi√ß√µes minhas que eu cancelar
+config-confirmmultiple:    Pedir confirma√ß√£o ao reverter v√°rias edi√ß√µes do mesmo usu√°rio
+config-confirmsame:        Pedir confirma√ß√£o ao reverter para uma edi√ß√£o do mesmo usu√°rio
+config-confirmselfrevert:  Pedir confirma√ß√£o ao reverter edi√ß√µes minhas (excluindo desfazer)
+config-confirmwarned:      Pedir confirma√ß√£o ao reverter para uma edi√ß√£o de um usu√°rio com avisos
+config-confirmrange:       Pedir confirma√ß√£o ao reverter uma edi√ß√£o de um IP para outra de um IP da mesma gama /16
+config-confirmpage:        Pedir confirma√ß√£o ao reverter edi√ß√µes nas p√°ginas ignoradas como a p√°g. de testes
+config-autoadvance:        Ap√≥s reverter, mostrar automaticamente a pr√≥xima edi√ß√£o a rever
+config-userollback:        Usar rollback caso esteja dispon√≠vel
+config-revertsummaries:    Sum√°rios de edi√ß√£o dispon√≠veis no menu
+config-clearsummaries:     Sum√°rios introduzidos manualmente s√£o memorizados entre sess√µes; clicar no bot√£o ao lado para os apagar
+config-reportlinkexamples: Incluir liga√ß√µes para edi√ß√µes de vandalismo ao reportar v√¢ndalos aos administradores
+config-extendreports:      Ap√≥s vandalismo posterior acrescentar novas liga√ß√µes na p√°gina de reportar v√¢ndalos
 config-autoreportgroup:    Reportar automaticamente
-config-autoreport:         Quando me for perguntado se quero dar um aviso final a um usu·rio
-config-reportnone:         N„o fazer nada
-config-reportprompt:       Perguntar se quero reportar o v‚ndalo
-config-reportauto:         Reportar v‚ndalo automaticamente
-config-templates:          Mensagens para notificar usu·rios
+config-autoreport:         Quando me for perguntado se quero dar um aviso final a um usu√°rio
+config-reportnone:         N√£o fazer nada
+config-reportprompt:       Perguntar se quero reportar o v√¢ndalo
+config-reportauto:         Reportar v√¢ndalo automaticamente
+config-templates:          Mensagens para notificar usu√°rios
 config-templatetext:       Texto
-config-template:           PredefiniÁ„o
+config-template:           Predefini√ß√£o
 config-highlightgroup:     Cores de destaque da sintaxe
-config-useadminfunctions:  Usar opÁıes de administradores caso seja possÌvel
-config-promptforblock:     Perguntar se quero bloquear ao avisar pela ˙ltima vez um usu·rio
-config-blockreason:        Raz„o padr„o do bloqueio 
-config-blocktime:          DuraÁ„o padr„o do bloqueio para
+config-useadminfunctions:  Usar op√ß√µes de administradores caso seja poss√≠vel
+config-promptforblock:     Perguntar se quero bloquear ao avisar pela √∫ltima vez um usu√°rio
+config-blockreason:        Raz√£o padr√£o do bloqueio 
+config-blocktime:          Dura√ß√£o padr√£o do bloqueio para
 config-blocktimeanon:      IP
-config-blocktimereg:       usu·rios registados
-config-summaryprompt:      Introduza o sum·rio
-config-history:            Baixar todo o histÛrico de todos os artigos
-config-defaultsprompt:     Restaurar padr„o?
-config-logbrowsetitle:     LocalizaÁ„o do ficheiro de relatÛrios
-config-shortcutconflict:   O atalho '{0}' È igual ao atalho de '{1}'.
+config-blocktimereg:       usu√°rios registados
+config-summaryprompt:      Introduza o sum√°rio
+config-history:            Baixar todo o hist√≥rico de todos os artigos
+config-defaultsprompt:     Restaurar padr√£o?
+config-logbrowsetitle:     Localiza√ß√£o do ficheiro de relat√≥rios
+config-shortcutconflict:   O atalho '{0}' √© igual ao atalho de '{1}'.
 </pre>
 
 === Delete form ===
 <pre>
 delete-title:              Eliminar {0}
-delete-reason:             Raz„o:
-delete-deletionlog:        RelatÛrio de eliminaÁıes:
-delete-rem-talk:           Eliminar discuss„o associada
+delete-reason:             Raz√£o:
+delete-deletionlog:        Relat√≥rio de elimina√ß√µes:
+delete-rem-talk:           Eliminar discuss√£o associada
 delete-notify:             Notificar criador
 </pre>
 
 === Edit form ===
 <pre>
 edit-title:                Editando {0}
-edit-summary:              Sum·rio:
+edit-summary:              Sum√°rio:
 edit-minor:                Ed. menor
-edit-watch:                Vigiar esta p·gina
-edit-page:                 P·gina
+edit-watch:                Vigiar esta p√°gina
+edit-page:                 P√°gina
 edit-edit:                 Editar
-edit-view:                 Ver esta ediÁ„o
+edit-view:                 Ver esta edi√ß√£o
 edit-page-savetofile:      Gravar para o ficheiro...
 edit-page-save:            Gravar
 edit-page-cancel:          Cancelar
@@ -179,10 +179,10 @@ edit-findprevious:         Anterior
 edit-replaceall:           Substituir tudo
 edit-edittab:              Editar
 edit-previewtab:           Prever
-edit-changestab:           AlteraÁıes
+edit-changestab:           Altera√ß√µes
 edit-searchnotfound:       Sem resultados
-edit-searchwrapstart:      Atingido o final da p·gina, a continuar do inÌcio
-edit-searchwrapend:        Atingido o inÌcio da p·gina, a continuar do final
+edit-searchwrapstart:      Atingido o final da p√°gina, a continuar do in√≠cio
+edit-searchwrapend:        Atingido o in√≠cio da p√°gina, a continuar do final
 </pre>
 
 === E-mail form ===
@@ -190,40 +190,40 @@ edit-searchwrapend:        Atingido o inÌcio da p·gina, a continuar do final
 email-title:               Email {0}
 email-subject:             Assunto:
 email-message:             Mensagem:
-email-ccme:                Enviar uma cÛpia deste email para a minha caixa de correio
+email-ccme:                Enviar uma c√≥pia deste email para a minha caixa de correio
 email-send:                Enviar
 </pre>
 
 === IRC feed ===
 <pre>
-irc-connected:             Ligado ao feed de IRC de mudanÁas recentes
-irc-connecting:            A ligar ao feed IRC de mudanÁas recentes; aguarde um momento...
-irc-disconnected:          Perdeu-se a ligaÁ„o ao feed de IRC de mudanÁas recentes; a ligar...
-irc-nochannel:             N„o foi encontrado o canal IRC para {0}. A usar como alternativa os pedidos API apesar de serem lentos
-irc-error:                 N„o foi possÌvel ligar ao feed de IRC de mudanÁas recentes. A usar como alternativa os pedidos API apesar de serem lentos
+irc-connected:             Ligado ao feed de IRC de mudan√ßas recentes
+irc-connecting:            A ligar ao feed IRC de mudan√ßas recentes; aguarde um momento...
+irc-disconnected:          Perdeu-se a liga√ß√£o ao feed de IRC de mudan√ßas recentes; a ligar...
+irc-nochannel:             N√£o foi encontrado o canal IRC para {0}. A usar como alternativa os pedidos API apesar de serem lentos
+irc-error:                 N√£o foi poss√≠vel ligar ao feed de IRC de mudan√ßas recentes. A usar como alternativa os pedidos API apesar de serem lentos
 </pre>
 
 === List form ===
 <pre>
-list-actions:              AÁıes e filtros...
-list-browsetitle:          Adicionar arquivo de texto ‡ lista
+list-actions:              A√ß√µes e filtros...
+list-browsetitle:          Adicionar arquivo de texto √† lista
 list-combine:              Combinar
 list-copyto:               Copiar para:
 list-count:                {0} itens
 list-deleteconfirm:        Eliminar a lista '{0}'?
-list-duplicatename:        J· existe uma lista com o nome '{0}'. Escolha outro nome.
-list-intersect:            InterseÁ„o
-list-limit:                AtÈ:
-list-listempty:            A lista n„o tem intens\nEspecifique o "Tipo de fonte" e clique no bot„o "Adicionar"
-list-nolists:              N„o existem listas\nClique em "Adicionar" para criar uma
+list-duplicatename:        J√° existe uma lista com o nome '{0}'. Escolha outro nome.
+list-intersect:            Interse√ß√£o
+list-limit:                At√©:
+list-listempty:            A lista n√£o tem intens\nEspecifique o "Tipo de fonte" e clique no bot√£o "Adicionar"
+list-nolists:              N√£o existem listas\nClique em "Adicionar" para criar uma
 list-query-cancelled:      Cancelado.
 list-query-fail:           O pedido falhou.
-list-query-noresults:      O pedido n„o obteve resultados.
+list-query-noresults:      O pedido n√£o obteve resultados.
 list-query-progress:       A fazer o pedido...
 list-query-results:        {0} resultados recebidos.
 list-renameprompt:         Introduza o novo nome:
 list-replace:              Substituir
-list-savefailed:           N„o foi possÌvel gravar a lista:
+list-savefailed:           N√£o foi poss√≠vel gravar a lista:
 list-savetitle:            Gravar lista
 list-sourcetype:           Tipo de fonte:
 list-start:                De:
@@ -233,102 +233,102 @@ list-title:                Construtor de listas
 
 === Login ===
 <pre>
-login-language:            LÌngua:
+login-language:            L√≠ngua:
 login-project:             Projeto:
-login-username:            Usu·rio:
+login-username:            Usu√°rio:
 login-password:            Palavra-passe:
-login-proxygroup:          DefiniÁıes de proxy
+login-proxygroup:          Defini√ß√µes de proxy
 login-proxy:               Usar um servidor proxy
-login-proxyaddress:        EndereÁo:
+login-proxyaddress:        Endere√ßo:
 login-proxyport:           Porta:
-login-proxydomain:         DomÌnio:
+login-proxydomain:         Dom√≠nio:
 login-start:               Entrar
 login-translate:           Traduzir...
-login-captchatitle:        Captcha necess·rio para entrar na conta
+login-captchatitle:        Captcha necess√°rio para entrar na conta
 
 login-progress-start:      A entrar na conta...
 login-progress-language:   A atualizar os ficheiros de mensagens...
-login-progress-global:     A verificar a configuraÁ„o global...
-login-progress-config:     A verificar a configuraÁ„o...
-login-progress-userlist:   A verificar a lista de usu·rios...
-login-progress-whitelist:  A receber a lista branca de usu·rios...
+login-progress-global:     A verificar a configura√ß√£o global...
+login-progress-config:     A verificar a configura√ß√£o...
+login-progress-userlist:   A verificar a lista de usu√°rios...
+login-progress-whitelist:  A receber a lista branca de usu√°rios...
 
-login-error-admin:         Para usar o Huggle no projeto que escolheu È necess·rio ser administrador.
-login-error-age:           Para usar o Huggle no projeto que escolheu È necess·rio ter uma conta de usu·rio criada ‡ pelo menos {0} dias.
-login-error-alldisabled:   O Huggle neste momento est· bloqueado em todos os projetos. Provavelmente È uma medida tempor·ria.
-login-error-approval:      Para usar o Huggle no projeto que escolheu È necess·ria a aprovaÁ„o prÈvia.
-login-error-autoconfirmed: Para usar o Huggle no projeto que escolheu È necess·rio que a sua conta seja autoconfirmada.
+login-error-admin:         Para usar o Huggle no projeto que escolheu √© necess√°rio ser administrador.
+login-error-age:           Para usar o Huggle no projeto que escolheu √© necess√°rio ter uma conta de usu√°rio criada √† pelo menos {0} dias.
+login-error-alldisabled:   O Huggle neste momento est√° bloqueado em todos os projetos. Provavelmente √© uma medida tempor√°ria.
+login-error-approval:      Para usar o Huggle no projeto que escolheu √© necess√°ria a aprova√ß√£o pr√©via.
+login-error-autoconfirmed: Para usar o Huggle no projeto que escolheu √© necess√°rio que a sua conta seja autoconfirmada.
 login-error-cancelled:     Cancelado.
-login-error-captcha:       Introduziu uma palavra-chave ou cÛdigo de confirmaÁ„o Captcha incorretos.
-login-error-config:        N„o foi possÌvel carregar a p·gina de configuraÁ„o.
-login-error-count:         Para usar o Huggle no projeto que escolheu s„o necess·rias pelo menos {0} ediÁıes.
-login-error-disabled:      O Huggle n„o est· ativo na sua conta de usu·rio. Verifique a sua p·gina de configuraÁ„o pessoal.
-login-error-global:        O Huggle n„o conseguiu carregar a p·gina de configuraÁ„o global.
-login-error-invalid:       Introduziu um nome de usu·rio inv·lido.
+login-error-captcha:       Introduziu uma palavra-chave ou c√≥digo de confirma√ß√£o Captcha incorretos.
+login-error-config:        N√£o foi poss√≠vel carregar a p√°gina de configura√ß√£o.
+login-error-count:         Para usar o Huggle no projeto que escolheu s√£o necess√°rias pelo menos {0} edi√ß√µes.
+login-error-disabled:      O Huggle n√£o est√° ativo na sua conta de usu√°rio. Verifique a sua p√°gina de configura√ß√£o pessoal.
+login-error-global:        O Huggle n√£o conseguiu carregar a p√°gina de configura√ß√£o global.
+login-error-invalid:       Introduziu um nome de usu√°rio inv√°lido.
 login-error-language:      Falha ao carregar ficheiros de mensagens. 
-login-error-nocaptcha:     CÛdigo de confirmaÁ„o Captcha errado.
-login-error-noconfig:      Este projeto n„o tem uma p·gina de configuraÁ„o do Huggle.
-login-error-nouser:        A conta de usu·rio n„o existe.
+login-error-nocaptcha:     C√≥digo de confirma√ß√£o Captcha errado.
+login-error-noconfig:      Este projeto n√£o tem uma p√°gina de configura√ß√£o do Huggle.
+login-error-nouser:        A conta de usu√°rio n√£o existe.
 login-error-password:      Palavra-chave errada.
-login-error-projdisabled:  O Huggle neste momento est· bloqueado no projeto que escolheu. Provavelmente È uma medida tempor·ria.
-login-error-rollback:      O Huggle necessita de privilÈgio de rollback no projecto que escolheu.
-login-error-unknown:       N„o foi possÌvel entrar na conta de usu·rio.
-login-error-userlist:      O Huggle n„o conseguiu obter a lista de usu·rios aprovados que o podem utilizar.
-login-error-version:       Esta vers„o foi descontinuada. Por favor faÁa uma atualizaÁ„o para a ˙ltima vers„o do Huggle.
-login-error-whitelist:     N„o foi possÌvel carregar a lista branca de usu·rios.
+login-error-projdisabled:  O Huggle neste momento est√° bloqueado no projeto que escolheu. Provavelmente √© uma medida tempor√°ria.
+login-error-rollback:      O Huggle necessita de privil√©gio de rollback no projecto que escolheu.
+login-error-unknown:       N√£o foi poss√≠vel entrar na conta de usu√°rio.
+login-error-userlist:      O Huggle n√£o conseguiu obter a lista de usu√°rios aprovados que o podem utilizar.
+login-error-version:       Esta vers√£o foi descontinuada. Por favor fa√ßa uma atualiza√ß√£o para a √∫ltima vers√£o do Huggle.
+login-error-whitelist:     N√£o foi poss√≠vel carregar a lista branca de usu√°rios.
 </pre>
 
 === Main window ===
 <pre>
-main-page:                 P·gina
-main-user:                 Usu·rio
+main-page:                 P√°gina
+main-user:                 Usu√°rio
 main-contribs:             Contribs
-main-history:              HistÛria
+main-history:              Hist√≥ria
 main-new-messages:         Tem novas mensagens; selecione Sistema ->Mostrar novas mensagens ou pressione a tecla M para as ver
 main-system:               Sistema
 main-system-messages:      Mostrar novas mensagens
 main-system-reconnectirc:  Tornar a ligar ao feed de IRC
-main-system-savelog:       Gravar relatÛrio de aÁıes...
+main-system-savelog:       Gravar relat√≥rio de a√ß√µes...
 main-system-lists:         Construtor de listas...
 main-system-requests:      Pedidos...
-main-system-statistics:    EstatÌsticas...
-main-system-showlog:       Mostrar relatÛrio
-main-system-showqueue:     Mostrar fila de ediÁıes a rever
-main-system-showtwoqueues: Mostrar duas filas de ediÁıes a rever
-main-system-options:       OpÁıes...
+main-system-statistics:    Estat√≠sticas...
+main-system-showlog:       Mostrar relat√≥rio
+main-system-showqueue:     Mostrar fila de edi√ß√µes a rever
+main-system-showtwoqueues: Mostrar duas filas de edi√ß√µes a rever
+main-system-options:       Op√ß√µes...
 main-system-logout:        Sair da conta
 main-system-exit:          Sair do Huggle
-main-queue:                Fila de ediÁıes
-main-queue-next:           Ver prÛxima ediÁ„o a rever na fila
-main-queue-trim:           Remover ediÁıes antigas da fila...
-main-queue-clear:          Remover todas as ediÁıes da fila atual
+main-queue:                Fila de edi√ß√µes
+main-queue-next:           Ver pr√≥xima edi√ß√£o a rever na fila
+main-queue-trim:           Remover edi√ß√µes antigas da fila...
+main-queue-clear:          Remover todas as edi√ß√µes da fila atual
 main-queue-count:          {0} itens
 main-queue-query:          A executar...
 main-queue-reset:          Reinicializar
-main-queue-clearall:       Remover ediÁıes de todas as filas
-main-queue-options:        Gerir filas de ediÁıes...
+main-queue-clearall:       Remover edi√ß√µes de todas as filas
+main-queue-options:        Gerir filas de edi√ß√µes...
 main-goto:                 Ir para
-main-goto-mytalk:          Minha p·gina de discuss„o
-main-goto-mycontribs:      Minhas ediÁıes
-main-revision-decline:     Rejeitar revis„o
-main-revision:             EdiÁ„o
+main-goto-mytalk:          Minha p√°gina de discuss√£o
+main-goto-mycontribs:      Minhas edi√ß√µes
+main-revision-decline:     Rejeitar revis√£o
+main-revision:             Edi√ß√£o
 main-revision-view:        Ver
 main-revision-revert:      Reverter
-main-revision-faith:       Reverter com boa fÈ
+main-revision-faith:       Reverter com boa f√©
 main-revision-previous:    Anterior
 main-revision-next:        Seguinte
-main-revision-latest:      ⁄ltima
+main-revision-latest:      √öltima
 main-revision-sight:       Patrulhar
-main-page-switchtotalk:    Mudar para a p·gina de discuss„o
-main-page-switchtosubject: Mudar para a p·gina principal
-main-page-switchtoarticle: Mudar para a p·gina do artigo
-main-page-viewlatest:      Ver a ˙ltima ediÁ„o
-main-page-history:         Carregar histÛria
-main-page-historypage:     Mostrar p·gina da histÛria
+main-page-switchtotalk:    Mudar para a p√°gina de discuss√£o
+main-page-switchtosubject: Mudar para a p√°gina principal
+main-page-switchtoarticle: Mudar para a p√°gina do artigo
+main-page-viewlatest:      Ver a √∫ltima edi√ß√£o
+main-page-history:         Carregar hist√≥ria
+main-page-historypage:     Mostrar p√°gina da hist√≥ria
 main-page-edit:            Editar...
-main-page-tag:             Marcar esta p·gina com uma predefiniÁ„o...
+main-page-tag:             Marcar esta p√°gina com uma predefini√ß√£o...
 main-page-reqdeletion:     Propor para eliminar
-main-page-reqprotection:   Pedir proteÁ„o
+main-page-reqprotection:   Pedir prote√ß√£o
 main-page-watch:           Vigiar
 main-page-unwatch:         Deixar de vigiar
 main-page-purge:           Atualizar
@@ -336,12 +336,12 @@ main-page-patrol:          Marcar como patrulhada
 main-page-move:            Mover...
 main-page-protect:         Proteger...
 main-page-delete:          Eliminar...
-main-page-restore:         Restaurar esta vers„o
-main-user-info:            Mostrar informaÁıes do usu·rio
-main-user-ignore:          Ignorar ediÁıes deste usu·rio
-main-user-unignore:        Deixar de ignorar ediÁıes deste usu·rio
-main-user-contribs:        Carregar contribuiÁıes do usu·rio
-main-user-talk:            Ver p·gina de discuss„o do usu·rio
+main-page-restore:         Restaurar esta vers√£o
+main-user-info:            Mostrar informa√ß√µes do usu√°rio
+main-user-ignore:          Ignorar edi√ß√µes deste usu√°rio
+main-user-unignore:        Deixar de ignorar edi√ß√µes deste usu√°rio
+main-user-contribs:        Carregar contribui√ß√µes do usu√°rio
+main-user-talk:            Ver p√°gina de discuss√£o do usu√°rio
 main-user-message:         Enviar mensagem personalizada...
 main-user-email:           Enviar email...
 main-user-warn:            Avisar...
@@ -351,64 +351,64 @@ main-browser:              Navegador
 main-browser-newtab:       Nova aba
 main-browser-closetab:     Fechar aba
 main-browser-closeothers:  Fechar todas as outras abas
-main-browser-back:         Ver ediÁ„o anterior do histÛrico de navegaÁ„o
-main-browser-forward:      Ver ediÁ„o seguinte do histÛrico de navegaÁ„o
-main-browser-open:         Ver p·gina no navegador externo
-main-browser-newedits:     Mostrar automaticamente novas ediÁıes feitas na p·gina
-main-browser-newcontribs:  Mostrar automaticamente novas ediÁıes feitas pelo usu·rio
+main-browser-back:         Ver edi√ß√£o anterior do hist√≥rico de navega√ß√£o
+main-browser-forward:      Ver edi√ß√£o seguinte do hist√≥rico de navega√ß√£o
+main-browser-open:         Ver p√°gina no navegador externo
+main-browser-newedits:     Mostrar automaticamente novas edi√ß√µes feitas na p√°gina
+main-browser-newcontribs:  Mostrar automaticamente novas edi√ß√µes feitas pelo usu√°rio
 main-help:                 Ajuda
-main-help-documentation:   DocumentaÁ„o
+main-help-documentation:   Documenta√ß√£o
 main-help-feedback:        Feedback
 main-help-about:           Sobre o Huggle...
 main-addqueue:             Adicionar...
-main-savelogtitle:         Gravar relatÛrio
+main-savelogtitle:         Gravar relat√≥rio
 main-usermessageother:     Outra mensagem...
-main-advanced:             AvanÁado...
-main-stats:                {0} ediÁıes por minuto, {1} reversıes por minuto
+main-advanced:             Avan√ßado...
+main-stats:                {0} edi√ß√µes por minuto, {1} revers√µes por minuto
 
-main-tip-revertwarn:       Reverter esta ediÁ„o e avisar o usu·rio
-main-tip-nextdiff:         Mostrar a prÛxima ediÁ„o a rever
-main-tip-revert:           Reverter esta ediÁ„o
-main-tip-template:         Enviar uma mensagem predefinida ao usu·rio
-main-tip-warn:             Avisar usu·rio
-main-tip-cancel:           Cancelar todas as aÁıes pendentes
-main-tip-undo:             Desfazer minhas aÁıes recentes
+main-tip-revertwarn:       Reverter esta edi√ß√£o e avisar o usu√°rio
+main-tip-nextdiff:         Mostrar a pr√≥xima edi√ß√£o a rever
+main-tip-revert:           Reverter esta edi√ß√£o
+main-tip-template:         Enviar uma mensagem predefinida ao usu√°rio
+main-tip-warn:             Avisar usu√°rio
+main-tip-cancel:           Cancelar todas as a√ß√µes pendentes
+main-tip-undo:             Desfazer minhas a√ß√µes recentes
 main-tip-browserback:      Anterior
 main-tip-browserforward:   Seguinte
 main-tip-browseropen:      Ver no navegador externo
 main-tip-browsernewtab:    Nova aba
 main-tip-browserclosetab:  Fechar aba
-main-tip-history:          Carregar a histÛria da p·gina
-main-tip-historyprev:      Mostrar ediÁ„o anterior desta p·gina
-main-tip-historynext:      Mostrar ediÁ„o seguinte desta p·gina
-main-tip-historylast:      Mostrar ˙ltima ediÁ„o desta p·gina
-main-tip-historydifftocur: Mostrar alteraÁıes entre esta ediÁ„o e a ˙ltima ediÁ„o desta p·gina
-main-tip-contribs:         Carregar ediÁıes feitas pelo usu·rio
-main-tip-contribsprev:     Mostrar ediÁ„o anterior deste usu·rio
-main-tip-contribsnext:     Mostrar ediÁ„o seguinte deste usu·rio
-main-tip-contribslast:     Mostrar ˙ltima ediÁ„o deste usu·rio
-main-tip-pageview:         Ver esta ediÁ„o
-main-tip-pageedit:         Editar esta p·gina
-main-tip-pagewatch:        Vigiar esta p·gina
-main-tip-pagetag:          Marcar esta p·gina com uma predefiniÁ„o
-main-tip-pagetagdelete:    Marcar esta p·gina para eliminaÁ„o
-main-tip-pagedelete:       Eliminar esta p·gina
-main-tip-userinfo:         Mostrar informaÁıes sobre o usu·rio
-main-tip-usertalk:         Mostrar a p·gina de discuss„o do usu·rio
-main-tip-usermessage:      Enviar mensagem a este usu·rio
-main-tip-userignore:       Ignorar todas as ediÁıes deste usu·rio
-main-tip-userreport:       Reportar este usu·rio
-main-tip-userblock:        Bloquear este usu·rio
-main-revision-acceptpend:  Aceitar esta revis„o pendente
+main-tip-history:          Carregar a hist√≥ria da p√°gina
+main-tip-historyprev:      Mostrar edi√ß√£o anterior desta p√°gina
+main-tip-historynext:      Mostrar edi√ß√£o seguinte desta p√°gina
+main-tip-historylast:      Mostrar √∫ltima edi√ß√£o desta p√°gina
+main-tip-historydifftocur: Mostrar altera√ß√µes entre esta edi√ß√£o e a √∫ltima edi√ß√£o desta p√°gina
+main-tip-contribs:         Carregar edi√ß√µes feitas pelo usu√°rio
+main-tip-contribsprev:     Mostrar edi√ß√£o anterior deste usu√°rio
+main-tip-contribsnext:     Mostrar edi√ß√£o seguinte deste usu√°rio
+main-tip-contribslast:     Mostrar √∫ltima edi√ß√£o deste usu√°rio
+main-tip-pageview:         Ver esta edi√ß√£o
+main-tip-pageedit:         Editar esta p√°gina
+main-tip-pagewatch:        Vigiar esta p√°gina
+main-tip-pagetag:          Marcar esta p√°gina com uma predefini√ß√£o
+main-tip-pagetagdelete:    Marcar esta p√°gina para elimina√ß√£o
+main-tip-pagedelete:       Eliminar esta p√°gina
+main-tip-userinfo:         Mostrar informa√ß√µes sobre o usu√°rio
+main-tip-usertalk:         Mostrar a p√°gina de discuss√£o do usu√°rio
+main-tip-usermessage:      Enviar mensagem a este usu√°rio
+main-tip-userignore:       Ignorar todas as edi√ß√µes deste usu√°rio
+main-tip-userreport:       Reportar este usu√°rio
+main-tip-userblock:        Bloquear este usu√°rio
+main-revision-acceptpend:  Aceitar esta revis√£o pendente
 </pre>
 
 === Message form ===
 <pre>
 message-title:             Mensagem {0}
-message-help:              Introduza um ou ambos os campos de Assunto e Sum·rio. Se n„o introduzir o sum·rio, ser· usado o assunto. Se n„o introduzir o assunto, n„o ser· criada uma secÁ„o.
+message-help:              Introduza um ou ambos os campos de Assunto e Sum√°rio. Se n√£o introduzir o sum√°rio, ser√° usado o assunto. Se n√£o introduzir o assunto, n√£o ser√° criada uma sec√ß√£o.
 message-subject:           Assunto:
 message-message:           Mensagem:
-message-summary:           Sum·rio:
+message-summary:           Sum√°rio:
 message-autosign:          Adicionar automaticamente a assinatura no final da mensagem
 </pre>
 
@@ -416,79 +416,79 @@ message-autosign:          Adicionar automaticamente a assinatura no final da me
 <pre>
 move-title:                Mover {0}
 move-target:               Destino:
-move-reason:               Raz„o:
-move-movetalk:             Mover tambÈm a p·gina de discuss„o
+move-reason:               Raz√£o:
+move-movetalk:             Mover tamb√©m a p√°gina de discuss√£o
 </pre>
 
 === Prod form ===
 <pre>
-prod-title:                Marcar para eliminaÁ„o semirr·pida {0}
-prod-reason:               Raz„o:
+prod-title:                Marcar para elimina√ß√£o semirr√°pida {0}
+prod-reason:               Raz√£o:
 </pre>
 
 === Protect form ===
 <pre>
 protect-title:             Proteger {0}
-protect-request-title:     Pedir proteÁ„o de {0}
-protect-reason:            Raz„o:
-protect-expiry:            ExpiraÁ„o:
-protect-log:               Registo de proteÁ„o:
-protect-currentlevel:      NÌvel de proteÁ„o atual:
-protect-type:              Tipo de proteÁ„o:
+protect-request-title:     Pedir prote√ß√£o de {0}
+protect-reason:            Raz√£o:
+protect-expiry:            Expira√ß√£o:
+protect-log:               Registo de prote√ß√£o:
+protect-currentlevel:      N√≠vel de prote√ß√£o atual:
+protect-type:              Tipo de prote√ß√£o:
 protect-none:              Nenhuma
-protect-semiprotection:    SemiproteÁ„o
-protect-fullprotection:    ProteÁ„o total
-protect-moveprotection:    ProteÁ„o de movimentos
+protect-semiprotection:    Semiprote√ß√£o
+protect-fullprotection:    Prote√ß√£o total
+protect-moveprotection:    Prote√ß√£o de movimentos
 </pre>
 
 === Queue form ===
 <pre>
-queue-title:               Fila de ediÁıes a rever
-queue-queues:              Filas de ediÁıes a rever:
-queue-typegroup:           Tipo de fila de ediÁıes a rever
+queue-title:               Fila de edi√ß√µes a rever
+queue-queues:              Filas de edi√ß√µes a rever:
+queue-typegroup:           Tipo de fila de edi√ß√µes a rever
 queue-listselector:        Lista:
 queue-listbuilder:         Construtor de listas...
 queue-sortorder:           Ordem:
-queue-removeviewed:        Remover ediÁ„o da fila quando for visualizada
-queue-removeold:           Remover ediÁıes anteriores feitas na mesma p·gina
-queue-removeafter:         Rem. ediÁıes apÛs
+queue-removeviewed:        Remover edi√ß√£o da fila quando for visualizada
+queue-removeold:           Remover edi√ß√µes anteriores feitas na mesma p√°gina
+queue-removeafter:         Rem. edi√ß√µes ap√≥s
 queue-removeaftertime:     minutos
-queue-preload:             Ativar prÈ-carregamento de ediÁıes quando esta fila de ediÁıes for selecionada
-queue-ignorepages:         Ignorar ediÁıes nas p·ginas que estejam na lista de p·ginas ignoradas
-queue-traynotification:    Mostrar notificaÁ„o na barra de tarefas quando houver uma nova ediÁ„o nesta fila
+queue-preload:             Ativar pr√©-carregamento de edi√ß√µes quando esta fila de edi√ß√µes for selecionada
+queue-ignorepages:         Ignorar edi√ß√µes nas p√°ginas que estejam na lista de p√°ginas ignoradas
+queue-traynotification:    Mostrar notifica√ß√£o na barra de tarefas quando houver uma nova edi√ß√£o nesta fila
 queue-diffsgroup:          Difs
-queue-nodiffs:             Carregar difs apenas quando estiver a ver a ediÁ„o
+queue-nodiffs:             Carregar difs apenas quando estiver a ver a edi√ß√£o
 queue-preloaddiffs:        Carregar previamente os difs quando a fila estiver ativa
-queue-alldiffs:            Carregar difs de todas as ediÁıes na fila
-queue-pagefiltersgroup:    Filtros de tÌtulos de p·ginas
-queue-pageregex:           TÌtulo na express„o regular:
-queue-namespaces:          DomÌnios:
-queue-applylabel:          Clicar em Aplicar para aplicar estes filtros ‡ lista de p·ginas existente.
+queue-alldiffs:            Carregar difs de todas as edi√ß√µes na fila
+queue-pagefiltersgroup:    Filtros de t√≠tulos de p√°ginas
+queue-pageregex:           T√≠tulo na express√£o regular:
+queue-namespaces:          Dom√≠nios:
+queue-applylabel:          Clicar em Aplicar para aplicar estes filtros √† lista de p√°ginas existente.
 queue-editfiltersgroup:    Editar filtros
-queue-userregex:           Nome de usu·rio na express„o regular:
-queue-summaryregex:        Sum·rio de ediÁ„o na exp. regular:
-queue-filternewpage:       P·gina nova
-queue-filterownuserspace:  P·g. e subp·ginas do usu·rio
-queue-filteranonymous:     Usu·rio anÛnimo
-queue-filterignored:       Usu·rio ignorado
+queue-userregex:           Nome de usu√°rio na express√£o regular:
+queue-summaryregex:        Sum√°rio de edi√ß√£o na exp. regular:
+queue-filternewpage:       P√°gina nova
+queue-filterownuserspace:  P√°g. e subp√°ginas do usu√°rio
+queue-filteranonymous:     Usu√°rio an√≥nimo
+queue-filterignored:       Usu√°rio ignorado
 queue-filterreverts:       Reverter
-queue-filternotifications: NotificaÁ„o
+queue-filternotifications: Notifica√ß√£o
 queue-filterwarnings:      Aviso
-queue-filtertags:          MarcaÁ„o com predefiniÁ„o
-queue-filterbot:           EdiÁ„o de robÙ
-queue-filterassisted:      EdiÁ„o assistida
-queue-filterhuggle:        EdiÁ„o feita com o Huggle
-queue-filterme:            Minhas ediÁıes
+queue-filtertags:          Marca√ß√£o com predefini√ß√£o
+queue-filterbot:           Edi√ß√£o de rob√¥
+queue-filterassisted:      Edi√ß√£o assistida
+queue-filterhuggle:        Edi√ß√£o feita com o Huggle
+queue-filterme:            Minhas edi√ß√µes
 queue-examplelabel1:       Requerer este atributo
 queue-examplelabel2:       Excluir este atributo
-queue-examplelabel3:       N„o verificar este atributo
-queue-usergroup:           Mostrar apenas ediÁıes destes usu·rios
+queue-examplelabel3:       N√£o verificar este atributo
+queue-usergroup:           Mostrar apenas edi√ß√µes destes usu√°rios
 </pre>
 
 === Queue trim form ===
 <pre>
-queuetrim-title:           Remover ediÁıes da fila
-queuetrim-age:             Retirar ediÁıes mais antigas do que
+queuetrim-title:           Remover edi√ß√µes da fila
+queuetrim-age:             Retirar edi√ß√µes mais antigas do que
 queuetrim-ageunit:         minutos
 </pre>
 
@@ -508,16 +508,16 @@ requests-query:            Pedido
 === Report form ===
 <pre>
 report-title:              Reportar {0}
-report-reason:             Raz„o:
+report-reason:             Raz√£o:
 report-message:            Mensagem:
-report-log:                Avisos para este usu·rio:
+report-log:                Avisos para este usu√°rio:
 </pre>
 
 === Revert form ===
 <pre>
 revert-title:              Reverter {0}
-revert-summary:            Sum·rio da revers„o (para sum·rio padr„o deixar em branco):
-revert-currentonly:        Reverter apenas a ediÁ„o selecionada
+revert-summary:            Sum√°rio da revers√£o (para sum√°rio padr√£o deixar em branco):
+revert-currentonly:        Reverter apenas a edi√ß√£o selecionada
 </pre>
 
 === Revert and warn form ===
@@ -527,49 +527,49 @@ revertandwarn-title:       Reverter e avisar {0}
 
 === Reverting ===
 <pre>
-revert-confirm-ignored:    Reverter ediÁ„o do usu·rio '{0}' da lista branca?
-revert-confirm-multiple:   Vai reverter v·rias ediÁıes do usu·rio '{0}'. Continuar?
-revert-confirm-page:       Reverter a ediÁ„o na p·gina ignorada '{0}'?
-revert-confirm-range:      O autor da ediÁ„o para qual vai reverter, {1}, provavelmente È o mesmo autor da ediÁ„o atual, {0}, por ser um IP da mesma gama; certifique-se se quer mesmo reverter para esta ediÁ„o. Continuar?
-revert-confirm-same:       Vai reverter para uma ediÁ„o anterior do mesmo usu·rio, {0}. Continuar?
-revert-confirm-self:       Vai reverter uma ediÁ„o sua. Continuar?
-revert-confirm-warned:     Vai reverter para uma ediÁ„o de {0}; este usu·rio j· foi avisado. Continuar?
-revert-error-first:        SÛ existe uma ediÁ„o nesta p·gina por isso n„o È possÌvel reverter.
-revert-only:               A ediÁ„o È a ˙nica existente na p·gina.
-revert-creator:            A ˙ltima ediÁ„o foi feita pelo criador da p·gina, {0}.
-revert-delete-instead:     N„o ser· melhor eliminar a p·gina?
-revert-speedy-instead:     N„o ser· melhor marcar para eliminaÁ„o r·pida?
+revert-confirm-ignored:    Reverter edi√ß√£o do usu√°rio '{0}' da lista branca?
+revert-confirm-multiple:   Vai reverter v√°rias edi√ß√µes do usu√°rio '{0}'. Continuar?
+revert-confirm-page:       Reverter a edi√ß√£o na p√°gina ignorada '{0}'?
+revert-confirm-range:      O autor da edi√ß√£o para qual vai reverter, {1}, provavelmente √© o mesmo autor da edi√ß√£o atual, {0}, por ser um IP da mesma gama; certifique-se se quer mesmo reverter para esta edi√ß√£o. Continuar?
+revert-confirm-same:       Vai reverter para uma edi√ß√£o anterior do mesmo usu√°rio, {0}. Continuar?
+revert-confirm-self:       Vai reverter uma edi√ß√£o sua. Continuar?
+revert-confirm-warned:     Vai reverter para uma edi√ß√£o de {0}; este usu√°rio j√° foi avisado. Continuar?
+revert-error-first:        S√≥ existe uma edi√ß√£o nesta p√°gina por isso n√£o √© poss√≠vel reverter.
+revert-only:               A edi√ß√£o √© a √∫nica existente na p√°gina.
+revert-creator:            A √∫ltima edi√ß√£o foi feita pelo criador da p√°gina, {0}.
+revert-delete-instead:     N√£o ser√° melhor eliminar a p√°gina?
+revert-speedy-instead:     N√£o ser√° melhor marcar para elimina√ß√£o r√°pida?
 </pre>
 
 === Speedy form ===
 <pre>
-speedy-title:              Marcar {0} para eliminaÁ„o r·pida
-speedy-reason:             Raz„o:
-speedy-parameters:         Par‚metros:
-speedy-notifycreator:      Notificar o criador da p·gina
+speedy-title:              Marcar {0} para elimina√ß√£o r√°pida
+speedy-reason:             Raz√£o:
+speedy-parameters:         Par√¢metros:
+speedy-notifycreator:      Notificar o criador da p√°gina
 </pre>
 
 === Statistics form ===
 <pre>
-stats-title:               EstatÌsticas
-stats-actions:             Eventos nesta sess„o:
-stats-session:             Tempo decorrido da sess„o: {0}
-stats-edits:               EdiÁıes
-stats-assisted:            EdiÁıes assistidas
-stats-huggle:              EdiÁıes feitas com o Huggle
-stats-reverts:             Reversıes
+stats-title:               Estat√≠sticas
+stats-actions:             Eventos nesta sess√£o:
+stats-session:             Tempo decorrido da sess√£o: {0}
+stats-edits:               Edi√ß√µes
+stats-assisted:            Edi√ß√µes assistidas
+stats-huggle:              Edi√ß√µes feitas com o Huggle
+stats-reverts:             Revers√µes
 stats-warnings:            Avisos
 stats-reports:             Reportar a administradores
-stats-tags:                MarcaÁıes
-stats-notifications:       NotificaÁıes
+stats-tags:                Marca√ß√µes
+stats-notifications:       Notifica√ß√µes
 stats-blocks:              Bloqueios
-stats-deletes:             EliminaÁıes
-stats-protections:         ProteÁıes
-stats-allusers:            Todos os usu·rios
+stats-deletes:             Elimina√ß√µes
+stats-protections:         Prote√ß√µes
+stats-allusers:            Todos os usu√°rios
 stats-me:                  Eu
 stats-ignored:             Ignorados
-stats-anon:                AnÛnimos
-stats-bots:                RobÙs
+stats-anon:                An√≥nimos
+stats-bots:                Rob√¥s
 stats-other:               Outros
 </pre>
 
@@ -577,31 +577,31 @@ stats-other:               Outros
 <pre>
 tag-title:                 Marcar {0}
 tag-tagselector:           Adicionar:
-tag-tags:                  MarcaÁıes:
-tag-summary:               Sum·rio:
-tag-insertatend:           Inserir no final da p·gina e n„o no inÌcio
+tag-tags:                  Marca√ß√µes:
+tag-summary:               Sum√°rio:
+tag-insertatend:           Inserir no final da p√°gina e n√£o no in√≠cio
 </pre>
 
 === Update form ===
 <pre>
-update-title:              Nova vers„o disponÌvel
-update-notification:       Esta vers„o do Huggle est· desatualizada.
-update-required:           Tem de atualizar para a ˙ltima vers„o, {0}.
-update-optional:           Recomenda-se que atualize para a ˙ltima vers„o, {0}, que poder· ser obrigatÛria futuramente.
-update-prompt:             Descarregar e correr a ˙ltima vers„o agora?
+update-title:              Nova vers√£o dispon√≠vel
+update-notification:       Esta vers√£o do Huggle est√° desatualizada.
+update-required:           Tem de atualizar para a √∫ltima vers√£o, {0}.
+update-optional:           Recomenda-se que atualize para a √∫ltima vers√£o, {0}, que poder√° ser obrigat√≥ria futuramente.
+update-prompt:             Descarregar e correr a √∫ltima vers√£o agora?
 update-download:           Atualizar
-update-progress:           A descarregar a nova vers„o...
-update-error:              N„o foi possÌvel descarregar a nova vers„o.
+update-progress:           A descarregar a nova vers√£o...
+update-error:              N√£o foi poss√≠vel descarregar a nova vers√£o.
 </pre>
 
 === User info form ===
 <pre>
-userinfo-title:            InformaÁıes sobre o usu·rio '{0}'
-userinfo-anonymous:        AnÛnimo:
+userinfo-title:            Informa√ß√µes sobre o usu√°rio '{0}'
+userinfo-anonymous:        An√≥nimo:
 userinfo-ignored:          Na lista branca:
-userinfo-edits:            N˙mero de ediÁıes:
-userinfo-sessionedits:     Ed. nesta sess„o:
-userinfo-sharedip:         IP partilhado/din‚m.:
+userinfo-edits:            N√∫mero de edi√ß√µes:
+userinfo-sessionedits:     Ed. nesta sess√£o:
+userinfo-sharedip:         IP partilhado/din√¢m.:
 userinfo-blocklog:         Bloqueios:
 userinfo-warnlog:          Avisos:
 </pre>
@@ -609,34 +609,34 @@ userinfo-warnlog:          Avisos:
 === Warning form ===
 <pre>
 warning-title:             Aviso {0}
-warning-levelgroup:        NÌvel de aviso
-warning-levelauto:         Autom·tico
-warning-level1:            NÌvel 1
-warning-level2:            NÌvel 2
-warning-level3:            NÌvel 3
-warning-level4:            NÌvel 4 (final)
+warning-levelgroup:        N√≠vel de aviso
+warning-levelauto:         Autom√°tico
+warning-level1:            N√≠vel 1
+warning-level2:            N√≠vel 2
+warning-level3:            N√≠vel 3
+warning-level4:            N√≠vel 4 (final)
 warning-warntype:          Tipo de aviso:
-warning-warnlog:           Avisos a este usu·rio:
+warning-warnlog:           Avisos a este usu√°rio:
 </pre>
 
 === XfD form ===
 <pre>
-xfd-title:                 Nomear {0} para eliminaÁ„o
+xfd-title:                 Nomear {0} para elimina√ß√£o
 xfd-category:              Categoria:
-xfd-nominationtype:        Tipo de nomeaÁ„o:
-xfd-notify:                Notificar o criador da p·gina
-xfd-reason:                Raz„o:
+xfd-nominationtype:        Tipo de nomea√ß√£o:
+xfd-notify:                Notificar o criador da p√°gina
+xfd-reason:                Raz√£o:
 </pre>
 
 === Web requests ===
 <pre>
-error-apidisabled:         O MediaWiki API est· desativado
+error-apidisabled:         O MediaWiki API est√° desativado
 error-exception:           Erro ao receber '{0}'
-error-fail:                N„o foi possÌvel receber '{0}'
-error-loggedout:           Saiu da sua conta de usu·rio, a entrar na conta...
+error-fail:                N√£o foi poss√≠vel receber '{0}'
+error-loggedout:           Saiu da sua conta de usu√°rio, a entrar na conta...
 error-noresponse:          Sem resposta
-error-pagemissing:         A p·gina n„o existe
-error-reloginfail:         N„o foi possÌvel entrar de novo na conta, tente reiniciar o Huggle
+error-pagemissing:         A p√°gina n√£o existe
+error-reloginfail:         N√£o foi poss√≠vel entrar de novo na conta, tente reiniciar o Huggle
 error-timeout:             Foi excedido o tempo de resposta do servidor.
 error-unknown:             Erro desconhecido
 
@@ -646,133 +646,133 @@ block-done:                '{0}' bloqueado
 block-fail:                O bloqueio de '{0}' falhou
 block-progress:            A bloquear '{0}'...
 
-blocklog-fail:             Erro ao receber o relatÛrio de bloqueio para '{0}'
+blocklog-fail:             Erro ao receber o relat√≥rio de bloqueio para '{0}'
 blocklog-none:             '{0}' nunca foi bloqueado
-blocklog-progress:         A receber o relatÛrio de bloqueios para '{0}'...
+blocklog-progress:         A receber o relat√≥rio de bloqueios para '{0}'...
 
-blocknotify-fail:          N„o foi possÌvel notificar '{0}' do bloqueio
+blocknotify-fail:          N√£o foi poss√≠vel notificar '{0}' do bloqueio
 blocknotify-progress:      A notificar '{0}' do bloqueio...
 
 delete-done:               '{0}' foi eliminada
-delete-fail:               N„o foi possÌvel eliminar '{0}'
+delete-fail:               N√£o foi poss√≠vel eliminar '{0}'
 delete-progress:           A eliminar '{0}'...
 
-deletelog-fail:            N„o foi possÌvel receber o relatÛrio de eliminaÁ„o para '{0}'
-deletelog-none:            N„o existem entradas no relatÛrio de eliminaÁıes para '{0}'
-deletelog-progress:        A receber o relatÛrio de eliminaÁıes para '{0}'...
+deletelog-fail:            N√£o foi poss√≠vel receber o relat√≥rio de elimina√ß√£o para '{0}'
+deletelog-none:            N√£o existem entradas no relat√≥rio de elimina√ß√µes para '{0}'
+deletelog-progress:        A receber o relat√≥rio de elimina√ß√µes para '{0}'...
 
-diff-deleted:              Esta ediÁ„o foi eliminada.
-diff-fail:                 N„o foi possÌvel receber o dif de '{0}'
+diff-deleted:              Esta edi√ß√£o foi eliminada.
+diff-fail:                 N√£o foi poss√≠vel receber o dif de '{0}'
 
-reqdelete-duplicate:       A p·gina j· foi proposta para eliminaÁ„o
-reqdelete-tagfail:         N„o foi possÌvel propor '{0}' para eliminaÁ„o
-reqdelete-redirectfail:    A p·gina È um redirecionamento e n„o existe a p·gina respetiva de proposta de eliminaÁ„o
-reqdelete-tagprogress:     A propor '{0}' para eliminaÁ„o...
+reqdelete-duplicate:       A p√°gina j√° foi proposta para elimina√ß√£o
+reqdelete-tagfail:         N√£o foi poss√≠vel propor '{0}' para elimina√ß√£o
+reqdelete-redirectfail:    A p√°gina √© um redirecionamento e n√£o existe a p√°gina respetiva de proposta de elimina√ß√£o
+reqdelete-tagprogress:     A propor '{0}' para elimina√ß√£o...
 
-reqdelete-subpageprogress: A criar a p·gina de proposta para eliminaÁ„o de '{0}'...
-reqdelete-subpagefail:     N„o foi possÌvel criar a p·gina de proposta para eliminaÁ„o de '{0}'
-reqdelete-logprogress:     A adicionar '{0}' ao registo de p·ginas propostas para eliminaÁ„o...
-reqdelete-logfail:         N„o foi possÌvel adicionar '{0}' ao registo de p·ginas propostas para eliminaÁ„o
+reqdelete-subpageprogress: A criar a p√°gina de proposta para elimina√ß√£o de '{0}'...
+reqdelete-subpagefail:     N√£o foi poss√≠vel criar a p√°gina de proposta para elimina√ß√£o de '{0}'
+reqdelete-logprogress:     A adicionar '{0}' ao registo de p√°ginas propostas para elimina√ß√£o...
+reqdelete-logfail:         N√£o foi poss√≠vel adicionar '{0}' ao registo de p√°ginas propostas para elimina√ß√£o
 
-edit-fail:                 N„o foi possÌvel editar '{0}'
+edit-fail:                 N√£o foi poss√≠vel editar '{0}'
 edit-progress:             A editar '{0}'...
 
 email-done:                Email enviado para '{0}'
 email-fail:                Ocorreu um erro ao enviar o email para '{0}'
 email-progress:            A enviar email para '{0}'...
 
-history-fail:              Ocorreu um erro ao receber o histÛrico de '{0}'
-history-progress:          A receber o histÛrico de '{0}' ({1})...
+history-fail:              Ocorreu um erro ao receber o hist√≥rico de '{0}'
+history-progress:          A receber o hist√≥rico de '{0}' ({1})...
 
 move-done:                 '{0}' movida para '{1}'
-move-fail:                 N„o foi possÌvel mover '{0}' para '{1}'
+move-fail:                 N√£o foi poss√≠vel mover '{0}' para '{1}'
 move-progress:             A mover '{0}' para '{1}'...
 
-notify-fail:               N„o foi possÌvel notificar o criador de '{0}'
-notify-unknowncreator:     N„o foi possÌvel determinar o criador da p·gina
+notify-fail:               N√£o foi poss√≠vel notificar o criador de '{0}'
+notify-unknowncreator:     N√£o foi poss√≠vel determinar o criador da p√°gina
 
-patrol-duplicate:          Esta p·gina j· est· patrulhada
+patrol-duplicate:          Esta p√°gina j√° est√° patrulhada
 patrol-done:               '{0}' marcada como patrulhada
-patrol-fail:               N„o foi possÌvel marcar '{0}' como patrulhada
-patrol-notfound:           N„o foi possÌvel encontrar o id nas mudanÁas recentes porque a p·gina È demasiado antiga
+patrol-fail:               N√£o foi poss√≠vel marcar '{0}' como patrulhada
+patrol-notfound:           N√£o foi poss√≠vel encontrar o id nas mudan√ßas recentes porque a p√°gina √© demasiado antiga
 patrol-progress:           A marcar '{0}' como patrulhada...
 
-protect-done:              NÌvel de proteÁ„o de '{0}' foi alterado
-protect-fail:              N„o foi possÌvel alterar o nÌvel de proteÁ„o de '{0}'
-protect-progress:          A alterar o nÌvel de proteÁ„o de '{0}'...
+protect-done:              N√≠vel de prote√ß√£o de '{0}' foi alterado
+protect-fail:              N√£o foi poss√≠vel alterar o n√≠vel de prote√ß√£o de '{0}'
+protect-progress:          A alterar o n√≠vel de prote√ß√£o de '{0}'...
 
-protectlog-fail:           N„o foi possÌvel receber o registo de proteÁ„o de p·ginas para '{0}'
-protectlog-none:           N„o existe uma entrada no registo de proteÁ„o de p·ginas para '{0}'
-protectlog-progress:       A receber o registo de proteÁ„o de p·ginas para '{0}'...
+protectlog-fail:           N√£o foi poss√≠vel receber o registo de prote√ß√£o de p√°ginas para '{0}'
+protectlog-none:           N√£o existe uma entrada no registo de prote√ß√£o de p√°ginas para '{0}'
+protectlog-progress:       A receber o registo de prote√ß√£o de p√°ginas para '{0}'...
 
 purge-done:                '{0}' recarregada
-purge-fail:                N„o foi possÌvel recarregar '{0}'
+purge-fail:                N√£o foi poss√≠vel recarregar '{0}'
 purge-progress:            A recarregar '{0}'
 
 queue-refresh-fail:        Ocorreu um erro ao atualizar a fila '{0}'
 
-report-duplicate:          O usu·rio j· foi reportado aos administradores
-report-fail:               N„o foi possÌvel reportar '{0}' aos administradores
+report-duplicate:          O usu√°rio j√° foi reportado aos administradores
+report-fail:               N√£o foi poss√≠vel reportar '{0}' aos administradores
 report-progress:           A reportar '{0}'...
 
-saveuserconfig-done:       A p·gina de configuraÁ„o de usu·rio foi atualizada
-saveuserconfig-fail:       N„o foi possÌvel atualizar a p·gina de configuraÁ„o de usu·rio
-saveuserconfig-progress:   A atualizar a p·gina de configuraÁ„o de usu·rio
+saveuserconfig-done:       A p√°gina de configura√ß√£o de usu√°rio foi atualizada
+saveuserconfig-fail:       N√£o foi poss√≠vel atualizar a p√°gina de configura√ß√£o de usu√°rio
+saveuserconfig-progress:   A atualizar a p√°gina de configura√ß√£o de usu√°rio
 
-loadglobalconfig-fail:     N„o foi possÌvel carregar a p·gina de configuraÁ„o global
-loadprojectconfig-fail:    N„o foi possÌvel carregar a p·gina de configuraÁ„o do projeto
-loaduserconfig-fail:       N„o foi possÌvel carregar a p·gina de configuraÁ„o de usu·rio
+loadglobalconfig-fail:     N√£o foi poss√≠vel carregar a p√°gina de configura√ß√£o global
+loadprojectconfig-fail:    N√£o foi poss√≠vel carregar a p√°gina de configura√ß√£o do projeto
+loaduserconfig-fail:       N√£o foi poss√≠vel carregar a p√°gina de configura√ß√£o de usu√°rio
 
-reqprotection-badformat:   A p·gina de pedidos tem um formato desconhecido pelo Huggle
-reqprotection-duplicate:   A proteÁ„o j· foi requisitada
-reqprotection-fail:        N„o foi possÌvel pedir a proteÁ„o de '{0}'
-reqprotection-progress:    A fazer o pedido de proteÁ„o de '{0}'...
+reqprotection-badformat:   A p√°gina de pedidos tem um formato desconhecido pelo Huggle
+reqprotection-duplicate:   A prote√ß√£o j√° foi requisitada
+reqprotection-fail:        N√£o foi poss√≠vel pedir a prote√ß√£o de '{0}'
+reqprotection-progress:    A fazer o pedido de prote√ß√£o de '{0}'...
 
-revert-cannotundo:         N„o foi possÌvel desfazer as ediÁıes devido a conflitos de ediÁıes intermÈdias
-revert-conflict:           A p·gina foi editada pelo usu·rio da lista branca '{0}'
-revert-fail:               N„o foi possÌvel reverter '{0}'
-revert-nochange:           O conte˙do da ediÁ„o para a qual quer reverter È idÍntico ‡ ˙ltima ediÁ„o
-revert-nootheruser:        A p·gina sÛ foi editada por um usu·rio
+revert-cannotundo:         N√£o foi poss√≠vel desfazer as edi√ß√µes devido a conflitos de edi√ß√µes interm√©dias
+revert-conflict:           A p√°gina foi editada pelo usu√°rio da lista branca '{0}'
+revert-fail:               N√£o foi poss√≠vel reverter '{0}'
+revert-nochange:           O conte√∫do da edi√ß√£o para a qual quer reverter √© id√™ntico √† √∫ltima edi√ß√£o
+revert-nootheruser:        A p√°gina s√≥ foi editada por um usu√°rio
 revert-progress:           A reverter '{0}'...
 
-tag-alreadytagged:         A p·gina j· est· marcada
-tag-deleted:               A p·gina foi eliminada
-tag-fail:                  N„o foi possÌvel marcar '{0}'
+tag-alreadytagged:         A p√°gina j√° est√° marcada
+tag-deleted:               A p√°gina foi eliminada
+tag-fail:                  N√£o foi poss√≠vel marcar '{0}'
 tag-progress:              A marcar '{0}'...
 
-sight-done:                Marcar ediÁ„o {0} de '{1}' como patrulhada
-sight-fail:                N„o foi possÌvel marcar como patrulhada a ediÁ„o {0} de '{1}'
-sight-progress:            A marcar a ediÁ„o {0} de '{1}' como patrulhada
+sight-done:                Marcar edi√ß√£o {0} de '{1}' como patrulhada
+sight-fail:                N√£o foi poss√≠vel marcar como patrulhada a edi√ß√£o {0} de '{1}'
+sight-progress:            A marcar a edi√ß√£o {0} de '{1}' como patrulhada
 
-speedy-fail:               N„o foi possÌvel marcar '{0}' para eliminaÁ„o r·pida
-speedy-progress:           A marcar '{0}' para eliminaÁ„o r·pida...
+speedy-fail:               N√£o foi poss√≠vel marcar '{0}' para elimina√ß√£o r√°pida
+speedy-progress:           A marcar '{0}' para elimina√ß√£o r√°pida...
 
-warnlog-fail:              N„o foi possÌvel receber o registo de avisos de '{0}'
-warnlog-none:              '{0}' n„o tem avisos do Huggle na p·g. de discuss„o
+warnlog-fail:              N√£o foi poss√≠vel receber o registo de avisos de '{0}'
+warnlog-none:              '{0}' n√£o tem avisos do Huggle na p√°g. de discuss√£o
 warnlog-progress:          A receber o registo de avisos de '{0}'...
 
-unwatch-done:              '{0}' removida da lista de p·ginas vigiadas
-unwatch-fail:              N„o foi possÌvel remover '{0}' da lista de p·ginas vigiadas
-unwatch-progress:          A remover '{0}' da lista de p·ginas vigiadas...
+unwatch-done:              '{0}' removida da lista de p√°ginas vigiadas
+unwatch-fail:              N√£o foi poss√≠vel remover '{0}' da lista de p√°ginas vigiadas
+unwatch-progress:          A remover '{0}' da lista de p√°ginas vigiadas...
 
-usermessage-duplicate:     J· existe uma mensagem sobre o mesmo assunto na p·gina de discuss„o do usu·rio
-usermessage-fail:          N„o foi possÌvel enviar a mensagem a '{0}'
+usermessage-duplicate:     J√° existe uma mensagem sobre o mesmo assunto na p√°gina de discuss√£o do usu√°rio
+usermessage-fail:          N√£o foi poss√≠vel enviar a mensagem a '{0}'
 usermessage-progress:      A enviar a mensagem a '{0}'...
 
-watch-done:                '{0}' adicionada ‡ lista de p·ginas vigiadas
-watch-fail:                N„o foi possÌvel adicionar '{0}' ‡ lista de p·ginas vigiadas
-watch-progress:            A adicionar '{0}' ‡ lista de p·ginas vigiadas...
+watch-done:                '{0}' adicionada √† lista de p√°ginas vigiadas
+watch-fail:                N√£o foi poss√≠vel adicionar '{0}' √† lista de p√°ginas vigiadas
+watch-progress:            A adicionar '{0}' √† lista de p√°ginas vigiadas...
 
-warn-alreadyfinal:         O usu·rio j· tem um aviso final
-warn-alreadyblocked:       O usu·rio j· foi bloqueado
-warn-alreadyreported:      O usu·rio j· foi reportado aos administradores
-warn-oldedit:              O usu·rio n„o fez mais ediÁıes apÛs o ˙ltimo aviso
-warn-recent:               O usu·rio j· foi avisado ‡ menos de {0} segundos atr·s
-warn-fail:                 N„o foi possÌvel avisar '{0}'
+warn-alreadyfinal:         O usu√°rio j√° tem um aviso final
+warn-alreadyblocked:       O usu√°rio j√° foi bloqueado
+warn-alreadyreported:      O usu√°rio j√° foi reportado aos administradores
+warn-oldedit:              O usu√°rio n√£o fez mais edi√ß√µes ap√≥s o √∫ltimo aviso
+warn-recent:               O usu√°rio j√° foi avisado √† menos de {0} segundos atr√°s
+warn-fail:                 N√£o foi poss√≠vel avisar '{0}'
 warn-progress:             A avisar '{0}'...
 </pre>
 
 === API ===
 <pre>
-api-help:                  N„o existem par‚metros no API query
+api-help:                  N√£o existem par√¢metros no API query
 </pre>
