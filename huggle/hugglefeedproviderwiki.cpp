@@ -82,6 +82,7 @@ void HuggleFeedProviderWiki::Refresh()
         if (q->Result->Failed)
         {
             // failed to obtain the data
+            /// \todo LOCALIZE ME
             Core::Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
             q->UnregisterConsumer("HuggleFeed::Refresh");
             this->q = NULL;

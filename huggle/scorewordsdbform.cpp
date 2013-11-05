@@ -15,6 +15,21 @@ using namespace Huggle;
 ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScoreWordsDbForm)
 {
     ui->setupUi(this);
+    ui->tableWidget->setColumnCount(2);
+    QStringList header;
+    header << "Score" << "Word";
+    ui->tableWidget->setHorizontalHeaderLabels(header);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+#if QT_VERSION >= 0x050000
+// Qt5 code
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+// Qt4 code
+    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
+    ui->tableWidget->setShowGrid(false);
 }
 
 ScoreWordsDbForm::~ScoreWordsDbForm()
