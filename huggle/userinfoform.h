@@ -28,6 +28,8 @@ namespace Huggle
      * \brief The UserinfoForm class is a widget that displays the information about user
      * including their history and some other information about the user
      */
+
+    /// \todo History of edits doesn't work yet, it needs to be done - !release blocker!
     class UserinfoForm : public QDockWidget
     {
         Q_OBJECT

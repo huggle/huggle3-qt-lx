@@ -27,7 +27,6 @@ namespace Huggle
     class HistoryForm : public QDockWidget
     {
         Q_OBJECT
-
     public:
         explicit HistoryForm(QWidget *parent = 0);
         ~HistoryForm();

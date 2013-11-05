@@ -72,6 +72,15 @@ namespace Huggle
         static void sleep(unsigned long secs){QThread::sleep(secs);}
     };
 
+    //! Overwrite of qapplication so that we can reimplement notify
+    class HgApplication : public QApplication
+    {
+    public:
+        HgApplication(int& argc, char** argv) :
+            QApplication(argc, argv) {}
+        bool notify(QObject* receiver, QEvent* event);
+    };
+
     /*!
      * \brief The Language class
      */

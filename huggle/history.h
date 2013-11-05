@@ -49,6 +49,10 @@ namespace Huggle
     };
 
     //! History of actions done by user
+
+    /// \todo It should be possible to go back in history to review what you have you done
+    /// currently nothing happens when you click on history items
+    /// \todo Function to revert your own changes
     class History : public QDockWidget
     {
         Q_OBJECT

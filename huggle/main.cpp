@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         // we load the core
         Huggle::Core::Init();
         // now we can start the huggle :o
-        QApplication a(argc, argv);
+        Huggle::HgApplication a(argc, argv);
         Huggle::Core::f_Login = new Huggle::Login();
         Huggle::Core::f_Login->show();
 

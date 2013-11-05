@@ -1166,3 +1166,20 @@ Language::Language(QString name)
     LanguageName = name;
     LanguageID = name;
 }
+
+
+bool HgApplication::notify(QObject *receiver, QEvent *event)
+{
+    bool done = true;
+    try
+    {
+        done = QApplication::notify(receiver, event);
+    }catch (Huggle::Exception *ex)
+    {
+        Core::ExceptionHandler(ex);
+    }catch (Huggle::Exception &ex)
+    {
+        Core::ExceptionHandler(&ex);
+    }
+    return done;
+}
