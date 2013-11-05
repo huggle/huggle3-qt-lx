@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hugglelog.h"
+#include "hugglelog.hpp"
 #include "ui_hugglelog.h"
 
 using namespace Huggle;

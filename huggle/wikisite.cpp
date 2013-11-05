@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "wikisite.h"
+#include "wikisite.hpp"
 using namespace Huggle;
 
 WikiSite::WikiSite(const WikiSite &w)

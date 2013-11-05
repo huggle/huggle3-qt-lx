@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "requestprotect.h"
+#include "requestprotect.hpp"
 #include "ui_requestprotect.h"
 
 using namespace Huggle;

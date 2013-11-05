@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "blockuser.h"
+#include "blockuser.hpp"
 #include "ui_blockuser.h"
 
 #if !PRODUCTION_BUILD

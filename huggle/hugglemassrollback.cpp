@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hugglemassrollback.h"
+#include "hugglemassrollback.hpp"
 #include "ui_hugglemassrollback.h"
 
 using namespace Huggle;

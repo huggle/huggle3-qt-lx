@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "speedyform.h"
+#include "speedyform.hpp"
 #include "ui_speedyform.h"
 
 using namespace Huggle;

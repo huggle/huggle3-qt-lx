@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "wikipage.h"
+#include "wikipage.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()

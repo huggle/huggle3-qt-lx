@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "scorewordsdbform.h"
+#include "scorewordsdbform.hpp"
 #include "ui_scorewordsdbform.h"
 using namespace Huggle;
 

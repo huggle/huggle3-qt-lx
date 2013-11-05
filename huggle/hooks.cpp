@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hooks.h"
+#include "hooks.hpp"
 
 
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)

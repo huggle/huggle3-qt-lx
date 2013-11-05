@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "protectpage.h"
+#include "protectpage.hpp"
 #include "ui_protectpage.h"
 
 using namespace Huggle;

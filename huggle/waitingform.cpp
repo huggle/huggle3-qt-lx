@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "waitingform.h"
+#include "waitingform.hpp"
 #include "ui_waitingform.h"
 using namespace Huggle;
 

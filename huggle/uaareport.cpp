@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "uaareport.h"
+#include "uaareport.hpp"
 #include "ui_uaareport.h"
 
 using namespace Huggle;

@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "deleteform.h"
+#include "deleteform.hpp"
 #include "ui_deleteform.h"
 
 #if !PRODUCTION_BUILD

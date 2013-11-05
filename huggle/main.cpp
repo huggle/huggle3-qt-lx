@@ -11,10 +11,10 @@
 #include <QApplication>
 #include <QStringList>
 #include <QString>
-#include "core.h"
-#include "terminalparser.h"
-#include "login.h"
-#include "exception.h"
+#include "core.hpp"
+#include "terminalparser.hpp"
+#include "login.hpp"
+#include "exception.hpp"
 
 int main(int argc, char *argv[])
 {

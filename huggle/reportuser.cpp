@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "reportuser.h"
+#include "reportuser.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 

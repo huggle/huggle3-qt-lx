@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hugglequeueitemlabel.h"
+#include "hugglequeueitemlabel.hpp"
 #include "ui_hugglequeueitemlabel.h"
 
 using namespace Huggle;

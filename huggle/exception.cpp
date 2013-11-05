@@ -8,8 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include <exception.h>
-#include "exception.h"
+#include "exception.hpp"
 
 using namespace Huggle;
 

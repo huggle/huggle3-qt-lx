@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "history.h"
+#include "history.hpp"
 #include "ui_history.h"
 
 using namespace Huggle;

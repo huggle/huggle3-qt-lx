@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hugglequeue.h"
+#include "hugglequeue.hpp"
 #include "ui_hugglequeue.h"
 
 using namespace Huggle;

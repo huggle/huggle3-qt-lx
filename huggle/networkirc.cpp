@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "networkirc.h"
+#include "networkirc.hpp"
 
 using namespace Huggle::IRC;
 
