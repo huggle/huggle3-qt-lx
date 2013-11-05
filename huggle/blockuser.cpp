@@ -11,6 +11,7 @@
 #include "blockuser.h"
 #include "ui_blockuser.h"
 
+#if !PRODUCTION_BUILD
 using namespace Huggle;
 
 BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
@@ -210,4 +211,5 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     Core::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
 }
 
+#endif
 

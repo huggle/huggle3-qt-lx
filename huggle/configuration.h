@@ -13,6 +13,7 @@
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
+#define PRODUCTION_BUILD 0
 //! Minimal score the edit can have
 #define MINIMAL_SCORE -999999
 #define HUGGLE_VERSION "3.0.0.0"

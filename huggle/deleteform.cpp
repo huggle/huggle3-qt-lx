@@ -11,6 +11,7 @@
 #include "deleteform.h"
 #include "ui_deleteform.h"
 
+#if !PRODUCTION_BUILD
 using namespace Huggle;
 
 DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
@@ -177,3 +178,5 @@ void DeleteForm::on_pushButton_2_clicked()
 {
 	this->hide();
 }
+
+#endif

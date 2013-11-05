@@ -8,7 +8,6 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-
 #ifndef BLOCKUSER_H
 #define BLOCKUSER_H
 
@@ -22,6 +21,7 @@
 #include "configuration.h"
 #include "wikiuser.h"
 
+#if !PRODUCTION_BUILD
 namespace Ui
 {
     class BlockUser;
@@ -32,6 +32,8 @@ namespace Huggle
     class WikiUser;
 
     //! This form can be used to block users from editing, which requires the block permission
+
+    /// \todo This form has to send a message to user who was blocked, until that is fixed it must not be included in production build
     class BlockUser : public QDialog
     {
         Q_OBJECT
@@ -65,3 +67,4 @@ namespace Huggle
 }
 
 #endif // BLOCKUSER_H
+#endif

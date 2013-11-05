@@ -73,13 +73,15 @@ namespace Huggle
     class EditQuery;
     class ProcessList;
     class Preferences;
-    class BlockUser;
     class IgnoreList;
     class WaitingForm;
     class VandalNw;
     class WikiUser;
     class ReportUser;
+#if !PRODUCTION_BUILD
 	class DeleteForm;
+    class BlockUser;
+#endif
     class ProtectPage;
     class UAAReport;
 
@@ -150,11 +152,13 @@ namespace Huggle
         bool ShuttingDown;
         //! If system is shutting down this is displaying which part of shutdown is currently being executed
         ShutdownOp Shutdown;
-		ReportUser *report;
+        ReportUser *fReportForm;
+#if !PRODUCTION_BUILD
         //! Pointer to a form to block user
-		BlockUser *block;
+        BlockUser *fBlockForm;
 		//! Pointer to a form to delete a page
-		DeleteForm *deletef;
+        DeleteForm *fDeleteForm;
+#endif
         //! Pointer to a form to protect a page
         ProtectPage *protect;
         //! Pointer to UAA dialog

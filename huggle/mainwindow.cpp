@@ -20,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         Configuration::WhiteList.append(Configuration::UserName);
     }
+#if !PRODUCTION_BUILD
+    this->fBlockForm = NULL;
+    this->fDeleteForm = NULL;
+#endif
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
@@ -48,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
-    this->report = NULL;
+    this->fReportForm = NULL;
     this->ui->actionBlock_user->setEnabled(Configuration::Rights.contains("block"));
     this->ui->actionDelete->setEnabled(Configuration::Rights.contains("delete"));
     this->ui->actionProtect->setEnabled(Configuration::Rights.contains("protect"));
@@ -191,8 +195,10 @@ MainWindow::~MainWindow()
     delete this->SystemLog;
     delete this->Status;
     delete this->Browser;
-    delete this->block;
-	delete this->deletef;
+#if !PRODUCTION_BUILD
+    delete this->fBlockForm;
+    delete this->fDeleteForm;
+#endif
     delete this->uaaf;
     delete ui;
     delete this->tb;
@@ -235,15 +241,15 @@ void MainWindow::_ReportUser()
         return;
     }
 
-    if (this->report != NULL)
+    if (this->fReportForm != NULL)
     {
-        delete this->report;
-        this->report = NULL;
+        delete this->fReportForm;
+        this->fReportForm = NULL;
     }
 
-    this->report = new ReportUser(this);
-    this->report->show();
-    this->report->SetUser(this->CurrentEdit->User);
+    this->fReportForm = new ReportUser(this);
+    this->fReportForm->show();
+    this->fReportForm->SetUser(this->CurrentEdit->User);
 }
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
@@ -1476,6 +1482,7 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
+#if !PRODUCTION_BUILD
     if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
@@ -1486,13 +1493,15 @@ void MainWindow::on_actionDelete_triggered()
 		Core::Log("ERROR: No, you cannot delete an NULL page :)");
 		return;
 	}
-	this->deletef = new DeleteForm(this);
-    deletef->setPage(this->CurrentEdit->Page);
-	deletef->show();
+    this->fDeleteForm = new DeleteForm(this);
+    fDeleteForm->setPage(this->CurrentEdit->Page);
+    fDeleteForm->show();
+#endif
 }
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
+#if !PRODUCTION_BUILD
     if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
@@ -1504,9 +1513,10 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
         Core::Log("ERROR: No one to block :o");
         return;
     }
-    this->block = new BlockUser(this);
-	block->SetWikiUser(this->CurrentEdit->User);
-    block->show();
+    this->fBlockForm = new BlockUser(this);
+    fBlockForm->SetWikiUser(this->CurrentEdit->User);
+    fBlockForm->show();
+#endif
 }
 
 void Huggle::MainWindow::on_actionIRC_triggered()

@@ -21,6 +21,7 @@
 #include "wikipage.h"
 #include "apiquery.h"
 #include "core.h"
+#if !PRODUCTION_BUILD
 
 namespace Ui
 {
@@ -31,6 +32,9 @@ namespace Huggle
 {
 	class WikiPage;
     //! This is a delete form
+
+    /// \todo This form needs to send a message to user who created a page after it's deleted, until that is done
+    /// we must not include this class into production build
     class DeleteForm : public QDialog
     {
         Q_OBJECT
@@ -60,3 +64,4 @@ namespace Huggle
 }
 
 #endif // DELETEFORM_H
+#endif
