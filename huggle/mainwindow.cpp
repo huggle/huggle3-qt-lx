@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         Configuration::WhiteList.append(Configuration::UserName);
     }
+    this->fScoreWord = NULL;
 #if !PRODUCTION_BUILD
     this->fBlockForm = NULL;
     this->fDeleteForm = NULL;
@@ -190,6 +191,7 @@ MainWindow::~MainWindow()
     delete this->Queries;
     delete this->preferencesForm;
     delete this->aboutForm;
+    delete this->fScoreWord;
     delete this->Ignore;
     delete this->Queue1;
     delete this->SystemLog;
@@ -1614,4 +1616,14 @@ void MainWindow::on_actionReport_username_triggered()
     this->fUaaReportForm = new UAAReport();
     fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
     fUaaReportForm->show();
+}
+
+void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
+{
+    if (this->fScoreWord != NULL)
+    {
+        delete this->fScoreWord;
+    }
+    this->fScoreWord = new ScoreWordsDbForm(this);
+    this->fScoreWord->show();
 }

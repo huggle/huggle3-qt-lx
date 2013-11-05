@@ -30,6 +30,15 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
     ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     ui->tableWidget->setShowGrid(false);
+    int x = 0;
+    while (x < Configuration::LocalConfig_ScoreWords.count())
+    {
+        ScoreWord *word = Configuration::LocalConfig_ScoreWords.at(x);
+        ui->tableWidget->insertRow(x);
+        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word->score)));
+        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word->word));
+        x++;
+    }
 }
 
 ScoreWordsDbForm::~ScoreWordsDbForm()

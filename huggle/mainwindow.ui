@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -118,6 +109,7 @@
      <string>Tools</string>
     </property>
     <addaction name="actionShow_ignore_list_of_current_wiki"/>
+    <addaction name="actionShow_list_of_score_words"/>
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">
@@ -720,6 +712,11 @@
   <action name="actionReport_username">
    <property name="text">
     <string>Report username</string>
+   </property>
+  </action>
+  <action name="actionShow_list_of_score_words">
+   <property name="text">
+    <string>Show list of score words</string>
    </property>
   </action>
  </widget>
