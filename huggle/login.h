@@ -60,8 +60,11 @@ namespace Huggle
     public:
         explicit Login(QWidget *parent = 0);
         ~Login();
+        /// \todo DOCUMENT ME
         Status _Status;
-        void Progress(int progress);
+        /// \todo DOCUMENT ME
+        void Progress(const int progress);
+        /// \todo DOCUMENT ME
         void Localize();
 
     private slots:
@@ -74,10 +77,12 @@ namespace Huggle
     private:
         Ui::Login *ui;
         QTimer *timer;
+        /// \todo DOCUMENT ME
         WLQuery *wq;
         ApiQuery *LoginQuery;
         //! The token obtained from login
         QString Token;
+        /// \todo DOCUMENT ME
         static QString Test;
         //! Reset the interface to default
         void Reset();

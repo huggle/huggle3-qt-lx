@@ -53,7 +53,7 @@ Login::~Login()
     delete timer;
 }
 
-void Login::Progress(int progress)
+void Login::Progress(const int progress)
 {
     ui->progressBar->setValue(progress);
 }
@@ -572,7 +572,7 @@ void Login::Finish()
 
 void Login::reject()
 {
-    if (this->_Status != StatusDone)
+    if (this->_Status != LoginDone)
     {
         QApplication::quit();
     }

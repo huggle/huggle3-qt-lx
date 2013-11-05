@@ -36,10 +36,14 @@ namespace Huggle
         explicit HuggleWeb(QWidget *parent = 0);
         ~HuggleWeb();
         QString CurrentPageName();
+        /// \todo DOCUMENT ME
         void DisplayPreFormattedPage(WikiPage *page);
+        /// \todo DOCUMENT ME
         void DisplayPreFormattedPage(QString url);
         void DisplayPage(QString url);
+        /// \todo DOCUMENT ME
         void RenderHtml(QString html);
+        /// \todo DOCUMENT ME
         void DisplayDiff(WikiEdit *edit);
         static QString Encode(const QString &string);
 

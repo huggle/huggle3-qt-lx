@@ -39,16 +39,19 @@ namespace Huggle
     public:
         explicit BlockUser(QWidget *parent = 0);
         ~BlockUser();
-        void SetWikiUser(WikiUser* User);
+        void SetWikiUser(const WikiUser* User);
     private slots:
         void on_pushButton_clicked();
         void on_pushButton_2_clicked();
         void onTick();
     private:
         Ui::BlockUser *ui;
+        /// \todo DOCUMENT ME
         QTimer *t0;
         WikiUser *user;
+        /// \todo DOCUMENT ME
         ApiQuery *tb;
+        /// \todo DOCUMENT ME
         ApiQuery *b;
         ApiQuery *dependency;
         QString blocktoken;

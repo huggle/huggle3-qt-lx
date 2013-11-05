@@ -114,7 +114,6 @@ void ApiQuery::Process()
     }
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
-    //QUrl url(Core::ToMediawikiEncoding(this->URL), QUrl::StrictMode);
     QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
     QNetworkRequest request(url);
     if (UsingPOST)
@@ -123,7 +122,6 @@ void ApiQuery::Process()
     }
     if (UsingPOST)
     {
-        //this->reply = Query::NetworkManager.post(request, url.encodedQuery());
         this->reply = Query::NetworkManager.post(request, this->Parameters.toUtf8());
     } else
     {
@@ -142,7 +140,7 @@ void ApiQuery::ReadData()
     this->Result->Data += QString(this->reply->readAll());
 }
 
-void ApiQuery::SetAction(Action action)
+void ApiQuery::SetAction(const Action action)
 {
     switch (action)
     {
@@ -181,7 +179,7 @@ void ApiQuery::SetAction(Action action)
     }
 }
 
-void ApiQuery::SetAction(QString action)
+void ApiQuery::SetAction(const QString action)
 {
     this->ActionPart = action;
 }

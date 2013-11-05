@@ -19,6 +19,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->q = NULL;
     ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->pushButton->setEnabled(false);
+    /// \todo LOCALIZE ME
     ui->pushButton->setText("Retrieving history...");
     QStringList header;
     ui->tableWidget->setColumnCount(5);
@@ -44,6 +45,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->tableWidget->setShowGrid(false);
     this->t2 = NULL;
     this->timer = NULL;
+    /// \todo LOCALIZE ME
     ui->webView->setHtml("Please select a diff in list in order to open preview");
 }
 
@@ -101,6 +103,7 @@ void ReportUser::Tick()
             QDomNodeList results = d.elementsByTagName("rev");
             if (results.count() == 0)
             {
+                /// \todo LOCALIZE ME
                 ui->pushButton->setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
                 this->timer->stop();
                 return;
@@ -109,6 +112,7 @@ void ReportUser::Tick()
             _p = e.text();
             if (!this->CheckUser())
             {
+                /// \todo LOCALIZE ME
                 ui->pushButton->setText("This user is already reported");
                 this->timer->stop();
                 return;
@@ -118,6 +122,7 @@ void ReportUser::Tick()
             this->timer->stop();
             this->user->IsReported = true;
             WikiUser::UpdateUser(this->user);
+            /// \todo LOCALIZE ME
             ui->pushButton->setText("Reported");
             return;
         }
@@ -185,6 +190,7 @@ void ReportUser::On_DiffTick()
     }
     if (this->qd->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         ui->webView->setHtml("Unable to retrieve diff: " + this->qd->Result->ErrorMessage);
         this->diff->stop();
         return;
@@ -207,6 +213,7 @@ void ReportUser::On_DiffTick()
     } else
     {
         Core::DebugLog(this->qd->Result->Data);
+        /// \todo LOCALIZE ME
         ui->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
                                 HuggleWeb::Encode(this->qd->Result->Data));
         this->diff->stop();
@@ -227,6 +234,7 @@ void ReportUser::On_DiffTick()
 
     if (Summary == "")
     {
+        /// \todo LOCALIZE ME
         Summary = "<font color=red>No summary was provided</font>";
     } else
     {
@@ -258,6 +266,7 @@ void ReportUser::Test()
     if (results.count() == 0)
     {
         QMessageBox mb;
+        /// \todo LOCALIZE ME
         mb.setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
         mb.exec();
         this->timer->stop();

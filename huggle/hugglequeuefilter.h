@@ -28,19 +28,33 @@ namespace Huggle
         QString QueueName;
         HuggleQueueFilter();
         bool Matches(WikiEdit *edit);
+        /// \todo DOCUMENT ME
         bool getIgnoreMinor() const;
+        /// \todo DOCUMENT ME
         void setIgnoreMinor(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreUsers() const;
+        /// \todo DOCUMENT ME
         void setIgnoreUsers(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreWL() const;
+        /// \todo DOCUMENT ME
         void setIgnoreWL(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreIP() const;
+        /// \todo DOCUMENT ME
         void setIgnoreIP(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreBots() const;
+        /// \todo DOCUMENT ME
         void setIgnoreBots(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreNP() const;
+        /// \todo DOCUMENT ME
         void setIgnoreNP(bool value);
+        /// \todo DOCUMENT ME
         bool getIgnoreFriends() const;
+        /// \todo DOCUMENT ME
         void setIgnoreFriends(bool value);
 
     private:

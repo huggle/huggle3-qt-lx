@@ -19,6 +19,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     // headers
     ui->tableWidget->setColumnCount(4);
     QStringList header;
+    /// \todo LOCALIZE ME
     header << "Name" << "Author" << "Description" << "Status" << "Version";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);

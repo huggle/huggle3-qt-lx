@@ -62,7 +62,9 @@ namespace Huggle
         //! Pointer for	protection
         ApiQuery *ptpt;
         Ui::ProtectPage *ui;
+        //! DOCUMENT ME
         WikiPage *ptpge;
+        //! DOCUMENT ME
         QTimer *tt;
         int PtQueryPhase;
     };

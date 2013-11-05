@@ -37,6 +37,7 @@ void Message::Send()
     query = new ApiQuery();
     query->SetAction(ActionQuery);
     query->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(user->GetTalk());
+    /// \todo LOCALIZE ME
     query->Target = "Retrieving token to edit " + user->GetTalk();
     query->RegisterConsumer("Message::Send()");
     Core::AppendQuery(query);
@@ -45,6 +46,7 @@ void Message::Send()
 
 void Message::Fail(QString reason)
 {
+    /// \todo LOCALIZE ME
     Core::Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
     Done = true;
     Sending = false;
@@ -105,6 +107,7 @@ void Message::Finish()
         }
         if (query->Result->Failed)
         {
+            /// \todo LOCALIZE ME
             Fail("unable to retrieve the edit token");
             return;
         }
@@ -113,6 +116,7 @@ void Message::Finish()
         QDomNodeList l = d.elementsByTagName("page");
         if (l.count() == 0)
         {
+            /// \todo LOCALIZE ME
             Fail("no token was returned by request");
             Core::DebugLog("No page");
             return;
@@ -120,6 +124,7 @@ void Message::Finish()
         QDomElement element = l.at(0).toElement();
         if (!element.attributes().contains("edittoken"))
         {
+            /// \todo LOCALIZE ME
             Fail("the result doesn't contain the token");
             Core::DebugLog("No token");
             return;
@@ -163,6 +168,7 @@ void Message::Finish()
         {
             if (element.attribute("result") == "Success")
             {
+                /// \todo LOCALIZE ME
                 Core::Log("Successfuly delivered message to " + user->Username);
                 sent = true;
                 HistoryItem item;
@@ -179,6 +185,7 @@ void Message::Finish()
 
     if (!sent)
     {
+        /// \todo LOCALIZE ME
         Core::Log("Failed to deliver a message to " + user->Username + " please check logs");
         Core::DebugLog(query->Result->Data);
     }

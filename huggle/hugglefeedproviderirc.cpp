@@ -44,6 +44,7 @@ bool HuggleFeedProviderIRC::Start()
     TcpSocket->connectToHost(Configuration::IRCServer, Configuration::IRCPort);
     if (!TcpSocket->waitForConnected())
     {
+        /// \todo LOCALIZE ME
         Core::Log("IRC: Connection timeout");
         TcpSocket->close();
         delete TcpSocket;

@@ -13,11 +13,14 @@
 using namespace Huggle;
 
 unsigned long Collectable::LastCID = 0;
+QMutex Collectable::WideLock(QMutex::Recursive);
 
 Collectable::Collectable()
 {
+    WideLock.lock();
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
+    WideLock.unlock();
     this->Locked = false;
     this->Managed = false;
     this->QL = new QMutex(QMutex::Recursive);
@@ -51,7 +54,7 @@ bool Collectable::SafeDelete()
     return false;
 }
 
-void Collectable::RegisterConsumer(int consumer)
+void Collectable::RegisterConsumer(const int consumer)
 {
     this->Lock();
     if (!this->iConsumers.contains(consumer))
@@ -62,7 +65,7 @@ void Collectable::RegisterConsumer(int consumer)
     this->Unlock();
 }
 
-void Collectable::UnregisterConsumer(int consumer)
+void Collectable::UnregisterConsumer(const int consumer)
 {
     this->Lock();
     this->iConsumers.removeAll(consumer);
@@ -70,7 +73,7 @@ void Collectable::UnregisterConsumer(int consumer)
     this->Unlock();
 }
 
-void Collectable::RegisterConsumer(QString consumer)
+void Collectable::RegisterConsumer(const QString consumer)
 {
     this->Lock();
     this->Consumers.append(consumer);
@@ -79,7 +82,7 @@ void Collectable::RegisterConsumer(QString consumer)
     this->Unlock();
 }
 
-void Collectable::UnregisterConsumer(QString consumer)
+void Collectable::UnregisterConsumer(const QString consumer)
 {
     this->Lock();
     this->Consumers.removeAll(consumer);
@@ -92,7 +95,7 @@ unsigned long Collectable::CollectableID()
     return this->CID;
 }
 
-QString Collectable::ConsumerIdToString(int id)
+QString Collectable::ConsumerIdToString(const int id)
 {
     switch (id)
     {

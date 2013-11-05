@@ -51,9 +51,13 @@ namespace Huggle
     private:
         Ui::HuggleTool *ui;
         ApiQuery *query;
+        /// \todo DOCUMENT ME
         QTimer *tick;
+        /// \todo DOCUMENT ME
         WikiEdit *edit;
+        /// \todo DOCUMENT ME
         int QueryPhase;
+        /// \todo DOCUMENT ME
         QFont DefaultFont;
         void FinishPage();
         void FinishEdit();

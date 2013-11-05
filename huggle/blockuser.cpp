@@ -31,7 +31,7 @@ BlockUser::~BlockUser()
     delete ui;
 }
 
-void BlockUser::SetWikiUser(WikiUser *User)
+void BlockUser::SetWikiUser(const WikiUser *User)
 {
     this->user = User;
     if (this->user->IsIP())
@@ -47,6 +47,7 @@ void BlockUser::GetToken()
     b->SetAction(ActionQuery);
     b->Parameters = "prop=info&intoken=block&titles=User:" +
         QUrl::toPercentEncoding(this->user->Username);
+    /// \todo LOCALIZE ME
     b->Target = "Getting token to block" + this->user->Username;
     b->RegisterConsumer("BlockUser::GetToken");
     Core::AppendQuery(b);
@@ -89,6 +90,7 @@ void BlockUser::CheckToken()
     }
     if (this->b->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Failed("token can't be retrieved: " + this->b->Result->ErrorMessage);
         return;
     }
@@ -98,12 +100,14 @@ void BlockUser::CheckToken()
     if (l.count() == 0)
     {
         Core::DebugLog(this->b->Result->Data);
+        /// \todo LOCALIZE ME
         Failed("no user info was present in query (are you sysop?)");
         return;
     }
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("blocktoken"))
     {
+        /// \todo LOCALIZE ME
         Failed("No token");
         return;
     }
@@ -129,6 +133,7 @@ void BlockUser::CheckToken()
                 + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockReason) + "token="
                 + QUrl::toPercentEncoding(blocktoken);
     }
+    /// \todo LOCALIZE ME
     tb->Target = "Blocking" + this->user->Username;
     tb->UsingPOST = true;
     tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
@@ -149,6 +154,7 @@ void BlockUser::Block()
 
     if (this->tb->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Failed("user can't be blocked: " + this->tb->Result->ErrorMessage);
         return;
     }

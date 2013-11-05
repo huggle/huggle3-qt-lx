@@ -61,12 +61,12 @@ namespace Huggle
          * by GC, by calling this function you change type to managed
          * \param consumer String that lock the object
          */
-        void RegisterConsumer(int consumer);
+        void RegisterConsumer(const int consumer);
         /*!
          * \brief This function will remove a string which prevent the object from being removed
          * \param consumer Unique string that unlock the object
          */
-        void UnregisterConsumer(int consumer);
+        void UnregisterConsumer(const int consumer);
         /*!
          * \brief Registers a consumer
          *
@@ -74,12 +74,12 @@ namespace Huggle
          * by QueryGC, by calling this function you change the query type to managed
          * \param consumer String that lock the object
          */
-        void RegisterConsumer(QString consumer);
+        void RegisterConsumer(const QString consumer);
         /*!
          * \brief This function will remove a string which prevent the object from being removed
          * \param consumer Unique string that unlock the object
          */
-        void UnregisterConsumer(QString consumer);
+        void UnregisterConsumer(const QString consumer);
         /*!
          * \brief DebugHgc
          * \return debug info
@@ -91,7 +91,8 @@ namespace Huggle
          */
         unsigned long CollectableID();
     private:
-        static QString ConsumerIdToString(int id);
+        static QString ConsumerIdToString(const int id);
+        static QMutex WideLock;
         static unsigned long LastCID;
         unsigned long CID;
         //! Internal variable that contains a cache whether object is managed

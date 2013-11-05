@@ -69,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // initialise queues
     if (!Configuration::LocalConfig_UseIrc)
     {
+        /// \todo LOCALIZE ME
         Core::Log("Feed: irc is disabled by project config");
     }
     if (Configuration::UsingIRC && Configuration::LocalConfig_UseIrc)
@@ -77,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->actionIRC->setChecked(true);
         if (!Core::PrimaryFeedProvider->Start())
         {
+            /// \todo LOCALIZE ME
             Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
             delete Core::PrimaryFeedProvider;
             ui->actionIRC->setChecked(false);
@@ -131,6 +133,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
+            /// \todo LOCALIZE ME
             Core::Log("ERROR: Unable to read state from a config file");
         } else
         {
@@ -210,6 +213,7 @@ void MainWindow::_ReportUser()
 
     if (this->CurrentEdit->User->IsReported)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: This user is already reported");
         return;
     }
@@ -217,7 +221,9 @@ void MainWindow::_ReportUser()
     if (!Configuration::LocalConfig_AIV)
     {
         QMessageBox mb;
+        /// \todo LOCALIZE ME
         mb.setText("This project doesn't support AIV system");
+        /// \todo LOCALIZE ME
         mb.setWindowTitle("Function not available");
         mb.setIcon(QMessageBox::Information);
         mb.exec();
@@ -319,6 +325,7 @@ void MainWindow::Render()
             }
         }
 
+        /// \todo LOCALIZE ME
         this->tb->SetInfo("Diff of page: " + this->CurrentEdit->Page->PageName
                           + " (score: " + QString::number(this->CurrentEdit->Score)
                           + word + ")");
@@ -369,18 +376,21 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     bool rollback = true;
     if (this->CurrentEdit == NULL)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: Unable to revert, edit is null");
         return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: This edit is still being processed, please wait");
         return NULL;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("WARNING: Rollback token for edit " + this->CurrentEdit->Page->PageName + " could not be retrieved, fallback to manual edit");
         rollback = false;
     }
@@ -434,6 +444,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     if (warning == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("There is no such warning template " + __template);
         return false;
     }
@@ -963,6 +974,7 @@ void MainWindow::ForceWarn(int level)
 
     if (warning == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("There is no such warning template " + __template);
         return;
     }
@@ -1003,6 +1015,7 @@ void MainWindow::Exit()
     QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: Unable to write state to a config file");
     } else
     {
@@ -1013,6 +1026,7 @@ void MainWindow::Exit()
     layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: Unable to write geometry to a config file");
     } else
     {
@@ -1031,6 +1045,7 @@ void MainWindow::Exit()
     }
     this->fWaiting = new WaitingForm(this);
     this->fWaiting->show();
+    /// \todo LOCALIZE ME
     this->fWaiting->Status(10, "Downloading new whitelist");
     this->wq = new WLQuery();
     this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
@@ -1048,6 +1063,7 @@ void MainWindow::ReconnectIRC()
     }
     if (!Configuration::UsingIRC)
     {
+        /// \todo LOCALIZE ME
         Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");
         return;
     }
@@ -1055,6 +1071,7 @@ void MainWindow::ReconnectIRC()
     Core::PrimaryFeedProvider->Stop();
     while (!Core::PrimaryFeedProvider->IsStopped())
     {
+        /// \todo LOCALIZE ME
         Core::Log("Waiting for primary feed provider to stop");
         Sleeper::usleep(200000);
     }
@@ -1066,6 +1083,7 @@ void MainWindow::ReconnectIRC()
     {
         ui->actionIRC->setChecked(false);
         ui->actionWiki->setChecked(true);
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
         delete Core::PrimaryFeedProvider;
         Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
@@ -1084,6 +1102,7 @@ bool MainWindow::CheckEditableBrowserPage()
     {
         QMessageBox mb;
         mb.setWindowTitle("Page");
+        /// \todo LOCALIZE ME
         mb.setText("Current page can't be edited");
         mb.exec();
         return false;
@@ -1116,6 +1135,7 @@ bool MainWindow::CheckExit()
     {
         QMessageBox mb;
         mb.setWindowTitle("Error");
+        /// \todo LOCALIZE ME
         mb.setText("Huggle is shutting down, ignored");
         mb.exec();
         return false;
@@ -1142,6 +1162,7 @@ void MainWindow::Welcome()
 
     if (this->CurrentEdit->User->GetContentsOfTalkPage() != "")
     {
+        /// \todo LOCALIZE ME
         if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
@@ -1162,6 +1183,7 @@ void MainWindow::Welcome()
 
     if (Configuration::LocalConfig_WelcomeTypes.count() == 0)
     {
+        /// \todo LOCALIZE ME
         Core::Log("There are no welcome messages defined for this project");
         return;
     }
@@ -1170,6 +1192,7 @@ void MainWindow::Welcome()
 
     if (message == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: Invalid welcome template, ignored message");
         return;
     }

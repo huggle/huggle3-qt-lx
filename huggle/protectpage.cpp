@@ -20,8 +20,11 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ptkq = NULL;
     this->ptpge = NULL;
     this->ptpt = NULL;
+    /// \todo LOCALIZE ME
     this->ui->comboBox_3->addItem("Everyone (no protection)");
+    /// \todo LOCALIZE ME
     this->ui->comboBox_3->addItem("Autoconfirmed (semi)");
+    /// \todo LOCALIZE ME
     this->ui->comboBox_3->addItem("Sysops (full)");
     this->ui->comboBox_3->setCurrentIndex(2);
     this->protecttoken = "";
@@ -46,6 +49,7 @@ void ProtectPage::getTokenToProtect()
     this->ptkq = new ApiQuery();
     ptkq->SetAction(ActionQuery);
     ptkq->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName);
+    /// \todo LOCALIZE ME
     ptkq->Target = "Fetching token to protect" + this->ptpge->PageName;
     ptkq->RegisterConsumer("ProtectPage::getTokenToProtect()");
     Core::AppendQuery(ptkq);
@@ -83,6 +87,7 @@ void ProtectPage::checkTokenToProtect()
     }
     if(ptkq->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Failed("ERROR: Token cannot be retrieved. The reason was: " + ptkq->Result->ErrorMessage);
         return;
     }
@@ -92,6 +97,7 @@ void ProtectPage::checkTokenToProtect()
     if (l.count() == 0)
     {
         Core::DebugLog(this->ptkq->Result->Data);
+        /// \todo LOCALIZE ME
         Failed("No page info was available (are you an admin?)");
         return;
     }
@@ -143,7 +149,9 @@ void ProtectPage::on_pushButton_2_clicked()
 void ProtectPage::Failed(QString reason)
 {
     QMessageBox *_pmb = new QMessageBox();
+    /// \todo LOCALIZE ME
     _pmb->setWindowTitle("Unable to protect page");
+    /// \todo LOCALIZE ME
     _pmb->setText("Unable to protect the page because " + reason);
     _pmb->exec();
     delete _pmb;
@@ -175,6 +183,7 @@ void ProtectPage::Protect()
     }
     if (ptpt->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Failed("The API query failed. Reason supplied was: " + ptpt->Result->ErrorMessage);
         return;
     }

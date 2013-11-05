@@ -39,6 +39,7 @@ void EditQuery::Process()
     qToken = new ApiQuery();
     qToken->SetAction(ActionQuery);
     qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);
+    /// \todo LOCALIZE ME
     qToken->Target = "Retrieving token to edit " + page;
     qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     Core::AppendQuery(qToken);
@@ -61,6 +62,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
+            /// \todo LOCALIZE ME
             this->Result->ErrorMessage = "Unable to retrieve edit token, error was: " + qToken->Result->ErrorMessage;
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
@@ -73,6 +75,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
+            /// \todo LOCALIZE ME
             this->Result->ErrorMessage = "Unable to retrieve edit token";
             Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
@@ -84,6 +87,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
+            /// \todo LOCALIZE ME
             this->Result->ErrorMessage = "Unable to retrieve edit token";
             Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
@@ -129,6 +133,7 @@ bool EditQuery::Processed()
                         item.Target = this->page;
                         Core::Main->_History->Prepend(item);
                     }
+                    /// \todo LOCALIZE ME
                     Core::Log("Successfuly edit " + page);
                 }
             }

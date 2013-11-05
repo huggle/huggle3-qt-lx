@@ -17,7 +17,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
 {
     ui->setupUi(this);
     ui->pushButton->setEnabled(false);
-    //localize me
+    /// \todo LOCALIZE ME
     ui->pushButton->setText("No edit info");
 }
 
@@ -26,16 +26,17 @@ HistoryForm::~HistoryForm()
     delete ui;
 }
 
-void HistoryForm::Update(WikiEdit *edit)
+void HistoryForm::Update(const WikiEdit *edit)
 {
     this->CurrentEdit = edit;
+    /// \todo LOCALIZE ME
     this->ui->pushButton->setText("Retrieve history");
     this->ui->pushButton->setEnabled(true);
 }
 
 void HistoryForm::on_pushButton_clicked()
 {
-    //localize me
+    /// \todo LOCALIZE ME
     ui->pushButton->setText("Retrieving history");
     ui->pushButton->setEnabled(false);
 }

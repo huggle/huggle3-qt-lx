@@ -32,6 +32,9 @@ namespace Huggle
     class Collectable;
 
     //! Garbage collector that can be used to collect some objects
+
+    //! Every object must be derived from Collectable, otherwise it
+    //! must not be handled by garbage collector
     class GC
     {
     public:

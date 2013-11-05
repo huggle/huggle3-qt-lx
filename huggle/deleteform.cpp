@@ -39,6 +39,7 @@ void DeleteForm::getToken()
 	this->tokenquery = new ApiQuery();
 	tokenquery->SetAction(ActionQuery);
 	tokenquery->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
+    /// \todo LOCALIZE ME
 	tokenquery->Target = "Getting token to delete " + this->page->PageName;
     tokenquery->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	Core::AppendQuery(tokenquery);
@@ -76,6 +77,7 @@ void DeleteForm::checkDelToken()
 	}
 	if (this->tokenquery->Result->Failed)
 	{
+        /// \todo LOCALIZE ME
 		Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->tokenquery->Result->ErrorMessage);
 		return;
 	}
@@ -85,12 +87,14 @@ void DeleteForm::checkDelToken()
 	if (l.count() == 0)
 	{
 		Core::DebugLog(this->tokenquery->Result->Data);
+        /// \todo LOCALIZE ME
 		Failed("no page info was present in query (are you sysop?)");
 		return;
 	}
 	QDomElement element = l.at(0).toElement();
 	if (!element.attributes().contains("deletetoken"))
 	{
+        /// \todo LOCALIZE ME
 		Failed("No token");
 		return;
 	}
@@ -126,6 +130,7 @@ void DeleteForm::Delete()
 
 	if (this->delquery->Result->Failed)
 	{
+        /// \todo LOCALIZE ME
 		Failed("page can't be deleted: " + this->delquery->Result->ErrorMessage);
 		return;
 	}
@@ -139,7 +144,9 @@ void DeleteForm::Delete()
 void DeleteForm::Failed(QString reason)
 {
 	QMessageBox *_b = new QMessageBox();
+    /// \todo LOCALIZE ME
 	_b->setWindowTitle("Unable to delete page");
+    /// \todo LOCALIZE ME
     _b->setText("Unable to delete the page because " + reason);
 	_b->exec();
 	delete _b;
