@@ -31,7 +31,7 @@ BlockUser::~BlockUser()
     delete ui;
 }
 
-void BlockUser::SetWikiUser(const WikiUser *User)
+void BlockUser::SetWikiUser(WikiUser *User)
 {
     this->user = User;
     if (this->user->IsIP())

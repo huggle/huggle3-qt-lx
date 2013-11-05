@@ -26,7 +26,7 @@ HistoryForm::~HistoryForm()
     delete ui;
 }
 
-void HistoryForm::Update(const WikiEdit *edit)
+void HistoryForm::Update(WikiEdit *edit)
 {
     this->CurrentEdit = edit;
     /// \todo LOCALIZE ME

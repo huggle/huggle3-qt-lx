@@ -39,7 +39,7 @@ namespace Huggle
     public:
         explicit BlockUser(QWidget *parent = 0);
         ~BlockUser();
-        void SetWikiUser(const WikiUser* User);
+        void SetWikiUser(WikiUser *User);
     private slots:
         void on_pushButton_clicked();
         void on_pushButton_2_clicked();
