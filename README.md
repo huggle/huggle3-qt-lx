@@ -41,6 +41,13 @@ Getting help
 
 We have a channel irc://chat.freenode.org/#huggle so if you need any kind of help please go there
 
+Contributing
+=============
+
+Everyone is allowed to send the pull requests to this repository, and all regular contributors
+get a developer access to directly push if they need it. If you want to join a huggle
+developer team, please see https://meta.wikimedia.org/wiki/Huggle/Members and insert yourself
+
 Reporting bugs
 ===============
 
