@@ -73,7 +73,7 @@ void Huggle::HuggleTool::on_pushButton_clicked()
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
                                 + QUrl::toPercentEncoding(this->ui->comboBox_2->lineEdit()->text());
-    this->query->RegisterConsumer("HuggleTool::on_pushButton_clicked");
+    this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
     this->query->Process();
     this->tick->start(200);
 }
@@ -119,6 +119,7 @@ void HuggleTool::FinishPage()
             // there is no such a page
             this->DeleteQuery();
             this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
+            /// \todo LOCALIZE ME
             Core::Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
             this->tick->stop();
             return;
@@ -161,6 +162,6 @@ void HuggleTool::DeleteQuery()
     {
         return;
     }
-    this->query->UnregisterConsumer("HuggleTool::on_pushButton_clicked");
+    this->query->UnregisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
     this->query = NULL;
 }

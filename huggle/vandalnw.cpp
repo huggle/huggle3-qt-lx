@@ -36,10 +36,12 @@ void VandalNw::Connect()
 {
     if (!Configuration::VandalNw_Login)
     {
+        /// \todo LOCALIZE ME
         Core::Log("Vandalism network isn't allowed in options");
         return;
     } else
     {
+        /// \todo LOCALIZE ME
         this->Insert("Connecting to huggle anti vandalism network");
         this->Irc->Connect();
     }
@@ -48,6 +50,7 @@ void VandalNw::Connect()
 void VandalNw::Disconnect()
 {
     this->Irc->Disconnect();
+    /// \todo LOCALIZE ME
     this->Insert("You are disconnected from HAN");
 }
 
@@ -80,6 +83,7 @@ void VandalNw::onTick()
 {
     if (!this->Irc->IsConnected())
     {
+        /// \todo LOCALIZE ME
         this->Insert("Lost connection to antivandalism network");
         this->tm->stop();
         return;
@@ -87,6 +91,7 @@ void VandalNw::onTick()
     if (!this->JoinedMain && this->Irc->IsConnected())
     {
         this->JoinedMain = true;
+        /// \todo LOCALIZE ME
         this->Insert("You are now connected to huggle antivandalism network");
         this->Irc->Join(this->GetChannel());
     }

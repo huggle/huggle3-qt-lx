@@ -163,6 +163,7 @@ void Login::PressOK()
     {
         QMessageBox mb;
         mb.setWindowTitle("Function not supported");
+        /// \todo LOCALIZE ME
         mb.setText("This function is not available for wmf wikis in this moment");
         mb.exec();
         return;
@@ -267,6 +268,7 @@ void Login::RetrieveGlobalConfig()
             {
                 if (!Configuration::GlobalConfig_EnableAll)
                 {
+                    /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because huggle is globally disabled");
                     this->Progress(0);
                     this->_Status = LoginFailed;
@@ -279,6 +281,7 @@ void Login::RetrieveGlobalConfig()
                 this->_Status = RetrievingWhitelist;
                 return;
             }
+            /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
             Core::DebugLog(data.text());
             this->Progress(0);
@@ -367,6 +370,7 @@ void Login::RetrieveLocalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve local config: " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -379,6 +383,7 @@ void Login::RetrieveLocalConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve local config, the api query returned no data");
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -391,6 +396,7 @@ void Login::RetrieveLocalConfig()
             {
                 if (!Configuration::LocalConfig_EnableAll)
                 {
+                    /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because huggle is disabled");
                     this->Progress(0);
                     this->_Status = LoginFailed;
@@ -403,6 +409,7 @@ void Login::RetrieveLocalConfig()
                 this->_Status = RetrievingUserConfig;
                 return;
             }
+            /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
             Core::DebugLog(data.text());
             this->Progress(0);
@@ -414,6 +421,7 @@ void Login::RetrieveLocalConfig()
         return;
     }
     this->Progress(68);
+    /// \todo LOCALIZE ME
     ui->label_6->setText("Retrieving local config");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
@@ -429,6 +437,7 @@ void Login::RetrievePrivateConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user config: " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -442,6 +451,7 @@ void Login::RetrievePrivateConfig()
             if (l.count() == 0)
             {
                 Core::DebugLog(this->LoginQuery->Result->Data);
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user config, the api query returned no data");
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -454,6 +464,7 @@ void Login::RetrievePrivateConfig()
             {
                 if (!Configuration::LocalConfig_EnableAll)
                 {
+                    /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because you don't have enable:true in your personal config");
                     this->Progress(0);
                     this->_Status = LoginFailed;
@@ -466,6 +477,7 @@ void Login::RetrievePrivateConfig()
                 this->_Status = RetrievingUser;
                 return;
             }
+            /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the user config, see debug log for more details");
             Core::DebugLog(data.text());
             this->Progress(0);
@@ -495,6 +507,7 @@ void Login::RetrieveUserInfo()
         {
             if (this->LoginQuery->Result->Failed)
             {
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user info: " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -508,6 +521,7 @@ void Login::RetrieveUserInfo()
             if (l.count() == 0)
             {
                 Core::DebugLog(this->LoginQuery->Result->Data);
+                /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user info, the api query returned no data");
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -523,12 +537,13 @@ void Login::RetrieveUserInfo()
             }
             if (Configuration::LocalConfig_RequireRollback && !Configuration::Rights.contains("rollback"))
             {
-                    ui->label_6->setText("Login failed because you don't have rollback permissions on this project");
-                    this->Progress(0);
-                    this->_Status = LoginFailed;
-                    delete this->LoginQuery;
-                    this->LoginQuery = NULL;
-                    return;
+                /// \todo LOCALIZE ME
+                ui->label_6->setText("Login failed because you don't have rollback permissions on this project");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                delete this->LoginQuery;
+                this->LoginQuery = NULL;
+                return;
             }
             delete this->LoginQuery;
             this->LoginQuery = NULL;
@@ -539,6 +554,7 @@ void Login::RetrieveUserInfo()
         return;
     }
     this->Progress(96);
+    /// \todo LOCALIZE ME
     ui->label_6->setText("Retrieving user info");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
@@ -584,6 +600,7 @@ bool Login::ProcessOutput()
     QString Result = this->LoginQuery->Result->Data;
     if (!Result.contains(("<login result")))
     {
+        /// \todo LOCALIZE ME
         DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug log for precise information");
         return false;
     }
@@ -591,6 +608,7 @@ bool Login::ProcessOutput()
     Result = Result.mid(Result.indexOf("result=\"") + 8);
     if (!Result.contains("\""))
     {
+        /// \todo LOCALIZE ME
         DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug log for precise information");
         return false;
     }
@@ -604,22 +622,26 @@ bool Login::ProcessOutput()
 
     if (Result == "EmptyPass")
     {
+        /// \todo LOCALIZE ME
         DisplayError("The password you entered was empty");
         return false;
     }
 
     if (Result == "WrongPass")
     {
+        /// \todo LOCALIZE ME
         DisplayError("Your password is not correct");
         return false;
     }
 
     if (Result == "NoName")
     {
+        /// \todo LOCALIZE ME
         DisplayError("You provided no correct user name for login");
         return false;
     }
 
+    /// \todo LOCALIZE ME
     DisplayError("ERROR: The api.php responded with unknown result: " + Result);
     return false;
 }
@@ -630,6 +652,7 @@ QString Login::GetToken()
     if (!token.contains(Login::Test))
     {
         // this is invalid token?
+        /// \todo LOCALIZE ME
         Core::Log("WARNING: the result of api request doesn't contain valid token");
         Core::DebugLog("The token didn't contain the correct string, token was " + token);
         return "<invalid token>";
@@ -638,6 +661,7 @@ QString Login::GetToken()
     if (!token.contains("\""))
     {
         // this is invalid token?
+        /// \todo LOCALIZE ME
         Core::Log("WARNING: the result of api request doesn't contain valid token");
         Core::DebugLog("The token didn't contain the closing mark, token was " + token);
         return "<invalid token>";

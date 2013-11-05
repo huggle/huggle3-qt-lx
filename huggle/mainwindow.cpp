@@ -1348,12 +1348,14 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 
     if (!this->CurrentEdit->User->IsIP())
     {
+        /// \todo LOCALIZE ME
         Core::Log("This feature is for ip users only");
         return;
     }
 
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
 
+    /// \todo LOCALIZE ME
     Core::EditPage(page, Configuration::LocalConfig_ClearTalkPageTemp
                    + "\n" + Configuration::LocalConfig_WelcomeAnon,
                    "Cleaned old templates from talk page " + Configuration::EditSuffixOfHuggle);
@@ -1410,6 +1412,7 @@ void MainWindow::on_actionReport_user_triggered()
 {
     if(this->CurrentEdit == NULL)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: No one to report");
         return;
     }
@@ -1420,6 +1423,7 @@ void MainWindow::on_actionReport_user_2_triggered()
 {
     if(this->CurrentEdit == NULL)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: No one to report");
         return;
     }
@@ -1478,6 +1482,7 @@ void MainWindow::on_actionDelete_triggered()
     }
 	if (this->CurrentEdit == NULL)
 	{
+        /// \todo LOCALIZE ME
 		Core::Log("ERROR: No, you cannot delete an NULL page :)");
 		return;
 	}
@@ -1495,6 +1500,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 
     if(this->CurrentEdit == NULL)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: No one to block :o");
         return;
     }
@@ -1514,12 +1520,14 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     {
         return;
     }
+    /// \todo LOCALIZE ME
     Core::Log("Switching to wiki provider");
     Core::PrimaryFeedProvider->Stop();
     ui->actionIRC->setChecked(false);
     ui->actionWiki->setChecked(true);
     while (!Core::PrimaryFeedProvider->IsStopped())
     {
+        /// \todo LOCALIZE ME
         Core::Log("Waiting for primary feed provider to stop");
         Sleeper::usleep(200000);
     }
@@ -1542,6 +1550,7 @@ void MainWindow::on_actionProtect_triggered()
     }
     if (this->CurrentEdit == NULL)
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: Cannot protect NULL page");
         return;
     }
@@ -1552,6 +1561,7 @@ void MainWindow::on_actionProtect_triggered()
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
+    /// \todo LOCALIZE ME
     Core::Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 
@@ -1579,12 +1589,15 @@ void MainWindow::on_actionReport_username_triggered()
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
+        /// \todo LOCALIZE ME
         dd.setWindowTitle("UAA not available");
+        /// \todo LOCALIZE ME
         dd.setText("The usernames for administrator attention noticeboard is not available on your wiki.");
         dd.exec();
     }
     if (this->CurrentEdit->User->IsIP())
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: You can't report an IP to UAA!");
         return;
     }

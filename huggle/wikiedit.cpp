@@ -81,6 +81,7 @@ bool WikiEdit::FinalizePostProcessing()
 
         if (this->ProcessingQuery->Result->Failed)
         {
+            /// \todo LOCALIZE ME
             Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
         } else
         {
@@ -107,12 +108,14 @@ bool WikiEdit::FinalizePostProcessing()
                     this->User->SetContentsOfTalkPage(e.text());
                 } else
                 {
+                    /// \todo LOCALIZE ME
                     Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
                 }
             } else
             {
                 if (!missing)
                 {
+                    /// \todo LOCALIZE ME
                     Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
                     Core::DebugLog(this->ProcessingQuery->Result->Data);
                 }
@@ -198,6 +201,7 @@ bool WikiEdit::FinalizePostProcessing()
 
     if (this->DiffText == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 

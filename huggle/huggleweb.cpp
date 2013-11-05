@@ -16,6 +16,7 @@ using namespace Huggle;
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     ui->setupUi(this);
+    /// \todo LOCALIZE ME
     CurrentPage = "No page is displayed now";
 }
 
@@ -106,6 +107,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     if (edit->Summary == "")
     {
+        /// \todo LOCALIZE ME
         Summary = "<font color=red>No summary was provided</font>";
     } else
     {

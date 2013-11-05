@@ -25,6 +25,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     ui->tableWidget->setColumnCount(5);
     this->diff = new QTimer(this);
     connect(this->diff, SIGNAL(timeout()), this, SLOT(On_DiffTick()));
+    /// \todo LOCALIZE ME
     header << "Page" << "Time" << "Link" << "DiffID" << "Include in report";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     this->tq = NULL;
@@ -279,6 +280,7 @@ void ReportUser::Test()
     if (!this->CheckUser())
     {
         QMessageBox mb;
+        /// \todo LOCALIZE ME
         mb.setText("This user is already reported");
         mb.exec();
         this->timer->stop();
@@ -290,6 +292,7 @@ void ReportUser::Test()
     } else
     {
         QMessageBox mb;
+        /// \todo LOCALIZE ME
         mb.setText("This user is not reported now");
         mb.exec();
         this->timer->stop();
@@ -322,6 +325,7 @@ void ReportUser::on_pushButton_clicked()
     if (reports == "")
     {
         QMessageBox::StandardButton mb;
+        /// \todo LOCALIZE ME
         mb = QMessageBox::question(this, "Question", "You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this "\
                    "user is vandal or not. Are you sure you want to continue?", QMessageBox::Yes|QMessageBox::No);
         if (mb == QMessageBox::No)
@@ -332,6 +336,7 @@ void ReportUser::on_pushButton_clicked()
     }
     // obtain current page
     Loading = true;
+    /// \todo LOCALIZE ME
     ui->pushButton->setText("Retrieving current report page");
     if (this->q != NULL)
     {
@@ -357,6 +362,7 @@ void ReportUser::on_pushButton_2_clicked()
 
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
+    /// \todo LOCALIZE ME
     ui->webView->setHtml("Please wait...");
     this->diff->stop();
     if (this->qd != NULL)

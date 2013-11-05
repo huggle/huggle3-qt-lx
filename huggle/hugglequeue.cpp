@@ -40,7 +40,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
 {
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
-    page->RegisterConsumer("HuggleQueue");
+    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     // we no longer to prevent this from being deleted because we already have different lock for that
     page->UnregisterConsumer("DeletionLock");
     label->page = page;
@@ -113,7 +113,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (qi != NULL)
     {
-        item->page->UnregisterConsumer("HuggleQueue");
+        item->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
         item->page = NULL;
         this->layout->removeItem(qi);
         return;
@@ -128,7 +128,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
             this->layout->removeItem(i);
             if (label->page != NULL)
             {
-                label->page->UnregisterConsumer("HuggleQueue");
+                label->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
                 label->page = NULL;
             }
             break;
