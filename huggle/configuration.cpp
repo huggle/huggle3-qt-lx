@@ -642,3 +642,15 @@ ScoreWord::ScoreWord(QString Word, int Score)
     this->score = Score;
     this->word = Word;
 }
+
+ScoreWord::ScoreWord(ScoreWord *word)
+{
+    this->score = word->score;
+    this->word = word->word;
+}
+
+ScoreWord::ScoreWord(const ScoreWord &word)
+{
+    this->score = word.score;
+    this->word = word.word;
+}
