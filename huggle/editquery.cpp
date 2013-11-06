@@ -105,7 +105,7 @@ bool EditQuery::Processed()
         qEdit->SetAction(ActionEdit);
         qEdit->Parameters = "title=" + QUrl::toPercentEncoding(page) + "&text=" + QUrl::toPercentEncoding(text) +
                 "&summary=" + QUrl::toPercentEncoding(this->summary) + "&token=" + QUrl::toPercentEncoding(_Token);
-        Core::RunningQueries.append(qEdit);
+        Core::AppendQuery(qEdit);
         qEdit->Process();
         return false;
     }

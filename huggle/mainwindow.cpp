@@ -612,7 +612,7 @@ void MainWindow::on_Tick()
         }
     }
     QString t = "Currently processing " + QString::number(Core::ProcessingEdits.count())
-            + " edits and " + QString::number(Core::RunningQueries.count()) + " queries"
+            + " edits and " + QString::number(Core::RunningQueriesGetCount()) + " queries"
             + " I have " + QString::number(Configuration::WhiteList.size())
             + " whitelisted users and you have "
             + QString::number(HuggleQueueItemLabel::Count)

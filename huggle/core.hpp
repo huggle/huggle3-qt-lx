@@ -119,8 +119,6 @@ namespace Huggle
         static HuggleFeed *PrimaryFeedProvider;
         //! Pointer to secondary feed provider
         static HuggleFeed *SecondaryFeedProvider;
-        //! List of all running queries
-        static QList<Query*> RunningQueries;
         //! This is a list of all edits that are being processed by some way
         //! whole list needs to be checked and probed everytime once a while
         static QList<WikiEdit*> ProcessingEdits;
@@ -266,7 +264,10 @@ namespace Huggle
         static QString Localize(QString key);
         static void LoadLocalizations();
         static bool ReportPreFlightCheck();
+        static int RunningQueriesGetCount();
     private:
+        //! List of all running queries
+        static QList<Query*> RunningQueries;
         //! Ring log is a buffer that contains system messages
         static QStringList RingLog;
         Core() {   }

@@ -62,6 +62,7 @@ namespace Huggle
         QNetworkReply *reply;
         //! Generate api url
         void ConstructUrl();
+        QString ConstructParameterLessUrl();
         //! Check if return format is supported by huggle
         bool FormatIsCurrentlySupported();
         //! This is only needed when you are using rollback

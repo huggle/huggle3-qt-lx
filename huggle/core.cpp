@@ -1156,6 +1156,11 @@ bool Core::ReportPreFlightCheck()
     return true;
 }
 
+int Core::RunningQueriesGetCount()
+{
+    return RunningQueries.count();
+}
+
 Language::Language(QString name)
 {
     LanguageName = name;

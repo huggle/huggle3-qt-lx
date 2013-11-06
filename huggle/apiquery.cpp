@@ -18,6 +18,7 @@ void ApiQuery::ConstructUrl()
     {
         throw new Exception("No action provided for api request");
     }
+
     if (OverrideWiki == "")
     {
         URL = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
@@ -26,6 +27,7 @@ void ApiQuery::ConstructUrl()
     {
         URL = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
     }
+
     if (this->Parameters != "")
     {
         URL = URL + "&" + this->Parameters;
@@ -43,6 +45,38 @@ void ApiQuery::ConstructUrl()
     case Default:
         break;
     }
+}
+
+QString ApiQuery::ConstructParameterLessUrl()
+{
+    QString url;
+    if (this->ActionPart == "")
+    {
+        throw new Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
+    }
+    if (OverrideWiki == "")
+    {
+        url = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
+    }
+    else
+    {
+        url = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
+    }
+
+    switch (this->RequestFormat)
+    {
+    case XML:
+        url += "&format=xml";
+        break;
+    case JSON:
+        url += "&format=json";
+        break;
+    case PlainText:
+    case Default:
+        break;
+    }
+
+    return url;
 }
 
 bool ApiQuery::FormatIsCurrentlySupported()
@@ -84,6 +118,7 @@ void ApiQuery::Finished()
         this->Result->Failed = true;
         this->reply->deleteLater();
         this->reply = NULL;
+        this->Status = StatusDone;
         return;
     }
     if (this->ActionPart == "rollback")
@@ -114,7 +149,14 @@ void ApiQuery::Process()
     }
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
-    QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
+    QUrl url;
+    if (UsingPOST)
+    {
+        url = QUrl::fromEncoded(this->ConstructParameterLessUrl().toUtf8());
+    } else
+    {
+        url = QUrl::fromEncoded(this->URL.toUtf8());
+    }
     QNetworkRequest request(url);
     if (UsingPOST)
     {

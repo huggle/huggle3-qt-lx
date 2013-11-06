@@ -50,7 +50,7 @@ void UAAReport::getPageContents()
     /// \todo LOCALIZE THIS
     qUAApage->Target = "Getting content of UAA";
     qUAApage->RegisterConsumer("UAAReport::getPageContents()");
-    Core::RunningQueries.append(qUAApage);
+    Core::AppendQuery(qUAApage);
     qUAApage->Process();
 
     if (this->uT != NULL)
@@ -64,6 +64,11 @@ void UAAReport::getPageContents()
 
 void UAAReport::onTick()
 {
+    if (this->qUAApage == NULL)
+    {
+        return;
+    }
+
     if (!this->qUAApage->Processed())
     {
         return;
@@ -88,13 +93,13 @@ void UAAReport::onTick()
         return;
     }
 
+    this->uT->stop();
     this->dr = element.text();
     this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
     this->qUAApage = NULL;
     Core::DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
-    this->uT->stop();
     this->insertUsername();
     Core::EditPage(Core::UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
