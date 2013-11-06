@@ -139,6 +139,8 @@ QString Configuration::LocalConfig_NSMediaWiki = MEDIAWIKI_DEFAULT_NS_MEDIAWIKI;
 QString Configuration::LocalConfig_NSMediaWikiTalk = MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK;
 QString Configuration::LocalConfig_NSHelp = MEDIAWIKI_DEFAULT_NS_HELP;
 QString Configuration::LocalConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
+QString Configuration::LocalConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
+QString Configuration::LocalConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
 
 QStringList Configuration::LocalConfig_DeletionTemplates;
 int Configuration::LocalConfig_TemplateAge = -30;

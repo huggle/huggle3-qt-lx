@@ -32,11 +32,6 @@ namespace Huggle
         MediaWikiNS_CategoryTalk,
         MediaWikiNS_Mediawiki,
         MediaWikiNS_MediawikiTalk,
-<<<<<<< HEAD
-=======
-        MediaWikiNS_Help,
-        MediaWikiNS_HelpTalk,
->>>>>>> 7bc9418f8bcc8c76c81e18f2a4c13cf06127b413
         MediaWikiNS_File,
         MediaWikiNS_FileTalk,
         MediaWikiNS_Portal,
