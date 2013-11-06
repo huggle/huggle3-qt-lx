@@ -75,33 +75,23 @@ void UAAReport::onTick()
     {
         /// \todo LOCALIZE ME
         this->failed("the query for the page contents returned no data.");
+        this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
+        return;
     }
     QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("rev"))
+
+    if (element.text() == "")
     {
         /// \todo LOCALIZE ME
         this->failed("the page contents weren't available.");
+        this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
         return;
     }
+
     this->dr = element.text();
     this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
     this->qUAApage = NULL;
     Core::DebugLog("Contents of UAA: " + this->dr);
-    if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() &&
-            !this->ui->checkBox_3->isChecked() && !this->ui->checkBox_4->isChecked()
-            && this->ui->lineEdit->text().isEmpty())
-    {
-        QMessageBox *g = new QMessageBox();
-        /// \todo LOCALIZE ME
-        g->setWindowTitle("No reason specified");
-        /// \todo LOCALIZE ME
-        g->setText("You didn't specify a reason as to why the username is a policy violation. "\
-                   "Please specify a reason.");
-        g->setAttribute(Qt::WA_DeleteOnClose);
-        g->exec();
-
-        return;
-    }
     /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
     this->uT->stop();
@@ -150,11 +140,27 @@ void UAAReport::failed(QString reason)
     _b->setText("Unable to report the user because " + reason);
     _b->setAttribute(Qt::WA_DeleteOnClose);
     _b->exec();
+    this->uT->stop();
     return;
 }
 
 void UAAReport::on_pushButton_clicked()
 {
+    if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() &&
+            !this->ui->checkBox_3->isChecked() && !this->ui->checkBox_4->isChecked()
+            && this->ui->lineEdit->text().isEmpty())
+    {
+        QMessageBox *g = new QMessageBox();
+        /// \todo LOCALIZE ME
+        g->setWindowTitle("No reason specified");
+        /// \todo LOCALIZE ME
+        g->setText("You didn't specify a reason as to why the username is a policy violation. "\
+                   "Please specify a reason.");
+        g->setAttribute(Qt::WA_DeleteOnClose);
+        g->exec();
+
+        return;
+    }
     ui->pushButton->setEnabled(false);
     this->getPageContents();
 }
