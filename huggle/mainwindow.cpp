@@ -480,6 +480,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
+    /// \todo Properly implement system to ensure that section head is not posted after level 1 warning
     Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true, dependency);
     Hooks::OnWarning(this->CurrentEdit->User);
