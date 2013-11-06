@@ -61,7 +61,6 @@ void TerminalParser::DisplayHelp()
     cout << "Parameters:" << endl;
     cout << "  -v: Increases verbosity" << endl;
     cout << "  --safe: Start huggle in special mode where lot of stuff is skipped during load" << endl;
-    cout << "  --version: Display version" << endl;
     cout << "  -h | --help: Display this help" << endl<< endl;
     cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }
