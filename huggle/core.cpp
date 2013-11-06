@@ -1023,6 +1023,7 @@ void Core::ExceptionHandler(Exception *exception)
 {
     ExceptionWindow *w = new ExceptionWindow(exception);
     w->exec();
+    delete w;
 }
 
 Language *Core::MakeLanguage(QString text, QString name)

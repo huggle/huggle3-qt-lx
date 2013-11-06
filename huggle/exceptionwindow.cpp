@@ -29,10 +29,10 @@ ExceptionWindow::~ExceptionWindow()
 
 void ExceptionWindow::on_pushButton_clicked()
 {
-
+    this->close();
 }
 
 void ExceptionWindow::on_pushButton_3_clicked()
 {
-
+    QApplication::exit(2);
 }
