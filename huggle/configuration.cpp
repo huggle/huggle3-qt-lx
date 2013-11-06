@@ -135,6 +135,14 @@ QString Configuration::LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTT
 QString Configuration::LocalConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
 QString Configuration::LocalConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
 QString Configuration::LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
+QString Configuration::LocalConfig_NSFile = MEDIAWIKI_DEFAULT_NS_FILE;
+QString Configuration::LocalConfig_NSFileTalk = MEDIAWIKI_DEFAULT_NS_FILETALK;
+QString Configuration::LocalConfig_NSCategory = MEDIAWIKI_DEFAULT_NS_CATEGORY;
+QString Configuration::LocalConfig_NSCategoryTalk = MEDIAWIKI_DEFAULT_NS_CATEGORYTALK;
+QString Configuration::LocalConfig_NSMediaWiki = MEDIAWIKI_DEFAULT_NS_MEDIAWIKI;
+QString Configuration::LocalConfig_NSMediaWikiTalk = MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK;
+QString Configuration::LocalConfig_NSHelp = MEDIAWIKI_DEFAULT_NS_HELP;
+QString Configuration::LocalConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
 
 QStringList Configuration::LocalConfig_DeletionTemplates;
 int Configuration::LocalConfig_TemplateAge = -30;
@@ -512,10 +520,14 @@ bool Configuration::ParseGlobalConfig(QString config)
 
 bool Configuration::ParseLocalConfig(QString config)
 {
+    //AIV
     Configuration::LocalConfig_AIV = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-reports", config));
+    Configuration::LocalConfig_AIVExtend = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-extend", config));
+    // Restrictions
     Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
     Configuration::LocalConfig_RequireAdmin = Configuration::SafeBool(Configuration::ConfigurationParse("require-admin", config));
     Configuration::LocalConfig_RequireRollback = Configuration::SafeBool(Configuration::ConfigurationParse("require-rollback", config));
+    Configuration::LocalConfig_RequireEdits = Configuration::ConfigurationParse("require-edits", config, "0").toInt();
     Configuration::LocalConfig_UseIrc = Configuration::SafeBool(Configuration::ConfigurationParse("irc", config));
     Configuration::LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config, true);
     Configuration::LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, "800").toInt();
@@ -529,23 +541,90 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, "-200000").toInt();
     Configuration::LocalConfig_ReportPath = Configuration::ConfigurationParse("aiv", config);
-    Configuration::LocalConfig_AIVExtend = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-extend", config));
     Configuration::LocalConfig_ReportSt = Configuration::ConfigurationParse("aiv-section", config).toInt();
     Configuration::LocalConfig_IPVTemplateReport = Configuration::ConfigurationParse("aiv-ip", config);
     Configuration::LocalConfig_RUTemplateReport = Configuration::ConfigurationParse("aiv-user", config);
     Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
     Configuration::LocalConfig_ReportSummary = Configuration::ConfigurationParse("report-summary", config);
-    Configuration::LocalConfig_RequireEdits = Configuration::ConfigurationParse("require-edits", config, "0").toInt();
     Configuration::LocalConfig_DeletionTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     Configuration::LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
     Configuration::LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
     Configuration::LocalConfig_UAAPath = Configuration::ConfigurationParse("uaa", config);
+    Configuration::LocalConfig_ConfirmMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-multiple", config));
+    Configuration::LocalConfig_ConfirmRange = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-range", config));
+    Configuration::LocalConfig_ConfirmSame = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-same", config));
+    Configuration::LocalConfig_ConfirmWarned = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-warned", config));
+    Configuration::LocalConfig_DefaultSummary = Configuration::ConfigurationParse("default-summary", config,
+         "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    Configuration::LocalConfig_AgfRevert = Configuration::ConfigurationParse("agf", config,
+         "Reverted good faith edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]");
+    Configuration::LocalConfig_BlockMessage = Configuration::ConfigurationParse("block-message", config);
+    Configuration::LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
+    Configuration::LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
+    Configuration::LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
+    Configuration::LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+
 
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
     Core::ParseWords(config);
     QStringList namespaces = Configuration::ConfigurationParse_QL("namespace-names", config, true);
+    int NS=0;
+    while (namespaces.count() > NS)
+    {
+        QString line = namespaces.at(NS);
+        NS++;
+
+        if (!line.contains(",") || !line.contains(";"))
+        {
+            continue;
+        }
+
+        int ns = line.mid(0, line.indexOf(";")).toInt();
+        QString name = line.mid(line.indexOf(";"));
+
+        if (!name.contains(","))
+        {
+            continue;
+        }
+
+        name = name.mid(0, name.indexOf(","));
+        QString talk = line.mid(line.indexOf(",") + 1);
+
+        if (talk.endsWith(","))
+        {
+            talk = talk.mid(0, talk.length() - 1);
+        }
+
+        if (talk.contains(";"))
+        {
+            talk = talk.mid(talk.indexOf(";") + 1);
+        }
+
+        switch (ns)
+        {
+        case MEDIAWIKI_NSID_MAIN:
+            Configuration::LocalConfig_NSTalk = talk;
+            break;
+        case MEDIAWIKI_NSID_CATEGORY:
+            Configuration::LocalConfig_NSCategory = name;
+            Configuration::LocalConfig_NSCategoryTalk = talk;
+            break;
+        case MEDIAWIKI_NSID_FILE:
+            Configuration::LocalConfig_NSFile = name;
+            Configuration::LocalConfig_NSFileTalk = talk;
+            break;
+        case MEDIAWIKI_NSID_HELP:
+            Configuration::LocalConfig_NSHelp = name;
+            Configuration::LocalConfig_NSHelpTalk = talk;
+            break;
+        case MEDIAWIKI_NSID_MEDIAWIKI:
+            Configuration::LocalConfig_NSMediaWiki = name;
+            Configuration::LocalConfig_NSMediaWikiTalk = talk;
+            break;
+        }
+    }
 
     Core::UAAP = new WikiPage(Configuration::LocalConfig_UAAPath);
 
@@ -601,6 +680,7 @@ bool Configuration::ParseUserConfig(QString config)
     //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
     Configuration::LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
     Configuration::NormalizeConf();
+    /// \todo Lot of configuration options are missing
     return true;
 }
 
