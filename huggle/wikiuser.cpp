@@ -218,6 +218,7 @@ void WikiUser::Update(bool MatchingOnly)
     {
         if (WikiUser::RetrieveUser(this) == NULL)
         {
+            WikiUser::ProblematicUserListLock.unlock();
             return;
         }
     }
