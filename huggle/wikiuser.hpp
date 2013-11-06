@@ -94,6 +94,11 @@ namespace Huggle
         WikiUser(const WikiUser& u);
         WikiUser(QString user);
         ~WikiUser();
+        //! Update the information of this user based on global user list
+
+        //! This is useful when you created user in past and since then a global user has changed
+        //! so that you just call this to refresh all the scores and information or stuff
+        void Resync();
         //! Return a link to talk page of this user (like User talk:Jimbo)
         QString GetTalk();
         //! Returns true if this user is wl

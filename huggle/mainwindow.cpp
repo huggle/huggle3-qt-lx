@@ -1168,6 +1168,8 @@ void MainWindow::Welcome()
         return;
     }
 
+    this->CurrentEdit->User->Resync();
+
     if (this->CurrentEdit->User->GetContentsOfTalkPage() != "")
     {
         /// \todo LOCALIZE ME

@@ -165,6 +165,17 @@ WikiUser::~WikiUser()
     }
 }
 
+void WikiUser::Resync()
+{
+    WikiUser *user = WikiUser::RetrieveUser(this);
+    if (user != NULL)
+    {
+        this->BadnessScore = user->BadnessScore;
+        this->ContentsOfTalkPage = user->GetContentsOfTalkPage();
+        this->WarningLevel = user->WarningLevel;
+    }
+}
+
 QString WikiUser::GetContentsOfTalkPage()
 {
     // first we need to lock this object because it might be accessed from another thread in same moment
