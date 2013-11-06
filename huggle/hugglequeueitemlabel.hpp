@@ -14,6 +14,7 @@
 #include <QMouseEvent>
 #include <QFrame>
 #include "core.hpp"
+#include "exception.hpp"
 
 namespace Ui
 {

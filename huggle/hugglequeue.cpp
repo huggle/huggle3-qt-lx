@@ -38,6 +38,10 @@ HuggleQueue::~HuggleQueue()
 
 void HuggleQueue::AddItem(WikiEdit *page)
 {
+    if (page == NULL)
+    {
+        throw new Exception("WikiEdit *page must not be NULL", "void HuggleQueue::AddItem(WikiEdit *page)");
+    }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
@@ -111,6 +115,10 @@ void HuggleQueue::DeleteByRevID(int RevID)
 
 void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
+    if (item == NULL)
+    {
+        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context", "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
+    }
     if (qi != NULL)
     {
         item->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);

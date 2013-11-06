@@ -32,6 +32,10 @@ QString HuggleWeb::CurrentPageName()
 
 void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
 {
+    if (page == NULL)
+    {
+        throw new Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
+    }
     ui->webView->history()->clear();
     ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render");
     CurrentPage = page->PageName;

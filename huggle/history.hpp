@@ -14,6 +14,7 @@
 #include <QString>
 #include <QList>
 #include <QDockWidget>
+#include "exception.hpp"
 
 namespace Ui
 {

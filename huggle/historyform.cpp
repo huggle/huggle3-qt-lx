@@ -28,6 +28,10 @@ HistoryForm::~HistoryForm()
 
 void HistoryForm::Update(WikiEdit *edit)
 {
+    if (edit == NULL)
+    {
+        throw new Exception("WikiEdit edit must not be NULL", "void HistoryForm::Update(WikiEdit *edit)");
+    }
     this->CurrentEdit = edit;
     /// \todo LOCALIZE ME
     this->ui->pushButton->setText("Retrieve history");

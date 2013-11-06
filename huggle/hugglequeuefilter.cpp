@@ -30,6 +30,10 @@ HuggleQueueFilter::HuggleQueueFilter()
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
+    if (edit == NULL)
+    {
+        throw new Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
+    }
     if (edit->Page->IsTalk() && this->IgnoreTalk)
     {
         return false;

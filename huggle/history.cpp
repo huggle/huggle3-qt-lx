@@ -97,6 +97,10 @@ HistoryItem::HistoryItem(const HistoryItem &item)
 
 HistoryItem::HistoryItem(HistoryItem *item)
 {
+    if (item == NULL)
+    {
+        throw new Exception("HistoryItem item must not be NULL", "HistoryItem::HistoryItem(HistoryItem *item)");
+    }
     this->ID = item->ID;
     this->Type = item->Type;
     this->Target = item->Target;

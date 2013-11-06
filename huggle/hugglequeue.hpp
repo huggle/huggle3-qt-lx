@@ -17,6 +17,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
+#include "exception.hpp"
 #include "hugglequeueitemlabel.hpp"
 #include "wikiedit.hpp"
 #include "configuration.hpp"

@@ -18,6 +18,7 @@
 #include <QDateTime>
 #include "core.hpp"
 #include "hugglefeed.hpp"
+#include "exception.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"
 #include "wikiedit.hpp"

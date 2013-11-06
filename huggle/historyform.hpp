@@ -12,6 +12,7 @@
 #define HISTORYFORM_H
 
 #include <QDockWidget>
+#include "exception.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui

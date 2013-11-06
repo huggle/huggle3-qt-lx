@@ -15,6 +15,7 @@
 #include <QCursor>
 #include <QDockWidget>
 #include <QDateTime>
+#include "exception.hpp"
 
 namespace Ui
 {

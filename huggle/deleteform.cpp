@@ -32,6 +32,10 @@ DeleteForm::~DeleteForm()
 
 void DeleteForm::setPage(WikiPage *Page)
 {
+    if (Page == NULL)
+    {
+        throw new Exception("Page must not be NULL", "void DeleteForm::setPage(WikiPage *Page)");
+    }
 	this->page = Page;
 }
 

@@ -105,6 +105,10 @@ void HuggleFeedProviderIRC::Stop()
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 {
+    if (edit == NULL)
+    {
+        throw new Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
+    }
     Configuration::EditCounter++;
     Core::PreProcessEdit(edit);
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
