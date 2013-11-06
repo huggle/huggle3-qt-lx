@@ -19,7 +19,6 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->query = NULL;
     this->tick = new QTimer(this);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->DefaultFont = ui->comboBox->lineEdit()->font();
     this->edit = NULL;
 }
 

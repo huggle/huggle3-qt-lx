@@ -27,6 +27,28 @@ this style has huge advantage that brackets match vertically, so that
 you can easily see if starting bracket matches the ending one.
 On other hand it consumes more line than, for example K and R style.
 
+=== Spaces ===
+
+There is always an empty line between two functions:
+
+int Bluh()
+{
+    return 0;
+}
+
+int Bleh()
+{
+    return 2;
+}
+
+Wrong:
+
+int Bluh (  ) {
+  return 0;
+}
+int Bleh ( )
+{ return 2; }
+
 === Comments ===
 
 Use them everywhere when you feel they should be used :-) especially
