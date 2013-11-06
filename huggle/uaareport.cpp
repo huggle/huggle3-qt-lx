@@ -99,7 +99,6 @@ void UAAReport::onTick()
     Core::EditPage(Core::UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
     Core::Log("Reporting" + this->User->Username + " to UAA" );
-    this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText("Reported");
 
 }
