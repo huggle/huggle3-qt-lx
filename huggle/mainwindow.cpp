@@ -480,10 +480,6 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
-    if (this->CurrentEdit->User->WarningLevel > 1)
-    {
-        Core::MessageUser(this->CurrentEdit->User, warning, NULL, title, false, dependency);
-    }
     Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true, dependency);
     Hooks::OnWarning(this->CurrentEdit->User);
