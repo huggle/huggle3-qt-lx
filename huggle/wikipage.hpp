@@ -28,6 +28,16 @@ namespace Huggle
         MediaWikiNS_UserTalk,
         MediaWikiNS_Help,
         MediaWikiNS_HelpTalk,
+        MediaWikiNS_Category,
+        MediaWikiNS_CategoryTalk,
+        MediaWikiNS_Mediawiki,
+        MediaWikiNS_MediawikiTalk,
+        MediaWikiNS_Help,
+        MediaWikiNS_HelpTalk,
+        MediaWikiNS_File,
+        MediaWikiNS_FileTalk,
+        MediaWikiNS_Portal,
+        MediaWikiNS_PortalTalk,
         MediaWikiNS_Special
     };
 

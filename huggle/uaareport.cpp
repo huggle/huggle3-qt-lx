@@ -47,6 +47,7 @@ void UAAReport::getPageContents()
     this->qUAApage = new ApiQuery();
     qUAApage->SetAction(ActionQuery);
     qUAApage->Parameters = "action=query&prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
+    /// \todo LOCALIZE THIS
     qUAApage->Target = "Getting content of UAA";
     qUAApage->RegisterConsumer("UAAReport::getPageContents()");
     Core::RunningQueries.append(qUAApage);
@@ -68,11 +69,13 @@ void UAAReport::onTick()
     QDomNodeList l = r.elementsByTagName("rev");
     if (l.count() == 0)
     {
+        /// \todo LOCALIZE ME
         this->failed("the query for the page contents returned no data.");
     }
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("rev"))
     {
+        /// \todo LOCALIZE ME
         this->failed("the page contents weren't available.");
         return;
     }
@@ -85,7 +88,9 @@ void UAAReport::onTick()
             && this->ui->lineEdit->text().isEmpty())
     {
         QMessageBox *g = new QMessageBox();
+        /// \todo LOCALIZE ME
         g->setWindowTitle("No reason specified");
+        /// \todo LOCALIZE ME
         g->setText("You didn't specify a reason as to why the username is a policy violation. "\
                    "Please specify a reason.");
         g->setAttribute(Qt::WA_DeleteOnClose);
@@ -93,10 +98,12 @@ void UAAReport::onTick()
 
         return;
     }
+    /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
     this->uT->stop();
     this->insertUsername();
     Core::EditPage(Core::UAAP, dr, uaasum, true);
+    /// \todo LOCALIZE ME
     Core::Log("Reporting" + this->User->Username + " to UAA" );
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText("Reported");

@@ -501,6 +501,7 @@ bool RevertQuery::ProcessRevert()
     if (depth == 0)
     {
         // something is wrong
+        /// \todo LOCALIZE ME
         Core::Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
         this->Kill();
         this->Status = StatusDone;
@@ -519,6 +520,7 @@ bool RevertQuery::ProcessRevert()
             .replace("$4", QString::number(RevID));
     EditQuerySoftwareRollback = Core::EditPage(this->edit->Page, content, summary, MinorEdit);
     this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+    /// \todo LOCALIZE ME
     this->CustomStatus = "Editing page";
     return false;
 }
@@ -553,6 +555,7 @@ void RevertQuery::Rollback()
     }
     if (!Configuration::Rights.contains("rollback"))
     {
+        /// \todo LOCALIZE ME
         Core::Log("You don't have rollback rights, fallback to software rollback");
         this->UsingSR = true;
         this->Revert();
@@ -566,9 +569,11 @@ void RevertQuery::Rollback()
 
     if (this->Token == "")
     {
+        /// \todo LOCALIZE ME
         Core::Log("ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
         this->Result = new QueryResult();
         this->Result->Failed = true;
+        /// \todo LOCALIZE ME
         this->Result->ErrorMessage = "ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName;
         this->Status = StatusDone;
         this->Exit();
@@ -592,7 +597,7 @@ void RevertQuery::Rollback()
     {
         Core::AppendQuery(this->qRevert);
     }
-    // TRANSLATE ME
+    /// \todo LOCALIZE ME
     this->CustomStatus = "Rolling back " + edit->Page->PageName;
     Core::DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();

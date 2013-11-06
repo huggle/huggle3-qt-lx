@@ -200,12 +200,9 @@ namespace Huggle
 
         // Reverting
 
-        static QString LocalConfig_ManualRevertSummary;
         static QString LocalConfig_MultipleRevertSummary;
         static QStringList LocalConfig_RevertSummaries;
         static QString LocalConfig_SoftwareRevertDefaultSummary;
-        static QStringList LocalConfig_TemplateSummary;
-        static bool LocalConfig_RollbackPossible;
         static QString LocalConfig_RollbackSummary;
         static QString LocalConfig_DefaultSummary;
         static QString LocalConfig_SingleRevert;
@@ -381,6 +378,7 @@ namespace Huggle
          * \return List of values from text or empty list
          */
         static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+        static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
     };
 }
 
