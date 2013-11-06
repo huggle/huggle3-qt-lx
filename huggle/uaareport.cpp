@@ -46,15 +46,19 @@ void UAAReport::getPageContents()
 {
     this->qUAApage = new ApiQuery();
     qUAApage->SetAction(ActionQuery);
-    qUAApage->Parameters = "action=query&prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
+    qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
     /// \todo LOCALIZE THIS
     qUAApage->Target = "Getting content of UAA";
     qUAApage->RegisterConsumer("UAAReport::getPageContents()");
     Core::RunningQueries.append(qUAApage);
     qUAApage->Process();
 
-    connect(this->uT, SIGNAL(timeout()), this, SLOT(onTick()));
+    if (this->uT != NULL)
+    {
+        delete this->uT;
+    }
     this->uT = new QTimer(this);
+    connect(this->uT, SIGNAL(timeout()), this, SLOT(onTick()));
     this->uT->start(200);
 }
 
@@ -151,6 +155,7 @@ void UAAReport::failed(QString reason)
 
 void UAAReport::on_pushButton_clicked()
 {
+    ui->pushButton->setEnabled(false);
     this->getPageContents();
 }
 
