@@ -1129,7 +1129,7 @@ void MainWindow::SuspiciousEdit()
     if (this->CurrentEdit != NULL)
     {
         Hooks::Suspicious(this->CurrentEdit);
-        this->CurrentEdit->User->BadnessScore +=1;
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 1);
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
     if (Configuration::NextOnRv)
@@ -1230,7 +1230,7 @@ void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore += 200;
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 200);
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
@@ -1239,7 +1239,7 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore -=200;
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
@@ -1248,7 +1248,7 @@ void MainWindow::on_actionGood_edit_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->BadnessScore -=200;
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
         WikiUser::UpdateUser(this->CurrentEdit->User);
         if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
@@ -1282,7 +1282,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         Hooks::OnGood(this->CurrentEdit);
-        this->CurrentEdit->User->BadnessScore -=200;
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         WikiUser::UpdateUser(this->CurrentEdit->User);
         if (Configuration::LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {

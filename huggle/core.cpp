@@ -329,7 +329,7 @@ void Core::SaveDefs()
     while (x<WikiUser::ProblematicUsers.count())
     {
         xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
-                QString::number(WikiUser::ProblematicUsers.at(x)->BadnessScore) +"\"></user>\n";
+                QString::number(WikiUser::ProblematicUsers.at(x)->getBadnessScore()) +"\"></user>\n";
         x++;
     }
     WikiUser::ProblematicUserListLock.unlock();
@@ -485,7 +485,7 @@ void Core::LoadDefs()
             user->Username = e.attribute("name");
             if (e.attributes().contains("badness"))
             {
-                user->BadnessScore = e.attribute("badness").toInt();
+                user->setBadnessScore(e.attribute("badness").toInt());
             }
             WikiUser::ProblematicUsers.append(user);
             i++;

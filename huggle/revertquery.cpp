@@ -543,7 +543,7 @@ void RevertQuery::Rollback()
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     }
 
-    edit->User->BadnessScore += 200;
+    this->edit->User->setBadnessScore(this->edit->User->getBadnessScore() + 200);
     WikiUser::UpdateUser(edit->User);
 
     if (this->UsingSR)

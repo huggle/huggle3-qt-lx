@@ -346,7 +346,7 @@ void ProcessorThread::Process(WikiEdit *edit)
         edit->Score += Configuration::LocalConfig_ScoreChange;
     }
 
-    edit->Score += edit->User->BadnessScore;
+    edit->Score += edit->User->getBadnessScore();
 
     edit->ProcessWords();
 

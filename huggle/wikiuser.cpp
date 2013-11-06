@@ -43,7 +43,7 @@ void WikiUser::TrimProblematicUsersList()
     while (i < WikiUser::ProblematicUsers.count())
     {
         WikiUser *user = WikiUser::ProblematicUsers.at(i);
-        if (user->BadnessScore == 0 && user->WarningLevel == 0)
+        if (user->getBadnessScore() == 0 && user->WarningLevel == 0)
         {
             // there is no point to hold information for them
             WikiUser::ProblematicUsers.removeAt(i);
@@ -58,7 +58,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->BadnessScore <= Configuration::LocalConfig_WhitelistScore)
+    if (!us->IP && us->getBadnessScore() <= Configuration::LocalConfig_WhitelistScore)
     {
         if (!Configuration::WhiteList.contains(us->Username))
         {
@@ -70,7 +70,7 @@ void WikiUser::UpdateUser(WikiUser *us)
     {
         if (ProblematicUsers.at(c)->Username == us->Username)
         {
-            if (us->BadnessScore > ProblematicUsers.at(c)->BadnessScore)
+            if (us->getBadnessScore() > ProblematicUsers.at(c)->getBadnessScore())
             {
                 ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
             }
