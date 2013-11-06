@@ -62,12 +62,8 @@ bool Configuration::LocalConfig_EnableAll = false;
 int Configuration::LocalConfig_RequireEdits = 0;
 
 // Reverting
-
-QString Configuration::LocalConfig_ManualRevertSummary = "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2";
 QString Configuration::LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
 QStringList Configuration::LocalConfig_RevertSummaries;
-QStringList Configuration::LocalConfig_TemplateSummary;
-bool Configuration::LocalConfig_RollbackPossible = true;
 QString Configuration::LocalConfig_RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
 QString Configuration::LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
 QString Configuration::LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
@@ -501,6 +497,16 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, b
     return list;
 }
 
+QStringList Configuration::ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS)
+{
+    QStringList result = Configuration::ConfigurationParse_QL(key, content, CS);
+    if (result.count() == 0)
+    {
+        return list;
+    }
+    return result;
+}
+
 bool Configuration::ParseGlobalConfig(QString config)
 {
     Configuration::GlobalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
@@ -556,15 +562,31 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::LocalConfig_ConfirmSame = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-same", config));
     Configuration::LocalConfig_ConfirmWarned = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-warned", config));
     Configuration::LocalConfig_DefaultSummary = Configuration::ConfigurationParse("default-summary", config,
-         "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+              "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
     Configuration::LocalConfig_AgfRevert = Configuration::ConfigurationParse("agf", config,
-         "Reverted good faith edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]");
+              "Reverted good faith edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]");
     Configuration::LocalConfig_BlockMessage = Configuration::ConfigurationParse("block-message", config);
     Configuration::LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
     Configuration::LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
     Configuration::LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
     Configuration::LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+    Configuration::LocalConfig_IgnorePatterns = Configuration::ConfigurationParse_QL("ignore-patterns", config);
+    Configuration::LocalConfig_SoftwareRevertDefaultSummary = Configuration::ConfigurationParse("manual-revert-summary", config,
+              "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2");
+    Configuration::LocalConfig_MultipleRevertSummary = Configuration::ConfigurationParse("multiple-revert-summary-parts", config,
+              "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
+    Configuration::LocalConfig_ProtectReason = Configuration::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    Configuration::LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config);
+    Configuration::LocalConfig_RollbackSummary = Configuration::ConfigurationParse("rollback-summary", config,
+              "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    Configuration::LocalConfig_SingleRevert = Configuration::ConfigurationParse("single-revert-summary", config,
+              "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    Configuration::LocalConfig_UndoSummary = Configuration::ConfigurationParse("undo-summary", config);
 
+    if (Core::AIVP != NULL)
+    {
+        delete Core::AIVP;
+    }
 
     Core::AIVP = new WikiPage(Configuration::LocalConfig_ReportPath);
     Core::ParsePats(config);
@@ -604,6 +626,7 @@ bool Configuration::ParseLocalConfig(QString config)
 
         switch (ns)
         {
+        /// \todo Some NS are missing here
         case MEDIAWIKI_NSID_MAIN:
             Configuration::LocalConfig_NSTalk = talk;
             break;
@@ -661,7 +684,7 @@ bool Configuration::ParseLocalConfig(QString config)
 bool Configuration::ParseUserConfig(QString config)
 {
     Configuration::LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
-   // Configuration::LocalConfig_Ignores = Core::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
+    Configuration::LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config, Configuration::LocalConfig_Ignores);
     Configuration::LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, QString::number(Configuration::LocalConfig_IPScore)).toInt();
     Configuration::LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString::number(Configuration::LocalConfig_ScoreFlag)).toInt();
     Configuration::LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config, Configuration::LocalConfig_WarnSummary);
@@ -671,13 +694,9 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config, Configuration::LocalConfig_WarnSummary4);
     Configuration::AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::LocalConfig_TemplateAge)).toInt();
-    QStringList l1 = Configuration::ConfigurationParse_QL("template-summ", config);
-    if (l1.count() > 0)
-    {
-        Configuration::LocalConfig_TemplateSummary = l1;
-    }
-    //Configuration::LocalConfig_WarningTypes = Core::ConfigurationParse_QL("warning-types", config);
-    //Configuration::LocalConfig_WarningDefs = Core::ConfigurationParse_QL("warning-template-tags", config);
+    Configuration::LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config, Configuration::LocalConfig_RevertSummaries);
+    Configuration::LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config, Configuration::LocalConfig_WarningTypes);
+    Configuration::LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config, Configuration::LocalConfig_WarningDefs);
     Configuration::LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString(Configuration::LocalConfig_BotScore)).toInt();
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing

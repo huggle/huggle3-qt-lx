@@ -50,15 +50,45 @@ MediaWikiNS WikiPage::GetNS()
     {
         return MediaWikiNS_Project;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSUser) ||
-            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
+    if (PageName.startsWith(Configuration::LocalConfig_NSUser) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
     {
         return MediaWikiNS_User;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSUserTalk) ||
-            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
+    if (PageName.startsWith(Configuration::LocalConfig_NSUserTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
     {
         return MediaWikiNS_UserTalk;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSCategory) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORY))
+    {
+        return MediaWikiNS_Category;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSCategoryTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORYTALK))
+    {
+        return MediaWikiNS_CategoryTalk;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSFile) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILE))
+    {
+        return MediaWikiNS_File;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSFileTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILETALK))
+    {
+        return MediaWikiNS_FileTalk;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSMediaWikiTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK))
+    {
+        return MediaWikiNS_MediawikiTalk;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSMediaWiki) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKI))
+    {
+        return MediaWikiNS_Mediawiki;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSPortal) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTAL))
+    {
+        return MediaWikiNS_Portal;
+    }
+    if (PageName.startsWith(Configuration::LocalConfig_NSPortalTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTALTALK))
+    {
+        return MediaWikiNS_PortalTalk;
     }
     return MediaWikiNS_Main;
 }
