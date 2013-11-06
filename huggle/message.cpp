@@ -138,10 +138,18 @@ void Message::Finish()
         query->UsingPOST = true;
         query->RegisterConsumer("Message::Finish()");
         query->SetAction(ActionEdit);
-        query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
-                + "&text=" + QUrl::toPercentEncoding(this->text)
-                + "&token=" + QUrl::toPercentEncoding(this->token);
+        if (this->Section == false)
+        {
+            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
+                    + "&text=" + QUrl::toPercentEncoding(this->text)
+                    + "&token=" + QUrl::toPercentEncoding(this->token);
+        }else
+        {
+            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
+                    + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
+                    + "&text=" + QUrl::toPercentEncoding(this->text)
+                    + "&token=" + QUrl::toPercentEncoding(this->token);
+        }
         Core::AppendQuery(query);
         query->Process();
         return;

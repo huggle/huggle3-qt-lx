@@ -480,6 +480,10 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
+    if (this->CurrentEdit->User->WarningLevel > 1)
+    {
+        Core::MessageUser(this->CurrentEdit->User, warning, NULL, title, false, dependency);
+    }
     Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true, dependency);
     Hooks::OnWarning(this->CurrentEdit->User);
@@ -1110,9 +1114,9 @@ bool MainWindow::CheckEditableBrowserPage()
     if (!this->EditablePage)
     {
         QMessageBox mb;
-        mb.setWindowTitle("Page");
+        mb.setWindowTitle("Cannot perform action");
         /// \todo LOCALIZE ME
-        mb.setText("Current page can't be edited");
+        mb.setText("The action you have requested requires a page to be loaded. Please load a page before trying again.");
         mb.exec();
         return false;
     }
