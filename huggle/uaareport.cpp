@@ -96,6 +96,7 @@ void UAAReport::onTick()
     this->uT->stop();
     this->dr = element.text();
     this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
+    /// \todo Check if user isn't already reported
     this->qUAApage = NULL;
     Core::DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
