@@ -22,6 +22,8 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->Dependency = NULL;
     this->query = NULL;
     this->token = "none";
+    /// \todo LOCALIZE ME
+    // some users might prefer to have a month as header
     title = "Message from " + Configuration::UserName;
 }
 
