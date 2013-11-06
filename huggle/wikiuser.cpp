@@ -260,3 +260,14 @@ bool WikiUser::IsWhitelisted()
         return false;
     }
 }
+long WikiUser::getBadnessScore() const
+{
+    return BadnessScore;
+}
+
+void WikiUser::setBadnessScore(long value)
+{
+    BadnessScore = value;
+    this->Update(true);
+}
+

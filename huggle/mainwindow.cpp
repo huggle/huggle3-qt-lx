@@ -178,7 +178,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow()
 {
     delete this->fRemove;
-    delete this->wq;
     delete this->wUserInfo;
     delete this->wHistory;
     delete this->wlt;
@@ -705,7 +704,6 @@ void MainWindow::on_Tick2()
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->fWaiting->Status(80, "Updating user config");
             this->wq = NULL;
-            // we really should delete this page somewhere I guess :o
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::UserName);

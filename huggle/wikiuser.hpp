@@ -50,13 +50,6 @@ namespace Huggle
         static void TrimProblematicUsersList();
         //! Username
         QString Username;
-        /*!
-         * \brief Badness score of current user
-         *
-         * This score change the badness score of edit, score can be positive (bad) as well as negative
-         * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
-         */
-        long BadnessScore;
         //! Current warning level of user
         int WarningLevel;
         /*!
@@ -103,7 +96,18 @@ namespace Huggle
         QString GetTalk();
         //! Returns true if this user is wl
         bool IsWhitelisted();
+        //! Retrieve a badness score for current user, see WikiUser::BadnessScore for more
+        long getBadnessScore() const;
+        void setBadnessScore(long value);
+
     private:
+        /*!
+         * \brief Badness score of current user
+         *
+         * This score change the badness score of edit, score can be positive (bad) as well as negative
+         * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
+         */
+        long BadnessScore;
         //! Matches only IPv4
         static QRegExp IPv4Regex;
         //! Matches all IP
