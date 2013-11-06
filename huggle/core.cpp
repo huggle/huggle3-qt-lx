@@ -832,12 +832,6 @@ void Core::Shutdown()
 #endif
     delete Core::f_Login;
     Core::f_Login = NULL;
-    // delete all edits
-    while (WikiEdit::EditList.count() > 0)
-    {
-        delete WikiEdit::EditList.at(0);
-        WikiEdit::EditList.removeAt(0);
-    }
     QApplication::quit();
 }
 
