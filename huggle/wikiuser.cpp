@@ -167,13 +167,19 @@ WikiUser::~WikiUser()
 
 void WikiUser::Resync()
 {
+    WikiUser::ProblematicUserListLock.lock();
     WikiUser *user = WikiUser::RetrieveUser(this);
     if (user != NULL)
     {
         this->BadnessScore = user->BadnessScore;
         this->ContentsOfTalkPage = user->GetContentsOfTalkPage();
-        this->WarningLevel = user->WarningLevel;
+        if (user->WarningLevel > this->WarningLevel)
+        {
+            this->WarningLevel = user->WarningLevel;
+        }
     }
+    // we can finally unlock it
+    WikiUser::ProblematicUserListLock.unlock();
 }
 
 QString WikiUser::GetContentsOfTalkPage()
@@ -205,9 +211,18 @@ void WikiUser::SetContentsOfTalkPage(QString text)
     this->UserLock->unlock();
 }
 
-void WikiUser::Update()
+void WikiUser::Update(bool MatchingOnly)
 {
+    WikiUser::ProblematicUserListLock.lock();
+    if (MatchingOnly)
+    {
+        if (WikiUser::RetrieveUser(this) == NULL)
+        {
+            return;
+        }
+    }
     WikiUser::UpdateUser(this);
+    WikiUser::ProblematicUserListLock.unlock();
 }
 
 void WikiUser::ForceIP()

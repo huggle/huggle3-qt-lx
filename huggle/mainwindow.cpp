@@ -430,6 +430,9 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
         return false;
     }
 
+    // check if user wasn't changed and if was, let's update the info
+    this->CurrentEdit->User->Resync();
+
     // get a template
     this->CurrentEdit->User->WarningLevel++;
 

@@ -80,7 +80,7 @@ namespace Huggle
         //! may be wrong, don't relly on it
         bool IsReported;
         //! Call UpdateUser on current user
-        void Update();
+        void Update(bool MatchingOnly = false);
         //! Cache of contributions made by this user
         QList<WikiEdit*> Contributions;
         /*!
