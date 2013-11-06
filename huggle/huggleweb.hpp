@@ -36,9 +36,15 @@ namespace Huggle
         explicit HuggleWeb(QWidget *parent = 0);
         ~HuggleWeb();
         QString CurrentPageName();
-        /// \todo DOCUMENT ME
+        /*!
+         * \brief Retrieve a page in render mode on currently selected project
+         * \param page
+         */
         void DisplayPreFormattedPage(WikiPage *page);
-        /// \todo DOCUMENT ME
+        /*!
+         * \brief Open a page but append action=render to it
+         * \param url
+         */
         void DisplayPreFormattedPage(QString url);
         void DisplayPage(QString url);
         /// \todo DOCUMENT ME

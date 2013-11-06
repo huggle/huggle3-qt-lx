@@ -117,6 +117,11 @@ void VandalNw::onTick()
                     Core::Main->Queue1->DeleteByRevID(RevID);
                     this->Insert(m->user.Nick + " did a rollback of " + revid);
                 }
+                if (Command == "SUSPICIOUS")
+                {
+                    /// \todo find and change the score of that edit, update queue and sort it.
+                    this->Insert(m->user.Nick + " thinks that edit " + revid + " is likely a vandalism, but they didn't revert it");
+                }
             }
 
         } else
