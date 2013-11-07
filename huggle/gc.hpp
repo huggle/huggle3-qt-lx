@@ -37,16 +37,16 @@ namespace Huggle
     //! must not be handled by garbage collector
     class GC
     {
-    public:
-        //! List of all managed queries that qgc keeps track of
-        static QList<Collectable*> list;
-        //! QMutex that is used to lock the GC::list object
+        public:
+            //! List of all managed queries that qgc keeps track of
+            static QList<Collectable*> list;
+            //! QMutex that is used to lock the GC::list object
 
-        //! This lock needs to be aquired every time when you need to access this list
-        //! from any thread during runtime
-        static QMutex Lock;
-        //! Function that walks through the list and delete these that can be deleted
-        static void DeleteOld();
+            //! This lock needs to be aquired every time when you need to access this list
+            //! from any thread during runtime
+            static QMutex Lock;
+            //! Function that walks through the list and delete these that can be deleted
+            static void DeleteOld();
     };
 }
 

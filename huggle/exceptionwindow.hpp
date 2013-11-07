@@ -34,18 +34,18 @@ namespace Huggle
     //! Recovery window
     class ExceptionWindow : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit ExceptionWindow(Exception *e);
-        ~ExceptionWindow();
+        public:
+            explicit ExceptionWindow(Exception *e);
+            ~ExceptionWindow();
 
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_3_clicked();
+        private slots:
+            void on_pushButton_clicked();
+            void on_pushButton_3_clicked();
 
-    private:
-        Ui::ExceptionWindow *ui;
+        private:
+            Ui::ExceptionWindow *ui;
     };
 }
 

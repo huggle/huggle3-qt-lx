@@ -38,39 +38,39 @@ namespace Huggle
     //! Report user
     class ReportUser : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit ReportUser(QWidget *parent = 0);
-        //! Set a user
-        bool SetUser(WikiUser *u);
-        ~ReportUser();
-        //! Content of report
-        QString _p;
-    private slots:
-        void Tick();
-        void On_DiffTick();
-        void Test();
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-        void on_tableWidget_clicked(const QModelIndex &index);
-        void on_pushButton_3_clicked();
+        public:
+            explicit ReportUser(QWidget *parent = 0);
+            //! Set a user
+            bool SetUser(WikiUser *u);
+            ~ReportUser();
+            //! Content of report
+            QString _p;
+        private slots:
+            void Tick();
+            void On_DiffTick();
+            void Test();
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
+            void on_tableWidget_clicked(const QModelIndex &index);
+            void on_pushButton_3_clicked();
 
-    private:
-        Ui::ReportUser *ui;
-        WikiUser *user;
-        ApiQuery *q;
-        QTimer *timer;
-        QTimer *t2;
-        QTimer *diff;
-        QList <QCheckBox*> CheckBoxes;
-        QString report;
-        bool Loading;
-        bool Messaging;
-        bool CheckUser();
-        void InsertUser();
-        ApiQuery *tq;
-        ApiQuery *qd;
+        private:
+            Ui::ReportUser *ui;
+            WikiUser *user;
+            ApiQuery *q;
+            QTimer *timer;
+            QTimer *t2;
+            QTimer *diff;
+            QList <QCheckBox*> CheckBoxes;
+            QString report;
+            bool Loading;
+            bool Messaging;
+            bool CheckUser();
+            void InsertUser();
+            ApiQuery *tq;
+            ApiQuery *qd;
     };
 }
 

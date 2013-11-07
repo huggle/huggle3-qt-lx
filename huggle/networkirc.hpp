@@ -39,28 +39,28 @@ namespace Huggle
          */
         class User
         {
-        public:
-            User(QString nick, QString ident, QString host);
-            User();
-            User(User *user);
-            User(const User &user);
-            QString Ident;
-            QString Nick;
-            QString Host;
+            public:
+                User(QString nick, QString ident, QString host);
+                User();
+                User(User *user);
+                User(const User &user);
+                QString Ident;
+                QString Nick;
+                QString Host;
         };
 
         //! Represent a message on irc network sent either to a channel or to a user
         class Message
         {
-        public:
-            Message(QString text, User us);
-            Message(QString chan, QString text, User us);
-            Message();
-            Message(Message *ms);
-            Message(const Message &ms);
-            QString Channel;
-            QString Text;
-            User user;
+            public:
+                Message(QString text, User us);
+                Message(QString chan, QString text, User us);
+                Message();
+                Message(Message *ms);
+                Message(const Message &ms);
+                QString Channel;
+                QString Text;
+                User user;
         };
 
         /*!
@@ -68,24 +68,24 @@ namespace Huggle
          */
         class NetworkIrc_th : public QThread
         {
-            Q_OBJECT
-        public:
-            NetworkIrc_th(QTcpSocket *socket);
-            ~NetworkIrc_th();
-            bool Running;
-            NetworkIrc *root;
-            void Line(QString line);
-            void ProcessPrivmsg(QString source, QString xx);
-            bool IsFinished();
-        protected:
-            void run();
-        private:
-            /*!
-             * \brief Pointer to a QT Socket that is handling the connection to irc server
-             * this object is managed by parent so don't delete it
-             */
-            QTcpSocket *s;
-            bool Stopped;
+                Q_OBJECT
+            public:
+                NetworkIrc_th(QTcpSocket *socket);
+                ~NetworkIrc_th();
+                bool Running;
+                NetworkIrc *root;
+                void Line(QString line);
+                void ProcessPrivmsg(QString source, QString xx);
+                bool IsFinished();
+            protected:
+                void run();
+            private:
+                /*!
+                 * \brief Pointer to a QT Socket that is handling the connection to irc server
+                 * this object is managed by parent so don't delete it
+                 */
+                QTcpSocket *s;
+                bool Stopped;
         };
 
         /*!
@@ -93,41 +93,41 @@ namespace Huggle
          */
         class NetworkIrc
         {
-        public:
-            NetworkIrc(QString server, QString nick);
-            ~NetworkIrc();
-            //! Connect to server
-            void Connect();
-            /*!
-             * \brief IsConnected checks for connection
-             * \return When you are connected returns true
-             */
-            bool IsConnected();
-            bool IsConnecting();
-            void Disconnect();
-            void Join(QString name);
-            void Part(QString name);
-            void Data(QString text);
-            void Send(QString name, QString text);
-            void Exit();
-            QString Server;
-            QString Nick;
-            QString UserName;
-            QString Ident;
-            QMutex *messages_lock;
-            Message* GetMessage();
-            QStringList Channels;
-            int Port;
-            QList<Message> Messages;
-        private:
-            bool __Connected;
-            bool __IsConnecting;
-            QMutex *writer_lock;
-            NetworkIrc_th *NetworkThread;
-            /*!
-             * \brief Pointer to a QT Socket that is handling the connection to irc server owned by this class
-             */
-            QTcpSocket *s;
+            public:
+                NetworkIrc(QString server, QString nick);
+                ~NetworkIrc();
+                //! Connect to server
+                void Connect();
+                /*!
+                 * \brief IsConnected checks for connection
+                 * \return When you are connected returns true
+                 */
+                bool IsConnected();
+                bool IsConnecting();
+                void Disconnect();
+                void Join(QString name);
+                void Part(QString name);
+                void Data(QString text);
+                void Send(QString name, QString text);
+                void Exit();
+                QString Server;
+                QString Nick;
+                QString UserName;
+                QString Ident;
+                QMutex *messages_lock;
+                Message* GetMessage();
+                QStringList Channels;
+                int Port;
+                QList<Message> Messages;
+            private:
+                bool __Connected;
+                bool __IsConnecting;
+                QMutex *writer_lock;
+                NetworkIrc_th *NetworkThread;
+                /*!
+                 * \brief Pointer to a QT Socket that is handling the connection to irc server owned by this class
+                 */
+                QTcpSocket *s;
         };
     }
 }

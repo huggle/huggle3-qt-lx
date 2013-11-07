@@ -34,18 +34,18 @@ namespace Huggle
     //! History consist of these items
     class HistoryItem
     {
-    public:
-        HistoryItem();
-        HistoryItem(const HistoryItem &item);
-        HistoryItem(HistoryItem * item);
-        //! Unique ID of this item
-        int ID;
-        QString Result;
-        QString Target;
-        //! Type of item
-        HistoryType Type;
-        static QString TypeToString(HistoryType type);
-    private:
+        public:
+            HistoryItem();
+            HistoryItem(const HistoryItem &item);
+            HistoryItem(HistoryItem * item);
+            //! Unique ID of this item
+            int ID;
+            QString Result;
+            QString Target;
+            //! Type of item
+            HistoryType Type;
+            static QString TypeToString(HistoryType type);
+        private:
 
     };
 
@@ -56,20 +56,20 @@ namespace Huggle
     /// \todo Function to revert your own changes
     class History : public QDockWidget
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit History(QWidget *parent = 0);
-        ~History();
-        //! Insert a new item to top of list
-        void Prepend(HistoryItem item);
-        void Refresh();
-        void Remove(HistoryItem item);
-        QList<HistoryItem> Items;
-        static int Last;
+        public:
+            explicit History(QWidget *parent = 0);
+            ~History();
+            //! Insert a new item to top of list
+            void Prepend(HistoryItem item);
+            void Refresh();
+            void Remove(HistoryItem item);
+            QList<HistoryItem> Items;
+            static int Last;
 
-    private:
-        Ui::History *ui;
+        private:
+            Ui::History *ui;
     };
 }
 

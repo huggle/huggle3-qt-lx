@@ -19,18 +19,18 @@ namespace Huggle
     //! Every exception raised by huggle is defined by this class
     class Exception
     {
-    public:
-        //! Error code
-        int ErrorCode;
-        QString Source;
-        //! Reason for crash
-        QString Message;
-        //! ctor
-        Exception(QString Text, bool __IsRecoverable = true);
-        Exception(QString Text, QString _Source, bool __IsRecoverable = true);
-        bool IsRecoverable();
-    private:
-        bool _IsRecoverable;
+        public:
+            //! Error code
+            int ErrorCode;
+            QString Source;
+            //! Reason for crash
+            QString Message;
+            //! ctor
+            Exception(QString Text, bool __IsRecoverable = true);
+            Exception(QString Text, QString _Source, bool __IsRecoverable = true);
+            bool IsRecoverable();
+        private:
+            bool _IsRecoverable;
     };
 }
 

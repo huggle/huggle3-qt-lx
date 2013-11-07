@@ -32,16 +32,16 @@ namespace Huggle
     /// \todo History of edits doesn't work yet, it needs to be done - !release blocker!
     class UserinfoForm : public QDockWidget
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit UserinfoForm(QWidget *parent = 0);
-        ~UserinfoForm();
-        void ChangeUser(WikiUser *user);
+        public:
+            explicit UserinfoForm(QWidget *parent = 0);
+            ~UserinfoForm();
+            void ChangeUser(WikiUser *user);
 
-    private:
-        Ui::UserinfoForm *ui;
-        WikiUser *User;
+        private:
+            Ui::UserinfoForm *ui;
+            WikiUser *User;
     };
 }
 

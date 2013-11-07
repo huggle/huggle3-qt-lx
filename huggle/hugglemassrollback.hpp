@@ -14,7 +14,7 @@
 #include <QDialog>
 
 namespace Ui {
-class HuggleMassRollback;
+    class HuggleMassRollback;
 }
 
 namespace Huggle
@@ -22,14 +22,14 @@ namespace Huggle
     //! DOCUMENT ME
     class HuggleMassRollback : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit HuggleMassRollback(QWidget *parent = 0);
-        ~HuggleMassRollback();
+        public:
+            explicit HuggleMassRollback(QWidget *parent = 0);
+            ~HuggleMassRollback();
 
-    private:
-        Ui::HuggleMassRollback *ui;
+        private:
+            Ui::HuggleMassRollback *ui;
     };
 }
 

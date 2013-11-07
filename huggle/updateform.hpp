@@ -29,14 +29,14 @@ namespace Huggle
     /// \todo This form doesn't work and that is a release blocker. We can't release a huggle with no update form.
     class UpdateForm : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit UpdateForm(QWidget *parent = 0);
-        ~UpdateForm();
+        public:
+            explicit UpdateForm(QWidget *parent = 0);
+            ~UpdateForm();
 
-    private:
-        Ui::UpdateForm *ui;
+        private:
+            Ui::UpdateForm *ui;
     };
 }
 #endif // UPDATEFORM_H

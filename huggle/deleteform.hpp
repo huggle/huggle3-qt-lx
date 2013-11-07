@@ -30,36 +30,36 @@ namespace Ui
 
 namespace Huggle
 {
-	class WikiPage;
+    class WikiPage;
     //! This is a delete form
 
     /// \todo This form needs to send a message to user who created a page after it's deleted, until that is done
     /// we must not include this class into production build
     class DeleteForm : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit DeleteForm(QWidget *parent = 0);
-        ~DeleteForm();
-		void setPage(WikiPage *Page);
-	private slots:
-		void on_pushButton_clicked();
-		void on_pushButton_2_clicked();
-		void onTick();
-    private:
-        Ui::DeleteForm *ui;
-        WikiPage *page;
-        QString deletetoken;
-        ApiQuery *delquery;
-        ApiQuery *tokenquery;
-		//! Set the page to delete
-		QTimer *dt;
-		int delQueryPhase;
-        void getToken();
-        void Delete();
-        void checkDelToken();
-        void Failed(QString reason);
+        public:
+            explicit DeleteForm(QWidget *parent = 0);
+            ~DeleteForm();
+            void setPage(WikiPage *Page);
+        private slots:
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
+            void onTick();
+        private:
+            Ui::DeleteForm *ui;
+            WikiPage *page;
+            QString deletetoken;
+            ApiQuery *delquery;
+            ApiQuery *tokenquery;
+            //! Set the page to delete
+            QTimer *dt;
+            int delQueryPhase;
+            void getToken();
+            void Delete();
+            void checkDelToken();
+            void Failed(QString reason);
     };
 }
 

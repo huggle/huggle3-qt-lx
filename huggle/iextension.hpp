@@ -28,38 +28,38 @@ namespace Huggle
     //! Extension interface
     class iExtension
     {
-    public:
-        static QList<iExtension *> Extensions;
-        iExtension();
-        /*!
-         * \brief IsWorking
-         * \return if extension work
-         */
-        bool IsWorking();
-        virtual ~iExtension();
-        virtual bool Register() { return false; }
-        /*!
-         * \brief This is called when the extension is removed from system
-         */
-        virtual void Quit() { Working = false; }
-        /*!
-         * \brief Hook_EditPreProcess is called when edit is being pre processed
-         * \param edit is a pointer to edit in question
-         */
-        virtual void Hook_EditPreProcess(void *edit) {}
-        /*!
-         * \brief Hook_EditScore is called after edit score is calculated
-         * \param edit
-         */
-        virtual void Hook_EditScore(void *edit) {}
-        virtual void Hook_EditPostProcess(void *edit) {}
-        virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
-    private:
-        QString ExtensionName;
-        QString ExtensionAuthor;
-        QString ExtensionVersion;
-        QString ExtensionDescription;
-        bool Working;
+        public:
+            static QList<iExtension *> Extensions;
+            iExtension();
+            /*!
+             * \brief IsWorking
+             * \return if extension work
+             */
+            bool IsWorking();
+            virtual ~iExtension();
+            virtual bool Register() { return false; }
+            /*!
+             * \brief This is called when the extension is removed from system
+             */
+            virtual void Quit() { Working = false; }
+            /*!
+             * \brief Hook_EditPreProcess is called when edit is being pre processed
+             * \param edit is a pointer to edit in question
+             */
+            virtual void Hook_EditPreProcess(void *edit) {}
+            /*!
+             * \brief Hook_EditScore is called after edit score is calculated
+             * \param edit
+             */
+            virtual void Hook_EditScore(void *edit) {}
+            virtual void Hook_EditPostProcess(void *edit) {}
+            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
+        private:
+            QString ExtensionName;
+            QString ExtensionAuthor;
+            QString ExtensionVersion;
+            QString ExtensionDescription;
+            bool Working;
     };
 }
 

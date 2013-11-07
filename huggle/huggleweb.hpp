@@ -30,32 +30,32 @@ namespace Huggle
     //! Web browser
     class HuggleWeb : public QFrame
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit HuggleWeb(QWidget *parent = 0);
-        ~HuggleWeb();
-        QString CurrentPageName();
-        /*!
-         * \brief Retrieve a page in render mode on currently selected project
-         * \param page
-         */
-        void DisplayPreFormattedPage(WikiPage *page);
-        /*!
-         * \brief Open a page but append action=render to it
-         * \param url
-         */
-        void DisplayPreFormattedPage(QString url);
-        void DisplayPage(QString url);
-        /// \todo DOCUMENT ME
-        void RenderHtml(QString html);
-        /// \todo DOCUMENT ME
-        void DisplayDiff(WikiEdit *edit);
-        static QString Encode(const QString &string);
+        public:
+            explicit HuggleWeb(QWidget *parent = 0);
+            ~HuggleWeb();
+            QString CurrentPageName();
+            /*!
+             * \brief Retrieve a page in render mode on currently selected project
+             * \param page
+             */
+            void DisplayPreFormattedPage(WikiPage *page);
+            /*!
+             * \brief Open a page but append action=render to it
+             * \param url
+             */
+            void DisplayPreFormattedPage(QString url);
+            void DisplayPage(QString url);
+            /// \todo DOCUMENT ME
+            void RenderHtml(QString html);
+            /// \todo DOCUMENT ME
+            void DisplayDiff(WikiEdit *edit);
+            static QString Encode(const QString &string);
 
-    private:
-        Ui::HuggleWeb *ui;
-        QString CurrentPage;
+        private:
+            Ui::HuggleWeb *ui;
+            QString CurrentPage;
     };
 }
 

@@ -29,24 +29,24 @@ namespace Huggle
     //! This is item of queue, it is derived from qt object
     class HuggleQueueItemLabel : public QFrame
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit HuggleQueueItemLabel(QWidget *parent = 0);
-        ~HuggleQueueItemLabel();
-        HuggleQueue *ParentQueue;
-        void SetName(QString name);
-        QString GetName();
-        void Process(QLayoutItem *qi = NULL);
-        WikiEdit *page;
-        static int Count;
-        void Remove();
+        public:
+            explicit HuggleQueueItemLabel(QWidget *parent = 0);
+            ~HuggleQueueItemLabel();
+            HuggleQueue *ParentQueue;
+            void SetName(QString name);
+            QString GetName();
+            void Process(QLayoutItem *qi = NULL);
+            WikiEdit *page;
+            static int Count;
+            void Remove();
 
-    protected:
-        void mousePressEvent(QMouseEvent *event);
+        protected:
+            void mousePressEvent(QMouseEvent *event);
 
-    private:
-        Ui::HuggleQueueItemLabel *ui;
+        private:
+            Ui::HuggleQueueItemLabel *ui;
     };
 }
 

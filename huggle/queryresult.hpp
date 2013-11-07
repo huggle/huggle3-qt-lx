@@ -18,14 +18,14 @@ namespace Huggle
     //! Result of query
     class QueryResult
     {
-    public:
-        //! Creates a new instance of query result
-        QueryResult();
-        //! Data retrieved by query
-        QString Data;
-        //! If query is in error the reason for error is stored here
-        QString ErrorMessage;
-        bool Failed;
+        public:
+            //! Creates a new instance of query result
+            QueryResult();
+            //! Data retrieved by query
+            QString Data;
+            //! If query is in error the reason for error is stored here
+            QString ErrorMessage;
+            bool Failed;
     };
 }
 

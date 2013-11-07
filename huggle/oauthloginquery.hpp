@@ -19,8 +19,8 @@ namespace Huggle
     //! This query is supposed to login user through oauth provider
     class OAuthLoginQuery : public Query
     {
-    public:
-        OAuthLoginQuery();
+        public:
+            OAuthLoginQuery();
     };
 }
 

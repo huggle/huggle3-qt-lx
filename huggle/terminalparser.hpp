@@ -21,13 +21,13 @@ namespace Huggle
     //! Parses the data provided by user
     class TerminalParser
     {
-    public:
-        TerminalParser(int argc_, QStringList argv);
-        bool Parse();
-        void DisplayHelp();
-    private:
-        int argc;
-        QStringList args;
+        public:
+            TerminalParser(int argc_, QStringList argv);
+            bool Parse();
+            void DisplayHelp();
+        private:
+            int argc;
+            QStringList args;
     };
 }
 

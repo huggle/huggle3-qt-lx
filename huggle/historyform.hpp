@@ -27,18 +27,18 @@ namespace Huggle
     //! It can be used to retrieve a history of currently displayed page
     class HistoryForm : public QDockWidget
     {
-        Q_OBJECT
-    public:
-        explicit HistoryForm(QWidget *parent = 0);
-        ~HistoryForm();
-        void Update(WikiEdit *edit);
+            Q_OBJECT
+        public:
+            explicit HistoryForm(QWidget *parent = 0);
+            ~HistoryForm();
+            void Update(WikiEdit *edit);
 
-    private slots:
-        void on_pushButton_clicked();
+        private slots:
+            void on_pushButton_clicked();
 
-    private:
-        Ui::HistoryForm *ui;
-        WikiEdit* CurrentEdit;
+        private:
+            Ui::HistoryForm *ui;
+            WikiEdit* CurrentEdit;
     };
 }
 

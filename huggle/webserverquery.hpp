@@ -26,24 +26,24 @@ namespace Huggle
     //! This is a query that can be used to perform simple webserver requests
     class WebserverQuery : Query
     {
-    public:
-        WebserverQuery();
-        //! Whether the query will submit parameters using POST data
-        bool UsingPOST;
-        //! This is an url of api request, you probably don't want to change it unless
-        //! you want to construct whole api request yourself
-        QString URL;
-        //! Parameters for action, for example page title
-        QString Parameters;
-        //! Run
-        void Process();
-        //! Terminate the query
-        void Kill();
-    private:
-        QNetworkReply *reply;
-    private slots:
-        void ReadData();
-        void Finished();
+        public:
+            WebserverQuery();
+            //! Whether the query will submit parameters using POST data
+            bool UsingPOST;
+            //! This is an url of api request, you probably don't want to change it unless
+            //! you want to construct whole api request yourself
+            QString URL;
+            //! Parameters for action, for example page title
+            QString Parameters;
+            //! Run
+            void Process();
+            //! Terminate the query
+            void Kill();
+        private:
+            QNetworkReply *reply;
+        private slots:
+            void ReadData();
+            void Finished();
     };
 }
 

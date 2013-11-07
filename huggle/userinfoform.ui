@@ -57,7 +57,7 @@
     <item>
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>No user</string>
+       <string notr="true">No user</string>
       </property>
      </widget>
     </item>

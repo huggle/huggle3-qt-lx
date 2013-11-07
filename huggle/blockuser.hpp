@@ -36,33 +36,33 @@ namespace Huggle
     /// \todo This form has to send a message to user who was blocked, until that is fixed it must not be included in production build
     class BlockUser : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit BlockUser(QWidget *parent = 0);
-        ~BlockUser();
-        void SetWikiUser(WikiUser *User);
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-        void onTick();
-    private:
-        Ui::BlockUser *ui;
-        /// \todo DOCUMENT ME
-        QTimer *t0;
-        WikiUser *user;
-        /// \todo DOCUMENT ME
-        ApiQuery *tb;
-        /// \todo DOCUMENT ME
-        ApiQuery *b;
-        ApiQuery *dependency;
-        QString blocktoken;
-        int QueryPhase;
-        void CheckToken();
-        void GetToken();
-        void Failed(QString reason);
-        void Block();
-        void sendBlockNotice(ApiQuery *dependency);
+        public:
+            explicit BlockUser(QWidget *parent = 0);
+            ~BlockUser();
+            void SetWikiUser(WikiUser *User);
+        private slots:
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
+            void onTick();
+        private:
+            Ui::BlockUser *ui;
+            /// \todo DOCUMENT ME
+            QTimer *t0;
+            WikiUser *user;
+            /// \todo DOCUMENT ME
+            ApiQuery *tb;
+            /// \todo DOCUMENT ME
+            ApiQuery *b;
+            ApiQuery *dependency;
+            QString blocktoken;
+            int QueryPhase;
+            void CheckToken();
+            void GetToken();
+            void Failed(QString reason);
+            void Block();
+            void sendBlockNotice(ApiQuery *dependency);
     };
 }
 

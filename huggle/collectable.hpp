@@ -33,75 +33,75 @@ namespace Huggle
     //! object that has 0 consumers, will be deleted.
     class Collectable
     {
-    public:
-        Collectable();
-        virtual ~Collectable();
-        /*!
-         * \brief IsManaged Managed class is deleted by GC and must not be deleted by hand
-         * \return whether the class is managed
-         */
-        bool IsManaged();
-        //! Use this if you are not sure if you can delete this object in this moment
-        virtual bool SafeDelete();
-        //! Whether the object is locked (other threads can't register nor unregister consumers
-        //! neither it is possible to delete this object by any other thread)
-        bool IsLocked();
-        /*!
-         * \brief Lock this object so that other threads can't change consumers or modify its properties
-         */
-        void Lock();
-        /*!
-         * \brief Unlock this object for deletion by other threads
-         */
-        void Unlock();
-        /*!
-         * \brief Registers a consumer
-         *
-         * This function will store a string which prevent the object from being removed
-         * by GC, by calling this function you change type to managed
-         * \param consumer String that lock the object
-         */
-        void RegisterConsumer(const int consumer);
-        /*!
-         * \brief This function will remove a string which prevent the object from being removed
-         * \param consumer Unique string that unlock the object
-         */
-        void UnregisterConsumer(const int consumer);
-        /*!
-         * \brief Registers a consumer
-         *
-         * This function will store a string which prevent the object from being removed
-         * by QueryGC, by calling this function you change the query type to managed
-         * \param consumer String that lock the object
-         */
-        void RegisterConsumer(const QString consumer);
-        /*!
-         * \brief This function will remove a string which prevent the object from being removed
-         * \param consumer Unique string that unlock the object
-         */
-        void UnregisterConsumer(const QString consumer);
-        /*!
-         * \brief DebugHgc
-         * \return debug info
-         */
-        QString DebugHgc();
-        /*!
-         * \brief CollectableID
-         * \return
-         */
-        unsigned long CollectableID();
-    private:
-        static QString ConsumerIdToString(const int id);
-        static QMutex WideLock;
-        static unsigned long LastCID;
-        unsigned long CID;
-        //! Internal variable that contains a cache whether object is managed
-        bool Managed;
-        void SetManaged();
-        QStringList Consumers;
-        QList<int> iConsumers;
-        QMutex *QL;
-        bool Locked;
+        public:
+            Collectable();
+            virtual ~Collectable();
+            /*!
+             * \brief IsManaged Managed class is deleted by GC and must not be deleted by hand
+             * \return whether the class is managed
+             */
+            bool IsManaged();
+            //! Use this if you are not sure if you can delete this object in this moment
+            virtual bool SafeDelete();
+            //! Whether the object is locked (other threads can't register nor unregister consumers
+            //! neither it is possible to delete this object by any other thread)
+            bool IsLocked();
+            /*!
+             * \brief Lock this object so that other threads can't change consumers or modify its properties
+             */
+            void Lock();
+            /*!
+             * \brief Unlock this object for deletion by other threads
+             */
+            void Unlock();
+            /*!
+             * \brief Registers a consumer
+             *
+             * This function will store a string which prevent the object from being removed
+             * by GC, by calling this function you change type to managed
+             * \param consumer String that lock the object
+             */
+            void RegisterConsumer(const int consumer);
+            /*!
+             * \brief This function will remove a string which prevent the object from being removed
+             * \param consumer Unique string that unlock the object
+             */
+            void UnregisterConsumer(const int consumer);
+            /*!
+             * \brief Registers a consumer
+             *
+             * This function will store a string which prevent the object from being removed
+             * by QueryGC, by calling this function you change the query type to managed
+             * \param consumer String that lock the object
+             */
+            void RegisterConsumer(const QString consumer);
+            /*!
+             * \brief This function will remove a string which prevent the object from being removed
+             * \param consumer Unique string that unlock the object
+             */
+            void UnregisterConsumer(const QString consumer);
+            /*!
+             * \brief DebugHgc
+             * \return debug info
+             */
+            QString DebugHgc();
+            /*!
+             * \brief CollectableID
+             * \return
+             */
+            unsigned long CollectableID();
+        private:
+            static QString ConsumerIdToString(const int id);
+            static QMutex WideLock;
+            static unsigned long LastCID;
+            unsigned long CID;
+            //! Internal variable that contains a cache whether object is managed
+            bool Managed;
+            void SetManaged();
+            QStringList Consumers;
+            QList<int> iConsumers;
+            QMutex *QL;
+            bool Locked;
     };
 }
 #endif // COLLECTABLE_H

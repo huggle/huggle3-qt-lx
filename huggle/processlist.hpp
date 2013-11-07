@@ -34,13 +34,13 @@ namespace Huggle
     //! why we store it to separate object and for that we have this class ;)
     class ProcessListRemovedItem
     {
-    private:
-        QDateTime time;
-        int id;
-    public:
-        ProcessListRemovedItem(int ID);
-        int GetID();
-        bool Expired();
+        private:
+            QDateTime time;
+            int id;
+        public:
+            ProcessListRemovedItem(int ID);
+            int GetID();
+            bool Expired();
     };
 
     //! List of processes in a main window
@@ -49,28 +49,28 @@ namespace Huggle
     //! this is only a dialog that you see in huggle form, it doesn't contain process list
     class ProcessList : public QDockWidget
     {
-        Q_OBJECT
-    public:
-        explicit ProcessList(QWidget *parent = 0);
-        //! Insert a query to process list, the query is automatically removed once it's done
-        void InsertQuery(Query* q);
-        void Clear();
-        //! Return true if there is already this in a list
-        bool ContainsQuery(Query *q);
-        //! Remove a query from list no matter if it finished or not
-        void RemoveQuery(Query *q);
-        //! Update information about query in list
-        void UpdateQuery(Query *q);
-        void RemoveExpired();
-        ~ProcessList();
+            Q_OBJECT
+        public:
+            explicit ProcessList(QWidget *parent = 0);
+            //! Insert a query to process list, the query is automatically removed once it's done
+            void InsertQuery(Query* q);
+            void Clear();
+            //! Return true if there is already this in a list
+            bool ContainsQuery(Query *q);
+            //! Remove a query from list no matter if it finished or not
+            void RemoveQuery(Query *q);
+            //! Update information about query in list
+            void UpdateQuery(Query *q);
+            void RemoveExpired();
+            ~ProcessList();
 
 
-    private:
-        QList<ProcessListRemovedItem*> *Removed;
-        Ui::ProcessList *ui;
-        int GetItem(Query *q);
-        int GetItem(int Id);
-        bool IsExpired(Query *q);
+        private:
+            QList<ProcessListRemovedItem*> *Removed;
+            Ui::ProcessList *ui;
+            int GetItem(Query *q);
+            int GetItem(int Id);
+            bool IsExpired(Query *q);
     };
 }
 

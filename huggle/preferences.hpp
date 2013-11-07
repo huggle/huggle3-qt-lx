@@ -28,21 +28,21 @@ namespace Huggle
     //! Preferences window
     class Preferences : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit Preferences(QWidget *parent = 0);
-        ~Preferences();
-        void EnableQueues();
-        void Disable();
+        public:
+            explicit Preferences(QWidget *parent = 0);
+            ~Preferences();
+            void EnableQueues();
+            void Disable();
 
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-        void on_listWidget_itemSelectionChanged();
+        private slots:
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
+            void on_listWidget_itemSelectionChanged();
 
-    private:
-        Ui::Preferences *ui;
+        private:
+            Ui::Preferences *ui;
     };
 }
 

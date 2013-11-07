@@ -24,11 +24,10 @@ namespace Huggle
     //! This python engine should allow users to create python modules for huggle
     class PythonEngine
     {
-    public:
-        PythonEngine();
+        public:
+            PythonEngine();
     };
 }
 
 #endif // PYTHONENGINE_H
-
 #endif
