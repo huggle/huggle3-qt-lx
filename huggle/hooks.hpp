@@ -26,14 +26,14 @@ namespace Huggle
     //! Hooks that can be used to attach some 3rd code to existing functions
     class Hooks
     {
-    public:
-        static void EditPreProcess(WikiEdit *Edit);
-        static void EditPostProcess(WikiEdit *Edit);
-        static void OnGood(WikiEdit *Edit);
-        static void OnRevert(WikiEdit *Edit);
-        static void OnWarning(WikiUser *User);
-        static void Suspicious(WikiEdit *Edit);
-        static void BadnessScore(WikiUser *User, int Score);
+        public:
+            static void EditPreProcess(WikiEdit *Edit);
+            static void EditPostProcess(WikiEdit *Edit);
+            static void OnGood(WikiEdit *Edit);
+            static void OnRevert(WikiEdit *Edit);
+            static void OnWarning(WikiUser *User);
+            static void Suspicious(WikiEdit *Edit);
+            static void BadnessScore(WikiUser *User, int Score);
     };
 }
 

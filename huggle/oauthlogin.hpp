@@ -23,14 +23,14 @@ namespace Huggle
     //! This form is not being used
     class OAuthLogin : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit OAuthLogin(QWidget *parent = 0);
-        ~OAuthLogin();
+        public:
+            explicit OAuthLogin(QWidget *parent = 0);
+            ~OAuthLogin();
 
-    private:
-        Ui::OAuthLogin *ui;
+        private:
+            Ui::OAuthLogin *ui;
     };
 }
 

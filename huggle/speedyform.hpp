@@ -33,20 +33,20 @@ namespace Huggle
      */
     class SpeedyForm : public QDialog
     {
-        Q_OBJECT
-    public:
-        explicit SpeedyForm(QWidget *parent = 0);
-        ~SpeedyForm();
-        void Init(WikiUser *user, WikiPage *page);
-        WikiPage *Page;
-        WikiUser *User;
+            Q_OBJECT
+        public:
+            explicit SpeedyForm(QWidget *parent = 0);
+            ~SpeedyForm();
+            void Init(WikiUser *user, WikiPage *page);
+            WikiPage *Page;
+            WikiUser *User;
 
-    private slots:
-        void on_pushButton_2_clicked();
-        void on_pushButton_clicked();
+        private slots:
+            void on_pushButton_2_clicked();
+            void on_pushButton_clicked();
 
-    private:
-        Ui::SpeedyForm *ui;
+        private:
+            Ui::SpeedyForm *ui;
     };
 }
 #endif // SPEEDYFORM_H

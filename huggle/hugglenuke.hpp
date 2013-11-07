@@ -23,7 +23,7 @@ namespace Huggle
     //! Window that allows user to mass delete pages made by certain users
     class HuggleNuke : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
         public:
             explicit HuggleNuke(QWidget *parent = 0);

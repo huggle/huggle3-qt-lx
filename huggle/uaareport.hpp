@@ -31,8 +31,10 @@ namespace Huggle
     class WikiUser;
     class WikiPage;
     class ApiQuery;
-    //! Form to report users to UAA
+
     /// \todo This form wasn't tested by anyone so far, it must be tested before it's included in production build
+    ///
+    //! Form to report users to UAA
     class UAAReport : public QDialog
     {
             Q_OBJECT

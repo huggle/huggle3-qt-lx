@@ -99,10 +99,10 @@ QString Collectable::ConsumerIdToString(const int id)
 {
     switch (id)
     {
-    case HUGGLECONSUMER_WIKIEDIT:
-        return "WikiEdit";
-    case HUGGLECONSUMER_PROVIDERIRC:
-        return "ProviderIRC";
+        case HUGGLECONSUMER_WIKIEDIT:
+            return "WikiEdit";
+        case HUGGLECONSUMER_PROVIDERIRC:
+            return "ProviderIRC";
     }
     return "Unknown consumer: " + QString::number(id);
 }

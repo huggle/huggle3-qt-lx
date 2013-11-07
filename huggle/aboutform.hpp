@@ -24,17 +24,17 @@ namespace Huggle
     //! Form that can be displayed from help menu, should list all developers
     class AboutForm : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit AboutForm(QWidget *parent = 0);
-        ~AboutForm();
+        public:
+            explicit AboutForm(QWidget *parent = 0);
+            ~AboutForm();
 
-    private slots:
-        void on_pushButton_clicked();
+        private slots:
+            void on_pushButton_clicked();
 
-    private:
-        Ui::AboutForm *ui;
+        private:
+            Ui::AboutForm *ui;
     };
 }
 

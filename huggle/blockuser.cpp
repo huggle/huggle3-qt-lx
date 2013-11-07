@@ -47,7 +47,7 @@ void BlockUser::GetToken()
     b = new ApiQuery();
     b->SetAction(ActionQuery);
     b->Parameters = "prop=info&intoken=block&titles=User:" +
-        QUrl::toPercentEncoding(this->user->Username);
+            QUrl::toPercentEncoding(this->user->Username);
     /// \todo LOCALIZE ME
     b->Target = "Getting token to block" + this->user->Username;
     b->RegisterConsumer("BlockUser::GetToken");

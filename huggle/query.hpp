@@ -63,83 +63,83 @@ namespace Huggle
     //! call a delete on it, otherwise program will crash.
     class Query : public QObject, public Collectable
     {
-    public:
-        //! Result of query, see documentation of QueryResult for more
-        QueryResult *Result;
-        //! Current status of a query
-        enum _Status Status;
-        //! Custom status
+        public:
+            //! Result of query, see documentation of QueryResult for more
+            QueryResult *Result;
+            //! Current status of a query
+            enum _Status Status;
+            //! Custom status
 
-        //! This can be used to override the current string representation of status with
-        //! some custom string, the system will still process the primary status but
-        //! user will see this custom string in a process list
-        QString CustomStatus;
-        //! Type of a query
+            //! This can be used to override the current string representation of status with
+            //! some custom string, the system will still process the primary status but
+            //! user will see this custom string in a process list
+            QString CustomStatus;
+            //! Type of a query
 
-        //! This is very useful when you are casting a query to different type
-        QueryType Type;
-        //! Callback
+            //! This is very useful when you are casting a query to different type
+            QueryType Type;
+            //! Callback
 
-        //! If this is not a NULL this function will be called by query
-        //! once it's finished, a consumer called "delegate" will be created and you
-        //! will have to either replace it or remove in your function
-        //! otherwise you create a leak in huggle
-        Callback callback;
-        //! This is a pointer to object returned by your callback function
-        void* CallbackResult;
-        static QNetworkAccessManager NetworkManager;
-        bool RetryOnTimeoutFailure;
-        QDateTime StartTime;
-        int Timeout;
-        //! Query doesn't have internal data displayed in debug log, this is usefull
-        //! when you are working with passwords in parameters
-        bool HiddenQuery;
-        //! Dependency for query
+            //! If this is not a NULL this function will be called by query
+            //! once it's finished, a consumer called "delegate" will be created and you
+            //! will have to either replace it or remove in your function
+            //! otherwise you create a leak in huggle
+            Callback callback;
+            //! This is a pointer to object returned by your callback function
+            void* CallbackResult;
+            static QNetworkAccessManager NetworkManager;
+            bool RetryOnTimeoutFailure;
+            QDateTime StartTime;
+            int Timeout;
+            //! Query doesn't have internal data displayed in debug log, this is usefull
+            //! when you are working with passwords in parameters
+            bool HiddenQuery;
+            //! Dependency for query
 
-        //! If you put anything in here, it either must be NULL or query
-        //! that is processed. The query will not be flagged as processed
-        //! until the dependency is processed as well, for most types
-        //! of queries they will not even start before that
-        Query *Dependency;
-        //! Creates empty query
-        Query();
-        //! Destructor for query
-        virtual ~Query();
-        //! Returns true in case that query is processed
-        virtual bool Processed();
-        //! Execute query
+            //! If you put anything in here, it either must be NULL or query
+            //! that is processed. The query will not be flagged as processed
+            //! until the dependency is processed as well, for most types
+            //! of queries they will not even start before that
+            Query *Dependency;
+            //! Creates empty query
+            Query();
+            //! Destructor for query
+            virtual ~Query();
+            //! Returns true in case that query is processed
+            virtual bool Processed();
+            //! Execute query
 
-        //! This is a main() of every query, your implementation goes here
-        virtual void Process() {}
-        //! Terminates a query
+            //! This is a main() of every query, your implementation goes here
+            virtual void Process() {}
+            //! Terminates a query
 
-        //! In case it's not running nothing happens, in case query is currently running
-        //! it should be immediately stopped and error result should be generated
+            //! In case it's not running nothing happens, in case query is currently running
+            //! it should be immediately stopped and error result should be generated
 
-        //! This is only a virtual interface implemented in Query which does nothing by default
-        //! it is necessary for every query to implement this for it to work properly
-        virtual void Kill() {}
-        //! Convert a type of this query to a string
-        virtual QString QueryTypeToString();
-        //! Return a target of a query
+            //! This is only a virtual interface implemented in Query which does nothing by default
+            //! it is necessary for every query to implement this for it to work properly
+            virtual void Kill() {}
+            //! Convert a type of this query to a string
+            virtual QString QueryTypeToString();
+            //! Return a target of a query
 
-        //! Target is either explicitly defined abstract identifier that is used for statistical
-        //! purposes, or it is provided by query itself, based on a type of that query
-        //! typical example would be a page that is affected by ApiQuery
-        virtual QString QueryTargetToString();
-        virtual QString QueryStatusToString();
-        //! If you inherit query you should allways call this from a signal that
-        //! you receive when the query finish
-        void ProcessCallback();
-        //! Every query has own unique ID which can be used to work with them
-        //! this function returns that
-        unsigned int QueryID();
+            //! Target is either explicitly defined abstract identifier that is used for statistical
+            //! purposes, or it is provided by query itself, based on a type of that query
+            //! typical example would be a page that is affected by ApiQuery
+            virtual QString QueryTargetToString();
+            virtual QString QueryStatusToString();
+            //! If you inherit query you should allways call this from a signal that
+            //! you receive when the query finish
+            void ProcessCallback();
+            //! Every query has own unique ID which can be used to work with them
+            //! this function returns that
+            unsigned int QueryID();
 
-    private:
-        //! Every query has own unique ID which can be used to work with them
-        unsigned int ID;
-        //! This is a last ID used by a constructor of a query
-        static unsigned int LastID;
+        private:
+            //! Every query has own unique ID which can be used to work with them
+            unsigned int ID;
+            //! This is a last ID used by a constructor of a query
+            static unsigned int LastID;
     };
 }
 

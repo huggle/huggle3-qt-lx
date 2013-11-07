@@ -34,35 +34,35 @@ namespace Huggle
     //! Toolbar on top of window
     class HuggleTool : public QDockWidget
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit HuggleTool(QWidget *parent = 0);
-        ~HuggleTool();
-        void SetTitle(QString title);
-        void SetInfo(QString info);
-        void SetUser(QString user);
-        void SetPage(WikiPage* page);
+        public:
+            explicit HuggleTool(QWidget *parent = 0);
+            ~HuggleTool();
+            void SetTitle(QString title);
+            void SetInfo(QString info);
+            void SetUser(QString user);
+            void SetPage(WikiPage* page);
 
-    private slots:
-        void on_pushButton_clicked();
-        void onTick();
+        private slots:
+            void on_pushButton_clicked();
+            void onTick();
 
-    private:
-        Ui::HuggleTool *ui;
-        ApiQuery *query;
-        //! Timer that is used to switch between events that happen when the data for page are retrieved
-        QTimer *tick;
-        /// \todo DOCUMENT ME
-        WikiEdit *edit;
-        //! Page download phase
+        private:
+            Ui::HuggleTool *ui;
+            ApiQuery *query;
+            //! Timer that is used to switch between events that happen when the data for page are retrieved
+            QTimer *tick;
+            /// \todo DOCUMENT ME
+            WikiEdit *edit;
+            //! Page download phase
 
-        //! When we download a page from wiki we need to do that in several steps, this variable holds
-        //! the information which step we are in
-        int QueryPhase;
-        void FinishPage();
-        void FinishEdit();
-        void DeleteQuery();
+            //! When we download a page from wiki we need to do that in several steps, this variable holds
+            //! the information which step we are in
+            int QueryPhase;
+            void FinishPage();
+            void FinishEdit();
+            void DeleteQuery();
     };
 }
 

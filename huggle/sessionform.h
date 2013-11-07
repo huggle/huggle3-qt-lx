@@ -8,27 +8,33 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef TERMINALPARSER_H
-#define TERMINALPARSER_H
+#ifndef SESSIONFORM_H
+#define SESSIONFORM_H
 
-#include <iostream>
-#include <QStringList>
-#include <QString>
+#include <QDialog>
 #include "configuration.hpp"
+
+namespace Ui
+{
+    class SessionForm;
+}
 
 namespace Huggle
 {
-    //! Parses the data provided by user
-    class TerminalParser
+    //! Session info
+
+    //! Display which user, project, what rights and flags your session have
+    class SessionForm : public QDialog
     {
+            Q_OBJECT
+
         public:
-            TerminalParser(int argc_, QStringList argv);
-            bool Parse();
-            void DisplayHelp();
+            explicit SessionForm(QWidget *parent = 0);
+            ~SessionForm();
+
         private:
-            int argc;
-            QStringList args;
+            Ui::SessionForm *ui;
     };
 }
 
-#endif // TERMINALPARSER_H
+#endif // SESSIONFORM_H

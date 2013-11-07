@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         c++;
     }
     this->CurrentEdit = NULL;
-    this->setWindowTitle("Huggle 3 QT-LX");
+    this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::Project.Name);
     ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
     DisplayWelcomeMessage();
@@ -404,6 +404,8 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 
     if (Core::PreflightCheck(this->CurrentEdit))
     {
+        this->CurrentEdit->User->Resync();
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
@@ -1630,4 +1632,18 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
     }
     this->fScoreWord = new ScoreWordsDbForm(this);
     this->fScoreWord->show();
+}
+
+void Huggle::MainWindow::on_actionRevert_AGF_triggered()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    if (Configuration::Restricted)
+    {
+        Core::DeveloperError();
+        return;
+    }
+    this->Revert(Configuration::LocalConfig_AgfRevert);
 }

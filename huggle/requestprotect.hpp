@@ -14,8 +14,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class RequestProtect;
+namespace Ui
+{
+    class RequestProtect;
 }
 
 namespace Huggle {

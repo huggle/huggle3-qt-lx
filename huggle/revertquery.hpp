@@ -31,42 +31,42 @@ namespace Huggle
      */
     class RevertQuery : public Query
     {
-        Q_OBJECT
-    public:
-        static QString GetCustomRevertStatus(QString RevertData);
-        RevertQuery();
-        RevertQuery(WikiEdit *Edit);
-        void Process();
-        void Kill();
-        ~RevertQuery();
-        QString QueryTargetToString();
-        bool Processed();
-        //! Whether software rollback should be used instead of regular rollback
-        bool UsingSR;
-        QString Summary;
-        //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
-        bool IgnorePreflightCheck;
-        QString Token;
-        bool MinorEdit;
-    public slots:
-        void OnTick();
-    private:
-        ApiQuery *qPreflight;
-        ApiQuery *qRevert;
-        ApiQuery *qRetrieve;
-        EditQuery *EditQuerySoftwareRollback;
-        WikiEdit* edit;
-        QTimer *timer;
-        bool RollingBack;
-        bool PreflightFinished;
-        void Preflight();
-        void CheckPreflight();
-        bool CheckRevert();
-        void Cancel();
-        bool ProcessRevert();
-        void Rollback();
-        void Revert();
-        void Exit();
+            Q_OBJECT
+        public:
+            static QString GetCustomRevertStatus(QString RevertData);
+            RevertQuery();
+            RevertQuery(WikiEdit *Edit);
+            void Process();
+            void Kill();
+            ~RevertQuery();
+            QString QueryTargetToString();
+            bool Processed();
+            //! Whether software rollback should be used instead of regular rollback
+            bool UsingSR;
+            QString Summary;
+            //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
+            bool IgnorePreflightCheck;
+            QString Token;
+            bool MinorEdit;
+        public slots:
+            void OnTick();
+        private:
+            ApiQuery *qPreflight;
+            ApiQuery *qRevert;
+            ApiQuery *qRetrieve;
+            EditQuery *EditQuerySoftwareRollback;
+            WikiEdit* edit;
+            QTimer *timer;
+            bool RollingBack;
+            bool PreflightFinished;
+            void Preflight();
+            void CheckPreflight();
+            bool CheckRevert();
+            void Cancel();
+            bool ProcessRevert();
+            void Rollback();
+            void Revert();
+            void Exit();
     };
 }
 

@@ -35,38 +35,38 @@ namespace Huggle
      */
     class ProtectPage : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit ProtectPage(QWidget *parent = 0);
-        ~ProtectPage();
-        /*!
-         * \brief set a page that is supposed to be protected, this needs to be called by owner who created this form
-         * \param Page that will be protected by user
-         */
-        void setPageToProtect(WikiPage *Page);
-    private slots:
-        void on_pushButton_clicked();
-        void on_pushButton_2_clicked();
-        void onTick();
-    private:
-        void Failed(QString reason);
-        void Protect();
-        void getTokenToProtect();
-        void checkTokenToProtect();
-        QString protecttoken;
-        //! Pointer to get first token
-        ApiQuery *ptkq;
-        //! Pointer for second token
-        ApiQuery *ptkk;
-        //! Pointer for	protection
-        ApiQuery *ptpt;
-        Ui::ProtectPage *ui;
-        //! DOCUMENT ME
-        WikiPage *ptpge;
-        //! DOCUMENT ME
-        QTimer *tt;
-        int PtQueryPhase;
+        public:
+            explicit ProtectPage(QWidget *parent = 0);
+            ~ProtectPage();
+            /*!
+             * \brief set a page that is supposed to be protected, this needs to be called by owner who created this form
+             * \param Page that will be protected by user
+             */
+            void setPageToProtect(WikiPage *Page);
+        private slots:
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
+            void onTick();
+        private:
+            void Failed(QString reason);
+            void Protect();
+            void getTokenToProtect();
+            void checkTokenToProtect();
+            QString protecttoken;
+            //! Pointer to get first token
+            ApiQuery *ptkq;
+            //! Pointer for second token
+            ApiQuery *ptkk;
+            //! Pointer for	protection
+            ApiQuery *ptpt;
+            Ui::ProtectPage *ui;
+            //! DOCUMENT ME
+            WikiPage *ptpge;
+            //! DOCUMENT ME
+            QTimer *tt;
+            int PtQueryPhase;
     };
 }
 

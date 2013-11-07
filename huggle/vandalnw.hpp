@@ -31,36 +31,36 @@ namespace Huggle
     //! to be effective in reverting of vandalism
     class VandalNw : public QDockWidget
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit VandalNw(QWidget *parent = 0);
-        ~VandalNw();
-        /*!
-         * \brief Insert text to window
-         * \param text is a string that will be inserted to window, must not be terminated with newline
-         */
-        void Insert(QString text);
-        void Connect();
-        void Disconnect();
-        //! This will deliver an edit to others as a good edit
-        void Good(WikiEdit *Edit);
-        //! Notify others about a rollback of edit
-        void Rollback(WikiEdit *Edit);
-        void SuspiciousWikiEdit(WikiEdit *Edit);
-        void WarningSent(WikiUser *user, int Level);
-        QString GetChannel();
-        /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
-        QString pref;
-        /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
-        QTimer *tm;
-    private:
-        Ui::VandalNw *ui;
-        IRC::NetworkIrc *Irc;
-        bool JoinedMain;
-    private slots:
-        void onTick();
-        void on_pushButton_clicked();
+        public:
+            explicit VandalNw(QWidget *parent = 0);
+            ~VandalNw();
+            /*!
+             * \brief Insert text to window
+             * \param text is a string that will be inserted to window, must not be terminated with newline
+             */
+            void Insert(QString text);
+            void Connect();
+            void Disconnect();
+            //! This will deliver an edit to others as a good edit
+            void Good(WikiEdit *Edit);
+            //! Notify others about a rollback of edit
+            void Rollback(WikiEdit *Edit);
+            void SuspiciousWikiEdit(WikiEdit *Edit);
+            void WarningSent(WikiUser *user, int Level);
+            QString GetChannel();
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            QString pref;
+            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            QTimer *tm;
+        private:
+            Ui::VandalNw *ui;
+            IRC::NetworkIrc *Irc;
+            bool JoinedMain;
+        private slots:
+            void onTick();
+            void on_pushButton_clicked();
     };
 }
 

@@ -24,25 +24,25 @@ namespace Huggle
     //! Modifications of mediawiki pages can be done using this query
     class EditQuery : public Query
     {
-    public:
-        EditQuery();
-        ~EditQuery();
-        void Process();
-        bool Processed();
-        //! Page that is going to be edited
-        QString page;
-        //! Text a page will be replaced with
-        QString text;
-        //! Edit summary
-        QString summary;
-        //! Whether the edit is minor or not
-        bool Minor;
-    private:
-        ApiQuery *qToken;
-        //! Api query to edit page
-        ApiQuery *qEdit;
-        //! Edit token, will be retrieved during request
-        QString _Token;
+        public:
+            EditQuery();
+            ~EditQuery();
+            void Process();
+            bool Processed();
+            //! Page that is going to be edited
+            QString page;
+            //! Text a page will be replaced with
+            QString text;
+            //! Edit summary
+            QString summary;
+            //! Whether the edit is minor or not
+            bool Minor;
+        private:
+            ApiQuery *qToken;
+            //! Api query to edit page
+            ApiQuery *qEdit;
+            //! Edit token, will be retrieved during request
+            QString _Token;
     };
 }
 
