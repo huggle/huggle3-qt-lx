@@ -22,6 +22,7 @@ namespace Ui
 
 namespace Huggle
 {
+    /// \todo RELEASE BLOCKER: this thing needs to be finished
     //! This is a small gadget that is displayed on top of main window
 
     //! It can be used to retrieve a history of currently displayed page

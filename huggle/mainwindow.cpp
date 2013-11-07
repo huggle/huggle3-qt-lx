@@ -405,7 +405,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     if (Core::PreflightCheck(this->CurrentEdit))
     {
         this->CurrentEdit->User->Resync();
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 10);
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)

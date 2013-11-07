@@ -70,11 +70,12 @@ void WikiUser::UpdateUser(WikiUser *us)
     {
         if (ProblematicUsers.at(c)->Username == us->Username)
         {
-            if (us->getBadnessScore() > ProblematicUsers.at(c)->getBadnessScore())
-            {
-                ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
-            }
+            ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
             ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
+            if (us->IsReported)
+            {
+                ProblematicUsers.at(c)->IsReported = true;
+            }
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
             WikiUser::ProblematicUserListLock.unlock();
             return;
@@ -265,8 +266,12 @@ bool WikiUser::IsWhitelisted()
         return false;
     }
 }
-long WikiUser::getBadnessScore() const
+long WikiUser::getBadnessScore(bool _resync) const
 {
+    if (_resync)
+    {
+        this->Resync();
+    }
     return BadnessScore;
 }
 
