@@ -26,8 +26,12 @@ UserinfoForm::~UserinfoForm()
 
 void UserinfoForm::ChangeUser(WikiUser *user)
 {
+    if (user == NULL)
+    {
+        throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
+    }
     this->User = user;
     ui->pushButton->setEnabled(true);
     ui->pushButton->setText("Retrieve info");
-    ui->label->setText("Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
+    ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
 }

@@ -761,6 +761,11 @@ void Core::PreProcessEdit(WikiEdit *_e)
         throw new Exception("Edit user was NULL in Core::PreProcessEdit");
     }
 
+    if (_e->Bot)
+    {
+        _e->User->SetBot(true);
+    }
+
     _e->EditMadeByHuggle = _e->Summary.contains(Configuration::EditSuffixOfHuggle);
 
     _e->Status = StatusProcessed;

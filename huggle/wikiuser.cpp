@@ -95,6 +95,7 @@ WikiUser::WikiUser()
     this->ContentsOfTalkPage = "";
     this->IsReported = false;
     this->WhitelistInfo = 0;
+    this->Bot = false;
 }
 
 WikiUser::WikiUser(WikiUser *u)
@@ -107,6 +108,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
     this->WhitelistInfo = u->WhitelistInfo;
+    this->Bot = u->Bot;
 }
 
 WikiUser::WikiUser(const WikiUser &u)
@@ -119,6 +121,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->BadnessScore = u.BadnessScore;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
     this->WhitelistInfo = u.WhitelistInfo;
+    this->Bot = u.Bot;
 }
 
 WikiUser::WikiUser(QString user)
@@ -152,6 +155,7 @@ WikiUser::WikiUser(QString user)
     }
     this->BadnessScore = 0;
     this->WarningLevel = 0;
+    this->Bot = false;
     this->IsReported = false;
 }
 
@@ -271,4 +275,57 @@ void WikiUser::setBadnessScore(long value)
     BadnessScore = value;
     this->Update(true);
 }
+
+QString WikiUser::Flags()
+{
+    QString pflags = "";
+    QString nflags = "";
+    if (this->GetContentsOfTalkPage() == "")
+    {
+        nflags += "T";
+    } else
+    {
+        pflags += "T";
+    }
+    if (this->WarningLevel > 0)
+    {
+        pflags += "w";
+    }
+    if (this->IsWhitelisted())
+    {
+        pflags += "E";
+    }
+    if (this->IsIP())
+    {
+        nflags += "R";
+    }
+    if (this->IsReported)
+    {
+        pflags += "r";
+    }
+    if (this->Bot)
+    {
+        pflags += "b";
+    }
+    QString flags = "";
+    if (nflags != "")
+    {
+        flags += "-" + nflags;
+    }
+    if (pflags != "")
+    {
+        flags += "+" + pflags;
+    }
+    return flags;
+}
+bool WikiUser::GetBot() const
+{
+    return Bot;
+}
+
+void WikiUser::SetBot(bool value)
+{
+    Bot = value;
+}
+
 

@@ -99,8 +99,18 @@ namespace Huggle
             //! Retrieve a badness score for current user, see WikiUser::BadnessScore for more
             long getBadnessScore() const;
             void setBadnessScore(long value);
+            //! Flags
 
-        private:
+            //! w - is warned
+            //! r - is reported
+            //! T- has talkpage
+            //! R - is registered
+            //! E - exception
+            QString Flags();
+            bool GetBot() const;
+            void SetBot(bool value);
+
+    private:
             /*!
              * \brief Badness score of current user
              *
@@ -116,6 +126,7 @@ namespace Huggle
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
             QString ContentsOfTalkPage;
             QMutex *UserLock;
+            bool Bot;
             bool IP;
     };
 }
