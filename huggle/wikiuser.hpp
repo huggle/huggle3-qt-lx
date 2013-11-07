@@ -97,7 +97,7 @@ namespace Huggle
             //! Returns true if this user is wl
             bool IsWhitelisted();
             //! Retrieve a badness score for current user, see WikiUser::BadnessScore for more
-            long getBadnessScore(bool _resync = true) const;
+            long getBadnessScore(bool _resync = true);
             void setBadnessScore(long value);
             //! Flags
 

@@ -266,7 +266,8 @@ bool WikiUser::IsWhitelisted()
         return false;
     }
 }
-long WikiUser::getBadnessScore(bool _resync) const
+
+long WikiUser::getBadnessScore(bool _resync)
 {
     if (_resync)
     {
