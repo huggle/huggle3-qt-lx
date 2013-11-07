@@ -75,7 +75,8 @@ SOURCES += main.cpp\
     gc.cpp \
     hugglemassrollback.cpp \
     hugglenuke.cpp \
-    requestprotect.cpp
+    requestprotect.cpp \
+    sessionform.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -134,7 +135,8 @@ HEADERS  += mainwindow.hpp \
     gc.hpp \
     hugglemassrollback.hpp \
     hugglenuke.hpp \
-    requestprotect.hpp
+    requestprotect.hpp \
+    sessionform.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -165,7 +167,8 @@ FORMS    += mainwindow.ui \
     uaareport.ui \
     hugglemassrollback.ui \
     hugglenuke.ui \
-    requestprotect.ui
+    requestprotect.ui \
+    sessionform.ui
 
 RESOURCES += \
     pictures.qrc \

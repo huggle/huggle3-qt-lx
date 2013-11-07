@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         c++;
     }
     this->CurrentEdit = NULL;
-    this->setWindowTitle("Huggle 3 QT-LX");
+    this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::Project.Name);
     ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
     DisplayWelcomeMessage();
