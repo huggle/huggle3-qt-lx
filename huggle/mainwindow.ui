@@ -88,6 +88,7 @@
     <addaction name="actionRevert_currently_displayed_edit_and_stay_on_page"/>
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
     <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
+    <addaction name="actionRevert_AGF"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
@@ -717,6 +718,11 @@
   <action name="actionShow_list_of_score_words">
    <property name="text">
     <string>Show list of score words</string>
+   </property>
+  </action>
+  <action name="actionRevert_AGF">
+   <property name="text">
+    <string>Revert assuming good faith</string>
    </property>
   </action>
  </widget>

@@ -250,6 +250,8 @@ namespace Huggle
             void on_actionReport_username_triggered();
             void on_actionShow_list_of_score_words_triggered();
 
+            void on_actionRevert_AGF_triggered();
+
         private:
             QTimer *timer1;
             // Whitelist

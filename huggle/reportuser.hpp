@@ -45,8 +45,7 @@ namespace Huggle
             //! Set a user
             bool SetUser(WikiUser *u);
             ~ReportUser();
-            //! Content of report
-            QString _p;
+
         private slots:
             void Tick();
             void On_DiffTick();
@@ -65,6 +64,8 @@ namespace Huggle
             QTimer *diff;
             QList <QCheckBox*> CheckBoxes;
             QString report;
+            //! Content of report
+            QString _p;
             bool Loading;
             bool Messaging;
             bool CheckUser();

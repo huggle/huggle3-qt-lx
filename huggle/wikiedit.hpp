@@ -72,6 +72,8 @@ namespace Huggle
             //! Creates a new empty wiki edit
             WikiEdit();
             ~WikiEdit();
+            //! Get a level of warning from talk page
+            static int GetLevel(QString page);
             //! This function is called by core
             bool FinalizePostProcessing();
             //! This function is called by internals of huggle

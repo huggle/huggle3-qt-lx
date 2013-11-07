@@ -122,10 +122,6 @@ namespace Huggle
             //! This is a list of all edits that are being processed by some way
             //! whole list needs to be checked and probed everytime once a while
             static QList<WikiEdit*> ProcessingEdits;
-            //! This is a post-processor for edits
-            static ProcessorThread * Processor;
-            //! List of all messages that are being sent
-            static QList<Message*> Messages;
             //! Pending changes
             static QList<EditQuery*> PendingMods;
             //! List of extensions loaded in huggle
@@ -134,7 +130,7 @@ namespace Huggle
             //! Languages D:
             static QList<Language*> LocalizationData;
             //! Pointer to AIV page
-            static WikiPage * AIVP;
+            static WikiPage *AIVP;
             //! Pointer to UAA page
             static WikiPage *UAAP;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
@@ -241,8 +237,6 @@ namespace Huggle
              */
             static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
             static void FinalizeMessages();
-            //! Get a level of warning from talk page
-            static int GetLevel(QString page);
             static QString RetrieveTemplateToWarn(QString type);
             static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
             /*!
@@ -252,15 +246,6 @@ namespace Huggle
              */
             static void AppendQuery(Query* item);
             static void ExceptionHandler(Exception *exception);
-            static Language *MakeLanguage(QString text, QString name);
-            /*!
-             * \brief Initializes a localization with given name
-             *
-             * This function will create a new localization object using built-in localization file
-             * using Core::MakeLanguage() and insert that to language list
-             * \param name Name of a localization that is a name of language without txt suffix in localization folder
-             */
-            static void LocalInit(QString name);
             static QString Localize(QString key);
             static void LoadLocalizations();
             static bool ReportPreFlightCheck();
@@ -270,7 +255,20 @@ namespace Huggle
             static QList<Query*> RunningQueries;
             //! Ring log is a buffer that contains system messages
             static QStringList RingLog;
+            //! This is a post-processor for edits
+            static ProcessorThread * Processor;
+            //! List of all messages that are being sent
+            static QList<Message*> Messages;
             Core() {   }
+            /*!
+             * \brief Initializes a localization with given name
+             *
+             * This function will create a new localization object using built-in localization file
+             * using Core::MakeLanguage() and insert that to language list
+             * \param name Name of a localization that is a name of language without txt suffix in localization folder
+             */
+            static void LocalInit(QString name);
+            static Language *MakeLanguage(QString text, QString name);
     };
 }
 
