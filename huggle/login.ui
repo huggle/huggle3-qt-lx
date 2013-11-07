@@ -125,7 +125,7 @@
   <widget class="QComboBox" name="Project">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>90</x>
      <y>360</y>
      <width>181</width>
      <height>22</height>
@@ -135,9 +135,9 @@
   <widget class="QComboBox" name="Language">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>90</x>
      <y>390</y>
-     <width>241</width>
+     <width>261</width>
      <height>22</height>
     </rect>
    </property>
@@ -273,7 +273,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Enforce SSL (requires openssl libs to be installed)</string>
+    <string>Use HTTPS (requires OpenSSL libs)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">
@@ -315,10 +315,10 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>360</y>
-     <width>51</width>
-     <height>22</height>
+     <x>280</x>
+     <y>355</y>
+     <width>70</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="toolTip">
