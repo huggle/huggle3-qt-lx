@@ -16,29 +16,39 @@
 #include "login.hpp"
 #include "exception.hpp"
 
+//! This function just read the parameters and return true if we can continue or not
+bool TerminalParse(int argc, char *argv[])
+{
+    QStringList args;
+    int i=0;
+    while (i<argc)
+    {
+        args.append(QString(argv[i]));
+        i++;
+    }
+    // we create a new terminal parser
+    Huggle::TerminalParser *p = new Huggle::TerminalParser(argc, args);
+    // if parser get an argument which requires app to exit (like --help or --version)
+    // we can terminate it now
+    if (p->Parse())
+    {
+        delete p;
+        return false;
+    }
+    // otherwise we can delete it and continue
+    delete p;
+    return true;
+}
+
 int main(int argc, char *argv[])
 {
     try
     {
-        QStringList args;
-        int i=0;
-        while (i<argc)
+        // check if arguments don't need to exit program
+        if (!TerminalParse(argc, argv))
         {
-            args.append(QString(argv[i]));
-            i++;
-        }
-        // we create a new terminal parser
-        Huggle::TerminalParser *p = new Huggle::TerminalParser(argc, args);
-        // if parser get an argument which requires app to exit (like --help or --version)
-        // we can terminate it now
-        if (p->Parse())
-        {
-            delete p;
             return 0;
         }
-        // otherwise we can delete it and continue
-        delete p;
-        p = NULL;
         // we load the core
         Huggle::Core::Init();
         // now we can start the huggle :o

@@ -694,38 +694,38 @@ void Login::on_Time()
 {
     switch (this->_Status)
     {
-    case LoggingIn:
-        PerformLogin();
-        break;
-    case WaitingForLoginQuery:
-        FinishLogin();
-        break;
-    case RetrievingWhitelist:
-        RetrieveWhitelist();
-        break;
-    case WaitingForToken:
-        FinishToken();
-        break;
-    case RetrievingGlobalConfig:
-        RetrieveGlobalConfig();
-        break;
-    case RetrievingLocalConfig:
-        RetrieveLocalConfig();
-        break;
-    case RetrievingUserConfig:
-        RetrievePrivateConfig();
-        break;
-    case RetrievingUser:
-        RetrieveUserInfo();
-        break;
-    case Refreshing:
-        DB();
-    case LoggedIn:
-    case Nothing:
-    case Cancelling:
-    case LoginFailed:
-    case LoginDone:
-        break;
+        case LoggingIn:
+            PerformLogin();
+            break;
+        case WaitingForLoginQuery:
+            FinishLogin();
+            break;
+        case RetrievingWhitelist:
+            RetrieveWhitelist();
+            break;
+        case WaitingForToken:
+            FinishToken();
+            break;
+        case RetrievingGlobalConfig:
+            RetrieveGlobalConfig();
+            break;
+        case RetrievingLocalConfig:
+            RetrieveLocalConfig();
+            break;
+        case RetrievingUserConfig:
+            RetrievePrivateConfig();
+            break;
+        case RetrievingUser:
+            RetrieveUserInfo();
+            break;
+        case Refreshing:
+            DB();
+        case LoggedIn:
+        case Nothing:
+        case Cancelling:
+        case LoginFailed:
+        case LoginDone:
+            break;
     }
 
 

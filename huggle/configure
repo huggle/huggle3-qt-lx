@@ -1,11 +1,42 @@
 #!/bin/bash
+#  Copyright (c) 2013, Petr Bena
+#  All rights reserved.
 
-# first we parse all arguments we got
+#  Redistribution and use in source and binary forms, with
+#  or without modification, are permitted provided that
+#  the following conditions are met:
+
+#  1. Redistributions of source code must retain
+#     the above copyright notice, this list 
+#     of conditions and the following disclaimer.
+
+#  2. Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the distribution.
+
+#  3. Neither the name of Huggle nor the names of its contributors may be used
+#     to endorse or promote products derived from this software without specific
+#     prior written permission.
+
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+#  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+#  THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+#  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+#  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+#  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 SKIPCHECKS=0
 QMAKE_PATH=qmake
 _QMAKE=0
+RED=$(tput setaf 1)
+WARN=$(tput setaf 3)
+GREEN=$(tput setaf 2)
+NORMAL=$(tput sgr0)
 
+# first we parse all arguments we got
 for var in "$@"
 do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
@@ -14,7 +45,7 @@ do
         echo " --skip-checks: skip all package checks"
         echo " --qmake: change path to qmake"
         echo
-        echo "GNU GPL copyright by huggle team"
+        echo "Copyright (c) 2013, Petr Bena and Huggle team, licensed under BSD license."
         exit 0
     fi
     if [ "$_QMAKE" = "1" ];then
@@ -31,24 +62,21 @@ do
     fi
 done
 
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-NORMAL=$(tput sgr0)
 ok()
 {
-printf '%s%s%s\n' "$GREEN" "[OK]" "$NORMAL"
+    printf '%s%s%s\n' "$GREEN" "[OK]" "$NORMAL"
 }
 
 fail()
 {
-printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
+    printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
 }
 
 text()
 {
-	MSG="$1"
-        let COL=$(tput cols)-20-${#MSG}+${#GREEN}+${#NORMAL}
-        printf '%s%*s' "$MSG" $COL
+    MSG="$1"
+    let COL=$(tput cols)-20-${#MSG}+${#GREEN}+${#NORMAL}
+    printf '%s%*s' "$MSG" $COL
 }
 
 checkqt()
@@ -103,7 +131,7 @@ fi
 ok
 
 if [ "`which apt-cache`" = "" ];then
-	echo "WARNING: Unable to verify packages, let's just hope they are all installed"
+	echo $WARN"WARNING: Unable to verify packages, let's just hope they are all installed"$NORMAL
 else
 	checkpkg "g++"
         checkpkg "make"
@@ -128,7 +156,6 @@ fi
 sh update.sh || exit 1
 
 ok
-
 text "Checking if version.txt exist... "
 if [ ! -f version.txt ];then
         fail
@@ -137,7 +164,6 @@ if [ ! -f version.txt ];then
 fi
 
 ok
-
 text "Preparing makefile hunker..."
 
 if [ ! -d hunker ];then
@@ -150,20 +176,17 @@ cd hunker || exit 1
 $QMAKE_PATH || exit 1
 
 ok
-
 text "Building makefile hunker..."
 
 make -s || exit 1
 cd ..
 
 ok
-
 text "Creating makefile... "
 
 $QMAKE_PATH || exit 1
 
 ok
-
 text "Executing hunk..."
 
 cd hunker || exit 1
