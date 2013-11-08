@@ -98,6 +98,7 @@ checkqt()
 
     fail
     echo "$1 neither $2 is present, use --skip-checks to ignore this"
+    echo "or execute apt-get install $1 $2 as root"
     exit 1
 }
 
@@ -115,6 +116,7 @@ checkpkg()
     fi
     fail
     echo "$1 is not present, use --skip-checks to ignore this"
+    echo "or execute apt-get install $1 as root"
     exit 1
 }
 
@@ -144,6 +146,8 @@ else
         checkqt "libqtgui5" "libqtgui4"
         checkqt "libqtcore5" "libqtcore4"
         checkqt "libqt5-xml" "libqt4-xml"
+        checkqt "qt4-dev-tools" "qtbase5-dev-tools"
+        checkqt "qt5-qmake" "qt4-qmake"
 fi
 
 text "Executing update.sh... "
