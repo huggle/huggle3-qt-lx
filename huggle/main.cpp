@@ -63,3 +63,10 @@ int main(int argc, char *argv[])
         return fail.ErrorCode;
     }
 }
+
+// bellow is just documentation, no more sources you can steal...
+
+/*! \mainpage Huggle documentation
+ * Welcome to huggle documentation, huggle 3 is an antivandalism software for use on Wikipedia and other
+ * Wikimedia projects, written in C++ (QT framework). It is supported for Windows and Linux.
+ */
