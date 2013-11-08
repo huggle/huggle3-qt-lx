@@ -13,7 +13,7 @@
 using namespace Huggle;
 
 unsigned int Configuration::Verbosity = 0;
-WikiSite Configuration::Project("enwiki", "en.wikipedia.org/");
+WikiSite Configuration::Project("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
 bool Configuration::UsingSSL = true;
 QString Configuration::UserName = "User";
 QString Configuration::Password = "";
