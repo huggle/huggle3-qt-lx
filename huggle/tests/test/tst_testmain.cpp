@@ -35,8 +35,9 @@ void HuggleTest::testCaseWikiUserCheckIP()
 {
     QVERIFY2(Huggle::WikiUser("10.0.0.1").IsIP(), "Invalid result for new WikiUser with username of IP, the result of IsIP() was false, but should have been true");
     QVERIFY2(Huggle::WikiUser("150.30.0.56").IsIP(), "Invalid result for new WikiUser with username of IP, the result of IsIP() was false, but should have been true");
-    ///\todo FIX ME
     QVERIFY2((Huggle::WikiUser("355.2.0.1").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Frank").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Joe").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
 }
 
 void HuggleTest::testCaseTerminalParser()
@@ -44,23 +45,41 @@ void HuggleTest::testCaseTerminalParser()
     QStringList list;
     list.append("huggle");
     list.append("-v");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == false, "Invalid result for terminal parser");
+    Huggle::TerminalParser *p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == false, "Invalid result for terminal parser");
     list.append("-vvvvvvvvvvvvvvvvv");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == false, "Invalid result for terminal parser");
+    delete p;
+    p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == false, "Invalid result for terminal parser");
     list.append("-vvvvvvhvvvvvvv");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == true, "Invalid result for terminal parser");
+    delete p;
+    p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
     list.clear();
     list.append("huggle");
     list.append("--help");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == true, "Invalid result for terminal parser");
+    delete p;
+    p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
     list.clear();
     list.append("huggle");
     list.append("--safe");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == false, "Invalid result for terminal parser");
+    delete p;
+    p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == false, "Invalid result for terminal parser");
     list.clear();
     list.append("huggle");
     list.append("--blabla");
-    QVERIFY2(Huggle::TerminalParser(list.count(), list).Parse() == true, "Invalid result for terminal parser");
+    delete p;
+    p = new Huggle::TerminalParser(list.count(), list);
+    p->Silent = true;
+    QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
+    delete p;
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)
