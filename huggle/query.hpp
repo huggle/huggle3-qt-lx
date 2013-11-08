@@ -140,6 +140,8 @@ namespace Huggle
             unsigned int ID;
             //! This is a last ID used by a constructor of a query
             static unsigned int LastID;
+            //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
+            bool Repeated;
     };
 }
 

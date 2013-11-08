@@ -299,6 +299,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             }
         }
     }
+    e->User->Resync();
     this->EditablePage = true;
     this->wUserInfo->ChangeUser(e->User);
     this->wHistory->Update(e);
@@ -1485,11 +1486,6 @@ void MainWindow::on_actionReconnect_IRC_triggered()
     ReconnectIRC();
 }
 
-void MainWindow::on_actionTag_2_triggered()
-{
-
-}
-
 void MainWindow::on_actionRequest_speedy_deletion_triggered()
 {
     this->RequestPD();
@@ -1529,6 +1525,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
         return;
     }
     this->fBlockForm = new BlockUser(this);
+    this->CurrentEdit->User->Resync();
     fBlockForm->SetWikiUser(this->CurrentEdit->User);
     fBlockForm->show();
 #endif

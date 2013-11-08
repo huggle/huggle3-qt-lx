@@ -50,9 +50,11 @@ bool Query::Processed()
     }
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
-        if (this->RetryOnTimeoutFailure)
+        if (!this->Repeated && this->RetryOnTimeoutFailure)
         {
             this->Kill();
+            this->StartTime = QDateTime::currentDateTime();
+            this->Repeated = true;
             this->Process();
             return false;
         }
