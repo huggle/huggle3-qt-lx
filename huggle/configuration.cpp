@@ -169,6 +169,7 @@ int Configuration::FontSize = 10;
 int Configuration::WriteTimeout = 200;
 int Configuration::ReadTimeout = 60;
 bool Configuration::EnforceManualSoftwareRollback = false;
+bool Configuration::WhitelistDisabled = false;
 
 
 bool Configuration::LocalConfig_UAAavailable = false;

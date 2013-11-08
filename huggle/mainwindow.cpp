@@ -672,6 +672,11 @@ void MainWindow::on_Tick2()
         }
         if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
+            if (Configuration::WhitelistDisabled)
+            {
+                this->Shutdown = ShutdownOpUpdatingWhitelist;
+                return;
+            }
             if (!this->wq->Processed())
             {
                 return;
@@ -701,7 +706,7 @@ void MainWindow::on_Tick2()
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!this->wq->Processed())
+            if (!Configuration::WhitelistDisabled && !this->wq->Processed())
             {
                 return;
             }

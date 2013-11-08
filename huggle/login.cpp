@@ -334,20 +334,26 @@ void Login::RetrieveWhitelist()
     {
         if (wq->Processed())
         {
-            QString list = wq->Result->Data;
-            list = list.replace("<!-- list -->", "");
-            Configuration::WhiteList = list.split("|");
-            int c = 0;
-            while (c < Configuration::WhiteList.count())
+            if (wq->Result->Failed)
             {
-                if (Configuration::WhiteList.at(c) == "")
+                Configuration::WhitelistDisabled = true;
+            } else
+            {
+                QString list = wq->Result->Data;
+                list = list.replace("<!-- list -->", "");
+                Configuration::WhiteList = list.split("|");
+                int c = 0;
+                while (c < Configuration::WhiteList.count())
                 {
-                    Configuration::WhiteList.removeAt(c);
-                    continue;
+                    if (Configuration::WhiteList.at(c) == "")
+                    {
+                        Configuration::WhiteList.removeAt(c);
+                        continue;
+                    }
+                    c++;
                 }
-                c++;
             }
-            delete wq;
+            wq->SafeDelete();
             wq = NULL;
             // Now global config
             this->_Status = RetrievingLocalConfig;
@@ -358,6 +364,7 @@ void Login::RetrieveWhitelist()
     this->Progress(52);
     ui->label_6->setText(Core::Localize("[[login-progress-whitelist]]"));
     wq = new WLQuery();
+    wq->RetryOnTimeoutFailure = false;
     wq->Process();
     return;
 }

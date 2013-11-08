@@ -144,10 +144,16 @@ namespace Huggle
             static bool QueueNewEditsUp;
             //! If this is true some functionalities will be disabled
             static bool _SafeMode;
+            //! Resolve edit conflict without asking user
             static bool AutomaticallyResolveConflicts;
+            //! Size of fonts in diff
             static int FontSize;
+            //! Timeout for queries
             static int ReadTimeout;
+            //! Timeout for write / update queries
             static int WriteTimeout;
+            //! Whitelist is not useable
+            static bool WhitelistDisabled;
 
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             static bool EnforceManualSoftwareRollback;
