@@ -616,12 +616,12 @@ void MainWindow::on_Tick()
             }
         }
     }
-    QString t = "Currently processing " + QString::number(Core::ProcessingEdits.count())
-            + " edits and " + QString::number(Core::RunningQueriesGetCount()) + " queries"
+    QString t = "All systems go! - currently processing " + QString::number(Core::ProcessingEdits.count())
+            + " edits and " + QString::number(Core::RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::WhiteList.size())
             + " whitelisted users and you have "
             + QString::number(HuggleQueueItemLabel::Count)
-            + " edits waiting in queue";
+            + " edits waiting in queue.";
     if (Configuration::Verbosity > 0)
     {
         t += " QGC: " + QString::number(GC::list.count())
