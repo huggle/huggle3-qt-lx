@@ -98,12 +98,12 @@ checkqt()
         echo "SKIP"
         return 0
     fi
-    if [ "`apt-cache policy $1 | wc -l`" -gt 4 ];then
+    if [ "`apt-cache policy $1 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
         ok
         return 0
     fi
 
-    if [ "`apt-cache policy $2 | wc -l`" -gt 4 ];then
+    if [ "`apt-cache policy $2 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
         ok
         return 0
     fi
@@ -122,7 +122,7 @@ checkpkg()
         echo "SKIP"
         return 0
     fi
-    if [ "`apt-cache policy $1 | wc -l`" -gt 2 ];then
+    if [ "`apt-cache policy $1 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
         ok
         return 0
     fi
