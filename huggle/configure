@@ -149,6 +149,7 @@ if [ "`which apt-cache`" = "" ];then
 else
 	checkpkg "g++"
         checkpkg "make"
+        checkpkg "icu-devtools"
         checkqt "libqt4-dbus" "libqt5-dbus"
         checkqt "libqt4-dev" "libqt5-dev"
         checkqt "libqt4-network" "libqt5-network"
