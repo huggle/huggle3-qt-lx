@@ -47,7 +47,7 @@ do
         echo " --version: show version"
         echo " --qmake: change path to qmake"
         echo
-        echo "Copyright (c) 2013, Petr Bena and Huggle team, licensed under BSD license."
+        echo "Copyright (c) 2013 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
     fi
     if [ "$_QMAKE" = "1" ];then
