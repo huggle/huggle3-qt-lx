@@ -111,6 +111,8 @@
     </property>
     <addaction name="actionShow_ignore_list_of_current_wiki"/>
     <addaction name="actionShow_list_of_score_words"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_a_session_data"/>
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">
@@ -723,6 +725,11 @@
   <action name="actionRevert_AGF">
    <property name="text">
     <string>Revert assuming good faith</string>
+   </property>
+  </action>
+  <action name="actionDisplay_a_session_data">
+   <property name="text">
+    <string>Display a session data</string>
    </property>
   </action>
  </widget>

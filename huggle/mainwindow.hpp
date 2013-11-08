@@ -47,6 +47,7 @@
 #include "reportuser.hpp"
 #include "waitingform.hpp"
 #include "wlquery.hpp"
+#include "sessionform.h"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "deleteform.hpp"
@@ -74,6 +75,7 @@ namespace Huggle
     class EditQuery;
     class ProcessList;
     class Preferences;
+    class SessionForm;
     class IgnoreList;
     class WaitingForm;
     class VandalNw;
@@ -142,6 +144,7 @@ namespace Huggle
             QMenu *RevertWarn;
             //! Pointer to vandal network
             VandalNw * VandalDock;
+            SessionForm *fSessionData;
             //! Pointer to query that is used to store user config on exit of huggle
             EditQuery *eq;
             //! This query is used to refresh white list
@@ -249,8 +252,8 @@ namespace Huggle
             void on_actionDisconnect_triggered();
             void on_actionReport_username_triggered();
             void on_actionShow_list_of_score_words_triggered();
-
             void on_actionRevert_AGF_triggered();
+            void on_actionDisplay_a_session_data_triggered();
 
         private:
             QTimer *timer1;

@@ -43,6 +43,8 @@ do
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
         echo " --skip-checks: skip all package checks"
+        echo " --no-colors: suppress colors"
+        echo " --version: show version"
         echo " --qmake: change path to qmake"
         echo
         echo "Copyright (c) 2013, Petr Bena and Huggle team, licensed under BSD license."
@@ -52,9 +54,19 @@ do
 	QMAKE_PATH="$var"
         continue
     fi
+    if [ "$var" = "--no-colors" ];then
+        RED=""
+        WARN=""
+        GREEN=""
+        NORMAL=""
+    fi
     if [ "$var" = "--qmake" ];then
         _QMAKE=1
         continue
+    fi
+    if [ "$var" = "--version" ];then
+        echo "Huggle configure v 1.0"
+        exit 0
     fi
     if [ "$var" = "--skip-checks" ];then
         SKIPCHECKS=1

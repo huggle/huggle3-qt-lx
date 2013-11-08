@@ -32,6 +32,9 @@ namespace Huggle
             explicit SessionForm(QWidget *parent = 0);
             ~SessionForm();
 
+        private slots:
+            void on_pushButton_clicked();
+
         private:
             Ui::SessionForm *ui;
     };

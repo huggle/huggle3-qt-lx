@@ -16,9 +16,20 @@ using namespace Huggle;
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
     ui->setupUi(this);
+    int xx=0;
+    while (xx < Configuration::Rights.count())
+    {
+        ui->listWidget->addItem(Configuration::Rights.at(xx));
+        xx++;
+    }
 }
 
 SessionForm::~SessionForm()
 {
     delete ui;
+}
+
+void Huggle::SessionForm::on_pushButton_clicked()
+{
+    this->close();
 }

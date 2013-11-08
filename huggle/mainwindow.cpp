@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         Configuration::WhiteList.append(Configuration::UserName);
     }
     this->fScoreWord = NULL;
+    this->fSessionData = NULL;
+    this->fReportForm = NULL;
 #if !PRODUCTION_BUILD
     this->fBlockForm = NULL;
     this->fDeleteForm = NULL;
@@ -53,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
-    this->fReportForm = NULL;
     this->ui->actionBlock_user->setEnabled(Configuration::Rights.contains("block"));
     this->ui->actionDelete->setEnabled(Configuration::Rights.contains("delete"));
     this->ui->actionProtect->setEnabled(Configuration::Rights.contains("protect"));
@@ -190,6 +191,7 @@ MainWindow::~MainWindow()
     delete this->Queries;
     delete this->preferencesForm;
     delete this->aboutForm;
+    delete this->fSessionData;
     delete this->fScoreWord;
     delete this->Ignore;
     delete this->Queue1;
@@ -1646,4 +1648,14 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
         return;
     }
     this->Revert(Configuration::LocalConfig_AgfRevert);
+}
+
+void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
+{
+    if (this->fSessionData != NULL)
+    {
+        delete this->fSessionData;
+    }
+    this->fSessionData = new SessionForm(this);
+    this->fSessionData->show();
 }
