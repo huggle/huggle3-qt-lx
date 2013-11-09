@@ -46,8 +46,8 @@ WikiSite::WikiSite(QString name, QString url)
     this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
     this->SupportHttps = true;
     this->SupportOAuth = true;
-    this->IRCChannel = "#en.wikipedia";
-    this->WhiteList = "en.wikipedia";
+    this->IRCChannel = "#test.wikipedia";
+    this->WhiteList = "test.wikipedia";
 }
 
 WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl)

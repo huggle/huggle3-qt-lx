@@ -15,6 +15,7 @@ using namespace std;
 TerminalParser::TerminalParser(int argc_, QStringList argv)
 {
     this->argc = argc_;
+    this->Silent = false;
     this->args = argv;
 }
 
@@ -30,12 +31,15 @@ bool TerminalParser::Parse()
             DisplayHelp();
             return true;
         }
-        if (text.startsWith("-v"))
+        if (!text.startsWith("--") && text.startsWith("-"))
         {
             text = text.mid(1);
-            while (text.length() > 0 && text.startsWith("v"))
+            while (text.length())
             {
-                Configuration::Verbosity++;
+                if (this->ParseChar(text.at(0)))
+                {
+                    return true;
+                }
                 text = text.mid(1);
             }
             valid = true;
@@ -47,7 +51,10 @@ bool TerminalParser::Parse()
         }
         if (!valid)
         {
-            cout << (QString("This parameter isn't valid: ") + text).toStdString() << endl;
+            if (!Silent)
+            {
+                cout << (QString("This parameter isn't valid: ") + text).toStdString() << endl;
+            }
             return true;
         }
         x++;
@@ -55,8 +62,26 @@ bool TerminalParser::Parse()
     return false;
 }
 
+bool TerminalParser::ParseChar(QChar x)
+{
+    switch (x.toAscii())
+    {
+        case 'v':
+            Configuration::Verbosity++;
+            return false;
+        case 'h':
+            this->DisplayHelp();
+            return true;
+    }
+    return false;
+}
+
 void TerminalParser::DisplayHelp()
 {
+    if (Silent)
+    {
+        return;
+    }
     cout << "Huggle 3 QT-LX" << endl << endl;
     cout << "Parameters:" << endl;
     cout << "  -v: Increases verbosity" << endl;
