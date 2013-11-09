@@ -174,7 +174,7 @@ bool Configuration::WhitelistDisabled = false;
 
 bool Configuration::LocalConfig_UAAavailable = false;
 QString Configuration::LocalConfig_UAAPath = "Project:Usernames for administrator attention";
-QString Configuration::LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} ~~~~";
+QString Configuration::LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
 
 QString Configuration::GetURLProtocolPrefix()
 {

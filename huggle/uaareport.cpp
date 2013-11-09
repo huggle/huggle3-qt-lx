@@ -16,22 +16,23 @@ using namespace Huggle;
 UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
 {
     ui->setupUi(this);
-    this->uaat = NULL;
     this->User = NULL;
     this->contentsOfUAA = "";
     this->qUAApage = NULL;
     this->page = NULL;
     this->uT = NULL;
+    this->qChUAApage = NULL;
+    this->cuT = NULL;
     this->dr = "";
     this->optionalreason = "";
     this->ta = "";
     this->uaaReportReason = "";
+
 }
 
 UAAReport::~UAAReport()
 {
     delete ui;
-    delete uaat;
     delete User;
     delete uT;
     delete page;
@@ -101,6 +102,7 @@ void UAAReport::onTick()
     Core::DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
+    this->whatToReport();
     this->insertUsername();
     Core::EditPage(Core::UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
@@ -112,6 +114,7 @@ void UAAReport::insertUsername()
 {
     ta = Configuration::LocalConfig_UAATemplate;
     ta.replace("$1", this->User->Username);
+    ta.replace("$2", uaaReportReason + optionalreason);
     contentsOfUAA = ta + uaaReportReason + optionalreason;
     dr = dr + "\n" + contentsOfUAA;
 }
@@ -173,4 +176,78 @@ void UAAReport::on_pushButton_clicked()
 void UAAReport::on_pushButton_2_clicked()
 {
     this->hide();
+}
+
+void UAAReport::on_pushButton_3_clicked()
+{
+    this->qChUAApage = new ApiQuery();
+    qChUAApage->SetAction(ActionQuery);
+    qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
+            + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
+    qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
+    Core::AppendQuery(qChUAApage);
+    qChUAApage->Process();
+
+    this->cuT = new QTimer(this);
+    connect(this->cuT, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
+    cuT->start(100);
+}
+
+bool UAAReport::checkIfReported()
+{
+    if (dr.contains(this->User->Username))
+    {
+       return false;
+    }
+    return true;
+}
+
+void UAAReport::onStartOfSearch()
+{
+    if (qChUAApage == NULL)
+    {
+        return;
+    }
+    if (!qChUAApage->Processed())
+    {
+        return;
+    }
+    QDomDocument tj;
+    tj.setContent(qChUAApage->Result->Data);
+    QDomNodeList chkusr = tj.elementsByTagName("rev");
+    if (chkusr.count() == 0)
+    {
+        QMessageBox *msgb = new QMessageBox();
+        msgb->setWindowTitle("Cannot retrieve page");
+        msgb->setIcon(QMessageBox::Critical);
+        msgb->setText("Retrieving the page " + Configuration::LocalConfig_UAAPath + " failed.");
+        msgb->setAttribute(Qt::WA_DeleteOnClose);
+        msgb->exec();
+        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->cuT->stop();
+        return;
+    }
+    QDomElement h = chkusr.at(0).toElement();
+    dr = h.text();
+    if (!this->checkIfReported())
+    {
+        QMessageBox *msg = new QMessageBox();
+        msg->setWindowTitle("User is already reported");
+        msg->setText("This user has already been reported to UAA.");
+        msg->setAttribute(Qt::WA_DeleteOnClose);
+        msg->exec();
+        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->cuT->stop();
+        return;
+    }else
+    {
+        QMessageBox *msga = new QMessageBox();
+        msga->setWindowTitle("User is not reported");
+        msga->setText("This user is not reported to UAA.");
+        msga->setAttribute(Qt::WA_DeleteOnClose);
+        msga->exec();
+        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->cuT->stop();
+        return;
+    }
 }

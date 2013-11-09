@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>449</width>
     <height>300</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>330</x>
      <y>260</y>
      <width>99</width>
      <height>27</height>
@@ -32,7 +32,7 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>10</x>
      <y>260</y>
      <width>99</width>
      <height>27</height>
@@ -45,7 +45,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>10</y>
      <width>171</width>
      <height>17</height>
@@ -91,7 +91,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Promotional only</string>
+    <string>Promotional</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox_4">
@@ -110,7 +110,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>170</y>
      <width>171</width>
      <height>17</height>
@@ -125,9 +125,22 @@
     <rect>
      <x>20</x>
      <y>190</y>
-     <width>351</width>
+     <width>411</width>
      <height>27</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>260</y>
+     <width>201</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Check if user is reported</string>
    </property>
   </widget>
  </widget>
