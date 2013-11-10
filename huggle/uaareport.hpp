@@ -15,6 +15,7 @@
 #include <QString>
 #include <QtXml>
 #include <QTimer>
+#include <QUrl>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "wikiuser.hpp"
@@ -31,9 +32,6 @@ namespace Huggle
     class WikiUser;
     class WikiPage;
     class ApiQuery;
-
-    /// \todo This form wasn't tested by anyone so far, it must be tested before it's included in production build
-
     //! Form to report users to UAA
     class UAAReport : public QDialog
     {
@@ -41,31 +39,45 @@ namespace Huggle
         public:
             explicit UAAReport(QWidget *parent = 0);
             ~UAAReport();
+            //! I don't have much of a clue why this is here lol, but I know the dialog can't be initialised from mainwindow without this
             void setUserForUAA(WikiUser *user);
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
+            void on_pushButton_3_clicked();
             void onTick();
+            void onStartOfSearch();
         private:
             Ui::UAAReport *ui;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
-            QTimer *uaat;
             WikiUser *User;
             QString contentsOfUAA;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! Whole contents of UAA page
             QString dr;
+            //! String that represents what is in the line edit
             QString optionalreason;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! UAA template
             QString ta;
+            //! Reason for report
             QString uaaReportReason;
+            //! Pointer to WikiUser
             WikiPage *page;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! Pointer to get UAA contents (we don't want replace the page with our content, do we?)
             ApiQuery *qUAApage;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! Timer pointer that allows us to do magical things
             QTimer *uT;
-            void getPageContents();
+            //! Timer that does other magical things
+            QTimer *cuT;
+            //! Pointer that also gets UAA contents; this time it is used for checking if a user is reported or not
+            ApiQuery *qChUAApage;
+            //! Function to decide what we are reporting
             void whatToReport();
+            //! Check if user is reported
+            bool checkIfReported();
+            //! Get page contents (reason for this is above)
+            void getPageContents();
+            //! Function to that allows us to properly insert what we need to insert
             void insertUsername();
+            //! Message box, if anything fails
             void failed(QString reason);
     };
 }
