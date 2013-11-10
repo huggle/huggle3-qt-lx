@@ -219,6 +219,7 @@ bool WikiEdit::FinalizePostProcessing()
 void WikiEdit::ProcessWords()
 {
     int xx = 0;
+    /// \todo This whole thing suck we should rewrite it a bit
     QString text = this->DiffText.toLower();
     if (this->Page->Contents != "")
     {
