@@ -225,6 +225,12 @@ void NetworkIrc_th::Line(QString line)
         xx = xx.mid(xx.indexOf(" ") + 1);
     }
 
+    /// \todo implement PART
+    /// \todo implement KICK
+    /// \todo implement QUIT
+    /// \todo implement TOPIC
+    /// \todo implement CTCP
+    /// \todo implement NOTICES
     if (Command == "PRIVMSG")
     {
         ProcessPrivmsg(Source, xx);

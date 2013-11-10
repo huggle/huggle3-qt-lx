@@ -33,6 +33,9 @@ namespace Huggle
     {
             Q_OBJECT
 
+            /// \todo We should make a user list of other huggle users here
+            /// \todo Share a version of your huggle with others in sane way
+            /// \todo Hook to VERSION
         public:
             explicit VandalNw(QWidget *parent = 0);
             ~VandalNw();
