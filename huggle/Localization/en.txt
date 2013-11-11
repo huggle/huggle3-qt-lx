@@ -195,6 +195,13 @@ email-ccme:                E-mail me a copy of this message
 email-send:                Send
 </pre>
 
+=== History form ===
+<pre>
+historyform-no-info:                   No edit info
+historyform-retrieve-history:          Retrieve history
+historyform-retrieving-history:        Retrieving history
+</pre>
+
 === IRC feed ===
 <pre>
 irc-connected:             Connected to IRC recent changes feed

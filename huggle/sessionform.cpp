@@ -16,6 +16,8 @@ using namespace Huggle;
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
     ui->setupUi(this);
+    ui->label_2->setText("You are logged in as " + Configuration::UserName + "\n" +
+                         "SSL: " + Configuration::Bool2String(Configuration::UsingSSL));
     int xx=0;
     while (xx < Configuration::Rights.count())
     {
