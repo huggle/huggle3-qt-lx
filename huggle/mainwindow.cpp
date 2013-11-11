@@ -1615,16 +1615,13 @@ void MainWindow::on_actionReport_username_triggered()
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
-        /// \todo LOCALIZE ME
-        dd.setWindowTitle("UAA not available");
-        /// \todo LOCALIZE ME
-        dd.setText("The usernames for administrator attention noticeboard is not available on your wiki.");
+        dd.setWindowTitle(Core::Localize("uaa-not-supported"));
+        dd.setText(Core::Localize("uaa-not-supported-text"));
         dd.exec();
     }
     if (this->CurrentEdit->User->IsIP())
     {
-        /// \todo LOCALIZE ME
-        Core::Log("ERROR: You can't report an IP to UAA!");
+        this->ui->actionReport_username->setDisabled(true);
         return;
     }
     this->fUaaReportForm = new UAAReport();

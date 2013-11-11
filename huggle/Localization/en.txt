@@ -524,6 +524,12 @@ report-message:            Message:
 report-log:                Warnings for this user:
 </pre>
 
+== UAA ==
+<pre>
+uaa-not-supported:         UAA not available
+uaa-not-supported-text:    The usernames for administrator attention noticeboard is not available on your wiki.
+</pre>
+
 === Revert form ===
 <pre>
 revert-title:              Revert {0}
