@@ -617,6 +617,7 @@ void MainWindow::on_Tick()
             }
         }
     }
+    /// \todo LOCALIZE ME
     QString t = "All systems go! - currently processing " + QString::number(Core::ProcessingEdits.count())
             + " edits and " + QString::number(Core::RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::WhiteList.size())
@@ -686,6 +687,7 @@ void MainWindow::on_Tick2()
             list = list.replace("<!-- list -->", "");
             QStringList wl = list.split("|");
             int c=0;
+            /// \todo LOCALIZE ME
             fWaiting->Status(40, "Merging");
             while (c < wl.count())
             {
@@ -696,6 +698,7 @@ void MainWindow::on_Tick2()
                 c++;
             }
             Configuration::WhiteList.removeDuplicates();
+            /// \todo LOCALIZE ME
             this->fWaiting->Status(60, "Updating whitelist");
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
@@ -713,6 +716,7 @@ void MainWindow::on_Tick2()
             }
             // we finished writing the wl
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+            /// \todo LOCALIZE ME
             this->fWaiting->Status(80, "Updating user config");
             this->wq = NULL;
             this->Shutdown = ShutdownOpUpdatingConf;
