@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>517</width>
-    <height>57</height>
+    <width>202</width>
+    <height>313</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,16 +18,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <item>
@@ -36,6 +27,9 @@
        <string>Retrieve history</string>
       </property>
      </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="tableWidget"/>
     </item>
    </layout>
   </widget>

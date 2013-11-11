@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
-    <height>56</height>
+    <width>215</width>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>User info</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -60,6 +60,9 @@
        <string notr="true">No user</string>
       </property>
      </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="tableWidget"/>
     </item>
    </layout>
   </widget>

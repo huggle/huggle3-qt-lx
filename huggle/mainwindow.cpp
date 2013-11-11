@@ -50,8 +50,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->Queries);
-    this->addDockWidget(Qt::TopDockWidgetArea, this->wHistory);
-    this->addDockWidget(Qt::TopDockWidgetArea, this->wUserInfo);
+    this->addDockWidget(Qt::RightDockWidgetArea, this->wHistory);
+    this->addDockWidget(Qt::RightDockWidgetArea, this->wUserInfo);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
