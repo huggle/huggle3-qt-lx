@@ -1,0 +1,27 @@
+# See http://about.travis-ci.org/docs/user/build-configuration/
+
+language: cpp
+
+before_install: 
+  - "sudo apt-get update"
+
+install:
+  - "sudo apt-get install -y g++ libqt4-dbus libqt4-dev libqt4-network libqt4-opengl libqt4-webkit libqtwebkit-dev libqtgui4 libqtcore4 libqt4-xml qt4-dev-tools qt4-qmake"
+
+before_script: 
+  - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle"
+  - ./configure
+  - make
+  - "cd tests/test"
+  - qmake
+  - make
+
+script: 
+  - ./tst_testmain
+
+notifications: 
+  irc: 
+    channels: 
+      - "chat.freenode.net#huggle"
+    on_failure: always
+    on_success: change
