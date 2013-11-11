@@ -172,6 +172,11 @@ QString Core::Trim(QString text)
         text = text.mid(1);
     }
 
+    while (text.endsWith(" "))
+    {
+        text = text.mid(0, text.length() - 1);
+    }
+
     return text;
 }
 

@@ -10,6 +10,7 @@
 
 #include <QString>
 #include <QtTest>
+#include "../../configuration.hpp"
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
 
@@ -25,10 +26,30 @@ class HuggleTest : public QObject
         //! Test if IsIP returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
+        void testCaseConfigurationParse_QL();
+        void testCaseCoreTrim();
 };
 
 HuggleTest::HuggleTest()
 {
+}
+
+void HuggleTest::testCaseConfigurationParse_QL()
+{
+    QString test = "sample-conf:hi\n\nlist1:\n  a,\nb\n";
+    QStringList list = Huggle::Configuration::ConfigurationParse_QL("list1", test);
+    QVERIFY2(list.count() == 2, "Invalid result for ConfigurationParse_QL, parsed wrong number of lines");
+    test = "sample-conf:hi\n\nlist1:\n  a blab ldf xx.;g gfdsg,\nb,\n  c,\n          d d,\n";
+    list = Huggle::Configuration::ConfigurationParse_QL("list1", test);
+    QVERIFY2(list.count() == 4, "Invalid result for ConfigurationParse_QL, parsed wrong number of lines");
+    QVERIFY2(list.at(2) == "c,", "Invalid result for ConfigurationParse_QL, parsed wrong item on position 3");
+}
+
+void HuggleTest::testCaseCoreTrim()
+{
+    QVERIFY2("hello world" == Huggle::Core::Trim("   hello world "), "wrong result for Core::Trim() when parsing words");
+    QVERIFY2("hello" == Huggle::Core::Trim("   hello"), "wrong result for Core::Trim() when parsing words");
+    QVERIFY2("hello" == Huggle::Core::Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
 }
 
 void HuggleTest::testCaseWikiUserCheckIP()
