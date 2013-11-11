@@ -56,21 +56,37 @@ void VandalNw::Disconnect()
 
 void VandalNw::Good(WikiEdit *Edit)
 {
+    if (Edit == NULL)
+    {
+        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
+    }
     this->Irc->Send(this->GetChannel(), this->pref + "GOOD " + QString::number(Edit->RevID));
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
 {
+    if (Edit == NULL)
+    {
+        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+    }
     this->Irc->Send(this->GetChannel(), this->pref + "ROLLBACK " + QString::number(Edit->RevID));
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
+    if (Edit == NULL)
+    {
+        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+    }
     this->Irc->Send(this->GetChannel(), this->pref + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
 void VandalNw::WarningSent(WikiUser *user, int Level)
 {
+    if (user == NULL)
+    {
+        throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
+    }
     this->Irc->Send(this->GetChannel(), this->pref + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
 }
 

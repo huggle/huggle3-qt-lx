@@ -97,6 +97,7 @@ void HuggleFeedProviderIRC::Stop()
     this->Connected = false;
     while (!IsStopped())
     {
+        /// \todo LOCALIZE ME
         Core::Log("Waiting for irc feed provider to stop");
         Sleeper::usleep(200000);
     }

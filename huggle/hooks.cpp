@@ -13,6 +13,10 @@
 
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
+    if (Edit == NULL)
+    {
+        throw new Exception("Huggle::WikiEdit *Edit must not be NULL", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+    }
     int extension = 0;
     while (extension < Huggle::iExtension::Extensions.count())
     {
@@ -27,6 +31,10 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 
 void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
 {
+    if (Edit == NULL)
+    {
+        throw new Exception("Huggle::WikiEdit *Edit must not be NULL", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+    }
     int extension = 0;
     while (extension < Huggle::iExtension::Extensions.count())
     {

@@ -34,6 +34,10 @@ BlockUser::~BlockUser()
 
 void BlockUser::SetWikiUser(WikiUser *User)
 {
+    if (User == NULL)
+    {
+        throw new Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
+    }
     this->user = User;
     if (this->user->IsIP())
     {
@@ -199,6 +203,10 @@ void BlockUser::on_pushButton_clicked()
 
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
+    if (dependency == NULL)
+    {
+        throw new Exception("ApiQuery *dependency", "void BlockUser::sendBlockNotice(ApiQuery *dependency)");
+    }
     QString blocknotice;
     if (user->IsIP())
     {

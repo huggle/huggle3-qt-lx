@@ -41,6 +41,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     }
     this->Disable();
     // options
+    /// \todo RELEASE BLOCKER implement the other checkboxes as well
     ui->checkBox_5->setChecked(Configuration::EnforceManualSoftwareRollback);
     ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
     ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);

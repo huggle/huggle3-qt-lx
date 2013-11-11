@@ -18,6 +18,7 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     ui->setupUi(this);
     ui->tableWidget->setColumnCount(4);
     QStringList header;
+    /// \todo LOCALIZE ME - this thing should be split to 4 keys
     header << "ID" << "Type" << "Target" << "Result";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
