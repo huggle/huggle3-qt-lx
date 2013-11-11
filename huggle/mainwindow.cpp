@@ -262,7 +262,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
         return;
     }
     // we need to safely delete the edit later
-    e->RegisterConsumer("MainForm");
+    e->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     // if there are actually some totaly old edits in history that we need to delete
     while (this->Historical.count() > Configuration::HistorySize)
     {

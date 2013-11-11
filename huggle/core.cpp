@@ -186,7 +186,7 @@ void Core::DeleteEdit(WikiEdit *edit)
     {
         edit->Previous->Next = edit->Next;
         edit->Next->Previous = edit->Previous;
-        edit->UnregisterConsumer("MainForm");
+        edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         return;
     }
 
@@ -200,7 +200,7 @@ void Core::DeleteEdit(WikiEdit *edit)
         edit->Next->Previous = NULL;
     }
 
-    edit->UnregisterConsumer("MainForm");
+    edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
 }
 
 QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)

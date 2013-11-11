@@ -624,7 +624,7 @@ void RevertQuery::Rollback()
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
-    this->qRevert->RegisterConsumer("RevertQuery");
+    this->qRevert->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     if (Configuration::Verbosity > 0)
     {
         Core::AppendQuery(this->qRevert);
