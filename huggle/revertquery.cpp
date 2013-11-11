@@ -212,13 +212,14 @@ void RevertQuery::Preflight()
     {
         if (Configuration::AutomaticallyResolveConflicts)
         {
+            Core::Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
             this->Cancel();
             return;
         }
         QString text;
         if (MadeBySameUser)
         {
-            text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
+            text = ("There are new edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
         } else
         {
             text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
@@ -270,13 +271,17 @@ void RevertQuery::CheckPreflight()
     QDomNodeList l = d.elementsByTagName("rev");
     int x=0;
     bool MadeBySameUser = true;
+    bool MultipleEdits = false;
+    bool PreviousEditsMadeBySameUser = true;
     bool passed = true;
     while (x < l.count())
     {
         QDomElement e = l.at(x).toElement();
+        int RevID = WIKI_UNKNOWN_REVID;
         if (e.attributes().contains("revid"))
         {
-            if (edit->RevID == e.attribute("revid").toInt())
+            RevID = e.attribute("revid").toInt();
+            if (edit->RevID == RevID)
             {
                 x++;
                 continue;
@@ -286,17 +291,37 @@ void RevertQuery::CheckPreflight()
             x++;
             continue;
         }
-        if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > edit->RevID)
+        if (e.attributes().contains("user"))
+        {
+            QString user = e.attribute("user");
+            if (PreviousEditsMadeBySameUser && this->edit->RevID != WIKI_UNKNOWN_REVID && RevID < edit->RevID)
+            {
+                if (user != this->edit->User->Username)
+                {
+                    PreviousEditsMadeBySameUser = false;
+                }
+                MultipleEdits = PreviousEditsMadeBySameUser;
+            }
+        }
+        if (this->edit->RevID != WIKI_UNKNOWN_REVID && RevID > edit->RevID)
         {
             passed = false;
         }
         x++;
     }
 
+    if (MultipleEdits && Configuration::LocalConfig_ConfirmMultipleEdits)
+    {
+        passed = false;
+    }
+
     if (!passed)
     {
         QString text = ":)";
-        if (MadeBySameUser)
+        if (MultipleEdits)
+        {
+            text = "There are multiple edits by same user to " + this->edit->Page->PageName + ", are you sure you want to revert them";
+        } else if (MadeBySameUser)
         {
             text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them");
         } else
@@ -305,6 +330,13 @@ void RevertQuery::CheckPreflight()
         }
         if (Configuration::AutomaticallyResolveConflicts)
         {
+            if (MultipleEdits)
+            {
+                Core::Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
+            } else
+            {
+                Core::Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+            }
             this->Cancel();
             return;
         }

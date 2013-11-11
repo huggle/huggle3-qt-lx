@@ -36,7 +36,7 @@
 #include "revertquery.hpp"
 
 #ifdef PYTHONENGINE
-#include "pythonengine.h"
+#include "pythonengine.hpp"
 #endif
 
 namespace Huggle

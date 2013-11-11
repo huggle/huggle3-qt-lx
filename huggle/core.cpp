@@ -614,6 +614,18 @@ void Core::ExtensionLoad()
                     Core::Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
                     delete extension;
                 }
+            } else if (name.endsWith(".py"))
+            {
+#ifdef PYTHONENGINE
+                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                if (Core::Python->LoadScript(name))
+                {
+                    Core::Log("Loaded python script: " + name);
+                } else
+                {
+                    Core::Log("Failed to load a python script: " + name);
+                }
+#endif
             }
             xx++;
         }

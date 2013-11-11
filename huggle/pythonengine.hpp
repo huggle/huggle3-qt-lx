@@ -17,15 +17,40 @@
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H
 
+#include <QString>
+#include <QThread>
+#include <QMutex>
+#include <QList>
 #include <Python.h>
 
 namespace Huggle
 {
+    //! DOCUMENT ME
+    class PythonScript
+    {
+        public:
+            PythonScript(QString name);
+            QString GetName() const;
+            bool GetEnabled() const;
+            void SetEnabled(bool value);
+            bool Init();
+            QString RetrieveText() const;
+    private:
+            //! Pointer to a python object that represent this script
+            PyObject *object;
+            QString Name;
+            bool Enabled;
+            QString Text;
+    };
+
     //! This python engine should allow users to create python modules for huggle
     class PythonEngine
     {
         public:
             PythonEngine();
+            bool LoadScript(QString path);
+        private:
+            QList<PythonScript*> Scripts;
     };
 }
 
