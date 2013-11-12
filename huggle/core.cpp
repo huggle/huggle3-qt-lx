@@ -63,8 +63,6 @@ void Core::Init()
     Configuration::LoadConfig();
     Core::DebugLog("Loading defs");
     Core::LoadDefs();
-    Configuration::LocalConfig_IgnorePatterns.append("/sandbox");
-    Configuration::LocalConfig_IgnorePatterns.append("/Sandbox");
     Configuration::LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
