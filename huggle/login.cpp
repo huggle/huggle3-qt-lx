@@ -119,13 +119,12 @@ void Login::DB()
 
     if (this->LoginQuery->Processed())
     {
-        Core::DebugLog(LoginQuery->Result->Data);
+        Core::DebugLog(LoginQuery->Result->Data, 2);
         QDomDocument d;
         d.setContent(this->LoginQuery->Result->Data);
         QDomNodeList l = d.elementsByTagName("rev");
         if (l.count() > 0)
         {
-            Core::Log(l.at(0).toElement().text());
             if (QFile().exists(Configuration::WikiDB))
             {
                 QFile().remove(Configuration::WikiDB);
