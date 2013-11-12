@@ -11,7 +11,10 @@
 #ifndef HISTORYFORM_H
 #define HISTORYFORM_H
 
+#include <QTimer>
 #include <QDockWidget>
+#include "core.hpp"
+#include "apiquery.hpp"
 #include "exception.hpp"
 #include "wikiedit.hpp"
 
@@ -35,11 +38,16 @@ namespace Huggle
             void Update(WikiEdit *edit);
 
         private slots:
+            void onTick01();
             void on_pushButton_clicked();
 
         private:
+            void Clear();
             Ui::HistoryForm *ui;
             WikiEdit* CurrentEdit;
+            ApiQuery *query;
+            //! This timer is used to check a query status
+            QTimer *t1;
     };
 }
 

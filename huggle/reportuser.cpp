@@ -42,7 +42,6 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 // Qt4 code
     ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
     ui->tableWidget->setShowGrid(false);
     this->t2 = NULL;
     this->timer = NULL;

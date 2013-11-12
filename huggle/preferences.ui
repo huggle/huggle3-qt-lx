@@ -35,7 +35,7 @@
          <x>0</x>
          <y>7</y>
          <width>811</width>
-         <height>191</height>
+         <height>254</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -72,6 +72,48 @@
           <property name="text">
            <string>Automatically resolve conflicts with other users who revert or change the page</string>
           </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>On revert of multiple edits by same user:</string>
+          </property>
+          <widget class="QWidget" name="">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>30</y>
+             <width>226</width>
+             <height>28</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QRadioButton" name="radioButton">
+              <property name="text">
+               <string>Skip</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_2">
+              <property name="text">
+               <string>Revert</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
         <item>

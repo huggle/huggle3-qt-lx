@@ -46,6 +46,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
     ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);
     ui->checkBox_12->setChecked(Configuration::UsingIRC);
+    ui->radioButton->setChecked(!Configuration::RevertOnMultipleEdits);
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
@@ -104,6 +105,13 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::WarnUserSpaceRoll = ui->checkBox_2->isChecked();
     Configuration::UsingIRC = ui->checkBox_12->isChecked();
     Configuration::EnforceManualSoftwareRollback = ui->checkBox_5->isChecked();
+    Configuration::RevertOnMultipleEdits = ui->radioButton_2->isChecked();
     Configuration::SaveConfig();
     this->hide();
+}
+
+void Huggle::Preferences::on_checkBox_clicked()
+{
+    ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }

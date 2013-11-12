@@ -47,7 +47,7 @@
 #include "reportuser.hpp"
 #include "waitingform.hpp"
 #include "wlquery.hpp"
-#include "sessionform.h"
+#include "sessionform.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "deleteform.hpp"

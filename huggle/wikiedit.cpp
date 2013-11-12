@@ -218,9 +218,8 @@ bool WikiEdit::FinalizePostProcessing()
 
 void WikiEdit::ProcessWords()
 {
-    int xx = 0;
-    /// \todo This whole thing suck we should rewrite it a bit
     QString text = this->DiffText.toLower();
+    int xx = 0;
     if (this->Page->Contents != "")
     {
         text = this->Page->Contents.toLower();
@@ -239,13 +238,47 @@ void WikiEdit::ProcessWords()
     while (xx<Configuration::LocalConfig_ScoreWords.count())
     {
         QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
-        if (text.contains(" " + w + " ") || text.contains(" " + w + ".")
-                || text.contains(" " + w + ",") || text.contains(" " + w + "!")
-                || text.contains(" " + w + "\n") || text.contains("\n" + w + "\n")
-                || text.contains("\n" + w + " "))
+        // if there is no such a string in text we can skip it
+        if (!text.contains(w))
         {
-            this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
-            ScoreWords.append(w);
+            xx++;
+            continue;
+        }
+        int SD = 0;
+        bool found = false;
+        if (text.startsWith(w))
+        {
+            found = true;
+        }
+        while (!found && SD < Configuration::Separators.count())
+        {
+            if (text.contains(Configuration::Separators.at(SD) + w))
+            {
+                found = true;
+            }
+            SD++;
+        }
+        if (found)
+        {
+            found = false;
+            SD = 0;
+            if (text.endsWith(w))
+            {
+                found = true;
+            }
+            while (!found && SD < Configuration::Separators.count())
+            {
+                if (text.contains(w + Configuration::Separators.at(SD)))
+                {
+                    found = true;
+                }
+                SD++;
+            }
+            if (found)
+            {
+                this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
+                ScoreWords.append(w);
+            }
         }
         xx++;
     }

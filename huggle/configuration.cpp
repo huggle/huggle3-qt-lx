@@ -175,6 +175,8 @@ bool Configuration::WhitelistDisabled = false;
 bool Configuration::LocalConfig_UAAavailable = false;
 QString Configuration::LocalConfig_UAAPath = "Project:Usernames for administrator attention";
 QString Configuration::LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
+QStringList Configuration::Separators;
+bool Configuration::RevertOnMultipleEdits = false;
 
 QString Configuration::GetURLProtocolPrefix()
 {
@@ -256,6 +258,8 @@ QString Configuration::MakeLocalUserConfig()
     conf += "auto-whitelist:true\n";
     conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmMultipleEdits) + "\n";
     conf += "confirm-range:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmRange) + "\n";
+    conf += "// this option will change the behaviour of automatic resolution, be carefull\n";
+    conf += "revert-auto-multiple-edits:" + Configuration::Bool2String(Configuration::RevertOnMultipleEdits) + "\n";
     conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::AutomaticallyResolveConflicts) + "\n";
     conf += "confirm-page:" + Configuration::Bool2String(Configuration::LocalConfig_ConfirmPage) + "\n";
     conf += "template-age:" + QString::number(Configuration::LocalConfig_TemplateAge) + "\n";
