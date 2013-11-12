@@ -11,6 +11,7 @@
 #include <QString>
 #include <QtTest>
 #include "../../configuration.hpp"
+#include "../../wikiedit.hpp"
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
 
@@ -28,6 +29,7 @@ class HuggleTest : public QObject
         void testCaseTerminalParser();
         void testCaseConfigurationParse_QL();
         void testCaseCoreTrim();
+        void testCaseScores();
 };
 
 HuggleTest::HuggleTest()
@@ -50,6 +52,33 @@ void HuggleTest::testCaseCoreTrim()
     QVERIFY2("hello world" == Huggle::Core::Trim("   hello world "), "wrong result for Core::Trim() when parsing words");
     QVERIFY2("hello" == Huggle::Core::Trim("   hello"), "wrong result for Core::Trim() when parsing words");
     QVERIFY2("hello" == Huggle::Core::Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
+}
+
+void HuggleTest::testCaseScores()
+{
+    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
+    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::WikiEdit *edit = new Huggle::WikiEdit();
+    edit->Page = new Huggle::WikiPage("test");
+    edit->User = new Huggle::WikiUser("Harry, the vandal");
+    edit->DiffText = "fuck this vagina!";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 60, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
+    QVERIFY2(edit->ScoreWords.contains("fuck"), "Invalud result for score words");
+    edit->DiffText = "fucking vagina!";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 50, "Invalid result for score words");
+    QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
+    edit->DiffText = "Hey bob, (fuck) there is some vagina.";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 60, "Invalid result for score words");
+    QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
+    QVERIFY2(edit->ScoreWords.contains("fuck"), "Invalud result for score words");
+    edit->SafeDelete();
 }
 
 void HuggleTest::testCaseWikiUserCheckIP()
