@@ -136,7 +136,7 @@ HEADERS  += mainwindow.hpp \
     hugglemassrollback.hpp \
     hugglenuke.hpp \
     requestprotect.hpp \
-    sessionform.h
+    sessionform.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
