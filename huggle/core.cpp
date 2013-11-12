@@ -997,6 +997,63 @@ QString Core::Localize(QString key)
     return key;
 }
 
+QString Core::Localize(QString key, QStringList parameters)
+{
+    QString id = key;
+    if (id.endsWith("]]"))
+    {
+        id = key.mid(0, key.length() - 2);
+    }
+    if (id.startsWith("[["))
+    {
+        id = id.mid(2);
+    }
+    if (Core::LocalizationData.count() > 0)
+    {
+        int c=0;
+        while (c<Core::LocalizationData.count())
+        {
+            if (Core::LocalizationData.at(c)->LanguageName == Configuration::Language)
+            {
+                Language *l = Core::LocalizationData.at(c);
+                if (l->Messages.contains(id))
+                {
+                    QString text = l->Messages[id];
+                    int x = 0;
+                    while (x<parameters.count())
+                    {
+                        text = text.replace("$" + QString::number(x + 1), parameters.at(x));
+                        x++;
+                    }
+                    return text;
+                }
+                // performance tweak
+                break;
+            }
+            c++;
+        }
+        if (Core::LocalizationData.at(0)->Messages.contains(id))
+        {
+            QString text = Core::LocalizationData.at(0)->Messages[id];
+            int x = 0;
+            while (x<parameters.count())
+            {
+                text = text.replace("$" + QString::number(x + 1), parameters.at(x));
+                x++;
+            }
+            return text;
+        }
+    }
+    return key;
+}
+
+QString Core::Localize(QString key, QString parameters)
+{
+    QStringList list;
+    list << parameters;
+    return Localize(key, list);
+}
+
 void Core::LoadLocalizations()
 {
     Core::LocalInit("en");

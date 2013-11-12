@@ -212,6 +212,7 @@ void RevertQuery::Preflight()
     {
         if (Configuration::AutomaticallyResolveConflicts)
         {
+            /// \todo LOCALIZE ME
             Core::Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
             this->Cancel();
             return;
@@ -219,12 +220,15 @@ void RevertQuery::Preflight()
         QString text;
         if (MadeBySameUser)
         {
+            /// \todo LOCALIZE ME
             text = ("There are new edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
         } else
         {
+            /// \todo LOCALIZE ME
             text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
         }
         QMessageBox::StandardButton re;
+        /// \todo LOCALIZE ME
         re = QMessageBox::question(Core::Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
         if (re == QMessageBox::No)
         {
@@ -259,6 +263,7 @@ void RevertQuery::CheckPreflight()
     }
     if (this->qPreflight->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Core::Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
         this->Kill();
         this->Status = StatusDone;
@@ -320,27 +325,39 @@ void RevertQuery::CheckPreflight()
         QString text = ":)";
         if (MultipleEdits)
         {
+            /// \todo LOCALIZE ME
             text = "There are multiple edits by same user to " + this->edit->Page->PageName + ", are you sure you want to revert them";
         } else if (MadeBySameUser)
         {
+            /// \todo LOCALIZE ME
             text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them");
         } else
         {
+            /// \todo LOCALIZE ME
             text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
         }
         if (Configuration::AutomaticallyResolveConflicts)
         {
-            if (MultipleEdits)
+            if (MultipleEdits && !Configuration::RevertOnMultipleEdits)
             {
+                /// \todo LOCALIZE ME
                 Core::Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
+                this->Cancel();
+                return;
+            } else if (MultipleEdits && Configuration::RevertOnMultipleEdits)
+            {
+                /// \todo LOCALIZE ME
+                Core::Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
             } else
             {
+                /// \todo LOCALIZE ME
                 Core::Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                this->Cancel();
+                return;
             }
-            this->Cancel();
-            return;
         }
         QMessageBox::StandardButton re;
+        /// \todo LOCALIZE ME
         re = QMessageBox::question(Core::Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
         if (re == QMessageBox::No)
         {
@@ -376,6 +393,7 @@ bool RevertQuery::CheckRevert()
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result->Data);
     if (this->CustomStatus != "Reverted")
     {
+        /// \todo LOCALIZE ME
         Core::Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
         qRevert->Result->Failed = true;
         qRevert->Result->ErrorMessage = CustomStatus;
@@ -435,6 +453,7 @@ bool RevertQuery::ProcessRevert()
 
     if (this->qPreflight->Result->Failed)
     {
+        /// \todo LOCALIZE ME
         Core::Log("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
         this->Kill();
         this->Status = StatusDone;
@@ -451,6 +470,7 @@ bool RevertQuery::ProcessRevert()
     // it's possible that someone else already reverted them
     if (l.count() == 0)
     {
+        /// \todo LOCALIZE ME
         // if we have absolutely no revisions in the result, it's pretty fucked
         Core::Log("Failed to retrieve a list of edits made to this page, query returned no data");
         this->Kill();
@@ -460,7 +480,6 @@ bool RevertQuery::ProcessRevert()
         this->Result->Failed = true;
         return true;
     }
-    QDomElement latest = l.at(0).toElement();
     // if the latest revid doesn't match our revid it means that someone made an edit
     bool passed = true;
     int depth = 0;

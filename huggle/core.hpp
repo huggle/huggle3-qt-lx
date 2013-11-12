@@ -247,6 +247,8 @@ namespace Huggle
             static void AppendQuery(Query* item);
             static void ExceptionHandler(Exception *exception);
             static QString Localize(QString key);
+            static QString Localize(QString key, QStringList parameters);
+            static QString Localize(QString key, QString parameters);
             static void LoadLocalizations();
             static bool ReportPreFlightCheck();
             static int RunningQueriesGetCount();

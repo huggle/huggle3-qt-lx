@@ -41,6 +41,8 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void on_listWidget_itemSelectionChanged();
 
+            void on_checkBox_clicked();
+
         private:
             Ui::Preferences *ui;
     };

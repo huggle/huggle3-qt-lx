@@ -125,9 +125,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->timer1 = new QTimer(this);
     this->ui->actionTag_2->setVisible(false);
-#ifdef PRODUCTION
-    this->ui->actionTag->setVisible(false);
-#endif
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
     this->timer1->start(200);
     this->fRemove = NULL;
@@ -168,9 +165,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout->close();
         delete layout;
     }
+    // these controls are for debugging only
     if (Configuration::Verbosity == 0)
     {
         ui->menuDebug->setVisible(false);
+        ui->actionList_all_QGC_items->setVisible(false);
+        ui->actionEdit_info->setVisible(false);
     }
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
     this->VandalDock->Connect();
