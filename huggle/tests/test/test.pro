@@ -117,7 +117,7 @@ HEADERS += \
     ../../uaareport.hpp \
     ../../terminalparser.hpp \
     ../../speedyform.hpp \
-    ../../sessionform.h \
+    ../../sessionform.hpp \
     ../../scorewordsdbform.hpp \
     ../../revertquery.hpp \
     ../../requestprotect.hpp \
