@@ -56,8 +56,11 @@ void HuggleTest::testCaseCoreTrim()
 
 void HuggleTest::testCaseScores()
 {
+    Huggle::Configuration::LocalConfig_ScoreWords.clear();
     Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
+    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
     Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::Configuration::Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
     edit->Page = new Huggle::WikiPage("test");
     edit->User = new Huggle::WikiUser("Harry, the vandal");
@@ -67,10 +70,10 @@ void HuggleTest::testCaseScores()
     QVERIFY2(edit->Score == 60, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
     QVERIFY2(edit->ScoreWords.contains("fuck"), "Invalud result for score words");
-    edit->DiffText = "fucking vagina!";
+    edit->DiffText = "fuc_k vagina!";
     edit->Score = 0;
     edit->ProcessWords();
-    QVERIFY2(edit->Score == 50, "Invalid result for score words");
+    QVERIFY2(edit->Score == 50, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
     edit->DiffText = "Hey bob, (fuck) there is some vagina.";
     edit->Score = 0;
@@ -78,6 +81,24 @@ void HuggleTest::testCaseScores()
     QVERIFY2(edit->Score == 60, "Invalid result for score words");
     QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
     QVERIFY2(edit->ScoreWords.contains("fuck"), "Invalud result for score words");
+    edit->DiffText = "Hey bob, (fuck) there is some vagina, let's fuck that vagina.";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 60, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    QVERIFY2(edit->ScoreWords.contains("vagina"), "Invalid result for score words");
+    QVERIFY2(edit->ScoreWords.contains("fuck"), "Invalud result for score words");
+    edit->DiffText = "Hey bob, there are vaginas over there";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 0, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    edit->DiffText = "Hey bob, mind if I'd be fucking with you?";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 20, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    edit->DiffText = "Hey bob, stop fuckin that vagina!!";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 50, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
 }
 

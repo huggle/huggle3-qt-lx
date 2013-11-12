@@ -154,9 +154,9 @@ namespace Huggle
             static int WriteTimeout;
             //! Whitelist is not useable
             static bool WhitelistDisabled;
-
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             static bool EnforceManualSoftwareRollback;
+            static QStringList Separators;
 
             //////////////////////////////////////////////
             // Local config

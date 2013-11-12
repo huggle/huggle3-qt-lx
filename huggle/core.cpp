@@ -74,6 +74,9 @@ void Core::Init()
     Core::LoadDB();
     Core::LoadLocalizations();
     Core::DebugLog("Loading queue");
+    // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
+    // keep it low but precise enough
+    Configuration::Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::_SafeMode)
     {
