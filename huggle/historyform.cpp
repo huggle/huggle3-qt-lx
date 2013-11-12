@@ -52,10 +52,8 @@ void HistoryForm::Update(WikiEdit *edit)
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(Core::Localize("historyform-retrieve-history"));
     this->ui->pushButton->setEnabled(true);
-    ui->tableWidget->clear();
-    QStringList header;
-    header << "ID" << "Date" << "User" << "Size" << "Summary";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
+    ui->tableWidget->clearContents();
+    this->Clear();
     if (this->t1 != NULL)
     {
         this->t1->stop();
@@ -156,10 +154,18 @@ void HistoryForm::on_pushButton_clicked()
         delete t1;
     }
     this->t1 = new QTimer(this);
-    ui->tableWidget->clear();
+    Clear();
+    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
+    this->t1->start(200);
+}
+
+void HistoryForm::Clear()
+{
     QStringList header;
     header << "ID" << "Date" << "User" << "Size" << "Summary";
     ui->tableWidget->setHorizontalHeaderLabels(header);
-    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start(200);
+    while (ui->tableWidget->rowCount() > 0)
+    {
+        ui->tableWidget->removeRow(0);
+    }
 }

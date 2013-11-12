@@ -42,6 +42,7 @@ namespace Huggle
             void on_pushButton_clicked();
 
         private:
+            void Clear();
             Ui::HistoryForm *ui;
             WikiEdit* CurrentEdit;
             ApiQuery *query;
