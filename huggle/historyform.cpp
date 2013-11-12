@@ -52,6 +52,10 @@ void HistoryForm::Update(WikiEdit *edit)
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(Core::Localize("historyform-retrieve-history"));
     this->ui->pushButton->setEnabled(true);
+    ui->tableWidget->clear();
+    QStringList header;
+    header << "ID" << "Date" << "User" << "Size" << "Summary";
+    ui->tableWidget->setHorizontalHeaderLabels(header);
     if (this->t1 != NULL)
     {
         this->t1->stop();
