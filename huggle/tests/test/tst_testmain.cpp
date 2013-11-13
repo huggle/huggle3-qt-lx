@@ -56,11 +56,11 @@ void HuggleTest::testCaseCoreTrim()
 
 void HuggleTest::testCaseScores()
 {
-    Huggle::Configuration::LocalConfig_ScoreWords.clear();
-    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
-    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
-    Huggle::Configuration::LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
-    Huggle::Configuration::Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.clear();
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
     edit->Page = new Huggle::WikiPage("test");
     edit->User = new Huggle::WikiUser("Harry, the vandal");
