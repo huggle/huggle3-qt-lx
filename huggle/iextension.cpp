@@ -11,21 +11,4 @@
 #include "iextension.hpp"
 
 using namespace Huggle;
-QList<iExtension*> iExtension::Extensions;
 
-iExtension::iExtension()
-{
-    this->ExtensionAuthor = "Unknown";
-    this->ExtensionDescription = "None";
-    this->ExtensionVersion = "0";
-    this->ExtensionName = "Unknown";
-    iExtension::Extensions.append(this);
-}
-
-iExtension::~iExtension()
-{
-    if (iExtension::Extensions.contains(this))
-    {
-        iExtension::Extensions.removeAll(this);
-    }
-}

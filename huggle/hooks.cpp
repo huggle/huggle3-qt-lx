@@ -20,7 +20,7 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
     int extension = 0;
     while (extension < Huggle::Core::Extensions.count())
     {
-        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        Huggle::iExtension *e = Huggle::Core::Extensions.at(extension);
         if (e->IsWorking())
         {
             e->Hook_EditPreProcess((void*)Edit);
@@ -38,7 +38,7 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
     int extension = 0;
     while (extension < Huggle::Core::Extensions.count())
     {
-        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        Huggle::iExtension *e = Huggle::Core::Extensions.at(extension);
         if (e->IsWorking())
         {
             e->Hook_EditPostProcess((void*)Edit);
@@ -77,7 +77,7 @@ void Huggle::Hooks::MainWindowIsLoad(Huggle::MainWindow *window)
     int extension = 0;
     while (extension < Huggle::Core::Extensions.count())
     {
-        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        Huggle::iExtension *e = Huggle::Core::Extensions.at(extension);
         if (e->IsWorking())
         {
             e->Hook_MainWindowOnLoad((void*)window);

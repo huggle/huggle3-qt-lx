@@ -29,14 +29,13 @@ namespace Huggle
     class iExtension
     {
         public:
-            static QList<iExtension *> Extensions;
-            iExtension();
+            iExtension() {}
             /*!
              * \brief IsWorking
              * \return if extension work
              */
             virtual bool IsWorking() { return false; }
-            virtual ~iExtension();
+            virtual ~iExtension() {}
             virtual bool Register() { return false; }
             /*!
              * \brief This is called when the extension is removed from system
@@ -56,11 +55,11 @@ namespace Huggle
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             //! Name of the extension
-            QString ExtensionName;
+            virtual QString GetExtensionName() { return "Unknown"; }
             //! User who created this thing
-            QString ExtensionAuthor;
-            QString ExtensionVersion;
-            QString ExtensionDescription;
+            virtual QString GetExtensionAuthor() { return ""; }
+            virtual QString GetExtensionVersion() { return "1.0"; }
+            virtual QString GetExtensionDescription() { return "No description"; }
     };
 }
 

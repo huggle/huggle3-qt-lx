@@ -46,11 +46,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         Core::DebugLog("Loading extension info");
         iExtension *extension = Huggle::Core::Extensions.at(c);
         ui->tableWidget->insertRow(0);
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionName));
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionVersion));
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionDescription));
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Loaded and running"));
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionVersion));
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
+        ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
+        ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
+        ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
     c = 0;
