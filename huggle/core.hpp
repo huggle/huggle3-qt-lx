@@ -105,6 +105,7 @@ namespace Huggle
     class Core
     {
         public:
+            static Core *HuggleCore;
             // Global variables
             static QDateTime StartupTime;
             //! Pointer to main
@@ -252,6 +253,7 @@ namespace Huggle
             static void LoadLocalizations();
             static bool ReportPreFlightCheck();
             static int RunningQueriesGetCount();
+            Core();
         private:
             //! List of all running queries
             static QList<Query*> RunningQueries;
@@ -261,7 +263,6 @@ namespace Huggle
             static ProcessorThread * Processor;
             //! List of all messages that are being sent
             static QList<Message*> Messages;
-            Core() {   }
             /*!
              * \brief Initializes a localization with given name
              *

@@ -12,6 +12,8 @@
 
 using namespace Huggle;
 
+Configuration Configuration::HuggleConfiguration = new Configuration();
+
 unsigned int Configuration::Verbosity = 0;
 WikiSite Configuration::Project("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
 bool Configuration::UsingSSL = true;
@@ -177,6 +179,11 @@ QString Configuration::LocalConfig_UAAPath = "Project:Usernames for administrato
 QString Configuration::LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
 QStringList Configuration::Separators;
 bool Configuration::RevertOnMultipleEdits = false;
+
+Configuration::Configuration()
+{
+
+}
 
 QString Configuration::GetURLProtocolPrefix()
 {

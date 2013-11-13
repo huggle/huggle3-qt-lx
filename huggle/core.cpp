@@ -17,6 +17,8 @@ using namespace Huggle;
 PythonEngine *Core::Python = NULL;
 #endif
 
+
+Core  * Core::HuggleCore = NULL;
 QString Core::HtmlHeader = "";
 QString Core::HtmlFooter = "</table></body></html>";
 
@@ -1113,6 +1115,11 @@ bool Core::ReportPreFlightCheck()
 int Core::RunningQueriesGetCount()
 {
     return RunningQueries.count();
+}
+
+Core::Core()
+{
+
 }
 
 Language::Language(QString name)

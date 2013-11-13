@@ -89,6 +89,8 @@ namespace Huggle
     class Configuration
     {
         public:
+            Configuration();
+            static Configuration *HuggleConfiguration;
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
