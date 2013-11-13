@@ -18,7 +18,7 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
         throw new Exception("Huggle::WikiEdit *Edit must not be NULL", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
     }
     int extension = 0;
-    while (extension < Huggle::iExtension::Extensions.count())
+    while (extension < Huggle::Core::Extensions.count())
     {
         Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
         if (e->IsWorking())
@@ -36,7 +36,7 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
         throw new Exception("Huggle::WikiEdit *Edit must not be NULL", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
     }
     int extension = 0;
-    while (extension < Huggle::iExtension::Extensions.count())
+    while (extension < Huggle::Core::Extensions.count())
     {
         Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
         if (e->IsWorking())
@@ -75,7 +75,7 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 void Huggle::Hooks::MainWindowIsLoad(Huggle::MainWindow *window)
 {
     int extension = 0;
-    while (extension < Huggle::iExtension::Extensions.count())
+    while (extension < Huggle::Core::Extensions.count())
     {
         Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
         if (e->IsWorking())

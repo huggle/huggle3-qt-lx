@@ -35,13 +35,13 @@ namespace Huggle
              * \brief IsWorking
              * \return if extension work
              */
-            bool IsWorking();
+            virtual bool IsWorking() { return false; }
             virtual ~iExtension();
             virtual bool Register() { return false; }
             /*!
              * \brief This is called when the extension is removed from system
              */
-            virtual void Quit() { Working = false; }
+            virtual bool Quit() { return false; }
             /*!
              * \brief Hook_EditPreProcess is called when edit is being pre processed
              * \param edit is a pointer to edit in question
@@ -61,8 +61,6 @@ namespace Huggle
             QString ExtensionAuthor;
             QString ExtensionVersion;
             QString ExtensionDescription;
-        private:
-            bool Working;
     };
 }
 
