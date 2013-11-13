@@ -71,3 +71,17 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
 
 }
+
+void Huggle::Hooks::MainWindowIsLoad(Huggle::MainWindow *window)
+{
+    int extension = 0;
+    while (extension < Huggle::iExtension::Extensions.count())
+    {
+        Huggle::iExtension *e = Huggle::iExtension::Extensions.at(extension);
+        if (e->IsWorking())
+        {
+            e->Hook_MainWindowOnLoad((void*)window);
+        }
+        extension++;
+    }
+}

@@ -39,6 +39,19 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
         c++;
     }
+    c = 0;
+    while (c < iExtension::Extensions.count())
+    {
+        iExtension *extension = iExtension::Extensions.at(c);
+        ui->tableWidget->insertRow(0);
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionName));
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionVersion));
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionDescription));
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Loaded and running"));
+        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->ExtensionVersion));
+        c++;
+    }
+    c = 0;
     this->Disable();
     // options
     /// \todo RELEASE BLOCKER implement the other checkboxes as well

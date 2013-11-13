@@ -172,6 +172,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->actionList_all_QGC_items->setVisible(false);
         ui->actionEdit_info->setVisible(false);
     }
+    Hooks::MainWindowIsLoad(this);
     Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
     this->VandalDock->Connect();
 }
@@ -1058,6 +1059,10 @@ void MainWindow::Exit()
     }
     layout->close();
     delete layout;
+    if (Configuration::Restricted)
+    {
+        Core::Shutdown();
+    }
     this->Shutdown = ShutdownOpRetrievingWhitelist;
     if (Core::PrimaryFeedProvider != NULL)
     {

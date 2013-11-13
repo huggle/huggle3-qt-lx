@@ -18,10 +18,14 @@
 #include "exception.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
+#include "mainwindow.hpp"
 
 namespace Huggle
 {
     class WikiUser;
+    class WikiPage;
+    class Exception;
+    class MainWindow;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
     class Hooks
@@ -34,6 +38,7 @@ namespace Huggle
             static void OnWarning(WikiUser *User);
             static void Suspicious(WikiEdit *Edit);
             static void BadnessScore(WikiUser *User, int Score);
+            static void MainWindowIsLoad(MainWindow *window);
     };
 }
 

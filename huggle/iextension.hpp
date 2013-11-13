@@ -54,11 +54,14 @@ namespace Huggle
             virtual void Hook_EditScore(void *edit) {}
             virtual void Hook_EditPostProcess(void *edit) {}
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
-        private:
+            virtual void Hook_MainWindowOnLoad(void *window) {}
+            //! Name of the extension
             QString ExtensionName;
+            //! User who created this thing
             QString ExtensionAuthor;
             QString ExtensionVersion;
             QString ExtensionDescription;
+        private:
             bool Working;
     };
 }
