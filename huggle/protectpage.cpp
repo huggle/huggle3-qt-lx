@@ -52,7 +52,7 @@ void ProtectPage::getTokenToProtect()
     /// \todo LOCALIZE ME
     ptkq->Target = "Fetching token to protect" + this->ptpge->PageName;
     ptkq->RegisterConsumer("ProtectPage::getTokenToProtect()");
-    Core::AppendQuery(ptkq);
+    Core::HuggleCore->AppendQuery(ptkq);
     ptkq->Process();
 
     this->tt = new QTimer(this);
@@ -96,7 +96,7 @@ void ProtectPage::checkTokenToProtect()
     QDomNodeList l = r.elementsByTagName("page");
     if (l.count() == 0)
     {
-        Core::DebugLog(this->ptkq->Result->Data);
+        Core::HuggleCore->DebugLog(this->ptkq->Result->Data);
         /// \todo LOCALIZE ME
         Failed("No page info was available (are you an admin?)");
         return;
@@ -111,7 +111,7 @@ void ProtectPage::checkTokenToProtect()
     this->PtQueryPhase++;
     this->ptkq->UnregisterConsumer("ProtectPage::getTokenToProtect");
     this->ptkq = NULL;
-    Core::DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
+    Core::HuggleCore->DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
     this->ptpt = new ApiQuery();
     ptpt->SetAction(ActionProtect);
     QString protection = "edit=sysop|move=sysop";
@@ -131,7 +131,7 @@ void ProtectPage::checkTokenToProtect()
             + "&token=" + QUrl::toPercentEncoding(protecttoken);
     ptpt->Target = "Protecting " + this->ptpge->PageName;
     ptpt->RegisterConsumer("ProtectPage");
-    Core::AppendQuery(ptpt);
+    Core::HuggleCore->AppendQuery(ptpt);
     ptpt->Process();
 }
 
@@ -188,7 +188,7 @@ void ProtectPage::Protect()
         return;
     }
     ui->pushButton_2->setText("Page has been protected");
-    Core::DebugLog("The page " + ptpge->PageName + " has successfully been protected");
+    Core::HuggleCore->DebugLog("The page " + ptpge->PageName + " has successfully been protected");
     this->ptpt->UnregisterConsumer("ProtectPage");
     this->tt->stop();
     ptpt = NULL;

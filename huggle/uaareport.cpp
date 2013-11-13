@@ -51,7 +51,7 @@ void UAAReport::getPageContents()
     /// \todo LOCALIZE THIS
     qUAApage->Target = "Getting content of UAA";
     qUAApage->RegisterConsumer("UAAReport::getPageContents()");
-    Core::AppendQuery(qUAApage);
+    Core::HuggleCore->AppendQuery(qUAApage);
     qUAApage->Process();
 
     if (this->uT != NULL)
@@ -99,14 +99,14 @@ void UAAReport::onTick()
     this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
     /// \todo Check if user isn't already reported
     this->qUAApage = NULL;
-    Core::DebugLog("Contents of UAA: " + this->dr);
+    Core::HuggleCore->DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
-    Core::EditPage(Core::UAAP, dr, uaasum, true);
+    Core::HuggleCore->EditPage(Core::HuggleCore->UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
-    Core::Log("Reporting" + this->User->Username + " to UAA" );
+    Core::HuggleCore->Log("Reporting" + this->User->Username + " to UAA" );
     this->ui->pushButton->setText("Reported");
 
 }
@@ -185,7 +185,7 @@ void UAAReport::on_pushButton_3_clicked()
     qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
             + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
     qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
-    Core::AppendQuery(qChUAApage);
+    Core::HuggleCore->AppendQuery(qChUAApage);
     qChUAApage->Process();
 
     this->cuT = new QTimer(this);

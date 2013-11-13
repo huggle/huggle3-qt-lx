@@ -55,7 +55,7 @@ void BlockUser::GetToken()
     /// \todo LOCALIZE ME
     b->Target = "Getting token to block" + this->user->Username;
     b->RegisterConsumer("BlockUser::GetToken");
-    Core::AppendQuery(b);
+    Core::HuggleCore->AppendQuery(b);
     b->Process();
 
     this->t0 = new QTimer(this);
@@ -104,7 +104,7 @@ void BlockUser::CheckToken()
     QDomNodeList l = d.elementsByTagName("user");
     if (l.count() == 0)
     {
-        Core::DebugLog(this->b->Result->Data);
+        Core::HuggleCore->DebugLog(this->b->Result->Data);
         /// \todo LOCALIZE ME
         Failed("no user info was present in query (are you sysop?)");
         return;
@@ -120,7 +120,7 @@ void BlockUser::CheckToken()
     this->QueryPhase++;
     this->b->UnregisterConsumer("BlockUser::GetToken");
     this->b = NULL;
-    Core::DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
+    Core::HuggleCore->DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
 
     // let's block them
     this->tb = new ApiQuery();
@@ -142,7 +142,7 @@ void BlockUser::CheckToken()
     tb->Target = "Blocking" + this->user->Username;
     tb->UsingPOST = true;
     tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
-    Core::AppendQuery(tb);
+    Core::HuggleCore->AppendQuery(tb);
     tb->Process();
 }
 
@@ -165,7 +165,7 @@ void BlockUser::Block()
     }
     // let's assume the user was blocked
     ui->pushButton->setText("Blocked");
-    Core::DebugLog("block result: " + this->tb->Result->Data, 2);
+    Core::HuggleCore->DebugLog("block result: " + this->tb->Result->Data, 2);
     this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
     this->t0->stop();
 }
@@ -216,7 +216,7 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
         blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessageIndef;
     }
     QString blocksum = Configuration::HuggleConfiguration->LocalConfig_BlockSummary;
-    Core::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
+    Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
 }
 
 #endif

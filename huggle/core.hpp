@@ -107,57 +107,57 @@ namespace Huggle
         public:
             static Core *HuggleCore;
             // Global variables
-            static QDateTime StartupTime;
+            QDateTime StartupTime;
             //! Pointer to main
-            static MainWindow *Main;
+            MainWindow *Main;
             //! Login form
-            static Login *f_Login;
+            Login *f_Login;
             //! This string contains a html header
-            static QString HtmlHeader;
+            QString HtmlHeader;
             //! This string contains a html footer
-            static QString HtmlFooter;
+            QString HtmlFooter;
             //! Pointer to primary feed provider
-            static HuggleFeed *PrimaryFeedProvider;
+            HuggleFeed *PrimaryFeedProvider;
             //! Pointer to secondary feed provider
-            static HuggleFeed *SecondaryFeedProvider;
+            HuggleFeed *SecondaryFeedProvider;
             //! This is a list of all edits that are being processed by some way
             //! whole list needs to be checked and probed everytime once a while
-            static QList<WikiEdit*> ProcessingEdits;
+            QList<WikiEdit*> ProcessingEdits;
             //! Pending changes
-            static QList<EditQuery*> PendingMods;
+            QList<EditQuery*> PendingMods;
             //! List of extensions loaded in huggle
-            static QList<iExtension*> Extensions;
-            static QList<HuggleQueueFilter *> FilterDB;
+            QList<iExtension*> Extensions;
+            QList<HuggleQueueFilter *> FilterDB;
             //! Languages D:
-            static QList<Language*> LocalizationData;
+            QList<Language*> LocalizationData;
             //! Pointer to AIV page
-            static WikiPage *AIVP;
+            WikiPage *AIVP;
             //! Pointer to UAA page
-            static WikiPage *UAAP;
+            WikiPage *UAAP;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
-            static bool Running;
+            bool Running;
 
 #ifdef PYTHONENGINE
-            static PythonEngine *Python;
+            PythonEngine *Python;
 #endif
 
             //! Function which is called as one of first when huggle is loaded
-            static void Init();
+            void Init();
             //! Write text to terminal as well as ring log
             /*!
              * \param Message Message to log
              */
-            static void Log(QString Message);
+            void Log(QString Message);
             //! Load extensions (libraries as well as python)
-            static void ExtensionLoad();
+            void ExtensionLoad();
             /*!
              * \brief VersionRead - read the version from embedded git file
              *
              * This function may be called also from terminal parser
              */
-            static void VersionRead();
+            void VersionRead();
             //! This log is only shown if verbosity is same or larger than requested verbosity
-            static void DebugLog(QString Message, unsigned int Verbosity = 1);
+            void DebugLog(QString Message, unsigned int Verbosity = 1);
             //! Helper function that will return URL of project in question
             /*!
              * \param Project Site
@@ -174,29 +174,29 @@ namespace Huggle
             static QString GetProjectWikiURL();
             //! Return a script url like http://en.wikipedia.org/w/
             static QString GetProjectScriptURL();
-            static void ProcessEdit(WikiEdit *e);
+            void ProcessEdit(WikiEdit *e);
             //! Terminate the process, call this after you release all resources and finish all queries
-            static void Shutdown();
+            void Shutdown();
             //! Return a ring log represented as 1 huge string
-            static QString RingLogToText();
+            QString RingLogToText();
             /*!
              * \brief Return a ring log as qstring list
              * \return QStringList
              */
-            static QStringList RingLogToQStringList();
-            static void InsertToRingLog(QString text);
+            QStringList RingLogToQStringList();
+            void InsertToRingLog(QString text);
             //! Display a message box telling user that function is not allowed during developer mode
-            static void DeveloperError();
+            void DeveloperError();
             //! Check the edit summary and similar in order to
             //! determine several edit attributes etc
-            static void PreProcessEdit(WikiEdit *_e);
+            void PreProcessEdit(WikiEdit *_e);
             //! Perform more expensive tasks to finalize
             //! edit processing
-            static void PostProcessEdit(WikiEdit *_e);
+            void PostProcessEdit(WikiEdit *_e);
             //! Check if all running queries are finished and if so it removes them from list
-            static void CheckQueries();
+            void CheckQueries();
             //! Check if we can revert this edit
-            static bool PreflightCheck(WikiEdit *_e);
+            bool PreflightCheck(WikiEdit *_e);
             /*!
              * \brief RevertEdit Reverts the edit
              * \param _e Pointer to edit that needs to be reverted
@@ -206,25 +206,25 @@ namespace Huggle
              * \param keep Whether the query produced by this function should not be automatically deleted
              * \return Pointer to api query that executes this revert
              */
-            static RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
-            static void LoadDB();
+            RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
+            void LoadDB();
             //! Remove leading and finishing space of string
-            static QString Trim(QString text);
+            QString Trim(QString text);
             //! Remove edit in proper manner
-            static void DeleteEdit(WikiEdit *edit);
+            void DeleteEdit(WikiEdit *edit);
             // the mess bellow exist because of a way how huggle config stores the lists
             static QString GetSummaryOfWarningTypeFromWarningKey(QString key);
             static QString GetNameOfWarningTypeFromWarningKey(QString key);
             static QString GetKeyOfWarningTypeFromWarningName(QString id);
             //! Parse a part patterns for score words
-            static void ParsePats(QString text);
+            void ParsePats(QString text);
             //! Load a definitions of problematic users, see WikiUser::ProblematicUsers for details
-            static void LoadDefs();
+            void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
-            static void SaveDefs();
+            void SaveDefs();
             static QString GetValueFromKey(QString item);
             static QString GetKeyFromValue(QString item);
-            static void ParseWords(QString text);
+            void ParseWords(QString text);
             /*!
              * \brief MessageUser Message user
              * \param user Pointer to user
@@ -236,34 +236,34 @@ namespace Huggle
              * the system will wait for it to finish before the message is sent
              * \return
              */
-            static Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
-            static void FinalizeMessages();
-            static QString RetrieveTemplateToWarn(QString type);
-            static EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
+            void FinalizeMessages();
+            QString RetrieveTemplateToWarn(QString type);
+            EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched
              * This will insert it to a process list in main form
              * \param item Query that is about to be inserted to list of running queries
              */
-            static void AppendQuery(Query* item);
+            void AppendQuery(Query* item);
             static void ExceptionHandler(Exception *exception);
-            static QString Localize(QString key);
-            static QString Localize(QString key, QStringList parameters);
-            static QString Localize(QString key, QString parameters);
-            static void LoadLocalizations();
-            static bool ReportPreFlightCheck();
-            static int RunningQueriesGetCount();
+            QString Localize(QString key);
+            QString Localize(QString key, QStringList parameters);
+            QString Localize(QString key, QString parameters);
+            void LoadLocalizations();
+            bool ReportPreFlightCheck();
+            int RunningQueriesGetCount();
             Core();
             ~Core();
         private:
             //! List of all running queries
-            static QList<Query*> RunningQueries;
+            QList<Query*> RunningQueries;
             //! Ring log is a buffer that contains system messages
-            static QStringList RingLog;
+            QStringList RingLog;
             //! This is a post-processor for edits
-            static ProcessorThread * Processor;
+            ProcessorThread * Processor;
             //! List of all messages that are being sent
-            static QList<Message*> Messages;
+            QList<Message*> Messages;
             /*!
              * \brief Initializes a localization with given name
              *

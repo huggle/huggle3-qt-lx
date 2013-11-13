@@ -50,7 +50,7 @@ void WebserverQuery::Process()
     }
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
-    Core::DebugLog("Processing webserver request " + this->URL, 2);
+    Core::HuggleCore->DebugLog("Processing webserver request " + this->URL, 2);
 }
 
 void WebserverQuery::Kill()

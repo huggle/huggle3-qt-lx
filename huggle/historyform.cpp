@@ -17,7 +17,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
 {
     ui->setupUi(this);
     ui->pushButton->setEnabled(false);
-    ui->pushButton->setText(Core::Localize("historyform-no-info"));
+    ui->pushButton->setText(Core::HuggleCore->Localize("historyform-no-info"));
     ui->tableWidget->setColumnCount(5);
     QStringList header;
     header << "ID" << "Date" << "User" << "Size" << "Summary";
@@ -50,7 +50,7 @@ void HistoryForm::Update(WikiEdit *edit)
         throw new Exception("WikiEdit edit must not be NULL", "void HistoryForm::Update(WikiEdit *edit)");
     }
     this->CurrentEdit = edit;
-    this->ui->pushButton->setText(Core::Localize("historyform-retrieve-history"));
+    this->ui->pushButton->setText(Core::HuggleCore->Localize("historyform-retrieve-history"));
     this->ui->pushButton->setEnabled(true);
     ui->tableWidget->clearContents();
     this->Clear();
@@ -81,7 +81,7 @@ void HistoryForm::onTick01()
     {
         /// \todo Here we should log this error to debug log
         ui->pushButton->setEnabled(true);
-        Core::Log("Error: unable to retrieve history");
+        Core::HuggleCore->Log("Error: unable to retrieve history");
         this->query->UnregisterConsumer("HistoryForm");
         this->query = NULL;
         this->t1->stop();
@@ -141,7 +141,7 @@ void HistoryForm::onTick01()
 
 void HistoryForm::on_pushButton_clicked()
 {
-    ui->pushButton->setText(Core::Localize("historyform-retrieving-history"));
+    ui->pushButton->setText(Core::HuggleCore->Localize("historyform-retrieving-history"));
     ui->pushButton->setEnabled(false);
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);

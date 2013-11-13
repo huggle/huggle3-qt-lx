@@ -42,14 +42,14 @@ void Message::Send()
     /// \todo LOCALIZE ME
     query->Target = "Retrieving token to edit " + user->GetTalk();
     query->RegisterConsumer("Message::Send()");
-    Core::AppendQuery(query);
+    Core::HuggleCore->AppendQuery(query);
     query->Process();
 }
 
 void Message::Fail(QString reason)
 {
     /// \todo LOCALIZE ME
-    Core::Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
+    Core::HuggleCore->Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
     Done = true;
     Sending = false;
     query->UnregisterConsumer("Message::Send()");
@@ -120,7 +120,7 @@ void Message::Finish()
         {
             /// \todo LOCALIZE ME
             Fail("no token was returned by request");
-            Core::DebugLog("No page");
+            Core::HuggleCore->DebugLog("No page");
             return;
         }
         QDomElement element = l.at(0).toElement();
@@ -128,7 +128,7 @@ void Message::Finish()
         {
             /// \todo LOCALIZE ME
             Fail("the result doesn't contain the token");
-            Core::DebugLog("No token");
+            Core::HuggleCore->DebugLog("No token");
             return;
         }
         token = element.attribute("edittoken");
@@ -150,7 +150,7 @@ void Message::Finish()
                     + "&text=" + QUrl::toPercentEncoding(this->text)
                     + "&token=" + QUrl::toPercentEncoding(this->token);
         }
-        Core::AppendQuery(query);
+        Core::HuggleCore->AppendQuery(query);
         query->Process();
         return;
     }
@@ -179,15 +179,15 @@ void Message::Finish()
             if (element.attribute("result") == "Success")
             {
                 /// \todo LOCALIZE ME
-                Core::Log("Successfuly delivered message to " + user->Username);
+                Core::HuggleCore->Log("Successfuly delivered message to " + user->Username);
                 sent = true;
                 HistoryItem item;
                 item.Result = "Success";
                 item.Type = HistoryMessage;
                 item.Target = user->Username;
-                if (Core::Main != NULL)
+                if (Core::HuggleCore->Main != NULL)
                 {
-                    Core::Main->_History->Prepend(item);
+                    Core::HuggleCore->Main->_History->Prepend(item);
                 }
             }
         }
@@ -196,8 +196,8 @@ void Message::Finish()
     if (!sent)
     {
         /// \todo LOCALIZE ME
-        Core::Log("Failed to deliver a message to " + user->Username + " please check logs");
-        Core::DebugLog(query->Result->Data);
+        Core::HuggleCore->Log("Failed to deliver a message to " + user->Username + " please check logs");
+        Core::HuggleCore->DebugLog(query->Result->Data);
     }
 
     query->UnregisterConsumer("Message::Finish()");

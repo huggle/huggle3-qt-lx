@@ -37,7 +37,7 @@ void VandalNw::Connect()
     if (!Configuration::HuggleConfiguration->VandalNw_Login)
     {
         /// \todo LOCALIZE ME
-        Core::Log("Vandalism network isn't allowed in options");
+        Core::HuggleCore->Log("Vandalism network isn't allowed in options");
         return;
     } else
     {
@@ -124,13 +124,13 @@ void VandalNw::onTick()
                 if (Command == "GOOD")
                 {
                     int RevID = revid.toInt();
-                    Core::Main->Queue1->DeleteByRevID(RevID);
+                    Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
                     this->Insert(m->user.Nick + " seen a good edit " + revid);
                 }
                 if (Command == "ROLLBACK")
                 {
                     int RevID = revid.toInt();
-                    Core::Main->Queue1->DeleteByRevID(RevID);
+                    Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
                     this->Insert(m->user.Nick + " did a rollback of " + revid);
                 }
                 if (Command == "SUSPICIOUS")

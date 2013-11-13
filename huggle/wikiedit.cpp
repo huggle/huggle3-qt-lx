@@ -82,7 +82,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->ProcessingQuery->Result->Failed)
         {
             /// \todo LOCALIZE ME
-            Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+            Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
         } else
         {
             // parse the diff now
@@ -109,15 +109,15 @@ bool WikiEdit::FinalizePostProcessing()
                 } else
                 {
                     /// \todo LOCALIZE ME
-                    Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
                 }
             } else
             {
                 if (!missing)
                 {
                     /// \todo LOCALIZE ME
-                    Core::Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
-                    Core::DebugLog(this->ProcessingQuery->Result->Data);
+                    Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Core::HuggleCore->DebugLog(this->ProcessingQuery->Result->Data);
                 }
             }
         }
@@ -187,7 +187,7 @@ bool WikiEdit::FinalizePostProcessing()
             }
         } else
         {
-            Core::DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + DifferenceQuery->Result->Data);
+            Core::HuggleCore->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + DifferenceQuery->Result->Data);
         }
         // we are done processing the diff
         this->ProcessingDiff = false;
@@ -202,7 +202,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->DiffText == "")
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
+        Core::HuggleCore->Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
     this->ProcessingQuery->UnregisterConsumer("WikiEdit::PostProcess()");
@@ -296,7 +296,7 @@ void WikiEdit::PostProcess()
     this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(this->User->GetTalk());
     this->ProcessingQuery->RegisterConsumer("WikiEdit::PostProcess()");
-    Core::AppendQuery(this->ProcessingQuery);
+    Core::HuggleCore->AppendQuery(this->ProcessingQuery);
     this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
     this->ProcessingQuery->Process();
     this->DifferenceQuery = new ApiQuery();
@@ -314,7 +314,7 @@ void WikiEdit::PostProcess()
     }
     this->DifferenceQuery->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
-    Core::AppendQuery(this->DifferenceQuery);
+    Core::HuggleCore->AppendQuery(this->DifferenceQuery);
     this->DifferenceQuery->RegisterConsumer("WikiEdit::PostProcess()");
     this->DifferenceQuery->Process();
     this->ProcessingDiff = true;
@@ -341,7 +341,7 @@ QList<WikiEdit*> ProcessorThread::PendingEdits;
 
 void ProcessorThread::run()
 {
-    while(Core::Running)
+    while(Core::HuggleCore->Running)
     {
         ProcessorThread::EditLock.lock();
         int e=0;

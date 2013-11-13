@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
+    this->fUaaReportForm = NULL;
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
@@ -60,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    QStringList _log = Core::RingLogToQStringList();
+    QStringList _log = Core::HuggleCore->RingLogToQStringList();
     int c=0;
     while (c<_log.count())
     {
@@ -76,28 +77,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (!Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
         /// \todo LOCALIZE ME
-        Core::Log("Feed: irc is disabled by project config");
+        Core::HuggleCore->Log("Feed: irc is disabled by project config");
     }
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
-        Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
+        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
         ui->actionIRC->setChecked(true);
-        if (!Core::PrimaryFeedProvider->Start())
+        if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
             /// \todo LOCALIZE ME
-            Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
-            delete Core::PrimaryFeedProvider;
+            Core::HuggleCore->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+            delete Core::HuggleCore->PrimaryFeedProvider;
             ui->actionIRC->setChecked(false);
             ui->actionWiki->setChecked(true);
-            Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-            Core::PrimaryFeedProvider->Start();
+            Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     } else
     {
         ui->actionIRC->setChecked(false);
         ui->actionWiki->setChecked(true);
-        Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-        Core::PrimaryFeedProvider->Start();
+        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        Core::HuggleCore->PrimaryFeedProvider->Start();
     }
     if (Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count() > 0)
     {
@@ -132,17 +133,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QFile *layout = NULL;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
-        Core::DebugLog("Loading state");
+        Core::HuggleCore->DebugLog("Loading state");
         layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
             /// \todo LOCALIZE ME
-            Core::Log("ERROR: Unable to read state from a config file");
+            Core::HuggleCore->Log("ERROR: Unable to read state from a config file");
         } else
         {
             if (!this->restoreState(layout->readAll()))
             {
-                Core::DebugLog("Failed to restore state");
+                Core::HuggleCore->DebugLog("Failed to restore state");
             }
         }
         layout->close();
@@ -150,16 +151,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_geometry"))
     {
-        Core::DebugLog("Loading geometry");
+        Core::HuggleCore->DebugLog("Loading geometry");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
         if (!layout->open(QIODevice::ReadOnly))
         {
-            Core::Log("ERROR: Unable to read geometry from a config file");
+            Core::HuggleCore->Log("ERROR: Unable to read geometry from a config file");
         } else
         {
             if (!this->restoreGeometry(layout->readAll()))
             {
-                Core::DebugLog("Failed to restore layout");
+                Core::HuggleCore->DebugLog("Failed to restore layout");
             }
         }
         layout->close();
@@ -173,7 +174,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->actionEdit_info->setVisible(false);
     }
     Hooks::MainWindowIsLoad(this);
-    Core::Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
+    Core::HuggleCore->Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
     this->VandalDock->Connect();
 }
 
@@ -217,14 +218,14 @@ void MainWindow::_ReportUser()
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
     if (this->CurrentEdit->User->IsReported)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: This user is already reported");
+        Core::HuggleCore->Log("ERROR: This user is already reported");
         return;
     }
 
@@ -273,7 +274,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
             break;
         }
         this->Historical.removeAt(0);
-        Core::DeleteEdit(prev);
+        Core::HuggleCore->DeleteEdit(prev);
     }
     if (this->Historical.contains(e) == false)
     {
@@ -353,7 +354,7 @@ void MainWindow::RequestPD()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     if (this->CurrentEdit == NULL)
@@ -388,30 +389,30 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: Unable to revert, edit is null");
+        Core::HuggleCore->Log("ERROR: Unable to revert, edit is null");
         return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: This edit is still being processed, please wait");
+        Core::HuggleCore->Log("ERROR: This edit is still being processed, please wait");
         return NULL;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
     {
         /// \todo LOCALIZE ME
-        Core::Log("WARNING: Rollback token for edit " + this->CurrentEdit->Page->PageName + " could not be retrieved, fallback to manual edit");
+        Core::HuggleCore->Log("WARNING: Rollback token for edit " + this->CurrentEdit->Page->PageName + " could not be retrieved, fallback to manual edit");
         rollback = false;
     }
 
-    if (Core::PreflightCheck(this->CurrentEdit))
+    if (Core::HuggleCore->PreflightCheck(this->CurrentEdit))
     {
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
-        RevertQuery *q = Core::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
+        RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
         {
             this->Queue1->Next();
@@ -425,13 +426,13 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 {
     if (this->CurrentEdit == NULL)
     {
-        Core::DebugLog("NULL");
+        Core::HuggleCore->DebugLog("NULL");
         return false;
     }
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return false;
     }
 
@@ -447,7 +448,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
         {
             return false;
         }
-        if (Core::ReportPreFlightCheck())
+        if (Core::HuggleCore->ReportPreFlightCheck())
         {
             this->_ReportUser();
         }
@@ -456,12 +457,12 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     QString __template = WarningType + QString::number(this->CurrentEdit->User->WarningLevel);
 
-    QString warning = Core::RetrieveTemplateToWarn(__template);
+    QString warning = Core::HuggleCore->RetrieveTemplateToWarn(__template);
 
     if (warning == "")
     {
         /// \todo LOCALIZE ME
-        Core::Log("There is no such warning template " + __template);
+        Core::HuggleCore->Log("There is no such warning template " + __template);
         return false;
     }
 
@@ -487,7 +488,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
     /// \todo Properly implement system to ensure that section head is not posted after level 1 warning
-    Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
+    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true, dependency);
     Hooks::OnWarning(this->CurrentEdit->User);
 
@@ -549,23 +550,23 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_MainWindow_destroyed()
 {
-    Core::Shutdown();
+    Core::HuggleCore->Shutdown();
 }
 
 void MainWindow::on_Tick()
 {
-    Core::FinalizeMessages();
+    Core::HuggleCore->FinalizeMessages();
     bool RetrieveEdit = true;
     GC::DeleteOld();
     // if there is no working feed, let's try to fix it
-    if (Core::PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
+    if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
-        Core::Log("Failure of primary feed provider, trying to recover");
-        if (!Core::PrimaryFeedProvider->Restart())
+        Core::HuggleCore->Log("Failure of primary feed provider, trying to recover");
+        if (!Core::HuggleCore->PrimaryFeedProvider->Restart())
         {
-            delete Core::PrimaryFeedProvider;
-            Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-            Core::PrimaryFeedProvider->Start();
+            delete Core::HuggleCore->PrimaryFeedProvider;
+            Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     }
     // check if queue isn't full
@@ -573,7 +574,7 @@ void MainWindow::on_Tick()
     {
         if (ui->actionStop_feed->isChecked())
         {
-            Core::PrimaryFeedProvider->Pause();
+            Core::HuggleCore->PrimaryFeedProvider->Pause();
             RetrieveEdit = false;
         } else
         {
@@ -583,21 +584,21 @@ void MainWindow::on_Tick()
     {
         if (ui->actionStop_feed->isChecked())
         {
-            if (Core::PrimaryFeedProvider->IsPaused())
+            if (Core::HuggleCore->PrimaryFeedProvider->IsPaused())
             {
-                Core::PrimaryFeedProvider->Resume();
+                Core::HuggleCore->PrimaryFeedProvider->Resume();
             }
         }
     }
     if (RetrieveEdit)
     {
-        if (Core::PrimaryFeedProvider->ContainsEdit())
+        if (Core::HuggleCore->PrimaryFeedProvider->ContainsEdit())
         {
             // we take the edit and start post processing it
-            WikiEdit *edit = Core::PrimaryFeedProvider->RetrieveEdit();
+            WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
             if (edit != NULL)
             {
-                Core::PostProcessEdit(edit);
+                Core::HuggleCore->PostProcessEdit(edit);
                 PendingEdits.append(edit);
             }
         }
@@ -619,8 +620,8 @@ void MainWindow::on_Tick()
         }
     }
     /// \todo LOCALIZE ME
-    QString t = "All systems go! - currently processing " + QString::number(Core::ProcessingEdits.count())
-            + " edits and " + QString::number(Core::RunningQueriesGetCount()) + " queries."
+    QString t = "All systems go! - currently processing " + QString::number(Core::HuggleCore->ProcessingEdits.count())
+            + " edits and " + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
             + " whitelisted users and you have "
             + QString::number(HuggleQueueItemLabel::Count)
@@ -632,15 +633,15 @@ void MainWindow::on_Tick()
     }
     this->Status->setText(t);
     // let's refresh the edits that are being post processed
-    if (Core::ProcessingEdits.count() > 0)
+    if (Core::HuggleCore->ProcessingEdits.count() > 0)
     {
         int Edit = 0;
-        while (Edit < Core::ProcessingEdits.count())
+        while (Edit < Core::HuggleCore->ProcessingEdits.count())
         {
-            if (Core::ProcessingEdits.at(Edit)->FinalizePostProcessing())
+            if (Core::HuggleCore->ProcessingEdits.at(Edit)->FinalizePostProcessing())
             {
-                WikiEdit *e = Core::ProcessingEdits.at(Edit);
-                Core::ProcessingEdits.removeAt(Edit);
+                WikiEdit *e = Core::HuggleCore->ProcessingEdits.at(Edit);
+                Core::HuggleCore->ProcessingEdits.removeAt(Edit);
                 e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
             }
             else
@@ -649,7 +650,7 @@ void MainWindow::on_Tick()
             }
         }
     }
-    Core::CheckQueries();
+    Core::HuggleCore->CheckQueries();
     this->lUnwrittenLogs.lock();
     if (this->UnwrittenLogs.count() > 0)
     {
@@ -724,7 +725,7 @@ void MainWindow::on_Tick2()
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
             WikiPage *uc = new WikiPage(page);
-            this->eq = Core::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
+            this->eq = Core::HuggleCore->EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
             this->eq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
             delete uc;
             return;
@@ -736,11 +737,11 @@ void MainWindow::on_Tick2()
         {
             return;
         }
-        Core::Log(this->eq->Result->Data);
+        Core::HuggleCore->Log(this->eq->Result->Data);
         this->eq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->eq = NULL;
         this->wlt->stop();
-        Core::Shutdown();
+        Core::HuggleCore->Shutdown();
     }
 }
 
@@ -762,7 +763,7 @@ void MainWindow::on_actionWarn_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     this->Warn("warning", NULL);
@@ -776,7 +777,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -791,7 +792,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     this->Warn("warning", NULL);
@@ -805,7 +806,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -830,7 +831,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -855,7 +856,7 @@ void MainWindow::on_actionRevert_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     this->Revert();
@@ -905,7 +906,7 @@ void MainWindow::CustomRevert()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     QAction *revert = (QAction*) QObject::sender();
@@ -922,7 +923,7 @@ void MainWindow::CustomRevertWarn()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -946,7 +947,7 @@ void MainWindow::CustomWarn()
 {
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -984,7 +985,7 @@ void MainWindow::ForceWarn(int level)
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -995,12 +996,12 @@ void MainWindow::ForceWarn(int level)
 
     QString __template = "warning" + QString::number(level);
 
-    QString warning = Core::RetrieveTemplateToWarn(__template);
+    QString warning = Core::HuggleCore->RetrieveTemplateToWarn(__template);
 
     if (warning == "")
     {
         /// \todo LOCALIZE ME
-        Core::Log("There is no such warning template " + __template);
+        Core::HuggleCore->Log("There is no such warning template " + __template);
         return;
     }
 
@@ -1025,7 +1026,7 @@ void MainWindow::ForceWarn(int level)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
-    Core::MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
+    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
                       title, true);
 }
 
@@ -1041,7 +1042,7 @@ void MainWindow::Exit()
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: Unable to write state to a config file");
+        Core::HuggleCore->Log("ERROR: Unable to write state to a config file");
     } else
     {
         layout->write(this->saveState());
@@ -1052,7 +1053,7 @@ void MainWindow::Exit()
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: Unable to write geometry to a config file");
+        Core::HuggleCore->Log("ERROR: Unable to write geometry to a config file");
     } else
     {
         layout->write(this->saveGeometry());
@@ -1061,12 +1062,12 @@ void MainWindow::Exit()
     delete layout;
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::Shutdown();
+        Core::HuggleCore->Shutdown();
     }
     this->Shutdown = ShutdownOpRetrievingWhitelist;
-    if (Core::PrimaryFeedProvider != NULL)
+    if (Core::HuggleCore->PrimaryFeedProvider != NULL)
     {
-        Core::PrimaryFeedProvider->Stop();
+        Core::HuggleCore->PrimaryFeedProvider->Stop();
     }
     if (this->fWaiting != NULL)
     {
@@ -1093,30 +1094,30 @@ void MainWindow::ReconnectIRC()
     if (!Configuration::HuggleConfiguration->UsingIRC)
     {
         /// \todo LOCALIZE ME
-        Core::Log("IRC is disabled by project or huggle configuration, you need to enable it first");
+        Core::HuggleCore->Log("IRC is disabled by project or huggle configuration, you need to enable it first");
         return;
     }
-    Core::Log("Reconnecting to IRC");
-    Core::PrimaryFeedProvider->Stop();
-    while (!Core::PrimaryFeedProvider->IsStopped())
+    Core::HuggleCore->Log("Reconnecting to IRC");
+    Core::HuggleCore->PrimaryFeedProvider->Stop();
+    while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
     {
         /// \todo LOCALIZE ME
-        Core::Log("Waiting for primary feed provider to stop");
+        Core::HuggleCore->Log("Waiting for primary feed provider to stop");
         Sleeper::usleep(200000);
     }
-    delete Core::PrimaryFeedProvider;
+    delete Core::HuggleCore->PrimaryFeedProvider;
     ui->actionIRC->setChecked(true);
     ui->actionWiki->setChecked(false);
-    Core::PrimaryFeedProvider = new HuggleFeedProviderIRC();
-    if (!Core::PrimaryFeedProvider->Start())
+    Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
+    if (!Core::HuggleCore->PrimaryFeedProvider->Start())
     {
         ui->actionIRC->setChecked(false);
         ui->actionWiki->setChecked(true);
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: primary feed provider has failed, fallback to wiki provider");
-        delete Core::PrimaryFeedProvider;
-        Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-        Core::PrimaryFeedProvider->Start();
+        Core::HuggleCore->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+        delete Core::HuggleCore->PrimaryFeedProvider;
+        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        Core::HuggleCore->PrimaryFeedProvider->Start();
     }
 }
 
@@ -1181,7 +1182,7 @@ void MainWindow::Welcome()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     if (this->CurrentEdit == NULL)
@@ -1207,7 +1208,7 @@ void MainWindow::Welcome()
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->SetContentsOfTalkPage(Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon);
         }
-        Core::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon
+        Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon
               , Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle, Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, true);
         return;
     }
@@ -1215,7 +1216,7 @@ void MainWindow::Welcome()
     if (Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes.count() == 0)
     {
         /// \todo LOCALIZE ME
-        Core::Log("There are no welcome messages defined for this project");
+        Core::HuggleCore->Log("There are no welcome messages defined for this project");
         return;
     }
 
@@ -1224,13 +1225,13 @@ void MainWindow::Welcome()
     if (message == "")
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: Invalid welcome template, ignored message");
+        Core::HuggleCore->Log("ERROR: Invalid welcome template, ignored message");
         return;
     }
 
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->SetContentsOfTalkPage(message);
-    Core::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
+    Core::HuggleCore->MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
                       Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, true);
 }
 
@@ -1374,21 +1375,21 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
     if (!this->CurrentEdit->User->IsIP())
     {
         /// \todo LOCALIZE ME
-        Core::Log("This feature is for ip users only");
+        Core::HuggleCore->Log("This feature is for ip users only");
         return;
     }
 
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
 
     /// \todo LOCALIZE ME
-    Core::EditPage(page, Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp
+    Core::HuggleCore->EditPage(page, Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp
                    + "\n" + Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon,
                    "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->EditSuffixOfHuggle);
 
@@ -1401,7 +1402,7 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
     while (xx<GC::list.count())
     {
         Collectable *query = GC::list.at(xx);
-        Core::Log(query->DebugHgc());
+        Core::HuggleCore->Log(query->DebugHgc());
         xx++;
     }
 }
@@ -1414,7 +1415,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     this->Revert("", false, false);
@@ -1428,7 +1429,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
 
@@ -1445,7 +1446,7 @@ void MainWindow::on_actionReport_user_triggered()
     if(this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: No one to report");
+        Core::HuggleCore->Log("ERROR: No one to report");
         return;
     }
     this->_ReportUser();
@@ -1456,7 +1457,7 @@ void MainWindow::on_actionReport_user_2_triggered()
     if(this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: No one to report");
+        Core::HuggleCore->Log("ERROR: No one to report");
         return;
     }
     this->_ReportUser();
@@ -1511,7 +1512,7 @@ void MainWindow::on_actionDelete_triggered()
 	if (this->CurrentEdit == NULL)
 	{
         /// \todo LOCALIZE ME
-		Core::Log("ERROR: No, you cannot delete an NULL page :)");
+        Core::HuggleCore->Log("ERROR: No, you cannot delete an NULL page :)");
 		return;
 	}
     this->fDeleteForm = new DeleteForm(this);
@@ -1531,7 +1532,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     if(this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: No one to block :o");
+        Core::HuggleCore->Log("ERROR: No one to block :o");
         return;
     }
     this->fBlockForm = new BlockUser(this);
@@ -1553,19 +1554,19 @@ void Huggle::MainWindow::on_actionWiki_triggered()
         return;
     }
     /// \todo LOCALIZE ME
-    Core::Log("Switching to wiki provider");
-    Core::PrimaryFeedProvider->Stop();
+    Core::HuggleCore->Log("Switching to wiki provider");
+    Core::HuggleCore->PrimaryFeedProvider->Stop();
     ui->actionIRC->setChecked(false);
     ui->actionWiki->setChecked(true);
-    while (!Core::PrimaryFeedProvider->IsStopped())
+    while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
     {
         /// \todo LOCALIZE ME
-        Core::Log("Waiting for primary feed provider to stop");
+        Core::HuggleCore->Log("Waiting for primary feed provider to stop");
         Sleeper::usleep(200000);
     }
-    delete Core::PrimaryFeedProvider;
-    Core::PrimaryFeedProvider = new HuggleFeedProviderWiki();
-    Core::PrimaryFeedProvider->Start();
+    delete Core::HuggleCore->PrimaryFeedProvider;
+    Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+    Core::HuggleCore->PrimaryFeedProvider->Start();
 }
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()
@@ -1583,7 +1584,7 @@ void MainWindow::on_actionProtect_triggered()
     if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Core::Log("ERROR: Cannot protect NULL page");
+        Core::HuggleCore->Log("ERROR: Cannot protect NULL page");
         return;
     }
     this->fProtectForm = new ProtectPage(this);
@@ -1594,7 +1595,7 @@ void MainWindow::on_actionProtect_triggered()
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
     /// \todo LOCALIZE ME
-    Core::Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
+    Core::HuggleCore->Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 
 void Huggle::MainWindow::on_actionFlag_as_suspicious_edit_triggered()
@@ -1621,8 +1622,8 @@ void MainWindow::on_actionReport_username_triggered()
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
-        dd.setWindowTitle(Core::Localize("uaa-not-supported"));
-        dd.setText(Core::Localize("uaa-not-supported-text"));
+        dd.setWindowTitle(Core::HuggleCore->Localize("uaa-not-supported"));
+        dd.setText(Core::HuggleCore->Localize("uaa-not-supported-text"));
         dd.exec();
     }
     if (this->CurrentEdit->User->IsIP())
@@ -1653,7 +1654,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::DeveloperError();
+        Core::HuggleCore->DeveloperError();
         return;
     }
     this->Revert(Configuration::HuggleConfiguration->LocalConfig_AgfRevert);

@@ -83,7 +83,7 @@ void HuggleFeedProviderWiki::Refresh()
         {
             // failed to obtain the data
             /// \todo LOCALIZE ME
-            Core::Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
+            Core::HuggleCore->Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
             q->UnregisterConsumer("HuggleFeed::Refresh");
             this->q = NULL;
             Refreshing = false;
@@ -103,7 +103,7 @@ void HuggleFeedProviderWiki::Refresh()
             "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
     q->Target = "Recent changes refresh";
     q->RegisterConsumer("HuggleFeed::Refresh");
-    Core::AppendQuery(q);
+    Core::HuggleCore->AppendQuery(q);
     q->Process();
 }
 
@@ -115,7 +115,7 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
     }
     WikiEdit *edit = this->Buffer->at(0);
     this->Buffer->removeAt(0);
-    Core::PostProcessEdit(edit);
+    Core::HuggleCore->PostProcessEdit(edit);
     return edit;
 }
 
@@ -128,7 +128,7 @@ void HuggleFeedProviderWiki::Process(QString data)
     int CurrentNode = l.count();
     if (l.count() == 0)
     {
-        Core::Log("Error, wiki provider returned: " + data);
+        Core::HuggleCore->Log("Error, wiki provider returned: " + data);
         return;
     }
     // recursively scan all RC changes
@@ -148,7 +148,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("timestamp"))
         {
-            Core::Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
+            Core::HuggleCore->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
             CurrentNode--;
             continue;
         }
@@ -168,7 +168,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("type"))
         {
-            Core::Log("RC Feed: Item was missing type attribute: " + item.text());
+            Core::HuggleCore->Log("RC Feed: Item was missing type attribute: " + item.text());
             CurrentNode--;
             continue;
         }
@@ -183,7 +183,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("title"))
         {
-            Core::Log("RC Feed: Item was missing title attribute: " + item.text());
+            Core::HuggleCore->Log("RC Feed: Item was missing title attribute: " + item.text());
             CurrentNode--;
             continue;
         }
@@ -248,8 +248,8 @@ void HuggleFeedProviderWiki::Process(QString data)
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
     Configuration::HuggleConfiguration->EditCounter++;
-    Core::PreProcessEdit(edit);
-    if (Core::Main->Queue1->CurrentFilter->Matches(edit))
+    Core::HuggleCore->PreProcessEdit(edit);
+    if (Core::HuggleCore->Main->Queue1->CurrentFilter->Matches(edit))
     {
         if (this->Buffer->size() > Configuration::HuggleConfiguration->ProviderCache)
         {
@@ -258,7 +258,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
                 this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
                 this->Buffer->removeAt(0);
             }
-            Core::Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
+            Core::HuggleCore->Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
         }
         this->Buffer->append(edit);
     } else

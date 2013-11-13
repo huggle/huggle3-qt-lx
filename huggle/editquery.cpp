@@ -42,7 +42,7 @@ void EditQuery::Process()
     /// \todo LOCALIZE ME
     qToken->Target = "Retrieving token to edit " + page;
     qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-    Core::AppendQuery(qToken);
+    Core::HuggleCore->AppendQuery(qToken);
     qToken->Process();
 }
 
@@ -77,7 +77,7 @@ bool EditQuery::Processed()
             this->Result->Failed = true;
             /// \todo LOCALIZE ME
             this->Result->ErrorMessage = "Unable to retrieve edit token";
-            Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -89,7 +89,7 @@ bool EditQuery::Processed()
             this->Result->Failed = true;
             /// \todo LOCALIZE ME
             this->Result->ErrorMessage = "Unable to retrieve edit token";
-            Core::DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -105,7 +105,7 @@ bool EditQuery::Processed()
         qEdit->SetAction(ActionEdit);
         qEdit->Parameters = "title=" + QUrl::toPercentEncoding(page) + "&text=" + QUrl::toPercentEncoding(text) +
                 "&summary=" + QUrl::toPercentEncoding(this->summary) + "&token=" + QUrl::toPercentEncoding(_Token);
-        Core::AppendQuery(qEdit);
+        Core::HuggleCore->AppendQuery(qEdit);
         qEdit->Process();
         return false;
     }
@@ -125,16 +125,16 @@ bool EditQuery::Processed()
             {
                 if (element.attribute("result") == "Success")
                 {
-                    if (Core::Main != NULL)
+                    if (Core::HuggleCore->Main != NULL)
                     {
                         HistoryItem item;
                         item.Result = "Successful";
                         item.Type = HistoryEdit;
                         item.Target = this->page;
-                        Core::Main->_History->Prepend(item);
+                        Core::HuggleCore->Main->_History->Prepend(item);
                     }
                     /// \todo LOCALIZE ME
-                    Core::Log("Successfuly edit " + page);
+                    Core::HuggleCore->Log("Successfuly edit " + page);
                 }
             }
         }

@@ -49,9 +49,11 @@ void HuggleTest::testCaseConfigurationParse_QL()
 
 void HuggleTest::testCaseCoreTrim()
 {
-    QVERIFY2("hello world" == Huggle::Core::Trim("   hello world "), "wrong result for Core::Trim() when parsing words");
-    QVERIFY2("hello" == Huggle::Core::Trim("   hello"), "wrong result for Core::Trim() when parsing words");
-    QVERIFY2("hello" == Huggle::Core::Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
+    Huggle::Core *c = new Huggle::Core();
+    QVERIFY2("hello world" == c->Trim("   hello world "), "wrong result for Core::Trim() when parsing words");
+    QVERIFY2("hello" == c->Trim("   hello"), "wrong result for Core::Trim() when parsing words");
+    QVERIFY2("hello" == c->Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
+    delete c;
 }
 
 void HuggleTest::testCaseScores()

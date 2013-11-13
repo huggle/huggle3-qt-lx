@@ -91,7 +91,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
     if (edit->DiffText == "")
     {
-        Core::Log("Warning, unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
+        Core::HuggleCore->Log("Warning, unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                       + QString::number(edit->Diff) + "&action=render");
         return;
@@ -120,7 +120,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     Summary += "<b> Size change: " + size + "</b>";
 
-    ui->webView->setHtml(Core::HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
+    ui->webView->setHtml(Core::HuggleCore->HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
                          + Summary + "</td></tr>" + edit->DiffText
-                         + Core::HtmlFooter);
+                         + Core::HuggleCore->HtmlFooter);
 }

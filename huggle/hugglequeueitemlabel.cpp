@@ -89,7 +89,7 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     {
         this->ParentQueue->Items.removeOne(this);
     }
-    Core::ProcessEdit(this->page);
+    Core::HuggleCore->ProcessEdit(this->page);
     this->close();
     this->page->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);

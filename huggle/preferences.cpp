@@ -18,7 +18,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     ui->setupUi(this);
     // headers
     ui->tableWidget->setColumnCount(4);
-    this->setWindowTitle(Core::Localize("preferences"));
+    this->setWindowTitle(Core::HuggleCore->Localize("preferences"));
     QStringList header;
     /// \todo LOCALIZE ME
     header << "Name" << "Author" << "Description" << "Status" << "Version";
@@ -41,10 +41,10 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         c++;
     }
     c = 0;
-    while (c < Huggle::Core::Extensions.count())
+    while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
-        Core::DebugLog("Loading extension info");
-        iExtension *extension = Huggle::Core::Extensions.at(c);
+        Core::HuggleCore->DebugLog("Loading extension info");
+        iExtension *extension = Huggle::Core::HuggleCore->Extensions.at(c);
         ui->tableWidget->insertRow(0);
         ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
         ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));

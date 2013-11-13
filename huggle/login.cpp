@@ -27,9 +27,9 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     ui->checkBox->setChecked(Configuration::HuggleConfiguration->UsingSSL);
     // set the language to dummy english
     int l=0;
-    while (l<Core::LocalizationData.count())
+    while (l<Core::HuggleCore->LocalizationData.count())
     {
-        ui->Language->addItem(Core::LocalizationData.at(l)->LanguageID);
+        ui->Language->addItem(Core::HuggleCore->LocalizationData.at(l)->LanguageID);
         l++;
     }
     ui->Language->setCurrentIndex(0);
@@ -41,7 +41,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         ui->checkBox->setEnabled(false);
         ui->checkBox->setChecked(false);
     }
-    ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
+    ui->ButtonExit->setText(Core::HuggleCore->Localize("[[main-system-exit]]"));
     Localize();
 }
 
@@ -60,20 +60,20 @@ void Login::Progress(const int progress)
 
 void Login::Localize()
 {
-    ui->ButtonExit->setText(Core::Localize("[[main-system-exit]]"));
-    ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
-    ui->checkBox->setText(Core::Localize("[[login-ssl]]"));
-    ui->label_2->setText(Core::Localize("[[login-username]]"));
-    ui->pushButton->setText(Core::Localize("[[reload]]"));
-    ui->label_3->setText(Core::Localize("[[login-username]]"));
-    ui->label_4->setText(Core::Localize("[[login-project]]"));
-    ui->label_5->setText(Core::Localize("[[login-language]]"));
-    ui->label_7->setText(Core::Localize("[[login-password"));
+    ui->ButtonExit->setText(Core::HuggleCore->Localize("[[main-system-exit]]"));
+    ui->ButtonOK->setText(Core::HuggleCore->Localize("[[login-start]]"));
+    ui->checkBox->setText(Core::HuggleCore->Localize("[[login-ssl]]"));
+    ui->label_2->setText(Core::HuggleCore->Localize("[[login-username]]"));
+    ui->pushButton->setText(Core::HuggleCore->Localize("[[reload]]"));
+    ui->label_3->setText(Core::HuggleCore->Localize("[[login-username]]"));
+    ui->label_4->setText(Core::HuggleCore->Localize("[[login-project]]"));
+    ui->label_5->setText(Core::HuggleCore->Localize("[[login-language]]"));
+    ui->label_7->setText(Core::HuggleCore->Localize("[[login-password"));
 }
 
 void Login::Reset()
 {
-    ui->label_6->setText(Core::Localize("[[login-intro]]"));
+    ui->label_6->setText(Core::HuggleCore->Localize("[[login-intro]]"));
 }
 
 void Login::CancelLogin()
@@ -83,7 +83,7 @@ void Login::CancelLogin()
     this->Enable();
     this->_Status = Nothing;
     ui->lineEdit_3->setText("");
-    ui->ButtonOK->setText(Core::Localize("[[login-start]]"));
+    ui->ButtonOK->setText(Core::HuggleCore->Localize("[[login-start]]"));
 }
 
 void Login::Enable()
@@ -119,7 +119,7 @@ void Login::DB()
 
     if (this->LoginQuery->Processed())
     {
-        Core::DebugLog(LoginQuery->Result->Data, 2);
+        Core::HuggleCore->DebugLog(LoginQuery->Result->Data, 2);
         QDomDocument d;
         d.setContent(this->LoginQuery->Result->Data);
         QDomNodeList l = d.elementsByTagName("rev");
@@ -133,7 +133,7 @@ void Login::DB()
             if (wiki.open(QIODevice::WriteOnly))
             {
                 wiki.write(l.at(0).toElement().text().toUtf8());
-                Core::LoadDB();
+                Core::HuggleCore->LoadDB();
             }
             Reload();
         }
@@ -178,14 +178,14 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->Password = ui->lineEdit_3->text();
     this->_Status = LoggingIn;
     this->Disable();
-    ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
+    ui->ButtonOK->setText(Core::HuggleCore->Localize("[[cancel]]"));
     // First of all, we need to login to the site
     this->timer->start(200);
 }
 
 void Login::PerformLogin()
 {
-    ui->label_6->setText(Core::Localize("[[login-progress-start]]"));
+    ui->label_6->setText(Core::HuggleCore->Localize("[[login-progress-start]]"));
     this->Progress(8);
     // we create an api request to login
     this->LoginQuery = new ApiQuery();
@@ -205,7 +205,7 @@ void Login::FinishLogin()
     }
     if (this->LoginQuery->Result->Failed)
     {
-        ui->label_6->setText(Core::Localize("[[login-fail]]") + ": " + this->LoginQuery->Result->ErrorMessage);
+        ui->label_6->setText(Core::HuggleCore->Localize("[[login-fail]]") + ": " + this->LoginQuery->Result->ErrorMessage);
         this->Progress(0);
         this->_Status = LoginFailed;
         delete this->LoginQuery;
@@ -243,7 +243,7 @@ void Login::RetrieveGlobalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                ui->label_6->setText(Core::Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
+                ui->label_6->setText(Core::HuggleCore->Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 delete this->LoginQuery;
@@ -282,7 +282,7 @@ void Login::RetrieveGlobalConfig()
             }
             /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
-            Core::DebugLog(data.text());
+            Core::HuggleCore->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             delete this->LoginQuery;
@@ -292,7 +292,7 @@ void Login::RetrieveGlobalConfig()
         return;
     }
     this->Progress(40);
-    ui->label_6->setText(Core::Localize("[[login-progress-global]]"));
+    ui->label_6->setText(Core::HuggleCore->Localize("[[login-progress-global]]"));
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
@@ -361,7 +361,7 @@ void Login::RetrieveWhitelist()
         return;
     }
     this->Progress(52);
-    ui->label_6->setText(Core::Localize("[[login-progress-whitelist]]"));
+    ui->label_6->setText(Core::HuggleCore->Localize("[[login-progress-whitelist]]"));
     wq = new WLQuery();
     wq->RetryOnTimeoutFailure = false;
     wq->Process();
@@ -417,7 +417,7 @@ void Login::RetrieveLocalConfig()
             }
             /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
-            Core::DebugLog(data.text());
+            Core::HuggleCore->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             delete this->LoginQuery;
@@ -456,7 +456,7 @@ void Login::RetrievePrivateConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                Core::DebugLog(this->LoginQuery->Result->Data);
+                Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user config, the api query returned no data");
                 this->Progress(0);
@@ -485,7 +485,7 @@ void Login::RetrievePrivateConfig()
             }
             /// \todo LOCALIZE ME
             ui->label_6->setText("Login failed unable to parse the user config, see debug log for more details");
-            Core::DebugLog(data.text());
+            Core::HuggleCore->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             delete this->LoginQuery;
@@ -526,7 +526,7 @@ void Login::RetrieveUserInfo()
             QDomNodeList l = d.elementsByTagName("r");
             if (l.count() == 0)
             {
-                Core::DebugLog(this->LoginQuery->Result->Data);
+                Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed unable to retrieve user info, the api query returned no data");
                 this->Progress(0);
@@ -571,15 +571,15 @@ void Login::RetrieveUserInfo()
 void Login::DeveloperMode()
 {
     Configuration::HuggleConfiguration->Restricted = true;
-    Core::Main = new MainWindow();
-    Core::Main->show();
+    Core::HuggleCore->Main = new MainWindow();
+    Core::HuggleCore->Main->show();
     this->hide();
 }
 
 void Login::DisplayError(QString message)
 {
     this->_Status = LoginFailed;
-    Core::DebugLog(this->LoginQuery->Result->Data);
+    Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
     ui->label_6->setText(message);
     this->CancelLogin();
 }
@@ -587,9 +587,9 @@ void Login::DisplayError(QString message)
 void Login::Finish()
 {
     this->timer->stop();
-    Core::Main = new MainWindow();
+    Core::HuggleCore->Main = new MainWindow();
     this->hide();
-    Core::Main->show();
+    Core::HuggleCore->Main->show();
 }
 
 void Login::reject()
@@ -659,8 +659,8 @@ QString Login::GetToken()
     {
         // this is invalid token?
         /// \todo LOCALIZE ME
-        Core::Log("WARNING: the result of api request doesn't contain valid token");
-        Core::DebugLog("The token didn't contain the correct string, token was " + token);
+        Core::HuggleCore->Log("WARNING: the result of api request doesn't contain valid token");
+        Core::HuggleCore->DebugLog("The token didn't contain the correct string, token was " + token);
         return "<invalid token>";
     }
     token = token.mid(token.indexOf(Login::Test) + Login::Test.length());
@@ -668,8 +668,8 @@ QString Login::GetToken()
     {
         // this is invalid token?
         /// \todo LOCALIZE ME
-        Core::Log("WARNING: the result of api request doesn't contain valid token");
-        Core::DebugLog("The token didn't contain the closing mark, token was " + token);
+        Core::HuggleCore->Log("WARNING: the result of api request doesn't contain valid token");
+        Core::HuggleCore->DebugLog("The token didn't contain the closing mark, token was " + token);
         return "<invalid token>";
     }
     token = token.mid(0, token.indexOf("\""));
@@ -693,7 +693,7 @@ void Login::on_ButtonOK_clicked()
 
 void Login::on_ButtonExit_clicked()
 {
-    Core::Shutdown();
+    Core::HuggleCore->Shutdown();
 }
 
 void Login::on_Time()
@@ -757,7 +757,7 @@ void Login::on_pushButton_clicked()
     this->LoginQuery->SetAction(ActionQuery);
     this->timer->start(200);
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
-    this->ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
+    this->ui->ButtonOK->setText(Core::HuggleCore->Localize("[[cancel]]"));
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/List";
     this->LoginQuery->Process();
 }
@@ -766,11 +766,11 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
 {
     QString lang = "en";
     int c = 0;
-    while (c<Core::LocalizationData.count())
+    while (c<Core::HuggleCore->LocalizationData.count())
     {
-        if (Core::LocalizationData.at(c)->LanguageID == arg1)
+        if (Core::HuggleCore->LocalizationData.at(c)->LanguageID == arg1)
         {
-            lang = Core::LocalizationData.at(c)->LanguageName;
+            lang = Core::HuggleCore->LocalizationData.at(c)->LanguageName;
             break;
         }
         c++;

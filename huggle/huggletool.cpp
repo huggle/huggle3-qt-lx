@@ -119,7 +119,7 @@ void HuggleTool::FinishPage()
             this->DeleteQuery();
             this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
             /// \todo LOCALIZE ME
-            Core::Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
+            Core::HuggleCore->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
             this->tick->stop();
             return;
         }
@@ -136,7 +136,7 @@ void HuggleTool::FinishPage()
     {
         edit->User = new WikiUser();
     }
-    Core::PostProcessEdit(edit);
+    Core::HuggleCore->PostProcessEdit(edit);
     edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->QueryPhase = 2;
 }
@@ -152,7 +152,7 @@ void HuggleTool::FinishEdit()
         return;
     }
     this->tick->stop();
-    Core::Main->ProcessEdit(edit);
+    Core::HuggleCore->Main->ProcessEdit(edit);
 }
 
 void HuggleTool::DeleteQuery()

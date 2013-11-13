@@ -19,29 +19,10 @@ PythonEngine *Core::Python = NULL;
 
 
 Core  * Core::HuggleCore = NULL;
-QString Core::HtmlHeader = "";
-QString Core::HtmlFooter = "</table></body></html>";
-
-MainWindow *Core::Main = NULL;
-Login *Core::f_Login = NULL;
-HuggleFeed *Core::SecondaryFeedProvider = NULL;
-HuggleFeed *Core::PrimaryFeedProvider = NULL;
-QStringList Core::RingLog;
-QList<Query*> Core::RunningQueries;
-QList<WikiEdit*> Core::ProcessingEdits;
-ProcessorThread *Core::Processor = NULL;
-QList<Message*> Core::Messages;
-QList<EditQuery*> Core::PendingMods;
-QDateTime Core::StartupTime = QDateTime::currentDateTime();
-bool Core::Running = true;
-QList<iExtension*> Core::Extensions;
-WikiPage *Core::AIVP = NULL;
-WikiPage *Core::UAAP = NULL;
-QList<Language*> Core::LocalizationData;
-QList<HuggleQueueFilter *> Core::FilterDB;
 
 void Core::Init()
 {
+    this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
     if (Configuration::HuggleConfiguration->_SafeMode)
@@ -57,25 +38,25 @@ void Core::Init()
 #endif
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
     vf->open(QIODevice::ReadOnly);
-    Core::HtmlHeader = QString(vf->readAll());
+    this->HtmlHeader = QString(vf->readAll());
     vf->close();
     delete vf;
-    Core::Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
-    Core::Log("Loading configuration");
+    this->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
+    this->Log("Loading configuration");
     Processor = new ProcessorThread();
     Processor->start();
     Configuration::LoadConfig();
-    Core::DebugLog("Loading defs");
-    Core::LoadDefs();
+    this->DebugLog("Loading defs");
+    this->LoadDefs();
     Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
     Core::Python = new PythonEngine();
 #endif
-    Core::DebugLog("Loading wikis");
-    Core::LoadDB();
+    this->DebugLog("Loading wikis");
+    this->LoadDB();
     Core::LoadLocalizations();
-    Core::DebugLog("Loading queue");
+    this->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
     Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
@@ -707,27 +688,23 @@ void Core::Shutdown()
 {
     Running = false;
     // grace time for subthreads to finish
-    if (Core::Main != NULL)
+    if (this->Main != NULL)
     {
-        Core::Main->hide();
+        this->Main->hide();
     }
 #if QT_VERSION >= 0x050000
     QThread::usleep(200000);
 #endif
-    if (Processor->isRunning())
+    if (this->Processor->isRunning())
     {
-        Processor->exit();
+        this->Processor->exit();
     }
-    //delete Processor;
-    Processor = NULL;
     Core::SaveDefs();
     Configuration::SaveConfig();
 #ifdef PYTHONENGINE
-    Core::Log("Unloading python");
-    delete Core::Python;
+    this->Log("Unloading python");
+    delete this->Python;
 #endif
-    delete Core::f_Login;
-    Core::f_Login = NULL;
     delete Configuration::HuggleConfiguration;
     QApplication::quit();
 }
@@ -736,9 +713,9 @@ QString Core::RingLogToText()
 {
     int i = 0;
     QString text = "";
-    while (i<Core::RingLog.size())
+    while (i<this->RingLog.size())
     {
-        text = Core::RingLog.at(i) + "\n" + text;
+        text = this->RingLog.at(i) + "\n" + text;
         i++;
     }
     return text;
@@ -924,7 +901,7 @@ void Core::ExceptionHandler(Exception *exception)
 
 Language *Core::MakeLanguage(QString text, QString name)
 {
-    Core::Log("Loading language: " + name);
+    Core::HuggleCore->Log("Loading language: " + name);
     Language *l = new Language(name);
     QStringList keys = text.split("\n");
     int p = 0;
@@ -961,7 +938,7 @@ void Core::LocalInit(QString name)
 {
     QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
     f->open(QIODevice::ReadOnly);
-    Core::LocalizationData.append(Core::MakeLanguage(QString(f->readAll()), name));
+    Core::HuggleCore->LocalizationData.append(Core::MakeLanguage(QString(f->readAll()), name));
     f->close();
     delete f;
 }
@@ -1122,12 +1099,25 @@ int Core::RunningQueriesGetCount()
 
 Core::Core()
 {
-
+    this->HtmlHeader = "";
+    this->HtmlFooter = "</table></body></html>";
+    this->Main = NULL;
+    this->f_Login = NULL;
+    this->SecondaryFeedProvider = NULL;
+    this->PrimaryFeedProvider = NULL;
+    this->Processor = NULL;
+    this->StartupTime = QDateTime::currentDateTime();
+    this->Running = true;
+    this->AIVP = NULL;
+    this->UAAP = NULL;
 }
 
 Core::~Core()
 {
-
+    delete this->Main;
+    delete this->f_Login;
+    delete this->SecondaryFeedProvider;
+    delete this->PrimaryFeedProvider;
 }
 
 Language::Language(QString name)

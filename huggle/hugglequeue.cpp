@@ -100,7 +100,7 @@ void HuggleQueue::DeleteByRevID(int RevID)
         HuggleQueueItemLabel *item = this->Items.at(c);
         if (item->page->RevID == RevID)
         {
-            if (Core::Main->CurrentEdit == item->page)
+            if (Core::HuggleCore->Main->CurrentEdit == item->page)
             {
                 // we can't delete item that is being reviewed now
                 return;

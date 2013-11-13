@@ -51,17 +51,18 @@ int main(int argc, char *argv[])
         }
         // we load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
-        Huggle::Core::Init();
+        Huggle::Core::HuggleCore->Init();
         // now we can start the huggle :o
         Huggle::HgApplication a(argc, argv);
-        Huggle::Core::f_Login = new Huggle::Login();
-        Huggle::Core::f_Login->show();
+        Huggle::Core::HuggleCore->f_Login = new Huggle::Login();
+        Huggle::Core::HuggleCore->f_Login->show();
 
+        int rv = a.exec();
         delete Huggle::Core::HuggleCore;
-        return a.exec();
+        return rv;
     } catch (Huggle::Exception fail)
     {
-        Huggle::Core::Log("FATAL: Unhandled exception occured, description: " + fail.Message);
+        Huggle::Core::HuggleCore->Log("FATAL: Unhandled exception occured, description: " + fail.Message);
         delete Huggle::Core::HuggleCore;
         return fail.ErrorCode;
     }
