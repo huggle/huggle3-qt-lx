@@ -46,7 +46,7 @@ bool TerminalParser::Parse()
         }
         if (text == "--safe")
         {
-            Configuration::_SafeMode = true;
+            Configuration::HuggleConfiguration->_SafeMode = true;
             valid = true;
         }
         if (!valid)
@@ -67,7 +67,7 @@ bool TerminalParser::ParseChar(QChar x)
     switch (x.toAscii())
     {
         case 'v':
-            Configuration::Verbosity++;
+            Configuration::HuggleConfiguration->Verbosity++;
             return false;
         case 'h':
             this->DisplayHelp();

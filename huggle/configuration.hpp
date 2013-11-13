@@ -90,244 +90,245 @@ namespace Huggle
     {
         public:
             Configuration();
+            ~Configuration();
             static Configuration *HuggleConfiguration;
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
 
             //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
-            static unsigned int Verbosity;
+            unsigned int Verbosity;
             //! Version
-            static QString HuggleVersion;
+            QString HuggleVersion;
             //! currently selected project
-            static WikiSite Project;
+            WikiSite *Project;
             //! List of projects
-            static QList<WikiSite *> ProjectList;
+            QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
-            static bool Restricted;
+            bool Restricted;
             //! Return a prefix for url
             static QString GetURLProtocolPrefix();
             //! Where the welcome message is stored
-            static QString WelcomeMP;
+            QString WelcomeMP;
             //! Size of info cache
-            static int Cache_InfoSize;
+            int Cache_InfoSize;
             //! Whether python is available
-            static bool PythonEngine;
+            bool PythonEngine;
             //! Size of feed
-            static int ProviderCache;
+            int ProviderCache;
             //! Maximum size of ringlog
-            static int RingLogMaxSize;
+            int RingLogMaxSize;
             //! Path where huggle contains its data
-            static QString HomePath;
+            QString HomePath;
             //! Path to a file where information about wikis are stored
-            static QString WikiDB;
+            QString WikiDB;
             //! Return a configuration path
             static QString GetConfigurationPath();
             //! Data of wl
-            static QStringList WhiteList;
+            QStringList WhiteList;
             //! URL of wiki that contains a global config
-            static QString GlobalConfigurationWikiAddress;
+            QString GlobalConfigurationWikiAddress;
             //! Number of seconds for which the processed queries remain in list of processes
-            static int QueryListTimeLimit;
+            int QueryListTimeLimit;
             //! Number of edits to keep in history stack
-            static int HistorySize;
+            int HistorySize;
             //! Language selected by user this is only a language of interface
-            static QString Language;
+            QString Language;
             //! Number of edits made since you logged in
-            static double EditCounter;
+            double EditCounter;
             //! Number of reverts made since you logged in
-            static double RvCounter;
+            double RvCounter;
             //! Ask user if they really want to report someone
-            static bool AskUserBeforeReport;
+            bool AskUserBeforeReport;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
-            static bool TrimOldWarnings;
-            static QStringList Rights;
+            bool TrimOldWarnings;
+            QStringList Rights;
             //! Whether new edits go to top or bottom
-            static bool QueueNewEditsUp;
+            bool QueueNewEditsUp;
             //! If this is true some functionalities will be disabled
-            static bool _SafeMode;
+            bool _SafeMode;
             //! Resolve edit conflict without asking user
-            static bool AutomaticallyResolveConflicts;
+            bool AutomaticallyResolveConflicts;
             //! Size of fonts in diff
-            static int FontSize;
+            int FontSize;
             //! Timeout for queries
-            static int ReadTimeout;
+            int ReadTimeout;
             //! Timeout for write / update queries
-            static int WriteTimeout;
+            int WriteTimeout;
             //! Whitelist is not useable
-            static bool WhitelistDisabled;
+            bool WhitelistDisabled;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
-            static bool EnforceManualSoftwareRollback;
-            static QStringList Separators;
+            bool EnforceManualSoftwareRollback;
+            QStringList Separators;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
-            static bool RevertOnMultipleEdits;
+            bool RevertOnMultipleEdits;
 
             //////////////////////////////////////////////
             // Local config
             //////////////////////////////////////////////
 
             //! Minimal version of huggle required to use it
-            static QString LocalConfig_MinimalVersion;
-            static bool LocalConfig_UseIrc;
-            static bool LocalConfig_RequireRollback;
-            static bool LocalConfig_RequireAdmin;
-            static bool LocalConfig_EnableAll;
-            static int LocalConfig_RequireEdits;
+            QString LocalConfig_MinimalVersion;
+            bool LocalConfig_UseIrc;
+            bool LocalConfig_RequireRollback;
+            bool LocalConfig_RequireAdmin;
+            bool LocalConfig_EnableAll;
+            int LocalConfig_RequireEdits;
 
-            static bool LocalConfig_AIV;
-            static bool LocalConfig_AIVExtend;
-            static QString LocalConfig_ReportPath;
+            bool LocalConfig_AIV;
+            bool LocalConfig_AIVExtend;
+            QString LocalConfig_ReportPath;
             //! Section of report page to append template to
-            static int LocalConfig_ReportSt;
+            int LocalConfig_ReportSt;
             //! IP vandals
-            static QString LocalConfig_IPVTemplateReport;
+            QString LocalConfig_IPVTemplateReport;
             //! Regular users
-            static QString LocalConfig_RUTemplateReport;
-            static QString LocalConfig_WelcomeSummary;
-            static QString LocalConfig_NSTalk;
-            static QString LocalConfig_NSUserTalk;
-            static QString LocalConfig_NSProject;
-            static QString LocalConfig_NSUser;
-            static QString LocalConfig_NSProjectTalk;
-            static QString LocalConfig_NSFile;
-            static QString LocalConfig_NSFileTalk;
-            static QString LocalConfig_NSMediaWiki;
-            static QString LocalConfig_NSMediaWikiTalk;
-            static QString LocalConfig_NSTemplate;
-            static QString LocalConfig_NSTemplateTalk;
-            static QString LocalConfig_NSHelp;
-            static QString LocalConfig_NSHelpTalk;
-            static QString LocalConfig_NSCategory;
-            static QString LocalConfig_NSCategoryTalk;
-            static QString LocalConfig_NSPortal;
-            static QString LocalConfig_NSPortalTalk;
-            static int LocalConfig_TemplateAge;
-            static bool LocalConfig_ConfirmMultipleEdits;
-            static bool LocalConfig_ConfirmRange;
-            static bool LocalConfig_ConfirmPage;
-            static bool LocalConfig_ConfirmSame;
-            static bool LocalConfig_ConfirmWarned;
+            QString LocalConfig_RUTemplateReport;
+            QString LocalConfig_WelcomeSummary;
+            QString LocalConfig_NSTalk;
+            QString LocalConfig_NSUserTalk;
+            QString LocalConfig_NSProject;
+            QString LocalConfig_NSUser;
+            QString LocalConfig_NSProjectTalk;
+            QString LocalConfig_NSFile;
+            QString LocalConfig_NSFileTalk;
+            QString LocalConfig_NSMediaWiki;
+            QString LocalConfig_NSMediaWikiTalk;
+            QString LocalConfig_NSTemplate;
+            QString LocalConfig_NSTemplateTalk;
+            QString LocalConfig_NSHelp;
+            QString LocalConfig_NSHelpTalk;
+            QString LocalConfig_NSCategory;
+            QString LocalConfig_NSCategoryTalk;
+            QString LocalConfig_NSPortal;
+            QString LocalConfig_NSPortalTalk;
+            int LocalConfig_TemplateAge;
+            bool LocalConfig_ConfirmMultipleEdits;
+            bool LocalConfig_ConfirmRange;
+            bool LocalConfig_ConfirmPage;
+            bool LocalConfig_ConfirmSame;
+            bool LocalConfig_ConfirmWarned;
 
             // Reverting
 
-            static QString LocalConfig_MultipleRevertSummary;
-            static QStringList LocalConfig_RevertSummaries;
-            static QString LocalConfig_SoftwareRevertDefaultSummary;
-            static QString LocalConfig_RollbackSummary;
-            static QString LocalConfig_DefaultSummary;
-            static QString LocalConfig_SingleRevert;
-            static QString LocalConfig_UndoSummary;
-            static QString LocalConfig_ClearTalkPageTemp;
-            static QString LocalConfig_WelcomeAnon;
-            static QString LocalConfig_WelcomeTitle;
+            QString LocalConfig_MultipleRevertSummary;
+            QStringList LocalConfig_RevertSummaries;
+            QString LocalConfig_SoftwareRevertDefaultSummary;
+            QString LocalConfig_RollbackSummary;
+            QString LocalConfig_DefaultSummary;
+            QString LocalConfig_SingleRevert;
+            QString LocalConfig_UndoSummary;
+            QString LocalConfig_ClearTalkPageTemp;
+            QString LocalConfig_WelcomeAnon;
+            QString LocalConfig_WelcomeTitle;
 
             // Warnings
 
-            static QString LocalConfig_AgfRevert;
-            static QString LocalConfig_WarnSummary;
-            static QString LocalConfig_WarnSummary2;
-            static QString LocalConfig_WarnSummary3;
-            static QString LocalConfig_WarnSummary4;
-            static QStringList LocalConfig_WarningTemplates;
-            static QStringList LocalConfig_WarningDefs;
-            static QString LocalConfig_ReportSummary;
-            static bool LocalConfig_WelcomeGood;
+            QString LocalConfig_AgfRevert;
+            QString LocalConfig_WarnSummary;
+            QString LocalConfig_WarnSummary2;
+            QString LocalConfig_WarnSummary3;
+            QString LocalConfig_WarnSummary4;
+            QStringList LocalConfig_WarningTemplates;
+            QStringList LocalConfig_WarningDefs;
+            QString LocalConfig_ReportSummary;
+            bool LocalConfig_WelcomeGood;
 
             // Blocking users
-            static QStringList LocalConfig_BlockExpiryOptions;
-            static QString LocalConfig_BlockTime;
-            static QString LocalConfig_BlockTimeAnon;
-            static QString LocalConfig_BlockMessage;
-            static QString LocalConfig_BlockMessageIndef;
-            static QString LocalConfig_BlockReason;
-            static QString LocalConfig_BlockSummary;
+            QStringList LocalConfig_BlockExpiryOptions;
+            QString LocalConfig_BlockTime;
+            QString LocalConfig_BlockTimeAnon;
+            QString LocalConfig_BlockMessage;
+            QString LocalConfig_BlockMessageIndef;
+            QString LocalConfig_BlockReason;
+            QString LocalConfig_BlockSummary;
 
             // Protecting pages
-            static QString LocalConfig_ProtectReason;
+            QString LocalConfig_ProtectReason;
 
             // Definitions
 
-            static QList<ScoreWord> LocalConfig_ScoreParts;
-            static QList<ScoreWord> LocalConfig_ScoreWords;
-            static int LocalConfig_ScoreFlag;
+            QList<ScoreWord> LocalConfig_ScoreParts;
+            QList<ScoreWord> LocalConfig_ScoreWords;
+            int LocalConfig_ScoreFlag;
             //! Score that is added for every edit that has really big size
-            static int LocalConfig_ScoreChange;
-            static QStringList LocalConfig_Ignores;
-            static QStringList LocalConfig_RevertPatterns;
-            static QStringList LocalConfig_Assisted;
-            static QStringList LocalConfig_Templates;
-            static QStringList LocalConfig_IgnorePatterns;
-            static int LocalConfig_TalkPageWarningScore;
-            static bool LocalConfig_GlobalRequired;
+            int LocalConfig_ScoreChange;
+            QStringList LocalConfig_Ignores;
+            QStringList LocalConfig_RevertPatterns;
+            QStringList LocalConfig_Assisted;
+            QStringList LocalConfig_Templates;
+            QStringList LocalConfig_IgnorePatterns;
+            int LocalConfig_TalkPageWarningScore;
+            bool LocalConfig_GlobalRequired;
 
-            static int LocalConfig_BotScore;
-            static int LocalConfig_IPScore;
-            static int LocalConfig_WarningScore;
-            static QStringList LocalConfig_WarningTypes;
-            static QStringList LocalConfig_DeletionTemplates;
-            static QStringList LocalConfig_WelcomeTypes;
-            static int LocalConfig_WhitelistScore;
+            int LocalConfig_BotScore;
+            int LocalConfig_IPScore;
+            int LocalConfig_WarningScore;
+            QStringList LocalConfig_WarningTypes;
+            QStringList LocalConfig_DeletionTemplates;
+            QStringList LocalConfig_WelcomeTypes;
+            int LocalConfig_WhitelistScore;
 
             // UAA
-            static QString LocalConfig_UAAPath;
-            static bool LocalConfig_UAAavailable;
-            static QString LocalConfig_UAATemplate;
+            QString LocalConfig_UAAPath;
+            bool LocalConfig_UAAavailable;
+            QString LocalConfig_UAATemplate;
 
 
             //////////////////////////////////////////////
             // Global config
             //////////////////////////////////////////////
 
-            static bool GlobalConfig_EnableAll;
-            static QString GlobalConfig_MinVersion;
-            static QString GlobalConfig_LocalConfigWikiPath;
-            static QString GlobalConfig_DocumentationPath;
-            static QString GlobalConfig_FeedbackPath;
-            static QString GlobalConfig_UserConf;
-            static bool GlobalConfigWasLoaded;
+            bool GlobalConfig_EnableAll;
+            QString GlobalConfig_MinVersion;
+            QString GlobalConfig_LocalConfigWikiPath;
+            QString GlobalConfig_DocumentationPath;
+            QString GlobalConfig_FeedbackPath;
+            QString GlobalConfig_UserConf;
+            bool GlobalConfigWasLoaded;
 
             //////////////////////////////////////////////
             // Login
             //////////////////////////////////////////////
 
             //! User name
-            static QString UserName;
+            QString UserName;
             //! If SSL is being used
-            static bool UsingSSL;
+            bool UsingSSL;
             //! Consumer key
-            static QString WmfOAuthConsumerKey;
+            QString WmfOAuthConsumerKey;
             //! Password
-            static QString Password;
+            QString Password;
 
             //////////////////////////////////////////////
             // IRC
             //////////////////////////////////////////////
 
             //! Whether IRC is being used
-            static bool UsingIRC;
+            bool UsingIRC;
             //! Server
-            static QString IRCServer;
+            QString IRCServer;
             //! Nick
-            static QString IRCNick;
+            QString IRCNick;
             //! Ident
-            static QString IRCIdent;
+            QString IRCIdent;
             //! Port
-            static quint16 IRCPort;
+            quint16 IRCPort;
 
             //////////////////////////////////////////////
             // Friends
             //////////////////////////////////////////////
 
             //! Suffix used by huggle
-            static QString EditSuffixOfHuggle;
+            QString EditSuffixOfHuggle;
             //! Regexes that other tools can be identified with
-            static QStringList EditRegexOfTools;
+            QStringList EditRegexOfTools;
 
             //////////////////////////////////////////////
             // Reverting
             //////////////////////////////////////////////
 
-            static QString DefaultRevertSummary;
+            QString DefaultRevertSummary;
             /*!
              * \brief GetDefaultRevertSummary Retrieve default summary
              * \param source User who should be replaced instead of $1
@@ -335,14 +336,14 @@ namespace Huggle
              */
             static QString GetDefaultRevertSummary(QString source);
             //! Warn you in case you want to revert a user page
-            static bool WarnUserSpaceRoll;
-            static bool NextOnRv;
+            bool WarnUserSpaceRoll;
+            bool NextOnRv;
             //! Send a message to user on good edit
-            static bool WelcomeEmpty;
+            bool WelcomeEmpty;
 
-            static QString VandalNw_Server;
-            static QString VandalNw_Ident;
-            static bool VandalNw_Login;
+            QString VandalNw_Server;
+            QString VandalNw_Ident;
+            bool VandalNw_Login;
 
 
             /*!

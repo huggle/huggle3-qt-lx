@@ -47,7 +47,7 @@ void UAAReport::getPageContents()
 {
     this->qUAApage = new ApiQuery();
     qUAApage->SetAction(ActionQuery);
-    qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
+    qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
     /// \todo LOCALIZE THIS
     qUAApage->Target = "Getting content of UAA";
     qUAApage->RegisterConsumer("UAAReport::getPageContents()");
@@ -101,7 +101,7 @@ void UAAReport::onTick()
     this->qUAApage = NULL;
     Core::DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
-    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::EditSuffixOfHuggle;
+    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
     Core::EditPage(Core::UAAP, dr, uaasum, true);
@@ -112,7 +112,7 @@ void UAAReport::onTick()
 }
 void UAAReport::insertUsername()
 {
-    ta = Configuration::LocalConfig_UAATemplate;
+    ta = Configuration::HuggleConfiguration->LocalConfig_UAATemplate;
     ta.replace("$1", this->User->Username);
     ta.replace("$2", uaaReportReason + optionalreason);
     contentsOfUAA = ta + uaaReportReason + optionalreason;
@@ -183,7 +183,7 @@ void UAAReport::on_pushButton_3_clicked()
     this->qChUAApage = new ApiQuery();
     qChUAApage->SetAction(ActionQuery);
     qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
-            + QUrl::toPercentEncoding(Configuration::LocalConfig_UAAPath);
+            + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
     qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
     Core::AppendQuery(qChUAApage);
     qChUAApage->Process();
@@ -220,7 +220,7 @@ void UAAReport::onStartOfSearch()
         QMessageBox *msgb = new QMessageBox();
         msgb->setWindowTitle("Cannot retrieve page");
         msgb->setIcon(QMessageBox::Critical);
-        msgb->setText("Retrieving the page " + Configuration::LocalConfig_UAAPath + " failed.");
+        msgb->setText("Retrieving the page " + Configuration::HuggleConfiguration->LocalConfig_UAAPath + " failed.");
         msgb->setAttribute(Qt::WA_DeleteOnClose);
         msgb->exec();
         qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");

@@ -104,7 +104,7 @@ void ReportUser::Tick()
             if (results.count() == 0)
             {
                 /// \todo LOCALIZE ME
-                ui->pushButton->setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
+                ui->pushButton->setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->LocalConfig_ReportPath);
                 this->timer->stop();
                 return;
             }
@@ -267,7 +267,7 @@ void ReportUser::Test()
     {
         QMessageBox mb;
         /// \todo LOCALIZE ME
-        mb.setText("Error unable to retrieve report page at " + Configuration::LocalConfig_ReportPath);
+        mb.setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->LocalConfig_ReportPath);
         mb.exec();
         this->timer->stop();
         delete tq;
@@ -345,7 +345,7 @@ void ReportUser::on_pushButton_clicked()
     q = new ApiQuery();
     q->SetAction(ActionQuery);
     q->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(Configuration::LocalConfig_ReportPath);
+            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
     q->Process();
     this->report = reports;
     this->timer->start(800);
@@ -389,10 +389,10 @@ bool ReportUser::CheckUser()
 
 void ReportUser::InsertUser()
 {
-    QString xx = Configuration::LocalConfig_IPVTemplateReport;
+    QString xx = Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport;
     if (!this->user->IsIP())
     {
-        xx = Configuration::LocalConfig_RUTemplateReport;
+        xx = Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport;
     }
     xx = xx.replace("$1", this->user->Username);
     xx = xx.replace("$2", report);
@@ -410,7 +410,7 @@ void ReportUser::on_pushButton_3_clicked()
     this->tq = new ApiQuery();
     this->tq->SetAction(ActionQuery);
     this->tq->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(Configuration::LocalConfig_ReportPath);
+            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
     this->tq->Process();
     if (this->t2 == NULL)
     {

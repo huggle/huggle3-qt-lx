@@ -27,7 +27,7 @@ RevertQuery::RevertQuery()
     this->MinorEdit = false;
     this->EditQuerySoftwareRollback = NULL;
     this->qPreflight = NULL;
-    this->Timeout = Configuration::WriteTimeout;
+    this->Timeout = Configuration::HuggleConfiguration->WriteTimeout;
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
@@ -210,7 +210,7 @@ void RevertQuery::Preflight()
     }
     if (failed)
     {
-        if (Configuration::AutomaticallyResolveConflicts)
+        if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)
         {
             /// \todo LOCALIZE ME
             Core::Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
@@ -315,7 +315,7 @@ void RevertQuery::CheckPreflight()
         x++;
     }
 
-    if (MultipleEdits && Configuration::LocalConfig_ConfirmMultipleEdits)
+    if (MultipleEdits && Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits)
     {
         passed = false;
     }
@@ -336,15 +336,15 @@ void RevertQuery::CheckPreflight()
             /// \todo LOCALIZE ME
             text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
         }
-        if (Configuration::AutomaticallyResolveConflicts)
+        if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)
         {
-            if (MultipleEdits && !Configuration::RevertOnMultipleEdits)
+            if (MultipleEdits && !Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
                 /// \todo LOCALIZE ME
                 Core::Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
                 this->Cancel();
                 return;
-            } else if (MultipleEdits && Configuration::RevertOnMultipleEdits)
+            } else if (MultipleEdits && Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
                 /// \todo LOCALIZE ME
                 Core::Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
@@ -564,7 +564,7 @@ bool RevertQuery::ProcessRevert()
     // now we need to change the content of page
     this->qRetrieve = new ApiQuery();
     // localize me
-    QString summary = Configuration::LocalConfig_SoftwareRevertDefaultSummary;
+    QString summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
     summary = summary.replace("$1", this->edit->User->Username)
             .replace("$2", target)
             .replace("$3", QString::number(depth))
@@ -604,7 +604,7 @@ void RevertQuery::Rollback()
         Revert();
         return;
     }
-    if (!Configuration::Rights.contains("rollback"))
+    if (!Configuration::HuggleConfiguration->Rights.contains("rollback"))
     {
         /// \todo LOCALIZE ME
         Core::Log("You don't have rollback rights, fallback to software rollback");
@@ -644,7 +644,7 @@ void RevertQuery::Rollback()
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
     this->qRevert->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-    if (Configuration::Verbosity > 0)
+    if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
         Core::AppendQuery(this->qRevert);
     }

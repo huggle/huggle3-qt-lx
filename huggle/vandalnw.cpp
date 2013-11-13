@@ -15,14 +15,14 @@ using namespace Huggle;
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
-    this->Irc = new IRC::NetworkIrc(Configuration::VandalNw_Server, Configuration::UserName);
+    this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server, Configuration::HuggleConfiguration->UserName);
     this->ui->setupUi(this);
     this->pref = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->tm->start(200);
-    this->Irc->UserName = Configuration::HuggleVersion;
+    this->Irc->UserName = Configuration::HuggleConfiguration->HuggleVersion;
 }
 
 VandalNw::~VandalNw()
@@ -34,7 +34,7 @@ VandalNw::~VandalNw()
 
 void VandalNw::Connect()
 {
-    if (!Configuration::VandalNw_Login)
+    if (!Configuration::HuggleConfiguration->VandalNw_Login)
     {
         /// \todo LOCALIZE ME
         Core::Log("Vandalism network isn't allowed in options");
@@ -92,7 +92,7 @@ void VandalNw::WarningSent(WikiUser *user, int Level)
 
 QString VandalNw::GetChannel()
 {
-    return Configuration::Project.IRCChannel + ".huggle";
+    return Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle";
 }
 
 void VandalNw::onTick()
@@ -161,7 +161,7 @@ void Huggle::VandalNw::on_pushButton_clicked()
     if (this->Irc->IsConnected())
     {
         this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
-        this->Insert(Configuration::UserName + ": " + ui->lineEdit->text());
+        this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
     }
     ui->lineEdit->setText("");
 }

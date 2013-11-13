@@ -41,7 +41,7 @@ bool HuggleFeedProviderIRC::Start()
     }
     TcpSocket = new QTcpSocket(Core::Main);
     qsrand(QTime::currentTime().msec());
-    TcpSocket->connectToHost(Configuration::IRCServer, Configuration::IRCPort);
+    TcpSocket->connectToHost(Configuration::HuggleConfiguration->IRCServer, Configuration::HuggleConfiguration->IRCPort);
     if (!TcpSocket->waitForConnected())
     {
         /// \todo LOCALIZE ME
@@ -52,13 +52,13 @@ bool HuggleFeedProviderIRC::Start()
         return false;
     }
     Core::Log("IRC: Successfuly connected to irc rc feed");
-    this->TcpSocket->write(QString("USER " + Configuration::IRCNick
+    this->TcpSocket->write(QString("USER " + Configuration::HuggleConfiguration->IRCNick
                        + QString::number(qrand()) + " 8 * :"
-                       + Configuration::IRCIdent + "\n").toUtf8());
-    this->TcpSocket->write(QString("NICK " + Configuration::IRCNick
-                       + QString::number(qrand()) + Configuration::UserName.replace(" ", "")
+                       + Configuration::HuggleConfiguration->IRCIdent + "\n").toUtf8());
+    this->TcpSocket->write(QString("NICK " + Configuration::HuggleConfiguration->IRCNick
+                       + QString::number(qrand()) + Configuration::HuggleConfiguration->UserName.replace(" ", "")
                        + "\n").toUtf8());
-    this->TcpSocket->write(QString("JOIN " + Configuration::Project.IRCChannel + "\n").toUtf8());
+    this->TcpSocket->write(QString("JOIN " + Configuration::HuggleConfiguration->Project->IRCChannel + "\n").toUtf8());
     if (this->thread != NULL)
     {
         delete this->thread;
@@ -110,14 +110,14 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     {
         throw new Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
     }
-    Configuration::EditCounter++;
+    Configuration::HuggleConfiguration->EditCounter++;
     Core::PreProcessEdit(edit);
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
     {
         this->lock.lock();
-        if (this->Buffer.size() > Configuration::ProviderCache)
+        if (this->Buffer.size() > Configuration::HuggleConfiguration->ProviderCache)
         {
-            while (this->Buffer.size() > (Configuration::ProviderCache - 10))
+            while (this->Buffer.size() > (Configuration::HuggleConfiguration->ProviderCache - 10))
             {
                 this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
                 this->Buffer.removeAt(0);
@@ -436,7 +436,7 @@ void HuggleFeedProviderIRC_t::run()
     {
         if (ping < 0)
         {
-            this->s->write(QString("PING :" + Configuration::IRCServer).toUtf8());
+            this->s->write(QString("PING :" + Configuration::HuggleConfiguration->IRCServer).toUtf8());
             ping = 2000;
         }
         QString text = QString::fromUtf8(this->s->readLine());

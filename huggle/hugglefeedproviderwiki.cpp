@@ -247,13 +247,13 @@ void HuggleFeedProviderWiki::Process(QString data)
 
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
-    Configuration::EditCounter++;
+    Configuration::HuggleConfiguration->EditCounter++;
     Core::PreProcessEdit(edit);
     if (Core::Main->Queue1->CurrentFilter->Matches(edit))
     {
-        if (this->Buffer->size() > Configuration::ProviderCache)
+        if (this->Buffer->size() > Configuration::HuggleConfiguration->ProviderCache)
         {
-            while (this->Buffer->size() > (Configuration::ProviderCache - 10))
+            while (this->Buffer->size() > (Configuration::HuggleConfiguration->ProviderCache - 10))
             {
                 this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
                 this->Buffer->removeAt(0);

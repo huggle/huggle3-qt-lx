@@ -60,6 +60,10 @@ namespace Huggle
             virtual QString GetExtensionAuthor() { return ""; }
             virtual QString GetExtensionVersion() { return "1.0"; }
             virtual QString GetExtensionDescription() { return "No description"; }
+            //! Pointer to huggle core
+            void *HuggleCore;
+            //! Pointer to global system configuration
+            void *Configuration;
     };
 }
 

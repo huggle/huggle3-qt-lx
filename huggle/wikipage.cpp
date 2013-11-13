@@ -41,52 +41,52 @@ WikiPage::WikiPage(const WikiPage &page)
 
 MediaWikiNS WikiPage::GetNS()
 {
-    if (PageName.startsWith(Configuration::LocalConfig_NSTalk) ||
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSTalk) ||
             PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
     {
         return MediaWikiNS_Talk;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSProject) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECT))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSProject) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECT))
     {
         return MediaWikiNS_Project;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSUser) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSUser) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
     {
         return MediaWikiNS_User;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSUserTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSUserTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
     {
         return MediaWikiNS_UserTalk;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSCategory) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORY))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSCategory) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORY))
     {
         return MediaWikiNS_Category;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSCategoryTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORYTALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORYTALK))
     {
         return MediaWikiNS_CategoryTalk;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSFile) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILE))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSFile) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILE))
     {
         return MediaWikiNS_File;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSFileTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILETALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSFileTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILETALK))
     {
         return MediaWikiNS_FileTalk;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSMediaWikiTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK))
     {
         return MediaWikiNS_MediawikiTalk;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSMediaWiki) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKI))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSMediaWiki) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKI))
     {
         return MediaWikiNS_Mediawiki;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSPortal) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTAL))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSPortal) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTAL))
     {
         return MediaWikiNS_Portal;
     }
-    if (PageName.startsWith(Configuration::LocalConfig_NSPortalTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTALTALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSPortalTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTALTALK))
     {
         return MediaWikiNS_PortalTalk;
     }

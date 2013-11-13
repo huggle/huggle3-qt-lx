@@ -254,6 +254,7 @@ namespace Huggle
             static bool ReportPreFlightCheck();
             static int RunningQueriesGetCount();
             Core();
+            ~Core();
         private:
             //! List of all running queries
             static QList<Query*> RunningQueries;

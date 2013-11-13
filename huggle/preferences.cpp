@@ -57,11 +57,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->Disable();
     // options
     /// \todo RELEASE BLOCKER implement the other checkboxes as well
-    ui->checkBox_5->setChecked(Configuration::EnforceManualSoftwareRollback);
-    ui->checkBox_2->setChecked(Configuration::WarnUserSpaceRoll);
-    ui->checkBox->setChecked(Configuration::AutomaticallyResolveConflicts);
-    ui->checkBox_12->setChecked(Configuration::UsingIRC);
-    ui->radioButton->setChecked(!Configuration::RevertOnMultipleEdits);
+    ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
+    ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
+    ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
+    ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
+    ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
@@ -116,11 +116,11 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    Configuration::AutomaticallyResolveConflicts = ui->checkBox->isChecked();
-    Configuration::WarnUserSpaceRoll = ui->checkBox_2->isChecked();
-    Configuration::UsingIRC = ui->checkBox_12->isChecked();
-    Configuration::EnforceManualSoftwareRollback = ui->checkBox_5->isChecked();
-    Configuration::RevertOnMultipleEdits = ui->radioButton_2->isChecked();
+    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->WarnUserSpaceRoll = ui->checkBox_2->isChecked();
+    Configuration::HuggleConfiguration->UsingIRC = ui->checkBox_12->isChecked();
+    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = ui->checkBox_5->isChecked();
+    Configuration::HuggleConfiguration->RevertOnMultipleEdits = ui->radioButton_2->isChecked();
     Configuration::SaveConfig();
     this->hide();
 }

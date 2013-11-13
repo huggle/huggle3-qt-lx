@@ -22,9 +22,9 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->LoginQuery = NULL;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(on_Time()));
-    this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleVersion + "]");
+    this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleConfiguration->HuggleVersion + "]");
     this->Reset();
-    ui->checkBox->setChecked(Configuration::UsingSSL);
+    ui->checkBox->setChecked(Configuration::HuggleConfiguration->UsingSSL);
     // set the language to dummy english
     int l=0;
     while (l<Core::LocalizationData.count())
@@ -37,7 +37,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     wq = NULL;
     if (!QSslSocket::supportsSsl())
     {
-        Configuration::UsingSSL = false;
+        Configuration::HuggleConfiguration->UsingSSL = false;
         ui->checkBox->setEnabled(false);
         ui->checkBox->setChecked(false);
     }
@@ -102,9 +102,9 @@ void Login::Reload()
 {
     int current = 0;
     ui->Project->clear();
-    while (current < Configuration::ProjectList.size())
+    while (current < Configuration::HuggleConfiguration->ProjectList.size())
     {
-        ui->Project->addItem(Configuration::ProjectList.at(current)->Name);
+        ui->Project->addItem(Configuration::HuggleConfiguration->ProjectList.at(current)->Name);
         current++;
     }
     ui->Project->setCurrentIndex(0);
@@ -125,11 +125,11 @@ void Login::DB()
         QDomNodeList l = d.elementsByTagName("rev");
         if (l.count() > 0)
         {
-            if (QFile().exists(Configuration::WikiDB))
+            if (QFile().exists(Configuration::HuggleConfiguration->WikiDB))
             {
-                QFile().remove(Configuration::WikiDB);
+                QFile().remove(Configuration::HuggleConfiguration->WikiDB);
             }
-            QFile wiki(Configuration::WikiDB);
+            QFile wiki(Configuration::HuggleConfiguration->WikiDB);
             if (wiki.open(QIODevice::WriteOnly))
             {
                 wiki.write(l.at(0).toElement().text().toUtf8());
@@ -167,15 +167,15 @@ void Login::PressOK()
         mb.exec();
         return;
     }
-    Configuration::Project = WikiSite(Configuration::ProjectList.at(ui->Project->currentIndex()));
-    Configuration::UsingSSL = ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(ui->Project->currentIndex());
+    Configuration::HuggleConfiguration->UsingSSL = ui->checkBox->isChecked();
     if (ui->lineEdit_2->text() == "Developer Mode")
     {
         DeveloperMode();
         return;
     }
-    Configuration::UserName = ui->lineEdit_2->text();
-    Configuration::Password = ui->lineEdit_3->text();
+    Configuration::HuggleConfiguration->UserName = ui->lineEdit_2->text();
+    Configuration::HuggleConfiguration->Password = ui->lineEdit_3->text();
     this->_Status = LoggingIn;
     this->Disable();
     ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
@@ -190,7 +190,7 @@ void Login::PerformLogin()
     // we create an api request to login
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
-    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName);
+    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName);
     this->LoginQuery->HiddenQuery = true;
     this->LoginQuery->UsingPOST = true;
     this->LoginQuery->Process();
@@ -220,17 +220,17 @@ void Login::FinishLogin()
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
     this->LoginQuery->HiddenQuery = true;
-    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::UserName)
-            + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::Password) + "&lgtoken=" + Token ;
+    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName)
+            + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;
     // we generate a random string of same size of current password
     QString pw = "";
-    while (pw.length() < Configuration::Password.length())
+    while (pw.length() < Configuration::HuggleConfiguration->Password.length())
     {
         pw += ".";
     }
     // we no longer need a password since this
-    Configuration::Password = pw;
+    Configuration::HuggleConfiguration->Password = pw;
     ui->lineEdit_3->setText(pw);
     this->LoginQuery->Process();
 }
@@ -265,7 +265,7 @@ void Login::RetrieveGlobalConfig()
             QDomElement data = l.at(0).toElement();
             if (Configuration::ParseGlobalConfig(data.text()))
             {
-                if (!Configuration::GlobalConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
                     /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because huggle is globally disabled");
@@ -295,7 +295,7 @@ void Login::RetrieveGlobalConfig()
     ui->label_6->setText(Core::Localize("[[login-progress-global]]"));
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
+    this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 }
@@ -335,18 +335,18 @@ void Login::RetrieveWhitelist()
         {
             if (wq->Result->Failed)
             {
-                Configuration::WhitelistDisabled = true;
+                Configuration::HuggleConfiguration->WhitelistDisabled = true;
             } else
             {
                 QString list = wq->Result->Data;
                 list = list.replace("<!-- list -->", "");
-                Configuration::WhiteList = list.split("|");
+                Configuration::HuggleConfiguration->WhiteList = list.split("|");
                 int c = 0;
-                while (c < Configuration::WhiteList.count())
+                while (c < Configuration::HuggleConfiguration->WhiteList.count())
                 {
-                    if (Configuration::WhiteList.at(c) == "")
+                    if (Configuration::HuggleConfiguration->WhiteList.at(c) == "")
                     {
-                        Configuration::WhiteList.removeAt(c);
+                        Configuration::HuggleConfiguration->WhiteList.removeAt(c);
                         continue;
                     }
                     c++;
@@ -400,7 +400,7 @@ void Login::RetrieveLocalConfig()
             QDomElement data = l.at(0).toElement();
             if (Configuration::ParseLocalConfig(data.text()))
             {
-                if (!Configuration::LocalConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
                 {
                     /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because huggle is disabled");
@@ -468,7 +468,7 @@ void Login::RetrievePrivateConfig()
             QDomElement data = l.at(0).toElement();
             if (Configuration::ParseUserConfig(data.text()))
             {
-                if (!Configuration::LocalConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
                 {
                     /// \todo LOCALIZE ME
                     ui->label_6->setText("Login failed because you don't have enable:true in your personal config");
@@ -497,8 +497,8 @@ void Login::RetrievePrivateConfig()
     this->Progress(82);
     ui->label_6->setText("Retrieving user config");
     this->LoginQuery = new ApiQuery();
-    QString page = Configuration::GlobalConfig_UserConf;
-    page = page.replace("$1", Configuration::UserName);
+    QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
+    page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
             QUrl::toPercentEncoding(page);
@@ -538,10 +538,10 @@ void Login::RetrieveUserInfo()
             int c=0;
             while(c<l.count())
             {
-                Configuration::Rights.append(l.at(c).toElement().text());
+                Configuration::HuggleConfiguration->Rights.append(l.at(c).toElement().text());
                 c++;
             }
-            if (Configuration::LocalConfig_RequireRollback && !Configuration::Rights.contains("rollback"))
+            if (Configuration::HuggleConfiguration->LocalConfig_RequireRollback && !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
                 /// \todo LOCALIZE ME
                 ui->label_6->setText("Login failed because you don't have rollback permissions on this project");
@@ -570,7 +570,7 @@ void Login::RetrieveUserInfo()
 
 void Login::DeveloperMode()
 {
-    Configuration::Restricted = true;
+    Configuration::HuggleConfiguration->Restricted = true;
     Core::Main = new MainWindow();
     Core::Main->show();
     this->hide();
@@ -756,7 +756,7 @@ void Login::on_pushButton_clicked()
     this->_Status = Refreshing;
     this->LoginQuery->SetAction(ActionQuery);
     this->timer->start(200);
-    this->LoginQuery->OverrideWiki = Configuration::GlobalConfigurationWikiAddress;
+    this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(Core::Localize("[[cancel]]"));
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/List";
     this->LoginQuery->Process();
@@ -775,6 +775,6 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
         }
         c++;
     }
-    Configuration::Language = lang;
+    Configuration::HuggleConfiguration->Language = lang;
     Localize();
 }

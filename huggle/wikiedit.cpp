@@ -224,20 +224,20 @@ void WikiEdit::ProcessWords()
     {
         text = this->Page->Contents.toLower();
     }
-    while (xx<Configuration::LocalConfig_ScoreParts.count())
+    while (xx<Configuration::HuggleConfiguration->LocalConfig_ScoreParts.count())
     {
-        QString w = Configuration::LocalConfig_ScoreParts.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(xx).word;
         if (text.contains(w))
         {
-            this->Score += Configuration::LocalConfig_ScoreParts.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
     }
     xx = 0;
-    while (xx<Configuration::LocalConfig_ScoreWords.count())
+    while (xx<Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
     {
-        QString w = Configuration::LocalConfig_ScoreWords.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).word;
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
         {
@@ -250,9 +250,9 @@ void WikiEdit::ProcessWords()
         {
             found = true;
         }
-        while (!found && SD < Configuration::Separators.count())
+        while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
         {
-            if (text.contains(Configuration::Separators.at(SD) + w))
+            if (text.contains(Configuration::HuggleConfiguration->Separators.at(SD) + w))
             {
                 found = true;
             }
@@ -266,9 +266,9 @@ void WikiEdit::ProcessWords()
             {
                 found = true;
             }
-            while (!found && SD < Configuration::Separators.count())
+            while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
             {
-                if (text.contains(w + Configuration::Separators.at(SD)))
+                if (text.contains(w + Configuration::HuggleConfiguration->Separators.at(SD)))
                 {
                     found = true;
                 }
@@ -276,7 +276,7 @@ void WikiEdit::ProcessWords()
             }
             if (found)
             {
-                this->Score += Configuration::LocalConfig_ScoreWords.at(xx).score;
+                this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).score;
                 ScoreWords.append(w);
             }
         }
@@ -361,11 +361,11 @@ void ProcessorThread::Process(WikiEdit *edit)
     // score
     if (edit->User->IsIP())
     {
-        edit->Score += Configuration::LocalConfig_IPScore;
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_IPScore;
     }
     if (edit->Bot)
     {
-        edit->Score += Configuration::LocalConfig_BotScore;
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_BotScore;
     }
     if (edit->Page->IsUserpage())
     {
@@ -377,7 +377,7 @@ void ProcessorThread::Process(WikiEdit *edit)
     }
     if (edit->Size > 1200 || edit->Size < -1200)
     {
-        edit->Score += Configuration::LocalConfig_ScoreChange;
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreChange;
     }
 
     edit->Score += edit->User->getBadnessScore();
@@ -420,7 +420,7 @@ void ProcessorThread::Process(WikiEdit *edit)
 
 int WikiEdit::GetLevel(QString page)
 {
-    if (Configuration::TrimOldWarnings)
+    if (Configuration::HuggleConfiguration->TrimOldWarnings)
     {
         // we need to get rid of old warnings now
         QString orig = page;
@@ -509,7 +509,7 @@ int WikiEdit::GetLevel(QString page)
             } else
             {
                 // now check if it's at least 1 month old
-                if (QDate::currentDate().addDays(Configuration::LocalConfig_TemplateAge) > date)
+                if (QDate::currentDate().addDays(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) > date)
                 {
                     // we don't want to parse this thing
                     page = page.replace(sections.at(CurrentIndex), "");
@@ -525,9 +525,9 @@ int WikiEdit::GetLevel(QString page)
     while (level > 0)
     {
         int xx=0;
-        while (xx<Configuration::LocalConfig_WarningDefs.count())
+        while (xx<Configuration::HuggleConfiguration->LocalConfig_WarningDefs.count())
         {
-            QString defs=Configuration::LocalConfig_WarningDefs.at(xx);
+            QString defs=Configuration::HuggleConfiguration->LocalConfig_WarningDefs.at(xx);
             if (Core::GetKeyFromValue(defs).toInt() == level)
             {
                 if (page.contains(Core::GetValueFromKey(defs)))

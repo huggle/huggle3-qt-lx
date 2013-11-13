@@ -28,19 +28,19 @@ void WLQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
-    QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::Project.WhiteList);
+    QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
     QString params = "";
     if (Save)
     {
-        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::Project.WhiteList);
+        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
         QString whitelist = "";
         int p = 0;
-        Configuration::WhiteList.sort();
-        while (p < Configuration::WhiteList.count())
+        Configuration::HuggleConfiguration->WhiteList.sort();
+        while (p < Configuration::HuggleConfiguration->WhiteList.count())
         {
-            if (Configuration::WhiteList.at(p) != "")
+            if (Configuration::HuggleConfiguration->WhiteList.at(p) != "")
             {
-                whitelist += Configuration::WhiteList.at(p) + "|";
+                whitelist += Configuration::HuggleConfiguration->WhiteList.at(p) + "|";
             }
             p++;
         }

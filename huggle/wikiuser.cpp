@@ -59,11 +59,11 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->getBadnessScore() <= Configuration::LocalConfig_WhitelistScore)
+    if (!us->IP && us->getBadnessScore() <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
     {
-        if (!Configuration::WhiteList.contains(us->Username))
+        if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
         {
-            Configuration::WhiteList.append(us->Username);
+            Configuration::HuggleConfiguration->WhiteList.append(us->Username);
         }
     }
     int c=0;
@@ -244,7 +244,7 @@ bool WikiUser::IsIP()
 
 QString WikiUser::GetTalk()
 {
-    return Configuration::LocalConfig_NSUserTalk + this->Username;
+    return Configuration::HuggleConfiguration->LocalConfig_NSUserTalk + this->Username;
 }
 
 bool WikiUser::IsWhitelisted()
@@ -257,7 +257,7 @@ bool WikiUser::IsWhitelisted()
     {
         return false;
     }
-    if (Configuration::WhiteList.contains(this->Username))
+    if (Configuration::HuggleConfiguration->WhiteList.contains(this->Username))
     {
         this->WhitelistInfo = 1;
         return true;

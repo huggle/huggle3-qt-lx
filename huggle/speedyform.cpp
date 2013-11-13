@@ -19,9 +19,9 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
     this->User = NULL;
     ui->setupUi(this);
     int i=0;
-    while (i < Configuration::LocalConfig_DeletionTemplates.count())
+    while (i < Configuration::HuggleConfiguration->LocalConfig_DeletionTemplates.count())
     {
-        QString item = Configuration::LocalConfig_DeletionTemplates.at(i);
+        QString item = Configuration::HuggleConfiguration->LocalConfig_DeletionTemplates.at(i);
         // now we need to get first 2 items
         QStringList vals = item.split(";");
         if (vals.count() < 4)

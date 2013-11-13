@@ -23,7 +23,7 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->b = NULL;
     this->t0 = NULL;
     this->tb = NULL;
-    ui->comboBox->addItem(Configuration::LocalConfig_BlockReason);
+    ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
 }
 
 BlockUser::~BlockUser()
@@ -128,14 +128,14 @@ void BlockUser::CheckToken()
     if (user->IsIP())
     {
         tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
-                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockReason) + "expiry="
-                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockTimeAnon) + "token="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "expiry="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "token="
                 + QUrl::toPercentEncoding(blocktoken);
 
     }else
     {
         tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
-                + QUrl::toPercentEncoding(Configuration::LocalConfig_BlockReason) + "token="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "token="
                 + QUrl::toPercentEncoding(blocktoken);
     }
     /// \todo LOCALIZE ME
@@ -210,12 +210,12 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     QString blocknotice;
     if (user->IsIP())
     {
-        blocknotice = Configuration::LocalConfig_BlockMessage;
+        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessage;
     }else
     {
-        blocknotice = Configuration::LocalConfig_BlockMessageIndef;
+        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessageIndef;
     }
-    QString blocksum = Configuration::LocalConfig_BlockSummary;
+    QString blocksum = Configuration::HuggleConfiguration->LocalConfig_BlockSummary;
     Core::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
 }
 

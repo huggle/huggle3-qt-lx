@@ -21,7 +21,7 @@ void ApiQuery::ConstructUrl()
 
     if (OverrideWiki == "")
     {
-        URL = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
+        URL = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
     }
     else
     {
@@ -56,7 +56,7 @@ QString ApiQuery::ConstructParameterLessUrl()
     }
     if (OverrideWiki == "")
     {
-        url = Core::GetProjectScriptURL(Configuration::Project) + "api.php?action=" + this->ActionPart;
+        url = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
     }
     else
     {

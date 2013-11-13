@@ -24,7 +24,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->token = "none";
     /// \todo LOCALIZE ME
     // some users might prefer to have a month as header
-    title = "Message from " + Configuration::UserName;
+    title = "Message from " + Configuration::HuggleConfiguration->UserName;
 }
 
 Message::~Message()
@@ -140,13 +140,13 @@ void Message::Finish()
         query->SetAction(ActionEdit);
         if (this->Section == false)
         {
-            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
+            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle)
                     + "&text=" + QUrl::toPercentEncoding(this->text)
                     + "&token=" + QUrl::toPercentEncoding(this->token);
         }else
         {
             query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                    + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::EditSuffixOfHuggle)
+                    + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle)
                     + "&text=" + QUrl::toPercentEncoding(this->text)
                     + "&token=" + QUrl::toPercentEncoding(this->token);
         }

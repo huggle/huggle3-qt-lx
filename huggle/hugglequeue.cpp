@@ -55,7 +55,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     } else
     {
         int id = 0;
-        if (Configuration::QueueNewEditsUp)
+        if (Configuration::HuggleConfiguration->QueueNewEditsUp)
         {
             while (GetScore(id) > page->Score && GetScore(id) > MINIMAL_SCORE)
             {
