@@ -37,7 +37,7 @@ int Configuration::ProviderCache = 200;
 QString Configuration::HuggleVersion = HUGGLE_VERSION;
 int Configuration::RingLogMaxSize = 2000;
 QString Configuration::HomePath = QDir::currentPath();
-QString Configuration::EditSuffixOfHuggle = "([[WP:HG]])";
+QString Configuration::EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
 QStringList Configuration::EditRegexOfTools;
 QString Configuration::WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
 QString Configuration::DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
