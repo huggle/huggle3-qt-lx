@@ -63,6 +63,7 @@ void HuggleTest::testCaseScores()
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
     Huggle::Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
+    Huggle::GC::gc = new Huggle::GC();
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
     edit->Page = new Huggle::WikiPage("test");
     edit->User = new Huggle::WikiUser("Harry, the vandal");
@@ -102,6 +103,8 @@ void HuggleTest::testCaseScores()
     edit->ProcessWords();
     QVERIFY2(edit->Score == 50, QString("Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
+    delete Huggle::GC::gc;
+    Huggle::GC::gc = NULL;
 }
 
 void HuggleTest::testCaseWikiUserCheckIP()
