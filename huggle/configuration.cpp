@@ -280,6 +280,7 @@ void Configuration::LoadConfig()
     while (item < l.count())
     {
         QDomElement option = l.at(item).toElement();
+        item++;
         QDomNamedNodeMap xx = option.attributes();
         if (!xx.contains("text") || !xx.contains("key"))
         {
@@ -289,76 +290,73 @@ void Configuration::LoadConfig()
         if (key == "DefaultRevertSummary")
         {
             Configuration::HuggleConfiguration->DefaultRevertSummary = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "Cache_InfoSize")
         {
             Configuration::HuggleConfiguration->Cache_InfoSize = option.attribute("text").toInt();
-            item++;
             continue;
         }
         if (key == "GlobalConfigurationWikiAddress")
         {
             Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "IRCIdent")
         {
             Configuration::HuggleConfiguration->IRCIdent = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "IRCNick")
         {
             Configuration::HuggleConfiguration->IRCNick = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "IRCPort")
         {
             Configuration::HuggleConfiguration->IRCPort = option.attribute("text").toInt();
-            item++;
             continue;
         }
         if (key == "IRCServer")
         {
             Configuration::HuggleConfiguration->IRCServer = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "Language")
         {
             Configuration::HuggleConfiguration->Language = option.attribute("text");
-            item++;
             continue;
         }
         if (key == "ProviderCache")
         {
             Configuration::HuggleConfiguration->ProviderCache = option.attribute("text").toInt();
-            item++;
             continue;
         }
         if (key == "AskUserBeforeReport")
         {
             Configuration::HuggleConfiguration->AskUserBeforeReport = Configuration::SafeBool(option.attribute("text"));
-            item++;
             continue;
         }
         if (key == "HistorySize")
         {
             Configuration::HuggleConfiguration->HistorySize = option.attribute("text").toInt();
-            item++;
             continue;
         }
         if (key == "VandalNw_Login")
         {
             Configuration::HuggleConfiguration->VandalNw_Login = Configuration::SafeBool(option.attribute("text"));
-            item++;
             continue;
         }
-        item++;
+        if (key == "UserName")
+        {
+            Configuration::HuggleConfiguration->UserName = option.attribute("text");
+            continue;
+        }
+        if (key == "NextOnRv")
+        {
+            Configuration::HuggleConfiguration->NextOnRv = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     Core::HuggleCore->DebugLog("Finished conf");
 }
@@ -374,6 +372,7 @@ void Configuration::SaveConfig()
     QXmlStreamWriter *x = new QXmlStreamWriter();
     x->setDevice(&file);
     x->writeStartDocument();
+    x->writeStartElement("huggle");
     Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->Cache_InfoSize), x);
     Configuration::InsertConfig("DefaultRevertSummary", Configuration::HuggleConfiguration->DefaultRevertSummary, x);
     Configuration::InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, x);
@@ -395,6 +394,7 @@ void Configuration::SaveConfig()
     // Vandal network
     /////////////////////////////
     Configuration::InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), x);
+    x->writeEndElement();
     x->writeEndDocument();
     delete x;
 }
