@@ -64,7 +64,7 @@ bool TerminalParser::Parse()
 
 bool TerminalParser::ParseChar(QChar x)
 {
-    switch (x.toAscii())
+    switch (x.toLatin1())
     {
         case 'v':
             Configuration::HuggleConfiguration->Verbosity++;
