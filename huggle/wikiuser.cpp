@@ -142,6 +142,7 @@ WikiUser::WikiUser(QString user)
         }
     }
     this->Username = user;
+    this->Sanitize();
     int c=0;
     this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())
@@ -230,6 +231,11 @@ void WikiUser::Update(bool MatchingOnly)
     }
     WikiUser::UpdateUser(this);
     WikiUser::ProblematicUserListLock.unlock();
+}
+
+void WikiUser::Sanitize()
+{
+    this->Username = this->Username.replace(" ", "_");
 }
 
 void WikiUser::ForceIP()

@@ -313,7 +313,7 @@ void Core::SaveDefs()
     }
     if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
-        Core::Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
+        this->Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
     QString xx = "<definitions>\n";

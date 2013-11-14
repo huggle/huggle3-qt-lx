@@ -74,6 +74,7 @@ namespace Huggle
             bool IsReported;
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
+            void Sanitize();
             //! Cache of contributions made by this user
             QList<WikiEdit*> Contributions;
             /*!

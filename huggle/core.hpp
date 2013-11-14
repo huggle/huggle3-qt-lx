@@ -98,7 +98,7 @@ namespace Huggle
     };
 
     /*!
-     * \brief Miscelanceous system functions, all of these functions are static
+     * \brief Miscelanceous system functions
      *
      * Making any instance of this class is nonsense don't do it :D
      */
