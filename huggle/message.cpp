@@ -135,6 +135,8 @@ void Message::Finish()
         token = element.attribute("edittoken");
         query->UnregisterConsumer("Message::Send()");
         query = new ApiQuery();
+        // prevent message from being sent twice
+        query->RetryOnTimeoutFailure = false;
         query->Target = "Writing " + user->GetTalk();
         query->UsingPOST = true;
         query->RegisterConsumer("Message::Finish()");
