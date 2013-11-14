@@ -42,6 +42,11 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         ui->checkBox->setChecked(false);
     }
     ui->ButtonExit->setText(Core::HuggleCore->Localize("[[main-system-exit]]"));
+    if (Configuration::HuggleConfiguration->UserName != "User")
+    {
+        ui->lineEdit_2->setText(Configuration::HuggleConfiguration->UserName);
+        ui->lineEdit_3->setFocus();
+    }
     Localize();
 }
 

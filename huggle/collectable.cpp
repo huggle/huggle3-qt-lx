@@ -32,6 +32,7 @@ Collectable::~Collectable()
     {
         throw new Exception("Request to delete managed entity");
     }
+    this->QL->unlock();
     delete this->QL;
 }
 
