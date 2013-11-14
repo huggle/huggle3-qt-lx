@@ -169,9 +169,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // these controls are for debugging only
     if (Configuration::HuggleConfiguration->Verbosity == 0)
     {
-        ui->menuDebug->setVisible(false);
         ui->actionList_all_QGC_items->setVisible(false);
         ui->actionEdit_info->setVisible(false);
+        /// \bug This doesn't work
+        ui->menuDebug->hide();
     }
     Hooks::MainWindowIsLoad(this);
     Core::HuggleCore->Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");

@@ -37,16 +37,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
    </layout>
@@ -57,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -169,7 +160,7 @@
    </widget>
    <widget class="QMenu" name="menuDebug">
     <property name="title">
-     <string>Debug</string>
+     <string notr="true">Debug</string>
     </property>
     <addaction name="actionList_all_QGC_items"/>
     <addaction name="actionEdit_info"/>

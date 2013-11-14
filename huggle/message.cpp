@@ -137,6 +137,7 @@ void Message::Finish()
         query = new ApiQuery();
         // prevent message from being sent twice
         query->RetryOnTimeoutFailure = false;
+        query->Timeout = 600;
         query->Target = "Writing " + user->GetTalk();
         query->UsingPOST = true;
         query->RegisterConsumer("Message::Finish()");
