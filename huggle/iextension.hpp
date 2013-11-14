@@ -13,6 +13,7 @@
 
 #include <QtPlugin>
 #include <QList>
+#include <QNetworkAccessManager>
 #include <QString>
 
 #if _MSC_VER
@@ -26,6 +27,9 @@
 namespace Huggle
 {
     //! Extension interface
+
+    //! Keep in mind that extensions are running in separate domain so that if you want to have access
+    //! to resources like configuration or network, you need to explicitly request it.
     class iExtension
     {
         public:
@@ -60,10 +64,16 @@ namespace Huggle
             virtual QString GetExtensionAuthor() { return ""; }
             virtual QString GetExtensionVersion() { return "1.0"; }
             virtual QString GetExtensionDescription() { return "No description"; }
+            //! Whether this extension need access to huggle configs
+            virtual bool RequestConfiguration() { return false; }
+            //! Whether this extension need access to core
+            virtual bool RequestCore() { return false; }
+            virtual bool RequestNetwork() { return false; }
             //! Pointer to huggle core
             void *HuggleCore;
             //! Pointer to global system configuration
             void *Configuration;
+            QNetworkAccessManager *Networking;
     };
 }
 

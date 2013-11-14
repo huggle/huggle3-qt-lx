@@ -39,12 +39,12 @@ bool Collectable::SafeDelete()
 {
     if (this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
-        GC::Lock.lock();
-        if (GC::list.contains(this))
+        GC::gc->Lock->lock();
+        if (GC::gc->list.contains(this))
         {
-            GC::list.removeAll(this);
+            GC::gc->list.removeAll(this);
         }
-        GC::Lock.unlock();
+        GC::gc->Lock->unlock();
         this->Managed = false;
         delete this;
         return true;
@@ -128,9 +128,9 @@ QString Collectable::ConsumerIdToString(const int id)
 void Collectable::SetManaged()
 {
     this->Managed = true;
-    if (!GC::list.contains(this))
+    if (!GC::gc->list.contains(this))
     {
-        GC::list.append(this);
+        GC::gc->list.append(this);
     }
 }
 

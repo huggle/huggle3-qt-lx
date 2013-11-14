@@ -87,7 +87,7 @@ namespace Huggle
             Callback callback;
             //! This is a pointer to object returned by your callback function
             void* CallbackResult;
-            static QNetworkAccessManager NetworkManager;
+            static QNetworkAccessManager *NetworkManager;
             bool RetryOnTimeoutFailure;
             QDateTime StartTime;
             int Timeout;

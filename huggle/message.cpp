@@ -19,6 +19,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     summary = Summary;
     Done = false;
     Sending = false;
+    this->Suffix = true;
     this->Dependency = NULL;
     this->query = NULL;
     this->token = "none";
@@ -138,15 +139,20 @@ void Message::Finish()
         query->UsingPOST = true;
         query->RegisterConsumer("Message::Finish()");
         query->SetAction(ActionEdit);
+        QString s = summary;
+        if (this->Suffix)
+        {
+            s += Configuration::HuggleConfiguration->EditSuffixOfHuggle;
+        }
         if (this->Section == false)
         {
-            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle)
+            query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
                     + "&text=" + QUrl::toPercentEncoding(this->text)
                     + "&token=" + QUrl::toPercentEncoding(this->token);
         }else
         {
             query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                    + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle)
+                    + QUrl::toPercentEncoding(this->title) + "&summary=" + QUrl::toPercentEncoding(s)
                     + "&text=" + QUrl::toPercentEncoding(this->text)
                     + "&token=" + QUrl::toPercentEncoding(this->token);
         }

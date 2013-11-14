@@ -18,7 +18,7 @@ PythonEngine *Core::Python = NULL;
 #endif
 
 
-Core  * Core::HuggleCore = NULL;
+Core  *Core::HuggleCore = NULL;
 
 void Core::Init()
 {
@@ -27,8 +27,11 @@ void Core::Init()
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
     if (Configuration::HuggleConfiguration->_SafeMode)
     {
-        Core::Log("DEBUG: Huggle is running in a safe mode");
+        this->Log("DEBUG: Huggle is running in a safe mode");
     }
+    this->gc = new GC();
+    GC::gc = this->gc;
+    Query::NetworkManager = new QNetworkAccessManager();
     Core::VersionRead();
     QFile *vf;
 #if QT_VERSION >= 0x050000
@@ -55,7 +58,7 @@ void Core::Init()
 #endif
     this->DebugLog("Loading wikis");
     this->LoadDB();
-    Core::LoadLocalizations();
+    this->LoadLocalizations();
     this->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
@@ -63,13 +66,13 @@ void Core::Init()
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
-        Core::Log("Loading plugins");
-        Core::ExtensionLoad();
+        this->Log("Loading plugins");
+        this->ExtensionLoad();
     } else
     {
-        Core::Log("Not loading plugins in a safe mode");
+        this->Log("Not loading plugins in a safe mode");
     }
-    Core::Log("Loaded in " + QString::number(Core::StartupTime.msecsTo(QDateTime::currentDateTime())));
+    this->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 
 void Core::LoadDB()
@@ -82,7 +85,7 @@ void Core::LoadDB()
         QFile db(Configuration::HuggleConfiguration->WikiDB);
         if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            Core::Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
+            this->Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
             return;
         }
         text = QString(db.readAll());
@@ -415,11 +418,11 @@ void Core::ParseWords(QString text)
     }
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency)
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix)
 {
     if (user == NULL)
     {
-        Core::Log("Cowardly refusing to message NULL user");
+        this->Log("Cowardly refusing to message NULL user");
         return NULL;
     }
 
@@ -427,9 +430,10 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->title = title;
     m->Dependency = dependency;
     m->Section = section;
+    m->Suffix = !nosuffix;
     Core::Messages.append(m);
     m->Send();
-    Core::Log("Sending message to user " + user->Username);
+    this->Log("Sending message to user " + user->Username);
 
     return m;
 }
@@ -589,6 +593,18 @@ void Core::ExtensionLoad()
                             Core::Log("Unable to cast the library to extension");
                         }else
                         {
+                            if (interface->RequestNetwork())
+                            {
+                                interface->Networking = Query::NetworkManager;
+                            }
+                            if (interface->RequestConfiguration())
+                            {
+                                interface->Configuration = Configuration::HuggleConfiguration;
+                            }
+                            if (interface->RequestCore())
+                            {
+                                interface->HuggleCore = Core::HuggleCore;
+                            }
                             if (interface->Register())
                             {
                                 Core::Extensions.append(interface);
@@ -1110,6 +1126,7 @@ Core::Core()
     this->Running = true;
     this->AIVP = NULL;
     this->UAAP = NULL;
+    this->gc = NULL;
 }
 
 Core::~Core()
@@ -1118,6 +1135,10 @@ Core::~Core()
     delete this->f_Login;
     delete this->SecondaryFeedProvider;
     delete this->PrimaryFeedProvider;
+    delete this->gc;
+    delete this->AIVP;
+    delete this->UAAP;
+    delete this->Processor;
 }
 
 Language::Language(QString name)

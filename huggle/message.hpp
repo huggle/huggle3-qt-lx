@@ -40,6 +40,8 @@ namespace Huggle
             QString token;
             //! If edit will be created in new section
             bool Section;
+            //! Set this to false to remove huggle suffix from summary
+            bool Suffix;
             //! User to deliver a message to
             WikiUser *user;
             //! Text of message that will be appended to talk page

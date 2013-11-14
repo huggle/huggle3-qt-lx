@@ -557,7 +557,7 @@ void MainWindow::on_Tick()
 {
     Core::HuggleCore->FinalizeMessages();
     bool RetrieveEdit = true;
-    GC::DeleteOld();
+    GC::gc->DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
@@ -628,7 +628,7 @@ void MainWindow::on_Tick()
             + " edits waiting in queue.";
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
-        t += " QGC: " + QString::number(GC::list.count())
+        t += " QGC: " + QString::number(GC::gc->list.count())
                 + "U: " + QString::number(WikiUser::ProblematicUsers.count());
     }
     this->Status->setText(t);
@@ -1063,6 +1063,7 @@ void MainWindow::Exit()
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Core::HuggleCore->Shutdown();
+        return;
     }
     this->Shutdown = ShutdownOpRetrievingWhitelist;
     if (Core::HuggleCore->PrimaryFeedProvider != NULL)
@@ -1399,9 +1400,9 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 void MainWindow::on_actionList_all_QGC_items_triggered()
 {
     int xx=0;
-    while (xx<GC::list.count())
+    while (xx<GC::gc->list.count())
     {
-        Collectable *query = GC::list.at(xx);
+        Collectable *query = GC::gc->list.at(xx);
         Core::HuggleCore->Log(query->DebugHgc());
         xx++;
     }

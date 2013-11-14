@@ -13,7 +13,7 @@
 using namespace Huggle;
 
 unsigned int Query::LastID = 0;
-QNetworkAccessManager Query::NetworkManager;
+QNetworkAccessManager *Query::NetworkManager = NULL;
 
 Query::Query()
 {

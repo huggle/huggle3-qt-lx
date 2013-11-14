@@ -136,6 +136,8 @@ namespace Huggle
             WikiPage *UAAP;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
+            //! Garbage collector
+            GC *gc;
 
 #ifdef PYTHONENGINE
             PythonEngine *Python;
@@ -236,7 +238,7 @@ namespace Huggle
              * the system will wait for it to finish before the message is sent
              * \return
              */
-            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL);
+            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL, bool nosuffix = false);
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);

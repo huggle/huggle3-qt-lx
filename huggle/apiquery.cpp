@@ -164,10 +164,10 @@ void ApiQuery::Process()
     }
     if (UsingPOST)
     {
-        this->reply = Query::NetworkManager.post(request, this->Parameters.toUtf8());
+        this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
     } else
     {
-        this->reply = Query::NetworkManager.get(request);
+        this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
     {

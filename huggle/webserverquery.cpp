@@ -43,10 +43,10 @@ void WebserverQuery::Process()
     if (UsingPOST)
     {
         //this->reply = Query::NetworkManager.post(request, url.encodedQuery());
-        this->reply = Query::NetworkManager.post(request, this->Parameters.toUtf8());
+        this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
     } else
     {
-        this->reply = Query::NetworkManager.get(request);
+        this->reply = Query::NetworkManager->get(request);
     }
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));

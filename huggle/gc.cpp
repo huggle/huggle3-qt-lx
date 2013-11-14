@@ -10,20 +10,31 @@
 
 #include "gc.hpp"
 
-QList<Huggle::Collectable*> Huggle::GC::list;
-QMutex Huggle::GC::Lock(QMutex::Recursive);
+using namespace Huggle;
+
+GC *GC::gc = NULL;
+
+Huggle::GC::GC()
+{
+    Lock = new QMutex(QMutex::Recursive);
+}
+
+Huggle::GC::~GC()
+{
+    delete Lock;
+}
 
 void Huggle::GC::DeleteOld()
 {
-    Huggle::GC::Lock.lock();
+    this->Lock->lock();
     int x=0;
-    while(x < GC::list.count())
+    while(x < this->list.count())
     {
-        Collectable *q = GC::list.at(x);
+        Collectable *q = this->list.at(x);
         q->Lock();
         if (!q->IsManaged())
         {
-            GC::list.removeAt(x);
+            this->list.removeAt(x);
             delete q;
             continue;
         }
@@ -33,5 +44,5 @@ void Huggle::GC::DeleteOld()
             x++;
         }
     }
-    Huggle::GC::Lock.unlock();
+    this->Lock->unlock();
 }

@@ -54,11 +54,11 @@ void WLQuery::Process()
     QNetworkRequest request(url);
     if (!Save)
     {
-        this->r = Query::NetworkManager.get(request);
+        this->r = Query::NetworkManager->get(request);
     } else
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        this->r = Query::NetworkManager.post(request, params.toUtf8());
+        this->r = Query::NetworkManager->post(request, params.toUtf8());
     }
     QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
