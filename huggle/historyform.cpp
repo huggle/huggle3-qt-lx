@@ -20,7 +20,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     ui->pushButton->setText(Core::HuggleCore->Localize("historyform-no-info"));
     ui->tableWidget->setColumnCount(5);
     QStringList header;
-    header << "ID" << "Date" << "User" << "Size" << "Summary";
+    header << "User" << "Size" << "Summary" << "ID" << "Date";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -127,11 +127,11 @@ void HistoryForm::onTick01()
             }
         }
         ui->tableWidget->insertRow(x);
-        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(RevID));
-        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(date));
-        ui->tableWidget->setItem(x, 2, new QTableWidgetItem(user));
-        ui->tableWidget->setItem(x, 3, new QTableWidgetItem(size));
-        ui->tableWidget->setItem(x, 4, new QTableWidgetItem(summary));
+        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
+        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
+        ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
+        ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
+        ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
         x++;
     }
     this->query->UnregisterConsumer("HistoryForm");
@@ -162,7 +162,7 @@ void HistoryForm::on_pushButton_clicked()
 void HistoryForm::Clear()
 {
     QStringList header;
-    header << "ID" << "Date" << "User" << "Size" << "Summary";
+    header << "User" << "Size" << "Summary" << "ID" << "Date";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     while (ui->tableWidget->rowCount() > 0)
     {
