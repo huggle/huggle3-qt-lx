@@ -6,9 +6,9 @@ before_install:
   - "sudo apt-get update"
 
 install:
-  - "uname -a"
-  - "dpkg -l | grep qt"
-  - "sudo apt-get install -y g++ libqt4-dbus libqt4-dev libqt4-network libqt4-opengl libqt4-webkit libqtwebkit-dev libqtgui4 libqtcore4 libqt4-xml qt4-dev-tools qt4-qmake qt5-default"
+  - "sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa"
+  - "sudo apt-get update -qq"
+  - "sudo apt-get install -y g++ libqt4-dbus libqt4-dev libqt4-network libqt4-opengl libqt4-webkit libqtwebkit-dev libqtgui4 libqtcore4 libqt4-xml qt4-dev-tools qt4-qmake qt5-default qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev"
 
 before_script: 
   - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle"
