@@ -24,8 +24,9 @@ restorewindow:             Restore
 save:                      Save
 selectfile:                Browse...
 yes:                       Yes
-agf:                    Revert as good faith edit with custom reason
-import:                 Import from global conf
+agf:                       Revert as good faith edit with custom reason
+import:                    Import from global conf
+successful:                Successful
 </pre>
 
 === Edit types ===
@@ -410,7 +411,8 @@ main-tip-usermessage:      Message this user
 main-tip-userignore:       Ignore all contributions by this user
 main-tip-userreport:       Report this user
 main-tip-userblock:        Block this user
-main-revision-acceptpend:   Accept this pending revision
+main-revision-acceptpend:  Accept this pending revision
+main-no-page:              The action you have requested requires a page to be loaded. Please load a page before trying again.
 </pre>
 
 === Message form ===
@@ -793,3 +795,17 @@ warn-progress:             Warning '{0}'...
 <pre>
 api-help:                  No parameters in API query
 </pre>
+
+=== Query text ===
+<pre>
+editquery-success:         Successfuly edit $1
+editquery-token:           Retrieving token to edit $1
+editquery-token-error:     Unable to retrieve edit token
+</pre>
+
+=== Unknown ===
+<pre>
+provider-primary-failure:  ERROR: primary feed provider has failed, fallback to wiki provider
+whitelist-download:        Downloading new whitelist
+</pre>
+

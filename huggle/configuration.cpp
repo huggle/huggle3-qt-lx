@@ -352,6 +352,11 @@ void Configuration::LoadConfig()
             Configuration::HuggleConfiguration->UserName = option.attribute("text");
             continue;
         }
+        if (key == "WarnUserSpaceRoll")
+        {
+            Configuration::HuggleConfiguration->WarnUserSpaceRoll = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
         if (key == "NextOnRv")
         {
             Configuration::HuggleConfiguration->NextOnRv = Configuration::SafeBool(option.attribute("text"));

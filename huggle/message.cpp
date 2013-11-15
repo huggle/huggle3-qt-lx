@@ -24,7 +24,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->query = NULL;
     this->token = "none";
     /// \todo LOCALIZE ME
-    // some users might prefer to have a month as header
+    /// \todo some users might prefer to have a month as header
     title = "Message from " + Configuration::HuggleConfiguration->UserName;
 }
 

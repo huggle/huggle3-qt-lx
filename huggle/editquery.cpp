@@ -39,8 +39,7 @@ void EditQuery::Process()
     qToken = new ApiQuery();
     qToken->SetAction(ActionQuery);
     qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);
-    /// \todo LOCALIZE ME
-    qToken->Target = "Retrieving token to edit " + page;
+    qToken->Target = Core::HuggleCore->Localize("editquery-token", page);
     qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     Core::HuggleCore->AppendQuery(qToken);
     qToken->Process();
@@ -62,8 +61,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            /// \todo LOCALIZE ME
-            this->Result->ErrorMessage = "Unable to retrieve edit token, error was: " + qToken->Result->ErrorMessage;
+            this->Result->ErrorMessage = Core::HuggleCore->Localize("editquery-token-error") + ": " + qToken->Result->ErrorMessage;
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -75,8 +73,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            /// \todo LOCALIZE ME
-            this->Result->ErrorMessage = "Unable to retrieve edit token";
+            this->Result->ErrorMessage = Core::HuggleCore->Localize("editquery-token-error");
             Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
@@ -87,8 +84,7 @@ bool EditQuery::Processed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            /// \todo LOCALIZE ME
-            this->Result->ErrorMessage = "Unable to retrieve edit token";
+            this->Result->ErrorMessage = Core::HuggleCore->Localize("editquery-token-error");
             Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
@@ -128,13 +124,12 @@ bool EditQuery::Processed()
                     if (Core::HuggleCore->Main != NULL)
                     {
                         HistoryItem item;
-                        item.Result = "Successful";
+                        item.Result = Core::HuggleCore->Localize("successful");
                         item.Type = HistoryEdit;
                         item.Target = this->page;
                         Core::HuggleCore->Main->_History->Prepend(item);
                     }
-                    /// \todo LOCALIZE ME
-                    Core::HuggleCore->Log("Successfuly edit " + page);
+                    Core::HuggleCore->Log(Core::HuggleCore->Localize("editquery-success", page));
                 }
             }
         }
