@@ -50,10 +50,11 @@ SOURCES += tst_testmain.cpp \
     ../../history.cpp \
     ../../exceptionwindow.cpp \
     ../../editquery.cpp \
-    ../../aboutform.cpp \
     ../../wlquery.cpp \
+    ../../aboutform.cpp \
     ../../wikiedit.cpp \
     ../../waitingform.cpp \
+    ../../whitelistform.cpp \
     ../../vandalnw.cpp \
     ../../userinfoform.cpp \
     ../../uaareport.cpp \
@@ -106,6 +107,7 @@ HEADERS += \
     ../../hooks.hpp \
     ../../historyform.hpp \
     ../../history.hpp \
+    ../../whitelistform.hpp \
     ../../exceptionwindow.hpp \
     ../../editquery.hpp \
     ../../aboutform.hpp \
