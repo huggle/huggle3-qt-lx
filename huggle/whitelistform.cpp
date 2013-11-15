@@ -16,16 +16,35 @@ using namespace Huggle;
 WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::WhitelistForm)
 {
     ui->setupUi(this);
-    int i = 0;
     Configuration::HuggleConfiguration->WhiteList.sort();
-    while (i < Configuration::HuggleConfiguration->WhiteList.count())
-    {
-        ui->listWidget->addItem(Configuration::HuggleConfiguration->WhiteList.at(i));
-        i++;
-    }
+    this->Whitelist += Configuration::HuggleConfiguration->WhiteList;
+    this->timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->timer->start(200);
 }
 
 WhitelistForm::~WhitelistForm()
 {
+    delete timer;
     delete ui;
+}
+
+void WhitelistForm::OnTick()
+{
+    if (this->Whitelist.count() == 0)
+    {
+        this->timer->stop();
+    }
+    int i = 0;
+    while (i < 200 || this->Whitelist.count() == 0)
+    {
+        ui->listWidget->addItem(this->Whitelist.at(0));
+        this->Whitelist.removeAt(0);
+        i++;
+    }
+}
+
+void WhitelistForm::on_pushButton_clicked()
+{
+    this->close();
 }

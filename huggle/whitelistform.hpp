@@ -12,6 +12,8 @@
 #define WHITELISTFORM_H
 
 #include <QDialog>
+#include <QString>
+#include <QTimer>
 #include "configuration.hpp"
 
 namespace Ui
@@ -28,8 +30,13 @@ namespace Huggle
         public:
             explicit WhitelistForm(QWidget *parent = 0);
             ~WhitelistForm();
+        private slots:
+            void OnTick();
+            void on_pushButton_clicked();
 
         private:
+            QStringList Whitelist;
+            QTimer *timer;
             Ui::WhitelistForm *ui;
     };
 }
