@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 CONFIG += qt
-QT       += network opengl scripttools core gui webkit xml testlib
+QT       += network opengl core gui webkit xml testlib
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 TARGET = tst_testmain
