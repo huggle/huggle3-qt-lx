@@ -76,7 +76,8 @@ SOURCES += main.cpp\
     hugglemassrollback.cpp \
     hugglenuke.cpp \
     requestprotect.cpp \
-    sessionform.cpp
+    sessionform.cpp \
+    whitelistform.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -136,7 +137,8 @@ HEADERS  += mainwindow.hpp \
     hugglemassrollback.hpp \
     hugglenuke.hpp \
     requestprotect.hpp \
-    sessionform.hpp
+    sessionform.hpp \
+    whitelistform.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -168,7 +170,8 @@ FORMS    += mainwindow.ui \
     hugglemassrollback.ui \
     hugglenuke.ui \
     requestprotect.ui \
-    sessionform.ui
+    sessionform.ui \
+    whitelistform.ui
 
 RESOURCES += \
     pictures.qrc \

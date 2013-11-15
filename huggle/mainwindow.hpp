@@ -42,6 +42,7 @@
 #include "userinfoform.hpp"
 #include "vandalnw.hpp"
 #include "revertquery.hpp"
+#include "whitelistform.hpp"
 #include "collectable.hpp"
 #include "gc.hpp"
 #include "reportuser.hpp"
@@ -74,6 +75,7 @@ namespace Huggle
     class WikiPage;
     class EditQuery;
     class ProcessList;
+    class WhitelistForm;
     class Preferences;
     class SessionForm;
     class IgnoreList;
@@ -171,6 +173,7 @@ namespace Huggle
             ProtectPage *fProtectForm;
             //! Pointer to UAA dialog
             UAAReport *fUaaReportForm;
+            WhitelistForm *fWhitelist;
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
             void _ReportUser();
@@ -255,6 +258,8 @@ namespace Huggle
             void on_actionShow_list_of_score_words_triggered();
             void on_actionRevert_AGF_triggered();
             void on_actionDisplay_a_session_data_triggered();
+
+            void on_actionDisplay_whitelist_triggered();
 
         private:
             QTimer *timer1;

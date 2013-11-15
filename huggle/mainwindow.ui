@@ -113,6 +113,7 @@
     <addaction name="actionShow_list_of_score_words"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_a_session_data"/>
+    <addaction name="actionDisplay_whitelist"/>
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">
@@ -742,6 +743,11 @@
   <action name="actionDisplay_a_session_data">
    <property name="text">
     <string>Display a session data</string>
+   </property>
+  </action>
+  <action name="actionDisplay_whitelist">
+   <property name="text">
+    <string>Display whitelist</string>
    </property>
   </action>
  </widget>

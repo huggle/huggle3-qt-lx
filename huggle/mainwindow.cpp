@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
+    this->fWhitelist = NULL;
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
@@ -197,6 +198,7 @@ MainWindow::~MainWindow()
     delete this->aboutForm;
     delete this->fSessionData;
     delete this->fScoreWord;
+    delete this->fWhitelist;
     delete this->Ignore;
     delete this->Queue1;
     delete this->SystemLog;
@@ -1676,4 +1678,14 @@ void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
     }
     this->fSessionData = new SessionForm(this);
     this->fSessionData->show();
+}
+
+void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
+{
+    if (this->fWhitelist != NULL)
+    {
+        delete this->fWhitelist;
+    }
+    this->fWhitelist = new WhitelistForm(this);
+    this->fWhitelist->show();
 }
