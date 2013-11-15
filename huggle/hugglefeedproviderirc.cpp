@@ -16,8 +16,8 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
     this->Paused = false;
     this->Connected = false;
-    this->TcpSocket = NULL;
     this->thread = NULL;
+    this->Network = NULL;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
@@ -29,7 +29,7 @@ HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
     }
     this->Stop();
     delete this->thread;
-    delete TcpSocket;
+    delete this->Network;
 }
 
 bool HuggleFeedProviderIRC::Start()
@@ -39,31 +39,27 @@ bool HuggleFeedProviderIRC::Start()
         Core::HuggleCore->DebugLog("Attempted to start connection which was already started");
         return false;
     }
-    TcpSocket = new QTcpSocket(Core::HuggleCore->Main);
-    qsrand(QTime::currentTime().msec());
-    TcpSocket->connectToHost(Configuration::HuggleConfiguration->IRCServer, Configuration::HuggleConfiguration->IRCPort);
-    if (!TcpSocket->waitForConnected())
+    if (this->Network != NULL)
+    {
+        delete this->Network;
+    }
+    this->Network = new Huggle::IRC::NetworkIrc(Configuration::HuggleConfiguration->IRCServer, Configuration::HuggleConfiguration->IRCNick);
+    this->Network->Port = Configuration::HuggleConfiguration->IRCPort;
+    this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
+    if (!this->Network->Connect())
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("IRC: Connection timeout");
-        TcpSocket->close();
-        delete TcpSocket;
-        TcpSocket = NULL;
+        Core::HuggleCore->Log("IRC: Unable to connect to IRC server " + Configuration::HuggleConfiguration->IRCServer);
+        delete this->Network;
+        this->Network = NULL;
         return false;
     }
     Core::HuggleCore->Log("IRC: Successfuly connected to irc rc feed");
-    this->TcpSocket->write(QString("USER " + Configuration::HuggleConfiguration->IRCNick
-                       + QString::number(qrand()) + " 8 * :"
-                       + Configuration::HuggleConfiguration->IRCIdent + "\n").toUtf8());
-    this->TcpSocket->write(QString("NICK " + Configuration::HuggleConfiguration->IRCNick
-                       + QString::number(qrand()) + Configuration::HuggleConfiguration->UserName.replace(" ", "")
-                       + "\n").toUtf8());
-    this->TcpSocket->write(QString("JOIN " + Configuration::HuggleConfiguration->Project->IRCChannel + "\n").toUtf8());
     if (this->thread != NULL)
     {
         delete this->thread;
     }
-    this->thread = new HuggleFeedProviderIRC_t(TcpSocket);
+    this->thread = new HuggleFeedProviderIRC_t();
     this->thread->p = this;
     this->thread->start();
     this->Connected = true;
@@ -72,29 +68,24 @@ bool HuggleFeedProviderIRC::Start()
 
 bool HuggleFeedProviderIRC::IsWorking()
 {
-    return this->Connected;
+    if (this->Network != NULL)
+    {
+        return this->Connected && (this->Network->IsConnected() || this->Network->IsConnecting());
+    }
+    return false;
 }
 
 void HuggleFeedProviderIRC::Stop()
 {
-    if (!this->Connected)
+    if (!this->Connected || this->Network == NULL)
     {
         return;
     }
-    if (this->TcpSocket == NULL)
+    if (this->thread != NULL)
     {
-        throw new Exception("The pointer to TcpSocket was NULL during Stop() of irc provider");
+        this->thread->Running = false;
     }
-    this->thread->Running = false;
-    this->TcpSocket->close();
-    delete this->TcpSocket;
-    this->TcpSocket = NULL;
-    if (this->thread == NULL)
-    {
-        throw new Exception("The pointer to thread was NULL during Stop() of irc provider");
-    }
-    this->thread->Running = false;
-    this->Connected = false;
+    this->Network->Disconnect();
     while (!IsStopped())
     {
         /// \todo LOCALIZE ME
@@ -139,21 +130,6 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     {
         return;
     }
-
-    if (!line.contains(" PRIVMSG "))
-    {
-        return;
-    }
-
-    line = line.mid(line.indexOf(" PRIVMSG ") + 9);
-
-    if (!line.contains(":"))
-    {
-        Core::HuggleCore->DebugLog("Invalid line (no:):" + line);
-        return;
-    }
-
-    line = line.mid(line.indexOf(":") + 1);
 
     if (!line.contains(QString(QChar(003)) + "07"))
     {
@@ -431,25 +407,22 @@ void HuggleFeedProviderIRC_t::run()
         this->Stopped = true;
         throw new Exception("Pointer to parent IRC feed is NULL");
     }
-    int ping = 2000;
-    while (this->Running && this->s->isOpen())
+    // wait until we finish connecting to a network
+    while (this->Running && !this->p->Network->IsConnected())
     {
-        if (ping < 0)
-        {
-            this->s->write(QString("PING :" + Configuration::HuggleConfiguration->IRCServer).toUtf8());
-            ping = 2000;
-        }
-        QString text = QString::fromUtf8(this->s->readLine());
-        if (text == "")
-        {
-            QThread::currentThread()->usleep(2000000);
-            ping -= 100;
-            continue;
-        }
-        Core::HuggleCore->DebugLog("IRC Input: " + text, 6);
-        p->ParseEdit(text);
         QThread::usleep(200000);
-        ping--;
+    }
+    this->p->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
+    while (this->Running && this->p->Network->IsConnected())
+    {
+        Huggle::IRC::Message *message = p->Network->GetMessage();
+        if (message != NULL)
+        {
+            QString text = message->Text;
+            Core::HuggleCore->DebugLog("IRC Input: " + text, 6);
+            p->ParseEdit(text);
+        }
+        QThread::usleep(200000);
     }
     Core::HuggleCore->Log("IRC: Closed connection to irc feed");
     if (this->Running)
@@ -459,9 +432,8 @@ void HuggleFeedProviderIRC_t::run()
     this->Stopped = true;
 }
 
-HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t(QTcpSocket *socket)
+HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t()
 {
-    this->s = socket;
     this->Stopped = false;
     Running = true;
     this->p = NULL;

@@ -97,11 +97,16 @@ QString VandalNw::GetChannel()
 
 void VandalNw::onTick()
 {
-    if (!this->Irc->IsConnected())
+    if (!this->Irc->IsConnecting() && !this->Irc->IsConnected())
     {
         /// \todo LOCALIZE ME
         this->Insert("Lost connection to antivandalism network");
         this->tm->stop();
+        return;
+    }
+    if (!this->Irc->IsConnected())
+    {
+        // we are now connecting to irc so we need to wait
         return;
     }
     if (!this->JoinedMain && this->Irc->IsConnected())

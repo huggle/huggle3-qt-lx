@@ -20,6 +20,7 @@
 #include "core.hpp"
 #include "exception.hpp"
 #include "configuration.hpp"
+#include "networkirc.hpp"
 #include "wikiedit.hpp"
 
 namespace Huggle
@@ -31,7 +32,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            HuggleFeedProviderIRC_t(QTcpSocket *socket);
+            HuggleFeedProviderIRC_t();
             ~HuggleFeedProviderIRC_t();
             bool Running;
             HuggleFeedProviderIRC *p;
@@ -39,7 +40,6 @@ namespace Huggle
         protected:
             void run();
         private:
-            QTcpSocket *s;
             bool Stopped;
     };
 
@@ -49,6 +49,7 @@ namespace Huggle
         public:
             HuggleFeedProviderIRC();
             ~HuggleFeedProviderIRC();
+            Huggle::IRC::NetworkIrc *Network;
             bool Start();
             bool IsWorking();
             void Stop();
@@ -67,7 +68,6 @@ namespace Huggle
             QMutex lock;
             QList<WikiEdit*> Buffer;
             HuggleFeedProviderIRC_t *thread;
-            QTcpSocket *TcpSocket;
             bool Paused;
     };
 }

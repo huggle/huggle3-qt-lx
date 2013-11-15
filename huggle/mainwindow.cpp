@@ -31,8 +31,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->wlt = NULL;
     this->fWaiting = NULL;
     this->EditablePage = false;
-    ShuttingDown = false;
-    ui->setupUi(this);
+    this->ShuttingDown = false;
+    this->ui->setupUi(this);
+    this->Localize();
     this->wq = NULL;
     this->Status = new QLabel();
     ui->statusBar->addWidget(this->Status);
@@ -1077,8 +1078,7 @@ void MainWindow::Exit()
     }
     this->fWaiting = new WaitingForm(this);
     this->fWaiting->show();
-    /// \todo LOCALIZE ME
-    this->fWaiting->Status(10, "Downloading new whitelist");
+    this->fWaiting->Status(10, Core::HuggleCore->Localize("whitelist-download"));
     this->wq = new WLQuery();
     this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->wq->Process();
@@ -1115,8 +1115,7 @@ void MainWindow::ReconnectIRC()
     {
         ui->actionIRC->setChecked(false);
         ui->actionWiki->setChecked(true);
-        /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+        Core::HuggleCore->Log(Core::HuggleCore->Localize("provider-primary-failure"));
         delete Core::HuggleCore->PrimaryFeedProvider;
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::HuggleCore->PrimaryFeedProvider->Start();
@@ -1134,8 +1133,7 @@ bool MainWindow::CheckEditableBrowserPage()
     {
         QMessageBox mb;
         mb.setWindowTitle("Cannot perform action");
-        /// \todo LOCALIZE ME
-        mb.setText("The action you have requested requires a page to be loaded. Please load a page before trying again.");
+        mb.setText(Core::HuggleCore->Localize("main-no-page"));
         mb.exec();
         return false;
     }
@@ -1159,6 +1157,14 @@ void MainWindow::SuspiciousEdit()
     {
         this->Queue1->Next();
     }
+}
+
+void MainWindow::Localize()
+{
+    ui->menuPage->setTitle(Core::HuggleCore->Localize("main-page"));
+    ui->menuHelp->setTitle(Core::HuggleCore->Localize("main-help"));
+    ui->menuUser->setTitle(Core::HuggleCore->Localize("main-user"));
+    ui->menuQueue->setTitle(Core::HuggleCore->Localize("main-queue"));
 }
 
 bool MainWindow::CheckExit()

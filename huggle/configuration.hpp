@@ -313,7 +313,7 @@ namespace Huggle
             //! Ident
             QString IRCIdent;
             //! Port
-            quint16 IRCPort;
+            int IRCPort;
 
             //////////////////////////////////////////////
             // Friends

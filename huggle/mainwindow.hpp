@@ -192,7 +192,7 @@ namespace Huggle
              */
             bool CheckEditableBrowserPage();
             void SuspiciousEdit();
-
+            void Localize();
 
         private slots:
             void on_actionExit_triggered();

@@ -22,7 +22,7 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Port = 6667;
     this->Server = server;
     this->UserName = "Huggle client";
-    this->s = new QTcpSocket();
+    this->s = NULL;
     this->NetworkThread = NULL;
     this->__Connected = false;
 }
@@ -35,30 +35,65 @@ NetworkIrc::~NetworkIrc()
     delete this->s;
 }
 
-void NetworkIrc::Connect()
+bool NetworkIrc::Connect()
 {
+    if (this->__IsConnecting)
+    {
+        throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connecting", "bool NetworkIrc::Connect()");
+    }
+    if (this->IsConnected())
+    {
+        throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected");
+    }
+    if (this->s != NULL)
+    {
+        delete this->s;
+    }
+    this->s = new QTcpSocket();
     this->s->connectToHost(this->Server, this->Port);
     this->__IsConnecting = true;
     if (!this->s->waitForConnected())
     {
         this->Exit();
         this->__IsConnecting = false;
-        return;
+        return false;
     }
     this->NetworkThread = new NetworkIrc_th(this->s);
     this->NetworkThread->root = this;
     this->__Connected = true;
     this->NetworkThread->start();
-    return;
+    return true;
 }
 
 bool NetworkIrc::IsConnected()
 {
+    if (this->NetworkThread != NULL)
+    {
+        if (!this->NetworkThread->Connected)
+        {
+            return false;
+        }
+    }
     return this->__Connected;
 }
 
 bool NetworkIrc::IsConnecting()
 {
+    if (this->__IsConnecting)
+    {
+        if (this->NetworkThread != NULL)
+        {
+            if (this->NetworkThread->Connected)
+            {
+                this->__IsConnecting = false;
+                this->__Connected = true;
+            } else if (this->NetworkThread->isFinished())
+            {
+                this->__IsConnecting = false;
+                this->__Connected = false;
+            }
+        }
+    }
     return this->__IsConnecting;
 }
 
@@ -70,12 +105,18 @@ void NetworkIrc::Disconnect()
     }
     this->Data("QUIT :Huggle, the anti vandalism software. See #huggle on irc://chat.freenode.net");
     this->Exit();
+    if (this->NetworkThread != NULL)
+    {
+        // we have to request the network thread to stop
+        this->NetworkThread->Running = false;
+    }
     if (s != NULL)
     {
         this->s->disconnect();
         delete this->s;
         s = NULL;
     }
+    this->__IsConnecting = false;
 }
 
 void NetworkIrc::Join(QString name)
@@ -107,6 +148,7 @@ void NetworkIrc::Send(QString name, QString text)
 void NetworkIrc::Exit()
 {
     this->__Connected = false;
+    this->__IsConnecting = false;
 }
 
 Message* NetworkIrc::GetMessage()
@@ -194,8 +236,9 @@ NetworkIrc_th::NetworkIrc_th(QTcpSocket *socket)
 {
     this->s = socket;
     this->Stopped = false;
+    this->Connected = false;
     this->root = NULL;
-    Running = true;
+    this->Running = true;
 }
 
 NetworkIrc_th::~NetworkIrc_th()
@@ -225,6 +268,11 @@ void NetworkIrc_th::Line(QString line)
         xx = xx.mid(xx.indexOf(" ") + 1);
     }
 
+    if (Command == "002")
+    {
+        this->Connected = true;
+        return;
+    }
     /// \todo implement PART
     /// \todo implement KICK
     /// \todo implement QUIT
@@ -256,11 +304,6 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
     this->root->messages_lock->unlock();
 }
 
-bool NetworkIrc_th::IsFinished()
-{
-    return false;
-}
-
 void NetworkIrc_th::run()
 {
     this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
@@ -269,7 +312,7 @@ void NetworkIrc_th::run()
     nick = nick.replace(" ", "");
     this->root->Data("NICK " + nick);
     int ping = 0;
-    while (this->root->IsConnected() && this->s->isOpen())
+    while (this->Running && this->s->isOpen())
     {
         ping++;
         if (ping > 200)
@@ -284,5 +327,6 @@ void NetworkIrc_th::run()
         }
         this->usleep(100000);
     }
+    this->Connected = false;
     return;
 }

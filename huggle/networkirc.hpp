@@ -15,6 +15,7 @@
 #include <QtNetwork>
 #include <QThread>
 #include <QMutex>
+#include "exception.hpp"
 
 namespace Huggle
 {
@@ -76,7 +77,7 @@ namespace Huggle
                 NetworkIrc *root;
                 void Line(QString line);
                 void ProcessPrivmsg(QString source, QString xx);
-                bool IsFinished();
+                bool Connected;
             protected:
                 void run();
             private:
@@ -97,7 +98,7 @@ namespace Huggle
                 NetworkIrc(QString server, QString nick);
                 ~NetworkIrc();
                 //! Connect to server
-                void Connect();
+                bool Connect();
                 /*!
                  * \brief IsConnected checks for connection
                  * \return When you are connected returns true
