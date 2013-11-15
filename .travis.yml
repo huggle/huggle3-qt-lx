@@ -6,17 +6,31 @@ before_install:
   - "sudo apt-get update"
 
 install:
-  - "sudo apt-get install -y g++ libqt4-dbus libqt4-dev libqt4-network libqt4-opengl libqt4-webkit libqtwebkit-dev libqtgui4 libqtcore4 libqt4-xml qt4-dev-tools qt4-qmake"
+  - "sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa"
+  - "sudo apt-get update -qq"
+  - "sudo apt-get install -y g++ libqt4-dbus libqt4-dev libqt4-network libqt4-opengl libqt4-webkit libqtwebkit-dev libqtgui4 libqtcore4 libqt4-xml qt4-dev-tools qt4-qmake libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev"
 
 before_script: 
   - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle"
-  - ./configure
+  - "cp -r /home/travis/build/huggle/huggle3-qt-lx/huggle /home/travis/build/huggle/huggle3-qt-lx/huggle-5"
+  - "./configure --qmake /usr/lib/x86_64-linux-gnu/qt4/bin/qmake"
   - make
   - "cd tests/test"
-  - qmake
+  - /usr/lib/x86_64-linux-gnu/qt4/bin/qmake
+  - make
+  - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle-5"
+  - "./configure --qmake /usr/lib/x86_64-linux-gnu/qt5/bin/qmake"
+  - make
+  - "cd tests/test"
+  - /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
   - make
 
 script: 
+  - "echo Testing qmake4"
+  - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle/tests/test"
+  - ./tst_testmain
+  - "echo Testing qmake5"
+  - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle-5/tests/test"
   - ./tst_testmain
 
 notifications: 
