@@ -10,7 +10,9 @@ Building
 =========
 
 Libraries you need to have to build:
-* QT sdk (libqt4-dev qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
+* GCC (gcc g++ make)
+* QT4 sdk (libqt4-dev libqt4-webkit libqt4-network qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
+* (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
 
 Windows:
