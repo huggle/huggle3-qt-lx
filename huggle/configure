@@ -207,7 +207,11 @@ else
             checkpkg "qtdeclarative5-dev"
         fi
 fi
-checkhf xslt "/usr/include/libxslt/xslt.h"
+
+if [ "$QT5" -eq 1 ];then
+    # these libraries are also needed to build qt 5 programs
+    checkhf xslt "/usr/include/libxslt/xslt.h"
+fi
 
 text "Executing update.sh... "
 if [ ! -f update.sh ];then
