@@ -1153,7 +1153,6 @@ void MainWindow::SuspiciousEdit()
     {
         Hooks::Suspicious(this->CurrentEdit);
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 1);
-        WikiUser::UpdateUser(this->CurrentEdit->User);
     }
     if (Configuration::HuggleConfiguration->NextOnRv)
     {
@@ -1263,7 +1262,6 @@ void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 200);
-        WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
 
@@ -1272,7 +1270,6 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
-        WikiUser::UpdateUser(this->CurrentEdit->User);
     }
 }
 
@@ -1281,8 +1278,7 @@ void MainWindow::on_actionGood_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
-        Hooks::OnGood(this->CurrentEdit);
-        WikiUser::UpdateUser(this->CurrentEdit->User);
+        Hooks::OnGood(this->CurrentEdit);;
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
