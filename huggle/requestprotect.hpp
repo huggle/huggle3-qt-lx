@@ -13,13 +13,17 @@
 #define REQUESTPROTECT_H
 
 #include <QDialog>
+#include "configuration.hpp"
+#if !PRODUCTION_BUILD
 
 namespace Ui
 {
     class RequestProtect;
 }
 
-namespace Huggle {
+namespace Huggle
+{
+    /// \todo This class doesn't do anything now
     //! This can be used to request protection of a page
     class RequestProtect : public QDialog
     {
@@ -36,3 +40,4 @@ namespace Huggle {
 
 
 #endif // REQUESTPROTECT_H
+#endif

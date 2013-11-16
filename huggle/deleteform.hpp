@@ -21,7 +21,6 @@
 #include "wikipage.hpp"
 #include "apiquery.hpp"
 #include "core.hpp"
-#if !PRODUCTION_BUILD
 
 namespace Ui
 {
@@ -64,4 +63,3 @@ namespace Huggle
 }
 
 #endif // DELETEFORM_H
-#endif

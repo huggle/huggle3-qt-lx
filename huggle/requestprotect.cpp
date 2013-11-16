@@ -10,7 +10,7 @@
 
 #include "requestprotect.hpp"
 #include "ui_requestprotect.h"
-
+#if !PRODUCTION_BUILD
 using namespace Huggle;
 
 RequestProtect::RequestProtect(QWidget *parent) : QDialog(parent), ui(new Ui::RequestProtect)
@@ -22,3 +22,5 @@ RequestProtect::~RequestProtect()
 {
     delete ui;
 }
+
+#endif

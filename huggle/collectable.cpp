@@ -13,14 +13,14 @@
 using namespace Huggle;
 
 unsigned long Collectable::LastCID = 0;
-QMutex Collectable::WideLock(QMutex::Recursive);
+QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
 
 Collectable::Collectable()
 {
-    WideLock.lock();
+    WideLock->lock();
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
-    WideLock.unlock();
+    WideLock->unlock();
     this->Locked = false;
     this->Managed = false;
     this->QL = new QMutex(QMutex::Recursive);
@@ -94,6 +94,11 @@ void Collectable::UnregisterConsumer(const QString consumer)
 unsigned long Collectable::CollectableID()
 {
     return this->CID;
+}
+
+unsigned long *Collectable::GetLastCIDPtr()
+{
+    return &Collectable::LastCID;
 }
 
 QString Collectable::ConsumerIdToString(const int id)

@@ -90,9 +90,14 @@ namespace Huggle
              * \return
              */
             unsigned long CollectableID();
+            /*!
+             * \brief This function is useful when you need to create an extension that uses own collectables in GC
+             * \return pointer to last cid
+             */
+            static unsigned long *GetLastCIDPtr();
         private:
             static QString ConsumerIdToString(const int id);
-            static QMutex WideLock;
+            static QMutex *WideLock;
             static unsigned long LastCID;
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
