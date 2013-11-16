@@ -35,6 +35,7 @@ RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
+QT5=10
 
 # first we parse all arguments we got
 for var in "$@"
@@ -43,6 +44,8 @@ do
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
         echo " --skip-checks: skip all package checks"
+        echo " --qt4: execute QT4 checks"
+        echo " --qt5: execute QT5 checks"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
         echo " --qmake: change path to qmake"
@@ -59,6 +62,14 @@ do
         WARN=""
         GREEN=""
         NORMAL=""
+    fi
+    if [ "$var" = "--qt4" ];then
+        QT5=0
+        continue;
+    fi
+    if [ "$var" = "--qt5" ];then
+        QT5=1
+        continue;
     fi
     if [ "$var" = "--qmake" ];then
         _QMAKE=1
@@ -144,22 +155,39 @@ fi
 
 ok
 
+if [ "$QT5" -eq 10 ];then
+    QT5=0
+    echo $WARN"WARNING: No version of QT was explicitly specified, assuming you want to use QT4 (use --qt5 if not)"$NORMAL
+fi
+
 if [ "`which apt-cache`" = "" ];then
 	echo $WARN"WARNING: Unable to verify packages, let's just hope they are all installed"$NORMAL
 else
 	checkpkg "g++"
         checkpkg "make"
-        checkqt "libqt4-dbus" "libqt5-dbus"
-        checkqt "libqt4-dev" "libqt5-dev"
-        checkqt "libqt4-network" "libqt5-network"
-        checkqt "libqt4-opengl" "libqt5-opengl"
-        checkqt "libqtwebkit5" "libqt4-webkit"
-        checkqt "libqtwebkit-dev" "libqt5webkit5-dev"
-        checkqt "libqtgui5" "libqtgui4"
-        checkqt "libqtcore5" "libqtcore4"
-        checkqt "libqt5-xml" "libqt4-xml"
-        checkqt "qt4-dev-tools" "qtbase5-dev-tools"
-        checkqt "qt5-qmake" "qt4-qmake"
+        if [ "$QT5" -eq 0 ];then
+            checkpkg "qt4-dev-tools"
+            checkpkg "libqt4-opengl"
+            checkpkg "libqt4-dbus"
+            checkpkg "libqt4-dev"
+            checkpkg "libqt4-network"
+            checkpkg "libqt4-webkit"
+            checkpkg "libqtwebkit-dev"
+            checkpkg "libqtgui4"
+            checkpkg "libqtcore4"
+            checkpkg "libqt4-xml"
+            checkpkg "qt4-qmake"
+        else
+            checkpkg "libqt5webkit5-dev"
+            checkpkg "qt5-qmake" 
+            checkpkg "qt5-default"
+            checkpkg "libqt5xml5" 
+            checkpkg "qtquick1-5-dev"
+            checkqt "qtlocation5-dev" "libqtlocation1"
+            checkqt "libqtsensors5-dev" "qtsensors5-dev"
+            checkpkg "libqt5core5"
+            checkpkg "qtdeclarative5-dev"
+        fi
 fi
 
 text "Executing update.sh... "

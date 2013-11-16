@@ -19,7 +19,7 @@ before_script:
   - /usr/lib/x86_64-linux-gnu/qt4/bin/qmake
   - make
   - "cd /home/travis/build/huggle/huggle3-qt-lx/huggle-5"
-  - "./configure --qmake /usr/lib/x86_64-linux-gnu/qt5/bin/qmake"
+  - "./configure --qmake /usr/lib/x86_64-linux-gnu/qt5/bin/qmake --qt5"
   - make
   - "cd tests/test"
   - /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
