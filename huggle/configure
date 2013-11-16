@@ -102,10 +102,28 @@ text()
     printf '%s%*s' "$MSG" $COL
 }
 
+checkhf()
+{
+    text "Check for headers of $1..."
+    if [ "$SKIPCHECKS" -eq 1 ];then
+        echo "SKIP"
+        return 0
+    fi
+    if [ -f "$2" ];then
+        ok
+        return 0
+    else
+        fail
+        echo "Unable to find headers for $1 ($2)"
+        echo "try installing dev files for $1"
+        exit 1
+    fi
+} 
+
 checkqt()
 {
     text "Checking if $1 or $2 is present... "
-    if [ "$SKIPCHECKS" = "1" ];then
+    if [ "$SKIPCHECKS" -eq 1 ];then
         echo "SKIP"
         return 0
     fi
@@ -189,6 +207,7 @@ else
             checkpkg "qtdeclarative5-dev"
         fi
 fi
+checkhf xslt "/usr/include/libxslt/xslt.h"
 
 text "Executing update.sh... "
 if [ ! -f update.sh ];then
