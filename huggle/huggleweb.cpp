@@ -92,6 +92,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     if (edit->DiffText == "")
     {
         Core::HuggleCore->Log("Warning, unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
+        ui->webView->setHtml("Downloading diff using web rendering fallback...");
         ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                       + QString::number(edit->Diff) + "&action=render");
         return;
