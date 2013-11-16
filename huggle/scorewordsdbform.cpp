@@ -15,9 +15,9 @@ using namespace Huggle;
 ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScoreWordsDbForm)
 {
     ui->setupUi(this);
-    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setColumnCount(3);
     QStringList header;
-    header << "Score" << "Word";
+    header << "Score" << "Word" << "Range";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -37,6 +37,17 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         ui->tableWidget->insertRow(x);
         ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches only whole words"));
+        x++;
+    }
+    x = 0;
+    while (x < Configuration::HuggleConfiguration->LocalConfig_ScoreParts.count())
+    {
+        ScoreWord word = Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(x);
+        ui->tableWidget->insertRow(x);
+        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
+        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches any word that contains this string"));
         x++;
     }
 }
