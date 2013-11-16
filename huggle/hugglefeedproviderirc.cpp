@@ -43,7 +43,10 @@ bool HuggleFeedProviderIRC::Start()
     {
         delete this->Network;
     }
-    this->Network = new Huggle::IRC::NetworkIrc(Configuration::HuggleConfiguration->IRCServer, Configuration::HuggleConfiguration->IRCNick);
+    QString nick = "huggle";
+    qsrand(QTime::currentTime().msec());
+    nick += QString::number(qrand());
+    this->Network = new Huggle::IRC::NetworkIrc(Configuration::HuggleConfiguration->IRCServer, nick);
     this->Network->Port = Configuration::HuggleConfiguration->IRCPort;
     this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
     if (!this->Network->Connect())

@@ -307,8 +307,7 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
 void NetworkIrc_th::run()
 {
     this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
-    qsrand(QTime::currentTime().msec());
-    QString nick = this->root->Nick + QString::number(qrand());
+    QString nick = this->root->Nick;
     nick = nick.replace(" ", "");
     this->root->Data("NICK " + nick);
     int ping = 0;
