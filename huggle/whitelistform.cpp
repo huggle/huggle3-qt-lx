@@ -38,7 +38,9 @@ void WhitelistForm::OnTick()
     int i = 0;
     while (i < 200 || this->Whitelist.count() == 0)
     {
-        ui->listWidget->addItem(this->Whitelist.at(0));
+        QString xx = this->Whitelist.at(0);
+        xx = xx.replace(QRegExp("[^\\w\\s]"), "");
+        ui->listWidget->addItem(xx);
         this->Whitelist.removeAt(0);
         i++;
     }
