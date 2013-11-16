@@ -162,6 +162,8 @@ namespace Huggle
             QStringList Separators;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool RevertOnMultipleEdits;
+            bool Log2File;
+            QString SyslogPath;
 
             //////////////////////////////////////////////
             // Local config

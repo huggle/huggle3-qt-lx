@@ -275,6 +275,8 @@ namespace Huggle
              */
             static void LocalInit(QString name);
             static Language *MakeLanguage(QString text, QString name);
+            //! Everytime we write to a file we need to log this
+            QMutex *WriterLock;
     };
 }
 

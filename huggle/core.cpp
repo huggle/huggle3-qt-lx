@@ -23,6 +23,7 @@ Core  *Core::HuggleCore = NULL;
 void Core::Init()
 {
     this->StartupTime = QDateTime::currentDateTime();
+    this->WriterLock = new QMutex(QMutex::Recursive);
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
     if (Configuration::HuggleConfiguration->_SafeMode)
@@ -73,6 +74,36 @@ void Core::Init()
         this->Log("Not loading plugins in a safe mode");
     }
     this->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
+}
+
+Core::Core()
+{
+    this->HtmlHeader = "";
+    this->HtmlFooter = "</table></body></html>";
+    this->Main = NULL;
+    this->f_Login = NULL;
+    this->SecondaryFeedProvider = NULL;
+    this->PrimaryFeedProvider = NULL;
+    this->WriterLock = NULL;
+    this->Processor = NULL;
+    this->StartupTime = QDateTime::currentDateTime();
+    this->Running = true;
+    this->AIVP = NULL;
+    this->UAAP = NULL;
+    this->gc = NULL;
+}
+
+Core::~Core()
+{
+    delete this->Main;
+    delete this->f_Login;
+    delete this->SecondaryFeedProvider;
+    delete this->PrimaryFeedProvider;
+    delete this->gc;
+    delete this->AIVP;
+    delete this->WriterLock;
+    delete this->UAAP;
+    delete this->Processor;
 }
 
 void Core::LoadDB()
@@ -565,6 +596,18 @@ void Core::Log(QString Message)
         Core::Main->lUnwrittenLogs.lock();
         Core::Main->UnwrittenLogs.append(Message);
         Core::Main->lUnwrittenLogs.unlock();
+    }
+    if (Configuration::HuggleConfiguration->Log2File)
+    {
+        this->WriterLock->lock();
+        QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
+        if (file->open(QIODevice::Append))
+        {
+            file->write(QString(Message + "\n").toUtf8());
+            file->close();
+        }
+        delete file;
+        this->WriterLock->unlock();
     }
 }
 
@@ -1111,34 +1154,6 @@ bool Core::ReportPreFlightCheck()
 int Core::RunningQueriesGetCount()
 {
     return RunningQueries.count();
-}
-
-Core::Core()
-{
-    this->HtmlHeader = "";
-    this->HtmlFooter = "</table></body></html>";
-    this->Main = NULL;
-    this->f_Login = NULL;
-    this->SecondaryFeedProvider = NULL;
-    this->PrimaryFeedProvider = NULL;
-    this->Processor = NULL;
-    this->StartupTime = QDateTime::currentDateTime();
-    this->Running = true;
-    this->AIVP = NULL;
-    this->UAAP = NULL;
-    this->gc = NULL;
-}
-
-Core::~Core()
-{
-    delete this->Main;
-    delete this->f_Login;
-    delete this->SecondaryFeedProvider;
-    delete this->PrimaryFeedProvider;
-    delete this->gc;
-    delete this->AIVP;
-    delete this->UAAP;
-    delete this->Processor;
 }
 
 Language::Language(QString name)

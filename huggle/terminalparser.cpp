@@ -49,6 +49,19 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->_SafeMode = true;
             valid = true;
         }
+        if (text == "--syslog")
+        {
+            Configuration::HuggleConfiguration->Log2File = true;
+            if (this->args.count() > x + 1)
+            {
+                if (!this->args.at(x + 1).startsWith("-"))
+                {
+                    Configuration::HuggleConfiguration->SyslogPath = this->args.at(x + 1);
+                    x++;
+                }
+            }
+            valid = true;
+        }
         if (!valid)
         {
             if (!Silent)
@@ -86,6 +99,7 @@ void TerminalParser::DisplayHelp()
     cout << "Parameters:" << endl;
     cout << "  -v: Increases verbosity" << endl;
     cout << "  --safe: Start huggle in special mode where lot of stuff is skipped during load" << endl;
+    cout << "  --syslog [file]: Will write a logs to a file" << endl;
     cout << "  -h | --help: Display this help" << endl<< endl;
     cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }

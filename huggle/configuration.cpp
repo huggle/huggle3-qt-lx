@@ -159,6 +159,8 @@ Configuration::Configuration()
     this->LocalConfig_UAAPath = "Project:Usernames for administrator attention";
     this->LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
     this->RevertOnMultipleEdits = false;
+    this->SyslogPath = "huggle.log";
+    this->Log2File = false;
 }
 
 Configuration::~Configuration()
