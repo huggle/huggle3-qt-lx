@@ -57,13 +57,6 @@ for code that may be hard to understand by others.
 Every function and class should be documented according to doxygen
 format http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html
 
-Try to avoid /* multiline */ comments, unless they are inline, these comments
-cause a lot of troubles, mostly, when you are trying to comment out
-large block of code temporarily you can't just use this kind of comment
-in case they are used anywhere else because the terminating
-string isn't matching the corresponding start of block
-
-
 Please respect code of others, don't change the code of others without
 consulting that with them, there may be specific reasons why something
 is written in a way it's written.
@@ -83,5 +76,12 @@ it's not clear what data type it actually is.
 
 === Indentations ===
 
-Use 4 spaces, no tabs
+Use 4 spaces, no tabs because different IDE's can handle tabs in different way
+
+=== this->x->bla() vs x->bla() ===
+
+If you are working with local object defined for whole class, use always this->object
+so that it's clear on first sight that you aren't working with local object
+(local to function) neither static object, it makes it easier to read the code and prevent
+conflict with other variables or function with same name defined globally for huggle
 
