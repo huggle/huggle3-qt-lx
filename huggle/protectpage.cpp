@@ -15,7 +15,7 @@ using namespace Huggle;
 
 ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectPage)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     this->ptkk = NULL;
     this->ptkq = NULL;
     this->ptpge = NULL;
@@ -29,14 +29,14 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ui->comboBox_3->setCurrentIndex(2);
     this->protecttoken = "";
     this->tt = NULL;
-    ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_ProtectReason);
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_ProtectReason);
 }
 
 ProtectPage::~ProtectPage()
 {
-    delete ui;
-    delete ptpge;
-    delete tt;
+    delete this->ui;
+    delete this->ptpge;
+    delete this->tt;
 }
 
 void ProtectPage::setPageToProtect(WikiPage *Page)
@@ -47,13 +47,12 @@ void ProtectPage::setPageToProtect(WikiPage *Page)
 void ProtectPage::getTokenToProtect()
 {
     this->ptkq = new ApiQuery();
-    ptkq->SetAction(ActionQuery);
-    ptkq->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName);
-    /// \todo LOCALIZE ME
-    ptkq->Target = "Fetching token to protect" + this->ptpge->PageName;
-    ptkq->RegisterConsumer("ProtectPage::getTokenToProtect()");
+    this->ptkq->SetAction(ActionQuery);
+    this->ptkq->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->ptpge->PageName);
+    this->ptkq->Target = Localizations::HuggleLocalizations->Localize("protection-ft");
+    this->ptkq->RegisterConsumer("ProtectPage::getTokenToProtect()");
     Core::HuggleCore->AppendQuery(ptkq);
-    ptkq->Process();
+    this->ptkq->Process();
 
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));

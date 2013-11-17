@@ -61,6 +61,7 @@
 #include <QDir>
 #include <QtXml>
 #include <QString>
+#include "localization.hpp"
 #include "core.hpp"
 #include "wikisite.hpp"
 
@@ -132,8 +133,6 @@ namespace Huggle
             int QueryListTimeLimit;
             //! Number of edits to keep in history stack
             int HistorySize;
-            //! Language selected by user this is only a language of interface
-            QString Language;
             //! Number of edits made since you logged in
             double EditCounter;
             //! Number of reverts made since you logged in

@@ -22,6 +22,7 @@
 #include "apiquery.hpp"
 #include "configuration.hpp"
 #include "wikiedit.hpp"
+#include "localization.hpp"
 
 namespace Huggle
 {

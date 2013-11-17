@@ -28,7 +28,7 @@ namespace Huggle
             //! ctor
             Exception(QString Text, bool __IsRecoverable = true);
             Exception(QString Text, QString _Source, bool __IsRecoverable = true);
-            bool IsRecoverable();
+            bool IsRecoverable() const;
         private:
             bool _IsRecoverable;
     };

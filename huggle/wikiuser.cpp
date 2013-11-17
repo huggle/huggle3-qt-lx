@@ -243,7 +243,7 @@ void WikiUser::ForceIP()
     this->IP = true;
 }
 
-bool WikiUser::IsIP()
+bool WikiUser::IsIP() const
 {
     return IP;
 }

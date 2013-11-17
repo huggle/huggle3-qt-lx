@@ -958,176 +958,40 @@ void Core::ExceptionHandler(Exception *exception)
     delete w;
 }
 
-Language *Core::MakeLanguage(QString text, QString name)
-{
-    Core::HuggleCore->Log("Loading language: " + name);
-    Language *l = new Language(name);
-    QStringList keys = text.split("\n");
-    int p = 0;
-    while (p < keys.count())
-    {
-        if (keys.at(p).contains(":"))
-        {
-            QString line = keys.at(p);
-            while (line.startsWith(" "))
-            {
-                line = line.mid(1);
-            }
-            QString key = line.mid(0, line.indexOf(":"));
-            QString lang = line.mid(line.indexOf(":") + 1);
-            while (lang.startsWith(" "))
-            {
-                lang = lang.mid(1);
-            }
-            if (!l->Messages.contains(key))
-            {
-                l->Messages.insert(key, lang);
-            }
-        }
-        p++;
-    }
-    if (l->Messages.contains("name"))
-    {
-        l->LanguageID = l->Messages["name"];
-    }
-    return l;
-}
-
-void Core::LocalInit(QString name)
-{
-    QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
-    f->open(QIODevice::ReadOnly);
-    Core::HuggleCore->LocalizationData.append(Core::MakeLanguage(QString(f->readAll()), name));
-    f->close();
-    delete f;
-}
-
-QString Core::Localize(QString key)
-{
-    QString id = key;
-    if (id.endsWith("]]"))
-    {
-        id = key.mid(0, key.length() - 2);
-    }
-    if (id.startsWith("[["))
-    {
-        id = id.mid(2);
-    }
-    if (Core::LocalizationData.count() > 0)
-    {
-        int c=0;
-        while (c<Core::LocalizationData.count())
-        {
-            if (Core::LocalizationData.at(c)->LanguageName == Configuration::HuggleConfiguration->Language)
-            {
-                Language *l = Core::LocalizationData.at(c);
-                if (l->Messages.contains(id))
-                {
-                    return l->Messages[id];
-                }
-                // performance tweak
-                break;
-            }
-            c++;
-        }
-        if (Core::LocalizationData.at(0)->Messages.contains(id))
-        {
-            return Core::LocalizationData.at(0)->Messages[id];
-        }
-    }
-    return key;
-}
-
-QString Core::Localize(QString key, QStringList parameters)
-{
-    QString id = key;
-    if (id.endsWith("]]"))
-    {
-        id = key.mid(0, key.length() - 2);
-    }
-    if (id.startsWith("[["))
-    {
-        id = id.mid(2);
-    }
-    if (Core::LocalizationData.count() > 0)
-    {
-        int c=0;
-        while (c<Core::LocalizationData.count())
-        {
-            if (Core::LocalizationData.at(c)->LanguageName == Configuration::HuggleConfiguration->Language)
-            {
-                Language *l = Core::LocalizationData.at(c);
-                if (l->Messages.contains(id))
-                {
-                    QString text = l->Messages[id];
-                    int x = 0;
-                    while (x<parameters.count())
-                    {
-                        text = text.replace("$" + QString::number(x + 1), parameters.at(x));
-                        x++;
-                    }
-                    return text;
-                }
-                // performance tweak
-                break;
-            }
-            c++;
-        }
-        if (Core::LocalizationData.at(0)->Messages.contains(id))
-        {
-            QString text = Core::LocalizationData.at(0)->Messages[id];
-            int x = 0;
-            while (x<parameters.count())
-            {
-                text = text.replace("$" + QString::number(x + 1), parameters.at(x));
-                x++;
-            }
-            return text;
-        }
-    }
-    return key;
-}
-
-QString Core::Localize(QString key, QString parameters)
-{
-    QStringList list;
-    list << parameters;
-    return Localize(key, list);
-}
-
 void Core::LoadLocalizations()
 {
-    Core::LocalInit("en");
+    Localizations::HuggleLocalizations = new Localizations();
+    Localizations::HuggleLocalizations->LocalInit("en");
     if (Configuration::HuggleConfiguration->_SafeMode)
     {
         Core::Log("Skipping load of other languages, because of safe mode");
         return;
     }
-    Core::LocalInit("ar");
-    Core::LocalInit("bg");
-    Core::LocalInit("bn");
-    Core::LocalInit("es");
-    Core::LocalInit("de");
-    Core::LocalInit("fa");
-    Core::LocalInit("fr");
-    Core::LocalInit("hi");
-    Core::LocalInit("it");
-    Core::LocalInit("ja");
-    Core::LocalInit("ka");
-    Core::LocalInit("km");
-    Core::LocalInit("kn");
-    Core::LocalInit("ko");
-    Core::LocalInit("ml");
-    Core::LocalInit("mr");
-    Core::LocalInit("nl");
-    Core::LocalInit("no");
-    Core::LocalInit("oc");
-    Core::LocalInit("or");
-    Core::LocalInit("pt");
-    Core::LocalInit("ptb");
-    Core::LocalInit("ru");
-    Core::LocalInit("sv");
-    Core::LocalInit("zh");
+    Localizations::HuggleLocalizations->LocalInit("ar");
+    Localizations::HuggleLocalizations->LocalInit("bg");
+    Localizations::HuggleLocalizations->LocalInit("bn");
+    Localizations::HuggleLocalizations->LocalInit("es");
+    Localizations::HuggleLocalizations->LocalInit("de");
+    Localizations::HuggleLocalizations->LocalInit("fa");
+    Localizations::HuggleLocalizations->LocalInit("fr");
+    Localizations::HuggleLocalizations->LocalInit("hi");
+    Localizations::HuggleLocalizations->LocalInit("it");
+    Localizations::HuggleLocalizations->LocalInit("ja");
+    Localizations::HuggleLocalizations->LocalInit("ka");
+    Localizations::HuggleLocalizations->LocalInit("km");
+    Localizations::HuggleLocalizations->LocalInit("kn");
+    Localizations::HuggleLocalizations->LocalInit("ko");
+    Localizations::HuggleLocalizations->LocalInit("ml");
+    Localizations::HuggleLocalizations->LocalInit("mr");
+    Localizations::HuggleLocalizations->LocalInit("nl");
+    Localizations::HuggleLocalizations->LocalInit("no");
+    Localizations::HuggleLocalizations->LocalInit("oc");
+    Localizations::HuggleLocalizations->LocalInit("or");
+    Localizations::HuggleLocalizations->LocalInit("pt");
+    Localizations::HuggleLocalizations->LocalInit("ptb");
+    Localizations::HuggleLocalizations->LocalInit("ru");
+    Localizations::HuggleLocalizations->LocalInit("sv");
+    Localizations::HuggleLocalizations->LocalInit("zh");
 }
 
 bool Core::ReportPreFlightCheck()

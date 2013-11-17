@@ -17,6 +17,7 @@
 #include <QtXml>
 #include <QLineEdit>
 #include <QUrl>
+#include "localization.hpp"
 #include "configuration.hpp"
 #include "wikipage.hpp"
 #include "apiquery.hpp"

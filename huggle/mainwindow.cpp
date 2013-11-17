@@ -1080,7 +1080,7 @@ void MainWindow::Exit()
     }
     this->fWaiting = new WaitingForm(this);
     this->fWaiting->show();
-    this->fWaiting->Status(10, Core::HuggleCore->Localize("whitelist-download"));
+    this->fWaiting->Status(10, Localizations::HuggleLocalizations->Localize("whitelist-download"));
     this->wq = new WLQuery();
     this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->wq->Process();
@@ -1117,7 +1117,7 @@ void MainWindow::ReconnectIRC()
     {
         ui->actionIRC->setChecked(false);
         ui->actionWiki->setChecked(true);
-        Core::HuggleCore->Log(Core::HuggleCore->Localize("provider-primary-failure"));
+        Core::HuggleCore->Log(Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
         delete Core::HuggleCore->PrimaryFeedProvider;
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::HuggleCore->PrimaryFeedProvider->Start();
@@ -1135,7 +1135,7 @@ bool MainWindow::CheckEditableBrowserPage()
     {
         QMessageBox mb;
         mb.setWindowTitle("Cannot perform action");
-        mb.setText(Core::HuggleCore->Localize("main-no-page"));
+        mb.setText(Localizations::HuggleLocalizations->Localize("main-no-page"));
         mb.exec();
         return false;
     }
@@ -1162,10 +1162,10 @@ void MainWindow::SuspiciousEdit()
 
 void MainWindow::Localize()
 {
-    ui->menuPage->setTitle(Core::HuggleCore->Localize("main-page"));
-    ui->menuHelp->setTitle(Core::HuggleCore->Localize("main-help"));
-    ui->menuUser->setTitle(Core::HuggleCore->Localize("main-user"));
-    ui->menuQueue->setTitle(Core::HuggleCore->Localize("main-queue"));
+    ui->menuPage->setTitle(Localizations::HuggleLocalizations->Localize("main-page"));
+    ui->menuHelp->setTitle(Localizations::HuggleLocalizations->Localize("main-help"));
+    ui->menuUser->setTitle(Localizations::HuggleLocalizations->Localize("main-user"));
+    ui->menuQueue->setTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
 }
 
 bool MainWindow::CheckExit()
@@ -1628,8 +1628,8 @@ void MainWindow::on_actionReport_username_triggered()
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
-        dd.setWindowTitle(Core::HuggleCore->Localize("uaa-not-supported"));
-        dd.setText(Core::HuggleCore->Localize("uaa-not-supported-text"));
+        dd.setWindowTitle(Localizations::HuggleLocalizations->Localize("uaa-not-supported"));
+        dd.setText(Localizations::HuggleLocalizations->Localize("uaa-not-supported-text"));
         dd.exec();
     }
     if (this->CurrentEdit->User->IsIP())

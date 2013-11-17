@@ -99,7 +99,6 @@ Configuration::Configuration()
     this->LocalConfig_ReportSt = 0;
     this->LocalConfig_RUTemplateReport = "";
     this->LocalConfig_IPVTemplateReport = "";
-    this->Language = "en";
     this->LocalConfig_WhitelistScore = -800;
     this->RvCounter = 0;
     this->TrimOldWarnings = true;
@@ -326,7 +325,7 @@ void Configuration::LoadConfig()
         }
         if (key == "Language")
         {
-            Configuration::HuggleConfiguration->Language = option.attribute("text");
+            Localizations::HuggleLocalizations->PreferredLanguage = option.attribute("text");
             continue;
         }
         if (key == "ProviderCache")
@@ -387,7 +386,7 @@ void Configuration::SaveConfig()
     Configuration::InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, x);
     Configuration::InsertConfig("IRCPort", QString::number(Configuration::HuggleConfiguration->IRCPort), x);
     Configuration::InsertConfig("IRCServer", Configuration::HuggleConfiguration->IRCServer, x);
-    Configuration::InsertConfig("Language", Configuration::HuggleConfiguration->Language, x);
+    Configuration::InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, x);
     Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->ProviderCache), x);
     Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
     Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->HistorySize), x);

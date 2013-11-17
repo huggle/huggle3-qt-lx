@@ -17,6 +17,7 @@
 #include "apiquery.hpp"
 #include "exception.hpp"
 #include "wikiedit.hpp"
+#include "localization.hpp"
 
 namespace Ui
 {

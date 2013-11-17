@@ -452,6 +452,7 @@ protect-none:              None
 protect-semiprotection:    Semi-protection
 protect-fullprotection:    Full protection
 protect-moveprotection:    Move protection
+protect-ft:                Fetching token to protect $1
 </pre>
 
 === Queue form ===

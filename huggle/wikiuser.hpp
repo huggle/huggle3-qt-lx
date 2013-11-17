@@ -82,7 +82,7 @@ namespace Huggle
              */
             void ForceIP();
             //! Returns true in case the current user is IP user
-            bool IsIP();
+            bool IsIP() const;
             WikiUser();
             WikiUser(WikiUser *u);
             WikiUser(const WikiUser& u);

@@ -13,6 +13,7 @@
 
 #include <QDialog>
 #include "configuration.hpp"
+#include "localization.hpp"
 
 namespace Ui
 {

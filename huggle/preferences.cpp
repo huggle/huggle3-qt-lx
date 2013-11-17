@@ -18,7 +18,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     ui->setupUi(this);
     // headers
     ui->tableWidget->setColumnCount(4);
-    this->setWindowTitle(Core::HuggleCore->Localize("preferences"));
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
     QStringList header;
     /// \todo LOCALIZE ME
     header << "Name" << "Author" << "Description" << "Status" << "Version";

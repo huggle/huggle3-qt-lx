@@ -22,6 +22,7 @@
 #include "configuration.hpp"
 #include "networkirc.hpp"
 #include "wikiedit.hpp"
+#include "localization.hpp"
 
 namespace Huggle
 {

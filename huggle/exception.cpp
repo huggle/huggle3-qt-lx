@@ -30,7 +30,7 @@ Exception::Exception(QString Text, QString _Source, bool __IsRecoverable)
     this->_IsRecoverable = __IsRecoverable;
 }
 
-bool Exception::IsRecoverable()
+bool Exception::IsRecoverable() const
 {
     return _IsRecoverable;
 }

@@ -54,6 +54,7 @@
 #include "deleteform.hpp"
 #include "protectpage.hpp"
 #include "uaareport.hpp"
+#include "localization.hpp"
 
 namespace Ui
 {

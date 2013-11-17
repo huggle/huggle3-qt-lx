@@ -31,6 +31,7 @@
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #include "editquery.hpp"
+#include "localization.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"
 #include "revertquery.hpp"
@@ -60,6 +61,7 @@ namespace Huggle
     class Message;
     class iExtension;
     class Configuration;
+    class Localizations;
 
     /*!
      * \brief This is a workaround that allow us to use sleep
@@ -79,22 +81,6 @@ namespace Huggle
             HgApplication(int& argc, char** argv) :
                 QApplication(argc, argv) {}
             bool notify(QObject* receiver, QEvent* event);
-    };
-
-    /*!
-     * \brief The Language class
-     */
-    class Language
-    {
-        public:
-            //! Creates new instance of language
-            //! param name Name of language
-            Language(QString name);
-            //! This is a short language name which is used by system
-            QString LanguageName;
-            //! Long identifier of language that is seen by user
-            QString LanguageID;
-            QMap<QString, QString> Messages;
     };
 
     /*!
@@ -128,8 +114,6 @@ namespace Huggle
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
             QList<HuggleQueueFilter *> FilterDB;
-            //! Languages D:
-            QList<Language*> LocalizationData;
             //! Pointer to AIV page
             WikiPage *AIVP;
             //! Pointer to UAA page
@@ -249,9 +233,6 @@ namespace Huggle
              */
             void AppendQuery(Query* item);
             static void ExceptionHandler(Exception *exception);
-            QString Localize(QString key);
-            QString Localize(QString key, QStringList parameters);
-            QString Localize(QString key, QString parameters);
             void LoadLocalizations();
             bool ReportPreFlightCheck();
             int RunningQueriesGetCount();
@@ -266,15 +247,6 @@ namespace Huggle
             ProcessorThread * Processor;
             //! List of all messages that are being sent
             QList<Message*> Messages;
-            /*!
-             * \brief Initializes a localization with given name
-             *
-             * This function will create a new localization object using built-in localization file
-             * using Core::MakeLanguage() and insert that to language list
-             * \param name Name of a localization that is a name of language without txt suffix in localization folder
-             */
-            static void LocalInit(QString name);
-            static Language *MakeLanguage(QString text, QString name);
             //! Everytime we write to a file we need to log this
             QMutex *WriterLock;
     };
