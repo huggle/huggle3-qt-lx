@@ -32,7 +32,7 @@ Collectable::~Collectable()
     {
         throw new Exception("Request to delete managed entity");
     }
-    this->QL->unlock();
+    this->Unlock();
     delete this->QL;
 }
 
@@ -172,14 +172,21 @@ bool Collectable::IsLocked()
 
 void Collectable::Lock()
 {
-    this->QL->lock();
-    Locked = true;
+    // this is actually pretty lame check but better than nothing
+    if (!this->Locked)
+    {
+        this->QL->lock();
+        this->Locked = true;
+    }
 }
 
 void Collectable::Unlock()
 {
-    this->QL->unlock();
-    Locked = false;
+    if (this->Locked)
+    {
+        this->QL->unlock();
+        this->Locked = false;
+    }
 }
 
 bool Collectable::IsManaged()
