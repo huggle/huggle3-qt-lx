@@ -474,7 +474,7 @@ void Core::LoadDefs()
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
     if (QFile(Configuration::GetConfigurationPath() + "users.xml~").exists())
     {
-        Core::Log("WARNING: recovering definitions from last session");
+        this->Log("WARNING: recovering definitions from last session");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
         if (QFile(Configuration::GetConfigurationPath()
                    + "users.xml~").copy(Configuration::GetConfigurationPath()
@@ -483,7 +483,7 @@ void Core::LoadDefs()
             QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
         } else
         {
-            Core::Log("WARNING: Unable to recover the definitions");
+            this->Log("WARNING: Unable to recover the definitions");
         }
     }
     if (!defs.exists())
@@ -522,17 +522,17 @@ void Core::LoadDefs()
 
 void Core::FinalizeMessages()
 {
-    if (Core::Messages.count() < 1)
+    if (this->Messages.count() < 1)
     {
         return;
     }
     int x=0;
     QList<Message*> list;
-    while (x<Core::Messages.count())
+    while (x<this->Messages.count())
     {
-        if (Core::Messages.at(x)->Finished())
+        if (this->Messages.at(x)->Finished())
         {
-            list.append(Core::Messages.at(x));
+            list.append(this->Messages.at(x));
         }
         x++;
     }
@@ -572,7 +572,7 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     }
     _e->RegisterConsumer("Core::EditPage");
     _e->page = page->PageName;
-    Core::PendingMods.append(_e);
+    this->PendingMods.append(_e);
     _e->text = text;
     _e->summary = summary;
     _e->Minor = minor;
@@ -583,19 +583,19 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
 void Core::AppendQuery(Query *item)
 {
     item->RegisterConsumer("core");
-    Core::RunningQueries.append(item);
+    this->RunningQueries.append(item);
 }
 
 void Core::Log(QString Message)
 {
     Message = "<" + QDateTime::currentDateTime().toString() + "> " + Message;
     std::cout << Message.toStdString() << std::endl;
-    Core::InsertToRingLog(Message);
-    if (Core::Main != NULL)
+    this->InsertToRingLog(Message);
+    if (this->Main != NULL)
     {
-        Core::Main->lUnwrittenLogs.lock();
-        Core::Main->UnwrittenLogs.append(Message);
-        Core::Main->lUnwrittenLogs.unlock();
+        this->Main->lUnwrittenLogs.lock();
+        this->Main->UnwrittenLogs.append(Message);
+        this->Main->lUnwrittenLogs.unlock();
     }
     if (Configuration::HuggleConfiguration->Log2File)
     {
@@ -751,9 +751,7 @@ void Core::Shutdown()
     {
         this->Main->hide();
     }
-#if QT_VERSION >= 0x050000
-    QThread::usleep(200000);
-#endif
+    Sleeper::msleep(200);
     if (this->Processor->isRunning())
     {
         this->Processor->exit();
@@ -765,6 +763,10 @@ void Core::Shutdown()
     delete this->Python;
 #endif
     delete Configuration::HuggleConfiguration;
+    delete Localizations::HuggleLocalizations;
+    delete GC::gc;
+    GC::gc = NULL;
+    this->gc = NULL;
     QApplication::quit();
 }
 

@@ -15,19 +15,19 @@ using namespace Huggle;
 
 AboutForm::AboutForm(QWidget *parent) : QDialog(parent), ui(new Ui::AboutForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     QString python = " without python support";
     if (Configuration::HuggleConfiguration->PythonEngine)
     {
         python = " with python support";
     }
     QString version = " Compiled using QT " + QString(QT_VERSION_STR) + " Running on QT " + QString(qVersion());
-    ui->label_7->setText("Version: " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
+    this->ui->label_7->setText("Version: " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
 }
 
 AboutForm::~AboutForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void AboutForm::on_pushButton_clicked()

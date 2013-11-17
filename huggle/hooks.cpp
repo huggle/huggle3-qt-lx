@@ -10,7 +10,6 @@
 
 #include "hooks.hpp"
 
-
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == NULL)

@@ -18,6 +18,7 @@ TEMPLATE = app
 SOURCES += tst_testmain.cpp \
     ../../wikiuser.cpp \
     ../../configuration.cpp \
+    ../../localization.cpp \
     ../../wikisite.cpp \
     ../../wikipage.cpp \
     ../../core.cpp \
@@ -84,8 +85,9 @@ HEADERS += \
     ../../query.hpp \
     ../../gc.hpp \
     ../../exception.hpp \
-    ../../deleteform.hpp \
     ../../collectable.hpp \
+    ../../deleteform.hpp \
+    ../../localization.hpp \
     ../../blockuser.hpp \
     ../../apiquery.hpp \
     ../../message.hpp \

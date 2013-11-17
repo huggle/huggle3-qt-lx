@@ -22,6 +22,7 @@ namespace Huggle
         public:
             //! Error code
             int ErrorCode;
+            //! Source
             QString Source;
             //! Reason for crash
             QString Message;
