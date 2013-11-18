@@ -337,6 +337,7 @@ void NetworkIrc_th::run()
             QString data = buffer.at(0);
             buffer.removeAt(0);
             this->Line(data);
+            Syslog::HuggleLogs->DebugLog("Processing IRC input from " + this->root->Server + ": " + data, 10);
         }
         ping++;
         if (ping > 200)

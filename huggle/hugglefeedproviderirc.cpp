@@ -57,6 +57,7 @@ bool HuggleFeedProviderIRC::Start()
         this->Network = NULL;
         return false;
     }
+    this->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
     Huggle::Syslog::HuggleLogs->Log("IRC: Successfuly connected to irc rc feed");
     if (this->thread != NULL)
     {
@@ -415,14 +416,12 @@ void HuggleFeedProviderIRC_t::run()
     {
         QThread::usleep(200000);
     }
-    this->p->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
     while (this->Running && this->p->Network->IsConnected())
     {
         Huggle::IRC::Message *message = p->Network->GetMessage();
         if (message != NULL)
         {
             QString text = message->Text;
-            Huggle::Syslog::HuggleLogs->DebugLog("IRC Input: " + text, 6);
             p->ParseEdit(text);
         }
         QThread::usleep(200000);
