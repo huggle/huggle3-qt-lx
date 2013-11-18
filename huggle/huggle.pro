@@ -80,7 +80,8 @@ SOURCES += main.cpp\
     whitelistform.cpp \
     localization.cpp \
     syslog.cpp \
-    huggleparser.cpp
+    huggleparser.cpp \
+    sleeper.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -144,7 +145,8 @@ HEADERS  += mainwindow.hpp \
     whitelistform.hpp \
     localization.hpp \
     syslog.hpp \
-    huggleparser.hpp
+    huggleparser.hpp \
+    sleeper.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

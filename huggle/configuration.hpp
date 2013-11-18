@@ -320,6 +320,7 @@ namespace Huggle
             QString IRCIdent;
             //! Port
             int IRCPort;
+            int IRCConnectionTimeOut;
 
             //////////////////////////////////////////////
             // Friends

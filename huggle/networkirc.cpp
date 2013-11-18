@@ -14,87 +14,83 @@ using namespace Huggle::IRC;
 
 NetworkIrc::NetworkIrc(QString server, QString nick)
 {
-    this->messages_lock = new QMutex(QMutex::Recursive);
-    this->writer_lock = new QMutex(QMutex::Recursive);
-    this->__IsConnecting = false;
+    this->MessagesLock = new QMutex(QMutex::Recursive);
     this->Ident = "huggle";
     this->Nick = nick;
     this->Port = 6667;
     this->Server = server;
     this->UserName = "Huggle client";
-    this->s = NULL;
+    this->Timer = new QTimer(this);
+    this->NetworkSocket = NULL;
     this->NetworkThread = NULL;
-    this->__Connected = false;
 }
 
 NetworkIrc::~NetworkIrc()
 {
-    delete this->messages_lock;
+    delete this->MessagesLock;
+    delete this->NetworkSocket;
+    delete this->Timer;
     delete this->NetworkThread;
-    delete this->writer_lock;
-    delete this->s;
 }
 
 bool NetworkIrc::Connect()
 {
-    if (this->__IsConnecting)
+    if (this->NetworkThread != NULL)
     {
-        throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connecting", "bool NetworkIrc::Connect()");
+        if (this->NetworkThread->__IsConnecting)
+        {
+            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connecting", "bool NetworkIrc::Connect()");
+        }
+        if (this->NetworkThread->__Connected)
+        {
+            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected");
+        }
     }
-    if (this->IsConnected())
+    if (this->NetworkThread != NULL)
     {
-        throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected");
+        delete this->NetworkThread;
     }
-    if (this->s != NULL)
+    this->NetworkThread = new NetworkIrc_th();
+    this->NetworkThread->root = this;
+    if (this->NetworkSocket != NULL)
     {
-        delete this->s;
+        delete this->NetworkSocket;
     }
-    this->s = new QTcpSocket();
-    this->s->connectToHost(this->Server, this->Port);
-    this->__IsConnecting = true;
-    if (!this->s->waitForConnected())
+    this->NetworkSocket = new QTcpSocket();
+    connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
+    this->NetworkThread->__IsConnecting = true;
+    this->NetworkSocket->connectToHost(this->Server, this->Port);
+    if (!this->NetworkSocket->waitForConnected())
     {
-        this->Exit();
-        this->__IsConnecting = false;
+        this->NetworkThread->__IsConnecting = false;
         return false;
     }
-    this->NetworkThread = new NetworkIrc_th(this->s);
-    this->NetworkThread->root = this;
-    this->__Connected = true;
+    this->Data("USER " + this->Ident + " 8 * :" + this->UserName);
+    QString nick = this->Nick;
+    nick = nick.replace(" ", "");
+    this->Data("NICK " + nick);
     this->NetworkThread->start();
+    connect(this->Timer, SIGNAL(timeout()), this, SLOT(OnTime()));
+    this->Timer->start(100);
     return true;
 }
 
 bool NetworkIrc::IsConnected()
 {
-    if (this->NetworkThread != NULL)
+    if (this->NetworkThread == NULL)
     {
-        if (!this->NetworkThread->Connected)
-        {
-            return false;
-        }
+        return false;
     }
-    return this->__Connected;
+    return this->NetworkThread->__Connected;
 }
 
 bool NetworkIrc::IsConnecting()
 {
-    if (this->__IsConnecting)
+    if (this->NetworkThread == NULL)
     {
-        if (this->NetworkThread != NULL)
-        {
-            if (this->NetworkThread->Connected)
-            {
-                this->__IsConnecting = false;
-                this->__Connected = true;
-            } else if (this->NetworkThread->isFinished())
-            {
-                this->__IsConnecting = false;
-                this->__Connected = false;
-            }
-        }
+        return false;
     }
-    return this->__IsConnecting;
+    return this->NetworkThread->__IsConnecting;
 }
 
 void NetworkIrc::Disconnect()
@@ -104,19 +100,15 @@ void NetworkIrc::Disconnect()
         return;
     }
     this->Data("QUIT :Huggle, the anti vandalism software. See #huggle on irc://chat.freenode.net");
-    this->Exit();
+    this->NetworkSocket->disconnect();
+    this->Timer->stop();
+    this->NetworkThread->__IsConnecting = false;
+    this->NetworkThread->__Connected = false;
     if (this->NetworkThread != NULL)
     {
         // we have to request the network thread to stop
         this->NetworkThread->Running = false;
     }
-    if (s != NULL)
-    {
-        this->s->disconnect();
-        delete this->s;
-        s = NULL;
-    }
-    this->__IsConnecting = false;
 }
 
 void NetworkIrc::Join(QString name)
@@ -131,13 +123,11 @@ void NetworkIrc::Part(QString name)
 
 void NetworkIrc::Data(QString text)
 {
-    if (!__Connected)
+    if (this->NetworkThread == NULL || this->NetworkSocket == NULL)
     {
-        return;
+        throw new Exception("You can't send data to network which you never connected to", "void NetworkIrc::Data(QString text)");
     }
-    this->writer_lock->lock();
-    this->s->write((text + QString("\n")).toUtf8());
-    this->writer_lock->unlock();
+    this->NetworkSocket->write((text + "\n").toUtf8());
 }
 
 void NetworkIrc::Send(QString name, QString text)
@@ -145,29 +135,45 @@ void NetworkIrc::Send(QString name, QString text)
     this->Data("PRIVMSG " + name + " :" + text);
 }
 
-void NetworkIrc::Exit()
-{
-    this->__Connected = false;
-    this->__IsConnecting = false;
-}
-
 Message* NetworkIrc::GetMessage()
 {
     Message *message;
-    this->messages_lock->lock();
+    this->MessagesLock->lock();
     if (this->Messages.count() == 0)
     {
-        this->messages_lock->unlock();
+        this->MessagesLock->unlock();
         return NULL;
     } else
     {
         message = new Message(Messages.at(0));
         this->Messages.removeAt(0);
     }
-    this->messages_lock->unlock();
+    this->MessagesLock->unlock();
     return message;
 }
 
+void NetworkIrc::OnReceive()
+{
+    QString data(this->NetworkSocket->readLine());
+    this->NetworkThread->lIOBuffers->lock();
+    while (data != "")
+    {
+        this->NetworkThread->IncomingBuffer.append(data);
+        data = QString(this->NetworkSocket->readLine());
+    }
+    this->NetworkThread->lIOBuffers->unlock();
+}
+
+void NetworkIrc::OnTime()
+{
+    this->NetworkThread->lIOBuffers->lock();
+    while (this->NetworkThread->OutgoingBuffer.count() > 0)
+    {
+        this->Data(this->NetworkThread->OutgoingBuffer.at(0));
+        this->NetworkThread->OutgoingBuffer.removeAt(0);
+    }
+    this->NetworkThread->lIOBuffers->unlock();
+}
 
 Message::Message(QString text, User us)
 {
@@ -203,7 +209,6 @@ Message::Message(Message *ms)
     this->user = ms->user;
 }
 
-
 User::User(QString nick, QString ident, QString host)
 {
     this->Nick = nick;
@@ -232,18 +237,27 @@ User::User(const User &user)
     this->Nick = user.Nick;
 }
 
-NetworkIrc_th::NetworkIrc_th(QTcpSocket *socket)
+NetworkIrc_th::NetworkIrc_th()
 {
-    this->s = socket;
-    this->Stopped = false;
-    this->Connected = false;
+    this->s = NULL;
+    this->__Connected = false;
+    this->__IsConnecting = false;
+    this->lIOBuffers = new QMutex(QMutex::Recursive);
     this->root = NULL;
     this->Running = true;
 }
 
 NetworkIrc_th::~NetworkIrc_th()
 {
+    delete this->s;
+    delete this->lIOBuffers;
+}
 
+void NetworkIrc_th::Data(QString text)
+{
+    this->lIOBuffers->lock();
+    this->OutgoingBuffer.append(text);
+    this->lIOBuffers->unlock();
 }
 
 void NetworkIrc_th::Line(QString line)
@@ -270,7 +284,8 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "002")
     {
-        this->Connected = true;
+        this->__IsConnecting = false;
+        this->__Connected = true;
         return;
     }
     /// \todo implement PART
@@ -299,33 +314,38 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
     message.user = user;
     xx = xx.replace("\r\n", "");
     message.Text = xx.mid(xx.indexOf(" :") + 2);
-    this->root->messages_lock->lock();
+    this->root->MessagesLock->lock();
     this->root->Messages.append(message);
-    this->root->messages_lock->unlock();
+    this->root->MessagesLock->unlock();
 }
 
 void NetworkIrc_th::run()
 {
-    this->root->Data("USER " + this->root->Ident + " 8 * :" + this->root->UserName);
-    QString nick = this->root->Nick;
-    nick = nick.replace(" ", "");
-    this->root->Data("NICK " + nick);
     int ping = 0;
-    while (this->Running && this->s->isOpen())
+    while (this->Running)
     {
+        this->lIOBuffers->lock();
+        QStringList buffer;
+        if (this->IncomingBuffer.count() > 0)
+        {
+            buffer += this->IncomingBuffer;
+            this->IncomingBuffer.clear();
+        }
+        this->lIOBuffers->unlock();
+        while (buffer.count() > 0)
+        {
+            QString data = buffer.at(0);
+            buffer.removeAt(0);
+            this->Line(data);
+        }
         ping++;
         if (ping > 200)
         {
-            this->root->Data("PING :" + this->root->Server);
+            this->Data("PING :" + this->root->Server);
             ping = 0;
         }
-        QString data(s->readLine());
-        if (data != "")
-        {
-            this->Line(data);
-        }
-        this->usleep(100000);
+        this->usleep(10000);
     }
-    this->Connected = false;
+    this->__Connected = false;
     return;
 }

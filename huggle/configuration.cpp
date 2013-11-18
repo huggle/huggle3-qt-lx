@@ -112,6 +112,7 @@ Configuration::Configuration()
     this->WelcomeEmpty = true;
     this->LocalConfig_ReportSummary = "Reporting user";
     this->_SafeMode = false;
+    this->IRCConnectionTimeOut = 2;
 
     this->LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
     this->LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;

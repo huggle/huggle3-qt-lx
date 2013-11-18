@@ -15,6 +15,10 @@
 #include <QtNetwork>
 #include <QThread>
 #include <QMutex>
+#include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
+#include "sleeper.hpp"
 #include "exception.hpp"
 
 namespace Huggle
@@ -71,13 +75,19 @@ namespace Huggle
         {
                 Q_OBJECT
             public:
-                NetworkIrc_th(QTcpSocket *socket);
+                NetworkIrc_th();
                 ~NetworkIrc_th();
+                void Data(QString text);
                 bool Running;
                 NetworkIrc *root;
                 void Line(QString line);
                 void ProcessPrivmsg(QString source, QString xx);
-                bool Connected;
+                bool __Connected;
+                bool __IsConnecting;
+                QStringList IncomingBuffer;
+                QStringList OutgoingBuffer;
+                //! This lock is used to lock the data structures when they are accessed by anyone
+                QMutex *lIOBuffers;
             protected:
                 void run();
             private:
@@ -86,14 +96,14 @@ namespace Huggle
                  * this object is managed by parent so don't delete it
                  */
                 QTcpSocket *s;
-                bool Stopped;
         };
 
         /*!
          * \brief The NetworkIrc provides connection to IRC servers
          */
-        class NetworkIrc
+        class NetworkIrc : public QObject
         {
+                Q_OBJECT
             public:
                 NetworkIrc(QString server, QString nick);
                 ~NetworkIrc();
@@ -110,25 +120,22 @@ namespace Huggle
                 void Part(QString name);
                 void Data(QString text);
                 void Send(QString name, QString text);
-                void Exit();
                 QString Server;
                 QString Nick;
                 QString UserName;
                 QString Ident;
-                QMutex *messages_lock;
+                QMutex *MessagesLock;
                 Message* GetMessage();
                 QStringList Channels;
                 int Port;
                 QList<Message> Messages;
+            private slots:
+                void OnReceive();
+                void OnTime();
             private:
-                bool __Connected;
-                bool __IsConnecting;
-                QMutex *writer_lock;
                 NetworkIrc_th *NetworkThread;
-                /*!
-                 * \brief Pointer to a QT Socket that is handling the connection to irc server owned by this class
-                 */
-                QTcpSocket *s;
+                QTcpSocket *NetworkSocket;
+                QTimer *Timer;
         };
     }
 }

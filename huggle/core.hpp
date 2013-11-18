@@ -34,6 +34,7 @@
 #include "localization.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"
+#include "sleeper.hpp"
 #include "revertquery.hpp"
 #include "huggleparser.hpp"
 
@@ -44,6 +45,7 @@
 namespace Huggle
 {
     // Predeclaring some types
+    class Sleeper;
     class Login;
     class Query;
     class ApiQuery;
@@ -64,17 +66,6 @@ namespace Huggle
     class iExtension;
     class Configuration;
     class Localizations;
-
-    /*!
-     * \brief This is a workaround that allow us to use sleep
-     */
-    class Sleeper : public QThread
-    {
-        public:
-            static void usleep(unsigned long usecs){QThread::usleep(usecs);}
-            static void msleep(unsigned long msecs){QThread::msleep(msecs);}
-            static void sleep(unsigned long secs){QThread::sleep(secs);}
-    };
 
     //! Overwrite of qapplication so that we can reimplement notify
     class HgApplication : public QApplication
