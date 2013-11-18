@@ -53,6 +53,7 @@ SOURCES += tst_testmain.cpp \
     ../../history.cpp \
     ../../exceptionwindow.cpp \
     ../../editquery.cpp \
+    ../../sleeper.cpp \
     ../../wlquery.cpp \
     ../../aboutform.cpp \
     ../../wikiedit.cpp \
@@ -98,6 +99,7 @@ HEADERS += \
     ../../mainwindow.hpp \
     ../../login.hpp \
     ../../ignorelist.hpp \
+    ../../sleeper.hpp \
     ../../iextension.hpp \
     ../../huggleweb.hpp \
     ../../huggletool.hpp \
