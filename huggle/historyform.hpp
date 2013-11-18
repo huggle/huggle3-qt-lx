@@ -13,7 +13,6 @@
 
 #include <QTimer>
 #include <QDockWidget>
-#include "core.hpp"
 #include "apiquery.hpp"
 #include "exception.hpp"
 #include "wikiedit.hpp"

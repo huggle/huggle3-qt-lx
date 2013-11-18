@@ -19,7 +19,7 @@
 #include <QThread>
 #include "syslog.hpp"
 #include "query.hpp"
-#include  "revertquery.hpp"
+#include "revertquery.hpp"
 #include "configuration.hpp"
 #include "core.hpp"
 #include "exception.hpp"
