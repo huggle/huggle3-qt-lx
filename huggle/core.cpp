@@ -23,12 +23,11 @@ Core  *Core::HuggleCore = NULL;
 void Core::Init()
 {
     this->StartupTime = QDateTime::currentDateTime();
-    this->WriterLock = new QMutex(QMutex::Recursive);
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
     if (Configuration::HuggleConfiguration->_SafeMode)
     {
-        this->Log("DEBUG: Huggle is running in a safe mode");
+        Syslog::HuggleLogs->Log("DEBUG: Huggle is running in a safe mode");
     }
     this->gc = new GC();
     GC::gc = this->gc;
@@ -45,35 +44,35 @@ void Core::Init()
     this->HtmlHeader = QString(vf->readAll());
     vf->close();
     delete vf;
-    this->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
-    this->Log("Loading configuration");
+    Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
+    Syslog::HuggleLogs->Log("Loading configuration");
     Processor = new ProcessorThread();
     Processor->start();
+    this->LoadLocalizations();
     Configuration::LoadConfig();
-    this->DebugLog("Loading defs");
+    Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
     Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
 #ifdef PYTHONENGINE
     Core::Log("Loading python engine");
     Core::Python = new PythonEngine();
 #endif
-    this->DebugLog("Loading wikis");
+    Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
-    this->LoadLocalizations();
-    this->DebugLog("Loading queue");
+    Syslog::HuggleLogs->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
     Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
-        this->Log("Loading plugins");
+        Syslog::HuggleLogs->Log("Loading plugins");
         this->ExtensionLoad();
     } else
     {
-        this->Log("Not loading plugins in a safe mode");
+        Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
-    this->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
+    Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
 }
 
 Core::Core()
@@ -84,12 +83,9 @@ Core::Core()
     this->f_Login = NULL;
     this->SecondaryFeedProvider = NULL;
     this->PrimaryFeedProvider = NULL;
-    this->WriterLock = NULL;
     this->Processor = NULL;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
-    this->AIVP = NULL;
-    this->UAAP = NULL;
     this->gc = NULL;
 }
 
@@ -100,9 +96,6 @@ Core::~Core()
     delete this->SecondaryFeedProvider;
     delete this->PrimaryFeedProvider;
     delete this->gc;
-    delete this->AIVP;
-    delete this->WriterLock;
-    delete this->UAAP;
     delete this->Processor;
 }
 
@@ -116,7 +109,7 @@ void Core::LoadDB()
         QFile db(Configuration::HuggleConfiguration->WikiDB);
         if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            this->Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
+            Syslog::HuggleLogs->Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
             return;
         }
         text = QString(db.readAll());
@@ -181,25 +174,6 @@ void Core::LoadDB()
     }
 }
 
-QString Core::Trim(QString text)
-{
-    while (text.startsWith(" "))
-    {
-        if (text == "")
-        {
-            break;
-        }
-        text = text.mid(1);
-    }
-
-    while (text.endsWith(" "))
-    {
-        text = text.mid(0, text.length() - 1);
-    }
-
-    return text;
-}
-
 void Core::DeleteEdit(WikiEdit *edit)
 {
     if (edit == NULL)
@@ -228,112 +202,6 @@ void Core::DeleteEdit(WikiEdit *edit)
     edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
 }
 
-QString Core::GetSummaryOfWarningTypeFromWarningKey(QString key)
-{
-    int id=0;
-    while (id<Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.count())
-    {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.at(id);
-        if (line.startsWith(key + ";"))
-        {
-            return Core::GetValueFromKey(line);
-        }
-        id++;
-    }
-    return Configuration::HuggleConfiguration->DefaultRevertSummary;
-}
-
-QString Core::GetNameOfWarningTypeFromWarningKey(QString key)
-{
-    int id=0;
-    while (id<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
-    {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(id);
-        if (line.startsWith(key) + ";")
-        {
-            return Core::GetValueFromKey(line);
-        }
-        id++;
-    }
-    return key;
-}
-
-QString Core::GetKeyOfWarningTypeFromWarningName(QString id)
-{
-    int i=0;
-    while (i<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
-    {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(i);
-        if (line.endsWith(id) || line.endsWith(id + ","))
-        {
-            return Core::GetKeyFromValue(line);
-        }
-        i++;
-    }
-    return id;
-}
-
-void Core::ParsePats(QString text)
-{
-    Configuration::HuggleConfiguration->LocalConfig_ScoreParts.clear();
-    while (text.contains("score-parts("))
-    {
-        text = text.mid(text.indexOf("score-parts(") + 12);
-        if (!text.contains(")"))
-        {
-            return;
-        }
-        int score = text.mid(0, text.indexOf(")")).toInt();
-
-        if (score == 0)
-        {
-            continue;
-        }
-
-        QStringList word;
-
-        if (!text.contains(":"))
-        {
-            return;
-        }
-
-        text = text.mid(text.indexOf(":") + 1);
-
-        QStringList lines = text.split("\n");
-
-        int line = 1;
-        while (line < lines.count())
-        {
-            QString l = lines.at(line);
-            QStringList items = l.split(",");
-            int CurrentItem = 0;
-            while ( CurrentItem < items.count() )
-            {
-                QString w = Core::Trim(items.at(CurrentItem));
-                if (w == "")
-                {
-                    CurrentItem++;
-                    continue;
-                }
-                word.append(w);
-                CurrentItem++;
-            }
-            if (!l.endsWith(",") || Core::Trim(l) == "")
-            {
-                break;
-            }
-            line++;
-        }
-
-        line = 0;
-        while (line < word.count())
-        {
-            Configuration::HuggleConfiguration->LocalConfig_ScoreParts.append(ScoreWord(word.at(line), score));
-            line++;
-        }
-    }
-}
-
 void Core::SaveDefs()
 {
     QFile file(Configuration::GetConfigurationPath() + "users.xml");
@@ -344,7 +212,7 @@ void Core::SaveDefs()
     }
     if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
-        this->Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
+        Huggle::Syslog::HuggleLogs->Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
     QString xx = "<definitions>\n";
@@ -364,96 +232,11 @@ void Core::SaveDefs()
     QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
-QString Core::GetValueFromKey(QString item)
-{
-    if (item.contains(";"))
-    {
-        QString type = item.mid(item.indexOf(";") + 1);
-        if (type.endsWith(","))
-        {
-            type = type.mid(0, type.length() - 1);
-        }
-        return type;
-    }
-    return item;
-}
-
-QString Core::GetKeyFromValue(QString item)
-{
-    if (item.contains(";"))
-    {
-        QString type = item.mid(0, item.indexOf(";"));
-        return type;
-    }
-    return item;
-}
-
-void Core::ParseWords(QString text)
-{
-    Configuration::HuggleConfiguration->LocalConfig_ScoreWords.clear();
-    while (text.contains("score-words("))
-    {
-        text = text.mid(text.indexOf("score-words(") + 12);
-        if (!text.contains(")"))
-        {
-            return;
-        }
-        int score = text.mid(0, text.indexOf(")")).toInt();
-
-        if (score == 0)
-        {
-            continue;
-        }
-
-        QStringList word;
-
-        if (!text.contains(":"))
-        {
-            return;
-        }
-
-        text = text.mid(text.indexOf(":") + 1);
-
-        QStringList lines = text.split("\n");
-
-        int line = 1;
-        while (line < lines.count())
-        {
-            QString l = lines.at(line);
-            QStringList items = l.split(",");
-            int CurrentItem = 0;
-            while ( CurrentItem < items.count() )
-            {
-                QString w = Core::Trim(items.at(CurrentItem));
-                if (w == "")
-                {
-                    CurrentItem++;
-                    continue;
-                }
-                word.append(w);
-                CurrentItem++;
-            }
-            if (!l.endsWith(",") || Core::Trim(l) == "")
-            {
-                break;
-            }
-            line++;
-        }
-
-        line = 0;
-        while (line < word.count())
-        {
-            Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(ScoreWord(word.at(line), score));
-            line++;
-        }
-    }
-}
-
 Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix)
 {
     if (user == NULL)
     {
-        this->Log("Cowardly refusing to message NULL user");
+        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
         return NULL;
     }
 
@@ -464,7 +247,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->Suffix = !nosuffix;
     Core::Messages.append(m);
     m->Send();
-    this->Log("Sending message to user " + user->Username);
+    Huggle::Syslog::HuggleLogs->Log("Sending message to user " + user->Username);
 
     return m;
 }
@@ -474,7 +257,7 @@ void Core::LoadDefs()
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
     if (QFile(Configuration::GetConfigurationPath() + "users.xml~").exists())
     {
-        this->Log("WARNING: recovering definitions from last session");
+        Huggle::Syslog::HuggleLogs->Log("WARNING: recovering definitions from last session");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
         if (QFile(Configuration::GetConfigurationPath()
                    + "users.xml~").copy(Configuration::GetConfigurationPath()
@@ -483,7 +266,7 @@ void Core::LoadDefs()
             QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
         } else
         {
-            this->Log("WARNING: Unable to recover the definitions");
+            Huggle::Syslog::HuggleLogs->Log("WARNING: Unable to recover the definitions");
         }
     }
     if (!defs.exists())
@@ -549,9 +332,9 @@ QString Core::RetrieveTemplateToWarn(QString type)
     int x=0;
     while (x < Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.count())
     {
-        if (Core::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
         {
-            return Core::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
+            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
         }
         x++;
     }
@@ -586,31 +369,6 @@ void Core::AppendQuery(Query *item)
     this->RunningQueries.append(item);
 }
 
-void Core::Log(QString Message)
-{
-    Message = "<" + QDateTime::currentDateTime().toString() + "> " + Message;
-    std::cout << Message.toStdString() << std::endl;
-    this->InsertToRingLog(Message);
-    if (this->Main != NULL)
-    {
-        this->Main->lUnwrittenLogs.lock();
-        this->Main->UnwrittenLogs.append(Message);
-        this->Main->lUnwrittenLogs.unlock();
-    }
-    if (Configuration::HuggleConfiguration->Log2File)
-    {
-        this->WriterLock->lock();
-        QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
-        if (file->open(QIODevice::Append))
-        {
-            file->write(QString(Message + "\n").toUtf8());
-            file->close();
-        }
-        delete file;
-        this->WriterLock->unlock();
-    }
-}
-
 void Core::ExtensionLoad()
 {
     if (QDir().exists(EXTENSION_PATH))
@@ -633,7 +391,7 @@ void Core::ExtensionLoad()
                         iExtension *interface = qobject_cast<iExtension*>(root);
                         if (!interface)
                         {
-                            Core::Log("Unable to cast the library to extension");
+                            Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension");
                         }else
                         {
                             if (interface->RequestNetwork())
@@ -651,17 +409,17 @@ void Core::ExtensionLoad()
                             if (interface->Register())
                             {
                                 Core::Extensions.append(interface);
-                                Core::Log("Successfully loaded: " + extensions.at(xx));
+                                Huggle::Syslog::HuggleLogs->Log("Successfully loaded: " + extensions.at(xx));
                             }
                             else
                             {
-                                Core::Log("Unable to register: " + extensions.at(xx));
+                                Huggle::Syslog::HuggleLogs->Log("Unable to register: " + extensions.at(xx));
                             }
                         }
                     }
                 } else
                 {
-                    Core::Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
+                    Huggle::Syslog::HuggleLogs->Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
                     delete extension;
                 }
             } else if (name.endsWith(".py"))
@@ -670,7 +428,7 @@ void Core::ExtensionLoad()
                 name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
                 if (Core::Python->LoadScript(name))
                 {
-                    Core::Log("Loaded python script: " + name);
+                    Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + name);
                 } else
                 {
                     Core::Log("Failed to load a python script: " + name);
@@ -681,9 +439,9 @@ void Core::ExtensionLoad()
         }
     } else
     {
-        Core::Log("There is no extensions folder, skipping load");
+        Huggle::Syslog::HuggleLogs->Log("There is no extensions folder, skipping load");
     }
-    Core::Log("Extensions: " + QString::number(Core::Extensions.count()));
+    Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Extensions.count()));
 }
 
 void Core::VersionRead()
@@ -698,14 +456,6 @@ void Core::VersionRead()
 #endif
     vf->close();
     delete vf;
-}
-
-void Core::DebugLog(QString Message, unsigned int Verbosity)
-{
-    if (Configuration::HuggleConfiguration->Verbosity >= Verbosity)
-    {
-        Core::Log("DEBUG[" + QString::number(Verbosity) + "]: " + Message);
-    }
 }
 
 QString Core::GetProjectURL(WikiSite Project)
@@ -759,7 +509,7 @@ void Core::Shutdown()
     Core::SaveDefs();
     Configuration::SaveConfig();
 #ifdef PYTHONENGINE
-    this->Log("Unloading python");
+    Huggle::Syslog::HuggleLogs->Log("Unloading python");
     delete this->Python;
 #endif
     delete Configuration::HuggleConfiguration;
@@ -768,32 +518,6 @@ void Core::Shutdown()
     GC::gc = NULL;
     this->gc = NULL;
     QApplication::quit();
-}
-
-QString Core::RingLogToText()
-{
-    int i = 0;
-    QString text = "";
-    while (i<this->RingLog.size())
-    {
-        text = this->RingLog.at(i) + "\n" + text;
-        i++;
-    }
-    return text;
-}
-
-QStringList Core::RingLogToQStringList()
-{
-    return QStringList(Core::RingLog);
-}
-
-void Core::InsertToRingLog(QString text)
-{
-    if (Core::RingLog.size()+1 > Configuration::HuggleConfiguration->RingLogMaxSize)
-    {
-        Core::RingLog.removeAt(0);
-    }
-    Core::RingLog.append(text);
 }
 
 void Core::DeveloperError()
@@ -875,7 +599,7 @@ void Core::CheckQueries()
         if (q->Processed())
         {
             Finished.append(q);
-            Core::DebugLog("Query finished with: " + q->Result->Data, 6);
+            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 6);
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
         }
@@ -966,7 +690,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("en");
     if (Configuration::HuggleConfiguration->_SafeMode)
     {
-        Core::Log("Skipping load of other languages, because of safe mode");
+        Huggle::Syslog::HuggleLogs->Log("Skipping load of other languages, because of safe mode");
         return;
     }
     Localizations::HuggleLocalizations->LocalInit("ar");

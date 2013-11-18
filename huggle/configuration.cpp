@@ -16,6 +16,8 @@ Configuration * Configuration::HuggleConfiguration = new Configuration();
 
 Configuration::Configuration()
 {
+    this->AIVP = NULL;
+    this->UAAP = NULL;
     this->Verbosity = 0;
     this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
     this->UsingSSL = true;
@@ -164,7 +166,9 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+    delete this->AIVP;
     delete this->Project;
+    delete this->UAAP;
 }
 
 QString Configuration::GetURLProtocolPrefix()
@@ -263,15 +267,15 @@ QString Configuration::MakeLocalUserConfig()
 void Configuration::LoadConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
-    Core::HuggleCore->Log("Home: " + Configuration::GetConfigurationPath());
+    Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
     if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
     {
-        Core::HuggleCore->DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
+        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
         return;
     }
     if(!file.open(QIODevice::ReadOnly))
     {
-        Core::HuggleCore->DebugLog("Unable to read config file");
+        Huggle::Syslog::HuggleLogs->DebugLog("Unable to read config file");
         return;
     }
     QDomDocument conf;
@@ -364,7 +368,7 @@ void Configuration::LoadConfig()
             continue;
         }
     }
-    Core::HuggleCore->DebugLog("Finished conf");
+    Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
 void Configuration::SaveConfig()
@@ -372,7 +376,7 @@ void Configuration::SaveConfig()
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
     if (!file.open(QIODevice::WriteOnly))
     {
-        Core::HuggleCore->Log("Unable to save configuration because the file can't be open");
+        Huggle::Syslog::HuggleLogs->Log("Unable to save configuration because the file can't be open");
         return;
     }
     QXmlStreamWriter *x = new QXmlStreamWriter();
@@ -415,7 +419,7 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, b
         int curr = 1;
         while (curr < lines.count())
         {
-            QString _line = Core::HuggleCore->Trim(lines.at(curr));
+            QString _line = HuggleParser::Trim(lines.at(curr));
             if (_line.endsWith(","))
             {
                 list.append(_line);
@@ -440,9 +444,9 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, b
                 int i2 = 0;
                 while (i2<xx.count())
                 {
-                    if (Core::HuggleCore->Trim(xx.at(i2)) != "")
+                    if (HuggleParser::Trim(xx.at(i2)) != "")
                     {
-                        f.append(Core::HuggleCore->Trim(xx.at(i2)));
+                        f.append(HuggleParser::Trim(xx.at(i2)));
                     }
                     i2++;
                 }
@@ -458,7 +462,7 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, b
         int curr = 1;
         while (curr < lines.count())
         {
-            QString _line = Core::HuggleCore->Trim(lines.at(curr));
+            QString _line = HuggleParser::Trim(lines.at(curr));
             if (_line.endsWith(","))
             {
                 list.append(_line);
@@ -483,9 +487,9 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, b
                 int i2 = 0;
                 while (i2<xx.count())
                 {
-                    if (Core::HuggleCore->Trim(xx.at(i2)) != "")
+                    if (HuggleParser::Trim(xx.at(i2)) != "")
                     {
-                        f.append(Core::HuggleCore->Trim(xx.at(i2)));
+                        f.append(HuggleParser::Trim(xx.at(i2)));
                     }
                     i2++;
                 }
@@ -584,14 +588,14 @@ bool Configuration::ParseLocalConfig(QString config)
               "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     Configuration::HuggleConfiguration->LocalConfig_UndoSummary = Configuration::ConfigurationParse("undo-summary", config);
 
-    if (Core::HuggleCore->AIVP != NULL)
+    if (Configuration::HuggleConfiguration->AIVP != NULL)
     {
-        delete Core::HuggleCore->AIVP;
+        delete Configuration::HuggleConfiguration->AIVP;
     }
 
-    Core::HuggleCore->AIVP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
-    Core::HuggleCore->ParsePats(config);
-    Core::HuggleCore->ParseWords(config);
+    Configuration::HuggleConfiguration->AIVP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
+    HuggleParser::ParsePats(config);
+    HuggleParser::ParseWords(config);
     QStringList namespaces = Configuration::ConfigurationParse_QL("namespace-names", config, true);
     int NS=0;
     while (namespaces.count() > NS)
@@ -650,13 +654,13 @@ bool Configuration::ParseLocalConfig(QString config)
         }
     }
 
-    Core::HuggleCore->UAAP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
+    Configuration::HuggleConfiguration->UAAP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
 
     // templates
     int CurrentTemplate=0;
     while (CurrentTemplate<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
     {
-        QString type = Core::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(CurrentTemplate));
+        QString type = HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(CurrentTemplate));
         int CurrentWarning = 1;
         while (CurrentWarning <= 4)
         {

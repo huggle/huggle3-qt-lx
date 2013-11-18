@@ -99,14 +99,14 @@ void UAAReport::onTick()
     this->qUAApage->UnregisterConsumer("UAAReport::getPageContents()");
     /// \todo Check if user isn't already reported
     this->qUAApage = NULL;
-    Core::HuggleCore->DebugLog("Contents of UAA: " + this->dr);
+    Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
-    Core::HuggleCore->EditPage(Core::HuggleCore->UAAP, dr, uaasum, true);
+    Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
-    Core::HuggleCore->Log("Reporting" + this->User->Username + " to UAA" );
+    Huggle::Syslog::HuggleLogs->Log("Reporting" + this->User->Username + " to UAA" );
     this->ui->pushButton->setText("Reported");
 
 }

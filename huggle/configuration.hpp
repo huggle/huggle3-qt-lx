@@ -61,14 +61,19 @@
 #include <QDir>
 #include <QtXml>
 #include <QString>
+#include "syslog.hpp"
+#include "huggleparser.hpp"
 #include "localization.hpp"
-#include "core.hpp"
+#include "wikipage.hpp"
 #include "wikisite.hpp"
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {
-    class Core;
+    class HuggleParser;
+    class WikiSite;
+    class WikiPage;
+    class Syslog;
     /*!
      * \brief The ScoreWord class
      *
@@ -345,7 +350,10 @@ namespace Huggle
             QString VandalNw_Server;
             QString VandalNw_Ident;
             bool VandalNw_Login;
-
+            //! Pointer to AIV page
+            WikiPage *AIVP;
+            //! Pointer to UAA page
+            WikiPage *UAAP;
 
             /*!
              * \brief Bool2String Convert a bool to string

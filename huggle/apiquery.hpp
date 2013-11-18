@@ -17,6 +17,7 @@
 #include <QtXml/QtXml>
 #include <QObject>
 #include <QThread>
+#include "syslog.hpp"
 #include "query.hpp"
 #include  "revertquery.hpp"
 #include "configuration.hpp"

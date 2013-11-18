@@ -54,7 +54,7 @@ void RevertQuery::Process()
 {
     if (this->Status == StatusProcessing)
     {
-        Core::HuggleCore->DebugLog("Cowardly refusing to double process the query");
+        Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
     }
     this->Status = StatusProcessing;
@@ -213,7 +213,7 @@ void RevertQuery::Preflight()
         if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)
         {
             /// \todo LOCALIZE ME
-            Core::HuggleCore->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+            Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
             this->Cancel();
             return;
         }
@@ -264,7 +264,7 @@ void RevertQuery::CheckPreflight()
     if (this->qPreflight->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
+        Huggle::Syslog::HuggleLogs->Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
         this->Kill();
         this->Status = StatusDone;
         this->Result = new QueryResult();
@@ -341,17 +341,17 @@ void RevertQuery::CheckPreflight()
             if (MultipleEdits && !Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
                 /// \todo LOCALIZE ME
-                Core::HuggleCore->Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
                 this->Cancel();
                 return;
             } else if (MultipleEdits && Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
                 /// \todo LOCALIZE ME
-                Core::HuggleCore->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
             } else
             {
                 /// \todo LOCALIZE ME
-                Core::HuggleCore->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
                 this->Cancel();
                 return;
             }
@@ -394,7 +394,7 @@ bool RevertQuery::CheckRevert()
     if (this->CustomStatus != "Reverted")
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
+        Huggle::Syslog::HuggleLogs->Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
         qRevert->Result->Failed = true;
         qRevert->Result->ErrorMessage = CustomStatus;
         this->Result = new QueryResult();
@@ -454,7 +454,7 @@ bool RevertQuery::ProcessRevert()
     if (this->qPreflight->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
+        Huggle::Syslog::HuggleLogs->Log("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
         this->Kill();
         this->Status = StatusDone;
         this->Result = new QueryResult();
@@ -472,7 +472,7 @@ bool RevertQuery::ProcessRevert()
     {
         /// \todo LOCALIZE ME
         // if we have absolutely no revisions in the result, it's pretty fucked
-        Core::HuggleCore->Log("Failed to retrieve a list of edits made to this page, query returned no data");
+        Huggle::Syslog::HuggleLogs->Log("Failed to retrieve a list of edits made to this page, query returned no data");
         this->Kill();
         this->Status = StatusDone;
         this->Result = new QueryResult();
@@ -507,7 +507,7 @@ bool RevertQuery::ProcessRevert()
     }
     if (!passed)
     {
-        Core::HuggleCore->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
         this->Kill();
         this->Status = StatusDone;
         this->Result = new QueryResult();
@@ -528,13 +528,13 @@ bool RevertQuery::ProcessRevert()
         if (!e.attributes().contains("revid") || !e.attributes().contains("user"))
         {
             // this is fucked up piece of shit
-            Core::HuggleCore->Log("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
+            Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
             this->Kill();
             this->Status = StatusDone;
             this->Result = new QueryResult();
             this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense";
             this->Result->Failed = true;
-            Core::HuggleCore->DebugLog("Nonsense: " + this->qPreflight->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Nonsense: " + this->qPreflight->Result->Data);
             return true;
         }
         if (e.attribute("user") != this->edit->User->Username)
@@ -553,7 +553,7 @@ bool RevertQuery::ProcessRevert()
     {
         // something is wrong
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
         this->Kill();
         this->Status = StatusDone;
         this->Result = new QueryResult();
@@ -581,7 +581,7 @@ void RevertQuery::Rollback()
     if (this->RollingBack)
     {
         // wtf happened
-        Core::HuggleCore->DebugLog("Multiple request to rollback same query");
+        Huggle::Syslog::HuggleLogs->DebugLog("Multiple request to rollback same query");
         return;
     }
     this->RollingBack = true;
@@ -607,7 +607,7 @@ void RevertQuery::Rollback()
     if (!Configuration::HuggleConfiguration->Rights.contains("rollback"))
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("You don't have rollback rights, fallback to software rollback");
+        Huggle::Syslog::HuggleLogs->Log("You don't have rollback rights, fallback to software rollback");
         this->UsingSR = true;
         this->Revert();
         return;
@@ -621,7 +621,7 @@ void RevertQuery::Rollback()
     if (this->Token == "")
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
+        Huggle::Syslog::HuggleLogs->Log("ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
         this->Result = new QueryResult();
         this->Result->Failed = true;
         /// \todo LOCALIZE ME
@@ -650,7 +650,7 @@ void RevertQuery::Rollback()
     }
     /// \todo LOCALIZE ME
     this->CustomStatus = "Rolling back " + edit->Page->PageName;
-    Core::HuggleCore->DebugLog("Rolling back " + edit->Page->PageName);
+    Huggle::Syslog::HuggleLogs->DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();
 }
 

@@ -11,7 +11,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include <iostream>
 #include <QApplication>
 #include <QNetworkAccessManager>
 #include <QList>
@@ -21,6 +20,7 @@
 #include <QMap>
 #include <QtXml>
 #include <QMessageBox>
+#include "syslog.hpp"
 #include "query.hpp"
 #include "login.hpp"
 #include "configuration.hpp"
@@ -35,6 +35,7 @@
 #include "history.hpp"
 #include "apiquery.hpp"
 #include "revertquery.hpp"
+#include "huggleparser.hpp"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.hpp"
@@ -59,6 +60,7 @@ namespace Huggle
     class WikiEdit;
     class RevertQuery;
     class Message;
+    class Syslog;
     class iExtension;
     class Configuration;
     class Localizations;
@@ -114,10 +116,6 @@ namespace Huggle
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
             QList<HuggleQueueFilter *> FilterDB;
-            //! Pointer to AIV page
-            WikiPage *AIVP;
-            //! Pointer to UAA page
-            WikiPage *UAAP;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
             //! Garbage collector
@@ -129,11 +127,6 @@ namespace Huggle
 
             //! Function which is called as one of first when huggle is loaded
             void Init();
-            //! Write text to terminal as well as ring log
-            /*!
-             * \param Message Message to log
-             */
-            void Log(QString Message);
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
             /*!
@@ -142,8 +135,6 @@ namespace Huggle
              * This function may be called also from terminal parser
              */
             void VersionRead();
-            //! This log is only shown if verbosity is same or larger than requested verbosity
-            void DebugLog(QString Message, unsigned int Verbosity = 1);
             //! Helper function that will return URL of project in question
             /*!
              * \param Project Site
@@ -163,14 +154,6 @@ namespace Huggle
             void ProcessEdit(WikiEdit *e);
             //! Terminate the process, call this after you release all resources and finish all queries
             void Shutdown();
-            //! Return a ring log represented as 1 huge string
-            QString RingLogToText();
-            /*!
-             * \brief Return a ring log as qstring list
-             * \return QStringList
-             */
-            QStringList RingLogToQStringList();
-            void InsertToRingLog(QString text);
             //! Display a message box telling user that function is not allowed during developer mode
             void DeveloperError();
             //! Check the edit summary and similar in order to
@@ -194,23 +177,12 @@ namespace Huggle
              */
             RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
             void LoadDB();
-            //! Remove leading and finishing space of string
-            QString Trim(QString text);
             //! Remove edit in proper manner
             void DeleteEdit(WikiEdit *edit);
-            // the mess bellow exist because of a way how huggle config stores the lists
-            static QString GetSummaryOfWarningTypeFromWarningKey(QString key);
-            static QString GetNameOfWarningTypeFromWarningKey(QString key);
-            static QString GetKeyOfWarningTypeFromWarningName(QString id);
-            //! Parse a part patterns for score words
-            void ParsePats(QString text);
             //! Load a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
-            static QString GetValueFromKey(QString item);
-            static QString GetKeyFromValue(QString item);
-            void ParseWords(QString text);
             /*!
              * \brief MessageUser Message user
              * \param user Pointer to user
@@ -241,14 +213,10 @@ namespace Huggle
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;
-            //! Ring log is a buffer that contains system messages
-            QStringList RingLog;
             //! This is a post-processor for edits
             ProcessorThread * Processor;
             //! List of all messages that are being sent
             QList<Message*> Messages;
-            //! Everytime we write to a file we need to log this
-            QMutex *WriterLock;
     };
 }
 

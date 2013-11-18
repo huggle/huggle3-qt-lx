@@ -26,7 +26,7 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
         QStringList vals = item.split(";");
         if (vals.count() < 4)
         {
-            Core::HuggleCore->DebugLog("Invalid csd: " + item);
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
             i++;
             continue;
         }

@@ -11,6 +11,7 @@
 #include <QApplication>
 #include <QStringList>
 #include <QString>
+#include "syslog.hpp"
 #include "core.hpp"
 #include "terminalparser.hpp"
 #include "login.hpp"
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
         return rv;
     } catch (Huggle::Exception fail)
     {
-        Huggle::Core::HuggleCore->Log("FATAL: Unhandled exception occured, description: " + fail.Message);
+        Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail.Message);
         delete Huggle::Core::HuggleCore;
         return fail.ErrorCode;
     }

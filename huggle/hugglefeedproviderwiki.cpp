@@ -14,27 +14,27 @@ using namespace Huggle;
 
 HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
-    Buffer = new QList<WikiEdit*>();
-    Refreshing = false;
-    q = NULL;
+    this->Buffer = new QList<WikiEdit*>();
+    this->Refreshing = false;
+    this->q = NULL;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
-    LatestTime = QDateTime::currentDateTime().addDays(-1);
-    LastRefresh = QDateTime::currentDateTime().addDays(-1);
+    this->LatestTime = QDateTime::currentDateTime().addDays(-1);
+    this->LastRefresh = QDateTime::currentDateTime().addDays(-1);
 }
 
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
-    while (Buffer->count() > 0)
+    while (this->Buffer->count() > 0)
     {
-        Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-        Buffer->removeAt(0);
+        this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+        this->Buffer->removeAt(0);
     }
-    delete Buffer;
-    if (q != NULL)
+    delete this->Buffer;
+    if (this->q != NULL)
     {
-        if (!q->IsManaged())
+        if (!this->q->IsManaged())
         {
-            delete q;
+            delete this->q;
         }
     }
 }
@@ -42,7 +42,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 bool HuggleFeedProviderWiki::Start()
 {
     this->Resume();
-    Refresh();
+    this->Refresh();
     return true;
 }
 
@@ -62,7 +62,7 @@ bool HuggleFeedProviderWiki::ContainsEdit()
     {
         if (this->LastRefresh.addSecs(6) < QDateTime::currentDateTime())
         {
-            Refresh();
+            this->Refresh();
             this->LastRefresh = QDateTime::currentDateTime();
         }
         return false;
@@ -72,39 +72,39 @@ bool HuggleFeedProviderWiki::ContainsEdit()
 
 void HuggleFeedProviderWiki::Refresh()
 {
-    if (Refreshing)
+    if (this->Refreshing)
     {
         // the query is still in progress now
-        if (!q->Processed())
+        if (!this->q->Processed())
         {
             return;
         }
-        if (q->Result->Failed)
+        if (this->q->Result->Failed)
         {
             // failed to obtain the data
             /// \todo LOCALIZE ME
-            Core::HuggleCore->Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
-            q->UnregisterConsumer("HuggleFeed::Refresh");
+            Huggle::Syslog::HuggleLogs->Log("Unable to retrieve data from wiki feed, last error: " + q->Result->ErrorMessage);
+            this->q->UnregisterConsumer("HuggleFeed::Refresh");
             this->q = NULL;
-            Refreshing = false;
+            this->Refreshing = false;
             return;
         }
         this->Process(q->Result->Data);
-        q->UnregisterConsumer("HuggleFeed::Refresh");
+        this->q->UnregisterConsumer("HuggleFeed::Refresh");
         this->q = NULL;
-        Refreshing = false;
+        this->Refreshing = false;
         return;
     }
 
-    Refreshing = true;
-    q = new ApiQuery();
-    q->SetAction(ActionQuery);
-    q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes") +
+    this->Refreshing = true;
+    this->q = new ApiQuery();
+    this->q->SetAction(ActionQuery);
+    this->q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes") +
             "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
-    q->Target = "Recent changes refresh";
-    q->RegisterConsumer("HuggleFeed::Refresh");
-    Core::HuggleCore->AppendQuery(q);
-    q->Process();
+    this->q->Target = "Recent changes refresh";
+    this->q->RegisterConsumer("HuggleFeed::Refresh");
+    Core::HuggleCore->AppendQuery(this->q);
+    this->q->Process();
 }
 
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
@@ -128,7 +128,7 @@ void HuggleFeedProviderWiki::Process(QString data)
     int CurrentNode = l.count();
     if (l.count() == 0)
     {
-        Core::HuggleCore->Log("Error, wiki provider returned: " + data);
+        Huggle::Syslog::HuggleLogs->Log("Error, wiki provider returned: " + data);
         return;
     }
     // recursively scan all RC changes
@@ -148,7 +148,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("timestamp"))
         {
-            Core::HuggleCore->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
+            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
             CurrentNode--;
             continue;
         }
@@ -168,7 +168,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("type"))
         {
-            Core::HuggleCore->Log("RC Feed: Item was missing type attribute: " + item.text());
+            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing type attribute: " + item.text());
             CurrentNode--;
             continue;
         }
@@ -183,7 +183,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
         if (!item.attributes().contains("title"))
         {
-            Core::HuggleCore->Log("RC Feed: Item was missing title attribute: " + item.text());
+            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing title attribute: " + item.text());
             CurrentNode--;
             continue;
         }
@@ -258,7 +258,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
                 this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
                 this->Buffer->removeAt(0);
             }
-            Core::HuggleCore->Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
+            Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in wiki cache, increase ProviderCache size, otherwise you will be loosing edits");
         }
         this->Buffer->append(edit);
     } else

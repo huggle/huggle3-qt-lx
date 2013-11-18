@@ -104,7 +104,7 @@ void BlockUser::CheckToken()
     QDomNodeList l = d.elementsByTagName("user");
     if (l.count() == 0)
     {
-        Core::HuggleCore->DebugLog(this->b->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->b->Result->Data);
         /// \todo LOCALIZE ME
         Failed("no user info was present in query (are you sysop?)");
         return;
@@ -120,7 +120,7 @@ void BlockUser::CheckToken()
     this->QueryPhase++;
     this->b->UnregisterConsumer("BlockUser::GetToken");
     this->b = NULL;
-    Core::HuggleCore->DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
+    Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
 
     // let's block them
     this->tb = new ApiQuery();
@@ -165,7 +165,7 @@ void BlockUser::Block()
     }
     // let's assume the user was blocked
     ui->pushButton->setText("Blocked");
-    Core::HuggleCore->DebugLog("block result: " + this->tb->Result->Data, 2);
+    Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->tb->Result->Data, 2);
     this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
     this->t0->stop();
 }

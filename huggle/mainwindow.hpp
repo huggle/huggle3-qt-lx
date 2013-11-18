@@ -55,6 +55,8 @@
 #include "protectpage.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
+#include "syslog.hpp"
+#include "huggleparser.hpp"
 
 namespace Ui
 {
@@ -82,6 +84,7 @@ namespace Huggle
     class IgnoreList;
     class WaitingForm;
     class VandalNw;
+    class Syslog;
     class WikiUser;
     class ReportUser;
 #if !PRODUCTION_BUILD
@@ -90,6 +93,7 @@ namespace Huggle
 #endif
     class ProtectPage;
     class UAAReport;
+    class HuggleParser;
     class ScoreWordsDbForm;
 
     /*!
@@ -138,13 +142,8 @@ namespace Huggle
             SpeedyForm* fRemove;
             //! Pointer to processes
             ProcessList *Queries;
-            //! This is a list of logs that needs to be written, it exist so that logs can be written from
-            //! other threads as well, writing to syslog from other thread would crash huggle
-            QStringList UnwrittenLogs;
             //! Pointer to history
             History * _History;
-            //! Mutex we lock unwritten logs with so that only 1 thread can write to it
-            QMutex lUnwrittenLogs;
             //! Pointer to menu of revert warn button
             QMenu *RevertWarn;
             //! Pointer to vandal network

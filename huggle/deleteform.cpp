@@ -90,7 +90,7 @@ void DeleteForm::checkDelToken()
     QDomNodeList l = d.elementsByTagName("page");
 	if (l.count() == 0)
 	{
-        Core::HuggleCore->DebugLog(this->tokenquery->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->tokenquery->Result->Data);
         /// \todo LOCALIZE ME
 		Failed("no page info was present in query (are you sysop?)");
 		return;
@@ -106,7 +106,7 @@ void DeleteForm::checkDelToken()
 	this->delQueryPhase++;
     this->tokenquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->tokenquery = NULL;
-    Core::HuggleCore->DebugLog("Delete token for " + this->page->PageName + ": " + this->deletetoken);
+    Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->page->PageName + ": " + this->deletetoken);
 
 	// let's delete the page
 	this->delquery = new ApiQuery();
@@ -140,7 +140,7 @@ void DeleteForm::Delete()
 	}
 	// let's assume the page was deleted
 	ui->pushButton->setText("deleted");
-    Core::HuggleCore->DebugLog("deletion result: " + this->delquery->Result->Data, 2);
+    Huggle::Syslog::HuggleLogs->DebugLog("deletion result: " + this->delquery->Result->Data, 2);
     this->delquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
 }

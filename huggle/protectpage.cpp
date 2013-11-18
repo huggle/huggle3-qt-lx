@@ -95,7 +95,7 @@ void ProtectPage::checkTokenToProtect()
     QDomNodeList l = r.elementsByTagName("page");
     if (l.count() == 0)
     {
-        Core::HuggleCore->DebugLog(this->ptkq->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->ptkq->Result->Data);
         /// \todo LOCALIZE ME
         Failed("No page info was available (are you an admin?)");
         return;
@@ -110,7 +110,7 @@ void ProtectPage::checkTokenToProtect()
     this->PtQueryPhase++;
     this->ptkq->UnregisterConsumer("ProtectPage::getTokenToProtect");
     this->ptkq = NULL;
-    Core::HuggleCore->DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
+    Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->ptpge->PageName + ": " + this->protecttoken);
     this->ptpt = new ApiQuery();
     ptpt->SetAction(ActionProtect);
     QString protection = "edit=sysop|move=sysop";
@@ -187,7 +187,7 @@ void ProtectPage::Protect()
         return;
     }
     ui->pushButton_2->setText("Page has been protected");
-    Core::HuggleCore->DebugLog("The page " + ptpge->PageName + " has successfully been protected");
+    Huggle::Syslog::HuggleLogs->DebugLog("The page " + ptpge->PageName + " has successfully been protected");
     this->ptpt->UnregisterConsumer("ProtectPage");
     this->tt->stop();
     ptpt = NULL;

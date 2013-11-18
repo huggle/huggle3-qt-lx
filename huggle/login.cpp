@@ -130,7 +130,7 @@ void Login::DB()
 
     if (this->LoginQuery->Processed())
     {
-        Core::HuggleCore->DebugLog(LoginQuery->Result->Data, 2);
+        Syslog::HuggleLogs->DebugLog(LoginQuery->Result->Data, 2);
         QDomDocument d;
         d.setContent(this->LoginQuery->Result->Data);
         QDomNodeList l = d.elementsByTagName("rev");
@@ -293,7 +293,7 @@ void Login::RetrieveGlobalConfig()
             }
             /// \todo LOCALIZE ME
             this->ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
-            Core::HuggleCore->DebugLog(data.text());
+            Syslog::HuggleLogs->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             this->LoginQuery->SafeDelete();
@@ -428,7 +428,7 @@ void Login::RetrieveLocalConfig()
             }
             /// \todo LOCALIZE ME
             this->ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
-            Core::HuggleCore->DebugLog(data.text());
+            Syslog::HuggleLogs->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             this->LoginQuery->SafeDelete();
@@ -467,7 +467,7 @@ void Login::RetrievePrivateConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
+                Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
                 this->ui->label_6->setText("Login failed unable to retrieve user config, the api query returned no data");
                 this->Progress(0);
@@ -496,7 +496,7 @@ void Login::RetrievePrivateConfig()
             }
             /// \todo LOCALIZE ME
             this->ui->label_6->setText("Login failed unable to parse the user config, see debug log for more details");
-            Core::HuggleCore->DebugLog(data.text());
+            Syslog::HuggleLogs->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
             this->LoginQuery->SafeDelete();
@@ -537,7 +537,7 @@ void Login::RetrieveUserInfo()
             QDomNodeList l = d.elementsByTagName("r");
             if (l.count() == 0)
             {
-                Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
+                Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
                 this->ui->label_6->setText("Login failed unable to retrieve user info, the api query returned no data");
                 this->Progress(0);
@@ -590,7 +590,7 @@ void Login::DeveloperMode()
 void Login::DisplayError(QString message)
 {
     this->_Status = LoginFailed;
-    Core::HuggleCore->DebugLog(this->LoginQuery->Result->Data);
+    Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
     this->ui->label_6->setText(message);
     this->CancelLogin();
 }
@@ -670,8 +670,8 @@ QString Login::GetToken()
     {
         // this is invalid token?
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("WARNING: the result of api request doesn't contain valid token");
-        Core::HuggleCore->DebugLog("The token didn't contain the correct string, token was " + token);
+        Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
+        Syslog::HuggleLogs->DebugLog("The token didn't contain the correct string, token was " + token);
         return "<invalid token>";
     }
     token = token.mid(token.indexOf(Login::Test) + Login::Test.length());
@@ -679,8 +679,8 @@ QString Login::GetToken()
     {
         // this is invalid token?
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("WARNING: the result of api request doesn't contain valid token");
-        Core::HuggleCore->DebugLog("The token didn't contain the closing mark, token was " + token);
+        Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
+        Syslog::HuggleLogs->DebugLog("The token didn't contain the closing mark, token was " + token);
         return "<invalid token>";
     }
     token = token.mid(0, token.indexOf("\""));

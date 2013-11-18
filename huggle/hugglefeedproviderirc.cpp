@@ -36,7 +36,7 @@ bool HuggleFeedProviderIRC::Start()
 {
     if (this->Connected)
     {
-        Core::HuggleCore->DebugLog("Attempted to start connection which was already started");
+        Huggle::Syslog::HuggleLogs->DebugLog("Attempted to start connection which was already started");
         return false;
     }
     if (this->Network != NULL)
@@ -52,12 +52,12 @@ bool HuggleFeedProviderIRC::Start()
     if (!this->Network->Connect())
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("IRC: Unable to connect to IRC server " + Configuration::HuggleConfiguration->IRCServer);
+        Huggle::Syslog::HuggleLogs->Log("IRC: Unable to connect to IRC server " + Configuration::HuggleConfiguration->IRCServer);
         delete this->Network;
         this->Network = NULL;
         return false;
     }
-    Core::HuggleCore->Log("IRC: Successfuly connected to irc rc feed");
+    Huggle::Syslog::HuggleLogs->Log("IRC: Successfuly connected to irc rc feed");
     if (this->thread != NULL)
     {
         delete this->thread;
@@ -92,7 +92,7 @@ void HuggleFeedProviderIRC::Stop()
     while (!IsStopped())
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Waiting for irc feed provider to stop");
+        Huggle::Syslog::HuggleLogs->Log("Waiting for irc feed provider to stop");
         Sleeper::usleep(200000);
     }
     this->Connected = false;
@@ -116,7 +116,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
                 this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
                 this->Buffer.removeAt(0);
             }
-            Core::HuggleCore->Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
+            Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
         }
         this->Buffer.append(edit);
         this->lock.unlock();
@@ -136,7 +136,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(003)) + "07"))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no07):" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no07):" + line);
         return;
     }
 
@@ -144,7 +144,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(003)) + "14"))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no14):" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no14):" + line);
         return;
     }
 
@@ -155,7 +155,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no:x4:" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no:x4:" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
@@ -287,7 +287,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     {
         if (!line.contains("?diff="))
         {
-            Core::HuggleCore->DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
             edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
             return;
         }
@@ -296,7 +296,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
         if (!line.contains("&"))
         {
-            Core::HuggleCore->DebugLog("Invalid line (no &):" + line);
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no &):" + line);
             edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
             return;
         }
@@ -307,7 +307,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains("oldid="))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no oldid?):" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no oldid?):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
@@ -316,7 +316,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(003))))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no termin):" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
@@ -325,7 +325,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(003)) + "03"))
     {
-        Core::HuggleCore->DebugLog("Invalid line, no user: " + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line, no user: " + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
@@ -334,7 +334,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (!line.contains(QString(QChar(3))))
     {
-        Core::HuggleCore->DebugLog("Invalid line (no termin):" + line);
+        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
@@ -422,12 +422,12 @@ void HuggleFeedProviderIRC_t::run()
         if (message != NULL)
         {
             QString text = message->Text;
-            Core::HuggleCore->DebugLog("IRC Input: " + text, 6);
+            Huggle::Syslog::HuggleLogs->DebugLog("IRC Input: " + text, 6);
             p->ParseEdit(text);
         }
         QThread::usleep(200000);
     }
-    Core::HuggleCore->Log("IRC: Closed connection to irc feed");
+    Huggle::Syslog::HuggleLogs->Log("IRC: Closed connection to irc feed");
     if (this->Running)
     {
         p->Connected = false;

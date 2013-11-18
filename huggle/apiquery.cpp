@@ -129,7 +129,7 @@ void ApiQuery::Finished()
     this->reply = NULL;
     if (!this->HiddenQuery)
     {
-        Core::HuggleCore->DebugLog("Finished request " + URL, 2);
+        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 2);
     }
     this->Status = StatusDone;
     this->ProcessCallback();
@@ -139,7 +139,7 @@ void ApiQuery::Process()
 {
     if (this->Status == StatusProcessing)
     {
-        Core::HuggleCore->DebugLog("Cowardly refusing to double process the query");
+        Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
     }
     this->StartTime = QDateTime::currentDateTime();
@@ -171,7 +171,7 @@ void ApiQuery::Process()
     }
     if (!this->HiddenQuery)
     {
-        Core::HuggleCore->DebugLog("Processing api request " + this->URL, 2);
+        Huggle::Syslog::HuggleLogs->DebugLog("Processing api request " + this->URL, 2);
     }
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));

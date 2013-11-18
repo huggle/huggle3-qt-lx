@@ -82,7 +82,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->ProcessingQuery->Result->Failed)
         {
             /// \todo LOCALIZE ME
-            Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+            Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
         } else
         {
             // parse the diff now
@@ -109,15 +109,15 @@ bool WikiEdit::FinalizePostProcessing()
                 } else
                 {
                     /// \todo LOCALIZE ME
-                    Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
                 }
             } else
             {
                 if (!missing)
                 {
                     /// \todo LOCALIZE ME
-                    Core::HuggleCore->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
-                    Core::HuggleCore->DebugLog(this->ProcessingQuery->Result->Data);
+                    Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Huggle::Syslog::HuggleLogs->DebugLog(this->ProcessingQuery->Result->Data);
                 }
             }
         }
@@ -187,7 +187,7 @@ bool WikiEdit::FinalizePostProcessing()
             }
         } else
         {
-            Core::HuggleCore->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + DifferenceQuery->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + DifferenceQuery->Result->Data);
         }
         // we are done processing the diff
         this->ProcessingDiff = false;
@@ -202,7 +202,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->DiffText == "")
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
+        Huggle::Syslog::HuggleLogs->Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
     this->ProcessingQuery->UnregisterConsumer("WikiEdit::PostProcess()");
@@ -528,9 +528,9 @@ int WikiEdit::GetLevel(QString page)
         while (xx<Configuration::HuggleConfiguration->LocalConfig_WarningDefs.count())
         {
             QString defs=Configuration::HuggleConfiguration->LocalConfig_WarningDefs.at(xx);
-            if (Core::GetKeyFromValue(defs).toInt() == level)
+            if (HuggleParser::GetKeyFromValue(defs).toInt() == level)
             {
-                if (page.contains(Core::GetValueFromKey(defs)))
+                if (page.contains(HuggleParser::GetValueFromKey(defs)))
                 {
                     return level;
                 }

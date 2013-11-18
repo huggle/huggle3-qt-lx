@@ -50,7 +50,7 @@ void Message::Send()
 void Message::Fail(QString reason)
 {
     /// \todo LOCALIZE ME
-    Core::HuggleCore->Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
+    Huggle::Syslog::HuggleLogs->Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
     Done = true;
     Sending = false;
     query->UnregisterConsumer("Message::Send()");
@@ -121,7 +121,7 @@ void Message::Finish()
         {
             /// \todo LOCALIZE ME
             Fail("no token was returned by request");
-            Core::HuggleCore->DebugLog("No page");
+            Huggle::Syslog::HuggleLogs->DebugLog("No page");
             return;
         }
         QDomElement element = l.at(0).toElement();
@@ -129,7 +129,7 @@ void Message::Finish()
         {
             /// \todo LOCALIZE ME
             Fail("the result doesn't contain the token");
-            Core::HuggleCore->DebugLog("No token");
+            Huggle::Syslog::HuggleLogs->DebugLog("No token");
             return;
         }
         token = element.attribute("edittoken");
@@ -188,7 +188,7 @@ void Message::Finish()
             if (element.attribute("result") == "Success")
             {
                 /// \todo LOCALIZE ME
-                Core::HuggleCore->Log("Successfuly delivered message to " + user->Username);
+                Huggle::Syslog::HuggleLogs->Log("Successfuly delivered message to " + user->Username);
                 sent = true;
                 HistoryItem item;
                 item.Result = "Success";
@@ -205,8 +205,8 @@ void Message::Finish()
     if (!sent)
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Failed to deliver a message to " + user->Username + " please check logs");
-        Core::HuggleCore->DebugLog(query->Result->Data);
+        Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + user->Username + " please check logs");
+        Huggle::Syslog::HuggleLogs->DebugLog(query->Result->Data);
     }
 
     query->UnregisterConsumer("Message::Finish()");

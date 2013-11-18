@@ -10,6 +10,7 @@
 
 #include <QString>
 #include <QtTest>
+#include "../../huggleparser.hpp"
 #include "../../configuration.hpp"
 #include "../../wikiedit.hpp"
 #include "../../terminalparser.hpp"
@@ -49,11 +50,9 @@ void HuggleTest::testCaseConfigurationParse_QL()
 
 void HuggleTest::testCaseCoreTrim()
 {
-    Huggle::Core *c = new Huggle::Core();
-    QVERIFY2("hello world" == c->Trim("   hello world "), "wrong result for Core::Trim() when parsing words");
-    QVERIFY2("hello" == c->Trim("   hello"), "wrong result for Core::Trim() when parsing words");
-    QVERIFY2("hello" == c->Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
-    delete c;
+    QVERIFY2("hello world" == Huggle::HuggleParser::Trim("   hello world "), "wrong result for HuggleParser::Trim() when parsing words");
+    QVERIFY2("hello" == Huggle::HuggleParser::Trim("   hello"), "wrong result for Core::Trim() when parsing words");
+    QVERIFY2("hello" == Huggle::HuggleParser::Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
 }
 
 void HuggleTest::testCaseScores()

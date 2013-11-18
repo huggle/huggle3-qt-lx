@@ -43,7 +43,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     c = 0;
     while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
-        Core::HuggleCore->DebugLog("Loading extension info");
+        Huggle::Syslog::HuggleLogs->DebugLog("Loading extension info");
         iExtension *extension = Huggle::Core::HuggleCore->Extensions.at(c);
         ui->tableWidget->insertRow(0);
         ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));

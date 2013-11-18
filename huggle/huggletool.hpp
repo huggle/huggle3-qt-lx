@@ -15,6 +15,7 @@
 #include <QTimer>
 #include <QDockWidget>
 #include <QFont>
+#include "syslog.hpp"
 #include "apiquery.hpp"
 #include "wikipage.hpp"
 #include "wikiedit.hpp"

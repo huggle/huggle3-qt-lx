@@ -118,7 +118,7 @@ void ReportUser::Tick()
                 return;
             }
             this->InsertUser();
-            Core::HuggleCore->EditPage(Core::HuggleCore->AIVP, _p, "Reporting " + user->Username);
+            Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->AIVP, _p, "Reporting " + user->Username);
             this->timer->stop();
             this->user->IsReported = true;
             WikiUser::UpdateUser(this->user);
@@ -131,7 +131,7 @@ void ReportUser::Tick()
 
     if (q->Processed())
     {
-        Core::HuggleCore->DebugLog(q->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(q->Result->Data);
         QDomDocument d;
         d.setContent(q->Result->Data);
         QDomNodeList results = d.elementsByTagName("rc");
@@ -212,7 +212,7 @@ void ReportUser::On_DiffTick()
         }
     } else
     {
-        Core::HuggleCore->DebugLog(this->qd->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->qd->Result->Data);
         /// \todo LOCALIZE ME
         ui->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
                                 HuggleWeb::Encode(this->qd->Result->Data));

@@ -23,7 +23,9 @@ SOURCES += tst_testmain.cpp \
     ../../wikipage.cpp \
     ../../core.cpp \
     ../../queryresult.cpp \
+    ../../huggleparser.cpp \
     ../../query.cpp \
+    ../../syslog.cpp \
     ../../gc.cpp \
     ../../exception.cpp \
     ../../deleteform.cpp \
@@ -86,6 +88,8 @@ HEADERS += \
     ../../gc.hpp \
     ../../exception.hpp \
     ../../collectable.hpp \
+    ../../huggleparser.hpp \
+    ../../syslog.cpp \
     ../../deleteform.hpp \
     ../../localization.hpp \
     ../../blockuser.hpp \

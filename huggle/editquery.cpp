@@ -74,7 +74,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
-            Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -85,7 +85,7 @@ bool EditQuery::Processed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
-            Core::HuggleCore->DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -129,7 +129,7 @@ bool EditQuery::Processed()
                         item.Target = this->page;
                         Core::HuggleCore->Main->_History->Prepend(item);
                     }
-                    Core::HuggleCore->Log(Localizations::HuggleLocalizations->Localize("editquery-success", page));
+                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", page));
                 }
             }
         }

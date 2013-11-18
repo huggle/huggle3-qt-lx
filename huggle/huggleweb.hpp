@@ -16,6 +16,7 @@
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
 #include "core.hpp"
 
 namespace Ui

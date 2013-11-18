@@ -81,7 +81,7 @@ void HistoryForm::onTick01()
     {
         /// \todo Here we should log this error to debug log
         ui->pushButton->setEnabled(true);
-        Core::HuggleCore->Log("Error: unable to retrieve history");
+        Huggle::Syslog::HuggleLogs->Log("Error: unable to retrieve history");
         this->query->UnregisterConsumer("HistoryForm");
         this->query = NULL;
         this->t1->stop();

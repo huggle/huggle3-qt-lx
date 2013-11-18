@@ -17,6 +17,7 @@
 #include <QUrl>
 #include <QtXml>
 #include <QTimer>
+#include "syslog.hpp"
 #include "localization.hpp"
 #include "core.hpp"
 #include "oauthloginquery.hpp"

@@ -78,7 +78,9 @@ SOURCES += main.cpp\
     requestprotect.cpp \
     sessionform.cpp \
     whitelistform.cpp \
-    localization.cpp
+    localization.cpp \
+    syslog.cpp \
+    huggleparser.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -140,7 +142,9 @@ HEADERS  += mainwindow.hpp \
     requestprotect.hpp \
     sessionform.hpp \
     whitelistform.hpp \
-    localization.hpp
+    localization.hpp \
+    syslog.hpp \
+    huggleparser.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

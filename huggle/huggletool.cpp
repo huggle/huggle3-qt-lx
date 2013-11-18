@@ -119,7 +119,7 @@ void HuggleTool::FinishPage()
             this->DeleteQuery();
             this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
             /// \todo LOCALIZE ME
-            Core::HuggleCore->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
+            Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
             this->tick->stop();
             return;
         }

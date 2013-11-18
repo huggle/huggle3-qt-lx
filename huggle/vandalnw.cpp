@@ -37,7 +37,7 @@ void VandalNw::Connect()
     if (!Configuration::HuggleConfiguration->VandalNw_Login)
     {
         /// \todo LOCALIZE ME
-        Core::HuggleCore->Log("Vandalism network isn't allowed in options");
+        Huggle::Syslog::HuggleLogs->Log("Vandalism network isn't allowed in options");
         return;
     } else
     {
