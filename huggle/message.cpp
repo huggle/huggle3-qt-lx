@@ -23,7 +23,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->Dependency = NULL;
     this->query = NULL;
     this->PreviousTalkPageRetrieved = false;
-    this->Page = target->GetContentsOfTalkPage();
+    this->Page = "";
     this->token = "none";
     /// \todo LOCALIZE ME
     /// \todo some users might prefer to have a month as header
