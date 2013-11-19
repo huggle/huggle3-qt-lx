@@ -239,7 +239,7 @@ void Message::ProcessSend()
     QString s = summary;
     if (this->Suffix)
     {
-        s += Configuration::HuggleConfiguration->EditSuffixOfHuggle;
+        s += " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     }
     if (this->Section == false)
     {
