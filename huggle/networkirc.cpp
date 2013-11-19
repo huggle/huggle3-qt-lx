@@ -340,7 +340,7 @@ void NetworkIrc_th::run()
             Syslog::HuggleLogs->DebugLog("Processing IRC input from " + this->root->Server + ": " + data, 10);
         }
         ping++;
-        if (ping > 200)
+        if (ping > 2000)
         {
             this->Data("PING :" + this->root->Server);
             ping = 0;
