@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Localize();
     this->wq = NULL;
     this->Status = new QLabel();
-    ui->statusBar->addWidget(this->Status);
+    this->ui->statusBar->addWidget(this->Status);
     this->showMaximized();
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
@@ -67,14 +67,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     int c=0;
     while (c<_log.count())
     {
-        SystemLog->InsertText(_log.at(c));
+        this->SystemLog->InsertText(_log.at(c));
         c++;
     }
     this->CurrentEdit = NULL;
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
-    ui->verticalLayout->addWidget(this->Browser);
+    this->ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
-    DisplayWelcomeMessage();
+    this->DisplayWelcomeMessage();
     // initialise queues
     if (!Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
@@ -84,21 +84,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
-        ui->actionIRC->setChecked(true);
+        this->ui->actionIRC->setChecked(true);
         if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
             /// \todo LOCALIZE ME
             Syslog::HuggleLogs->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
             delete Core::HuggleCore->PrimaryFeedProvider;
-            ui->actionIRC->setChecked(false);
-            ui->actionWiki->setChecked(true);
+            this->ui->actionIRC->setChecked(false);
+            this->ui->actionWiki->setChecked(true);
             Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
             Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     } else
     {
-        ui->actionIRC->setChecked(false);
-        ui->actionWiki->setChecked(true);
+        this->ui->actionIRC->setChecked(false);
+        this->ui->actionWiki->setChecked(true);
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::HuggleCore->PrimaryFeedProvider->Start();
     }
@@ -121,9 +121,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
             connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
         }
-        ui->actionWarn->setMenu(this->WarnMenu);
-        ui->actionRevert->setMenu(this->RevertSummaries);
-        ui->actionRevert_and_warn->setMenu(this->RevertWarn);
+        this->ui->actionWarn->setMenu(this->WarnMenu);
+        this->ui->actionRevert->setMenu(this->RevertSummaries);
+        this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
     }
 
     this->timer1 = new QTimer(this);
@@ -171,7 +171,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // these controls are for debugging only
     if (Configuration::HuggleConfiguration->Verbosity == 0)
     {
-        ui->actionList_all_QGC_items->setVisible(false);
+        this->ui->actionList_all_QGC_items->setVisible(false);
         ui->actionEdit_info->setVisible(false);
         /// \bug This doesn't work
         ui->menuDebug->hide();
@@ -209,13 +209,13 @@ MainWindow::~MainWindow()
     delete this->fDeleteForm;
 #endif
     delete this->fUaaReportForm;
-    delete ui;
+    delete this->ui;
     delete this->tb;
 }
 
 void MainWindow::_ReportUser()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -352,7 +352,7 @@ void MainWindow::Render()
 
 void MainWindow::RequestPD()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -526,7 +526,7 @@ QString MainWindow::GetSummaryKey(QString item)
 
 void MainWindow::on_actionExit_triggered()
 {
-    Exit();
+    this->Exit();
 }
 
 void MainWindow::DisplayWelcomeMessage()
@@ -539,7 +539,7 @@ void MainWindow::DisplayWelcomeMessage()
 
 void MainWindow::on_actionPreferences_triggered()
 {
-    preferencesForm->show();
+    this->preferencesForm->show();
 }
 
 void MainWindow::on_actionContents_triggered()
@@ -549,7 +549,7 @@ void MainWindow::on_actionContents_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    aboutForm->show();
+    this->aboutForm->show();
 }
 
 void MainWindow::OnTimerTick1()
@@ -571,7 +571,7 @@ void MainWindow::OnTimerTick1()
     // check if queue isn't full
     if (this->Queue1->Items.count() > Configuration::HuggleConfiguration->Cache_InfoSize)
     {
-        if (ui->actionStop_feed->isChecked())
+        if (this->ui->actionStop_feed->isChecked())
         {
             Core::HuggleCore->PrimaryFeedProvider->Pause();
             RetrieveEdit = false;
@@ -581,7 +581,7 @@ void MainWindow::OnTimerTick1()
         }
     } else
     {
-        if (ui->actionStop_feed->isChecked())
+        if (this->ui->actionStop_feed->isChecked())
         {
             if (Core::HuggleCore->PrimaryFeedProvider->IsPaused())
             {
@@ -598,20 +598,20 @@ void MainWindow::OnTimerTick1()
             if (edit != NULL)
             {
                 Core::HuggleCore->PostProcessEdit(edit);
-                PendingEdits.append(edit);
+                this->PendingEdits.append(edit);
             }
         }
     }
-    if (PendingEdits.count() > 0)
+    if (this->PendingEdits.count() > 0)
     {
         // postprocessed edits can be added to queue
         int c = 0;
-        while (c<PendingEdits.count())
+        while (c < this->PendingEdits.count())
         {
-            if (PendingEdits.at(c)->IsPostProcessed())
+            if (this->PendingEdits.at(c)->IsPostProcessed())
             {
-                this->Queue1->AddItem(PendingEdits.at(c));
-                PendingEdits.removeAt(c);
+                this->Queue1->AddItem(this->PendingEdits.at(c));
+                this->PendingEdits.removeAt(c);
             } else
             {
                 c++;
