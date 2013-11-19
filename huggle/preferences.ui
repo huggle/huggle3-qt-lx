@@ -85,7 +85,7 @@
           <property name="title">
            <string>On revert of multiple edits by same user:</string>
           </property>
-          <widget class="QWidget" name="layoutWidget">
+          <widget class="QWidget" name="layoutWidget1">
            <property name="geometry">
             <rect>
              <x>30</x>
