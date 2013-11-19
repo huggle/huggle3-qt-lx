@@ -170,7 +170,6 @@ void DeleteForm::Failed(QString reason)
 	this->tokenquery = NULL;
 }
 
-
 void DeleteForm::on_pushButton_clicked()
 {
 	this->getToken();

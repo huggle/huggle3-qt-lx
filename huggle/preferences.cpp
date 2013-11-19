@@ -15,29 +15,30 @@ using namespace Huggle;
 
 Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     // headers
-    ui->tableWidget->setColumnCount(4);
+    this->ui->tableWidget->setColumnCount(4);
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
+    this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
     QStringList header;
     /// \todo LOCALIZE ME
     header << "Name" << "Author" << "Description" << "Status" << "Version";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setShowGrid(false);
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
     {
-        ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
+        this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
         c++;
     }
     c = 0;
@@ -45,28 +46,28 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Loading extension info");
         iExtension *extension = Huggle::Core::HuggleCore->Extensions.at(c);
-        ui->tableWidget->insertRow(0);
-        ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
-        ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
-        ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
-        ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
-        ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
+        this->ui->tableWidget->insertRow(0);
+        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
+        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
+        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
+        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
     c = 0;
     this->Disable();
     // options
     /// \todo RELEASE BLOCKER implement the other checkboxes as well
-    ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
-    ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
-    ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
-    ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
-    ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
+    this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
+    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
+    this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
+    this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
-    if (ui->listWidget->currentRow() == 0)
+    if (this->ui->listWidget->currentRow() == 0)
     {
         this->Disable();
     } else
@@ -74,39 +75,45 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
         this->EnableQueues();
     }
     HuggleQueueFilter *f = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
-    ui->checkBox_7->setChecked(f->getIgnoreBots());
-    ui->lineEdit->setText(f->QueueName);
+    this->ui->checkBox_7->setChecked(f->getIgnoreBots());
+    this->ui->checkBox_8->setChecked(f->getIgnoreNP());
+    this->ui->checkBox_9->setChecked(f->getIgnoreWL());
+    this->ui->checkBox_10->setChecked(f->getIgnoreFriends());
+    this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
+    this->ui->lineEdit->setText(f->QueueName);
 }
 
 Preferences::~Preferences()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void Preferences::Disable()
 {
-    ui->checkBox_6->setEnabled(false);
-    ui->checkBox_7->setEnabled(false);
-    ui->checkBox_8->setEnabled(false);
-    ui->checkBox_9->setEnabled(false);
-    ui->checkBox_10->setEnabled(false);
-    ui->pushButton_4->setEnabled(false);
-    ui->pushButton_5->setEnabled(false);
-    ui->pushButton_6->setEnabled(false);
-    ui->lineEdit->setEnabled(false);
+    this->ui->checkBox_6->setEnabled(false);
+    this->ui->checkBox_7->setEnabled(false);
+    this->ui->checkBox_8->setEnabled(false);
+    this->ui->checkBox_9->setEnabled(false);
+    this->ui->checkBox_10->setEnabled(false);
+    this->ui->pushButton_4->setEnabled(false);
+    this->ui->checkBox_12->setEnabled(false);
+    this->ui->pushButton_5->setEnabled(false);
+    this->ui->pushButton_6->setEnabled(false);
+    this->ui->lineEdit->setEnabled(false);
 }
 
 void Preferences::EnableQueues()
 {
-    ui->lineEdit->setEnabled(true);
-    ui->checkBox_6->setEnabled(true);
-    ui->checkBox_7->setEnabled(true);
-    ui->checkBox_8->setEnabled(true);
-    ui->checkBox_9->setEnabled(true);
-    ui->checkBox_10->setEnabled(true);
-    ui->pushButton_4->setEnabled(true);
-    ui->pushButton_5->setEnabled(true);
-    ui->pushButton_6->setEnabled(true);
+    this->ui->lineEdit->setEnabled(true);
+    this->ui->checkBox_6->setEnabled(true);
+    this->ui->checkBox_7->setEnabled(true);
+    this->ui->checkBox_8->setEnabled(true);
+    this->ui->checkBox_9->setEnabled(true);
+    this->ui->checkBox_10->setEnabled(true);
+    this->ui->pushButton_4->setEnabled(true);
+    this->ui->pushButton_5->setEnabled(true);
+    this->ui->pushButton_6->setEnabled(true);
+    this->ui->checkBox_12->setEnabled(true);
 }
 
 void Preferences::on_pushButton_clicked()
@@ -127,6 +134,6 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 
 void Huggle::Preferences::on_checkBox_clicked()
 {
-    ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
-    ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }

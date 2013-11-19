@@ -139,7 +139,7 @@ void BlockUser::CheckToken()
                 + QUrl::toPercentEncoding(blocktoken);
     }
     /// \todo LOCALIZE ME
-    tb->Target = "Blocking" + this->user->Username;
+    tb->Target = "Blocking " + this->user->Username;
     tb->UsingPOST = true;
     tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
     Core::HuggleCore->AppendQuery(tb);

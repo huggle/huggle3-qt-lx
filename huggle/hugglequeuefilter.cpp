@@ -17,13 +17,14 @@ QList<HuggleQueueFilter*> HuggleQueueFilter::Filters;
 
 HuggleQueueFilter::HuggleQueueFilter()
 {
-    QueueName = "default";
+    this->QueueName = "default";
     this->IgnoreBots = true;
     this->IgnoreWL = true;
     this->IgnoreFriends = true;
     this->IgnoreIP = false;
     this->IgnoreMinor = false;
     this->IgnoreNP = false;
+    this->IgnoreSelf = true;
     this->IgnoreUsers = false;
     this->IgnoreTalk = true;
 }
@@ -71,78 +72,93 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     {
         return false;
     }
+    if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower())
+    {
+        return false;
+    }
     return true;
 }
 
 bool HuggleQueueFilter::getIgnoreMinor() const
 {
-    return IgnoreMinor;
+    return this->IgnoreMinor;
 }
 
 void HuggleQueueFilter::setIgnoreMinor(bool value)
 {
-    IgnoreMinor = value;
+    this->IgnoreMinor = value;
 }
 
 bool HuggleQueueFilter::getIgnoreUsers() const
 {
-    return IgnoreUsers;
+    return this->IgnoreUsers;
 }
 
 void HuggleQueueFilter::setIgnoreUsers(bool value)
 {
-    IgnoreUsers = value;
+    this->IgnoreUsers = value;
 }
 
 bool HuggleQueueFilter::getIgnoreWL() const
 {
-    return IgnoreWL;
+    return this->IgnoreWL;
 }
 
 void HuggleQueueFilter::setIgnoreWL(bool value)
 {
-    IgnoreWL = value;
+    this->IgnoreWL = value;
 }
 
 bool HuggleQueueFilter::getIgnoreIP() const
 {
-    return IgnoreIP;
+    return this->IgnoreIP;
 }
 
 void HuggleQueueFilter::setIgnoreIP(bool value)
 {
-    IgnoreIP = value;
+    this->IgnoreIP = value;
 }
 
 bool HuggleQueueFilter::getIgnoreBots() const
 {
-    return IgnoreBots;
+    return this->IgnoreBots;
 }
 
 void HuggleQueueFilter::setIgnoreBots(bool value)
 {
-    IgnoreBots = value;
+    this->IgnoreBots = value;
 }
 
 bool HuggleQueueFilter::getIgnoreNP() const
 {
-    return IgnoreNP;
+    return this->IgnoreNP;
 }
 
 void HuggleQueueFilter::setIgnoreNP(bool value)
 {
-    IgnoreNP = value;
+    this->IgnoreNP = value;
 }
 
 bool HuggleQueueFilter::getIgnoreFriends() const
 {
-    return IgnoreFriends;
+    return this->IgnoreFriends;
 }
 
 void HuggleQueueFilter::setIgnoreFriends(bool value)
 {
-    IgnoreFriends = value;
+    this->IgnoreFriends = value;
 }
+
+bool HuggleQueueFilter::getIgnoreSelf() const
+{
+    return IgnoreSelf;
+}
+
+void HuggleQueueFilter::setIgnoreSelf(bool value)
+{
+    IgnoreSelf = value;
+}
+
 
 
 

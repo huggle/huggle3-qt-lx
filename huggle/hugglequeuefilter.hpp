@@ -26,37 +26,45 @@ namespace Huggle
         public:
             static QList<HuggleQueueFilter*> Filters;
             static HuggleQueueFilter *DefaultFilter;
+            //! Name of this queue, must be unique
             QString QueueName;
+            //! ctr
             HuggleQueueFilter();
+            //! Returns true if edit is ok for this filter (that means it is not filtered out)
+            //! if this is false the edit should not be processed later
             bool Matches(WikiEdit *edit);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching minor edits or not
             bool getIgnoreMinor() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching minor edits or not
             void setIgnoreMinor(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching registered user edits or not
             bool getIgnoreUsers() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching registered users or not
             void setIgnoreUsers(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching edits of wl users or not
             bool getIgnoreWL() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching edits of wl users or not
             void setIgnoreWL(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching IP edits or not
             bool getIgnoreIP() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching IP edits or not
             void setIgnoreIP(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching bots edits or not
             bool getIgnoreBots() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching bots edits or not
             void setIgnoreBots(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching new pages or not
             bool getIgnoreNP() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching new pages or not
             void setIgnoreNP(bool value);
-            /// \todo DOCUMENT ME
+            //! Information if this filter is matching edits made by other tools (awb / twinkle) or not
             bool getIgnoreFriends() const;
-            /// \todo DOCUMENT ME
+            //! Changes if this filter is matching edits made by other tools edits or not
             void setIgnoreFriends(bool value);
+            //! Information if this filter is matching edits made by this user
+            bool getIgnoreSelf() const;
+            //! Changes if this filter is matching edits made by current user
+            void setIgnoreSelf(bool value);
 
         private:
             bool IgnoreMinor;
@@ -66,6 +74,7 @@ namespace Huggle
             bool IgnoreBots;
             bool IgnoreNP;
             bool IgnoreFriends;
+            bool IgnoreSelf;
             bool IgnoreTalk;
     };
 }

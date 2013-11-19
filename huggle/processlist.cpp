@@ -15,23 +15,23 @@ using namespace Huggle;
 
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
-    ui->setupUi(this);
-    ui->tableWidget->setColumnCount(4);
+    this->ui->setupUi(this);
+    this->ui->tableWidget->setColumnCount(4);
     QStringList header;
     header << "ID" << "Type" << "Target" << "Status" << "Result";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
-    ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setShowGrid(false);
     this->Removed = new QList<ProcessListRemovedItem*> ();
 }
 
@@ -42,19 +42,19 @@ void ProcessList::InsertQuery(Query *q)
         throw new Exception("NULL query");
     }
     q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
-    int size = ui->tableWidget->rowCount();
-    ui->tableWidget->insertRow(size);
-    ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->QueryID())));
-    ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
-    ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
-    ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    int size = this->ui->tableWidget->rowCount();
+    this->ui->tableWidget->insertRow(size);
+    this->ui->tableWidget->setItem(size, 0, new QTableWidgetItem(QString::number(q->QueryID())));
+    this->ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
+    this->ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
+    this->ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
     q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
 void ProcessList::Clear()
 {
     delete this->Removed;
-    ui->tableWidget->clear();
+    this->ui->tableWidget->clear();
 }
 
 bool ProcessList::ContainsQuery(Query *q)
@@ -85,10 +85,10 @@ void ProcessList::UpdateQuery(Query *q)
         return;
     }
 
-    ui->tableWidget->setItem(query, 0, new QTableWidgetItem(QString::number(q->QueryID())));
-    ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
-    ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
-    ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    this->ui->tableWidget->setItem(query, 0, new QTableWidgetItem(QString::number(q->QueryID())));
+    this->ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
+    this->ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
+    this->ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
     q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
@@ -96,9 +96,9 @@ bool ProcessList::IsExpired(Query *q)
 {
     q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int i = 0;
-    while (i<Removed->count())
+    while (i < this->Removed->count())
     {
-        if ((unsigned int)Removed->at(i)->GetID() == q->QueryID())
+        if ((unsigned int) this->Removed->at(i)->GetID() == q->QueryID())
         {
             q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
             return true;
@@ -111,17 +111,17 @@ bool ProcessList::IsExpired(Query *q)
 
 void ProcessList::RemoveExpired()
 {
-    if (Removed->count() == 0)
+    if (this->Removed->count() == 0)
     {
         return;
     }
     QList<ProcessListRemovedItem*> rm;
     int i = 0;
-    while (i<Removed->count())
+    while (i < this->Removed->count())
     {
-        if (Removed->at(i)->Expired())
+        if (this->Removed->at(i)->Expired())
         {
-            rm.append(Removed->at(i));
+            rm.append(this->Removed->at(i));
         }
         i++;
     }
@@ -129,11 +129,11 @@ void ProcessList::RemoveExpired()
     while (i<rm.count())
     {
         ProcessListRemovedItem *item = rm.at(i);
-        Removed->removeOne(item);
+        this->Removed->removeOne(item);
         int row = this->GetItem(item->GetID());
         if (row != -1)
         {
-            ui->tableWidget->removeRow(row);
+            this->ui->tableWidget->removeRow(row);
         }
         delete item;
         i++;
@@ -144,10 +144,10 @@ int ProcessList::GetItem(Query *q)
 {
     q->RegisterConsumer(HUGGLECONSUMER_PROCESSLIST);
     int curr = 0;
-    int size = ui->tableWidget->rowCount();
+    int size = this->ui->tableWidget->rowCount();
     while (curr < size)
     {
-        if (ui->tableWidget->item(curr,0)->text() == QString::number(q->QueryID()))
+        if (this->ui->tableWidget->item(curr,0)->text() == QString::number(q->QueryID()))
         {
             q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
             return curr;
@@ -161,10 +161,10 @@ int ProcessList::GetItem(Query *q)
 int ProcessList::GetItem(int Id)
 {
     int curr = 0;
-    int size = ui->tableWidget->rowCount();
+    int size = this->ui->tableWidget->rowCount();
     while (curr < size)
     {
-        if (ui->tableWidget->item(curr,0)->text() == QString::number(Id))
+        if (this->ui->tableWidget->item(curr,0)->text() == QString::number(Id))
         {
             return curr;
         }
@@ -175,7 +175,7 @@ int ProcessList::GetItem(int Id)
 
 ProcessList::~ProcessList()
 {
-    delete ui;
+    delete this->ui;
 }
 
 ProcessListRemovedItem::ProcessListRemovedItem(int ID)
@@ -186,7 +186,7 @@ ProcessListRemovedItem::ProcessListRemovedItem(int ID)
 
 int ProcessListRemovedItem::GetID()
 {
-    return id;
+    return this->id;
 }
 
 bool ProcessListRemovedItem::Expired()

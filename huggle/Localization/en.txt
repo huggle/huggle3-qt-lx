@@ -27,6 +27,13 @@ yes:                       Yes
 agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
 successful:                Successful
+summary:                   Summary
+</pre>
+
+=== Browser ===
+<pre>
+browser-load:              Please wait, downloading diff using a web rendering fallback...
+browser-miss-summ:         No summary was provided
 </pre>
 
 === Edit types ===

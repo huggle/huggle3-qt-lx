@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>440</height>
+    <width>850</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -85,7 +85,7 @@
           <property name="title">
            <string>On revert of multiple edits by same user:</string>
           </property>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <property name="geometry">
             <rect>
              <x>30</x>
@@ -179,7 +179,7 @@
             </size>
            </property>
            <property name="text">
-            <string>Bot edits</string>
+            <string notr="true">Bot edits (b)</string>
            </property>
           </widget>
          </item>
@@ -200,6 +200,13 @@
           <widget class="QCheckBox" name="checkBox_8">
            <property name="text">
             <string>Newly created pages (N)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_13">
+           <property name="text">
+            <string>Minor edits</string>
            </property>
           </widget>
          </item>

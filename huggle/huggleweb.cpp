@@ -15,19 +15,19 @@ using namespace Huggle;
 
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     /// \todo LOCALIZE ME
     CurrentPage = "No page is displayed now";
 }
 
 HuggleWeb::~HuggleWeb()
 {
-    delete ui;
+    delete this->ui;
 }
 
 QString HuggleWeb::CurrentPageName()
 {
-    return CurrentPage;
+    return this->CurrentPage;
 }
 
 void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
@@ -36,26 +36,26 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     {
         throw new Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
     }
-    ui->webView->history()->clear();
-    ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render");
-    CurrentPage = page->PageName;
+    this->ui->webView->history()->clear();
+    this->ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render");
+    this->CurrentPage = page->PageName;
 }
 
 void HuggleWeb::DisplayPreFormattedPage(QString url)
 {
-    ui->webView->history()->clear();
-    ui->webView->load(url + "&action=render");
-    CurrentPage = ui->webView->title();
+    this->ui->webView->history()->clear();
+    this->ui->webView->load(url + "&action=render");
+    this->CurrentPage = this->ui->webView->title();
 }
 
 void HuggleWeb::DisplayPage(QString url)
 {
-    ui->webView->load(url);
+    this->ui->webView->load(url);
 }
 
 void HuggleWeb::RenderHtml(QString html)
 {
-    ui->webView->setContent(html.toUtf8());
+    this->ui->webView->setContent(html.toUtf8());
 }
 
 QString HuggleWeb::Encode(const QString &string)
@@ -80,7 +80,7 @@ QString HuggleWeb::Encode(const QString &string)
 
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
-    ui->webView->history()->clear();
+    this->ui->webView->history()->clear();
     if (edit == NULL)
     {
         throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
@@ -92,8 +92,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     if (edit->DiffText == "")
     {
         Huggle::Syslog::HuggleLogs->Log("Warning, unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
-        ui->webView->setHtml("Downloading diff using web rendering fallback...");
-        ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
+        this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
+        this->ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                       + QString::number(edit->Diff) + "&action=render");
         return;
     }
@@ -112,8 +112,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     if (edit->Summary == "")
     {
-        /// \todo LOCALIZE ME
-        Summary = "<font color=red>No summary was provided</font>";
+        Summary = "<font color=red>" + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
@@ -121,7 +120,6 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     Summary += "<b> Size change: " + size + "</b>";
 
-    ui->webView->setHtml(Core::HuggleCore->HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
-                         + Summary + "</td></tr>" + edit->DiffText
-                         + Core::HuggleCore->HtmlFooter);
+    this->ui->webView->setHtml(Core::HuggleCore->HtmlHeader + "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> "
+                         + Summary + "</td></tr>" + edit->DiffText + Core::HuggleCore->HtmlFooter);
 }

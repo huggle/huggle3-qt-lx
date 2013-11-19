@@ -17,7 +17,7 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
 {
     this->Page = NULL;
     this->User = NULL;
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     int i=0;
     while (i < Configuration::HuggleConfiguration->LocalConfig_DeletionTemplates.count())
     {
@@ -30,14 +30,14 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
             i++;
             continue;
         }
-        ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
+        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
         i++;
     }
 }
 
 void SpeedyForm::on_pushButton_clicked()
 {
-    ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
 }
 
 void SpeedyForm::on_pushButton_2_clicked()
@@ -47,7 +47,7 @@ void SpeedyForm::on_pushButton_2_clicked()
 
 SpeedyForm::~SpeedyForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void SpeedyForm::Init(WikiUser *user, WikiPage *page)

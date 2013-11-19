@@ -15,21 +15,21 @@ using namespace Huggle;
 
 IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList)
 {
-    ui->setupUi(this);
-    model = new QStandardItemModel(Configuration::HuggleConfiguration->LocalConfig_Ignores.count(), 1, this);
-    ui->listView->setModel(model);
+    this->ui->setupUi(this);
+    this->model = new QStandardItemModel(Configuration::HuggleConfiguration->LocalConfig_Ignores.count(), 1, this);
+    this->ui->listView->setModel(model);
     int it = 0;
     while (it < Configuration::HuggleConfiguration->LocalConfig_Ignores.count())
     {
-        model->setItem(it, new QStandardItem(Configuration::HuggleConfiguration->LocalConfig_Ignores.at(it)));
+        this->model->setItem(it, new QStandardItem(Configuration::HuggleConfiguration->LocalConfig_Ignores.at(it)));
         it++;
     }
 }
 
 IgnoreList::~IgnoreList()
 {
-    delete model;
-    delete ui;
+    delete this->model;
+    delete this->ui;
 }
 
 void IgnoreList::on_pushButton_clicked()

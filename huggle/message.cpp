@@ -16,9 +16,9 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
 {
     this->user = target;
     this->text = Message;
-    summary = Summary;
-    Done = false;
-    Sending = false;
+    this->summary = Summary;
+    this->Done = false;
+    this->Sending = false;
     this->Suffix = true;
     this->Dependency = NULL;
     this->query = NULL;
@@ -27,7 +27,7 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->token = "none";
     /// \todo LOCALIZE ME
     /// \todo some users might prefer to have a month as header
-    title = "Message from " + Configuration::HuggleConfiguration->UserName;
+    this->title = "Message from " + Configuration::HuggleConfiguration->UserName;
 }
 
 Message::~Message()
