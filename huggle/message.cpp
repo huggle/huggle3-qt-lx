@@ -158,6 +158,7 @@ void Message::Finish()
             this->query->Process();
         } else
         {
+            this->PreviousTalkPageRetrieved = true;
             this->ProcessSend();
         }
         return;
@@ -176,6 +177,7 @@ void Message::Finish()
         }
         this->ProcessTalk();
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+        this->query = NULL;
         this->ProcessSend();
         return;
     }
@@ -267,6 +269,7 @@ void Message::ProcessTalk()
 {
     QDomDocument d;
     d.setContent(this->query->Result->Data);
+    this->PreviousTalkPageRetrieved = true;
     QDomNodeList page = d.elementsByTagName("rev");
     QDomNodeList code = d.elementsByTagName("page");
     bool missing = false;
