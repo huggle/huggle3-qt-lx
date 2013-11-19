@@ -35,6 +35,9 @@ namespace Huggle
             explicit UpdateForm(QWidget *parent = 0);
             ~UpdateForm();
 
+        private slots:
+            void on_pushButton_2_clicked();
+
         private:
             Ui::UpdateForm *ui;
     };

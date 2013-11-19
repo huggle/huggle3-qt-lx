@@ -216,7 +216,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
    <property name="text">
-    <string>Preferences</string>
+    <string notr="true">Preferences</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -224,12 +224,12 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string notr="true">Exit</string>
    </property>
   </action>
   <action name="actionContents">
    <property name="text">
-    <string>Contents</string>
+    <string notr="true">Contents</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -237,7 +237,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string notr="true">About</string>
    </property>
   </action>
   <action name="actionRevert_and_warn">
@@ -246,7 +246,7 @@
      <normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</iconset>
    </property>
    <property name="text">
-    <string>Revert and warn (Q)</string>
+    <string notr="true">Revert and warn (Q)</string>
    </property>
    <property name="toolTip">
     <string>Revert and warn (Q)</string>
@@ -258,7 +258,7 @@
      <normaloff>:/huggle/pictures/Resources/diff-revert.png</normaloff>:/huggle/pictures/Resources/diff-revert.png</iconset>
    </property>
    <property name="text">
-    <string>Revert (R)</string>
+    <string notr="true">Revert (R)</string>
    </property>
    <property name="toolTip">
     <string>Revert (R)</string>
@@ -270,7 +270,7 @@
      <normaloff>:/huggle/pictures/Resources/user-warn.png</normaloff>:/huggle/pictures/Resources/user-warn.png</iconset>
    </property>
    <property name="text">
-    <string>Warn (W)</string>
+    <string notr="true">Warn (W)</string>
    </property>
   </action>
   <action name="actionNext">
@@ -279,7 +279,7 @@
      <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
    </property>
    <property name="text">
-    <string>Next (Space)</string>
+    <string notr="true">Next (Space)</string>
    </property>
    <property name="toolTip">
     <string>Next (Space)</string>
@@ -287,7 +287,7 @@
   </action>
   <action name="actionNext_2">
    <property name="text">
-    <string>Next</string>
+    <string notr="true">Next</string>
    </property>
    <property name="shortcut">
     <string>Space</string>
@@ -295,7 +295,7 @@
   </action>
   <action name="actionRevert_currently_displayed_edit">
    <property name="text">
-    <string>Revert currently displayed edit</string>
+    <string notr="true">Revert currently displayed edit</string>
    </property>
    <property name="shortcut">
     <string>R</string>
@@ -303,7 +303,7 @@
   </action>
   <action name="actionRevert_currently_displayed_edit_and_warn_the_user">
    <property name="text">
-    <string>Revert currently displayed edit and warn the user</string>
+    <string notr="true">Revert currently displayed edit and warn the user</string>
    </property>
    <property name="shortcut">
     <string>Q</string>
@@ -311,7 +311,7 @@
   </action>
   <action name="actionWarn_the_user">
    <property name="text">
-    <string>Warn the user</string>
+    <string notr="true">Warn the user</string>
    </property>
    <property name="shortcut">
     <string>W</string>
@@ -323,7 +323,7 @@
      <normaloff>:/huggle/pictures/Resources/browser-prev.png</normaloff>:/huggle/pictures/Resources/browser-prev.png</iconset>
    </property>
    <property name="text">
-    <string>Back ( [ )</string>
+    <string notr="true">Back ( [ )</string>
    </property>
    <property name="toolTip">
     <string>Back ( [ )</string>
@@ -338,7 +338,7 @@
      <normaloff>:/huggle/pictures/Resources/browser-next.png</normaloff>:/huggle/pictures/Resources/browser-next.png</iconset>
    </property>
    <property name="text">
-    <string>Forward ( [ )</string>
+    <string notr="true">Forward ( ])</string>
    </property>
    <property name="shortcut">
     <string>]</string>
@@ -346,7 +346,7 @@
   </action>
   <action name="actionShow_ignore_list_of_current_wiki">
    <property name="text">
-    <string>Show ignore list of current wiki</string>
+    <string notr="true">Show ignore list of current wiki</string>
    </property>
   </action>
   <action name="actionWelcome_user">
@@ -355,7 +355,7 @@
      <normaloff>:/huggle/pictures/Resources/user-info.png</normaloff>:/huggle/pictures/Resources/user-info.png</iconset>
    </property>
    <property name="text">
-    <string>Welcome user (Ctrl-H)</string>
+    <string notr="true">Welcome user (Ctrl-H)</string>
    </property>
   </action>
   <action name="actionOpen_page_in_browser">
@@ -372,7 +372,7 @@
      <normaloff>:/huggle/pictures/Resources/page-watch.png</normaloff>:/huggle/pictures/Resources/page-watch.png</iconset>
    </property>
    <property name="text">
-    <string>Open in a browser (O)</string>
+    <string notr="true">Open in a browser (O)</string>
    </property>
   </action>
   <action name="actionOpen_page_history_in_browser">
@@ -382,7 +382,7 @@
   </action>
   <action name="actionIncrease_badness_score_by_20">
    <property name="text">
-    <string>Increase badness score</string>
+    <string notr="true">Increase badness score</string>
    </property>
    <property name="iconText">
     <string>Increase badness score</string>
@@ -393,7 +393,7 @@
   </action>
   <action name="actionDecrease_badness_score_by_20">
    <property name="text">
-    <string>Decrease badness score</string>
+    <string notr="true">Decrease badness score</string>
    </property>
    <property name="shortcut">
     <string>Shift+D</string>
@@ -405,7 +405,7 @@
      <normaloff>:/huggle/pictures/Resources/sight-and-next.png</normaloff>:/huggle/pictures/Resources/sight-and-next.png</iconset>
    </property>
    <property name="text">
-    <string>Good edit (G)</string>
+    <string notr="true">Good edit (G)</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::WindowShortcut</enum>
@@ -413,7 +413,7 @@
   </action>
   <action name="actionTalk_page">
    <property name="text">
-    <string>Talk page</string>
+    <string notr="true">Talk page</string>
    </property>
    <property name="shortcut">
     <string>T</string>
@@ -421,12 +421,12 @@
   </action>
   <action name="actionUser_page">
    <property name="text">
-    <string>User page</string>
+    <string notr="true">User page</string>
    </property>
   </action>
   <action name="actionDisplay_this_page_in_browser">
    <property name="text">
-    <string>Display this page in browser</string>
+    <string notr="true">Display this page in browser</string>
    </property>
    <property name="shortcut">
     <string>O</string>
@@ -434,7 +434,7 @@
   </action>
   <action name="actionDisplay_history_in_browser">
    <property name="text">
-    <string>Display history in browser</string>
+    <string notr="true">Display history in browser</string>
    </property>
    <property name="shortcut">
     <string>H</string>
@@ -442,7 +442,7 @@
   </action>
   <action name="actionEdit_page_in_browser">
    <property name="text">
-    <string>Edit page in browser</string>
+    <string notr="true">Edit page in browser</string>
    </property>
    <property name="shortcut">
     <string>E</string>
@@ -450,7 +450,7 @@
   </action>
   <action name="actionFlag_as_a_good_edit">
    <property name="text">
-    <string>Flag as a good edit (this action give -200 score to user)</string>
+    <string notr="true">Flag as a good edit (this action give -200 score to user)</string>
    </property>
    <property name="shortcut">
     <string>G</string>
@@ -464,7 +464,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Stop feed</string>
+    <string notr="true">Stop feed</string>
    </property>
   </action>
   <action name="actionRemove_old_edits">
@@ -472,7 +472,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Remove old edits</string>
+    <string notr="true">Remove old edits</string>
    </property>
   </action>
   <action name="actionQueue">
@@ -532,7 +532,7 @@
   </action>
   <action name="actionClear_talk_page_of_user">
    <property name="text">
-    <string>Clear talk page of user</string>
+    <string notr="true">Clear talk page of user</string>
    </property>
    <property name="shortcut">
     <string>Shift+C</string>
@@ -540,12 +540,12 @@
   </action>
   <action name="actionList_all_QGC_items">
    <property name="text">
-    <string>List all QGC items</string>
+    <string notr="true">List all QGC items</string>
    </property>
   </action>
   <action name="actionRevert_currently_displayed_edit_and_stay_on_page">
    <property name="text">
-    <string>Revert currently displayed edit and stay on page</string>
+    <string notr="true">Revert currently displayed edit and stay on page</string>
    </property>
    <property name="shortcut">
     <string>Shift+R</string>
@@ -553,7 +553,7 @@
   </action>
   <action name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page">
    <property name="text">
-    <string>Revert currently displayed edit, warn user and stay on page</string>
+    <string notr="true">Revert currently displayed edit, warn user and stay on page</string>
    </property>
    <property name="shortcut">
     <string>Shift+Q</string>
@@ -561,12 +561,12 @@
   </action>
   <action name="actionFeedback">
    <property name="text">
-    <string>Feedback</string>
+    <string notr="true">Feedback</string>
    </property>
   </action>
   <action name="actionWelcome_user_2">
    <property name="text">
-    <string>Welcome user</string>
+    <string notr="true">Welcome user</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
@@ -578,7 +578,7 @@
      <normaloff>:/huggle/pictures/Resources/user-report.png</normaloff>:/huggle/pictures/Resources/user-report.png</iconset>
    </property>
    <property name="text">
-    <string>Report user (Ctrl+R)</string>
+    <string notr="true">Report user (Ctrl+R)</string>
    </property>
    <property name="toolTip">
     <string>Report user (Ctrl+R)</string>
@@ -589,52 +589,52 @@
   </action>
   <action name="actionReport_user_2">
    <property name="text">
-    <string>Report user</string>
+    <string notr="true">Report user</string>
    </property>
   </action>
   <action name="actionClear_template_meta_data">
    <property name="text">
-    <string>Clear template meta data</string>
+    <string notr="true">Clear template meta data</string>
    </property>
   </action>
   <action name="actionWarning_1">
    <property name="text">
-    <string>Warning 1</string>
+    <string notr="true">Warning 1</string>
    </property>
   </action>
   <action name="actionWarning_2">
    <property name="text">
-    <string>Warning 2</string>
+    <string notr="true">Warning 2</string>
    </property>
   </action>
   <action name="actionWarning_3">
    <property name="text">
-    <string>Warning 3</string>
+    <string notr="true">Warning 3</string>
    </property>
   </action>
   <action name="actionWarning_4">
    <property name="text">
-    <string>Warning 4</string>
+    <string notr="true">Warning 4</string>
    </property>
   </action>
   <action name="actionEdit_user_talk">
    <property name="text">
-    <string>Edit user talk</string>
+    <string notr="true">Edit user talk</string>
    </property>
   </action>
   <action name="actionReconnect_IRC">
    <property name="text">
-    <string>Reconnect IRC</string>
+    <string notr="true">Reconnect IRC</string>
    </property>
   </action>
   <action name="actionTag_2">
    <property name="text">
-    <string>Tag</string>
+    <string notr="true">Tag</string>
    </property>
   </action>
   <action name="actionRequest_speedy_deletion">
    <property name="text">
-    <string>Request speedy deletion</string>
+    <string notr="true">Request speedy deletion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -642,7 +642,7 @@
   </action>
   <action name="actionDelete">
    <property name="text">
-    <string>Delete</string>
+    <string notr="true">Delete</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -650,7 +650,7 @@
   </action>
   <action name="actionBlock_user">
    <property name="text">
-    <string>Block user</string>
+    <string notr="true">Block user</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -661,7 +661,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>IRC</string>
+    <string notr="true">IRC</string>
    </property>
   </action>
   <action name="actionWiki">
@@ -669,22 +669,22 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Wiki</string>
+    <string notr="true">Wiki</string>
    </property>
   </action>
   <action name="actionShow_talk">
    <property name="text">
-    <string>Show talk</string>
+    <string notr="true">Show talk</string>
    </property>
   </action>
   <action name="actionProtect">
    <property name="text">
-    <string>Protect</string>
+    <string notr="true">Protect</string>
    </property>
   </action>
   <action name="actionDisconnect">
    <property name="text">
-    <string>Disconnect</string>
+    <string notr="true">Disconnect</string>
    </property>
   </action>
   <action name="actionDisplay_user_messages">
@@ -695,7 +695,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display user messages</string>
+    <string notr="true">Display user messages</string>
    </property>
   </action>
   <action name="actionDisplay_user_data">
@@ -706,17 +706,17 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display user data</string>
+    <string notr="true">Display user data</string>
    </property>
   </action>
   <action name="actionEdit_info">
    <property name="text">
-    <string>Edit info</string>
+    <string notr="true">Edit info</string>
    </property>
   </action>
   <action name="actionFlag_as_suspicious_edit">
    <property name="text">
-    <string>Flag as suspicious edit (this action give +1 score to user)</string>
+    <string notr="true">Flag as suspicious edit (this action give +1 score to user)</string>
    </property>
    <property name="shortcut">
     <string>S</string>
@@ -724,7 +724,7 @@
   </action>
   <action name="actionReport_username">
    <property name="text">
-    <string>Report username</string>
+    <string notr="true">Report username</string>
    </property>
    <property name="shortcut">
     <string>Alt+R</string>
@@ -732,22 +732,22 @@
   </action>
   <action name="actionShow_list_of_score_words">
    <property name="text">
-    <string>Show list of score words</string>
+    <string notr="true">Show list of score words</string>
    </property>
   </action>
   <action name="actionRevert_AGF">
    <property name="text">
-    <string>Revert assuming good faith</string>
+    <string notr="true">Revert assuming good faith</string>
    </property>
   </action>
   <action name="actionDisplay_a_session_data">
    <property name="text">
-    <string>Display a session data</string>
+    <string notr="true">Display a session data</string>
    </property>
   </action>
   <action name="actionDisplay_whitelist">
    <property name="text">
-    <string>Display whitelist</string>
+    <string notr="true">Display whitelist</string>
    </property>
   </action>
  </widget>

@@ -21,3 +21,8 @@ UpdateForm::~UpdateForm()
 {
     delete ui;
 }
+
+void Huggle::UpdateForm::on_pushButton_2_clicked()
+{
+    this->close();
+}
