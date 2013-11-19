@@ -12,7 +12,6 @@
 #define WAITINGFORM_H
 
 #include <QDialog>
-#include "core.hpp"
 
 namespace Ui
 {

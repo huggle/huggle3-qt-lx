@@ -18,7 +18,7 @@
 #include <QtXml/QtXml>
 #include <QObject>
 #include <QThread>
-#include "core.hpp"
+#include "syslog.hpp"
 #include "query.hpp"
 
 namespace Huggle

@@ -26,6 +26,7 @@
 #define HUGGLECONSUMER_REVERTQUERY              8
 #define HUGGLECONSUMER_MAINFORM                 9
 #define HUGGLECONSUMER_LOGINFORM                10
+#define HUGGLECONSUMER_MESSAGE_SEND             11
 
 namespace Huggle
 {

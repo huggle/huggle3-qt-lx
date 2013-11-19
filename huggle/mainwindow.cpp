@@ -1213,7 +1213,7 @@ void MainWindow::Welcome()
             this->CurrentEdit->User->SetContentsOfTalkPage(Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon);
         }
         Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon
-              , Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle, Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, true);
+              , Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle, Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false);
         return;
     }
 
@@ -1236,7 +1236,7 @@ void MainWindow::Welcome()
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->SetContentsOfTalkPage(message);
     Core::HuggleCore->MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
-                      Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, true);
+                      Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()

@@ -13,10 +13,11 @@
 
 #include <QDockWidget>
 #include <QTimer>
+#include "syslog.hpp"
 #include "networkirc.hpp"
 #include "wikiedit.hpp"
-#include "configuration.hpp"
 #include "core.hpp"
+#include "configuration.hpp"
 
 namespace Ui
 {
@@ -53,9 +54,9 @@ namespace Huggle
             void SuspiciousWikiEdit(WikiEdit *Edit);
             void WarningSent(WikiUser *user, int Level);
             QString GetChannel();
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! Prefix to special commands that are being sent to network to other users
             QString pref;
-            /// \todo DOCUMENT ME - it's not really clear what this is for because the name is too weird
+            //! Timer that is used to connect to network
             QTimer *tm;
         private:
             Ui::VandalNw *ui;

@@ -15,6 +15,7 @@
 #include <QString>
 #include "wikipage.hpp"
 #include "iextension.hpp"
+#include "syslog.hpp"
 #include "exception.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"

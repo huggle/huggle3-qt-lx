@@ -50,8 +50,13 @@ namespace Huggle
         private:
             void Fail(QString reason);
             void Finish();
+            void ProcessSend();
+            void ProcessTalk();
             ApiQuery *query;
             bool Sending;
+            //! This is a text of talk page that was present before we change it
+            QString Page;
+            bool PreviousTalkPageRetrieved;
             bool Done;
     };
 }
