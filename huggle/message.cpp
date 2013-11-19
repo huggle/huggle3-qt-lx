@@ -106,6 +106,10 @@ void Message::Finish()
         // we really need to quit now because query is null
         return;
     }
+    if (this->query == NULL)
+    {
+        return;
+    }
     // we need to get a token
     if (token == "none")
     {
@@ -282,6 +286,7 @@ void Message::ProcessTalk()
         {
             this->Page = e.text();
             this->PreviousTalkPageRetrieved = true;
+            return;
         } else
         {
             /// \todo LOCALIZE ME
