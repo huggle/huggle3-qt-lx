@@ -15,18 +15,18 @@ using namespace Huggle;
 
 DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 	this->page = NULL;
 	this->dt = NULL;
-	this->deletetoken = "";
-	this->delquery = NULL;
-	this->tokenquery = NULL;
+    this->DeleteToken = "";
+    this->qDelete = NULL;
+    this->qToken = NULL;
 }
 
 DeleteForm::~DeleteForm()
 {
-    delete ui;
-	delete page;
+    delete this->ui;
+    delete this->page;
 }
 
 void DeleteForm::setPage(WikiPage *Page)
@@ -40,14 +40,14 @@ void DeleteForm::setPage(WikiPage *Page)
 
 void DeleteForm::getToken()
 {
-	this->tokenquery = new ApiQuery();
-	tokenquery->SetAction(ActionQuery);
-	tokenquery->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
+    this->qToken = new ApiQuery();
+    this->qToken->SetAction(ActionQuery);
+    this->qToken->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
     /// \todo LOCALIZE ME
-	tokenquery->Target = "Getting token to delete " + this->page->PageName;
-    tokenquery->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    Core::HuggleCore->AppendQuery(tokenquery);
-	tokenquery->Process();
+    this->qToken->Target = "Getting token to delete " + this->page->PageName;
+    this->qToken->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    Core::HuggleCore->AppendQuery(this->qToken);
+    this->qToken->Process();
 
 	this->dt = new QTimer(this);
 	connect(this->dt, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -71,26 +71,26 @@ void DeleteForm::onTick()
 
 void DeleteForm::checkDelToken()
 {
-	if (tokenquery == NULL)
+    if (qToken == NULL)
 	{
 		return;
 	}
-	if (!tokenquery->Processed())
+    if (!qToken->Processed())
 	{
 		return;
 	}
-	if (this->tokenquery->Result->Failed)
+    if (this->qToken->Result->Failed)
 	{
         /// \todo LOCALIZE ME
-		Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->tokenquery->Result->ErrorMessage);
+        Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qToken->Result->ErrorMessage);
 		return;
 	}
 	QDomDocument d;
-	d.setContent(this->tokenquery->Result->Data);
+    d.setContent(this->qToken->Result->Data);
     QDomNodeList l = d.elementsByTagName("page");
 	if (l.count() == 0)
 	{
-        Huggle::Syslog::HuggleLogs->DebugLog(this->tokenquery->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
         /// \todo LOCALIZE ME
 		Failed("no page info was present in query (are you sysop?)");
 		return;
@@ -102,46 +102,46 @@ void DeleteForm::checkDelToken()
 		Failed("No token");
 		return;
 	}
-	this->deletetoken = element.attribute("deletetoken");
+    this->DeleteToken = element.attribute("deletetoken");
 	this->delQueryPhase++;
-    this->tokenquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-	this->tokenquery = NULL;
-    Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->page->PageName + ": " + this->deletetoken);
+    this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qToken = NULL;
+    Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->page->PageName + ": " + this->DeleteToken);
 
 	// let's delete the page
-	this->delquery = new ApiQuery();
-    this->delquery->SetAction(ActionDelete);
-    delquery->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
+    this->qDelete = new ApiQuery();
+    this->qDelete->SetAction(ActionDelete);
+    qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
             + "&reason=" + QUrl::toPercentEncoding(ui->comboBox->lineEdit()->text())
-            + "&token=" + QUrl::toPercentEncoding(deletetoken);
-	delquery->Target = "Deleting "  + this->page->PageName;
-	delquery->UsingPOST = true;
-    delquery->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    Core::HuggleCore->AppendQuery(delquery);
-	delquery->Process();
+            + "&token=" + QUrl::toPercentEncoding(DeleteToken);
+    qDelete->Target = "Deleting "  + this->page->PageName;
+    qDelete->UsingPOST = true;
+    qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    Core::HuggleCore->AppendQuery(qDelete);
+    qDelete->Process();
 }
 
 void DeleteForm::Delete()
 {
-	if (this->delquery == NULL)
+    if (this->qDelete == NULL)
 	{
 		return;
 	}
-	if (!this->delquery->Processed())
+    if (!this->qDelete->Processed())
 	{
 		return;
 	}
 
-	if (this->delquery->Result->Failed)
+    if (this->qDelete->Result->Failed)
 	{
         /// \todo LOCALIZE ME
-		Failed("page can't be deleted: " + this->delquery->Result->ErrorMessage);
+        Failed("page can't be deleted: " + this->qDelete->Result->ErrorMessage);
 		return;
 	}
 	// let's assume the page was deleted
 	ui->pushButton->setText("deleted");
-    Huggle::Syslog::HuggleLogs->DebugLog("deletion result: " + this->delquery->Result->Data, 2);
-    this->delquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    Huggle::Syslog::HuggleLogs->DebugLog("deletion result: " + this->qDelete->Result->Data, 2);
+    this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
 }
 
@@ -158,16 +158,16 @@ void DeleteForm::Failed(QString reason)
 	delete this->dt;
 	this->dt = NULL;
 	ui->pushButton->setEnabled(true);
-	if (this->tokenquery != NULL)
+    if (this->qToken != NULL)
 	{
-        tokenquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
-	if (this->delquery != NULL)
+    if (this->qDelete != NULL)
 	{
-        delquery->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
-	this->delquery = NULL;
-	this->tokenquery = NULL;
+    this->qDelete = NULL;
+    this->qToken = NULL;
 }
 
 void DeleteForm::on_pushButton_clicked()

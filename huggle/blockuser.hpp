@@ -55,8 +55,9 @@ namespace Huggle
             ApiQuery *tb;
             /// \todo DOCUMENT ME
             ApiQuery *b;
-            ApiQuery *dependency;
-            QString blocktoken;
+            /// \todo What is this and why it even exist - WTF describe me or remove me
+            ApiQuery *Dependency;
+            QString BlockToken;
             int QueryPhase;
             void CheckToken();
             void GetToken();

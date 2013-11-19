@@ -14,11 +14,11 @@ using namespace Huggle;
 
 EditQuery::EditQuery()
 {
-    this->summary = "";
+    this->Summary = "";
     this->Result = NULL;
     this->qEdit = NULL;
     this->Minor = false;
-    this->page = "";
+    this->Page = "";
     this->qToken = NULL;
     this->text = "";
     this->Type = QueryEdit;
@@ -38,8 +38,8 @@ void EditQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     qToken = new ApiQuery();
     qToken->SetAction(ActionQuery);
-    qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(page);
-    qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", page);
+    qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
+    qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
     qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     Core::HuggleCore->AppendQuery(qToken);
     qToken->Process();
@@ -95,12 +95,12 @@ bool EditQuery::Processed()
         qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         qToken = NULL;
         qEdit = new ApiQuery();
-        qEdit->Target = "Writing " + page;
+        qEdit->Target = "Writing " + Page;
         qEdit->UsingPOST = true;
         qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
         qEdit->SetAction(ActionEdit);
-        qEdit->Parameters = "title=" + QUrl::toPercentEncoding(page) + "&text=" + QUrl::toPercentEncoding(text) +
-                "&summary=" + QUrl::toPercentEncoding(this->summary) + "&token=" + QUrl::toPercentEncoding(_Token);
+        qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(text) +
+                "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" + QUrl::toPercentEncoding(_Token);
         Core::HuggleCore->AppendQuery(qEdit);
         qEdit->Process();
         return false;
@@ -126,10 +126,10 @@ bool EditQuery::Processed()
                         HistoryItem item;
                         item.Result = Localizations::HuggleLocalizations->Localize("successful");
                         item.Type = HistoryEdit;
-                        item.Target = this->page;
+                        item.Target = this->Page;
                         Core::HuggleCore->Main->_History->Prepend(item);
                     }
-                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", page));
+                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", Page));
                 }
             }
         }

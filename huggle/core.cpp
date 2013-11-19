@@ -354,10 +354,10 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
         summary = summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     }
     _e->RegisterConsumer("Core::EditPage");
-    _e->page = page->PageName;
+    _e->Page = page->PageName;
     this->PendingMods.append(_e);
     _e->text = text;
-    _e->summary = summary;
+    _e->Summary = summary;
     _e->Minor = minor;
     _e->Process();
     return _e;

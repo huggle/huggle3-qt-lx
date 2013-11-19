@@ -16,20 +16,21 @@ using namespace Huggle;
 
 BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     // we should initialise every variable
-    this->blocktoken = "";
+    this->BlockToken = "";
     this->user = NULL;
     this->b = NULL;
+    this->Dependency = NULL;
     this->t0 = NULL;
     this->tb = NULL;
-    ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
 }
 
 BlockUser::~BlockUser()
 {
-    delete t0;
-    delete ui;
+    delete this->t0;
+    delete this->ui;
 }
 
 void BlockUser::SetWikiUser(WikiUser *User)
@@ -41,23 +42,22 @@ void BlockUser::SetWikiUser(WikiUser *User)
     this->user = User;
     if (this->user->IsIP())
     {
-        ui->checkBox_5->setEnabled(true);
+        this->ui->checkBox_5->setEnabled(true);
     }
 }
 
 void BlockUser::GetToken()
 {
     // Let's get a token before anything
-    b = new ApiQuery();
-    b->SetAction(ActionQuery);
-    b->Parameters = "prop=info&intoken=block&titles=User:" +
+    this->b = new ApiQuery();
+    this->b->SetAction(ActionQuery);
+    this->b->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
     /// \todo LOCALIZE ME
-    b->Target = "Getting token to block" + this->user->Username;
-    b->RegisterConsumer("BlockUser::GetToken");
-    Core::HuggleCore->AppendQuery(b);
-    b->Process();
-
+    this->b->Target = "Getting token to block" + this->user->Username;
+    this->b->RegisterConsumer("BlockUser::GetToken");
+    Core::HuggleCore->AppendQuery(this->b);
+    this->b->Process();
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->QueryPhase = 0;
@@ -96,7 +96,7 @@ void BlockUser::CheckToken()
     if (this->b->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        Failed("token can't be retrieved: " + this->b->Result->ErrorMessage);
+        this->Failed("token can't be retrieved: " + this->b->Result->ErrorMessage);
         return;
     }
     QDomDocument d;
@@ -106,21 +106,21 @@ void BlockUser::CheckToken()
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->b->Result->Data);
         /// \todo LOCALIZE ME
-        Failed("no user info was present in query (are you sysop?)");
+        this->Failed("no user info was present in query (are you sysop?)");
         return;
     }
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("blocktoken"))
     {
         /// \todo LOCALIZE ME
-        Failed("No token");
+        this->Failed("No token");
         return;
     }
-    this->blocktoken = element.attribute("blocktoken");
+    this->BlockToken = element.attribute("blocktoken");
     this->QueryPhase++;
     this->b->UnregisterConsumer("BlockUser::GetToken");
     this->b = NULL;
-    Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->blocktoken);
+    Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->BlockToken);
 
     // let's block them
     this->tb = new ApiQuery();
@@ -130,20 +130,20 @@ void BlockUser::CheckToken()
         tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "expiry="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "token="
-                + QUrl::toPercentEncoding(blocktoken);
+                + QUrl::toPercentEncoding(BlockToken);
 
     }else
     {
         tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "token="
-                + QUrl::toPercentEncoding(blocktoken);
+                + QUrl::toPercentEncoding(BlockToken);
     }
     /// \todo LOCALIZE ME
-    tb->Target = "Blocking " + this->user->Username;
-    tb->UsingPOST = true;
-    tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
-    Core::HuggleCore->AppendQuery(tb);
-    tb->Process();
+    this->tb->Target = "Blocking " + this->user->Username;
+    this->tb->UsingPOST = true;
+    this->tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
+    Core::HuggleCore->AppendQuery(this->tb);
+    this->tb->Process();
 }
 
 void BlockUser::Block()
@@ -160,11 +160,11 @@ void BlockUser::Block()
     if (this->tb->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        Failed("user can't be blocked: " + this->tb->Result->ErrorMessage);
+        this->Failed("user can't be blocked: " + this->tb->Result->ErrorMessage);
         return;
     }
     // let's assume the user was blocked
-    ui->pushButton->setText("Blocked");
+    this->ui->pushButton->setText("Blocked");
     Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->tb->Result->Data, 2);
     this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
     this->t0->stop();
@@ -180,14 +180,14 @@ void BlockUser::Failed(QString reason)
     this->t0->stop();
     delete this->t0;
     this->t0 = NULL;
-    ui->pushButton->setEnabled(true);
+    this->ui->pushButton->setEnabled(true);
     if (this->b != NULL)
     {
-        b->UnregisterConsumer("BlockUser::GetToken");
+        this->b->UnregisterConsumer("BlockUser::GetToken");
     }
     if (this->tb != NULL)
     {
-        tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+        this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
     }
     this->tb = NULL;
     this->b = NULL;
@@ -196,17 +196,13 @@ void BlockUser::Failed(QString reason)
 void BlockUser::on_pushButton_clicked()
 {
     this->GetToken();
-    this->sendBlockNotice(dependency);
+    this->sendBlockNotice(this->Dependency);
     // disable the button so that user can't click it multiple times
-    ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
 }
 
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
-    if (dependency == NULL)
-    {
-        throw new Exception("ApiQuery *dependency", "void BlockUser::sendBlockNotice(ApiQuery *dependency)");
-    }
     QString blocknotice;
     if (user->IsIP())
     {

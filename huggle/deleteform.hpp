@@ -50,11 +50,11 @@ namespace Huggle
         private:
             Ui::DeleteForm *ui;
             WikiPage *page;
-            QString deletetoken;
+            QString DeleteToken;
             //! Query used to execute delete of a page
-            ApiQuery *delquery;
+            ApiQuery *qDelete;
             //! This is used to retrieve a token
-            ApiQuery *tokenquery;
+            ApiQuery *qToken;
             //! Set the page to delete
             QTimer *dt;
             //! This is used to figure out what are we doing now in timer signal

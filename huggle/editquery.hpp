@@ -30,11 +30,11 @@ namespace Huggle
             void Process();
             bool Processed();
             //! Page that is going to be edited
-            QString page;
+            QString Page;
             //! Text a page will be replaced with
             QString text;
             //! Edit summary
-            QString summary;
+            QString Summary;
             //! Whether the edit is minor or not
             bool Minor;
         private:
