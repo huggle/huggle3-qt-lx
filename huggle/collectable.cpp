@@ -40,6 +40,14 @@ bool Collectable::SafeDelete()
 {
     if (this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
+        if (GC::gc == NULL)
+        {
+            // there is no garbage collector
+            this->Managed = false;
+            // we can probably delete it now
+            delete this;
+            return true;
+        }
         GC::gc->Lock->lock();
         if (GC::gc->list.contains(this))
         {
