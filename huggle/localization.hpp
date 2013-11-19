@@ -36,6 +36,12 @@ namespace Huggle
             QMap<QString, QString> Messages;
     };
 
+    //! This class is used to localize strings
+
+    //! Huggle is using own localization system and none other
+    //! usage of any 3rd localization system or libraries
+    //! is strictly forbidden and your commits that introduce
+    //! those will be reverted mercillesly
     class Localizations
     {
         public:

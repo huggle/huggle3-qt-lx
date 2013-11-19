@@ -23,6 +23,9 @@ namespace Ui
 
 namespace Huggle
 {
+    /// \todo Currently it kind of suck when displaying huge whitelist
+
+    //! This form can be used to display a whitelist of current wiki
     class WhitelistForm : public QDialog
     {
             Q_OBJECT

@@ -24,6 +24,7 @@ namespace Ui
 namespace Huggle
 {
     /// \todo This class doesn't do anything now
+
     //! This can be used to request protection of a page
     class RequestProtect : public QDialog
     {
