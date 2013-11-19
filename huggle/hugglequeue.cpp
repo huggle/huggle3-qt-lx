@@ -105,6 +105,7 @@ void HuggleQueue::DeleteByRevID(int RevID)
                 // we can't delete item that is being reviewed now
                 return;
             }
+            HuggleQueueItemLabel::Count--;
             item->close();
             this->Delete(item);
             this->Items.removeAll(item);
