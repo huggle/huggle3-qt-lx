@@ -128,7 +128,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->timer1 = new QTimer(this);
     this->ui->actionTag_2->setVisible(false);
-    connect(this->timer1, SIGNAL(timeout()), this, SLOT(on_Tick()));
+    connect(this->timer1, SIGNAL(timeout()), this, SLOT(OnTimerTick1()));
     this->timer1->start(200);
     this->fRemove = NULL;
     this->eq = NULL;
@@ -552,12 +552,7 @@ void MainWindow::on_actionAbout_triggered()
     aboutForm->show();
 }
 
-void MainWindow::on_MainWindow_destroyed()
-{
-    Core::HuggleCore->Shutdown();
-}
-
-void MainWindow::on_Tick()
+void MainWindow::OnTimerTick1()
 {
     Core::HuggleCore->FinalizeMessages();
     bool RetrieveEdit = true;
@@ -670,7 +665,7 @@ void MainWindow::on_Tick()
     this->Queries->RemoveExpired();
 }
 
-void MainWindow::on_Tick2()
+void MainWindow::OnTimerTick0()
 {
     if (this->Shutdown != ShutdownOpUpdatingConf)
     {
@@ -1085,7 +1080,7 @@ void MainWindow::Exit()
     this->wq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->wq->Process();
     this->wlt = new QTimer(this);
-    connect(this->wlt, SIGNAL(timeout()), this, SLOT(on_Tick2()));
+    connect(this->wlt, SIGNAL(timeout()), this, SLOT(OnTimerTick0()));
     this->wlt->start(800);
 }
 

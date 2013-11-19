@@ -202,9 +202,8 @@ namespace Huggle
             void on_actionPreferences_triggered();
             void on_actionContents_triggered();
             void on_actionAbout_triggered();
-            void on_MainWindow_destroyed();
-            void on_Tick();
-            void on_Tick2();
+            void OnTimerTick1();
+            void OnTimerTick0();
             void on_actionNext_triggered();
             void on_actionNext_2_triggered();
             void on_actionWarn_triggered();
@@ -258,7 +257,6 @@ namespace Huggle
             void on_actionShow_list_of_score_words_triggered();
             void on_actionRevert_AGF_triggered();
             void on_actionDisplay_a_session_data_triggered();
-
             void on_actionDisplay_whitelist_triggered();
 
         private:

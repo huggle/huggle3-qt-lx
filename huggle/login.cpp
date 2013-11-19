@@ -21,7 +21,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->_Status = Nothing;
     this->LoginQuery = NULL;
     this->timer = new QTimer(this);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(on_Time()));
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
     this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleConfiguration->HuggleVersion + "]");
     this->Reset();
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UsingSSL);
@@ -707,7 +707,7 @@ void Login::on_ButtonExit_clicked()
     Core::HuggleCore->Shutdown();
 }
 
-void Login::on_Time()
+void Login::OnTimerTick()
 {
     switch (this->_Status)
     {

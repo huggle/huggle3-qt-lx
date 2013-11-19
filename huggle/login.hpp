@@ -71,7 +71,7 @@ namespace Huggle
         private slots:
             void on_ButtonOK_clicked();
             void on_ButtonExit_clicked();
-            void on_Time();
+            void OnTimerTick();
             void on_pushButton_clicked();
             void on_Language_currentIndexChanged(const QString &arg1);
 

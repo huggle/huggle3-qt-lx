@@ -59,7 +59,10 @@ namespace Huggle
             QTimer *tm;
         private:
             Ui::VandalNw *ui;
+            //! Pointer to irc server
             IRC::NetworkIrc *Irc;
+            //! Using this we track if channel was joined or not, because we need to send
+            //! the request some time after connection or irc server would skip it
             bool JoinedMain;
         private slots:
             void onTick();
