@@ -87,13 +87,13 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     HuggleQueueItemLabel::Count--;
     if (this->ParentQueue->Items.contains(this))
     {
-        this->ParentQueue->Items.removeOne(this);
+        this->ParentQueue->Items.removeAll(this);
     }
     Core::HuggleCore->ProcessEdit(this->page);
     this->close();
     this->page->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-    ParentQueue->Delete(this, qi);
+    this->ParentQueue->Delete(this, qi);
 }
 
 void HuggleQueueItemLabel::Remove()
@@ -101,12 +101,12 @@ void HuggleQueueItemLabel::Remove()
     HuggleQueueItemLabel::Count--;
     if (this->ParentQueue->Items.contains(this))
     {
-        this->ParentQueue->Items.removeOne(this);
+        this->ParentQueue->Items.removeAll(this);
     }
     this->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
     this->page = NULL;
     this->close();
-    ParentQueue->Delete(this);
+    this->ParentQueue->Delete(this);
 }
 
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)

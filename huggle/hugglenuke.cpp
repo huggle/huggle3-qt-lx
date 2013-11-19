@@ -15,11 +15,11 @@ using namespace Huggle;
 
 HuggleNuke::HuggleNuke(QWidget *parent) : QDialog(parent), ui(new Ui::HuggleNuke)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 HuggleNuke::~HuggleNuke()
 {
-    delete ui;
+    delete this->ui;
 }
 

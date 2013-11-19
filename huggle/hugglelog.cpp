@@ -15,19 +15,19 @@ using namespace Huggle;
 
 HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLog)
 {
-    ui->setupUi(this);
-    ui->textEdit->resize(ui->textEdit->width(), 60);
+    this->ui->setupUi(this);
+    this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
 }
 
 void HuggleLog::InsertText(QString text)
 {
-    QString t = ui->textEdit->toPlainText();
+    QString t = this->ui->textEdit->toPlainText();
     t.prepend(text + "\n");
 
-    ui->textEdit->setPlainText(t);
+    this->ui->textEdit->setPlainText(t);
 }
 
 HuggleLog::~HuggleLog()
 {
-    delete ui;
+    delete this->ui;
 }

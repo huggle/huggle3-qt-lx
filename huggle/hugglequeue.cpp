@@ -15,25 +15,25 @@ using namespace Huggle;
 
 HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
-    ui->setupUi(this);
-    CurrentFilter = HuggleQueueFilter::DefaultFilter;
+    this->ui->setupUi(this);
+    this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->layout = new QVBoxLayout(ui->scrollArea);
     this->layout->setMargin(0);
     this->layout->setSpacing(0);
     this->xx = new QWidget();
     this->frame = new QFrame();
-    ui->scrollArea->setWidget(this->xx);
-    xx->setLayout(this->layout);
+    this->ui->scrollArea->setWidget(this->xx);
+    this->xx->setLayout(this->layout);
     this->layout->addWidget(this->frame);
-    ui->comboBox->addItem(this->CurrentFilter->QueueName);
-    ui->comboBox->setCurrentIndex(0);
+    this->ui->comboBox->addItem(this->CurrentFilter->QueueName);
+    this->ui->comboBox->setCurrentIndex(0);
 }
 
 HuggleQueue::~HuggleQueue()
 {
-    delete layout;
-    delete CurrentFilter;
-    delete ui;
+    delete this->layout;
+    delete this->CurrentFilter;
+    delete this->ui;
 }
 
 void HuggleQueue::AddItem(WikiEdit *page)
@@ -105,7 +105,9 @@ void HuggleQueue::DeleteByRevID(int RevID)
                 // we can't delete item that is being reviewed now
                 return;
             }
+            item->close();
             this->Delete(item);
+            this->Items.removeAll(item);
             delete item;
             return;
         }
