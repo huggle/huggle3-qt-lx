@@ -17,7 +17,7 @@ HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
     /// \todo LOCALIZE ME
-    CurrentPage = "No page is displayed now";
+    this->CurrentPage = "No page is displayed now";
 }
 
 HuggleWeb::~HuggleWeb()

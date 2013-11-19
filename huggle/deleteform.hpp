@@ -62,7 +62,7 @@ namespace Huggle
             void getToken();
             void Delete();
             void checkDelToken();
-            void Failed(QString reason);
+            void Failed(QString Reason);
     };
 }
 

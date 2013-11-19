@@ -71,18 +71,18 @@ void DeleteForm::onTick()
 
 void DeleteForm::checkDelToken()
 {
-    if (qToken == NULL)
+    if (this->qToken == NULL)
 	{
 		return;
 	}
-    if (!qToken->Processed())
+    if (!this->qToken->Processed())
 	{
 		return;
 	}
     if (this->qToken->Result->Failed)
 	{
         /// \todo LOCALIZE ME
-        Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qToken->Result->ErrorMessage);
+        this->Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qToken->Result->ErrorMessage);
 		return;
 	}
 	QDomDocument d;
@@ -92,14 +92,14 @@ void DeleteForm::checkDelToken()
 	{
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
         /// \todo LOCALIZE ME
-		Failed("no page info was present in query (are you sysop?)");
+        this->Failed("no page info was present in query (are you sysop?)");
 		return;
 	}
 	QDomElement element = l.at(0).toElement();
 	if (!element.attributes().contains("deletetoken"))
 	{
         /// \todo LOCALIZE ME
-		Failed("No token");
+        this->Failed("No token");
 		return;
 	}
     this->DeleteToken = element.attribute("deletetoken");
@@ -111,14 +111,14 @@ void DeleteForm::checkDelToken()
 	// let's delete the page
     this->qDelete = new ApiQuery();
     this->qDelete->SetAction(ActionDelete);
-    qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
-            + "&reason=" + QUrl::toPercentEncoding(ui->comboBox->lineEdit()->text())
-            + "&token=" + QUrl::toPercentEncoding(DeleteToken);
-    qDelete->Target = "Deleting "  + this->page->PageName;
-    qDelete->UsingPOST = true;
-    qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
+            + "&reason=" + QUrl::toPercentEncoding(this->ui->comboBox->lineEdit()->text())
+            + "&token=" + QUrl::toPercentEncoding(this->DeleteToken);
+    this->qDelete->Target = "Deleting "  + this->page->PageName;
+    this->qDelete->UsingPOST = true;
+    this->qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
     Core::HuggleCore->AppendQuery(qDelete);
-    qDelete->Process();
+    this->qDelete->Process();
 }
 
 void DeleteForm::Delete()
@@ -127,6 +127,7 @@ void DeleteForm::Delete()
 	{
 		return;
 	}
+
     if (!this->qDelete->Processed())
 	{
 		return;
@@ -135,36 +136,36 @@ void DeleteForm::Delete()
     if (this->qDelete->Result->Failed)
 	{
         /// \todo LOCALIZE ME
-        Failed("page can't be deleted: " + this->qDelete->Result->ErrorMessage);
+        this->Failed("page can't be deleted: " + this->qDelete->Result->ErrorMessage);
 		return;
 	}
 	// let's assume the page was deleted
-	ui->pushButton->setText("deleted");
+    this->ui->pushButton->setText("deleted");
     Huggle::Syslog::HuggleLogs->DebugLog("deletion result: " + this->qDelete->Result->Data, 2);
     this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
 }
 
-void DeleteForm::Failed(QString reason)
+void DeleteForm::Failed(QString Reason)
 {
 	QMessageBox *_b = new QMessageBox();
     /// \todo LOCALIZE ME
 	_b->setWindowTitle("Unable to delete page");
     /// \todo LOCALIZE ME
-    _b->setText("Unable to delete the page because " + reason);
+    _b->setText("Unable to delete the page because " + Reason);
 	_b->exec();
 	delete _b;
 	this->dt->stop();
 	delete this->dt;
-	this->dt = NULL;
-	ui->pushButton->setEnabled(true);
+    this->dt = NULL;
+    this->ui->pushButton->setEnabled(true);
     if (this->qToken != NULL)
 	{
-        qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
     if (this->qDelete != NULL)
 	{
-        qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
     this->qDelete = NULL;
     this->qToken = NULL;
@@ -173,7 +174,7 @@ void DeleteForm::Failed(QString reason)
 void DeleteForm::on_pushButton_clicked()
 {
 	this->getToken();
-	ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
 }
 
 void DeleteForm::on_pushButton_2_clicked()

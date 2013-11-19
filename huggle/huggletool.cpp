@@ -15,7 +15,7 @@ using namespace Huggle;
 
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     this->query = NULL;
     this->tick = new QTimer(this);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -24,8 +24,8 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
 
 HuggleTool::~HuggleTool()
 {
-    delete tick;
-    delete ui;
+    delete this->tick;
+    delete this->ui;
 }
 
 void HuggleTool::SetTitle(QString title)
