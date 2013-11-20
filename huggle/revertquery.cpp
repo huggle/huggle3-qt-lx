@@ -134,13 +134,13 @@ void RevertQuery::OnTick()
 {
     if (this->Status != StatusDone)
     {
-        if (!PreflightFinished)
+        if (!this->PreflightFinished)
         {
             CheckPreflight();
             return;
         }
 
-        if (!RollingBack)
+        if (!this->RollingBack)
         {
             this->Rollback();
             return;
@@ -395,8 +395,8 @@ bool RevertQuery::CheckRevert()
     {
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
-        qRevert->Result->Failed = true;
-        qRevert->Result->ErrorMessage = CustomStatus;
+        this->qRevert->Result->Failed = true;
+        this->qRevert->Result->ErrorMessage = CustomStatus;
         this->Result = new QueryResult();
         this->Result->ErrorMessage = CustomStatus;
         this->Result->Failed = true;
@@ -569,7 +569,7 @@ bool RevertQuery::ProcessRevert()
             .replace("$2", target)
             .replace("$3", QString::number(depth))
             .replace("$4", QString::number(RevID));
-    EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, MinorEdit);
+    this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit);
     this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     /// \todo LOCALIZE ME
     this->CustomStatus = "Editing page";
@@ -601,7 +601,7 @@ void RevertQuery::Rollback()
 
     if (this->UsingSR)
     {
-        Revert();
+        this->Revert();
         return;
     }
     if (!Configuration::HuggleConfiguration->Rights.contains("rollback"))
@@ -670,10 +670,10 @@ void RevertQuery::Exit()
     {
         this->timer->stop();
     }
-    if (EditQuerySoftwareRollback != NULL)
+    if (this->EditQuerySoftwareRollback != NULL)
     {
-        EditQuerySoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        EditQuerySoftwareRollback = NULL;
+        this->EditQuerySoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->EditQuerySoftwareRollback = NULL;
     }
     this->UnregisterConsumer("RevertQuery::Timer");
     if (this->qRevert != NULL)

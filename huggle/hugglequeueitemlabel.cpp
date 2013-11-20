@@ -17,61 +17,61 @@ int HuggleQueueItemLabel::Count = 0;
 
 HuggleQueueItemLabel::HuggleQueueItemLabel(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleQueueItemLabel)
 {
-    ParentQueue = (HuggleQueue*)parent;
-    ui->setupUi(this);
+    this->ParentQueue = (HuggleQueue*)parent;
+    this->ui->setupUi(this);
 }
 
 HuggleQueueItemLabel::~HuggleQueueItemLabel()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void HuggleQueueItemLabel::SetName(QString name)
 {
-    ui->label_2->setText(name);
+    this->ui->label_2->setText(name);
     if (this->page != NULL)
     {
         // change the icon according to edit type
         if (this->page->OwnEdit)
         {
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
             return;
         }
 
         if (this->page->User->IsReported)
         {
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
             return;
         }
 
         switch (this->page->CurrentUserWarningLevel)
         {
             case WarningLevelNone:
-                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
+                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
                 break;
             case WarningLevel1:
-                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
+                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
                 return;
             case WarningLevel2:
-                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-2.png"));
+                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-2.png"));
                 return;
             case WarningLevel3:
-                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-3.png"));
+                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-3.png"));
                 return;
             case WarningLevel4:
-                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
+                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
                 return;
         }
 
         if (this->page->Score > 1000)
         {
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warning.png"));
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warning.png"));
             return;
         }
 
         if (this->page->User->IsIP())
         {
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
             return;
         }
     }
@@ -79,7 +79,7 @@ void HuggleQueueItemLabel::SetName(QString name)
 
 QString HuggleQueueItemLabel::GetName()
 {
-    return ui->label_2->text();
+    return this->ui->label_2->text();
 }
 
 void HuggleQueueItemLabel::Process(QLayoutItem *qi)

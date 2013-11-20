@@ -30,18 +30,18 @@ HuggleTool::~HuggleTool()
 
 void HuggleTool::SetTitle(QString title)
 {
-    ui->lineEdit->setText(title);
-    ui->comboBox_2->lineEdit()->setText(title);
+    this->ui->lineEdit->setText(title);
+    this->ui->comboBox_2->lineEdit()->setText(title);
 }
 
 void HuggleTool::SetInfo(QString info)
 {
-    ui->lineEdit->setText(info);
+    this->ui->lineEdit->setText(info);
 }
 
 void HuggleTool::SetUser(QString user)
 {
-    ui->comboBox->lineEdit()->setText(user);
+    this->ui->comboBox->lineEdit()->setText(user);
 }
 
 void HuggleTool::SetPage(WikiPage *page)
@@ -104,9 +104,9 @@ void HuggleTool::FinishPage()
         return;
     }
 
-    edit = new WikiEdit();
-    edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    edit->Page = new WikiPage(this->ui->comboBox_2->lineEdit()->text());
+    this->edit = new WikiEdit();
+    this->edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+    this->edit->Page = new WikiPage(this->ui->comboBox_2->lineEdit()->text());
     QDomDocument d;
     d.setContent(this->query->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
@@ -125,19 +125,19 @@ void HuggleTool::FinishPage()
         }
         if (e.attributes().contains("user"))
         {
-            edit->User = new WikiUser(e.attribute("user"));
+            this->edit->User = new WikiUser(e.attribute("user"));
         }
         if (e.attributes().contains("revid"))
         {
-            edit->RevID = e.attribute("revid").toInt();
+            this->edit->RevID = e.attribute("revid").toInt();
         }
     }
-    if (edit->User == NULL)
+    if (this->edit->User == NULL)
     {
-        edit->User = new WikiUser();
+        this->edit->User = new WikiUser();
     }
-    Core::HuggleCore->PostProcessEdit(edit);
-    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+    Core::HuggleCore->PostProcessEdit(this->edit);
+    this->edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->QueryPhase = 2;
 }
 

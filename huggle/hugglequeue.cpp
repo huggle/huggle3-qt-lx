@@ -104,6 +104,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
         }
         c++;
     }
+    return NULL;
 }
 
 void HuggleQueue::DeleteByRevID(int RevID)
