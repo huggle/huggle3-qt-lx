@@ -70,6 +70,9 @@ QString HuggleLog::Format(QString date, QString text)
     if (text.contains("DEBUG"))
     {
         color = "green";
+    } else if(text.contains("WARNING"))
+    {
+        color = "orange";
     } else if (text.contains("ERROR"))
     {
         color = "red";
