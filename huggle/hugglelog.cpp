@@ -21,10 +21,67 @@ HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLo
 
 void HuggleLog::InsertText(QString text)
 {
-    QString t = this->ui->textEdit->toPlainText();
-    t.prepend(text + "\n");
+    QString t = this->ui->textEdit->toHtml();
+    // first we need to split the lines
+    if (text.contains("\n"))
+    {
+        QStringList lines = text.split("\n");
+        QStringList formatted;
+        // now we format each line
+        int x = 0;
+        while (x < lines.count())
+        {
+            QString l0 = lines.at(x);
+            if (l0.contains("   "))
+            {
+                QString date = l0.mid(0, l0.indexOf("   "));
+                QString line = l0.mid(l0.indexOf("   ") + 2);
+                l0 = this->Format(date, line);
+            }
+            formatted.append(l0);
+            x++;
+        }
+        x = 0;
+        QString temp = "";
+        while (x < formatted.count())
+        {
+            temp += formatted.at(x) + "<br>\n";
+            x++;
+        }
+        t.prepend(temp);
+    } else
+    {
+        // reformat line
+        if (text.contains("   "))
+        {
+            QString date = text.mid(0, text.indexOf("   "));
+            QString line = text.mid(text.indexOf("   ") + 2);
+            text = this->Format(date, line);
+        }
+        t.prepend(text);
+    }
 
-    this->ui->textEdit->setPlainText(t);
+    this->ui->textEdit->setHtml(t);
+}
+
+QString HuggleLog::Format(QString date, QString text)
+{
+    QString color = "";
+    if (text.contains("DEBUG"))
+    {
+        color = "green";
+    } else if (text.contains("ERROR"))
+    {
+        color = "red";
+    }
+
+    if (color == "")
+    {
+        return "<font color=blue>" + date + "</font>" + "<font>" + HuggleWeb::Encode(text) + "</font>";
+    } else
+    {
+        return "<font color=blue>" + date + "</font>" + "<font color=" + color + ">" + HuggleWeb::Encode(text) + "</font>";
+    }
 }
 
 HuggleLog::~HuggleLog()

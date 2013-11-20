@@ -65,6 +65,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class HuggleLog;
     class HistoryForm;
     class UserinfoForm;
     class HuggleQueue;

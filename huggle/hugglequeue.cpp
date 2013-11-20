@@ -92,6 +92,20 @@ void HuggleQueue::Next()
     delete label;
 }
 
+WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
+{
+    int c = 0;
+    while (c < this->Items.count())
+    {
+        HuggleQueueItemLabel *item = this->Items.at(c);
+        if (item->page->RevID == RevID)
+        {
+            return item->page;
+        }
+        c++;
+    }
+}
+
 void HuggleQueue::DeleteByRevID(int RevID)
 {
     int c = 0;

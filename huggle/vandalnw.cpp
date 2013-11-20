@@ -135,8 +135,12 @@ void VandalNw::onTick()
                 if (Command == "ROLLBACK")
                 {
                     int RevID = revid.toInt();
-                    Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
-                    this->Insert(m->user.Nick + " did a rollback of " + revid);
+                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
+                    if (edit != NULL)
+                    {
+                        this->Insert(m->user.Nick + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")");
+                        Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
+                    }
                 }
                 if (Command == "SUSPICIOUS")
                 {

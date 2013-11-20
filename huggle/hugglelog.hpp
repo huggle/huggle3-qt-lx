@@ -16,6 +16,8 @@
 #include <QDockWidget>
 #include <QDateTime>
 #include "exception.hpp"
+#include "huggleweb.hpp"
+#include "syslog.hpp"
 
 namespace Ui
 {
@@ -31,6 +33,7 @@ namespace Huggle
         public:
             explicit HuggleLog(QWidget *parent = 0);
             void InsertText(QString text);
+            QString Format(QString date, QString text);
             ~HuggleLog();
         private:
             Ui::HuggleLog *ui;

@@ -26,7 +26,7 @@ Syslog::~Syslog()
 
 void Syslog::Log(QString Message)
 {
-    Message = "<" + QDateTime::currentDateTime().toString() + "> " + Message;
+    Message = QDateTime::currentDateTime().toString() + "   " + Message;
     std::cout << Message.toStdString() << std::endl;
     this->InsertToRingLog(Message);
     this->lUnwrittenLogs.lock();
