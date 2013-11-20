@@ -61,7 +61,14 @@ int main(int argc, char *argv[])
         int rv = a.exec();
         delete Huggle::Core::HuggleCore;
         return rv;
-    } catch (Huggle::Exception fail)
+    } catch (Huggle::Exception *fail)
+    {
+        Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail->Message);
+        delete Huggle::Core::HuggleCore;
+        int ReturnCore = fail->ErrorCode;
+        delete fail;
+        return ReturnCore;
+    } catch (Huggle::Exception& fail)
     {
         Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail.Message);
         delete Huggle::Core::HuggleCore;

@@ -632,26 +632,26 @@ bool Configuration::ParseLocalConfig(QString config)
 
         switch (ns)
         {
-        /// \todo Some NS are missing here
-        case MEDIAWIKI_NSID_MAIN:
-            Configuration::HuggleConfiguration->LocalConfig_NSTalk = talk;
-            break;
-        case MEDIAWIKI_NSID_CATEGORY:
-            Configuration::HuggleConfiguration->LocalConfig_NSCategory = name;
-            Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk = talk;
-            break;
-        case MEDIAWIKI_NSID_FILE:
-            Configuration::HuggleConfiguration->LocalConfig_NSFile = name;
-            Configuration::HuggleConfiguration->LocalConfig_NSFileTalk = talk;
-            break;
-        case MEDIAWIKI_NSID_HELP:
-            Configuration::HuggleConfiguration->LocalConfig_NSHelp = name;
-            Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk = talk;
-            break;
-        case MEDIAWIKI_NSID_MEDIAWIKI:
-            Configuration::HuggleConfiguration->LocalConfig_NSMediaWiki = name;
-            Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk = talk;
-            break;
+            /// \todo Some NS are missing here
+            case MEDIAWIKI_NSID_MAIN:
+                Configuration::HuggleConfiguration->LocalConfig_NSTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_CATEGORY:
+                Configuration::HuggleConfiguration->LocalConfig_NSCategory = name;
+                Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_FILE:
+                Configuration::HuggleConfiguration->LocalConfig_NSFile = name;
+                Configuration::HuggleConfiguration->LocalConfig_NSFileTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_HELP:
+                Configuration::HuggleConfiguration->LocalConfig_NSHelp = name;
+                Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_MEDIAWIKI:
+                Configuration::HuggleConfiguration->LocalConfig_NSMediaWiki = name;
+                Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk = talk;
+                break;
         }
     }
 
