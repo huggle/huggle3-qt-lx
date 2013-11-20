@@ -14,12 +14,12 @@ using namespace Huggle;
 
 UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 UpdateForm::~UpdateForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void Huggle::UpdateForm::on_pushButton_2_clicked()

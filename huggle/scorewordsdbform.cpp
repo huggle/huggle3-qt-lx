@@ -14,45 +14,45 @@ using namespace Huggle;
 
 ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScoreWordsDbForm)
 {
-    ui->setupUi(this);
-    ui->tableWidget->setColumnCount(3);
+    this->ui->setupUi(this);
+    this->ui->tableWidget->setColumnCount(3);
     QStringList header;
     header << "Score" << "Word" << "Range";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setShowGrid(false);
     int x = 0;
     while (x < Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
     {
         ScoreWord word = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(x);
-        ui->tableWidget->insertRow(x);
-        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
-        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
-        ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches only whole words"));
+        this->ui->tableWidget->insertRow(x);
+        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
+        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches only whole words"));
         x++;
     }
     x = 0;
     while (x < Configuration::HuggleConfiguration->LocalConfig_ScoreParts.count())
     {
         ScoreWord word = Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(x);
-        ui->tableWidget->insertRow(x);
-        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
-        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
-        ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches any word that contains this string"));
+        this->ui->tableWidget->insertRow(x);
+        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
+        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches any word that contains this string"));
         x++;
     }
 }
 
 ScoreWordsDbForm::~ScoreWordsDbForm()
 {
-    delete ui;
+    delete this->ui;
 }

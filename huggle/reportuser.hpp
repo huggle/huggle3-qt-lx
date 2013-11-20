@@ -57,13 +57,19 @@ namespace Huggle
 
         private:
             Ui::ReportUser *ui;
+            //! DOCUMENT ME
             WikiUser *user;
+            //! DOCUMENT ME
             ApiQuery *q;
+            //! DOCUMENT ME
             QTimer *timer;
+            //! DOCUMENT ME
             QTimer *t2;
+            //! DOCUMENT ME
             QTimer *diff;
             QList <QCheckBox*> CheckBoxes;
-            QString report;
+            //! Text of report to send to AIV page
+            QString ReportText;
             //! Content of report
             QString _p;
             bool Loading;

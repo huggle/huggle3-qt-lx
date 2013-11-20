@@ -15,7 +15,7 @@ using namespace Huggle;
 
 WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::WhitelistForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     Configuration::HuggleConfiguration->WhiteList.sort();
     this->Whitelist += Configuration::HuggleConfiguration->WhiteList;
     this->timer = new QTimer(this);
@@ -25,8 +25,8 @@ WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::Whit
 
 WhitelistForm::~WhitelistForm()
 {
-    delete timer;
-    delete ui;
+    delete this->timer;
+    delete this->ui;
 }
 
 void WhitelistForm::OnTick()
@@ -40,7 +40,7 @@ void WhitelistForm::OnTick()
     {
         QString xx = this->Whitelist.at(0);
         xx = xx.replace(QRegExp("[^\\w\\s]"), "");
-        ui->listWidget->addItem(xx);
+        this->ui->listWidget->addItem(xx);
         this->Whitelist.removeAt(0);
         i++;
     }

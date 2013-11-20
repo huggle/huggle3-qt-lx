@@ -71,8 +71,17 @@ instead of
 
 if (!p) { ... }
 
-because despite the first is longer, it's clear you are working with a pointer, from second
-it's not clear what data type it actually is.
+because despite the first is longer, it's clear you are working with a pointer,
+from second it's not clear what data type it actually is.
+
+=== CamelCase ===
+
+Every variable and function should be named using camel case, for example:
+
+int SomeLocalVariable;
+void ThisFunctionDoesALotOfStuff();
+
+IMPORTANT: leading character is capital not lower case
 
 === Indentations ===
 
@@ -83,5 +92,10 @@ Use 4 spaces, no tabs because different IDE's can handle tabs in different way
 If you are working with local object defined for whole class, use always this->object
 so that it's clear on first sight that you aren't working with local object
 (local to function) neither static object, it makes it easier to read the code and prevent
-conflict with other variables or function with same name defined globally for huggle
+conflict with other variables or function with same name defined globally for huggle.
 
+Some IDE's display member variables in different color, but some IDE's don't.
+Using "this" can make it clear to anyone who read the code.
+
+Another reason for this, is that if there was ever implemented a global variable
+or function with same name, it will likely not collide with your code.

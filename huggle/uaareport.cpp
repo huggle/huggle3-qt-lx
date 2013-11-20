@@ -15,27 +15,27 @@ using namespace Huggle;
 
 UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     this->User = NULL;
-    this->contentsOfUAA = "";
+    this->ContentsOfUAA = "";
     this->qUAApage = NULL;
     this->page = NULL;
     this->uT = NULL;
     this->qChUAApage = NULL;
     this->cuT = NULL;
     this->dr = "";
-    this->optionalreason = "";
+    this->OptionalReason = "";
     this->ta = "";
-    this->uaaReportReason = "";
+    this->UAAReportReason = "";
 
 }
 
 UAAReport::~UAAReport()
 {
-    delete ui;
-    delete User;
-    delete uT;
-    delete page;
+    delete this->ui;
+    delete this->User;
+    delete this->uT;
+    delete this->page;
 }
 
 void UAAReport::setUserForUAA(WikiUser *user)
@@ -46,13 +46,13 @@ void UAAReport::setUserForUAA(WikiUser *user)
 void UAAReport::getPageContents()
 {
     this->qUAApage = new ApiQuery();
-    qUAApage->SetAction(ActionQuery);
-    qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
+    this->qUAApage->SetAction(ActionQuery);
+    this->qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
     /// \todo LOCALIZE THIS
-    qUAApage->Target = "Getting content of UAA";
-    qUAApage->RegisterConsumer("UAAReport::getPageContents()");
+    this->qUAApage->Target = "Getting content of UAA";
+    this->qUAApage->RegisterConsumer("UAAReport::getPageContents()");
     Core::HuggleCore->AppendQuery(qUAApage);
-    qUAApage->Process();
+    this->qUAApage->Process();
 
     if (this->uT != NULL)
     {
@@ -112,33 +112,32 @@ void UAAReport::onTick()
 }
 void UAAReport::insertUsername()
 {
-    ta = Configuration::HuggleConfiguration->LocalConfig_UAATemplate;
-    ta.replace("$1", this->User->Username);
-    ta.replace("$2", uaaReportReason + optionalreason);
-    contentsOfUAA = ta + uaaReportReason + optionalreason;
-    dr = dr + "\n" + contentsOfUAA;
+    this->ta = Configuration::HuggleConfiguration->LocalConfig_UAATemplate;
+    this->ta.replace("$1", this->User->Username);
+    this->ta.replace("$2", this->UAAReportReason + this->OptionalReason);
+    this->ContentsOfUAA = this->ta + this->UAAReportReason + this->OptionalReason;
+    this->dr = this->dr + "\n" + this->ContentsOfUAA;
 }
 
 void UAAReport::whatToReport()
 {
-    optionalreason = this->ui->lineEdit->text();
+    this->OptionalReason = this->ui->lineEdit->text();
     if (this->ui->checkBox->isChecked())
     {
-        uaaReportReason = "Username is a policy violation because it is disruptive.";
+        this->UAAReportReason = "Username is a policy violation because it is disruptive.";
     }
     if (this->ui->checkBox_2->isChecked())
     {
-        uaaReportReason = "Username is a policy violation because it is offensive.";
+        this->UAAReportReason = "Username is a policy violation because it is offensive.";
     }
     if (this->ui->checkBox_3->isChecked())
     {
-        uaaReportReason = "Username is a policy violation because it is a promotional username.";
+        this->UAAReportReason = "Username is a policy violation because it is a promotional username.";
     }
     if (this->ui->checkBox_4->isChecked())
     {
-        uaaReportReason = "Username is a policy violation because it is a misleading username.";
+        this->UAAReportReason = "Username is a policy violation because it is a misleading username.";
     }
-
 }
 
 void UAAReport::failed(QString reason)
@@ -154,9 +153,8 @@ void UAAReport::failed(QString reason)
 
 void UAAReport::on_pushButton_clicked()
 {
-    if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() &&
-            !this->ui->checkBox_3->isChecked() && !this->ui->checkBox_4->isChecked()
-            && this->ui->lineEdit->text().isEmpty())
+    if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() && !this->ui->checkBox_3->isChecked()
+            && !this->ui->checkBox_4->isChecked() && this->ui->lineEdit->text().isEmpty())
     {
         QMessageBox *g = new QMessageBox();
         /// \todo LOCALIZE ME
@@ -169,7 +167,7 @@ void UAAReport::on_pushButton_clicked()
 
         return;
     }
-    ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
     this->getPageContents();
 }
 
@@ -181,21 +179,21 @@ void UAAReport::on_pushButton_2_clicked()
 void UAAReport::on_pushButton_3_clicked()
 {
     this->qChUAApage = new ApiQuery();
-    qChUAApage->SetAction(ActionQuery);
-    qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
+    this->qChUAApage->SetAction(ActionQuery);
+    this->qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
             + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
-    qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
+    this->qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
     Core::HuggleCore->AppendQuery(qChUAApage);
-    qChUAApage->Process();
+    this->qChUAApage->Process();
 
     this->cuT = new QTimer(this);
     connect(this->cuT, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
-    cuT->start(100);
+    this->cuT->start(100);
 }
 
 bool UAAReport::checkIfReported()
 {
-    if (dr.contains(this->User->Username))
+    if (this->dr.contains(this->User->Username))
     {
        return false;
     }
@@ -204,11 +202,11 @@ bool UAAReport::checkIfReported()
 
 void UAAReport::onStartOfSearch()
 {
-    if (qChUAApage == NULL)
+    if (this->qChUAApage == NULL)
     {
         return;
     }
-    if (!qChUAApage->Processed())
+    if (!this->qChUAApage->Processed())
     {
         return;
     }
@@ -223,7 +221,7 @@ void UAAReport::onStartOfSearch()
         msgb->setText("Retrieving the page " + Configuration::HuggleConfiguration->LocalConfig_UAAPath + " failed.");
         msgb->setAttribute(Qt::WA_DeleteOnClose);
         msgb->exec();
-        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
         this->cuT->stop();
         return;
     }
@@ -236,7 +234,7 @@ void UAAReport::onStartOfSearch()
         msg->setText("This user has already been reported to UAA.");
         msg->setAttribute(Qt::WA_DeleteOnClose);
         msg->exec();
-        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
         this->cuT->stop();
         return;
     }else
@@ -246,7 +244,7 @@ void UAAReport::onStartOfSearch()
         msga->setText("This user is not reported to UAA.");
         msga->setAttribute(Qt::WA_DeleteOnClose);
         msga->exec();
-        qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
+        this->qChUAApage->UnregisterConsumer("UAAReport::on_pushButton_3_clicked()");
         this->cuT->stop();
         return;
     }

@@ -102,7 +102,7 @@ RevertQuery::~RevertQuery()
         this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         this->edit->UnregisterConsumer("Core::RevertEdit");
     }
-    delete timer;
+    delete this->timer;
 }
 
 QString RevertQuery::QueryTargetToString()

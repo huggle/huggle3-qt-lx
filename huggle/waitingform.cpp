@@ -14,19 +14,19 @@ using namespace Huggle;
 
 WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent), ui(new Ui::WaitingForm)
 {
-    ui->setupUi(this);
-    ui->progressBar->setValue(0);
+    this->ui->setupUi(this);
+    this->ui->progressBar->setValue(0);
 }
 
 WaitingForm::~WaitingForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void WaitingForm::Status(int progress, QString text)
 {
-    ui->label->setText(text);
-    ui->progressBar->setValue(progress);
+    this->ui->label->setText(text);
+    this->ui->progressBar->setValue(progress);
 }
 
 void WaitingForm::reject()

@@ -64,7 +64,7 @@ bool TerminalParser::Parse()
         }
         if (!valid)
         {
-            if (!Silent)
+            if (!this->Silent)
             {
                 cout << (QString("This parameter isn't valid: ") + text).toStdString() << endl;
             }
@@ -91,7 +91,7 @@ bool TerminalParser::ParseChar(QChar x)
 
 void TerminalParser::DisplayHelp()
 {
-    if (Silent)
+    if (this->Silent)
     {
         return;
     }

@@ -50,15 +50,15 @@ namespace Huggle
         private:
             Ui::UAAReport *ui;
             WikiUser *User;
-            QString contentsOfUAA;
+            QString ContentsOfUAA;
             //! Whole contents of UAA page
             QString dr;
             //! String that represents what is in the line edit
-            QString optionalreason;
+            QString OptionalReason;
             //! UAA template
             QString ta;
             //! Reason for report
-            QString uaaReportReason;
+            QString UAAReportReason;
             //! Pointer to WikiUser
             WikiPage *page;
             //! Pointer to get UAA contents (we don't want replace the page with our content, do we?)

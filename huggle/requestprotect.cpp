@@ -15,12 +15,12 @@ using namespace Huggle;
 
 RequestProtect::RequestProtect(QWidget *parent) : QDialog(parent), ui(new Ui::RequestProtect)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 RequestProtect::~RequestProtect()
 {
-    delete ui;
+    delete this->ui;
 }
 
 #endif

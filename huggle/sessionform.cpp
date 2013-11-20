@@ -15,20 +15,20 @@ using namespace Huggle;
 
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
-    ui->setupUi(this);
-    ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->UserName + "\n" +
+    this->ui->setupUi(this);
+    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->UserName + "\n" +
                          "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->UsingSSL));
     int xx=0;
     while (xx < Configuration::HuggleConfiguration->Rights.count())
     {
-        ui->listWidget->addItem(Configuration::HuggleConfiguration->Rights.at(xx));
+        this->ui->listWidget->addItem(Configuration::HuggleConfiguration->Rights.at(xx));
         xx++;
     }
 }
 
 SessionForm::~SessionForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void Huggle::SessionForm::on_pushButton_clicked()

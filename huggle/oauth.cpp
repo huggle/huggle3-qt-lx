@@ -22,6 +22,7 @@ using namespace Huggle;
 
 OAuth::OAuth(QString login)
 {
+
 }
 
 #if _MSC_VER

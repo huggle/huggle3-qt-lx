@@ -46,21 +46,21 @@ void HuggleQueueItemLabel::SetName(QString name)
 
         switch (this->page->CurrentUserWarningLevel)
         {
-        case WarningLevelNone:
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
-            break;
-        case WarningLevel1:
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
-            return;
-        case WarningLevel2:
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-2.png"));
-            return;
-        case WarningLevel3:
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-3.png"));
-            return;
-        case WarningLevel4:
-            ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
-            return;
+            case WarningLevelNone:
+                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
+                break;
+            case WarningLevel1:
+                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
+                return;
+            case WarningLevel2:
+                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-2.png"));
+                return;
+            case WarningLevel3:
+                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-3.png"));
+                return;
+            case WarningLevel4:
+                ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
+                return;
         }
 
         if (this->page->Score > 1000)

@@ -172,9 +172,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (Configuration::HuggleConfiguration->Verbosity == 0)
     {
         this->ui->actionList_all_QGC_items->setVisible(false);
-        ui->actionEdit_info->setVisible(false);
+        this->ui->actionEdit_info->setVisible(false);
         /// \bug This doesn't work
-        ui->menuDebug->hide();
+        this->ui->menuDebug->hide();
     }
     Hooks::MainWindowIsLoad(this);
     Syslog::HuggleLogs->Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");

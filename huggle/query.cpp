@@ -34,7 +34,7 @@ Query::Query()
 
 Query::~Query()
 {
-    delete Result;
+    delete this->Result;
     if (this->CallbackResult != NULL)
     {
         throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
@@ -104,21 +104,21 @@ QString Query::QueryStatusToString()
 
     switch (this->Status)
     {
-    case StatusNull:
-        return "NULL";
-    case StatusDone:
-        return "Done";
-    case StatusProcessing:
-        return "Processing";
-    case StatusInError:
-        if (this->Result != NULL)
-        {
-            if (this->Result->Failed && this->Result->ErrorMessage != "")
+        case StatusNull:
+            return "NULL";
+        case StatusDone:
+            return "Done";
+        case StatusProcessing:
+            return "Processing";
+        case StatusInError:
+            if (this->Result != NULL)
             {
-                return "In error: " + this->Result->ErrorMessage;
+                if (this->Result->Failed && this->Result->ErrorMessage != "")
+                {
+                    return "In error: " + this->Result->ErrorMessage;
+                }
             }
-        }
-        return "InError";
+            return "InError";
     }
     return "Unknown";
 }

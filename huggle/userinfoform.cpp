@@ -15,13 +15,13 @@ using namespace Huggle;
 
 UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
-    ui->setupUi(this);
-    ui->pushButton->setEnabled(false);
+    this->ui->setupUi(this);
+    this->ui->pushButton->setEnabled(false);
 }
 
 UserinfoForm::~UserinfoForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void UserinfoForm::ChangeUser(WikiUser *user)
@@ -31,7 +31,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
         throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
     }
     this->User = user;
-    ui->pushButton->setEnabled(true);
-    ui->pushButton->setText("Retrieve info");
-    ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
+    this->ui->pushButton->setEnabled(true);
+    this->ui->pushButton->setText("Retrieve info");
+    this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
 }
