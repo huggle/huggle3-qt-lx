@@ -139,6 +139,7 @@ void VandalNw::onTick()
                     if (edit != NULL)
                     {
                         this->Insert(m->user.Nick + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")");
+                        edit->User->setBadnessScore(edit->User->getBadnessScore() + 200);
                         Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
                     }
                 }
