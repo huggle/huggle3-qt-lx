@@ -122,10 +122,16 @@ void VandalNw::onTick()
         if (m->Text.startsWith(pref))
         {
             QString Command = m->Text.mid(2);
-            if (m->Text.contains(" "))
+            if (Command.contains(" "))
             {
                 Command = Command.mid(0, Command.indexOf(" "));
                 QString revid = m->Text.mid(m->Text.indexOf(" ") + 1);
+                QString parameter = "";
+                if (revid.contains(" "))
+                {
+                    parameter = revid.mid(revid.indexOf(" ") + 1);
+                    revid = revid.mid(0, revid.indexOf(" "));
+                }
                 if (Command == "GOOD")
                 {
                     int RevID = revid.toInt();
@@ -157,6 +163,21 @@ void VandalNw::onTick()
                         this->Insert(m->user.Nick + " thinks that edit to " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") is likely a vandalism, but they didn't revert it");
                         edit->Score += 600;
                         Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                    }
+                }
+                if (Command == "SCORED")
+                {
+                    int RevID = revid.toInt();
+                    int Score = parameter.toInt();
+                    if (Score != 0)
+                    {
+                        WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
+                        if (edit != NULL)
+                        {
+                            this->Insert(m->user.Nick + " rescored edit " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") by " + QString::number(Score));
+                            edit->Score += Score;
+                            Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                        }
                     }
                 }
             }
