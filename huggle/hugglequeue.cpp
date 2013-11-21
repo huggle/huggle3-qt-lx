@@ -25,7 +25,7 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
     this->ui->scrollArea->setWidget(this->xx);
     this->xx->setLayout(this->layout);
     this->layout->addWidget(this->frame);
-    this->Filters()
+    this->Filters();
     this->ui->comboBox->setCurrentIndex(0);
 }
 
@@ -333,7 +333,7 @@ void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)
 {
-    if (index < HuggleQueueFilter::Filters.count)
+    if (index < HuggleQueueFilter::Filters.count())
     {
         this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
     }
