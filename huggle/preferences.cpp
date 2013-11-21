@@ -153,6 +153,13 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         // don't touch a default filter
         return;
     }
+    if (this->ui->lineEdit->text().contains(":"))
+    {
+        QMessageBox mb;
+        mb.setText("You can't use : in name of queue");
+        mb.exec();
+        return;
+    }
     filter->setIgnoreBots(this->ui->checkBox_7->isChecked());
     filter->setIgnoreNP(this->ui->checkBox_8->isChecked());
     filter->setIgnoreWL(this->ui->checkBox_9->isChecked());
