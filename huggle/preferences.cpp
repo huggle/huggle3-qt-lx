@@ -62,6 +62,10 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
+    if (!this->ui->listWidget->currentRow() >= 0 || this->ui->listWidget->currentRow() <  !HuggleQueueFilter::Filters.count())
+    {
+        return;
+    }
     if (HuggleQueueFilter::Filters.at(this->ui->listWidget->currentRow())->IsDefault())
     {
         this->Disable();
