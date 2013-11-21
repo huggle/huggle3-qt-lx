@@ -301,6 +301,7 @@ void HuggleQueue::Filters()
         {
             id = x;
         }
+        x++;
         this->ui->comboBox->addItem(FilthyFilter->QueueName);
     }
     this->ui->comboBox->setCurrentIndex(id);
