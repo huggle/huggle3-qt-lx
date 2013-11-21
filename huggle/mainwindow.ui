@@ -165,6 +165,7 @@
     </property>
     <addaction name="actionList_all_QGC_items"/>
     <addaction name="actionEdit_info"/>
+    <addaction name="actionResort_queue"/>
    </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
@@ -748,6 +749,11 @@
   <action name="actionDisplay_whitelist">
    <property name="text">
     <string notr="true">Display whitelist</string>
+   </property>
+  </action>
+  <action name="actionResort_queue">
+   <property name="text">
+    <string>Resort queue</string>
    </property>
   </action>
  </widget>

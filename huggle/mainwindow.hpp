@@ -260,6 +260,8 @@ namespace Huggle
             void on_actionDisplay_a_session_data_triggered();
             void on_actionDisplay_whitelist_triggered();
 
+            void on_actionResort_queue_triggered();
+
         private:
             QTimer *timer1;
             // Whitelist

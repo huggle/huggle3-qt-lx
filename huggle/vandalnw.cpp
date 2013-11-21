@@ -129,8 +129,13 @@ void VandalNw::onTick()
                 if (Command == "GOOD")
                 {
                     int RevID = revid.toInt();
-                    Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
-                    this->Insert(m->user.Nick + " seen a good edit " + revid);
+                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
+                    if (edit != NULL)
+                    {
+                        edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
+                        this->Insert(m->user.Nick + " seen a good edit to " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")");
+                        Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
+                    }
                 }
                 if (Command == "ROLLBACK")
                 {
@@ -145,11 +150,16 @@ void VandalNw::onTick()
                 }
                 if (Command == "SUSPICIOUS")
                 {
-                    /// \todo find and change the score of that edit, update queue and sort it.
-                    this->Insert(m->user.Nick + " thinks that edit " + revid + " is likely a vandalism, but they didn't revert it");
+                    int RevID = revid.toInt();
+                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
+                    if (edit != NULL)
+                    {
+                        this->Insert(m->user.Nick + " thinks that edit to " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") is likely a vandalism, but they didn't revert it");
+                        edit->Score += 600;
+                        Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                    }
                 }
             }
-
         } else
         {
             this->Insert(m->user.Nick + ": " + m->Text);
@@ -160,10 +170,9 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text)
 {
-    QString t = ui->textEdit->toPlainText();
+    QString t = this->ui->textEdit->toPlainText();
     t.prepend(text + "\n");
-
-    ui->textEdit->setPlainText(t);
+    this->ui->textEdit->setPlainText(t);
 }
 
 void Huggle::VandalNw::on_pushButton_clicked()
@@ -173,5 +182,5 @@ void Huggle::VandalNw::on_pushButton_clicked()
         this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
         this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
     }
-    ui->lineEdit->setText("");
+    this->ui->lineEdit->setText("");
 }

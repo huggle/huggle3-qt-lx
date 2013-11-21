@@ -1680,3 +1680,8 @@ void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
     this->fWhitelist = new WhitelistForm(this);
     this->fWhitelist->show();
 }
+
+void Huggle::MainWindow::on_actionResort_queue_triggered()
+{
+    this->Queue1->Sort();
+}

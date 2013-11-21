@@ -120,14 +120,107 @@ void HuggleQueue::DeleteByRevID(int RevID)
                 // we can't delete item that is being reviewed now
                 return;
             }
-            HuggleQueueItemLabel::Count--;
-            item->close();
-            this->Delete(item);
-            this->Items.removeAll(item);
-            delete item;
+            this->DeleteItem(item);
             return;
         }
         c++;
+    }
+}
+
+void HuggleQueue::Sort()
+{
+    int c = 0;
+    while (c < this->layout->count() - 1)
+    {
+        QLayoutItem *i = this->layout->itemAt(c);
+        this->ResortItem(i, c);
+        c++;
+    }
+}
+
+void HuggleQueue::SortItemByEdit(WikiEdit *e)
+{
+    int c = 0;
+    while (c < this->layout->count() - 1)
+    {
+        QLayoutItem *i = this->layout->itemAt(c);
+        HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
+        if (x->page == e)
+        {
+            this->ResortItem(i, c);
+            return;
+        }
+        c++;
+    }
+}
+
+void HuggleQueue::ResortItem(QLayoutItem *item, int position)
+{
+    if (position < 0)
+    {
+        // we don't know the position so we need to calculate it
+        position = 0;
+        while (position < this->layout->count() - 1)
+        {
+            if (item == this->layout->itemAt(position))
+            {
+                break;
+            }
+            position++;
+        }
+        if (position == this->layout->count() - 1)
+        {
+            Syslog::HuggleLogs->DebugLog("Unable to sort the queue because item wasn't present");
+            return;
+        }
+    }
+
+    // first we get the item
+    HuggleQueueItemLabel *q1 = (HuggleQueueItemLabel*)item->widget();
+    int Score = q1->page->Score;
+    int x = 0;
+    bool sorted = true;
+    while (x < position)
+    {
+        // every item on left side has to be lower than this one
+        // get the item by index and compare the size
+        QLayoutItem *l2 = this->layout->itemAt(x);
+        if (l2 != item)
+        {
+            HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
+            if (q2->page->Score < Score)
+            {
+                sorted = false;
+                break;
+            }
+        }
+        x++;
+    }
+    while (x < this->layout->count() - 1)
+    {
+        // every item on right side has to be bigger than this one
+        // get the item by index and compare the size
+        QLayoutItem *l2 = this->layout->itemAt(x);
+        if (l2 != item)
+        {
+            HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
+            if (q2->page->Score > Score)
+            {
+                sorted = false;
+                break;
+            }
+        }
+        x++;
+    }
+    if (!sorted)
+    {
+        // now we need to remove the item and place it again
+        // because QT doesn't allow manual insertion of item for unknown reasons, we need to readd whole item
+        WikiEdit *page = q1->page;
+        page->RegisterConsumer("HuggleQueue::ResortItem");
+        this->DeleteItem(q1);
+        this->AddItem(page);
+        page->UnregisterConsumer("HuggleQueue::ResortItem");
     }
 }
 
@@ -210,4 +303,13 @@ long HuggleQueue::GetScore(int id)
         return MINIMAL_SCORE;
     }
     return label->page->Score;
+}
+
+void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
+{
+    HuggleQueueItemLabel::Count--;
+    item->close();
+    this->Delete(item);
+    this->Items.removeAll(item);
+    delete item;
 }

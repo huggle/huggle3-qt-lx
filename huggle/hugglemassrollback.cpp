@@ -15,10 +15,10 @@ using namespace Huggle;
 
 HuggleMassRollback::HuggleMassRollback(QWidget *parent) : QDialog(parent), ui(new Ui::HuggleMassRollback)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 HuggleMassRollback::~HuggleMassRollback()
 {
-    delete ui;
+    delete this->ui;
 }

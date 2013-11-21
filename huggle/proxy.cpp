@@ -15,10 +15,10 @@ using namespace Huggle;
 
 Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 Proxy::~Proxy()
 {
-    delete ui;
+    delete this->ui;
 }

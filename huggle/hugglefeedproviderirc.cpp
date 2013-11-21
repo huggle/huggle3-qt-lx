@@ -130,7 +130,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 void HuggleFeedProviderIRC::ParseEdit(QString line)
 {
     // skip edits if provider is disabled
-    if (Paused)
+    if (this->Paused)
     {
         return;
     }
