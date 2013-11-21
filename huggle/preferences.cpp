@@ -62,11 +62,12 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
-    if (!this->ui->listWidget->currentRow() >= 0 || this->ui->listWidget->currentRow() <  !HuggleQueueFilter::Filters.count())
+    int id = this->ui->listWidget->currentRow();
+    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
     {
         return;
     }
-    if (HuggleQueueFilter::Filters.at(this->ui->listWidget->currentRow())->IsDefault())
+    if (HuggleQueueFilter::Filters.at(id)->IsDefault())
     {
         this->Disable();
     } else
@@ -141,7 +142,12 @@ void Huggle::Preferences::on_checkBox_clicked()
 
 void Huggle::Preferences::on_pushButton_6_clicked()
 {
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    int id = this->ui->listWidget->currentRow();
+    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
+    {
+        return;
+    }
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
     if (filter->IsDefault())
     {
         // don't touch a default filter
@@ -164,7 +170,12 @@ void Huggle::Preferences::on_pushButton_5_clicked()
 
 void Huggle::Preferences::on_pushButton_4_clicked()
 {
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    int id = this->ui->listWidget->currentRow();
+    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
+    {
+        return;
+    }
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
     if (filter->IsDefault())
     {
         // don't touch a default filter
@@ -179,6 +190,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
     }
     HuggleQueueFilter::Filters.removeAll(filter);
     delete filter;
+    this->Disable();
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();
 }
