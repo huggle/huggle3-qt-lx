@@ -43,6 +43,7 @@ bool TerminalParse(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+    int ReturnCode = 0;
     try
     {
         // check if arguments don't need to exit program
@@ -57,17 +58,16 @@ int main(int argc, char *argv[])
         Huggle::HgApplication a(argc, argv);
         Huggle::Core::HuggleCore->f_Login = new Huggle::Login();
         Huggle::Core::HuggleCore->f_Login->show();
-
-        int rv = a.exec();
+        ReturnCode = a.exec();
         delete Huggle::Core::HuggleCore;
-        return rv;
+        return ReturnCode;
     } catch (Huggle::Exception *fail)
     {
         Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail->Message);
         delete Huggle::Core::HuggleCore;
-        int ReturnCore = fail->ErrorCode;
+        ReturnCode = fail->ErrorCode;
         delete fail;
-        return ReturnCore;
+        return ReturnCode;
     } catch (Huggle::Exception& fail)
     {
         Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail.Message);

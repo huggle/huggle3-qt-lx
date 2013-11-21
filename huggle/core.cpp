@@ -554,6 +554,17 @@ void Core::PreProcessEdit(WikiEdit *_e)
 
     _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->EditSuffixOfHuggle);
 
+    int x = 0;
+    while (x < Configuration::HuggleConfiguration->LocalConfig_Assisted.count())
+    {
+        if (_e->Summary.contains(Configuration::HuggleConfiguration->LocalConfig_Assisted.at(x)))
+        {
+            _e->TrustworthEdit = true;
+            break;
+        }
+        x++;
+    }
+
     _e->Status = StatusProcessed;
 }
 
