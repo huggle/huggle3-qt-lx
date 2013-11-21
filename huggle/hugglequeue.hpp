@@ -53,6 +53,11 @@ namespace Huggle
             void Trim(int i);
             //! Remove 1 item
             void Trim();
+            //! Reload filters
+            void Filters();
+
+        private slots:
+            void on_comboBox_currentIndexChanged(int index);
 
         private:
             long GetScore(int id);

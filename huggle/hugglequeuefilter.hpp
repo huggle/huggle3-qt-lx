@@ -65,6 +65,7 @@ namespace Huggle
             bool getIgnoreSelf() const;
             //! Changes if this filter is matching edits made by current user
             void setIgnoreSelf(bool value);
+            bool IsDefault() const;
 
         private:
             bool IgnoreMinor;

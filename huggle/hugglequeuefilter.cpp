@@ -159,6 +159,11 @@ void HuggleQueueFilter::setIgnoreSelf(bool value)
     IgnoreSelf = value;
 }
 
+bool HuggleQueueFilter::IsDefault() const
+{
+    return this == HuggleQueueFilter::DefaultFilter;
+}
+
 
 
 

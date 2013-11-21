@@ -36,12 +36,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int c = 0;
-    while (c < HuggleQueueFilter::Filters.count())
-    {
-        this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
-        c++;
-    }
-    c = 0;
+    this->Reload();
     while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Loading extension info");
@@ -67,7 +62,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
-    if (this->ui->listWidget->currentRow() == 0)
+    if (HuggleQueueFilter::Filters.at(this->ui->listWidget->currentRow())->IsDefault())
     {
         this->Disable();
     } else
@@ -138,4 +133,68 @@ void Huggle::Preferences::on_checkBox_clicked()
 {
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+}
+
+void Huggle::Preferences::on_pushButton_6_clicked()
+{
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    if (filter->IsDefault())
+    {
+        // don't touch a default filter
+        return;
+    }
+    filter->setIgnoreBots(this->ui->checkBox_7->isChecked());
+    filter->setIgnoreNP(this->ui->checkBox_8->isChecked());
+    filter->setIgnoreWL(this->ui->checkBox_9->isChecked());
+    filter->setIgnoreSelf(this->ui->checkBox_6->isChecked());
+    filter->setIgnoreFriends(this->ui->checkBox_10->isChecked());
+    filter->QueueName = this->ui->lineEdit->text();
+    Core::HuggleCore->Main->Queue1->Filters();
+    this->Reload();
+}
+
+void Huggle::Preferences::on_pushButton_5_clicked()
+{
+
+}
+
+void Huggle::Preferences::on_pushButton_4_clicked()
+{
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    if (filter->IsDefault())
+    {
+        // don't touch a default filter
+        return;
+    }
+    if (Core::HuggleCore->Main->Queue1->CurrentFilter == filter)
+    {
+        QMessageBox mb;
+        mb.setText("You can't delete a filter that is currently being used");
+        mb.exec();
+        return;
+    }
+    HuggleQueueFilter::Filters.removeAll(filter);
+    delete filter;
+    Core::HuggleCore->Main->Queue1->Filters();
+    this->Reload();
+}
+
+void Huggle::Preferences::on_pushButton_3_clicked()
+{
+    HuggleQueueFilter *filter = new HuggleQueueFilter();
+    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters.count());
+    HuggleQueueFilter::Filters.append(filter);
+    Core::HuggleCore->Main->Queue1->Filters();
+    this->Reload();
+}
+
+void Preferences::Reload()
+{
+    int c = 0;
+    this->ui->listWidget->clear();
+    while (c < HuggleQueueFilter::Filters.count())
+    {
+        this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
+        c++;
+    }
 }
