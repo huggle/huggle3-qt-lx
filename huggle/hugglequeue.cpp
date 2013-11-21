@@ -334,7 +334,7 @@ void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)
 {
-    if (index < HuggleQueueFilter::Filters.count())
+    if (index > -1 && index < HuggleQueueFilter::Filters.count())
     {
         this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
     }
