@@ -300,6 +300,7 @@ void Core::LoadDefs()
             i++;
         }
     }
+    Syslog::HuggleLogs->DebugLog("Loaded " + QString::number(WikiUser::ProblematicUsers.count()) + " records from last session");
     defs.close();
 }
 
