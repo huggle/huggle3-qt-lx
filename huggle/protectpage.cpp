@@ -172,11 +172,11 @@ void ProtectPage::Protect()
     {
         return;
     }
-    if (ptpt == NULL)
+    if (this->ptpt == NULL)
     {
         return;
     }
-    if (ptpt->Result->Failed)
+    if (this->ptpt->Result->Failed)
     {
         /// \todo LOCALIZE ME
         Failed("The API query failed. Reason supplied was: " + ptpt->Result->ErrorMessage);

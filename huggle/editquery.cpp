@@ -26,9 +26,9 @@ EditQuery::EditQuery()
 
 EditQuery::~EditQuery()
 {
-    if (qToken != NULL)
+    if (this->qToken != NULL)
     {
-        qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
     }
 }
 
@@ -36,13 +36,13 @@ void EditQuery::Process()
 {
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    qToken = new ApiQuery();
-    qToken->SetAction(ActionQuery);
-    qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
-    qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
-    qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
+    this->qToken = new ApiQuery();
+    this->qToken->SetAction(ActionQuery);
+    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
+    this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
+    this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     Core::HuggleCore->AppendQuery(qToken);
-    qToken->Process();
+    this->qToken->Process();
 }
 
 bool EditQuery::Processed()
@@ -51,13 +51,13 @@ bool EditQuery::Processed()
     {
         return true;
     }
-    if (qToken != NULL)
+    if (this->qToken != NULL)
     {
-        if (!qToken->Processed())
+        if (!this->qToken->Processed())
         {
             return false;
         }
-        if (qToken->Result->Failed)
+        if (this->qToken->Result->Failed)
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
@@ -67,7 +67,7 @@ bool EditQuery::Processed()
             return true;
         }
         QDomDocument d;
-        d.setContent(qToken->Result->Data);
+        d.setContent(this->qToken->Result->Data);
         QDomNodeList l = d.elementsByTagName("page");
         if (l.count() == 0)
         {
@@ -90,29 +90,29 @@ bool EditQuery::Processed()
             this->qToken = NULL;
             return true;
         }
-        _Token = element.attribute("edittoken");
-        qToken->Lock();
-        qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        qToken = NULL;
-        qEdit = new ApiQuery();
-        qEdit->Target = "Writing " + Page;
-        qEdit->UsingPOST = true;
-        qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        qEdit->SetAction(ActionEdit);
-        qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(text) +
+        this->_Token = element.attribute("edittoken");
+        this->qToken->Lock();
+        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+        this->qToken = NULL;
+        this->qEdit = new ApiQuery();
+        this->qEdit->Target = "Writing " + this->Page;
+        this->qEdit->UsingPOST = true;
+        this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
+        this->qEdit->SetAction(ActionEdit);
+        this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(text) +
                 "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" + QUrl::toPercentEncoding(_Token);
         Core::HuggleCore->AppendQuery(qEdit);
-        qEdit->Process();
+        this->qEdit->Process();
         return false;
     }
-    if (qEdit != NULL)
+    if (this->qEdit != NULL)
     {
-        if (!qEdit->Processed())
+        if (!this->qEdit->Processed())
         {
             return false;
         }
         QDomDocument d;
-        d.setContent(qEdit->Result->Data);
+        d.setContent(this->qEdit->Result->Data);
         QDomNodeList l = d.elementsByTagName("edit");
         if (l.count() > 0)
         {
@@ -133,9 +133,9 @@ bool EditQuery::Processed()
                 }
             }
         }
-        Result = new QueryResult();
-        qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        qEdit = NULL;
+        this->Result = new QueryResult();
+        this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+        this->qEdit = NULL;
     }
     return true;
 }

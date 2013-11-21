@@ -24,6 +24,12 @@ IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList
         this->model->setItem(it, new QStandardItem(Configuration::HuggleConfiguration->LocalConfig_Ignores.at(it)));
         it++;
     }
+    it = 0;
+    while (it < Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.count())
+    {
+        this->model->setItem(it, new QStandardItem("^.*" + Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.at(it) + ".*$"));
+        it++;
+    }
 }
 
 IgnoreList::~IgnoreList()
