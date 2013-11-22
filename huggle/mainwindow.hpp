@@ -164,9 +164,9 @@ namespace Huggle
             //! If system is shutting down this is displaying which part of shutdown is currently being executed
             ShutdownOp Shutdown;
             ReportUser *fReportForm;
-#if !PRODUCTION_BUILD
             //! Pointer to a form to block user
             BlockUser *fBlockForm;
+#if !PRODUCTION_BUILD
             //! Pointer to a form to delete a page
             DeleteForm *fDeleteForm;
 #endif
@@ -259,7 +259,6 @@ namespace Huggle
             void on_actionRevert_AGF_triggered();
             void on_actionDisplay_a_session_data_triggered();
             void on_actionDisplay_whitelist_triggered();
-
             void on_actionResort_queue_triggered();
 
         private:

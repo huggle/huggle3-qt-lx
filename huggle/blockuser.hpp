@@ -21,7 +21,6 @@
 #include "configuration.hpp"
 #include "wikiuser.hpp"
 
-#if !PRODUCTION_BUILD
 namespace Ui
 {
     class BlockUser;
@@ -68,4 +67,3 @@ namespace Huggle
 }
 
 #endif // BLOCKUSER_H
-#endif

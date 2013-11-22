@@ -11,7 +11,6 @@
 #include "blockuser.hpp"
 #include "ui_blockuser.h"
 
-#if !PRODUCTION_BUILD
 using namespace Huggle;
 
 BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
@@ -25,6 +24,17 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->t0 = NULL;
     this->tb = NULL;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
+    this->ui->comboBox_2->addItem("indefinite");
+    this->ui->comboBox_2->addItem("1 year");
+    this->ui->comboBox_2->addItem("6 months");
+    this->ui->comboBox_2->addItem("3 months");
+    this->ui->comboBox_2->addItem("1 month");
+    this->ui->comboBox_2->addItem("2 weeks");
+    this->ui->comboBox_2->addItem("1 week");
+    this->ui->comboBox_2->addItem("3 days");
+    this->ui->comboBox_2->addItem("1 day");
+    this->ui->comboBox_2->addItem("1 hour");
+    this->ui->checkBox_2->setText("indefinite");
 }
 
 BlockUser::~BlockUser()
@@ -101,7 +111,7 @@ void BlockUser::CheckToken()
     }
     QDomDocument d;
     d.setContent(this->b->Result->Data);
-    QDomNodeList l = d.elementsByTagName("user");
+    QDomNodeList l = d.elementsByTagName("page");
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->b->Result->Data);
@@ -128,15 +138,15 @@ void BlockUser::CheckToken()
     this->tb->SetAction(ActionQuery);
     if (this->user->IsIP())
     {
-        this->tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "expiry="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "token="
+        this->tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&expiry="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "&token="
                 + QUrl::toPercentEncoding(BlockToken);
 
     }else
     {
-        this->tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "token="
+        this->tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "&reason="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&token="
                 + QUrl::toPercentEncoding(BlockToken);
     }
     /// \todo LOCALIZE ME
@@ -154,6 +164,7 @@ void BlockUser::Block()
     {
         return;
     }
+
     if (!this->tb->Processed())
     {
         return;
@@ -165,7 +176,29 @@ void BlockUser::Block()
         this->Failed("user can't be blocked: " + this->tb->Result->ErrorMessage);
         return;
     }
+    QDomDocument d;
+    d.setContent(this->tb->Result->Data);
+    QDomNodeList l = d.elementsByTagName("error");
+    if (l.count() > 0)
+    {
+        QDomElement node = l.at(0).toElement();
+        QString reason = this->tb->Result->Data;
+        if (node.attributes().contains("info"))
+        {
+            reason = node.attribute("info");
+        }
+        QMessageBox mb;
+        mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
+        mb.setText("Unable to block: " + reason);
+        mb.exec();
+        this->ui->pushButton->setText("Block");
+        this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+        this->ui->pushButton->setEnabled(true);
+        this->t0->stop();
+        return;
+    }
     // let's assume the user was blocked
+    Huggle::Syslog::HuggleLogs->DebugLog(this->tb->Result->Data);
     this->ui->pushButton->setText("Blocked");
     Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->tb->Result->Data, 2);
     this->tb->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
@@ -216,5 +249,5 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
 }
 
-#endif
+
 
