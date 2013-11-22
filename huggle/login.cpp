@@ -80,6 +80,7 @@ void Login::Localize()
     this->ui->label_4->setText(Localizations::HuggleLocalizations->Localize("[[login-project]]"));
     this->ui->label_5->setText(Localizations::HuggleLocalizations->Localize("[[login-language]]"));
     this->ui->label_7->setText(Localizations::HuggleLocalizations->Localize("[[login-password"));
+    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
 }
 
 void Login::Reset()
@@ -94,7 +95,7 @@ void Login::CancelLogin()
     this->Enable();
     this->_Status = Nothing;
     this->ui->lineEdit_3->setText("");
-    this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("[[login-start]]"));
+    this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
 }
 
 void Login::Enable()

@@ -1110,7 +1110,7 @@ void MainWindow::ReconnectIRC()
     {
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(true);
-        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
+        Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
         delete Core::HuggleCore->PrimaryFeedProvider;
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::HuggleCore->PrimaryFeedProvider->Start();
@@ -1158,6 +1158,13 @@ void MainWindow::Localize()
     this->ui->menuHelp->setTitle(Localizations::HuggleLocalizations->Localize("main-help"));
     this->ui->menuUser->setTitle(Localizations::HuggleLocalizations->Localize("main-user"));
     this->ui->menuQueue->setTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
+    this->ui->menuFile->setTitle(Localizations::HuggleLocalizations->Localize("main-system"));
+    this->ui->actionAbout->setText(Localizations::HuggleLocalizations->Localize("main-help-about"));
+    this->ui->actionBack->setText(Localizations::HuggleLocalizations->Localize("main-browser-back"));
+    this->ui->actionBlock_user->setText(Localizations::HuggleLocalizations->Localize("main-user-block"));
+    this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-talk"));
+    this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
+    this->ui->actionExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
 }
 
 bool MainWindow::CheckExit()
@@ -1165,7 +1172,7 @@ bool MainWindow::CheckExit()
     if (this->ShuttingDown)
     {
         QMessageBox mb;
-        mb.setWindowTitle("Error");
+        mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
         /// \todo LOCALIZE ME
         mb.setText("Huggle is shutting down, ignored");
         mb.exec();

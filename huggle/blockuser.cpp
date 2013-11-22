@@ -124,17 +124,18 @@ void BlockUser::CheckToken()
 
     // let's block them
     this->tb = new ApiQuery();
+    this->Dependency = this->tb;
     this->tb->SetAction(ActionQuery);
-    if (user->IsIP())
+    if (this->user->IsIP())
     {
-        tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
+        this->tb->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "reason="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "expiry="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "token="
                 + QUrl::toPercentEncoding(BlockToken);
 
     }else
     {
-        tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
+        this->tb->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "reason="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "token="
                 + QUrl::toPercentEncoding(BlockToken);
     }
@@ -144,6 +145,7 @@ void BlockUser::CheckToken()
     this->tb->RegisterConsumer("BlockUser::on_pushButton_clicked()");
     Core::HuggleCore->AppendQuery(this->tb);
     this->tb->Process();
+    this->sendBlockNotice(this->Dependency);
 }
 
 void BlockUser::Block()
@@ -196,7 +198,6 @@ void BlockUser::Failed(QString reason)
 void BlockUser::on_pushButton_clicked()
 {
     this->GetToken();
-    this->sendBlockNotice(this->Dependency);
     // disable the button so that user can't click it multiple times
     this->ui->pushButton->setEnabled(false);
 }
@@ -204,7 +205,7 @@ void BlockUser::on_pushButton_clicked()
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
-    if (user->IsIP())
+    if (this->user->IsIP())
     {
         blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessage;
     }else

@@ -249,7 +249,7 @@ list-title:                List Builder
 
 === Login ===
 <pre>
-login-intro:               Please enter your wikipedia username and pick a project. The authentication will be processed using OAuth
+login-intro:               Please enter your wikipedia username and pick a project
 login-language:            Language:
 login-project:             Project:
 login-username:            Username:
@@ -359,6 +359,7 @@ main-page-restore:         Restore this revision of article
 main-user-info:            Show user info
 main-user-ignore:          Ignore
 main-user-unignore:        Unignore
+main-user-clear-talk:      Clear talk page of user
 main-user-contribs:        Retrieve contributions
 main-user-talk:            View talk page
 main-user-message:         Message...
@@ -813,7 +814,9 @@ editquery-token-error:     Unable to retrieve edit token
 
 === Unknown ===
 <pre>
-provider-primary-failure:  ERROR: primary feed provider has failed, fallback to wiki provider
+provider-primary-failure:  primary feed provider has failed, fallback to wiki provider
 whitelist-download:        Downloading new whitelist
+queue-widget-name:         Queue
+system-widget-name:        System logs
 </pre>
 

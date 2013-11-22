@@ -16,6 +16,7 @@ using namespace Huggle;
 HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLog)
 {
     this->ui->setupUi(this);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("system-widget-name"));
     this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
 }
 

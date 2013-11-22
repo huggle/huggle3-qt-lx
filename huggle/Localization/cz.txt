@@ -249,29 +249,29 @@ list-title:                List Builder
 
 === Login ===
 <pre>
-login-intro:               Please enter your wikipedia username and pick a project. The authentication will be processed using OAuth
-login-language:            Language:
-login-project:             Project:
-login-username:            Username:
-login-password:            Password:
-login-proxygroup:          Proxy settings
+login-intro:               Prosim zadej svoje jmeno a heslo
+login-language:            Jazyk:
+login-project:             Projekt:
+login-username:            Uzivatel:
+login-password:            Heslo:
+login-proxygroup:          Nastaveni proxy
 login-proxy:               Use a proxy server
-login-proxyaddress:        Address:
+login-proxyaddress:        Adresa:
 login-proxyport:           Port:
-login-proxydomain:         Domain:
-login-start:               Login
-login-translate:           Translate...
+login-proxydomain:         Domena:
+login-start:               Prihlasit
+login-translate:           Prelozit...
 login-captchatitle:        Captcha required to log in
 
-login-progress-start:      Logging in...
-login-progress-language:   Updating message files...
-login-progress-global:     Checking global configuration...
-login-progress-config:     Checking configuration pages...
+login-progress-start:      Pracuji...
+login-progress-language:   Nahravam lokalizace...
+login-progress-global:     Kontroluji globalni nastaveni...
+login-progress-config:     Kontroluji lokalni nastaveni...
 login-progress-userlist:   Checking user list...
-login-progress-whitelist:  Retrieving user whitelist...
-login-ssl:                 Enforce SSL (requires openssl libs to be installed)
+login-progress-whitelist:  Stahuji WL...
+login-ssl:                 Pouzit SSL (vyzaduje open ssl)
 
-login-fail:                Login failed
+login-fail:                Prihlaseni selhalo :(
 login-error-admin:         Use of Huggle on this project requires an administrator account.
 login-error-age:           Use of Huggle on this project requires an account at least {0} days old.
 login-error-alldisabled:   Huggle is currently disabled on all projects.
@@ -299,10 +299,10 @@ login-error-whitelist:     Failed to load user whitelist.
 
 === Main window ===
 <pre>
-main-page:                 Page
-main-user:                 User
+main-page:                 Stranka
+main-user:                 Uzivatel
 main-contribs:             Contribs
-main-history:              History
+main-history:              Historie
 main-new-messages:         You have new messages; select System -> Show new messages or press M to view them.
 main-system:               System
 main-system-messages:      Show new messages
@@ -314,12 +314,12 @@ main-system-statistics:    Statistics...
 main-system-showlog:       Show log
 main-system-showqueue:     Show queue
 main-system-showtwoqueues: Show two queues
-main-system-options:       Options...
+main-system-options:       Nastaveni
 main-system-logout:        Log out
-main-system-exit:          Exit
-main-queue:                Queue
-main-queue-next:           Next
-main-queue-trim:           Trim
+main-system-exit:          Ukoncit
+main-queue:                Fronta
+main-queue-next:           Dalsi
+main-queue-trim:           Vymazat
 main-queue-clear:          Clear current
 main-queue-count:          {0} items
 main-queue-query:          Running query...
@@ -331,11 +331,11 @@ main-goto-mytalk:          My talk page
 main-goto-mycontribs:      My contributions
 main-revision-decline:     Reject revision
 main-revision:             Revision
-main-revision-view:        View
-main-revision-revert:      Revert
+main-revision-view:        Zobrazit
+main-revision-revert:      Revertovat
 main-revision-faith:       Revert AGF
-main-revision-previous:    Previous
-main-revision-next:        Next
+main-revision-previous:    Predchozi
+main-revision-next:        Dalsi
 main-revision-latest:      Latest
 main-revision-sight:       Sight
 main-page-switchtotalk:    Switch to talk page
@@ -464,6 +464,7 @@ protect-ft:                Fetching token to protect $1
 
 === Queue form ===
 <pre>
+queue-widget-name:         Fronta
 queue-title:               Queues
 queue-queues:              Queues:
 queue-typegroup:           Queue type
@@ -813,7 +814,7 @@ editquery-token-error:     Unable to retrieve edit token
 
 === Unknown ===
 <pre>
-provider-primary-failure:  ERROR: primary feed provider has failed, fallback to wiki provider
-whitelist-download:        Downloading new whitelist
+provider-primary-failure:  Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh
+whitelist-download:        Stahuji whitelist
 </pre>
 

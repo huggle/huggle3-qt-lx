@@ -48,14 +48,14 @@ namespace Huggle
             void onTick();
         private:
             Ui::BlockUser *ui;
-            /// \todo DOCUMENT ME
+            //! Timer that switches between steps of block workflow
             QTimer *t0;
             WikiUser *user;
             /// \todo DOCUMENT ME
             ApiQuery *tb;
             /// \todo DOCUMENT ME
             ApiQuery *b;
-            /// \todo What is this and why it even exist - WTF describe me or remove me
+            //! This is api query that is used to block user and used as dependency to deliver the message
             ApiQuery *Dependency;
             QString BlockToken;
             int QueryPhase;
