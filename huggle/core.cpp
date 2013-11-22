@@ -708,6 +708,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("ar");
     Localizations::HuggleLocalizations->LocalInit("bg");
     Localizations::HuggleLocalizations->LocalInit("bn");
+    Localizations::HuggleLocalizations->LocalInit("cz");
     Localizations::HuggleLocalizations->LocalInit("es");
     Localizations::HuggleLocalizations->LocalInit("de");
     Localizations::HuggleLocalizations->LocalInit("fa");
