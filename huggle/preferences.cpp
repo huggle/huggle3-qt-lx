@@ -67,7 +67,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     {
         return;
     }
-    if (HuggleQueueFilter::Filters.at(id)->IsDefault())
+    if (!HuggleQueueFilter::Filters.at(id)->IsChangeable())
     {
         this->Disable();
     } else
@@ -148,7 +148,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         return;
     }
     HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
-    if (filter->IsDefault())
+    if (!filter->IsChangeable())
     {
         // don't touch a default filter
         return;
@@ -183,7 +183,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
         return;
     }
     HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
-    if (filter->IsDefault())
+    if (!filter->IsChangeable())
     {
         // don't touch a default filter
         return;
