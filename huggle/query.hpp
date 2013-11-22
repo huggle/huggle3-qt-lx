@@ -12,10 +12,7 @@
 #define QUERY_H
 
 #include <QDateTime>
-#include <QThread>
-#include <QObject>
 #include <QString>
-#include <QMutex>
 #include <QStringList>
 #include <QNetworkAccessManager>
 #include "queryresult.hpp"
@@ -61,7 +58,7 @@ namespace Huggle
     //! That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
-    class Query : public QObject, public Collectable
+    class Query : public Collectable
     {
         public:
             //! Result of query, see documentation of QueryResult for more

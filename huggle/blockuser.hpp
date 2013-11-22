@@ -30,8 +30,6 @@ namespace Huggle
 {
     class WikiUser;
 
-    /// \todo This form has to send a message to user who was blocked, until that is fixed it must not be included in production build
-
     //! This form can be used to block users from editing, which requires the block permission
     class BlockUser : public QDialog
     {

@@ -15,6 +15,13 @@ using namespace Huggle;
 UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm)
 {
     this->ui->setupUi(this);
+    this->qData = NULL;
+}
+
+void UpdateForm::Check()
+{
+    this->qData = new WebserverQuery();
+
 }
 
 UpdateForm::~UpdateForm()

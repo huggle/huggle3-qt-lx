@@ -45,6 +45,7 @@ Configuration::Configuration()
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
     this->DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
+    this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 
     // Global
     this->GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";

@@ -29,9 +29,10 @@ namespace Huggle
     /*!
      * \brief The RevertQuery class can be used to rollback any edit
      */
-    class RevertQuery : public Query
+    class RevertQuery : public QObject, public Query
     {
             Q_OBJECT
+
         public:
             static QString GetCustomRevertStatus(QString RevertData);
             RevertQuery();

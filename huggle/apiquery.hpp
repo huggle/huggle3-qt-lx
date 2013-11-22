@@ -12,6 +12,7 @@
 #define APIQUERY_H
 
 #include <QString>
+#include <QObject>
 #include <QtNetwork/QtNetwork>
 #include <QUrl>
 #include <QtXml/QtXml>
@@ -53,7 +54,7 @@ namespace Huggle
     };
 
     //! This class can be used to execute any kind of api query on any wiki
-    class ApiQuery : public Query
+    class ApiQuery : public QObject, public Query
     {
             Q_OBJECT
 

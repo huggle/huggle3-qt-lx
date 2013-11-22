@@ -20,7 +20,7 @@
 namespace Huggle
 {
     //! Whitelist query :o
-    class WLQuery : public Query
+    class WLQuery : public QObject, public Query
     {
             Q_OBJECT
         public:
