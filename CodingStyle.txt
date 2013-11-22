@@ -99,3 +99,11 @@ Using "this" can make it clear to anyone who read the code.
 
 Another reason for this, is that if there was ever implemented a global variable
 or function with same name, it will likely not collide with your code.
+
+=== Order ===
+
+In every class static functions go on first place, right after them are static variables,
+then there is a space and follows constructors, destructor and functions with variables.
+
+Using this order in every class declaration (.h file) will make it easier to find
+where certain stuff is. It is recommended to order everything alphabetically too.
