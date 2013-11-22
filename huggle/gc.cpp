@@ -16,12 +16,12 @@ GC *GC::gc = NULL;
 
 Huggle::GC::GC()
 {
-    Lock = new QMutex(QMutex::Recursive);
+    this->Lock = new QMutex(QMutex::Recursive);
 }
 
 Huggle::GC::~GC()
 {
-    delete Lock;
+    delete this->Lock;
 }
 
 void Huggle::GC::DeleteOld()

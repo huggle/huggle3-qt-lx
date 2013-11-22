@@ -198,6 +198,15 @@ QString Configuration::GetDefaultRevertSummary(QString source)
     return summary;
 }
 
+QString Configuration::Bool2ExcludeRequire(bool b)
+{
+    if (b)
+    {
+        return "exclude";
+    }
+    return "require";
+}
+
 QString Configuration::Bool2String(bool b)
 {
     if (b)
@@ -261,6 +270,26 @@ QString Configuration::MakeLocalUserConfig()
     conf += "default-summary:" + Configuration::HuggleConfiguration->DefaultRevertSummary + "\n";
     conf += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
+    conf += "// queues\nqueues:\n";
+    int c = 0;
+    while (c < HuggleQueueFilter::Filters.count())
+    {
+        HuggleQueueFilter *fltr = HuggleQueueFilter::Filters.at(c);
+        c++;
+        if (fltr->IsChangeable())
+        {
+            conf += "    " + fltr->QueueName + ":\n";
+            conf += "        filter-ignored:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\n";
+            conf += "        filter-bots:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\n";
+            conf += "        filter-assisted:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\n";
+            conf += "        filter-ip:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\n";
+            conf += "        filter-minor:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\n";
+            conf += "        filter-np:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
+            conf += "        filter-self:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
+            conf += "        filter-users:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
+            conf += "\n";
+        }
+    }
     conf += "</nowiki>";
     return conf;
 }
@@ -513,6 +542,126 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, Q
     return result;
 }
 
+QList<HuggleQueueFilter *> Configuration::ConfigurationParseQueueList(QString content, bool locked)
+{
+    QList<HuggleQueueFilter*> ReturnValue;
+
+    if (!content.contains("queues:"))
+    {
+        return ReturnValue;
+    }
+
+    // we need to parse all blocks that contain information about queue
+
+    content = content.mid(content.indexOf("queues:") + 8);
+    QStringList Filtered = content.split("\n");
+
+    QStringList Info;
+
+    // we need to assume that all queues are intended with at least 4 spaces
+
+    int line = 0;
+
+    while (line < Filtered.count())
+    {
+        QString lt = Filtered.at(line);
+        if (lt.startsWith("    ") || lt == "")
+        {
+            Info.append(lt);
+        } else
+        {
+            // we reached the end of block with queue defs
+            break;
+        }
+        line++;
+    }
+
+    // now we can split the queue info
+
+    line = 0;
+    while (line < Info.count())
+    {
+        QString text = Info.at(line);
+        if (text.startsWith("    ") && !text.startsWith("        ") && text.contains(":"))
+        {
+            // this is a queue definition beginning, because it is intended with 4 spaces
+            HuggleQueueFilter *filter = new HuggleQueueFilter();
+            ReturnValue.append(filter);
+            filter->ProjectSpecific = locked;
+            QString name = text;
+            while (name.startsWith(" "))
+            {
+                name = name.mid(1);
+            }
+            name.replace(":", "");
+            filter->QueueName = name;
+            line++;
+            text = Info.at(line);
+            while (text.startsWith("        ") && text.contains(":") && line < Info.count())
+            {
+                // we need to parse the info
+                line++;
+                while (text.startsWith(" "))
+                {
+                    text = text.mid(1);
+                }
+                QString val = text.mid(text.indexOf(":") + 1);
+                QString key = text.mid(0, text.indexOf(":"));
+                text = Info.at(line);
+                if (key == "filter-ignored")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreWL(true);
+                    } else
+                    {
+                        filter->setIgnoreWL(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-bots")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreBots(true);
+                    } else
+                    {
+                        filter->setIgnoreBots(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-assisted")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreFriends(true);
+                    } else
+                    {
+                        filter->setIgnoreFriends(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-ip")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreIP(true);
+                    } else
+                    {
+                        filter->setIgnoreIP(false);
+                    }
+                    continue;
+                }
+            }
+        } else
+        {
+            line++;
+        }
+    }
+
+    return ReturnValue;
+}
+
 bool Configuration::ParseGlobalConfig(QString config)
 {
     Configuration::HuggleConfiguration->GlobalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
@@ -600,6 +749,7 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_Assisted = Configuration::ConfigurationParse_QL("assisted-summaries", config);
     Configuration::HuggleConfiguration->LocalConfig_ProtectReason = Configuration::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config);
+    HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, true);
 
     if (Configuration::HuggleConfiguration->AIVP != NULL)
     {
@@ -737,6 +887,7 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config, Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
     Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config, Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
     Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
+    HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;

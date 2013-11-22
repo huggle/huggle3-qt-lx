@@ -29,6 +29,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class ApiQuery;
     class WikiEdit;
     class WikiPage;
 

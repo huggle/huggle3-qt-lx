@@ -26,6 +26,10 @@
 
 namespace Huggle
 {
+    namespace IRC
+    {
+        class NetworkIrc;
+    }
     class HuggleFeedProviderIRC;
 
     //! Thread which process the IRC feed

@@ -422,14 +422,14 @@ void HuggleFeedProviderIRC_t::run()
         if (message != NULL)
         {
             QString text = message->Text;
-            p->ParseEdit(text);
+            this->p->ParseEdit(text);
         }
         QThread::usleep(200000);
     }
     Huggle::Syslog::HuggleLogs->Log("IRC: Closed connection to irc feed");
     if (this->Running)
     {
-        p->Connected = false;
+        this->p->Connected = false;
     }
     this->Stopped = true;
 }
@@ -437,7 +437,7 @@ void HuggleFeedProviderIRC_t::run()
 HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t()
 {
     this->Stopped = false;
-    Running = true;
+    this->Running = true;
     this->p = NULL;
 }
 

@@ -27,6 +27,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiEdit;
+    class WikiPage;
+    class Exception;
 
     //! Web browser
     class HuggleWeb : public QFrame

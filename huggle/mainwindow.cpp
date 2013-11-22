@@ -534,6 +534,7 @@ void MainWindow::DisplayWelcomeMessage()
     WikiPage *welcome = new WikiPage(Configuration::HuggleConfiguration->WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
     this->EditablePage = false;
+    delete welcome;
     this->Render();
 }
 
@@ -622,13 +623,11 @@ void MainWindow::OnTimerTick1()
     QString t = "All systems go! - currently processing " + QString::number(Core::HuggleCore->ProcessingEdits.count())
             + " edits and " + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
-            + " whitelisted users and you have "
-            + QString::number(HuggleQueueItemLabel::Count)
+            + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
             + " edits waiting in queue.";
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
-        t += " QGC: " + QString::number(GC::gc->list.count())
-                + "U: " + QString::number(WikiUser::ProblematicUsers.count());
+        t += " QGC: " + QString::number(GC::gc->list.count()) + "U: " + QString::number(WikiUser::ProblematicUsers.count());
     }
     this->Status->setText(t);
     // let's refresh the edits that are being post processed
@@ -689,7 +688,7 @@ void MainWindow::OnTimerTick0()
             QStringList wl = list.split("|");
             int c=0;
             /// \todo LOCALIZE ME
-            fWaiting->Status(40, "Merging");
+            this->fWaiting->Status(40, "Merging");
             while (c < wl.count())
             {
                 if (wl.at(c) != "")
@@ -779,7 +778,6 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
         Core::HuggleCore->DeveloperError();
         return;
     }
-
     this->Revert();
 }
 
@@ -1035,7 +1033,7 @@ void MainWindow::Exit()
     {
         return;
     }
-    ShuttingDown = true;
+    this->ShuttingDown = true;
     this->VandalDock->Disconnect();
     QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
@@ -1105,13 +1103,13 @@ void MainWindow::ReconnectIRC()
         Sleeper::usleep(200000);
     }
     delete Core::HuggleCore->PrimaryFeedProvider;
-    ui->actionIRC->setChecked(true);
-    ui->actionWiki->setChecked(false);
+    this->ui->actionIRC->setChecked(true);
+    this->ui->actionWiki->setChecked(false);
     Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
     if (!Core::HuggleCore->PrimaryFeedProvider->Start())
     {
-        ui->actionIRC->setChecked(false);
-        ui->actionWiki->setChecked(true);
+        this->ui->actionIRC->setChecked(false);
+        this->ui->actionWiki->setChecked(true);
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
         delete Core::HuggleCore->PrimaryFeedProvider;
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
@@ -1134,7 +1132,6 @@ bool MainWindow::CheckEditableBrowserPage()
         mb.exec();
         return false;
     }
-
     return true;
 }
 
@@ -1157,15 +1154,15 @@ void MainWindow::SuspiciousEdit()
 
 void MainWindow::Localize()
 {
-    ui->menuPage->setTitle(Localizations::HuggleLocalizations->Localize("main-page"));
-    ui->menuHelp->setTitle(Localizations::HuggleLocalizations->Localize("main-help"));
-    ui->menuUser->setTitle(Localizations::HuggleLocalizations->Localize("main-user"));
-    ui->menuQueue->setTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
+    this->ui->menuPage->setTitle(Localizations::HuggleLocalizations->Localize("main-page"));
+    this->ui->menuHelp->setTitle(Localizations::HuggleLocalizations->Localize("main-help"));
+    this->ui->menuUser->setTitle(Localizations::HuggleLocalizations->Localize("main-user"));
+    this->ui->menuQueue->setTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
 }
 
 bool MainWindow::CheckExit()
 {
-    if (ShuttingDown)
+    if (this->ShuttingDown)
     {
         QMessageBox mb;
         mb.setWindowTitle("Error");
@@ -1174,7 +1171,6 @@ bool MainWindow::CheckExit()
         mb.exec();
         return false;
     }
-
     return true;
 }
 
@@ -1273,7 +1269,7 @@ void MainWindow::on_actionGood_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
-        Hooks::OnGood(this->CurrentEdit);;
+        Hooks::OnGood(this->CurrentEdit);
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
@@ -1352,14 +1348,14 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
 
 void MainWindow::on_actionStop_feed_triggered()
 {
-    ui->actionRemove_old_edits->setChecked(false);
-    ui->actionStop_feed->setChecked(true);
+    this->ui->actionRemove_old_edits->setChecked(false);
+    this->ui->actionStop_feed->setChecked(true);
 }
 
 void MainWindow::on_actionRemove_old_edits_triggered()
 {
-    ui->actionRemove_old_edits->setChecked(true);
-    ui->actionStop_feed->setChecked(false);
+    this->ui->actionRemove_old_edits->setChecked(true);
+    this->ui->actionStop_feed->setChecked(false);
 }
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
@@ -1433,7 +1429,6 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
         Core::HuggleCore->DeveloperError();
         return;
     }
-
     this->Revert("", true, false);
 }
 
@@ -1444,7 +1439,7 @@ void MainWindow::on_actionWelcome_user_2_triggered()
 
 void MainWindow::on_actionReport_user_triggered()
 {
-    if(this->CurrentEdit == NULL)
+    if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("ERROR: No one to report");
@@ -1495,7 +1490,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
-    ReconnectIRC();
+    this->ReconnectIRC();
 }
 
 void MainWindow::on_actionRequest_speedy_deletion_triggered()
@@ -1510,12 +1505,18 @@ void MainWindow::on_actionDelete_triggered()
     {
         return;
     }
+
 	if (this->CurrentEdit == NULL)
 	{
         /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("ERROR: No, you cannot delete an NULL page :)");
 		return;
 	}
+
+    if (this->fDeleteForm != NULL)
+    {
+        delete this->fDeleteForm;
+    }
     this->fDeleteForm = new DeleteForm(this);
     fDeleteForm->setPage(this->CurrentEdit->Page);
     fDeleteForm->show();
@@ -1536,10 +1537,16 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
         Syslog::HuggleLogs->Log("ERROR: No one to block :o");
         return;
     }
+
+    if (this->fBlockForm != NULL)
+    {
+        delete this->fBlockForm;
+    }
+
     this->fBlockForm = new BlockUser(this);
     this->CurrentEdit->User->Resync();
-    fBlockForm->SetWikiUser(this->CurrentEdit->User);
-    fBlockForm->show();
+    this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
+    this->fBlockForm->show();
 #endif
 }
 
@@ -1557,8 +1564,8 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     /// \todo LOCALIZE ME
     Syslog::HuggleLogs->Log("Switching to wiki provider");
     Core::HuggleCore->PrimaryFeedProvider->Stop();
-    ui->actionIRC->setChecked(false);
-    ui->actionWiki->setChecked(true);
+    this->ui->actionIRC->setChecked(false);
+    this->ui->actionWiki->setChecked(true);
     while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
     {
         /// \todo LOCALIZE ME
@@ -1588,9 +1595,13 @@ void MainWindow::on_actionProtect_triggered()
         Syslog::HuggleLogs->Log("ERROR: Cannot protect NULL page");
         return;
     }
+    if (this->fProtectForm != NULL)
+    {
+        delete this->fProtectForm;
+    }
     this->fProtectForm = new ProtectPage(this);
-    fProtectForm->setPageToProtect(this->CurrentEdit->Page);
-    fProtectForm->show();
+    this->fProtectForm->setPageToProtect(this->CurrentEdit->Page);
+    this->fProtectForm->show();
 }
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
@@ -1632,9 +1643,13 @@ void MainWindow::on_actionReport_username_triggered()
         this->ui->actionReport_username->setDisabled(true);
         return;
     }
+    if (this->fUaaReportForm != NULL)
+    {
+        delete this->fUaaReportForm;
+    }
     this->fUaaReportForm = new UAAReport();
-    fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
-    fUaaReportForm->show();
+    this->fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
+    this->fUaaReportForm->show();
 }
 
 void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()

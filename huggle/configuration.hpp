@@ -61,6 +61,7 @@
 #include <QDir>
 #include <QtXml>
 #include <QString>
+#include "hugglequeuefilter.hpp"
 #include "syslog.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
@@ -72,8 +73,11 @@ namespace Huggle
 {
     class HuggleParser;
     class WikiSite;
+    class HuggleQueueFilter;
+    class HuggleQueue;
     class WikiPage;
     class Syslog;
+    class HuggleQueueParser;
     /*!
      * \brief The ScoreWord class
      *
@@ -356,6 +360,8 @@ namespace Huggle
             //! Pointer to UAA page
             WikiPage *UAAP;
 
+            static QString Bool2ExcludeRequire(bool b);
+
             /*!
              * \brief Bool2String Convert a bool to string
              * \param b bool
@@ -400,6 +406,7 @@ namespace Huggle
              */
             static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
             static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
+            static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
     };
 }
 

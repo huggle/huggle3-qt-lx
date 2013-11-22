@@ -28,6 +28,7 @@ namespace Huggle
             static HuggleQueueFilter *DefaultFilter;
             //! Name of this queue, must be unique
             QString QueueName;
+            bool ProjectSpecific;
             //! ctr
             HuggleQueueFilter();
             //! Returns true if edit is ok for this filter (that means it is not filtered out)
@@ -66,6 +67,7 @@ namespace Huggle
             //! Changes if this filter is matching edits made by current user
             void setIgnoreSelf(bool value);
             bool IsDefault() const;
+            bool IsChangeable() const;
 
         private:
             bool IgnoreMinor;

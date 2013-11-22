@@ -26,6 +26,10 @@ namespace Ui
 
 namespace Huggle
 {
+    namespace IRC
+    {
+        class NetworkIrc;
+    }
     //! Vandalism network
 
     //! Huggle 3 comes with a system that allows all clients to operate together in order
@@ -61,7 +65,7 @@ namespace Huggle
         private:
             Ui::VandalNw *ui;
             //! Pointer to irc server
-            IRC::NetworkIrc *Irc;
+            Huggle::IRC::NetworkIrc *Irc;
             //! Using this we track if channel was joined or not, because we need to send
             //! the request some time after connection or irc server would skip it
             bool JoinedMain;

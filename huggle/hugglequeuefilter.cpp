@@ -20,6 +20,7 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->QueueName = "default";
     this->IgnoreBots = true;
     this->IgnoreWL = true;
+    this->ProjectSpecific = false;
     this->IgnoreFriends = true;
     this->IgnoreIP = false;
     this->IgnoreMinor = false;
@@ -162,6 +163,11 @@ void HuggleQueueFilter::setIgnoreSelf(bool value)
 bool HuggleQueueFilter::IsDefault() const
 {
     return this == HuggleQueueFilter::DefaultFilter;
+}
+
+bool HuggleQueueFilter::IsChangeable() const
+{
+    return !this->IsDefault() && !this->ProjectSpecific;
 }
 
 
