@@ -71,8 +71,7 @@ namespace Huggle
     class HgApplication : public QApplication
     {
         public:
-            HgApplication(int& argc, char** argv) :
-                QApplication(argc, argv) {}
+            HgApplication(int& argc, char** argv) : QApplication(argc, argv) {}
             bool notify(QObject* receiver, QEvent* event);
     };
 
@@ -84,38 +83,25 @@ namespace Huggle
     class Core
     {
         public:
+            static QString GetProjectURL(WikiSite Project);
+            static void ExceptionHandler(Exception *exception);
+            //! Return a full url like http://en.wikipedia.org/wiki/
+            static QString GetProjectWikiURL(WikiSite Project);
+            //! Return a script url like http://en.wikipedia.org/w/
+            static QString GetProjectScriptURL(WikiSite Project);
+            //! Return a base url of current project
+            static QString GetProjectURL();
+            //! Return a full url like http://en.wikipedia.org/wiki/
+            static QString GetProjectWikiURL();
+            //! Return a script url like http://en.wikipedia.org/w/
+            static QString GetProjectScriptURL();
+            //! Pointer to core, there should be only 1 core for whole application and this is that one
+            //! if you are running extension you need to update this pointer with that one you receive
+            //! using iExtension::HuggleCore
             static Core *HuggleCore;
-            // Global variables
-            QDateTime StartupTime;
-            //! Pointer to main
-            MainWindow *Main;
-            //! Login form
-            Login *f_Login;
-            //! This string contains a html header
-            QString HtmlHeader;
-            //! This string contains a html footer
-            QString HtmlFooter;
-            //! Pointer to primary feed provider
-            HuggleFeed *PrimaryFeedProvider;
-            //! Pointer to secondary feed provider
-            HuggleFeed *SecondaryFeedProvider;
-            //! This is a list of all edits that are being processed by some way
-            //! whole list needs to be checked and probed everytime once a while
-            QList<WikiEdit*> ProcessingEdits;
-            //! Pending changes
-            QList<EditQuery*> PendingMods;
-            //! List of extensions loaded in huggle
-            QList<iExtension*> Extensions;
-            QList<HuggleQueueFilter *> FilterDB;
-            //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
-            bool Running;
-            //! Garbage collector
-            GC *gc;
 
-#ifdef PYTHONENGINE
-            PythonEngine *Python;
-#endif
-
+            Core();
+            ~Core();
             //! Function which is called as one of first when huggle is loaded
             void Init();
             //! Load extensions (libraries as well as python)
@@ -131,17 +117,6 @@ namespace Huggle
              * \param Project Site
              * \return String with url
              */
-            static QString GetProjectURL(WikiSite Project);
-            //! Return a full url like http://en.wikipedia.org/wiki/
-            static QString GetProjectWikiURL(WikiSite Project);
-            //! Return a script url like http://en.wikipedia.org/w/
-            static QString GetProjectScriptURL(WikiSite Project);
-            //! Return a base url of current project
-            static QString GetProjectURL();
-            //! Return a full url like http://en.wikipedia.org/wiki/
-            static QString GetProjectWikiURL();
-            //! Return a script url like http://en.wikipedia.org/w/
-            static QString GetProjectScriptURL();
             void ProcessEdit(WikiEdit *e);
             //! Terminate the process, call this after you release all resources and finish all queries
             void Shutdown();
@@ -195,12 +170,39 @@ namespace Huggle
              * \param item Query that is about to be inserted to list of running queries
              */
             void AppendQuery(Query* item);
-            static void ExceptionHandler(Exception *exception);
             void LoadLocalizations();
             bool ReportPreFlightCheck();
             int RunningQueriesGetCount();
-            Core();
-            ~Core();
+            // Global variables
+            QDateTime StartupTime;
+            //! Pointer to main
+            MainWindow *Main;
+            //! Login form
+            Login *f_Login;
+            //! This string contains a html header
+            QString HtmlHeader;
+            //! This string contains a html footer
+            QString HtmlFooter;
+            //! Pointer to primary feed provider
+            HuggleFeed *PrimaryFeedProvider;
+            //! Pointer to secondary feed provider
+            HuggleFeed *SecondaryFeedProvider;
+            //! This is a list of all edits that are being processed by some way
+            //! whole list needs to be checked and probed everytime once a while
+            QList<WikiEdit*> ProcessingEdits;
+            //! Pending changes
+            QList<EditQuery*> PendingMods;
+            //! List of extensions loaded in huggle
+            QList<iExtension*> Extensions;
+            QList<HuggleQueueFilter *> FilterDB;
+            //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
+            bool Running;
+            //! Garbage collector
+            GC *gc;
+
+#ifdef PYTHONENGINE
+            PythonEngine *Python;
+#endif
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;

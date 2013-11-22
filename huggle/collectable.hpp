@@ -34,6 +34,12 @@ namespace Huggle
     class Collectable
     {
         public:
+            /*!
+             * \brief This function is useful when you need to create an extension that uses own collectables in GC
+             * \return pointer to last cid
+             */
+            static unsigned long *GetLastCIDPtr();
+
             Collectable();
             virtual ~Collectable();
             /*!
@@ -90,23 +96,27 @@ namespace Huggle
              * \return
              */
             unsigned long CollectableID();
-            /*!
-             * \brief This function is useful when you need to create an extension that uses own collectables in GC
-             * \return pointer to last cid
-             */
-            static unsigned long *GetLastCIDPtr();
         private:
             static QString ConsumerIdToString(const int id);
             static QMutex *WideLock;
             static unsigned long LastCID;
+
+            void SetManaged();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
-            bool Managed;
-            void SetManaged();
+            bool _collectableManaged;
+            //! List of string consumers that are using this object
+
+            //! Every consumer needs to use unique string that identifies them
             QStringList Consumers;
+            //! List of int consumers that are using this object
+
+            //! Every consumer needs to use a unique int that identifies them
+            //! if you aren't sure what number to use, or if you are working
+            //! in extension you should use string instead
             QList<int> iConsumers;
-            QMutex *QL;
-            bool Locked;
+            QMutex *_collectableQL;
+            bool _collectableLocked;
     };
 }
 #endif // COLLECTABLE_H

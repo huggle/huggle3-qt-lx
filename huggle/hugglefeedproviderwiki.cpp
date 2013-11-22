@@ -119,6 +119,11 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
     return edit;
 }
 
+QString HuggleFeedProviderWiki::ToString()
+{
+    return "Wiki";
+}
+
 void HuggleFeedProviderWiki::Process(QString data)
 {
     //QStringList lines = data.split("\n");

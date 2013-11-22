@@ -44,6 +44,11 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->page->Bot)
+        {
+            this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-bot.png") );
+        }
+
         switch (this->page->CurrentUserWarningLevel)
         {
             case WarningLevelNone:

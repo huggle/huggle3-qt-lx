@@ -16,8 +16,10 @@ using namespace Huggle;
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
     this->ui->setupUi(this);
+    /// \todo TRANSLATE ME
     this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->UserName + "\n" +
-                         "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->UsingSSL));
+                               "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->UsingSSL) + "\n" +
+                               "RC feed: " + Core::HuggleCore->PrimaryFeedProvider->ToString());
     int xx=0;
     while (xx < Configuration::HuggleConfiguration->Rights.count())
     {

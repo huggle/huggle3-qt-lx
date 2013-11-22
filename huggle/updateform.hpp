@@ -12,6 +12,7 @@
 #define UPDATEFORM_H
 
 #include <QDialog>
+#include <QTimer>
 #include "webserverquery.hpp"
 
 namespace Ui
@@ -39,9 +40,11 @@ namespace Huggle
 
         private slots:
             void on_pushButton_2_clicked();
+            void OnTick();
 
         private:
             Ui::UpdateForm *ui;
+            QTimer *t;
     };
 }
 #endif // UPDATEFORM_H

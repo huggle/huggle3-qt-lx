@@ -41,6 +41,7 @@ namespace Huggle
             bool ContainsEdit();
             void Refresh();
             WikiEdit *RetrieveEdit();
+            QString ToString();
         private:
             QDateTime LastRefresh;
             QDateTime LatestTime;

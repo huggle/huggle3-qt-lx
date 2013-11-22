@@ -21,9 +21,9 @@ Collectable::Collectable()
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
     WideLock->unlock();
-    this->Locked = false;
-    this->Managed = false;
-    this->QL = new QMutex(QMutex::Recursive);
+    this->_collectableLocked = false;
+    this->_collectableManaged = false;
+    this->_collectableQL = new QMutex(QMutex::Recursive);
 }
 
 Collectable::~Collectable()
@@ -33,7 +33,7 @@ Collectable::~Collectable()
         throw new Exception("Request to delete managed entity");
     }
     this->Unlock();
-    delete this->QL;
+    delete this->_collectableQL;
 }
 
 bool Collectable::SafeDelete()
@@ -43,7 +43,7 @@ bool Collectable::SafeDelete()
         if (GC::gc == NULL)
         {
             // there is no garbage collector
-            this->Managed = false;
+            this->_collectableManaged = false;
             // we can probably delete it now
             delete this;
             return true;
@@ -54,7 +54,7 @@ bool Collectable::SafeDelete()
             GC::gc->list.removeAll(this);
         }
         GC::gc->Lock->unlock();
-        this->Managed = false;
+        this->_collectableManaged = false;
         delete this;
         return true;
     }
@@ -141,7 +141,7 @@ QString Collectable::ConsumerIdToString(const int id)
 
 void Collectable::SetManaged()
 {
-    this->Managed = true;
+    this->_collectableManaged = true;
     if (!GC::gc->list.contains(this))
     {
         GC::gc->list.append(this);
@@ -175,31 +175,31 @@ QString Collectable::DebugHgc()
 
 bool Collectable::IsLocked()
 {
-    return Locked;
+    return _collectableLocked;
 }
 
 void Collectable::Lock()
 {
     // this is actually pretty lame check but better than nothing
-    if (!this->Locked)
+    if (!this->_collectableLocked)
     {
-        this->QL->lock();
-        this->Locked = true;
+        this->_collectableQL->lock();
+        this->_collectableLocked = true;
     }
 }
 
 void Collectable::Unlock()
 {
-    if (this->Locked)
+    if (this->_collectableLocked)
     {
-        this->QL->unlock();
-        this->Locked = false;
+        this->_collectableQL->unlock();
+        this->_collectableLocked = false;
     }
 }
 
 bool Collectable::IsManaged()
 {
-    if (this->Managed)
+    if (this->_collectableManaged)
     {
         return true;
     }

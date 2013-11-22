@@ -448,7 +448,7 @@ HuggleFeedProviderIRC_t::~HuggleFeedProviderIRC_t()
 
 bool HuggleFeedProviderIRC_t::IsFinished()
 {
-    return Stopped;
+    return this->Stopped;
 }
 
 WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
@@ -468,5 +468,10 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
 
 bool HuggleFeedProviderIRC::IsConnected()
 {
-    return Connected;
+    return this->Connected;
+}
+
+QString HuggleFeedProviderIRC::ToString()
+{
+    return "IRC";
 }

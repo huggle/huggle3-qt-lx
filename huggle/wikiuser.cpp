@@ -94,6 +94,7 @@ WikiUser::WikiUser()
     this->IP = true;
     this->BadnessScore = 0;
     this->WarningLevel = 0;
+    this->IsBanned = false;
     this->ContentsOfTalkPage = "";
     this->IsReported = false;
     this->WhitelistInfo = 0;
@@ -107,6 +108,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->Username = u->Username;
     this->WarningLevel = u->WarningLevel;
     this->BadnessScore = u->BadnessScore;
+    this->IsBanned = u->IsBanned;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
     this->WhitelistInfo = u->WhitelistInfo;
@@ -121,6 +123,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->IP = u.IP;
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
+    this->IsBanned = u.IsBanned;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
     this->WhitelistInfo = u.WhitelistInfo;
     this->Bot = u.Bot;
@@ -143,6 +146,7 @@ WikiUser::WikiUser(QString user)
     }
     this->Username = user;
     this->Sanitize();
+    this->IsBanned = false;
     int c=0;
     this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())

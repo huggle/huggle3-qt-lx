@@ -68,6 +68,7 @@ namespace Huggle
             void Pause() { Paused = true; }
             void Resume() { Paused = false; }
             bool IsConnected();
+            QString ToString();
             bool Connected;
         private:
             QMutex lock;

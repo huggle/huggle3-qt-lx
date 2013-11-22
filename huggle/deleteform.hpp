@@ -48,6 +48,10 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void onTick();
         private:
+            void getToken();
+            void Delete();
+            void checkDelToken();
+            void Failed(QString Reason);
             Ui::DeleteForm *ui;
             WikiPage *page;
             QString DeleteToken;
@@ -59,10 +63,6 @@ namespace Huggle
             QTimer *dt;
             //! This is used to figure out what are we doing now in timer signal
             int delQueryPhase;
-            void getToken();
-            void Delete();
-            void checkDelToken();
-            void Failed(QString Reason);
     };
 }
 

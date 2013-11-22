@@ -48,10 +48,12 @@ namespace Huggle
             static QMutex ProblematicUserListLock;
             //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
             static void TrimProblematicUsersList();
-            //! Username
-            QString Username;
-            //! Current warning level of user
-            int WarningLevel;
+
+            WikiUser();
+            WikiUser(WikiUser *u);
+            WikiUser(const WikiUser& u);
+            WikiUser(QString user);
+            ~WikiUser();
             /*!
              * \brief GetContentsOfTalkPage returns a precached content of this users talk page
              * If there is a global instance of this user, the talk page is retrieved from it
@@ -63,8 +65,8 @@ namespace Huggle
              * of calling this function repeatedly
              * \return a precached content of this users talk page
              */
-                QString GetContentsOfTalkPage();
-                /*!
+            QString GetContentsOfTalkPage();
+            /*!
              * \brief SetContentsOfTalkPage Change a cache for talk page in local and global cache
              * \param text New content of talk page
              */
@@ -75,19 +77,12 @@ namespace Huggle
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
             void Sanitize();
-            //! Cache of contributions made by this user
-            QList<WikiEdit*> Contributions;
             /*!
              * \brief Change the IP property to true forcefully even if user isn't IP
              */
             void ForceIP();
             //! Returns true in case the current user is IP user
             bool IsIP() const;
-            WikiUser();
-            WikiUser(WikiUser *u);
-            WikiUser(const WikiUser& u);
-            WikiUser(QString user);
-            ~WikiUser();
             //! Update the information of this user based on global user list
 
             //! This is useful when you created user in past and since then a global user has changed
@@ -110,6 +105,13 @@ namespace Huggle
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);
+            //! Cache of contributions made by this user
+            QList<WikiEdit*> Contributions;
+            //! Username
+            QString Username;
+            //! Current warning level of user
+            int WarningLevel;
+            bool IsBanned;
 
     private:
             /*!

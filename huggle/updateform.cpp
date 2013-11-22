@@ -16,20 +16,36 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
 {
     this->ui->setupUi(this);
     this->qData = NULL;
-}
-
-void UpdateForm::Check()
-{
-    this->qData = new WebserverQuery();
-
+    this->t = new QTimer(this);
 }
 
 UpdateForm::~UpdateForm()
 {
     delete this->ui;
+    delete this->t;
+}
+
+void UpdateForm::Check()
+{
+    this->qData = new WebserverQuery();
+    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->HuggleVersion)
+            + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
+    this->qData->Process();
+    connect(this->t, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->t->start(60);
 }
 
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
     this->close();
+}
+
+void UpdateForm::OnTick()
+{
+    if (!this->qData->Processed())
+    {
+        return;
+    }
+
+    this->t->stop();
 }

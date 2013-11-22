@@ -46,6 +46,7 @@ namespace Huggle
             virtual bool IsStopped() { return true; }
             //! Return a last edit from cache or NULL
             virtual WikiEdit *RetrieveEdit() { return NULL; }
+            virtual QString ToString() = 0;
             HuggleQueueFilter *Filter;
     };
 }
