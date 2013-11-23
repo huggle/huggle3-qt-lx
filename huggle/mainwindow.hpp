@@ -120,6 +120,27 @@ namespace Huggle
             Q_OBJECT
 
         public:
+            explicit MainWindow(QWidget *parent = 0);
+            ~MainWindow();
+            void _ReportUser();
+            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false);
+            RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+            bool Warn(QString WarningType, RevertQuery *dependency);
+            QString GetSummaryKey(QString item);
+            QString GetSummaryText(QString text);
+            //! Send a template to user no matter if they can be messaged or not
+            void ForceWarn(int level);
+            void Exit();
+            void ReconnectIRC();
+            //! Returns true if current page can be edited
+            bool BrowserPageIsEditable();
+            /*!
+             * \brief CheckEditableBrowserPage will check if current page is editable and if it's not it display a message box
+             * \return true on success or false in case it's not
+             */
+            bool CheckEditableBrowserPage();
+            void SuspiciousEdit();
+            void Localize();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -175,28 +196,6 @@ namespace Huggle
             //! Pointer to UAA dialog
             UAAReport *fUaaReportForm;
             WhitelistForm *fWhitelist;
-            explicit MainWindow(QWidget *parent = 0);
-            ~MainWindow();
-            void _ReportUser();
-            //! Recreate interface, should be called everytime you do anything with main form
-            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false);
-            RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
-            bool Warn(QString WarningType, RevertQuery *dependency);
-            QString GetSummaryKey(QString item);
-            QString GetSummaryText(QString text);
-            //! Send a template to user no matter if they can be messaged or not
-            void ForceWarn(int level);
-            void Exit();
-            void ReconnectIRC();
-            //! Returns true if current page can be edited
-            bool BrowserPageIsEditable();
-            /*!
-             * \brief CheckEditableBrowserPage will check if current page is editable and if it's not it display a message box
-             * \return true on success or false in case it's not
-             */
-            bool CheckEditableBrowserPage();
-            void SuspiciousEdit();
-            void Localize();
 
         private slots:
             void on_actionExit_triggered();
@@ -277,6 +276,7 @@ namespace Huggle
             void DisplayWelcomeMessage();
             //! Welcome user
             void Welcome();
+            //! Recreate interface, should be called everytime you do anything with main form
             void Render();
             //! Request a page deletion csd or afd and so on
             void RequestPD();

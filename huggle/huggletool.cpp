@@ -64,11 +64,11 @@ void Huggle::HuggleTool::on_pushButton_clicked()
     {
         return;
     }
-    ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
     this->ui->comboBox_2->lineEdit()->setStyleSheet("color: green;");
     // retrieve information about the page
     this->query = new ApiQuery();
-    QueryPhase = 1;
+    this->QueryPhase = 1;
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
                                 + QUrl::toPercentEncoding(this->ui->comboBox_2->lineEdit()->text());
@@ -121,6 +121,8 @@ void HuggleTool::FinishPage()
             /// \todo LOCALIZE ME
             Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
             this->tick->stop();
+            this->edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+            this->edit = NULL;
             return;
         }
         if (e.attributes().contains("user"))

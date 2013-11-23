@@ -15,32 +15,33 @@ using namespace Huggle;
 
 HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::HistoryForm)
 {
-    ui->setupUi(this);
-    ui->pushButton->setEnabled(false);
-    ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
-    ui->tableWidget->setColumnCount(5);
+    this->RetrievedEdit = NULL;
+    this->ui->setupUi(this);
+    this->ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
+    this->ui->tableWidget->setColumnCount(5);
     QStringList header;
     header << "User" << "Size" << "Summary" << "ID" << "Date";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setShowGrid(false);
     this->query = NULL;
     this->t1 = NULL;
 }
 
 HistoryForm::~HistoryForm()
 {
-    delete t1;
-    delete ui;
+    delete this->t1;
+    delete this->ui;
 }
 
 void HistoryForm::Update(WikiEdit *edit)
@@ -52,7 +53,7 @@ void HistoryForm::Update(WikiEdit *edit)
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
     this->ui->pushButton->setEnabled(true);
-    ui->tableWidget->clearContents();
+    this->ui->tableWidget->clearContents();
     this->Clear();
     if (this->t1 != NULL)
     {
@@ -69,6 +70,16 @@ void HistoryForm::Update(WikiEdit *edit)
 
 void HistoryForm::onTick01()
 {
+    if (this->RetrievingEdit)
+    {
+        if (this->RetrievedEdit->IsPostProcessed())
+        {
+            Core::HuggleCore->Main->ProcessEdit(this->RetrievedEdit, false, true);
+            this->RetrievingEdit = false;
+            this->t1->stop();
+        }
+        return;
+    }
     if (this->query == NULL)
     {
         return;
@@ -80,9 +91,9 @@ void HistoryForm::onTick01()
     if (this->query->Result->Failed)
     {
         /// \todo Here we should log this error to debug log
-        ui->pushButton->setEnabled(true);
+        this->ui->pushButton->setEnabled(true);
         Huggle::Syslog::HuggleLogs->Log("Error: unable to retrieve history");
-        this->query->UnregisterConsumer("HistoryForm");
+        this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
         this->query = NULL;
         this->t1->stop();
         return;
@@ -126,32 +137,32 @@ void HistoryForm::onTick01()
                 summary = e.attribute("comment");
             }
         }
-        ui->tableWidget->insertRow(x);
-        ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
-        ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
-        ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
-        ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
-        ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+        this->ui->tableWidget->insertRow(x);
+        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
+        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
+        this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
+        this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
         x++;
     }
-    this->query->UnregisterConsumer("HistoryForm");
+    this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->query = NULL;
     this->t1->stop();
 }
 
 void HistoryForm::on_pushButton_clicked()
 {
-    ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
-    ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
+    this->ui->pushButton->setEnabled(false);
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
                                     + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
-    this->query->RegisterConsumer("HistoryForm");
+    this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->query->Process();
-    if (t1 != NULL)
+    if (this->t1 != NULL)
     {
-        delete t1;
+        delete this->t1;
     }
     this->t1 = new QTimer(this);
     Clear();
@@ -159,13 +170,64 @@ void HistoryForm::on_pushButton_clicked()
     this->t1->start(200);
 }
 
+void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
+{
+    if (this->query != NULL || this->RetrievingEdit)
+    {
+        // we must not retrieve edit until previous operation did finish
+        return;
+    }
+
+    if (this->ui->tableWidget->rowCount() == 0 || this->CurrentEdit == NULL)
+    {
+        return;
+    }
+
+    this->RetrievingEdit = true;
+    // check if we don't have this edit in a buffer
+    int x = 0;
+    int revid = this->ui->tableWidget->item(index.row(), 3)->text().toInt();
+    if (revid == 0)
+    {
+        this->RetrievingEdit = false;
+        return;
+    }
+    while (x < WikiEdit::EditList.count())
+    {
+        WikiEdit *edit = WikiEdit::EditList.at(x);
+        x++;
+        if (edit->RevID == revid)
+        {
+            Core::HuggleCore->Main->ProcessEdit(edit, true, true);
+            this->RetrievingEdit = false;
+            return;
+        }
+    }
+    // there is no such edit, let's get it
+    WikiEdit *w = new WikiEdit();
+    w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());
+    w->Page = new WikiPage(this->CurrentEdit->Page);
+    w->RevID = revid;
+    Core::HuggleCore->PostProcessEdit(w);
+    if (this->t1 != NULL)
+    {
+        delete this->t1;
+    }
+    this->RetrievedEdit = w;
+    /// \todo LOCALIZE ME
+    Core::HuggleCore->Main->Browser->RenderHtml("Please wait...");
+    this->t1 = new QTimer();
+    connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
+    this->t1->start();
+}
+
 void HistoryForm::Clear()
 {
     QStringList header;
     header << "User" << "Size" << "Summary" << "ID" << "Date";
-    ui->tableWidget->setHorizontalHeaderLabels(header);
-    while (ui->tableWidget->rowCount() > 0)
+    this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    while (this->ui->tableWidget->rowCount() > 0)
     {
-        ui->tableWidget->removeRow(0);
+        this->ui->tableWidget->removeRow(0);
     }
 }

@@ -28,6 +28,7 @@
 #define HUGGLECONSUMER_LOGINFORM                10
 #define HUGGLECONSUMER_MESSAGE_SEND             11
 #define HUGGLECONSUMER_PROTECTPAGE              12
+#define HUGGLECONSUMER_HISTORYWIDGET            13
 
 namespace Huggle
 {
