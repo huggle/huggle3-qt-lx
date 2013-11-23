@@ -61,43 +61,10 @@ namespace Huggle
     class Query : public Collectable
     {
         public:
-            //! Result of query, see documentation of QueryResult for more
-            QueryResult *Result;
-            //! Current status of a query
-            enum _Status Status;
-            //! Custom status
-
-            //! This can be used to override the current string representation of status with
-            //! some custom string, the system will still process the primary status but
-            //! user will see this custom string in a process list
-            QString CustomStatus;
-            //! Type of a query
-
-            //! This is very useful when you are casting a query to different type
-            QueryType Type;
-            //! Callback
-
-            //! If this is not a NULL this function will be called by query
-            //! once it's finished, a consumer called "delegate" will be created and you
-            //! will have to either replace it or remove in your function
-            //! otherwise you create a leak in huggle
-            Callback callback;
-            //! This is a pointer to object returned by your callback function
-            void* CallbackResult;
+            //! We need to have a shared manager for all queries
+            //! so that sessions work in wiki
             static QNetworkAccessManager *NetworkManager;
-            bool RetryOnTimeoutFailure;
-            QDateTime StartTime;
-            int Timeout;
-            //! Query doesn't have internal data displayed in debug log, this is usefull
-            //! when you are working with passwords in parameters
-            bool HiddenQuery;
-            //! Dependency for query
 
-            //! If you put anything in here, it either must be NULL or query
-            //! that is processed. The query will not be flagged as processed
-            //! until the dependency is processed as well, for most types
-            //! of queries they will not even start before that
-            Query *Dependency;
             //! Creates empty query
             Query();
             //! Destructor for query
@@ -131,6 +98,42 @@ namespace Huggle
             //! Every query has own unique ID which can be used to work with them
             //! this function returns that
             unsigned int QueryID();
+            //! Result of query, see documentation of QueryResult for more
+            QueryResult *Result;
+            //! Current status of a query
+            enum _Status Status;
+            //! Custom status
+
+            //! This can be used to override the current string representation of status with
+            //! some custom string, the system will still process the primary status but
+            //! user will see this custom string in a process list
+            QString CustomStatus;
+            //! Type of a query
+
+            //! This is very useful when you are casting a query to different type
+            QueryType Type;
+            //! Callback
+
+            //! If this is not a NULL this function will be called by query
+            //! once it's finished, a consumer called "delegate" will be created and you
+            //! will have to either replace it or remove in your function
+            //! otherwise you create a leak in huggle
+            Callback callback;
+            //! This is a pointer to object returned by your callback function
+            void* CallbackResult;
+            bool RetryOnTimeoutFailure;
+            QDateTime StartTime;
+            int Timeout;
+            //! Query doesn't have internal data displayed in debug log, this is usefull
+            //! when you are working with passwords in parameters
+            bool HiddenQuery;
+            //! Dependency for query
+
+            //! If you put anything in here, it either must be NULL or query
+            //! that is processed. The query will not be flagged as processed
+            //! until the dependency is processed as well, for most types
+            //! of queries they will not even start before that
+            Query *Dependency;
 
         private:
             //! Every query has own unique ID which can be used to work with them

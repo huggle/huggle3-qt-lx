@@ -30,6 +30,18 @@ namespace Huggle
     {
         class NetworkIrc;
     }
+
+    class RescoreItem
+    {
+        public:
+            RescoreItem(int _revID, int _score, QString _user);
+            RescoreItem(const RescoreItem &item);
+            RescoreItem(RescoreItem *item);
+            QString User;
+            int RevID;
+            int Score;
+    };
+
     //! Vandalism network
 
     //! Huggle 3 comes with a system that allows all clients to operate together in order
@@ -62,6 +74,8 @@ namespace Huggle
             QString pref;
             //! Timer that is used to connect to network
             QTimer *tm;
+            void Rescore(WikiEdit *edit);
+            QList<RescoreItem> UnparsedScores;
         private:
             Ui::VandalNw *ui;
             //! Pointer to irc server

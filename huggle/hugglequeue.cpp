@@ -42,6 +42,13 @@ void HuggleQueue::AddItem(WikiEdit *page)
     {
         throw new Exception("WikiEdit *page must not be NULL", "void HuggleQueue::AddItem(WikiEdit *page)");
     }
+    if (Core::HuggleCore->Main != NULL)
+    {
+        if (Core::HuggleCore->Main->VandalDock != NULL)
+        {
+            Core::HuggleCore->Main->VandalDock->Rescore(page);
+        }
+    }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);

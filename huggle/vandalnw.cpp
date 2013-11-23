@@ -95,6 +95,35 @@ QString VandalNw::GetChannel()
     return Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle";
 }
 
+void VandalNw::Rescore(WikiEdit *edit)
+{
+    if (this->UnparsedScores.count() == 0)
+    {
+        return;
+    }
+    int item = 0;
+    RescoreItem *score = NULL;
+    while (item < this->UnparsedScores.count())
+    {
+        if (this->UnparsedScores.at(item).RevID == edit->RevID)
+        {
+            score = new RescoreItem(this->UnparsedScores.at(item));
+            this->UnparsedScores.removeAt(item);
+            break;
+        }
+        item++;
+    }
+    if (score != NULL)
+    {
+        this->Insert(score->User + " rescored edit " + edit->Page->PageName +
+                     " by " + edit->User->Username + " (" +
+                     QString::number(edit->RevID) + ") by " +
+                     QString::number(score->Score));
+        edit->Score += score->Score;
+        delete score;
+    }
+}
+
 void VandalNw::onTick()
 {
     if (!this->Irc->IsConnecting() && !this->Irc->IsConnected())
@@ -177,6 +206,13 @@ void VandalNw::onTick()
                             this->Insert(m->user.Nick + " rescored edit " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") by " + QString::number(Score));
                             edit->Score += Score;
                             Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                        } else
+                        {
+                            while (this->UnparsedScores.count() > 200)
+                            {
+                                this->UnparsedScores.removeAt(0);
+                            }
+                            this->UnparsedScores.append(RescoreItem(RevID, Score, m->user.Nick));
                         }
                     }
                 }
@@ -204,4 +240,25 @@ void Huggle::VandalNw::on_pushButton_clicked()
         this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
     }
     this->ui->lineEdit->setText("");
+}
+
+RescoreItem::RescoreItem(int _revID, int _score, QString _user)
+{
+    this->RevID = _revID;
+    this->User = _user;
+    this->Score = _score;
+}
+
+RescoreItem::RescoreItem(const RescoreItem &item)
+{
+    this->User = item.User;
+    this->Score = item.Score;
+    this->RevID = item.RevID;
+}
+
+RescoreItem::RescoreItem(RescoreItem *item)
+{
+    this->User = item->User;
+    this->RevID = item->RevID;
+    this->Score = item->Score;
 }
