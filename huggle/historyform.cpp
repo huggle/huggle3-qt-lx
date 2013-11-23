@@ -198,7 +198,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         x++;
         if (edit->RevID == revid)
         {
-            Core::HuggleCore->Main->ProcessEdit(edit, false, true);
+            Core::HuggleCore->Main->ProcessEdit(edit, true, true);
             this->RetrievingEdit = false;
             return;
         }
