@@ -25,7 +25,6 @@ namespace Ui
 
 namespace Huggle
 {
-    /// \todo RELEASE BLOCKER: this thing needs to be finished
     //! This is a small gadget that is displayed on top of main window
 
     //! It can be used to retrieve a history of currently displayed page
@@ -40,15 +39,19 @@ namespace Huggle
         private slots:
             void onTick01();
             void on_pushButton_clicked();
+            void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
             void Clear();
+            bool RetrievingEdit;
             Ui::HistoryForm *ui;
             WikiEdit* CurrentEdit;
             ApiQuery *query;
+            WikiEdit* RetrievedEdit;
             //! This timer is used to check a query status
             QTimer *t1;
     };
 }
 
 #endif // HISTORYFORM_H
+

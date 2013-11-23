@@ -177,7 +177,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->menuDebug->hide();
     }
     Hooks::MainWindowIsLoad(this);
-    Syslog::HuggleLogs->Log("Main form was loaded in " + QString::number(load.secsTo(QDateTime::currentDateTime())) + " whee");
     this->VandalDock->Connect();
 }
 
@@ -261,7 +260,7 @@ void MainWindow::_ReportUser()
     this->fReportForm->SetUser(this->CurrentEdit->User);
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
+void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory)
 {
     if (e == NULL || this->ShuttingDown)
     {
@@ -308,7 +307,10 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory)
     e->User->Resync();
     this->EditablePage = true;
     this->wUserInfo->ChangeUser(e->User);
-    this->wHistory->Update(e);
+    if (!KeepHistory)
+    {
+        this->wHistory->Update(e);
+    }
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
     this->Render();
@@ -1529,8 +1531,8 @@ void MainWindow::on_actionDelete_triggered()
         delete this->fDeleteForm;
     }
     this->fDeleteForm = new DeleteForm(this);
-    fDeleteForm->setPage(this->CurrentEdit->Page);
-    fDeleteForm->show();
+    this->fDeleteForm->setPage(this->CurrentEdit->Page);
+    this->fDeleteForm->show();
 #endif
 }
 
@@ -1563,7 +1565,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 
 void Huggle::MainWindow::on_actionIRC_triggered()
 {
-    ReconnectIRC();
+    this->ReconnectIRC();
 }
 
 void Huggle::MainWindow::on_actionWiki_triggered()
