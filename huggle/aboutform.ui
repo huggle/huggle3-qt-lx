@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>468</width>
-    <height>584</height>
+    <height>623</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -58,7 +58,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>200</y>
+     <y>250</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -71,7 +71,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>540</y>
+     <y>580</y>
      <width>80</width>
      <height>26</height>
     </rect>
@@ -87,7 +87,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>290</y>
+     <y>330</y>
      <width>431</width>
      <height>231</height>
     </rect>
@@ -112,7 +112,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
+    <pixmap>:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -135,7 +135,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
+     <y>270</y>
      <width>429</width>
      <height>22</height>
     </rect>
@@ -148,7 +148,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
+     <y>300</y>
      <width>429</width>
      <height>37</height>
     </rect>
@@ -158,8 +158,6 @@
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="pictures.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
