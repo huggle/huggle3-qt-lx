@@ -647,6 +647,7 @@ bool Login::ProcessOutput()
 
     if (Result == "WrongPass")
     {
+        this->ui->lineEdit_3->setFocus();
         /// \todo LOCALIZE ME
         DisplayError("Your password is not correct");
         return false;
