@@ -578,6 +578,10 @@ void MainWindow::OnTimerTick1()
             RetrieveEdit = false;
         } else
         {
+            if (Core::HuggleCore->PrimaryFeedProvider->IsPaused())
+            {
+                Core::HuggleCore->PrimaryFeedProvider->Resume();
+            }
             this->Queue1->Trim();
         }
     } else
