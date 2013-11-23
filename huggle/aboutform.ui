@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>468</width>
-    <height>689</height>
+    <height>584</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -58,7 +58,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
+     <y>200</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -67,44 +67,11 @@
     <string>Created by:</string>
    </property>
   </widget>
-  <widget class="QWidget" name="gridLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>280</y>
-     <width>431</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Petr Bena&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:Petrb&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Petrb&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aidan Fell&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:My_name_is_not_dave&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:My name is not dave&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>650</y>
+     <y>540</y>
      <width>80</width>
      <height>26</height>
     </rect>
@@ -120,9 +87,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>360</y>
+     <y>290</y>
      <width>431</width>
-     <height>291</height>
+     <height>231</height>
     </rect>
    </property>
    <property name="text">
@@ -162,6 +129,32 @@
    </property>
    <property name="wordWrap">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>429</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Petr Bena&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:Petrb&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Petrb&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>250</y>
+     <width>429</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aidan Fell&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:My_name_is_not_dave&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:My name is not dave&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
