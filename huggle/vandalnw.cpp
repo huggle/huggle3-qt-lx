@@ -19,6 +19,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->ui->setupUi(this);
     this->pref = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
+    this->Text = "";
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->tm->start(200);
@@ -34,7 +35,7 @@ VandalNw::~VandalNw()
 
 void VandalNw::Connect()
 {
-    if (!Configuration::HuggleConfiguration->VandalNw_Login)
+    if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("Vandalism network isn't allowed in options");
@@ -168,7 +169,8 @@ void VandalNw::onTick()
                     if (edit != NULL)
                     {
                         edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
-                        this->Insert(m->user.Nick + " seen a good edit to " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")");
+                        this->Insert("<font color=blue>" + m->user.Nick + " seen a good edit to " + edit->Page->PageName +
+                                     " by " + edit->User->Username + " (" + revid + ")" + "</font>");
                         Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
                     }
                 }
@@ -178,7 +180,7 @@ void VandalNw::onTick()
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                     if (edit != NULL)
                     {
-                        this->Insert(m->user.Nick + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")");
+                        this->Insert("<font color=orange>" + m->user.Nick + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")" + "</font>");
                         edit->User->setBadnessScore(edit->User->getBadnessScore() + 200);
                         Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
                     }
@@ -189,7 +191,9 @@ void VandalNw::onTick()
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                     if (edit != NULL)
                     {
-                        this->Insert(m->user.Nick + " thinks that edit to " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") is likely a vandalism, but they didn't revert it");
+                        this->Insert("<font color=red>" + m->user.Nick + " thinks that edit to " + edit->Page->PageName +
+                                     " by " + edit->User->Username + " (" + revid +
+                                     ") is likely a vandalism, but they didn't revert it </font>");
                         edit->Score += 600;
                         Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
                     }
@@ -203,7 +207,9 @@ void VandalNw::onTick()
                         WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                         if (edit != NULL)
                         {
-                            this->Insert(m->user.Nick + " rescored edit " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ") by " + QString::number(Score));
+                            this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" +
+                                  edit->Page->PageName + "</b> by <b>" + edit->User->Username + "</b> (" + revid + ") by " +
+                                         QString::number(Score) + "</font>");
                             edit->Score += Score;
                             Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
                         } else
@@ -227,9 +233,8 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text)
 {
-    QString t = this->ui->textEdit->toPlainText();
-    t.prepend(text + "\n");
-    this->ui->textEdit->setPlainText(t);
+    this->Text.prepend(text + "<br>");
+    this->ui->textEdit->setHtml(this->Text);
 }
 
 void Huggle::VandalNw::on_pushButton_clicked()
