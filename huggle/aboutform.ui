@@ -112,7 +112,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
+    <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -125,7 +125,7 @@
     </rect>
    </property>
    <property name="text">
-    <string notr="true"/>
+    <string notr="true">Hey you, this isn't whitespace! :P</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -158,6 +158,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>
