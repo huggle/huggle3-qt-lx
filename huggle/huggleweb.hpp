@@ -50,9 +50,16 @@ namespace Huggle
              */
             void DisplayPreFormattedPage(QString url);
             void DisplayPage(QString url);
-            /// \todo DOCUMENT ME
+            /*!
+             * \brief Display a html text in window of huggle
+             * \param html
+             */
             void RenderHtml(QString html);
-            /// \todo DOCUMENT ME
+            /*!
+             * \brief Display a diff of an edit using it's RevID
+             * Either uses an api or in case that api fails, the page is downloaded using standard rendering
+             * \param edit
+             */
             void DisplayDiff(WikiEdit *edit);
             static QString Encode(const QString &string);
 

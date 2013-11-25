@@ -28,15 +28,27 @@ UpdateForm::~UpdateForm()
 void UpdateForm::Check()
 {
     this->qData = new WebserverQuery();
-    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->HuggleVersion)
+    QString version = Configuration::HuggleConfiguration->HuggleVersion;
+    if (version.contains(" "))
+    {
+        // we don't need to send the irrelevant stuff
+        version = version.mid(0, version.indexOf(" "));
+    }
+    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
     this->qData->Process();
     connect(this->t, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->qData->RegisterConsumer("updater");
     this->t->start(60);
 }
 
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
+    if (this->ui->checkBox->isChecked())
+    {
+        Configuration::HuggleConfiguration->UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SaveConfig();
+    }
     this->close();
 }
 
@@ -47,5 +59,80 @@ void UpdateForm::OnTick()
         return;
     }
 
+    QDomDocument r;
+    r.setContent(this->qData->Result->Data);
+    QDomNodeList l = r.elementsByTagName("obsolete");
+    if (l.count() == 0)
+    {
+        // there is no new version of huggle
+        this->qData->UnregisterConsumer("updater");
+        this->t->stop();
+        return;
+    } else
+    {
+        QString version = l.at(0).toElement().text();
+        QString info = "New version of huggle is available: version " + version;
+        l = r.elementsByTagName("info");
+        if (l.count() > 0)
+        {
+            // we don't know how to update o.O
+            info = l.at(0).toElement().text();
+            this->ui->pushButton->setEnabled(false);
+            info = info.replace("$LATESTHUGGLE", version);
+            this->ui->label->setText(info);
+            this->show();
+            this->qData->UnregisterConsumer("updater");
+            this->t->stop();
+            return;
+        } else
+        {
+            // get the instructions
+            l = r.childNodes();
+            int id = 0;
+            while (id < l.count())
+            {
+                QDomElement element = l.at(0).toElement();
+                id++;
+                if (element.tagName() == "download")
+                {
+                    if (!element.attributes().contains("target"))
+                    {
+                        Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ingoring the update");
+                        this->qData->UnregisterConsumer("updater");
+                        this->t->stop();
+                        return;
+                    }
+                    this->Instructions.append("download " + element.text() + " " + element.attribute("target"));
+                }
+                if (element.tagName() == "exec")
+                {
+                    bool root = false;
+                    if (element.attributes().contains("root"))
+                    {
+                        if (element.attribute("root") == "true")
+                        {
+                            root = true;
+                        }
+                    }
+                    if (root)
+                    {
+                        this->Instructions.append("roexec " + element.text());
+                    } else
+                    {
+                        this->Instructions.append("exec " + element.text());
+                    }
+                }
+            }
+        }
+        this->ui->label->setText(info);
+        this->show();
+    }
+
+    this->qData->UnregisterConsumer("updater");
     this->t->stop();
+}
+
+void Huggle::UpdateForm::on_label_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
 }

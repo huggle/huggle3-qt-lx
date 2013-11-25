@@ -42,6 +42,7 @@ Configuration::Configuration()
     this->IRCPort = 6667;
     this->RingLogMaxSize = 2000;
     this->HomePath = QDir::currentPath();
+    this->UpdatesEnabled = true;
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
     this->DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
@@ -401,6 +402,11 @@ void Configuration::LoadConfig()
             Configuration::HuggleConfiguration->NextOnRv = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "EnableUpdates")
+        {
+            Configuration::HuggleConfiguration->UpdatesEnabled = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -432,6 +438,7 @@ void Configuration::SaveConfig()
     Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
     Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->RingLogMaxSize), x);
     Configuration::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), x);
+    Configuration::InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->UpdatesEnabled), x);
     Configuration::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), x);
     Configuration::InsertConfig("UserName", Configuration::HuggleConfiguration->UserName, x);
     /////////////////////////////

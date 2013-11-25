@@ -22,12 +22,12 @@ namespace Ui
 
 namespace Huggle
 {
+    class WebserverQuery;
+
     /*!
      * \brief Update form is shown when there is an update for huggle
      * This form may work on some platforms only
      */
-
-    /// \todo This form doesn't work and that is a release blocker. We can't release a huggle with no update form.
     class UpdateForm : public QDialog
     {
             Q_OBJECT
@@ -42,8 +42,11 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void OnTick();
 
+            void on_label_linkActivated(const QString &link);
+
         private:
             Ui::UpdateForm *ui;
+            QStringList Instructions;
             QTimer *t;
     };
 }

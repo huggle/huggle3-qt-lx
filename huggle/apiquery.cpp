@@ -150,7 +150,7 @@ void ApiQuery::Process()
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url;
-    if (UsingPOST)
+    if (this->UsingPOST)
     {
         url = QUrl::fromEncoded(this->ConstructParameterLessUrl().toUtf8());
     } else
@@ -162,7 +162,7 @@ void ApiQuery::Process()
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     }
-    if (UsingPOST)
+    if (this->UsingPOST)
     {
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
     } else

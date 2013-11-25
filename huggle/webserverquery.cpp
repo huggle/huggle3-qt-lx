@@ -39,9 +39,6 @@ void WebserverQuery::Process()
     if (this->UsingPOST)
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-    }
-    if (this->UsingPOST)
-    {
         //this->reply = Query::NetworkManager.post(request, url.encodedQuery());
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
     } else
@@ -55,15 +52,35 @@ void WebserverQuery::Process()
 
 void WebserverQuery::Kill()
 {
-
+    if (this->reply != NULL)
+    {
+        this->reply->abort();
+    }
 }
 
 void WebserverQuery::ReadData()
 {
-
+    this->Result->Data += QString(this->reply->readAll());
 }
 
 void WebserverQuery::Finished()
 {
-
+    this->Result->Data += QString(this->reply->readAll());
+    // now we need to check if request was successful or not
+    if (this->reply->error())
+    {
+        this->Result->ErrorMessage = reply->errorString();
+        this->Result->Failed = true;
+        this->reply->deleteLater();
+        this->reply = NULL;
+        this->Status = StatusDone;
+        return;
+    }
+    this->reply->deleteLater();
+    this->reply = NULL;
+    if (!this->HiddenQuery)
+    {
+        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 2);
+    }
+    this->Status = StatusDone;
 }

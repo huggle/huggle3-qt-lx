@@ -42,6 +42,11 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         this->ui->checkBox->setChecked(false);
     }
     this->ui->ButtonExit->setText(Localizations::HuggleLocalizations->Localize("[[main-system-exit]]"));
+    if (Configuration::UpdatesEnabled)
+    {
+        this->Updater = new UpdateForm();
+        this->Updater->Check();
+    }
     if (Configuration::HuggleConfiguration->UserName != "User")
     {
         this->ui->lineEdit_2->setText(Configuration::HuggleConfiguration->UserName);
@@ -60,6 +65,7 @@ Login::~Login()
     {
         this->wq->SafeDelete();
     }
+    delete this->Updater;
     delete this->ui;
     delete this->timer;
 }
@@ -255,7 +261,7 @@ void Login::RetrieveGlobalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -790,4 +796,9 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
     }
     Localizations::HuggleLocalizations->PreferredLanguage = lang;
     this->Localize();
+}
+
+void Huggle::Login::on_label_9_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
 }

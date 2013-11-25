@@ -176,6 +176,7 @@ namespace Huggle
             bool RevertOnMultipleEdits;
             bool Log2File;
             QString SyslogPath;
+            bool UpdatesEnabled;
 
             //////////////////////////////////////////////
             // Local config

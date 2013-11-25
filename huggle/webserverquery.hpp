@@ -26,6 +26,7 @@ namespace Huggle
     //! This is a query that can be used to perform simple webserver requests
     class WebserverQuery : public QObject, public Query
     {
+            Q_OBJECT
         public:
             WebserverQuery();
             //! Whether the query will submit parameters using POST data

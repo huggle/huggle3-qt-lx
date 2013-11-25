@@ -27,7 +27,6 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
     this->OptionalReason = "";
     this->ta = "";
     this->UAAReportReason = "";
-
 }
 
 UAAReport::~UAAReport()

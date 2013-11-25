@@ -22,6 +22,7 @@
 #include "core.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
+#include "updateform.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"
 
@@ -51,6 +52,7 @@ namespace Huggle
     };
 
     class WLQuery;
+    class UpdateForm;
     class ApiQuery;
 
     //! Window that is displayed as first when huggle is started
@@ -61,12 +63,12 @@ namespace Huggle
         public:
             explicit Login(QWidget *parent = 0);
             ~Login();
-            /// \todo DOCUMENT ME
-            Status _Status;
-            /// \todo DOCUMENT ME
+            //! Display a progress in progress bar, thread unsafe
             void Progress(const int progress);
             /// \todo DOCUMENT ME
             void Localize();
+            //! Status we are in (loggin it, waiting for this and that etc)
+            Status _Status;
 
         private slots:
             void on_ButtonOK_clicked();
@@ -75,16 +77,9 @@ namespace Huggle
             void on_pushButton_clicked();
             void on_Language_currentIndexChanged(const QString &arg1);
 
+            void on_label_9_linkActivated(const QString &link);
+
         private:
-            Ui::Login *ui;
-            QTimer *timer;
-            /// \todo DOCUMENT ME
-            WLQuery *wq;
-            ApiQuery *LoginQuery;
-            //! The token obtained from login
-            QString Token;
-            /// \todo DOCUMENT ME
-            static QString Test;
             //! Reset the interface to default
             void Reset();
             //! Enable parts of interface
@@ -110,6 +105,16 @@ namespace Huggle
             //! This function make sure that login result is done
             bool ProcessOutput();
             QString GetToken();
+            UpdateForm *Updater;
+            Ui::Login *ui;
+            QTimer *timer;
+            //! This query is used to get a wl
+            WLQuery *wq;
+            ApiQuery *LoginQuery;
+            //! The token obtained from login
+            QString Token;
+            /// \todo DOCUMENT ME
+            static QString Test;
     };
 }
 
