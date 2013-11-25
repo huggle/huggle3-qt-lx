@@ -26,9 +26,7 @@ namespace Huggle
         public:
             static QList<HuggleQueueFilter*> Filters;
             static HuggleQueueFilter *DefaultFilter;
-            //! Name of this queue, must be unique
-            QString QueueName;
-            bool ProjectSpecific;
+
             //! ctr
             HuggleQueueFilter();
             //! Returns true if edit is ok for this filter (that means it is not filtered out)
@@ -68,6 +66,9 @@ namespace Huggle
             void setIgnoreSelf(bool value);
             bool IsDefault() const;
             bool IsChangeable() const;
+            //! Name of this queue, must be unique
+            QString QueueName;
+            bool ProjectSpecific;
 
         private:
             bool IgnoreMinor;

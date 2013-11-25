@@ -39,6 +39,11 @@ namespace Huggle
             explicit BlockUser(QWidget *parent = 0);
             ~BlockUser();
             void SetWikiUser(WikiUser *User);
+            void CheckToken();
+            void GetToken();
+            void Failed(QString reason);
+            void Block();
+            void sendBlockNotice(ApiQuery *dependency);
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
@@ -48,19 +53,13 @@ namespace Huggle
             //! Timer that switches between steps of block workflow
             QTimer *t0;
             WikiUser *user;
-            /// \todo DOCUMENT ME
-            ApiQuery *tb;
-            /// \todo DOCUMENT ME
-            ApiQuery *b;
+            //! Query to exec api to block user
+            ApiQuery *qUser;
+            ApiQuery *qTokenApi;
             //! This is api query that is used to block user and used as dependency to deliver the message
             ApiQuery *Dependency;
             QString BlockToken;
             int QueryPhase;
-            void CheckToken();
-            void GetToken();
-            void Failed(QString reason);
-            void Block();
-            void sendBlockNotice(ApiQuery *dependency);
     };
 }
 

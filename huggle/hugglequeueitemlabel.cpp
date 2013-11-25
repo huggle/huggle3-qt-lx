@@ -29,27 +29,27 @@ HuggleQueueItemLabel::~HuggleQueueItemLabel()
 void HuggleQueueItemLabel::SetName(QString name)
 {
     this->ui->label_2->setText(name);
-    if (this->page != NULL)
+    if (this->Page != NULL)
     {
         // change the icon according to edit type
-        if (this->page->OwnEdit)
+        if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
             return;
         }
 
-        if (this->page->User->IsReported)
+        if (this->Page->User->IsReported)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
             return;
         }
 
-        if (this->page->Bot)
+        if (this->Page->Bot)
         {
             this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-bot.png") );
         }
 
-        switch (this->page->CurrentUserWarningLevel)
+        switch (this->Page->CurrentUserWarningLevel)
         {
             case WarningLevelNone:
                 this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
@@ -68,13 +68,13 @@ void HuggleQueueItemLabel::SetName(QString name)
                 return;
         }
 
-        if (this->page->Score > 1000)
+        if (this->Page->Score > 1000)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warning.png"));
             return;
         }
 
-        if (this->page->User->IsIP())
+        if (this->Page->User->IsIP())
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
             return;
@@ -94,10 +94,10 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
     {
         this->ParentQueue->Items.removeAll(this);
     }
-    Core::HuggleCore->ProcessEdit(this->page);
+    Core::HuggleCore->ProcessEdit(this->Page);
     this->close();
-    this->page->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    this->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+    this->Page->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+    this->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
     this->ParentQueue->Delete(this, qi);
 }
 
@@ -108,8 +108,8 @@ void HuggleQueueItemLabel::Remove()
     {
         this->ParentQueue->Items.removeAll(this);
     }
-    this->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-    this->page = NULL;
+    this->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+    this->Page = NULL;
     this->close();
     this->ParentQueue->Delete(this);
 }

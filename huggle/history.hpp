@@ -35,6 +35,8 @@ namespace Huggle
     class HistoryItem
     {
         public:
+            static QString TypeToString(HistoryType type);
+
             HistoryItem();
             HistoryItem(const HistoryItem &item);
             HistoryItem(HistoryItem * item);
@@ -44,7 +46,6 @@ namespace Huggle
             QString Target;
             //! Type of item
             HistoryType Type;
-            static QString TypeToString(HistoryType type);
         private:
 
     };

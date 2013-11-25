@@ -95,9 +95,6 @@ namespace Huggle
             void Finished();
 
         private:
-            QString ActionPart;
-            //! Reply from qnet
-            QNetworkReply *reply;
             //! Generate api url
             void ConstructUrl();
             QString ConstructParameterLessUrl();
@@ -105,6 +102,9 @@ namespace Huggle
             bool FormatIsCurrentlySupported();
             //! This is only needed when you are using rollback
             void FinishRollback();
+            QString ActionPart;
+            //! Reply from qnet
+            QNetworkReply *reply;
     };
 }
 

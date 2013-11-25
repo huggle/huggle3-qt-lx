@@ -54,7 +54,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     // we no longer to prevent this from being deleted because we already have different lock for that
     page->UnregisterConsumer("DeletionLock");
-    label->page = page;
+    label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
@@ -105,9 +105,9 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->page->RevID == RevID)
+        if (item->Page->RevID == RevID)
         {
-            return item->page;
+            return item->Page;
         }
         c++;
     }
@@ -120,9 +120,9 @@ void HuggleQueue::DeleteByRevID(int RevID)
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->page->RevID == RevID)
+        if (item->Page->RevID == RevID)
         {
-            if (Core::HuggleCore->Main->CurrentEdit == item->page)
+            if (Core::HuggleCore->Main->CurrentEdit == item->Page)
             {
                 // we can't delete item that is being reviewed now
                 return;
@@ -152,7 +152,7 @@ void HuggleQueue::SortItemByEdit(WikiEdit *e)
     {
         QLayoutItem *i = this->layout->itemAt(c);
         HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
-        if (x->page == e)
+        if (x->Page == e)
         {
             this->ResortItem(i, c);
             return;
@@ -184,7 +184,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
 
     // first we get the item
     HuggleQueueItemLabel *q1 = (HuggleQueueItemLabel*)item->widget();
-    int Score = q1->page->Score;
+    int Score = q1->Page->Score;
     int x = 0;
     bool sorted = true;
     while (x < position)
@@ -195,7 +195,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
-            if (q2->page->Score < Score)
+            if (q2->Page->Score < Score)
             {
                 sorted = false;
                 break;
@@ -211,7 +211,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
-            if (q2->page->Score > Score)
+            if (q2->Page->Score > Score)
             {
                 sorted = false;
                 break;
@@ -223,7 +223,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // now we need to remove the item and place it again
         // because QT doesn't allow manual insertion of item for unknown reasons, we need to readd whole item
-        WikiEdit *page = q1->page;
+        WikiEdit *page = q1->Page;
         page->RegisterConsumer("HuggleQueue::ResortItem");
         this->DeleteItem(q1);
         this->AddItem(page);
@@ -239,8 +239,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
     }
     if (qi != NULL)
     {
-        item->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-        item->page = NULL;
+        item->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+        item->Page = NULL;
         this->layout->removeItem(qi);
         return;
     }
@@ -252,10 +252,10 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         if (label == item)
         {
             this->layout->removeItem(i);
-            if (label->page != NULL)
+            if (label->Page != NULL)
             {
-                label->page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-                label->page = NULL;
+                label->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+                label->Page = NULL;
             }
             break;
         }
@@ -323,11 +323,11 @@ long HuggleQueue::GetScore(int id)
 
     QLayoutItem *i = this->layout->itemAt(id);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
-    if (label->page == NULL)
+    if (label->Page == NULL)
     {
         return MINIMAL_SCORE;
     }
-    return label->page->Score;
+    return label->Page->Score;
 }
 
 void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)

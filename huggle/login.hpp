@@ -76,7 +76,6 @@ namespace Huggle
             void OnTimerTick();
             void on_pushButton_clicked();
             void on_Language_currentIndexChanged(const QString &arg1);
-
             void on_label_9_linkActivated(const QString &link);
 
         private:

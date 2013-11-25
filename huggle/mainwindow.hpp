@@ -112,8 +112,6 @@ namespace Huggle
         ShutdownOpUpdatingConf
     };
 
-    /// \todo We should display reason why revert wasn't done to log
-
     //! Primary huggle window
     class MainWindow : public QMainWindow
     {
