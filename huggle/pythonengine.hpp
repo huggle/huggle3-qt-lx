@@ -22,6 +22,7 @@
 #include <QMutex>
 #include <QList>
 #include <Python.h>
+#include "syslog.hpp"
 
 namespace Huggle
 {

@@ -131,7 +131,7 @@ void ReportUser::Tick()
 
     if (this->q->Processed())
     {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->q->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->q->Result->Data, 2);
         QDomDocument d;
         d.setContent(this->q->Result->Data);
         QDomNodeList results = d.elementsByTagName("rc");

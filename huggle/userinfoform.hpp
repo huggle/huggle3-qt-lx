@@ -13,6 +13,10 @@
 
 #include <QDockWidget>
 #include <QString>
+#include "core.hpp"
+#include "exception.hpp"
+#include "wikiedit.hpp"
+#include "apiquery.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui
@@ -23,8 +27,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
-
-    /// \todo RELEASE BLOCKER: History of edits doesn't work yet, it needs to be done
+    class WikiEdit;
+    class ApiQuery;
 
     /*!
      * \brief The UserinfoForm class is a widget that displays the information about user
@@ -39,9 +43,17 @@ namespace Huggle
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
 
+        private slots:
+            void OnTick();
+            void on_pushButton_clicked();
+            void on_tableWidget_clicked(const QModelIndex &index);
+
         private:
             Ui::UserinfoForm *ui;
             WikiUser *User;
+            ApiQuery *q;
+            QTimer *timer;
+            WikiEdit *edit;
     };
 }
 

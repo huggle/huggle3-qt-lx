@@ -36,11 +36,11 @@ void WebserverQuery::Process()
 
     QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
     QNetworkRequest request(url);
-    if (UsingPOST)
+    if (this->UsingPOST)
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     }
-    if (UsingPOST)
+    if (this->UsingPOST)
     {
         //this->reply = Query::NetworkManager.post(request, url.encodedQuery());
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
