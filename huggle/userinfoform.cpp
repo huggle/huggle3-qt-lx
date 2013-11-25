@@ -58,6 +58,10 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     {
         this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
     }
+    while (this->ui->tableWidget->rowCount() > 0)
+    {
+        this->ui->tableWidget->removeRow(0);
+    }
     this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
 }
 
@@ -80,7 +84,7 @@ void UserinfoForm::OnTick()
     {
         if (this->edit->IsPostProcessed())
         {
-            Core::HuggleCore->Main->ProcessEdit(this->edit, false, true);
+            Core::HuggleCore->Main->ProcessEdit(this->edit, false, false, true);
             this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
             this->edit = NULL;
         }
@@ -172,7 +176,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
         x++;
         if (edit->RevID == revid)
         {
-            Core::HuggleCore->Main->ProcessEdit(edit, true, true);
+            Core::HuggleCore->Main->ProcessEdit(edit, true, false, true);
             return;
         }
     }

@@ -260,7 +260,7 @@ void MainWindow::_ReportUser()
     this->fReportForm->SetUser(this->CurrentEdit->User);
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory)
+void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)
 {
     if (e == NULL || this->ShuttingDown)
     {
@@ -306,7 +306,10 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory)
     }
     e->User->Resync();
     this->EditablePage = true;
-    this->wUserInfo->ChangeUser(e->User);
+    if (!KeepUser)
+    {
+        this->wUserInfo->ChangeUser(e->User);
+    }
     if (!KeepHistory)
     {
         this->wHistory->Update(e);

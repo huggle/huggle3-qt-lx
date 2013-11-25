@@ -123,7 +123,7 @@ namespace Huggle
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
             void _ReportUser();
-            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false);
+            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false);
             RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
             bool Warn(QString WarningType, RevertQuery *dependency);
             QString GetSummaryKey(QString item);

@@ -223,9 +223,6 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
 
 void HistoryForm::Clear()
 {
-    QStringList header;
-    header << "User" << "Size" << "Summary" << "ID" << "Date";
-    this->ui->tableWidget->setHorizontalHeaderLabels(header);
     while (this->ui->tableWidget->rowCount() > 0)
     {
         this->ui->tableWidget->removeRow(0);
