@@ -71,6 +71,7 @@ SOURCES += tst_testmain.cpp \
     ../../requestprotect.cpp \
     ../../reportuser.cpp \
     ../../pythonengine.cpp \
+    ../../webserverquery.cpp \
     ../../proxy.cpp \
     ../../protectpage.cpp \
     ../../processlist.cpp \
@@ -135,6 +136,7 @@ HEADERS += \
     ../../requestprotect.hpp \
     ../../reportuser.hpp \
     ../../pythonengine.hpp \
+    ../../webserverquery.hpp \
     ../../proxy.hpp \
     ../../protectpage.hpp \
     ../../processlist.hpp \
