@@ -116,10 +116,9 @@ void VandalNw::Rescore(WikiEdit *edit)
     }
     if (score != NULL)
     {
-        this->Insert(score->User + " rescored edit " + edit->Page->PageName +
-                     " by " + edit->User->Username + " (" +
-                     QString::number(edit->RevID) + ") by " +
-                     QString::number(score->Score));
+        this->Insert("<font color=green>" + score->User + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" +
+                     edit->User->Username + "</b> (" + QString::number(score->RevID) + ") by " +
+                     QString::number(score->Score) + "</font>");
         edit->Score += score->Score;
         delete score;
     }

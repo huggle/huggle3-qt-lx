@@ -29,6 +29,7 @@ SOURCES += tst_testmain.cpp \
     ../../gc.cpp \
     ../../exception.cpp \
     ../../deleteform.cpp \
+    ../../updateform.cpp \
     ../../collectable.cpp \
     ../../blockuser.cpp \
     ../../apiquery.cpp \
@@ -128,6 +129,7 @@ HEADERS += \
     ../../terminalparser.hpp \
     ../../speedyform.hpp \
     ../../sessionform.hpp \
+    ../../updateform.hpp \
     ../../scorewordsdbform.hpp \
     ../../revertquery.hpp \
     ../../requestprotect.hpp \
