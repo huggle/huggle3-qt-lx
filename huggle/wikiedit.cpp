@@ -367,13 +367,16 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score += Configuration::HuggleConfiguration->LocalConfig_BotScore;
     }
-    if (edit->Page->IsUserpage())
+    if (edit->Page->IsUserpage() && !edit->Page->PageName.contains(edit->User->Username))
     {
-        edit->Score -= 200;
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ForeignUser;
+    } else if (edit->Page->IsUserpage())
+    {
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreUser;
     }
     if (edit->Page->IsTalk())
     {
-        edit->Score -= 2000;
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreTalk;
     }
     if (edit->Size > 1200 || edit->Size < -1200)
     {

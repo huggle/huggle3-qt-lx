@@ -265,8 +265,11 @@ namespace Huggle
             QList<ScoreWord> LocalConfig_ScoreParts;
             QList<ScoreWord> LocalConfig_ScoreWords;
             int LocalConfig_ScoreFlag;
+            int LocalConfig_ForeignUser;
+            int LocalConfig_ScoreTalk;
             //! Score that is added for every edit that has really big size
             int LocalConfig_ScoreChange;
+            int LocalConfig_ScoreUser;
             QStringList LocalConfig_Ignores;
             QStringList LocalConfig_RevertPatterns;
             QStringList LocalConfig_Assisted;

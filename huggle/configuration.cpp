@@ -64,6 +64,7 @@ Configuration::Configuration()
     this->LocalConfig_RequireAdmin = false;
     this->LocalConfig_EnableAll = false;
     this->LocalConfig_RequireEdits = 0;
+    this->LocalConfig_ScoreTalk = -800;
 
     // Reverting
     this->LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
@@ -85,7 +86,9 @@ Configuration::Configuration()
     this->HistorySize = 20;
 
     this->LocalConfig_IPScore = 800;
+    this->LocalConfig_ForeignUser = 800;
     this->LocalConfig_BotScore = -200;
+    this->LocalConfig_ScoreUser = -600;
     this->LocalConfig_WarningScore = 2000;
     this->LocalConfig_TalkPageWarningScore = -800;
     this->LocalConfig_ScoreFlag = -20000;
@@ -702,7 +705,10 @@ bool Configuration::ParseLocalConfig(QString config)
     // Scoring
     Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, "800").toInt();
     Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ForeignUser = Configuration::ConfigurationParse("score-foreign-user", config, "200").toInt();
     Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, "-200000").toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, "-200").toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, "-800").toInt();
     // Summaries
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config);
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config);
@@ -886,6 +892,10 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config, Configuration::HuggleConfiguration->LocalConfig_RevertSummaries);
     Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config, Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
+    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config, Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
     Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
