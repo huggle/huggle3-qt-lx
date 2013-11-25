@@ -42,7 +42,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         this->ui->checkBox->setChecked(false);
     }
     this->ui->ButtonExit->setText(Localizations::HuggleLocalizations->Localize("[[main-system-exit]]"));
-    if (Configuration::UpdatesEnabled)
+    if (Configuration::HuggleConfiguration->UpdatesEnabled)
     {
         this->Updater = new UpdateForm();
         this->Updater->Check();
