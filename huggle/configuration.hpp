@@ -58,7 +58,7 @@
 #define MEDIAWIKI_NSID_CATEGORYTALK             15
 #define MEDIAWIKI_NSID_PORTAL                   100
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
-#define HUGGLE_UPDATER_PLATFORM_TYPE            "UBUNTU"
+#define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
 
 #include <QList>
 #include <QStringList>
@@ -241,6 +241,7 @@ namespace Huggle
 
             // Deleting
             QString LocalConfig_DeletionTitle;
+            QString LocalConfig_DeletionSummary;
             QString LocalConfig_AssociatedDelete;
 
             // Warnings
