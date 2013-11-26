@@ -88,10 +88,8 @@ namespace Huggle
     class Syslog;
     class WikiUser;
     class ReportUser;
-#if !PRODUCTION_BUILD
     class DeleteForm;
     class BlockUser;
-#endif
     class ProtectPage;
     class UAAReport;
     class HuggleParser;
@@ -185,10 +183,8 @@ namespace Huggle
             ReportUser *fReportForm;
             //! Pointer to a form to block user
             BlockUser *fBlockForm;
-#if !PRODUCTION_BUILD
             //! Pointer to a form to delete a page
             DeleteForm *fDeleteForm;
-#endif
             //! Pointer to a form to protect a page
             ProtectPage *fProtectForm;
             //! Pointer to UAA dialog

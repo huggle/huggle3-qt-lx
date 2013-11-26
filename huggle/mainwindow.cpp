@@ -24,9 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fSessionData = NULL;
     this->fReportForm = NULL;
     this->fBlockForm = NULL;
-#if !PRODUCTION_BUILD
     this->fDeleteForm = NULL;
-#endif
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fWaiting = NULL;
@@ -204,9 +202,7 @@ MainWindow::~MainWindow()
     delete this->Status;
     delete this->Browser;
     delete this->fBlockForm;
-#if !PRODUCTION_BUILD
     delete this->fDeleteForm;
-#endif
     delete this->fUaaReportForm;
     delete this->ui;
     delete this->tb;
