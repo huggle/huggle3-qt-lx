@@ -712,7 +712,7 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_UseIrc = Configuration::SafeBool(Configuration::ConfigurationParse("irc", config));
     // Ignoring
     Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config, true);
-    Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns = Configuration::ConfigurationParse_QL("ignore-patterns", config);
+    Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns = Configuration::ConfigurationParse_QL("ignore-patterns", config, true);
     // Scoring
     Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, "800").toInt();
     Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config).toInt();
