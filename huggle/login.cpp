@@ -379,7 +379,7 @@ void Login::RetrieveWhitelist()
         return;
     }
     this->Progress(52);
-    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-progress-whitelist]]"));
+    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-progress-whitelist"));
     this->wq = new WLQuery();
     this->wq->RetryOnTimeoutFailure = false;
     this->wq->Process();
@@ -420,8 +420,7 @@ void Login::RetrieveLocalConfig()
             {
                 if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
                 {
-                    /// \todo LOCALIZE ME
-                    this->ui->label_6->setText("Login failed because huggle is disabled");
+                    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-projdisabled"));
                     this->Progress(0);
                     this->_Status = LoginFailed;
                     this->LoginQuery->SafeDelete();
@@ -433,8 +432,7 @@ void Login::RetrieveLocalConfig()
                 this->_Status = RetrievingUserConfig;
                 return;
             }
-            /// \todo LOCALIZE ME
-            this->ui->label_6->setText("Login failed unable to parse the local config, see debug log for more details");
+            this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
@@ -445,8 +443,7 @@ void Login::RetrieveLocalConfig()
         return;
     }
     this->Progress(68);
-    /// \todo LOCALIZE ME
-    this->ui->label_6->setText("Retrieving local config");
+    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-progress-config"));
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
@@ -627,7 +624,7 @@ bool Login::ProcessOutput()
     if (!Result.contains(("<login result")))
     {
         /// \todo LOCALIZE ME
-        DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug log for precise information");
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug log for precise information");
         return false;
     }
 
@@ -635,7 +632,7 @@ bool Login::ProcessOutput()
     if (!Result.contains("\""))
     {
         /// \todo LOCALIZE ME
-        DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug log for precise information");
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug log for precise information");
         return false;
     }
 
@@ -649,7 +646,7 @@ bool Login::ProcessOutput()
     if (Result == "EmptyPass")
     {
         /// \todo LOCALIZE ME
-        DisplayError("The password you entered was empty");
+        this->DisplayError("The password you entered was empty");
         return false;
     }
 
@@ -657,19 +654,19 @@ bool Login::ProcessOutput()
     {
         this->ui->lineEdit_3->setFocus();
         /// \todo LOCALIZE ME
-        DisplayError("Your password is not correct");
+        this->DisplayError("Your password is not correct");
         return false;
     }
 
     if (Result == "NoName")
     {
         /// \todo LOCALIZE ME
-        DisplayError("You provided no correct user name for login");
+        this->DisplayError("You provided no correct user name for login");
         return false;
     }
 
     /// \todo LOCALIZE ME
-    DisplayError("ERROR: The api.php responded with unknown result: " + Result);
+    this->DisplayError("ERROR: The api.php responded with unknown result: " + Result);
     return false;
 }
 

@@ -81,15 +81,15 @@ void HuggleTool::onTick()
 {
     switch (this->QueryPhase)
     {
-    case 0:
-        this->tick->stop();
-        return;
-    case 1:
-        this->FinishPage();
-        return;
-    case 2:
-        this->FinishEdit();
-        return;
+        case 0:
+            this->tick->stop();
+            return;
+        case 1:
+            this->FinishPage();
+            return;
+        case 2:
+            this->FinishEdit();
+            return;
     }
 }
 
