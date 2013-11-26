@@ -52,11 +52,13 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     c = 0;
     this->Disable();
     // options
-    /// \todo RELEASE BLOCKER implement the other checkboxes as well
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
+    this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs);
+    this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmWL);
+    this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk);
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
 }
 
@@ -130,6 +132,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UsingIRC = ui->checkBox_12->isChecked();
     Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = ui->checkBox_5->isChecked();
     Configuration::HuggleConfiguration->RevertOnMultipleEdits = ui->radioButton_2->isChecked();
+    Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = ui->checkBox_3->isChecked();
+    Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = ui->checkBox_4->isChecked();
+    Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = ui->checkBox_11->isChecked();
     Configuration::SaveConfig();
     this->hide();
 }

@@ -62,6 +62,9 @@ Configuration::Configuration()
     this->LocalConfig_UseIrc = false;
     this->LocalConfig_RequireRollback = false;
     this->LocalConfig_RequireAdmin = false;
+    this->LocalConfig_ConfirmOnSelfRevs = true;
+    this->LocalConfig_ConfirmWL = true;
+    this->LocalConfig_ConfirmTalk = true;
     this->LocalConfig_EnableAll = false;
     this->LocalConfig_RequireEdits = 0;
     this->LocalConfig_ScoreTalk = -800;

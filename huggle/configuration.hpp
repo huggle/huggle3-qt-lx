@@ -218,6 +218,9 @@ namespace Huggle
             QString LocalConfig_NSPortal;
             QString LocalConfig_NSPortalTalk;
             int LocalConfig_TemplateAge;
+            bool LocalConfig_ConfirmTalk;
+            bool LocalConfig_ConfirmWL;
+            bool LocalConfig_ConfirmOnSelfRevs;
             bool LocalConfig_ConfirmMultipleEdits;
             bool LocalConfig_ConfirmRange;
             bool LocalConfig_ConfirmPage;
