@@ -54,6 +54,10 @@ MediaWikiNS WikiPage::GetNS()
     {
         return MediaWikiNS_Project;
     }
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSProjectTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECTTALK))
+    {
+        return MediaWikiNS_ProjectTalk;
+    }
     if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSUser) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
     {
         return MediaWikiNS_User;
