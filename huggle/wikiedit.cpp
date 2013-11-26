@@ -386,7 +386,7 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score += Configuration::HuggleConfiguration->LocalConfig_BotScore;
     }
-    if (edit->Page->IsUserpage() && !edit->Page->PageName.contains(edit->User->Username))
+    if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
     {
         edit->Score += Configuration::HuggleConfiguration->LocalConfig_ForeignUser;
     } else if (edit->Page->IsUserpage())

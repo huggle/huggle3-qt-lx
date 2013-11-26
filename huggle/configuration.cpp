@@ -910,12 +910,12 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config, Configuration::HuggleConfiguration->LocalConfig_RevertSummaries);
     Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config, Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
-    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, QString(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config, Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
-    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing

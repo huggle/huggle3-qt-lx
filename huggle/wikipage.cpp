@@ -39,6 +39,11 @@ WikiPage::WikiPage(const WikiPage &page)
     this->Contents = page.Contents;
 }
 
+QString WikiPage::SanitizedName()
+{
+    return this->PageName.replace(" ", "_");
+}
+
 MediaWikiNS WikiPage::GetNS()
 {
     if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
@@ -100,7 +105,8 @@ bool WikiPage::IsTalk()
             NS == MediaWikiNS_UserTalk ||
             NS == MediaWikiNS_CategoryTalk ||
             NS == MediaWikiNS_FileTalk ||
-            NS == MediaWikiNS_MediawikiTalk)
+            NS == MediaWikiNS_MediawikiTalk ||
+            NS == MediaWikiNS_ProjectTalk)
     {
         return true;
     }
