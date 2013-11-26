@@ -59,7 +59,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->getBadnessScore() <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
+    if (!us->IP && us->getBadnessScore(false) <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
     {
         if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
         {
