@@ -289,6 +289,7 @@ long WikiUser::getBadnessScore(bool _resync)
 
 void WikiUser::setBadnessScore(long value)
 {
+    this->Resync();
     BadnessScore = value;
     this->Update(true);
 }
