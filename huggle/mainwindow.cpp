@@ -1314,7 +1314,6 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     {
         Hooks::OnGood(this->CurrentEdit);
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
-        WikiUser::UpdateUser(this->CurrentEdit->User);
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
