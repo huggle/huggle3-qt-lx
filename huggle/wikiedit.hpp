@@ -101,6 +101,7 @@ namespace Huggle
             int Priority;
             //! Old id
             int OldID;
+            bool IsRevert;
             //! Revision ID
             int RevID;
             WEStatus Status;

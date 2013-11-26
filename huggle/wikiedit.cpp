@@ -38,6 +38,7 @@ WikiEdit::WikiEdit()
     this->DiffText = "";
     this->Priority = 20;
     this->Score = 0;
+    this->IsRevert = false;
     this->Previous = NULL;
     this->Time = QDateTime::currentDateTime();
     this->Next = NULL;
@@ -358,6 +359,24 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
+    if (edit->Summary != "")
+    {
+        int xx = 0;
+        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        {
+            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(edit->Summary))
+            {
+                edit->IsRevert = true;
+                // if revert was done by IP it's likely a vandal
+                if (edit->User->IsIP())
+                {
+                    edit->Score += 200;
+                }
+                break;
+            }
+            xx++;
+        }
+    }
     // score
     if (edit->User->IsIP())
     {

@@ -281,6 +281,7 @@ namespace Huggle
             QStringList LocalConfig_IgnorePatterns;
             int LocalConfig_TalkPageWarningScore;
             bool LocalConfig_GlobalRequired;
+            QList<QRegExp> RevertPatterns;
 
             int LocalConfig_BotScore;
             int LocalConfig_IPScore;

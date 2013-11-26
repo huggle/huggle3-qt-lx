@@ -604,6 +604,8 @@ void Login::DisplayError(QString message)
 
 void Login::Finish()
 {
+    this->Progress(100);
+    this->ui->label_6->setText("Loading main huggle window");
     this->timer->stop();
     Core::HuggleCore->Main = new MainWindow();
     this->hide();
