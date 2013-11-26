@@ -54,17 +54,17 @@ namespace Huggle
             void Protect();
             void getTokenToProtect();
             void checkTokenToProtect();
-            QString protecttoken;
+            QString ProtectToken;
             //! Pointer to get first token
-            ApiQuery *ptkq;
+            ApiQuery *qToken1;
             //! Pointer for second token
-            ApiQuery *ptkk;
+            ApiQuery *qToken2;
             //! Pointer for	protection
-            ApiQuery *ptpt;
+            ApiQuery *qProtection;
             Ui::ProtectPage *ui;
-            //! DOCUMENT ME
-            WikiPage *ptpge;
-            //! DOCUMENT ME
+            //! Page that is about to be protected in this form
+            WikiPage *PageToProtect;
+            //! Timer that is used to switch between phases
             QTimer *tt;
             int PtQueryPhase;
     };

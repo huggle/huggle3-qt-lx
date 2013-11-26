@@ -69,13 +69,16 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     {
         return false;
     }
-    if (edit->Bot && IgnoreBots)
+    if (edit->Bot && this->IgnoreBots)
     {
         return false;
     }
-    if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower())
+    if (this->IgnoreSelf)
     {
-        return false;
+        if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower())
+        {
+            return false;
+        }
     }
     return true;
 }
