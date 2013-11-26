@@ -489,6 +489,12 @@ QString Core::GetProjectScriptURL()
     return Core::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
 }
 
+QString Core::ParameterizedTitle(QString title, QString parameter)
+{
+    title = title.replace("$1", parameter);
+    return title;
+}
+
 void Core::ProcessEdit(WikiEdit *e)
 {
     Core::Main->ProcessEdit(e);

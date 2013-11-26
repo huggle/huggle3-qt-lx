@@ -225,7 +225,6 @@ namespace Huggle
             bool LocalConfig_ConfirmWarned;
 
             // Reverting
-
             QString LocalConfig_MultipleRevertSummary;
             QStringList LocalConfig_RevertSummaries;
             QString LocalConfig_SoftwareRevertDefaultSummary;
@@ -237,8 +236,13 @@ namespace Huggle
             QString LocalConfig_WelcomeAnon;
             QString LocalConfig_WelcomeTitle;
 
-            // Warnings
+            // Deleting
+            QString LocalConfig_DeletionTitle;
+            QString LocalConfig_DeletionSummary;
+            QString LocalConfig_DeletionTemplate;
+            QString LocalConfig_AssociatedDelete;
 
+            // Warnings
             QString LocalConfig_AgfRevert;
             QString LocalConfig_WarnSummary;
             QString LocalConfig_WarnSummary2;
@@ -262,7 +266,6 @@ namespace Huggle
             QString LocalConfig_ProtectReason;
 
             // Definitions
-
             QList<ScoreWord> LocalConfig_ScoreParts;
             QList<ScoreWord> LocalConfig_ScoreWords;
             int LocalConfig_ScoreFlag;
@@ -283,7 +286,7 @@ namespace Huggle
             int LocalConfig_IPScore;
             int LocalConfig_WarningScore;
             QStringList LocalConfig_WarningTypes;
-            QStringList LocalConfig_DeletionTemplates;
+            QStringList LocalConfig_SpeedyTemplates;
             QStringList LocalConfig_WelcomeTypes;
             int LocalConfig_WhitelistScore;
 

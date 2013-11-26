@@ -58,7 +58,6 @@ Configuration::Configuration()
     this->GlobalConfig_UserConf = "User:$1/huggle.css";
 
     // Local
-
     this->LocalConfig_MinimalVersion = "3.0.0.0";
     this->LocalConfig_UseIrc = false;
     this->LocalConfig_RequireRollback = false;
@@ -66,6 +65,10 @@ Configuration::Configuration()
     this->LocalConfig_EnableAll = false;
     this->LocalConfig_RequireEdits = 0;
     this->LocalConfig_ScoreTalk = -800;
+    this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
+    this->LocalConfig_DeletionSummary = "Deleted page using Huggle";
+    this->LocalConfig_DeletionTemplate = "{{subst:Deleted}}";
+    this->LocalConfig_DeletionTitle = "Your page was deleted";
 
     // Reverting
     this->LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
@@ -749,7 +752,7 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
     Configuration::HuggleConfiguration->LocalConfig_ReportSummary = Configuration::ConfigurationParse("report-summary", config);
-    Configuration::HuggleConfiguration->LocalConfig_DeletionTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
+    Configuration::HuggleConfiguration->LocalConfig_SpeedyTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     // Parsing
     Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
     // UAA

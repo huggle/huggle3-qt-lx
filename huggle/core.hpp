@@ -95,6 +95,7 @@ namespace Huggle
             static QString GetProjectWikiURL();
             //! Return a script url like http://en.wikipedia.org/w/
             static QString GetProjectScriptURL();
+            static QString ParameterizedTitle(QString title, QString parameter);
             //! Pointer to core, there should be only 1 core for whole application and this is that one
             //! if you are running extension you need to update this pointer with that one you receive
             //! using iExtension::HuggleCore

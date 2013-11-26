@@ -1516,7 +1516,6 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
-#if !PRODUCTION_BUILD
     if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
@@ -1534,14 +1533,12 @@ void MainWindow::on_actionDelete_triggered()
         delete this->fDeleteForm;
     }
     this->fDeleteForm = new DeleteForm(this);
-    this->fDeleteForm->setPage(this->CurrentEdit->Page);
+    this->fDeleteForm->setPage(this->CurrentEdit->Page, this->CurrentEdit->User);
     this->fDeleteForm->show();
-#endif
 }
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-#if !PRODUCTION_BUILD
     if (!CheckExit() || !CheckEditableBrowserPage())
     {
         return;
@@ -1563,7 +1560,6 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     this->CurrentEdit->User->Resync();
     this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
     this->fBlockForm->show();
-#endif
 }
 
 void Huggle::MainWindow::on_actionIRC_triggered()

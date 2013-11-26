@@ -57,6 +57,8 @@ namespace Huggle
             MediaWikiNS GetNS();
             //! Return true in case this is a talk page
             bool IsTalk();
+            WikiPage *RetrieveTalk();
+            QString RootName();
             bool IsUserpage();
     };
 }

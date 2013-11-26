@@ -20,6 +20,10 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
 	this->dt = NULL;
     this->DeleteToken = "";
     this->qDelete = NULL;
+    this->TP = NULL;
+    this->qTokenOfTalkPage = NULL;
+    this->user = NULL;
+    this->qTalk = NULL;
     this->qToken = NULL;
 }
 
@@ -27,15 +31,22 @@ DeleteForm::~DeleteForm()
 {
     delete this->ui;
     delete this->page;
+    delete this->TP;
 }
 
-void DeleteForm::setPage(WikiPage *Page)
+void DeleteForm::setPage(WikiPage *Page, WikiUser *User)
 {
     if (Page == NULL)
     {
         throw new Exception("Page must not be NULL", "void DeleteForm::setPage(WikiPage *Page)");
     }
-	this->page = Page;
+    this->page = new WikiPage(Page);
+    if (this->page->IsTalk())
+    {
+        this->ui->checkBox_2->setChecked(false);
+        this->ui->checkBox_2->setEnabled(false);
+    }
+    this->user = User;
 }
 
 void DeleteForm::getToken()
@@ -48,11 +59,21 @@ void DeleteForm::getToken()
     this->qToken->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
     Core::HuggleCore->AppendQuery(this->qToken);
     this->qToken->Process();
-
-	this->dt = new QTimer(this);
-	connect(this->dt, SIGNAL(timeout()), this, SLOT(onTick()));
-	this->delQueryPhase = 0;
-	this->dt->start(200);
+    if (this->TP != NULL)
+    {
+        this->qTokenOfTalkPage = new ApiQuery();
+        this->qTokenOfTalkPage->SetAction(ActionQuery);
+        this->qTokenOfTalkPage->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->TP->PageName);
+        /// \todo LOCALIZE ME
+        this->qTokenOfTalkPage->Target = "Getting token to delete " + this->TP->PageName;
+        this->qTokenOfTalkPage->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        Core::HuggleCore->AppendQuery(this->qTokenOfTalkPage);
+        this->qTokenOfTalkPage->Process();
+    }
+    this->dt = new QTimer(this);
+    connect(this->dt, SIGNAL(timeout()), this, SLOT(onTick()));
+    this->delQueryPhase = 0;
+    this->dt->start(200);
 }
 
 void DeleteForm::onTick()
@@ -85,9 +106,59 @@ void DeleteForm::checkDelToken()
         this->Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qToken->Result->ErrorMessage);
 		return;
 	}
-	QDomDocument d;
+    QDomDocument d;
+    QDomNodeList l;
+    if (this->TP != NULL)
+    {
+        if (this->qTokenOfTalkPage == NULL)
+        {
+            return;
+        }
+        if (!this->qTokenOfTalkPage->Processed())
+        {
+            return;
+        }
+        if (this->qTokenOfTalkPage->Result->Failed)
+        {
+            /// \todo LOCALIZE ME
+            this->Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qTokenOfTalkPage->Result->ErrorMessage);
+            return;
+        }
+        d.setContent(this->qTokenOfTalkPage->Result->Data);
+        l = d.elementsByTagName("page");
+        if (l.count() == 0)
+        {
+            Huggle::Syslog::HuggleLogs->DebugLog(this->qTokenOfTalkPage->Result->Data);
+            /// \todo LOCALIZE ME
+            this->Failed("no page info was present in query (are you sysop?)");
+            return;
+        }
+        QDomElement element = l.at(0).toElement();
+        if (!element.attributes().contains("deletetoken"))
+        {
+            /// \todo LOCALIZE ME
+            this->Failed("No token");
+            return;
+        }
+        this->DeleteToken2 = element.attribute("deletetoken");
+        this->qTokenOfTalkPage->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qTokenOfTalkPage = NULL;
+        Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->TP->PageName + ": " + this->DeleteToken2);
+
+        // let's delete the page
+        this->qTalk = new ApiQuery();
+        this->qTalk->SetAction(ActionDelete);
+        this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TP->PageName)
+                + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_AssociatedDelete);
+                + "&token=" + QUrl::toPercentEncoding(this->DeleteToken2);
+        this->qTalk->Target = "Deleting "  + this->TP->PageName;
+        this->qTalk->UsingPOST = true;
+        this->qTalk->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        Core::HuggleCore->AppendQuery(this->qTalk);
+        this->qTalk->Process();
+    }
     d.setContent(this->qToken->Result->Data);
-    QDomNodeList l = d.elementsByTagName("page");
+    l = d.elementsByTagName("page");
 	if (l.count() == 0)
 	{
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
@@ -117,6 +188,17 @@ void DeleteForm::checkDelToken()
     this->qDelete->Target = "Deleting "  + this->page->PageName;
     this->qDelete->UsingPOST = true;
     this->qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    if (this->ui->checkBox->isChecked())
+    {
+        if (this->user == NULL)
+        {
+            throw new Huggle::Exception("WikiUser *user must not be null");
+        }
+        // message user
+        Core::HuggleCore->MessageUser(this->user, Configuration::HuggleConfiguration->LocalConfig_DeletionTemplate,
+                                      Configuration::HuggleConfiguration->LocalConfig_DeletionTitle,
+                                      Configuration::HuggleConfiguration->LocalConfig_DeletionSummary, true, this->qDelete);
+    }
     Core::HuggleCore->AppendQuery(qDelete);
     this->qDelete->Process();
 }
@@ -162,22 +244,39 @@ void DeleteForm::Failed(QString Reason)
     if (this->qToken != NULL)
 	{
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qToken = NULL;
 	}
+    if (this->qTokenOfTalkPage != NULL)
+    {
+        this->qTokenOfTalkPage->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qTokenOfTalkPage = NULL;
+    }
     if (this->qDelete != NULL)
 	{
         this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	}
     this->qDelete = NULL;
-    this->qToken = NULL;
+    this->qTalk = NULL;
 }
 
 void DeleteForm::on_pushButton_clicked()
 {
-	this->getToken();
+    if (this->ui->checkBox_2->isChecked())
+    {
+        this->TP = this->page->RetrieveTalk();
+        if (this->TP == NULL)
+        {
+            this->ui->checkBox_2->setChecked(false);
+        }
+    }
+    this->ui->checkBox->setEnabled(false);
+    this->ui->checkBox_2->setEnabled(false);
+    this->ui->comboBox->setEnabled(false);
     this->ui->pushButton->setEnabled(false);
+    this->getToken();
 }
 
 void DeleteForm::on_pushButton_2_clicked()
 {
-	this->hide();
+    this->close();
 }

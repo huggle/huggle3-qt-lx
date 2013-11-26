@@ -41,8 +41,7 @@ WikiPage::WikiPage(const WikiPage &page)
 
 MediaWikiNS WikiPage::GetNS()
 {
-    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSTalk) ||
-            PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
+    if (PageName.startsWith(Configuration::HuggleConfiguration->LocalConfig_NSTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
     {
         return MediaWikiNS_Talk;
     }
@@ -96,11 +95,76 @@ MediaWikiNS WikiPage::GetNS()
 bool WikiPage::IsTalk()
 {
     MediaWikiNS NS = this->GetNS();
-    if (NS == MediaWikiNS_Talk || NS == MediaWikiNS_HelpTalk || NS == MediaWikiNS_UserTalk)
+    if (NS == MediaWikiNS_Talk ||
+            NS == MediaWikiNS_HelpTalk ||
+            NS == MediaWikiNS_UserTalk ||
+            NS == MediaWikiNS_CategoryTalk ||
+            NS == MediaWikiNS_FileTalk ||
+            NS == MediaWikiNS_MediawikiTalk)
     {
         return true;
     }
     return false;
+}
+
+WikiPage *WikiPage::RetrieveTalk()
+{
+    MediaWikiNS NS = this->GetNS();
+    if (!this->IsTalk())
+    {
+        return NULL;
+    }
+    QString prefix = "Talk:";
+    switch (NS)
+    {
+        case MediaWikiNS_Category:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk;
+            break;
+        case MediaWikiNS_File:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSFileTalk;
+            break;
+        case MediaWikiNS_Help:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk;
+            break;
+        case MediaWikiNS_Mediawiki:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk;
+            break;
+        case MediaWikiNS_Portal:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSPortalTalk;
+            break;
+        case MediaWikiNS_Project:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSProjectTalk;
+            break;
+        case MediaWikiNS_User:
+            prefix = Configuration::HuggleConfiguration->LocalConfig_NSUserTalk;
+            break;
+        default:
+            prefix = "";
+            break;
+    }
+    if (prefix == "")
+    {
+        return NULL;
+    }
+    return new WikiPage(prefix + this->RootName());;
+}
+
+QString WikiPage::RootName()
+{
+    QString sanitized = this->PageName;
+    if (this->GetNS() != MediaWikiNS_Main)
+    {
+        // first we need to get a colon
+        if (this->PageName.contains(":"))
+        {
+            sanitized = sanitized.mid(sanitized.indexOf(":") + 1);
+        }
+    }
+    if (sanitized.contains("/"))
+    {
+        sanitized = sanitized.mid(0, sanitized.indexOf("/"));
+    }
+    return sanitized;
 }
 
 bool WikiPage::IsUserpage()
