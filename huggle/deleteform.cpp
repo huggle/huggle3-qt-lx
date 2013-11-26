@@ -188,17 +188,6 @@ void DeleteForm::checkDelToken()
     this->qDelete->Target = "Deleting "  + this->page->PageName;
     this->qDelete->UsingPOST = true;
     this->qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    if (this->ui->checkBox->isChecked())
-    {
-        if (this->user == NULL)
-        {
-            throw new Huggle::Exception("WikiUser *user must not be null");
-        }
-        // message user
-        Core::HuggleCore->MessageUser(this->user, Configuration::HuggleConfiguration->LocalConfig_DeletionTemplate,
-                                      Configuration::HuggleConfiguration->LocalConfig_DeletionTitle,
-                                      Configuration::HuggleConfiguration->LocalConfig_DeletionSummary, true, this->qDelete);
-    }
     Core::HuggleCore->AppendQuery(qDelete);
     this->qDelete->Process();
 }
@@ -218,12 +207,12 @@ void DeleteForm::Delete()
     if (this->qDelete->Result->Failed)
 	{
         /// \todo LOCALIZE ME
-        this->Failed("page can't be deleted: " + this->qDelete->Result->ErrorMessage);
+        this->Failed("the page can't be deleted: " + this->qDelete->Result->ErrorMessage);
 		return;
 	}
 	// let's assume the page was deleted
-    this->ui->pushButton->setText("deleted");
-    Huggle::Syslog::HuggleLogs->DebugLog("deletion result: " + this->qDelete->Result->Data, 2);
+    this->ui->pushButton->setText("Deleted");
+    Huggle::Syslog::HuggleLogs->DebugLog("Deletion result: " + this->qDelete->Result->Data, 2);
     this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
 }
@@ -269,7 +258,6 @@ void DeleteForm::on_pushButton_clicked()
             this->ui->checkBox_2->setChecked(false);
         }
     }
-    this->ui->checkBox->setEnabled(false);
     this->ui->checkBox_2->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
     this->ui->pushButton->setEnabled(false);

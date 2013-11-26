@@ -67,8 +67,6 @@ Configuration::Configuration()
     this->LocalConfig_ScoreTalk = -800;
     this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
     this->LocalConfig_DeletionSummary = "Deleted page using Huggle";
-    this->LocalConfig_DeletionTemplate = "{{subst:Deleted}}";
-    this->LocalConfig_DeletionTitle = "Your page was deleted";
 
     // Reverting
     this->LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";

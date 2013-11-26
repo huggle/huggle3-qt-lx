@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>389</width>
-    <height>164</height>
+    <height>132</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -35,19 +35,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
-     <property name="text">
-      <string>Send a notification to user who created the page</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QCheckBox" name="checkBox_2">
      <property name="text">
-      <string>Delete talk page as well</string>
+      <string>Delete associated talk page</string>
      </property>
      <property name="checked">
       <bool>true</bool>
