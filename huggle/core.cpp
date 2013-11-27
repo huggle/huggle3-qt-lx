@@ -647,11 +647,20 @@ bool Core::PreflightCheck(WikiEdit *_e)
     {
         Warn = true;
         type = "in userspace";
+    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs
+               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower()))
+    {
+        type = "made by you";
+        Warn = true;
+    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk && _e->Page->IsTalk())
+    {
+        type = "made on talk page";
+        Warn = true;
     }
     if (Warn)
     {
         QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
-                      , "This page is in userspace " + type + ", so even if it looks like it is a vandalism,"\
+                      , "This edit is " + type + ", so even if it looks like it is a vandalism,"\
                       " it may not be, are you sure you want to revert it?"
                       , QMessageBox::Yes|QMessageBox::No);
         if (q == QMessageBox::No)

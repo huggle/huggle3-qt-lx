@@ -543,6 +543,7 @@ report-title:              Report {0}
 report-reason:             Reason:
 report-message:            Message:
 report-log:                Warnings for this user:
+report-evidence-none-provid:  You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this user is vandal or not. Are you sure you want to continue?
 </pre>
 
 == UAA ==

@@ -325,8 +325,8 @@ void ReportUser::on_pushButton_clicked()
     {
         QMessageBox::StandardButton mb;
         /// \todo LOCALIZE ME
-        mb = QMessageBox::question(this, "Question", "You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this "\
-                   "user is vandal or not. Are you sure you want to continue?", QMessageBox::Yes|QMessageBox::No);
+        mb = QMessageBox::question(this, "Question", Huggle::Localizations::HuggleLocalizations->Localize("report-evidence-none-provid")
+                                   , QMessageBox::Yes|QMessageBox::No);
         if (mb == QMessageBox::No)
         {
             this->ui->pushButton->setEnabled(true);
