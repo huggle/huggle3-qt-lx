@@ -21,12 +21,11 @@ Message::Message(WikiUser *target, QString Message, QString Summary)
     this->Sending = false;
     this->Suffix = true;
     this->Dependency = NULL;
+    this->SectionKeep = false;
     this->query = NULL;
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
     this->token = "none";
-    /// \todo LOCALIZE ME
-    /// \todo some users might prefer to have a month as header
     this->title = "Message from " + Configuration::HuggleConfiguration->UserName;
 }
 
@@ -144,7 +143,7 @@ void Message::Finish()
         this->token = element.attribute("edittoken");
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
         this->query = NULL;
-        if (!this->Section && !this->PreviousTalkPageRetrieved)
+        if ((!this->Section || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
         {
             // we need to retrieve the talk page
             this->query = new ApiQuery();
@@ -247,7 +246,7 @@ void Message::ProcessSend()
     {
         s += " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     }
-    if (this->Section == false)
+    if (this->SectionKeep || !this->Section)
     {
         // original page needs to be included in new value
         this->text = this->Page + "\n\n" + this->text;

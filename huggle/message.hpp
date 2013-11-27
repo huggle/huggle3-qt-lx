@@ -47,6 +47,8 @@ namespace Huggle
             //! Text of message that will be appended to talk page
             QString text;
             QString summary;
+            //! Changing this to true will make the message be appended to existing section of same name
+            bool SectionKeep;
         private:
             void Fail(QString reason);
             void Finish();

@@ -178,7 +178,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
 
 void Huggle::Preferences::on_pushButton_5_clicked()
 {
-
+    /// \todo DO SOMETHING WITH ME, FOR FUCK SAKE
 }
 
 void Huggle::Preferences::on_pushButton_4_clicked()

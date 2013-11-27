@@ -77,7 +77,8 @@ Configuration::Configuration()
     this->LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
     this->LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
     this->LocalConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-    this->LocalConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
+    this->LocalConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
+            " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 
     // Warnings
 
@@ -122,6 +123,26 @@ Configuration::Configuration()
     this->LocalConfig_ReportSummary = "Reporting user";
     this->_SafeMode = false;
     this->IRCConnectionTimeOut = 2;
+
+    // these headers are parsed by project config so don't change them
+    // no matter if there is a nice function to retrieve them
+
+    // THIS MUST BE HARDCODED SO KEEP IT
+    this->Months << "January"
+                 << "February"
+                 << "March"
+                 << "April"
+                 << "May"
+                 << "June"
+                 << "July"
+                 << "August"
+                 << "September"
+                 << "October"
+                 << "November"
+                 << "December";
+
+    // we need to maintain some compatibility with older huggle
+    this->EnforceMonthsAsHeaders = true;
 
     this->LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
     this->LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
@@ -266,8 +287,11 @@ QString Configuration::MakeLocalUserConfig()
     conf += "warn-summary-3:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 + "\n";
     conf += "warn-summary-2:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 + "\n";
     conf += "warn-summary:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary + "\n";
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // huggle 2 options
     conf += "auto-advance:false\n";
     conf += "auto-whitelist:true\n";
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits) + "\n";
     conf += "confirm-range:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmRange) + "\n";
     conf += "// this option will change the behaviour of automatic resolution, be carefull\n";
@@ -279,6 +303,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "default-summary:" + Configuration::HuggleConfiguration->DefaultRevertSummary + "\n";
     conf += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
+    conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     conf += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -744,19 +769,23 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config);
     Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config);
     // Reverting
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-multiple", config));
+    Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits = Configuration::SafeBool(
+                                      Configuration::ConfigurationParse("confirm-multiple", config));
     Configuration::HuggleConfiguration->LocalConfig_ConfirmRange = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-range", config));
     Configuration::HuggleConfiguration->LocalConfig_ConfirmSame = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-same", config));
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWarned = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-warned", config));
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
+    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse(
+                                                                                "automatically-resolve-conflicts", config), false);
     // Welcoming
-    Configuration::HuggleConfiguration->LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
+    Configuration::HuggleConfiguration->LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit",
+                                                                                                                                 config, "true"));
     Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
     Configuration::HuggleConfiguration->LocalConfig_ReportSummary = Configuration::ConfigurationParse("report-summary", config);
     Configuration::HuggleConfiguration->LocalConfig_SpeedyTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     // Parsing
-    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config,
+                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
     // UAA
     Configuration::HuggleConfiguration->LocalConfig_UAAPath = Configuration::ConfigurationParse("uaa", config);
     // Blocking
@@ -764,9 +793,11 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
     Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
     Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
-    Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+    Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config,
+                                                                                                                       "{{Huggle/Cleared}}");
     Configuration::HuggleConfiguration->LocalConfig_Assisted = Configuration::ConfigurationParse_QL("assisted-summaries", config, true);
-    Configuration::HuggleConfiguration->LocalConfig_ProtectReason = Configuration::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    Configuration::HuggleConfiguration->LocalConfig_ProtectReason = Configuration::ConfigurationParse("protection-reason", config,
+                                                                                   "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config, true);
     Configuration::HuggleConfiguration->RevertPatterns.clear();
     int xx = 0;
@@ -898,25 +929,44 @@ bool Configuration::ParseLocalConfig(QString config)
 
 bool Configuration::ParseUserConfig(QString config)
 {
+    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse("RevertOnMultipleEdits", config));
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
-    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config, Configuration::HuggleConfiguration->LocalConfig_Ignores);
-    Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_IPScore)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config, Configuration::HuggleConfiguration->LocalConfig_WarnSummary);
-    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = Configuration::SafeBool(Configuration::ConfigurationParse("software-rollback", config));
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config, Configuration::HuggleConfiguration->LocalConfig_WarnSummary2);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config, Configuration::HuggleConfiguration->LocalConfig_WarnSummary3);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config, Configuration::HuggleConfiguration->LocalConfig_WarnSummary4);
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
-    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config, Configuration::HuggleConfiguration->LocalConfig_RevertSummaries);
-    Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config, Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
-    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config, Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
-    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config,
+                                                           Configuration::HuggleConfiguration->LocalConfig_Ignores);
+    Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config,
+                                 QString::number(Configuration::HuggleConfiguration->LocalConfig_IPScore)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,
+                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config,
+                                                              Configuration::HuggleConfiguration->LocalConfig_WarnSummary);
+    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = Configuration::SafeBool(Configuration::ConfigurationParse("software-rollback",
+                                                                                                                                             config));
+    Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config,
+                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary2);
+    Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config,
+                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary3);
+    Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config,
+                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary4);
+    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(
+                                       Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
+    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config,
+                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config,
+                                                                  Configuration::HuggleConfiguration->LocalConfig_RevertSummaries);
+    Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config,
+                                                                     Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
+    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config,
+                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,
+                                       QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config,
+                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config,
+                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
+    Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config,
+                                                                          Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
+    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config,
+                                  QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing

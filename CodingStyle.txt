@@ -16,6 +16,10 @@ Example source code:
 //! This function loops Bar times and then return 0
 int Foo(int Bar)
 {
+    if (Bar == 2)
+    {
+        return -2;
+    }
     while (Bar > 0)
     {
         Bar--;
@@ -99,6 +103,10 @@ Using "this" can make it clear to anyone who read the code.
 
 Another reason for this, is that if there was ever implemented a global variable
 or function with same name, it will likely not collide with your code.
+
+=== Wrapping ===
+The code should be wrapped to 160 characters, so if there is a line that has more than 160
+wrap it.
 
 === Order ===
 

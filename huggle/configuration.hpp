@@ -103,80 +103,129 @@ namespace Huggle
     class Configuration
     {
         public:
+            //! Return a prefix for url
+            static QString GetURLProtocolPrefix();
+            //! Return a configuration path
+            static QString GetConfigurationPath();
+            static QString Bool2ExcludeRequire(bool b);
+
+            /*!
+             * \brief Bool2String Convert a bool to string
+             * \param b bool
+             * \return string
+             */
+            static QString Bool2String(bool b);
+
+            //! Save the local configuration to file
+            static void SaveConfig();
+            //! Load the local configuration from disk
+            static void LoadConfig();
+            static void NormalizeConf();
+            //! This function creates a user configuration that is stored on wiki
+            static QString MakeLocalUserConfig();
+            /*!
+             * \brief InsertConfig
+             * \param key Configuration key
+             * \param value Value of key
+             * \param s Stream writer
+             */
+            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+            static bool SafeBool(QString value, bool defaultvalue = false);
+            //! Parse all information from global config on meta
+            static bool ParseGlobalConfig(QString config);
+            //! Parse all information from local config, this function is used in login
+            static bool ParseLocalConfig(QString config);
+            static bool ParseUserConfig(QString config);
+            //! Parse a string from configuration which has format used by huggle 2x
+            /*!
+             * \param key Key
+             * \param content Text to parse from
+             * \param missing Default value in case this key is missing in text
+             * \return Value of key
+             */
+            static QString ConfigurationParse(QString key, QString content, QString missing = "");
+            /*!
+             * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
+             * \param key Key
+             * \param content Text to parse key from
+             * \param CS Whether the values are separated by comma
+             * \return List of values from text or empty list
+             */
+            static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+            static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
+            static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
+            static Configuration *HuggleConfiguration;
+
             Configuration();
             ~Configuration();
-            static Configuration *HuggleConfiguration;
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
 
             //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
-            unsigned int Verbosity;
+            unsigned int    Verbosity;
             //! Version
-            QString HuggleVersion;
+            QString         HuggleVersion;
             //! currently selected project
-            WikiSite *Project;
+            WikiSite        *Project;
             //! List of projects
             QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
-            bool Restricted;
-            //! Return a prefix for url
-            static QString GetURLProtocolPrefix();
+            bool            Restricted;
             //! Where the welcome message is stored
-            QString WelcomeMP;
+            QString         WelcomeMP;
             //! Size of info cache
-            int Cache_InfoSize;
+            int             Cache_InfoSize;
             //! Whether python is available
-            bool PythonEngine;
+            bool            PythonEngine;
             //! Size of feed
-            int ProviderCache;
+            int             ProviderCache;
             //! Maximum size of ringlog
-            int RingLogMaxSize;
+            int             RingLogMaxSize;
             //! Path where huggle contains its data
-            QString HomePath;
+            QString         HomePath;
             //! Path to a file where information about wikis are stored
-            QString WikiDB;
-            //! Return a configuration path
-            static QString GetConfigurationPath();
-            //! Data of wl
-            QStringList WhiteList;
+            QString         WikiDB;
+            //! Data of wl (list of users)
+            QStringList     WhiteList;
             //! URL of wiki that contains a global config
-            QString GlobalConfigurationWikiAddress;
+            QString         GlobalConfigurationWikiAddress;
             //! Number of seconds for which the processed queries remain in list of processes
-            int QueryListTimeLimit;
+            int             QueryListTimeLimit;
             //! Number of edits to keep in history stack
-            int HistorySize;
+            int             HistorySize;
             //! Number of edits made since you logged in
-            double EditCounter;
+            double          EditCounter;
             //! Number of reverts made since you logged in
-            double RvCounter;
+            double          RvCounter;
             //! Ask user if they really want to report someone
-            bool AskUserBeforeReport;
+            bool            AskUserBeforeReport;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
-            bool TrimOldWarnings;
-            QStringList Rights;
+            bool            TrimOldWarnings;
+            QStringList     Rights;
             //! Whether new edits go to top or bottom
-            bool QueueNewEditsUp;
+            bool            QueueNewEditsUp;
             //! If this is true some functionalities will be disabled
-            bool _SafeMode;
+            bool            _SafeMode;
             //! Resolve edit conflict without asking user
-            bool AutomaticallyResolveConflicts;
+            bool            AutomaticallyResolveConflicts;
             //! Size of fonts in diff
-            int FontSize;
+            int             FontSize;
             //! Timeout for queries
-            int ReadTimeout;
+            int             ReadTimeout;
             //! Timeout for write / update queries
-            int WriteTimeout;
+            int             WriteTimeout;
             //! Whitelist is not useable
-            bool WhitelistDisabled;
+            bool            WhitelistDisabled;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
-            bool EnforceManualSoftwareRollback;
-            QStringList Separators;
+            bool            EnforceManualSoftwareRollback;
+            QStringList     Separators;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
-            bool RevertOnMultipleEdits;
-            bool Log2File;
-            QString SyslogPath;
-            bool UpdatesEnabled;
+            bool            RevertOnMultipleEdits;
+            bool            Log2File;
+            QString         SyslogPath;
+            bool            UpdatesEnabled;
+            bool            EnforceMonthsAsHeaders;
 
             //////////////////////////////////////////////
             // Local config
@@ -184,88 +233,88 @@ namespace Huggle
 
             //! Minimal version of huggle required to use it
             QString LocalConfig_MinimalVersion;
-            bool LocalConfig_UseIrc;
-            bool LocalConfig_RequireRollback;
-            bool LocalConfig_RequireAdmin;
-            bool LocalConfig_EnableAll;
-            int LocalConfig_RequireEdits;
+            bool    LocalConfig_UseIrc;
+            bool    LocalConfig_RequireRollback;
+            bool    LocalConfig_RequireAdmin;
+            bool    LocalConfig_EnableAll;
+            int     LocalConfig_RequireEdits;
 
-            bool LocalConfig_AIV;
-            bool LocalConfig_AIVExtend;
-            QString LocalConfig_ReportPath;
+            bool            LocalConfig_AIV;
+            bool            LocalConfig_AIVExtend;
+            QString         LocalConfig_ReportPath;
             //! Section of report page to append template to
-            int LocalConfig_ReportSt;
+            int             LocalConfig_ReportSt;
             //! IP vandals
-            QString LocalConfig_IPVTemplateReport;
+            QString         LocalConfig_IPVTemplateReport;
             //! Regular users
-            QString LocalConfig_RUTemplateReport;
-            QString LocalConfig_WelcomeSummary;
-            QString LocalConfig_NSTalk;
-            QString LocalConfig_NSUserTalk;
-            QString LocalConfig_NSProject;
-            QString LocalConfig_NSUser;
-            QString LocalConfig_NSProjectTalk;
-            QString LocalConfig_NSFile;
-            QString LocalConfig_NSFileTalk;
-            QString LocalConfig_NSMediaWiki;
-            QString LocalConfig_NSMediaWikiTalk;
-            QString LocalConfig_NSTemplate;
-            QString LocalConfig_NSTemplateTalk;
-            QString LocalConfig_NSHelp;
-            QString LocalConfig_NSHelpTalk;
-            QString LocalConfig_NSCategory;
-            QString LocalConfig_NSCategoryTalk;
-            QString LocalConfig_NSPortal;
-            QString LocalConfig_NSPortalTalk;
-            int LocalConfig_TemplateAge;
-            bool LocalConfig_ConfirmTalk;
-            bool LocalConfig_ConfirmWL;
-            bool LocalConfig_ConfirmOnSelfRevs;
-            bool LocalConfig_ConfirmMultipleEdits;
-            bool LocalConfig_ConfirmRange;
-            bool LocalConfig_ConfirmPage;
-            bool LocalConfig_ConfirmSame;
-            bool LocalConfig_ConfirmWarned;
+            QString         LocalConfig_RUTemplateReport;
+            QString         LocalConfig_WelcomeSummary;
+            QString         LocalConfig_NSTalk;
+            QString         LocalConfig_NSUserTalk;
+            QString         LocalConfig_NSProject;
+            QString         LocalConfig_NSUser;
+            QString         LocalConfig_NSProjectTalk;
+            QString         LocalConfig_NSFile;
+            QString         LocalConfig_NSFileTalk;
+            QString         LocalConfig_NSMediaWiki;
+            QString         LocalConfig_NSMediaWikiTalk;
+            QString         LocalConfig_NSTemplate;
+            QString         LocalConfig_NSTemplateTalk;
+            QString         LocalConfig_NSHelp;
+            QString         LocalConfig_NSHelpTalk;
+            QString         LocalConfig_NSCategory;
+            QString         LocalConfig_NSCategoryTalk;
+            QString         LocalConfig_NSPortal;
+            QString         LocalConfig_NSPortalTalk;
+            int             LocalConfig_TemplateAge;
+            bool            LocalConfig_ConfirmTalk;
+            bool            LocalConfig_ConfirmWL;
+            bool            LocalConfig_ConfirmOnSelfRevs;
+            bool            LocalConfig_ConfirmMultipleEdits;
+            bool            LocalConfig_ConfirmRange;
+            bool            LocalConfig_ConfirmPage;
+            bool            LocalConfig_ConfirmSame;
+            bool            LocalConfig_ConfirmWarned;
 
             // Reverting
-            QString LocalConfig_MultipleRevertSummary;
-            QStringList LocalConfig_RevertSummaries;
-            QString LocalConfig_SoftwareRevertDefaultSummary;
-            QString LocalConfig_RollbackSummary;
-            QString LocalConfig_DefaultSummary;
-            QString LocalConfig_SingleRevert;
-            QString LocalConfig_UndoSummary;
-            QString LocalConfig_ClearTalkPageTemp;
-            QString LocalConfig_WelcomeAnon;
-            QString LocalConfig_WelcomeTitle;
+            QString         LocalConfig_MultipleRevertSummary;
+            QStringList     LocalConfig_RevertSummaries;
+            QString         LocalConfig_SoftwareRevertDefaultSummary;
+            QString         LocalConfig_RollbackSummary;
+            QString         LocalConfig_DefaultSummary;
+            QString         LocalConfig_SingleRevert;
+            QString         LocalConfig_UndoSummary;
+            QString         LocalConfig_ClearTalkPageTemp;
+            QString         LocalConfig_WelcomeAnon;
+            QString         LocalConfig_WelcomeTitle;
 
             // Deleting
-            QString LocalConfig_DeletionTitle;
-            QString LocalConfig_DeletionSummary;
-            QString LocalConfig_AssociatedDelete;
+            QString         LocalConfig_DeletionTitle;
+            QString         LocalConfig_DeletionSummary;
+            QString         LocalConfig_AssociatedDelete;
 
             // Warnings
-            QString LocalConfig_AgfRevert;
-            QString LocalConfig_WarnSummary;
-            QString LocalConfig_WarnSummary2;
-            QString LocalConfig_WarnSummary3;
-            QString LocalConfig_WarnSummary4;
-            QStringList LocalConfig_WarningTemplates;
-            QStringList LocalConfig_WarningDefs;
-            QString LocalConfig_ReportSummary;
-            bool LocalConfig_WelcomeGood;
+            QString         LocalConfig_AgfRevert;
+            QString         LocalConfig_WarnSummary;
+            QString         LocalConfig_WarnSummary2;
+            QString         LocalConfig_WarnSummary3;
+            QString         LocalConfig_WarnSummary4;
+            QStringList     LocalConfig_WarningTemplates;
+            QStringList     LocalConfig_WarningDefs;
+            QString         LocalConfig_ReportSummary;
+            bool            LocalConfig_WelcomeGood;
 
             // Blocking users
-            QStringList LocalConfig_BlockExpiryOptions;
-            QString LocalConfig_BlockTime;
-            QString LocalConfig_BlockTimeAnon;
-            QString LocalConfig_BlockMessage;
-            QString LocalConfig_BlockMessageIndef;
-            QString LocalConfig_BlockReason;
-            QString LocalConfig_BlockSummary;
+            QStringList     LocalConfig_BlockExpiryOptions;
+            QString         LocalConfig_BlockTime;
+            QString         LocalConfig_BlockTimeAnon;
+            QString         LocalConfig_BlockMessage;
+            QString         LocalConfig_BlockMessageIndef;
+            QString         LocalConfig_BlockReason;
+            QString         LocalConfig_BlockSummary;
 
             // Protecting pages
-            QString LocalConfig_ProtectReason;
+            QString         LocalConfig_ProtectReason;
 
             // Definitions
             QList<ScoreWord> LocalConfig_ScoreParts;
@@ -362,6 +411,7 @@ namespace Huggle
             static QString GetDefaultRevertSummary(QString source);
             //! Warn you in case you want to revert a user page
             bool WarnUserSpaceRoll;
+            QStringList Months;
             bool NextOnRv;
             //! Send a message to user on good edit
             bool WelcomeEmpty;
@@ -374,54 +424,6 @@ namespace Huggle
             //! Pointer to UAA page
             WikiPage *UAAP;
             QString Platform;
-
-            static QString Bool2ExcludeRequire(bool b);
-
-            /*!
-             * \brief Bool2String Convert a bool to string
-             * \param b bool
-             * \return string
-             */
-            static QString Bool2String(bool b);
-
-            //! Save the local configuration to file
-            static void SaveConfig();
-            //! Load the local configuration from disk
-            static void LoadConfig();
-            static void NormalizeConf();
-            //! This function creates a user configuration that is stored on wiki
-            static QString MakeLocalUserConfig();
-            /*!
-             * \brief InsertConfig
-             * \param key Configuration key
-             * \param value Value of key
-             * \param s Stream writer
-             */
-            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
-            static bool SafeBool(QString value, bool defaultvalue = false);
-            //! Parse all information from global config on meta
-            static bool ParseGlobalConfig(QString config);
-            //! Parse all information from local config, this function is used in login
-            static bool ParseLocalConfig(QString config);
-            static bool ParseUserConfig(QString config);
-            //! Parse a string from configuration which has format used by huggle 2x
-            /*!
-             * \param key Key
-             * \param content Text to parse from
-             * \param missing Default value in case this key is missing in text
-             * \return Value of key
-             */
-            static QString ConfigurationParse(QString key, QString content, QString missing = "");
-            /*!
-             * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
-             * \param key Key
-             * \param content Text to parse key from
-             * \param CS Whether the values are separated by comma
-             * \return List of values from text or empty list
-             */
-            static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
-            static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
-            static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
     };
 }
 
