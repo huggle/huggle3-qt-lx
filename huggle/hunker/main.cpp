@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     if (value.contains("install:"))
     {
         value = value.mid(0, value.indexOf("install:"));
-        value += QString("\n") + QString("install:\n\t ./build/install \"$(DESTDIR)\nuninstall:\n\t ./build/uninstall\n\nFORCE:\n");
+        value += QString("\n") + QString("install:\n\t ./build/install \"$(DESTDIR)\"\nuninstall:\n\t ./build/uninstall\n\nFORCE:\n");
         file->write(value.toUtf8());
         file->close();
     }
