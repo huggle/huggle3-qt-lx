@@ -1,0 +1,13 @@
+Source: huggle
+Maintainer: Petr Bena <benapetr@gmail.com>
+Section: misc
+Priority: optional
+Standards-Version: 3.0.0.0
+Build-Depends: debhelper (>= 9)
+
+Package: huggle
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Huggle is an antivandalism tool for use on wikimedia projects
+  Huggle is an antivandalism tool for use on wikimedia projects, such as english wikipedia. This package
+  contains huggle version 3, LX with no default extensions
