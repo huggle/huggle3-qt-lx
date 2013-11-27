@@ -70,11 +70,11 @@ namespace Huggle
             void SuspiciousWikiEdit(WikiEdit *Edit);
             void WarningSent(WikiUser *user, int Level);
             QString GetChannel();
+            void Rescore(WikiEdit *edit);
             //! Prefix to special commands that are being sent to network to other users
             QString pref;
             //! Timer that is used to connect to network
             QTimer *tm;
-            void Rescore(WikiEdit *edit);
             QList<RescoreItem> UnparsedScores;
         private:
             Ui::VandalNw *ui;

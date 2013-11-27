@@ -43,13 +43,13 @@ namespace Huggle
             WikiEdit *RetrieveEdit();
             QString ToString();
         private:
-            QDateTime LastRefresh;
-            QDateTime LatestTime;
             void Process(QString data);
+            void InsertEdit(WikiEdit *edit);
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
             ApiQuery *q;
-            void InsertEdit(WikiEdit *edit);
+            QDateTime LastRefresh;
+            QDateTime LatestTime;
     };
 }
 

@@ -38,8 +38,6 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            HuggleQueueFilter *CurrentFilter;
-            QList<HuggleQueueItemLabel*> Items;
             explicit HuggleQueue(QWidget *parent = 0);
             ~HuggleQueue();
             void AddItem(WikiEdit *page);
@@ -55,6 +53,8 @@ namespace Huggle
             void Trim();
             //! Reload filters
             void Filters();
+            HuggleQueueFilter *CurrentFilter;
+            QList<HuggleQueueItemLabel*> Items;
 
         private slots:
             void on_comboBox_currentIndexChanged(int index);

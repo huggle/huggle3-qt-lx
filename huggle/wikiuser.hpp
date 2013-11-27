@@ -27,12 +27,8 @@ namespace Huggle
     class WikiUser
     {
         public:
-            /*!
-             * \brief List of users that are scored in this instance of huggle
-             *
-             * Either vandals or even good users, this list is preserved on shutdown and startup
-             */
-            static QList<WikiUser*> ProblematicUsers;
+            //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
+            static void TrimProblematicUsersList();
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
             /*!
@@ -45,9 +41,13 @@ namespace Huggle
              * \return static user from list of problematic users
              */
             static WikiUser *RetrieveUser(WikiUser *user);
+            /*!
+             * \brief List of users that are scored in this instance of huggle
+             *
+             * Either vandals or even good users, this list is preserved on shutdown and startup
+             */
+            static QList<WikiUser*> ProblematicUsers;
             static QMutex ProblematicUserListLock;
-            //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
-            static void TrimProblematicUsersList();
 
             WikiUser();
             WikiUser(WikiUser *u);
@@ -71,9 +71,6 @@ namespace Huggle
              * \param text New content of talk page
              */
             void SetContentsOfTalkPage(QString text);
-            //! Local cache that holds information if user is reported or not. This information
-            //! may be wrong, don't relly on it
-            bool IsReported;
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
             void Sanitize();
@@ -112,6 +109,9 @@ namespace Huggle
             //! Current warning level of user
             int WarningLevel;
             bool IsBanned;
+            //! Local cache that holds information if user is reported or not. This information
+            //! may be wrong, don't relly on it
+            bool IsReported;
 
     private:
             /*!

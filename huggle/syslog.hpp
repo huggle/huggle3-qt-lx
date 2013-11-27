@@ -24,6 +24,7 @@ namespace Huggle
     {
         public:
             static Syslog *HuggleLogs;
+
             Syslog();
             ~Syslog();
             //! Write text to terminal as well as ring log

@@ -51,6 +51,9 @@ namespace Huggle
             void onTick();
 
         private:
+            void FinishPage();
+            void FinishEdit();
+            void DeleteQuery();
             Ui::HuggleTool *ui;
             ApiQuery *query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
@@ -62,9 +65,6 @@ namespace Huggle
             //! When we download a page from wiki we need to do that in several steps, this variable holds
             //! the information which step we are in
             int QueryPhase;
-            void FinishPage();
-            void FinishEdit();
-            void DeleteQuery();
     };
 }
 

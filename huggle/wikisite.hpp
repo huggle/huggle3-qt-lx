@@ -19,6 +19,21 @@ namespace Huggle
     class WikiSite
     {
         public:
+            WikiSite(WikiSite *w);
+            WikiSite(const WikiSite &w);
+            WikiSite(QString name, QString url);
+            //! This will create a new instance of wikisite with most of configuration
+            /*!
+              \param name is a name of wiki for internal purposes
+              \param url is relative url to wiki (no http prefix) which must be terminated with slash
+              \param path is long path for articles, like wiki/
+              \param script is short path w/
+              \param https set this true if your wiki support https
+              \param oauth set this true if your wiki support oauth
+              \param channel irc
+              \param wl whitelist
+            */
+            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
             //! Name of wiki, used by huggle only
             QString Name;
             //! URL of wiki, no http prefix must be present
@@ -37,21 +52,6 @@ namespace Huggle
             //! Whether the site supports the ssl
             bool SupportHttps;
             bool SupportOAuth;
-            WikiSite(WikiSite *w);
-            WikiSite(const WikiSite &w);
-            WikiSite(QString name, QString url);
-            //! This will create a new instance of wikisite with most of configuration
-            /*!
-              \param name is a name of wiki for internal purposes
-              \param url is relative url to wiki (no http prefix) which must be terminated with slash
-              \param path is long path for articles, like wiki/
-              \param script is short path w/
-              \param https set this true if your wiki support https
-              \param oauth set this true if your wiki support oauth
-              \param channel irc
-              \param wl whitelist
-            */
-            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
     };
 }
 

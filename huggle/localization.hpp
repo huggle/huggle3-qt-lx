@@ -46,6 +46,7 @@ namespace Huggle
     {
         public:
             static Localizations *HuggleLocalizations;
+
             Localizations();
             /*!
              * \brief Initializes a localization with given name
@@ -55,11 +56,11 @@ namespace Huggle
              * \param name Name of a localization that is a name of language without txt suffix in localization folder
              */
             void LocalInit(QString name);
-            //! Languages
-            QList<Language*> LocalizationData;
             QString Localize(QString key);
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameters);
+            //! Languages
+            QList<Language*> LocalizationData;
             //! Language selected by user this is only a language of interface
             QString PreferredLanguage;
         private:

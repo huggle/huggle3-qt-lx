@@ -43,11 +43,6 @@ namespace Huggle
     class WikiPage
     {
         public:
-            QString Contents;
-            //! Name of page
-            QString PageName;
-            //! Site this page is on
-            WikiSite *Site;
             //! Create new empty instance of wiki page
             WikiPage();
             WikiPage(QString name);
@@ -61,6 +56,11 @@ namespace Huggle
             WikiPage *RetrieveTalk();
             QString RootName();
             bool IsUserpage();
+            QString Contents;
+            //! Name of page
+            QString PageName;
+            //! Site this page is on
+            WikiSite *Site;
     };
 }
 

@@ -13,6 +13,8 @@
 
 using namespace Huggle;
 
+/// \todo RELEASE BLOCKER: this form doesn't work
+
 SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm)
 {
     this->Page = NULL;

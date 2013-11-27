@@ -48,6 +48,16 @@ namespace Huggle
             void onTick();
             void onStartOfSearch();
         private:
+            //! Function to decide what we are reporting
+            void whatToReport();
+            //! Check if user is reported
+            bool checkIfReported();
+            //! Get page contents (reason for this is above)
+            void getPageContents();
+            //! Function to that allows us to properly insert what we need to insert
+            void insertUsername();
+            //! Message box, if anything fails
+            void failed(QString reason);
             Ui::UAAReport *ui;
             WikiUser *User;
             QString ContentsOfUAA;
@@ -69,16 +79,6 @@ namespace Huggle
             QTimer *cuT;
             //! Pointer that also gets UAA contents; this time it is used for checking if a user is reported or not
             ApiQuery *qChUAApage;
-            //! Function to decide what we are reporting
-            void whatToReport();
-            //! Check if user is reported
-            bool checkIfReported();
-            //! Get page contents (reason for this is above)
-            void getPageContents();
-            //! Function to that allows us to properly insert what we need to insert
-            void insertUsername();
-            //! Message box, if anything fails
-            void failed(QString reason);
     };
 }
 

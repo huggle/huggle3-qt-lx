@@ -16,7 +16,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 {
     this->ui->setupUi(this);
     this->user = NULL;
-    this->q = NULL;
+    this->qHistory = NULL;
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     /// \todo LOCALIZE ME
@@ -51,18 +51,18 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 
 bool ReportUser::SetUser(WikiUser *u)
 {
-    if (this->q != NULL)
+    if (this->qHistory != NULL)
     {
-        delete this->q;
-        this->q = NULL;
+        delete this->qHistory;
+        this->qHistory = NULL;
     }
     this->user = u;
     this->ui->label->setText(u->Username);
-    this->q = new ApiQuery();
-    this->q->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
+    this->qHistory = new ApiQuery();
+    this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
-    this->q->SetAction(ActionQuery);
-    this->q->Process();
+    this->qHistory->SetAction(ActionQuery);
+    this->qHistory->Process();
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(Tick()));
     this->timer->start(200);
@@ -71,9 +71,9 @@ bool ReportUser::SetUser(WikiUser *u)
 
 ReportUser::~ReportUser()
 {
-    if (this->q != NULL)
+    if (this->qHistory != NULL)
     {
-        this->q->SafeDelete();
+        this->qHistory->SafeDelete();
     }
     if (this->qd != NULL)
     {
@@ -89,17 +89,17 @@ ReportUser::~ReportUser()
 
 void ReportUser::Tick()
 {
-    if (this->q == NULL)
+    if (this->qHistory == NULL)
     {
         return;
     }
 
     if (this->Loading)
     {
-        if (this->q->Processed())
+        if (this->qHistory->Processed())
         {
             QDomDocument d;
-            d.setContent(this->q->Result->Data);
+            d.setContent(this->qHistory->Result->Data);
             QDomNodeList results = d.elementsByTagName("rev");
             if (results.count() == 0)
             {
@@ -129,11 +129,11 @@ void ReportUser::Tick()
         return;
     }
 
-    if (this->q->Processed())
+    if (this->qHistory->Processed())
     {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->q->Result->Data, 2);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->qHistory->Result->Data, 2);
         QDomDocument d;
-        d.setContent(this->q->Result->Data);
+        d.setContent(this->qHistory->Result->Data);
         QDomNodeList results = d.elementsByTagName("rc");
         int xx = 0;
         if (results.count() > 0)
@@ -337,16 +337,16 @@ void ReportUser::on_pushButton_clicked()
     this->Loading = true;
     /// \todo LOCALIZE ME
     this->ui->pushButton->setText("Retrieving current report page");
-    if (this->q != NULL)
+    if (this->qHistory != NULL)
     {
-        delete this->q;
+        delete this->qHistory;
     }
 
-    this->q = new ApiQuery();
-    this->q->SetAction(ActionQuery);
-    this->q->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+    this->qHistory = new ApiQuery();
+    this->qHistory->SetAction(ActionQuery);
+    this->qHistory->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
-    this->q->Process();
+    this->qHistory->Process();
     this->ReportText = reports;
     this->timer->start(800);
     return;

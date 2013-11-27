@@ -39,9 +39,9 @@ namespace Huggle
         public:
             HuggleFeedProviderIRC_t();
             ~HuggleFeedProviderIRC_t();
+            bool IsFinished();
             bool Running;
             HuggleFeedProviderIRC *p;
-            bool IsFinished();
         protected:
             void run();
         private:

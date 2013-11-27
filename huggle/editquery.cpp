@@ -99,7 +99,7 @@ bool EditQuery::Processed()
         this->qEdit->UsingPOST = true;
         this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qEdit->SetAction(ActionEdit);
-        this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(text) +
+        this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
                 "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" + QUrl::toPercentEncoding(_Token);
         Core::HuggleCore->AppendQuery(qEdit);
         this->qEdit->Process();

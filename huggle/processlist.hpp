@@ -67,11 +67,11 @@ namespace Huggle
 
 
         private:
-            QList<ProcessListRemovedItem*> *Removed;
-            Ui::ProcessList *ui;
             int GetItem(Query *q);
             int GetItem(int Id);
             bool IsExpired(Query *q);
+            QList<ProcessListRemovedItem*> *Removed;
+            Ui::ProcessList *ui;
     };
 }
 

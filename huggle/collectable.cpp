@@ -17,10 +17,10 @@ QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
 
 Collectable::Collectable()
 {
-    WideLock->lock();
+    Collectable::WideLock->lock();
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
-    WideLock->unlock();
+    Collectable::WideLock->unlock();
     this->_collectableLocked = false;
     this->_collectableManaged = false;
     this->_collectableQL = new QMutex(QMutex::Recursive);
@@ -175,7 +175,7 @@ QString Collectable::DebugHgc()
 
 bool Collectable::IsLocked()
 {
-    return _collectableLocked;
+    return this->_collectableLocked;
 }
 
 void Collectable::Lock()

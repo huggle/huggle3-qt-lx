@@ -255,15 +255,6 @@ namespace Huggle
             void on_actionResort_queue_triggered();
 
         private:
-            QTimer *timer1;
-            // Whitelist
-            QTimer *wlt;
-            //! Status bar
-            QLabel *Status;
-            bool EditablePage;
-            WaitingForm *fWaiting;
-            //! List of all edits that are kept in history, so that we can track them and delete them
-            QList <WikiEdit*> Historical;
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();
@@ -275,6 +266,15 @@ namespace Huggle
             //! Request a page deletion csd or afd and so on
             void RequestPD();
             void closeEvent(QCloseEvent *event);
+            QTimer *timer1;
+            // Whitelist
+            QTimer *wlt;
+            //! Status bar
+            QLabel *Status;
+            bool EditablePage;
+            WaitingForm *fWaiting;
+            //! List of all edits that are kept in history, so that we can track them and delete them
+            QList <WikiEdit*> Historical;
     };
 }
 #endif // MAINWINDOW_H

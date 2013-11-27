@@ -35,6 +35,7 @@ namespace Huggle
 
         public:
             static QString GetCustomRevertStatus(QString RevertData);
+
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
             void Process();

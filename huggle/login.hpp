@@ -112,7 +112,7 @@ namespace Huggle
             ApiQuery *LoginQuery;
             //! The token obtained from login
             QString Token;
-            /// \todo DOCUMENT ME
+            //! String that is used to test against the login failed text
             static QString Test;
     };
 }

@@ -56,16 +56,18 @@ namespace Huggle
             void on_pushButton_3_clicked();
 
         private:
+            bool CheckUser();
+            void InsertUser();
             Ui::ReportUser *ui;
-            //! DOCUMENT ME
+            //! Reported user
             WikiUser *user;
-            //! DOCUMENT ME
-            ApiQuery *q;
-            //! DOCUMENT ME
+            //! This query is used to retrieve a history of user
+            ApiQuery *qHistory;
+            //! Timer is used to retrieve a history for user
             QTimer *timer;
-            //! DOCUMENT ME
+            //! Timer to check the report page
             QTimer *t2;
-            //! DOCUMENT ME
+            //! Used to retrieve a diff of page
             QTimer *diff;
             QList <QCheckBox*> CheckBoxes;
             //! Text of report to send to AIV page
@@ -74,8 +76,6 @@ namespace Huggle
             QString _p;
             bool Loading;
             bool Messaging;
-            bool CheckUser();
-            void InsertUser();
             ApiQuery *tq;
             ApiQuery *qd;
     };
