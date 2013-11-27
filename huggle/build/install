@@ -3,8 +3,11 @@
 DEST=/
 
 if [ "$#" -gt 0 ];then
-  DEST=$1 
+  if [ "$1" != ""];then
+    DEST=$1 
+  fi
 fi
+
 if [ ! -f huggle ];then
   echo "FATAL: You need to build huggle first"
   exit 1
@@ -14,6 +17,6 @@ echo "Installing huggle to $DEST"
 if [ ! -d "$DEST"usr/bin ];then
   mkdir -p "$DEST"usr/bin
 fi
-cp huggle "$DEST"usr/bin/huggle || exit 1
+cp -v huggle "$DEST"usr/bin/huggle || exit 1
 
 echo "Installed"
