@@ -60,6 +60,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmWL);
     this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk);
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
