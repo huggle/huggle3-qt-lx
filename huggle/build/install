@@ -3,7 +3,7 @@
 DEST=/
 
 if [ "$#" -gt 0 ];then
-  if [ x"$1" != x""];then
+  if [ x"$1" != x"" ];then
     DEST=$1 
   fi
 fi
