@@ -28,6 +28,8 @@ agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
 successful:                Successful
 summary:                   Summary
+id:                        ID
+
 </pre>
 
 === Browser ===

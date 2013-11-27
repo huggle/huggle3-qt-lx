@@ -46,16 +46,16 @@ void Core::Init()
     delete vf;
     Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
     Syslog::HuggleLogs->Log("Loading configuration");
-    Processor = new ProcessorThread();
-    Processor->start();
+    this->Processor = new ProcessorThread();
+    this->Processor->start();
     this->LoadLocalizations();
     Configuration::LoadConfig();
     Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
     Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
 #ifdef PYTHONENGINE
-    Core::Log("Loading python engine");
-    Core::Python = new PythonEngine();
+    Syslog::HuggleLogs->Log("Loading python engine");
+    this->Python = new PythonEngine();
 #endif
     Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
@@ -432,7 +432,7 @@ void Core::ExtensionLoad()
                     Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + name);
                 } else
                 {
-                    Core::Log("Failed to load a python script: " + name);
+                    Huggle::Syslog::HuggleLogs->Log("Failed to load a python script: " + name);
                 }
 #endif
             }
@@ -452,7 +452,7 @@ void Core::VersionRead()
     QString version(vf->readAll());
     version = version.replace("\n", "");
     Configuration::HuggleConfiguration->HuggleVersion += " " + version;
-#ifdef PRODUCTION_BUILD
+#if PRODUCTION_BUILD
     Configuration::HuggleConfiguration->HuggleVersion += " production";
 #endif
     vf->close();
@@ -502,7 +502,7 @@ void Core::ProcessEdit(WikiEdit *e)
 
 void Core::Shutdown()
 {
-    Running = false;
+    this->Running = false;
     // grace time for subthreads to finish
     if (this->Main != NULL)
     {
@@ -641,10 +641,17 @@ bool Core::PreflightCheck(WikiEdit *_e)
     {
         throw new Exception("NULL edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
     }
+    bool Warn = false;
+    QString type = "unknown";
     if (Configuration::HuggleConfiguration->WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
+        Warn = true;
+        type = "in userspace";
+    }
+    if (Warn)
+    {
         QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
-                      , "This page is in userspace, so even if it looks like it is a vandalism,"\
+                      , "This page is in userspace " + type + ", so even if it looks like it is a vandalism,"\
                       " it may not be, are you sure you want to revert it?"
                       , QMessageBox::Yes|QMessageBox::No);
         if (q == QMessageBox::No)
@@ -762,15 +769,8 @@ bool Core::ReportPreFlightCheck()
 
 int Core::RunningQueriesGetCount()
 {
-    return RunningQueries.count();
+    return this->RunningQueries.count();
 }
-
-Language::Language(QString name)
-{
-    LanguageName = name;
-    LanguageID = name;
-}
-
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)
 {

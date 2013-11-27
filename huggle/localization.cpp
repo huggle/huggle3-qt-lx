@@ -154,3 +154,9 @@ QString Localizations::Localize(QString key, QString parameters)
     list << parameters;
     return Localize(key, list);
 }
+
+Language::Language(QString name)
+{
+    this->LanguageName = name;
+    this->LanguageID = name;
+}
