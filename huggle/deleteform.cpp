@@ -102,8 +102,7 @@ void DeleteForm::checkDelToken()
 	}
     if (this->qToken->Result->Failed)
 	{
-        /// \todo LOCALIZE ME
-        this->Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qToken->Result->ErrorMessage);
+        this->Failed(Localizations::HuggleLocalizations->Localize("delete-error-token", this->qToken->Result->ErrorMessage));
 		return;
 	}
     QDomDocument d;
@@ -120,8 +119,7 @@ void DeleteForm::checkDelToken()
         }
         if (this->qTokenOfTalkPage->Result->Failed)
         {
-            /// \todo LOCALIZE ME
-            this->Failed("ERROR: Retreiving the delete token failed. The reason provided was: " + this->qTokenOfTalkPage->Result->ErrorMessage);
+            this->Failed(Localizations::HuggleLocalizations->Localize("delete-error-token", this->qToken->Result->ErrorMessage));
             return;
         }
         d.setContent(this->qTokenOfTalkPage->Result->Data);
@@ -129,8 +127,7 @@ void DeleteForm::checkDelToken()
         if (l.count() == 0)
         {
             Huggle::Syslog::HuggleLogs->DebugLog(this->qTokenOfTalkPage->Result->Data);
-            /// \todo LOCALIZE ME
-            this->Failed("no page info was present in query (are you sysop?)");
+            this->Failed(Localizations::HuggleLocalizations->Localize("delete-failed-no-info"));
             return;
         }
         QDomElement element = l.at(0).toElement();

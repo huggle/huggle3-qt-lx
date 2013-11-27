@@ -19,8 +19,10 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
-    /// \todo LOCALIZE ME - this thing should be split to 4 keys
-    header << "ID" << "Type" << "Target" << "Result";
+    header << Localizations::HuggleLocalizations->Localize("[[id]]") <<
+              Localizations::HuggleLocalizations->Localize("[[type]]") <<
+              Localizations::HuggleLocalizations->Localize("[[target]]") <<
+              Localizations::HuggleLocalizations->Localize("result");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->verticalHeader()->setVisible(false);

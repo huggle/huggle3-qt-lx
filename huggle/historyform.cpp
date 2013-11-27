@@ -21,7 +21,11 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
     this->ui->tableWidget->setColumnCount(5);
     QStringList header;
-    header << "User" << "Size" << "Summary" << "ID" << "Date";
+    header << Huggle::Localizations::HuggleLocalizations->Localize("user") <<
+              Huggle::Localizations::HuggleLocalizations->Localize("size") <<
+              Huggle::Localizations::HuggleLocalizations->Localize("summary") <<
+              Huggle::Localizations::HuggleLocalizations->Localize("id") <<
+              Huggle::Localizations::HuggleLocalizations->Localize("date");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -90,9 +94,8 @@ void HistoryForm::onTick01()
     }
     if (this->query->Result->Failed)
     {
-        /// \todo Here we should log this error to debug log
         this->ui->pushButton->setEnabled(true);
-        Huggle::Syslog::HuggleLogs->Log("Error: unable to retrieve history");
+        Huggle::Syslog::HuggleLogs->Log("ERROR: unable to retrieve history");
         this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
         this->query = NULL;
         this->t1->stop();

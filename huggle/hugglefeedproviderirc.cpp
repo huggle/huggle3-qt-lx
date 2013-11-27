@@ -51,8 +51,7 @@ bool HuggleFeedProviderIRC::Start()
     this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
     if (!this->Network->Connect())
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("IRC: Unable to connect to IRC server " + Configuration::HuggleConfiguration->IRCServer);
+        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-error", Configuration::HuggleConfiguration->IRCServer));
         delete this->Network;
         this->Network = NULL;
         return false;

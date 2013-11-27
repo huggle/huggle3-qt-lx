@@ -20,6 +20,7 @@ ok:                        OK
 remove:                    Remove
 rename:                    Rename
 reload:                    Reload
+result:                    Result
 restorewindow:             Restore
 save:                      Save
 selectfile:                Browse...
@@ -29,6 +30,11 @@ import:                    Import from global conf
 successful:                Successful
 summary:                   Summary
 id:                        ID
+type:                      Type
+target:                    Target
+user:                      User
+size:                      Size
+date:                      Date
 
 </pre>
 
@@ -159,6 +165,8 @@ delete-reason:             Reason:
 delete-deletionlog:        Deletion log:
 delete-rem-talk:           Delete associated talk
 delete-notify:             Notify creator
+delete-error-token:        ERROR: Retreiving the delete token failed. The reason provided was: $1
+delete-failed-no-info:     no page info was present in query (are you sysop?)
 </pre>
 
 === Edit form ===
@@ -218,7 +226,7 @@ irc-connected:             Connected to IRC recent changes feed
 irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
-irc-error:                 Unable to connect to IRC recent changes feed. Using slower API queries instead
+irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
 </pre>
 
 === List form ===
