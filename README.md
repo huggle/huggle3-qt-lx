@@ -8,6 +8,12 @@ It is supported for Windows and Linux
 
 This is a repository that is used to build debian packages
 
+Easy
+=====
+
+ * git merge master debian
+ * run debian.sh
+
 Help
 ======
 
