@@ -36,6 +36,7 @@ WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 QT5=10
+FLAGS=''
 
 # first we parse all arguments we got
 for var in "$@"
@@ -46,6 +47,7 @@ do
         echo " --skip-checks: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
+        echo " --build=[i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
         echo " --qmake: change path to qmake"
@@ -70,6 +72,14 @@ do
     if [ "$var" = "--qt5" ];then
         QT5=1
         continue;
+    fi
+    if [ "$var" = "--build=i686-pc-linux-gnu" ];then
+        FLAGS='-spec linux-g++-32'
+        continue
+    fi
+    if [ "$var" = "--build=x86_64-pc-linux-gnu" ];then
+        FLAGS='-spec linux-g++-64'
+        continue
     fi
     if [ "$var" = "--qmake" ];then
         _QMAKE=1
@@ -251,7 +261,7 @@ cd ..
 ok
 text "Creating makefile... "
 
-$QMAKE_PATH || exit 1
+$QMAKE_PATH $FLAGS || exit 1
 
 ok
 text "Executing hunk..."
