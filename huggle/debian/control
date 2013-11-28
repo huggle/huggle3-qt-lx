@@ -3,7 +3,7 @@ Maintainer: Petr Bena <benapetr@gmail.com>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9), g++, libqt4-dbus, libqt4-dev, libqt4-network, libqt4-opengl, libqt4-webkit, libqtwebkit-dev, libqtgui4, libqtcore4, libqt4-xml, qt4-dev-tools, qt4-qmake
 
 Package: huggle
 Architecture: any
