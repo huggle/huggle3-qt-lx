@@ -31,13 +31,22 @@ namespace Huggle
         class NetworkIrc;
     }
 
+    //! This class is used to store information regarding page rescoring
+
+    //! Rescoring is an event when other user define own score for some edit,
+    //! this score is then added to our own score, problem is that these scores
+    //! can't be applied to edits that weren't parsed by huggle yet. So in case
+    //! that other user has faster internet connection we cache the information
+    //! using this class and use it later when edit is parsed
     class RescoreItem
     {
         public:
             RescoreItem(int _revID, int _score, QString _user);
             RescoreItem(const RescoreItem &item);
             RescoreItem(RescoreItem *item);
+            //! User who scored the edit
             QString User;
+            //! ID of edit
             int RevID;
             int Score;
     };
