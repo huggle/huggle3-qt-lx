@@ -162,8 +162,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     if (this->ui->lineEdit->text().contains(":"))
     {
         QMessageBox mb;
-        /// \todo LOCALIZE ME
-        mb.setText("You can't use : in name of queue");
+        mb.setText(Localizations::HuggleLocalizations->Localize("config-no-colon"));
         mb.exec();
         return;
     }

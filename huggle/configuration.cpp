@@ -222,7 +222,7 @@ QString Configuration::GetConfigurationPath()
     QDir conf(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration");
     if (!conf.exists())
     {
-        conf.mkdir(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration");
+        conf.mkpath(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration");
     }
     return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration" + QDir::separator();
 }

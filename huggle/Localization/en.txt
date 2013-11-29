@@ -156,6 +156,7 @@ config-history:	           Download whole history of all articles
 config-defaultsprompt:     Restore defaults?
 config-logbrowsetitle:     Log file location
 config-shortcutconflict:   Shortcut '{0}' conflicts with the existing shortcut for '{1}'.
+config-no-colon:           You can't use : in name of queue
 </pre>
 
 === Delete form ===
@@ -227,6 +228,8 @@ irc-connecting:            Attempting connection to IRC recent changes feed; thi
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
 irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
+irc-not:                   Feed: irc is disabled by project config
+irc-failure:               primary feed provider has failed, fallback to wiki provider
 </pre>
 
 === List form ===

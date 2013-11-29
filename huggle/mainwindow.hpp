@@ -137,6 +137,7 @@ namespace Huggle
              */
             bool CheckEditableBrowserPage();
             void SuspiciousEdit();
+            void PatrolThis(WikiEdit *e = NULL);
             void Localize();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
@@ -144,6 +145,7 @@ namespace Huggle
             HuggleLog *SystemLog;
             //! Pointer to queue
             HuggleQueue *Queue1;
+            QList<ApiQuery*> PatroledEdits;
             //! Pointer to browser
             HuggleWeb *Browser;
             HistoryForm *wHistory;
@@ -267,6 +269,7 @@ namespace Huggle
             //! Request a page deletion csd or afd and so on
             void RequestPD();
             void closeEvent(QCloseEvent *event);
+            void FinishPatrols();
             QTimer *timer1;
             // Whitelist
             QTimer *wlt;

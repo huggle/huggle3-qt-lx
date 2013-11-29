@@ -124,6 +124,7 @@ namespace Huggle
             long Score;
             QStringList ScoreWords;
             bool PostProcessing;
+            QString PatrolToken;
             bool ProcessingByWorkerThread;
             QDateTime Time;
             bool ProcessedByWorkerThread;

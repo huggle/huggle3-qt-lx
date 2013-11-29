@@ -76,8 +76,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // initialise queues
     if (!Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("Feed: irc is disabled by project config");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-not"));
     }
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
@@ -85,8 +84,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionIRC->setChecked(true);
         if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
-            /// \todo LOCALIZE ME
-            Syslog::HuggleLogs->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+            Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("irc-failure"));
             delete Core::HuggleCore->PrimaryFeedProvider;
             this->ui->actionIRC->setChecked(false);
             this->ui->actionWiki->setChecked(true);
@@ -388,6 +386,61 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->ignore();
 }
 
+void MainWindow::FinishPatrols()
+{
+    int x = 0;
+    while (x < this->PatroledEdits.count())
+    {
+        ApiQuery *query = this->PatroledEdits.at(x);
+        // check if this query has actually some edit associated to it
+        if (query->CallbackResult == NULL)
+        {
+            // we really don't want to mess up with this
+            query->UnregisterConsumer("patrol");
+            // get rid of it
+            this->PatroledEdits.removeAt(x);
+            continue;
+        }
+        // check if it's done
+        if (query->Processed())
+        {
+            // wheeee now we have a token
+            WikiEdit *edit = (WikiEdit*) query->CallbackResult;
+            QDomDocument d;
+            d.setContent(query->Result->Data);
+            QDomNodeList l = d.elementsByTagName("tokens");
+            if (l.count() > 0)
+            {
+                QDomElement element = l.at(0).toElement();
+                if (element.attributes().contains("patroltoken"))
+                {
+                    // we can finish this
+                    QString token = element.attribute("patroltoken");
+                    edit->PatrolToken = token;
+                    this->PatrolThis(edit);
+                    // get rid of it
+                    this->PatroledEdits.removeAt(x);
+                    edit->UnregisterConsumer("patrol");
+                    query->CallbackResult = NULL;
+                    query->UnregisterConsumer("patrol");
+                    continue;
+                }
+            }
+            // this edit is fucked up
+            Syslog::HuggleLogs->DebugLog("Unable to retrieve token for " + edit->Page->PageName);
+            // get rid of it
+            this->PatroledEdits.removeAt(x);
+            edit->UnregisterConsumer("patrol");
+            query->CallbackResult = NULL;
+            query->UnregisterConsumer("patrol");
+            continue;
+        } else
+        {
+            x++;
+        }
+    }
+}
+
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
@@ -654,6 +707,7 @@ void MainWindow::OnTimerTick1()
         }
     }
     Core::HuggleCore->CheckQueries();
+    this->FinishPatrols();
     Syslog::HuggleLogs->lUnwrittenLogs.lock();
     if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
     {
@@ -1034,7 +1088,7 @@ void MainWindow::ForceWarn(int level)
 
 void MainWindow::Exit()
 {
-    if (ShuttingDown)
+    if (this->ShuttingDown)
     {
         return;
     }
@@ -1155,6 +1209,45 @@ void MainWindow::SuspiciousEdit()
     {
         this->Queue1->Next();
     }
+}
+
+void MainWindow::PatrolThis(WikiEdit *e)
+{
+    if (e == NULL)
+    {
+        e = this->CurrentEdit;
+    }
+    if (e == NULL)
+    {
+        // ignore this
+        return;
+    }
+    ApiQuery *query = NULL;
+    // if this edit doesn't have the patrol token we need to get one
+    if (e->PatrolToken == "")
+    {
+        // register consumer so that gc doesn't delete this edit meanwhile
+        e->RegisterConsumer("patrol");
+        query = new ApiQuery();
+        query->SetAction(ActionTokens);
+        query->Target = "Retrieving patrol token for " + e->Page->PageName;
+        query->Parameters = "type=patrol";
+        // this uggly piece of code actually rocks
+        query->CallbackResult = (void*)e;
+        query->RegisterConsumer("patrol");
+        Core::HuggleCore->AppendQuery(query);
+        query->Process();
+        this->PatroledEdits.append(query);
+        return;
+    }
+    // we can execute patrol now
+    query = new ApiQuery();
+    query->SetAction(ActionPatrol);
+    query->Target = "Patrolling " + e->Page->PageName;
+    query->Parameters = "rcid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
+    Core::HuggleCore->AppendQuery(query);
+    Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
+    query->Process();
 }
 
 void MainWindow::Localize()
@@ -1282,6 +1375,7 @@ void MainWindow::on_actionGood_edit_triggered()
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
+        this->PatrolThis();
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
@@ -1313,6 +1407,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         Hooks::OnGood(this->CurrentEdit);
+        this->PatrolThis();
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
@@ -1613,7 +1708,6 @@ void MainWindow::on_actionProtect_triggered()
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
-    /// \todo LOCALIZE ME
     Syslog::HuggleLogs->Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 

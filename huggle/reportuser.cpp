@@ -37,7 +37,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->Loading = false;
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
