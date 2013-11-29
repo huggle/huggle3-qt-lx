@@ -16,6 +16,8 @@ Configuration * Configuration::HuggleConfiguration = new Configuration();
 
 Configuration::Configuration()
 {
+    QApplication::setApplicationName("Huggle");
+    QApplication::setOrganizationName("Wikimedia");
     this->AIVP = NULL;
     this->UAAP = NULL;
     this->Verbosity = 0;
@@ -41,7 +43,11 @@ Configuration::Configuration()
     this->IRCNick = "huggle";
     this->IRCPort = 6667;
     this->RingLogMaxSize = 2000;
+#if QT_VERSION >= 0x050000
+    this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
     this->UpdatesEnabled = true;
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
