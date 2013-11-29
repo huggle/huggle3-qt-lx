@@ -41,7 +41,7 @@ Configuration::Configuration()
     this->IRCNick = "huggle";
     this->IRCPort = 6667;
     this->RingLogMaxSize = 2000;
-    this->HomePath = QDir::currentPath();
+    this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     this->UpdatesEnabled = true;
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
