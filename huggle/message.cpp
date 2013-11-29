@@ -14,7 +14,8 @@ using namespace Huggle;
 
 Message::Message(WikiUser *target, QString Message, QString Summary)
 {
-    this->user = target;
+    // we copy the user here so that we can let the caller delete it
+    this->user = new WikiUser(target);
     this->text = Message;
     this->summary = Summary;
     this->Done = false;
@@ -35,6 +36,7 @@ Message::~Message()
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     }
+    delete this->user;
 }
 
 void Message::Send()

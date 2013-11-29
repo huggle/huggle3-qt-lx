@@ -1244,7 +1244,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
     query = new ApiQuery();
     query->SetAction(ActionPatrol);
     query->Target = "Patrolling " + e->Page->PageName;
-    query->Parameters = "rcid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
+    query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
     Core::HuggleCore->AppendQuery(query);
     Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
     query->Process();
