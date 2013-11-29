@@ -24,14 +24,15 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     QStringList header;
     this->ui->tableWidget->setColumnCount(3);
-    /// \todo LOCALIZE ME
-    header << "Page" << "Time" << "DiffID";
+    header << Localizations::HuggleLocalizations->Localize("page") <<
+              Localizations::HuggleLocalizations->Localize("time") <<
+              Localizations::HuggleLocalizations->Localize("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);

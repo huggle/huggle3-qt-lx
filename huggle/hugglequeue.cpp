@@ -235,7 +235,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == NULL)
     {
-        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context", "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
+        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context",
+               "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
     }
     if (qi != NULL)
     {

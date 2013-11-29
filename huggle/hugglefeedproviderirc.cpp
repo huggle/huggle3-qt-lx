@@ -22,10 +22,10 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
-    while (Buffer.count() > 0)
+    while (this->Buffer.count() > 0)
     {
-        Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        Buffer.removeAt(0);
+        this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        this->Buffer.removeAt(0);
     }
     this->Stop();
     delete this->thread;

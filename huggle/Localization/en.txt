@@ -35,6 +35,13 @@ target:                    Target
 user:                      User
 size:                      Size
 date:                      Date
+page:                      Page
+time:                      Time
+version:                   Version
+name:                      Name
+author:                    Author
+description:               Description
+status:                    Status
 
 </pre>
 
@@ -659,6 +666,12 @@ warning-level3:            Level 3
 warning-level4:            Level 4 (final)
 warning-warntype:          Warning type:
 warning-warnlog:           Warnings for this user:
+</pre>
+
+=== HAN ===
+<pre>
+han-not:                   Vandalism network isn't allowed in options
+han-connecting:            Connecting to huggle anti vandalism network
 </pre>
 
 === XfD form ===

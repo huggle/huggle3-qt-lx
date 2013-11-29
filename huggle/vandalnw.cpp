@@ -37,13 +37,11 @@ void VandalNw::Connect()
 {
     if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Vandalism network isn't allowed in options");
+        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("han-not"));
         return;
     } else
     {
-        /// \todo LOCALIZE ME
-        this->Insert("Connecting to huggle anti vandalism network");
+        this->Insert(Localizations::HuggleLocalizations->Localize("han-connecting"));
         this->Irc->Connect();
     }
 }

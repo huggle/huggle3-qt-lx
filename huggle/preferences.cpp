@@ -21,8 +21,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
     this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
     QStringList header;
-    /// \todo LOCALIZE ME
-    header << "Name" << "Author" << "Description" << "Status" << "Version";
+    header << Localizations::HuggleLocalizations->Localize("name")
+           << Localizations::HuggleLocalizations->Localize("author")
+           << Localizations::HuggleLocalizations->Localize("description")
+           << Localizations::HuggleLocalizations->Localize("status")
+           << Localizations::HuggleLocalizations->Localize("version");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
