@@ -6,7 +6,7 @@
 
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
-!define WEB_SITE "http://en.wikipedia.org/Wikipedia:Huggle"
+!define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
 !define VERSION "3.0.0.0"
 !define COPYRIGHT "GPL"
 !define DESCRIPTION "Application"
@@ -36,6 +36,7 @@ VIAddVersionKey "FileVersion"  "${VERSION}"
 SetCompressor ZLIB
 Name "${APP_NAME}"
 Caption "${APP_NAME}"
+Icon "huggle.ico"
 OutFile "${INSTALLER_NAME}"
 BrandingText "${APP_NAME}"
 XPStyle on
@@ -108,6 +109,10 @@ File "release\deps\Qt5V8.dll"
 File "release\deps\Qt5Gui.dll"
 File "release\deps\libwinpthread-1.dll"
 File "release\deps\libgcc_s_dw2-1.dll"
+SetOutPath "$INSTDIR\platforms"
+File "release\platforms\qminimal.dll"
+File "release\platforms\qoffscreen.dll"
+File "release\platforms\qwindows.dll"
 SectionEnd
 
 ######################################################################
