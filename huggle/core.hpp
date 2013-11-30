@@ -45,6 +45,9 @@
 namespace Huggle
 {
     // Predeclaring some types
+#ifdef PYTHONENGINE
+    class PythonEngine;
+#endif
     class Sleeper;
     class Login;
     class Query;
@@ -200,7 +203,6 @@ namespace Huggle
             bool Running;
             //! Garbage collector
             GC *gc;
-
 #ifdef PYTHONENGINE
             PythonEngine *Python;
 #endif

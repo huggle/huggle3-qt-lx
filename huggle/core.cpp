@@ -13,11 +13,6 @@
 using namespace Huggle;
 
 // definitions
-#ifdef PYTHONENGINE
-PythonEngine *Core::Python = NULL;
-#endif
-
-
 Core  *Core::HuggleCore = NULL;
 
 void Core::Init()
@@ -77,6 +72,9 @@ void Core::Init()
 
 Core::Core()
 {
+#ifdef PYTHONENGINE
+    this->Python = NULL;
+#endif
     this->HtmlHeader = "";
     this->HtmlFooter = "</table></body></html>";
     this->Main = NULL;
