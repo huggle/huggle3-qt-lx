@@ -34,3 +34,18 @@ void AboutForm::on_pushButton_clicked()
 {
     this->close();
 }
+
+void AboutForm::on_label_8_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void AboutForm::on_label_5_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void AboutForm::on_label_3_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}

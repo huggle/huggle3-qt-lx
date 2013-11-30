@@ -33,8 +33,11 @@ namespace Huggle
 
         private slots:
             void on_pushButton_clicked();
+            void on_label_8_linkActivated(const QString &link);
+            void on_label_5_linkActivated(const QString &link);
+            void on_label_3_linkActivated(const QString &link);
 
-        private:
+    private:
             Ui::AboutForm *ui;
     };
 }
