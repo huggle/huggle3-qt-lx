@@ -24,6 +24,7 @@ Configuration::Configuration()
     this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
     this->UsingSSL = true;
     this->UserName = "User";
+    this->Cache_HAN = 100;
     this->Password = "";
     this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE

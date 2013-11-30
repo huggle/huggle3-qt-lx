@@ -46,6 +46,12 @@ void HuggleQueue::AddItem(WikiEdit *page)
     {
         if (Core::HuggleCore->Main->VandalDock != NULL)
         {
+            if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
+            {
+                // we don't even need to insert this page to queue
+                page->UnregisterConsumer("DeletionLock");
+                return;
+            }
             Core::HuggleCore->Main->VandalDock->Rescore(page);
         }
     }

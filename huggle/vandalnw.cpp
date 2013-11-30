@@ -94,6 +94,44 @@ QString VandalNw::GetChannel()
     return Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle";
 }
 
+bool VandalNw::IsParsed(WikiEdit *edit)
+{
+    int item = 0;
+    while (item < this->UnparsedRoll.count())
+    {
+        if (this->UnparsedRoll.at(item).RevID == edit->RevID)
+        {
+            this->ProcessRollback(edit, this->UnparsedRoll.at(item).User);
+            this->UnparsedRoll.removeAt(item);
+            return true;
+        }
+        item++;
+    }
+    item = 0;
+    while (item < this->UnparsedSusp.count())
+    {
+        if (this->UnparsedSusp.at(item).RevID == edit->RevID)
+        {
+            this->ProcessSusp(edit, this->UnparsedRoll.at(item).User);
+            this->UnparsedSusp.removeAt(item);
+            return true;
+        }
+        item++;
+    }
+    item = 0;
+    while (item < this->UnparsedGood.count())
+    {
+        if (this->UnparsedGood.at(item).RevID == edit->RevID)
+        {
+            this->ProcessGood(edit, this->UnparsedRoll.at(item).User);
+            this->UnparsedGood.removeAt(item);
+            return true;
+        }
+        item++;
+    }
+    return false;
+}
+
 void VandalNw::Rescore(WikiEdit *edit)
 {
     if (this->UnparsedScores.count() == 0)
@@ -101,12 +139,12 @@ void VandalNw::Rescore(WikiEdit *edit)
         return;
     }
     int item = 0;
-    RescoreItem *score = NULL;
+    HAN::RescoreItem *score = NULL;
     while (item < this->UnparsedScores.count())
     {
         if (this->UnparsedScores.at(item).RevID == edit->RevID)
         {
-            score = new RescoreItem(this->UnparsedScores.at(item));
+            score = new HAN::RescoreItem(this->UnparsedScores.at(item));
             this->UnparsedScores.removeAt(item);
             break;
         }
@@ -120,6 +158,31 @@ void VandalNw::Rescore(WikiEdit *edit)
         edit->Score += score->Score;
         delete score;
     }
+}
+
+void VandalNw::ProcessGood(WikiEdit *edit, QString user)
+{
+    edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
+    this->Insert("<font color=blue>" + user + " seen a good edit to " + edit->Page->PageName +
+                 " by " + edit->User->Username + " (" + QString::number(edit->RevID) + ")" + "</font>");
+    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
+}
+
+void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
+{
+    edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
+    this->Insert("<font color=blue>" + user + " seen a good edit to " + edit->Page->PageName +
+                 " by " + edit->User->Username + " (" + QString::number(edit->RevID) + ")" + "</font>");
+    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
+}
+
+void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
+{
+    this->Insert("<font color=red>" + user + " thinks that edit to " + edit->Page->PageName +
+                 " by " + edit->User->Username + " (" + QString::number(edit->RevID) +
+                 ") is likely a vandalism, but they didn't revert it </font>");
+    edit->Score += 600;
+    Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
 }
 
 void VandalNw::onTick()
@@ -165,10 +228,14 @@ void VandalNw::onTick()
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                     if (edit != NULL)
                     {
-                        edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
-                        this->Insert("<font color=blue>" + m->user.Nick + " seen a good edit to " + edit->Page->PageName +
-                                     " by " + edit->User->Username + " (" + revid + ")" + "</font>");
-                        Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
+                        this->ProcessGood(edit, m->user.Nick);
+                    } else
+                    {
+                        while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        {
+                            this->UnparsedGood.removeAt(0);
+                        }
+                        this->UnparsedGood.append(HAN::GenericItem(RevID, m->user.Nick));
                     }
                 }
                 if (Command == "ROLLBACK")
@@ -177,9 +244,14 @@ void VandalNw::onTick()
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                     if (edit != NULL)
                     {
-                        this->Insert("<font color=orange>" + m->user.Nick + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username + " (" + revid + ")" + "</font>");
-                        edit->User->setBadnessScore(edit->User->getBadnessScore() + 200);
-                        Core::HuggleCore->Main->Queue1->DeleteByRevID(RevID);
+                        this->ProcessRollback(edit, m->user.Nick);
+                    } else
+                    {
+                        while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        {
+                            this->UnparsedRoll.removeAt(0);
+                        }
+                        this->UnparsedRoll.append(HAN::GenericItem(RevID, m->user.Nick));
                     }
                 }
                 if (Command == "SUSPICIOUS")
@@ -188,11 +260,14 @@ void VandalNw::onTick()
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
                     if (edit != NULL)
                     {
-                        this->Insert("<font color=red>" + m->user.Nick + " thinks that edit to " + edit->Page->PageName +
-                                     " by " + edit->User->Username + " (" + revid +
-                                     ") is likely a vandalism, but they didn't revert it </font>");
-                        edit->Score += 600;
-                        Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                        this->ProcessSusp(edit, m->user.Nick);
+                    } else
+                    {
+                        while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        {
+                            this->UnparsedSusp.removeAt(0);
+                        }
+                        this->UnparsedSusp.append(HAN::GenericItem(RevID, m->user.Nick));
                     }
                 }
                 if (Command == "SCORED")
@@ -211,11 +286,11 @@ void VandalNw::onTick()
                             Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
                         } else
                         {
-                            while (this->UnparsedScores.count() > 200)
+                            while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->Cache_HAN)
                             {
                                 this->UnparsedScores.removeAt(0);
                             }
-                            this->UnparsedScores.append(RescoreItem(RevID, Score, m->user.Nick));
+                            this->UnparsedScores.append(HAN::RescoreItem(RevID, Score, m->user.Nick));
                         }
                     }
                 }
@@ -244,23 +319,47 @@ void Huggle::VandalNw::on_pushButton_clicked()
     this->ui->lineEdit->setText("");
 }
 
-RescoreItem::RescoreItem(int _revID, int _score, QString _user)
+HAN::RescoreItem::RescoreItem(int _revID, int _score, QString _user)
 {
     this->RevID = _revID;
     this->User = _user;
     this->Score = _score;
 }
 
-RescoreItem::RescoreItem(const RescoreItem &item)
+HAN::RescoreItem::RescoreItem(const RescoreItem &item)
 {
     this->User = item.User;
     this->Score = item.Score;
     this->RevID = item.RevID;
 }
 
-RescoreItem::RescoreItem(RescoreItem *item)
+HAN::RescoreItem::RescoreItem(RescoreItem *item)
 {
     this->User = item->User;
     this->RevID = item->RevID;
     this->Score = item->Score;
+}
+
+HAN::GenericItem::GenericItem()
+{
+    this->RevID = -1;
+    this->User = "none";
+}
+
+HAN::GenericItem::GenericItem(int _revID, QString _user)
+{
+    this->RevID = _revID;
+    this->User = _user;
+}
+
+HAN::GenericItem::GenericItem(const HAN::GenericItem &i)
+{
+    this->RevID = i.RevID;
+    this->User = i.User;
+}
+
+HAN::GenericItem::GenericItem(HAN::GenericItem *i)
+{
+    this->RevID = i->RevID;
+    this->User = i->User;
 }

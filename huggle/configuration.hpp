@@ -226,6 +226,7 @@ namespace Huggle
             QString         SyslogPath;
             bool            UpdatesEnabled;
             bool            EnforceMonthsAsHeaders;
+            int             Cache_HAN;
 
             //////////////////////////////////////////////
             // Local config
