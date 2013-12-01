@@ -107,7 +107,6 @@ Configuration::Configuration()
     this->LocalConfig_TalkPageWarningScore = -800;
     this->LocalConfig_ScoreFlag = -20000;
     this->WarnUserSpaceRoll = true;
-    this->NextOnRv = true;
     this->LocalConfig_WelcomeGood = true;
     this->LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
     this->LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
@@ -120,6 +119,7 @@ Configuration::Configuration()
     this->LocalConfig_RUTemplateReport = "";
     this->LocalConfig_IPVTemplateReport = "";
     this->LocalConfig_WhitelistScore = -800;
+    this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->RvCounter = 0;
     this->TrimOldWarnings = true;
     this->EditCounter = 0;
@@ -313,6 +313,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
     conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     conf += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
+    conf += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
     conf += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -436,11 +437,6 @@ void Configuration::LoadConfig()
             Configuration::HuggleConfiguration->WarnUserSpaceRoll = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
-        if (key == "NextOnRv")
-        {
-            Configuration::HuggleConfiguration->NextOnRv = Configuration::SafeBool(option.attribute("text"));
-            continue;
-        }
         if (key == "EnableUpdates")
         {
             Configuration::HuggleConfiguration->UpdatesEnabled = Configuration::SafeBool(option.attribute("text"));
@@ -473,7 +469,6 @@ void Configuration::SaveConfig()
     Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->ProviderCache), x);
     Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
     Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->HistorySize), x);
-    Configuration::InsertConfig("NextOnRv", Configuration::Bool2String(Configuration::HuggleConfiguration->NextOnRv), x);
     Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
     Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->RingLogMaxSize), x);
     Configuration::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), x);
@@ -979,6 +974,7 @@ bool Configuration::ParseUserConfig(QString config)
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool(Configuration::ConfigurationParse("HistoryLoad",
                                                                                                                         config, "true"));
+    Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>(Configuration::ConfigurationParse("GoNext", config, "1").toInt());
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;

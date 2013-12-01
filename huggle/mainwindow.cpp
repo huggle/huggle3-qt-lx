@@ -15,11 +15,6 @@ using namespace Huggle;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    QDateTime load = QDateTime::currentDateTime();
-    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
-    {
-        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
-    }
     this->fScoreWord = NULL;
     this->fSessionData = NULL;
     this->fReportForm = NULL;
@@ -37,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Status = new QLabel();
     this->ui->statusBar->addWidget(this->Status);
     this->showMaximized();
+    this->qNext = NULL;
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
@@ -45,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
     this->fUaaReportForm = NULL;
+    this->OnNext_EvPage = NULL;
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
@@ -62,6 +59,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     QStringList _log = Syslog::HuggleLogs->RingLogToQStringList();
+    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
+    {
+        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
+    }
     int c=0;
     while (c<_log.count())
     {
@@ -178,6 +179,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->OnNext_EvPage;
     delete this->fRemove;
     delete this->wUserInfo;
     delete this->wHistory;
@@ -259,6 +261,13 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (e == NULL || this->ShuttingDown)
     {
         return;
+    }
+    if (this->OnNext_EvPage != NULL)
+    {
+        delete this->OnNext_EvPage;
+        this->OnNext_EvPage = NULL;
+        this->qNext->UnregisterConsumer("OnNext");
+        this->qNext = NULL;
     }
     // we need to safely delete the edit later
     e->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
@@ -479,10 +488,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
-        if (next)
-        {
-            this->Queue1->Next();
-        }
+        this->DisplayNext(q);
         return q;
     }
     return NULL;
@@ -729,6 +735,14 @@ void MainWindow::OnTimerTick1()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
+    if (this->OnNext_EvPage != NULL)
+    {
+        if (this->qNext->Processed())
+        {
+            this->tb->SetPage(this->OnNext_EvPage);
+            this->tb->RenderEdit();
+        }
+    }
 }
 
 void MainWindow::OnTimerTick0()
@@ -879,11 +893,9 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     if (result != NULL)
     {
         this->Warn("warning", result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -904,11 +916,9 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     if (result != NULL)
     {
         this->Warn("warning", result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -999,11 +1009,9 @@ void MainWindow::CustomRevertWarn()
     if (result != NULL)
     {
         this->Warn(k, result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -1213,10 +1221,7 @@ void MainWindow::SuspiciousEdit()
         Hooks::Suspicious(this->CurrentEdit);
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 1);
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
-    {
-        this->Queue1->Next();
-    }
+    this->DisplayNext();
 }
 
 void MainWindow::PatrolThis(WikiEdit *e)
@@ -1271,6 +1276,37 @@ void MainWindow::Localize()
     this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-talk"));
     this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
     this->ui->actionExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
+}
+
+void MainWindow::DisplayNext(Query *q)
+{
+    switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
+    {
+        case Configuration_OnNext_Stay:
+            return;
+        case Configuration_OnNext_Next:
+            this->Queue1->Next();
+            return;
+        case Configuration_OnNext_Revert:
+            if (this->CurrentEdit == NULL)
+            {
+                return;
+            }
+            if (q == NULL)
+            {
+                this->Queue1->Next();
+                return;
+            }
+            if (this->OnNext_EvPage != NULL)
+            {
+                delete this->OnNext_EvPage;
+                this->qNext->UnregisterConsumer("OnNext");
+            }
+            this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
+            this->qNext = q;
+            this->qNext->RegisterConsumer("OnNext");
+            return;
+    }
 }
 
 bool MainWindow::CheckExit()
@@ -1389,10 +1425,7 @@ void MainWindow::on_actionGood_edit_triggered()
             this->Welcome();
         }
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
-    {
-        this->Queue1->Next();
-    }
+    this->DisplayNext();
 }
 
 void MainWindow::on_actionTalk_page_triggered()
@@ -1422,10 +1455,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
             this->Welcome();
         }
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
-    {
-        this->Queue1->Next();
-    }
+    this->DisplayNext();
 }
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()

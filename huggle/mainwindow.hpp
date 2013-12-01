@@ -139,6 +139,7 @@ namespace Huggle
             void SuspiciousEdit();
             void PatrolThis(WikiEdit *e = NULL);
             void Localize();
+            void DisplayNext(Query *q = NULL);
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -279,6 +280,11 @@ namespace Huggle
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;
+            Query *qNext;
+            //! This is a page that is going to be displayed if users request their latest action to be
+            //! reviewed when it's done (for example when they rollback an edit and they want to
+            //! display it, instead of next one)
+            WikiPage *OnNext_EvPage;
     };
 }
 #endif // MAINWINDOW_H

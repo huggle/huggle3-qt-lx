@@ -45,6 +45,7 @@ namespace Huggle
             void SetInfo(QString info);
             void SetUser(QString user);
             void SetPage(WikiPage* page);
+            void RenderEdit();
 
         private slots:
             void on_pushButton_clicked();

@@ -58,7 +58,7 @@ void HuggleTool::SetPage(WikiPage *page)
     this->ui->comboBox_2->lineEdit()->setStyleSheet("color: black;");
 }
 
-void Huggle::HuggleTool::on_pushButton_clicked()
+void HuggleTool::RenderEdit()
 {
     if (this->ui->comboBox_2->lineEdit()->text() == "")
     {
@@ -75,6 +75,11 @@ void Huggle::HuggleTool::on_pushButton_clicked()
     this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
     this->query->Process();
     this->tick->start(200);
+}
+
+void Huggle::HuggleTool::on_pushButton_clicked()
+{
+    this->RenderEdit();
 }
 
 void HuggleTool::onTick()
