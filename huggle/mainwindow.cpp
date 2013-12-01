@@ -741,6 +741,10 @@ void MainWindow::OnTimerTick1()
         {
             this->tb->SetPage(this->OnNext_EvPage);
             this->tb->RenderEdit();
+            this->qNext->UnregisterConsumer("OnNext");
+            delete this->OnNext_EvPage;
+            this->OnNext_EvPage = NULL;
+            this->qNext = NULL;
         }
     }
 }

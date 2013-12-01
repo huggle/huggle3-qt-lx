@@ -52,7 +52,24 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
-    c = 0;
+    switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
+    {
+        case Configuration_OnNext_Stay:
+            this->ui->radioButton_5->setChecked(true);
+            this->ui->radioButton_4->setChecked(false);
+            this->ui->radioButton_3->setChecked(false);
+            break;
+        case Configuration_OnNext_Revert:
+            this->ui->radioButton_5->setChecked(false);
+            this->ui->radioButton_4->setChecked(true);
+            this->ui->radioButton_3->setChecked(false);
+            break;
+        case Configuration_OnNext_Next:
+            this->ui->radioButton_5->setChecked(false);
+            this->ui->radioButton_3->setChecked(true);
+            this->ui->radioButton_4->setChecked(false);
+            break;
+    }
     this->Disable();
     // options
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
@@ -139,6 +156,18 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = ui->checkBox_3->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = ui->checkBox_4->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = ui->checkBox_11->isChecked();
+    if (ui->radioButton_5->isChecked())
+    {
+        Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;
+    }
+    if (ui->radioButton_4->isChecked())
+    {
+        Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Revert;
+    }
+    if (ui->radioButton_3->isChecked())
+    {
+        Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Next;
+    }
     Configuration::SaveConfig();
     this->hide();
 }
