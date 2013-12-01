@@ -50,8 +50,8 @@ HistoryForm::~HistoryForm()
 
 void HistoryForm::Read()
 {
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
-    this->ui->pushButton->setEnabled(false);
+    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
+    this->ui->pushButton->hide();
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
@@ -76,6 +76,7 @@ void HistoryForm::Update(WikiEdit *edit)
     }
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
+    this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->tableWidget->clearContents();
     this->Clear();
@@ -175,22 +176,7 @@ void HistoryForm::onTick01()
 
 void HistoryForm::on_pushButton_clicked()
 {
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
-    this->ui->pushButton->setEnabled(false);
-    this->query = new ApiQuery();
-    this->query->SetAction(ActionQuery);
-    this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
-                                    + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
-    this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-    this->query->Process();
-    if (this->t1 != NULL)
-    {
-        delete this->t1;
-    }
-    this->t1 = new QTimer(this);
-    Clear();
-    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start(200);
+    this->Read();
 }
 
 void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
