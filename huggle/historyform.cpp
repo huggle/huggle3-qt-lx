@@ -16,6 +16,7 @@ using namespace Huggle;
 HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::HistoryForm)
 {
     this->RetrievedEdit = NULL;
+    this->RetrievingEdit = false;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
@@ -95,12 +96,14 @@ void HistoryForm::Update(WikiEdit *edit)
 
 void HistoryForm::onTick01()
 {
-    if (this->RetrievingEdit)
+    if (this->RetrievingEdit && this->RetrievedEdit != NULL)
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
             Core::HuggleCore->Main->ProcessEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
+            this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+            this->RetrievedEdit = NULL;
             this->t1->stop();
         }
         return;
@@ -217,6 +220,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
     w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
+    w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     Core::HuggleCore->PostProcessEdit(w);
     if (this->t1 != NULL)
     {
