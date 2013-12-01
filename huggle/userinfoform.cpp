@@ -66,7 +66,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
 }
 
-void UserinfoForm::on_pushButton_clicked()
+void UserinfoForm::Read()
 {
     this->ui->pushButton->setEnabled(false);
     this->q = new ApiQuery();
@@ -77,6 +77,11 @@ void UserinfoForm::on_pushButton_clicked()
     this->q->RegisterConsumer(HUGGLECONSUMER_USERINFO);
     this->q->Process();
     this->timer->start(600);
+}
+
+void UserinfoForm::on_pushButton_clicked()
+{
+    this->Read();
 }
 
 void UserinfoForm::OnTick()

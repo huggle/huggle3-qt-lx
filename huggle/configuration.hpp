@@ -225,8 +225,14 @@ namespace Huggle
             bool            Log2File;
             QString         SyslogPath;
             bool            UpdatesEnabled;
-            bool            EnforceMonthsAsHeaders;
             int             Cache_HAN;
+
+            //////////////////////////////////////////////
+            // User
+            //////////////////////////////////////////////
+            bool            UserConfig_EnforceMonthsAsHeaders;
+            //! If history and user info should be automatically loaded for every edit
+            bool            UserConfig_HistoryLoad;
 
             //////////////////////////////////////////////
             // Local config

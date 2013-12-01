@@ -25,6 +25,7 @@ Configuration::Configuration()
     this->UsingSSL = true;
     this->UserName = "User";
     this->Cache_HAN = 100;
+    this->UserConfig_HistoryLoad = true;
     this->Password = "";
     this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE
@@ -149,7 +150,7 @@ Configuration::Configuration()
                  << "December";
 
     // we need to maintain some compatibility with older huggle
-    this->EnforceMonthsAsHeaders = true;
+    this->UserConfig_EnforceMonthsAsHeaders = true;
 
     this->LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
     this->LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
@@ -311,6 +312,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
     conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
+    conf += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
     conf += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -975,6 +977,8 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config,
                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
+    Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool(Configuration::ConfigurationParse("HistoryLoad",
+                                                                                                                        config, "true"));
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;

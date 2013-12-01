@@ -303,10 +303,18 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (!KeepUser)
     {
         this->wUserInfo->ChangeUser(e->User);
+        if (Configuration::HuggleConfiguration->UserConfig_HistoryLoad)
+        {
+            this->wUserInfo->Read();
+        }
     }
     if (!KeepHistory)
     {
         this->wHistory->Update(e);
+        if (Configuration::HuggleConfiguration->UserConfig_HistoryLoad)
+        {
+            this->wHistory->Read();
+        }
     }
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
