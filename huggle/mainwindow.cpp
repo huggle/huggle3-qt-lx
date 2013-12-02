@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fDeleteForm = NULL;
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
+    this->fProtectForm = NULL;
     this->fWaiting = NULL;
     this->fWhitelist = NULL;
     this->EditablePage = false;
@@ -189,6 +190,7 @@ MainWindow::~MainWindow()
     delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;
+    delete this->fProtectForm;
     delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
