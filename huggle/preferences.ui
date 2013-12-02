@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>852</width>
-    <height>449</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -126,6 +126,27 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
+       <string>Warnings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QCheckBox" name="checkBox_17">
+         <property name="text">
+          <string>Merge your messages with others in existing sections</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_16">
+         <property name="text">
+          <string>Use months as headers instead of name of page</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="Feed">
       <attribute name="title">
        <string>Feed</string>
@@ -136,7 +157,7 @@
          <x>0</x>
          <y>0</y>
          <width>811</width>
-         <height>28</height>
+         <height>60</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -144,6 +165,13 @@
          <widget class="QCheckBox" name="checkBox_12">
           <property name="text">
            <string>Enable IRC</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_15">
+          <property name="text">
+           <string>Remove edits that were already reverted by someone else</string>
           </property>
          </widget>
         </item>
@@ -218,6 +246,13 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Checked items will be filtered out of list</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="checkBox_7">
            <property name="minimumSize">
             <size>
@@ -240,6 +275,13 @@
            </property>
            <property name="text">
             <string>Own edits</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_18">
+           <property name="text">
+            <string>Edits that are reverts</string>
            </property>
           </widget>
          </item>

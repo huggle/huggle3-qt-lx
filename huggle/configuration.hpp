@@ -247,6 +247,7 @@ namespace Huggle
             //! Defines what should be done on next edit
             Configuration_OnNext    UserConfig_GoNext;
             bool                    UserConfig_DeleteEditsAfterRevert;
+            bool                    UserConfig_SectionKeep;
 
             //////////////////////////////////////////////
             // Local config

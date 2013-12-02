@@ -26,6 +26,7 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->IgnoreMinor = false;
     this->IgnoreNP = false;
     this->IgnoreSelf = true;
+    this->IgnoreReverts = false;
     this->IgnoreUsers = false;
     this->IgnoreTalk = true;
 }
@@ -62,6 +63,10 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         return false;
     }
     if (edit->Minor && this->IgnoreMinor)
+    {
+        return false;
+    }
+    if (edit->IsRevert && this->IgnoreReverts)
     {
         return false;
     }
@@ -148,6 +153,16 @@ bool HuggleQueueFilter::getIgnoreFriends() const
     return this->IgnoreFriends;
 }
 
+bool HuggleQueueFilter::getIgnoreReverts() const
+{
+    return this->IgnoreReverts;
+}
+
+void HuggleQueueFilter::setIgnoreReverts(bool value)
+{
+    this->IgnoreReverts = value;
+}
+
 void HuggleQueueFilter::setIgnoreFriends(bool value)
 {
     this->IgnoreFriends = value;
@@ -155,12 +170,12 @@ void HuggleQueueFilter::setIgnoreFriends(bool value)
 
 bool HuggleQueueFilter::getIgnoreSelf() const
 {
-    return IgnoreSelf;
+    return this->IgnoreSelf;
 }
 
 void HuggleQueueFilter::setIgnoreSelf(bool value)
 {
-    IgnoreSelf = value;
+    this->IgnoreSelf = value;
 }
 
 bool HuggleQueueFilter::IsDefault() const
@@ -172,12 +187,3 @@ bool HuggleQueueFilter::IsChangeable() const
 {
     return !this->IsDefault() && !this->ProjectSpecific;
 }
-
-
-
-
-
-
-
-
-

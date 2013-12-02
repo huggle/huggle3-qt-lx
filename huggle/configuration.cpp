@@ -124,6 +124,7 @@ Configuration::Configuration()
     this->TrimOldWarnings = true;
     this->EditCounter = 0;
     this->AskUserBeforeReport = true;
+    this->UserConfig_SectionKeep = true;
     this->QueueNewEditsUp = false;
     this->LocalConfig_WelcomeSummary = "Welcoming user";
     this->LocalConfig_WelcomeTitle = "Welcome";
