@@ -750,6 +750,7 @@ void MainWindow::OnTimerTick1()
             this->qNext = NULL;
         }
     }
+    Core::HuggleCore->TruncateReverts();
 }
 
 void MainWindow::OnTimerTick0()
@@ -1845,4 +1846,30 @@ void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
 void Huggle::MainWindow::on_actionResort_queue_triggered()
 {
     this->Queue1->Sort();
+}
+
+void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Core::HuggleCore->DeveloperError();
+        return;
+    }
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Page->Contents == "")
+    {
+        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to restore blank revision");
+        return;
+    }
+    QString sm = Configuration::HuggleConfiguration->LocalConfig_RestoreSummary;
+    sm = sm.replace("$1", QString(this->CurrentEdit->RevID));
+    sm = sm.replace("$2", this->CurrentEdit->User->Username);
+    Core::HuggleCore->EditPage(this->CurrentEdit->Page, this->CurrentEdit->Page->Contents, sm);
 }

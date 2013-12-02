@@ -55,8 +55,9 @@ void HistoryForm::Read()
     this->ui->pushButton->hide();
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
-    this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
-                                    + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+    this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
+            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig_HistoryMax) +
+            "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
     this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->query->Process();
     if (this->t1 != NULL)
@@ -64,7 +65,7 @@ void HistoryForm::Read()
         delete this->t1;
     }
     this->t1 = new QTimer(this);
-    Clear();
+    this->Clear();
     connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
     this->t1->start(200);
 }

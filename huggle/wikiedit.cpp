@@ -365,22 +365,15 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
-    if (edit->Summary != "")
+    bool IgnoreWords = false;
+    if (edit->IsRevert)
     {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        if (edit->User->IsIP())
         {
-            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(edit->Summary))
-            {
-                edit->IsRevert = true;
-                // if revert was done by IP it's likely a vandal
-                if (edit->User->IsIP())
-                {
-                    edit->Score += 200;
-                }
-                break;
-            }
-            xx++;
+            edit->Score += 200;
+        } else
+        {
+            IgnoreWords = true;
         }
     }
     // score
@@ -409,10 +402,12 @@ void ProcessorThread::Process(WikiEdit *edit)
     }
 
     edit->Score += edit->User->getBadnessScore();
-
-    edit->ProcessWords();
-
+    if (!IgnoreWords)
+    {
+        edit->ProcessWords();
+    }
     QString TalkPage = edit->User->GetContentsOfTalkPage();
+
     if (TalkPage != "")
     {
         edit->User->WarningLevel = WikiEdit::GetLevel(TalkPage);

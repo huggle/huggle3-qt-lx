@@ -506,6 +506,7 @@ void Core::Shutdown()
     {
         this->Main->hide();
     }
+    Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
     Sleeper::msleep(200);
     if (this->Processor->isRunning())
     {
@@ -567,6 +568,25 @@ void Core::PreProcessEdit(WikiEdit *_e)
             break;
         }
         x++;
+    }
+
+    if (_e->Summary != "")
+    {
+        int xx = 0;
+        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        {
+            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(_e->Summary))
+            {
+                _e->IsRevert = true;
+                if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+                {
+                    _e->RegisterConsumer("UncheckedReverts");
+                    this->UncheckedReverts.append(_e);
+                }
+                break;
+            }
+            xx++;
+        }
     }
 
     _e->Status = StatusProcessed;
@@ -777,6 +797,27 @@ bool Core::ReportPreFlightCheck()
 int Core::RunningQueriesGetCount()
 {
     return this->RunningQueries.count();
+}
+
+void Core::TruncateReverts()
+{
+    while (this->UncheckedReverts.count() > 0)
+    {
+        WikiEdit *edit = this->UncheckedReverts.at(0);
+        if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+        {
+            // we need to delete older edits that we know and that is somewhere in queue
+            if (this->Main != NULL)
+            {
+                if (this->Main->Queue1 != NULL)
+                {
+                    this->Main->Queue1->DeleteOlder(edit);
+                }
+            }
+        }
+        this->UncheckedReverts.removeAt(0);
+        edit->UnregisterConsumer("UncheckedReverts");
+    }
 }
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)

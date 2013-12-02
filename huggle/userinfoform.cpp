@@ -140,10 +140,11 @@ void UserinfoForm::OnTick()
                 {
                     diff = edit.attribute("revid");
                 }
-                this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(page));
-                this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(time));
-                this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(diff));
+                int last = this->ui->tableWidget->rowCount();
+                this->ui->tableWidget->insertRow(last);
+                this->ui->tableWidget->setItem(last, 0, new QTableWidgetItem(page));
+                this->ui->tableWidget->setItem(last, 1, new QTableWidgetItem(time));
+                this->ui->tableWidget->setItem(last, 2, new QTableWidgetItem(diff));
                 xx++;
             }
         } else

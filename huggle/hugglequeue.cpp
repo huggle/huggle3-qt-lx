@@ -158,7 +158,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
     return NULL;
 }
 
-void HuggleQueue::DeleteByRevID(int RevID)
+bool HuggleQueue::DeleteByRevID(int RevID)
 {
     int c = 0;
     while (c < this->Items.count())
@@ -169,13 +169,14 @@ void HuggleQueue::DeleteByRevID(int RevID)
             if (Core::HuggleCore->Main->CurrentEdit == item->Page)
             {
                 // we can't delete item that is being reviewed now
-                return;
+                return false;
             }
-            this->DeleteItem(item);
-            return;
+            return this->DeleteItem(item);
         }
         c++;
     }
+    // we didn't find it
+    return false;
 }
 
 void HuggleQueue::Sort()
@@ -359,6 +360,30 @@ void HuggleQueue::Filters()
     this->ui->comboBox->setCurrentIndex(id);
 }
 
+void HuggleQueue::DeleteOlder(WikiEdit *edit)
+{
+    int i = 0;
+    while (i < this->Items.count())
+    {
+        WikiEdit *_e = this->Items.at(i)->Page;
+        if (edit->RevID > _e->RevID)
+        {
+            if (edit->Page->PageName == _e->Page->PageName)
+            {
+                Huggle::Syslog::HuggleLogs->DebugLog("Deleting old edit to page " + _e->Page->PageName);
+                // remove it
+                if (this->DeleteByRevID(_e->RevID))
+                {
+                    // we can only continue if some edit was deleted
+                    // otherwise we end up looping here
+                    continue;
+                }
+            }
+        }
+        i++;
+    }
+}
+
 long HuggleQueue::GetScore(int id)
 {
     if (this->layout->count() - 1 <= id)
@@ -375,13 +400,18 @@ long HuggleQueue::GetScore(int id)
     return label->Page->Score;
 }
 
-void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
+bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
 {
     HuggleQueueItemLabel::Count--;
     item->close();
     this->Delete(item);
-    this->Items.removeAll(item);
+    int removed = this->Items.removeAll(item);
     delete item;
+    if (removed > 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)

@@ -248,6 +248,7 @@ namespace Huggle
             Configuration_OnNext    UserConfig_GoNext;
             bool                    UserConfig_DeleteEditsAfterRevert;
             bool                    UserConfig_SectionKeep;
+            unsigned int            UserConfig_HistoryMax;
 
             //////////////////////////////////////////////
             // Local config
@@ -324,6 +325,7 @@ namespace Huggle
             QStringList     LocalConfig_WarningTemplates;
             QStringList     LocalConfig_WarningDefs;
             QString         LocalConfig_ReportSummary;
+            QString         LocalConfig_RestoreSummary;
             bool            LocalConfig_WelcomeGood;
 
             // Blocking users

@@ -53,6 +53,7 @@ Configuration::Configuration()
     this->UpdatesEnabled = true;
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
+    this->UserConfig_HistoryMax = 50;
     this->DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 
@@ -179,6 +180,7 @@ Configuration::Configuration()
     this->LocalConfig_BlockMessageIndef = "{{subst:huggle/block-indef|1=$1}}";
     this->LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
     this->LocalConfig_BlockSummary = "Notification: Blocked";
+    this->LocalConfig_RestoreSummary = "Restored revision $1 made by $2";
     this->AutomaticallyResolveConflicts = false;
     this->VandalNw_Server = "hub.tm-irc.org";
     this->VandalNw_Login = true;

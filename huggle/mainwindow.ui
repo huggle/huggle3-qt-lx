@@ -104,6 +104,7 @@
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionProtect"/>
+    <addaction name="actionRestore_this_revision"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -754,6 +755,11 @@
   <action name="actionResort_queue">
    <property name="text">
     <string>Resort queue</string>
+   </property>
+  </action>
+  <action name="actionRestore_this_revision">
+   <property name="text">
+    <string>Restore this revision</string>
    </property>
   </action>
  </widget>
