@@ -898,11 +898,12 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
 
-    RevertQuery *result = this->Revert("", true, true);
+    RevertQuery *result = this->Revert("", true, false);
 
     if (result != NULL)
     {
         this->Warn("warning", result);
+        this->DisplayNext();
     } else
     {
         this->DisplayNext();
@@ -921,11 +922,12 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         return;
     }
 
-    RevertQuery *result = this->Revert("", true, true);
+    RevertQuery *result = this->Revert("", true, false);
 
     if (result != NULL)
     {
         this->Warn("warning", result);
+        this->DisplayNext();
     } else
     {
         this->DisplayNext();
@@ -1014,11 +1016,12 @@ void MainWindow::CustomRevertWarn()
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
-    RevertQuery *result = this->Revert(rs, true, true);
+    RevertQuery *result = this->Revert(rs, true, false);
 
     if (result != NULL)
     {
         this->Warn(k, result);
+        this->DisplayNext();
     } else
     {
         this->DisplayNext();
@@ -1569,7 +1572,13 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
         Core::HuggleCore->DeveloperError();
         return;
     }
-    this->Revert("", false, false);
+
+    RevertQuery *result = this->Revert("", false, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
