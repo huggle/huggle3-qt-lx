@@ -31,7 +31,7 @@ namespace Huggle
             /*!
              * \param Message Message to log
              */
-            void Log(QString Message);
+            void Log(QString Message, bool TerminalOnly = false);
             //! This log is only shown if verbosity is same or larger than requested verbosity
             void DebugLog(QString Message, unsigned int Verbosity = 1);
             //! Return a ring log represented as 1 huge string

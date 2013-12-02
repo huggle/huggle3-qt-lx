@@ -237,6 +237,8 @@ namespace Huggle
             QString         SyslogPath;
             bool            UpdatesEnabled;
             int             Cache_HAN;
+            //! Debug mode
+            bool            SystemConfig_Dot;
 
             //////////////////////////////////////////////
             // User

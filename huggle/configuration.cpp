@@ -126,6 +126,7 @@ Configuration::Configuration()
     this->EditCounter = 0;
     this->AskUserBeforeReport = true;
     this->UserConfig_SectionKeep = true;
+    this->SystemConfig_Dot = false;
     this->QueueNewEditsUp = false;
     this->LocalConfig_WelcomeSummary = "Welcoming user";
     this->LocalConfig_WelcomeTitle = "Welcome";

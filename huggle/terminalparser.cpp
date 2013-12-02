@@ -48,6 +48,11 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->_SafeMode = true;
             valid = true;
         }
+        if (text == "--dot")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_Dot = true;
+            valid = true
+        }
         if (text == "--syslog")
         {
             Configuration::HuggleConfiguration->Log2File = true;
@@ -98,6 +103,7 @@ void TerminalParser::DisplayHelp()
     cout << "Parameters:" << endl;
     cout << "  -v: Increases verbosity" << endl;
     cout << "  --safe: Start huggle in special mode where lot of stuff is skipped during load" << endl;
+    cout << "  --dot: Debug on terminal only mode" << endl;
     cout << "  --syslog [file]: Will write a logs to a file" << endl;
     cout << "  -h | --help: Display this help" << endl<< endl;
     cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
