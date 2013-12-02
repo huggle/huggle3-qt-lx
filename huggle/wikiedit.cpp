@@ -437,7 +437,7 @@ void ProcessorThread::Process(WikiEdit *edit)
 
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
-    edit->RegisterConsumer("DeletionLock");
+    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     edit->Status = StatusPostProcessed;
 }
 

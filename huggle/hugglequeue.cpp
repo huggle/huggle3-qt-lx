@@ -49,17 +49,52 @@ void HuggleQueue::AddItem(WikiEdit *page)
             if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
             {
                 // we don't even need to insert this page to queue
-                page->UnregisterConsumer("DeletionLock");
+                page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
                 return;
             }
             Core::HuggleCore->Main->VandalDock->Rescore(page);
+        }
+    }
+    // in case that we don't want to have this edit in queue, we can ignore this
+    if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+    {
+        // check if there was a revert to this edit which is newer than itself
+        int i = 0;
+        while (i < Huggle::WikiEdit::EditList.count())
+        {
+            // retrieve the edit
+            WikiEdit *edit = Huggle::WikiEdit::EditList.at(i);
+            i++;
+            // if this is a same edit we can go next
+            if (edit == page)
+            {
+                continue;
+            }
+            // if this edit is not newer we can continue
+            if (edit->RevID < page->RevID)
+            {
+                continue;
+            }
+            // if edit is not a revert we can continue
+            if (!edit->IsRevert)
+            {
+                continue;
+            }
+            // if edit is not made to this page, we can continue
+            if (edit->Page->PageName != page->Page->PageName)
+            {
+                continue;
+            }
+            // we found it
+            Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
+            return;
         }
     }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     // we no longer to prevent this from being deleted because we already have different lock for that
-    page->UnregisterConsumer("DeletionLock");
+    page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)

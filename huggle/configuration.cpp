@@ -193,6 +193,7 @@ Configuration::Configuration()
     this->WriteTimeout = 200;
     this->ReadTimeout = 60;
     this->EnforceManualSoftwareRollback = false;
+    this->UserConfig_DeleteEditsAfterRevert = true;
     this->WhitelistDisabled = false;
 
     this->LocalConfig_UAAavailable = false;
@@ -314,6 +315,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     conf += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
     conf += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
+    conf += "DeleteEditsAfterRevert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert) + "\n";
     conf += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -943,8 +945,8 @@ bool Configuration::ParseUserConfig(QString config)
                                    QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config,
                                                               Configuration::HuggleConfiguration->LocalConfig_WarnSummary);
-    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = Configuration::SafeBool(Configuration::ConfigurationParse("software-rollback",
-                                                                                                                                             config));
+    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = Configuration::SafeBool(
+                Configuration::ConfigurationParse("software-rollback", config));
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config,
                                                                 Configuration::HuggleConfiguration->LocalConfig_WarnSummary2);
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config,
@@ -974,7 +976,10 @@ bool Configuration::ParseUserConfig(QString config)
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool(Configuration::ConfigurationParse("HistoryLoad",
                                                                                                                         config, "true"));
-    Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>(Configuration::ConfigurationParse("GoNext", config, "1").toInt());
+    Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>
+                          (Configuration::ConfigurationParse("GoNext", config, "1").toInt());
+    Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = Configuration::SafeBool(
+                Configuration::ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     Configuration::NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;
