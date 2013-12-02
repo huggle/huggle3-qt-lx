@@ -211,6 +211,9 @@ namespace Huggle
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;
+            //! We need to store some recent reverts for wiki provider so that we can backward decide if edit
+            //! was reverted before we parse it
+            QList<WikiEdit*> RevertBuffer;
             QList<WikiEdit*> UncheckedReverts;
             //! This is a post-processor for edits
             ProcessorThread * Processor;

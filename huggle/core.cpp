@@ -816,7 +816,14 @@ void Core::TruncateReverts()
             }
         }
         this->UncheckedReverts.removeAt(0);
-        edit->UnregisterConsumer("UncheckedReverts");
+        this->RevertBuffer.append(edit);
+    }
+
+    while (this->RevertBuffer.count() > 10)
+    {
+        WikiEdit *we = this->RevertBuffer.at(0);
+        this->RevertBuffer.removeAt(0);
+        we->UnregisterConsumer("UncheckedReverts");
     }
 }
 
