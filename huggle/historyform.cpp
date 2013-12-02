@@ -165,11 +165,33 @@ void HistoryForm::onTick01()
             }
         }
         this->ui->tableWidget->insertRow(x);
-        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
-        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
-        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
-        this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
-        this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+        if (this->CurrentEdit->RevID == RevID.toInt())
+        {
+            QFont font;
+            font.setBold(true);
+            QTableWidgetItem *i = new QTableWidgetItem(user);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 0, i);
+            i = new QTableWidgetItem(size);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 1, i);
+            i = new QTableWidgetItem(summary);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 2, i);
+            i = new QTableWidgetItem(RevID);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 3, i);
+            i = new QTableWidgetItem(date);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 4, i);
+        } else
+        {
+            this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
+            this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
+            this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
+            this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
+            this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+        }
         x++;
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
