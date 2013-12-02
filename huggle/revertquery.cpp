@@ -187,6 +187,7 @@ void RevertQuery::Preflight()
     int x=0;
     bool failed = false;
     bool MadeBySameUser = true;
+    WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *w = WikiEdit::EditList.at(x);
@@ -208,6 +209,7 @@ void RevertQuery::Preflight()
         }
         x++;
     }
+    WikiEdit::Lock_EditList->unlock();
     if (failed)
     {
         if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)

@@ -11,6 +11,7 @@
 #include "wikiedit.hpp"
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
+QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
 
 WikiEdit::WikiEdit()
 {
@@ -46,12 +47,16 @@ WikiEdit::WikiEdit()
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
+    WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.append(this);
+    WikiEdit::Lock_EditList->unlock();
 }
 
 WikiEdit::~WikiEdit()
 {
+    WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.removeAll(this);
+    WikiEdit::Lock_EditList->unlock();
     delete this->User;
     delete this->Page;
 }

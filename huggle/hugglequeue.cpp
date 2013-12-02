@@ -60,6 +60,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     {
         // check if there was a revert to this edit which is newer than itself
         int i = 0;
+        WikiEdit::Lock_EditList->lock();
         while (i < Huggle::WikiEdit::EditList.count())
         {
             // retrieve the edit
@@ -87,8 +88,10 @@ void HuggleQueue::AddItem(WikiEdit *page)
             }
             // we found it
             Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
+            WikiEdit::Lock_EditList->unlock();
             return;
         }
+        WikiEdit::Lock_EditList->unlock();
     }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);

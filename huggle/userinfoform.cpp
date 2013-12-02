@@ -177,6 +177,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     {
         return;
     }
+    WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
@@ -184,9 +185,11 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
         if (edit->RevID == revid)
         {
             Core::HuggleCore->Main->ProcessEdit(edit, true, false, true);
+            WikiEdit::Lock_EditList->unlock();
             return;
         }
     }
+    WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     this->edit = new WikiEdit();
     this->edit->User = new WikiUser(this->User->Username);

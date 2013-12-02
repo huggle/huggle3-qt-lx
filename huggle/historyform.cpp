@@ -226,6 +226,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         this->RetrievingEdit = false;
         return;
     }
+    WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
@@ -234,9 +235,11 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         {
             Core::HuggleCore->Main->ProcessEdit(edit, true, true);
             this->RetrievingEdit = false;
+            WikiEdit::Lock_EditList->unlock();
             return;
         }
     }
+    WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
     w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());

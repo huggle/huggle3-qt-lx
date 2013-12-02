@@ -69,6 +69,7 @@ namespace Huggle
         public:
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
+            static QMutex *Lock_EditList;
 
             //! Creates a new empty wiki edit
             WikiEdit();
