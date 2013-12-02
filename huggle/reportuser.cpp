@@ -19,14 +19,16 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->qHistory = NULL;
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
-    /// \todo LOCALIZE ME
-    this->ui->pushButton->setText("Retrieving history...");
+    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-history"));
     QStringList header;
     this->ui->tableWidget->setColumnCount(5);
     this->diff = new QTimer(this);
     connect(this->diff, SIGNAL(timeout()), this, SLOT(On_DiffTick()));
-    /// \todo LOCALIZE ME
-    header << "Page" << "Time" << "Link" << "DiffID" << "Include in report";
+    header << Localizations::HuggleLocalizations->Localize("page") <<
+              Localizations::HuggleLocalizations->Localize("time") <<
+              Localizations::HuggleLocalizations->Localize("link") <<
+              Localizations::HuggleLocalizations->Localize("diffid") <<
+              Localizations::HuggleLocalizations->Localize("report-include");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->tq = NULL;
     this->ui->tableWidget->verticalHeader()->setVisible(false);

@@ -488,7 +488,10 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
-        this->DisplayNext(q);
+        if (next)
+        {
+            this->DisplayNext(q);
+        }
         return q;
     }
     return NULL;
@@ -892,7 +895,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
 
-    RevertQuery *result = this->Revert("", true, false);
+    RevertQuery *result = this->Revert("", true, true);
 
     if (result != NULL)
     {
@@ -915,7 +918,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         return;
     }
 
-    RevertQuery *result = this->Revert("", true, false);
+    RevertQuery *result = this->Revert("", true, true);
 
     if (result != NULL)
     {
@@ -1008,7 +1011,7 @@ void MainWindow::CustomRevertWarn()
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
-    RevertQuery *result = this->Revert(rs, true, false);
+    RevertQuery *result = this->Revert(rs, true, true);
 
     if (result != NULL)
     {

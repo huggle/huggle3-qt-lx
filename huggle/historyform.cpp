@@ -227,8 +227,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         delete this->t1;
     }
     this->RetrievedEdit = w;
-    /// \todo LOCALIZE ME
-    Core::HuggleCore->Main->Browser->RenderHtml("Please wait...");
+    Core::HuggleCore->Main->Browser->RenderHtml(Huggle::Localizations::HuggleLocalizations->Localize("wait"));
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
     this->t1->start();

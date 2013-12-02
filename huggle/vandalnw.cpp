@@ -326,17 +326,13 @@ HAN::RescoreItem::RescoreItem(int _revID, int _score, QString _user)
     this->Score = _score;
 }
 
-HAN::RescoreItem::RescoreItem(const RescoreItem &item)
+HAN::RescoreItem::RescoreItem(const RescoreItem &item) : GenericItem(item)
 {
-    this->User = item.User;
     this->Score = item.Score;
-    this->RevID = item.RevID;
 }
 
-HAN::RescoreItem::RescoreItem(RescoreItem *item)
+HAN::RescoreItem::RescoreItem(RescoreItem *item) : GenericItem(item)
 {
-    this->User = item->User;
-    this->RevID = item->RevID;
     this->Score = item->Score;
 }
 

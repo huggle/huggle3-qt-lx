@@ -67,7 +67,6 @@ namespace Huggle
             //! Insert a new item to top of list
             void Prepend(HistoryItem item);
             void Refresh();
-            void Remove(HistoryItem item);
             QList<HistoryItem> Items;
             static int Last;
 

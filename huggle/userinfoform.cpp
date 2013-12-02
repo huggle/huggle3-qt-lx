@@ -69,6 +69,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 void UserinfoForm::Read()
 {
     this->q = new ApiQuery();
+    this->q->Target = "Retrieving contributions of " + this->User->Username;
     this->q->SetAction(ActionQuery);
     this->q->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(this->User->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
