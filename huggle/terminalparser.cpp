@@ -51,7 +51,7 @@ bool TerminalParser::Parse()
         if (text == "--dot")
         {
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
-            valid = true
+            valid = true;
         }
         if (text == "--syslog")
         {
