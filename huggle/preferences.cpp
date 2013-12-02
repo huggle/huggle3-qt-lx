@@ -76,6 +76,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
+    this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig_HistoryLoad);
     this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs);
     this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmWL);
     this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk);
@@ -155,6 +156,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->RevertOnMultipleEdits = ui->radioButton_2->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = ui->checkBox_3->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = ui->checkBox_4->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_HistoryLoad = ui->checkBox_14->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = ui->checkBox_11->isChecked();
     if (ui->radioButton_5->isChecked())
     {
