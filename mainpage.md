@@ -6,3 +6,5 @@ Wikimedia projects, written in C++ (QT framework). It is supported for Windows a
 
 Please read [README.md](md__data_project_huggle_repo_huggle3-qt-lx_README.html) to find out more general information
 
+Regular users shouldn't use this documentation, but huggle docs on meta
+
