@@ -170,9 +170,9 @@ void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 
 void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
 {
-    edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
-    this->Insert("<font color=blue>" + user + " seen a good edit to " + edit->Page->PageName +
-                 " by " + edit->User->Username + " (" + QString::number(edit->RevID) + ")" + "</font>");
+    this->Insert("<font color=orange>" + user + " did a rollback of " + edit->Page->PageName + " by " +
+           edit->User->Username + " (" + QString::number(edit->RevID) + ")" + "</font>");
+    edit->User->setBadnessScore(edit->User->getBadnessScore() + 200);
     Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
 }
 
