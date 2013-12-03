@@ -99,7 +99,6 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
 
     QString Summary;
-
     QString size;
 
     if (edit->Size > 0)
@@ -112,7 +111,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     if (edit->Summary == "")
     {
-        Summary = "<font color=red>" + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);

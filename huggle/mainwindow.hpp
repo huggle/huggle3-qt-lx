@@ -137,13 +137,16 @@ namespace Huggle
              */
             bool CheckEditableBrowserPage();
             void SuspiciousEdit();
+            void PatrolThis(WikiEdit *e = NULL);
             void Localize();
+            void DisplayNext(Query *q = NULL);
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
             HuggleLog *SystemLog;
             //! Pointer to queue
             HuggleQueue *Queue1;
+            QList<ApiQuery*> PatroledEdits;
             //! Pointer to browser
             HuggleWeb *Browser;
             HistoryForm *wHistory;
@@ -254,6 +257,7 @@ namespace Huggle
             void on_actionDisplay_a_session_data_triggered();
             void on_actionDisplay_whitelist_triggered();
             void on_actionResort_queue_triggered();
+            void on_actionRestore_this_revision_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
@@ -267,6 +271,7 @@ namespace Huggle
             //! Request a page deletion csd or afd and so on
             void RequestPD();
             void closeEvent(QCloseEvent *event);
+            void FinishPatrols();
             QTimer *timer1;
             // Whitelist
             QTimer *wlt;
@@ -276,6 +281,11 @@ namespace Huggle
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;
+            Query *qNext;
+            //! This is a page that is going to be displayed if users request their latest action to be
+            //! reviewed when it's done (for example when they rollback an edit and they want to
+            //! display it, instead of next one)
+            WikiPage *OnNext_EvPage;
     };
 }
 #endif // MAINWINDOW_H

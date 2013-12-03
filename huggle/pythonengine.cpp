@@ -74,6 +74,7 @@ bool PythonScript::Init()
         Py_DECREF(name);
         return true;
     }
+    delete file;
     return false;
 }
 

@@ -46,14 +46,58 @@ void HuggleQueue::AddItem(WikiEdit *page)
     {
         if (Core::HuggleCore->Main->VandalDock != NULL)
         {
+            if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
+            {
+                // we don't even need to insert this page to queue
+                page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+                return;
+            }
             Core::HuggleCore->Main->VandalDock->Rescore(page);
         }
+    }
+    // in case that we don't want to have this edit in queue, we can ignore this
+    if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+    {
+        // check if there was a revert to this edit which is newer than itself
+        int i = 0;
+        WikiEdit::Lock_EditList->lock();
+        while (i < Huggle::WikiEdit::EditList.count())
+        {
+            // retrieve the edit
+            WikiEdit *edit = Huggle::WikiEdit::EditList.at(i);
+            i++;
+            // if this is a same edit we can go next
+            if (edit == page)
+            {
+                continue;
+            }
+            // if this edit is not newer we can continue
+            if (edit->RevID < page->RevID)
+            {
+                continue;
+            }
+            // if edit is not a revert we can continue
+            if (!edit->IsRevert)
+            {
+                continue;
+            }
+            // if edit is not made to this page, we can continue
+            if (edit->Page->PageName != page->Page->PageName)
+            {
+                continue;
+            }
+            // we found it
+            Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
+            WikiEdit::Lock_EditList->unlock();
+            return;
+        }
+        WikiEdit::Lock_EditList->unlock();
     }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     // we no longer to prevent this from being deleted because we already have different lock for that
-    page->UnregisterConsumer("DeletionLock");
+    page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
@@ -114,7 +158,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
     return NULL;
 }
 
-void HuggleQueue::DeleteByRevID(int RevID)
+bool HuggleQueue::DeleteByRevID(int RevID)
 {
     int c = 0;
     while (c < this->Items.count())
@@ -125,13 +169,14 @@ void HuggleQueue::DeleteByRevID(int RevID)
             if (Core::HuggleCore->Main->CurrentEdit == item->Page)
             {
                 // we can't delete item that is being reviewed now
-                return;
+                return false;
             }
-            this->DeleteItem(item);
-            return;
+            return this->DeleteItem(item);
         }
         c++;
     }
+    // we didn't find it
+    return false;
 }
 
 void HuggleQueue::Sort()
@@ -235,7 +280,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == NULL)
     {
-        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context", "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
+        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context",
+               "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
     }
     if (qi != NULL)
     {
@@ -314,6 +360,30 @@ void HuggleQueue::Filters()
     this->ui->comboBox->setCurrentIndex(id);
 }
 
+void HuggleQueue::DeleteOlder(WikiEdit *edit)
+{
+    int i = 0;
+    while (i < this->Items.count())
+    {
+        WikiEdit *_e = this->Items.at(i)->Page;
+        if (edit->RevID > _e->RevID)
+        {
+            if (edit->Page->PageName == _e->Page->PageName)
+            {
+                Huggle::Syslog::HuggleLogs->DebugLog("Deleting old edit to page " + _e->Page->PageName);
+                // remove it
+                if (this->DeleteByRevID(_e->RevID))
+                {
+                    // we can only continue if some edit was deleted
+                    // otherwise we end up looping here
+                    continue;
+                }
+            }
+        }
+        i++;
+    }
+}
+
 long HuggleQueue::GetScore(int id)
 {
     if (this->layout->count() - 1 <= id)
@@ -330,13 +400,18 @@ long HuggleQueue::GetScore(int id)
     return label->Page->Score;
 }
 
-void HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
+bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
 {
     HuggleQueueItemLabel::Count--;
     item->close();
     this->Delete(item);
-    this->Items.removeAll(item);
+    int removed = this->Items.removeAll(item);
     delete item;
+    if (removed > 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)

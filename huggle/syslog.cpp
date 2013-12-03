@@ -24,25 +24,28 @@ Syslog::~Syslog()
     delete this->WriterLock;
 }
 
-void Syslog::Log(QString Message)
+void Syslog::Log(QString Message, bool TerminalOnly)
 {
     Message = QDateTime::currentDateTime().toString() + "   " + Message;
     std::cout << Message.toStdString() << std::endl;
-    this->InsertToRingLog(Message);
-    this->lUnwrittenLogs.lock();
-    this->UnwrittenLogs.append(Message);
-    this->lUnwrittenLogs.unlock();
-    if (Configuration::HuggleConfiguration->Log2File)
+    if (!TerminalOnly)
     {
-        this->WriterLock->lock();
-        QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
-        if (file->open(QIODevice::Append))
+        this->InsertToRingLog(Message);
+        this->lUnwrittenLogs.lock();
+        this->UnwrittenLogs.append(Message);
+        this->lUnwrittenLogs.unlock();
+        if (Configuration::HuggleConfiguration->Log2File)
         {
-            file->write(QString(Message + "\n").toUtf8());
-            file->close();
+            this->WriterLock->lock();
+            QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
+            if (file->open(QIODevice::Append))
+            {
+                file->write(QString(Message + "\n").toUtf8());
+                file->close();
+            }
+            delete file;
+            this->WriterLock->unlock();
         }
-        delete file;
-        this->WriterLock->unlock();
     }
 }
 
@@ -65,7 +68,7 @@ QStringList Syslog::RingLogToQStringList()
 
 void Syslog::InsertToRingLog(QString text)
 {
-    if (this->RingLog.size()+1 > Configuration::HuggleConfiguration->RingLogMaxSize)
+    if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->RingLogMaxSize)
     {
         this->RingLog.removeAt(0);
     }
@@ -74,8 +77,8 @@ void Syslog::InsertToRingLog(QString text)
 
 void Syslog::DebugLog(QString Message, unsigned int Verbosity)
 {
-    if (Configuration::HuggleConfiguration->Verbosity >= Verbosity)
+    if (Huggle::Configuration::HuggleConfiguration->Verbosity >= Verbosity)
     {
-        this->Log("DEBUG[" + QString::number(Verbosity) + "]: " + Message);
+        this->Log("DEBUG[" + QString::number(Verbosity) + "]: " + Message, Huggle::Configuration::HuggleConfiguration->SystemConfig_Dot);
     }
 }

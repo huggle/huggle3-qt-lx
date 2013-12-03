@@ -75,6 +75,17 @@
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {
+    //! This enum defines what action should be done when revert etc
+    enum Configuration_OnNext
+    {
+        //! Display same edit
+        Configuration_OnNext_Stay,
+        //! Display next
+        Configuration_OnNext_Next,
+        //! Display revert
+        Configuration_OnNext_Revert
+    };
+
     class HuggleParser;
     class WikiSite;
     class HuggleQueueFilter;
@@ -225,7 +236,21 @@ namespace Huggle
             bool            Log2File;
             QString         SyslogPath;
             bool            UpdatesEnabled;
-            bool            EnforceMonthsAsHeaders;
+            int             Cache_HAN;
+            //! Debug mode
+            bool            SystemConfig_Dot;
+
+            //////////////////////////////////////////////
+            // User
+            //////////////////////////////////////////////
+            bool            UserConfig_EnforceMonthsAsHeaders;
+            //! If history and user info should be automatically loaded for every edit
+            bool            UserConfig_HistoryLoad;
+            //! Defines what should be done on next edit
+            Configuration_OnNext    UserConfig_GoNext;
+            bool                    UserConfig_DeleteEditsAfterRevert;
+            bool                    UserConfig_SectionKeep;
+            unsigned int            UserConfig_HistoryMax;
 
             //////////////////////////////////////////////
             // Local config
@@ -302,6 +327,7 @@ namespace Huggle
             QStringList     LocalConfig_WarningTemplates;
             QStringList     LocalConfig_WarningDefs;
             QString         LocalConfig_ReportSummary;
+            QString         LocalConfig_RestoreSummary;
             bool            LocalConfig_WelcomeGood;
 
             // Blocking users
@@ -412,7 +438,6 @@ namespace Huggle
             //! Warn you in case you want to revert a user page
             bool WarnUserSpaceRoll;
             QStringList Months;
-            bool NextOnRv;
             //! Send a message to user on good edit
             bool WelcomeEmpty;
 

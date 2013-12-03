@@ -17,6 +17,11 @@ echo "Installing huggle to $DEST"
 if [ ! -d "$DEST"usr/bin ];then
   mkdir -p "$DEST"usr/bin
 fi
+if [ ! -d "$DEST"usr/share/man/man1 ];then
+  mkdir -p "$DEST"usr/share/man/man1
+fi
 cp -v huggle "$DEST"usr/bin/huggle || exit 1
+cp -v man/huggle.1 "$DEST"usr/share/man/man1 || exit 1
+gzip "$DEST"usr/share/man/man1/huggle.1 || exit 1
 
 echo "Installed"

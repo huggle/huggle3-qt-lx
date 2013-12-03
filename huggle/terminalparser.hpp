@@ -22,13 +22,12 @@ namespace Huggle
     class TerminalParser
     {
         public:
-            TerminalParser(int argc_, QStringList argv);
+            TerminalParser(QStringList argv);
             bool Parse();
             bool ParseChar(QChar x);
             void DisplayHelp();
             bool Silent;
         private:
-            int argc;
             QStringList args;
     };
 }

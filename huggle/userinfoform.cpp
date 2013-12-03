@@ -20,18 +20,18 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     this->edit = NULL;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
-    this->ui->pushButton->setEnabled(false);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     QStringList header;
     this->ui->tableWidget->setColumnCount(3);
-    /// \todo LOCALIZE ME
-    header << "Page" << "Time" << "DiffID";
+    header << Localizations::HuggleLocalizations->Localize("page") <<
+              Localizations::HuggleLocalizations->Localize("time") <<
+              Localizations::HuggleLocalizations->Localize("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
@@ -52,6 +52,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
         throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
     }
     this->User = user;
+    this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Retrieve info");
     if (this->edit != NULL)
@@ -65,17 +66,23 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
 }
 
-void UserinfoForm::on_pushButton_clicked()
+void UserinfoForm::Read()
 {
-    this->ui->pushButton->setEnabled(false);
     this->q = new ApiQuery();
+    this->q->Target = "Retrieving contributions of " + this->User->Username;
     this->q->SetAction(ActionQuery);
     this->q->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(this->User->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     Core::HuggleCore->AppendQuery(this->q);
     this->q->RegisterConsumer(HUGGLECONSUMER_USERINFO);
+    ui->pushButton->hide();
     this->q->Process();
     this->timer->start(600);
+}
+
+void UserinfoForm::on_pushButton_clicked()
+{
+    this->Read();
 }
 
 void UserinfoForm::OnTick()
@@ -133,10 +140,11 @@ void UserinfoForm::OnTick()
                 {
                     diff = edit.attribute("revid");
                 }
-                this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(page));
-                this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(time));
-                this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(diff));
+                int last = this->ui->tableWidget->rowCount();
+                this->ui->tableWidget->insertRow(last);
+                this->ui->tableWidget->setItem(last, 0, new QTableWidgetItem(page));
+                this->ui->tableWidget->setItem(last, 1, new QTableWidgetItem(time));
+                this->ui->tableWidget->setItem(last, 2, new QTableWidgetItem(diff));
                 xx++;
             }
         } else
@@ -170,6 +178,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     {
         return;
     }
+    WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
@@ -177,9 +186,11 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
         if (edit->RevID == revid)
         {
             Core::HuggleCore->Main->ProcessEdit(edit, true, false, true);
+            WikiEdit::Lock_EditList->unlock();
             return;
         }
     }
+    WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     this->edit = new WikiEdit();
     this->edit->User = new WikiUser(this->User->Username);

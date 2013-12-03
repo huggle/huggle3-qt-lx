@@ -34,6 +34,7 @@ namespace Huggle
         public:
             explicit HistoryForm(QWidget *parent = 0);
             ~HistoryForm();
+            void Read();
             void Update(WikiEdit *edit);
 
         private slots:

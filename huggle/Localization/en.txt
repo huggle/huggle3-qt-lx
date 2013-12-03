@@ -35,6 +35,15 @@ target:                    Target
 user:                      User
 size:                      Size
 date:                      Date
+page:                      Page
+time:                      Time
+version:                   Version
+name:                      Name
+author:                    Author
+description:               Description
+status:                    Status
+link:                      Link
+diffid:                    DiffID
 
 </pre>
 
@@ -156,6 +165,7 @@ config-history:	           Download whole history of all articles
 config-defaultsprompt:     Restore defaults?
 config-logbrowsetitle:     Log file location
 config-shortcutconflict:   Shortcut '{0}' conflicts with the existing shortcut for '{1}'.
+config-no-colon:           You can't use : in name of queue
 </pre>
 
 === Delete form ===
@@ -227,6 +237,8 @@ irc-connecting:            Attempting connection to IRC recent changes feed; thi
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
 irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
+irc-not:                   Feed: irc is disabled by project config
+irc-failure:               primary feed provider has failed, fallback to wiki provider
 </pre>
 
 === List form ===
@@ -543,6 +555,7 @@ report-title:              Report {0}
 report-reason:             Reason:
 report-message:            Message:
 report-log:                Warnings for this user:
+report-include:            Include in report
 report-evidence-none-provid:  You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this user is vandal or not. Are you sure you want to continue?
 </pre>
 
@@ -656,6 +669,12 @@ warning-level3:            Level 3
 warning-level4:            Level 4 (final)
 warning-warntype:          Warning type:
 warning-warnlog:           Warnings for this user:
+</pre>
+
+=== HAN ===
+<pre>
+han-not:                   Vandalism network isn't allowed in options
+han-connecting:            Connecting to huggle anti vandalism network
 </pre>
 
 === XfD form ===
@@ -829,5 +848,6 @@ provider-primary-failure:  primary feed provider has failed, fallback to wiki pr
 whitelist-download:        Downloading new whitelist
 queue-widget-name:         Queue
 system-widget-name:        System logs
+wait:                      Please wait...
 </pre>
 

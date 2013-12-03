@@ -8,4 +8,5 @@ fi
 
 echo "Uninstalling huggle to $DEST"
 
-rm -v "$DEST"usr/bin/huggle || exit 1
+rm -v "$DEST"usr/bin/huggle 
+rm -v "$DEST"usr/share/man/man1/huggle.1.gz

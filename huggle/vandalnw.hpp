@@ -31,16 +31,38 @@ namespace Huggle
         class NetworkIrc;
     }
 
-    class RescoreItem
+    namespace HAN
     {
-        public:
-            RescoreItem(int _revID, int _score, QString _user);
-            RescoreItem(const RescoreItem &item);
-            RescoreItem(RescoreItem *item);
-            QString User;
-            int RevID;
-            int Score;
-    };
+        class GenericItem
+        {
+            public:
+                GenericItem();
+                GenericItem(int _revID, QString _user);
+                GenericItem(const GenericItem &i);
+                GenericItem(GenericItem *i);
+                //! User who scored the edit
+                QString User;
+                //! ID of edit
+                int RevID;
+        };
+
+        //! This class is used to store information regarding page rescoring
+
+        //! Rescoring is an event when other user define own score for some edit,
+        //! this score is then added to our own score, problem is that these scores
+        //! can't be applied to edits that weren't parsed by huggle yet. So in case
+        //! that other user has faster internet connection we cache the information
+        //! using this class and use it later when edit is parsed
+        class RescoreItem : public GenericItem
+        {
+            public:
+                RescoreItem(int _revID, int _score, QString _user);
+                RescoreItem(const RescoreItem &item);
+                RescoreItem(RescoreItem *item);
+                int Score;
+        };
+
+    }
 
     //! Vandalism network
 
@@ -70,13 +92,20 @@ namespace Huggle
             void SuspiciousWikiEdit(WikiEdit *Edit);
             void WarningSent(WikiUser *user, int Level);
             QString GetChannel();
+            bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
             //! Prefix to special commands that are being sent to network to other users
             QString pref;
             //! Timer that is used to connect to network
             QTimer *tm;
-            QList<RescoreItem> UnparsedScores;
+            QList<HAN::RescoreItem> UnparsedScores;
+            QList<HAN::GenericItem> UnparsedGood;
+            QList<HAN::GenericItem> UnparsedRoll;
+            QList<HAN::GenericItem> UnparsedSusp;
         private:
+            void ProcessGood(WikiEdit *edit, QString user);
+            void ProcessRollback(WikiEdit *edit, QString user);
+            void ProcessSusp(WikiEdit *edit, QString user);
             Ui::VandalNw *ui;
             //! Pointer to irc server
             Huggle::IRC::NetworkIrc *Irc;

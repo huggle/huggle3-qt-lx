@@ -30,6 +30,7 @@
 #define HUGGLECONSUMER_PROTECTPAGE              12
 #define HUGGLECONSUMER_HISTORYWIDGET            13
 #define HUGGLECONSUMER_USERINFO                 14
+#define HUGGLECONSUMER_DELETIONLOCK             15
 
 namespace Huggle
 {

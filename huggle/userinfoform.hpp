@@ -42,6 +42,7 @@ namespace Huggle
             explicit UserinfoForm(QWidget *parent = 0);
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
+            void Read();
 
         private slots:
             void OnTick();

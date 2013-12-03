@@ -11,6 +11,7 @@
 #include "wikiedit.hpp"
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
+QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
 
 WikiEdit::WikiEdit()
 {
@@ -39,18 +40,23 @@ WikiEdit::WikiEdit()
     this->Priority = 20;
     this->Score = 0;
     this->IsRevert = false;
+    this->PatrolToken = "";
     this->Previous = NULL;
     this->Time = QDateTime::currentDateTime();
     this->Next = NULL;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
+    WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.append(this);
+    WikiEdit::Lock_EditList->unlock();
 }
 
 WikiEdit::~WikiEdit()
 {
+    WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.removeAll(this);
+    WikiEdit::Lock_EditList->unlock();
     delete this->User;
     delete this->Page;
 }
@@ -359,22 +365,15 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
-    if (edit->Summary != "")
+    bool IgnoreWords = false;
+    if (edit->IsRevert)
     {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        if (edit->User->IsIP())
         {
-            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(edit->Summary))
-            {
-                edit->IsRevert = true;
-                // if revert was done by IP it's likely a vandal
-                if (edit->User->IsIP())
-                {
-                    edit->Score += 200;
-                }
-                break;
-            }
-            xx++;
+            edit->Score += 200;
+        } else
+        {
+            IgnoreWords = true;
         }
     }
     // score
@@ -403,10 +402,12 @@ void ProcessorThread::Process(WikiEdit *edit)
     }
 
     edit->Score += edit->User->getBadnessScore();
-
-    edit->ProcessWords();
-
+    if (!IgnoreWords)
+    {
+        edit->ProcessWords();
+    }
     QString TalkPage = edit->User->GetContentsOfTalkPage();
+
     if (TalkPage != "")
     {
         edit->User->WarningLevel = WikiEdit::GetLevel(TalkPage);
@@ -436,7 +437,7 @@ void ProcessorThread::Process(WikiEdit *edit)
 
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
-    edit->RegisterConsumer("DeletionLock");
+    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     edit->Status = StatusPostProcessed;
 }
 

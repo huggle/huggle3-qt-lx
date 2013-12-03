@@ -45,6 +45,9 @@
 namespace Huggle
 {
     // Predeclaring some types
+#ifdef PYTHONENGINE
+    class PythonEngine;
+#endif
     class Sleeper;
     class Login;
     class Query;
@@ -174,6 +177,8 @@ namespace Huggle
             void LoadLocalizations();
             bool ReportPreFlightCheck();
             int RunningQueriesGetCount();
+            //! This function is called by main thread and is used to remove edits that were already reverted
+            void TruncateReverts();
             // Global variables
             QDateTime StartupTime;
             //! Pointer to main
@@ -200,13 +205,16 @@ namespace Huggle
             bool Running;
             //! Garbage collector
             GC *gc;
-
 #ifdef PYTHONENGINE
             PythonEngine *Python;
 #endif
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;
+            //! We need to store some recent reverts for wiki provider so that we can backward decide if edit
+            //! was reverted before we parse it
+            QList<WikiEdit*> RevertBuffer;
+            QList<WikiEdit*> UncheckedReverts;
             //! This is a post-processor for edits
             ProcessorThread * Processor;
             //! List of all messages that are being sent

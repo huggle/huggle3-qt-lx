@@ -16,6 +16,7 @@ using namespace Huggle;
 HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::HistoryForm)
 {
     this->RetrievedEdit = NULL;
+    this->RetrievingEdit = false;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
@@ -48,6 +49,27 @@ HistoryForm::~HistoryForm()
     delete this->ui;
 }
 
+void HistoryForm::Read()
+{
+    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
+    this->ui->pushButton->hide();
+    this->query = new ApiQuery();
+    this->query->SetAction(ActionQuery);
+    this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
+            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig_HistoryMax) +
+            "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+    this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    this->query->Process();
+    if (this->t1 != NULL)
+    {
+        delete this->t1;
+    }
+    this->t1 = new QTimer(this);
+    this->Clear();
+    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
+    this->t1->start(200);
+}
+
 void HistoryForm::Update(WikiEdit *edit)
 {
     if (edit == NULL)
@@ -56,6 +78,7 @@ void HistoryForm::Update(WikiEdit *edit)
     }
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
+    this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->tableWidget->clearContents();
     this->Clear();
@@ -74,12 +97,14 @@ void HistoryForm::Update(WikiEdit *edit)
 
 void HistoryForm::onTick01()
 {
-    if (this->RetrievingEdit)
+    if (this->RetrievingEdit && this->RetrievedEdit != NULL)
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
             Core::HuggleCore->Main->ProcessEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
+            this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+            this->RetrievedEdit = NULL;
             this->t1->stop();
         }
         return;
@@ -141,11 +166,33 @@ void HistoryForm::onTick01()
             }
         }
         this->ui->tableWidget->insertRow(x);
-        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
-        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
-        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
-        this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
-        this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+        if (this->CurrentEdit->RevID == RevID.toInt())
+        {
+            QFont font;
+            font.setBold(true);
+            QTableWidgetItem *i = new QTableWidgetItem(user);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 0, i);
+            i = new QTableWidgetItem(size);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 1, i);
+            i = new QTableWidgetItem(summary);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 2, i);
+            i = new QTableWidgetItem(RevID);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 3, i);
+            i = new QTableWidgetItem(date);
+            i->setFont(font);
+            this->ui->tableWidget->setItem(x, 4, i);
+        } else
+        {
+            this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
+            this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
+            this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
+            this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
+            this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+        }
         x++;
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
@@ -155,22 +202,7 @@ void HistoryForm::onTick01()
 
 void HistoryForm::on_pushButton_clicked()
 {
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
-    this->ui->pushButton->setEnabled(false);
-    this->query = new ApiQuery();
-    this->query->SetAction(ActionQuery);
-    this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
-                                    + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
-    this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-    this->query->Process();
-    if (this->t1 != NULL)
-    {
-        delete this->t1;
-    }
-    this->t1 = new QTimer(this);
-    Clear();
-    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start(200);
+    this->Read();
 }
 
 void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
@@ -195,6 +227,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         this->RetrievingEdit = false;
         return;
     }
+    WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
@@ -203,22 +236,24 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         {
             Core::HuggleCore->Main->ProcessEdit(edit, true, true);
             this->RetrievingEdit = false;
+            WikiEdit::Lock_EditList->unlock();
             return;
         }
     }
+    WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
     w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
+    w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     Core::HuggleCore->PostProcessEdit(w);
     if (this->t1 != NULL)
     {
         delete this->t1;
     }
     this->RetrievedEdit = w;
-    /// \todo LOCALIZE ME
-    Core::HuggleCore->Main->Browser->RenderHtml("Please wait...");
+    Core::HuggleCore->Main->Browser->RenderHtml(Huggle::Localizations::HuggleLocalizations->Localize("wait"));
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
     this->t1->start();

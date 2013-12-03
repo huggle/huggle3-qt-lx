@@ -35,15 +35,15 @@ void ApiQuery::ConstructUrl()
 
     switch (this->RequestFormat)
     {
-    case XML:
-        URL += "&format=xml";
-        break;
-    case JSON:
-        URL += "&format=json";
-        break;
-    case PlainText:
-    case Default:
-        break;
+        case XML:
+            URL += "&format=xml";
+            break;
+        case JSON:
+            URL += "&format=json";
+            break;
+        case PlainText:
+        case Default:
+            break;
     }
 }
 
@@ -65,15 +65,15 @@ QString ApiQuery::ConstructParameterLessUrl()
 
     switch (this->RequestFormat)
     {
-    case XML:
-        url += "&format=xml";
-        break;
-    case JSON:
-        url += "&format=json";
-        break;
-    case PlainText:
-    case Default:
-        break;
+        case XML:
+            url += "&format=xml";
+            break;
+        case JSON:
+            url += "&format=json";
+            break;
+        case PlainText:
+        case Default:
+            break;
     }
 
     return url;
@@ -158,7 +158,7 @@ void ApiQuery::Process()
         url = QUrl::fromEncoded(this->URL.toUtf8());
     }
     QNetworkRequest request(url);
-    if (UsingPOST)
+    if (this->UsingPOST)
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     }
@@ -186,38 +186,42 @@ void ApiQuery::SetAction(const Action action)
 {
     switch (action)
     {
-    case ActionQuery:
-        this->ActionPart = "query";
-        return;
-    case ActionLogin:
-        this->ActionPart = "login";
-        return;
-    case ActionLogout:
-        this->ActionPart = "logout";
-        return;
-    case ActionTokens:
-        this->ActionPart = "tokens";
-        return;
-    case ActionPurge:
-        this->ActionPart = "purge";
-        return;
-    case ActionRollback:
-        this->ActionPart = "rollback";
-        return;
-    case ActionDelete:
-        this->ActionPart = "delete";
-        return;
-    case ActionUndelete:
-        this->ActionPart = "undelete";
-        return;
-    case ActionBlock:
-        this->ActionPart = "block";
-        return;
-    case ActionProtect:
-        this->ActionPart = "protect";
-        return;
-    case ActionEdit:
-        this->ActionPart = "edit";
+        case ActionQuery:
+            this->ActionPart = "query";
+            return;
+        case ActionLogin:
+            this->ActionPart = "login";
+            return;
+        case ActionLogout:
+            this->ActionPart = "logout";
+            return;
+        case ActionTokens:
+            this->ActionPart = "tokens";
+            return;
+        case ActionPurge:
+            this->ActionPart = "purge";
+            return;
+        case ActionRollback:
+            this->ActionPart = "rollback";
+            return;
+        case ActionDelete:
+            this->ActionPart = "delete";
+            return;
+        case ActionUndelete:
+            this->ActionPart = "undelete";
+            return;
+        case ActionBlock:
+            this->ActionPart = "block";
+            return;
+        case ActionProtect:
+            this->ActionPart = "protect";
+            return;
+        case ActionEdit:
+            this->ActionPart = "edit";
+            return;
+        case ActionPatrol:
+            this->ActionPart = "patrol";
+            return;
     }
 }
 

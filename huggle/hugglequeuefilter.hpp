@@ -66,6 +66,8 @@ namespace Huggle
             void setIgnoreSelf(bool value);
             bool IsDefault() const;
             bool IsChangeable() const;
+            bool getIgnoreReverts() const;
+            void setIgnoreReverts(bool value);
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
@@ -75,6 +77,7 @@ namespace Huggle
             bool IgnoreUsers;
             bool IgnoreWL;
             bool IgnoreIP;
+            bool IgnoreReverts;
             bool IgnoreBots;
             bool IgnoreNP;
             bool IgnoreFriends;

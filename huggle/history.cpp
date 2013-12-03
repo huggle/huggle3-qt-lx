@@ -53,11 +53,6 @@ void History::Refresh()
 
 }
 
-void History::Remove(HistoryItem item)
-{
-
-}
-
 History::~History()
 {
     delete this->ui;

@@ -11,4 +11,3 @@
 #include "iextension.hpp"
 
 using namespace Huggle;
-

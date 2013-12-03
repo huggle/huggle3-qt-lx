@@ -28,7 +28,7 @@ bool TerminalParse(int argc, char *argv[])
         i++;
     }
     // we create a new terminal parser
-    Huggle::TerminalParser *p = new Huggle::TerminalParser(argc, args);
+    Huggle::TerminalParser *p = new Huggle::TerminalParser(args);
     // if parser get an argument which requires app to exit (like --help or --version)
     // we can terminate it now
     if (p->Parse())

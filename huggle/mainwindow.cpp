@@ -15,11 +15,6 @@ using namespace Huggle;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    QDateTime load = QDateTime::currentDateTime();
-    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
-    {
-        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
-    }
     this->fScoreWord = NULL;
     this->fSessionData = NULL;
     this->fReportForm = NULL;
@@ -27,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fDeleteForm = NULL;
     this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
+    this->fProtectForm = NULL;
     this->fWaiting = NULL;
     this->fWhitelist = NULL;
     this->EditablePage = false;
@@ -37,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Status = new QLabel();
     this->ui->statusBar->addWidget(this->Status);
     this->showMaximized();
+    this->qNext = NULL;
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
@@ -45,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
     this->fUaaReportForm = NULL;
+    this->OnNext_EvPage = NULL;
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
@@ -62,6 +60,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     QStringList _log = Syslog::HuggleLogs->RingLogToQStringList();
+    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
+    {
+        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
+    }
     int c=0;
     while (c<_log.count())
     {
@@ -76,8 +78,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // initialise queues
     if (!Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("Feed: irc is disabled by project config");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-not"));
     }
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->LocalConfig_UseIrc)
     {
@@ -85,8 +86,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionIRC->setChecked(true);
         if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
-            /// \todo LOCALIZE ME
-            Syslog::HuggleLogs->Log("ERROR: primary feed provider has failed, fallback to wiki provider");
+            Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("irc-failure"));
             delete Core::HuggleCore->PrimaryFeedProvider;
             this->ui->actionIRC->setChecked(false);
             this->ui->actionWiki->setChecked(true);
@@ -180,6 +180,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    delete this->OnNext_EvPage;
     delete this->fRemove;
     delete this->wUserInfo;
     delete this->wHistory;
@@ -189,6 +190,7 @@ MainWindow::~MainWindow()
     delete this->_History;
     delete this->RevertWarn;
     delete this->WarnMenu;
+    delete this->fProtectForm;
     delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
@@ -262,6 +264,13 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     {
         return;
     }
+    if (this->OnNext_EvPage != NULL)
+    {
+        delete this->OnNext_EvPage;
+        this->OnNext_EvPage = NULL;
+        this->qNext->UnregisterConsumer("OnNext");
+        this->qNext = NULL;
+    }
     // we need to safely delete the edit later
     e->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     // if there are actually some totaly old edits in history that we need to delete
@@ -305,10 +314,18 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (!KeepUser)
     {
         this->wUserInfo->ChangeUser(e->User);
+        if (Configuration::HuggleConfiguration->UserConfig_HistoryLoad)
+        {
+            this->wUserInfo->Read();
+        }
     }
     if (!KeepHistory)
     {
         this->wHistory->Update(e);
+        if (Configuration::HuggleConfiguration->UserConfig_HistoryLoad)
+        {
+            this->wHistory->Read();
+        }
     }
     this->CurrentEdit = e;
     this->Browser->DisplayDiff(e);
@@ -388,6 +405,61 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->ignore();
 }
 
+void MainWindow::FinishPatrols()
+{
+    int x = 0;
+    while (x < this->PatroledEdits.count())
+    {
+        ApiQuery *query = this->PatroledEdits.at(x);
+        // check if this query has actually some edit associated to it
+        if (query->CallbackResult == NULL)
+        {
+            // we really don't want to mess up with this
+            query->UnregisterConsumer("patrol");
+            // get rid of it
+            this->PatroledEdits.removeAt(x);
+            continue;
+        }
+        // check if it's done
+        if (query->Processed())
+        {
+            // wheeee now we have a token
+            WikiEdit *edit = (WikiEdit*) query->CallbackResult;
+            QDomDocument d;
+            d.setContent(query->Result->Data);
+            QDomNodeList l = d.elementsByTagName("tokens");
+            if (l.count() > 0)
+            {
+                QDomElement element = l.at(0).toElement();
+                if (element.attributes().contains("patroltoken"))
+                {
+                    // we can finish this
+                    QString token = element.attribute("patroltoken");
+                    edit->PatrolToken = token;
+                    this->PatrolThis(edit);
+                    // get rid of it
+                    this->PatroledEdits.removeAt(x);
+                    edit->UnregisterConsumer("patrol");
+                    query->CallbackResult = NULL;
+                    query->UnregisterConsumer("patrol");
+                    continue;
+                }
+            }
+            // this edit is fucked up
+            Syslog::HuggleLogs->DebugLog("Unable to retrieve token for " + edit->Page->PageName);
+            // get rid of it
+            this->PatroledEdits.removeAt(x);
+            edit->UnregisterConsumer("patrol");
+            query->CallbackResult = NULL;
+            query->UnregisterConsumer("patrol");
+            continue;
+        } else
+        {
+            x++;
+        }
+    }
+}
+
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
@@ -420,7 +492,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
         {
-            this->Queue1->Next();
+            this->DisplayNext(q);
         }
         return q;
     }
@@ -654,6 +726,7 @@ void MainWindow::OnTimerTick1()
         }
     }
     Core::HuggleCore->CheckQueries();
+    this->FinishPatrols();
     Syslog::HuggleLogs->lUnwrittenLogs.lock();
     if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
     {
@@ -667,6 +740,19 @@ void MainWindow::OnTimerTick1()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
+    if (this->OnNext_EvPage != NULL)
+    {
+        if (this->qNext->Processed())
+        {
+            this->tb->SetPage(this->OnNext_EvPage);
+            this->tb->RenderEdit();
+            this->qNext->UnregisterConsumer("OnNext");
+            delete this->OnNext_EvPage;
+            this->OnNext_EvPage = NULL;
+            this->qNext = NULL;
+        }
+    }
+    Core::HuggleCore->TruncateReverts();
 }
 
 void MainWindow::OnTimerTick0()
@@ -817,11 +903,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     if (result != NULL)
     {
         this->Warn("warning", result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+        this->DisplayNext();
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -842,11 +927,10 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     if (result != NULL)
     {
         this->Warn("warning", result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+        this->DisplayNext();
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -937,11 +1021,10 @@ void MainWindow::CustomRevertWarn()
     if (result != NULL)
     {
         this->Warn(k, result);
-    }
-
-    if (Configuration::HuggleConfiguration->NextOnRv)
+        this->DisplayNext();
+    } else
     {
-        this->Queue1->Next();
+        this->DisplayNext();
     }
 }
 
@@ -1034,7 +1117,7 @@ void MainWindow::ForceWarn(int level)
 
 void MainWindow::Exit()
 {
-    if (ShuttingDown)
+    if (this->ShuttingDown)
     {
         return;
     }
@@ -1151,10 +1234,46 @@ void MainWindow::SuspiciousEdit()
         Hooks::Suspicious(this->CurrentEdit);
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 1);
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
+    this->DisplayNext();
+}
+
+void MainWindow::PatrolThis(WikiEdit *e)
+{
+    if (e == NULL)
     {
-        this->Queue1->Next();
+        e = this->CurrentEdit;
     }
+    if (e == NULL)
+    {
+        // ignore this
+        return;
+    }
+    ApiQuery *query = NULL;
+    // if this edit doesn't have the patrol token we need to get one
+    if (e->PatrolToken == "")
+    {
+        // register consumer so that gc doesn't delete this edit meanwhile
+        e->RegisterConsumer("patrol");
+        query = new ApiQuery();
+        query->SetAction(ActionTokens);
+        query->Target = "Retrieving patrol token for " + e->Page->PageName;
+        query->Parameters = "type=patrol";
+        // this uggly piece of code actually rocks
+        query->CallbackResult = (void*)e;
+        query->RegisterConsumer("patrol");
+        Core::HuggleCore->AppendQuery(query);
+        query->Process();
+        this->PatroledEdits.append(query);
+        return;
+    }
+    // we can execute patrol now
+    query = new ApiQuery();
+    query->SetAction(ActionPatrol);
+    query->Target = "Patrolling " + e->Page->PageName;
+    query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
+    Core::HuggleCore->AppendQuery(query);
+    Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
+    query->Process();
 }
 
 void MainWindow::Localize()
@@ -1170,6 +1289,37 @@ void MainWindow::Localize()
     this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-talk"));
     this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
     this->ui->actionExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
+}
+
+void MainWindow::DisplayNext(Query *q)
+{
+    switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
+    {
+        case Configuration_OnNext_Stay:
+            return;
+        case Configuration_OnNext_Next:
+            this->Queue1->Next();
+            return;
+        case Configuration_OnNext_Revert:
+            if (this->CurrentEdit == NULL)
+            {
+                return;
+            }
+            if (q == NULL)
+            {
+                this->Queue1->Next();
+                return;
+            }
+            if (this->OnNext_EvPage != NULL)
+            {
+                delete this->OnNext_EvPage;
+                this->qNext->UnregisterConsumer("OnNext");
+            }
+            this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
+            this->qNext = q;
+            this->qNext->RegisterConsumer("OnNext");
+            return;
+    }
 }
 
 bool MainWindow::CheckExit()
@@ -1282,15 +1432,13 @@ void MainWindow::on_actionGood_edit_triggered()
     {
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
+        this->PatrolThis();
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
         }
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
-    {
-        this->Queue1->Next();
-    }
+    this->DisplayNext();
 }
 
 void MainWindow::on_actionTalk_page_triggered()
@@ -1313,16 +1461,14 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     if (this->CurrentEdit != NULL)
     {
         Hooks::OnGood(this->CurrentEdit);
+        this->PatrolThis();
         this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();
         }
     }
-    if (Configuration::HuggleConfiguration->NextOnRv)
-    {
-        this->Queue1->Next();
-    }
+    this->DisplayNext();
 }
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
@@ -1426,7 +1572,13 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
         Core::HuggleCore->DeveloperError();
         return;
     }
-    this->Revert("", false, false);
+
+    RevertQuery *result = this->Revert("", false, false);
+
+    if (result != NULL)
+    {
+        this->Warn("warning", result);
+    }
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
@@ -1613,7 +1765,6 @@ void MainWindow::on_actionProtect_triggered()
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
-    /// \todo LOCALIZE ME
     Syslog::HuggleLogs->Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 
@@ -1706,4 +1857,30 @@ void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
 void Huggle::MainWindow::on_actionResort_queue_triggered()
 {
     this->Queue1->Sort();
+}
+
+void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
+{
+    if (!CheckExit())
+    {
+        return;
+    }
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Core::HuggleCore->DeveloperError();
+        return;
+    }
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (this->CurrentEdit->Page->Contents == "")
+    {
+        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to restore blank revision");
+        return;
+    }
+    QString sm = Configuration::HuggleConfiguration->LocalConfig_RestoreSummary;
+    sm = sm.replace("$1", QString(this->CurrentEdit->RevID));
+    sm = sm.replace("$2", this->CurrentEdit->User->Username);
+    Core::HuggleCore->EditPage(this->CurrentEdit->Page, this->CurrentEdit->Page->Contents, sm);
 }
