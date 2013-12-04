@@ -269,39 +269,43 @@ void WikiEdit::ProcessWords()
         }
         int SD = 0;
         bool found = false;
-        if (text.startsWith(w))
+        if (text == w)
         {
             found = true;
         }
         while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
         {
-            if (text.contains(Configuration::HuggleConfiguration->Separators.at(SD) + w))
+            if (text.startsWith(w + Configuration::HuggleConfiguration->Separators.at(SD)))
             {
                 found = true;
+                break;
+            }
+            if (text.endsWith(Configuration::HuggleConfiguration->Separators.at(SD) + w))
+            {
+                found = true;
+                break;
+            }
+            int SL = 0;
+            while (SL <Configuration::HuggleConfiguration->Separators.count())
+            {
+                if (text.contains(Configuration::HuggleConfiguration->Separators.at(SD) +
+                             w + Configuration::HuggleConfiguration->Separators.at(SL)))
+                {
+                    found = true;
+                    break;
+                }
+                if (found)
+                {
+                    break;
+                }
+                SL++;
             }
             SD++;
         }
         if (found)
         {
-            found = false;
-            SD = 0;
-            if (text.endsWith(w))
-            {
-                found = true;
-            }
-            while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
-            {
-                if (text.contains(w + Configuration::HuggleConfiguration->Separators.at(SD)))
-                {
-                    found = true;
-                }
-                SD++;
-            }
-            if (found)
-            {
-                this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).score;
-                ScoreWords.append(w);
-            }
+            this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).score;
+            ScoreWords.append(w);
         }
         xx++;
     }

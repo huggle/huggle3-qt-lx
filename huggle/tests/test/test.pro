@@ -143,3 +143,6 @@ HEADERS += \
     ../../preferences.hpp \
     ../../oauthloginquery.hpp \
     ../../networkirc.hpp
+
+RESOURCES += \
+    Page.qrc

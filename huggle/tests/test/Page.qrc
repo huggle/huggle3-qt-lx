@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/test/wikipage">
+        <file>page01.txt</file>
+        <file>page02.txt</file>
+    </qresource>
+</RCC>
