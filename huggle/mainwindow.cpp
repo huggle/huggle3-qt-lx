@@ -287,25 +287,25 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (this->Historical.contains(e) == false)
     {
         this->Historical.append(e);
-    }
-    if (this->CurrentEdit != NULL)
-    {
-        if (!IgnoreHistory)
+        if (this->CurrentEdit != NULL)
         {
-            if (this->CurrentEdit->Next != NULL)
+            if (!IgnoreHistory)
             {
-                // now we need to get to last edit in chain
-                WikiEdit *latest = CurrentEdit;
-                while (latest->Next != NULL)
+                if (this->CurrentEdit->Next != NULL)
                 {
-                    latest = latest->Next;
+                    // now we need to get to last edit in chain
+                    WikiEdit *latest = CurrentEdit;
+                    while (latest->Next != NULL)
+                    {
+                        latest = latest->Next;
+                    }
+                    latest->Next = e;
+                    e->Previous = latest;
+                } else
+                {
+                    this->CurrentEdit->Next = e;
+                    e->Previous = this->CurrentEdit;
                 }
-                latest->Next = e;
-                e->Previous = latest;
-            } else
-            {
-                this->CurrentEdit->Next = e;
-                e->Previous = this->CurrentEdit;
             }
         }
     }
