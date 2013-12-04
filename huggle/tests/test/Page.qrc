@@ -2,5 +2,7 @@
     <qresource prefix="/test/wikipage">
         <file>page01.txt</file>
         <file>page02.txt</file>
+        <file>page03.txt</file>
+        <file>page04.txt</file>
     </qresource>
 </RCC>

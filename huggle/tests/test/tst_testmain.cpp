@@ -128,7 +128,14 @@ void HuggleTest::testCaseScores()
     edit->Score = 0;
     edit->ProcessWords();
     delete vf;
-    QVERIFY2(edit->Score != 60, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    QVERIFY2(edit->Score == 60, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    vf = new QFile(":/test/wikipage/page04.txt");
+    vf->open(QIODevice::ReadOnly);
+    edit->DiffText = QString(vf->readAll());
+    edit->Score = 0;
+    edit->ProcessWords();
+    delete vf;
+    QVERIFY2(edit->Score == 10, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
