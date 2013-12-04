@@ -61,6 +61,8 @@ void HuggleTest::testCaseScores()
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
+    Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("suck", 60));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("ass", 60));
     Huggle::Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::GC::gc = new Huggle::GC();
@@ -84,6 +86,10 @@ void HuggleTest::testCaseScores()
     QVERIFY2(edit->Score == 60, "06 Invalid result for score words");
     QVERIFY2(edit->ScoreWords.contains("vagina"), "07 Invalid result for score words");
     QVERIFY2(edit->ScoreWords.contains("fuck"), "08 Invalid result for score words");
+    edit->DiffText = "Hey bob, fuck this bitch over.";
+    edit->Score = 0;
+    edit->ProcessWords();
+    QVERIFY2(edit->Score == 30, "06 Invalid result for score words");
     edit->DiffText = "Hey bob, (fuck) there is some vagina, let's fuck that vagina.";
     edit->Score = 0;
     edit->ProcessWords();
@@ -116,6 +122,13 @@ void HuggleTest::testCaseScores()
     edit->ProcessWords();
     delete vf;
     QVERIFY2(edit->Score == 0, QString("22 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
+    vf = new QFile(":/test/wikipage/page03.txt");
+    vf->open(QIODevice::ReadOnly);
+    edit->DiffText = QString(vf->readAll());
+    edit->Score = 0;
+    edit->ProcessWords();
+    delete vf;
+    QVERIFY2(edit->Score != 60, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
