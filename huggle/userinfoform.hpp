@@ -52,7 +52,7 @@ namespace Huggle
         private:
             Ui::UserinfoForm *ui;
             WikiUser *User;
-            ApiQuery *q;
+            ApiQuery *qContributions;
             QTimer *timer;
             WikiEdit *edit;
     };

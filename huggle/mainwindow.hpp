@@ -264,6 +264,7 @@ namespace Huggle
             //! this function should be called before every action user can trigger
             bool CheckExit();
             void DisplayWelcomeMessage();
+            void FinishRestore();
             //! Welcome user
             void Welcome();
             //! Recreate interface, should be called everytime you do anything with main form
@@ -281,6 +282,8 @@ namespace Huggle
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;
+            ApiQuery *RestoreQuery;
+            WikiEdit *RestoreEdit;
             Query *qNext;
             //! This is a page that is going to be displayed if users request their latest action to be
             //! reviewed when it's done (for example when they rollback an edit and they want to

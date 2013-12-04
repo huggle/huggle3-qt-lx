@@ -16,7 +16,7 @@ using namespace Huggle;
 UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
     this->timer = new QTimer(this);
-    this->q = NULL;
+    this->qContributions = NULL;
     this->edit = NULL;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
@@ -68,15 +68,15 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 
 void UserinfoForm::Read()
 {
-    this->q = new ApiQuery();
-    this->q->Target = "Retrieving contributions of " + this->User->Username;
-    this->q->SetAction(ActionQuery);
-    this->q->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(this->User->Username) +
+    this->qContributions = new ApiQuery();
+    this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
+    this->qContributions->SetAction(ActionQuery);
+    this->qContributions->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(this->User->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
-    Core::HuggleCore->AppendQuery(this->q);
-    this->q->RegisterConsumer(HUGGLECONSUMER_USERINFO);
+    Core::HuggleCore->AppendQuery(this->qContributions);
+    this->qContributions->RegisterConsumer(HUGGLECONSUMER_USERINFO);
     ui->pushButton->hide();
-    this->q->Process();
+    this->qContributions->Process();
     this->timer->start(600);
 }
 
@@ -97,23 +97,23 @@ void UserinfoForm::OnTick()
         }
         return;
     }
-    if (this->q == NULL)
+    if (this->qContributions == NULL)
     {
         this->timer->stop();
         return;
     }
-    if (this->q->Processed())
+    if (this->qContributions->Processed())
     {
-        if (this->q->Result->Failed)
+        if (this->qContributions->Result->Failed)
         {
-            this->q->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+            this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
             Syslog::HuggleLogs->Log("ERROR: unable to retrieve history for user: " + this->User->Username);
-            this->q = NULL;
+            this->qContributions = NULL;
             this->timer->stop();
             return;
         }
         QDomDocument d;
-        d.setContent(this->q->Result->Data);
+        d.setContent(this->qContributions->Result->Data);
         QDomNodeList results = d.elementsByTagName("rc");
         int xx = 0;
         if (results.count() > 0)
@@ -151,8 +151,8 @@ void UserinfoForm::OnTick()
         {
             Syslog::HuggleLogs->Log("ERROR: unable to retrieve history for user: " + this->User->Username);
         }
-        this->q->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
-        this->q = NULL;
+        this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->qContributions = NULL;
         this->timer->stop();
     }
     this->timer->stop();
@@ -160,7 +160,7 @@ void UserinfoForm::OnTick()
 
 void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
 {
-    if (this->q != NULL)
+    if (this->qContributions != NULL)
     {
         // we must not retrieve edit until previous operation did finish
         return;

@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
+    this->RestoreQuery = NULL;
     this->fUaaReportForm = NULL;
     this->OnNext_EvPage = NULL;
     this->wUserInfo = new UserinfoForm(this);
@@ -53,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::RightDockWidgetArea, this->wUserInfo);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
+    this->RestoreEdit = NULL;
     this->aboutForm = new AboutForm(this);
     this->ui->actionBlock_user->setEnabled(Configuration::HuggleConfiguration->Rights.contains("block"));
     this->ui->actionDelete->setEnabled(Configuration::HuggleConfiguration->Rights.contains("delete"));
@@ -611,6 +613,60 @@ void MainWindow::DisplayWelcomeMessage()
     this->Render();
 }
 
+void MainWindow::FinishRestore()
+{
+    if (this->RestoreEdit == NULL || this->RestoreQuery == NULL)
+    {
+        return;
+    }
+
+    if (!this->RestoreQuery->Processed())
+    {
+        return;
+    }
+
+    QDomDocument d;
+    d.setContent(this->RestoreQuery->Result->Data);
+    QDomNodeList page = d.elementsByTagName("rev");
+    QDomNodeList code = d.elementsByTagName("page");
+    if (code.count() > 0)
+    {
+        QDomElement e = code.at(0).toElement();
+        if (e.attributes().contains("missing"))
+        {
+            this->RestoreQuery->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+            this->RestoreQuery = NULL;
+            Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
+            this->RestoreEdit->UnregisterConsumer("RestoreEdit");
+            this->RestoreEdit = NULL;
+            return;
+        }
+    }
+    // get last id
+    if (page.count() > 0)
+    {
+        QDomElement e = page.at(0).toElement();
+        QString text = e.text();
+        if (text == "")
+        {
+            this->RestoreQuery->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+            this->RestoreQuery = NULL;
+            Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
+            this->RestoreEdit->UnregisterConsumer("RestoreEdit");
+            this->RestoreEdit = NULL;
+            return;
+        }
+        QString sm = Configuration::HuggleConfiguration->LocalConfig_RestoreSummary;
+        sm = sm.replace("$1", QString(this->RestoreEdit->RevID));
+        sm = sm.replace("$2", this->RestoreEdit->User->Username);
+        Core::HuggleCore->EditPage(this->RestoreEdit->Page, text, sm);
+    }
+    this->RestoreQuery->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+    this->RestoreQuery = NULL;
+    this->RestoreEdit->UnregisterConsumer("RestoreEdit");
+    this->RestoreEdit = NULL;
+}
+
 void MainWindow::on_actionPreferences_triggered()
 {
     this->preferencesForm->show();
@@ -752,6 +808,7 @@ void MainWindow::OnTimerTick1()
             this->qNext = NULL;
         }
     }
+    this->FinishRestore();
     Core::HuggleCore->TruncateReverts();
 }
 
@@ -1874,13 +1931,20 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     {
         return;
     }
-    if (this->CurrentEdit->Page->Contents == "")
+
+    if (this->RestoreEdit != NULL || this->RestoreQuery != NULL)
     {
-        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to restore blank revision");
+        Huggle::Syslog::HuggleLogs->Log("I am currently restoring another edit, please wait");
         return;
     }
-    QString sm = Configuration::HuggleConfiguration->LocalConfig_RestoreSummary;
-    sm = sm.replace("$1", QString(this->CurrentEdit->RevID));
-    sm = sm.replace("$2", this->CurrentEdit->User->Username);
-    Core::HuggleCore->EditPage(this->CurrentEdit->Page, this->CurrentEdit->Page->Contents, sm);
+
+    this->RestoreQuery = new ApiQuery();
+    this->RestoreQuery->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+    this->RestoreQuery->Parameters = "prop=revisions&rvprop=" +
+            QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+            QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+    this->RestoreQuery->SetAction(ActionQuery);
+    this->RestoreQuery->Process();
+    this->CurrentEdit->RegisterConsumer("RestoreEdit");
+    this->RestoreEdit = this->CurrentEdit;
 }
