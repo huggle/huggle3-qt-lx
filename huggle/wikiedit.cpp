@@ -57,6 +57,22 @@ WikiEdit::~WikiEdit()
     WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.removeAll(this);
     WikiEdit::Lock_EditList->unlock();
+    if (this->Previous != NULL && this->Next != NULL)
+    {
+        this->Previous->Next = this->Next;
+        this->Next->Previous = this->Previous;
+    } else
+    {
+        if (this->Previous != NULL)
+        {
+            this->Previous->Next = NULL;
+        }
+
+        if (this->Next != NULL)
+        {
+            this->Next->Previous = NULL;
+        }
+    }
     delete this->User;
     delete this->Page;
 }
