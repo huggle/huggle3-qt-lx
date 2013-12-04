@@ -57,7 +57,7 @@ void Core::Init()
     Syslog::HuggleLogs->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
-    Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
+    Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
