@@ -372,7 +372,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     if (line.contains(QString(QChar(3)) + "10"))
     {
-        line = line.mid(line.indexOf(QString(QChar(3)) + "10"));
+        line = line.mid(line.indexOf(QString(QChar(3)) + "10") + 3);
         if (line.contains(QString(QChar(3))))
         {
             edit->Summary = line.mid(0, line.indexOf(QString(QChar(3))));
