@@ -173,6 +173,17 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
     this->Insert("<font color=orange>" + user + " did a rollback of " + edit->Page->PageName + " by " +
            edit->User->Username + " (" + QString::number(edit->RevID) + ")" + "</font>");
     edit->User->setBadnessScore(edit->User->getBadnessScore() + 200);
+    if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+    {
+        // we need to delete older edits that we know and that is somewhere in queue
+        if (Core::HuggleCore->Main != NULL)
+        {
+            if (Core::HuggleCore->Main->Queue1 != NULL)
+            {
+                Core::HuggleCore->Main->Queue1->DeleteOlder(edit);
+            }
+        }
+    }
     Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
 }
 
