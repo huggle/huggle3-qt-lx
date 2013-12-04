@@ -15,7 +15,6 @@
 #include <QMutex>
 #include <QString>
 #include <QRegExp>
-
 #include "configuration.hpp"
 #include "wikiedit.hpp"
 

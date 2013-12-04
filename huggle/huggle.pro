@@ -12,9 +12,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 TARGET = huggle
 TEMPLATE = app
-INCLUDEPATH += "C:\\python33\\include"
 INCLUDEPATH += "/usr/include/python2.7"
 #LIBS += "-lpython2.7"
+
+win32{
+    INCLUDEPATH += "C:\\python33\\include"
+    LIBS += -LC:/OpenSSL-Win32/lib -lubsec
+    INCLUDEPATH += C:/OpenSSL-Win32/include
+}
 
 
 SOURCES += main.cpp\
