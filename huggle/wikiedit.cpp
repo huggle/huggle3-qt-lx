@@ -258,40 +258,57 @@ void WikiEdit::ProcessWords()
         xx++;
     }
 
-    if (Configuration::HuggleConfiguration->Separators.count() > 0)
+    xx = 0;
+    while (xx<Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
     {
-        // first we need to split whole sentence to words
-        int sp = 1;
-        int word = 0;
-        QStringList Words = text.split(Configuration::HuggleConfiguration->Separators.at(0));
-        while (sp < Configuration::HuggleConfiguration->Separators.count())
+        QString w = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).word;
+        // if there is no such a string in text we can skip it
+        if (!text.contains(w))
         {
-            word = 0;
-            int max = Words.count();
-            while (word < max)
+            xx++;
+            continue;
+        }
+        int SD = 0;
+        bool found = false;
+        if (text == w)
+        {
+            found = true;
+        }
+        while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
+        {
+            if (text.startsWith(w + Configuration::HuggleConfiguration->Separators.at(SD)))
             {
-                if (Words.at(word).contains(Configuration::HuggleConfiguration->Separators.at(sp)))
+                found = true;
+                break;
+            }
+            if (text.endsWith(Configuration::HuggleConfiguration->Separators.at(SD) + w))
+            {
+                found = true;
+                break;
+            }
+            int SL = 0;
+            while (SL <Configuration::HuggleConfiguration->Separators.count())
+            {
+                if (text.contains(Configuration::HuggleConfiguration->Separators.at(SD) +
+                             w + Configuration::HuggleConfiguration->Separators.at(SL)))
                 {
-                    Words += Words.at(word).split(Configuration::HuggleConfiguration->Separators.at(sp));
-                    Words.removeAt(word);
-                } else
-                {
-                    word++;
+                    found = true;
+                    break;
                 }
+                if (found)
+                {
+                    break;
+                }
+                SL++;
             }
-            sp++;
+            SD++;
         }
-        word = 0;
-        while (word < Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
+        if (found)
         {
-            QString _w = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(word).word;
-            if (Words.contains(_w))
-            {
-                this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(word).score;
-                ScoreWords.append(_w);
-            }
-            word++;
+            this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).score;
+            ScoreWords.append(w);
         }
+        xx++;
     }
 }
 
