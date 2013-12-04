@@ -421,6 +421,10 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreChange;
     }
+    if (edit->Page->IsUserpage())
+    {
+        IgnoreWords = true;
+    }
 
     edit->Score += edit->User->getBadnessScore();
     if (!IgnoreWords)
