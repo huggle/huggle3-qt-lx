@@ -38,7 +38,7 @@ date:                      Date
 page:                      Page
 time:                      Time
 version:                   Version
-name:                      Name
+username:                  Name
 author:                    Author
 description:               Description
 status:                    Status

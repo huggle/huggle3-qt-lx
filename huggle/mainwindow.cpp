@@ -760,7 +760,10 @@ void MainWindow::OnTimerTick1()
             + " edits waiting in queue. Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->GetUptimeInSeconds();
-    if (Uptime < 50)
+    if (this->ShuttingDown)
+    {
+        t += " none";
+    } else if (Uptime < 50)
     {
         t += " waiting for more edits";
     } else

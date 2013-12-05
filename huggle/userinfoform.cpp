@@ -198,7 +198,6 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->RevID = revid;
     this->edit->RegisterConsumer(HUGGLECONSUMER_USERINFO);
     Core::HuggleCore->PostProcessEdit(this->edit);
-    /// \todo LOCALIZE ME
-    Core::HuggleCore->Main->Browser->RenderHtml("Please wait...");
+    Core::HuggleCore->Main->Browser->RenderHtml(Localizations::HuggleLocalizations->Localize("wait"));
     this->timer->start(800);
 }

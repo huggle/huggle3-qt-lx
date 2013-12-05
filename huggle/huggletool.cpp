@@ -159,6 +159,7 @@ void HuggleTool::FinishEdit()
         return;
     }
     this->tick->stop();
+    this->ui->pushButton->setEnabled(true);
     Core::HuggleCore->Main->ProcessEdit(edit);
 }
 

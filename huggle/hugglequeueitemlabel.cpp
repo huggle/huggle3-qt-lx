@@ -31,7 +31,58 @@ void HuggleQueueItemLabel::SetName(QString name)
     this->ui->label_2->setText(name);
     if (this->Page != NULL)
     {
+        switch (this->Page->Page->GetNS())
+        {
+            case MediaWikiNS_Main:
+                break;
+            case MediaWikiNS_Talk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #82E682; }");
+                break;
+            case MediaWikiNS_Project:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #6699FF; }");
+                break;
+            case MediaWikiNS_ProjectTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #6600FF; }");
+                break;
+            case MediaWikiNS_User:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF99FF; }");
+                break;
+            case MediaWikiNS_UserTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #CC66FF; }");
+                break;
+            case MediaWikiNS_Help:
+            case MediaWikiNS_Mediawiki:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFFCC; }");
+                break;
+            case MediaWikiNS_HelpTalk:
+            case MediaWikiNS_MediawikiTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFCC66; }");
+                break;
+            case MediaWikiNS_Category:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6699; }");
+                break;
+            case MediaWikiNS_CategoryTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF0066; }");
+                break;
+            case MediaWikiNS_File:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
+                break;
+            case MediaWikiNS_FileTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6600; }");
+                break;
+            case MediaWikiNS_Portal:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFF66; }");
+                break;
+            case MediaWikiNS_PortalTalk:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
+                break;
+            case MediaWikiNS_Special:
+                this->ui->label_2->setStyleSheet("QLabel { background-color : red; }");
+                break;
+        }
+
         // change the icon according to edit type
+
         if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
