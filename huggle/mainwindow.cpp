@@ -758,9 +758,9 @@ void MainWindow::OnTimerTick1()
             + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
             + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
             + " edits waiting in queue. Statistics: ";
-    // calculate stats, but not if huggle uptime is lower than 30 seconds
+    // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->GetUptimeInSeconds();
-    if (Uptime < 30)
+    if (Uptime < 50)
     {
         t += " waiting for more edits";
     } else
@@ -778,19 +778,22 @@ void MainWindow::OnTimerTick1()
         double VandalismLevel = 0;
         if (EditsPerMinute > 0 && RevertsPerMinute > 0)
         {
-            VandalismLevel = RevertsPerMinute / EditsPerMinute;
+            VandalismLevel = (RevertsPerMinute / EditsPerMinute) * 10;
         }
         QString color = "green";
-        if (VandalismLevel > 0.06)
+        if (VandalismLevel > 0.6)
         {
             color = "blue";
-        } else if (VandalismLevel > 0.1)
+        } else if (VandalismLevel > 1)
         {
             color = "black";
-        } else if (VandalismLevel > 0.2)
+        } else if (VandalismLevel > 2)
         {
             color = "orange";
         }
+        // make the numbers easier to read
+        EditsPerMinute = round(EditsPerMinute * 100) / 100;
+        RevertsPerMinute = round(RevertsPerMinute * 100) / 100;
         t += " <font color=" + color + ">" + QString::number(EditsPerMinute) + " edits per minute " + QString::number(RevertsPerMinute)
                 + " reverts per minute, level " + QString::number(VandalismLevel) + "</font>";
     }
