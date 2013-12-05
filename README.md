@@ -52,6 +52,9 @@ Everyone is allowed to send the pull requests to this repository, and all regula
 get a developer access to directly push if they need it. If you want to join a huggle
 developer team, please see https://meta.wikimedia.org/wiki/Huggle/Members and insert yourself
 
+This repository is running CI using travis, if you want to change anything what doesn't require
+sanity check, like documentation or comments, please append [ci skip] to your message
+
 Reporting bugs
 ===============
 
