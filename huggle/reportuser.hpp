@@ -21,6 +21,7 @@
 #include <QString>
 #include <QList>
 #include "core.hpp"
+#include "blockuser.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
 #include "configuration.hpp"
@@ -34,6 +35,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
+    class ApiQuery;
+    class BlockUser;
 
     //! Report user
     class ReportUser : public QDialog
@@ -54,6 +57,8 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void on_tableWidget_clicked(const QModelIndex &index);
             void on_pushButton_3_clicked();
+
+            void on_pushButton_4_clicked();
 
         private:
             bool CheckUser();
@@ -76,6 +81,7 @@ namespace Huggle
             QString _p;
             bool Loading;
             bool Messaging;
+            BlockUser *BlockForm;
             ApiQuery *tq;
             ApiQuery *qd;
     };

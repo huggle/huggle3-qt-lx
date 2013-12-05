@@ -34,6 +34,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->Messaging = false;
+    this->BlockForm = NULL;
     this->qd = NULL;
     this->ReportText = "";
     this->Loading = false;
@@ -65,6 +66,10 @@ bool ReportUser::SetUser(WikiUser *u)
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->SetAction(ActionQuery);
     this->qHistory->Process();
+    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
+    {
+        this->ui->pushButton_4->setEnabled(false);
+    }
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(Tick()));
     this->timer->start(200);
@@ -86,6 +91,7 @@ ReportUser::~ReportUser()
     {
         this->tq->SafeDelete();
     }
+    delete this->BlockForm;
     delete this->ui;
 }
 
@@ -420,4 +426,15 @@ void ReportUser::on_pushButton_3_clicked()
     }
     connect(this->t2, SIGNAL(timeout()), this, SLOT(Test()));
     this->t2->start(100);
+}
+
+void Huggle::ReportUser::on_pushButton_4_clicked()
+{
+    if (this->BlockForm != NULL)
+    {
+        delete this->BlockForm;
+    }
+    this->BlockForm = new BlockUser(this);
+    this->BlockForm->SetWikiUser(this->user);
+    this->BlockForm->show();
 }
