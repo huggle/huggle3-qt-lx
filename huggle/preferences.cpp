@@ -21,7 +21,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
     this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
     QStringList header;
-    header << Localizations::HuggleLocalizations->Localize("name")
+    header << Localizations::HuggleLocalizations->Localize("general-name")
            << Localizations::HuggleLocalizations->Localize("author")
            << Localizations::HuggleLocalizations->Localize("description")
            << Localizations::HuggleLocalizations->Localize("status")

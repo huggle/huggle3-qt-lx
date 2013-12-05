@@ -38,7 +38,8 @@ date:                      Date
 page:                      Page
 time:                      Time
 version:                   Version
-username:                  Name
+// this is just a translation of name in general, for example "Name of user" or "Name of file"
+general-name:              Name
 author:                    Author
 description:               Description
 status:                    Status
