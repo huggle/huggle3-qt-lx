@@ -784,13 +784,15 @@ void MainWindow::OnTimerTick1()
             VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;
         }
         QString color = "green";
-        if (VandalismLevel > 0.6)
+        if (VandalismLevel > 0.8)
         {
             color = "blue";
-        } else if (VandalismLevel > 0.8)
+        }
+        if (VandalismLevel > 1.2)
         {
             color = "black";
-        } else if (VandalismLevel > 1.2)
+        }
+        if (VandalismLevel > 1.8)
         {
             color = "orange";
         }
