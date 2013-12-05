@@ -833,69 +833,67 @@ bool Configuration::ParseLocalConfig(QString config)
         QString line = namespaces.at(NS);
         NS++;
 
-        if (!line.contains(",") || !line.contains(";"))
+        if (!line.contains(";"))
         {
             continue;
         }
 
         int ns = line.mid(0, line.indexOf(";")).toInt();
-        QString name = line.mid(line.indexOf(";"));
-
-        if (!name.contains(","))
-        {
-            continue;
-        }
-
-        name = name.mid(0, name.indexOf(","));
-        QString talk = line.mid(line.indexOf(",") + 1);
-
-        if (talk.endsWith(","))
-        {
-            talk = talk.mid(0, talk.length() - 1);
-        }
-
-        if (talk.contains(";"))
-        {
-            talk = talk.mid(talk.indexOf(";") + 1);
-        }
+        QString name = line.mid(line.indexOf(";") + 1);
 
         switch (ns)
         {
             /// \todo Some NS are missing here
-            case MEDIAWIKI_NSID_MAIN:
-                Configuration::HuggleConfiguration->LocalConfig_NSTalk = talk;
+            case MEDIAWIKI_NSID_TALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSTalk = name;
                 break;
             case MEDIAWIKI_NSID_CATEGORY:
                 Configuration::HuggleConfiguration->LocalConfig_NSCategory = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_CATEGORYTALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk = name;
                 break;
             case MEDIAWIKI_NSID_FILE:
                 Configuration::HuggleConfiguration->LocalConfig_NSFile = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSFileTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_FILETALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSFileTalk = name;
                 break;
             case MEDIAWIKI_NSID_HELP:
                 Configuration::HuggleConfiguration->LocalConfig_NSHelp = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_HELPTALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk = name;
                 break;
             case MEDIAWIKI_NSID_MEDIAWIKI:
                 Configuration::HuggleConfiguration->LocalConfig_NSMediaWiki = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_MEDIAWIKITALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk = name;
                 break;
             case MEDIAWIKI_NSID_PORTAL:
                 Configuration::HuggleConfiguration->LocalConfig_NSPortal = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSPortalTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_PORTALTALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSPortalTalk = name;
                 break;
             case MEDIAWIKI_NSID_PROJECT:
                 Configuration::HuggleConfiguration->LocalConfig_NSProject = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSProjectTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_PROJECTTALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSProjectTalk = name;
                 break;
             case MEDIAWIKI_NSID_USER:
                 Configuration::HuggleConfiguration->LocalConfig_NSUser = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSUserTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_USERTALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSUserTalk = name;
                 break;
             case MEDIAWIKI_NSID_TEMPLATE:
                 Configuration::HuggleConfiguration->LocalConfig_NSTemplate = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSTemplateTalk = talk;
+                break;
+            case MEDIAWIKI_NSID_TEMPLATETALK:
+                Configuration::HuggleConfiguration->LocalConfig_NSTemplateTalk = name;
                 break;
         }
     }

@@ -41,6 +41,10 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
 
 UserinfoForm::~UserinfoForm()
 {
+    if (this->edit != NULL)
+    {
+        this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+    }
     delete this->timer;
     delete this->ui;
 }
@@ -58,6 +62,12 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     if (this->edit != NULL)
     {
         this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->edit = NULL;
+    }
+    if (this->qContributions != NULL)
+    {
+        this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->qContributions = NULL;
     }
     while (this->ui->tableWidget->rowCount() > 0)
     {

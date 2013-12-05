@@ -45,6 +45,16 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
 
 HistoryForm::~HistoryForm()
 {
+    if (this->RetrievedEdit != NULL)
+    {
+        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+        this->RetrievedEdit = NULL;
+    }
+    if (this->query != NULL)
+    {
+        this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+        this->query = NULL;
+    }
     delete this->t1;
     delete this->ui;
 }
@@ -82,6 +92,11 @@ void HistoryForm::Update(WikiEdit *edit)
     this->ui->pushButton->setEnabled(true);
     this->ui->tableWidget->clearContents();
     this->Clear();
+    if (this->RetrievedEdit != NULL)
+    {
+        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+        this->RetrievedEdit = NULL;
+    }
     if (this->t1 != NULL)
     {
         this->t1->stop();
@@ -90,7 +105,7 @@ void HistoryForm::Update(WikiEdit *edit)
     }
     if (this->query != NULL)
     {
-        this->query->UnregisterConsumer("HistoryForm");
+        this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
         this->query = NULL;
     }
 }
@@ -247,6 +262,10 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
     w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    if (this->RetrievedEdit != NULL)
+    {
+        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    }
     Core::HuggleCore->PostProcessEdit(w);
     if (this->t1 != NULL)
     {
