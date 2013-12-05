@@ -160,6 +160,16 @@ void VandalNw::Rescore(WikiEdit *edit)
     }
 }
 
+void VandalNw::Message()
+{
+    if (this->Irc->IsConnected())
+    {
+        this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
+        this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
+    }
+    this->ui->lineEdit->setText("");
+}
+
 void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 {
     edit->User->setBadnessScore(edit->User->getBadnessScore() - 200);
@@ -322,12 +332,7 @@ void VandalNw::Insert(QString text)
 
 void Huggle::VandalNw::on_pushButton_clicked()
 {
-    if (this->Irc->IsConnected())
-    {
-        this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
-        this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
-    }
-    this->ui->lineEdit->setText("");
+    this->Message();
 }
 
 HAN::RescoreItem::RescoreItem(int _revID, int _score, QString _user)
@@ -369,4 +374,9 @@ HAN::GenericItem::GenericItem(HAN::GenericItem *i)
 {
     this->RevID = i->RevID;
     this->User = i->User;
+}
+
+void Huggle::VandalNw::on_lineEdit_returnPressed()
+{
+    this->Message();
 }

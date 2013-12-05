@@ -94,6 +94,7 @@ namespace Huggle
             QString GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
+            void Message();
             //! Prefix to special commands that are being sent to network to other users
             QString pref;
             //! Timer that is used to connect to network
@@ -116,6 +117,7 @@ namespace Huggle
         private slots:
             void onTick();
             void on_pushButton_clicked();
+            void on_lineEdit_returnPressed();
     };
 }
 
