@@ -839,7 +839,7 @@ bool Configuration::ParseLocalConfig(QString config)
         }
 
         int ns = line.mid(0, line.indexOf(";")).toInt();
-        QString name = line.mid(line.indexOf(";") + 1);
+        QString name = line.mid(line.indexOf(";") + 1) + ":";
 
         switch (ns)
         {

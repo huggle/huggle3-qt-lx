@@ -89,6 +89,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
             // we found it
             Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
             WikiEdit::Lock_EditList->unlock();
+            page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
             return;
         }
         WikiEdit::Lock_EditList->unlock();
