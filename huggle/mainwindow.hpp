@@ -258,8 +258,9 @@ namespace Huggle
             void on_actionDisplay_whitelist_triggered();
             void on_actionResort_queue_triggered();
             void on_actionRestore_this_revision_triggered();
+            void on_actionClear_triggered();
 
-        private:
+    private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();

@@ -1948,3 +1948,8 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     this->CurrentEdit->RegisterConsumer("RestoreEdit");
     this->RestoreEdit = this->CurrentEdit;
 }
+
+void Huggle::MainWindow::on_actionClear_triggered()
+{
+    this->Queue1->Clear();
+}

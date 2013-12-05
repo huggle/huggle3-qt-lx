@@ -55,6 +55,7 @@ namespace Huggle
             void Filters();
             //! Delete all edits to the page that are older than this edit
             void DeleteOlder(WikiEdit *edit);
+            void Clear();
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
 

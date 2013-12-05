@@ -37,7 +37,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>27</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -159,6 +168,7 @@
      <addaction name="actionRemove_old_edits"/>
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
+    <addaction name="actionClear"/>
    </widget>
    <widget class="QMenu" name="menuDebug">
     <property name="title">
@@ -760,6 +770,14 @@
   <action name="actionRestore_this_revision">
    <property name="text">
     <string>Restore this revision</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Remove all edits</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Space</string>
    </property>
   </action>
  </widget>

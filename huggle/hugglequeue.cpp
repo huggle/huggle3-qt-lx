@@ -384,6 +384,21 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
     }
 }
 
+void HuggleQueue::Clear()
+{
+    // now we need to remove all items
+    while (this->Items.count() > 0)
+    {
+        if (!this->DeleteItem(this->Items.at(0)))
+        {
+            // we failed to remove the item, break or we end up
+            // looping here
+            Huggle::Syslog::HuggleLogs->DebugLog("Failed to clear the queue");
+            return;
+        }
+    }
+}
+
 long HuggleQueue::GetScore(int id)
 {
     if (this->layout->count() - 1 <= id)
