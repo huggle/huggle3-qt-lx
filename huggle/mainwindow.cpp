@@ -757,7 +757,43 @@ void MainWindow::OnTimerTick1()
             + " edits and " + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
             + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
-            + " edits waiting in queue.";
+            + " edits waiting in queue. Statistics: ";
+    // calculate stats, but not if huggle uptime is lower than 30 seconds
+    double Uptime = Core::HuggleCore->GetUptimeInSeconds();
+    if (Uptime < 30)
+    {
+        t += " waiting for more edits";
+    } else
+    {
+        double EditsPerMinute = 0;
+        double RevertsPerMinute = 0;
+        if (Huggle::Configuration::HuggleConfiguration->EditCounter > 0)
+        {
+            EditsPerMinute = Configuration::HuggleConfiguration->EditCounter / (Uptime / 60);
+        }
+        if (Huggle::Configuration::HuggleConfiguration->RvCounter > 0)
+        {
+            RevertsPerMinute = Configuration::HuggleConfiguration->RvCounter / (Uptime / 60);
+        }
+        double VandalismLevel = 0;
+        if (EditsPerMinute > 0 && RevertsPerMinute > 0)
+        {
+            VandalismLevel = RevertsPerMinute / EditsPerMinute;
+        }
+        QString color = "green";
+        if (VandalismLevel > 0.06)
+        {
+            color = "blue";
+        } else if (VandalismLevel > 0.1)
+        {
+            color = "black";
+        } else if (VandalismLevel > 0.2)
+        {
+            color = "orange";
+        }
+        t += " <font color=" + color + ">" + QString::number(EditsPerMinute) + " edits per minute " + QString::number(RevertsPerMinute)
+                + " reverts per minute, level " + QString::number(VandalismLevel) + "</font>";
+    }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
         t += " QGC: " + QString::number(GC::gc->list.count()) + "U: " + QString::number(WikiUser::ProblematicUsers.count());

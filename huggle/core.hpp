@@ -203,6 +203,7 @@ namespace Huggle
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
+            double GetUptimeInSeconds();
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE

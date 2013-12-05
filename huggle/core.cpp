@@ -582,6 +582,7 @@ void Core::PreProcessEdit(WikiEdit *_e)
             if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(_e->Summary))
             {
                 _e->IsRevert = true;
+                Huggle::Configuration::HuggleConfiguration->RvCounter++;
                 if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
                 {
                     _e->RegisterConsumer("UncheckedReverts");
@@ -829,6 +830,11 @@ void Core::TruncateReverts()
         this->RevertBuffer.removeAt(0);
         we->UnregisterConsumer("UncheckedReverts");
     }
+}
+
+double Core::GetUptimeInSeconds()
+{
+    return (double)this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)
