@@ -46,7 +46,8 @@ void UAAReport::getPageContents()
 {
     this->qUAApage = new ApiQuery();
     this->qUAApage->SetAction(ActionQuery);
-    this->qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
+    this->qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding
+                                        (Configuration::HuggleConfiguration->LocalConfig_UAAPath);
     /// \todo LOCALIZE THIS
     this->qUAApage->Target = "Getting content of UAA";
     this->qUAApage->RegisterConsumer("UAAReport::getPageContents()");

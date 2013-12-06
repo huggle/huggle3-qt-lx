@@ -210,7 +210,8 @@ bool WikiEdit::FinalizePostProcessing()
             }
         } else
         {
-            Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + DifferenceQuery->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
+                                                 + DifferenceQuery->Result->Data);
         }
         // we are done processing the diff
         this->ProcessingDiff = false;
@@ -332,13 +333,14 @@ void WikiEdit::PostProcess()
     if (this->RevID != -1)
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
-        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-                                  QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
-                                  QUrl::toPercentEncoding(this->Page->PageName);
+        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                                            "&rvlimit=1&rvtoken=rollback&rvstartid=" +
+                                            QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
+                                            QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
-            QUrl::toPercentEncoding(this->Page->PageName);
+        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->DifferenceQuery->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;

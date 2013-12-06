@@ -73,7 +73,8 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     {
         this->ui->tableWidget->removeRow(0);
     }
-    this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: " + QString::number(user->WarningLevel));
+    this->ui->label->setText("Flags: " + user->Flags() + " Score: " + QString::number(user->getBadnessScore()) + " level: "
+                                                                                    + QString::number(user->WarningLevel));
 }
 
 void UserinfoForm::Read()

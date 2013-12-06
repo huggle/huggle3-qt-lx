@@ -16,10 +16,11 @@ using namespace Huggle;
 ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
 {
     this->ui->setupUi(this);
-    this->ui->textEdit->setText("Unfortunately huggle has crashed. Please submit the following information together with details of what were you doing to "\
-                          "http://bugzilla.wikimedia.org/\n\nRing log\n==================\n" + Huggle::Syslog::HuggleLogs->RingLogToText()
-                          + "\n\n\n\nException details\n===========================\nError code: " + QString::number(e->ErrorCode)
-                          + "\nReason: " + e->Message);
+    this->ui->textEdit->setText("Unfortunately huggle has crashed. Please submit the following information "\
+                          "together with details of what were you doing to http://bugzilla.wikimedia.org/"\
+                          "\n\nRing log\n==================\n" + Huggle::Syslog::HuggleLogs->RingLogToText()
+                          + "\n\n\n\nException details\n===========================\nError code: "
+                          + QString::number(e->ErrorCode) + "\nReason: " + e->Message);
 }
 
 ExceptionWindow::~ExceptionWindow()

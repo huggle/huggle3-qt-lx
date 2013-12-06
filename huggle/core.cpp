@@ -47,7 +47,8 @@ void Core::Init()
     Configuration::LoadConfig();
     Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
+    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
+                                                                           "identified as test edits");
 #ifdef PYTHONENGINE
     Syslog::HuggleLogs->Log("Loading python engine");
     this->Python = new PythonEngine();
