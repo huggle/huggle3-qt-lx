@@ -266,6 +266,11 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     {
         return;
     }
+    if (e->Page == NULL || e->User == NULL)
+    {
+        throw new Huggle::Exception("Page and User must not be NULL in edit that is supposed to be displayed on form",
+                  "void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)");
+    }
     if (this->OnNext_EvPage != NULL)
     {
         delete this->OnNext_EvPage;
@@ -1986,7 +1991,8 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     this->RestoreQuery->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->RestoreQuery->Parameters = "prop=revisions&rvprop=" +
             QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+            QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&rvstartid=";
+            QString::number(this->CurrentEdit->RevID) + "&rvlimit=1";
     this->RestoreQuery->SetAction(ActionQuery);
     this->RestoreQuery->Process();
     this->CurrentEdit->RegisterConsumer("RestoreEdit");
