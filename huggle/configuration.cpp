@@ -805,13 +805,13 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
     Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.clear();
     QString Options = Configuration::ConfigurationParse("block-expiry-options", config);
-    Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions = Options.split(",");
-    int xx = 0;
-    while (xx > Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.count())
+    QStringList list = Options.split(",");
+    while (list.count() > 0)
     {
-        Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.at(xx) = Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions
-                                                                                    .at(xx).trimmed();
-        xx++;
+        QString item = list.at(0);
+        item = item.trimmed();
+        Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.append(item);
+        list.removeAt(0);
     }
     Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
     Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
@@ -822,7 +822,7 @@ bool Configuration::ParseLocalConfig(QString config)
                                                                                    "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config, true);
     Configuration::HuggleConfiguration->RevertPatterns.clear();
-    xx = 0;
+    int xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
     {
         Configuration::HuggleConfiguration->RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
