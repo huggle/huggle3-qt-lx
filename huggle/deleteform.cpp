@@ -46,6 +46,7 @@ void DeleteForm::setPage(WikiPage *Page, WikiUser *User)
         this->ui->checkBox_2->setChecked(false);
         this->ui->checkBox_2->setEnabled(false);
     }
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("delete-title", Page->PageName));
     this->user = User;
 }
 
@@ -54,8 +55,7 @@ void DeleteForm::getToken()
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
     this->qToken->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
-    /// \todo LOCALIZE ME
-    this->qToken->Target = "Getting token to delete " + this->page->PageName;
+    this->qToken->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->page->PageName);
     this->qToken->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
     Core::HuggleCore->AppendQuery(this->qToken);
     this->qToken->Process();
@@ -64,8 +64,7 @@ void DeleteForm::getToken()
         this->qTokenOfTalkPage = new ApiQuery();
         this->qTokenOfTalkPage->SetAction(ActionQuery);
         this->qTokenOfTalkPage->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->TP->PageName);
-        /// \todo LOCALIZE ME
-        this->qTokenOfTalkPage->Target = "Getting token to delete " + this->TP->PageName;
+        this->qTokenOfTalkPage->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->TP->PageName);
         this->qTokenOfTalkPage->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
         Core::HuggleCore->AppendQuery(this->qTokenOfTalkPage);
         this->qTokenOfTalkPage->Process();
@@ -133,8 +132,7 @@ void DeleteForm::checkDelToken()
         QDomElement element = l.at(0).toElement();
         if (!element.attributes().contains("deletetoken"))
         {
-            /// \todo LOCALIZE ME
-            this->Failed("No token");
+            this->Failed(Localizations::HuggleLocalizations->Localize("delete-token02"));
             return;
         }
         this->DeleteToken2 = element.attribute("deletetoken");
@@ -159,15 +157,13 @@ void DeleteForm::checkDelToken()
 	if (l.count() == 0)
 	{
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
-        /// \todo LOCALIZE ME
-        this->Failed("no page info was present in query (are you sysop?)");
+        this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("delete-failed-no-info"));
 		return;
 	}
 	QDomElement element = l.at(0).toElement();
 	if (!element.attributes().contains("deletetoken"))
 	{
-        /// \todo LOCALIZE ME
-        this->Failed("No token");
+        this->Failed(Localizations::HuggleLocalizations->Localize("delete-token02"));
 		return;
 	}
     this->DeleteToken = element.attribute("deletetoken");
@@ -203,12 +199,11 @@ void DeleteForm::Delete()
 
     if (this->qDelete->Result->Failed)
 	{
-        /// \todo LOCALIZE ME
-        this->Failed("the page can't be deleted: " + this->qDelete->Result->ErrorMessage);
+        this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("delete-e1", this->qDelete->Result->ErrorMessage));
 		return;
 	}
 	// let's assume the page was deleted
-    this->ui->pushButton->setText("Deleted");
+    this->ui->pushButton->setText(Huggle::Localizations::HuggleLocalizations->Localize("deleted"));
     Huggle::Syslog::HuggleLogs->DebugLog("Deletion result: " + this->qDelete->Result->Data, 2);
     this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
 	this->dt->stop();
@@ -217,10 +212,8 @@ void DeleteForm::Delete()
 void DeleteForm::Failed(QString Reason)
 {
 	QMessageBox *_b = new QMessageBox();
-    /// \todo LOCALIZE ME
-	_b->setWindowTitle("Unable to delete page");
-    /// \todo LOCALIZE ME
-    _b->setText("Unable to delete the page because " + Reason);
+    _b->setWindowTitle(Huggle::Localizations::HuggleLocalizations->Localize("delete-e2"));
+    _b->setText(Huggle::Localizations::HuggleLocalizations->Localize("delete-edsc", Reason));
 	_b->exec();
 	delete _b;
 	this->dt->stop();

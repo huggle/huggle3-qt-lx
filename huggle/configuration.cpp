@@ -187,6 +187,7 @@ Configuration::Configuration()
     this->VandalNw_Login = true;
 
     this->LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
+    this->LocalConfig_BlockExpiryOptions.append("indefinite");
 
     this->LocalConfig_ConfirmMultipleEdits = false;
     this->LocalConfig_ConfirmRange = false;
@@ -300,11 +301,11 @@ QString Configuration::MakeLocalUserConfig()
     conf += "warn-summary-3:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 + "\n";
     conf += "warn-summary-2:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 + "\n";
     conf += "warn-summary:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary + "\n";
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // huggle 2 options
     conf += "auto-advance:false\n";
     conf += "auto-whitelist:true\n";
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits) + "\n";
     conf += "confirm-range:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmRange) + "\n";
     conf += "// this option will change the behaviour of automatic resolution, be carefull\n";
@@ -742,7 +743,8 @@ bool Configuration::ParseLocalConfig(QString config)
     // Restrictions
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
     Configuration::HuggleConfiguration->LocalConfig_RequireAdmin = Configuration::SafeBool(Configuration::ConfigurationParse("require-admin", config));
-    Configuration::HuggleConfiguration->LocalConfig_RequireRollback = Configuration::SafeBool(Configuration::ConfigurationParse("require-rollback", config));
+    Configuration::HuggleConfiguration->LocalConfig_RequireRollback = Configuration::SafeBool(Configuration::ConfigurationParse
+                                                                                               ("require-rollback", config));
     Configuration::HuggleConfiguration->LocalConfig_RequireEdits = Configuration::ConfigurationParse("require-edits", config, "0").toInt();
     // IRC
     Configuration::HuggleConfiguration->LocalConfig_UseIrc = Configuration::SafeBool(Configuration::ConfigurationParse("irc", config));
@@ -801,6 +803,16 @@ bool Configuration::ParseLocalConfig(QString config)
     // Blocking
     Configuration::HuggleConfiguration->LocalConfig_BlockMessage = Configuration::ConfigurationParse("block-message", config);
     Configuration::HuggleConfiguration->LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
+    Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.clear();
+    QString Options = Configuration::ConfigurationParse("block-expiry-options", config);
+    Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions = Options.split(",");
+    int xx = 0;
+    while (xx > Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.count())
+    {
+        Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.at(xx) = Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions
+                                                                                    .at(xx).trimmed();
+        xx++;
+    }
     Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
     Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
     Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config,
@@ -810,7 +822,7 @@ bool Configuration::ParseLocalConfig(QString config)
                                                                                    "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config, true);
     Configuration::HuggleConfiguration->RevertPatterns.clear();
-    int xx = 0;
+    xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
     {
         Configuration::HuggleConfiguration->RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
@@ -937,7 +949,8 @@ bool Configuration::ParseLocalConfig(QString config)
 
 bool Configuration::ParseUserConfig(QString config)
 {
-    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse("RevertOnMultipleEdits", config));
+    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse
+                                                                                         ("RevertOnMultipleEdits", config));
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
     Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config,
                                                            Configuration::HuggleConfiguration->LocalConfig_Ignores);

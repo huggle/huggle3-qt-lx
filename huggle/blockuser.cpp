@@ -24,17 +24,13 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->t0 = NULL;
     this->qUser = NULL;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
-    this->ui->comboBox_2->addItem("indefinite");
-    this->ui->comboBox_2->addItem("1 year");
-    this->ui->comboBox_2->addItem("6 months");
-    this->ui->comboBox_2->addItem("3 months");
-    this->ui->comboBox_2->addItem("1 month");
-    this->ui->comboBox_2->addItem("2 weeks");
-    this->ui->comboBox_2->addItem("1 week");
-    this->ui->comboBox_2->addItem("3 days");
-    this->ui->comboBox_2->addItem("1 day");
-    this->ui->comboBox_2->addItem("1 hour");
-    this->ui->checkBox_2->setText("indefinite");
+    int x = 0;
+    while (Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.count() > x)
+    {
+        this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.at(x));
+        x++;
+    }
+    this->ui->comboBox_2->setCurrentIndex(0);
 }
 
 BlockUser::~BlockUser()
@@ -63,8 +59,7 @@ void BlockUser::GetToken()
     this->qTokenApi->SetAction(ActionQuery);
     this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
-    /// \todo LOCALIZE ME
-    this->qTokenApi->Target = "Getting token to block" + this->user->Username;
+    this->qTokenApi->Target = Localizations::HuggleLocalizations->Localize("block-token-1", this->user->Username);
     this->qTokenApi->RegisterConsumer("BlockUser::GetToken");
     Core::HuggleCore->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();

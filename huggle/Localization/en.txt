@@ -12,6 +12,7 @@ close:                     Close
 continue:                  Continue
 copy:                      Copy
 delete:                    Delete
+deleted:                   Deleted
 error:                     Error
 exit:                      Exit
 minimizewindow:            Minimize
@@ -94,6 +95,7 @@ block-warnloglabel:        Warnings:
 block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address.
 block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?
 block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?
+block-token-1:             Getting token to block $1
 </pre>
 
 === Closing form ===
@@ -177,6 +179,9 @@ delete-deletionlog:        Deletion log:
 delete-rem-talk:           Delete associated talk
 delete-notify:             Notify creator
 delete-error-token:        ERROR: Retreiving the delete token failed. The reason provided was: $1
+delete-token01:            Getting token to delete $1
+delete-token02:            There was no token returned by the query
+delete-e1:                 the page can't be deleted: $1
 delete-failed-no-info:     no page info was present in query (are you sysop?)
 </pre>
 
