@@ -31,7 +31,7 @@ HuggleTool::~HuggleTool()
 void HuggleTool::SetTitle(QString title)
 {
     this->ui->lineEdit->setText(title);
-    this->ui->comboBox_2->lineEdit()->setText(title);
+    this->ui->lineEdit_3->setText(title);
 }
 
 void HuggleTool::SetInfo(QString info)
@@ -41,7 +41,7 @@ void HuggleTool::SetInfo(QString info)
 
 void HuggleTool::SetUser(QString user)
 {
-    this->ui->comboBox->lineEdit()->setText(user);
+    this->ui->lineEdit_2->setText(user);
 }
 
 void HuggleTool::SetPage(WikiPage *page)
@@ -50,28 +50,28 @@ void HuggleTool::SetPage(WikiPage *page)
     {
         throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be null");
     }
-    this->ui->comboBox_2->lineEdit()->setText(page->PageName);
+    this->ui->lineEdit_3->setText(page->PageName);
     this->tick->stop();
     this->DeleteQuery();
     this->ui->pushButton->setEnabled(true);
     // change color to default
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: black;");
+    this->ui->lineEdit_3->setStyleSheet("color: black;");
 }
 
 void HuggleTool::RenderEdit()
 {
-    if (this->ui->comboBox_2->lineEdit()->text() == "")
+    if (this->ui->lineEdit_3->text() == "")
     {
         return;
     }
     this->ui->pushButton->setEnabled(false);
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: green;");
+    this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
     this->query = new ApiQuery();
     this->QueryPhase = 1;
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
-                                + QUrl::toPercentEncoding(this->ui->comboBox_2->lineEdit()->text());
+                                + QUrl::toPercentEncoding(this->ui->lineEdit_3->text());
     this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
     this->query->Process();
     this->tick->start(200);
@@ -111,7 +111,7 @@ void HuggleTool::FinishPage()
 
     this->edit = new WikiEdit();
     this->edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    this->edit->Page = new WikiPage(this->ui->comboBox_2->lineEdit()->text());
+    this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
     QDomDocument d;
     d.setContent(this->query->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
@@ -122,9 +122,9 @@ void HuggleTool::FinishPage()
         {
             // there is no such a page
             this->DeleteQuery();
-            this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
+            this->ui->lineEdit_3->setStyleSheet("color: red;");
             /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
+            Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->lineEdit_3->text() + " on wiki");
             this->tick->stop();
             this->edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->edit = NULL;
@@ -171,4 +171,9 @@ void HuggleTool::DeleteQuery()
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
     this->query = NULL;
+}
+
+void Huggle::HuggleTool::on_lineEdit_3_returnPressed()
+{
+    this->RenderEdit();
 }

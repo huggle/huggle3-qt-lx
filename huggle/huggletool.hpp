@@ -50,6 +50,7 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void onTick();
+            void on_lineEdit_3_returnPressed();
 
         private:
             void FinishPage();
