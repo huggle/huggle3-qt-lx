@@ -54,7 +54,6 @@ Configuration::Configuration()
     this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
     this->UserConfig_HistoryMax = 50;
-    this->DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 
     // Global
@@ -237,7 +236,7 @@ QString Configuration::GetConfigurationPath()
 
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
-    QString summary = Configuration::HuggleConfiguration->DefaultRevertSummary;
+    QString summary = Configuration::HuggleConfiguration->LocalConfig_DefaultSummary;
     summary = summary.replace("$1", source) + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     return summary;
 }
@@ -314,7 +313,6 @@ QString Configuration::MakeLocalUserConfig()
     conf += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmPage) + "\n";
     conf += "template-age:" + QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) + "\n";
     conf += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmSame) + "\n";
-    conf += "default-summary:" + Configuration::HuggleConfiguration->DefaultRevertSummary + "\n";
     conf += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
     conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
@@ -374,11 +372,6 @@ void Configuration::LoadConfig()
             continue;
         }
         QString key = option.attribute("key");
-        if (key == "DefaultRevertSummary")
-        {
-            Configuration::HuggleConfiguration->DefaultRevertSummary = option.attribute("text");
-            continue;
-        }
         if (key == "Cache_InfoSize")
         {
             Configuration::HuggleConfiguration->Cache_InfoSize = option.attribute("text").toInt();
@@ -466,7 +459,6 @@ void Configuration::SaveConfig()
     x->writeStartDocument();
     x->writeStartElement("huggle");
     Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->Cache_InfoSize), x);
-    Configuration::InsertConfig("DefaultRevertSummary", Configuration::HuggleConfiguration->DefaultRevertSummary, x);
     Configuration::InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, x);
     Configuration::InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, x);
     Configuration::InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, x);

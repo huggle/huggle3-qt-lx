@@ -429,7 +429,6 @@ namespace Huggle
             // Reverting
             //////////////////////////////////////////////
 
-            QString DefaultRevertSummary;
             /*!
              * \brief GetDefaultRevertSummary Retrieve default summary
              * \param source User who should be replaced instead of $1

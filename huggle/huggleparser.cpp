@@ -24,7 +24,7 @@ QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key)
         }
         id++;
     }
-    return Configuration::HuggleConfiguration->DefaultRevertSummary;
+    return Configuration::HuggleConfiguration->LocalConfig_DefaultSummary;
 }
 
 QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key)
