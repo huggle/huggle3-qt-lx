@@ -55,12 +55,12 @@ bool TerminalParser::Parse()
         }
         if (text == "--syslog")
         {
-            Configuration::HuggleConfiguration->Log2File = true;
+            Configuration::HuggleConfiguration->SystemConfig_Log2File = true;
             if (this->args.count() > x + 1)
             {
                 if (!this->args.at(x + 1).startsWith("-"))
                 {
-                    Configuration::HuggleConfiguration->SyslogPath = this->args.at(x + 1);
+                    Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
                     x++;
                 }
             }
