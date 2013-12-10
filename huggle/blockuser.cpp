@@ -30,7 +30,6 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
         this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.at(x));
         x++;
     }
-    this->ui->comboBox_2->setCurrentIndex(0);
 }
 
 BlockUser::~BlockUser()
@@ -49,6 +48,10 @@ void BlockUser::SetWikiUser(WikiUser *User)
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
+        this->ui->comboBox_2->setCurrentText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon);
+    } else
+    {
+        this->ui->comboBox_2->setCurrentText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTime);
     }
 }
 
@@ -131,19 +134,11 @@ void BlockUser::CheckToken()
     this->qUser = new ApiQuery();
     this->Dependency = this->qUser;
     this->qUser->SetAction(ActionQuery);
-    if (this->user->IsIP())
-    {
-        this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&expiry="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "&token="
-                + QUrl::toPercentEncoding(BlockToken);
+    this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
+            + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
+            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + "&token="
+            + QUrl::toPercentEncoding(BlockToken);
 
-    }else
-    {
-        this->qUser->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "&reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&token="
-                + QUrl::toPercentEncoding(BlockToken);
-    }
     /// \todo LOCALIZE ME
     this->qUser->Target = "Blocking " + this->user->Username;
     this->qUser->UsingPOST = true;
