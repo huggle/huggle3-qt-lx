@@ -48,10 +48,10 @@ void BlockUser::SetWikiUser(WikiUser *User)
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
-        this->ui->comboBox_2->setCurrentText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon);
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon);
     } else
     {
-        this->ui->comboBox_2->setCurrentText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTime);
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTime);
     }
 }
 
