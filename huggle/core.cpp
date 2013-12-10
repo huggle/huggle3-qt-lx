@@ -108,7 +108,7 @@ void Core::LoadDB()
         QFile db(Configuration::HuggleConfiguration->WikiDB);
         if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            Syslog::HuggleLogs->Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
+            Syslog::HuggleLogs->ErrorLog("Unable to read " + Configuration::HuggleConfiguration->WikiDB);
             return;
         }
         text = QString(db.readAll());
@@ -215,7 +215,7 @@ void Core::SaveDefs()
     }
     if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
-        Huggle::Syslog::HuggleLogs->Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
+        Huggle::Syslog::HuggleLogs->ErrorLog("Can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
     QString xx = "<definitions>\n";

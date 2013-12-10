@@ -118,7 +118,7 @@ void UserinfoForm::OnTick()
         if (this->qContributions->Result->Failed)
         {
             this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
-            Syslog::HuggleLogs->Log("ERROR: unable to retrieve history for user: " + this->User->Username);
+            Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
             this->qContributions = NULL;
             this->timer->stop();
             return;
@@ -160,7 +160,7 @@ void UserinfoForm::OnTick()
             }
         } else
         {
-            Syslog::HuggleLogs->Log("ERROR: unable to retrieve history for user: " + this->User->Username);
+            Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
         }
         this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
         this->qContributions = NULL;

@@ -623,7 +623,7 @@ void RevertQuery::Rollback()
     if (this->Token == "")
     {
         /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
+        Huggle::Syslog::HuggleLogs->ErrorLog("Unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
         this->Result = new QueryResult();
         this->Result->Failed = true;
         /// \todo LOCALIZE ME

@@ -49,6 +49,31 @@ void Syslog::Log(QString Message, bool TerminalOnly)
     }
 }
 
+void Syslog::ErrorLog(QString Message, bool TerminalOnly)
+{
+    Message = QDateTime::currentDateTime().toString() + "   " + "ERROR: " + Message;
+    std::cerr << Message.toStdString() << std::endl;
+    if (!TerminalOnly)
+    {
+        this->InsertToRingLog(Message);
+        this->lUnwrittenLogs.lock();
+        this->UnwrittenLogs.append(Message);
+        this->lUnwrittenLogs.unlock();
+        if (Configuration::HuggleConfiguration->SystemConfig_Log2File)
+        {
+            this->WriterLock->lock();
+            QFile *file = new QFile(Configuration::HuggleConfiguration->SystemConfig_SyslogPath);
+            if (file->open(QIODevice::Append))
+            {
+                file->write(QString(Message + "\n").toUtf8());
+                file->close();
+            }
+            delete file;
+            this->WriterLock->unlock();
+        }
+    }
+}
+
 QString Syslog::RingLogToText()
 {
     int i = 0;

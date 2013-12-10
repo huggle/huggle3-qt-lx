@@ -56,7 +56,7 @@ void Message::Send()
 void Message::Fail(QString reason)
 {
     /// \todo LOCALIZE ME
-    Huggle::Syslog::HuggleLogs->Log("Error: unable to deliver the message to " + user->Username + "; " + reason);
+    Huggle::Syslog::HuggleLogs->ErrorLog("Unable to deliver the message to " + user->Username + "; " + reason);
     this->Done = true;
     this->Sending = false;
     this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);

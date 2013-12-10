@@ -90,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionIRC->setChecked(true);
         if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
-            Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("irc-failure"));
+            Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("irc-failure"));
             delete Core::HuggleCore->PrimaryFeedProvider;
             this->ui->actionIRC->setChecked(false);
             this->ui->actionWiki->setChecked(true);
@@ -141,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
-            Syslog::HuggleLogs->Log("ERROR: Unable to read state from a config file");
+            Syslog::HuggleLogs->ErrorLog("Unable to read state from a config file");
         } else
         {
             if (!this->restoreState(layout->readAll()))
@@ -158,7 +158,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
         if (!layout->open(QIODevice::ReadOnly))
         {
-            Syslog::HuggleLogs->Log("ERROR: Unable to read geometry from a config file");
+            Syslog::HuggleLogs->ErrorLog("Unable to read geometry from a config file");
         } else
         {
             if (!this->restoreGeometry(layout->readAll()))
@@ -228,7 +228,7 @@ void MainWindow::_ReportUser()
 
     if (this->CurrentEdit->User->IsReported)
     {
-        Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("report-duplicate"));
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-duplicate"));
         return;
     }
 
@@ -470,14 +470,14 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: Unable to revert, edit is null");
+        Syslog::HuggleLogs->ErrorLog("Unable to revert, edit is null");
         return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: This edit is still being processed, please wait");
+        Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
         return NULL;
     }
 
@@ -1228,7 +1228,7 @@ void MainWindow::Exit()
     QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        Syslog::HuggleLogs->Log("ERROR: Unable to write state to a config file");
+        Syslog::HuggleLogs->ErrorLog("Unable to write state to a config file");
     } else
     {
         layout->write(this->saveState());
@@ -1238,7 +1238,7 @@ void MainWindow::Exit()
     layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        Syslog::HuggleLogs->Log("ERROR: Unable to write geometry to a config file");
+        Syslog::HuggleLogs->ErrorLog("Unable to write geometry to a config file");
     } else
     {
         layout->write(this->saveGeometry());
@@ -1296,7 +1296,7 @@ void MainWindow::ReconnectIRC()
     {
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(true);
-        Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
         delete Core::HuggleCore->PrimaryFeedProvider;
         Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
         Core::HuggleCore->PrimaryFeedProvider->Start();
@@ -1434,7 +1434,7 @@ void MainWindow::DeletePage()
 
     if (this->CurrentEdit == NULL)
     {
-        Syslog::HuggleLogs->Log("ERROR: No, you cannot delete an NULL page :)");
+        Syslog::HuggleLogs->ErrorLog("No, you cannot delete an NULL page :)");
         return;
     }
 
@@ -1502,7 +1502,6 @@ void MainWindow::Welcome()
 
     if (Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes.count() == 0)
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
         return;
     }
@@ -1511,8 +1510,7 @@ void MainWindow::Welcome()
 
     if (message == "")
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: Invalid welcome template, ignored message");
+        Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
         return;
     }
 
@@ -1730,7 +1728,7 @@ void MainWindow::on_actionReport_user_triggered()
     if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: No one to report");
+        Syslog::HuggleLogs->ErrorLog("No one to report");
         return;
     }
     this->_ReportUser();
@@ -1741,7 +1739,7 @@ void MainWindow::on_actionReport_user_2_triggered()
     if(this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: No one to report");
+        Syslog::HuggleLogs->ErrorLog("No one to report");
         return;
     }
     this->_ReportUser();
@@ -1801,7 +1799,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
     if(this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: No one to block :o");
+        Syslog::HuggleLogs->ErrorLog("No one to block :o");
         return;
     }
 
@@ -1858,7 +1856,7 @@ void MainWindow::on_actionProtect_triggered()
     if (this->CurrentEdit == NULL)
     {
         /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: Cannot protect NULL page");
+        Syslog::HuggleLogs->ErrorLog("Cannot protect NULL page");
         return;
     }
     if (this->fProtectForm != NULL)

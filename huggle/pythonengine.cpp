@@ -62,7 +62,7 @@ bool PythonScript::Init()
     {
         if (!file->open(QIODevice::ReadOnly))
         {
-            Huggle::Syslog::HuggleLogs->Log("ERROR: Unable to open " + this->Name);
+            Huggle::Syslog::HuggleLogs->ErrorLog("Unable to open " + this->Name);
             delete file;
             return false;
         }
