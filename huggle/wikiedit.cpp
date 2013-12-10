@@ -427,6 +427,10 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
         IgnoreWords = true;
     }
+    if (edit->User->IsWhitelisted())
+    {
+        edit->Score += Configuration::HuggleConfiguration->LocalConfig_WhitelistScore;
+    }
 
     edit->Score += edit->User->getBadnessScore();
     if (!IgnoreWords)
