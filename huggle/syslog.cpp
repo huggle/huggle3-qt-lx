@@ -34,10 +34,10 @@ void Syslog::Log(QString Message, bool TerminalOnly)
         this->lUnwrittenLogs.lock();
         this->UnwrittenLogs.append(Message);
         this->lUnwrittenLogs.unlock();
-        if (Configuration::HuggleConfiguration->Log2File)
+        if (Configuration::HuggleConfiguration->SystemConfig_Log2File)
         {
             this->WriterLock->lock();
-            QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
+            QFile *file = new QFile(Configuration::HuggleConfiguration->SystemConfig_SyslogPath);
             if (file->open(QIODevice::Append))
             {
                 file->write(QString(Message + "\n").toUtf8());
