@@ -140,6 +140,7 @@ namespace Huggle
             void PatrolThis(WikiEdit *e = NULL);
             void Localize();
             void DisplayNext(Query *q = NULL);
+            void DeletePage();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -259,6 +260,7 @@ namespace Huggle
             void on_actionResort_queue_triggered();
             void on_actionRestore_this_revision_triggered();
             void on_actionClear_triggered();
+            void on_actionDelete_page_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well

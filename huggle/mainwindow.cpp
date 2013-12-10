@@ -32,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->wq = NULL;
     this->Status = new QLabel();
     this->ui->statusBar->addWidget(this->Status);
-    this->showMaximized();
     this->qNext = NULL;
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
@@ -57,7 +56,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->RestoreEdit = NULL;
     this->aboutForm = new AboutForm(this);
     this->ui->actionBlock_user->setEnabled(Configuration::HuggleConfiguration->Rights.contains("block"));
-    this->ui->actionDelete->setEnabled(Configuration::HuggleConfiguration->Rights.contains("delete"));
+    // we store the value in bool so that we don't need to call expensive string function twice
+    bool PermissionDelete = Configuration::HuggleConfiguration->Rights.contains("delete");
+    this->ui->actionDelete_page->setEnabled(PermissionDelete);
+    this->ui->actionDelete->setEnabled(PermissionDelete);
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
@@ -168,14 +170,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout->close();
         delete layout;
     }
+    this->showMaximized();
     // these controls are for debugging only
     if (Configuration::HuggleConfiguration->Verbosity == 0)
     {
-        this->ui->actionList_all_QGC_items->setVisible(false);
-        this->ui->actionEdit_info->setVisible(false);
-        /// \bug This doesn't work
-        this->ui->menuDebug->hide();
+        QAction *debugm = this->ui->menuDebug_2->menuAction();
+        this->ui->menuHelp->removeAction(debugm);
     }
+
     Hooks::MainWindowIsLoad(this);
     this->VandalDock->Connect();
 }
@@ -1428,6 +1430,29 @@ void MainWindow::DisplayNext(Query *q)
     }
 }
 
+void MainWindow::DeletePage()
+{
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+
+    if (this->CurrentEdit == NULL)
+    {
+        /// \todo LOCALIZE ME
+        Syslog::HuggleLogs->Log("ERROR: No, you cannot delete an NULL page :)");
+        return;
+    }
+
+    if (this->fDeleteForm != NULL)
+    {
+        delete this->fDeleteForm;
+    }
+    this->fDeleteForm = new DeleteForm(this);
+    this->fDeleteForm->setPage(this->CurrentEdit->Page, this->CurrentEdit->User);
+    this->fDeleteForm->show();
+}
+
 bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
@@ -1769,25 +1794,7 @@ void MainWindow::on_actionRequest_speedy_deletion_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
-    {
-        return;
-    }
-
-	if (this->CurrentEdit == NULL)
-	{
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: No, you cannot delete an NULL page :)");
-		return;
-	}
-
-    if (this->fDeleteForm != NULL)
-    {
-        delete this->fDeleteForm;
-    }
-    this->fDeleteForm = new DeleteForm(this);
-    this->fDeleteForm->setPage(this->CurrentEdit->Page, this->CurrentEdit->User);
-    this->fDeleteForm->show();
+    this->DeletePage();
 }
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
@@ -2002,4 +2009,9 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 void Huggle::MainWindow::on_actionClear_triggered()
 {
     this->Queue1->Clear();
+}
+
+void Huggle::MainWindow::on_actionDelete_page_triggered()
+{
+    this->DeletePage();
 }

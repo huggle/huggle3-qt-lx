@@ -82,10 +82,19 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <widget class="QMenu" name="menuDebug_2">
+     <property name="title">
+      <string>Debug</string>
+     </property>
+     <addaction name="actionResort_queue"/>
+     <addaction name="actionEdit_info"/>
+     <addaction name="actionList_all_QGC_items"/>
+    </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
     <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
+    <addaction name="menuDebug_2"/>
    </widget>
    <widget class="QMenu" name="menuPage">
     <property name="title">
@@ -170,14 +179,6 @@
     <addaction name="menuWhen_queue_is_full"/>
     <addaction name="actionClear"/>
    </widget>
-   <widget class="QMenu" name="menuDebug">
-    <property name="title">
-     <string notr="true">Debug</string>
-    </property>
-    <addaction name="actionList_all_QGC_items"/>
-    <addaction name="actionEdit_info"/>
-    <addaction name="actionResort_queue"/>
-   </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
      <string>HAN</string>
@@ -194,7 +195,6 @@
    <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
-   <addaction name="menuDebug"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="windowTitle">
@@ -224,6 +224,8 @@
    <addaction name="actionGood_edit"/>
    <addaction name="separator"/>
    <addaction name="actionReport_user"/>
+   <addaction name="separator"/>
+   <addaction name="actionDelete_page"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
@@ -778,6 +780,15 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Space</string>
+   </property>
+  </action>
+  <action name="actionDelete_page">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/page-delete.png</normaloff>:/huggle/pictures/Resources/page-delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete page</string>
    </property>
   </action>
  </widget>
