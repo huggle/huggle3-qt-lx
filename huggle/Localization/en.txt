@@ -53,6 +53,7 @@ diffid:                    DiffID
 <pre>
 browser-load:              Please wait, downloading diff using a web rendering fallback...
 browser-miss-summ:         No summary was provided
+browser-diff:              Diff of page: $1 (score: $2)
 </pre>
 
 === Edit types ===
@@ -182,6 +183,8 @@ delete-error-token:        ERROR: Retreiving the delete token failed. The reason
 delete-token01:            Getting token to delete $1
 delete-token02:            There was no token returned by the query
 delete-e1:                 the page can't be deleted: $1
+delete-e2:                 Unable to delete page
+delete-edsc:               Unable to delete page because $1
 delete-failed-no-info:     no page info was present in query (are you sysop?)
 </pre>
 
@@ -243,6 +246,7 @@ irc-connecting:            Attempting connection to IRC recent changes feed; thi
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
 irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
+irc-ws:                    Waiting for primary feed provider to stop
 irc-not:                   Feed: irc is disabled by project config
 irc-failure:               primary feed provider has failed, fallback to wiki provider
 </pre>
@@ -855,5 +859,8 @@ whitelist-download:        Downloading new whitelist
 queue-widget-name:         Queue
 system-widget-name:        System logs
 wait:                      Please wait...
+function-miss:             Function is not available
+missing-aiv:               This project doesn't support AIV system
+merging:                   Merging
 </pre>
 

@@ -169,6 +169,7 @@ Configuration::Configuration()
     this->LocalConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
     this->LocalConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
     this->LocalConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
+    this->LocalConfig_Patrolling = false;
 
     this->LocalConfig_TemplateAge = -30;
     this->LocalConfig_ScoreChange = 100;
@@ -788,6 +789,8 @@ bool Configuration::ParseLocalConfig(QString config)
             (Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
     Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
+    Configuration::HuggleConfiguration->LocalConfig_Patrolling = Configuration::SafeBool
+            (Configuration::ConfigurationParse("patrolling-enabled", config));
     Configuration::HuggleConfiguration->LocalConfig_ReportSummary = Configuration::ConfigurationParse("report-summary", config);
     Configuration::HuggleConfiguration->LocalConfig_SpeedyTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
     // Parsing

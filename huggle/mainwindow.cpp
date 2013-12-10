@@ -141,7 +141,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
-            /// \todo LOCALIZE ME
             Syslog::HuggleLogs->Log("ERROR: Unable to read state from a config file");
         } else
         {
@@ -229,18 +228,15 @@ void MainWindow::_ReportUser()
 
     if (this->CurrentEdit->User->IsReported)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("ERROR: This user is already reported");
+        Syslog::HuggleLogs->Log("ERROR: " + Localizations::HuggleLocalizations->Localize("report-duplicate"));
         return;
     }
 
     if (!Configuration::HuggleConfiguration->LocalConfig_AIV)
     {
         QMessageBox mb;
-        /// \todo LOCALIZE ME
-        mb.setText("This project doesn't support AIV system");
-        /// \todo LOCALIZE ME
-        mb.setWindowTitle("Function not available");
+        mb.setText(Localizations::HuggleLocalizations->Localize("missing-aiv"));
+        mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("function-miss"));
         mb.setIcon(QMessageBox::Information);
         mb.exec();
         return;
@@ -368,10 +364,9 @@ void MainWindow::Render()
             }
         }
 
-        /// \todo LOCALIZE ME
-        this->tb->SetInfo("Diff of page: " + this->CurrentEdit->Page->PageName
-                          + " (score: " + QString::number(this->CurrentEdit->Score)
-                          + word + ")");
+        QStringList params;
+        params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
+        this->tb->SetInfo(Huggle::Localizations::HuggleLocalizations->Localize("browser-diff", params));
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());
@@ -547,7 +542,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     if (warning == "")
     {
-        /// \todo LOCALIZE ME
+        // This is very rare error, no need to localize it
         Syslog::HuggleLogs->Log("There is no such warning template " + __template);
         return false;
     }
@@ -760,7 +755,7 @@ void MainWindow::OnTimerTick1()
         }
     }
     /// \todo LOCALIZE ME
-    QString t = "All systems go! - currently processing " + QString::number(Core::HuggleCore->ProcessingEdits.count())
+    QString t = "Currently processing " + QString::number(Core::HuggleCore->ProcessingEdits.count())
             + " edits and " + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + " queries."
             + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
             + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
@@ -886,8 +881,7 @@ void MainWindow::OnTimerTick0()
             list = list.replace("<!-- list -->", "");
             QStringList wl = list.split("|");
             int c=0;
-            /// \todo LOCALIZE ME
-            this->fWaiting->Status(40, "Merging");
+            this->fWaiting->Status(40, Localizations::HuggleLocalizations->Localize("merging"));
             while (c < wl.count())
             {
                 if (wl.at(c) != "")
@@ -1193,7 +1187,7 @@ void MainWindow::ForceWarn(int level)
 
     if (warning == "")
     {
-        /// \todo LOCALIZE ME
+        // this is very rare error no need to translate it
         Syslog::HuggleLogs->Log("There is no such warning template " + __template);
         return;
     }
@@ -1234,7 +1228,6 @@ void MainWindow::Exit()
     QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("ERROR: Unable to write state to a config file");
     } else
     {
@@ -1245,7 +1238,6 @@ void MainWindow::Exit()
     layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("ERROR: Unable to write geometry to a config file");
     } else
     {
@@ -1286,16 +1278,14 @@ void MainWindow::ReconnectIRC()
     }
     if (!Configuration::HuggleConfiguration->UsingIRC)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("IRC is disabled by project or huggle configuration, you need to enable it first");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-not"));
         return;
     }
-    Syslog::HuggleLogs->Log("Reconnecting to IRC");
+    Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-connecting"));
     Core::HuggleCore->PrimaryFeedProvider->Stop();
     while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("Waiting for primary feed provider to stop");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-ws"));
         Sleeper::usleep(200000);
     }
     delete Core::HuggleCore->PrimaryFeedProvider;
@@ -1356,6 +1346,10 @@ void MainWindow::PatrolThis(WikiEdit *e)
         // ignore this
         return;
     }
+    if (!Configuration::HuggleConfiguration->LocalConfig_Patrolling)
+    {
+        return;
+    }
     ApiQuery *query = NULL;
     // if this edit doesn't have the patrol token we need to get one
     if (e->PatrolToken == "")
@@ -1378,6 +1372,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
     query = new ApiQuery();
     query->SetAction(ActionPatrol);
     query->Target = "Patrolling " + e->Page->PageName;
+    query->UsingPOST = true;
     query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
     Core::HuggleCore->AppendQuery(query);
     Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
@@ -1439,7 +1434,6 @@ void MainWindow::DeletePage()
 
     if (this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("ERROR: No, you cannot delete an NULL page :)");
         return;
     }

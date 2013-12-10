@@ -301,6 +301,7 @@ namespace Huggle
             bool            LocalConfig_ConfirmPage;
             bool            LocalConfig_ConfirmSame;
             bool            LocalConfig_ConfirmWarned;
+            bool            LocalConfig_Patrolling;
 
             // Reverting
             QString         LocalConfig_MultipleRevertSummary;
