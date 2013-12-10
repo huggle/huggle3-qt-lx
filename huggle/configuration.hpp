@@ -207,9 +207,9 @@ namespace Huggle
             //! Number of edits to keep in history stack
             int             HistorySize;
             //! Number of edits made since you logged in
-            double          EditCounter;
+            unsigned double          EditCounter;
             //! Number of reverts made since you logged in
-            double          RvCounter;
+            unsigned double          RvCounter;
             //! Ask user if they really want to report someone
             bool            AskUserBeforeReport;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
