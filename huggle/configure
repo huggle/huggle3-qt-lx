@@ -37,14 +37,16 @@ GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 QT5=10
 FLAGS=''
-
+if [ x"$*" != x ];then
+    echo "Options used: $*"
+fi
 # first we parse all arguments we got
 for var in "$@"
 do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
-        echo " --skip-checks: skip all package checks"
+        echo " --skip-checks|--disable-dependency-tracking: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
         echo " --build=[i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
@@ -89,7 +91,7 @@ do
         echo "Huggle configure v 1.0"
         exit 0
     fi
-    if [ "$var" = "--skip-checks" ];then
+    if [ "$var" = "--skip-checks" ] || [ "$var" = "--disable-dependency-tracking" ];then
         SKIPCHECKS=1
         continue
     fi
