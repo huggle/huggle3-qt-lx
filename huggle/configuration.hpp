@@ -313,6 +313,7 @@ namespace Huggle
             QStringList     LocalConfig_RevertSummaries;
             QString         LocalConfig_SoftwareRevertDefaultSummary;
             QString         LocalConfig_RollbackSummary;
+            QString         LocalConfig_RollbackSummaryUnknownTarget;
             QString         LocalConfig_DefaultSummary;
             QString         LocalConfig_SingleRevert;
             QString         LocalConfig_UndoSummary;

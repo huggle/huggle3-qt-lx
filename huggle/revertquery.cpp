@@ -590,7 +590,7 @@ void RevertQuery::Rollback()
 
     if (this->Summary == "")
     {
-        this->Summary = Configuration::GetDefaultRevertSummary(this->edit->User->Username);
+        this->Summary = Configuration::HuggleConfiguration->LocalConfig_RollbackSummaryUnknownTarget;
     }
 
     if (this->Summary.contains("$1"))
