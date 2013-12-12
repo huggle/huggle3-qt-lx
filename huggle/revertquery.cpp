@@ -45,7 +45,7 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->EditQuerySoftwareRollback = NULL;
     this->Token = "";
     this->MinorEdit = false;
-    this->Summary = Configuration::GetDefaultRevertSummary(this->edit->User->Username);
+    this->Summary = "";
     this->qPreflight = NULL;
     this->Timeout = 280;
 }
@@ -566,7 +566,11 @@ bool RevertQuery::ProcessRevert()
     // now we need to change the content of page
     this->qRetrieve = new ApiQuery();
     // localize me
-    QString summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
+    QString summary = this->Summary;
+    if (summary == "")
+    {
+        summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
+    }
     summary = summary.replace("$1", this->edit->User->Username)
             .replace("$2", target)
             .replace("$3", QString::number(depth))
