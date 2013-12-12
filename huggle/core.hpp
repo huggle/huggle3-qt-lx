@@ -153,6 +153,7 @@ namespace Huggle
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
+            QString MonthText(int n);
             /*!
              * \brief MessageUser Message user
              * \param user Pointer to user
@@ -164,7 +165,8 @@ namespace Huggle
              * the system will wait for it to finish before the message is sent
              * \return
              */
-            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL, bool nosuffix = false);
+            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true,
+                                 Query *dependency = NULL, bool nosuffix = false, bool keep = false);
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);

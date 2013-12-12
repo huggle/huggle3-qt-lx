@@ -586,9 +586,14 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
-    /// \todo Properly implement system to ensure that section head is not posted after level 1 warning
-    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
-                      title, true, dependency);
+    QString id = "Your edits to " + this->CurrentEdit->Page->PageName;
+    if (Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders)
+    {
+        QDateTime d = QDateTime::currentDateTime();
+        id = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
+    }
+    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, dependency, false,
+                                  Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     Hooks::OnWarning(this->CurrentEdit->User);
 
     return true;
@@ -1233,8 +1238,14 @@ void MainWindow::ForceWarn(int level)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
-    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, "Your edits to " + this->CurrentEdit->Page->PageName,
-                      title, true);
+    QString id = "Your edits to " + this->CurrentEdit->Page->PageName;
+    if (Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders)
+    {
+        QDateTime d = QDateTime::currentDateTime();
+        id = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
+    }
+    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, NULL, false,
+                                  Configuration::HuggleConfiguration->UserConfig_SectionKeep);
 }
 
 void MainWindow::Exit()
@@ -1659,8 +1670,7 @@ void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName
-                                  + "?action=edit");
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit");
     }
 }
 
@@ -1668,8 +1678,7 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName
-                                  + "?action=history");
+        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history");
     }
 }
 
@@ -1817,7 +1826,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
     if (this->CurrentEdit != NULL)
     {
         QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
-                                  + "?action=edit");
+                                                                              + "?action=edit");
     }
 }
 

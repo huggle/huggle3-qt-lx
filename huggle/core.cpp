@@ -235,7 +235,17 @@ void Core::SaveDefs()
     QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix)
+QString Core::MonthText(int n)
+{
+    if (n < 0 || n > 12)
+    {
+        throw new Huggle::Exception("Month must be between 1 and 12");
+    }
+    n--;
+    return Configuration::HuggleConfiguration->Months.at(n);
+}
+
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool keep)
 {
     if (user == NULL)
     {
@@ -247,6 +257,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->title = title;
     m->Dependency = dependency;
     m->Section = section;
+    m->SectionKeep = keep;
     m->Suffix = !nosuffix;
     Core::Messages.append(m);
     m->Send();
@@ -580,7 +591,7 @@ void Core::PreProcessEdit(WikiEdit *_e)
         int xx = 0;
         while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
         {
-            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(_e->Summary))
+            if (_e->Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
             {
                 _e->IsRevert = true;
                 if (this->PrimaryFeedProvider != NULL)

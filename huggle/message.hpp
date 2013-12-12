@@ -54,6 +54,7 @@ namespace Huggle
             void Finish();
             void ProcessSend();
             void ProcessTalk();
+            QString Append(QString Message, QString Text, QString Label);
             ApiQuery *query;
             bool Sending;
             //! This is a text of talk page that was present before we change it

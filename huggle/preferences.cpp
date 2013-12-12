@@ -81,7 +81,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs);
     this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmWL);
     this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk);
+    this->ui->checkBox_16->setChecked(Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders);
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
 }
 
@@ -161,6 +163,8 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = this->ui->checkBox_4->isChecked();
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = this->ui->checkBox_14->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_SectionKeep = this->ui->checkBox_17->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = this->ui->checkBox_11->isChecked();
     Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
     if (ui->radioButton_5->isChecked())
