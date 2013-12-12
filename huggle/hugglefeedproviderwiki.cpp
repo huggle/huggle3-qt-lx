@@ -252,7 +252,7 @@ void HuggleFeedProviderWiki::Process(QString data)
 
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
-    Configuration::HuggleConfiguration->EditCounter++;
+    this->EditCounter++;
     Core::HuggleCore->PreProcessEdit(edit);
     if (Core::HuggleCore->Main->Queue1->CurrentFilter->Matches(edit))
     {

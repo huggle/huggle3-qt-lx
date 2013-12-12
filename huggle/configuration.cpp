@@ -121,9 +121,7 @@ Configuration::Configuration()
     this->LocalConfig_IPVTemplateReport = "";
     this->LocalConfig_WhitelistScore = -800;
     this->UserConfig_GoNext = Configuration_OnNext_Next;
-    this->RvCounter = 0;
     this->TrimOldWarnings = true;
-    this->EditCounter = 0;
     this->AskUserBeforeReport = true;
     this->UserConfig_SectionKeep = true;
     this->SystemConfig_Dot = false;
@@ -285,7 +283,6 @@ void Configuration::NormalizeConf()
     {
         Configuration::HuggleConfiguration->HistorySize = 2;
     }
-    Configuration::HuggleConfiguration->EditCounter = 0;
 }
 
 

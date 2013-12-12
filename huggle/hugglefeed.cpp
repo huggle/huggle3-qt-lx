@@ -14,8 +14,16 @@ using namespace Huggle;
 
 HuggleFeed::HuggleFeed()
 {
+    this->EditCounter = 0;
+    this->RvCounter = 0;
+    this->UptimeDate = QDateTime::currentDateTime();
 }
 
 HuggleFeed::~HuggleFeed()
 {
+}
+
+double HuggleFeed::GetUptime()
+{
+    return (double)this->UptimeDate.secsTo(QDateTime::currentDateTime());
 }

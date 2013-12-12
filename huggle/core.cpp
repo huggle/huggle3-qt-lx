@@ -583,7 +583,10 @@ void Core::PreProcessEdit(WikiEdit *_e)
             if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(_e->Summary))
             {
                 _e->IsRevert = true;
-                Huggle::Configuration::HuggleConfiguration->RvCounter++;
+                if (this->PrimaryFeedProvider != NULL)
+                {
+                    this->PrimaryFeedProvider->RvCounter++;
+                }
                 if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
                 {
                     _e->RegisterConsumer("UncheckedReverts");

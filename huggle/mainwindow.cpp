@@ -761,7 +761,7 @@ void MainWindow::OnTimerTick1()
             + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
             + " edits waiting in queue. Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
-    double Uptime = Core::HuggleCore->GetUptimeInSeconds();
+    double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
     {
         t += " none";
@@ -772,13 +772,13 @@ void MainWindow::OnTimerTick1()
     {
         double EditsPerMinute = 0;
         double RevertsPerMinute = 0;
-        if (Huggle::Configuration::HuggleConfiguration->EditCounter > 0)
+        if (Core::HuggleCore->PrimaryFeedProvider->EditCounter > 0)
         {
-            EditsPerMinute = Configuration::HuggleConfiguration->EditCounter / (Uptime / 60);
+            EditsPerMinute = Core::HuggleCore->PrimaryFeedProvider->EditCounter / (Uptime / 60);
         }
-        if (Huggle::Configuration::HuggleConfiguration->RvCounter > 0)
+        if (Core::HuggleCore->PrimaryFeedProvider->RvCounter > 0)
         {
-            RevertsPerMinute = Configuration::HuggleConfiguration->RvCounter / (Uptime / 60);
+            RevertsPerMinute = Core::HuggleCore->PrimaryFeedProvider->RvCounter / (Uptime / 60);
         }
         double VandalismLevel = 0;
         if (EditsPerMinute > 0 && RevertsPerMinute > 0)

@@ -11,6 +11,7 @@
 #ifndef HUGGLEFEED_H
 #define HUGGLEFEED_H
 
+#include <qdatetime.h>
 #include "exception.hpp"
 
 namespace Huggle
@@ -47,7 +48,14 @@ namespace Huggle
             //! Return a last edit from cache or NULL
             virtual WikiEdit *RetrieveEdit() { return NULL; }
             virtual QString ToString() = 0;
+            double GetUptime();
             HuggleQueueFilter *Filter;
+            //! Number of edits made since you logged in
+            double EditCounter;
+            //! Number of reverts made since you logged in
+            double RvCounter;
+        protected:
+            QDateTime UptimeDate;
     };
 }
 
