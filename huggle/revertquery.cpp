@@ -575,6 +575,8 @@ bool RevertQuery::ProcessRevert()
             .replace("$2", target)
             .replace("$3", QString::number(depth))
             .replace("$4", QString::number(RevID));
+    // we need to make sure there is edit suffix in revert summary for huggle
+    summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
     this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit);
     this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     /// \todo LOCALIZE ME
@@ -601,6 +603,9 @@ void RevertQuery::Rollback()
     {
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     }
+
+    // we need to make sure there is edit suffix in revert summary for huggle
+    this->Summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(this->Summary);
 
     this->edit->User->setBadnessScore(this->edit->User->getBadnessScore() + 200);
     WikiUser::UpdateUser(edit->User);

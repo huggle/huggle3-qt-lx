@@ -170,6 +170,7 @@ namespace Huggle
 
             Configuration();
             ~Configuration();
+            QString GenerateSuffix(QString text);
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////

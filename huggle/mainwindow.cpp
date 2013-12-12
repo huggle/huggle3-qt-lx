@@ -1100,6 +1100,7 @@ void MainWindow::CustomRevert()
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
+    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
     this->Revert(rs);
 }
 
@@ -1118,6 +1119,7 @@ void MainWindow::CustomRevertWarn()
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
+    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
     RevertQuery *result = this->Revert(rs, true, false);
 
     if (result != NULL)

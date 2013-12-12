@@ -217,6 +217,16 @@ Configuration::~Configuration()
     delete this->UAAP;
 }
 
+QString Configuration::GenerateSuffix(QString text)
+{
+    if (!text.endsWith(this->EditSuffixOfHuggle))
+    {
+        text = text + " " + this->EditSuffixOfHuggle;
+    }
+
+    return text;
+}
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::HuggleConfiguration->UsingSSL)
