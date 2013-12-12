@@ -256,7 +256,10 @@ void Message::ProcessSend()
         } else
         {
             // original page needs to be included in new value
-            this->text = this->Page + "\n\n" + this->text;
+            if (this->Page != "")
+            {
+                this->text = this->Page + "\n\n" + this->text;
+            }
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
                 + "&text=" + QUrl::toPercentEncoding(this->text)
