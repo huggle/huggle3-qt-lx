@@ -223,7 +223,11 @@
    <addaction name="separator"/>
    <addaction name="actionGood_edit"/>
    <addaction name="separator"/>
+   <addaction name="actionBlock_user_2"/>
    <addaction name="actionReport_user"/>
+   <addaction name="actionDisplay_talk"/>
+   <addaction name="actionDecrease_badness"/>
+   <addaction name="actionIncrease_badness"/>
    <addaction name="separator"/>
    <addaction name="actionDelete_page"/>
   </widget>
@@ -789,6 +793,45 @@
    </property>
    <property name="text">
     <string>Delete page</string>
+   </property>
+  </action>
+  <action name="actionBlock_user_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-block.png</normaloff>:/huggle/pictures/Resources/user-block.png</iconset>
+   </property>
+   <property name="text">
+    <string>Block user</string>
+   </property>
+  </action>
+  <action name="actionIncrease_badness">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-unwhitelist.png</normaloff>:/huggle/pictures/Resources/user-unwhitelist.png</iconset>
+   </property>
+   <property name="text">
+    <string>Increase badness</string>
+   </property>
+  </action>
+  <action name="actionDecrease_badness">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-whitelist.png</normaloff>:/huggle/pictures/Resources/user-whitelist.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrease badness</string>
+   </property>
+  </action>
+  <action name="actionDisplay_talk">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-talk.png</normaloff>:/huggle/pictures/Resources/user-talk.png</iconset>
+   </property>
+   <property name="text">
+    <string>Display talk</string>
    </property>
   </action>
  </widget>

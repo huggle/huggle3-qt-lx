@@ -139,8 +139,10 @@ namespace Huggle
             void SuspiciousEdit();
             void PatrolThis(WikiEdit *e = NULL);
             void Localize();
+            void _BlockUser();
             void DisplayNext(Query *q = NULL);
             void DeletePage();
+            void DisplayTalk();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -261,6 +263,10 @@ namespace Huggle
             void on_actionRestore_this_revision_triggered();
             void on_actionClear_triggered();
             void on_actionDelete_page_triggered();
+            void on_actionBlock_user_2_triggered();
+            void on_actionDisplay_talk_triggered();
+            void on_actionIncrease_badness_triggered();
+            void on_actionDecrease_badness_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
@@ -276,6 +282,8 @@ namespace Huggle
             void RequestPD();
             void closeEvent(QCloseEvent *event);
             void FinishPatrols();
+            void DecreaseBS();
+            void IncreaseBS();
             QTimer *timer1;
             // Whitelist
             QTimer *wlt;

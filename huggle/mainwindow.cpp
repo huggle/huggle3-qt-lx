@@ -55,8 +55,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->preferencesForm = new Preferences(this);
     this->RestoreEdit = NULL;
     this->aboutForm = new AboutForm(this);
-    this->ui->actionBlock_user->setEnabled(Configuration::HuggleConfiguration->Rights.contains("block"));
     // we store the value in bool so that we don't need to call expensive string function twice
+    bool PermissionBlock = Configuration::HuggleConfiguration->Rights.contains("block");
+    this->ui->actionBlock_user->setEnabled(PermissionBlock);
+    this->ui->actionBlock_user_2->setEnabled(PermissionBlock);
     bool PermissionDelete = Configuration::HuggleConfiguration->Rights.contains("delete");
     this->ui->actionDelete_page->setEnabled(PermissionDelete);
     this->ui->actionDelete->setEnabled(PermissionDelete);
@@ -461,6 +463,22 @@ void MainWindow::FinishPatrols()
         {
             x++;
         }
+    }
+}
+
+void MainWindow::DecreaseBS()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
+    }
+}
+
+void MainWindow::IncreaseBS()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 200);
     }
 }
 
@@ -1396,6 +1414,31 @@ void MainWindow::Localize()
     this->ui->actionExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
 }
 
+void MainWindow::_BlockUser()
+{
+    if (!CheckExit() || !CheckEditableBrowserPage())
+    {
+        return;
+    }
+
+    if(this->CurrentEdit == NULL)
+    {
+        /// \todo LOCALIZE ME
+        Syslog::HuggleLogs->ErrorLog("No one to block :o");
+        return;
+    }
+
+    if (this->fBlockForm != NULL)
+    {
+        delete this->fBlockForm;
+    }
+
+    this->fBlockForm = new BlockUser(this);
+    this->CurrentEdit->User->Resync();
+    this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
+    this->fBlockForm->show();
+}
+
 void MainWindow::DisplayNext(Query *q)
 {
     switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
@@ -1447,6 +1490,17 @@ void MainWindow::DeletePage()
     this->fDeleteForm = new DeleteForm(this);
     this->fDeleteForm->setPage(this->CurrentEdit->Page, this->CurrentEdit->User);
     this->fDeleteForm->show();
+}
+
+void MainWindow::DisplayTalk()
+{
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+    this->Browser->DisplayPreFormattedPage(page);
+    delete page;
 }
 
 bool MainWindow::CheckExit()
@@ -1545,10 +1599,7 @@ void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 
 void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 {
-    if (this->CurrentEdit != NULL)
-    {
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
-    }
+    this->DecreaseBS();
 }
 
 void MainWindow::on_actionGood_edit_triggered()
@@ -1568,13 +1619,7 @@ void MainWindow::on_actionGood_edit_triggered()
 
 void MainWindow::on_actionTalk_page_triggered()
 {
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
-    this->Browser->DisplayPreFormattedPage(page);
-    delete page;
+    this->DisplayTalk();
 }
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
@@ -1793,27 +1838,7 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
-    {
-        return;
-    }
-
-    if(this->CurrentEdit == NULL)
-    {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("No one to block :o");
-        return;
-    }
-
-    if (this->fBlockForm != NULL)
-    {
-        delete this->fBlockForm;
-    }
-
-    this->fBlockForm = new BlockUser(this);
-    this->CurrentEdit->User->Resync();
-    this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
-    this->fBlockForm->show();
+    this->_BlockUser();
 }
 
 void Huggle::MainWindow::on_actionIRC_triggered()
@@ -2008,4 +2033,24 @@ void Huggle::MainWindow::on_actionClear_triggered()
 void Huggle::MainWindow::on_actionDelete_page_triggered()
 {
     this->DeletePage();
+}
+
+void Huggle::MainWindow::on_actionBlock_user_2_triggered()
+{
+    this->_BlockUser();
+}
+
+void Huggle::MainWindow::on_actionDisplay_talk_triggered()
+{
+    this->DisplayTalk();
+}
+
+void Huggle::MainWindow::on_actionIncrease_badness_triggered()
+{
+    this->IncreaseBS();
+}
+
+void Huggle::MainWindow::on_actionDecrease_badness_triggered()
+{
+    this->DecreaseBS();
 }
