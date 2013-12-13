@@ -347,16 +347,16 @@ void Login::FinishToken()
 
 void Login::RetrieveWhitelist()
 {
-    if (wq != NULL)
+    if (this->wq != NULL)
     {
-        if (wq->Processed())
+        if (this->wq->Processed())
         {
-            if (wq->Result->Failed)
+            if (this->wq->Result->Failed)
             {
                 Configuration::HuggleConfiguration->WhitelistDisabled = true;
             } else
             {
-                QString list = wq->Result->Data;
+                QString list = this->wq->Result->Data;
                 list = list.replace("<!-- list -->", "");
                 Configuration::HuggleConfiguration->WhiteList = list.split("|");
                 int c = 0;

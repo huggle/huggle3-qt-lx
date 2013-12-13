@@ -23,14 +23,14 @@ namespace Huggle
     //! Proxy
     class Proxy : public QDialog
     {
-        Q_OBJECT
+            Q_OBJECT
 
-    public:
-        explicit Proxy(QWidget *parent = 0);
-        ~Proxy();
+        public:
+            explicit Proxy(QWidget *parent = 0);
+            ~Proxy();
 
-    private:
-        Ui::Proxy *ui;
+        private:
+            Ui::Proxy *ui;
     };
 }
 

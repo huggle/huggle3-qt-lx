@@ -16,8 +16,8 @@ using namespace Huggle;
 DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
 {
     this->ui->setupUi(this);
-	this->page = NULL;
-	this->dt = NULL;
+    this->page = NULL;
+    this->dt = NULL;
     this->DeleteToken = "";
     this->qDelete = NULL;
     this->TP = NULL;
@@ -77,33 +77,33 @@ void DeleteForm::getToken()
 
 void DeleteForm::onTick()
 {
-	switch (this->delQueryPhase)
-	{
-		case 0:
-			this->checkDelToken();
-			return;
-		case 1:
-			this->Delete();
-			return;
-	}
-	this->dt->stop();
+    switch (this->delQueryPhase)
+    {
+        case 0:
+            this->checkDelToken();
+            return;
+        case 1:
+            this->Delete();
+            return;
+    }
+    this->dt->stop();
 }
 
 void DeleteForm::checkDelToken()
 {
     if (this->qToken == NULL)
-	{
-		return;
-	}
+    {
+        return;
+    }
     if (!this->qToken->Processed())
-	{
-		return;
-	}
+    {
+        return;
+    }
     if (this->qToken->Result->Failed)
-	{
+    {
         this->Failed(Localizations::HuggleLocalizations->Localize("delete-error-token", this->qToken->Result->ErrorMessage));
-		return;
-	}
+        return;
+    }
     QDomDocument d;
     QDomNodeList l;
     if (this->TP != NULL)
@@ -154,25 +154,25 @@ void DeleteForm::checkDelToken()
     }
     d.setContent(this->qToken->Result->Data);
     l = d.elementsByTagName("page");
-	if (l.count() == 0)
-	{
+    if (l.count() == 0)
+    {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
         this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("delete-failed-no-info"));
-		return;
-	}
-	QDomElement element = l.at(0).toElement();
-	if (!element.attributes().contains("deletetoken"))
-	{
+        return;
+    }
+    QDomElement element = l.at(0).toElement();
+    if (!element.attributes().contains("deletetoken"))
+    {
         this->Failed(Localizations::HuggleLocalizations->Localize("delete-token02"));
-		return;
-	}
+        return;
+    }
     this->DeleteToken = element.attribute("deletetoken");
-	this->delQueryPhase++;
+    this->delQueryPhase++;
     this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
     this->qToken = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->page->PageName + ": " + this->DeleteToken);
 
-	// let's delete the page
+    // let's delete the page
     this->qDelete = new ApiQuery();
     this->qDelete->SetAction(ActionDelete);
     this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
@@ -188,52 +188,52 @@ void DeleteForm::checkDelToken()
 void DeleteForm::Delete()
 {
     if (this->qDelete == NULL)
-	{
-		return;
-	}
+    {
+        return;
+    }
 
     if (!this->qDelete->Processed())
-	{
-		return;
-	}
+    {
+        return;
+    }
 
     if (this->qDelete->Result->Failed)
-	{
+    {
         this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("delete-e1", this->qDelete->Result->ErrorMessage));
-		return;
-	}
-	// let's assume the page was deleted
+        return;
+    }
+    // let's assume the page was deleted
     this->ui->pushButton->setText(Huggle::Localizations::HuggleLocalizations->Localize("deleted"));
     Huggle::Syslog::HuggleLogs->DebugLog("Deletion result: " + this->qDelete->Result->Data, 2);
     this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-	this->dt->stop();
+    this->dt->stop();
 }
 
 void DeleteForm::Failed(QString Reason)
 {
-	QMessageBox *_b = new QMessageBox();
+    QMessageBox *_b = new QMessageBox();
     _b->setWindowTitle(Huggle::Localizations::HuggleLocalizations->Localize("delete-e2"));
     _b->setText(Huggle::Localizations::HuggleLocalizations->Localize("delete-edsc", Reason));
-	_b->exec();
-	delete _b;
-	this->dt->stop();
-	delete this->dt;
+    _b->exec();
+    delete _b;
+    this->dt->stop();
+    delete this->dt;
     this->dt = NULL;
     this->ui->pushButton->setEnabled(true);
     if (this->qToken != NULL)
-	{
+    {
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
         this->qToken = NULL;
-	}
+    }
     if (this->qTokenOfTalkPage != NULL)
     {
         this->qTokenOfTalkPage->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
         this->qTokenOfTalkPage = NULL;
     }
     if (this->qDelete != NULL)
-	{
+    {
         this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-	}
+    }
     this->qDelete = NULL;
     this->qTalk = NULL;
 }

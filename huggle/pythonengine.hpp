@@ -36,7 +36,7 @@ namespace Huggle
             void SetEnabled(bool value);
             bool Init();
             QString RetrieveText() const;
-    private:
+        private:
             //! Pointer to a python object that represent this script
             PyObject *object;
             QString Name;
