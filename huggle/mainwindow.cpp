@@ -661,7 +661,7 @@ void MainWindow::FinishRestore()
         {
             this->RestoreQuery->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->RestoreQuery = NULL;
-            Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
+            Huggle::Syslog::HuggleLogs->ErrorLog("Unable to restore the revision, because there is no text available for it");
             this->RestoreEdit->UnregisterConsumer("RestoreEdit");
             this->RestoreEdit = NULL;
             return;
@@ -682,9 +682,14 @@ void MainWindow::FinishRestore()
             return;
         }
         QString sm = Configuration::HuggleConfiguration->LocalConfig_RestoreSummary;
-        sm = sm.replace("$1", QString(this->RestoreEdit->RevID));
+        sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
+        sm = sm.replace("$3", this->RestoreEdit_RevertReason);
         Core::HuggleCore->EditPage(this->RestoreEdit->Page, text, sm);
+    } else
+    {
+        Syslog::HuggleLogs->DebugLog(this->RestoreQuery->Result->Data);
+        Syslog::HuggleLogs->ErrorLog("Unable to restore the revision because wiki provided no data for selected version");
     }
     this->RestoreQuery->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->RestoreQuery = NULL;
@@ -2022,16 +2027,26 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
         return;
     }
 
+    bool ok;
+    QString reason = QInputDialog::getText(this, "Reason", "Please provide a reason why you want to restore this page to previous revision",
+                                           QLineEdit::Normal, "No reason was provided by user :(", &ok);
+
+    if (!ok)
+    {
+        return;
+    }
+
     this->RestoreQuery = new ApiQuery();
     this->RestoreQuery->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    this->RestoreQuery->Parameters = "prop=revisions&rvprop=" +
-            QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&rvstartid=";
-            QString::number(this->CurrentEdit->RevID) + "&rvlimit=1";
+    this->RestoreQuery->Parameters = "prop=revisions&revids=" +
+            QString::number(this->CurrentEdit->RevID) + "&rvprop=" +
+            QUrl::toPercentEncoding("ids|content");
     this->RestoreQuery->SetAction(ActionQuery);
     this->RestoreQuery->Process();
     this->CurrentEdit->RegisterConsumer("RestoreEdit");
     this->RestoreEdit = this->CurrentEdit;
+    this->RestoreEdit_RevertReason = reason;
+    Syslog::HuggleLogs->Log("Restoring selected revision of " + this->CurrentEdit->Page->PageName);
 }
 
 void Huggle::MainWindow::on_actionClear_triggered()

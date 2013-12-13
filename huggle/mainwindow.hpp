@@ -13,6 +13,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QInputDialog>
 #include <QLabel>
 #include <QDesktopServices>
 #include <QMutex>
@@ -285,6 +286,7 @@ namespace Huggle
             void DecreaseBS();
             void IncreaseBS();
             QTimer *timer1;
+            QString RestoreEdit_RevertReason;
             // Whitelist
             QTimer *wlt;
             //! Status bar

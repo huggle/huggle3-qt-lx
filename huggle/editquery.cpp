@@ -113,6 +113,7 @@ bool EditQuery::Processed()
         QDomDocument d;
         d.setContent(this->qEdit->Result->Data);
         QDomNodeList l = d.elementsByTagName("edit");
+        bool failed = true;
         if (l.count() > 0)
         {
             QDomElement element = l.at(0).toElement();
@@ -120,6 +121,7 @@ bool EditQuery::Processed()
             {
                 if (element.attribute("result") == "Success")
                 {
+                    failed = false;
                     if (Core::HuggleCore->Main != NULL)
                     {
                         HistoryItem item;
@@ -133,6 +135,11 @@ bool EditQuery::Processed()
             }
         }
         this->Result = new QueryResult();
+        if (failed)
+        {
+            this->Result->Failed = true;
+            this->Result->ErrorMessage = this->qEdit->Result->Data;
+        }
         this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qEdit = NULL;
     }
