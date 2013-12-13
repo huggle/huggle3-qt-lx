@@ -284,6 +284,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("tag"))
+    {
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        return;
+    }
+
     if (!edit->NewPage)
     {
         if (!line.contains("?diff="))
