@@ -19,6 +19,7 @@ EditQuery::EditQuery()
     this->qEdit = NULL;
     this->Minor = false;
     this->Page = "";
+    this->_Token = "";
     this->qToken = NULL;
     this->text = "";
     this->Type = QueryEdit;
@@ -36,13 +37,19 @@ void EditQuery::Process()
 {
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    this->qToken = new ApiQuery();
-    this->qToken->SetAction(ActionQuery);
-    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
-    this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
-    this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-    Core::HuggleCore->AppendQuery(qToken);
-    this->qToken->Process();
+    if (this->_Token == "")
+    {
+        this->qToken = new ApiQuery();
+        this->qToken->SetAction(ActionQuery);
+        this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
+        this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
+        this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
+        Core::HuggleCore->AppendQuery(qToken);
+        this->qToken->Process();
+    } else
+    {
+        this->EditPage();
+    }
 }
 
 bool EditQuery::Processed()
@@ -94,15 +101,7 @@ bool EditQuery::Processed()
         this->qToken->Lock();
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qToken = NULL;
-        this->qEdit = new ApiQuery();
-        this->qEdit->Target = "Writing " + this->Page;
-        this->qEdit->UsingPOST = true;
-        this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qEdit->SetAction(ActionEdit);
-        this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
-                          "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" + QUrl::toPercentEncoding(_Token);
-        Core::HuggleCore->AppendQuery(qEdit);
-        this->qEdit->Process();
+        this->EditPage();
         return false;
     }
     if (this->qEdit != NULL)
@@ -138,4 +137,17 @@ bool EditQuery::Processed()
         this->qEdit = NULL;
     }
     return true;
+}
+
+void EditQuery::EditPage()
+{
+    this->qEdit = new ApiQuery();
+    this->qEdit->Target = "Writing " + this->Page;
+    this->qEdit->UsingPOST = true;
+    this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
+    this->qEdit->SetAction(ActionEdit);
+    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
+                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" + QUrl::toPercentEncoding(this->_Token);
+    Core::HuggleCore->AppendQuery(qEdit);
+    this->qEdit->Process();
 }
