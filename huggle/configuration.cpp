@@ -855,6 +855,8 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool
          (Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     // Welcoming
+    Configuration::HuggleConfiguration->WelcomeMP = Configuration::ConfigurationParse("startup-message-location",
+                                                    config, "Project:Huggle/Message");
     Configuration::HuggleConfiguration->LocalConfig_WelcomeGood = Configuration::SafeBool
             (Configuration::ConfigurationParse("welcome-on-good-edit", config, "true"));
     Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
