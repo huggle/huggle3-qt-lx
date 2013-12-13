@@ -60,7 +60,7 @@ namespace Huggle
             ApiQuery *query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
             QTimer *tick;
-            /// \todo DOCUMENT ME
+            //! Pointer used to create an instance of page before passing it to processing function
             WikiEdit *edit;
             //! Page download phase
 

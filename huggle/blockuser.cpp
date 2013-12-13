@@ -103,8 +103,7 @@ void BlockUser::CheckToken()
     }
     if (this->qTokenApi->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("token can't be retrieved: " + this->qTokenApi->Result->ErrorMessage);
+        this->Failed(Localizations::HuggleLocalizations->Localize("block-token-e1", this->qTokenApi->Result->ErrorMessage));
         return;
     }
     QDomDocument d;
@@ -113,15 +112,13 @@ void BlockUser::CheckToken()
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qTokenApi->Result->Data);
-        /// \todo LOCALIZE ME
-        this->Failed("no user info was present in query (are you sysop?)");
+        this->Failed(Localizations::HuggleLocalizations->Localize("block-error-no-info"));
         return;
     }
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("blocktoken"))
     {
-        /// \todo LOCALIZE ME
-        this->Failed("No token");
+        this->Failed(Localizations::HuggleLocalizations->Localize("no-token"));
         return;
     }
     this->BlockToken = element.attribute("blocktoken");
@@ -139,8 +136,7 @@ void BlockUser::CheckToken()
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + "&token="
             + QUrl::toPercentEncoding(BlockToken);
 
-    /// \todo LOCALIZE ME
-    this->qUser->Target = "Blocking " + this->user->Username;
+    this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
     this->qUser->RegisterConsumer("BlockUser::on_pushButton_clicked()");
     Core::HuggleCore->AppendQuery(this->qUser);

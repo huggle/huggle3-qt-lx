@@ -52,13 +52,13 @@ bool HuggleFeedProviderIRC::Start()
     if (!this->Network->Connect())
     {
         Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-error",
-                                                         Configuration::HuggleConfiguration->IRCServer));
+                                        Configuration::HuggleConfiguration->IRCServer));
         delete this->Network;
         this->Network = NULL;
         return false;
     }
     this->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
-    Huggle::Syslog::HuggleLogs->Log("IRC: Successfuly connected to irc rc feed");
+    Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-connected"));
     if (this->thread != NULL)
     {
         delete this->thread;
@@ -92,8 +92,7 @@ void HuggleFeedProviderIRC::Stop()
     this->Network->Disconnect();
     while (!IsStopped())
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Waiting for irc feed provider to stop");
+        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-stop"));
         Sleeper::usleep(200000);
     }
     this->Connected = false;

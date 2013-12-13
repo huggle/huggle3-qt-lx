@@ -46,6 +46,7 @@ description:               Description
 status:                    Status
 link:                      Link
 diffid:                    DiffID
+no-token:                  No token
 
 </pre>
 
@@ -97,6 +98,9 @@ block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address
 block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?
 block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?
 block-token-1:             Getting token to block $1
+block-token-e1:            token can't be retrieved: $1
+block-error-no-info:       no user info was present in query (are you sysop?)
+blocking:                  Blocking $1
 </pre>
 
 === Closing form ===
@@ -249,6 +253,7 @@ irc-error:                 Unable to connect to IRC recent changes feed ($1). Us
 irc-ws:                    Waiting for primary feed provider to stop
 irc-not:                   Feed: irc is disabled by project config
 irc-failure:               primary feed provider has failed, fallback to wiki provider
+irc-wait:                  Waiting for irc feed provider to stop
 </pre>
 
 === List form ===
@@ -457,12 +462,14 @@ main-no-page:              The action you have requested requires a page to be l
 
 === Message form ===
 <pre>
-message-title:             Message {0}
-message-help:              Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.
-message-subject:           Subject:
-message-message:           Message:
-message-summary:           Summary:
-message-autosign:          Automatically append signature
+message-title:                Message {0}
+message-help:                 Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.
+message-subject:              Subject:
+message-message:              Message:
+message-summary:              Summary:
+message-autosign:             Automatically append signature
+message-retrieve-new-token:   Retrieving token to edit $1
+message-er:                   Unable to deliver the message to $1: $2
 </pre>
 
 === Move form ===

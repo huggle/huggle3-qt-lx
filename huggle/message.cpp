@@ -46,8 +46,7 @@ void Message::Send()
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(user->GetTalk());
-    /// \todo LOCALIZE ME
-    this->query->Target = "Retrieving token to edit " + user->GetTalk();
+    this->query->Target = Localizations::HuggleLocalizations->Localize("message-retrieve-new-token", user->GetTalk());
     this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     Core::HuggleCore->AppendQuery(query);
     this->query->Process();
@@ -55,8 +54,9 @@ void Message::Send()
 
 void Message::Fail(QString reason)
 {
-    /// \todo LOCALIZE ME
-    Huggle::Syslog::HuggleLogs->ErrorLog("Unable to deliver the message to " + user->Username + "; " + reason);
+    QStringList parameters;
+    parameters << user->Username << reason;
+    Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("message-er", parameters));
     this->Done = true;
     this->Sending = false;
     this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
