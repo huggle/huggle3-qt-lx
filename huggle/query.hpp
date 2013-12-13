@@ -98,6 +98,7 @@ namespace Huggle
             //! Every query has own unique ID which can be used to work with them
             //! this function returns that
             unsigned int QueryID();
+            bool Failed();
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result;
             //! Current status of a query

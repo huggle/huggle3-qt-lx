@@ -125,7 +125,13 @@ void Login::Reload()
         this->ui->Project->addItem(Configuration::HuggleConfiguration->ProjectList.at(current)->Name);
         current++;
     }
-    this->ui->Project->setCurrentIndex(0);
+    if (Huggle::Configuration::HuggleConfiguration->IndexOfLastWiki < current)
+    {
+        this->ui->Project->setCurrentIndex(Huggle::Configuration::HuggleConfiguration->IndexOfLastWiki);
+    } else
+    {
+        this->ui->Project->setCurrentIndex(0);
+    }
 }
 
 void Login::DB()
@@ -185,7 +191,8 @@ void Login::PressOK()
         mb.exec();
         return;
     }
-    Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(ui->Project->currentIndex());
+    Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
+    Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
     Configuration::HuggleConfiguration->UsingSSL = ui->checkBox->isChecked();
     if (this->ui->lineEdit_2->text() == "Developer Mode")
     {

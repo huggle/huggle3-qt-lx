@@ -136,3 +136,19 @@ unsigned int Query::QueryID()
 {
     return this->ID;
 }
+
+bool Query::Failed()
+{
+    if (this->Result != NULL)
+    {
+        if (this->Result->Failed)
+        {
+            return true;
+        }
+    }
+    if (this->Status == Huggle::StatusInError)
+    {
+        return true;
+    }
+    return false;
+}

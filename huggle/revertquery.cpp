@@ -27,7 +27,11 @@ RevertQuery::RevertQuery()
     this->MinorEdit = false;
     this->EditQuerySoftwareRollback = NULL;
     this->qPreflight = NULL;
+    this->SR_Target = "";
+    this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->Timeout = Configuration::HuggleConfiguration->WriteTimeout;
+    this->qSR_PageToken = NULL;
+    this->SR_EditToken = "";
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
@@ -47,7 +51,36 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->MinorEdit = false;
     this->Summary = "";
     this->qPreflight = NULL;
-    this->Timeout = 280;
+    this->Timeout = Configuration::HuggleConfiguration->WriteTimeout;
+    this->SR_Target = "";
+    this->SR_RevID = WIKI_UNKNOWN_REVID;
+    this->qSR_PageToken = NULL;
+    this->SR_EditToken = "";
+}
+
+RevertQuery::~RevertQuery()
+{
+    if (this->edit != NULL)
+    {
+        this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->edit->UnregisterConsumer("Core::RevertEdit");
+    }
+    if (this->qSR_PageToken != NULL)
+    {
+        this->qSR_PageToken->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->qSR_PageToken = NULL;
+    }
+    if (this->qPreflight != NULL)
+    {
+        this->qPreflight->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->qPreflight = NULL;
+    }
+    if (this->qRetrieve != NULL)
+    {
+        this->qRetrieve->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->qRetrieve = NULL;
+    }
+    delete this->timer;
 }
 
 void RevertQuery::Process()
@@ -73,7 +106,7 @@ void RevertQuery::Process()
 
 void RevertQuery::Kill()
 {
-    if (PreflightFinished && this->qRevert != NULL)
+    if (this->PreflightFinished && this->qRevert != NULL)
     {
         this->qRevert->Kill();
     } else if (this->qPreflight != NULL)
@@ -93,16 +126,6 @@ void RevertQuery::Kill()
     }
     this->qRetrieve = NULL;
     this->Exit();
-}
-
-RevertQuery::~RevertQuery()
-{
-    if (this->edit != NULL)
-    {
-        this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->edit->UnregisterConsumer("Core::RevertEdit");
-    }
-    delete this->timer;
 }
 
 QString RevertQuery::QueryTargetToString()
@@ -152,6 +175,18 @@ void RevertQuery::OnTick()
         this->timer->stop();
         this->UnregisterConsumer("RevertQuery::Timer");
     }
+}
+
+void RevertQuery::DisplayError(QString error, QString reason)
+{
+    if (reason == "")
+        reason = error;
+    Huggle::Syslog::HuggleLogs->ErrorLog(error);
+    this->Kill();
+    this->Status = StatusDone;
+    this->Result = new QueryResult();
+    this->Result->ErrorMessage = reason;
+    this->Result->Failed = true;
 }
 
 QString RevertQuery::GetCustomRevertStatus(QString RevertData)
@@ -243,8 +278,8 @@ void RevertQuery::Preflight()
     }
     this->qPreflight = new ApiQuery();
     this->qPreflight->SetAction(ActionQuery);
-    this->qPreflight->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=20&titles="
-                                    + QUrl::toPercentEncoding(this->edit->Page->PageName);
+    this->qPreflight->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment")
+                                 + "&rvlimit=20&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
     this->qPreflight->Process();
 }
 
@@ -268,8 +303,8 @@ void RevertQuery::CheckPreflight()
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
         this->Kill();
-        this->Status = StatusDone;
         this->Result = new QueryResult();
+        this->Status = StatusDone;
         this->Result->Failed = true;
         return;
     }
@@ -433,14 +468,151 @@ void RevertQuery::Cancel()
 
 bool RevertQuery::ProcessRevert()
 {
-    if (this->EditQuerySoftwareRollback != NULL)
+    if (this->SR_EditToken == "" && this->qSR_PageToken == NULL)
     {
-        if (EditQuerySoftwareRollback->Processed() == false)
+        // we need to obtain edit token on beginning so that we prevent edit conflict resolution
+        this->qSR_PageToken = new ApiQuery();
+        this->qSR_PageToken->SetAction(ActionQuery);
+        this->qSR_PageToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
+        this->qSR_PageToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", this->edit->Page->PageName);
+        this->qSR_PageToken->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->CustomStatus = "Retrieving token";
+        Core::HuggleCore->AppendQuery(this->qSR_PageToken);
+        this->qSR_PageToken->Process();
+        return false;
+    }
+
+    if (this->qSR_PageToken != NULL)
+    {
+        if (!this->qSR_PageToken->Processed())
         {
             return false;
         }
+
+        if (this->qSR_PageToken->Failed())
+        {
+            this->DisplayError("Unable to fetch the token - query failed");
+            return true;
+        }
+
+        QDomDocument d;
+        d.setContent(this->qSR_PageToken->Result->Data);
+        QDomNodeList l = d.elementsByTagName("page");
+        if (l.count() == 0)
+        {
+            this->DisplayError("Unable to fetch the token no page info returned by wiki");
+            return true;
+        }
+        QDomElement element = l.at(0).toElement();
+        if (!element.attributes().contains("edittoken"))
+        {
+            this->DisplayError("Unable to get a token there was no token returned by wiki");
+            return true;
+        }
+        this->SR_EditToken = element.attribute("edittoken");
+        if (this->SR_EditToken == "")
+        {
+            // invalid token
+            this->DisplayError("Invalid token");
+            return true;
+        }
+
+        this->qSR_PageToken->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->qSR_PageToken = NULL;
+    }
+
+    if (this->EditQuerySoftwareRollback != NULL)
+    {
+        // we already reverted the page so check if we were successful in that
+        if (this->EditQuerySoftwareRollback->Processed() == false)
+        {
+            // we are still reverting the page so quit this and wait
+            return false;
+        }
         this->EditQuerySoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        this->Result = new QueryResult();
+        if (this->EditQuerySoftwareRollback->Result->Failed || this->EditQuerySoftwareRollback->Status == Huggle::StatusInError)
+        {
+            // failure during revert
+            this->Result->Failed = true;
+            this->Result->ErrorMessage = this->EditQuerySoftwareRollback->Result->ErrorMessage;
+            /// \todo LOCALIZE ME
+            Huggle::Syslog::HuggleLogs->ErrorLog("Unable to rollback " + this->edit->Page->PageName + " edit failed");
+            this->Kill();
+            this->Status = StatusDone;
+        }
+        Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->edit->Page->PageName);
         return true;
+    }
+
+    if (this->qRetrieve != NULL)
+    {
+        // we are retrieving the content of previous edit made by a different user
+        if (!this->qRetrieve->Processed())
+        {
+            return false;
+        }
+
+        if (this->qRetrieve->Failed())
+        {
+            this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
+            return true;
+        }
+
+        QString summary = this->Summary;
+        QString content = "";
+
+        QDomDocument d;
+        d.setContent(this->qRetrieve->Result->Data);
+        QDomNodeList l = d.elementsByTagName("rev");
+
+        if (l.count() == 0)
+        {
+            this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
+            return true;
+        }
+
+        QDomElement element = l.at(0).toElement();
+        if (!element.attributes().contains("revid"))
+        {
+            this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
+                               " version retrieved no RevID");
+            return true;
+        }
+
+        QString rv = element.attribute("revid");
+
+        if (rv.toInt() != this->SR_RevID)
+        {
+            this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
+                               " version returned invalid RevID");
+            return true;
+        }
+
+        content = element.text();
+
+        if (summary == "")
+        {
+            summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
+        }
+        summary = summary.replace("$1", this->edit->User->Username)
+                .replace("$2", this->SR_Target)
+                .replace("$3", QString::number(this->SR_Depth))
+                .replace("$4", QString::number(this->SR_RevID));
+        // we need to make sure there is edit suffix in revert summary for huggle
+        summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
+        if (content == "")
+        {
+            /// \todo LOCALIZE ME
+            this->DisplayError("Cowardly refusing to blank \"" + this->edit->Page->PageName + "\" software rollback was cancelled to prevent damage",
+                               "content was resolved to blank edit");
+            return true;
+        }
+        this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit, this->SR_EditToken);
+        this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        /// \todo LOCALIZE ME
+        this->CustomStatus = "Editing page";
+        return false;
     }
 
     if (this->qPreflight == NULL)
@@ -456,12 +628,7 @@ bool RevertQuery::ProcessRevert()
     if (this->qPreflight->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
-        this->Kill();
-        this->Status = StatusDone;
-        this->Result = new QueryResult();
-        this->Result->ErrorMessage = "Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage;
-        this->Result->Failed = true;
+        this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qPreflight->Result->ErrorMessage);
         return true;
     }
     QDomDocument d;
@@ -474,17 +641,12 @@ bool RevertQuery::ProcessRevert()
     {
         /// \todo LOCALIZE ME
         // if we have absolutely no revisions in the result, it's pretty fucked
-        Huggle::Syslog::HuggleLogs->Log("Failed to retrieve a list of edits made to this page, query returned no data");
-        this->Kill();
-        this->Status = StatusDone;
-        this->Result = new QueryResult();
-        this->Result->ErrorMessage = "Failed to retrieve a list of edits made to this page, query returned no data";
-        this->Result->Failed = true;
+        this->DisplayError("Failed to retrieve a list of edits made to this page, query returned no data");
         return true;
     }
     // if the latest revid doesn't match our revid it means that someone made an edit
     bool passed = true;
-    int depth = 0;
+    this->SR_Depth = 0;
     int x = 0;
     while (x < l.count())
     {
@@ -509,20 +671,12 @@ bool RevertQuery::ProcessRevert()
     }
     if (!passed)
     {
-        Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
-        this->Kill();
-        this->Status = StatusDone;
-        this->Result = new QueryResult();
-        this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile";
-        this->Result->Failed = true;
+        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
         return true;
     }
 
     // now we need to find the first revision that was done by some different user
     x = 0;
-    int RevID = WIKI_UNKNOWN_REVID;
-    QString content = "";
-    QString target = "";
     // FIXME: this list needs to be sorted by RevID
     while (x < l.count())
     {
@@ -530,57 +684,44 @@ bool RevertQuery::ProcessRevert()
         if (!e.attributes().contains("revid") || !e.attributes().contains("user"))
         {
             // this is fucked up piece of shit
-            Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
-            this->Kill();
-            this->Status = StatusDone;
-            this->Result = new QueryResult();
-            this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense";
-            this->Result->Failed = true;
+            this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
             Huggle::Syslog::HuggleLogs->DebugLog("Nonsense: " + this->qPreflight->Result->Data);
             return true;
         }
         if (e.attribute("user") != this->edit->User->Username)
         {
             // we got it
-            RevID = e.attribute("revid").toInt();
-            target = e.attribute("user");
-            content = e.text();
+            this->SR_RevID = e.attribute("revid").toInt();
+            this->SR_Target = e.attribute("user");
             break;
         }
-        depth++;
+        this->SR_Depth++;
         x++;
     }
     // let's check if depth isn't too low
-    if (depth == 0)
+    if (this->SR_Depth == 0)
     {
         // something is wrong
         /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
-        this->Kill();
-        this->Status = StatusDone;
-        this->Result = new QueryResult();
-        this->Result->ErrorMessage = "Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile";
-        this->Result->Failed = true;
+        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
         return true;
     }
-    // now we need to change the content of page
-    this->qRetrieve = new ApiQuery();
-    // localize me
-    QString summary = this->Summary;
-    if (summary == "")
+
+    if (this->SR_RevID == WIKI_UNKNOWN_REVID)
     {
-        summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
+        /// \todo LOCALIZE ME
+        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because no previous version could be retrieved");
+        return true;
     }
-    summary = summary.replace("$1", this->edit->User->Username)
-            .replace("$2", target)
-            .replace("$3", QString::number(depth))
-            .replace("$4", QString::number(RevID));
-    // we need to make sure there is edit suffix in revert summary for huggle
-    summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
-    this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit);
-    this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-    /// \todo LOCALIZE ME
-    this->CustomStatus = "Editing page";
+
+    this->CustomStatus = "Retrieving content of previous version";
+    // now we need to get the content of page
+    this->qRetrieve = new ApiQuery();
+    this->qRetrieve->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+    this->qRetrieve->Parameters = "prop=revisions&revids=" + QString::number(this->SR_RevID) + "&rvprop=" +
+                                  QUrl::toPercentEncoding("ids|content");
+    this->qRetrieve->SetAction(ActionQuery);
+    this->qRetrieve->Process();
     return false;
 }
 

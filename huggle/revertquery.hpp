@@ -53,14 +53,7 @@ namespace Huggle
         public slots:
             void OnTick();
         private:
-            ApiQuery *qPreflight;
-            ApiQuery *qRevert;
-            ApiQuery *qRetrieve;
-            EditQuery *EditQuerySoftwareRollback;
-            WikiEdit* edit;
-            QTimer *timer;
-            bool RollingBack;
-            bool PreflightFinished;
+            void DisplayError(QString error, QString reason = "");
             void Preflight();
             void CheckPreflight();
             bool CheckRevert();
@@ -69,6 +62,19 @@ namespace Huggle
             void Rollback();
             void Revert();
             void Exit();
+            QString SR_EditToken;
+            ApiQuery *qPreflight;
+            ApiQuery *qRevert;
+            ApiQuery *qRetrieve;
+            ApiQuery *qSR_PageToken;
+            EditQuery *EditQuerySoftwareRollback;
+            WikiEdit* edit;
+            QTimer *timer;
+            bool RollingBack;
+            bool PreflightFinished;
+            int SR_RevID;
+            int SR_Depth;
+            QString SR_Target;
     };
 }
 

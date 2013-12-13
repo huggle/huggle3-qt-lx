@@ -102,7 +102,7 @@ bool Message::Finished()
 
 void Message::Finish()
 {
-    if (Done)
+    if (this->Done)
     {
         // we really need to quit now because query is null
         return;
@@ -112,7 +112,7 @@ void Message::Finish()
         return;
     }
     // we need to get a token
-    if (token == "none")
+    if (this->token == "none")
     {
         if (!this->query->Processed())
         {
@@ -173,7 +173,7 @@ void Message::Finish()
         if (this->query->Result->Failed)
         {
             /// \todo LOCALIZE ME
-            Fail("unable to retrieve the user talk page");
+            this->Fail("unable to retrieve the user talk page");
             return;
         }
         this->ProcessTalk();
@@ -228,9 +228,9 @@ void Message::Finish()
         Huggle::Syslog::HuggleLogs->DebugLog(query->Result->Data);
     }
 
-    query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    Done = true;
-    query = NULL;
+    this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+    this->Done = true;
+    this->query = NULL;
 }
 
 void Message::ProcessSend()

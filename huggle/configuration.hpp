@@ -242,6 +242,7 @@ namespace Huggle
             int             Cache_HAN;
             //! Debug mode
             bool            SystemConfig_Dot;
+            int             IndexOfLastWiki;
 
             //////////////////////////////////////////////
             // User

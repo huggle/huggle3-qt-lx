@@ -25,6 +25,7 @@ Configuration::Configuration()
     this->UsingSSL = true;
     this->UserName = "User";
     this->Cache_HAN = 100;
+    this->IndexOfLastWiki = 0;
     this->UserConfig_HistoryLoad = true;
     this->Password = "";
     this->WelcomeMP = "Project:Huggle/Message";
@@ -461,6 +462,11 @@ void Configuration::LoadConfig()
             Configuration::HuggleConfiguration->QueueNewEditsUp = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "IndexOfLastWiki")
+        {
+            Configuration::HuggleConfiguration->IndexOfLastWiki = option.attribute("text").toInt();
+            continue;
+        }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -493,6 +499,7 @@ void Configuration::SaveConfig()
     Configuration::InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), x);
     Configuration::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), x);
     Configuration::InsertConfig("UserName", Configuration::HuggleConfiguration->UserName, x);
+    Configuration::InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), x);
     /////////////////////////////
     // Vandal network
     /////////////////////////////

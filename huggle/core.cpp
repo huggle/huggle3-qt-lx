@@ -356,7 +356,7 @@ QString Core::RetrieveTemplateToWarn(QString type)
     return "";
 }
 
-EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor)
+EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString token)
 {
     if (page == NULL)
     {
@@ -372,6 +372,10 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     _e->Page = page->PageName;
     this->PendingMods.append(_e);
     _e->text = text;
+    if (token != "")
+    {
+        _e->_Token = token;
+    }
     _e->Summary = summary;
     _e->Minor = minor;
     _e->Process();

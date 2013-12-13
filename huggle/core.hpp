@@ -169,7 +169,7 @@ namespace Huggle
                                  Query *dependency = NULL, bool nosuffix = false, bool keep = false);
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
-            EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+            EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false, QString token = "");
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched
              * This will insert it to a process list in main form
