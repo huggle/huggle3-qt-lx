@@ -716,6 +716,11 @@ void MainWindow::OnTimerTick1()
 {
     Core::HuggleCore->FinalizeMessages();
     bool RetrieveEdit = true;
+    // if garbage collector is already destroyed there is no point in doing anything in here
+    if (GC::gc == NULL)
+    {
+        return;
+    }
     GC::gc->DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
