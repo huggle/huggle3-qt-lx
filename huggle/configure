@@ -208,6 +208,7 @@ else
             checkpkg "libqt4-xml"
             checkpkg "qt4-qmake"
         else
+            checkpkg "libsqlite3-dev"
             checkpkg "libqt5webkit5-dev"
             checkpkg "qt5-qmake" 
             checkpkg "qt5-default"
