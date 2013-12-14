@@ -960,6 +960,7 @@ void MainWindow::OnTimerTick0()
         this->eq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->eq = NULL;
         this->wlt->stop();
+        this->timer1->stop();
         Core::HuggleCore->Shutdown();
     }
 }
