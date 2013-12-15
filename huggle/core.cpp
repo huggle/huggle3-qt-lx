@@ -253,6 +253,11 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
         return NULL;
     }
 
+    if (title == "")
+    {
+        section = false;
+    }
+
     Message *m = new Message(user, message, summary);
     m->title = title;
     m->Dependency = dependency;

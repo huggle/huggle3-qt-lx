@@ -87,6 +87,13 @@ namespace Huggle
         Configuration_OnNext_Revert
     };
 
+    enum Headings
+    {
+        HeadingsStandard,
+        HeadingsPageName,
+        HeadingsNone
+    };
+
     class HuggleParser;
     class WikiSite;
     class HuggleQueueFilter;
@@ -295,6 +302,7 @@ namespace Huggle
             QString         LocalConfig_NSCategoryTalk;
             QString         LocalConfig_NSPortal;
             QString         LocalConfig_NSPortalTalk;
+            Headings        LocalConfig_Headings;
             int             LocalConfig_TemplateAge;
             bool            LocalConfig_ConfirmTalk;
             bool            LocalConfig_ConfirmWL;

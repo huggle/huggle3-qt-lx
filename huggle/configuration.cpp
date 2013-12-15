@@ -874,6 +874,18 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_BlockMessage = Configuration::ConfigurationParse("block-message", config);
     Configuration::HuggleConfiguration->LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
     Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.clear();
+    // Templates
+    Configuration::HuggleConfiguration->LocalConfig_Headings = HeadingsStandard;
+    QString headings = Configuration::HuggleConfiguration->ConfigurationParse("headings", config, "standard");
+    if (headings == "page")
+    {
+        Configuration::HuggleConfiguration->LocalConfig_Headings = HeadingsPageName;
+        Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = false;
+    } else if(headings == "none")
+    {
+        Configuration::HuggleConfiguration->LocalConfig_Headings = HeadingsNone;
+        Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = false;
+    }
     QString Options = Configuration::ConfigurationParse("block-expiry-options", config);
     QStringList list = Options.split(",");
     while (list.count() > 0)

@@ -587,10 +587,13 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
     QString id = "Your edits to " + this->CurrentEdit->Page->PageName;
-    if (Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders)
+    if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsStandard)
     {
         QDateTime d = QDateTime::currentDateTime();
         id = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
+    } else if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsNone)
+    {
+        id = "";
     }
     Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, dependency, false,
                                   Configuration::HuggleConfiguration->UserConfig_SectionKeep);
