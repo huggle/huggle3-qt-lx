@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -756,6 +756,9 @@
   <action name="actionRevert_AGF">
    <property name="text">
     <string notr="true">Revert assuming good faith</string>
+   </property>
+   <property name="shortcut">
+    <string>Y</string>
    </property>
   </action>
   <action name="actionDisplay_a_session_data">
