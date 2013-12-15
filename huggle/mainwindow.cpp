@@ -982,7 +982,7 @@ void MainWindow::on_actionNext_2_triggered()
 
 void MainWindow::on_actionWarn_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -996,7 +996,7 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1010,7 +1010,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 
 void MainWindow::on_actionWarn_the_user_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1024,7 +1024,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1048,7 +1048,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1072,7 +1072,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
 void MainWindow::on_actionRevert_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1122,7 +1122,7 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1140,7 +1140,7 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1201,7 +1201,7 @@ QString MainWindow::GetSummaryText(QString text)
 
 void MainWindow::ForceWarn(int level)
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1314,7 +1314,7 @@ void MainWindow::Exit()
 
 void MainWindow::ReconnectIRC()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1365,7 +1365,7 @@ bool MainWindow::CheckEditableBrowserPage()
 
 void MainWindow::SuspiciousEdit()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !CheckEditableBrowserPage())
     {
         return;
     }
@@ -1438,7 +1438,7 @@ void MainWindow::Localize()
 
 void MainWindow::_BlockUser()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1494,7 +1494,7 @@ void MainWindow::DisplayNext(Query *q)
 
 void MainWindow::DeletePage()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1541,7 +1541,7 @@ bool MainWindow::CheckExit()
 
 void MainWindow::Welcome()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1646,7 +1646,7 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1707,7 +1707,7 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1753,7 +1753,7 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1773,7 +1773,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1868,7 +1868,7 @@ void Huggle::MainWindow::on_actionIRC_triggered()
 
 void Huggle::MainWindow::on_actionWiki_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1896,7 +1896,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
 
 void MainWindow::on_actionProtect_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1932,7 +1932,7 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 
 void MainWindow::on_actionReport_username_triggered()
 {
-    if (!CheckExit() || !CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1974,7 +1974,11 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 
 void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 {
-    if (!CheckExit())
+    if (this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (!this->CheckExit())
     {
         return;
     }
@@ -1983,7 +1987,18 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
         Core::HuggleCore->DeveloperError();
         return;
     }
-    this->Revert(Configuration::HuggleConfiguration->LocalConfig_AgfRevert);
+    bool ok;
+    QString reason = QInputDialog::getText(this, "Reason", "Please provide a reason why you want to revert this edit to previous revision",
+                                           QLineEdit::Normal, "No reason was provided by this lame user :(", &ok);
+
+    if (!ok)
+    {
+        return;
+    }
+
+    QString summary = Configuration::HuggleConfiguration->LocalConfig_AgfRevert.replace("$2", this->CurrentEdit->User->Username);
+    summary = summary.replace("$1", reason);
+    this->Revert(summary);
 }
 
 void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
@@ -2013,7 +2028,7 @@ void Huggle::MainWindow::on_actionResort_queue_triggered()
 
 void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 {
-    if (!CheckExit())
+    if (!this->CheckExit())
     {
         return;
     }
