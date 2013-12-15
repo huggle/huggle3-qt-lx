@@ -250,7 +250,7 @@ irc-connecting:            Attempting connection to IRC recent changes feed; thi
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
 irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
-irc-ws:                    Waiting for primary feed provider to stop
+irc-stop:                  Waiting for primary feed provider to stop
 irc-not:                   Feed: irc is disabled by project config
 irc-failure:               primary feed provider has failed, fallback to wiki provider
 irc-wait:                  Waiting for irc feed provider to stop

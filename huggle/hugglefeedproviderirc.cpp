@@ -361,6 +361,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (line.contains(")"))
         {
             QString xx = line.mid(0, line.indexOf(")"));
+            xx = xx.replace("\002", "");
             int size = 0;
             if (xx.startsWith("+"))
             {
@@ -372,8 +373,17 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
                 xx = xx.mid(1);
                 size = xx.toInt() * -1;
                 edit->Size = size;
+            } else
+            {
+                Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
             }
+        }else
+        {
+            Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
         }
+    } else
+    {
+        Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
     }
 
     if (line.contains(QString(QChar(3)) + "10"))
