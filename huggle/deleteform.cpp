@@ -34,7 +34,7 @@ DeleteForm::~DeleteForm()
     delete this->TP;
 }
 
-void DeleteForm::setPage(WikiPage *Page, WikiUser *User)
+void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
 {
     if (Page == NULL)
     {
@@ -50,7 +50,7 @@ void DeleteForm::setPage(WikiPage *Page, WikiUser *User)
     this->user = User;
 }
 
-void DeleteForm::getToken()
+void DeleteForm::GetToken()
 {
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
@@ -70,17 +70,17 @@ void DeleteForm::getToken()
         this->qTokenOfTalkPage->Process();
     }
     this->dt = new QTimer(this);
-    connect(this->dt, SIGNAL(timeout()), this, SLOT(onTick()));
+    connect(this->dt, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->delQueryPhase = 0;
     this->dt->start(200);
 }
 
-void DeleteForm::onTick()
+void DeleteForm::OnTick()
 {
     switch (this->delQueryPhase)
     {
         case 0:
-            this->checkDelToken();
+            this->CheckDeleteToken();
             return;
         case 1:
             this->Delete();
@@ -89,7 +89,7 @@ void DeleteForm::onTick()
     this->dt->stop();
 }
 
-void DeleteForm::checkDelToken()
+void DeleteForm::CheckDeleteToken()
 {
     if (this->qToken == NULL)
     {
@@ -251,7 +251,7 @@ void DeleteForm::on_pushButton_clicked()
     this->ui->checkBox_2->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
     this->ui->pushButton->setEnabled(false);
-    this->getToken();
+    this->GetToken();
 }
 
 void DeleteForm::on_pushButton_2_clicked()

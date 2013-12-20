@@ -40,15 +40,15 @@ namespace Huggle
         public:
             explicit DeleteForm(QWidget *parent = 0);
             ~DeleteForm();
-            void setPage(WikiPage *Page, WikiUser *User);
+            void SetPage(WikiPage *Page, WikiUser *User);
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
-            void onTick();
+            void OnTick();
         private:
-            void getToken();
+            void GetToken();
             void Delete();
-            void checkDelToken();
+            void CheckDeleteToken();
             void Failed(QString Reason);
             Ui::DeleteForm *ui;
             WikiPage *page;

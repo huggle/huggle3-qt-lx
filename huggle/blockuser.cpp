@@ -130,11 +130,37 @@ void BlockUser::CheckToken()
     // let's block them
     this->qUser = new ApiQuery();
     this->Dependency = this->qUser;
+    QString nocreate = "";
+    if (this->ui->checkBox_4->isChecked())
+    {
+        nocreate = "&nocreate";
+    }
+    QString anononly = "";
+    if (this->ui->checkBox_5->isChecked())
+    {
+        anononly = "&anononly";
+    }
+    QString noemail = "";
+    if (this->ui->checkBox_2->isChecked())
+    {
+        noemail = "&noemail";
+    }
+    QString autoblock = "";
+    if (!this->ui->checkBox_3->isChecked())
+    {
+        autoblock = "&autoblock";
+    }
+    QString allowusertalk = "";
+    if (!this->ui->checkBox->isChecked())
+    {
+        allowusertalk = "&allowusertalk";
+    }
     this->qUser->SetAction(ActionQuery);
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + "&token="
-            + QUrl::toPercentEncoding(BlockToken);
+            + QUrl::toPercentEncoding(BlockToken) + nocreate + anononly
+            + noemail + autoblock + allowusertalk;
 
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;

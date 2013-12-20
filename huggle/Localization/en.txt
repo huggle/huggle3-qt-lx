@@ -82,7 +82,7 @@ about-contributors:        Developers:
 
 === Block form ===
 <pre>
-block-title:               Block {0}
+block-title:               Block $1
 block-reason:              Reason:
 block-duration:            Duration:
 block-message:             Talk page message:
@@ -94,9 +94,10 @@ block-usertalk:            Talk
 block-usercontribs:        Contribs
 block-blockloglabel:       Block log:
 block-warnloglabel:        Warnings:
-block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address.
-block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?
-block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?
+block-sharedipwarning:     Note: $1 is tagged as a shared or dynamic IP address.
+block-sensitivewarning:    This IP address is listed as 'sensitive' for the
+following reason:\n\n   $1\n\nContinue anyway?
+block-rangeblockwarning:   $1 is already affected by a rangeblock on $2.\nThis block will override the effect of the rangeblock. Continue?
 block-token-1:             Getting token to block $1
 block-token-e1:            token can't be retrieved: $1
 block-error-no-info:       no user info was present in query (are you sysop?)
@@ -134,7 +135,7 @@ config-shownewmessages:    Show new messages bar
 config-shortcutlist:       Keyboard shortcuts
 config-shortcutaction:     Action
 config-shortcut:           Shortcut
-config-changeshortcut:     Change shortcut for {0}
+config-changeshortcut:     Change shortcut for $1
 config-noshortcut:         None
 config-defaults:           Defaults
 config-minor:              Mark as minor
@@ -172,13 +173,14 @@ config-summaryprompt:      Enter summary
 config-history:	           Download whole history of all articles
 config-defaultsprompt:     Restore defaults?
 config-logbrowsetitle:     Log file location
-config-shortcutconflict:   Shortcut '{0}' conflicts with the existing shortcut for '{1}'.
+config-shortcutconflict:   Shortcut '$1' conflicts with the existing shortcut
+for '$1'.
 config-no-colon:           You can't use : in name of queue
 </pre>
 
 === Delete form ===
 <pre>
-delete-title:              Delete {0}
+delete-title:              Delete $1
 delete-reason:             Reason:
 delete-deletionlog:        Deletion log:
 delete-rem-talk:           Delete associated talk
@@ -194,7 +196,7 @@ delete-failed-no-info:     no page info was present in query (are you sysop?)
 
 === Edit form ===
 <pre>
-edit-title:                Editing {0}
+edit-title:                Editing $1
 edit-summary:              Summary:
 edit-minor:                Minor edit
 edit-watch:                Watch this page
@@ -229,7 +231,7 @@ edit-searchwrapend:        Reached top of page, continued from end
 
 === E-mail form ===
 <pre>
-email-title:               E-mail {0}
+email-title:               E-mail $1
 email-subject:             Subject:
 email-message:             Message:
 email-ccme:                E-mail me a copy of this message
@@ -248,7 +250,7 @@ historyform-retrieving-history:        Retrieving history
 irc-connected:             Connected to IRC recent changes feed
 irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
-irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
+irc-nochannel:             IRC channel for $1 not found; using slower API queries instead
 irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
 irc-stop:                  Waiting for primary feed provider to stop
 irc-not:                   Feed: irc is disabled by project config

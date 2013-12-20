@@ -1513,7 +1513,7 @@ void MainWindow::DeletePage()
         delete this->fDeleteForm;
     }
     this->fDeleteForm = new DeleteForm(this);
-    this->fDeleteForm->setPage(this->CurrentEdit->Page, this->CurrentEdit->User);
+    this->fDeleteForm->SetPage(this->CurrentEdit->Page, this->CurrentEdit->User);
     this->fDeleteForm->show();
 }
 
