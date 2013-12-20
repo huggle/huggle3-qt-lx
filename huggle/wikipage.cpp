@@ -18,10 +18,10 @@ WikiPage::WikiPage()
     this->Contents = "";
 }
 
-WikiPage::WikiPage(QString name)
+WikiPage::WikiPage(const QString &name)
 {
-    PageName = name;
-    Site = NULL;
+    this->PageName = name;
+    this->Site = NULL;
     this->Contents = "";
 }
 

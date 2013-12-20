@@ -48,13 +48,13 @@ namespace Huggle
              * \brief Open a page but append action=render to it
              * \param url
              */
-            void DisplayPreFormattedPage(QString url);
-            void DisplayPage(QString url);
+            void DisplayPreFormattedPage(const QString &url);
+            void DisplayPage(const QString &url);
             /*!
              * \brief Display a html text in window of huggle
              * \param html
              */
-            void RenderHtml(QString html);
+            void RenderHtml(const QString &html);
             /*!
              * \brief Display a diff of an edit using it's RevID
              * Either uses an api or in case that api fails, the page is downloaded using standard rendering

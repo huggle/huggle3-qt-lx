@@ -167,7 +167,7 @@ void HistoryForm::onTick01()
         {
             size = e.attribute("size");
         }
-        QString date = "<unknown>";
+        QString date = "<Unknown>";
         if (e.attributes().contains("timestamp"))
         {
             date = e.attribute("timestamp");

@@ -41,19 +41,19 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     this->CurrentPage = page->PageName;
 }
 
-void HuggleWeb::DisplayPreFormattedPage(QString url)
+void HuggleWeb::DisplayPreFormattedPage(const QString &url)
 {
     this->ui->webView->history()->clear();
     this->ui->webView->load(url + "&action=render");
     this->CurrentPage = this->ui->webView->title();
 }
 
-void HuggleWeb::DisplayPage(QString url)
+void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->load(url);
 }
 
-void HuggleWeb::RenderHtml(QString html)
+void HuggleWeb::RenderHtml(const QString &html)
 {
     this->ui->webView->setContent(html.toUtf8());
 }
@@ -94,7 +94,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         Huggle::Syslog::HuggleLogs->Log("WARNING: unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
         this->ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
-                      + QString::number(edit->Diff) + "&action=render");
+                                + QString::number(edit->Diff) + "&action=render");
         return;
     }
 
