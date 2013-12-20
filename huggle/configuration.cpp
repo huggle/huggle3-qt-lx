@@ -78,7 +78,7 @@ Configuration::Configuration()
     this->LocalConfig_RequireEdits = 0;
     this->LocalConfig_ScoreTalk = -800;
     this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
-    this->LocalConfig_DeletionSummary = "Deleted page using Huggle";
+    this->LocalConfig_DeletionSummaries << "Deleted page using Huggle";
 
     // Reverting
     this->LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
@@ -91,7 +91,6 @@ Configuration::Configuration()
     this->LocalConfig_RollbackSummaryUnknownTarget = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
 
     // Warnings
-
     this->LocalConfig_AgfRevert = "Reverted good faith edits";
     this->LocalConfig_WarnSummary = "Warning (level 1)";
     this->LocalConfig_WarnSummary2 = "Warning (level 2)";
@@ -895,6 +894,7 @@ bool Configuration::ParseLocalConfig(QString config)
         Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.append(item);
         list.removeAt(0);
     }
+    Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries = Configuration::ConfigurationParse_QL("deletion-reasons", config, true);
     Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse
                                                  ("block-summary", config, "Notification: Blocked");
     Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");

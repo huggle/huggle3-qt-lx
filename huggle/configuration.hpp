@@ -329,7 +329,7 @@ namespace Huggle
 
             // Deleting
             QString         LocalConfig_DeletionTitle;
-            QString         LocalConfig_DeletionSummary;
+            QStringList     LocalConfig_DeletionSummaries;
             QString         LocalConfig_AssociatedDelete;
 
             // Warnings

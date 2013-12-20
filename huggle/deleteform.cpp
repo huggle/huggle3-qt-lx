@@ -16,11 +16,18 @@ using namespace Huggle;
 DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
 {
     this->ui->setupUi(this);
+    int xx = 0;
+    while (xx < Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries.count())
+    {
+        this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries.at(xx));
+        xx++;
+    }
     this->page = NULL;
     this->dt = NULL;
     this->DeleteToken = "";
     this->qDelete = NULL;
     this->TP = NULL;
+    this->ui->comboBox->setCurrentIndex(0);
     this->qTokenOfTalkPage = NULL;
     this->user = NULL;
     this->qTalk = NULL;
