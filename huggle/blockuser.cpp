@@ -159,8 +159,8 @@ void BlockUser::CheckToken()
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + "&token="
-            + QUrl::toPercentEncoding(BlockToken) + nocreate + anononly
-            + noemail + autoblock + allowusertalk;
+            + nocreate + anononly + noemail + autoblock + allowusertalk
+            + QUrl::toPercentEncoding(BlockToken);
 
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
