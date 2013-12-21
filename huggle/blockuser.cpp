@@ -133,34 +133,34 @@ void BlockUser::CheckToken()
     QString nocreate = "";
     if (this->ui->checkBox_4->isChecked())
     {
-        nocreate = "&nocreate";
+        nocreate = "&nocreate=";
     }
     QString anononly = "";
     if (this->ui->checkBox_5->isChecked())
     {
-        anononly = "&anononly";
+        anononly = "&anononly=";
     }
     QString noemail = "";
     if (this->ui->checkBox_2->isChecked())
     {
-        noemail = "&noemail";
+        noemail = "&noemail=";
     }
     QString autoblock = "";
     if (!this->ui->checkBox_3->isChecked())
     {
-        autoblock = "&autoblock";
+        autoblock = "&autoblock=";
     }
     QString allowusertalk = "";
     if (!this->ui->checkBox->isChecked())
     {
-        allowusertalk = "&allowusertalk";
+        allowusertalk = "&allowusertalk=";
     }
     this->qUser->SetAction(ActionQuery);
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
-            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + "&token="
+            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
             + nocreate + anononly + noemail + autoblock + allowusertalk
-            + QUrl::toPercentEncoding(BlockToken);
+            + "&token=" + QUrl::toPercentEncoding(BlockToken);
 
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
@@ -204,6 +204,7 @@ void BlockUser::Block()
         mb.setText("Unable to block: " + reason);
         mb.exec();
         this->ui->pushButton->setText("Block");
+        this->qUser->Result->Failed = true;
         this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
         this->ui->pushButton->setEnabled(true);
         this->t0->stop();
