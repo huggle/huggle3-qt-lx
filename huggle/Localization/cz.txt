@@ -1,39 +1,39 @@
 ﻿<pre>
-name:                      Cestina
+name:                      Čeština
 </pre>
 
 === General ===
 <pre>
-add:                       Pridat
-apply:                     Apply
-cancel:                    Zrusit
+add:                       Přidat
+apply:                     Použít
+cancel:                    Zrušit
 clear:                     Smazat
-close:                     Zavrit
-continue:                  Pokracovat
-copy:                      Copy
+close:                     Zavřít
+continue:                  Pokračovat
+copy:                      Kopíruj
 delete:                    Smazat
 error:                     Chyba
-exit:                      Ukoncit
+exit:                      Ukončit
 minimizewindow:            Minimize
 no:                        Ne
 ok:                        OK
 remove:                    Smazat
-rename:                    Prejmenovat
+rename:                    Přejmenovat
 reload:                    Obnovit
 restorewindow:             Obnovit
-save:                      Ulozit
+save:                      Uložit
 selectfile:                Browse...
 yes:                       Ano
 agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
-successful:                Uspesne
-summary:                   Komentar
+successful:                Úspěšně
+summary:                   Komentář
 </pre>
 
 === Browser ===
 <pre>
 browser-load:              Please wait, downloading diff using a web rendering fallback...
-browser-miss-summ:         Nebyl poskytnut zadny komentar k teto zmene
+browser-miss-summ:         Nebyl poskytnut žádny komentář k této změně
 </pre>
 
 === Edit types ===
@@ -51,7 +51,7 @@ edittype-report:           Reports
 edittype-revert:           Reverts
 edittype-speedytag:        Speedy deletion tags
 edittype-tag:              Other tags
-edittype-warning:          Warnings
+edittype-warning:          Varování
 </pre>
 
 === About form ===
@@ -61,9 +61,9 @@ about-contributors:        Developers:
 
 === Block form ===
 <pre>
-block-title:               Block {0}
-block-reason:              Reason:
-block-duration:            Duration:
+block-title:               Blokovat {0}
+block-reason:              Důvod:
+block-duration:            Doba:
 block-message:             Talk page message:
 block-anononly:            Block anonymous users only
 block-creation:            Block account creation
@@ -212,7 +212,7 @@ historyform-retrieving-history:        Retrieving history
 
 === IRC feed ===
 <pre>
-irc-connected:             Connected to IRC recent changes feed
+irc-connected:             Připojen k serveru IRC
 irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
@@ -249,27 +249,27 @@ list-title:                List Builder
 
 === Login ===
 <pre>
-login-intro:               Prosim zadej svoje jmeno a heslo
+login-intro:               Prosím zadej svoje jméno a heslo
 login-language:            Jazyk:
 login-project:             Projekt:
-login-username:            Uzivatel:
+login-username:            Uživatel:
 login-password:            Heslo:
-login-proxygroup:          Nastaveni proxy
+login-proxygroup:          Nastavení proxy
 login-proxy:               Use a proxy server
 login-proxyaddress:        Adresa:
 login-proxyport:           Port:
-login-proxydomain:         Domena:
-login-start:               Prihlasit
-login-translate:           Prelozit...
+login-proxydomain:         Doména:
+login-start:               Přihlásit
+login-translate:           Přeložit...
 login-captchatitle:        Captcha required to log in
 
 login-progress-start:      Pracuji...
-login-progress-language:   Nahravam lokalizace...
-login-progress-global:     Kontroluji globalni nastaveni...
-login-progress-config:     Kontroluji lokalni nastaveni...
+login-progress-language:   Nahrávám lokalizace...
+login-progress-global:     Kontroluji globalní nastaveni...
+login-progress-config:     Kontroluji lokalní nastaveni...
 login-progress-userlist:   Checking user list...
 login-progress-whitelist:  Stahuji WL...
-login-ssl:                 Pouzit SSL (vyzaduje open ssl)
+login-ssl:                 Použít SSL (vyzaduje open ssl)
 
 login-fail:                Prihlaseni selhalo :(
 login-error-admin:         Use of Huggle on this project requires an administrator account.
@@ -299,9 +299,9 @@ login-error-whitelist:     Failed to load user whitelist.
 
 === Main window ===
 <pre>
-main-page:                 Stranka
-main-user:                 Uzivatel
-main-contribs:             Contribs
+main-page:                 Stránka
+main-user:                 Uživatel
+main-contribs:             Příspěvky
 main-history:              Historie
 main-new-messages:         You have new messages; select System -> Show new messages or press M to view them.
 main-system:               System
@@ -314,9 +314,9 @@ main-system-statistics:    Statistics...
 main-system-showlog:       Show log
 main-system-showqueue:     Show queue
 main-system-showtwoqueues: Show two queues
-main-system-options:       Nastaveni
+main-system-options:       Nastavení
 main-system-logout:        Log out
-main-system-exit:          Ukoncit
+main-system-exit:          Ukončit
 main-queue:                Fronta
 main-queue-next:           Dalsi
 main-queue-trim:           Vymazat

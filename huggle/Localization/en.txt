@@ -52,6 +52,7 @@ no-token:                  No token
 
 === Browser ===
 <pre>
+browser-none:              No page is displayed now
 browser-load:              Please wait, downloading diff using a web rendering fallback...
 browser-miss-summ:         No summary was provided
 browser-diff:              Diff of page: $1 (score: $2)
@@ -864,6 +865,7 @@ editquery-token-error:     Unable to retrieve edit token
 === Unknown ===
 <pre>
 provider-primary-failure:  primary feed provider has failed, fallback to wiki provider
+rc-error:                  Unable to retrieve data from wiki feed, last error: $1
 whitelist-download:        Downloading new whitelist
 queue-widget-name:         Queue
 system-widget-name:        System logs

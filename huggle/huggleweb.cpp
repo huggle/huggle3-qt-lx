@@ -16,8 +16,7 @@ using namespace Huggle;
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
-    /// \todo LOCALIZE ME
-    this->CurrentPage = "No page is displayed now";
+    this->CurrentPage = Localizations::HuggleLocalizations->Localize("browser-none");
 }
 
 HuggleWeb::~HuggleWeb()
