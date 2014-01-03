@@ -24,7 +24,7 @@ void HuggleLog::InsertText(QString text)
 {
     QString t = this->ui->textEdit->toHtml();
     // trim
-    while (t.length() > 1200)
+    while (t.length() > 6100)
     {
         // cut the last line until we are not so full
         QString Trimmed = t.mid(0, t.lastIndexOf(">"));
