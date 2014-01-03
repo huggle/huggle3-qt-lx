@@ -1037,7 +1037,7 @@ bool Configuration::ParseUserConfig(QString config)
                   (Configuration::ConfigurationParse("RevertOnMultipleEdits", config));
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
     Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config,
-                                                           Configuration::HuggleConfiguration->LocalConfig_Ignores);
+                                                              Configuration::HuggleConfiguration->LocalConfig_Ignores);
     Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config,
                                  QString::number(Configuration::HuggleConfiguration->LocalConfig_IPScore)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,

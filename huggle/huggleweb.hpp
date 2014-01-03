@@ -13,6 +13,7 @@
 
 #include <QFrame>
 #include <QWebHistory>
+#include <QWebFrame>
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
 #include "exception.hpp"
@@ -61,6 +62,7 @@ namespace Huggle
              * \param edit
              */
             void DisplayDiff(WikiEdit *edit);
+            QString RetrieveHtml();
             static QString Encode(const QString &string);
 
         private:

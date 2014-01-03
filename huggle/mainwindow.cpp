@@ -2150,7 +2150,7 @@ void MainWindow::TimerCheckTPOnTick()
                 {
                     // if revid is 0 then there is some borked mediawiki
                     // we now check if we had previous revid, if not we just update it
-                    if (!this->LastTPRevID == WIKI_UNKNOWN_REVID)
+                    if (this->LastTPRevID == WIKI_UNKNOWN_REVID)
                     {
                         this->LastTPRevID = revid;
                     } else
@@ -2161,15 +2161,36 @@ void MainWindow::TimerCheckTPOnTick()
                             Configuration::HuggleConfiguration->NewMessage = true;
                         }
                     }
-                    this->qTalkPage->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-                    this->qTalkPage = NULL;
                 }
             }
         }
+        this->qTalkPage->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->qTalkPage = NULL;
     }
 }
 
 void Huggle::MainWindow::on_actionSimulate_message_triggered()
 {
     Configuration::HuggleConfiguration->NewMessage = true;
+}
+
+void Huggle::MainWindow::on_actionHtml_dump_triggered()
+{
+    bool ok;
+    QString name = QInputDialog::getText(this, "File", "Please provide a file name you want to dump the current source code to",
+                                           QLineEdit::Normal, "huggledump.htm", &ok);
+
+    if (!ok)
+    {
+        return;
+    }
+
+    QFile *f = new QFile(name);
+    if (!f->open(QIODevice::WriteOnly | QIODevice::Truncate))
+    {
+        Syslog::HuggleLogs->ErrorLog("Unable to write to " + name);
+        return;
+    }
+    f->write(this->Browser->RetrieveHtml().toUtf8());
+    f->close();
 }

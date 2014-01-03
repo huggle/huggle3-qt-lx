@@ -176,8 +176,9 @@ namespace Huggle
              * \param item Query that is about to be inserted to list of running queries
              */
             void AppendQuery(Query* item);
-            void LoadLocalizations();
+            double GetUptimeInSeconds();
             bool ReportPreFlightCheck();
+            void LoadLocalizations();
             int RunningQueriesGetCount();
             void LoadResources();
             //! This function is called by main thread and is used to remove edits that were already reverted
@@ -191,6 +192,8 @@ namespace Huggle
             QString HtmlIncoming;
             //! This string contains a html header
             QString HtmlHeader;
+            QString DiffHeader;
+            QString DiffFooter;
             //! This string contains a html footer
             QString HtmlFooter;
             //! Pointer to primary feed provider
@@ -207,7 +210,6 @@ namespace Huggle
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
-            double GetUptimeInSeconds();
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE

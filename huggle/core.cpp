@@ -72,7 +72,10 @@ Core::Core()
     this->Python = NULL;
 #endif
     this->HtmlHeader = "";
-    this->HtmlFooter = "</table></body></html>";
+    this->HtmlFooter = "";
+    this->HtmlIncoming = "";
+    this->DiffFooter = "";
+    this->DiffHeader = "";
     this->Main = NULL;
     this->f_Login = NULL;
     this->SecondaryFeedProvider = NULL;
@@ -829,6 +832,21 @@ void Core::LoadResources()
     vf = new QFile(":/huggle/resources/Resources/Header.txt");
     vf->open(QIODevice::ReadOnly);
     this->HtmlHeader = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/DiffBeginning.txt");
+    vf->open(QIODevice::ReadOnly);
+    this->DiffHeader = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/PageEnd.txt");
+    vf->open(QIODevice::ReadOnly);
+    this->HtmlFooter = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/DiffEnd.txt");
+    vf->open(QIODevice::ReadOnly);
+    this->DiffFooter = QString(vf->readAll());
     vf->close();
     delete vf;
     vf = new QFile(":/huggle/resources/Resources/Message.txt");

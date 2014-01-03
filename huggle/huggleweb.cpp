@@ -126,8 +126,13 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         HTML += Core::HuggleCore->HtmlIncoming;
     }
 
-    HTML += "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
-          + ":</b> " + Summary + "</td></tr>" + edit->DiffText + Core::HuggleCore->HtmlFooter;
+    HTML += Core::HuggleCore->DiffHeader + "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
+          + ":</b> " + Summary + "</td></tr>" + edit->DiffText + Core::HuggleCore->DiffFooter + Core::HuggleCore->HtmlFooter;
 
     this->ui->webView->setHtml(HTML);
+}
+
+QString HuggleWeb::RetrieveHtml()
+{
+    return this->ui->webView->page()->mainFrame()->toHtml();
 }

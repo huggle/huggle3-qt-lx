@@ -90,6 +90,7 @@
      <addaction name="actionEdit_info"/>
      <addaction name="actionList_all_QGC_items"/>
      <addaction name="actionSimulate_message"/>
+     <addaction name="actionHtml_dump"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -844,6 +845,11 @@
   <action name="actionSimulate_message">
    <property name="text">
     <string>Simulate new message info</string>
+   </property>
+  </action>
+  <action name="actionHtml_dump">
+   <property name="text">
+    <string>Webpage dump</string>
    </property>
   </action>
  </widget>
