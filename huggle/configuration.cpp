@@ -28,6 +28,7 @@ Configuration::Configuration()
     this->IndexOfLastWiki = 0;
     this->UserConfig_HistoryLoad = true;
     this->Password = "";
+    this->NewMessage = false;
     this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE
     this->PythonEngine = true;

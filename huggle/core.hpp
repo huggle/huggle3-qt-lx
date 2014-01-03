@@ -179,6 +179,7 @@ namespace Huggle
             void LoadLocalizations();
             bool ReportPreFlightCheck();
             int RunningQueriesGetCount();
+            void LoadResources();
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
             // Global variables
@@ -187,6 +188,7 @@ namespace Huggle
             MainWindow *Main;
             //! Login form
             Login *f_Login;
+            QString HtmlIncoming;
             //! This string contains a html header
             QString HtmlHeader;
             //! This string contains a html footer

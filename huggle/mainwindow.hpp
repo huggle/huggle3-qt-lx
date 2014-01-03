@@ -198,6 +198,11 @@ namespace Huggle
             //! Pointer to UAA dialog
             UAAReport *fUaaReportForm;
             WhitelistForm *fWhitelist;
+            int LastTPRevID;
+            //! Timer that is used to check if there are new messages on talk page
+            QTimer *tCheck;
+            //! Query that is used to check if talk page contains new messages
+            ApiQuery *qTalkPage;
 
         private slots:
             void on_actionExit_triggered();
@@ -268,6 +273,9 @@ namespace Huggle
             void on_actionDisplay_talk_triggered();
             void on_actionIncrease_badness_triggered();
             void on_actionDecrease_badness_triggered();
+            void TimerCheckTPOnTick();
+
+            void on_actionSimulate_message_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well

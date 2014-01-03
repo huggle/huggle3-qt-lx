@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -89,6 +89,7 @@
      <addaction name="actionResort_queue"/>
      <addaction name="actionEdit_info"/>
      <addaction name="actionList_all_QGC_items"/>
+     <addaction name="actionSimulate_message"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -694,6 +695,9 @@
    <property name="text">
     <string notr="true">Show talk</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+M</string>
+   </property>
   </action>
   <action name="actionProtect">
    <property name="text">
@@ -835,6 +839,11 @@
    </property>
    <property name="text">
     <string>Display talk</string>
+   </property>
+  </action>
+  <action name="actionSimulate_message">
+   <property name="text">
+    <string>Simulate new message info</string>
    </property>
   </action>
  </widget>

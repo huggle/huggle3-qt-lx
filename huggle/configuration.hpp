@@ -453,7 +453,8 @@ namespace Huggle
             QStringList Months;
             //! Send a message to user on good edit
             bool WelcomeEmpty;
-
+            //! This is changed to true in case that someone send a message to user
+            bool NewMessage;
             QString VandalNw_Server;
             QString VandalNw_Ident;
             bool VandalNw_Login;

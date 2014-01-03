@@ -1,0 +1,9 @@
+<table border=0>
+<tr>
+<td style="background-color:#F7A814">
+<big>You have a new talk page message, press alt + M to display your talk
+page.</big><br>
+This notification will be displayed until you visit your talk page in huggle
+</td>
+</tr>
+<table>

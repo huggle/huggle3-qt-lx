@@ -118,6 +118,16 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 
     Summary += "<b> Size change: " + size + "</b>";
 
-    this->ui->webView->setHtml(Core::HuggleCore->HtmlHeader + "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
-                                                         + ":</b> " + Summary + "</td></tr>" + edit->DiffText + Core::HuggleCore->HtmlFooter);
+    QString HTML = Core::HuggleCore->HtmlHeader;
+
+    if (Configuration::HuggleConfiguration->NewMessage)
+    {
+        // we display a notification that user received a new message
+        HTML += Core::HuggleCore->HtmlIncoming;
+    }
+
+    HTML += "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
+          + ":</b> " + Summary + "</td></tr>" + edit->DiffText + Core::HuggleCore->HtmlFooter;
+
+    this->ui->webView->setHtml(HTML);
 }

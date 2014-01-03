@@ -20,19 +20,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fReportForm = NULL;
     this->fBlockForm = NULL;
     this->fDeleteForm = NULL;
-    this->Shutdown = ShutdownOpRunning;
     this->wlt = NULL;
     this->fProtectForm = NULL;
     this->fWaiting = NULL;
     this->fWhitelist = NULL;
+    this->wq = NULL;
+    this->qNext = NULL;
+    this->RestoreQuery = NULL;
+    this->fUaaReportForm = NULL;
+    this->OnNext_EvPage = NULL;
+    this->fRemove = NULL;
+    this->qTalkPage = NULL;
+    this->eq = NULL;
+    this->RestoreEdit = NULL;
+    this->CurrentEdit = NULL;
+    this->LastTPRevID = WIKI_UNKNOWN_REVID;
+    this->Shutdown = ShutdownOpRunning;
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
     this->Localize();
-    this->wq = NULL;
     this->Status = new QLabel();
     this->ui->statusBar->addWidget(this->Status);
-    this->qNext = NULL;
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
@@ -40,9 +49,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
-    this->RestoreQuery = NULL;
-    this->fUaaReportForm = NULL;
-    this->OnNext_EvPage = NULL;
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
@@ -53,7 +59,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::RightDockWidgetArea, this->wUserInfo);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
-    this->RestoreEdit = NULL;
     this->aboutForm = new AboutForm(this);
     // we store the value in bool so that we don't need to call expensive string function twice
     bool PermissionBlock = Configuration::HuggleConfiguration->Rights.contains("block");
@@ -76,7 +81,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->SystemLog->InsertText(_log.at(c));
         c++;
     }
-    this->CurrentEdit = NULL;
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
     this->ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
@@ -134,8 +138,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionTag_2->setVisible(false);
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(OnTimerTick1()));
     this->timer1->start(200);
-    this->fRemove = NULL;
-    this->eq = NULL;
     QFile *layout = NULL;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
@@ -181,6 +183,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     Hooks::MainWindowIsLoad(this);
     this->VandalDock->Connect();
+    this->tCheck = new QTimer(this);
+    connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
+    this->tCheck->start(20000);
 }
 
 MainWindow::~MainWindow()
@@ -842,7 +847,7 @@ void MainWindow::OnTimerTick1()
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
-        t += " QGC: " + QString::number(GC::gc->list.count()) + "U: " + QString::number(WikiUser::ProblematicUsers.count());
+        t += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
     }
     this->Status->setText(t);
     // let's refresh the edits that are being post processed
@@ -1523,6 +1528,7 @@ void MainWindow::DisplayTalk()
     {
         return;
     }
+    // display a talk page
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
     this->Browser->DisplayPreFormattedPage(page);
     delete page;
@@ -1840,7 +1846,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
     if (this->CurrentEdit != NULL)
     {
         QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
-                                                                              + "?action=edit");
+                                  + "?action=edit");
     }
 }
 
@@ -1894,6 +1900,9 @@ void Huggle::MainWindow::on_actionWiki_triggered()
 void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
     this->EditablePage = false;
+    // we switch this to false so that in case we have received a message,
+    // before we display the talk page, it get marked as read
+    Configuration::HuggleConfiguration->NewMessage = false;
     this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->UserName);
 }
 
@@ -2047,6 +2056,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 
     if (this->RestoreEdit != NULL || this->RestoreQuery != NULL)
     {
+        /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("I am currently restoring another edit, please wait");
         return;
     }
@@ -2101,4 +2111,65 @@ void Huggle::MainWindow::on_actionIncrease_badness_triggered()
 void Huggle::MainWindow::on_actionDecrease_badness_triggered()
 {
     this->DecreaseBS();
+}
+
+void MainWindow::TimerCheckTPOnTick()
+{
+    if (Configuration::HuggleConfiguration->Restricted || this->ShuttingDown)
+    {
+        this->tCheck->stop();
+        return;
+    }
+    if (this->qTalkPage == NULL)
+    {
+        this->qTalkPage = new ApiQuery();
+        this->qTalkPage->SetAction(ActionQuery);
+        this->qTalkPage->Parameters = "prop=revisions&titles=User_talk:" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName);
+        this->qTalkPage->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->qTalkPage->Process();
+        return;
+    } else
+    {
+        if (!this->qTalkPage->Processed())
+        {
+            // we are still waiting for api query to finish
+            return;
+        }
+        // we need to parse the last rev id
+        QDomDocument d;
+        d.setContent(this->qTalkPage->Result->Data);
+        QDomNodeList page = d.elementsByTagName("rev");
+        // check if page exist and if it does we need to parse latest revid
+        if (page.count() > 0)
+        {
+            QDomElement _e = page.at(0).toElement();
+            if (_e.attributes().contains("revid"))
+            {
+                int revid = _e.attribute("revid").toInt();
+                if (revid != 0)
+                {
+                    // if revid is 0 then there is some borked mediawiki
+                    // we now check if we had previous revid, if not we just update it
+                    if (!this->LastTPRevID == WIKI_UNKNOWN_REVID)
+                    {
+                        this->LastTPRevID = revid;
+                    } else
+                    {
+                        if (this->LastTPRevID != revid)
+                        {
+                            this->LastTPRevID = revid;
+                            Configuration::HuggleConfiguration->NewMessage = true;
+                        }
+                    }
+                    this->qTalkPage->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+                    this->qTalkPage = NULL;
+                }
+            }
+        }
+    }
+}
+
+void Huggle::MainWindow::on_actionSimulate_message_triggered()
+{
+    Configuration::HuggleConfiguration->NewMessage = true;
 }

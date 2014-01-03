@@ -28,17 +28,12 @@ void Core::Init()
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
     Core::VersionRead();
-    QFile *vf;
 #if QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
-    vf = new QFile(":/huggle/resources/Resources/Header.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->HtmlHeader = QString(vf->readAll());
-    vf->close();
-    delete vf;
+    this->LoadResources();
     Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
     Syslog::HuggleLogs->Log("Loading configuration");
     this->Processor = new ProcessorThread();
@@ -826,6 +821,21 @@ bool Core::ReportPreFlightCheck()
 int Core::RunningQueriesGetCount()
 {
     return this->RunningQueries.count();
+}
+
+void Core::LoadResources()
+{
+    QFile *vf;
+    vf = new QFile(":/huggle/resources/Resources/Header.txt");
+    vf->open(QIODevice::ReadOnly);
+    this->HtmlHeader = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/Message.txt");
+    vf->open(QIODevice::ReadOnly);
+    this->HtmlIncoming = QString(vf->readAll());
+    vf->close();
+    delete vf;
 }
 
 void Core::TruncateReverts()
