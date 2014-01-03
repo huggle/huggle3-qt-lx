@@ -226,7 +226,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->DiffText == "")
     {
         /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("ERROR: no diff available for " + this->Page->PageName + " unable to rescore");
+        Huggle::Syslog::HuggleLogs->ErrorLog("no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
     this->ProcessingQuery->UnregisterConsumer("WikiEdit::PostProcess()");

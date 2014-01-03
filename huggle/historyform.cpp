@@ -145,8 +145,18 @@ void HistoryForm::onTick01()
     d.setContent(this->query->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
     int x=0;
+    QColor xb;
+    bool xt = false;
     while (x < l.count())
     {
+        if (xt)
+        {
+            xb = QColor(206, 202, 250);
+        } else
+        {
+            xb = QColor(224, 222, 250);
+        }
+        xt = !xt;
         QDomElement e = l.at(x).toElement();
         QString RevID;
         if (e.attributes().contains("revid"))
@@ -187,26 +197,41 @@ void HistoryForm::onTick01()
             font.setBold(true);
             QTableWidgetItem *i = new QTableWidgetItem(user);
             i->setFont(font);
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 0, i);
             i = new QTableWidgetItem(size);
             i->setFont(font);
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 1, i);
             i = new QTableWidgetItem(summary);
             i->setFont(font);
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 2, i);
             i = new QTableWidgetItem(RevID);
             i->setFont(font);
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 3, i);
             i = new QTableWidgetItem(date);
             i->setFont(font);
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 4, i);
         } else
         {
-            this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
-            this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
-            this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
-            this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
-            this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+            QTableWidgetItem *i = new QTableWidgetItem(user);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 0, i);
+            i = new QTableWidgetItem(size);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 1, i);
+            i = new QTableWidgetItem(summary);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 2, i);
+            i = new QTableWidgetItem(RevID);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 3, i);
+            i = new QTableWidgetItem(date);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 4, i);
         }
         x++;
     }

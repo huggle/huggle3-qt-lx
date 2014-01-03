@@ -129,6 +129,8 @@ void UserinfoForm::OnTick()
         int xx = 0;
         if (results.count() > 0)
         {
+            QColor xb;
+            bool xt = false;
             while (results.count() > xx)
             {
                 QDomElement edit = results.at(xx).toElement();
@@ -136,6 +138,14 @@ void UserinfoForm::OnTick()
                 {
                     continue;
                 }
+                if (xt)
+                {
+                    xb = QColor(206, 202, 250);
+                } else
+                {
+                    xb = QColor(224, 222, 250);
+                }
+                xt = !xt;
                 QString page = "unknown page";
                 if (edit.attributes().contains("title"))
                 {
@@ -153,9 +163,15 @@ void UserinfoForm::OnTick()
                 }
                 int last = this->ui->tableWidget->rowCount();
                 this->ui->tableWidget->insertRow(last);
-                this->ui->tableWidget->setItem(last, 0, new QTableWidgetItem(page));
-                this->ui->tableWidget->setItem(last, 1, new QTableWidgetItem(time));
-                this->ui->tableWidget->setItem(last, 2, new QTableWidgetItem(diff));
+                QTableWidgetItem *q = new QTableWidgetItem(page);
+                q->setBackgroundColor(xb);
+                this->ui->tableWidget->setItem(last, 0, q);
+                q = new QTableWidgetItem(time);
+                q->setBackgroundColor(xb);
+                this->ui->tableWidget->setItem(last, 1, q);
+                q = new QTableWidgetItem(diff);
+                q->setBackgroundColor(xb);
+                this->ui->tableWidget->setItem(last, 2, q);
                 xx++;
             }
         } else
