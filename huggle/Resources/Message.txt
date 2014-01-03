@@ -6,4 +6,4 @@ page.</big><br>
 This notification will be displayed until you visit your talk page in huggle
 </td>
 </tr>
-<table>
+</table>
