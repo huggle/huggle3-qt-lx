@@ -20,7 +20,7 @@ namespace Ui
 
 namespace Huggle
 {
-    //! DOCUMENT ME
+    //! Window that allows users to mass rollback the edits done by a certain user
     class HuggleMassRollback : public QDialog
     {
             Q_OBJECT

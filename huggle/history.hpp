@@ -48,8 +48,6 @@ namespace Huggle
             QString Target;
             //! Type of item
             HistoryType Type;
-        private:
-
     };
 
     /// \todo It should be possible to go back in history to review what you have you done

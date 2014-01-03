@@ -274,9 +274,7 @@ namespace Huggle
             void on_actionIncrease_badness_triggered();
             void on_actionDecrease_badness_triggered();
             void TimerCheckTPOnTick();
-
             void on_actionSimulate_message_triggered();
-
             void on_actionHtml_dump_triggered();
 
         private:
