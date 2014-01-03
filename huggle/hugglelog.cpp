@@ -23,6 +23,17 @@ HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLo
 void HuggleLog::InsertText(QString text)
 {
     QString t = this->ui->textEdit->toHtml();
+    // trim
+    while (t.length() > 1200)
+    {
+        // cut the last line until we are not so full
+        QString Trimmed = t.mid(0, t.lastIndexOf(">"));
+        if (!Trimmed.contains(">"))
+        {
+            break;
+        }
+        t = Trimmed.mid(0, Trimmed.lastIndexOf(">") + 1);
+    }
     // first we need to split the lines
     if (text.contains("\n"))
     {
