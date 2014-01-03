@@ -38,10 +38,10 @@ namespace Huggle
 
     //! This class is used to localize strings
 
-    //! Huggle is using own localization system and none other
-    //! usage of any 3rd localization system or libraries
-    //! is strictly forbidden and your commits that introduce
-    //! those will be reverted mercillesly
+    //! Huggle is using own localization system and usage of
+    //! other 3rd localization system or libraries
+    //! is strictly forbidden. Your commits that introduce
+    //! those will be reverted mercillesly.
     class Localizations
     {
         public:

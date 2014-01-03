@@ -32,13 +32,46 @@ namespace Huggle
     class Hooks
     {
         public:
+            /*!
+             * \brief Event that is called after edit pre process
+             * \param Edit that was just pre processed
+             */
             static void EditPreProcess(WikiEdit *Edit);
+            /*!
+             * \brief Event that is called after edit is post processed by internal edit processor
+             * \param Edit was just post processed by huggle internal edit processor
+             */
             static void EditPostProcess(WikiEdit *Edit);
+            /*!
+             * \brief Event that happens when edit is marked as good
+             * \param Edit
+             */
             static void OnGood(WikiEdit *Edit);
+            /*!
+             * \brief Event that happens when edit is queued for revert
+             * \param Edit
+             */
             static void OnRevert(WikiEdit *Edit);
+            /*!
+             * \brief Event that happens when user attempt to send a warning to editor of page
+             * \param User
+             */
             static void OnWarning(WikiUser *User);
+            /*!
+             * \brief Event that happens when edit is flagged as suspicious modification
+             * \param Edit
+             */
             static void Suspicious(WikiEdit *Edit);
+            /*!
+             * \brief When the score of user is changed
+             * \param User pointer to user whom score is changed
+             * \param Score New score of user
+             */
             static void BadnessScore(WikiUser *User, int Score);
+            /*!
+             * \brief Window is loaded
+             * \param window
+             */
             static void MainWindowIsLoad(MainWindow *window);
     };
 }

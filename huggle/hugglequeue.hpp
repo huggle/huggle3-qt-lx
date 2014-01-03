@@ -40,7 +40,14 @@ namespace Huggle
         public:
             explicit HuggleQueue(QWidget *parent = 0);
             ~HuggleQueue();
+            /*!
+             * \brief Insert a new item to queue
+             *  This function is automatically inserting the item to proper location, you shouldn't
+             *  call a sort function after this
+             * \param page is a pointer to wiki edit you want to insert to queue
+             */
             void AddItem(WikiEdit *page);
+            //! Switch and render next edit in queue
             void Next();
             WikiEdit *GetWikiEditByRevID(int RevID);
             bool DeleteByRevID(int RevID);
