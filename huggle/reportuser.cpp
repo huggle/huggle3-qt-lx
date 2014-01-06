@@ -46,57 +46,187 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     this->ui->tableWidget->setShowGrid(false);
+
+    QStringList header_bl;
+    this->ui->tableWidget_2->setColumnCount(8);
+    header_bl << Localizations::HuggleLocalizations->Localize("id") <<
+                 Localizations::HuggleLocalizations->Localize("time") <<
+                 Localizations::HuggleLocalizations->Localize("block-type") <<
+                 Localizations::HuggleLocalizations->Localize("block-admin") <<
+                 Localizations::HuggleLocalizations->Localize("reason") <<
+                 Localizations::HuggleLocalizations->Localize("duration") <<
+                 Localizations::HuggleLocalizations->Localize("expiry-time") <<
+                 Localizations::HuggleLocalizations->Localize("flags");
+    this->ui->tableWidget_2->setHorizontalHeaderLabels(header_bl);
+    this->ui->tableWidget_2->verticalHeader()->setVisible(false);
+    this->ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+#if QT_VERSION >= 0x050000
+// Qt5 code
+    this->ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+// Qt4 code
+    this->ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
+    this->ui->tableWidget_2->setShowGrid(false);
     this->t2 = NULL;
+    this->qBlockHistory = NULL;
     this->timer = NULL;
     /// \todo LOCALIZE ME
     this->ui->webView->setHtml("Please select a diff in list in order to open preview");
-}
-
-bool ReportUser::SetUser(WikiUser *u)
-{
-    if (this->qHistory != NULL)
-    {
-        delete this->qHistory;
-        this->qHistory = NULL;
-    }
-    this->user = u;
-    this->ui->label->setText(u->Username);
-    this->qHistory = new ApiQuery();
-    this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
-            "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
-    this->qHistory->SetAction(ActionQuery);
-    this->qHistory->Process();
-    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
-    {
-        this->ui->pushButton_4->setEnabled(false);
-    }
-    this->timer = new QTimer(this);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(Tick()));
-    this->timer->start(200);
-    return true;
 }
 
 ReportUser::~ReportUser()
 {
     if (this->qHistory != NULL)
     {
+        this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->qHistory->SafeDelete();
+    }
+    if (this->qBlockHistory != NULL)
+    {
+        this->qBlockHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
     if (this->qd != NULL)
     {
-        this->qd->SafeDelete();
+        this->qd->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
     delete this->diff;
     if (this->tq != NULL)
     {
-        this->tq->SafeDelete();
+        this->tq->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
     delete this->BlockForm;
     delete this->ui;
 }
 
+bool ReportUser::SetUser(WikiUser *u)
+{
+    if (this->qHistory != NULL)
+    {
+        this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+    }
+    this->user = u;
+    this->ui->label->setText(u->Username);
+    this->qHistory = new ApiQuery();
+    this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
+    this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
+            "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
+    this->qHistory->SetAction(ActionQuery);
+    this->qHistory->Process();
+    if (this->qBlockHistory != NULL)
+    {
+        this->qBlockHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+    }
+    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
+    {
+        this->ui->pushButton_4->setEnabled(false);
+    }
+    this->qBlockHistory = new ApiQuery();
+    this->qBlockHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
+    this->qBlockHistory->Parameters = "list=logevents&leprop=ids%7Ctitle%7Ctype%7Cuser%7Ctimestamp%7Ccomment%7Cdetails%7Ctags&letype"\
+                                      "=block&ledir=older&letitle=User:" + QUrl::toPercentEncoding(this->user->Username);
+    this->qBlockHistory->SetAction(ActionQuery);
+    this->qBlockHistory->Process();
+    this->timer = new QTimer(this);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(Tick()));
+    this->timer->start(200);
+    return true;
+}
+
 void ReportUser::Tick()
 {
+    if (this->qBlockHistory != NULL)
+    {
+        if (this->qBlockHistory->Processed())
+        {
+            QDomDocument d;
+            d.setContent(this->qBlockHistory->Result->Data);
+            QDomNodeList results = d.elementsByTagName("item");
+            int CurrentId = 0;
+            while (CurrentId < results.count())
+            {
+                QDomNode node = results.at(CurrentId);
+                QDomElement _e = results.at(CurrentId).toElement();
+                CurrentId++;
+                if (!_e.attributes().contains("logid"))
+                {
+                    continue;
+                }
+                if (!_e.attributes().contains("type"))
+                {
+                    continue;
+                } else if (_e.attribute("type") != "block")
+                {
+                    continue;
+                }
+                if (!_e.attributes().contains("action"))
+                {
+                    continue;
+                }
+                if (!_e.attributes().contains("user"))
+                {
+                    continue;
+                }
+                if (!_e.attributes().contains("timestamp"))
+                {
+                    continue;
+                }
+                if (!_e.attributes().contains("comment"))
+                {
+                    continue;
+                }
+                QString id = _e.attribute("logid");
+                QString action = _e.attribute("action");
+                QString user = _e.attribute("user");
+                QString timestamp = _e.attribute("timestamp");
+                QString comment = _e.attribute("comment");
+                QString duration = "indefinite";
+                QString expiration = "will not expire";
+                QString flags = "";
+                if (action == "unblock")
+                {
+                    duration = "unblock";
+                    expiration = "unblock";
+                    flags = "unblock";
+                }
+                QDomNodeList qlflags = node.childNodes();
+                int flag_n = 0;
+                while (flag_n < qlflags.count())
+                {
+                    QDomElement fe = qlflags.at(flag_n).toElement();
+                    flag_n++;
+                    if (fe.nodeName() != "block")
+                    {
+                        continue;
+                    }
+                    if (fe.attributes().contains("duration"))
+                    {
+                        duration = fe.attribute("duration");
+                    }
+                    if (fe.attributes().contains("expiry"))
+                    {
+                        expiration = fe.attribute("expiry");
+                    }
+                    if (fe.attributes().contains("flags"))
+                    {
+                        flags = fe.attribute("flags");
+                    }
+                }
+                this->ui->tableWidget_2->insertRow(0);
+                this->ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem(id));
+                this->ui->tableWidget_2->setItem(0, 1, new QTableWidgetItem(timestamp));
+                this->ui->tableWidget_2->setItem(0, 2, new QTableWidgetItem(action));
+                this->ui->tableWidget_2->setItem(0, 3, new QTableWidgetItem(user));
+                this->ui->tableWidget_2->setItem(0, 4, new QTableWidgetItem(comment));
+                this->ui->tableWidget_2->setItem(0, 5, new QTableWidgetItem(duration));
+                this->ui->tableWidget_2->setItem(0, 6, new QTableWidgetItem(expiration));
+                this->ui->tableWidget_2->setItem(0, 7, new QTableWidgetItem(flags));
+            }
+            this->qBlockHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+            this->qBlockHistory = NULL;
+        }
+    }
+
     if (this->qHistory == NULL)
     {
         return;
@@ -113,7 +243,8 @@ void ReportUser::Tick()
             {
                 /// \todo LOCALIZE ME
                 this->ui->pushButton->setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->LocalConfig_ReportPath);
-                this->timer->stop();
+                this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+                this->qHistory = NULL;
                 return;
             }
             QDomElement e = results.at(0).toElement();
@@ -122,7 +253,8 @@ void ReportUser::Tick()
             {
                 /// \todo LOCALIZE ME
                 this->ui->pushButton->setText("This user is already reported");
-                this->timer->stop();
+                this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+                this->qHistory = NULL;
                 return;
             }
             this->InsertUser();
@@ -132,6 +264,8 @@ void ReportUser::Tick()
             WikiUser::UpdateUser(this->user);
             /// \todo LOCALIZE ME
             this->ui->pushButton->setText("Reported");
+            this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+            this->qHistory = NULL;
             return;
         }
         return;
@@ -180,7 +314,8 @@ void ReportUser::Tick()
                 xx++;
             }
         }
-        this->timer->stop();
+        this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+        this->qHistory = NULL;
         this->ui->pushButton->setEnabled(true);
         this->ui->pushButton->setText("Report");
     }
@@ -347,10 +482,11 @@ void ReportUser::on_pushButton_clicked()
     this->ui->pushButton->setText("Retrieving current report page");
     if (this->qHistory != NULL)
     {
-        delete this->qHistory;
+        this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
 
     this->qHistory = new ApiQuery();
+    this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qHistory->SetAction(ActionQuery);
     this->qHistory->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
@@ -375,9 +511,10 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     if (this->qd != NULL)
     {
         this->qd->Kill();
-        this->qd->SafeDelete();
+        this->qd->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
     this->qd = new ApiQuery();
+    this->qd->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qd->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
             this->ui->tableWidget->item(index.row(), 3)->text() + "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
@@ -412,11 +549,12 @@ void ReportUser::on_pushButton_3_clicked()
 {
     if (this->tq != NULL)
     {
-        delete this->tq;
+        this->tq->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
 
     this->tq = new ApiQuery();
     this->tq->SetAction(ActionQuery);
+    this->tq->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->tq->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
     this->tq->Process();

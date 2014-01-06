@@ -81,6 +81,8 @@ namespace Huggle
             bool Loading;
             bool Messaging;
             BlockUser *BlockForm;
+            //! This query is used to get a block history
+            ApiQuery *qBlockHistory;
             ApiQuery *tq;
             ApiQuery *qd;
     };

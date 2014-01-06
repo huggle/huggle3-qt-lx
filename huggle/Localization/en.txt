@@ -46,8 +46,10 @@ description:               Description
 status:                    Status
 link:                      Link
 diffid:                    DiffID
+expiry-time:               Expiry time
+duration:                  Duration
 no-token:                  No token
-
+flags:                     Flags
 </pre>
 
 === Browser ===
@@ -102,6 +104,8 @@ block-rangeblockwarning:   $1 is already affected by a rangeblock on $2.\nThis b
 block-token-1:             Getting token to block $1
 block-token-e1:            token can't be retrieved: $1
 block-error-no-info:       no user info was present in query (are you sysop?)
+block-type:                Block / unblock
+block-admin:               Blocking sysop
 blocking:                  Blocking $1
 </pre>
 
