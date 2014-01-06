@@ -124,7 +124,7 @@ bool ReportUser::SetUser(WikiUser *u)
     this->qBlockHistory = new ApiQuery();
     this->qBlockHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qBlockHistory->Parameters = "list=logevents&leprop=ids%7Ctitle%7Ctype%7Cuser%7Ctimestamp%7Ccomment%7Cdetails%7Ctags&letype"\
-                                      "=block&ledir=older&letitle=User:" + QUrl::toPercentEncoding(this->user->Username);
+                                      "=block&ledir=newer&letitle=User:" + QUrl::toPercentEncoding(this->user->Username);
     this->qBlockHistory->SetAction(ActionQuery);
     this->qBlockHistory->Process();
     this->timer = new QTimer(this);

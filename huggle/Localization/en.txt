@@ -45,6 +45,7 @@ author:                    Author
 description:               Description
 status:                    Status
 link:                      Link
+reason:                    Reason
 diffid:                    DiffID
 expiry-time:               Expiry time
 duration:                  Duration
