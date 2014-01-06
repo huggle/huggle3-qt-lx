@@ -70,16 +70,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    QStringList _log = Syslog::HuggleLogs->RingLogToQStringList();
+    QList<HuggleLog_Line> _log = Syslog::HuggleLogs->RingLogToList();
     if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
     {
         Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
-    }
-    int c=0;
-    while (c<_log.count())
-    {
-        this->SystemLog->InsertText(_log.at(c));
-        c++;
     }
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
     this->ui->verticalLayout->addWidget(this->Browser);
@@ -897,6 +891,7 @@ void MainWindow::OnTimerTick1()
     }
     this->FinishRestore();
     Core::HuggleCore->TruncateReverts();
+    this->SystemLog->Render();
 }
 
 void MainWindow::OnTimerTick0()

@@ -17,89 +17,92 @@ HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLo
 {
     this->ui->setupUi(this);
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("system-widget-name"));
+    this->lock = new QMutex(QMutex::Recursive);
     this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
-}
-
-void HuggleLog::InsertText(QString text)
-{
-    QString t = this->ui->textEdit->toHtml();
-    // trim
-    while (t.length() > 6100)
-    {
-        // cut the last line until we are not so full
-        QString Trimmed = t.mid(0, t.lastIndexOf(">"));
-        if (!Trimmed.contains(">"))
-        {
-            break;
-        }
-        t = Trimmed.mid(0, Trimmed.lastIndexOf(">") + 1);
-    }
-    // first we need to split the lines
-    if (text.contains("\n"))
-    {
-        QStringList lines = text.split("\n");
-        QStringList formatted;
-        // now we format each line
-        int x = 0;
-        while (x < lines.count())
-        {
-            QString l0 = lines.at(x);
-            if (l0.contains("   "))
-            {
-                QString date = l0.mid(0, l0.indexOf("   "));
-                QString line = l0.mid(l0.indexOf("   ") + 2);
-                l0 = this->Format(date, line);
-            }
-            formatted.append(l0);
-            x++;
-        }
-        x = 0;
-        QString temp = "";
-        while (x < formatted.count())
-        {
-            temp += formatted.at(x) + "<br>\n";
-            x++;
-        }
-        t.prepend(temp);
-    } else
-    {
-        // reformat line
-        if (text.contains("   "))
-        {
-            QString date = text.mid(0, text.indexOf("   "));
-            QString line = text.mid(text.indexOf("   ") + 2);
-            text = this->Format(date, line);
-        }
-        t.prepend(text);
-    }
-
-    this->ui->textEdit->setHtml(t);
-}
-
-QString HuggleLog::Format(QString date, QString text)
-{
-    QString color = "";
-    if (text.contains("DEBUG"))
-    {
-        color = "green";
-    } else if(text.contains("WARNING"))
-    {
-        color = "orange";
-    } else if (text.contains("ERROR"))
-    {
-        color = "red";
-    }
-
-    if (color == "")
-    {
-        return "<font color=blue>" + date + "</font>" + "<font>" + HuggleWeb::Encode(text) + "</font>";
-    } else
-    {
-        return "<font color=blue>" + date + "</font>" + "<font color=" + color + ">" + HuggleWeb::Encode(text) + "</font>";
-    }
+    this->Modified = false;
 }
 
 HuggleLog::~HuggleLog()
 {
+    delete this->lock;
     delete this->ui;
+}
+
+void HuggleLog::InsertText(HuggleLog_Line line)
+{
+    this->lock->lock();
+    // we don't want to have too much text here because that makes the rendering too slow
+    while (this->Text.count() > 82)
+    {
+        this->Text.removeAt(0);
+    }
+    this->Text.append(line);
+    this->lock->unlock();
+    this->Modified = true;
+}
+
+QString HuggleLog::Format(HuggleLog_Line line)
+{
+    QString color = "";
+    switch (line.Type)
+    {
+        case HuggleLogType_Debug:
+            color = "green";
+            break;
+        case HuggleLogType_Warn:
+            color = "orange";
+            break;
+        case HuggleLogType_Normal:
+            break;
+        case HuggleLogType_Error:
+            color = "red";
+            break;
+    }
+
+    if (color == "")
+    {
+        return "<font color=blue>" + line.Date + "</font>" + "<font>&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
+    } else
+    {
+        return "<font color=blue>" + line.Date + "</font>" + "<font color=" + color + ">&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
+    }
+}
+
+void HuggleLog::Render()
+{
+    if (this->Modified)
+    {
+        int id = 0;
+        QString t = "";
+        this->lock->lock();
+        while (id < this->Text.count())
+        {
+            t = Format(this->Text.at(id)) + "<br>\n" + t;
+            id++;
+        }
+        this->Modified = false;
+        this->lock->unlock();
+        this->ui->textEdit->setHtml(t);
+    }
+}
+
+HuggleLog_Line::HuggleLog_Line(HuggleLog_Line *line)
+{
+    this->Type = line->Type;
+    this->Date = line->Date;
+    this->Text = line->Text;
+}
+
+HuggleLog_Line::HuggleLog_Line(const HuggleLog_Line &line)
+{
+    this->Type = line.Type;
+    this->Date = line.Date;
+    this->Text = line.Text;
+}
+
+HuggleLog_Line::HuggleLog_Line(QString text, QString date)
+{
+    this->Type = HuggleLogType_Normal;
+    this->Text = text;
+    this->Date = date;
 }
