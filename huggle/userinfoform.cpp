@@ -178,6 +178,7 @@ void UserinfoForm::OnTick()
         {
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
         }
+        this->ui->tableWidget->resizeRowsToContents();
         this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
         this->qContributions = NULL;
         this->timer->stop();

@@ -50,6 +50,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches any word that contains this string"));
         x++;
     }
+    this->ui->tableWidget->resizeRowsToContents();
 }
 
 ScoreWordsDbForm::~ScoreWordsDbForm()

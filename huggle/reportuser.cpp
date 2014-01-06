@@ -223,6 +223,7 @@ void ReportUser::Tick()
                 this->ui->tableWidget_2->setItem(0, 7, new QTableWidgetItem(flags));
             }
             this->qBlockHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+            this->ui->tableWidget_2->resizeRowsToContents();
             this->qBlockHistory = NULL;
         }
     }
@@ -314,6 +315,7 @@ void ReportUser::Tick()
                 xx++;
             }
         }
+        this->ui->tableWidget->resizeRowsToContents();
         this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->qHistory = NULL;
         this->ui->pushButton->setEnabled(true);

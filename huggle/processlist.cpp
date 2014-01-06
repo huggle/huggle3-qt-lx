@@ -52,6 +52,7 @@ void ProcessList::InsertQuery(Query *q)
     this->ui->tableWidget->setItem(size, 1, new QTableWidgetItem(q->QueryTypeToString()));
     this->ui->tableWidget->setItem(size, 2, new QTableWidgetItem(q->QueryTargetToString()));
     this->ui->tableWidget->setItem(size, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    this->ui->tableWidget->resizeRowToContents(size);
     q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 
@@ -93,6 +94,7 @@ void ProcessList::UpdateQuery(Query *q)
     this->ui->tableWidget->setItem(query, 1, new QTableWidgetItem(q->QueryTypeToString()));
     this->ui->tableWidget->setItem(query, 2, new QTableWidgetItem(q->QueryTargetToString()));
     this->ui->tableWidget->setItem(query, 3, new QTableWidgetItem(q->QueryStatusToString()));
+    this->ui->tableWidget->resizeRowToContents(query);
     q->UnregisterConsumer(HUGGLECONSUMER_PROCESSLIST);
 }
 

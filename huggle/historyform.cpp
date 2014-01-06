@@ -236,6 +236,7 @@ void HistoryForm::onTick01()
         x++;
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    this->ui->tableWidget->resizeRowsToContents();
     this->query = NULL;
     this->t1->stop();
 }
