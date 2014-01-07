@@ -91,6 +91,7 @@
      <addaction name="actionList_all_QGC_items"/>
      <addaction name="actionSimulate_message"/>
      <addaction name="actionHtml_dump"/>
+     <addaction name="actionEnforce_sysop_rights"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -850,6 +851,11 @@
   <action name="actionHtml_dump">
    <property name="text">
     <string>Webpage dump</string>
+   </property>
+  </action>
+  <action name="actionEnforce_sysop_rights">
+   <property name="text">
+    <string>Enforce sysop rights</string>
    </property>
   </action>
  </widget>

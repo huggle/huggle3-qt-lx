@@ -2189,3 +2189,24 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     f->write(this->Browser->RetrieveHtml().toUtf8());
     f->close();
 }
+
+void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
+{
+    if (!Configuration::HuggleConfiguration->Rights.contains("delete"))
+    {
+        Configuration::HuggleConfiguration->Rights.append("delete");
+    }
+    if (!Configuration::HuggleConfiguration->Rights.contains("protect"))
+    {
+        Configuration::HuggleConfiguration->Rights.append("protect");
+    }
+    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
+    {
+        Configuration::HuggleConfiguration->Rights.append("block");
+    }
+    this->ui->actionBlock_user->setEnabled(true);
+    this->ui->actionBlock_user_2->setEnabled(true);
+    this->ui->actionDelete_page->setEnabled(true);
+    this->ui->actionDelete->setEnabled(true);
+    this->ui->actionProtect->setEnabled(true);
+}
