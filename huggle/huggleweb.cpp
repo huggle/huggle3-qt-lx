@@ -90,7 +90,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
     if (edit->DiffText == "")
     {
-        Huggle::Syslog::HuggleLogs->Log("WARNING: unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
+        Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
         this->ui->webView->load(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                                 + QString::number(edit->Diff) + "&action=render");

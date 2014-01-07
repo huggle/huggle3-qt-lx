@@ -367,7 +367,7 @@ void MainWindow::Render()
 
         QStringList params;
         params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
-        this->tb->SetInfo(Huggle::Localizations::HuggleLocalizations->Localize("browser-diff", params));
+        this->tb->SetInfo(Localizations::HuggleLocalizations->Localize("browser-diff", params));
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());
@@ -486,22 +486,21 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     bool rollback = true;
     if (this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("Unable to revert, edit is null");
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("main-revert-null"));
         return NULL;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
     {
-        /// \todo LOCALIZE ME
+        // This shouldn't ever happen, there is no need to translate this message
+        // becase it's nearly impossible to be ever displayed
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
         return NULL;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("WARNING: Rollback token for edit " + this->CurrentEdit->Page->PageName + " could not be retrieved, fallback to manual edit");
+        Syslog::HuggleLogs->WarningLog(Localizations::HuggleLocalizations->Localize("main-revert-manual", this->CurrentEdit->Page->PageName));
         rollback = false;
     }
 

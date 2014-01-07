@@ -14,7 +14,7 @@ copy:                      Kopíruj
 delete:                    Smazat
 error:                     Chyba
 exit:                      Ukončit
-minimizewindow:            Minimize
+minimizewindow:            Minimalizovat
 no:                        Ne
 ok:                        OK
 remove:                    Smazat
@@ -22,7 +22,7 @@ rename:                    Přejmenovat
 reload:                    Obnovit
 restorewindow:             Obnovit
 save:                      Uložit
-selectfile:                Browse...
+selectfile:                Vybrat soubor...
 yes:                       Ano
 agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
@@ -304,21 +304,21 @@ main-user:                 Uživatel
 main-contribs:             Příspěvky
 main-history:              Historie
 main-new-messages:         You have new messages; select System -> Show new messages or press M to view them.
-main-system:               System
-main-system-messages:      Show new messages
-main-system-reconnectirc:  Reconnect IRC feed
-main-system-savelog:       Save log...
+main-system:               Systém
+main-system-messages:      Zobrazit nové zprávy
+main-system-reconnectirc:  Připojit k IRC
+main-system-savelog:       Uložit log...
 main-system-lists:         List Builder...
-main-system-requests:      Requests...
-main-system-statistics:    Statistics...
-main-system-showlog:       Show log
-main-system-showqueue:     Show queue
+main-system-requests:      Požadavky...
+main-system-statistics:    Statistiky...
+main-system-showlog:       Zobrazit log
+main-system-showqueue:     Zobrazit frontu
 main-system-showtwoqueues: Show two queues
 main-system-options:       Nastavení
 main-system-logout:        Log out
 main-system-exit:          Ukončit
 main-queue:                Fronta
-main-queue-next:           Dalsi
+main-queue-next:           Další
 main-queue-trim:           Vymazat
 main-queue-clear:          Clear current
 main-queue-count:          {0} items
@@ -334,8 +334,8 @@ main-revision:             Revision
 main-revision-view:        Zobrazit
 main-revision-revert:      Revertovat
 main-revision-faith:       Revert AGF
-main-revision-previous:    Predchozi
-main-revision-next:        Dalsi
+main-revision-previous:    Předchozí
+main-revision-next:        Další
 main-revision-latest:      Latest
 main-revision-sight:       Sight
 main-page-switchtotalk:    Switch to talk page

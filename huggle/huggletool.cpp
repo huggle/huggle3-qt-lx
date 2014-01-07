@@ -123,8 +123,7 @@ void HuggleTool::FinishPage()
             // there is no such a page
             this->DeleteQuery();
             this->ui->lineEdit_3->setStyleSheet("color: red;");
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->lineEdit_3->text() + " on wiki");
+            Huggle::Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("missing-page", ui->lineEdit_3->text()));
             this->tick->stop();
             this->edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->edit = NULL;

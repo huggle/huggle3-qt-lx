@@ -185,8 +185,7 @@ void BlockUser::Block()
 
     if (this->qUser->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("user can't be blocked: " + this->qUser->Result->ErrorMessage);
+        this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("block-fail", this->qUser->Result->ErrorMessage));
         return;
     }
     QDomDocument d;
