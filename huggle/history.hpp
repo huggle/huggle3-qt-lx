@@ -25,6 +25,7 @@ namespace Ui
 
 namespace Huggle
 {
+    //! Types of history items
     enum HistoryType
     {
         HistoryUnknown,

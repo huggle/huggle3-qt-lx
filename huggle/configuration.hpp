@@ -127,14 +127,12 @@ namespace Huggle
             //! Return a configuration path
             static QString GetConfigurationPath();
             static QString Bool2ExcludeRequire(bool b);
-
             /*!
              * \brief Bool2String Convert a bool to string
              * \param b bool
              * \return string
              */
             static QString Bool2String(bool b);
-
             //! Save the local configuration to file
             static void SaveConfig();
             //! Load the local configuration from disk
@@ -165,15 +163,24 @@ namespace Huggle
             static QString ConfigurationParse(QString key, QString content, QString missing = "");
             /*!
              * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
+             * The list must be either separated by comma and newline or it can be a list of values separated
+             * by comma only
              * \param key Key
              * \param content Text to parse key from
-             * \param CS Whether the values are separated by comma
+             * \param CS Whether the values are separated by comma only (if this is set to true there can be more items on a line)
              * \return List of values from text or empty list
              */
             static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
             static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
+            static QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false);
             static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
             static Configuration *HuggleConfiguration;
+            /*!
+             * \brief GetDefaultRevertSummary Retrieve default summary
+             * \param source User who should be replaced instead of $1
+             * \return Default revert summary
+             */
+            static QString GetDefaultRevertSummary(QString source);
 
             Configuration();
             ~Configuration();
@@ -442,12 +449,6 @@ namespace Huggle
             // Reverting
             //////////////////////////////////////////////
 
-            /*!
-             * \brief GetDefaultRevertSummary Retrieve default summary
-             * \param source User who should be replaced instead of $1
-             * \return Default revert summary
-             */
-            static QString GetDefaultRevertSummary(QString source);
             //! Warn you in case you want to revert a user page
             bool WarnUserSpaceRoll;
             QStringList Months;

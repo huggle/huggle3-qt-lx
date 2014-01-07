@@ -286,7 +286,6 @@ void Configuration::NormalizeConf()
     }
 }
 
-
 bool Configuration::SafeBool(QString value, bool defaultvalue)
 {
     if (value.toLower() == "true")
@@ -612,6 +611,26 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, Q
     return result;
 }
 
+QStringList Configuration::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS)
+{
+    QStringList result = Configuration::ConfigurationParse_QL(key, content, CS);
+    int x = 0;
+    QStringList trimmed;
+    while (x < result.count())
+    {
+        QString item = result.at(x);
+        if (item.endsWith(","))
+        {
+            trimmed.append(item.mid(0, item.length() - 1));
+        } else
+        {
+            trimmed.append(item);
+        }
+        x++;
+    }
+    return trimmed;
+}
+
 QList<HuggleQueueFilter *> Configuration::ConfigurationParseQueueList(QString content, bool locked)
 {
     QList<HuggleQueueFilter*> ReturnValue;
@@ -895,16 +914,20 @@ bool Configuration::ParseLocalConfig(QString config)
         Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.append(item);
         list.removeAt(0);
     }
-    Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries = Configuration::ConfigurationParse_QL("deletion-reasons", config, true);
+    Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries = Configuration::ConfigurationParseTrimmed_QL
+                                                 ("deletion-reasons", config, false);
     Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse
                                                  ("block-summary", config, "Notification: Blocked");
-    Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
+    Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse
+                                                 ("blocktime", config, "indef");
     Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse
-                                            ("template-clear-talk-page", config, "{{Huggle/Cleared}}");
-    Configuration::HuggleConfiguration->LocalConfig_Assisted = Configuration::ConfigurationParse_QL("assisted-summaries", config, true);
+                                                 ("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+    Configuration::HuggleConfiguration->LocalConfig_Assisted = Configuration::ConfigurationParse_QL
+                                                 ("assisted-summaries", config, true);
     Configuration::HuggleConfiguration->LocalConfig_ProtectReason = Configuration::ConfigurationParse
-                      ("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
-    Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config, true);
+                                                 ("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL
+                                                 ("revert-patterns", config, true);
     Configuration::HuggleConfiguration->RevertPatterns.clear();
     int xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
@@ -1033,11 +1056,12 @@ bool Configuration::ParseLocalConfig(QString config)
 
 bool Configuration::ParseUserConfig(QString config)
 {
-    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool
-                  (Configuration::ConfigurationParse("RevertOnMultipleEdits", config));
-    Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
-    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config,
-                                                              Configuration::HuggleConfiguration->LocalConfig_Ignores);
+    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse
+                                                                ("RevertOnMultipleEdits", config));
+    Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse
+                                                                ("enable", config));
+    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL
+                     ("ignore", config, Configuration::HuggleConfiguration->LocalConfig_Ignores);
     Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config,
                                  QString::number(Configuration::HuggleConfiguration->LocalConfig_IPScore)).toInt();
     Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,
