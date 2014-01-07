@@ -87,6 +87,16 @@ void WikiUser::UpdateUser(WikiUser *us)
     WikiUser::ProblematicUserListLock.unlock();
 }
 
+bool WikiUser::IsIPv4(QString user)
+{
+    return WikiUser::IPv4Regex.exactMatch(user);
+}
+
+bool WikiUser::IsIPv6(QString user)
+{
+    return WikiUser::IPv6Regex.exactMatch(user);
+}
+
 WikiUser::WikiUser()
 {
     this->UserLock = new QMutex(QMutex::Recursive);
@@ -135,13 +145,12 @@ WikiUser::WikiUser(QString user)
     this->IP = false;
     if (user != "")
     {
-        this->IP = WikiUser::IPv6Regex.exactMatch(user);
-        if (!this->IP)
+        if (WikiUser::IPv6Regex.exactMatch(user))
         {
-            if (WikiUser::IPv4Regex.exactMatch(user))
-            {
-                this->IP = true;
-            }
+            this->IP = true;
+        } else if (WikiUser::IPv4Regex.exactMatch(user))
+        {
+            this->IP = true;
         }
     }
     this->Username = user;

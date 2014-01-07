@@ -549,6 +549,23 @@ void Core::Shutdown()
     QApplication::quit();
 }
 
+bool Core::IsRevert(QString Summary)
+{
+    if (Summary != "")
+    {
+        int xx = 0;
+        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        {
+            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
+            {
+                return true;
+            }
+            xx++;
+        }
+    }
+    return false;
+}
+
 void Core::DeveloperError()
 {
     QMessageBox *mb = new QMessageBox();
@@ -593,26 +610,17 @@ void Core::PreProcessEdit(WikiEdit *_e)
         x++;
     }
 
-    if (_e->Summary != "")
+    if (this->IsRevert(_e->Summary))
     {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        _e->IsRevert = true;
+        if (this->PrimaryFeedProvider != NULL)
         {
-            if (_e->Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
-            {
-                _e->IsRevert = true;
-                if (this->PrimaryFeedProvider != NULL)
-                {
-                    this->PrimaryFeedProvider->RvCounter++;
-                }
-                if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
-                {
-                    _e->RegisterConsumer("UncheckedReverts");
-                    this->UncheckedReverts.append(_e);
-                }
-                break;
-            }
-            xx++;
+            this->PrimaryFeedProvider->RvCounter++;
+        }
+        if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+        {
+            _e->RegisterConsumer("UncheckedReverts");
+            this->UncheckedReverts.append(_e);
         }
     }
 

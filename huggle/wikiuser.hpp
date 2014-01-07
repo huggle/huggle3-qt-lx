@@ -30,6 +30,8 @@ namespace Huggle
             static void TrimProblematicUsersList();
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
+            static bool IsIPv4(QString user);
+            static bool IsIPv6(QString user);
             /*!
              * \brief Function that return static version of this user
              *

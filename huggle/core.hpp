@@ -124,6 +124,7 @@ namespace Huggle
             void ProcessEdit(WikiEdit *e);
             //! Terminate the process, call this after you release all resources and finish all queries
             void Shutdown();
+            bool IsRevert(QString Summary);
             //! Display a message box telling user that function is not allowed during developer mode
             void DeveloperError();
             //! Check the edit summary and similar in order to
