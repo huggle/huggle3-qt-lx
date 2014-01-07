@@ -49,6 +49,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
     {
         this->ui->checkBox_5->setEnabled(true);
         this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon);
+        this->ui->checkBox_5->setChecked(true);
     } else
     {
         this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTime);
