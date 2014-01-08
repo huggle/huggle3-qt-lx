@@ -41,6 +41,7 @@ namespace Huggle
              * \param user
              * \return static user from list of problematic users
              */
+            static WikiUser *RetrieveUser(QString user);
             static WikiUser *RetrieveUser(WikiUser *user);
             /*!
              * \brief List of users that are scored in this instance of huggle

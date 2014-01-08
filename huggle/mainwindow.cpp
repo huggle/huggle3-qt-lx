@@ -926,8 +926,7 @@ void MainWindow::OnTimerTick0()
                 c++;
             }
             Configuration::HuggleConfiguration->WhiteList.removeDuplicates();
-            /// \todo LOCALIZE ME
-            this->fWaiting->Status(60, "Updating whitelist");
+            this->fWaiting->Status(60, Localizations::HuggleLocalizations->Localize("updating-wl"));
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
             this->wq = new WLQuery();
@@ -944,8 +943,7 @@ void MainWindow::OnTimerTick0()
             }
             // we finished writing the wl
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-            /// \todo LOCALIZE ME
-            this->fWaiting->Status(80, "Updating user config");
+            this->fWaiting->Status(80, Localizations::HuggleLocalizations->Localize("updating-uc"));
             this->wq = NULL;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
@@ -1447,8 +1445,7 @@ void MainWindow::_BlockUser()
 
     if(this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("No one to block :o");
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("block-none"));
         return;
     }
 
@@ -1503,7 +1500,7 @@ void MainWindow::DeletePage()
 
     if (this->CurrentEdit == NULL)
     {
-        Syslog::HuggleLogs->ErrorLog("No, you cannot delete an NULL page :)");
+        Syslog::HuggleLogs->ErrorLog("No, you cannot delete a NULL page :)");
         return;
     }
 
@@ -1563,7 +1560,8 @@ void MainWindow::Welcome()
     if (this->CurrentEdit->User->GetContentsOfTalkPage() != "")
     {
         /// \todo LOCALIZE ME
-        if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
+        if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?",
+                                  QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
         }
@@ -1576,8 +1574,9 @@ void MainWindow::Welcome()
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->SetContentsOfTalkPage(Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon);
         }
-        Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon
-              , Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle, Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false);
+        Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon,
+                                      Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
+                                      Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false);
         return;
     }
 
@@ -1728,8 +1727,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 
     if (!this->CurrentEdit->User->IsIP())
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("This feature is for ip users only");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("feature-nfru"));
         return;
     }
 
@@ -1797,8 +1795,7 @@ void MainWindow::on_actionReport_user_triggered()
 {
     if (this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("No one to report");
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
     }
     this->_ReportUser();
@@ -1808,8 +1805,7 @@ void MainWindow::on_actionReport_user_2_triggered()
 {
     if(this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("No one to report");
+        Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
     }
     this->_ReportUser();
@@ -1875,15 +1871,13 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     {
         return;
     }
-    /// \todo LOCALIZE ME
-    Syslog::HuggleLogs->Log("Switching to wiki provider");
+    Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-switch-rc"));
     Core::HuggleCore->PrimaryFeedProvider->Stop();
     this->ui->actionIRC->setChecked(false);
     this->ui->actionWiki->setChecked(true);
     while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("Waiting for primary feed provider to stop");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-stop"));
         Sleeper::usleep(200000);
     }
     delete Core::HuggleCore->PrimaryFeedProvider;

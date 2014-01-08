@@ -21,11 +21,16 @@ QMutex WikiUser::ProblematicUserListLock(QMutex::Recursive);
 
 WikiUser *WikiUser::RetrieveUser(WikiUser *user)
 {
+    return WikiUser::RetrieveUser(user->Username);
+}
+
+WikiUser *WikiUser::RetrieveUser(QString user)
+{
     WikiUser::ProblematicUserListLock.lock();
     int User = 0;
     while (User < WikiUser::ProblematicUsers.count())
     {
-        if (user->Username == WikiUser::ProblematicUsers.at(User)->Username)
+        if (user == WikiUser::ProblematicUsers.at(User)->Username)
         {
             WikiUser *u = WikiUser::ProblematicUsers.at(User);
             WikiUser::ProblematicUserListLock.unlock();

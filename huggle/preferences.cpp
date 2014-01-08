@@ -167,15 +167,15 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UserConfig_SectionKeep = this->ui->checkBox_17->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = this->ui->checkBox_11->isChecked();
     Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
-    if (ui->radioButton_5->isChecked())
+    if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;
     }
-    if (ui->radioButton_4->isChecked())
+    if (this->ui->radioButton_4->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Revert;
     }
-    if (ui->radioButton_3->isChecked())
+    if (this->ui->radioButton_3->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Next;
     }

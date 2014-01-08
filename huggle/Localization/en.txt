@@ -1,4 +1,4 @@
-﻿<pre>
+<pre>
 name:                      English
 </pre>
 
@@ -109,6 +109,7 @@ block-error-no-info:       no user info was present in query (are you sysop?)
 block-type:                Block / unblock
 block-admin:               Blocking sysop
 blocking:                  Blocking $1
+block-none:                There is no user that I can block
 </pre>
 
 === Closing form ===
@@ -263,6 +264,7 @@ irc-stop:                  Waiting for primary feed provider to stop
 irc-not:                   Feed: irc is disabled by project config
 irc-failure:               primary feed provider has failed, fallback to wiki provider
 irc-wait:                  Waiting for irc feed provider to stop
+irc-switch-rc:             Switching to wiki RC feed
 </pre>
 
 === List form ===
@@ -882,5 +884,9 @@ function-miss:             Function is not available
 missing-aiv:               This project doesn't support AIV system
 merging:                   Merging
 missing-page:              There is no page $1 on this wiki
+updating-wl:               Updating whitelist...
+updating-uc:               Updating user configuration page at huggle.css on wiki
+feature-nfru:              This feature is for ip users only
+report-no-user:            No user has been selected to report, please select some user first
 </pre>
 
