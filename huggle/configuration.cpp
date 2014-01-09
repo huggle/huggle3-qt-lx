@@ -124,6 +124,7 @@ Configuration::Configuration()
     this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->TrimOldWarnings = true;
     this->AskUserBeforeReport = true;
+    this->SystemConfig_LanguageSanity = false;
     this->UserConfig_SectionKeep = true;
     this->SystemConfig_Dot = false;
     this->QueueNewEditsUp = false;

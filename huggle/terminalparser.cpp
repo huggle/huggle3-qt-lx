@@ -48,6 +48,11 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->_SafeMode = true;
             valid = true;
         }
+        if (text == "--language-test")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_LanguageSanity = true;
+            valid = true;
+        }
         if (text == "--dot")
         {
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
@@ -105,6 +110,8 @@ void TerminalParser::DisplayHelp()
     cout << "  --safe: Start huggle in special mode where lot of stuff is skipped during load" << endl;
     cout << "  --dot: Debug on terminal only mode" << endl;
     cout << "  --syslog [file]: Will write a logs to a file" << endl;
+    cout << "  --language-test: Will perform CPU expensive language test on startup, which report warnings found in localization files.\n"\
+            "                   this option is useful for developers and people who create localization files." << endl;
     cout << "  -h | --help: Display this help" << endl<< endl;
     cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }

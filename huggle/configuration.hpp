@@ -253,6 +253,7 @@ namespace Huggle
             //! This path is used when Log2File is true to write the logs to
             QString         SystemConfig_SyslogPath;
             bool            SystemConfig_UpdatesEnabled;
+            bool            SystemConfig_LanguageSanity;
             int             Cache_HAN;
             //! Debug mode
             bool            SystemConfig_Dot;

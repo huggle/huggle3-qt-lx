@@ -566,6 +566,34 @@ bool Core::IsRevert(QString Summary)
     return false;
 }
 
+void Core::TestLanguages()
+{
+    if (Configuration::HuggleConfiguration->SystemConfig_LanguageSanity)
+    {
+        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(0);
+        QList<QString> keys = english->Messages.keys();
+        int language = 1;
+        while (language < Localizations::HuggleLocalizations->LocalizationData.count())
+        {
+            Language *l = Localizations::HuggleLocalizations->LocalizationData.at(language);
+            int x = 0;
+            while (x < keys.count())
+            {
+                if (!l->Messages.contains(keys.at(x)))
+                {
+                    Syslog::HuggleLogs->WarningLog("Language " + l->LanguageName + " is missing key " + keys.at(x));
+                } else if (english->Messages[keys.at(x)] == l->Messages[keys.at(x)])
+                {
+                    Syslog::HuggleLogs->WarningLog("Language " + l->LanguageName + " has key " + keys.at(x)
+                            + " but its content is identical to english version");
+                }
+                x++;
+            }
+            language++;
+        }
+    }
+}
+
 void Core::DeveloperError()
 {
     QMessageBox *mb = new QMessageBox();
@@ -806,6 +834,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("ru");
     Localizations::HuggleLocalizations->LocalInit("sv");
     Localizations::HuggleLocalizations->LocalInit("zh");
+    this->TestLanguages();
 }
 
 bool Core::ReportPreFlightCheck()

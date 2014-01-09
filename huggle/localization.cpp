@@ -26,6 +26,12 @@ Language *Localizations::MakeLanguage(QString text, QString name)
     int p = 0;
     while (p < keys.count())
     {
+        if (keys.at(p).startsWith("//") || keys.at(p).startsWith("<"))
+        {
+            // this is comment in language file
+            p++;
+            continue;
+        }
         if (keys.at(p).contains(":"))
         {
             QString line = keys.at(p);
