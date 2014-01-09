@@ -16,7 +16,6 @@
 #include <QFile>
 #include <QList>
 #include <QMap>
-#include "exception.hpp"
 
 namespace Huggle
 {

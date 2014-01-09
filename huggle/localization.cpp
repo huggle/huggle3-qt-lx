@@ -32,14 +32,6 @@ Language *Localizations::MakeLanguage(QString text, QString name)
             p++;
             continue;
         }
-        if (keys.at(p).startsWith("@"))
-        {
-            // this language is using identical text purposefuly so we replace
-            // text with at symbol which means "use english locs"
-            l->Messages.insert(key, "@");
-            p++;
-            continue;
-        }
         if (keys.at(p).contains(":"))
         {
             QString line = keys.at(p);
@@ -49,6 +41,14 @@ Language *Localizations::MakeLanguage(QString text, QString name)
             }
             QString key = line.mid(0, line.indexOf(":"));
             QString lang = line.mid(line.indexOf(":") + 1);
+            if (keys.at(p).startsWith("@"))
+            {
+                // this language is using identical text purposefuly so we replace
+                // text with at symbol which means "use english locs"
+                l->Messages.insert(key, "@");
+                p++;
+                continue;
+            }
             while (lang.startsWith(" "))
             {
                 lang = lang.mid(1);
