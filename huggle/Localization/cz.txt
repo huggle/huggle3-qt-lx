@@ -16,7 +16,7 @@ error:                     Chyba
 exit:                      Ukončit
 minimizewindow:            Minimalizovat
 no:                        Ne
-ok:                        OK
+@ok:                        OK
 remove:                    Smazat
 rename:                    Přejmenovat
 reload:                    Obnovit
@@ -28,7 +28,7 @@ agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
 successful:                Úspěšně
 summary:                   Komentář
-id:                        ID
+@id:                        ID
 type:                      Typ
 target:                    Cíl
 user:                      Uživatel
@@ -178,50 +178,6 @@ delete-reason:             Důvod:
 delete-deletionlog:        Deletion log:
 delete-rem-talk:           Delete associated talk
 delete-notify:             Notify creator
-</pre>
-
-=== Edit form ===
-<pre>
-edit-title:                Editing {0}
-edit-summary:              Summary:
-edit-minor:                Minor edit
-edit-watch:                Watch this page
-edit-page:                 Page
-edit-edit:                 Edit
-edit-view:                 View
-edit-page-savetofile:      Save to file...
-edit-page-save:            Save
-edit-page-cancel:          Cancel
-edit-edit-undo:            Undo
-edit-edit-redo:            Redo
-edit-edit-cut:             Cut
-edit-edit-copy:            Copy
-edit-edit-paste:           Paste
-edit-edit-delete:          Delete
-edit-edit-selectall:       Select All
-edit-edit-find:            Find
-edit-view-syntax:          Syntax colouring
-edit-matchcase:            Match case
-edit-find:                 Find:
-edit-replace:              Replace:
-edit-findnext:             Next
-edit-findprevious:         Previous
-edit-replaceall:           Replace all
-edit-edittab:              Edit
-edit-previewtab:           Preview
-edit-changestab:           Changes
-edit-searchnotfound:       Phrase not found
-edit-searchwrapstart:      Reached end of page, continued from top
-edit-searchwrapend:        Reached top of page, continued from end
-</pre>
-
-=== E-mail form ===
-<pre>
-email-title:               E-mail {0}
-email-subject:             Subject:
-email-message:             Message:
-email-ccme:                E-mail me a copy of this message
-email-send:                Send
 </pre>
 
 === History form ===

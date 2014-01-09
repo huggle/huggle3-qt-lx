@@ -201,50 +201,6 @@ delete-edsc:               Unable to delete page because $1
 delete-failed-no-info:     no page info was present in query (are you sysop?)
 </pre>
 
-=== Edit form ===
-<pre>
-edit-title:                Editing $1
-edit-summary:              Summary:
-edit-minor:                Minor edit
-edit-watch:                Watch this page
-edit-page:                 Page
-edit-edit:                 Edit
-edit-view:                 View
-edit-page-savetofile:      Save to file...
-edit-page-save:            Save
-edit-page-cancel:          Cancel
-edit-edit-undo:            Undo
-edit-edit-redo:            Redo
-edit-edit-cut:             Cut
-edit-edit-copy:            Copy
-edit-edit-paste:           Paste
-edit-edit-delete:          Delete
-edit-edit-selectall:       Select All
-edit-edit-find:            Find
-edit-view-syntax:          Syntax colouring
-edit-matchcase:            Match case
-edit-find:                 Find:
-edit-replace:              Replace:
-edit-findnext:             Next
-edit-findprevious:         Previous
-edit-replaceall:           Replace all
-edit-edittab:              Edit
-edit-previewtab:           Preview
-edit-changestab:           Changes
-edit-searchnotfound:       Phrase not found
-edit-searchwrapstart:      Reached end of page, continued from top
-edit-searchwrapend:        Reached top of page, continued from end
-</pre>
-
-=== E-mail form ===
-<pre>
-email-title:               E-mail $1
-email-subject:             Subject:
-email-message:             Message:
-email-ccme:                E-mail me a copy of this message
-email-send:                Send
-</pre>
-
 === History form ===
 <pre>
 historyform-no-info:                   No edit info
@@ -264,34 +220,6 @@ irc-not:                   Feed: irc is disabled by project config
 irc-failure:               primary feed provider has failed, fallback to wiki provider
 irc-wait:                  Waiting for irc feed provider to stop
 irc-switch-rc:             Switching to wiki RC feed
-</pre>
-
-=== List form ===
-<pre>
-list-actions:              Actions and Filters...
-list-browsetitle:          Add text file to list
-list-combine:              Combine
-list-copyto:               Copy to:
-list-count:                {0} items
-list-deleteconfirm:        Delete list '{0}'?
-list-duplicatename:        A list with the name '{0}' already exists. Choose another name.
-list-intersect:            Intersect
-list-limit:                Up to:
-list-listempty:            No items in list\nEnter a source and click "Add"
-list-nolists:              No lists defined\nClick "Add" to create one
-list-query-cancelled:      Cancelled.
-list-query-fail:           Query failed.
-list-query-noresults:      Query returned no results.
-list-query-progress:       Running query...
-list-query-results:        {0} results returned.
-list-renameprompt:         Enter new name:
-list-replace:              Replace
-list-savefailed:           Unable to save list:
-list-savetitle:            Save list
-list-sourcetype:           Source type:
-list-start:                From:
-list-stop:                 Stop
-list-title:                List Builder
 </pre>
 
 === Login ===
@@ -435,7 +363,7 @@ main-addqueue:             Add...
 main-savelogtitle:         Save log
 main-usermessageother:     Other message...
 main-advanced:             Advanced...
-main-stats:                {0} edits per minute, {1} reverts per minute
+main-stats:                $1 edits per minute, $2 reverts per minute
 
 main-tip-revertwarn:       Revert this revision, and issue a user warning
 main-tip-nextdiff:         Show the next revision in the queue
