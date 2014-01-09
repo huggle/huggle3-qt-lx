@@ -726,6 +726,7 @@ void MainWindow::OnTimerTick1()
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
+        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("Failure of primary feed provider, trying to recover");
         if (!Core::HuggleCore->PrimaryFeedProvider->Restart())
         {
@@ -1434,6 +1435,9 @@ void MainWindow::Localize()
     this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-talk"));
     this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
     this->ui->actionExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
+    this->ui->menuTools->setTitle(Localizations::HuggleLocalizations->Localize("main-tools"));
+    this->ui->actionShow_ignore_list_of_current_wiki->setText(Localizations::HuggleLocalizations->Localize("main-tools-il"));
+    this->ui->actionDisplay_a_session_data->setText(Localizations::HuggleLocalizations->Localize("main-tools-sess"));
 }
 
 void MainWindow::_BlockUser()
@@ -1582,6 +1586,7 @@ void MainWindow::Welcome()
 
     if (Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes.count() == 0)
     {
+        // This error should never happen so we don't need to localize this
         Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
         return;
     }
@@ -1590,6 +1595,7 @@ void MainWindow::Welcome()
 
     if (message == "")
     {
+        // This error should never happen so we don't need to localize this
         Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
         return;
     }
@@ -1988,6 +1994,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
         return;
     }
     bool ok;
+    /// \todo LOCALIZE ME
     QString reason = QInputDialog::getText(this, "Reason", "Please provide a reason why you want to revert this edit to previous revision",
                                            QLineEdit::Normal, "No reason was provided by this lame user :(", &ok);
 

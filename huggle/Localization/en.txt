@@ -386,6 +386,10 @@ main-revision-previous:    Previous
 main-revision-next:        Next
 main-revision-latest:      Latest
 main-revision-sight:       Sight
+main-tools:                Tools
+main-tools-sess:           Display session info
+main-tools-wl:             Display whitelist
+main-tools-il:             Show ignore list of current wiki
 main-page-switchtotalk:    Switch to talk page
 main-page-switchtosubject: Switch to subject page
 main-page-switchtoarticle: Switch to article

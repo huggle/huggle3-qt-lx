@@ -630,7 +630,7 @@ bool Login::ProcessOutput()
     QString Result = this->LoginQuery->Result->Data;
     if (!Result.contains(("<login result")))
     {
-        /// \todo LOCALIZE ME
+        Syslog::HuggleLogs->DebugLog(Result);
         this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug log for precise information");
         return false;
     }
@@ -638,7 +638,7 @@ bool Login::ProcessOutput()
     Result = Result.mid(Result.indexOf("result=\"") + 8);
     if (!Result.contains("\""))
     {
-        /// \todo LOCALIZE ME
+        Syslog::HuggleLogs->DebugLog(Result);
         this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug log for precise information");
         return false;
     }
@@ -659,9 +659,9 @@ bool Login::ProcessOutput()
 
     if (Result == "WrongPass")
     {
+        /// \bug This sometimes doesn't work properly
         this->ui->lineEdit_3->setFocus();
-        /// \todo LOCALIZE ME
-        this->DisplayError("Your password is not correct");
+        this->DisplayError(Localizations::HuggleLocalizations->Localize("login-error-password"));
         return false;
     }
 
@@ -682,7 +682,6 @@ QString Login::GetToken()
     QString token = this->Token;
     if (!token.contains(Login::Test))
     {
-        // this is invalid token?
         /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
         Syslog::HuggleLogs->DebugLog("The token didn't contain the correct string, token was " + token);
@@ -691,7 +690,6 @@ QString Login::GetToken()
     token = token.mid(token.indexOf(Login::Test) + Login::Test.length());
     if (!token.contains("\""))
     {
-        // this is invalid token?
         /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
         Syslog::HuggleLogs->DebugLog("The token didn't contain the closing mark, token was " + token);
@@ -758,7 +756,6 @@ void Login::OnTimerTick()
         case LoginDone:
             break;
     }
-
 
     if (this->_Status == LoginFailed)
     {

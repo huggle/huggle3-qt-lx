@@ -28,11 +28,32 @@ agf:                       Revert as good faith edit with custom reason
 import:                    Import from global conf
 successful:                Úspěšně
 summary:                   Komentář
+id:                        ID
+type:                      Typ
+target:                    Cíl
+user:                      Uživatel
+size:                      Velikost
+date:                      Datum
+page:                      Stránka
+time:                      Čas
+version:                   Verze
+// this is just a translation of name in general, for example "Name of user" or "Name of file"
+general-name:              Jméno
+author:                    Autor
+description:               Description
+status:                    Stav
+link:                      Odkaz
+reason:                    Důvod
+diffid:                    DiffID
+expiry-time:               Datum vypršení
+duration:                  Doba
+no-token:                  Chybí token
+flags:                     Flagy
 </pre>
 
 === Browser ===
 <pre>
-browser-load:              Please wait, downloading diff using a web rendering fallback...
+browser-load:              Prosím vyčkej, nepodařilo se stáhnout diff pomocí api a proto používám pomalejší web rendering...
 browser-miss-summ:         Nebyl poskytnut žádny komentář k této změně
 </pre>
 
@@ -56,7 +77,7 @@ edittype-warning:          Varování
 
 === About form ===
 <pre>
-about-contributors:        Developers:
+about-contributors:        Vývojáři:
 </pre>
 
 === Block form ===
@@ -64,13 +85,13 @@ about-contributors:        Developers:
 block-title:               Blokovat {0}
 block-reason:              Důvod:
 block-duration:            Doba:
-block-message:             Talk page message:
-block-anononly:            Block anonymous users only
-block-creation:            Block account creation
+block-message:             Poslat tuto zprávu uživateli:
+block-anononly:            Blokovat pouze anonymní uživatele
+block-creation:            Blokovat vytvoření účtu
 block-autoblock:           Enable autoblocks
 block-email:               Block e-mail
-block-usertalk:            Talk
-block-usercontribs:        Contribs
+block-usertalk:            Diskuzní stránka
+block-usercontribs:        Příspěvky
 block-blockloglabel:       Block log:
 block-warnloglabel:        Warnings:
 block-sharedipwarning:     Note: {0} is tagged as a shared or dynamic IP address.
@@ -80,14 +101,14 @@ block-rangeblockwarning:   {0} is already affected by a rangeblock on {1}.\nThis
 
 === Closing form ===
 <pre>
-closing-whitelist:         Updating user whitelist...
+closing-whitelist:         Probíhá update white listu...
 closing-config:            Updating configuration subpage...
 </pre>
 
 === Configuration form ===
 <pre>
 config-summ:               Custom revert summaries for templates
-config-title:              Options
+config-title:              Nastavení
 config-rememberme:         Remember my username
 config-rememberpassword:   Remember my password
 config-autowhitelist:      Automatically whitelist users
@@ -152,8 +173,8 @@ config-shortcutconflict:   Shortcut '{0}' conflicts with the existing shortcut f
 
 === Delete form ===
 <pre>
-delete-title:              Delete {0}
-delete-reason:             Reason:
+delete-title:              Smazat {0}
+delete-reason:             Důvod:
 delete-deletionlog:        Deletion log:
 delete-rem-talk:           Delete associated talk
 delete-notify:             Notify creator
@@ -205,18 +226,18 @@ email-send:                Send
 
 === History form ===
 <pre>
-historyform-no-info:                   No edit info
-historyform-retrieve-history:          Retrieve history
-historyform-retrieving-history:        Retrieving history
+historyform-no-info:                   Není otevřen diff
+historyform-retrieve-history:          Stáhnout historii
+historyform-retrieving-history:        Stahuji historii
 </pre>
 
 === IRC feed ===
 <pre>
 irc-connected:             Připojen k serveru IRC
-irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
+irc-connecting:            Pokouším se připojit k IRC serveru...
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
 irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
-irc-error:                 Unable to connect to IRC recent changes feed. Using slower API queries instead
+irc-error:                 Nepodařilo se připojit k IRC serveru, používám pomalejší API systém
 </pre>
 
 === List form ===
@@ -269,15 +290,15 @@ login-progress-global:     Kontroluji globalní nastaveni...
 login-progress-config:     Kontroluji lokalní nastaveni...
 login-progress-userlist:   Checking user list...
 login-progress-whitelist:  Stahuji WL...
-login-ssl:                 Použít SSL (vyzaduje open ssl)
+login-ssl:                 Použít SSL (vyžaduje open ssl)
 
-login-fail:                Prihlaseni selhalo :(
+login-fail:                Přihlášení selhalo :(
 login-error-admin:         Use of Huggle on this project requires an administrator account.
 login-error-age:           Use of Huggle on this project requires an account at least {0} days old.
 login-error-alldisabled:   Huggle is currently disabled on all projects.
 login-error-approval:      Use of Huggle on this project requires approval.
 login-error-autoconfirmed: Use of Huggle on this project requires that your account is autoconfirmed.
-login-error-cancelled:     Cancelled.
+login-error-cancelled:     Zrušeno.
 login-error-captcha:       Incorrect password or confirmation code.
 login-error-config:        Failed to load configuration pages!
 login-error-count:         Use of Huggle on this project requires at least {0} edits.
@@ -288,7 +309,7 @@ login-error-language:      Failed to load message files
 login-error-nocaptcha:     Captcha not solved
 login-error-noconfig:      This project does not have a Huggle configuration page
 login-error-nouser:        User does not exist
-login-error-password:      Incorrect password
+login-error-password:      Chybné heslo
 login-error-projdisabled:  Huggle is currently disabled on this project.
 login-error-rollback:      Use of Huggle on this project requires rollback.
 login-error-unknown:       Unable to log in.
@@ -326,6 +347,7 @@ main-queue-query:          Running query...
 main-queue-reset:          Reset
 main-queue-clearall:       Clear all
 main-queue-options:        Manage Queues...
+main-tools:                Nástroje
 main-goto:                 Go to
 main-goto-mytalk:          My talk page
 main-goto-mycontribs:      My contributions
