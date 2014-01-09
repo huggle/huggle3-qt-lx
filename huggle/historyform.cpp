@@ -307,7 +307,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
     this->RetrievingEdit = true;
     // check if we don't have this edit in a buffer
     int x = 0;
-    int revid = this->ui->tableWidget->item(index.row(), 3)->text().toInt();
+    int revid = this->ui->tableWidget->item(index.row(), 4)->text().toInt();
     if (revid == 0)
     {
         this->RetrievingEdit = false;
@@ -329,7 +329,7 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
     WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
-    w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());
+    w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 1)->text());
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
     w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
