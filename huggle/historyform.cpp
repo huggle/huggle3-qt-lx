@@ -204,6 +204,32 @@ void HistoryForm::onTick01()
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
         }
 
+        WikiUser *wu = WikiUser::RetrieveUser(user);
+        if (wu != NULL)
+        {
+            if (wu->IsReported)
+            {
+                icon = QIcon(":/huggle/pictures/Resources/blob-reported.png");
+            } else if (wu->WarningLevel > 0)
+            {
+                switch(wu->WarningLevel)
+                {
+                    case 1:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-1.png");
+                        break;
+                    case 2:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-2.png");
+                        break;
+                    case 3:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-3.png");
+                        break;
+                    case 4:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-4.png");
+                        break;
+                }
+            }
+        }
+
         if (this->CurrentEdit->RevID == RevID.toInt())
         {
             QFont font;
