@@ -13,6 +13,7 @@
   <wiki name="nowiki" url="no.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#no.wikipedia" wl="no"/>
   <wiki name="orwiki" url="or.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#or.wikipedia" wl="or"/>
   <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ru.wikipedia" wl="ru"/>
+  <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#zh.wikipedia" wl="zh"/>
   <wiki name="es.wikivoyage" url="es.wikivoyage.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#es.wikivoyage" wl="es.wikivoyage"/>
   <wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test"/>
 </db>

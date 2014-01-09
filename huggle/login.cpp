@@ -157,8 +157,9 @@ void Login::DB()
             if (wiki.open(QIODevice::WriteOnly))
             {
                 wiki.write(l.at(0).toElement().text().toUtf8());
-                Core::HuggleCore->LoadDB();
+                wiki.close();
             }
+            Core::HuggleCore->LoadDB();
             Reload();
         }
         this->timer->stop();
