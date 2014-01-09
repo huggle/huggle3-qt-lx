@@ -99,8 +99,7 @@ block-usercontribs:        Contribs
 block-blockloglabel:       Block log:
 block-warnloglabel:        Warnings:
 block-sharedipwarning:     Note: $1 is tagged as a shared or dynamic IP address.
-block-sensitivewarning:    This IP address is listed as 'sensitive' for the
-following reason:\n\n   $1\n\nContinue anyway?
+block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   $1\n\nContinue anyway?
 block-rangeblockwarning:   $1 is already affected by a rangeblock on $2.\nThis block will override the effect of the rangeblock. Continue?
 block-token-1:             Getting token to block $1
 block-fail:                Unable to block user, $1
