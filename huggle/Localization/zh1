@@ -1,0 +1,778 @@
+<pre>
+name:                      中文（繁體中文）
+</pre>
+
+=== General ===
+<pre>
+add:                       添加
+apply:                     應用
+cancel:                    取消
+clear:                     清除
+close:                     關閉
+continue:                  繼續
+copy:                      複製
+delete:                    刪除
+error:                     錯誤
+exit:                      退出
+minimizewindow:            最小化
+no:                        否
+ok:                        確定
+remove:                    移除
+rename:                    重命名
+restorewindow:             還原
+save:                      保存
+selectfile:                流覽...
+yes:                       是
+agf:                    善意推定回退，並自訂理由
+import:                 由全域設置導入
+</pre>
+
+=== Edit types ===
+<pre>
+edittype-blocknote:        封禁通知
+edittype-deletenote:       提刪通知
+edittype-deletetag:        提刪標記
+edittype-deletereq:        其他提刪操作
+edittype-manual:           人工編輯
+edittype-message:          使用者消息
+edittype-note:             其他消息
+edittype-prodtag:          提案刪除
+edittype-protectreq:       保護請求
+edittype-report:           報告
+edittype-revert:           回退
+edittype-speedytag:        速刪標記
+edittype-tag:              其他標記
+edittype-warning:          警告
+</pre>
+
+=== About form ===
+<pre>
+about-contributors:        貢獻者:
+</pre>
+
+=== Block form ===
+<pre>
+block-title:               封禁 {0}
+block-reason:              原因:
+block-duration:            時長:
+block-message:             討論頁消息:
+block-anononly:            僅匿名使用者
+block-creation:            禁止建立新帳戶
+block-autoblock:           啟用自動封禁
+block-email:               禁止電子郵件
+block-usertalk:            討論
+block-usercontribs:        用戶貢獻
+block-blockloglabel:       封禁日誌:
+block-warnloglabel:        警告:
+block-sharedipwarning:     提示: {0}已被標記為共用的IP位址.
+block-sensitivewarning:    這個IP位址已經被標記為'敏感的':\n\n   {0}\n\n繼續?
+block-rangeblockwarning:   {0}已經受到了自動封禁{1}的影響.\n這次封禁將會覆蓋自動封禁設置. 繼續?
+</pre>
+
+=== Closing form ===
+<pre>
+closing-whitelist:         更新用戶白名單...
+closing-config:            更新設置頁...
+</pre>
+
+=== Configuration form ===
+<pre>
+config-summ:               自訂範本回退原因
+config-title:              選項
+config-rememberme:         記住用戶名
+config-rememberpassword:   記住密碼
+config-autowhitelist:      自動添加用戶至白名單
+config-openinbrowser:      在新流覽器視窗打開連結
+config-shownewedits:       查看選定頁面的新修改
+config-preloads:           啟用差異預載
+config-ircmode:            如果可能，使用IRC作為最近更改來源
+config-ircport:            IRC埠
+config-difffontsize:       差異字型大小
+config-logfile:            日誌檔
+config-viewlocalconfig:    查看本地設置資料夾
+config-trayicon:           顯示通知區域圖示
+config-startupmessage:     顯示啟動訊息
+config-showlog:            顯示日誌
+config-showqueue:          顯示撤銷佇列
+config-rightalignqueue:    在視窗右側顯示佇列
+config-showtooltips:       在功能表列顯示工具提示
+config-shownewmessages:    顯示新消息提示欄
+config-shortcutlist:       鍵盤快速鍵
+config-shortcutaction:     動作
+config-shortcut:           快捷方式
+config-changeshortcut:     修改{0}的快捷方式
+config-noshortcut:         無
+config-defaults:           默認
+config-minor:              標記為小修改
+config-watchlist:          添加到監視清單
+config-defaultsummary:     人工修改的預設編輯摘要
+config-undosummary:        撤銷自身編輯的默認編輯摘要
+config-confirmmultiple:    同一用戶的多個貢獻時確認歷史版本
+config-confirmsame:        回退用戶的編輯時確認歷史版本
+config-confirmselfrevert:  回退自身編輯時確認歷史版本
+config-confirmwarned:      回退被警告用戶編輯時確認歷史版本
+config-confirmrange:       回退在同一/16範圍內的匿名使用者編輯時確認歷史版本
+config-confirmpage:        忽略頁面時確認歷史版本
+config-autoadvance:        回退之後將下一個編輯移入佇列
+config-userollback:        如果可用則使用回退功能
+config-revertsummaries:    回退摘要在功能表中可編輯
+config-clearsummaries:     人工輸入的摘要會被記住;點擊此處清除
+config-reportlinkexamples: 在報告破壞時提供連結
+config-extendreports:      更多破壞後擴展報告
+config-autoreportgroup:    自動報告
+config-autoreport:         用戶的最後一次警告
+config-reportnone:         不做任何事
+config-reportprompt:       提示報告
+config-reportauto:         自動提交報告
+config-templates:          使用者範本消息
+config-templatetext:       顯示文字
+config-template:           範本
+config-highlightgroup:     語法高亮顏色
+config-useadminfunctions:  如果可用則使用管理員選項
+config-promptforblock:     在給用戶最後一次警告時提示封禁
+config-blockreason:        默認封禁理由
+config-blocktime:          默認封禁時長
+config-blocktimeanon:      匿名使用者
+config-blocktimereg:       註冊用戶
+config-summaryprompt:      輸入摘要
+config-history:            下載所有頁面的所有歷史
+config-defaultsprompt:     恢復默認?
+config-logbrowsetitle:     日誌檔位置
+config-shortcutconflict:   快捷方式'{0}'與已有的'{1}'衝突.
+</pre>
+
+=== Delete form ===
+<pre>
+delete-title:              刪除{0}
+delete-reason:             原因:
+delete-deletionlog:        刪除日誌:
+delete-rem-talk:           刪除相關的討論頁
+delete-notify:             通知創建者
+</pre>
+
+=== Edit form ===
+<pre>
+edit-title:                正在編輯{0}
+edit-summary:              摘要:
+edit-minor:                小修改
+edit-watch:                監視本頁
+edit-page:                 頁面
+edit-edit:                 編輯
+edit-view:                 查看
+edit-page-savetofile:      保存到檔...
+edit-page-save:            保存
+edit-page-cancel:          取消
+edit-edit-undo:            撤銷
+edit-edit-redo:            重做
+edit-edit-cut:             剪切
+edit-edit-copy:            複製
+edit-edit-paste:           粘貼
+edit-edit-delete:          刪除
+edit-edit-selectall:       全選
+edit-edit-find:            查找
+edit-view-syntax:          語法高亮
+edit-matchcase:            區分大小寫
+edit-find:                 查找:
+edit-replace:              替換:
+edit-findnext:             下一個
+edit-findprevious:         上一個
+edit-replaceall:           全部替換
+edit-edittab:              編輯
+edit-previewtab:           預覽
+edit-changestab:           差異
+edit-searchnotfound:       短語未找到
+edit-searchwrapstart:      已到達文章底部,從頂部繼續搜索
+edit-searchwrapend:        已到達文章頂部,從底部繼續搜索
+</pre>
+
+=== E-mail form ===
+<pre>
+email-title:               發送電子郵件給{0}
+email-subject:             主題:
+email-message:             信息:
+email-ccme:                給我發送一份副本
+email-send:                發送
+</pre>
+
+=== IRC feed ===
+<pre>
+irc-connected:             已連接最近更改IRC
+irc-connecting:            嘗試連接最近更改IRC，請稍候…
+irc-disconnected:          與IRC連接斷開，重新連接中…
+irc-nochannel:             未找到{0}的IRC連接，使用較慢的API請求
+irc-error:                 無法連接到IRC頻道，使用較慢的API請求
+</pre>
+
+=== List form ===
+<pre>
+list-actions:              動作與篩檢程式...
+list-browsetitle:          加入文字檔到列表
+list-combine:              合併
+list-copyto:               複製到：
+list-count:                {0}個項目
+list-deleteconfirm:        刪除列表'{0}'?
+list-duplicatename:        列表名'{0}'已存在，請更換一個名字
+list-intersect:            Intersect
+list-limit:                上限：
+list-listempty:            列表為空\n鍵入一個來源並點擊‘加入’
+list-nolists:              未定義列表\n點擊"添加"來創建
+list-query-cancelled:      已取消。
+list-query-fail:           請求失敗
+list-query-noresults:      沒有返回結果
+list-query-progress:       請求中
+list-query-results:        {0}個結果
+list-renameprompt:         輸入新名字
+list-replace:              替換
+list-savefailed:           無法保存列表:
+list-savetitle:            保存列表
+list-sourcetype:           來源類型:
+list-start:                從:
+list-stop:                 停止
+list-title:                列表構建器
+</pre>
+
+=== Login ===
+<pre>
+login-language:            語言:
+login-project:             計畫:
+login-username:            用戶名:
+login-password:            密碼:
+login-proxygroup:          代理設置
+login-proxy:               使用代理伺服器
+login-proxyaddress:        地址:
+login-proxyport:           埠:
+login-proxydomain:         域:
+login-start:               登入
+login-translate:           翻譯...
+login-captchatitle:        需要輸入驗證碼
+
+login-progress-start:      登入中...
+login-progress-language:   更新消息檔...
+login-progress-global:     檢查全域設置...
+login-progress-config:     檢查設置頁面...
+login-progress-userlist:   檢查用戶列表...
+login-progress-whitelist:  獲取白名單...
+
+login-error-admin:         這個計畫上需要管理員許可權
+login-error-age:           這個計畫上要求你的帳戶註冊至少{0}天
+login-error-alldisabled:   當前Huggle被全域禁用
+login-error-approval:      這個計畫上需要批准方可使用Huggle
+login-error-autoconfirmed: 這個計畫要求你的帳戶需要是自動確認使用者
+login-error-cancelled:     取消.
+login-error-captcha:       密碼錯誤或驗證碼錯誤
+login-error-config:        載入設置頁面失敗
+login-error-count:         這個計畫要求你至少有{0}次編輯
+login-error-disabled:      未對你的帳戶啟用，檢查用戶設置頁
+login-error-global:        無法載入全域設置頁
+login-error-invalid:       無效的用戶名
+login-error-language:      載入消息檔失敗
+login-error-nocaptcha:     驗證碼未解開
+login-error-noconfig:      這個計畫沒有Huggle設置頁
+login-error-nouser:        用戶不存在
+login-error-password:      密碼錯誤
+login-error-projdisabled:  這個計畫Huggle被禁用
+login-error-rollback:      這個計畫使用Huggle需要回退許可權
+login-error-unknown:       無法登入
+login-error-userlist:      無法載入用戶列表
+login-error-version:       版本過期，請更新至最新版本
+login-error-whitelist:     無法載入白名單
+</pre>
+
+=== Main window ===
+<pre>
+main-page:                 頁面
+main-user:                 用戶
+main-contribs:             貢獻
+main-history:              歷史
+main-new-messages:         你有新消息。選擇系統 -> 顯示新消息或者按M查看
+main-system:               系統
+main-system-messages:     顯示新消息
+main-system-reconnectirc:  重新連接IRC
+main-system-savelog:       保存日誌...
+main-system-lists:         列表建設器...
+main-system-requests:      請求...
+main-system-statistics:    統計...
+main-system-showlog:       顯示日誌
+main-system-showqueue:     顯示佇列
+main-system-showtwoqueues: 顯示2個佇列
+main-system-options:       選項...
+main-system-logout:        登出
+main-system-exit:          退出
+main-queue:                佇列
+main-queue-next:           下一個
+main-queue-trim:           削減
+main-queue-clear:          清空當前的
+main-queue-count:          {0}個項目
+main-queue-query:          運行請求...
+main-queue-reset:          重設
+main-queue-clearall:       全部清除
+main-queue-options:        管理佇列...
+main-goto:                 到
+main-goto-mytalk:          我的討論頁
+main-goto-mycontribs:      我的貢獻
+main-revision-decline:     否決版本
+main-revision:             版本
+main-revision-view:        查看
+main-revision-revert:      回退
+main-revision-faith:       善意推定回退
+main-revision-previous:    先前
+main-revision-next:        之後
+main-revision-latest:      最新
+main-revision-sight:       Sight
+main-page-switchtotalk:    切換至討論頁
+main-page-switchtosubject: 切換到主題頁
+main-page-switchtoarticle: 切換到條目
+main-page-viewlatest:      查看最新版本
+main-page-history:         收取歷史
+main-page-historypage:     查看歷史頁
+main-page-edit:            編輯
+main-page-tag:             標記
+main-page-reqdeletion:     請求刪除
+main-page-reqprotection:   請求保護
+main-page-watch:           監視
+main-page-unwatch:         取消監視
+main-page-purge:           Purge
+main-page-patrol:          標記巡查
+main-page-move:            移動...
+main-page-protect:         保護...
+main-page-delete:          刪除...
+main-page-restore:         恢復這個版本
+main-user-info:            查看使用者資訊
+main-user-ignore:          無視
+main-user-unignore:        取消無視
+main-user-contribs:        收取貢獻
+main-user-talk:            查看對話頁
+main-user-message:         消息...
+main-user-email:           E-mail...
+main-user-warn:            警告...
+main-user-report:          報告
+main-user-block:           封禁...
+main-browser:              流覽器
+main-browser-newtab:       新標籤
+main-browser-closetab:     關閉標籤
+main-browser-closeothers:  關閉其他標籤
+main-browser-back:         後退
+main-browser-forward:      前進
+main-browser-open:         用外部流覽器查看
+main-browser-newedits:     查看新編輯
+main-browser-newcontribs:  查看新貢獻依據用戶
+main-help:                 幫助
+main-help-documentation:   文檔
+main-help-feedback:        回饋
+main-help-about:           關於Huggle...
+main-addqueue:             添加...
+main-savelogtitle:         保存日誌
+main-usermessageother:     其他消息...
+main-advanced:             高級...
+main-stats:                {0}編輯/秒, {1}回退/秒
+
+main-tip-revertwarn:       回退並警告用戶
+main-tip-nextdiff:         查看佇列中下一個版本
+main-tip-revert:           回退這個版本
+main-tip-template:         像使用者發送範本消息
+main-tip-warn:             警告用戶
+main-tip-cancel:           取消所有未進行的動作
+main-tip-undo:             撤銷最近的動作
+main-tip-browserback:      後退
+main-tip-browserforward:   前進
+main-tip-browseropen:      在外部流覽器打開
+main-tip-browsernewtab:    新標籤
+main-tip-browserclosetab:  關閉標籤
+main-tip-history:          獲得頁面歷史
+main-tip-historyprev:      查看上一個版本
+main-tip-historynext:      查看下一個版本
+main-tip-historylast:      查看最新版本
+main-tip-historydifftocur: 查看與當前版本差異
+main-tip-contribs:         獲得用戶貢獻
+main-tip-contribsprev:     查看該用戶的上一個版本
+main-tip-contribsnext:     查看該用戶的下一個版本
+main-tip-contribslast:     查看該用戶的最新版本
+main-tip-pageview:         查看這個版本
+main-tip-pageedit:         編輯本頁
+main-tip-pagewatch:        監視本頁
+main-tip-pagetag:          標記本頁
+main-tip-pagetagdelete:    提刪本頁
+main-tip-pagedelete:       刪除本頁
+main-tip-userinfo:         顯示使用者資訊
+main-tip-usertalk:         顯示使用者對話頁
+main-tip-usermessage:      給他發送消息
+main-tip-userignore:       忽視該用戶所有貢獻
+main-tip-userreport:       上報該用戶
+main-tip-userblock:        警告該用戶
+main-revision-acceptpend:   接受該版本
+</pre>
+
+=== Message form ===
+<pre>
+message-title:             消息{0}
+message-help:              指明標題和/或摘要。如果沒有摘要，標題或被使用。如果沒有標題，就不會插入標題頭
+message-subject:           標題:
+message-message:           消息:
+message-summary:           摘要:
+message-autosign:          自動加入簽名
+</pre>
+
+=== Move form ===
+<pre>
+move-title:                移動{0}
+move-target:               目標:
+move-reason:               原因:
+move-movetalk:             移動討論頁
+</pre>
+
+=== Prod form ===
+<pre>
+prod-title:                提刪{0}
+prod-reason:               原因:
+</pre>
+
+=== Protect form ===
+<pre>
+protect-title:             保護{0}
+protect-request-title:     請求保護{0}
+protect-reason:            原因:
+protect-expiry:            到期:
+protect-log:               保護日誌:
+protect-currentlevel:      當前保護級別:
+protect-type:              保護類型:
+protect-none:              無
+protect-semiprotection:    半保護
+protect-fullprotection:    全保護
+protect-moveprotection:    移動保護
+</pre>
+
+=== Queue form ===
+<pre>
+queue-title:               佇列
+queue-queues:              佇列:
+queue-typegroup:           佇列類型
+queue-listselector:        列表:
+queue-listbuilder:         列表構建器...
+queue-sortorder:           排序順序:
+queue-removeviewed:        查看後移除編輯
+queue-removeold:           移除同一頁面舊的編輯
+queue-removeafter:         移除之後的編輯
+queue-removeaftertime:     分鐘
+queue-preload:             允許選取該佇列的時候預讀取
+queue-ignorepages:         忽略對忽略清單中頁面的編輯
+queue-traynotification:    當新的版本進入佇列時顯示託盤提示
+queue-diffsgroup:          差異
+queue-nodiffs:             只有查看版本的時候顯示差異
+queue-preloaddiffs:        佇列活躍時預讀取差異
+queue-alldiffs:            載入佇列中所有版本的差異
+queue-pagefiltersgroup:    頁面標題篩檢程式
+queue-pageregex:           標題符合規則運算式:
+queue-namespaces:          名字空間:
+queue-applylabel:          點擊應用來對當前列表啟用篩檢程式.
+queue-editfiltersgroup:    編輯篩檢程式
+queue-userregex:           用戶名符合規則運算式:
+queue-summaryregex:        摘要符合規則運算式:
+queue-filternewpage:       新頁面
+queue-filterownuserspace:  用戶自己的用戶空間
+queue-filteranonymous:     匿名使用者
+queue-filterignored:       忽略用戶
+queue-filterreverts:       回退
+queue-filternotifications: 提示
+queue-filterwarnings:      警告
+queue-filtertags:          標記
+queue-filterbot:           機器人編輯
+queue-filterassisted:      協助編輯
+queue-filterhuggle:        Huggle 編輯
+queue-filterme:            我的編輯
+queue-examplelabel1:       要求這個屬性
+queue-examplelabel2:       排除這個屬性
+queue-examplelabel3:       不檢查這個屬性
+queue-usergroup:           只顯示這些使用者的編輯
+</pre>
+
+=== Queue trim form ===
+<pre>
+queuetrim-title:           削減佇列
+queuetrim-age:             拋棄早於……的內容
+queuetrim-ageunit:         分鐘
+</pre>
+
+=== Requests form ===
+<pre>
+requests-title:            請求
+requests-cancelall:        全部取消
+requests-cancelled:        已取消
+requests-inprogress:       進行中
+requests-failed:           失敗
+requests-completed:        完成
+requests-time:             時間
+requests-type:             類型
+requests-query:            佇列請求
+</pre>
+
+=== Report form ===
+<pre>
+report-title:              Report {0}
+report-reason:             Reason:
+report-message:            Message:
+report-log:                Warnings for this user:
+</pre>
+
+=== Revert form ===
+<pre>
+revert-title:              回退{0}
+revert-summary:            回退摘要（留空則使用默認）
+revert-currentonly:        只回退選中的版本
+</pre>
+
+=== Revert and warn form ===
+<pre>
+revertandwarn-title:       回退並警告{0}
+</pre>
+
+=== Reverting ===
+<pre>
+revert-confirm-ignored:    回退白名單用戶'{0}'?
+revert-confirm-multiple:   將會回退多次編輯'{0}'. 繼續?
+revert-confirm-page:       回退針對忽略頁面的編輯'{0}'?
+revert-confirm-range:      目標頁面的作者, {1},是和當前作者 {0}同一範圍的,可能是同一個人。請確認目標版本是正確的，繼續?
+revert-confirm-same:       將會回退到該用戶的另一個版本 {0}. 繼續?
+revert-confirm-self:       回退你自己的編輯?
+revert-confirm-warned:     將會回退至該用戶的編輯： {0};他被警告過，繼續?
+revert-error-first:        唯一版本無法回退.
+revert-only:               該頁面的唯一編輯.
+revert-creator:            最後一次編輯是由創建者編輯的, {0}.
+revert-delete-instead:     是否刪除?
+revert-speedy-instead:     標記速刪?
+</pre>
+
+=== Speedy form ===
+<pre>
+speedy-title:              速刪標籤 {0}
+speedy-reason:             理由:
+speedy-parameters:         參數:
+speedy-notifycreator:      告知創建者
+</pre>
+
+=== Statistics form ===
+<pre>
+stats-title:               統計
+stats-actions:             本次運行的動作:
+stats-session:             時間: {0}
+stats-edits:               編輯
+stats-assisted:            協助編輯
+stats-huggle:              Huggle 編輯
+stats-reverts:             回退
+stats-warnings:            警告
+stats-reports:             上報
+stats-tags:                標記
+stats-notifications:       提醒
+stats-blocks:              封禁
+stats-deletes:             刪除
+stats-protections:         保護
+stats-allusers:            所有用戶
+stats-me:                  我
+stats-ignored:             忽略用戶
+stats-anon:                匿名
+stats-bots:                機器人
+stats-other:               其他
+</pre>
+
+=== Tag form ===
+<pre>
+tag-title:                 標記{0}
+tag-tagselector:           添加標記:
+tag-tags:                  標記:
+tag-summary:               摘要:
+tag-insertatend:           在頁面末尾插入
+</pre>
+
+=== Update form ===
+<pre>
+update-title:              有新版本
+update-notification:       當前版本已過期.
+update-required:           你需要更新至最新版本 {0}.
+update-optional:           推薦更新至新版本, {0}, 並可能在未來變成強制性.
+update-prompt:             下載並運行新版本?
+update-download:           更新
+update-progress:           下載新版本...
+update-error:              下載失敗
+</pre>
+
+=== User info form ===
+<pre>
+userinfo-title:            '{0}'的使用者資訊
+userinfo-anonymous:        匿名:
+userinfo-ignored:          白名單的:
+userinfo-edits:            編輯次數:
+userinfo-sessionedits:     本次編輯:
+userinfo-sharedip:         共用/動態IP:
+userinfo-blocklog:         封禁:
+userinfo-warnlog:          警告:
+</pre>
+
+=== Warning form ===
+<pre>
+warning-title:             警告{0}
+warning-levelgroup:        警告層級
+warning-levelauto:         自動
+warning-level1:            層級1
+warning-level2:            層級2
+warning-level3:            層級3
+warning-level4:            層級4 (最終)
+warning-warntype:          警告類型:
+warning-warnlog:           該用戶的警告:
+</pre>
+
+=== XfD form ===
+<pre>
+xfd-title:                 提交{0} 至刪除
+xfd-category:              類別:
+xfd-nominationtype:        提交類別:
+xfd-notify:                告知創建者
+xfd-reason:                原因:
+</pre>
+
+=== Web requests ===
+<pre>
+error-apidisabled:         MediaWiki API被禁用
+error-exception:           收取'{0}'時出錯
+error-fail:                 無法獲得'{0}'
+error-loggedout:           已被登出，重新登入...
+error-noresponse:          無反應
+error-pagemissing:         頁面不存在
+error-reloginfail:         無法重新登入，請嘗試重新啟動Huggle
+error-timeout:             請求超時
+error-unknown:             未知錯誤
+
+retrying:                  重試...
+
+block-done:                已封禁'{0}'
+block-fail:                未封禁 '{0}'
+block-progress:            封禁'{0}'中...
+
+blocklog-fail:             無法獲得 '{0}'的封禁日誌
+blocklog-none:             沒有封禁日誌'{0}'
+blocklog-progress:         獲取封禁日誌'{0}'...
+
+blocknotify-fail:          為告知'{0}'關於封禁
+blocknotify-progress:      告知'{0}' 關於封禁...
+
+delete-done:               刪除'{0}'
+delete-fail:               未刪除'{0}'
+delete-progress:           刪除'{0}'中...
+
+deletelog-fail:            無法獲得'{0}'的刪除日誌
+deletelog-none:             沒有刪除日誌'{0}'
+deletelog-progress:        獲取刪除日誌 '{0}'...
+
+diff-deleted:              該版本已被刪除.
+diff-fail:                 無法獲取 '{0}' 的差異
+
+reqdelete-duplicate:       頁面已被標記
+reqdelete-tagfail:         為標記'{0}'為刪除討論
+reqdelete-redirectfail:    重定向頁，未設置重定向頁提刪程式
+reqdelete-tagprogress:     標記'{0}'為提刪...
+
+reqdelete-subpageprogress: 為'{0}'創建提刪子頁面...
+reqdelete-subpagefail:     未為 '{0}'創建提刪子頁面
+reqdelete-logprogress:     添加'{0}' 到提刪日誌
+reqdelete-logfail:         未將 '{0}'加入到提刪日誌
+
+edit-fail:                 編輯 '{0}'
+edit-progress:             編輯'{0}'...
+
+email-done:                e-mail 已發送給'{0}'
+email-fail:                發送至'{0}'失敗
+email-progress:            正在發郵件給'{0}'...
+
+history-fail:              獲取'{0}'歷史失敗
+history-progress:          獲取 '{0}'歷史中 ({1})...
+
+move-done:                 將'{0}'移動到'{1}'
+move-fail:                 未移動 '{0}'到 '{1}'
+move-progress:             移動'{0}'到 '{1}'中...
+
+notify-fail:               未告知'{0}'的創建者
+notify-unknowncreator:     無法找到頁面創建者
+
+patrol-duplicate:          頁面已被巡查
+patrol-done:               標記'{0}'為巡查
+patrol-fail:               未標記 '{0}'為巡查
+patrol-notfound:           無法找到最近更改ID,頁面過久
+patrol-progress:           標記'{0}'為已巡查中...
+
+protect-done:              已更改'{0}'保護級別
+protect-fail:              未更改 '{0}'保護級別
+protect-progress:          正在更改'{0}'保護級別...
+
+protectlog-fail:           無法獲得 '{0}'保護日誌
+protectlog-none:           無保護日誌 '{0}'
+protectlog-progress:       獲得'{0}'保護日誌中...
+
+purge-done:                Purged '{0}'
+purge-fail:                無法 purge '{0}'
+purge-progress:            Purging '{0}'
+
+queue-refresh-fail:        刷新佇列'{0}'出錯
+
+report-duplicate:          用戶已被提交
+report-fail:               未提報'{0}'
+report-progress:           提報'{0}'...
+
+saveuserconfig-done:       已更新用戶設置頁
+saveuserconfig-fail:       未更新用戶設置頁
+saveuserconfig-progress:   更新用戶設置頁...
+
+loadglobalconfig-fail:     未載入全域設置頁
+loadprojectconfig-fail:    無法載入計畫設置頁
+loaduserconfig-fail:       無法載入用戶設置頁
+
+reqprotection-badformat:   請求頁面格式未知
+reqprotection-duplicate:   已請求保護
+reqprotection-fail:        未為 '{0}'請求保護
+reqprotection-progress:     請求保護 '{0}'...
+
+revert-cannotundo:         編輯衝突無法撤銷
+revert-conflict:           頁面被被忽略使用者'{0}'編輯
+revert-fail:               未回退'{0}'
+revert-nochange:           目標版本和當前版本相同
+revert-nootheruser:        沒有其他用戶編輯過該頁
+revert-progress:           回退中'{0}'...
+
+tag-alreadytagged:         頁面已被標記
+tag-deleted:               頁面已被刪除
+tag-fail:                  未標記 '{0}'
+tag-progress:              標記'{0}'中...
+
+sight-done:                標記 '{1}' 的版本 {0} 為sighted
+sight-fail:                無法sight revision {0} of '{1}'
+sight-progress:            正在revision {0} of '{1}' as sighted
+
+speedy-fail:               未標記'{0}'為速刪
+speedy-progress:           標記'{0}' 為速刪...
+
+warnlog-fail:              無法獲得 '{0}'警告日誌
+warnlog-none:              '{0}'已被警告
+warnlog-progress:          獲得'{0}'警告日誌...
+
+unwatch-done:              移除'{0}'自監視清單
+unwatch-fail:              無法從監視清單移除 '{0}' 
+unwatch-progress:          移除'{0}' 自監視清單...
+
+usermessage-duplicate:     關於同一件事情的消息已經存在
+usermessage-fail:          未發送消息給 '{0}'
+usermessage-progress:      發送消息'{0}'...
+
+watch-done:                已添加'{0}' 到監視清單
+watch-fail:                未監視'{0}' 
+watch-progress:            添加'{0}' 到監視清單...
+
+warn-alreadyfinal:         已有最後警告
+warn-alreadyblocked:       用戶已被封禁
+warn-alreadyreported:     用戶已被上報
+warn-oldedit:              用戶在最後一次被警告後未編輯
+warn-recent:               在 {0}秒前剛被警告
+warn-fail:                 未警告'{0}'
+warn-progress:             警告'{0}'...
+</pre>
+
+=== API ===
+<pre>
+api-help:                  API請求沒有參數
+</pre>
