@@ -21,6 +21,7 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
     this->layout->setMargin(0);
     this->layout->setSpacing(0);
     this->xx = new QWidget();
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
     this->frame = new QFrame();
     this->ui->scrollArea->setWidget(this->xx);
     this->xx->setLayout(this->layout);

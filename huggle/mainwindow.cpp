@@ -584,6 +584,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     title = title.replace("$1", this->CurrentEdit->Page->PageName);
+    /// \todo This really needs to be localized somehow
     QString id = "Your edits to " + this->CurrentEdit->Page->PageName;
     if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsStandard)
     {
@@ -726,8 +727,7 @@ void MainWindow::OnTimerTick1()
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {
-        /// \todo LOCALIZE ME
-        Syslog::HuggleLogs->Log("Failure of primary feed provider, trying to recover");
+        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("provider-failure"));
         if (!Core::HuggleCore->PrimaryFeedProvider->Restart())
         {
             delete Core::HuggleCore->PrimaryFeedProvider;
@@ -1438,6 +1438,16 @@ void MainWindow::Localize()
     this->ui->menuTools->setTitle(Localizations::HuggleLocalizations->Localize("main-tools"));
     this->ui->actionShow_ignore_list_of_current_wiki->setText(Localizations::HuggleLocalizations->Localize("main-tools-il"));
     this->ui->actionDisplay_a_session_data->setText(Localizations::HuggleLocalizations->Localize("main-tools-sess"));
+    this->ui->actionClear->setText(Localizations::HuggleLocalizations->Localize("main-queue-clear"));
+    this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-tp"));
+    this->ui->actionDecrease_badness_score_by_20->setText(Localizations::HuggleLocalizations->Localize("main-user-db"));
+    this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
+    this->ui->actionDelete_page->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
+    this->ui->actionDisplay_a_session_data->setText(Localizations::HuggleLocalizations->Localize("main-display-session-data"));
+    this->ui->actionDisplay_history_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-page-historypage"));
+    this->ui->actionDisplay_this_page_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-browser-open"));
+    this->ui->actionFeedback->setText(Localizations::HuggleLocalizations->Localize("main-help-feedback"));
+    this->ui->actionReport_user->setText(Localizations::HuggleLocalizations->Localize("main-user-report"));
 }
 
 void MainWindow::_BlockUser()
@@ -1563,8 +1573,7 @@ void MainWindow::Welcome()
 
     if (this->CurrentEdit->User->GetContentsOfTalkPage() != "")
     {
-        /// \todo LOCALIZE ME
-        if (QMessageBox::question(this, "Welcome :o", "This user doesn't have empty talk page, are you sure you want to send a message to him?",
+        if (QMessageBox::question(this, "Welcome :o", Localizations::HuggleLocalizations->Localize("welcome-tp-empty-fail"),
                                   QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
@@ -1908,7 +1917,7 @@ void MainWindow::on_actionProtect_triggered()
     }
     if (this->CurrentEdit == NULL)
     {
-        /// \todo LOCALIZE ME
+        // This doesn't need to be localized
         Syslog::HuggleLogs->ErrorLog("Cannot protect NULL page");
         return;
     }
@@ -1923,6 +1932,7 @@ void MainWindow::on_actionProtect_triggered()
 
 void Huggle::MainWindow::on_actionEdit_info_triggered()
 {
+    // don't localize this please
     Syslog::HuggleLogs->Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 
@@ -1994,8 +2004,8 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
         return;
     }
     bool ok;
-    /// \todo LOCALIZE ME
-    QString reason = QInputDialog::getText(this, "Reason", "Please provide a reason why you want to revert this edit to previous revision",
+    QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
+                                           Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
                                            QLineEdit::Normal, "No reason was provided by this lame user :(", &ok);
 
     if (!ok)
@@ -2057,7 +2067,8 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     }
 
     bool ok;
-    QString reason = QInputDialog::getText(this, "Reason", "Please provide a reason why you want to restore this page to previous revision",
+    QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
+                                           Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
                                            QLineEdit::Normal, "No reason was provided by user :(", &ok);
 
     if (!ok)
@@ -2075,7 +2086,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     this->CurrentEdit->RegisterConsumer("RestoreEdit");
     this->RestoreEdit = this->CurrentEdit;
     this->RestoreEdit_RevertReason = reason;
-    Syslog::HuggleLogs->Log("Restoring selected revision of " + this->CurrentEdit->Page->PageName);
+    Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("main-log1", this->CurrentEdit->Page->PageName));
 }
 
 void Huggle::MainWindow::on_actionClear_triggered()

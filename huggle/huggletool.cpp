@@ -18,6 +18,8 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->ui->setupUi(this);
     this->query = NULL;
     this->tick = new QTimer(this);
+    this->ui->label->setText(Localizations::HuggleLocalizations->Localize("User"));
+    this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
     this->edit = NULL;
 }

@@ -65,7 +65,6 @@ namespace Huggle
             void RemoveExpired();
             ~ProcessList();
 
-
         private:
             int GetItem(Query *q);
             int GetItem(int Id);
