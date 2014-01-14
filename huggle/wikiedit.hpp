@@ -106,13 +106,20 @@ namespace Huggle
             bool IsRevert;
             //! Revision ID
             int RevID;
+            //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level
             WarningLevel CurrentUserWarningLevel;
             //! Summary of edit
             QString Summary;
+            //! Token that can be used to rollback this edit
+
+            //! This token needs to be retrieved in same time as information about edit, so that
+            //! it's not possible for other user to change the page meanwhile it's reviewed
             QString RollbackToken;
+            //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
+            QString TalkPageToken;
             //! If this is true the edit was made by huggle
             bool EditMadeByHuggle;
             //! If this is true the edit was made by some other
@@ -120,16 +127,22 @@ namespace Huggle
             bool TrustworthEdit;
             //! Edit was made by you
             bool OwnEdit;
+            //! Link to previous edit in huggle history
             WikiEdit *Previous;
+            //! Link to next edit in huggle history
             WikiEdit *Next;
+            //! Badness score of this edit
             long Score;
+            //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
-            bool PostProcessing;
             QString PatrolToken;
-            bool ProcessingByWorkerThread;
             QDateTime Time;
+            //! This variable is used by worker thread and needs to be public so that it is working
+            bool PostProcessing;
+            //! This variable is used by worker thread and needs to be public so that it is working
             bool ProcessedByWorkerThread;
         private:
+            bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
             ApiQuery* ProcessingQuery;

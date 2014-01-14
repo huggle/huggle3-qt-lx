@@ -40,6 +40,7 @@ WikiEdit::WikiEdit()
     this->Priority = 20;
     this->Score = 0;
     this->IsRevert = false;
+    this->TalkPageToken = "";
     this->PatrolToken = "";
     this->Previous = NULL;
     this->Time = QDateTime::currentDateTime();
