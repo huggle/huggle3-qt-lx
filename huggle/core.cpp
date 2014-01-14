@@ -257,7 +257,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     }
 
     Message *m = new Message(user, message, summary);
-    m->title = title;
+    m->Title = title;
     m->Dependency = dependency;
     m->Section = section;
     m->SectionKeep = keep;
