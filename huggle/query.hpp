@@ -70,7 +70,7 @@ namespace Huggle
             //! Destructor for query
             virtual ~Query();
             //! Returns true in case that query is processed
-            virtual bool Processed();
+            virtual bool IsProcessed();
             //! Execute query
 
             //! This is a main() of every query, your implementation goes here

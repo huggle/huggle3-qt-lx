@@ -70,7 +70,7 @@ void UAAReport::onTick()
         return;
     }
 
-    if (!this->qUAApage->Processed())
+    if (!this->qUAApage->IsProcessed())
     {
         return;
     }
@@ -206,7 +206,7 @@ void UAAReport::onStartOfSearch()
     {
         return;
     }
-    if (!this->qChUAApage->Processed())
+    if (!this->qChUAApage->IsProcessed())
     {
         return;
     }

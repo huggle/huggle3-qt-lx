@@ -133,7 +133,7 @@ QString RevertQuery::QueryTargetToString()
     return this->edit->Page->PageName;
 }
 
-bool RevertQuery::Processed()
+bool RevertQuery::IsProcessed()
 {
     if (!this->PreflightFinished)
     {
@@ -170,7 +170,7 @@ void RevertQuery::OnTick()
         }
     }
 
-    if (Processed())
+    if (IsProcessed())
     {
         this->timer->stop();
         this->UnregisterConsumer("RevertQuery::Timer");
@@ -294,7 +294,7 @@ void RevertQuery::CheckPreflight()
     {
         return;
     }
-    if (!this->qPreflight->Processed())
+    if (!this->qPreflight->IsProcessed())
     {
         return;
     }
@@ -423,7 +423,7 @@ bool RevertQuery::CheckRevert()
     {
         return false;
     }
-    if (!this->qRevert->Processed())
+    if (!this->qRevert->IsProcessed())
     {
         return false;
     }
@@ -484,7 +484,7 @@ bool RevertQuery::ProcessRevert()
 
     if (this->qSR_PageToken != NULL)
     {
-        if (!this->qSR_PageToken->Processed())
+        if (!this->qSR_PageToken->IsProcessed())
         {
             return false;
         }
@@ -524,7 +524,7 @@ bool RevertQuery::ProcessRevert()
     if (this->EditQuerySoftwareRollback != NULL)
     {
         // we already reverted the page so check if we were successful in that
-        if (this->EditQuerySoftwareRollback->Processed() == false)
+        if (this->EditQuerySoftwareRollback->IsProcessed() == false)
         {
             // we are still reverting the page so quit this and wait
             return false;
@@ -548,7 +548,7 @@ bool RevertQuery::ProcessRevert()
     if (this->qRetrieve != NULL)
     {
         // we are retrieving the content of previous edit made by a different user
-        if (!this->qRetrieve->Processed())
+        if (!this->qRetrieve->IsProcessed())
         {
             return false;
         }
@@ -620,7 +620,7 @@ bool RevertQuery::ProcessRevert()
         return false;
     }
 
-    if (this->qPreflight->Processed() != true)
+    if (this->qPreflight->IsProcessed() != true)
     {
         return false;
     }

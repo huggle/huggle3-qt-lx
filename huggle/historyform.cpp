@@ -129,7 +129,7 @@ void HistoryForm::onTick01()
     {
         return;
     }
-    if (!this->query->Processed())
+    if (!this->query->IsProcessed())
     {
         return;
     }

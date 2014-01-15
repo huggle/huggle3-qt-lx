@@ -54,7 +54,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
 
 void UpdateForm::OnTick()
 {
-    if (!this->qData->Processed())
+    if (!this->qData->IsProcessed())
     {
         return;
     }

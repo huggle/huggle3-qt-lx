@@ -98,7 +98,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->ProcessingRevs)
     {
         // check if api was processed
-        if (!this->ProcessingQuery->Processed())
+        if (!this->ProcessingQuery->IsProcessed())
         {
             return false;
         }
@@ -151,7 +151,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->ProcessingDiff)
     {
         // check if api was processed
-        if (!this->DifferenceQuery->Processed())
+        if (!this->DifferenceQuery->IsProcessed())
         {
             return false;
         }

@@ -98,7 +98,7 @@ void BlockUser::CheckToken()
     {
         return;
     }
-    if (!this->qTokenApi->Processed())
+    if (!this->qTokenApi->IsProcessed())
     {
         return;
     }
@@ -178,7 +178,7 @@ void BlockUser::Block()
         return;
     }
 
-    if (!this->qUser->Processed())
+    if (!this->qUser->IsProcessed())
     {
         return;
     }

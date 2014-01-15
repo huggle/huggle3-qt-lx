@@ -28,7 +28,7 @@ namespace Huggle
             EditQuery();
             ~EditQuery();
             void Process();
-            bool Processed();
+            bool IsProcessed();
             //! Page that is going to be edited
             QString Page;
             //! Text a page will be replaced with

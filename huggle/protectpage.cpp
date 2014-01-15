@@ -76,7 +76,7 @@ void ProtectPage::checkTokenToProtect()
     {
         return;
     }
-    if (!this->qToken1->Processed())
+    if (!this->qToken1->IsProcessed())
     {
         return;
     }
@@ -168,7 +168,7 @@ void ProtectPage::Failed(QString reason)
 
 void ProtectPage::Protect()
 {
-    if (!this->qProtection->Processed())
+    if (!this->qProtection->IsProcessed())
     {
         return;
     }

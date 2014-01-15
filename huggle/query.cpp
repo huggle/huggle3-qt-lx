@@ -42,7 +42,7 @@ Query::~Query()
     this->Result = NULL;
 }
 
-bool Query::Processed()
+bool Query::IsProcessed()
 {
     if (this->Status == StatusDone || this->Status == StatusInError)
     {

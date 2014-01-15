@@ -75,7 +75,7 @@ void HuggleFeedProviderWiki::Refresh()
     if (this->Refreshing)
     {
         // the query is still in progress now
-        if (!this->q->Processed())
+        if (!this->q->IsProcessed())
         {
             return;
         }

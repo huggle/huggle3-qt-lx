@@ -113,7 +113,7 @@ void UserinfoForm::OnTick()
         this->timer->stop();
         return;
     }
-    if (this->qContributions->Processed())
+    if (this->qContributions->IsProcessed())
     {
         if (this->qContributions->Result->Failed)
         {

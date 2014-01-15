@@ -106,7 +106,7 @@ void HuggleTool::FinishPage()
     {
         return;
     }
-    if (!this->query->Processed())
+    if (!this->query->IsProcessed())
     {
         return;
     }

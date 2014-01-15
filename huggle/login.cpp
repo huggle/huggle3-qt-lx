@@ -141,7 +141,7 @@ void Login::DB()
         return;
     }
 
-    if (this->LoginQuery->Processed())
+    if (this->LoginQuery->IsProcessed())
     {
         Syslog::HuggleLogs->DebugLog(LoginQuery->Result->Data, 2);
         QDomDocument d;
@@ -225,7 +225,7 @@ void Login::PerformLogin()
 
 void Login::FinishLogin()
 {
-    if (!this->LoginQuery->Processed())
+    if (!this->LoginQuery->IsProcessed())
     {
         return;
     }
@@ -265,7 +265,7 @@ void Login::RetrieveGlobalConfig()
 {
     if (this->LoginQuery != NULL)
     {
-        if (this->LoginQuery->Processed())
+        if (this->LoginQuery->IsProcessed())
         {
             if (this->LoginQuery->Result->Failed)
             {
@@ -328,7 +328,7 @@ void Login::RetrieveGlobalConfig()
 
 void Login::FinishToken()
 {
-    if (!this->LoginQuery->Processed())
+    if (!this->LoginQuery->IsProcessed())
     {
         return;
     }
@@ -357,7 +357,7 @@ void Login::RetrieveWhitelist()
 {
     if (this->wq != NULL)
     {
-        if (this->wq->Processed())
+        if (this->wq->IsProcessed())
         {
             if (this->wq->Result->Failed)
             {
@@ -398,7 +398,7 @@ void Login::RetrieveLocalConfig()
 {
     if (this->LoginQuery != NULL)
     {
-        if (this->LoginQuery->Processed())
+        if (this->LoginQuery->IsProcessed())
         {
             if (this->LoginQuery->Result->Failed)
             {
@@ -462,7 +462,7 @@ void Login::RetrievePrivateConfig()
 {
     if (this->LoginQuery != NULL)
     {
-        if (this->LoginQuery->Processed())
+        if (this->LoginQuery->IsProcessed())
         {
             if (this->LoginQuery->Result->Failed)
             {
@@ -532,7 +532,7 @@ void Login::RetrieveUserInfo()
 {
     if (this->LoginQuery != NULL)
     {
-        if (this->LoginQuery->Processed())
+        if (this->LoginQuery->IsProcessed())
         {
             if (this->LoginQuery->Result->Failed)
             {

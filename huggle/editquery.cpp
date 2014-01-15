@@ -52,7 +52,7 @@ void EditQuery::Process()
     }
 }
 
-bool EditQuery::Processed()
+bool EditQuery::IsProcessed()
 {
     if (this->Result != NULL)
     {
@@ -60,7 +60,7 @@ bool EditQuery::Processed()
     }
     if (this->qToken != NULL)
     {
-        if (!this->qToken->Processed())
+        if (!this->qToken->IsProcessed())
         {
             return false;
         }
@@ -106,7 +106,7 @@ bool EditQuery::Processed()
     }
     if (this->qEdit != NULL)
     {
-        if (!this->qEdit->Processed())
+        if (!this->qEdit->IsProcessed())
         {
             return false;
         }

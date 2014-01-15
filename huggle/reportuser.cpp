@@ -137,7 +137,7 @@ void ReportUser::Tick()
 {
     if (this->qBlockHistory != NULL)
     {
-        if (this->qBlockHistory->Processed())
+        if (this->qBlockHistory->IsProcessed())
         {
             QDomDocument d;
             d.setContent(this->qBlockHistory->Result->Data);
@@ -235,7 +235,7 @@ void ReportUser::Tick()
 
     if (this->Loading)
     {
-        if (this->qHistory->Processed())
+        if (this->qHistory->IsProcessed())
         {
             QDomDocument d;
             d.setContent(this->qHistory->Result->Data);
@@ -272,7 +272,7 @@ void ReportUser::Tick()
         return;
     }
 
-    if (this->qHistory->Processed())
+    if (this->qHistory->IsProcessed())
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qHistory->Result->Data, 2);
         QDomDocument d;
@@ -329,7 +329,7 @@ void ReportUser::On_DiffTick()
     {
         return;
     }
-    if (!this->qd->Processed())
+    if (!this->qd->IsProcessed())
     {
         return;
     }
@@ -399,7 +399,7 @@ void ReportUser::Test()
         return;
     }
 
-    if (!this->tq->Processed())
+    if (!this->tq->IsProcessed())
     {
         return;
     }

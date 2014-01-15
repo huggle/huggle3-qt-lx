@@ -102,7 +102,7 @@ void DeleteForm::CheckDeleteToken()
     {
         return;
     }
-    if (!this->qToken->Processed())
+    if (!this->qToken->IsProcessed())
     {
         return;
     }
@@ -119,7 +119,7 @@ void DeleteForm::CheckDeleteToken()
         {
             return;
         }
-        if (!this->qTokenOfTalkPage->Processed())
+        if (!this->qTokenOfTalkPage->IsProcessed())
         {
             return;
         }
@@ -199,7 +199,7 @@ void DeleteForm::Delete()
         return;
     }
 
-    if (!this->qDelete->Processed())
+    if (!this->qDelete->IsProcessed())
     {
         return;
     }

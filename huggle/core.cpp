@@ -674,7 +674,7 @@ void Core::CheckQueries()
     {
         while (curr < Core::PendingMods.count())
         {
-            if (Core::PendingMods.at(curr)->Processed())
+            if (Core::PendingMods.at(curr)->IsProcessed())
             {
                 EditQuery *e = Core::PendingMods.at(curr);
                 Core::PendingMods.removeAt(curr);
@@ -695,7 +695,7 @@ void Core::CheckQueries()
     {
         Query *q = Core::RunningQueries.at(curr);
         Core::Main->Queries->UpdateQuery(q);
-        if (q->Processed())
+        if (q->IsProcessed())
         {
             Finished.append(q);
             Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 6);

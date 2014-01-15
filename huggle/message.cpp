@@ -76,7 +76,7 @@ bool Message::Finished()
 {
     if (this->Dependency != NULL)
     {
-        if (!this->Dependency->Processed())
+        if (!this->Dependency->IsProcessed())
         {
             return false;
         } else
@@ -160,7 +160,7 @@ void Message::Finish()
     if (this->_Status == Huggle::MessageStatus_RetrievingTalkPage && !this->PreviousTalkPageRetrieved)
     {
         // we need to finish retrieving of previous talk page
-        if (!this->query->Processed())
+        if (!this->query->IsProcessed())
         {
             return;
         }
@@ -181,7 +181,7 @@ void Message::Finish()
     if (this->_Status == Huggle::MessageStatus_SendingMessage)
     {
         // we need to check the query
-        if (!this->query->Processed())
+        if (!this->query->IsProcessed())
         {
             return;
         }
@@ -238,7 +238,7 @@ bool Message::FinishToken()
     {
         throw new Huggle::Exception("qToken must not be NULL in this context", "void Message::FinishToken()");
     }
-    if (!this->qToken->Processed())
+    if (!this->qToken->IsProcessed())
     {
         return false;
     }

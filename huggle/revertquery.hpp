@@ -42,7 +42,7 @@ namespace Huggle
             void Kill();
             ~RevertQuery();
             QString QueryTargetToString();
-            bool Processed();
+            bool IsProcessed();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR;
             QString Summary;

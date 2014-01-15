@@ -426,7 +426,7 @@ void MainWindow::FinishPatrols()
             continue;
         }
         // check if it's done
-        if (query->Processed())
+        if (query->IsProcessed())
         {
             // wheeee now we have a token
             WikiEdit *edit = (WikiEdit*) query->CallbackResult;
@@ -647,7 +647,7 @@ void MainWindow::FinishRestore()
         return;
     }
 
-    if (!this->RestoreQuery->Processed())
+    if (!this->RestoreQuery->IsProcessed())
     {
         return;
     }
@@ -879,7 +879,7 @@ void MainWindow::OnTimerTick1()
     this->Queries->RemoveExpired();
     if (this->OnNext_EvPage != NULL)
     {
-        if (this->qNext->Processed())
+        if (this->qNext->IsProcessed())
         {
             this->tb->SetPage(this->OnNext_EvPage);
             this->tb->RenderEdit();
@@ -909,7 +909,7 @@ void MainWindow::OnTimerTick0()
                 this->Shutdown = ShutdownOpUpdatingWhitelist;
                 return;
             }
-            if (!this->wq->Processed())
+            if (!this->wq->IsProcessed())
             {
                 return;
             }
@@ -938,7 +938,7 @@ void MainWindow::OnTimerTick0()
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!Configuration::HuggleConfiguration->WhitelistDisabled && !this->wq->Processed())
+            if (!Configuration::HuggleConfiguration->WhitelistDisabled && !this->wq->IsProcessed())
             {
                 return;
             }
@@ -958,7 +958,7 @@ void MainWindow::OnTimerTick0()
     } else
     {
         // we need to check if config was written
-        if (!this->eq->Processed())
+        if (!this->eq->IsProcessed())
         {
             return;
         }
@@ -2136,7 +2136,7 @@ void MainWindow::TimerCheckTPOnTick()
         return;
     } else
     {
-        if (!this->qTalkPage->Processed())
+        if (!this->qTalkPage->IsProcessed())
         {
             // we are still waiting for api query to finish
             return;
