@@ -26,26 +26,33 @@ namespace Huggle
     {
         MessageStatus_None,
         MessageStatus_Done,
+        MessageStatus_Failed,
         MessageStatus_RetrievingToken,
         MessageStatus_RetrievingTalkPage,
         MessageStatus_SendingMessage
+    };
+
+    enum MessageError
+    {
+        MessageError_NoError,
+        //! Token was expired
+        MessageError_InvalidToken,
+        MessageError_Dependency,
+        MessageError_Unknown
     };
 
     //! This is similar to query, just it's more simple, you can use it to deliver messages to users
     class Message
     {
         public:
+            //! Creates a new instance of message class that is used to deliver a message to users
             Message(WikiUser *target, QString MessageText, QString MessageSummary);
             ~Message();
             void RetrieveToken();
             //! Send a message to user
             void Send();
             //! Returns true in case that message was sent
-            bool Finished();
-            //! Returns true if there is a valid token in memory
-
-            //! Valid token means that it is syntactically correct, not that it isn't expired
-            bool HasValidEditToken();
+            bool IsFinished();
             MessageStatus _Status;
             //! If this dependency is not a NULL then a message is sent after it is Processed (see Query::Processed())
             Query *Dependency;
@@ -62,16 +69,24 @@ namespace Huggle
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;
+            MessageError Error;
+            QString ErrorText;
             //! Changing this to true will make the message be appended to existing section of same name
             bool SectionKeep;
         private:
-            bool RetrievingToken();
-            bool IsSending();
             bool Done();
             void Fail(QString reason);
+            //! This is a generic finish that either finishes whole message sending, or call respective finish function
+            //! that is needed to finish the current step
             void Finish();
             //! Finish parsing the token
             bool FinishToken();
+            //! Returns true if there is a valid token in memory
+
+            //! Valid token means that it is syntactically correct, not that it isn't expired
+            bool HasValidEditToken();
+            bool RetrievingToken();
+            bool IsSending();
             //! This function perform several checks and if everything is ok, it automatically calls next functions that send the message
             void PreflightCheck();
             //! This function write the new text to a talk page assuming that all checks were passed

@@ -331,7 +331,7 @@ void Core::FinalizeMessages()
     QList<Message*> list;
     while (x<this->Messages.count())
     {
-        if (this->Messages.at(x)->Finished())
+        if (this->Messages.at(x)->IsFinished())
         {
             list.append(this->Messages.at(x));
         }

@@ -27,6 +27,8 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
     this->Token = "none";
+    this->Error = MessageError_NoError;
+    this->ErrorText = "";
     this->Title = "Message from " + Configuration::HuggleConfiguration->UserName;
 }
 
@@ -67,13 +69,27 @@ void Message::Fail(QString reason)
     QStringList parameters;
     parameters << this->user->Username << reason;
     Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("message-er", parameters));
-    this->_Status = Huggle::MessageStatus_Done;
-    this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    this->query = NULL;
+    this->_Status = Huggle::MessageStatus_Failed;
+    this->Error = Huggle::MessageError_Unknown;
+    this->ErrorText = reason;
+    if (this->qToken != NULL)
+    {
+        this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+        this->qToken = NULL;
+    }
+    if (this->query != NULL)
+    {
+        this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+        this->query = NULL;
+    }
 }
 
-bool Message::Finished()
+bool Message::IsFinished()
 {
+    if (this->Done())
+    {
+        return true;
+    }
     if (this->Dependency != NULL)
     {
         if (!this->Dependency->IsProcessed())
@@ -86,7 +102,8 @@ bool Message::Finished()
                 // we can't continue because the dependency is fucked
                 this->Dependency->UnregisterConsumer("keep");
                 this->Dependency = NULL;
-                this->_Status = Huggle::MessageStatus_Done;
+                this->_Status = Huggle::MessageStatus_Failed;
+                this->Error = MessageError_Dependency;
                 if (this->query != NULL)
                 {
                     this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
@@ -109,11 +126,7 @@ bool Message::Finished()
         }
     }
     this->Finish();
-    if (this->Done())
-    {
-        return true;
-    }
-    return false;
+    return this->Done();
 }
 
 bool Message::HasValidEditToken()
@@ -133,7 +146,7 @@ bool Message::IsSending()
 
 bool Message::Done()
 {
-    return (this->_Status == Huggle::MessageStatus_Done);
+    return (this->_Status == Huggle::MessageStatus_Done || this->_Status == Huggle::MessageStatus_Failed);
 }
 
 void Message::Finish()
@@ -196,6 +209,26 @@ void Message::Finish()
 
         QDomDocument d;
         d.setContent(query->Result->Data);
+        QDomNodeList e = d.elementsByTagName("error");
+        if (e.count() > 0)
+        {
+            QDomElement element = l.at(0).toElement();
+            if (element.attributes().contains("code"))
+            {
+                QString ec = element.attribute("code");
+                if (ec == "editconflict")
+                {
+                    // someone edit the page meanwhile which means that our token has expired
+                    this->Fail("Edit conflict");
+                    this->Error = MessageError_InvalidToken;
+                } else
+                {
+                    this->Fail("Unknown error: " + ec);
+                    this->Error = MessageError_Unknown;
+                }
+                return;
+            }
+        }
         QDomNodeList l = d.elementsByTagName("edit");
         if (l.count() > 0)
         {
