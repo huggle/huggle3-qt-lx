@@ -212,7 +212,7 @@ void Message::Finish()
         QDomNodeList e = d.elementsByTagName("error");
         if (e.count() > 0)
         {
-            QDomElement element = l.at(0).toElement();
+            QDomElement element = e.at(0).toElement();
             if (element.attributes().contains("code"))
             {
                 QString ec = element.attribute("code");
