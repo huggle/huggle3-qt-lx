@@ -97,7 +97,7 @@ bool Message::IsFinished()
             return false;
         } else
         {
-            if (this->Dependency->Result->Failed)
+            if (this->Dependency->Failed())
             {
                 // we can't continue because the dependency is fucked
                 this->Dependency->UnregisterConsumer("keep");
@@ -238,7 +238,7 @@ void Message::Finish()
                 if (element.attribute("result") == "Success")
                 {
                     /// \todo LOCALIZE ME
-                    Huggle::Syslog::HuggleLogs->Log("Successfuly delivered message to " + user->Username);
+                    Huggle::Syslog::HuggleLogs->Log("Successfuly delivered message to " + this->user->Username);
                     sent = true;
                     HistoryItem item;
                     item.Result = "Success";
@@ -255,8 +255,8 @@ void Message::Finish()
         if (!sent)
         {
             /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + user->Username + " please check logs");
-            Huggle::Syslog::HuggleLogs->DebugLog(query->Result->Data);
+            Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + this->user->Username + " please check logs");
+            Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
 
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);

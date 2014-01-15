@@ -20,7 +20,6 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->BlockToken = "";
     this->user = NULL;
     this->qTokenApi = NULL;
-    this->Dependency = NULL;
     this->t0 = NULL;
     this->qUser = NULL;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
@@ -130,7 +129,6 @@ void BlockUser::CheckToken()
 
     // let's block them
     this->qUser = new ApiQuery();
-    this->Dependency = this->qUser;
     QString nocreate = "";
     if (this->ui->checkBox_4->isChecked())
     {
@@ -162,13 +160,12 @@ void BlockUser::CheckToken()
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
             + nocreate + anononly + noemail + autoblock + allowusertalk
             + "&token=" + QUrl::toPercentEncoding(BlockToken);
-
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
     this->qUser->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     Core::HuggleCore->AppendQuery(this->qUser);
     this->qUser->Process();
-    this->sendBlockNotice(this->Dependency);
+    this->sendBlockNotice(this->qUser);
 }
 
 void BlockUser::Block()
@@ -201,10 +198,12 @@ void BlockUser::Block()
         }
         QMessageBox mb;
         mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
+        /// \todo LOCALIZE ME
         mb.setText("Unable to block: " + reason);
         mb.exec();
         this->ui->pushButton->setText("Block");
         this->qUser->Result->Failed = true;
+        this->qUser->Result->ErrorMessage = "Unable to block: " + reason;
         this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
         this->ui->pushButton->setEnabled(true);
         this->t0->stop();

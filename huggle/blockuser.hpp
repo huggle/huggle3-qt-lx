@@ -56,8 +56,6 @@ namespace Huggle
             //! Query to exec api to block user
             ApiQuery *qUser;
             ApiQuery *qTokenApi;
-            //! This is api query that is used to block user and used as dependency to deliver the message
-            ApiQuery *Dependency;
             QString BlockToken;
             int QueryPhase;
     };
