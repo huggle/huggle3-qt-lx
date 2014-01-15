@@ -276,10 +276,10 @@ namespace Huggle
             void TimerCheckTPOnTick();
             void on_actionSimulate_message_triggered();
             void on_actionHtml_dump_triggered();
-
             void on_actionEnforce_sysop_rights_triggered();
+            void on_actionFeedback_triggered();
 
-        private:
+    private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();

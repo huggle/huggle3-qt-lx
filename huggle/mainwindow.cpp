@@ -2221,3 +2221,8 @@ void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
     this->ui->actionDelete->setEnabled(true);
     this->ui->actionProtect->setEnabled(true);
 }
+
+void Huggle::MainWindow::on_actionFeedback_triggered()
+{
+    QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath);
+}
