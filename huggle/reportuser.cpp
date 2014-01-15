@@ -415,7 +415,7 @@ void ReportUser::Test()
         mb.setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->LocalConfig_ReportPath);
         mb.exec();
         this->timer->stop();
-        delete tq;
+        this->tq->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->tq = NULL;
         return;
     }
@@ -428,9 +428,9 @@ void ReportUser::Test()
         mb.setText("This user is already reported");
         mb.exec();
         this->timer->stop();
-        delete this->tq;
+        this->tq->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->user->IsReported = true;
-        WikiUser::UpdateUser(user);
+        WikiUser::UpdateUser(this->user);
         this->tq = NULL;
         return;
     } else
@@ -440,7 +440,7 @@ void ReportUser::Test()
         mb.setText("This user is not reported now");
         mb.exec();
         this->timer->stop();
-        delete tq;
+        this->tq->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->tq = NULL;
     }
 }
