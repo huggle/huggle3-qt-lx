@@ -31,6 +31,7 @@
 #define HUGGLECONSUMER_HISTORYWIDGET            13
 #define HUGGLECONSUMER_USERINFO                 14
 #define HUGGLECONSUMER_DELETIONLOCK             15
+#define HUGGLECONSUMER_BLOCKFORM                16
 #define HUGGLECONSUMER_REPORTFORM               22
 
 namespace Huggle

@@ -64,7 +64,7 @@ void BlockUser::GetToken()
     this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
     this->qTokenApi->Target = Localizations::HuggleLocalizations->Localize("block-token-1", this->user->Username);
-    this->qTokenApi->RegisterConsumer("BlockUser::GetToken");
+    this->qTokenApi->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     Core::HuggleCore->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
     this->t0 = new QTimer(this);
@@ -124,7 +124,7 @@ void BlockUser::CheckToken()
     }
     this->BlockToken = element.attribute("blocktoken");
     this->QueryPhase++;
-    this->qTokenApi->UnregisterConsumer("BlockUser::GetToken");
+    this->qTokenApi->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     this->qTokenApi = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->BlockToken);
 
@@ -165,7 +165,7 @@ void BlockUser::CheckToken()
 
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
-    this->qUser->RegisterConsumer("BlockUser::on_pushButton_clicked()");
+    this->qUser->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     Core::HuggleCore->AppendQuery(this->qUser);
     this->qUser->Process();
     this->sendBlockNotice(this->Dependency);
@@ -205,7 +205,7 @@ void BlockUser::Block()
         mb.exec();
         this->ui->pushButton->setText("Block");
         this->qUser->Result->Failed = true;
-        this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+        this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
         this->ui->pushButton->setEnabled(true);
         this->t0->stop();
         return;
@@ -214,7 +214,7 @@ void BlockUser::Block()
     Huggle::Syslog::HuggleLogs->DebugLog(this->qUser->Result->Data);
     this->ui->pushButton->setText("Blocked");
     Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->qUser->Result->Data, 2);
-    this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+    this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     this->t0->stop();
 }
 
@@ -231,11 +231,11 @@ void BlockUser::Failed(QString reason)
     this->ui->pushButton->setEnabled(true);
     if (this->qTokenApi != NULL)
     {
-        this->qTokenApi->UnregisterConsumer("BlockUser::GetToken");
+        this->qTokenApi->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     }
     if (this->qUser != NULL)
     {
-        this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+        this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     }
     this->qUser = NULL;
     this->qTokenApi = NULL;
