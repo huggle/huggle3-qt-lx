@@ -32,10 +32,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
     delete this->Buffer;
     if (this->q != NULL)
     {
-        if (!this->q->IsManaged())
-        {
-            delete this->q;
-        }
+        this->q->SafeDelete();
     }
 }
 
