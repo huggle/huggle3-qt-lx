@@ -109,9 +109,9 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     if (Core::HuggleCore->Main->Queue1->CurrentFilter->Matches(edit))
     {
         this->lock.lock();
-        if (this->Buffer.size() > Configuration::HuggleConfiguration->ProviderCache)
+        if (this->Buffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {
-            while (this->Buffer.size() > (Configuration::HuggleConfiguration->ProviderCache - 10))
+            while (this->Buffer.size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
                 this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
                 this->Buffer.removeAt(0);

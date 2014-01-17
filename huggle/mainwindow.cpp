@@ -736,7 +736,7 @@ void MainWindow::OnTimerTick1()
         }
     }
     // check if queue isn't full
-    if (this->Queue1->Items.count() > Configuration::HuggleConfiguration->Cache_InfoSize)
+    if (this->Queue1->Items.count() > Configuration::HuggleConfiguration->SystemConfig_QueueSize)
     {
         if (this->ui->actionStop_feed->isChecked())
         {
@@ -904,7 +904,7 @@ void MainWindow::OnTimerTick0()
         }
         if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
-            if (Configuration::HuggleConfiguration->WhitelistDisabled)
+            if (Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled)
             {
                 this->Shutdown = ShutdownOpUpdatingWhitelist;
                 return;
@@ -938,7 +938,7 @@ void MainWindow::OnTimerTick0()
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!Configuration::HuggleConfiguration->WhitelistDisabled && !this->wq->IsProcessed())
+            if (!Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled && !this->wq->IsProcessed())
             {
                 return;
             }

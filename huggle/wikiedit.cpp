@@ -276,23 +276,23 @@ void WikiEdit::ProcessWords()
         {
             found = true;
         }
-        while (!found && SD < Configuration::HuggleConfiguration->Separators.count())
+        while (!found && SD < Configuration::HuggleConfiguration->SystemConfig_Separators.count())
         {
-            if (text.startsWith(w + Configuration::HuggleConfiguration->Separators.at(SD)))
+            if (text.startsWith(w + Configuration::HuggleConfiguration->SystemConfig_Separators.at(SD)))
             {
                 found = true;
                 break;
             }
-            if (text.endsWith(Configuration::HuggleConfiguration->Separators.at(SD) + w))
+            if (text.endsWith(Configuration::HuggleConfiguration->SystemConfig_Separators.at(SD) + w))
             {
                 found = true;
                 break;
             }
             int SL = 0;
-            while (SL <Configuration::HuggleConfiguration->Separators.count())
+            while (SL <Configuration::HuggleConfiguration->SystemConfig_Separators.count())
             {
-                if (text.contains(Configuration::HuggleConfiguration->Separators.at(SD) +
-                             w + Configuration::HuggleConfiguration->Separators.at(SL)))
+                if (text.contains(Configuration::HuggleConfiguration->SystemConfig_Separators.at(SD) +
+                             w + Configuration::HuggleConfiguration->SystemConfig_Separators.at(SL)))
                 {
                     found = true;
                     break;

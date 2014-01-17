@@ -252,7 +252,7 @@ void VandalNw::onTick()
                         this->ProcessGood(edit, m->user.Nick);
                     } else
                     {
-                        while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                         {
                             this->UnparsedGood.removeAt(0);
                         }
@@ -268,7 +268,7 @@ void VandalNw::onTick()
                         this->ProcessRollback(edit, m->user.Nick);
                     } else
                     {
-                        while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                         {
                             this->UnparsedRoll.removeAt(0);
                         }
@@ -284,7 +284,7 @@ void VandalNw::onTick()
                         this->ProcessSusp(edit, m->user.Nick);
                     } else
                     {
-                        while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                        while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                         {
                             this->UnparsedSusp.removeAt(0);
                         }
@@ -307,7 +307,7 @@ void VandalNw::onTick()
                             Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
                         } else
                         {
-                            while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->Cache_HAN)
+                            while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                             {
                                 this->UnparsedScores.removeAt(0);
                             }

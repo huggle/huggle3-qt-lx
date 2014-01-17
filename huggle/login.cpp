@@ -361,7 +361,7 @@ void Login::RetrieveWhitelist()
         {
             if (this->wq->Result->Failed)
             {
-                Configuration::HuggleConfiguration->WhitelistDisabled = true;
+                Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled = true;
             } else
             {
                 QString list = this->wq->Result->Data;

@@ -29,7 +29,7 @@ RevertQuery::RevertQuery()
     this->qPreflight = NULL;
     this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
-    this->Timeout = Configuration::HuggleConfiguration->WriteTimeout;
+    this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
     this->qSR_PageToken = NULL;
     this->SR_EditToken = "";
 }
@@ -51,7 +51,7 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->MinorEdit = false;
     this->Summary = "";
     this->qPreflight = NULL;
-    this->Timeout = Configuration::HuggleConfiguration->WriteTimeout;
+    this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
     this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->qSR_PageToken = NULL;

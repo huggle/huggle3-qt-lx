@@ -24,7 +24,7 @@ Configuration::Configuration()
     this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
     this->UsingSSL = true;
     this->UserName = "User";
-    this->Cache_HAN = 100;
+    this->SystemConfig_CacheHAN = 100;
     this->IndexOfLastWiki = 0;
     this->UserConfig_HistoryLoad = true;
     this->Password = "";
@@ -37,9 +37,9 @@ Configuration::Configuration()
 #endif
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
-    this->Cache_InfoSize = 200;
+    this->SystemConfig_QueueSize = 200;
     this->Restricted = false;
-    this->ProviderCache = 200;
+    this->SystemConfig_ProviderCache = 200;
     this->HuggleVersion = HUGGLE_VERSION;
     this->UsingIRC = true;
     this->IRCIdent = "huggle";
@@ -196,11 +196,11 @@ Configuration::Configuration()
     this->LocalConfig_ConfirmSame = false;
     this->LocalConfig_ConfirmWarned = false;
     this->FontSize = 10;
-    this->WriteTimeout = 200;
+    this->SystemConfig_WriteTimeout = 200;
     this->ReadTimeout = 60;
     this->EnforceManualSoftwareRollback = false;
     this->UserConfig_DeleteEditsAfterRevert = true;
-    this->WhitelistDisabled = false;
+    this->SystemConfig_WhitelistDisabled = false;
 
     this->LocalConfig_UAAavailable = false;
     this->LocalConfig_UAAPath = "Project:Usernames for administrator attention";
@@ -277,9 +277,9 @@ void Configuration::NormalizeConf()
     {
         Configuration::HuggleConfiguration->LocalConfig_TemplateAge = -30;
     }
-    if (Configuration::HuggleConfiguration->Cache_InfoSize < 10)
+    if (Configuration::HuggleConfiguration->SystemConfig_QueueSize < 10)
     {
-        Configuration::HuggleConfiguration->Cache_InfoSize = 10;
+        Configuration::HuggleConfiguration->SystemConfig_QueueSize = 10;
     }
     if (Configuration::HuggleConfiguration->HistorySize < 2)
     {
@@ -384,7 +384,7 @@ void Configuration::LoadConfig()
         QString key = option.attribute("key");
         if (key == "Cache_InfoSize")
         {
-            Configuration::HuggleConfiguration->Cache_InfoSize = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_QueueSize = option.attribute("text").toInt();
             continue;
         }
         if (key == "GlobalConfigurationWikiAddress")
@@ -419,7 +419,7 @@ void Configuration::LoadConfig()
         }
         if (key == "ProviderCache")
         {
-            Configuration::HuggleConfiguration->ProviderCache = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_ProviderCache = option.attribute("text").toInt();
             continue;
         }
         if (key == "AskUserBeforeReport")
@@ -483,14 +483,14 @@ void Configuration::SaveConfig()
     x->setDevice(&file);
     x->writeStartDocument();
     x->writeStartElement("huggle");
-    Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->Cache_InfoSize), x);
+    Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_QueueSize), x);
     Configuration::InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, x);
     Configuration::InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, x);
     Configuration::InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, x);
     Configuration::InsertConfig("IRCPort", QString::number(Configuration::HuggleConfiguration->IRCPort), x);
     Configuration::InsertConfig("IRCServer", Configuration::HuggleConfiguration->IRCServer, x);
     Configuration::InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, x);
-    Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->ProviderCache), x);
+    Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->SystemConfig_ProviderCache), x);
     Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
     Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->HistorySize), x);
     Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
@@ -929,11 +929,11 @@ bool Configuration::ParseLocalConfig(QString config)
                                                  ("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL
                                                  ("revert-patterns", config, true);
-    Configuration::HuggleConfiguration->RevertPatterns.clear();
+    Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.clear();
     int xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
     {
-        Configuration::HuggleConfiguration->RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
+        Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
         xx++;
     }
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, true);

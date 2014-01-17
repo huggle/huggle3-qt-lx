@@ -53,7 +53,7 @@ void Core::Init()
     Syslog::HuggleLogs->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
-    Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
+    Configuration::HuggleConfiguration->SystemConfig_Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
@@ -554,9 +554,9 @@ bool Core::IsRevert(QString Summary)
     if (Summary != "")
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)))
             {
                 return true;
             }
