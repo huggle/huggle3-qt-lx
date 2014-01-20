@@ -90,11 +90,11 @@ void HuggleFeedProviderIRC::Stop()
         this->thread->Running = false;
     }
     this->Network->Disconnect();
-    while (!IsStopped())
-    {
-        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-stop"));
-        Sleeper::usleep(200000);
-    }
+    //while (!IsStopped())
+    //{
+    //    Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-stop"));
+    //    Sleeper::usleep(200000);
+    //}
     this->Connected = false;
 }
 
