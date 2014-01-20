@@ -49,7 +49,7 @@ void WikiUser::TrimProblematicUsersList()
     while (i < WikiUser::ProblematicUsers.count())
     {
         WikiUser *user = WikiUser::ProblematicUsers.at(i);
-        if (user->getBadnessScore() == 0 && user->WarningLevel == 0)
+        if (user->GetBadnessScore() == 0 && user->WarningLevel == 0)
         {
             // there is no point to hold information for them
             WikiUser::ProblematicUsers.removeAt(i);
@@ -64,7 +64,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->getBadnessScore(false) <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
+    if (!us->IP && us->GetBadnessScore(false) <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
     {
         if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
         {
@@ -292,7 +292,7 @@ bool WikiUser::IsWhitelisted()
     }
 }
 
-long WikiUser::getBadnessScore(bool _resync)
+long WikiUser::GetBadnessScore(bool _resync)
 {
     if (_resync)
     {
@@ -301,7 +301,7 @@ long WikiUser::getBadnessScore(bool _resync)
     return BadnessScore;
 }
 
-void WikiUser::setBadnessScore(long value)
+void WikiUser::SetBadnessScore(long value)
 {
     this->Resync();
     BadnessScore = value;

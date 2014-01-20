@@ -748,7 +748,7 @@ void RevertQuery::Rollback()
     // we need to make sure there is edit suffix in revert summary for huggle
     this->Summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(this->Summary);
 
-    this->edit->User->setBadnessScore(this->edit->User->getBadnessScore() + 200);
+    this->edit->User->SetBadnessScore(this->edit->User->GetBadnessScore() + 200);
     WikiUser::UpdateUser(edit->User);
 
     if (this->UsingSR)

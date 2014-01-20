@@ -469,7 +469,7 @@ void MainWindow::DecreaseBS()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
     }
 }
 
@@ -477,7 +477,7 @@ void MainWindow::IncreaseBS()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 200);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
     }
 }
 
@@ -507,7 +507,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
     if (Core::HuggleCore->PreflightCheck(this->CurrentEdit))
     {
         this->CurrentEdit->User->Resync();
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore(false) - 10);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
@@ -1373,7 +1373,7 @@ void MainWindow::SuspiciousEdit()
     if (this->CurrentEdit != NULL)
     {
         Hooks::Suspicious(this->CurrentEdit);
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 1);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 1);
     }
     this->DisplayNext();
 }
@@ -1632,7 +1632,7 @@ void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() + 200);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
     }
 }
 
@@ -1645,7 +1645,7 @@ void MainWindow::on_actionGood_edit_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
         this->PatrolThis();
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
@@ -1671,7 +1671,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     {
         Hooks::OnGood(this->CurrentEdit);
         this->PatrolThis();
-        this->CurrentEdit->User->setBadnessScore(this->CurrentEdit->User->getBadnessScore() - 200);
+        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
         if (Configuration::HuggleConfiguration->LocalConfig_WelcomeGood && this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             this->Welcome();

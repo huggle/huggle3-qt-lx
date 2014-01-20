@@ -433,7 +433,7 @@ void ProcessorThread::Process(WikiEdit *edit)
         edit->Score += Configuration::HuggleConfiguration->LocalConfig_WhitelistScore;
     }
 
-    edit->Score += edit->User->getBadnessScore();
+    edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
     {
         edit->ProcessWords();

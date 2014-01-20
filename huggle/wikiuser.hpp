@@ -91,9 +91,13 @@ namespace Huggle
             QString GetTalk();
             //! Returns true if this user is wl
             bool IsWhitelisted();
-            //! Retrieve a badness score for current user, see WikiUser::BadnessScore for more
-            long getBadnessScore(bool _resync = true);
-            void setBadnessScore(long value);
+            /*!
+             * \brief Retrieve a badness score for current user, see WikiUser::BadnessScore for more
+             * \param _resync If true the user will be resynced before the score is returned
+             * \return badness score
+             */
+            long GetBadnessScore(bool _resync = true);
+            void SetBadnessScore(long value);
             //! Flags
 
             //! w - is warned
@@ -116,6 +120,11 @@ namespace Huggle
             bool IsReported;
 
     private:
+            //! Matches only IPv4
+            static QRegExp IPv4Regex;
+            //! Matches all IP
+            static QRegExp IPv6Regex;
+
             /*!
              * \brief Badness score of current user
              *
@@ -123,10 +132,7 @@ namespace Huggle
              * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
              */
             long BadnessScore;
-            //! Matches only IPv4
-            static QRegExp IPv4Regex;
-            //! Matches all IP
-            static QRegExp IPv6Regex;
+            //! Status of whitelist 0 means user is not whitelisted, 1 that it is and different value means we don't know
             int WhitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
             QString ContentsOfTalkPage;
