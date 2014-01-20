@@ -64,7 +64,7 @@ void HuggleTest::testCaseScores()
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("suck", 60));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("ass", 60));
-    Huggle::Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
+    Huggle::Configuration::HuggleConfiguration->SystemConfig_Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::GC::gc = new Huggle::GC();
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
     edit->Page = new Huggle::WikiPage("test");
