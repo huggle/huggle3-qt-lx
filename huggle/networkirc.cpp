@@ -95,7 +95,7 @@ bool NetworkIrc::IsConnecting()
 
 void NetworkIrc::Disconnect()
 {
-    if (!this->IsConnected())
+    if (!this->IsConnected() && !this->IsConnecting())
     {
         return;
     }
