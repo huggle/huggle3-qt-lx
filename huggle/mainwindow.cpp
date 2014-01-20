@@ -128,6 +128,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
     }
 
+    this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->timer1 = new QTimer(this);
     this->ui->actionTag_2->setVisible(false);
     connect(this->timer1, SIGNAL(timeout()), this, SLOT(OnTimerTick1()));

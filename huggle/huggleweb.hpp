@@ -57,7 +57,7 @@ namespace Huggle
              */
             void RenderHtml(const QString &html);
             /*!
-             * \brief Display a diff of an edit using it's RevID
+             * \brief Display a diff of an edit using its RevID
              * Either uses an api or in case that api fails, the page is downloaded using standard rendering
              * \param edit
              */
