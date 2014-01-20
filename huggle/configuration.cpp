@@ -929,11 +929,11 @@ bool Configuration::ParseLocalConfig(QString config)
                                                  ("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL
                                                  ("revert-patterns", config, true);
-    Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.clear();
+    Configuration::HuggleConfiguration->RevertPatterns.clear();
     int xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
     {
-        Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
+        Configuration::HuggleConfiguration->RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
         xx++;
     }
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, true);

@@ -554,9 +554,9 @@ bool Core::IsRevert(QString Summary)
     if (Summary != "")
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
             {
                 return true;
             }
