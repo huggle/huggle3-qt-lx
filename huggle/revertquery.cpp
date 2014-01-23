@@ -608,7 +608,7 @@ bool RevertQuery::ProcessRevert()
                                "content was resolved to blank edit");
             return true;
         }
-        this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit, this->SR_EditToken);
+        this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit);
         this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         /// \todo LOCALIZE ME
         this->CustomStatus = "Editing page";

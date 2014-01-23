@@ -40,7 +40,7 @@ WikiEdit::WikiEdit()
     this->Priority = 20;
     this->Score = 0;
     this->IsRevert = false;
-    this->TalkPageToken = "";
+    this->TPRevBaseTime = "";
     this->PatrolToken = "";
     this->Previous = NULL;
     this->Time = QDateTime::currentDateTime();
@@ -129,6 +129,13 @@ bool WikiEdit::FinalizePostProcessing()
                 QDomElement e = page.at(0).toElement();
                 if (e.nodeName() == "rev")
                 {
+                    if (!e.attributes().contains("timestamp"))
+                    {
+                        Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + this->User->Username + " couldn't be retrieved, mediawiki returned no data for it");
+                    } else
+                    {
+                        this->TPRevBaseTime = e.attribute("timestamp");
+                    }
                     this->User->SetContentsOfTalkPage(e.text());
                 } else
                 {

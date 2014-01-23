@@ -26,7 +26,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->_Status = Huggle::MessageStatus_None;
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
-    this->Token = "none";
+    this->TimeOfBase = "";
     this->Error = MessageError_NoError;
     this->ErrorText = "";
     this->Title = "Message from " + Configuration::HuggleConfiguration->UserName;
@@ -131,7 +131,7 @@ bool Message::IsFinished()
 
 bool Message::HasValidEditToken()
 {
-    return (this->Token != "none");
+    return (Configuration::HuggleConfiguration->SystemConfig_EditToken != "");
 }
 
 bool Message::RetrievingToken()
@@ -299,7 +299,7 @@ bool Message::FinishToken()
         Huggle::Syslog::HuggleLogs->DebugLog("No token");
         return false;
     }
-    this->Token = element.attribute("edittoken");
+    Configuration::HuggleConfiguration->SystemConfig_EditToken = element.attribute("edittoken");
     this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     this->qToken = NULL;
     return true;
@@ -367,14 +367,14 @@ void Message::ProcessSend()
             }
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text)
-                + "&token=" + QUrl::toPercentEncoding(this->Token);
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + "&token="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text)
-                + "&token=" + QUrl::toPercentEncoding(this->Token);
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + "&token="
+                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }
     Core::HuggleCore->AppendQuery(query);
     this->query->Process();

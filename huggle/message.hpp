@@ -58,14 +58,14 @@ namespace Huggle
             Query *Dependency;
             //! Title
             QString Title;
-            //! Token that is needed in order to write to page
-            QString Token;
             //! If edit will be created in new section
             bool Section;
             //! Set this to false to remove huggle suffix from summary
             bool Suffix;
             //! User to deliver a message to
             WikiUser *user;
+            //! This is a time for base revision which is used to resolve edit conflicts of edit
+            QString TimeOfBase;
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;

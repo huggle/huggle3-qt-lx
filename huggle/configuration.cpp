@@ -46,6 +46,7 @@ Configuration::Configuration()
     this->IRCServer = "irc.wikimedia.org";
     this->IRCNick = "huggle";
     this->IRCPort = 6667;
+    this->SystemConfig_EditToken = "";
     this->RingLogMaxSize = 2000;
 #if QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);

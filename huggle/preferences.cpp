@@ -85,6 +85,13 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
     this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+}
+
+Preferences::~Preferences()
+{
+    delete this->ui;
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
@@ -109,11 +116,6 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->checkBox_18->setChecked(f->getIgnoreReverts());
     this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
     this->ui->lineEdit->setText(f->QueueName);
-}
-
-Preferences::~Preferences()
-{
-    delete this->ui;
 }
 
 void Preferences::Disable()

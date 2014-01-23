@@ -119,7 +119,9 @@ namespace Huggle
             QString RollbackToken;
             //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
-            QString TalkPageToken;
+            //! Base time of last revision of talk page which is needed to check if someone changed the talk
+            //! page meanwhile before we change it
+            QString TPRevBaseTime;
             //! If this is true the edit was made by huggle
             bool EditMadeByHuggle;
             //! If this is true the edit was made by some other
