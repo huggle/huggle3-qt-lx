@@ -736,6 +736,7 @@ void MainWindow::OnTimerTick1()
             Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     }
+    this->ResendWarning();
     // check if queue isn't full
     if (this->Queue1->Items.count() > Configuration::HuggleConfiguration->SystemConfig_QueueSize)
     {
@@ -1449,6 +1450,35 @@ void MainWindow::Localize()
     this->ui->actionDisplay_this_page_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-browser-open"));
     this->ui->actionFeedback->setText(Localizations::HuggleLocalizations->Localize("main-help-feedback"));
     this->ui->actionReport_user->setText(Localizations::HuggleLocalizations->Localize("main-user-report"));
+}
+
+void MainWindow::ResendWarning()
+{
+    int x = 0;
+    while (x < this->Warnings.count())
+    {
+        PendingWarning *warning = this->Warnings.at(x);
+        if (warning->Warning->IsFinished())
+        {
+            if (!warning->Warning->IsFailed())
+            {
+                // we no longer need to care about this one
+                warning->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
+                this->Warnings.removeAt(x);
+                delete warning;
+                continue;
+            }
+            Syslog::HuggleLogs->DebugLog("Failed to deliver message to " + warning->Warning->user->Username);
+            // check if the warning wasn't delivered because someone edited the page
+            if (warning->Warning->Error == Huggle::MessageError_Obsolete)
+            {
+                Syslog::HuggleLogs->DebugLog("Someone changed the content of " + warning->Warning->user->Username + " reparsing it now");
+                // we need to fetch the talk page again and later we need to issue new warning
+            }
+        }
+        x++;
+        continue;
+    }
 }
 
 void MainWindow::_BlockUser()
@@ -2234,4 +2264,5 @@ PendingWarning::PendingWarning(Message *message, QString warning)
 {
     this->Template = warning;
     this->Warning = message;
+    this->Query = NULL;
 }

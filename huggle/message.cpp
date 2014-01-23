@@ -129,6 +129,11 @@ bool Message::IsFinished()
     return this->Done();
 }
 
+bool Message::IsFailed()
+{
+    return this->_Status == Huggle::MessageStatus_Failed;
+}
+
 bool Message::HasValidEditToken()
 {
     return (Configuration::HuggleConfiguration->SystemConfig_EditToken != "");

@@ -39,6 +39,7 @@ namespace Huggle
         //! Token was expired
         MessageError_InvalidToken,
         MessageError_Dependency,
+        MessageError_Obsolete,
         MessageError_Unknown
     };
 
@@ -54,6 +55,7 @@ namespace Huggle
             void Send();
             //! Returns true in case that message was sent
             bool IsFinished();
+            bool IsFailed();
             MessageStatus _Status;
             //! If this dependency is not a NULL then a message is sent after it is Processed (see Query::Processed())
             Query *Dependency;
