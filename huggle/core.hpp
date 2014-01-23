@@ -158,6 +158,9 @@ namespace Huggle
             QString MonthText(int n);
             /*!
              * \brief MessageUser Message user
+             *
+             * This function will deliver a message to user using Message class which is returned by this function
+             *
              * \param user Pointer to user
              * \param message Text of message
              * \param title Title
@@ -167,8 +170,8 @@ namespace Huggle
              * the system will wait for it to finish before the message is sent
              * \return
              */
-            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true,
-                                 Query *dependency = NULL, bool nosuffix = false, bool keep = false);
+            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL,
+                                  bool nosuffix = false, bool sectionkeep = false, bool autoremove = false);
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);

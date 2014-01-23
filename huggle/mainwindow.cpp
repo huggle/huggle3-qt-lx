@@ -215,7 +215,7 @@ MainWindow::~MainWindow()
     delete this->tb;
 }
 
-void MainWindow::_ReportUser()
+void MainWindow::DisplayReportUserWindow()
 {
     if (!this->CheckExit())
     {
@@ -548,7 +548,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
         }
         if (Core::HuggleCore->ReportPreFlightCheck())
         {
-            this->_ReportUser();
+            this->DisplayReportUserWindow();
         }
         return false;
     }
@@ -595,8 +595,8 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     {
         id = "";
     }
-    Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, dependency, false,
-                                  Configuration::HuggleConfiguration->UserConfig_SectionKeep);
+    this->Warnings.append(new PendingWarning(Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, dependency, false,
+                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep), WarningType));
     Hooks::OnWarning(this->CurrentEdit->User);
 
     return true;
@@ -1814,7 +1814,7 @@ void MainWindow::on_actionReport_user_triggered()
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
     }
-    this->_ReportUser();
+    this->DisplayReportUserWindow();
 }
 
 void MainWindow::on_actionReport_user_2_triggered()
@@ -1824,7 +1824,7 @@ void MainWindow::on_actionReport_user_2_triggered()
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
     }
-    this->_ReportUser();
+    this->DisplayReportUserWindow();
 }
 
 void MainWindow::on_actionWarning_1_triggered()
@@ -2226,4 +2226,11 @@ void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
 void Huggle::MainWindow::on_actionFeedback_triggered()
 {
     QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath);
+}
+
+
+PendingWarning::PendingWarning(Message *message, QString warning)
+{
+    this->Template = warning;
+    this->Warning = message;
 }

@@ -243,7 +243,7 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool keep)
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool sectionkeep, bool autoremove)
 {
     if (user == NULL)
     {
@@ -260,9 +260,14 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->Title = title;
     m->Dependency = dependency;
     m->Section = section;
-    m->SectionKeep = keep;
+    m->SectionKeep = sectionkeep;
     m->Suffix = !nosuffix;
     Core::Messages.append(m);
+    m->RegisterConsumer(HUGGLECONSUMER_CORE);
+    if (!autoremove)
+    {
+        m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
+    }
     m->Send();
     Huggle::Syslog::HuggleLogs->Log("Sending message to user " + user->Username);
 
@@ -340,7 +345,9 @@ void Core::FinalizeMessages()
     x=0;
     while (x<list.count())
     {
-        Core::Messages.removeOne(list.at(x));
+        Message *message = list.at(x);
+        message->UnregisterConsumer(HUGGLECONSUMER_CORE);
+        Core::Messages.removeOne(message);
         x++;
     }
 }

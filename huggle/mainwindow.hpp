@@ -82,6 +82,7 @@ namespace Huggle
     class EditQuery;
     class ProcessList;
     class WhitelistForm;
+    class Message;
     class Preferences;
     class SessionForm;
     class IgnoreList;
@@ -112,6 +113,23 @@ namespace Huggle
         ShutdownOpUpdatingConf
     };
 
+    /*!
+     * \brief The PendingWarning class represent the warning that was requested but might not be delievered
+     *
+     * We can be using this to track all warnings that are still waiting for delivery and these which have failed
+     * because the user talk page was changed meanwhile. In this case we need to parse it again and re-issue
+     * the warning based on latest version of talk page. The current process is, that every warning that is sent
+     * is stored in a list of these pending warnings and periodically checked using timer. If it's finished it's
+     * removed, if it's not then it is checked and something is done with it.
+     */
+    class PendingWarning
+    {
+        public:
+            PendingWarning(Message *message, QString warning);
+            Message *Warning;
+            QString Template;
+    };
+
     //! Primary huggle window
     class MainWindow : public QMainWindow
     {
@@ -120,7 +138,7 @@ namespace Huggle
         public:
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
-            void _ReportUser();
+            void DisplayReportUserWindow();
             void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false);
             RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
             bool Warn(QString WarningType, RevertQuery *dependency);
@@ -302,6 +320,7 @@ namespace Huggle
             //! Status bar
             QLabel *Status;
             bool EditablePage;
+            QList <PendingWarning*> Warnings;
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;
