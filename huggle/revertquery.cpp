@@ -489,7 +489,7 @@ bool RevertQuery::ProcessRevert()
             return false;
         }
 
-        if (this->qSR_PageToken->Failed())
+        if (this->qSR_PageToken->IsFailed())
         {
             this->DisplayError("Unable to fetch the token - query failed");
             return true;
@@ -553,7 +553,7 @@ bool RevertQuery::ProcessRevert()
             return false;
         }
 
-        if (this->qRetrieve->Failed())
+        if (this->qRetrieve->IsFailed())
         {
             this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
             return true;

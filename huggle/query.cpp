@@ -137,7 +137,7 @@ unsigned int Query::QueryID()
     return this->ID;
 }
 
-bool Query::Failed()
+bool Query::IsFailed()
 {
     if (this->Result != NULL)
     {

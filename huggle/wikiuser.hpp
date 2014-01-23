@@ -15,6 +15,7 @@
 #include <QMutex>
 #include <QString>
 #include <QRegExp>
+#include "huggleparser.hpp"
 #include "configuration.hpp"
 #include "wikiedit.hpp"
 
@@ -82,6 +83,10 @@ namespace Huggle
             void ForceIP();
             //! Returns true in case the current user is IP user
             bool IsIP() const;
+            //! This function will reparse whole talk page of user in order to figure out which level they have
+
+            //! This function needs to be called after the content of talk page has changed
+            void ParseTP();
             //! Update the information of this user based on global user list
 
             //! This is useful when you created user in past and since then a global user has changed

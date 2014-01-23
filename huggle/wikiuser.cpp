@@ -266,6 +266,15 @@ bool WikiUser::IsIP() const
     return IP;
 }
 
+void WikiUser::ParseTP()
+{
+    QString tp = this->GetContentsOfTalkPage();
+    if (tp != "")
+    {
+        this->WarningLevel = HuggleParser::GetLevel(tp);
+    }
+}
+
 QString WikiUser::GetTalk()
 {
     return Configuration::HuggleConfiguration->LocalConfig_NSUserTalk + this->Username;

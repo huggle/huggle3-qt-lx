@@ -97,7 +97,7 @@ bool Message::IsFinished()
             return false;
         } else
         {
-            if (this->Dependency->Failed())
+            if (this->Dependency->IsFailed())
             {
                 // we can't continue because the dependency is fucked
                 this->Dependency->UnregisterConsumer("keep");

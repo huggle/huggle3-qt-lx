@@ -32,6 +32,12 @@ namespace Huggle
             static void ParseWords(QString text);
             static QString GetValueFromKey(QString item);
             static QString GetKeyFromValue(QString item);
+            /*!
+             * \brief Process content of talk page in order to figure which user level they have
+             * \param page The content of talk page
+             * \return Level
+             */
+            static int GetLevel(QString page);
     };
 }
 
