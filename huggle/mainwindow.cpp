@@ -607,7 +607,8 @@ bool MainWindow::WarnUser(QString WarningType, RevertQuery *dependency, WikiEdit
         id = "";
     }
     this->Warnings.append(new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, warning, id, title, true, dependency, false,
-                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep), WarningType, Edit));
+                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep,
+                                             false, Edit->TPRevBaseTime), WarningType, Edit));
     Hooks::OnWarning(Edit->User);
 
     return true;
@@ -1270,7 +1271,7 @@ void MainWindow::ForceWarn(int level)
         id = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
     }
     Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, NULL, false,
-                               Configuration::HuggleConfiguration->UserConfig_SectionKeep, true);
+                               Configuration::HuggleConfiguration->UserConfig_SectionKeep, true, this->CurrentEdit->TPRevBaseTime);
 }
 
 void MainWindow::Exit()
@@ -1744,7 +1745,7 @@ void MainWindow::Welcome()
         Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon,
                                       Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
                                       Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary,
-                                      false, NULL, false, false, true);
+                                      false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime);
         return;
     }
 
@@ -1767,7 +1768,8 @@ void MainWindow::Welcome()
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->SetContentsOfTalkPage(message);
     Core::HuggleCore->MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
-                      Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false, NULL, false, false, true);
+                                  Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false, NULL,
+                                  false, false, true, this->CurrentEdit->TPRevBaseTime);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()

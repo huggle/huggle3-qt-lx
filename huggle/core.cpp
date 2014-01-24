@@ -243,7 +243,7 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool sectionkeep, bool autoremove)
+Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool sectionkeep, bool autoremove, QString bt)
 {
     if (user == NULL)
     {
@@ -260,6 +260,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->Title = title;
     m->Dependency = dependency;
     m->Section = section;
+    m->TimeOfBase = bt;
     m->SectionKeep = sectionkeep;
     m->Suffix = !nosuffix;
     Core::Messages.append(m);

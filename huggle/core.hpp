@@ -171,7 +171,7 @@ namespace Huggle
              * \return
              */
             Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL,
-                                  bool nosuffix = false, bool sectionkeep = false, bool autoremove = false);
+                                 bool nosuffix = false, bool sectionkeep = false, bool autoremove = false, QString bt = "");
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);

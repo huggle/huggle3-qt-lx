@@ -354,6 +354,11 @@ void Message::ProcessSend()
     this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     this->query->SetAction(ActionEdit);
     QString s = Summary;
+    QString base = "";
+    if (this->TimeOfBase != "")
+    {
+        base = "&basetimestamp=" + QUrl::toPercentEncoding(this->TimeOfBase);
+    }
     if (this->Suffix)
     {
         s += " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
@@ -372,13 +377,13 @@ void Message::ProcessSend()
             }
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + "&token="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + base
+                + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + "&token="
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + "&token="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }
     Core::HuggleCore->AppendQuery(query);
