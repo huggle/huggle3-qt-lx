@@ -36,8 +36,6 @@ namespace Huggle
     enum MessageError
     {
         MessageError_NoError,
-        //! Token was expired
-        MessageError_InvalidToken,
         MessageError_Dependency,
         MessageError_Obsolete,
         MessageError_Unknown

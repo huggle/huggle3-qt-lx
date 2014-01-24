@@ -204,7 +204,7 @@ void Message::Finish()
             return;
         }
 
-        if (this->query->Result->Failed)
+        if (this->query->IsFailed())
         {
             this->Fail("Failed to deliver the message");
             return;
@@ -225,7 +225,7 @@ void Message::Finish()
                 {
                     // someone edit the page meanwhile which means that our token has expired
                     this->Fail("Edit conflict");
-                    this->Error = MessageError_InvalidToken;
+                    this->Error = MessageError_Obsolete;
                 } else
                 {
                     this->Fail("Unknown error: " + ec);

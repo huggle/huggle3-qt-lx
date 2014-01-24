@@ -125,9 +125,18 @@ namespace Huggle
     class PendingWarning
     {
         public:
-            PendingWarning(Message *message, QString warning);
+            //! Unique garbage collector id used to lock the edit related to this warning
+            static int GCID;
+
+            PendingWarning(Message *message, QString warning, WikiEdit *edit);
+            ~PendingWarning();
+            //! The message of this warning
             Message *Warning;
+            //! The edit because of which this warning was sent
+            WikiEdit *RelatedEdit;
+            //! Template used in this warning so that we can use the same template for new attempt if any is needed
             QString Template;
+            int gcid;
             ApiQuery *Query;
     };
 
@@ -139,10 +148,13 @@ namespace Huggle
         public:
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
-            void DisplayReportUserWindow();
+            void DisplayReportUserWindow(WikiUser *User = NULL);
             void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false);
             RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+            //! Warn a current user
             bool Warn(QString WarningType, RevertQuery *dependency);
+            //! Warn a specific user which may be unrelated to current edit
+            bool WarnUser(QString WarningType, RevertQuery *dependency, WikiEdit *Edit);
             QString GetSummaryKey(QString item);
             QString GetSummaryText(QString text);
             //! Send a template to user no matter if they can be messaged or not

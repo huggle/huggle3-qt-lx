@@ -215,9 +215,9 @@ MainWindow::~MainWindow()
     delete this->tb;
 }
 
-void MainWindow::DisplayReportUserWindow()
+void MainWindow::DisplayReportUserWindow(WikiUser *User)
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || this->CurrentEdit == NULL)
     {
         return;
     }
@@ -228,7 +228,17 @@ void MainWindow::DisplayReportUserWindow()
         return;
     }
 
-    if (this->CurrentEdit->User->IsReported)
+    if (User == NULL)
+    {
+        User = this->CurrentEdit->User;
+    }
+
+    if (User == NULL)
+    {
+        throw new Huggle::Exception("WikiUser must not be NULL", "void MainWindow::DisplayReportUserWindow(WikiUser *User)");
+    }
+
+    if (User->IsReported)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-duplicate"));
         return;
@@ -244,11 +254,6 @@ void MainWindow::DisplayReportUserWindow()
         return;
     }
 
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-
     if (this->fReportForm != NULL)
     {
         delete this->fReportForm;
@@ -257,13 +262,14 @@ void MainWindow::DisplayReportUserWindow()
 
     this->fReportForm = new ReportUser(this);
     this->fReportForm->show();
-    this->fReportForm->SetUser(this->CurrentEdit->User);
+    this->fReportForm->SetUser(User);
 }
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)
 {
     if (e == NULL || this->ShuttingDown)
     {
+        // Huggle is either shutting down or edit is NULL so we can't do anything here
         return;
     }
     if (e->Page == NULL || e->User == NULL)
@@ -522,7 +528,12 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 
 bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 {
-    if (this->CurrentEdit == NULL)
+    return this->WarnUser(WarningType, dependency, this->CurrentEdit);
+}
+
+bool MainWindow::WarnUser(QString WarningType, RevertQuery *dependency, WikiEdit *Edit)
+{
+    if (Edit == NULL)
     {
         Syslog::HuggleLogs->DebugLog("NULL");
         return false;
@@ -535,25 +546,25 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     }
 
     // check if user wasn't changed and if was, let's update the info
-    this->CurrentEdit->User->Resync();
+    Edit->User->Resync();
 
     // get a template
-    this->CurrentEdit->User->WarningLevel++;
+    Edit->User->WarningLevel++;
 
-    if (this->CurrentEdit->User->WarningLevel > 4)
+    if (Edit->User->WarningLevel > 4)
     {
-        if (this->CurrentEdit->User->IsReported)
+        if (Edit->User->IsReported)
         {
             return false;
         }
         if (Core::HuggleCore->ReportPreFlightCheck())
         {
-            this->DisplayReportUserWindow();
+            this->DisplayReportUserWindow(Edit->User);
         }
         return false;
     }
 
-    QString __template = WarningType + QString::number(this->CurrentEdit->User->WarningLevel);
+    QString __template = WarningType + QString::number(Edit->User->WarningLevel);
 
     QString warning = Core::HuggleCore->RetrieveTemplateToWarn(__template);
 
@@ -564,11 +575,11 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
         return false;
     }
 
-    warning = warning.replace("$2", this->CurrentEdit->GetFullUrl()).replace("$1", this->CurrentEdit->Page->PageName);
+    warning = warning.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
 
-    QString title = "Message re " + this->CurrentEdit->Page->PageName;
+    QString title = "Message re " + Edit->Page->PageName;
 
-    switch (this->CurrentEdit->User->WarningLevel)
+    switch (Edit->User->WarningLevel)
     {
         case 1:
             title = Configuration::HuggleConfiguration->LocalConfig_WarnSummary;
@@ -584,9 +595,9 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
             break;
     }
 
-    title = title.replace("$1", this->CurrentEdit->Page->PageName);
+    title = title.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow
-    QString id = "Your edits to " + this->CurrentEdit->Page->PageName;
+    QString id = "Your edits to " + Edit->Page->PageName;
     if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsStandard)
     {
         QDateTime d = QDateTime::currentDateTime();
@@ -595,9 +606,9 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     {
         id = "";
     }
-    this->Warnings.append(new PendingWarning(Core::HuggleCore->MessageUser(this->CurrentEdit->User, warning, id, title, true, dependency, false,
-                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep), WarningType));
-    Hooks::OnWarning(this->CurrentEdit->User);
+    this->Warnings.append(new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, warning, id, title, true, dependency, false,
+                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep), WarningType, Edit));
+    Hooks::OnWarning(Edit->User);
 
     return true;
 }
@@ -1458,12 +1469,105 @@ void MainWindow::ResendWarning()
     while (x < this->Warnings.count())
     {
         PendingWarning *warning = this->Warnings.at(x);
+        if (warning->Query != NULL)
+        {
+            // we are already getting talk page so we need to check if it finished here
+            if (warning->Query->IsProcessed())
+            {
+                // this query is done so we check if it fallen to error now
+                if (warning->Query->IsFailed())
+                {
+                    // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                    // in doing anything else to fix it.
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                     + " the warning will not be delivered to this user");
+                    this->Warnings.removeAt(x);
+                    delete warning;
+                    continue;
+                }
+                // we get the new talk page
+                QDomDocument d;
+                d.setContent(warning->Query->Result->Data);
+                QDomNodeList page = d.elementsByTagName("rev");
+                QDomNodeList code = d.elementsByTagName("page");
+                QString TPRevBaseTime = "";
+                if (code.count() > 0)
+                {
+                    QDomElement e = code.at(0).toElement();
+                    if (e.attributes().contains("missing"))
+                    {
+                        // the talk page which existed was probably deleted by someone
+                        Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                         + " because it was deleted meanwhile, the warning will not be delivered to this user");
+                        this->Warnings.removeAt(x);
+                        delete warning;
+                        continue;
+                    }
+                }
+                // get last id
+                if (page.count() > 0)
+                {
+                    QDomElement e = page.at(0).toElement();
+                    if (e.nodeName() == "rev")
+                    {
+                        if (!e.attributes().contains("timestamp"))
+                        {
+                            Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + warning->Warning->user->Username +
+                                                                 " couldn't be retrieved, mediawiki returned no data for it");
+                            this->Warnings.removeAt(x);
+                            delete warning;
+                            continue;
+                        } else
+                        {
+                            TPRevBaseTime = e.attribute("timestamp");
+                        }
+                        warning->Warning->user->SetContentsOfTalkPage(e.text());
+                    } else
+                    {
+                        // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                        // in doing anything else to fix it.
+                        Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                         + " the warning will not be delivered to this user, check debug logs for more");
+                        Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
+                        this->Warnings.removeAt(x);
+                        delete warning;
+                        continue;
+                    }
+                } else
+                {
+                    // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                    // in doing anything else to fix it.
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                     + " the warning will not be delivered to this user, check debug logs for more");
+                    Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
+                    this->Warnings.removeAt(x);
+                    delete warning;
+                    continue;
+                }
+
+                // so we now have the new talk page content so we need to reclassify the user
+                warning->Warning->user->ParseTP();
+
+                // now when we have the new level of warning we can try to send a new warning and hope that talk page wasn't
+                // changed meanwhile again lol :D
+                warning->RelatedEdit->TPRevBaseTime = TPRevBaseTime;
+                this->WarnUser(warning->Template, NULL, warning->RelatedEdit);
+
+                // we can delete this warning now because we created another one
+                this->Warnings.removeAt(x);
+                delete warning;
+                continue;
+            }
+            // in case that it isn't processed yet we can continue on next warning
+            x++;
+            continue;
+        }
+
         if (warning->Warning->IsFinished())
         {
             if (!warning->Warning->IsFailed())
             {
                 // we no longer need to care about this one
-                warning->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
                 this->Warnings.removeAt(x);
                 delete warning;
                 continue;
@@ -1474,6 +1578,24 @@ void MainWindow::ResendWarning()
             {
                 Syslog::HuggleLogs->DebugLog("Someone changed the content of " + warning->Warning->user->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
+                if (warning->Query != NULL)
+                {
+                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
+                }
+                warning->Query = new Huggle::ApiQuery();
+                warning->Query->SetAction(ActionQuery);
+                warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+                        QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
+                warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+                Core::HuggleCore->AppendQuery(warning->Query);
+                //! \todo LOCALIZE ME
+                warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
+                warning->Query->Process();
+            } else
+            {
+                this->Warnings.removeAt(x);
+                delete warning;
+                continue;
             }
         }
         x++;
@@ -1515,6 +1637,7 @@ void MainWindow::DisplayNext(Query *q)
             this->Queue1->Next();
             return;
         case Configuration_OnNext_Revert:
+            //! \bug This doesn't seem to work
             if (this->CurrentEdit == NULL)
             {
                 return;
@@ -2259,10 +2382,25 @@ void Huggle::MainWindow::on_actionFeedback_triggered()
     QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath);
 }
 
+int PendingWarning::GCID = 0;
 
-PendingWarning::PendingWarning(Message *message, QString warning)
+PendingWarning::PendingWarning(Message *message, QString warning, WikiEdit *edit)
 {
+    this->gcid = GCID;
+    GCID++;
     this->Template = warning;
+    this->RelatedEdit = edit;
+    edit->RegisterConsumer("PendingWarning" + QString::number(gcid));
     this->Warning = message;
     this->Query = NULL;
+}
+
+PendingWarning::~PendingWarning()
+{
+    this->RelatedEdit->UnregisterConsumer("PendingWarning" + QString::number(gcid));
+    if (this->Query != NULL)
+    {
+        this->Query->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+    }
+    this->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
 }
