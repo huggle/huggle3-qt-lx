@@ -35,7 +35,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->Messaging = false;
     this->BlockForm = NULL;
-    this->qd = NULL;
+    this->qDiff = NULL;
     this->ReportText = "";
     this->Loading = false;
 #if QT_VERSION >= 0x050000
@@ -86,9 +86,9 @@ ReportUser::~ReportUser()
     {
         this->qBlockHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
-    if (this->qd != NULL)
+    if (this->qDiff != NULL)
     {
-        this->qd->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+        this->qDiff->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
     delete this->diff;
     if (this->tq != NULL)
@@ -325,18 +325,18 @@ void ReportUser::Tick()
 
 void ReportUser::On_DiffTick()
 {
-    if (this->qd == NULL)
+    if (this->qDiff == NULL)
     {
         return;
     }
-    if (!this->qd->IsProcessed())
+    if (!this->qDiff->IsProcessed())
     {
         return;
     }
-    if (this->qd->Result->Failed)
+    if (this->qDiff->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        ui->webView->setHtml("Unable to retrieve diff: " + this->qd->Result->ErrorMessage);
+        ui->webView->setHtml("Unable to retrieve diff: " + this->qDiff->Result->ErrorMessage);
         this->diff->stop();
         return;
     }
@@ -345,7 +345,7 @@ void ReportUser::On_DiffTick()
     QString Diff;
 
     QDomDocument d;
-    d.setContent(this->qd->Result->Data);
+    d.setContent(this->qDiff->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
     QDomNodeList diff = d.elementsByTagName("diff");
     if (diff.count() > 0)
@@ -357,10 +357,10 @@ void ReportUser::On_DiffTick()
         }
     } else
     {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->qd->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->qDiff->Result->Data);
         /// \todo LOCALIZE ME
         this->ui->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
-                                HuggleWeb::Encode(this->qd->Result->Data));
+                                HuggleWeb::Encode(this->qDiff->Result->Data));
         this->diff->stop();
         return;
     }
@@ -386,8 +386,8 @@ void ReportUser::On_DiffTick()
         Summary = HuggleWeb::Encode(Summary);
     }
 
-    this->ui->webView->setHtml(Core::HuggleCore->HtmlHeader + "<tr></td colspan=2><b>Summary:</b> "
-                         + Summary + "</td></tr>" + Diff + Core::HuggleCore->HtmlFooter);
+    this->ui->webView->setHtml(Core::HuggleCore->DiffHeader + "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
+                               + ":</b> " + Summary + "</td></tr>" + Diff + Core::HuggleCore->DiffFooter + Core::HuggleCore->HtmlFooter);
     this->diff->stop();
 }
 
@@ -507,21 +507,20 @@ void ReportUser::on_pushButton_2_clicked()
 
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
-    /// \todo LOCALIZE ME
-    this->ui->webView->setHtml("Please wait...");
+    this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("wait"));
     this->diff->stop();
-    if (this->qd != NULL)
+    if (this->qDiff != NULL)
     {
-        this->qd->Kill();
-        this->qd->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+        this->qDiff->Kill();
+        this->qDiff->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
-    this->qd = new ApiQuery();
-    this->qd->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
-    this->qd->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
+    this->qDiff = new ApiQuery();
+    this->qDiff->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
+    this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
             this->ui->tableWidget->item(index.row(), 3)->text() + "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
             QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
-    this->qd->SetAction(ActionQuery);
-    this->qd->Process();
+    this->qDiff->SetAction(ActionQuery);
+    this->qDiff->Process();
     this->diff->start(200);
 }
 

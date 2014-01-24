@@ -84,7 +84,7 @@ namespace Huggle
             //! This query is used to get a block history
             ApiQuery *qBlockHistory;
             ApiQuery *tq;
-            ApiQuery *qd;
+            ApiQuery *qDiff;
     };
 }
 
