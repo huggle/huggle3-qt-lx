@@ -107,6 +107,7 @@ bool Message::IsFinished()
                 if (this->query != NULL)
                 {
                     this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+                    this->query = NULL;
                 }
                 return true;
             }
