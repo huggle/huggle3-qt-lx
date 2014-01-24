@@ -142,6 +142,11 @@ QString Collectable::ConsumerIdToString(const int id)
 void Collectable::SetManaged()
 {
     this->_collectableManaged = true;
+    if (GC::gc == NULL)
+    {
+        // huggle is probably shutting down
+        return;
+    }
     if (!GC::gc->list.contains(this))
     {
         GC::gc->list.append(this);
