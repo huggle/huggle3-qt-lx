@@ -121,6 +121,19 @@
             </item>
            </layout>
           </widget>
+          <widget class="QCheckBox" name="checkBox_20">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>90</y>
+             <width>781</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Revert newer edits to page than displayed diff in case they were made by same user (same vandal)</string>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>

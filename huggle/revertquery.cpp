@@ -249,31 +249,41 @@ void RevertQuery::Preflight()
     {
         if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)
         {
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
-            this->Cancel();
-            return;
-        }
-        QString text;
-        if (MadeBySameUser)
-        {
-            /// \todo LOCALIZE ME
-            text = ("There are new edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
+            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig_RevertNewBySame)
+            {
+                this->IgnorePreflightCheck = true;
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits including new edits, "\
+                                                "made by same users - edits are by same user: " + this->edit->Page->PageName);
+            } else
+            {
+                /// \todo LOCALIZE ME
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                this->Cancel();
+                return;
+            }
         } else
         {
+            QString text;
+            if (MadeBySameUser)
+            {
+                /// \todo LOCALIZE ME
+                text = ("There are new edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
+            } else
+            {
+                /// \todo LOCALIZE ME
+                text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
+            }
+            QMessageBox::StandardButton re;
             /// \todo LOCALIZE ME
-            text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
-        }
-        QMessageBox::StandardButton re;
-        /// \todo LOCALIZE ME
-        re = QMessageBox::question(Core::HuggleCore->Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
-        if (re == QMessageBox::No)
-        {
-            this->Cancel();
-            return;
-        } else
-        {
-            this->IgnorePreflightCheck = true;
+            re = QMessageBox::question(Core::HuggleCore->Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
+            if (re == QMessageBox::No)
+            {
+                this->Cancel();
+                return;
+            } else
+            {
+                this->IgnorePreflightCheck = true;
+            }
         }
     }
     this->qPreflight = new ApiQuery();
@@ -387,10 +397,17 @@ void RevertQuery::CheckPreflight()
                 Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
             } else
             {
-                /// \todo LOCALIZE ME
-                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
-                this->Cancel();
-                return;
+                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig_RevertNewBySame)
+                {
+                    Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits including new edits, "\
+                                                    "made by same users - edits are by same user: " + this->edit->Page->PageName);
+                } else
+                {
+                    /// \todo LOCALIZE ME
+                    Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                    this->Cancel();
+                    return;
+                }
             }
         }
         QMessageBox::StandardButton re;

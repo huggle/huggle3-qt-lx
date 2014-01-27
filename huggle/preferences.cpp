@@ -86,7 +86,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
     this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_20->setChecked(Configuration::HuggleConfiguration->UserConfig_RevertNewBySame);
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }
 
@@ -165,6 +167,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = this->ui->checkBox_4->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_RevertNewBySame = this->ui->checkBox_20->isChecked();
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = this->ui->checkBox_14->isChecked();
     Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
     Configuration::HuggleConfiguration->UserConfig_SectionKeep = this->ui->checkBox_17->isChecked();
@@ -190,6 +193,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 void Huggle::Preferences::on_checkBox_clicked()
 {
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox_20->isChecked());
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }
 

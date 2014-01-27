@@ -176,6 +176,7 @@ Configuration::Configuration()
 
     this->LocalConfig_TemplateAge = -30;
     this->LocalConfig_ScoreChange = 100;
+    this->UserConfig_RevertNewBySame = true;
 
     // Blocking users
     this->LocalConfig_BlockTime = "indefinite";
