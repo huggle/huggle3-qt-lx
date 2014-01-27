@@ -302,8 +302,6 @@ QString Configuration::MakeLocalUserConfig()
     QString conf = "<nowiki>\n";
     conf += "enable:true\n";
     conf += "version:" + Configuration::HuggleConfiguration->HuggleVersion + "\n\n";
-    conf += "admin:true\n";
-    conf += "patrol-speedy:true\n";
     conf += "speedy-message-title:Speedy deleted\n";
     conf += "report-summary:" + Configuration::HuggleConfiguration->LocalConfig_ReportSummary + "\n";
     conf += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
@@ -315,9 +313,17 @@ QString Configuration::MakeLocalUserConfig()
     // huggle 2 options
     conf += "auto-advance:false\n";
     conf += "auto-whitelist:true\n";
+    conf += "username-listed:true\n";
+    conf += "admin:true\n";
+    conf += "patrol-speedy:true\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits) + "\n";
+    conf += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmPage) + "\n";
+    conf += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmSame) + "\n";
+    conf += "confirm-self-revert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs) + "\n";
+    conf += "confirm-warned:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmWarned) + "\n";
     conf += "confirm-range:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmRange) + "\n";
+    conf += "default-summary:" + Configuration::HuggleConfiguration->LocalConfig_DefaultSummary + "\n";
     conf += "// this option will change the behaviour of automatic resolution, be carefull\n";
     conf += "revert-auto-multiple-edits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts) + "\n";
