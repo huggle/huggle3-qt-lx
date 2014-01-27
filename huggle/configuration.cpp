@@ -1102,7 +1102,7 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool
                      (Configuration::ConfigurationParse("HistoryLoad", config, "true"));
     Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>
-                          (Configuration::ConfigurationParse("GoNext", config, "1").toInt());
+                          (Configuration::ConfigurationParse("OnNext", config, "1").toInt());
     Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = Configuration::SafeBool
                       (Configuration::ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     Configuration::NormalizeConf();

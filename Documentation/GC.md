@@ -40,7 +40,7 @@ Consumers
 
 Consumers are virtual elements that are using the collectable object. For example if you hold a reference to an object within some function, this function is a consumer of that object. The same applies for classes or fundamental pointers. Every consumer needs to be registered in collectable object so that GC knows it is still being used by it. When you no longer need to use some resource within a consumer, you need to remove it from collectable object.
 
-In simple words, the consumers are locks that prevent GC from removing an object from being deleted from memory.
+In simple words, the consumers are locks that prevent GC from removing an object from memory.
 
 How to create and collect managed object
 =========================================

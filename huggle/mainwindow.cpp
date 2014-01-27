@@ -272,6 +272,12 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         // Huggle is either shutting down or edit is NULL so we can't do anything here
         return;
     }
+    if (this->qNext != NULL)
+    {
+        // we need to delete this because it's related to an old edit
+        this->qNext->UnregisterConsumer("OnNext");
+        this->qNext = NULL;
+    }
     if (e->Page == NULL || e->User == NULL)
     {
         throw new Huggle::Exception("Page and User must not be NULL in edit that is supposed to be displayed on form",
@@ -281,8 +287,6 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     {
         delete this->OnNext_EvPage;
         this->OnNext_EvPage = NULL;
-        this->qNext->UnregisterConsumer("OnNext");
-        this->qNext = NULL;
     }
     // we need to safely delete the edit later
     e->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
@@ -891,7 +895,7 @@ void MainWindow::OnTimerTick1()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
-    if (this->OnNext_EvPage != NULL)
+    if (this->OnNext_EvPage != NULL && this->qNext != NULL)
     {
         if (this->qNext->IsProcessed())
         {
@@ -976,7 +980,6 @@ void MainWindow::OnTimerTick0()
         {
             return;
         }
-        Syslog::HuggleLogs->Log(this->eq->Result->Data);
         this->eq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->eq = NULL;
         this->wlt->stop();
@@ -1054,10 +1057,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     if (result != NULL)
     {
         this->Warn("warning", result);
-        this->DisplayNext();
+        this->DisplayNext(result);
     } else
     {
-        this->DisplayNext();
+        this->DisplayNext(result);
     }
 }
 
@@ -1078,10 +1081,10 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     if (result != NULL)
     {
         this->Warn("warning", result);
-        this->DisplayNext();
+        this->DisplayNext(result);
     } else
     {
-        this->DisplayNext();
+        this->DisplayNext(result);
     }
 }
 
@@ -1174,10 +1177,10 @@ void MainWindow::CustomRevertWarn()
     if (result != NULL)
     {
         this->Warn(k, result);
-        this->DisplayNext();
+        this->DisplayNext(result);
     } else
     {
-        this->DisplayNext();
+        this->DisplayNext(result);
     }
 }
 
@@ -1651,6 +1654,9 @@ void MainWindow::DisplayNext(Query *q)
             if (this->OnNext_EvPage != NULL)
             {
                 delete this->OnNext_EvPage;
+            }
+            if (this->qNext != NULL)
+            {
                 this->qNext->UnregisterConsumer("OnNext");
             }
             this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
