@@ -1000,13 +1000,14 @@ void MainWindow::OnTimerTick0()
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled && !this->wq->IsProcessed())
+            if (!this->wq->IsProcessed())
             {
+                this->fWaiting->Status(60 + int((this->wq->Progress / 100) * 30));
                 return;
             }
             // we finished writing the wl
             this->wq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-            this->fWaiting->Status(80, Localizations::HuggleLocalizations->Localize("updating-uc"));
+            this->fWaiting->Status(90, Localizations::HuggleLocalizations->Localize("updating-uc"));
             this->wq = NULL;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;

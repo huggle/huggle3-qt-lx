@@ -14,6 +14,7 @@ using namespace Huggle;
 WLQuery::WLQuery()
 {
     this->Result = NULL;
+    this->Progress = 0;
     Save = false;
 }
 
@@ -64,6 +65,8 @@ void WLQuery::Process()
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         this->r = Query::NetworkManager->post(request, data);
     }
+    QObject::connect(this->r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress()));
+    QObject::connect(this->r, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress()));
     QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
@@ -88,4 +91,13 @@ void WLQuery::Finished()
     this->r->deleteLater();
     this->r = NULL;
     this->Status = StatusDone;
+}
+
+void WLQuery::WriteProgress(qint64 n, qint64 m)
+{
+    if (n == 0 && m == 0)
+    {
+        return;
+    }
+    this->Progress = (n / m) * 100;
 }

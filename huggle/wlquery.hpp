@@ -28,9 +28,11 @@ namespace Huggle
             ~WLQuery();
             void Process();
             bool Save;
+            double Progress;
         private slots:
             void ReadData();
             void Finished();
+            void WriteProgress(qint64 n, qint64 m);
         private:
             QNetworkReply *r;
     };
