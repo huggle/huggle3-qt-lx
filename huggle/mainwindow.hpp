@@ -234,6 +234,9 @@ namespace Huggle
             UAAReport *fUaaReportForm;
             WhitelistForm *fWhitelist;
             int LastTPRevID;
+            //! This is a query for rollback of current edit which we need to keep in case
+            //! that user wants to display their own revert instead of next page
+            Query *qNext;
             //! Timer that is used to check if there are new messages on talk page
             QTimer *tCheck;
             //! Query that is used to check if talk page contains new messages
@@ -320,6 +323,8 @@ namespace Huggle
             bool CheckExit();
             void DisplayWelcomeMessage();
             void FinishRestore();
+            //! Check if we can revert this edit
+            bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
             void Welcome();
             //! Recreate interface, should be called everytime you do anything with main form
@@ -343,7 +348,6 @@ namespace Huggle
             QList <WikiEdit*> Historical;
             ApiQuery *RestoreQuery;
             WikiEdit *RestoreEdit;
-            Query *qNext;
             //! This is a page that is going to be displayed if users request their latest action to be
             //! reviewed when it's done (for example when they rollback an edit and they want to
             //! display it, instead of next one)

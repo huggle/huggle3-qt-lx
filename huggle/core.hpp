@@ -136,8 +136,6 @@ namespace Huggle
             void PostProcessEdit(WikiEdit *_e);
             //! Check if all running queries are finished and if so it removes them from list
             void CheckQueries();
-            //! Check if we can revert this edit
-            bool PreflightCheck(WikiEdit *_e);
             /*!
              * \brief RevertEdit Reverts the edit
              * \param _e Pointer to edit that needs to be reverted

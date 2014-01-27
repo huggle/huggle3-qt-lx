@@ -515,7 +515,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         rollback = false;
     }
 
-    if (Core::HuggleCore->PreflightCheck(this->CurrentEdit))
+    if (this->PreflightCheck(this->CurrentEdit))
     {
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
@@ -528,6 +528,50 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         return q;
     }
     return NULL;
+}
+
+bool MainWindow::PreflightCheck(WikiEdit *_e)
+{
+    if (this->qNext != NULL)
+    {
+        QMessageBox *mb = new QMessageBox();
+        mb->setWindowTitle("This edit is already being reverted");
+        mb->setText("You can't revert this edit, because it's already being reverted. Please wait!");
+        mb->exec();
+        return false;
+    }
+    if (_e == NULL)
+    {
+        throw new Huggle::Exception("NULL edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
+    }
+    bool Warn = false;
+    QString type = "unknown";
+    if (Configuration::HuggleConfiguration->WarnUserSpaceRoll && _e->Page->IsUserpage())
+    {
+        Warn = true;
+        type = "in userspace";
+    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs
+               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower()))
+    {
+        type = "made by you";
+        Warn = true;
+    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk && _e->Page->IsTalk())
+    {
+        type = "made on talk page";
+        Warn = true;
+    }
+    if (Warn)
+    {
+        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
+                      , "This edit is " + type + ", so even if it looks like it is a vandalism,"\
+                      " it may not be, are you sure you want to revert it?"
+                      , QMessageBox::Yes|QMessageBox::No);
+        if (q == QMessageBox::No)
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
