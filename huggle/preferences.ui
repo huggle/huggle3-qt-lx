@@ -61,6 +61,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="checkBox_11">
+          <property name="text">
+           <string>Ask if you revert a talk page</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="checkBox_5">
           <property name="text">
            <string>Use software rollback</string>
@@ -114,13 +121,6 @@
             </item>
            </layout>
           </widget>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBox_11">
-          <property name="text">
-           <string>Ask if you revert a talk page</string>
-          </property>
          </widget>
         </item>
        </layout>

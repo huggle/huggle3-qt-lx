@@ -198,8 +198,7 @@ void BlockUser::Block()
         }
         QMessageBox mb;
         mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
-        /// \todo LOCALIZE ME
-        mb.setText("Unable to block: " + reason);
+        mb.setText(Localizations::HuggleLocalizations->Localize("block-fail", reason));
         mb.exec();
         this->ui->pushButton->setText("Block");
         this->qUser->Result->Failed = true;

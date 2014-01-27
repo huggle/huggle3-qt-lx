@@ -129,10 +129,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     this->tabifyDockWidget(this->SystemLog, this->Queries);
-    this->timer1 = new QTimer(this);
+    this->GeneralTimer = new QTimer(this);
     this->ui->actionTag_2->setVisible(false);
-    connect(this->timer1, SIGNAL(timeout()), this, SLOT(OnTimerTick1()));
-    this->timer1->start(200);
+    connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
+    this->GeneralTimer->start(200);
     QFile *layout = NULL;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
@@ -775,7 +775,7 @@ void MainWindow::on_actionAbout_triggered()
     this->aboutForm->show();
 }
 
-void MainWindow::OnTimerTick1()
+void MainWindow::OnMainTimerTick()
 {
     Core::HuggleCore->FinalizeMessages();
     bool RetrieveEdit = true;
@@ -1027,7 +1027,7 @@ void MainWindow::OnTimerTick0()
         this->eq->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->eq = NULL;
         this->wlt->stop();
-        this->timer1->stop();
+        this->GeneralTimer->stop();
         Core::HuggleCore->Shutdown();
     }
 }

@@ -247,7 +247,7 @@ namespace Huggle
             void on_actionPreferences_triggered();
             void on_actionContents_triggered();
             void on_actionAbout_triggered();
-            void OnTimerTick1();
+            void OnMainTimerTick();
             void OnTimerTick0();
             void on_actionNext_triggered();
             void on_actionNext_2_triggered();
@@ -335,7 +335,8 @@ namespace Huggle
             void FinishPatrols();
             void DecreaseBS();
             void IncreaseBS();
-            QTimer *timer1;
+            //! This timer periodically executes various jobs that needs to be executed in main thread loop
+            QTimer *GeneralTimer;
             QString RestoreEdit_RevertReason;
             // Whitelist
             QTimer *wlt;

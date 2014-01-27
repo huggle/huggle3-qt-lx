@@ -186,8 +186,7 @@ void Login::PressOK()
     if (this->ui->tab->isVisible())
     {
         QMessageBox mb;
-        mb.setWindowTitle("Function not supported");
-        /// \todo LOCALIZE ME
+        mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("function-miss"));
         mb.setText("This function is not available for wmf wikis in this moment");
         mb.exec();
         return;
@@ -293,8 +292,7 @@ void Login::RetrieveGlobalConfig()
             {
                 if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
-                    /// \todo LOCALIZE ME
-                    this->ui->label_6->setText("Login failed because huggle is globally disabled");
+                    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-alldisabled"));
                     this->Progress(0);
                     this->_Status = LoginFailed;
                     this->LoginQuery->SafeDelete();
@@ -306,8 +304,7 @@ void Login::RetrieveGlobalConfig()
                 this->_Status = RetrievingWhitelist;
                 return;
             }
-            /// \todo LOCALIZE ME
-            this->ui->label_6->setText("Login failed unable to parse the global config, see debug log for more details");
+            this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-global"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Progress(0);
             this->_Status = LoginFailed;
@@ -402,8 +399,7 @@ void Login::RetrieveLocalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve local config: " + this->LoginQuery->Result->ErrorMessage);
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config", this->LoginQuery->Result->ErrorMessage));
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -415,8 +411,7 @@ void Login::RetrieveLocalConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve local config, the api query returned no data");
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config", "the api query returned no data"));
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();

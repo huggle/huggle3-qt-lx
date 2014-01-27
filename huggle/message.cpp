@@ -185,8 +185,7 @@ void Message::Finish()
         }
         if (this->query->Result->Failed)
         {
-            /// \todo LOCALIZE ME
-            this->Fail("unable to retrieve the user talk page");
+            this->Fail(Localizations::HuggleLocalizations->Localize("message-fail-retrieve-talk"));
             return;
         }
         this->ProcessTalk();
@@ -243,8 +242,7 @@ void Message::Finish()
             {
                 if (element.attribute("result") == "Success")
                 {
-                    /// \todo LOCALIZE ME
-                    Huggle::Syslog::HuggleLogs->Log("Successfuly delivered message to " + this->user->Username);
+                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("message-done"), this->user->Username);
                     sent = true;
                     HistoryItem item;
                     item.Result = "Success";
