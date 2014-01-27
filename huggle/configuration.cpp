@@ -98,6 +98,7 @@ Configuration::Configuration()
     this->LocalConfig_WarnSummary2 = "Warning (level 2)";
     this->LocalConfig_WarnSummary3 = "Warning (level 3)";
     this->LocalConfig_WarnSummary4 = "Warning (level 4)";
+    this->UserConfig_TruncateEdits = false;
 
     this->QueryListTimeLimit = 2;
     this->HistorySize = 20;
@@ -336,6 +337,7 @@ QString Configuration::MakeLocalUserConfig()
     conf += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
     conf += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
     conf += "DeleteEditsAfterRevert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert) + "\n";
+    conf += "TruncateEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_TruncateEdits) + "\n";
     conf += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -1105,6 +1107,8 @@ bool Configuration::ParseUserConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config,
                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
     HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
+    Configuration::HuggleConfiguration->UserConfig_TruncateEdits = Configuration::SafeBool
+            (Configuration::ConfigurationParse("TruncateEdits", config, "false"));
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool
                      (Configuration::ConfigurationParse("HistoryLoad", config, "true"));
     Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>

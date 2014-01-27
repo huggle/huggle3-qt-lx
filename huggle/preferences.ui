@@ -157,7 +157,7 @@
          <x>0</x>
          <y>0</y>
          <width>811</width>
-         <height>60</height>
+         <height>65</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -172,6 +172,13 @@
          <widget class="QCheckBox" name="checkBox_15">
           <property name="text">
            <string>Remove edits that were already reverted by someone else</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_19">
+          <property name="text">
+           <string>Remove old edits if newer edit to same page is parsed</string>
           </property>
          </widget>
         </item>

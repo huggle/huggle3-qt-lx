@@ -281,6 +281,7 @@ namespace Huggle
             bool                    UserConfig_DeleteEditsAfterRevert;
             bool                    UserConfig_SectionKeep;
             unsigned int            UserConfig_HistoryMax;
+            bool                    UserConfig_TruncateEdits;
 
             //////////////////////////////////////////////
             // Local config

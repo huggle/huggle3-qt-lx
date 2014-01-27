@@ -47,21 +47,21 @@ namespace Huggle
              * \param page is a pointer to wiki edit you want to insert to queue
              */
             void AddItem(WikiEdit *page);
+            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+            bool DeleteByRevID(int RevID);
+            //! Delete all edits to the page that are older than this edit
+            void DeleteOlder(WikiEdit *edit);
+            //! Reload filters
+            void Filters();
             //! Switch and render next edit in queue
             void Next();
             WikiEdit *GetWikiEditByRevID(int RevID);
-            bool DeleteByRevID(int RevID);
             void Sort();
             void SortItemByEdit(WikiEdit *e);
             void ResortItem(QLayoutItem *item, int position = -1);
-            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
             void Trim(int i);
             //! Remove 1 item
             void Trim();
-            //! Reload filters
-            void Filters();
-            //! Delete all edits to the page that are older than this edit
-            void DeleteOlder(WikiEdit *edit);
             void Clear();
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;

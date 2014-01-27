@@ -95,6 +95,13 @@ void HuggleQueue::AddItem(WikiEdit *page)
         }
         WikiEdit::Lock_EditList->unlock();
     }
+
+    if (Configuration::HuggleConfiguration->UserConfig_TruncateEdits)
+    {
+        // if we want to keep only newest edits in queue we can remove all older edits made to this page
+        this->DeleteOlder(page);
+    }
+
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
