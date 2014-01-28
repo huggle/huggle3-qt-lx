@@ -180,6 +180,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("rights"))
+    {
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        return;
+    }
+
     if (flags.contains("reviewed"))
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
