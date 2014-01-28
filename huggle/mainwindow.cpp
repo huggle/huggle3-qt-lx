@@ -1786,8 +1786,19 @@ void MainWindow::Welcome()
         }
     }
 
+    if (!this->CurrentEdit->User->GetWhetherTalkPageWasRetrieved())
+    {
+        if (QMessageBox::question(this, "Welcome :o", Localizations::HuggleLocalizations->Localize("welcome-page-miss-fail"),
+                                  QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
+        {
+            return;
+        }
+        return;
+    }
+
     if (this->CurrentEdit->User->IsIP())
     {
+
         if (this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             // write something to talk page so that we don't welcome this user twice

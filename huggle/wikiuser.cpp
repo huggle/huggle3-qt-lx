@@ -112,6 +112,7 @@ WikiUser::WikiUser()
     this->IsBanned = false;
     this->ContentsOfTalkPage = "";
     this->IsReported = false;
+    this->TalkPageWasRetrieved = false;
     this->WhitelistInfo = 0;
     this->Bot = false;
 }
@@ -126,6 +127,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->IsBanned = u->IsBanned;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
+    this->TalkPageWasRetrieved = u->TalkPageWasRetrieved;
     this->WhitelistInfo = u->WhitelistInfo;
     this->Bot = u->Bot;
 }
@@ -140,6 +142,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->BadnessScore = u.BadnessScore;
     this->IsBanned = u.IsBanned;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
+    this->TalkPageWasRetrieved = u.TalkPageWasRetrieved;
     this->WhitelistInfo = u.WhitelistInfo;
     this->Bot = u.Bot;
 }
@@ -161,6 +164,7 @@ WikiUser::WikiUser(QString user)
     this->Username = user;
     this->Sanitize();
     this->IsBanned = false;
+    this->TalkPageWasRetrieved = false;
     int c=0;
     this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())
@@ -231,6 +235,7 @@ QString WikiUser::GetContentsOfTalkPage()
 void WikiUser::SetContentsOfTalkPage(QString text)
 {
     this->UserLock->lock();
+    this->TalkPageWasRetrieved = true;
     this->ContentsOfTalkPage = text;
     this->Update();
     this->UserLock->unlock();
@@ -278,6 +283,11 @@ void WikiUser::ParseTP()
 QString WikiUser::GetTalk()
 {
     return Configuration::HuggleConfiguration->LocalConfig_NSUserTalk + this->Username;
+}
+
+bool WikiUser::GetWhetherTalkPageWasRetrieved()
+{
+    return this->TalkPageWasRetrieved;
 }
 
 bool WikiUser::IsWhitelisted()

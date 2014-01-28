@@ -747,4 +747,5 @@ updating-uc:               Updating user configuration page at huggle.css on wik
 feature-nfru:              This feature is for ip users only
 report-no-user:            No user has been selected to report, please select some user first
 welcome-tp-empty-fail:     This user doesn't have empty talk page, are you sure you want to send a message to him?
+welcome-page-miss-fail:    Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?
 

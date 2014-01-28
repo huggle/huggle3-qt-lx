@@ -94,6 +94,7 @@ namespace Huggle
             void Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
+            bool GetWhetherTalkPageWasRetrieved();
             //! Returns true if this user is wl
             bool IsWhitelisted();
             /*!
@@ -141,6 +142,7 @@ namespace Huggle
             int WhitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
             QString ContentsOfTalkPage;
+            bool TalkPageWasRetrieved;
             QMutex *UserLock;
             bool Bot;
             bool IP;
