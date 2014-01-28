@@ -65,8 +65,8 @@ void WLQuery::Process()
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         this->r = Query::NetworkManager->post(request, data);
     }
-    QObject::connect(this->r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress()));
-    QObject::connect(this->r, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress()));
+    QObject::connect(this->r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
+    QObject::connect(this->r, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
     QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }

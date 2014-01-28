@@ -12,6 +12,7 @@
 #define HISTORYFORM_H
 
 #include <QTimer>
+#include <QToolTip>
 #include <QDockWidget>
 #include "apiquery.hpp"
 #include "exception.hpp"

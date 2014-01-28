@@ -142,6 +142,7 @@ void HistoryForm::onTick01()
         this->t1->stop();
         return;
     }
+    bool IsLatest = false;
     QDomDocument d;
     d.setContent(this->query->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
@@ -233,6 +234,10 @@ void HistoryForm::onTick01()
 
         if (this->CurrentEdit->RevID == RevID.toInt())
         {
+            if (x == 0)
+            {
+                IsLatest = true;
+            }
             QFont font;
             font.setBold(true);
             QTableWidgetItem *i = new QTableWidgetItem(icon, "");
@@ -280,6 +285,19 @@ void HistoryForm::onTick01()
             this->ui->tableWidget->setItem(x, 5, i);
         }
         x++;
+    }
+    if (!IsLatest)
+    {
+        QPoint pntr(0, this->pos().y());
+        if (this->pos().x() > 400)
+        {
+            pntr.setX(this->pos().x() - 100);
+        } else
+        {
+            pntr.setX(this->pos().x() + 100);
+        }
+        QToolTip::showText(pntr, "<b><big>" +Localizations::HuggleLocalizations->Localize("historyform-not-latest-tip")
+                           + "</big></b>", this);
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->ui->tableWidget->resizeRowsToContents();

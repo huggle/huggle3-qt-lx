@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QDesktopServices>
 #include <QMutex>
+#include <QToolTip>
 #include <QThread>
 #include <QSplitter>
 #include <QDockWidget>

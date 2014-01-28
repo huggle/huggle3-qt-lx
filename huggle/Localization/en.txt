@@ -183,9 +183,10 @@ delete-edsc:               Unable to delete page because $1
 delete-failed-no-info:     no page info was present in query (are you sysop?)
 
 === History form ===
-historyform-no-info:                   No edit info
-historyform-retrieve-history:          Retrieve history
-historyform-retrieving-history:        Retrieving history
+historyform-no-info:                 No edit info
+historyform-retrieve-history:        Retrieve history
+historyform-retrieving-history:      Retrieving history
+historyform-not-latest-tip:          This is not a latest revision of this page, make sure you reviewed the newer versions as well. Also please, keep in mind that rollback may not be possible from this point.
 
 === IRC feed ===
 irc-connected:             Connected to IRC recent changes feed
