@@ -82,6 +82,7 @@ void WikiUser::UpdateUser(WikiUser *us)
             {
                 ProblematicUsers.at(c)->IsReported = true;
             }
+            ProblematicUsers.at(c)->TalkPageWasRetrieved = us->TalkPageWasRetrieved;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
             WikiUser::ProblematicUserListLock.unlock();
             return;
@@ -220,7 +221,7 @@ QString WikiUser::GetContentsOfTalkPage()
     // we need to copy the value to local variable so that if someone change it from different
     // thread we are still working with same data
     QString contents = "";
-    if (user != NULL)
+    if (user != NULL && user->GetWhetherTalkPageWasRetrieved())
     {
         // we return a value of user from global db instead of local
         contents = user->ContentsOfTalkPage;
