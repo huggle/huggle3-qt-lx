@@ -26,7 +26,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->_Status = Huggle::MessageStatus_None;
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
-    this->TimeOfBase = "";
+    this->BaseTimestamp = "";
     this->Error = MessageError_NoError;
     this->ErrorText = "";
     this->Title = "Message from " + Configuration::HuggleConfiguration->UserName;
@@ -354,9 +354,9 @@ void Message::ProcessSend()
     this->query->SetAction(ActionEdit);
     QString s = Summary;
     QString base = "";
-    if (this->TimeOfBase != "")
+    if (this->BaseTimestamp != "")
     {
-        base = "&basetimestamp=" + QUrl::toPercentEncoding(this->TimeOfBase);
+        base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
     }
     if (this->Suffix)
     {

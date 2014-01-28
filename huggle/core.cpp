@@ -260,7 +260,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
     m->Title = title;
     m->Dependency = dependency;
     m->Section = section;
-    m->TimeOfBase = bt;
+    m->BaseTimestamp = bt;
     m->SectionKeep = sectionkeep;
     m->Suffix = !nosuffix;
     Core::Messages.append(m);

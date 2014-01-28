@@ -35,6 +35,8 @@ namespace Huggle
             QString text;
             //! Edit summary
             QString Summary;
+            //! base https://www.mediawiki.org/wiki/API:Edit#Parameters
+            QString BaseTimestamp;
             //! Whether the edit is minor or not
             bool Minor;
         private:

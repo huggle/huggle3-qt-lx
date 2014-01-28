@@ -66,7 +66,7 @@ namespace Huggle
             //! User to deliver a message to
             WikiUser *user;
             //! This is a time for base revision which is used to resolve edit conflicts of edit
-            QString TimeOfBase;
+            QString BaseTimestamp;
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;

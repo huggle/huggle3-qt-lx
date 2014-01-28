@@ -20,6 +20,7 @@ EditQuery::EditQuery()
     this->Minor = false;
     this->Page = "";
     this->qToken = NULL;
+    this->BaseTimestamp = "";
     this->text = "";
     this->Type = QueryEdit;
 }
@@ -152,8 +153,13 @@ void EditQuery::EditPage()
     this->qEdit->UsingPOST = true;
     this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     this->qEdit->SetAction(ActionEdit);
+    QString base = "";
+    if (this->BaseTimestamp != "")
+    {
+        base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
+    }
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
-                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + "&token=" +
+                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + "&token=" +
                       QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     Core::HuggleCore->AppendQuery(qEdit);
     this->qEdit->Process();
