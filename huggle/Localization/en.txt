@@ -501,6 +501,7 @@ revert-confirm-warned:     This will revert to a revision by $1; this user has p
 revert-error-first:        Edit is the first edit to the page; unable to revert.
 revert-only:               Edit is the only edit to the page.
 revert-creator:            Last edit was made by page creator, $1.
+revert-preflightcheck:     Preflight check
 revert-delete-instead:     Delete page instead?
 revert-speedy-instead:     Tag for speedy deletion instead?
 
@@ -749,4 +750,7 @@ feature-nfru:              This feature is for ip users only
 report-no-user:            No user has been selected to report, please select some user first
 welcome-tp-empty-fail:     This user doesn't have empty talk page, are you sure you want to send a message to him?
 welcome-page-miss-fail:    Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?
-
+cr-newer-edits:            Conflict resolved: revert all edits including new edits. Edits are by same user: $1.
+cr-stop-new-edit:          Conflict resolved: do not perform any action - there are newer edits to $1
+cr-message-new:            There are new edits to $1 are you sure you want to revert them?
+cr-message-not-same:       There are new edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)

@@ -252,12 +252,12 @@ void RevertQuery::Preflight()
             if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig_RevertNewBySame)
             {
                 this->IgnorePreflightCheck = true;
-                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits including new edits, "\
-                                                "made by same users - edits are by same user: " + this->edit->Page->PageName);
+                // Conflict resolved: revert all edits including new edits made by same users
+                Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("cr-newer-edits", this->edit->Page->PageName));
             } else
             {
-                /// \todo LOCALIZE ME
-                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                // Conflict resolved: do not perform any action - there are newer edits
+                Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("cr-stop-new-edit", this->edit->Page->PageName));
                 this->Cancel();
                 return;
             }
@@ -266,16 +266,17 @@ void RevertQuery::Preflight()
             QString text;
             if (MadeBySameUser)
             {
-                /// \todo LOCALIZE ME
-                text = ("There are new edits to " + this->edit->Page->PageName + ", are you sure you want to revert them?");
+                // There are new edits to " + PageName + ", are you sure you want to revert them?
+                text = (Huggle::Localizations::HuggleLocalizations->Localize("cr-message-new", this->edit->Page->PageName));
             } else
             {
-                /// \todo LOCALIZE ME
-                text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
+                // There are new edits made to " + PageName + " by a different user, are you sure you want
+                // to revert them all? (it will likely fail anyway because of old token)
+                text = (Huggle::Localizations::HuggleLocalizations->Localize("cr-message-not-same", this->edit->Page->PageName));
             }
             QMessageBox::StandardButton re;
-            /// \todo LOCALIZE ME
-            re = QMessageBox::question(Core::HuggleCore->Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
+            re = QMessageBox::question(Core::HuggleCore->Main, Huggle::Localizations::HuggleLocalizations->Localize("revert-preflightcheck"),
+                                       text, QMessageBox::Yes|QMessageBox::No);
             if (re == QMessageBox::No)
             {
                 this->Cancel();
@@ -411,8 +412,8 @@ void RevertQuery::CheckPreflight()
             }
         }
         QMessageBox::StandardButton re;
-        /// \todo LOCALIZE ME
-        re = QMessageBox::question(Core::HuggleCore->Main, "Preflight check", text, QMessageBox::Yes|QMessageBox::No);
+        re = QMessageBox::question(Core::HuggleCore->Main, Huggle::Localizations::HuggleLocalizations->Localize("revert-preflightcheck"),
+                                   text, QMessageBox::Yes|QMessageBox::No);
         if (re == QMessageBox::No)
         {
             // abort
