@@ -69,7 +69,22 @@ Language *Localizations::MakeLanguage(QString text, QString name)
 
 void Localizations::LocalInit(QString name)
 {
-    QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+    QFile *f;
+    if (Configuration::HuggleConfiguration->_SafeMode)
+    {
+        // we don't want to load custom files in safe mode
+        f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+    } else
+    {
+        if (QFile().exists(Configuration::GetLocalizationDataPath() + name + ".txt"))
+        {
+            // there is a custom localization file in directory
+            f = new QFile(Configuration::GetLocalizationDataPath() + name + ".txt");
+        } else
+        {
+            f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+        }
+    }
     f->open(QIODevice::ReadOnly);
     this->LocalizationData.append(Localizations::MakeLanguage(QString(f->readAll()), name));
     f->close();

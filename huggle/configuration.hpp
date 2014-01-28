@@ -122,6 +122,7 @@ namespace Huggle
     class Configuration
     {
         public:
+            static QString GetLocalizationDataPath();
             //! Return a prefix for url
             static QString GetURLProtocolPrefix();
             //! Return a configuration path

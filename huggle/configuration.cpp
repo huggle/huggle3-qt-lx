@@ -230,6 +230,16 @@ QString Configuration::GenerateSuffix(QString text)
     return text;
 }
 
+QString Configuration::GetLocalizationDataPath()
+{
+    QDir conf(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+    if (!conf.exists())
+    {
+        conf.mkpath(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+    }
+    return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization" + QDir::separator();
+}
+
 QString Configuration::GetURLProtocolPrefix()
 {
     if (!Configuration::HuggleConfiguration->UsingSSL)
