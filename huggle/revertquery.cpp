@@ -311,8 +311,8 @@ void RevertQuery::CheckPreflight()
     }
     if (this->qPreflight->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Failed to preflight check the edit: " + this->qPreflight->Result->ErrorMessage);
+        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("revert-fail-pre-flight",
+                                                                                             this->qPreflight->Result->ErrorMessage));
         this->Kill();
         this->Result = new QueryResult();
         this->Status = StatusDone;
@@ -373,16 +373,15 @@ void RevertQuery::CheckPreflight()
         QString text = ":)";
         if (MultipleEdits)
         {
-            /// \todo LOCALIZE ME
-            text = "There are multiple edits by same user to " + this->edit->Page->PageName + ", are you sure you want to revert them";
+            // There are multiple edits by same user are you sure you want to revert them
+            text = (Huggle::Localizations::HuggleLocalizations->Localize("cr-message-same", this->edit->Page->PageName));
         } else if (MadeBySameUser)
         {
-            /// \todo LOCALIZE ME
-            text = ("There are newer edits to " + this->edit->Page->PageName + ", are you sure you want to revert them");
+            // There are newer edits, are you sure you want to revert them
+            text = (Huggle::Localizations::HuggleLocalizations->Localize("cr-message-new", this->edit->Page->PageName));
         } else
         {
-            /// \todo LOCALIZE ME
-            text = ("There are new edits made to " + this->edit->Page->PageName + " by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)");
+            text = (Huggle::Localizations::HuggleLocalizations->Localize("cr-message-not-same", this->edit->Page->PageName));
         }
         if (Configuration::HuggleConfiguration->AutomaticallyResolveConflicts)
         {
@@ -448,8 +447,7 @@ bool RevertQuery::CheckRevert()
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result->Data);
     if (this->CustomStatus != "Reverted")
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("Unable to revert " + this->qRevert->Target + ": " + this->CustomStatus);
+        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("revert-fail", this->qRevert->Target, this->CustomStatus));
         this->qRevert->Result->Failed = true;
         this->qRevert->Result->ErrorMessage = CustomStatus;
         this->Result = new QueryResult();
@@ -554,8 +552,8 @@ bool RevertQuery::ProcessRevert()
             // failure during revert
             this->Result->Failed = true;
             this->Result->ErrorMessage = this->EditQuerySoftwareRollback->Result->ErrorMessage;
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->ErrorLog("Unable to rollback " + this->edit->Page->PageName + " edit failed");
+            Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("revert-fail", this->edit->Page->PageName,
+                                                                                              "edit failed"));
             this->Kill();
             this->Status = StatusDone;
         }
@@ -720,15 +718,15 @@ bool RevertQuery::ProcessRevert()
     if (this->SR_Depth == 0)
     {
         // something is wrong
-        /// \todo LOCALIZE ME
-        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        this->DisplayError(Localizations::HuggleLocalizations->Localize("revert-fail", this->edit->Page->PageName,
+                                                                        "because it was edited meanwhile"));
         return true;
     }
 
     if (this->SR_RevID == WIKI_UNKNOWN_REVID)
     {
-        /// \todo LOCALIZE ME
-        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because no previous version could be retrieved");
+        this->DisplayError(Localizations::HuggleLocalizations->Localize("revert-fail", this->edit->Page->PageName,
+                                                                        "because no previous version could be retrieved"));
         return true;
     }
 
@@ -790,12 +788,12 @@ void RevertQuery::Rollback()
 
     if (this->Token == "")
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->ErrorLog("Unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName);
+        Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("revert-fail", this->edit->Page->PageName,
+                                                                                          "rollback token was empty"));
         this->Result = new QueryResult();
         this->Result->Failed = true;
-        /// \todo LOCALIZE ME
-        this->Result->ErrorMessage = "ERROR, unable to rollback, because the rollback token was empty: " + this->edit->Page->PageName;
+        this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("revert-fail", this->edit->Page->PageName,
+                                                                                  "rollback token was empty");
         this->Status = StatusDone;
         this->Exit();
         return;

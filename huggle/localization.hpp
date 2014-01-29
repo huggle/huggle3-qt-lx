@@ -60,6 +60,7 @@ namespace Huggle
             QString Localize(QString key);
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameters);
+            QString Localize(QString key, QString par1, QString par2);
             //! Languages
             QList<Language*> LocalizationData;
             //! Language selected by user this is only a language of interface

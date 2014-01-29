@@ -183,6 +183,13 @@ QString Localizations::Localize(QString key, QStringList parameters)
     return key;
 }
 
+QString Localizations::Localize(QString key, QString par1, QString par2)
+{
+    QStringList list;
+    list << par1 << par2;
+    return Localize(key, list);
+}
+
 QString Localizations::Localize(QString key, QString parameters)
 {
     QStringList list;

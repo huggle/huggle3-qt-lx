@@ -504,6 +504,13 @@ revert-creator:            Last edit was made by page creator, $1.
 revert-preflightcheck:     Preflight check
 revert-delete-instead:     Delete page instead?
 revert-speedy-instead:     Tag for speedy deletion instead?
+revert-cannotundo:         Cannot undo due to conflicting intermediate edits
+revert-conflict:           The page was edited by whitelisted user '$1'
+revert-fail:               Did not revert $1: $2
+revert-nochange:           The content of the target revision is identical to that of the current revision
+revert-nootheruser:        No other user has edited the page
+revert-progress:           Reverting '$1'...
+revert-fail-pre-flight:    Preflight check failed: $1
 
 === Speedy form ===
 speedy-title:              Speedy tag $1
@@ -679,19 +686,12 @@ loaduserconfig-fail:       Failed to load user configuration page
 reqprotection-badformat:   Format of request page unknown
 reqprotection-duplicate:   Protection has already been requested
 reqprotection-fail:        Did not request protection of '{0}'
-reqprotection-progress:    Requesting protection of '{0}'...
-
-revert-cannotundo:         Cannot undo due to conflicting intermediate edits
-revert-conflict:           The page was edited by ignored user '{0}'
-revert-fail:               Did not revert '{0}'
-revert-nochange:           The content of the target revision is identical to that of the current revision
-revert-nootheruser:        No other user has edited the page
-revert-progress:           Reverting '{0}'...
+reqprotection-progress:    Requesting protection of '$1'...
 
 tag-alreadytagged:         The page has already been tagged
 tag-deleted:               The page has been deleted
-tag-fail:                  Did not tag '{0}'
-tag-progress:              Tagging '{0}'...
+tag-fail:                  Did not tag '$1'
+tag-progress:              Tagging '$1'...
 
 //sight-done:                Marked revision {0} of '{1}' as sighted
 //sight-fail:                Failed to sight revision {0} of '{1}'
@@ -752,5 +752,6 @@ welcome-tp-empty-fail:     This user doesn't have empty talk page, are you sure 
 welcome-page-miss-fail:    Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?
 cr-newer-edits:            Conflict resolved: revert all edits including new edits. Edits are by same user: $1.
 cr-stop-new-edit:          Conflict resolved: do not perform any action - there are newer edits to $1
-cr-message-new:            There are new edits to $1 are you sure you want to revert them?
+cr-message-same:           There are multiple edits to $1 by same user, are you sure you want to revert them?
+cr-message-new:            There are new edits to $1 are you sure you really want to revert them?
 cr-message-not-same:       There are new edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)
