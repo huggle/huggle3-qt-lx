@@ -193,7 +193,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 void Huggle::Preferences::on_checkBox_clicked()
 {
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->checkBox_20->setEnabled(this->ui->checkBox_20->isChecked());
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }
 
