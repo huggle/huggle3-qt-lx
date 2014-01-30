@@ -144,7 +144,11 @@ bool WikiEdit::FinalizePostProcessing()
                 }
             } else
             {
-                if (!missing)
+                if (missing)
+                {
+                    // we set an empty talk page so that we know we do have the contents of this page
+                    this->User->SetContentsOfTalkPage("");
+                } else
                 {
                     /// \todo LOCALIZE ME
                     Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
