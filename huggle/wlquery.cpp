@@ -95,7 +95,12 @@ void WLQuery::Finished()
 
 void WLQuery::WriteProgress(qint64 n, qint64 m)
 {
-    if (n == 0 && m == 0)
+    if (m < 0 || n < 0)
+    {
+        // we don't know the target size
+        return;
+    }
+    if (n == 0 || m == 0)
     {
         return;
     }

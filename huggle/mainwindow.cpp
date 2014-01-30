@@ -1795,7 +1795,6 @@ void MainWindow::Welcome()
 
     if (this->CurrentEdit->User->IsIP())
     {
-
         if (this->CurrentEdit->User->GetContentsOfTalkPage() == "")
         {
             // write something to talk page so that we don't welcome this user twice
