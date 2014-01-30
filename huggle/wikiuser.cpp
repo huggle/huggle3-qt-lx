@@ -82,7 +82,7 @@ void WikiUser::UpdateUser(WikiUser *us)
             {
                 ProblematicUsers.at(c)->IsReported = true;
             }
-            ProblematicUsers.at(c)->TalkPageWasRetrieved = us->TalkPageWasRetrieved;
+            ProblematicUsers.at(c)->_talkPageWasRetrieved = us->_talkPageWasRetrieved;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
             WikiUser::ProblematicUserListLock.unlock();
             return;
@@ -113,7 +113,7 @@ WikiUser::WikiUser()
     this->IsBanned = false;
     this->ContentsOfTalkPage = "";
     this->IsReported = false;
-    this->TalkPageWasRetrieved = false;
+    this->_talkPageWasRetrieved = false;
     this->WhitelistInfo = 0;
     this->Bot = false;
 }
@@ -128,7 +128,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->IsBanned = u->IsBanned;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
-    this->TalkPageWasRetrieved = u->TalkPageWasRetrieved;
+    this->_talkPageWasRetrieved = u->_talkPageWasRetrieved;
     this->WhitelistInfo = u->WhitelistInfo;
     this->Bot = u->Bot;
 }
@@ -143,7 +143,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->BadnessScore = u.BadnessScore;
     this->IsBanned = u.IsBanned;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
-    this->TalkPageWasRetrieved = u.TalkPageWasRetrieved;
+    this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
     this->WhitelistInfo = u.WhitelistInfo;
     this->Bot = u.Bot;
 }
@@ -165,7 +165,7 @@ WikiUser::WikiUser(QString user)
     this->Username = user;
     this->Sanitize();
     this->IsBanned = false;
-    this->TalkPageWasRetrieved = false;
+    this->_talkPageWasRetrieved = false;
     int c=0;
     this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())
@@ -203,6 +203,7 @@ void WikiUser::Resync()
     {
         this->BadnessScore = user->BadnessScore;
         this->ContentsOfTalkPage = user->GetContentsOfTalkPage();
+        this->_talkPageWasRetrieved = user->_talkPageWasRetrieved;
         if (user->WarningLevel > this->WarningLevel)
         {
             this->WarningLevel = user->WarningLevel;
@@ -221,7 +222,7 @@ QString WikiUser::GetContentsOfTalkPage()
     // we need to copy the value to local variable so that if someone change it from different
     // thread we are still working with same data
     QString contents = "";
-    if (user != NULL && user->GetWhetherTalkPageWasRetrieved())
+    if (user != NULL && user->TalkPageWasRetrieved())
     {
         // we return a value of user from global db instead of local
         contents = user->ContentsOfTalkPage;
@@ -236,7 +237,7 @@ QString WikiUser::GetContentsOfTalkPage()
 void WikiUser::SetContentsOfTalkPage(QString text)
 {
     this->UserLock->lock();
-    this->TalkPageWasRetrieved = true;
+    this->_talkPageWasRetrieved = true;
     this->ContentsOfTalkPage = text;
     this->Update();
     this->UserLock->unlock();
@@ -286,9 +287,9 @@ QString WikiUser::GetTalk()
     return Configuration::HuggleConfiguration->LocalConfig_NSUserTalk + this->Username;
 }
 
-bool WikiUser::GetWhetherTalkPageWasRetrieved()
+bool WikiUser::TalkPageWasRetrieved()
 {
-    return this->TalkPageWasRetrieved;
+    return this->_talkPageWasRetrieved;
 }
 
 bool WikiUser::IsWhitelisted()
@@ -332,7 +333,7 @@ QString WikiUser::Flags()
 {
     QString pflags = "";
     QString nflags = "";
-    if (this->GetContentsOfTalkPage() == "")
+    if (this->GetContentsOfTalkPage() == "" && this->TalkPageWasRetrieved())
     {
         nflags += "T";
     } else

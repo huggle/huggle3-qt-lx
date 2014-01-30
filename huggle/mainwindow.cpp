@@ -1784,16 +1784,13 @@ void MainWindow::Welcome()
         {
             return;
         }
-    }
-
-    if (!this->CurrentEdit->User->GetWhetherTalkPageWasRetrieved())
+    } else if (!this->CurrentEdit->User->TalkPageWasRetrieved())
     {
         if (QMessageBox::question(this, "Welcome :o", Localizations::HuggleLocalizations->Localize("welcome-page-miss-fail"),
                                   QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
         }
-        return;
     }
 
     if (this->CurrentEdit->User->IsIP())
