@@ -187,7 +187,7 @@ Configuration::Configuration()
     this->LocalConfig_BlockSummary = "Notification: Blocked";
     this->LocalConfig_RestoreSummary = "Restored revision $1 made by $2";
     this->AutomaticallyResolveConflicts = false;
-    this->VandalNw_Server = "hub.tm-irc.org";
+    this->VandalNw_Server = "irc.tm-irc.org";
     this->VandalNw_Login = true;
 
     this->LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";

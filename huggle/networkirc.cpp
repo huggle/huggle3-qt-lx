@@ -265,6 +265,11 @@ void NetworkIrc_th::Line(QString line)
 {
     QString Command = "";
     QString Source = "";
+    if (line.startsWith("PING :"))
+    {
+        QString text = line.mid(6);
+        this->Data("PONG :" + text);
+    }
     if (!line.startsWith(":") || !line.contains(" "))
     {
         return;
