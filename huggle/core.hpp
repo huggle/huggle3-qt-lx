@@ -70,7 +70,7 @@ namespace Huggle
     class Configuration;
     class Localizations;
 
-    //! Overwrite of qapplication so that we can reimplement notify
+    //! Override of qapplication so that we can reimplement notify
     class HgApplication : public QApplication
     {
         public:
@@ -191,7 +191,7 @@ namespace Huggle
             //! Pointer to main
             MainWindow *Main;
             //! Login form
-            Login *f_Login;
+            Login *fLogin;
             QString HtmlIncoming;
             //! This string contains a html header
             QString HtmlHeader;

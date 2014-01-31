@@ -61,9 +61,9 @@ namespace Huggle
             ApiQuery *qToken;
             ApiQuery *qTokenOfTalkPage;
             //! Set the page to delete
-            QTimer *dt;
-            WikiPage *TP;
-            WikiUser *user;
+            QTimer *tDelete;
+            WikiPage *TalkPage;
+            WikiUser *PageUser;
             //! This is used to figure out what are we doing now in timer signal
             int delQueryPhase;
     };

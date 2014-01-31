@@ -64,26 +64,27 @@ namespace Huggle
             void InsertUser();
             Ui::ReportUser *ui;
             //! Reported user
-            WikiUser *user;
+            WikiUser *ReportedUser;
             //! This query is used to retrieve a history of user
             ApiQuery *qHistory;
             //! Timer is used to retrieve a history for user
-            QTimer *timer;
+            QTimer *tHistoryUser;
             //! Timer to check the report page
-            QTimer *t2;
+            QTimer *tReportPageCheck;
             //! Used to retrieve a diff of page
-            QTimer *diff;
+            QTimer *tPageDiff;
             QList <QCheckBox*> CheckBoxes;
             //! Text of report to send to AIV page
             QString ReportText;
             //! Content of report
-            QString _p;
+            QString ReportContent;
             bool Loading;
             bool Messaging;
             BlockUser *BlockForm;
             //! This query is used to get a block history
             ApiQuery *qBlockHistory;
-            ApiQuery *tq;
+            //! This is used to retrieve current report page and write to it
+            ApiQuery *tReport;
             ApiQuery *qDiff;
     };
 }

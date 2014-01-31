@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
         Huggle::Core::HuggleCore->Init();
         // now we can start the huggle :o
         Huggle::HgApplication a(argc, argv);
-        Huggle::Core::HuggleCore->f_Login = new Huggle::Login();
-        Huggle::Core::HuggleCore->f_Login->show();
+        Huggle::Core::HuggleCore->fLogin = new Huggle::Login();
+        Huggle::Core::HuggleCore->fLogin->show();
         ReturnCode = a.exec();
         delete Huggle::Core::HuggleCore;
         return ReturnCode;

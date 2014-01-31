@@ -77,7 +77,7 @@ Core::Core()
     this->DiffFooter = "";
     this->DiffHeader = "";
     this->Main = NULL;
-    this->f_Login = NULL;
+    this->fLogin = NULL;
     this->SecondaryFeedProvider = NULL;
     this->PrimaryFeedProvider = NULL;
     this->Processor = NULL;
@@ -89,7 +89,7 @@ Core::Core()
 Core::~Core()
 {
     delete this->Main;
-    delete this->f_Login;
+    delete this->fLogin;
     delete this->SecondaryFeedProvider;
     delete this->PrimaryFeedProvider;
     delete this->gc;
