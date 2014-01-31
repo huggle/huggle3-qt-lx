@@ -151,7 +151,8 @@ HEADERS  += mainwindow.hpp \
     localization.hpp \
     syslog.hpp \
     huggleparser.hpp \
-    sleeper.hpp
+    sleeper.hpp \
+    config.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

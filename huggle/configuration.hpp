@@ -13,9 +13,8 @@
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
-//! Change this to 1 if you want to get in troubles
-//! push 1 there and you will get even bigger troubles :-)
-#define PRODUCTION_BUILD                0
+// Include file with all global defines
+#include "config.hpp"
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
 #define HUGGLE_VERSION                  "3.0.0.0"

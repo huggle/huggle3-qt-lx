@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "config.hpp"
 #include "collectable.hpp"
 
 using namespace Huggle;
@@ -21,7 +22,12 @@ Collectable::Collectable()
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
     Collectable::WideLock->unlock();
+#if PRODUCTION_BUILD == 1
+    this->ReclaimingAllowed = true;
+#else
+    // don't crash huggle purposefuly unless it's for development
     this->ReclaimingAllowed = false;
+#endif
     this->_collectableLocked = false;
     this->_collectableManaged = false;
     this->_collectableQL = new QMutex(QMutex::Recursive);
