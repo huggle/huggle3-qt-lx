@@ -49,6 +49,7 @@ namespace Huggle
             bool IsManaged();
             //! Use this if you are not sure if you can delete this object in this moment
             virtual bool SafeDelete();
+            void SetReclaimable();
             //! Whether the object is locked (other threads can't register nor unregister consumers
             //! neither it is possible to delete this object by any other thread)
             bool IsLocked();
@@ -102,6 +103,7 @@ namespace Huggle
             static unsigned long LastCID;
 
             void SetManaged();
+            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;
@@ -109,6 +111,10 @@ namespace Huggle
 
             //! Every consumer needs to use unique string that identifies them
             QStringList Consumers;
+            //! Changing to true will prevent an exception from being thrown if you register consumer after deleting last consumer
+
+            //! Doing so may result in unpredictable crashes, because object should never be accessed after last consumer was removed
+            bool ReclaimingAllowed;
             //! List of int consumers that are using this object
 
             //! Every consumer needs to use a unique int that identifies them

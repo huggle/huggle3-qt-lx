@@ -21,6 +21,7 @@ Collectable::Collectable()
     this->CID = Collectable::LastCID;
     Collectable::LastCID++;
     Collectable::WideLock->unlock();
+    this->ReclaimingAllowed = false;
     this->_collectableLocked = false;
     this->_collectableManaged = false;
     this->_collectableQL = new QMutex(QMutex::Recursive);
@@ -63,9 +64,19 @@ bool Collectable::SafeDelete()
     return false;
 }
 
+void Collectable::SetReclaimable()
+{
+    this->ReclaimingAllowed = true;
+}
+
 void Collectable::RegisterConsumer(const int consumer)
 {
     this->Lock();
+    if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
+    {
+        this->Unlock();
+        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const int consumer)");
+    }
     if (!this->iConsumers.contains(consumer))
     {
         this->iConsumers.append(consumer);
@@ -85,6 +96,11 @@ void Collectable::UnregisterConsumer(const int consumer)
 void Collectable::RegisterConsumer(const QString consumer)
 {
     this->Lock();
+    if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
+    {
+        this->Unlock();
+        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const QString consumer)");
+    }
     this->Consumers.append(consumer);
     this->Consumers.removeDuplicates();
     this->SetManaged();
@@ -153,10 +169,15 @@ void Collectable::SetManaged()
     }
 }
 
+bool Collectable::HasSomeConsumers()
+{
+    return (this->iConsumers.count() > 0 || this->Consumers.count() > 0);
+}
+
 QString Collectable::DebugHgc()
 {
     QString result = "";
-    if (this->iConsumers.count() > 0 || this->Consumers.count() > 0)
+    if (this->HasSomeConsumers())
     {
         result += ("GC: Listing all dependencies for " + QString::number(this->CollectableID())) + "\n";
         int Item=0;
