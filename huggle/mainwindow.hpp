@@ -96,7 +96,6 @@ namespace Huggle
     class BlockUser;
     class ProtectPage;
     class UAAReport;
-    class HuggleParser;
     class ScoreWordsDbForm;
 
     /*!

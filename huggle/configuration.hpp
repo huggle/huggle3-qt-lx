@@ -93,7 +93,6 @@ namespace Huggle
         HeadingsNone
     };
 
-    class HuggleParser;
     class WikiSite;
     class HuggleQueueFilter;
     class HuggleQueue;
