@@ -31,6 +31,8 @@ namespace Huggle
     //! unrecoverable exception will be thrown. The class which is managed (you can verify that by calling Collectable::IsManaged)
     //! can be only deleted by garbage collector when no consumers are using it. Basically every
     //! object that has 0 consumers, will be deleted.
+
+    //! \image ../Documentation/gc01.png
     class Collectable
     {
         public:
@@ -49,6 +51,11 @@ namespace Huggle
             bool IsManaged();
             //! Use this if you are not sure if you can delete this object in this moment
             virtual bool SafeDelete();
+            //! You can change this to reclaimable by calling this
+
+            //! Reclaimable object can register new consumers even after last consumer was deleted. This shouldn't be ever
+            //! used by any other but atomic functions, because in theory collectable which lost its last consumer might
+            //! be deleted by GC any time.
             void SetReclaimable();
             //! Whether the object is locked (other threads can't register nor unregister consumers
             //! neither it is possible to delete this object by any other thread)
