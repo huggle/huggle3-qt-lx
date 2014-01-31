@@ -31,6 +31,8 @@ namespace Huggle
     //! unrecoverable exception will be thrown. The class which is managed (you can verify that by calling Collectable::IsManaged)
     //! can be only deleted by garbage collector when no consumers are using it. Basically every
     //! object that has 0 consumers, will be deleted.
+
+    //! \image html ../Documentation/gc01.png
     class Collectable
     {
         public:
@@ -49,6 +51,12 @@ namespace Huggle
             bool IsManaged();
             //! Use this if you are not sure if you can delete this object in this moment
             virtual bool SafeDelete();
+            //! You can change this to reclaimable by calling this
+
+            //! Reclaimable object can register new consumers even after last consumer was deleted. This shouldn't be ever
+            //! used by any other but atomic functions, because in theory collectable which lost its last consumer might
+            //! be deleted by GC any time.
+            void SetReclaimable();
             //! Whether the object is locked (other threads can't register nor unregister consumers
             //! neither it is possible to delete this object by any other thread)
             bool IsLocked();
@@ -102,6 +110,7 @@ namespace Huggle
             static unsigned long LastCID;
 
             void SetManaged();
+            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;
@@ -109,6 +118,10 @@ namespace Huggle
 
             //! Every consumer needs to use unique string that identifies them
             QStringList Consumers;
+            //! Changing to true will prevent an exception from being thrown if you register consumer after deleting last consumer
+
+            //! Doing so may result in unpredictable crashes, because object should never be accessed after last consumer was removed
+            bool ReclaimingAllowed;
             //! List of int consumers that are using this object
 
             //! Every consumer needs to use a unique int that identifies them

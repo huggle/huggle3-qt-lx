@@ -18,27 +18,26 @@ namespace Huggle
 {
     class Configuration;
 
-    //! This class is used to parse various text, such as configuration keys
-    class HuggleParser
+    //! This namespace contains functions to parse various text, such as configuration keys
+    namespace HuggleParser
     {
-        public:
-            static QString GetSummaryOfWarningTypeFromWarningKey(QString key);
-            static QString GetNameOfWarningTypeFromWarningKey(QString key);
-            static QString GetKeyOfWarningTypeFromWarningName(QString id);
-            //! Remove leading and finishing space of string
-            static QString Trim(QString text);
-            //! Parse a part patterns for score words
-            static void ParsePats(QString text);
-            static void ParseWords(QString text);
-            static QString GetValueFromKey(QString item);
-            static QString GetKeyFromValue(QString item);
-            /*!
-             * \brief Process content of talk page in order to figure which user level they have
-             * \param page The content of talk page
-             * \return Level
-             */
-            static int GetLevel(QString page);
-    };
+        QString GetSummaryOfWarningTypeFromWarningKey(QString key);
+        QString GetNameOfWarningTypeFromWarningKey(QString key);
+        QString GetKeyOfWarningTypeFromWarningName(QString id);
+        //! Remove leading and finishing space of string
+        QString Trim(QString text);
+        //! Parse a part patterns for score words
+        void ParsePats(QString text);
+        void ParseWords(QString text);
+        QString GetValueFromKey(QString item);
+        QString GetKeyFromValue(QString item);
+        /*!
+         * \brief Process content of talk page in order to figure which user level they have
+         * \param page The content of talk page
+         * \return Level
+         */
+        int GetLevel(QString page);
+    }
 }
 
 #endif // HUGGLEPARSER_HPP
