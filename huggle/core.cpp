@@ -367,26 +367,27 @@ QString Core::RetrieveTemplateToWarn(QString type)
     return "";
 }
 
-EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor)
+EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
 {
     if (page == NULL)
     {
         return NULL;
     }
     // retrieve a token
-    EditQuery *_e = new EditQuery();
+    EditQuery *eq = new EditQuery();
     if (!summary.endsWith(Configuration::HuggleConfiguration->EditSuffixOfHuggle))
     {
         summary = summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
     }
-    _e->RegisterConsumer("Core::EditPage");
-    _e->Page = page->PageName;
-    this->PendingMods.append(_e);
-    _e->text = text;
-    _e->Summary = summary;
-    _e->Minor = minor;
-    _e->Process();
-    return _e;
+    eq->RegisterConsumer("Core::EditPage");
+    eq->Page = page->PageName;
+    eq->BaseTimestamp = BaseTimestamp;
+    this->PendingMods.append(eq);
+    eq->text = text;
+    eq->Summary = summary;
+    eq->Minor = minor;
+    eq->Process();
+    return eq;
 }
 
 void Core::AppendQuery(Query *item)

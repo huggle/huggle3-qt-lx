@@ -22,6 +22,7 @@
 #include <QList>
 #include "core.hpp"
 #include "blockuser.hpp"
+#include "editquery.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
 #include "configuration.hpp"
@@ -36,6 +37,7 @@ namespace Huggle
 {
     class WikiUser;
     class ApiQuery;
+    class EditQuery;
     class BlockUser;
 
     //! Report user
@@ -73,18 +75,20 @@ namespace Huggle
             QTimer *tReportPageCheck;
             //! Used to retrieve a diff of page
             QTimer *tPageDiff;
+            EditQuery *qEdit;
             QList <QCheckBox*> CheckBoxes;
             //! Text of report to send to AIV page
             QString ReportText;
             //! Content of report
             QString ReportContent;
+            QString ReportTs;
             bool Loading;
             bool Messaging;
             BlockUser *BlockForm;
             //! This query is used to get a block history
             ApiQuery *qBlockHistory;
             //! This is used to retrieve current report page and write to it
-            ApiQuery *tReport;
+            ApiQuery *qReport;
             ApiQuery *qDiff;
     };
 }

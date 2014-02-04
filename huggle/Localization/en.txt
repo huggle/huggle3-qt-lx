@@ -54,6 +54,7 @@ browser-none:              No page is displayed now
 browser-load:              Please wait, downloading diff using a web rendering fallback...
 browser-miss-summ:         No summary was provided
 browser-diff:              Diff of page: $1 (score: $2)
+browser-fail:              Unable to retrieve diff: $1
 
 === Edit types ===
 //edittype-blocknote:        Block notifications
@@ -479,12 +480,19 @@ queue-usergroup:           Show only edits from these users
 //requests-query:            Query
 
 === Report form ===
-report-title:                 Report $1
-report-reason:                Reason:
-report-message:               Message:
-report-log:                   Warnings for this user:
-report-include:               Include in report
-report-evidence-none-provid:  You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this user is vandal or not. Are you sure you want to continue?
+report-title:                   Report $1
+report-reason:                  Reason:
+report-message:                 Message:
+report-log:                     Warnings for this user:
+report-include:                 Include in report
+report-evidence-none-provid:    You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this user is vandal or not. Are you sure you want to continue?
+report-duplicate:               The user has already been reported
+report-fail:                    Did not report $1
+report-fail2:                   Error unable to retrieve report page at $1
+report-progress:                Reporting $1...
+report-retrieving:              Retrieving current report page...
+report-done:                    Reported
+report-user:                    Report
 
 == UAA ==
 uaa-not-supported:         UAA not available
@@ -671,10 +679,6 @@ protectlog-progress:       Retrieving protection log for $1...
 
 //queue-refresh-fail:        Error refreshing queue '{0}'
 
-report-duplicate:          The user has already been reported
-report-fail:               Did not report $1
-report-progress:           Reporting '{0}'...
-
 saveuserconfig-done:       Updated user configuration page
 saveuserconfig-fail:       Did not update user configuration page
 saveuserconfig-progress:   Updating user configuration page...
@@ -709,8 +713,8 @@ warnlog-progress:          Retrieving warning log for '{0}'...
 //unwatch-progress:          Removing '{0}' from watchlist...
 
 usermessage-duplicate:     A message about the same thing was already present
-usermessage-fail:          Did not message '{0}'
-usermessage-progress:      Messaging '{0}'...
+usermessage-fail:          Did not message '$1'
+usermessage-progress:      Messaging '$1'...
 
 //watch-done:                Added '{0}' to watchlist
 //watch-fail:                Failed to add '{0}' to watchlist
@@ -720,9 +724,9 @@ warn-alreadyfinal:         The user already has a final warning
 warn-alreadyblocked:       The user has already been blocked
 warn-alreadyreported:      The user has already been reported
 warn-oldedit:              The user has not edited since their latest warning
-warn-recent:               The user was warned less than {0} seconds ago
-warn-fail:                 Did not warn '{0}'
-warn-progress:             Warning '{0}'...
+warn-recent:               The user was warned less than $1 seconds ago
+warn-fail:                 Did not warn '$1'
+warn-progress:             Warning '$1'...
 
 === API ===
 //api-help:                  No parameters in API query
