@@ -58,7 +58,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
+     <y>240</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -87,9 +87,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>330</y>
+     <y>360</y>
      <width>431</width>
-     <height>231</height>
+     <height>171</height>
     </rect>
    </property>
    <property name="text">
@@ -135,7 +135,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>270</y>
+     <y>260</y>
      <width>429</width>
      <height>22</height>
     </rect>
@@ -148,13 +148,26 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>300</y>
+     <y>270</y>
      <width>429</width>
      <height>37</height>
     </rect>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aidan Fell&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:My_name_is_not_dave&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:My name is not dave&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>320</y>
+     <width>429</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Based on original by &lt;span style=&quot; font-weight:600;&quot;&gt;Gurch&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:Gurch&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Gurch&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
