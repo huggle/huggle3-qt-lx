@@ -15,14 +15,17 @@ Libraries you need to have to build:
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
 
-Windows:
+Windows
+-------------
 
 * Download QT Creator from http://qt-project.org/downloads
+* Download OpenSSL and Visual C++ 2008 Redistributables from http://slproweb.com/products/Win32OpenSSL.html
 * Checkout this repository
 * Create empty version.txt in folder huggle
 * Open huggle.pro in that and hit build
 
-Linux:
+Linux
+-------------
 
 * checkout this repository
 * cd REPO/huggle, execute
