@@ -335,7 +335,7 @@ void WikiEdit::PostProcess()
     this->ProcessingQuery = new ApiQuery();
     this->ProcessingQuery->SetAction(ActionQuery);
     this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(this->User->GetTalk());
+                                        QUrl::toPercentEncoding(this->User->GetTalk());
     this->ProcessingQuery->RegisterConsumer("WikiEdit::PostProcess()");
     Core::HuggleCore->AppendQuery(this->ProcessingQuery);
     this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
@@ -352,7 +352,8 @@ void WikiEdit::PostProcess()
     } else
     {
         this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
+                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+                                            QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->DifferenceQuery->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
