@@ -31,8 +31,16 @@ namespace Huggle
         class NetworkIrc;
     }
 
+    //! This namespace contains HAN classes
+
+    //! Huggle Antivandalism Network is a system that allows users of huggle and other tools
+    //! cooperate with each other so that they are more effective
     namespace HAN
     {
+        //! This is base class that can be used to store information about HAN items
+
+        //! These "HAN items" are for example information about rollbacks, because they
+        //! share common properties, they are all inherited from this GenericItem :o
         class GenericItem
         {
             public:
@@ -40,7 +48,7 @@ namespace Huggle
                 GenericItem(int _revID, QString _user);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
-                //! User who scored the edit
+                //! User who changed the edit
                 QString User;
                 //! ID of edit
                 int RevID;
@@ -96,7 +104,7 @@ namespace Huggle
             void Rescore(WikiEdit *edit);
             void Message();
             //! Prefix to special commands that are being sent to network to other users
-            QString pref;
+            QString Prefix;
             //! Timer that is used to connect to network
             QTimer *tm;
             QList<HAN::RescoreItem> UnparsedScores;
