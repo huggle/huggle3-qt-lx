@@ -12,9 +12,8 @@ table.diff {
 	border: none;
 	border-spacing: 4px;
 	margin: 0;
-	width: 100%;
-	/* Ensure that colums are of equal width */
-        /* table-layout: fixed; */
+        width: 100%;
+        table-layout: fixed;
 }
 
 table.diff td {
