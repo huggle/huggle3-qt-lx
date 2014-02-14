@@ -291,7 +291,7 @@ void HistoryForm::onTick01()
         QPoint pntr(0, this->pos().y());
         if (this->pos().x() > 400)
         {
-            pntr.setX(this->pos().x() - 100);
+            pntr.setX(this->pos().x() - 200);
         } else
         {
             pntr.setX(this->pos().x() + 100);
