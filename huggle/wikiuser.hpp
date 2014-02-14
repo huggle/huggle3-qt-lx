@@ -68,12 +68,12 @@ namespace Huggle
              * of calling this function repeatedly
              * \return a precached content of this users talk page
              */
-            QString GetContentsOfTalkPage();
+            QString TalkPage_GetContents();
             /*!
              * \brief SetContentsOfTalkPage Change a cache for talk page in local and global cache
              * \param text New content of talk page
              */
-            void SetContentsOfTalkPage(QString text);
+            void TalkPage_SetContents(QString text);
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
             void Sanitize();
@@ -94,7 +94,8 @@ namespace Huggle
             void Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
-            bool TalkPageWasRetrieved();
+            bool TalkPage_WasRetrieved();
+            bool TalkPage_ContainsSharedIPTemplate();
             //! Returns true if this user is wl
             bool IsWhitelisted();
             /*!

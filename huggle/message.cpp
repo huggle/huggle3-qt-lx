@@ -360,7 +360,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
+        s += " " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
     }
     if (this->SectionKeep || !this->Section)
     {

@@ -373,6 +373,10 @@ namespace Huggle
             // Protecting pages
             QString         LocalConfig_ProtectReason;
 
+            // Templates
+            QString         LocalConfig_SharedIPTemplateTags;
+            QString         LocalConfig_SharedIPTemplate;
+
             // Definitions
             QList<ScoreWord> LocalConfig_ScoreParts;
             QList<ScoreWord> LocalConfig_ScoreWords;
@@ -452,9 +456,9 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! Suffix used by huggle
-            QString     EditSuffixOfHuggle;
+            QString     LocalConfig_EditSuffixOfHuggle;
             //! Regexes that other tools can be identified with
-            QStringList EditRegexOfTools;
+            QStringList LocalConfig_EditRegexOfTools;
 
             //////////////////////////////////////////////
             // Reverting

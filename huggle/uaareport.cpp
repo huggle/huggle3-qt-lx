@@ -101,7 +101,7 @@ void UAAReport::onTick()
     this->qUAApage = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
     /// \todo LOCALIZE ME
-    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
+    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
     Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);

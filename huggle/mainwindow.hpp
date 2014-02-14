@@ -54,6 +54,7 @@
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "deleteform.hpp"
+#include "warnings.hpp"
 #include "protectpage.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
@@ -84,6 +85,7 @@ namespace Huggle
     class ProcessList;
     class WhitelistForm;
     class Message;
+    class PendingWarning;
     class Preferences;
     class SessionForm;
     class IgnoreList;
@@ -113,33 +115,6 @@ namespace Huggle
         ShutdownOpUpdatingConf
     };
 
-    /*!
-     * \brief The PendingWarning class represent the warning that was requested but might not be delievered
-     *
-     * We can be using this to track all warnings that are still waiting for delivery and these which have failed
-     * because the user talk page was changed meanwhile. In this case we need to parse it again and re-issue
-     * the warning based on latest version of talk page. The current process is, that every warning that is sent
-     * is stored in a list of these pending warnings and periodically checked using timer. If it's finished it's
-     * removed, if it's not then it is checked and something is done with it.
-     */
-    class PendingWarning
-    {
-        public:
-            //! Unique garbage collector id used to lock the edit related to this warning
-            static int GCID;
-
-            PendingWarning(Message *message, QString warning, WikiEdit *edit);
-            ~PendingWarning();
-            //! The message of this warning
-            Message *Warning;
-            //! The edit because of which this warning was sent
-            WikiEdit *RelatedEdit;
-            //! Template used in this warning so that we can use the same template for new attempt if any is needed
-            QString Template;
-            int gcid;
-            ApiQuery *Query;
-    };
-
     //! Primary huggle window
     class MainWindow : public QMainWindow
     {
@@ -153,8 +128,6 @@ namespace Huggle
             RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
             //! Warn a current user
             bool Warn(QString WarningType, RevertQuery *dependency);
-            //! Warn a specific user which may be unrelated to current edit
-            bool WarnUser(QString WarningType, RevertQuery *dependency, WikiEdit *Edit);
             QString GetSummaryKey(QString item);
             QString GetSummaryText(QString text);
             //! Send a template to user no matter if they can be messaged or not
@@ -343,7 +316,7 @@ namespace Huggle
             //! Status bar
             QLabel *Status;
             bool EditablePage;
-            QList <PendingWarning*> Warnings;
+            QList <PendingWarning*> PendingWarnings;
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;

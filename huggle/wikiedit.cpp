@@ -136,7 +136,7 @@ bool WikiEdit::FinalizePostProcessing()
                     {
                         this->TPRevBaseTime = e.attribute("timestamp");
                     }
-                    this->User->SetContentsOfTalkPage(e.text());
+                    this->User->TalkPage_SetContents(e.text());
                 } else
                 {
                     /// \todo LOCALIZE ME
@@ -147,7 +147,7 @@ bool WikiEdit::FinalizePostProcessing()
                 if (missing)
                 {
                     // we set an empty talk page so that we know we do have the contents of this page
-                    this->User->SetContentsOfTalkPage("");
+                    this->User->TalkPage_SetContents("");
                 } else
                 {
                     /// \todo LOCALIZE ME
