@@ -43,6 +43,7 @@ SOURCES += tst_testmain.cpp \
     ../../hugglequeueitemlabel.cpp \
     ../../hugglequeuefilter.cpp \
     ../../hugglequeue.cpp \
+    ../../warnings.cpp \
     ../../hugglenuke.cpp \
     ../../hugglemassrollback.cpp \
     ../../hugglelog.cpp \
@@ -140,6 +141,7 @@ HEADERS += \
     ../../proxy.hpp \
     ../../protectpage.hpp \
     ../../processlist.hpp \
+    ../../warnings.hpp \
     ../../preferences.hpp \
     ../../oauthloginquery.hpp \
     ../../networkirc.hpp
