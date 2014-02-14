@@ -2,8 +2,8 @@ This document is intended for huggle developers, it describes
 how the developers should write the source code.
 
 Because huggle is being developed by multiple developers
-we need to follow same standard so that the code
-is easily readable and isn't a mess.
+we need to follow same standard so that the code is
+easily readable and isn't a mess.
 
 == C++ code ==
 
@@ -78,12 +78,33 @@ if (!p) { ... }
 because despite the first is longer, it's clear you are working with a pointer,
 from second it's not clear what data type it actually is.
 
+it is also generally a good idea and allowed to prefix all pointers with ptr_
+
+== Naming ==
+
+=== Suffixes ===
+
+Every function member variable is suffixed with _ so that it never collide with
+instance member variables for example:
+
+class Foo
+{
+    int Number;
+    int Boo()
+    {
+        int Number_ = 5;
+        return this.Number + Number_;
+    }
+};
+    
+
 === CamelCase ===
 
 Every variable and function should be named using camel case, for example:
 
 int SomeLocalVariable;
 void ThisFunctionDoesALotOfStuff();
+void *ptr_SomePointer;
 
 IMPORTANT: leading character is capital not lower case
 
