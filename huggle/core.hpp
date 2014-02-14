@@ -159,17 +159,17 @@ namespace Huggle
              *
              * This function will deliver a message to user using Message class which is returned by this function
              *
-             * \param user Pointer to user
-             * \param message Text of message
-             * \param title Title
-             * \param summary Summary
-             * \param section Whether this message should be created in a new section
-             * \param dependency Query that is used as a dependency, if it's not NULL
+             * \param User Pointer to user
+             * \param Text Text of message
+             * \param Title Title of message
+             * \param Summary Summary
+             * \param InsertSection Whether this message should be created in a new section
+             * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
              * the system will wait for it to finish before the message is sent
-             * \return
+             * \return NULL on error or instance of Huggle::Message in case it's success
              */
-            Message *MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section = true, Query *dependency = NULL,
-                                 bool nosuffix = false, bool sectionkeep = false, bool autoremove = false, QString bt = "");
+            Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true, Query *DependencyRevert = NULL,
+                                 bool NoSuffix = false, bool SectionKeep = false, bool autoremove = false, QString bt = "");
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false, QString BaseTimestamp = "");

@@ -357,6 +357,7 @@ void Message::ProcessSend()
     if (this->BaseTimestamp != "")
     {
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
+        Syslog::HuggleLogs->DebugLog("Using base timestamp for edit of " + user->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
     if (this->Suffix)
     {

@@ -243,26 +243,27 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix, bool sectionkeep, bool autoremove, QString bt)
+Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
+                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove, QString bt)
 {
-    if (user == NULL)
+    if (User == NULL)
     {
         Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
         return NULL;
     }
 
-    if (title == "")
+    if (Title == "")
     {
-        section = false;
+        InsertSection = false;
     }
 
-    Message *m = new Message(user, message, summary);
-    m->Title = title;
-    m->Dependency = dependency;
-    m->Section = section;
+    Message *m = new Message(User, Text, Summary);
+    m->Title = Title;
+    m->Dependency = DependencyRevert;
+    m->Section = InsertSection;
     m->BaseTimestamp = bt;
-    m->SectionKeep = sectionkeep;
-    m->Suffix = !nosuffix;
+    m->SectionKeep = SectionKeep;
+    m->Suffix = !NoSuffix;
     Core::Messages.append(m);
     m->RegisterConsumer(HUGGLECONSUMER_CORE);
     if (!autoremove)
@@ -270,7 +271,7 @@ Message *Core::MessageUser(WikiUser *user, QString message, QString title, QStri
         m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
     }
     m->Send();
-    Huggle::Syslog::HuggleLogs->Log("Sending message to user " + user->Username);
+    Huggle::Syslog::HuggleLogs->Log("Sending message to user " + User->Username);
 
     return m;
 }
