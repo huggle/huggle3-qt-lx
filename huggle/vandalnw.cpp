@@ -17,7 +17,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server, Configuration::HuggleConfiguration->UserName);
     this->ui->setupUi(this);
-    this->pref = QString(QChar(001)) + QString(QChar(001));
+    this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
     this->Text = "";
     this->JoinedMain = false;
@@ -59,7 +59,7 @@ void VandalNw::Good(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->pref + "GOOD " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->Prefix + "GOOD " + QString::number(Edit->RevID));
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
@@ -68,7 +68,7 @@ void VandalNw::Rollback(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->pref + "ROLLBACK " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
@@ -77,7 +77,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->pref + "SUSPICIOUS " + QString::number(Edit->RevID));
+    this->Irc->Send(this->GetChannel(), this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
 void VandalNw::WarningSent(WikiUser *user, int Level)
@@ -86,7 +86,7 @@ void VandalNw::WarningSent(WikiUser *user, int Level)
     {
         throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
     }
-    this->Irc->Send(this->GetChannel(), this->pref + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
+    this->Irc->Send(this->GetChannel(), this->Prefix + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
 }
 
 QString VandalNw::GetChannel()
@@ -230,7 +230,7 @@ void VandalNw::onTick()
     Huggle::IRC::Message *m = this->Irc->GetMessage();
     if (m != NULL)
     {
-        if (m->Text.startsWith(pref))
+        if (m->Text.startsWith(Prefix))
         {
             QString Command = m->Text.mid(2);
             if (Command.contains(" "))

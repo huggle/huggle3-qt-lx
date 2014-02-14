@@ -130,7 +130,6 @@ void Preferences::Disable()
     this->ui->checkBox_10->setEnabled(false);
     this->ui->pushButton_4->setEnabled(false);
     this->ui->checkBox_18->setEnabled(false);
-    this->ui->checkBox_12->setEnabled(false);
     this->ui->pushButton_5->setEnabled(false);
     this->ui->pushButton_6->setEnabled(false);
     this->ui->checkBox_13->setEnabled(false);
@@ -149,7 +148,6 @@ void Preferences::EnableQueues()
     this->ui->checkBox_18->setEnabled(true);
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
-    this->ui->checkBox_12->setEnabled(true);
     this->ui->checkBox_13->setEnabled(true);
 }
 

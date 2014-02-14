@@ -574,6 +574,32 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     this->tPageDiff->start(200);
 }
 
+void Huggle::ReportUser::on_pushButton_5_clicked()
+{
+    int xx = 0;
+    while (xx < this->ui->tableWidget->rowCount())
+    {
+        if (this->CheckBoxes.count() > xx)
+        {
+            this->CheckBoxes.at(xx)->setChecked(true);
+        }
+        xx++;
+    }
+}
+
+void Huggle::ReportUser::on_pushButton_6_clicked()
+{
+    int xx = 0;
+    while (xx < this->ui->tableWidget->rowCount())
+    {
+        if (this->CheckBoxes.count() > xx)
+        {
+            this->CheckBoxes.at(xx)->setChecked(false);
+        }
+        xx++;
+    }
+}
+
 bool ReportUser::CheckUser()
 {
     if (this->ReportContent.contains(this->ReportedUser->Username))
