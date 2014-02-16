@@ -635,7 +635,7 @@ QStringList Configuration::ConfigurationParse_QL(QString key, QString content, Q
     return result;
 }
 
-QStringList Configuration::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS)
+QStringList Configuration::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS, bool RemoveNull)
 {
     QStringList result = Configuration::ConfigurationParse_QL(key, content, CS);
     int x = 0;
@@ -643,6 +643,11 @@ QStringList Configuration::ConfigurationParseTrimmed_QL(QString key, QString con
     while (x < result.count())
     {
         QString item = result.at(x);
+        if (RemoveNull && item.replace(",", "") == "")
+        {
+            x++;
+            continue;
+        }
         if (item.endsWith(","))
         {
             trimmed.append(item.mid(0, item.length() - 1));
@@ -956,6 +961,15 @@ bool Configuration::ParseLocalConfig(QString config)
             Configuration::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns =
             Configuration::ConfigurationParse_QL("revert-patterns", config, true);
+    QStringList MonthsHeaders_ = Configuration::ConfigurationParseTrimmed_QL("months", config, true, true);
+    if (MonthsHeaders_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for this project contains " + QString::number(MonthsHeaders_.count()) +
+                                       " months, which is weird and I will not use them");
+    } else
+    {
+        Configuration::HuggleConfiguration->Months = MonthsHeaders_;
+    }
     Configuration::HuggleConfiguration->RevertPatterns.clear();
     int xx = 0;
     while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
