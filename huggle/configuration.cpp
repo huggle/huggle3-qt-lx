@@ -961,14 +961,28 @@ bool Configuration::ParseLocalConfig(QString config)
             Configuration::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     Configuration::HuggleConfiguration->LocalConfig_RevertPatterns =
             Configuration::ConfigurationParse_QL("revert-patterns", config, true);
-    QStringList MonthsHeaders_ = Configuration::ConfigurationParseTrimmed_QL("months", config, true, true);
+    QStringList MonthsHeaders_ = Configuration::ConfigurationParse_QL("months", config);
     if (MonthsHeaders_.count() != 12)
     {
         Syslog::HuggleLogs->WarningLog("Configuration for this project contains " + QString::number(MonthsHeaders_.count()) +
                                        " months, which is weird and I will not use them");
     } else
     {
-        Configuration::HuggleConfiguration->Months = MonthsHeaders_;
+        Configuration::HuggleConfiguration->Months.clear();
+        int i = 0;
+        while (i < 12)
+        {
+            QString month_ = MonthsHeaders_.at(i);
+            if (month_.contains(";"))
+            {
+                month_ = month_.mid(month_.indexOf(";") + 1);
+            }
+            if (month_.endsWith(','))
+            {
+                month_ = month_.mid(0, month_.length() - 1);
+            }
+            Configuration::HuggleConfiguration->Months.append(month_);
+        }
     }
     Configuration::HuggleConfiguration->RevertPatterns.clear();
     int xx = 0;
