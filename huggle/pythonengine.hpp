@@ -48,7 +48,7 @@ namespace Huggle
     class PythonEngine
     {
         public:
-            PythonEngine();
+            PythonEngine(QString ExtensionsFolder_);
             bool LoadScript(QString path);
         private:
             QList<PythonScript*> Scripts;

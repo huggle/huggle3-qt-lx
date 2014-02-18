@@ -16,9 +16,10 @@
 
 using namespace Huggle;
 
-PythonEngine::PythonEngine()
+PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
     Py_Initialize();
+    PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
 }
 
 bool PythonEngine::LoadScript(QString path)
@@ -69,8 +70,20 @@ bool PythonScript::Init()
         this->Text = QString(file->readAll());
         file->close();
         delete file;
-        PyObject *name = PyString_FromString(this->Name.toUtf8().data());
+        QString ModuleName = (this->Name.toUtf8().data());
+        if (ModuleName.contains("/"))
+        {
+            ModuleName = ModuleName.mid(ModuleName.indexOf("/") + 1);
+            ModuleName = ModuleName.replace(".py", "");
+        }
+        PyObject *name = PyString_FromString(ModuleName.toUtf8().data());
         this->object = PyImport_Import(name);
+        if (this->object == NULL)
+        {
+            PyErr_Print();
+            Syslog::HuggleLogs->WarningLog("Unable to load " + this->Name);
+            return false;
+        }
         Py_DECREF(name);
         return true;
     }
