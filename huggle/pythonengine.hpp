@@ -30,21 +30,29 @@ namespace Huggle
     class PythonScript
     {
         public:
+            //! Creates a new instance of python script
             PythonScript(QString name);
+            //! Return a path of a script
             QString GetName() const;
             bool GetEnabled() const;
             void SetEnabled(bool value);
+            //! Initialize the script
             bool Init();
-            QString RetrieveText() const;
+            QString RetrieveSourceCode() const;
         private:
             //! Pointer to a python object that represent this script
             PyObject *object;
             QString Name;
             bool Enabled;
-            QString Text;
+            QString SourceCode;
     };
 
     //! This python engine should allow users to create python modules for huggle
+
+    //! This interface will create a python interpretor that can load any .py
+    //! scripts using the LoadScript(path) function. Modules should only contain
+    //! functions and hooks. If there is any execution body it will be executed
+    //! immediately after the script is loaded.
     class PythonEngine
     {
         public:

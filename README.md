@@ -36,6 +36,18 @@ make
 sudo make install
 ```
 
+Python
+------------
+To enable python engine you need to:
+
+* open huggle.pro and uncomment / add python library
+* open config.hpp and uncomment PYTHONENGINE
+
+now rebuild huggle and pray
+
+If you manage to compile it, you can insert your .py extensions to HUGGLEROOT/extensions, for more
+information ask for help on our irc channel.
+
 Documentation
 =============
 

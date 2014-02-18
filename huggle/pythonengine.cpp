@@ -35,7 +35,7 @@ bool PythonEngine::LoadScript(QString path)
 
 PythonScript::PythonScript(QString name)
 {
-    this->Text = "";
+    this->SourceCode = "";
     this->Name = name;
     this->object = NULL;
     this->Enabled = false;
@@ -67,7 +67,7 @@ bool PythonScript::Init()
             delete file;
             return false;
         }
-        this->Text = QString(file->readAll());
+        this->SourceCode = QString(file->readAll());
         file->close();
         delete file;
         QString ModuleName = (this->Name.toUtf8().data());
@@ -91,9 +91,9 @@ bool PythonScript::Init()
     return false;
 }
 
-QString PythonScript::RetrieveText() const
+QString PythonScript::RetrieveSourceCode() const
 {
-    return this->Text;
+    return this->SourceCode;
 }
 
 #endif
