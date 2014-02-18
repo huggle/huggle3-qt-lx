@@ -174,6 +174,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
+    if (flags.contains("thank"))
+    {
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        return;
+    }
+
     if (flags.contains("modify"))
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);

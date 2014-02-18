@@ -168,7 +168,7 @@ namespace Huggle
              */
             static QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
             static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
-            static QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false);
+            static QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
             static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
             static Configuration *HuggleConfiguration;
             /*!

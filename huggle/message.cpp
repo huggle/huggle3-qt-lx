@@ -225,6 +225,7 @@ void Message::Finish()
                 {
                     // someone edit the page meanwhile which means that our token has expired
                     this->Fail("Edit conflict");
+                    Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->user->Username);
                     this->Error = MessageError_Obsolete;
                 } else
                 {
