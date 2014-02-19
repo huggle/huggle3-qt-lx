@@ -11,6 +11,13 @@
 #ifndef EDITQUERY_H
 #define EDITQUERY_H
 
+#include "config.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QUrl>
 #include "apiquery.hpp"

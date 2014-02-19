@@ -24,7 +24,7 @@ PythonEngine::PythonEngine(QString ExtensionsFolder_)
     this->Methods[0].ml_flags = METH_VARARGS;
     this->Methods[0].ml_meth = api_Version;
     this->Methods[0].ml_name = "huggle_version";
-    Py_InitModule("huggle", Methods);
+    //Py_InitModule("huggle", Methods);
     PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
 }
 
@@ -52,7 +52,7 @@ void PythonEngine::Hook_MainWindowIsLoaded()
 
 PyObject *PythonEngine::api_Version(PyObject *self, PyObject *args)
 {
-    return PyString_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
+    return PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
 }
 
 PythonScript::PythonScript(QString name)
@@ -119,7 +119,7 @@ bool PythonScript::Init()
             ModuleName = ModuleName.mid(ModuleName.indexOf("/") + 1);
             ModuleName = ModuleName.replace(".py", "");
         }
-        PyObject *name = PyString_FromString(ModuleName.toUtf8().data());
+        PyObject *name = PyUnicode_FromString(ModuleName.toUtf8().data());
         if (name == NULL)
         {
             PyErr_Print();

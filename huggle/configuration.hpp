@@ -12,6 +12,12 @@
 #define CONFIGURATION_H
 // Include file with all global defines
 #include "config.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
 //! Path where the extensions are located

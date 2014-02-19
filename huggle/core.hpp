@@ -11,6 +11,13 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include "config.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QApplication>
 #include <QNetworkAccessManager>
 #include <QList>

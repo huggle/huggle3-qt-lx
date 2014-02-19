@@ -11,6 +11,13 @@
 #ifndef HUGGLEQUEUE_H
 #define HUGGLEQUEUE_H
 
+#include "config.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDockWidget>
 #include <QList>
 #include <QFrame>

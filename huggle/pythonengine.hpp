@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 // This class is only available if you compile huggle with python support
+// see config.hpp in order to enable it
 
 #include "configuration.hpp"
 
@@ -17,58 +18,62 @@
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H
 
+#include <Python.h>
 #include <QString>
 #include <QThread>
 #include <QMutex>
 #include <QList>
-#include <Python.h>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
 
 namespace Huggle
 {
-    //! DOCUMENT ME
-    class PythonScript
+    //! Python code goes here, this namespace doesn't exist when huggle isn't compiled in python mode so wrap in direct.
+    namespace Python
     {
-        public:
-            //! Creates a new instance of python script
-            PythonScript(QString name);
-            ~PythonScript();
-            //! Return a path of a script
-            QString GetName() const;
-            bool GetEnabled() const;
-            void SetEnabled(bool value);
-            void Hook_MainWindowIsLoaded();
-            //! Initialize the script
-            bool Init();
-            QString RetrieveSourceCode() const;
-        private:
-            //! Pointer to a python object that represent this script
-            PyObject *object;
-            QString Name;
-            bool Enabled;
-            PyObject *ptr_Hook_MainLoaded;
-            QString SourceCode;
-    };
+        //! Every python script that is used in huggle is described by instance of this thing
+        class PythonScript
+        {
+            public:
+                //! Creates a new instance of python script
+                PythonScript(QString name);
+                ~PythonScript();
+                //! Return a path of a script
+                QString GetName() const;
+                bool GetEnabled() const;
+                void SetEnabled(bool value);
+                void Hook_MainWindowIsLoaded();
+                //! Initialize the script
+                bool Init();
+                QString RetrieveSourceCode() const;
+            private:
+                //! Pointer to a python object that represent this script
+                PyObject *object;
+                QString Name;
+                bool Enabled;
+                PyObject *ptr_Hook_MainLoaded;
+                QString SourceCode;
+        };
 
-    //! This python engine should allow users to create python modules for huggle
+        //! This python engine should allow users to create python modules for huggle
 
-    //! This interface will create a python interpretor that can load any .py
-    //! scripts using the LoadScript(path) function. Modules should only contain
-    //! functions and hooks. If there is any execution body it will be executed
-    //! immediately after the script is loaded.
-    class PythonEngine
-    {
-        public:
-            PythonEngine(QString ExtensionsFolder_);
-            bool LoadScript(QString path);
-            void Hook_MainWindowIsLoaded();
-        private:
-            static PyObject* api_Version(PyObject *self, PyObject *args);
-            PyMethodDef Methods[1];
-            QList<PythonScript*> Scripts;
-    };
+        //! This interface will create a python interpretor that can load any .py
+        //! scripts using the LoadScript(path) function. Modules should only contain
+        //! functions and hooks. If there is any execution body it will be executed
+        //! immediately after the script is loaded.
+        class PythonEngine
+        {
+            public:
+                PythonEngine(QString ExtensionsFolder_);
+                bool LoadScript(QString path);
+                void Hook_MainWindowIsLoaded();
+            private:
+                static PyObject* api_Version(PyObject *self, PyObject *args);
+                PyMethodDef Methods[1];
+                QList<PythonScript*> Scripts;
+        };
+    }
 }
 
 #endif // PYTHONENGINE_H
