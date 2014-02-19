@@ -53,7 +53,10 @@ namespace Huggle
 {
     // Predeclaring some types
 #ifdef PYTHONENGINE
-    class PythonEngine;
+    namespace Python
+    {
+        class PythonEngine;
+    }
 #endif
     class Sleeper;
     class Login;
@@ -223,7 +226,7 @@ namespace Huggle
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE
-            PythonEngine *Python;
+            Python::PythonEngine *Python;
 #endif
         private:
             //! List of all running queries

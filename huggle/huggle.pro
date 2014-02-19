@@ -17,7 +17,8 @@ TEMPLATE = app
 ##################################################################################################################################################
 QMAKE_CXXFLAGS += -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
 INCLUDEPATH += "/usr/include/python3.2mu"
-LIBS += "-lpython3.2mu -L/usr/lib/python3.2/config-3.2mu -lpthread -ldl -lutil -lm -lpython3.2mu -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions"
+LIBS += -lpython3.2mu
+# -L/usr/lib/python3.2/config-3.2mu -lpthread -ldl -lutil -lm -lpython3.2mu -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions"
 ##################################################################################################################################################
 
 win32{

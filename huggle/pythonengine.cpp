@@ -15,6 +15,7 @@
 #include "pythonengine.hpp"
 
 using namespace Huggle;
+using namespace Huggle::Python;
 
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {

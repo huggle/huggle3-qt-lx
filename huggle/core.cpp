@@ -46,7 +46,7 @@ void Core::Init()
                                                                            "identified as test edits");
 #ifdef PYTHONENGINE
     Syslog::HuggleLogs->Log("Loading python engine");
-    this->Python = new PythonEngine(EXTENSION_PATH);
+    this->Python = new Python::PythonEngine(EXTENSION_PATH);
 #endif
     Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
