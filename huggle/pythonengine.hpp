@@ -22,6 +22,8 @@
 #include <QMutex>
 #include <QList>
 #include <Python.h>
+#include "configuration.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 
 namespace Huggle
@@ -32,10 +34,12 @@ namespace Huggle
         public:
             //! Creates a new instance of python script
             PythonScript(QString name);
+            ~PythonScript();
             //! Return a path of a script
             QString GetName() const;
             bool GetEnabled() const;
             void SetEnabled(bool value);
+            void Hook_MainWindowIsLoaded();
             //! Initialize the script
             bool Init();
             QString RetrieveSourceCode() const;
@@ -44,6 +48,7 @@ namespace Huggle
             PyObject *object;
             QString Name;
             bool Enabled;
+            PyObject *ptr_Hook_MainLoaded;
             QString SourceCode;
     };
 
@@ -58,7 +63,10 @@ namespace Huggle
         public:
             PythonEngine(QString ExtensionsFolder_);
             bool LoadScript(QString path);
+            void Hook_MainWindowIsLoaded();
         private:
+            static PyObject* api_Version(PyObject *self, PyObject *args);
+            PyMethodDef Methods[1];
             QList<PythonScript*> Scripts;
     };
 }

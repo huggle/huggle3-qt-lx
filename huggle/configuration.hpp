@@ -14,8 +14,6 @@
 #include "config.hpp"
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
-#define HUGGLE_VERSION                  "3.0.0.0"
-#define HUGGLE_BYTE_VERSION             0x3000
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""

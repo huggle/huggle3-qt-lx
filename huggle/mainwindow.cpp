@@ -176,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->menuHelp->removeAction(debugm);
     }
 
-    Hooks::MainWindowIsLoad(this);
+    Hooks::MainWindowIsLoaded(this);
     this->VandalDock->Connect();
     this->tCheck = new QTimer(this);
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));

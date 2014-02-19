@@ -72,7 +72,7 @@ namespace Huggle
              * \brief Window is loaded
              * \param window
              */
-            static void MainWindowIsLoad(MainWindow *window);
+            static void MainWindowIsLoaded(MainWindow *window);
     };
 }
 

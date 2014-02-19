@@ -19,6 +19,12 @@ using namespace Huggle;
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
     Py_Initialize();
+    // define hooks
+    this->Methods[0].ml_doc = "Returns the version of huggle.";
+    this->Methods[0].ml_flags = METH_VARARGS;
+    this->Methods[0].ml_meth = api_Version;
+    this->Methods[0].ml_name = "huggle_version";
+    Py_InitModule("huggle", Methods);
     PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
 }
 
@@ -28,9 +34,25 @@ bool PythonEngine::LoadScript(QString path)
     this->Scripts.append(p);
     if (p->Init())
     {
+        p->SetEnabled(true);
         return true;
     }
     return false;
+}
+
+void PythonEngine::Hook_MainWindowIsLoaded()
+{
+    int x = 0;
+    while (x < this->Scripts.count())
+    {
+        this->Scripts.at(x)->Hook_MainWindowIsLoaded();
+        x++;
+    }
+}
+
+PyObject *PythonEngine::api_Version(PyObject *self, PyObject *args)
+{
+    return PyString_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
 }
 
 PythonScript::PythonScript(QString name)
@@ -38,7 +60,20 @@ PythonScript::PythonScript(QString name)
     this->SourceCode = "";
     this->Name = name;
     this->object = NULL;
+    this->ptr_Hook_MainLoaded = NULL;
     this->Enabled = false;
+}
+
+PythonScript::~PythonScript()
+{
+    if (this->ptr_Hook_MainLoaded != NULL)
+    {
+        Py_DECREF(this->ptr_Hook_MainLoaded);
+    }
+    if (this->object != NULL)
+    {
+        Py_DECREF(this->object);
+    }
 }
 
 QString PythonScript::GetName() const
@@ -54,6 +89,14 @@ bool PythonScript::GetEnabled() const
 void PythonScript::SetEnabled(bool value)
 {
     this->Enabled = value;
+}
+
+void PythonScript::Hook_MainWindowIsLoaded()
+{
+    if (this->ptr_Hook_MainLoaded)
+    {
+        PyObject_CallObject(this->ptr_Hook_MainLoaded, NULL);
+    }
 }
 
 bool PythonScript::Init()
@@ -77,14 +120,31 @@ bool PythonScript::Init()
             ModuleName = ModuleName.replace(".py", "");
         }
         PyObject *name = PyString_FromString(ModuleName.toUtf8().data());
+        if (name == NULL)
+        {
+            PyErr_Print();
+            return false;
+        }
         this->object = PyImport_Import(name);
+        // remove name
+        Py_DECREF(name);
         if (this->object == NULL)
         {
             PyErr_Print();
-            Syslog::HuggleLogs->WarningLog("Unable to load " + this->Name);
             return false;
         }
-        Py_DECREF(name);
+        Syslog::HuggleLogs->DebugLog("Loading hook symbols for python " + this->Name);
+        // load symbols for hooks now
+        this->ptr_Hook_MainLoaded = PyObject_GetAttrString(this->object, "hook_main_window_is_loaded");
+        if (this->ptr_Hook_MainLoaded != NULL && !PyCallable_Check(this->ptr_Hook_MainLoaded))
+        {
+            // we loaded the symbol but it's not callable function
+            // so we remove it
+            Py_DECREF(this->ptr_Hook_MainLoaded);
+            Syslog::HuggleLogs->WarningLog("Function hook_main_window_is_loaded of " + this->Name
+                                           + " isn't callable, hook is disabled now");
+            this->ptr_Hook_MainLoaded = NULL;
+        }
         return true;
     }
     delete file;
