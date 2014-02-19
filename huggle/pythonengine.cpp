@@ -17,15 +17,53 @@
 using namespace Huggle;
 using namespace Huggle::Python;
 
+// let's define huggle api for python here
+namespace Huggle
+{
+    namespace Python
+    {
+// Disable compiler warnings because we always need to use unused parameters when we use python
+#if _MSC_VER
+#pragma warning ( push )
+#pragma warning ( disable )
+#else
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+        static PyObject *ApiVersion(PyObject *self, PyObject *args)
+        {
+            PyObject *v = PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
+            return v;
+        }
+#if _MSC_VER
+#pragma warning ( pop )
+#else
+#pragma GCC diagnostic pop
+#endif
+
+        static PyMethodDef Methods[] = {
+            {"huggle_version", ApiVersion, METH_VARARGS,
+             "Return a huggle version"},
+            {NULL, NULL, 0, NULL}
+        };
+
+        static PyModuleDef Module = {
+            PyModuleDef_HEAD_INIT, "huggle", NULL, -1, Methods,
+            NULL, NULL, NULL, NULL
+        };
+
+        static PyObject *PyInit_emb()
+        {
+            return PyModule_Create(&Module);
+        }
+    }
+}
+
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
     Py_Initialize();
     // define hooks
-    this->Methods[0].ml_doc = "Returns the version of huggle.";
-    this->Methods[0].ml_flags = METH_VARARGS;
-    this->Methods[0].ml_meth = api_Version;
-    this->Methods[0].ml_name = "huggle_version";
-    //Py_InitModule("huggle", Methods);
+    PyImport_AppendInittab("huggle", &PyInit_emb);
     PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
 }
 
@@ -49,11 +87,6 @@ void PythonEngine::Hook_MainWindowIsLoaded()
         this->Scripts.at(x)->Hook_MainWindowIsLoaded();
         x++;
     }
-}
-
-PyObject *PythonEngine::api_Version(PyObject *self, PyObject *args)
-{
-    return PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
 }
 
 PythonScript::PythonScript(QString name)

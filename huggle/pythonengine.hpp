@@ -11,7 +11,7 @@
 // This class is only available if you compile huggle with python support
 // see config.hpp in order to enable it
 
-#include "configuration.hpp"
+#include "config.hpp"
 
 #ifdef PYTHONENGINE
 
@@ -29,6 +29,7 @@
 
 namespace Huggle
 {
+    class Configuration;
     //! Python code goes here, this namespace doesn't exist when huggle isn't compiled in python mode so wrap in direct.
     namespace Python
     {
@@ -69,8 +70,6 @@ namespace Huggle
                 bool LoadScript(QString path);
                 void Hook_MainWindowIsLoaded();
             private:
-                static PyObject* api_Version(PyObject *self, PyObject *args);
-                PyMethodDef Methods[1];
                 QList<PythonScript*> Scripts;
         };
     }
