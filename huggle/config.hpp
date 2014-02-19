@@ -18,7 +18,7 @@
 #define HUGGLE_BYTE_VERSION             0x3000
 
 // uncomment this if you want to enable python support
-#define PYTHONENGINE
+//#define PYTHONENGINE
 
 //! Change this to 1 if you want to get in troubles
 //! push 1 there and you will get even bigger troubles :-)
