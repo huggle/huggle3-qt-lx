@@ -96,4 +96,5 @@ void Huggle::Hooks::MainWindowIsLoaded(Huggle::MainWindow *window)
         }
         extension++;
     }
+    Huggle::Core::HuggleCore->Python->Hook_MainWindowIsLoaded();
 }
