@@ -196,7 +196,6 @@ void UserinfoForm::OnTick()
         this->ui->tableWidget->resizeRowsToContents();
         this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
         this->qContributions = NULL;
-        this->timer->stop();
     }
     this->timer->stop();
 }
