@@ -42,13 +42,14 @@ namespace Huggle
                 ~PythonScript();
                 //! Return a path of a script
                 QString GetName() const;
-                bool GetEnabled() const;
+                bool IsEnabled() const;
                 void SetEnabled(bool value);
                 void Hook_MainWindowIsLoaded();
                 //! Initialize the script
                 bool Init();
                 QString RetrieveSourceCode() const;
             private:
+                PyObject *Hook(QString function);
                 //! Pointer to a python object that represent this script
                 PyObject *object;
                 QString Name;

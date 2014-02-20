@@ -56,6 +56,25 @@ namespace Huggle
         {
             return PyModule_Create(&Module);
         }
+
+        static bool ContainsFunction(QString function, QString string)
+        {
+            QStringList lines = string.split('\n');
+            QRegExp *regex_ = new QRegExp("^[\\s\\t]*def " + function + ".*:[\\s\\t]*$");
+            int ln = 0;
+            while (ln < lines.count())
+            {
+                if (lines.at(ln).contains(*regex_))
+                {
+                    delete regex_;
+                    return true;
+                }
+                ln++;
+            }
+
+            delete regex_;
+            return false;
+        }
     }
 }
 
@@ -110,12 +129,35 @@ PythonScript::~PythonScript()
     }
 }
 
+PyObject *PythonScript::Hook(QString function)
+{
+    PyObject *ptr_python_ = NULL;
+    if (Huggle::Python::ContainsFunction(function, this->SourceCode))
+    {
+        Syslog::HuggleLogs->DebugLog("Loading hook symbols of " + function + " " + this->Name, 2);
+        ptr_python_ = PyObject_GetAttrString(this->object, function.toUtf8().data());
+        if (ptr_python_ != NULL && !PyCallable_Check(ptr_python_))
+        {
+            // we loaded the symbol but it's not callable function
+            // so we remove it
+            Py_DECREF(ptr_python_);
+            Syslog::HuggleLogs->WarningLog("Function " + function + "@" + this->Name
+                                           + " isn't callable, hook is disabled now");
+            ptr_python_ = NULL;
+        } else if (ptr_python_ == NULL)
+        {
+            Syslog::HuggleLogs->DebugLog("There is no override for " + function);
+        }
+    }
+    return ptr_python_;
+}
+
 QString PythonScript::GetName() const
 {
     return this->Name;
 }
 
-bool PythonScript::GetEnabled() const
+bool PythonScript::IsEnabled() const
 {
     return this->Enabled;
 }
@@ -129,6 +171,7 @@ void PythonScript::Hook_MainWindowIsLoaded()
 {
     if (this->ptr_Hook_MainLoaded)
     {
+        Syslog::HuggleLogs->DebugLog("Calling hook Hook_MainWindowIsLoaded @" + this->Name, 2);
         PyObject_CallObject(this->ptr_Hook_MainLoaded, NULL);
     }
 }
@@ -169,16 +212,8 @@ bool PythonScript::Init()
         }
         Syslog::HuggleLogs->DebugLog("Loading hook symbols for python " + this->Name);
         // load symbols for hooks now
-        this->ptr_Hook_MainLoaded = PyObject_GetAttrString(this->object, "hook_main_window_is_loaded");
-        if (this->ptr_Hook_MainLoaded != NULL && !PyCallable_Check(this->ptr_Hook_MainLoaded))
-        {
-            // we loaded the symbol but it's not callable function
-            // so we remove it
-            Py_DECREF(this->ptr_Hook_MainLoaded);
-            Syslog::HuggleLogs->WarningLog("Function hook_main_window_is_loaded of " + this->Name
-                                           + " isn't callable, hook is disabled now");
-            this->ptr_Hook_MainLoaded = NULL;
-        }
+        this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
+
         return true;
     }
     delete file;
