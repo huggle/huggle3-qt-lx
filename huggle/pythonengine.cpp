@@ -35,6 +35,71 @@ namespace Huggle
             PyObject *v = PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
             return v;
         }
+
+        static PyObject *DebugLog(PyObject *self, PyObject *args)
+        {
+            PyObject *py_verbosity_ = NULL;
+            PyObject *text_ = NULL;
+            PyObject *result_ = PyBool_FromLong(0);
+            if (PyArg_UnpackTuple(args, "debug_log", 1, 2, &text_, &py_verbosity_) && PyBytes_Check(text_))
+            {
+                Py_DECREF(result_);
+                result_ = PyBool_FromLong(1);
+                unsigned int verbosity = 1;
+                if (py_verbosity_ != NULL && PyLong_Check(py_verbosity_))
+                {
+                    verbosity = (unsigned int)PyLong_AsLong(py_verbosity_);
+                    Py_DECREF(py_verbosity_);
+                }
+                if (verbosity < 1)
+                {
+                    verbosity = 1;
+                }
+                PyObject *uni_ = PyUnicode_AsUTF8String(text_);
+                Py_DECREF(text_);
+                if (uni_ == NULL || !PyBytes_Check(uni_))
+                {
+                    Syslog::HuggleLogs->DebugLog("Log@unkown: parameter text must be of a string type");
+                } else
+                {
+                    QString qs_text_(PyBytes_AsString(text_));
+                    Syslog::HuggleLogs->DebugLog(qs_text_, verbosity);
+                    Py_DECREF(text_);
+                }
+            }
+            return result_;
+        }
+
+        static PyObject *Log(PyObject *self, PyObject *args)
+        {
+            PyObject *text_ = NULL;
+            PyObject *result_ = PyBool_FromLong(0);
+            if (PyArg_UnpackTuple(args, "log", 1, 1, &text_))
+            {
+                PyObject *uni_ = PyUnicode_AsUTF8String(text_);
+                Py_DECREF(text_);
+                if (uni_ == NULL || !PyBytes_Check(uni_))
+                {
+                    Syslog::HuggleLogs->DebugLog("Log@unkown: parameter text must be of a string type");
+                } else
+                {
+                    Py_DECREF(result_);
+                    result_ = PyBool_FromLong(1);
+                    QString qs_text_(PyBytes_AsString(uni_));
+                    Py_DECREF(uni_);
+                    Syslog::HuggleLogs->Log(qs_text_);
+                }
+            }
+            return result_;
+        }
+
+        static PyObject *ErrorLog(PyObject *self, PyObject *args)
+        {
+            //PyObject *text_ = NULL;
+            PyObject *result_ = PyBool_FromLong(0);
+
+            return result_;
+        }
 #if _MSC_VER
 #pragma warning ( pop )
 #else
@@ -42,14 +107,14 @@ namespace Huggle
 #endif
 
         static PyMethodDef Methods[] = {
-            {"huggle_version", ApiVersion, METH_VARARGS,
-             "Return a huggle version"},
+            {"huggle_version", ApiVersion, METH_VARARGS, "Return a huggle version"},
+            {"debug_log", DebugLog, METH_VARARGS, "Write to debug log"},
+            {"log", Log, METH_VARARGS, "Write to a log"},
             {NULL, NULL, 0, NULL}
         };
 
         static PyModuleDef Module = {
-            PyModuleDef_HEAD_INIT, "huggle", NULL, -1, Methods,
-            NULL, NULL, NULL, NULL
+            PyModuleDef_HEAD_INIT, "huggle", NULL, -1, Methods, NULL, NULL, NULL, NULL
         };
 
         static PyObject *PyInit_emb()
