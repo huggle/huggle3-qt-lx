@@ -82,8 +82,8 @@ void UserinfoForm::Read()
     this->qContributions = new ApiQuery();
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
     this->qContributions->SetAction(ActionQuery);
-    this->qContributions->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(this->User->Username) +
-            "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
+    this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
+            "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     Core::HuggleCore->AppendQuery(this->qContributions);
     this->qContributions->RegisterConsumer(HUGGLECONSUMER_USERINFO);
     ui->pushButton->hide();
@@ -125,25 +125,40 @@ void UserinfoForm::OnTick()
         }
         QDomDocument d;
         d.setContent(this->qContributions->Result->Data);
-        QDomNodeList results = d.elementsByTagName("rc");
+        QDomNodeList results = d.elementsByTagName("item");
         int xx = 0;
         if (results.count() > 0)
         {
             QColor xb;
             bool xt = false;
+            bool top = false;
             while (results.count() > xx)
             {
                 QDomElement edit = results.at(xx).toElement();
-                if (!edit.attributes().contains("type"))
+                if (!edit.attributes().contains("user"))
                 {
                     continue;
                 }
-                if (xt)
+                top = edit.attributes().contains("top");
+                if (top)
                 {
-                    xb = QColor(206, 202, 250);
+                    // set a different color for edits that are top
+                    if (xt)
+                    {
+                        xb = QColor(110, 202, 250);
+                    } else
+                    {
+                        xb = QColor(120, 222, 250);
+                    }
                 } else
                 {
-                    xb = QColor(224, 222, 250);
+                    if (xt)
+                    {
+                        xb = QColor(206, 202, 250);
+                    } else
+                    {
+                        xb = QColor(224, 222, 250);
+                    }
                 }
                 xt = !xt;
                 QString page = "unknown page";

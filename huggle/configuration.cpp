@@ -982,6 +982,7 @@ bool Configuration::ParseLocalConfig(QString config)
                 month_ = month_.mid(0, month_.length() - 1);
             }
             Configuration::HuggleConfiguration->Months.append(month_);
+            i++;
         }
     }
     Configuration::HuggleConfiguration->RevertPatterns.clear();
