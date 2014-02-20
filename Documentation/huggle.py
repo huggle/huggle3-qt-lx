@@ -1,5 +1,3 @@
-import huggle;
-
 # This file is just an interface to describe the huggle module, it exist just for doxygen
 
 
@@ -17,3 +15,10 @@ def huggle_version():
     if the version (this works only if huggle was built from within a git repository)
     """
     return "unknown";
+
+def log(str_message):
+    """Logs a message to huggle system log
+
+    Return false on error
+    """
+    return true;
