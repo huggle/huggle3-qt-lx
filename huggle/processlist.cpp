@@ -21,8 +21,8 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     header << Huggle::Localizations::HuggleLocalizations->Localize("id")
            << Huggle::Localizations::HuggleLocalizations->Localize("type")
            << Huggle::Localizations::HuggleLocalizations->Localize("target")
-           << Huggle::Localizations::HuggleLocalizations->Localize("status") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("result");
+           << Huggle::Localizations::HuggleLocalizations->Localize("status")
+           << Huggle::Localizations::HuggleLocalizations->Localize("result");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);

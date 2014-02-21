@@ -39,7 +39,7 @@ namespace Huggle
     //! can be only deleted by garbage collector when no consumers are using it. Basically every
     //! object that has 0 consumers, will be deleted.
 
-    //! \image html ../Documentation/gc01.png
+    //! \image html ../documentation/gc01.png
     class Collectable
     {
         public:
