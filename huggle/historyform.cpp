@@ -396,16 +396,17 @@ void HistoryForm::Display(int row, QString html)
 
 void HistoryForm::MakeSelectedRowBold()
 {
-    this->ui->tableWidget->item(this->SelectedRow, 0)->font().setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 1)->font().setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 2)->font().setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 3)->font().setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 4)->font().setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 5)->font().setBold(true);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 0)->font().setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 1)->font().setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 2)->font().setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->font().setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->font().setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->font().setBold(false);
+    QFont font;
+    font.setBold(true);
+    this->ui->tableWidget->item(this->SelectedRow, 1)->setFont(font);
+    this->ui->tableWidget->item(this->SelectedRow, 2)->setFont(font);
+    this->ui->tableWidget->item(this->SelectedRow, 3)->setFont(font);
+    this->ui->tableWidget->item(this->SelectedRow, 4)->setFont(font);
+    this->ui->tableWidget->item(this->SelectedRow, 5)->setFont(font);
+    font.setBold(false);
+    this->ui->tableWidget->item(this->PreviouslySelectedRow, 1)->setFont(font);
+    this->ui->tableWidget->item(this->PreviouslySelectedRow, 2)->setFont(font);
+    this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->setFont(font);
+    this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->setFont(font);
+    this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->setFont(font);
 }
