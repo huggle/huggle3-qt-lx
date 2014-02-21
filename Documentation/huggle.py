@@ -18,7 +18,33 @@ def huggle_version():
 
 def log(str_message):
     """Logs a message to huggle system log
+    Calls Huggle::Python::Log @pythonengine.cpp
 
     Return false on error
     """
     return true;
+
+def error_log(str_message):
+    """Logs a message to huggle error log
+    Calls Huggle::Python::ErrorLog @pythonengine.cpp
+
+    Return false on error
+    """
+    return true;
+
+def debug_log(str_message, int_verbosity):
+    """Logs a message to huggle debug log
+    Calls Huggle::Python::DebugLog @pythonengine.cpp
+
+    Return false on error
+    """
+    return true;
+
+def warning_log(str_message):
+    """Logs a message to huggle warning log
+    Calls Huggle::Python::WarningLog @pythonengine.cpp
+
+    Return false on error
+    """
+    return true;
+

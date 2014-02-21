@@ -72,32 +72,63 @@ namespace Huggle
 
         static PyObject *Log(PyObject *self, PyObject *args)
         {
+            return Log_(HuggleLogType_Normal, self, args);
+        }
+
+        static PyObject *WarningLog(PyObject *self, PyObject *args)
+        {
+            return Log_(HuggleLogType_Warn, self, args);
+        }
+
+        static PyObject *ErrorLog(PyObject *self, PyObject *args)
+        {
+            return Log_(HuggleLogType_Error, self, args);
+        }
+
+        static PyObject *Log_(HuggleLogType log_type, PyObject *self, PyObject *args)
+        {
             PyObject *text_ = NULL;
             PyObject *result_ = PyBool_FromLong(0);
+            QString fc_name_;
+            switch (log_type)
+            {
+                case HuggleLogType_Error:
+                    fc_name_ = "error_log";
+                    break;
+                case HuggleLogType_Warn:
+                    fc_name_ = "warn_log";
+                    break;
+                default:
+                    fc_name_ = "log";
+                    break;
+            }
             if (PyArg_UnpackTuple(args, "log", 1, 1, &text_))
             {
                 PyObject *uni_ = PyUnicode_AsUTF8String(text_);
                 Py_DECREF(text_);
                 if (uni_ == NULL || !PyBytes_Check(uni_))
                 {
-                    Syslog::HuggleLogs->DebugLog("Log@unkown: parameter text must be of a string type");
+                    Syslog::HuggleLogs->DebugLog("Python::$" + fc_name + "@unkown: parameter text must be of a string type");
                 } else
                 {
                     Py_DECREF(result_);
                     result_ = PyBool_FromLong(1);
                     QString qs_text_(PyBytes_AsString(uni_));
                     Py_DECREF(uni_);
-                    Syslog::HuggleLogs->Log(qs_text_);
+                    switch (log_type)
+                    {
+                        case HuggleLogType_Error:
+                            Syslog::HuggleLogs->ErrorLog(qs_text_);
+                            break;
+                        case HuggleLogType_Warn:
+                            Syslog::HuggleLogs->WarningLog(qs_text_);
+                            break;
+                        default:
+                            Syslog::HuggleLogs->Log(qs_text_);
+                            break;
+                    }
                 }
             }
-            return result_;
-        }
-
-        static PyObject *ErrorLog(PyObject *self, PyObject *args)
-        {
-            //PyObject *text_ = NULL;
-            PyObject *result_ = PyBool_FromLong(0);
-
             return result_;
         }
 #if _MSC_VER
@@ -108,8 +139,10 @@ namespace Huggle
 
         static PyMethodDef Methods[] = {
             {"huggle_version", ApiVersion, METH_VARARGS, "Return a huggle version"},
-            {"debug_log", DebugLog, METH_VARARGS, "Write to debug log"},
+            {"warning_log", WarningLog, METH_VARARGS, "Write to warning log"},
             {"log", Log, METH_VARARGS, "Write to a log"},
+            {"debug_log", DebugLog, METH_VARARGS, "Write to debug log"},
+            {"error_log", ErrorLog, METH_VARARGS, "Write to error log using stderr to output"},
             {NULL, NULL, 0, NULL}
         };
 
