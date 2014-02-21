@@ -25,6 +25,8 @@ Configuration::Configuration()
     this->UsingSSL = true;
     this->UserName = "User";
     this->SystemConfig_CacheHAN = 100;
+    this->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
+                                               "identified as test edits");
     this->IndexOfLastWiki = 0;
     this->UserConfig_HistoryLoad = true;
     this->Password = "";
@@ -230,6 +232,20 @@ QString Configuration::GenerateSuffix(QString text)
     }
 
     return text;
+}
+
+QString Configuration::GetExtensionsRootPath()
+{
+    QString path_ = Configuration::HuggleConfiguration->HomePath + QDir::separator() + EXTENSION_PATH;
+    QDir conf(path_);
+    if (!conf.exists())
+    {
+        if(!conf.mkpath(path_))
+        {
+            Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
+        }
+    }
+    return path_ + QDir::separator();
 }
 
 QString Configuration::GetLocalizationDataPath()

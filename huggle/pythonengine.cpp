@@ -70,21 +70,6 @@ namespace Huggle
             return result_;
         }
 
-        static PyObject *Log(PyObject *self, PyObject *args)
-        {
-            return Log_(HuggleLogType_Normal, self, args);
-        }
-
-        static PyObject *WarningLog(PyObject *self, PyObject *args)
-        {
-            return Log_(HuggleLogType_Warn, self, args);
-        }
-
-        static PyObject *ErrorLog(PyObject *self, PyObject *args)
-        {
-            return Log_(HuggleLogType_Error, self, args);
-        }
-
         static PyObject *Log_(HuggleLogType log_type, PyObject *self, PyObject *args)
         {
             PyObject *text_ = NULL;
@@ -108,7 +93,7 @@ namespace Huggle
                 Py_DECREF(text_);
                 if (uni_ == NULL || !PyBytes_Check(uni_))
                 {
-                    Syslog::HuggleLogs->DebugLog("Python::$" + fc_name + "@unkown: parameter text must be of a string type");
+                    Syslog::HuggleLogs->DebugLog("Python::$" + fc_name_ + "@unkown: parameter text must be of a string type");
                 } else
                 {
                     Py_DECREF(result_);
@@ -130,6 +115,40 @@ namespace Huggle
                 }
             }
             return result_;
+        }
+
+        static bool ContainsFunction(QString function, QString string)
+        {
+            QStringList lines = string.split('\n');
+            QRegExp *regex_ = new QRegExp("^[\\s\\t]*def " + function + ".*:[\\s\\t]*$");
+            int ln = 0;
+            while (ln < lines.count())
+            {
+                if (lines.at(ln).contains(*regex_))
+                {
+                    delete regex_;
+                    return true;
+                }
+                ln++;
+            }
+
+            delete regex_;
+            return false;
+        }
+
+        static PyObject *Log(PyObject *self, PyObject *args)
+        {
+            return Log_(HuggleLogType_Normal, self, args);
+        }
+
+        static PyObject *WarningLog(PyObject *self, PyObject *args)
+        {
+            return Log_(HuggleLogType_Warn, self, args);
+        }
+
+        static PyObject *ErrorLog(PyObject *self, PyObject *args)
+        {
+            return Log_(HuggleLogType_Error, self, args);
         }
 #if _MSC_VER
 #pragma warning ( pop )
@@ -153,25 +172,6 @@ namespace Huggle
         static PyObject *PyInit_emb()
         {
             return PyModule_Create(&Module);
-        }
-
-        static bool ContainsFunction(QString function, QString string)
-        {
-            QStringList lines = string.split('\n');
-            QRegExp *regex_ = new QRegExp("^[\\s\\t]*def " + function + ".*:[\\s\\t]*$");
-            int ln = 0;
-            while (ln < lines.count())
-            {
-                if (lines.at(ln).contains(*regex_))
-                {
-                    delete regex_;
-                    return true;
-                }
-                ln++;
-            }
-
-            delete regex_;
-            return false;
         }
     }
 }

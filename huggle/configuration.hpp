@@ -122,6 +122,7 @@ namespace Huggle
     {
         public:
             static QString GetLocalizationDataPath();
+            static QString GetExtensionsRootPath();
             //! Return a prefix for url
             static QString GetURLProtocolPrefix();
             //! Return a configuration path
@@ -174,13 +175,13 @@ namespace Huggle
             static QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
             static QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
             static QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
-            static Configuration *HuggleConfiguration;
             /*!
              * \brief GetDefaultRevertSummary Retrieve default summary
              * \param source User who should be replaced instead of $1
              * \return Default revert summary
              */
             static QString GetDefaultRevertSummary(QString source);
+            static Configuration *HuggleConfiguration;
 
             Configuration();
             ~Configuration();
@@ -245,7 +246,7 @@ namespace Huggle
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             bool            EnforceManualSoftwareRollback;
             //! List of characters that separate words from each other, like dot, space etc, used by score words
-            QStringList     SystemConfig_Separators;
+            QStringList     SystemConfig_WordSeparators;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits;
             //! Changing this to true will make the Syslog write all data to a file

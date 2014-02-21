@@ -42,23 +42,21 @@ void Core::Init()
     Configuration::LoadConfig();
     Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
-                                                                           "identified as test edits");
-#ifdef PYTHONENGINE
-    Syslog::HuggleLogs->Log("Loading python engine");
-    this->Python = new Python::PythonEngine(EXTENSION_PATH);
-#endif
     Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
     Syslog::HuggleLogs->DebugLog("Loading queue");
     // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
     // keep it low but precise enough
-    Configuration::HuggleConfiguration->SystemConfig_Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
+    Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
-        Syslog::HuggleLogs->Log("Loading plugins");
+        Syslog::HuggleLogs->Log("Loading plugins in " + Configuration::GetExtensionsRootPath());
         this->ExtensionLoad();
+#ifdef PYTHONENGINE
+    Syslog::HuggleLogs->Log("Loading python engine");
+    this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
+#endif
     } else
     {
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
@@ -399,9 +397,10 @@ void Core::AppendQuery(Query *item)
 
 void Core::ExtensionLoad()
 {
-    if (QDir().exists(EXTENSION_PATH))
+    QString path_ = Configuration::GetExtensionsRootPath();
+    if (QDir().exists(path_))
     {
-        QDir d(EXTENSION_PATH);
+        QDir d(path_);
         QStringList extensions = d.entryList();
         int xx = 0;
         while (xx < extensions.count())
@@ -409,7 +408,7 @@ void Core::ExtensionLoad()
             QString name = extensions.at(xx).toLower();
             if (name.endsWith(".so") || name.endsWith(".dll"))
             {
-                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                name = QString(path_) + extensions.at(xx);
                 QPluginLoader *extension = new QPluginLoader(name);
                 if (extension->load())
                 {
@@ -453,7 +452,7 @@ void Core::ExtensionLoad()
             } else if (name.endsWith(".py"))
             {
 #ifdef PYTHONENGINE
-                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                name = QString(path_) + extensions.at(xx);
                 if (Core::Python->LoadScript(name))
                 {
                     Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + name);
