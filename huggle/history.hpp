@@ -55,6 +55,8 @@ namespace Huggle
             HistoryItem(HistoryItem * item);
             //! Unique ID of this item
             int ID;
+            HistoryItem *UndoDependency;
+            QString UndoRevBaseTime;
             QString Result;
             QString Target;
             //! Type of item
@@ -76,6 +78,7 @@ namespace Huggle
         public:
             explicit History(QWidget *parent = 0);
             ~History();
+            void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
             void Prepend(HistoryItem item);
             void Refresh();

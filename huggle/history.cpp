@@ -58,6 +58,11 @@ History::~History()
     delete this->ui;
 }
 
+void History::Undo(HistoryItem *hist)
+{
+
+}
+
 QString HistoryItem::TypeToString(HistoryType type)
 {
     switch (type)
@@ -77,7 +82,9 @@ QString HistoryItem::TypeToString(HistoryType type)
 HistoryItem::HistoryItem()
 {
     History::Last++;
+    this->UndoDependency = NULL;
     this->Target = "Unknown target";
+    this->UndoRevBaseTime = "";
     this->Type = HistoryUnknown;
     this->ID = History::Last;
     this->Result = "Unknown??";
@@ -87,7 +94,9 @@ HistoryItem::HistoryItem(const HistoryItem &item)
 {
     this->ID = item.ID;
     this->Target = item.Target;
+    this->UndoRevBaseTime = item.UndoRevBaseTime;
     this->Type = item.Type;
+    this->UndoDependency = item.UndoDependency;
     this->Result = item.Result;
 }
 
@@ -99,6 +108,8 @@ HistoryItem::HistoryItem(HistoryItem *item)
     }
     this->ID = item->ID;
     this->Type = item->Type;
+    this->UndoRevBaseTime = item->UndoRevBaseTime;
     this->Target = item->Target;
+    this->UndoDependency = item->UndoDependency;
     this->Result = item->Result;
 }
