@@ -84,6 +84,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_16->setChecked(Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders);
     this->ui->checkBox_19->setChecked(Configuration::HuggleConfiguration->UserConfig_TruncateEdits);
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_21->setChecked(Configuration::HuggleConfiguration->UserConfig_LastEdit);
     this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
     this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
@@ -170,6 +171,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
     Configuration::HuggleConfiguration->UserConfig_SectionKeep = this->ui->checkBox_17->isChecked();
     Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = this->ui->checkBox_11->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_LastEdit = this->ui->checkBox_21->isChecked();
     Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
     Configuration::HuggleConfiguration->UserConfig_TruncateEdits = this->ui->checkBox_19->isChecked();
     if (this->ui->radioButton_5->isChecked())

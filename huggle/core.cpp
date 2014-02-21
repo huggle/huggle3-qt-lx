@@ -835,27 +835,32 @@ int Core::RunningQueriesGetCount()
 void Core::LoadResources()
 {
     QFile *vf;
-    vf = new QFile(":/huggle/resources/Resources/Header.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/Header.txt");
     vf->open(QIODevice::ReadOnly);
     this->HtmlHeader = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/DiffBeginning.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/DiffBeginning.txt");
     vf->open(QIODevice::ReadOnly);
     this->DiffHeader = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/PageEnd.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/StopFire.html");
+    vf->open(QIODevice::ReadOnly);
+    this->Html_StopFire = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    vf = new QFile(":/huggle/resources/Resources/html/PageEnd.txt");
     vf->open(QIODevice::ReadOnly);
     this->HtmlFooter = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/DiffEnd.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/DiffEnd.txt");
     vf->open(QIODevice::ReadOnly);
     this->DiffFooter = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/Message.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/Message.txt");
     vf->open(QIODevice::ReadOnly);
     this->HtmlIncoming = QString(vf->readAll());
     vf->close();

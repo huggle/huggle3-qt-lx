@@ -280,6 +280,9 @@ namespace Huggle
             //! Defines what should be done on next edit
             Configuration_OnNext    UserConfig_GoNext;
             bool                    UserConfig_DeleteEditsAfterRevert;
+            //! Fetch only the last edit of page, that means if there is a newer edit
+            //! it get automatically loaded instead of cached version
+            bool                    UserConfig_LastEdit;
             bool                    UserConfig_SectionKeep;
             unsigned int            UserConfig_HistoryMax;
             bool                    UserConfig_TruncateEdits;

@@ -221,6 +221,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_21">
+         <property name="text">
+          <string>Display last revision of page in case currently loaded edit is not a last revision (will post-download it bypassing cache)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>On change of page, revert etc</string>

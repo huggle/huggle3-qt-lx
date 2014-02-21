@@ -207,6 +207,7 @@ namespace Huggle
             QString HtmlHeader;
             QString DiffHeader;
             QString DiffFooter;
+            QString Html_StopFire;
             //! This string contains a html footer
             QString HtmlFooter;
             //! Pointer to primary feed provider

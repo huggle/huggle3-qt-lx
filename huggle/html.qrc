@@ -5,6 +5,7 @@
       <file>Resources/Definitions.txt</file>
       <file>Resources/html/DiffBeginning.txt</file>
       <file>Resources/html/PageEnd.txt</file>
+      <file>Resources/html/StopFire.html</file>
       <file>Resources/html/DiffEnd.txt</file>
     </qresource>
 </RCC>

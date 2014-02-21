@@ -23,6 +23,7 @@
 #include <QDockWidget>
 #include "apiquery.hpp"
 #include "exception.hpp"
+#include "core.hpp"
 #include "wikiedit.hpp"
 #include "localization.hpp"
 
@@ -52,10 +53,15 @@ namespace Huggle
 
         private:
             void Clear();
+            void Display(int row, QString html);
+            //! Make the selected row bold
+            void MakeSelectedRowBold();
             bool RetrievingEdit;
             Ui::HistoryForm *ui;
             WikiEdit* CurrentEdit;
             ApiQuery *query;
+            int PreviouslySelectedRow;
+            int SelectedRow;
             WikiEdit* RetrievedEdit;
             //! This timer is used to check a query status
             QTimer *t1;
