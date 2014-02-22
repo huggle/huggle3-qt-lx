@@ -26,6 +26,7 @@
 #include <QWebFrame>
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
+#include "resources.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
 #include "core.hpp"
@@ -39,6 +40,7 @@ namespace Huggle
 {
     class WikiEdit;
     class WikiPage;
+    class Resources;
     class Exception;
 
     //! Web browser

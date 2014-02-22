@@ -33,8 +33,8 @@ void Core::Init()
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
-    this->LoadResources();
     Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
+    Resources::Init();
     Syslog::HuggleLogs->Log("Loading configuration");
     this->Processor = new ProcessorThread();
     this->Processor->start();
@@ -69,11 +69,6 @@ Core::Core()
 #ifdef PYTHONENGINE
     this->Python = NULL;
 #endif
-    this->HtmlHeader = "";
-    this->HtmlFooter = "";
-    this->HtmlIncoming = "";
-    this->DiffFooter = "";
-    this->DiffHeader = "";
     this->Main = NULL;
     this->fLogin = NULL;
     this->SecondaryFeedProvider = NULL;
@@ -830,41 +825,6 @@ bool Core::ReportPreFlightCheck()
 int Core::RunningQueriesGetCount()
 {
     return this->RunningQueries.count();
-}
-
-void Core::LoadResources()
-{
-    QFile *vf;
-    vf = new QFile(":/huggle/resources/Resources/html/Header.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->HtmlHeader = QString(vf->readAll());
-    vf->close();
-    delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/DiffBeginning.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->DiffHeader = QString(vf->readAll());
-    vf->close();
-    delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/StopFire.html");
-    vf->open(QIODevice::ReadOnly);
-    this->Html_StopFire = QString(vf->readAll());
-    vf->close();
-    delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/PageEnd.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->HtmlFooter = QString(vf->readAll());
-    vf->close();
-    delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/DiffEnd.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->DiffFooter = QString(vf->readAll());
-    vf->close();
-    delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/Message.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->HtmlIncoming = QString(vf->readAll());
-    vf->close();
-    delete vf;
 }
 
 void Core::TruncateReverts()

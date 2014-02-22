@@ -426,9 +426,9 @@ void ReportUser::On_DiffTick()
         Summary = HuggleWeb::Encode(Summary);
     }
 
-    this->ui->webView->setHtml(Core::HuggleCore->HtmlHeader + Core::HuggleCore->DiffHeader + "<tr></td colspan=2><b>"
+    this->ui->webView->setHtml(Resources::HtmlHeader + Resources::DiffHeader + "<tr></td colspan=2><b>"
                                + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary
-                               + "</td></tr>" + Diff + Core::HuggleCore->DiffFooter + Core::HuggleCore->HtmlFooter);
+                               + "</td></tr>" + Diff + Resources::DiffFooter + Resources::HtmlFooter);
     this->tPageDiff->stop();
 }
 

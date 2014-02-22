@@ -22,6 +22,7 @@
 #include <QToolTip>
 #include <QDockWidget>
 #include "apiquery.hpp"
+#include "resources.hpp"
 #include "exception.hpp"
 #include "core.hpp"
 #include "wikiedit.hpp"

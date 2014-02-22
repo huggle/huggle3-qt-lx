@@ -299,7 +299,7 @@ void HistoryForm::onTick01()
     {
         if (Configuration::HuggleConfiguration->UserConfig_LastEdit)
         {
-            this->Display(0, Core::HuggleCore->Html_StopFire);
+            this->Display(0, Resources::Html_StopFire);
         } else
         {
             QPoint pntr(0, this->pos().y());

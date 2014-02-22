@@ -33,6 +33,7 @@
 #include "core.hpp"
 #include "blockuser.hpp"
 #include "editquery.hpp"
+#include "resources.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
 #include "configuration.hpp"

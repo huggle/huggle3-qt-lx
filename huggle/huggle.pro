@@ -93,7 +93,8 @@ SOURCES += main.cpp\
     syslog.cpp \
     huggleparser.cpp \
     sleeper.cpp \
-    warnings.cpp
+    warnings.cpp \
+    resources.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -160,7 +161,8 @@ HEADERS  += mainwindow.hpp \
     huggleparser.hpp \
     sleeper.hpp \
     config.hpp \
-    warnings.hpp
+    warnings.hpp \
+    resources.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

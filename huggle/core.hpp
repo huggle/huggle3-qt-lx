@@ -39,6 +39,7 @@
 #include "hugglequeuefilter.hpp"
 #include "editquery.hpp"
 #include "localization.hpp"
+#include "resources.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"
 #include "sleeper.hpp"
@@ -193,7 +194,6 @@ namespace Huggle
             bool ReportPreFlightCheck();
             void LoadLocalizations();
             int RunningQueriesGetCount();
-            void LoadResources();
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
             // Global variables
@@ -202,14 +202,6 @@ namespace Huggle
             MainWindow *Main;
             //! Login form
             Login *fLogin;
-            QString HtmlIncoming;
-            //! This string contains a html header
-            QString HtmlHeader;
-            QString DiffHeader;
-            QString DiffFooter;
-            QString Html_StopFire;
-            //! This string contains a html footer
-            QString HtmlFooter;
             //! Pointer to primary feed provider
             HuggleFeed *PrimaryFeedProvider;
             //! Pointer to secondary feed provider
