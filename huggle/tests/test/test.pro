@@ -21,6 +21,7 @@ SOURCES += tst_testmain.cpp \
     ../../localization.cpp \
     ../../wikisite.cpp \
     ../../wikipage.cpp \
+    ../../resources.cpp \
     ../../core.cpp \
     ../../queryresult.cpp \
     ../../huggleparser.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     ../../configuration.hpp \
     ../../wikisite.hpp \
     ../../wikipage.hpp \
+    ../../resources.hpp \
     ../../core.hpp \
     ../../queryresult.hpp \
     ../../query.hpp \
