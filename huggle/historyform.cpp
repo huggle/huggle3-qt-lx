@@ -347,6 +347,8 @@ void HistoryForm::Display(int row, QString html)
         return;
     }
 
+    this->PreviouslySelectedRow = this->SelectedRow;
+    this->SelectedRow = row;
     this->RetrievingEdit = true;
     // check if we don't have this edit in a buffer
     int x = 0;
@@ -366,6 +368,7 @@ void HistoryForm::Display(int row, QString html)
             Core::HuggleCore->Main->ProcessEdit(edit, true, true);
             this->RetrievingEdit = false;
             WikiEdit::Lock_EditList->unlock();
+            this->MakeSelectedRowBold();
             return;
         }
     }
@@ -381,8 +384,6 @@ void HistoryForm::Display(int row, QString html)
         this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     }
     Core::HuggleCore->PostProcessEdit(w);
-    this->PreviouslySelectedRow = this->SelectedRow;
-    this->SelectedRow = row;
     if (this->t1 != NULL)
     {
         delete this->t1;
