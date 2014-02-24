@@ -248,15 +248,6 @@ void Login::FinishLogin()
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName)
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;
-    // we generate a random string of same size of current password
-    QString pw = "";
-    while (pw.length() < Configuration::HuggleConfiguration->Password.length())
-    {
-        pw += ".";
-    }
-    // we no longer need a password since this
-    Configuration::HuggleConfiguration->Password = pw;
-    this->ui->lineEdit_3->setText(pw);
     this->LoginQuery->Process();
 }
 
@@ -604,6 +595,15 @@ void Login::DisplayError(QString message)
 
 void Login::Finish()
 {
+    // we generate a random string of same size of current password
+    QString pw = "";
+    while (pw.length() < Configuration::HuggleConfiguration->Password.length())
+    {
+        pw += ".";
+    }
+    // we no longer need a password since this
+    Configuration::HuggleConfiguration->Password = pw;
+    this->ui->lineEdit_3->setText(pw);
     this->Progress(100);
     this->ui->label_6->setText("Loading main huggle window");
     this->timer->stop();

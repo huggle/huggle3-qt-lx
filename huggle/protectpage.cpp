@@ -83,7 +83,7 @@ void ProtectPage::checkTokenToProtect()
     if (this->qToken1->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + qToken1->Result->ErrorMessage);
+        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + this->qToken1->Result->ErrorMessage);
         return;
     }
     QDomDocument r;
