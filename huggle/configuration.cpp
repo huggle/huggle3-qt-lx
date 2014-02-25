@@ -68,7 +68,7 @@ Configuration::Configuration()
     this->GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
     this->GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
     this->GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
-    this->GlobalConfig_UserConf = "User:$1/huggle.css";
+    this->GlobalConfig_UserConf = "User:$1/huggle3.css";
 
     // Local
     this->LocalConfig_MinimalVersion = "3.0.0.0";
@@ -574,6 +574,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     {
         Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath = temp;
     }
+    // user-config isn't loaded here, but better so to use users huggle3.css instead
     Configuration::HuggleConfiguration->GlobalConfigWasLoaded = true;
     return true;
 }
