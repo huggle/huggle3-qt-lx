@@ -472,7 +472,7 @@ void Login::RetrievePrivateConfig()
             {
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle.css \"
+                this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle.css "\
                                            "in your userspace? (Special:MyPage/huggle.css is missing)");
                 this->Progress(0);
                 this->_Status = LoginFailed;
@@ -635,7 +635,7 @@ bool Login::ProcessOutput()
     if (!Result.contains(("<login result")))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug \"
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug "\
                            "log for precise information");
         return false;
     }
@@ -644,7 +644,7 @@ bool Login::ProcessOutput()
     if (!Result.contains("\""))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug \"
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug "\
                            "log for precise information");
         return false;
     }
