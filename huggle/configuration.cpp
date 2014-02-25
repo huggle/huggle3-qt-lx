@@ -1247,6 +1247,13 @@ ScoreWord::ScoreWord(const ScoreWord &word)
     this->word = word.word;
 }
 
+Option::Option()
+{
+    this->Name = "";
+    this->Type = OptionType_String;
+    this->ContainerString = "";
+}
+
 Option::Option(QString name, OptionType type)
 {
     this->Name = name;

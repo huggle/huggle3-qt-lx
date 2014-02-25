@@ -131,11 +131,14 @@ namespace Huggle
     class Option
     {
         public:
+            Option();
             Option(QString name, OptionType type);
             Option(Option *option);
             Option(const Option &option);
             QString Name;
             OptionType Type;
+        private:
+            QString ContainerString;
     };
 
     //! Run time configuration of huggle
