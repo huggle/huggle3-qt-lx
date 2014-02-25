@@ -73,15 +73,17 @@ Configuration::Configuration()
     // Local
     this->LocalConfig_MinimalVersion = "3.0.0.0";
     this->LocalConfig_UseIrc = false;
-    this->LocalConfig_RequireRollback = false;
     this->LocalConfig_RequireAdmin = false;
+    this->LocalConfig_RequireAutoconfirmed = false;
+    this->LocalConfig_RequireConfig = false;
+    this->LocalConfig_RequireEdits = 0;
+    this->LocalConfig_RequireRollback = false;
     this->LocalConfig_ConfirmOnSelfRevs = true;
     this->LocalConfig_ConfirmWL = true;
     this->LocalConfig_ConfirmTalk = true;
     this->LocalConfig_SharedIPTemplateTags = "";
     this->LocalConfig_SharedIPTemplate = "";
     this->LocalConfig_EnableAll = false;
-    this->LocalConfig_RequireEdits = 0;
     this->LocalConfig_ScoreTalk = -800;
     this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
     this->LocalConfig_DeletionSummaries << "Deleted page using Huggle";
@@ -116,7 +118,6 @@ Configuration::Configuration()
     this->LocalConfig_TalkPageWarningScore = -800;
     this->LocalConfig_ScoreFlag = -20000;
     this->WarnUserSpaceRoll = true;
-    this->LocalConfig_RequireConfig = false;
     this->LocalConfig_WelcomeGood = true;
     this->LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
     this->LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
@@ -589,11 +590,13 @@ bool Configuration::ParseLocalConfig(QString config)
     // Restrictions
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
     Configuration::HuggleConfiguration->LocalConfig_RequireAdmin = Configuration::SafeBool(Configuration::ConfigurationParse("require-admin", config));
-    Configuration::HuggleConfiguration->LocalConfig_RequireRollback = Configuration::SafeBool
-                            (Configuration::ConfigurationParse("require-rollback", config));
+    Configuration::HuggleConfiguration->LocalConfig_RequireAutoconfirmed = Configuration::SafeBool
+                            (Configuration::ConfigurationParse("require-autoconfirmed", config, "false"));
     Configuration::HuggleConfiguration->LocalConfig_RequireConfig = Configuration::SafeBool
                             (Configuration::ConfigurationParse("require-config", config, "false"));
     Configuration::HuggleConfiguration->LocalConfig_RequireEdits = Configuration::ConfigurationParse("require-edits", config, "0").toInt();
+    Configuration::HuggleConfiguration->LocalConfig_RequireRollback = Configuration::SafeBool
+                            (Configuration::ConfigurationParse("require-rollback", config));
     // IRC
     Configuration::HuggleConfiguration->LocalConfig_UseIrc = Configuration::SafeBool(Configuration::ConfigurationParse("irc", config));
     // Ignoring

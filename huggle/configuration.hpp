@@ -315,6 +315,7 @@ namespace Huggle
             bool    LocalConfig_RequireRollback;
             bool    LocalConfig_RequireConfig;
             bool    LocalConfig_RequireAdmin;
+            bool    LocalConfig_RequireAutoconfirmed;
             bool    LocalConfig_EnableAll;
             int     LocalConfig_RequireEdits;
 

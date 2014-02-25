@@ -576,6 +576,34 @@ void Login::RetrieveUserInfo()
                 this->LoginQuery = NULL;
                 return;
             }
+            if (Configuration::HuggleConfiguration->LocalConfig_RequireAutoconfirmed &&
+                !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
+                //sometimes there is something like manually "confirmed", thats currently not included here
+            {
+                /// \todo LOCALIZE ME
+                this->ui->label_6->setText("Login failed because you are not autoconfirmed on this project");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                this->LoginQuery->SafeDelete();
+                this->LoginQuery = NULL;
+                return;
+            }
+
+            QDomNodeList userinfos = d.elementsByTagName("userinfo");
+            int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
+            if (Configuration::HuggleConfiguration->LocalConfig_RequireEdits > editcount)
+            {
+                /// \todo LOCALIZE ME
+                this->ui->label_6->setText("Login failed because you don't have enough edits on this project");
+                this->Progress(0);
+                this->_Status = LoginFailed;
+                this->LoginQuery->SafeDelete();
+                this->LoginQuery = NULL;
+                return;
+            }
+
+            /// \todo Implement check for "require-time"
+
             this->LoginQuery->SafeDelete();
             this->LoginQuery = NULL;
             this->_Status = LoginDone;
@@ -589,7 +617,7 @@ void Login::RetrieveUserInfo()
     this->ui->label_6->setText("Retrieving user info");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=rights";
+    this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=rights|editcount";
     this->LoginQuery->Process();
 }
 
