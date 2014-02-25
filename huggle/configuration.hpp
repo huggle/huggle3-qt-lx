@@ -63,6 +63,7 @@
 
 #include <QList>
 #include <QStringList>
+#include <QHash>
 #include <QDir>
 #include <QtXml>
 #include <QString>
@@ -94,6 +95,13 @@ namespace Huggle
         HeadingsNone
     };
 
+    enum OptionType
+    {
+        OptionType_String,
+        OptionType_List,
+        OptionType_Dictionary
+    };
+
     class WikiSite;
     class HuggleQueueFilter;
     class HuggleQueue;
@@ -115,6 +123,19 @@ namespace Huggle
             ScoreWord(const ScoreWord &word);
             QString word;
             int score;
+    };
+
+    /*!
+     * \brief The Option class is one option that is parsed from configuration no matter of its type
+     */
+    class Option
+    {
+        public:
+            Option(QString name, OptionType type);
+            Option(Option *option);
+            Option(const Option &option);
+            QString Name;
+            OptionType Type;
     };
 
     //! Run time configuration of huggle
@@ -185,6 +206,12 @@ namespace Huggle
 
             Configuration();
             ~Configuration();
+            /*!
+             * \brief Returns a data for given key
+             * \param key
+             * \return New instance of data or NULL in case there is no such an option
+             */
+            Option *GetOption(QString key);
             QString GenerateSuffix(QString text);
             ////////////////////////////////////////////
             // System
@@ -488,6 +515,8 @@ namespace Huggle
             WikiPage    *UAAP;
             //! Operating system that is sent to update server
             QString     Platform;
+        private:
+            QHash       <QString, Option> Options;
     };
 }
 

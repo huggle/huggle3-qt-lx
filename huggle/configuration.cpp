@@ -225,6 +225,15 @@ Configuration::~Configuration()
     delete this->UAAP;
 }
 
+Option *Configuration::GetOption(QString key)
+{
+    if (this->Options.contains(key))
+    {
+        return new Option(this->Options[key]);
+    }
+    return NULL;
+}
+
 QString Configuration::GenerateSuffix(QString text)
 {
     if (!text.endsWith(this->LocalConfig_EditSuffixOfHuggle))
@@ -1236,4 +1245,22 @@ ScoreWord::ScoreWord(const ScoreWord &word)
 {
     this->score = word.score;
     this->word = word.word;
+}
+
+Option::Option(QString name, OptionType type)
+{
+    this->Name = name;
+    this->Type = type;
+}
+
+Option::Option(Option *option)
+{
+    this->Name = option->Name;
+    this->Type = option->Type;
+}
+
+Option::Option(const Option &option)
+{
+    this->Name = option.Name;
+    this->Type = option.Type;
 }
