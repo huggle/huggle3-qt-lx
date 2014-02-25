@@ -617,7 +617,7 @@ void Login::RetrieveUserInfo()
     this->ui->label_6->setText("Retrieving user info");
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionQuery);
-    this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=rights|editcount";
+    this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
     this->LoginQuery->Process();
 }
 
