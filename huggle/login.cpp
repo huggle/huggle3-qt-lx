@@ -230,7 +230,8 @@ void Login::FinishLogin()
     }
     if (this->LoginQuery->Result->Failed)
     {
-        this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-fail]]") + ": " + this->LoginQuery->Result->ErrorMessage);
+        this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-fail]]") + ": "
+                                   + this->LoginQuery->Result->ErrorMessage);
         this->Progress(0);
         this->_Status = LoginFailed;
         this->LoginQuery->SafeDelete();
@@ -259,7 +260,8 @@ void Login::RetrieveGlobalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-error-global]]") + ": "
+                                           + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -390,7 +392,8 @@ void Login::RetrieveLocalConfig()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config", this->LoginQuery->Result->ErrorMessage));
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config",
+                                                                   this->LoginQuery->Result->ErrorMessage));
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -402,7 +405,8 @@ void Login::RetrieveLocalConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config", "the api query returned no data"));
+                this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-config",
+                                                                        "the api query returned no data"));
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -453,7 +457,8 @@ void Login::RetrievePrivateConfig()
             if (this->LoginQuery->Result->Failed)
             {
                 /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve user config: " + this->LoginQuery->Result->ErrorMessage);
+                this->ui->label_6->setText("Login failed unable to retrieve user config: " +
+                                           this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -467,7 +472,8 @@ void Login::RetrievePrivateConfig()
             {
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve user config, the api query returned no data");
+                this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle.css \"
+                                           "in your userspace? (Special:MyPage/huggle.css is missing)");
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -523,7 +529,8 @@ void Login::RetrieveUserInfo()
             if (this->LoginQuery->Result->Failed)
             {
                 /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve user info: " + this->LoginQuery->Result->ErrorMessage);
+                this->ui->label_6->setText("Login failed unable to retrieve user info: "
+                                           + this->LoginQuery->Result->ErrorMessage);
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();
@@ -550,7 +557,8 @@ void Login::RetrieveUserInfo()
                 Configuration::HuggleConfiguration->Rights.append(l.at(c).toElement().text());
                 c++;
             }
-            if (Configuration::HuggleConfiguration->LocalConfig_RequireRollback && !Configuration::HuggleConfiguration->Rights.contains("rollback"))
+            if (Configuration::HuggleConfiguration->LocalConfig_RequireRollback &&
+                !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
                 /// \todo LOCALIZE ME
                 this->ui->label_6->setText("Login failed because you don't have rollback permissions on this project");
@@ -627,7 +635,8 @@ bool Login::ProcessOutput()
     if (!Result.contains(("<login result")))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug log for precise information");
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug \"
+                           "log for precise information");
         return false;
     }
 
@@ -635,7 +644,8 @@ bool Login::ProcessOutput()
     if (!Result.contains("\""))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug log for precise information");
+        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug \"
+                           "log for precise information");
         return false;
     }
 
