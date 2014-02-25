@@ -81,12 +81,18 @@ void HuggleQueueItemLabel::SetName(QString name)
                 break;
         }
 
-        // change the icon according to edit type
+        // change the icon according to edit type (descending priority)
 
         if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
             return;
+        }
+
+        if (this->Page->User->IsBanned)
+        {
+        	this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-blocked.png"));
+        	return;
         }
 
         if (this->Page->User->IsReported)
