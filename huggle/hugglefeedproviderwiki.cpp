@@ -95,7 +95,7 @@ void HuggleFeedProviderWiki::Refresh()
     this->Refreshing = true;
     this->q = new ApiQuery();
     this->q->SetAction(ActionQuery);
-    this->q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes") +
+    this->q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
             "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
     this->q->Target = "Recent changes refresh";
     this->q->RegisterConsumer("HuggleFeed::Refresh");
@@ -174,14 +174,6 @@ void HuggleFeedProviderWiki::Process(QString data)
             continue;
         }
 
-        QString type = item.attribute("type");
-
-        if (type != "edit" && type != "new")
-        {
-            CurrentNode--;
-            continue;
-        }
-
         if (!item.attributes().contains("title"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing title attribute: " + item.text());
@@ -189,60 +181,114 @@ void HuggleFeedProviderWiki::Process(QString data)
             continue;
         }
 
-        WikiEdit *edit = new WikiEdit();
-        edit->Page = new WikiPage(item.attribute("title"));
+        QString type = item.attribute("type");
 
-        if (type == "new")
+        if (type == "edit" || type == "new")
         {
-            edit->NewPage = true;
+            ProcessEdit(item);
         }
-
-        if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
+        else if (type == "log")
         {
-            edit->Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
+            ProcessLog(item);
         }
-
-        if (item.attributes().contains("user"))
-        {
-            edit->User = new WikiUser(item.attribute("user"));
-        }
-
-        if (item.attributes().contains("comment"))
-        {
-            edit->Summary = item.attribute("comment");
-        }
-
-        if (item.attributes().contains("bot"))
-        {
-            edit->Bot = true;
-        }
-
-        if (item.attributes().contains("anon"))
-        {
-            edit->User->ForceIP();
-        }
-
-        if (item.attributes().contains("revid"))
-        {
-            edit->RevID = QString(item.attribute("revid")).toInt();
-            if (edit->RevID == 0)
-            {
-                edit->RevID = -1;
-            }
-        }
-
-        if (item.attributes().contains("minor"))
-        {
-            edit->Minor = true;
-        }
-
-        this->InsertEdit(edit);
 
         CurrentNode--;
     }
     if (Changed)
     {
         this->LatestTime = t.addSecs(1);
+    }
+}
+
+void HuggleFeedProviderWiki::ProcessEdit(QDomElement item) {
+    WikiEdit *edit = new WikiEdit();
+    edit->Page = new WikiPage(item.attribute("title"));
+
+    QString type = item.attribute("type");
+    if (type == "new")
+    {
+        edit->NewPage = true;
+    }
+
+    if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
+    {
+        edit->Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
+    }
+
+    if (item.attributes().contains("user"))
+    {
+        edit->User = new WikiUser(item.attribute("user"));
+    }
+
+    if (item.attributes().contains("comment"))
+    {
+        edit->Summary = item.attribute("comment");
+    }
+
+    if (item.attributes().contains("bot"))
+    {
+        edit->Bot = true;
+    }
+
+    if (item.attributes().contains("anon"))
+    {
+        edit->User->ForceIP();
+    }
+
+    if (item.attributes().contains("revid"))
+    {
+        edit->RevID = QString(item.attribute("revid")).toInt();
+        if (edit->RevID == 0)
+        {
+            edit->RevID = -1;
+        }
+    }
+
+    if (item.attributes().contains("minor"))
+    {
+        edit->Minor = true;
+    }
+
+    this->InsertEdit(edit);
+}
+
+void HuggleFeedProviderWiki::ProcessLog(QDomElement item) {
+    /*
+     * this function doesn't check if every attribute is present (unlike ProcessEdit())
+     *
+     * needs loginfo in rcprop at apiquery
+     */
+    QString logtype = item.attribute("logtype");
+    QString logaction = item.attribute("logaction");
+
+    if (logtype == "block" && (logaction == "block" || logaction == "reblock") )
+    {
+        QString admin = item.attribute("user");
+        QString blockeduser = item.attribute("title"); // including User-namespaceprefix
+        QString reason = item.attribute("comment");
+
+        if (logaction == "block" || logaction == "reblock")
+        {
+            QDomElement blockinfo = item.elementsByTagName("block").at(0).toElement(); // nested element "block"
+            QString flags = blockinfo.attribute("flags");
+            QString duration = blockinfo.attribute("duration");
+
+            Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin + " for the duration \"" + duration + "\": " + reason);
+        }
+        else if (logaction == "unblock")
+        {
+            Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: " + blockeduser + " was unblocked by " + admin + ": " + reason);
+        }
+        // TODO: process it further to the user so edits get displayed as blob-blocked.png or not any longer
+    }
+    else if (logtype == "delete")
+    {
+        QString page = item.attribute("title");
+        QString admin = item.attribute("user");
+        QString reason = item.attribute("comment");
+
+        Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason);
+        // TODO: process page deletes further (e.g. remove page from queue)
     }
 }
 
