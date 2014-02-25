@@ -345,3 +345,290 @@ int HuggleParser::GetLevel(QString page)
     }
     return 0;
 }
+
+QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bool CS)
+{
+    QStringList list;
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = HuggleParser::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (HuggleParser::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(HuggleParser::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    } else if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        QStringList lines = value.split("\n");
+        int curr = 1;
+        while (curr < lines.count())
+        {
+            QString _line = HuggleParser::Trim(lines.at(curr));
+            if (_line.endsWith(","))
+            {
+                list.append(_line);
+            } else
+            {
+                if (_line != "")
+                {
+                    list.append(_line);
+                    break;
+                }
+            }
+            curr++;
+        }
+        if (CS)
+        {
+            // now we need to split values by comma as well
+            QStringList f;
+            int c = 0;
+            while (c<list.count())
+            {
+                QStringList xx = list.at(c).split(",");
+                int i2 = 0;
+                while (i2<xx.count())
+                {
+                    if (HuggleParser::Trim(xx.at(i2)) != "")
+                    {
+                        f.append(HuggleParser::Trim(xx.at(i2)));
+                    }
+                    i2++;
+                }
+                c++;
+            }
+            list = f;
+        }
+        return list;
+    }
+    return list;
+}
+
+QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS)
+{
+    QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
+    if (result.count() == 0)
+    {
+        return list;
+    }
+    return result;
+}
+
+QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS, bool RemoveNull)
+{
+    QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
+    int x = 0;
+    QStringList trimmed;
+    while (x < result.count())
+    {
+        QString item = result.at(x);
+        if (RemoveNull && item.replace(",", "") == "")
+        {
+            x++;
+            continue;
+        }
+        if (item.endsWith(","))
+        {
+            trimmed.append(item.mid(0, item.length() - 1));
+        } else
+        {
+            trimmed.append(item);
+        }
+        x++;
+    }
+    return trimmed;
+}
+
+QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString content, bool locked)
+{
+    QList<HuggleQueueFilter*> ReturnValue;
+
+    if (!content.contains("queues:"))
+    {
+        return ReturnValue;
+    }
+
+    // we need to parse all blocks that contain information about queue
+    content = content.mid(content.indexOf("queues:") + 8);
+    QStringList Filtered = content.split("\n");
+    QStringList Info;
+
+    // we need to assume that all queues are intended with at least 4 spaces
+    int line = 0;
+
+    while (line < Filtered.count())
+    {
+        QString lt = Filtered.at(line);
+        if (lt.startsWith("    ") || lt == "")
+        {
+            Info.append(lt);
+        } else
+        {
+            // we reached the end of block with queue defs
+            break;
+        }
+        line++;
+    }
+
+    // now we can split the queue info
+    line = 0;
+    while (line < Info.count())
+    {
+        QString text = Info.at(line);
+        if (text.startsWith("    ") && !text.startsWith("        ") && text.contains(":"))
+        {
+            // this is a queue definition beginning, because it is intended with 4 spaces
+            HuggleQueueFilter *filter = new HuggleQueueFilter();
+            // we need to disable all filters because that's how is it expected in config for some reason
+            filter->setIgnoreBots(false);
+            filter->setIgnoreFriends(false);
+            filter->setIgnoreIP(false);
+            filter->setIgnoreMinor(false);
+            filter->setIgnoreNP(false);
+            filter->setIgnoreReverts(false);
+            filter->setIgnoreSelf(false);
+            filter->setIgnoreUsers(false);
+            filter->setIgnoreWL(false);
+            ReturnValue.append(filter);
+            filter->ProjectSpecific = locked;
+            QString name = text;
+            while (name.startsWith(" "))
+            {
+                name = name.mid(1);
+            }
+            name.replace(":", "");
+            filter->QueueName = name;
+            line++;
+            text = Info.at(line);
+            while (text.startsWith("        ") && text.contains(":") && line < Info.count())
+            {
+                // we need to parse the info
+                line++;
+                while (text.startsWith(" "))
+                {
+                    text = text.mid(1);
+                }
+                QString val = text.mid(text.indexOf(":") + 1);
+                QString key = text.mid(0, text.indexOf(":"));
+                text = Info.at(line);
+                if (key == "filter-ignored")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreWL(true);
+                    } else
+                    {
+                        filter->setIgnoreWL(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-bots")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreBots(true);
+                    } else
+                    {
+                        filter->setIgnoreBots(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-assisted")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreFriends(true);
+                    } else
+                    {
+                        filter->setIgnoreFriends(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-ip")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreIP(true);
+                    } else
+                    {
+                        filter->setIgnoreIP(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-reverts")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreReverts(true);
+                    } else
+                    {
+                        filter->setIgnoreReverts(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-new-pages")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreNP(true);
+                    } else
+                    {
+                        filter->setIgnoreNP(false);
+                    }
+                    continue;
+                }
+                if (key == "filter-me")
+                {
+                    if (val == "exclude")
+                    {
+                        filter->setIgnoreSelf(true);
+                    } else
+                    {
+                        filter->setIgnoreSelf(false);
+                    }
+                    continue;
+                }
+            }
+        } else
+        {
+            line++;
+        }
+    }
+
+    return ReturnValue;
+}

@@ -19,11 +19,14 @@
 #endif
 
 #include <QString>
+#include <QList>
+#include "hugglequeuefilter.hpp"
 #include "configuration.hpp"
 
 namespace Huggle
 {
     class Configuration;
+    class HuggleQueueFilter;
 
     //! This namespace contains functions to parse various text, such as configuration keys
     namespace HuggleParser
@@ -33,6 +36,19 @@ namespace Huggle
         QString GetKeyOfWarningTypeFromWarningName(QString id);
         //! Remove leading and finishing space of string
         QString Trim(QString text);
+        /*!
+         * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
+         * The list must be either separated by comma and newline or it can be a list of values separated
+         * by comma only
+         * \param key Key
+         * \param content Text to parse key from
+         * \param CS Whether the values are separated by comma only (if this is set to true there can be more items on a line)
+         * \return List of values from text or empty list
+         */
+        QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+        QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
+        QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
+        QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
         //! Parse a part patterns for score words
         void ParsePats(QString text);
         void ParseWords(QString text);
