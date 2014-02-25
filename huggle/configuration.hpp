@@ -326,6 +326,7 @@ namespace Huggle
             QString LocalConfig_MinimalVersion;
             bool    LocalConfig_UseIrc;
             bool    LocalConfig_RequireRollback;
+            bool    LocalConfig_RequireConfig;
             bool    LocalConfig_RequireAdmin;
             bool    LocalConfig_EnableAll;
             int     LocalConfig_RequireEdits;

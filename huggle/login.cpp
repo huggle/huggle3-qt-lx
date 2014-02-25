@@ -470,6 +470,14 @@ void Login::RetrievePrivateConfig()
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
+                if (!Configuration::HuggleConfiguration->LocalConfig_RequireConfig)
+                {
+                    // we don't care if user config is missing or not
+                    this->LoginQuery->SafeDelete();
+                    this->LoginQuery = NULL;
+                    this->_Status = RetrievingUser;
+                    return;
+                }
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
                 this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle.css "\

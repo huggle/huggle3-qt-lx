@@ -216,10 +216,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (diff.count() > 0)
         {
             QDomElement e = diff.at(0).toElement();
-            if (e.nodeName() == "diff")
-            {
-                this->DiffText = e.text();
-            }
+            this->DiffText = e.text();
         } else
         {
             Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
