@@ -26,6 +26,9 @@
 #include "configuration.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
+#ifdef PYTHONENGINE
+#include "pythonengine.hpp"
+#endif
 
 namespace Ui
 {
@@ -35,6 +38,12 @@ namespace Ui
 namespace Huggle
 {
     class HuggleQueueFilter;
+#ifdef PYTHONENGINE
+    namespace Python
+    {
+        class PythonScript;
+    }
+#endif
     //! Preferences window
     class Preferences : public QDialog
     {

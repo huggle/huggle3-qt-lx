@@ -42,17 +42,26 @@ namespace Huggle
                 ~PythonScript();
                 //! Return a path of a script
                 QString GetName() const;
+                QString GetModule() const;
                 bool IsEnabled() const;
                 void SetEnabled(bool value);
                 void Hook_MainWindowIsLoaded();
                 //! Initialize the script
                 bool Init();
                 QString RetrieveSourceCode() const;
+                QString GetVersion() const;
+                QString GetAuthor();
+                QString GetDescription() const;
             private:
                 PyObject *Hook(QString function);
                 //! Pointer to a python object that represent this script
                 PyObject *object;
                 QString Name;
+                QString Version;
+                QString Author;
+                QString Description;
+                QString ModuleID;
+                QString CallInternal(QString function);
                 bool Enabled;
                 PyObject *ptr_Hook_MainLoaded;
                 QString SourceCode;
@@ -70,6 +79,7 @@ namespace Huggle
                 PythonEngine(QString ExtensionsFolder_);
                 bool LoadScript(QString path);
                 void Hook_MainWindowIsLoaded();
+                QList<PythonScript*> ScriptsList();
             private:
                 QList<PythonScript*> Scripts;
         };

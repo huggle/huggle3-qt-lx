@@ -62,9 +62,9 @@ namespace Huggle
                     Syslog::HuggleLogs->DebugLog("Log@unkown: parameter text must be of a string type");
                 } else
                 {
-                    QString qs_text_(PyBytes_AsString(text_));
+                    QString qs_text_(PyBytes_AsString(uni_));
                     Syslog::HuggleLogs->DebugLog(qs_text_, verbosity);
-                    Py_DECREF(text_);
+                    Py_DECREF(uni_);
                 }
             }
             return result_;
@@ -196,6 +196,11 @@ bool PythonEngine::LoadScript(QString path)
     return false;
 }
 
+QList<PythonScript *> PythonEngine::ScriptsList()
+{
+    return QList<PythonScript*>(this->Scripts);
+}
+
 void PythonEngine::Hook_MainWindowIsLoaded()
 {
     int x = 0;
@@ -211,7 +216,23 @@ PythonScript::PythonScript(QString name)
     this->SourceCode = "";
     this->Name = name;
     this->object = NULL;
+    this->ModuleID = name;
+    if (name.endsWith(".py"))
+    {
+        this->ModuleID = this->ModuleID.mid(0, this->ModuleID.length() - 3);
+    }
+    if (this->ModuleID.contains("/"))
+    {
+        this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("/") + 1);
+    }
+    if (this->ModuleID.contains("\\"))
+    {
+        this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("\\") + 1);
+    }
     this->ptr_Hook_MainLoaded = NULL;
+    this->Description = "<unknown>";
+    this->Author = "<unknown>";
+    this->Version = "<unknown>";
     this->Enabled = false;
 }
 
@@ -250,9 +271,53 @@ PyObject *PythonScript::Hook(QString function)
     return ptr_python_;
 }
 
+QString PythonScript::CallInternal(QString function)
+{
+    PyObject *ptr_python_ = NULL;
+    if (Huggle::Python::ContainsFunction(function, this->SourceCode))
+    {
+        Syslog::HuggleLogs->DebugLog("Loading symbols of " + function + " " + this->Name, 2);
+        ptr_python_ = PyObject_GetAttrString(this->object, function.toUtf8().data());
+        if (ptr_python_ != NULL && !PyCallable_Check(ptr_python_))
+        {
+            // we loaded the symbol but it's not callable function
+            // so we remove it
+            Py_DECREF(ptr_python_);
+            Syslog::HuggleLogs->WarningLog("Function " + function + "@" + this->Name
+                                           + " isn't callable, unable to retrieve");
+            ptr_python_ = NULL;
+        } else if (ptr_python_ == NULL)
+        {
+            Syslog::HuggleLogs->DebugLog("There is no override for " + function);
+        }
+    }
+    if (ptr_python_ == NULL)
+    {
+        return "<unknown>";
+    }
+    PyObject *value = PyObject_CallObject(ptr_python_, NULL);
+    PyObject *text_ = PyUnicode_AsUTF8String(value);
+    Py_DECREF(value);
+    if (text_ == NULL || !PyBytes_Check(text_))
+    {
+        Syslog::HuggleLogs->DebugLog("Python::$" + function + "@" + this->Name + ": return value must be of a string type");
+        return "<unknown>";
+    } else
+    {
+        QString qs_text_(PyBytes_AsString(text_));
+        Py_DECREF(text_);
+        return qs_text_;
+    }
+}
+
 QString PythonScript::GetName() const
 {
     return this->Name;
+}
+
+QString PythonScript::GetModule() const
+{
+    return this->ModuleID;
 }
 
 bool PythonScript::IsEnabled() const
@@ -267,7 +332,7 @@ void PythonScript::SetEnabled(bool value)
 
 void PythonScript::Hook_MainWindowIsLoaded()
 {
-    if (this->ptr_Hook_MainLoaded)
+    if (this->ptr_Hook_MainLoaded != NULL)
     {
         Syslog::HuggleLogs->DebugLog("Calling hook Hook_MainWindowIsLoaded @" + this->Name, 2);
         PyObject_CallObject(this->ptr_Hook_MainLoaded, NULL);
@@ -288,13 +353,7 @@ bool PythonScript::Init()
         this->SourceCode = QString(file->readAll());
         file->close();
         delete file;
-        QString ModuleName = (this->Name.toUtf8().data());
-        if (ModuleName.contains("/"))
-        {
-            ModuleName = ModuleName.mid(ModuleName.indexOf("/") + 1);
-            ModuleName = ModuleName.replace(".py", "");
-        }
-        PyObject *name = PyUnicode_FromString(ModuleName.toUtf8().data());
+        PyObject *name = PyUnicode_FromString(this->ModuleID.toUtf8().data());
         if (name == NULL)
         {
             PyErr_Print();
@@ -312,6 +371,10 @@ bool PythonScript::Init()
         // load symbols for hooks now
         this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
 
+        // load the information about the plugin
+        this->Author = this->CallInternal("get_author");
+        this->Description = this->CallInternal("get_description");
+        this->Version = this->CallInternal("get_version");
         return true;
     }
     delete file;
@@ -321,6 +384,21 @@ bool PythonScript::Init()
 QString PythonScript::RetrieveSourceCode() const
 {
     return this->SourceCode;
+}
+
+QString PythonScript::GetVersion() const
+{
+    return this->Version;
+}
+
+QString PythonScript::GetAuthor()
+{
+    return this->Author;
+}
+
+QString PythonScript::GetDescription() const
+{
+    return this->Description;
 }
 
 #endif

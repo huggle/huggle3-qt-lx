@@ -51,12 +51,12 @@ void Core::Init()
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {
+#ifdef PYTHONENGINE
+        Syslog::HuggleLogs->Log("Loading python engine");
+        this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
+#endif
         Syslog::HuggleLogs->Log("Loading plugins in " + Configuration::GetExtensionsRootPath());
         this->ExtensionLoad();
-#ifdef PYTHONENGINE
-    Syslog::HuggleLogs->Log("Loading python engine");
-    this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
-#endif
     } else
     {
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
@@ -538,8 +538,11 @@ void Core::Shutdown()
     Core::SaveDefs();
     Configuration::SaveConfig();
 #ifdef PYTHONENGINE
-    Huggle::Syslog::HuggleLogs->Log("Unloading python");
-    delete this->Python;
+    if (!Configuration::HuggleConfiguration->_SafeMode)
+    {
+        Huggle::Syslog::HuggleLogs->Log("Unloading python");
+        delete this->Python;
+    }
 #endif
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;

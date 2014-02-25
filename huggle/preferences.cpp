@@ -17,8 +17,8 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 {
     this->ui->setupUi(this);
     // headers
-    this->ui->tableWidget->setColumnCount(4);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
+    this->ui->tableWidget->setColumnCount(5);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("config-title"));
     this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
     QStringList header;
     header << Localizations::HuggleLocalizations->Localize("general-name")
@@ -52,6 +52,21 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
+#ifdef PYTHONENGINE
+    c = 0;
+    QList<Python::PythonScript*> scripts(Core::HuggleCore->Python->ScriptsList());
+    while (c < scripts.count())
+    {
+        Python::PythonScript *script = scripts.at(c);
+        c++;
+        this->ui->tableWidget->insertRow(0);
+        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(script->GetModule()));
+        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(script->GetAuthor()));
+        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
+        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
+    }
+#endif
     switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
     {
         case Configuration_OnNext_Stay:
