@@ -392,7 +392,8 @@ void HistoryForm::Display(int row, QString html)
     Core::HuggleCore->Main->Browser->RenderHtml(html);
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start();
+    // wait 800 miliseconds before displaying the page so that there is no quick flash which hurts eyes
+    this->t1->start(800);
 }
 
 void HistoryForm::MakeSelectedRowBold()
