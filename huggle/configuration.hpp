@@ -447,6 +447,7 @@ namespace Huggle
             QString     GlobalConfig_DocumentationPath;
             QString     GlobalConfig_FeedbackPath;
             QString     GlobalConfig_UserConf;
+            QString     GlobalConfig_UserConf_old;
             bool        GlobalConfigWasLoaded;
 
             //////////////////////////////////////////////
