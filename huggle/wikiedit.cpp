@@ -374,6 +374,11 @@ QString WikiEdit::GetFullUrl()
             "&diff=" + QString::number(this->RevID);
 }
 
+QDateTime WikiEdit::GetUnknownEditTime()
+{
+    return QDateTime::fromMSecsSinceEpoch(0);
+}
+
 bool WikiEdit::IsPostProcessed()
 {
     if (this->Status == StatusPostProcessed)
