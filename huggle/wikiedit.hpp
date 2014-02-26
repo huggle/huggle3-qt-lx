@@ -155,8 +155,8 @@ namespace Huggle
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
-            ApiQuery* ProcessingQuery;
-            ApiQuery* DifferenceQuery;
+            ApiQuery* qTalkpage;
+            ApiQuery* qDifference;
     };
 }
 

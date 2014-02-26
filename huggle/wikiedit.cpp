@@ -32,8 +32,8 @@ WikiEdit::WikiEdit()
     this->TrustworthEdit = false;
     this->RollbackToken = "";
     this->PostProcessing = false;
-    this->DifferenceQuery = NULL;
-    this->ProcessingQuery = NULL;
+    this->qDifference = NULL;
+    this->qTalkpage = NULL;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
@@ -98,35 +98,35 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->ProcessingRevs)
     {
         // check if api was processed
-        if (!this->ProcessingQuery->IsProcessed())
+        if (!this->qTalkpage->IsProcessed())
         {
             return false;
         }
 
-        if (this->ProcessingQuery->Result->Failed)
+        if (this->qTalkpage->Result->Failed)
         {
             /// \todo LOCALIZE ME
             Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
         } else
         {
-            // parse the diff now
-            QDomDocument d;
-            d.setContent(this->ProcessingQuery->Result->Data);
-            QDomNodeList page = d.elementsByTagName("rev");
-            QDomNodeList code = d.elementsByTagName("page");
+            // parse the talk page now
+            QDomDocument d_;
+            d_.setContent(this->qTalkpage->Result->Data);
+            QDomNodeList rev_ = d_.elementsByTagName("rev");
+            QDomNodeList pages_ = d_.elementsByTagName("page");
             bool missing = false;
-            if (code.count() > 0)
+            if (pages_.count() > 0)
             {
-                QDomElement e = code.at(0).toElement();
+                QDomElement e = pages_.at(0).toElement();
                 if (e.attributes().contains("missing"))
                 {
                     missing = true;
                 }
             }
             // get last id
-            if (missing != true && page.count() > 0)
+            if (missing != true && rev_.count() > 0)
             {
-                QDomElement e = page.at(0).toElement();
+                QDomElement e = rev_.at(0).toElement();
                 if (e.nodeName() == "rev")
                 {
                     if (!e.attributes().contains("timestamp"))
@@ -152,7 +152,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     /// \todo LOCALIZE ME
                     Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
-                    Huggle::Syslog::HuggleLogs->DebugLog(this->ProcessingQuery->Result->Data);
+                    Huggle::Syslog::HuggleLogs->DebugLog(this->qTalkpage->Result->Data);
                 }
             }
         }
@@ -162,23 +162,23 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->ProcessingDiff)
     {
         // check if api was processed
-        if (!this->DifferenceQuery->IsProcessed())
+        if (!this->qDifference->IsProcessed())
         {
             return false;
         }
 
-        if (this->DifferenceQuery->Result->Failed)
+        if (this->qDifference->Result->Failed)
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            this->DifferenceQuery->UnregisterConsumer("WikiEdit::PostProcess()");
-            this->DifferenceQuery = NULL;
+            this->qDifference->UnregisterConsumer("WikiEdit::PostProcess()");
+            this->qDifference = NULL;
             this->PostProcessing = false;
             return true;
         }
 
         // parse the diff now
         QDomDocument d;
-        d.setContent(this->DifferenceQuery->Result->Data);
+        d.setContent(this->qDifference->Result->Data);
         QDomNodeList l = d.elementsByTagName("rev");
         QDomNodeList diff = d.elementsByTagName("diff");
         // get last id
@@ -220,7 +220,7 @@ bool WikiEdit::FinalizePostProcessing()
         } else
         {
             Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
-                                                 + DifferenceQuery->Result->Data);
+                                                 + qDifference->Result->Data);
         }
         // we are done processing the diff
         this->ProcessingDiff = false;
@@ -238,10 +238,10 @@ bool WikiEdit::FinalizePostProcessing()
         Huggle::Syslog::HuggleLogs->ErrorLog("no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
-    this->ProcessingQuery->UnregisterConsumer("WikiEdit::PostProcess()");
-    this->ProcessingQuery = NULL;
-    this->DifferenceQuery->UnregisterConsumer("WikiEdit::PostProcess()");
-    this->DifferenceQuery = NULL;
+    this->qTalkpage->UnregisterConsumer("WikiEdit::PostProcess()");
+    this->qTalkpage = NULL;
+    this->qDifference->UnregisterConsumer("WikiEdit::PostProcess()");
+    this->qDifference = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
     ProcessorThread::PendingEdits.append(this);
@@ -329,34 +329,34 @@ void WikiEdit::PostProcess()
         return;
     }
     this->PostProcessing = true;
-    this->ProcessingQuery = new ApiQuery();
-    this->ProcessingQuery->SetAction(ActionQuery);
-    this->ProcessingQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+    this->qTalkpage = new ApiQuery();
+    this->qTalkpage->SetAction(ActionQuery);
+    this->qTalkpage->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
                                         QUrl::toPercentEncoding(this->User->GetTalk());
-    this->ProcessingQuery->RegisterConsumer("WikiEdit::PostProcess()");
-    Core::HuggleCore->AppendQuery(this->ProcessingQuery);
-    this->ProcessingQuery->Target = "Retrieving tp " + this->User->GetTalk();
-    this->ProcessingQuery->Process();
-    this->DifferenceQuery = new ApiQuery();
-    this->DifferenceQuery->SetAction(ActionQuery);
+    this->qTalkpage->RegisterConsumer("WikiEdit::PostProcess()");
+    Core::HuggleCore->AppendQuery(this->qTalkpage);
+    this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
+    this->qTalkpage->Process();
+    this->qDifference = new ApiQuery();
+    this->qDifference->SetAction(ActionQuery);
     if (this->RevID != -1)
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
-        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+        this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
                                             "&rvlimit=1&rvtoken=rollback&rvstartid=" +
                                             QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
-        this->DifferenceQuery->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+        this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
                                             "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
     }
-    this->DifferenceQuery->Target = Page->PageName;
+    this->qDifference->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
-    Core::HuggleCore->AppendQuery(this->DifferenceQuery);
-    this->DifferenceQuery->RegisterConsumer("WikiEdit::PostProcess()");
-    this->DifferenceQuery->Process();
+    Core::HuggleCore->AppendQuery(this->qDifference);
+    this->qDifference->RegisterConsumer("WikiEdit::PostProcess()");
+    this->qDifference->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
 }
