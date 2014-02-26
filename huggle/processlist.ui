@@ -13,7 +13,7 @@
   <property name="minimumSize">
    <size>
     <width>600</width>
-    <height>102</height>
+    <height>113</height>
    </size>
   </property>
   <property name="features">
@@ -40,7 +40,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>8</pointsize>
+        <pointsize>9</pointsize>
        </font>
       </property>
      </widget>

@@ -21,16 +21,7 @@
     <property name="sizeConstraint">
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <item>
@@ -72,6 +63,12 @@
     </item>
     <item>
      <widget class="QTableWidget" name="tableWidget">
+      <property name="font">
+       <font>
+        <family>Bitstream Vera Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>19</number>
       </attribute>

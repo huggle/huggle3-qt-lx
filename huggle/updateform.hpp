@@ -56,7 +56,7 @@ namespace Huggle
         private:
             Ui::UpdateForm *ui;
             QStringList Instructions;
-            QTimer *t;
+            QTimer *timer;
     };
 }
 #endif // UPDATEFORM_H

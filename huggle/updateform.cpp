@@ -16,13 +16,13 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
 {
     this->ui->setupUi(this);
     this->qData = NULL;
-    this->t = new QTimer(this);
+    this->timer = new QTimer(this);
 }
 
 UpdateForm::~UpdateForm()
 {
     delete this->ui;
-    delete this->t;
+    delete this->timer;
 }
 
 void UpdateForm::Check()
@@ -37,9 +37,9 @@ void UpdateForm::Check()
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
     this->qData->Process();
-    connect(this->t, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->qData->RegisterConsumer("updater");
-    this->t->start(60);
+    this->timer->start(60);
 }
 
 void Huggle::UpdateForm::on_pushButton_2_clicked()
@@ -66,7 +66,7 @@ void UpdateForm::OnTick()
     {
         // there is no new version of huggle
         this->qData->UnregisterConsumer("updater");
-        this->t->stop();
+        this->timer->stop();
         return;
     } else
     {
@@ -83,7 +83,7 @@ void UpdateForm::OnTick()
             this->ui->label->setText(info);
             this->show();
             this->qData->UnregisterConsumer("updater");
-            this->t->stop();
+            this->timer->stop();
             return;
         } else
         {
@@ -100,7 +100,7 @@ void UpdateForm::OnTick()
                     {
                         Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ingoring the update");
                         this->qData->UnregisterConsumer("updater");
-                        this->t->stop();
+                        this->timer->stop();
                         return;
                     }
                     this->Instructions.append("download " + element.text() + " " + element.attribute("target"));
@@ -130,7 +130,7 @@ void UpdateForm::OnTick()
     }
 
     this->qData->UnregisterConsumer("updater");
-    this->t->stop();
+    this->timer->stop();
 }
 
 void Huggle::UpdateForm::on_label_linkActivated(const QString &link)
