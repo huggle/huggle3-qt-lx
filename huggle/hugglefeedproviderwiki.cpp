@@ -200,7 +200,8 @@ void HuggleFeedProviderWiki::Process(QString data)
     }
 }
 
-void HuggleFeedProviderWiki::ProcessEdit(QDomElement item) {
+void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
+{
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(item.attribute("title"));
 
@@ -240,7 +241,7 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item) {
         edit->RevID = QString(item.attribute("revid")).toInt();
         if (edit->RevID == 0)
         {
-            edit->RevID = -1;
+            edit->RevID = WIKI_UNKNOWN_REVID;
         }
     }
 
@@ -252,7 +253,8 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item) {
     this->InsertEdit(edit);
 }
 
-void HuggleFeedProviderWiki::ProcessLog(QDomElement item) {
+void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
+{
     /*
      * this function doesn't check if every attribute is present (unlike ProcessEdit())
      *
@@ -273,11 +275,11 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item) {
             QString flags = blockinfo.attribute("flags");
             QString duration = blockinfo.attribute("duration");
 
-            Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin + " for the duration \"" + duration + "\": " + reason);
+            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin + " for the duration \"" + duration + "\": " + reason);
         }
         else if (logaction == "unblock")
         {
-            Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: " + blockeduser + " was unblocked by " + admin + ": " + reason);
+            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was unblocked by " + admin + ": " + reason);
         }
         // TODO: process it further to the user so edits get displayed as blob-blocked.png or not any longer
     }
@@ -287,7 +289,7 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item) {
         QString admin = item.attribute("user");
         QString reason = item.attribute("comment");
 
-        Huggle::Syslog::HuggleLogs->Log("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason);
+        Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason);
         // TODO: process page deletes further (e.g. remove page from queue)
     }
 }
