@@ -29,6 +29,7 @@
 #include <QList>
 #include "apiquery.hpp"
 #include "collectable.hpp"
+#include "mediawiki.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
 
@@ -77,6 +78,9 @@ namespace Huggle
     class WikiEdit : public Collectable
     {
         public:
+            //! This function will return a constant (which needs to be generated runtime)
+            //! which is used as "unknown time" in case we don't know the edit's time
+            static QDateTime GetUnknownEditTime();
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;

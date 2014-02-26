@@ -43,7 +43,10 @@ WikiEdit::WikiEdit()
     this->TPRevBaseTime = "";
     this->PatrolToken = "";
     this->Previous = NULL;
-    this->Time = QDateTime::currentDateTime();
+    // this is a problem we can't do this if we don't know the datetime because then the older edits
+    // become newer and preflight checks will slap us for no reason
+    // this->Time = QDateTime::currentDateTime();
+    this->Time = GetUnknownEditTime();
     this->Next = NULL;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
@@ -206,6 +209,10 @@ bool WikiEdit::FinalizePostProcessing()
                     {
                         this->RevID = e.attribute("revid").toInt();
                     }
+                }
+                if (e.attributes().contains("timestamp"))
+                {
+                    this->Time = MediaWiki::FromMWTimestamp(e.attribute("timestamp"));
                 }
                 if (e.attributes().contains("comment"))
                 {
