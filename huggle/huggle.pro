@@ -161,7 +161,7 @@ HEADERS  += mainwindow.hpp \
     syslog.hpp \
     huggleparser.hpp \
     sleeper.hpp \
-    config.hpp \
+    definitions.hpp \
     warnings.hpp \
     resources.hpp \
     mediawiki.hpp

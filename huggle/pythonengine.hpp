@@ -9,9 +9,9 @@
 //GNU General Public License for more details.
 
 // This class is only available if you compile huggle with python support
-// see config.hpp in order to enable it
+// see definitions.hpp in order to enable it
 
-#include "config.hpp"
+#include "definitions.hpp"
 
 #ifdef PYTHONENGINE
 

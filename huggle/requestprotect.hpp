@@ -12,7 +12,7 @@
 #ifndef REQUESTPROTECT_H
 #define REQUESTPROTECT_H
 
-#include "config.hpp"
+#include "definitions.hpp"
 // now we need to ensure that python is included first, because it
 // simply suck :P
 // seriously, Python.h is shitty enough that it requires to be

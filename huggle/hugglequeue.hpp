@@ -11,7 +11,7 @@
 #ifndef HUGGLEQUEUE_H
 #define HUGGLEQUEUE_H
 
-#include "config.hpp"
+#include "definitions.hpp"
 // now we need to ensure that python is included first, because it
 // simply suck :P
 #ifdef PYTHONENGINE

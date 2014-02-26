@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "config.hpp"
+#include "definitions.hpp"
 #include "collectable.hpp"
 
 using namespace Huggle;
