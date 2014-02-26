@@ -27,6 +27,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
     this->BaseTimestamp = "";
+    this->StartTimestamp = "";
     this->Error = MessageError_NoError;
     this->ErrorText = "";
     this->Title = "Message from " + Configuration::HuggleConfiguration->UserName;
@@ -235,10 +236,10 @@ void Message::Finish()
                 return;
             }
         }
-        QDomNodeList l = d.elementsByTagName("edit");
-        if (l.count() > 0)
+        QDomNodeList editlist = d.elementsByTagName("edit");
+        if (editlist.count() > 0)
         {
-            QDomElement element = l.at(0).toElement();
+            QDomElement element = editlist.at(0).toElement();
             if (element.attributes().contains("result"))
             {
                 if (element.attribute("result") == "Success")
@@ -286,9 +287,9 @@ bool Message::FinishToken()
         this->Fail("unable to retrieve the edit token");
         return false;
     }
-    QDomDocument d;
-    d.setContent(this->qToken->Result->Data);
-    QDomNodeList l = d.elementsByTagName("page");
+    QDomDocument dToken_;
+    dToken_.setContent(this->qToken->Result->Data);
+    QDomNodeList l = dToken_.elementsByTagName("page");
     if (l.count() == 0)
     {
         /// \todo LOCALIZE ME
@@ -363,6 +364,15 @@ void Message::ProcessSend()
     {
         Syslog::HuggleLogs->DebugLog("Not using base timestamp for edit of " + user->GetTalk() + " :o", 2);
     }
+    QString start_ = "";
+    if (this->StartTimestamp != "")
+    {
+        start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
+        Syslog::HuggleLogs->DebugLog("Using start timestamp for edit of " + user->GetTalk() + ": " + this->StartTimestamp, 2);
+    } else
+    {
+        Syslog::HuggleLogs->DebugLog("Not using start timestamp for edit of " + user->GetTalk() + " :o", 2);
+    }
     if (this->Suffix)
     {
         s += " " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
@@ -381,13 +391,13 @@ void Message::ProcessSend()
             }
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + base
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + start_
                 + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + "&token="
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + start_ + "&token="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     }
     Core::HuggleCore->AppendQuery(query);

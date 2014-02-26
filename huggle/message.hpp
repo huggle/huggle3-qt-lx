@@ -77,6 +77,11 @@ namespace Huggle
             WikiUser *user;
             //! This is a time for base revision which is used to resolve edit conflicts of edit
             QString BaseTimestamp;
+            //! Timestamp when you started editing the page
+
+            //! when you fetched the current revision's text to begin editing it or checked the existence of the page.
+            //! Used to detect edit conflicts; leave unset to ignore conflicts
+            QString StartTimestamp;
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;

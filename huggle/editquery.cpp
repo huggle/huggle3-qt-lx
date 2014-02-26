@@ -74,9 +74,9 @@ bool EditQuery::IsProcessed()
             this->qToken = NULL;
             return true;
         }
-        QDomDocument d;
-        d.setContent(this->qToken->Result->Data);
-        QDomNodeList l = d.elementsByTagName("page");
+        QDomDocument dToken_;
+        dToken_.setContent(this->qToken->Result->Data);
+        QDomNodeList l = dToken_.elementsByTagName("page");
         if (l.count() == 0)
         {
             this->Result = new QueryResult();
@@ -111,13 +111,13 @@ bool EditQuery::IsProcessed()
         {
             return false;
         }
-        QDomDocument d;
-        d.setContent(this->qEdit->Result->Data);
-        QDomNodeList l = d.elementsByTagName("edit");
+        QDomDocument dEdit_;
+        dEdit_.setContent(this->qEdit->Result->Data);
+        QDomNodeList edits_ = dEdit_.elementsByTagName("edit");
         bool failed = true;
-        if (l.count() > 0)
+        if (edits_.count() > 0)
         {
-            QDomElement element = l.at(0).toElement();
+            QDomElement element = edits_.at(0).toElement();
             if (element.attributes().contains("result"))
             {
                 if (element.attribute("result") == "Success")
@@ -155,12 +155,17 @@ void EditQuery::EditPage()
     this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     this->qEdit->SetAction(ActionEdit);
     QString base = "";
+    QString start_ = "";
     if (this->BaseTimestamp != "")
     {
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
     }
+    if (this->StartTimestamp != "")
+    {
+        start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
+    }
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
-                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + "&token=" +
+                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                       QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
     Core::HuggleCore->AppendQuery(qEdit);
     this->qEdit->Process();
