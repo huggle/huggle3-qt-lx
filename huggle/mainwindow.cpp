@@ -784,11 +784,11 @@ void MainWindow::OnMainTimerTick()
         }
     }
     /// \todo LOCALIZE ME
-    QString t = "Currently processing " + QString::number(Core::HuggleCore->ProcessingEdits.count())
-            + " edits and " + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + " queries."
-            + " I have " + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
-            + " whitelisted users and you have " + QString::number(HuggleQueueItemLabel::Count)
-            + " edits waiting in queue. Statistics: ";
+    QString t = "Processing <b>" + QString::number(Core::HuggleCore->ProcessingEdits.count())
+            + "</b> edits and <b>" + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + "</b> queries."
+            + " Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+            + "</b>  queue size: <b>" + QString::number(HuggleQueueItemLabel::Count)
+            + "</b> Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
