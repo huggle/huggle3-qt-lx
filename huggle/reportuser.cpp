@@ -301,9 +301,10 @@ void ReportUser::Tick()
             }
             this->InsertUser();
             // everything is ok we report user
+            QString summary = Configuration::HuggleConfiguration->LocalConfig_ReportSummary.replace("$1",this->ReportedUser->Username);
             this->qEdit = Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->AIVP,
                                                      this->ReportContent,
-                                                     "Reporting " + ReportedUser->Username,
+                                                     summary,
                                                      false, this->ReportTs);
             this->qEdit->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
             /// \todo LOCALIZE ME
