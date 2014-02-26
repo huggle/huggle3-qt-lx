@@ -19,6 +19,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
 {
     this->ui->setupUi(this);
     this->_Status = Nothing;
+    this->loadOldConfig = false;
     this->LoginQuery = NULL;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
@@ -468,8 +469,27 @@ void Login::RetrievePrivateConfig()
             QDomDocument d;
             d.setContent(this->LoginQuery->Result->Data);
             QDomNodeList l = d.elementsByTagName("rev");
-            if (l.count() == 0)
+            if (l.count() == 0) // page is missing
             {
+                if(this->loadOldConfig == false && Configuration::HuggleConfiguration->GlobalConfig_UserConf_old != ""){
+                    // try first with old location of config
+                    this->loadOldConfig = true;
+                    Syslog::HuggleLogs->DebugLog("couldn't find user config at new location, trying old one");
+
+                    this->LoginQuery->SafeDelete();
+                    this->LoginQuery = NULL;
+
+                    this->ui->label_6->setText("Retrieving user config from old location");
+                    this->LoginQuery = new ApiQuery();
+                    QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf_old;
+                    page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
+                    this->LoginQuery->SetAction(ActionQuery);
+                    this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
+                            QUrl::toPercentEncoding(page);
+                    this->LoginQuery->Process();
+                    return;
+                }
+
                 if (!Configuration::HuggleConfiguration->LocalConfig_RequireConfig)
                 {
                     // we don't care if user config is missing or not
@@ -480,8 +500,8 @@ void Login::RetrievePrivateConfig()
                 }
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
-                this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle.css "\
-                                           "in your userspace? (Special:MyPage/huggle.css is missing)");
+                this->ui->label_6->setText("Login failed unable to retrieve user config, did you create huggle3.css "\
+                                           "in your userspace? (Special:MyPage/huggle3.css is missing)");
                 this->Progress(0);
                 this->_Status = LoginFailed;
                 this->LoginQuery->SafeDelete();

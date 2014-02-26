@@ -68,7 +68,8 @@ Configuration::Configuration()
     this->GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
     this->GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
     this->GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
-    this->GlobalConfig_UserConf = "User:$1/huggle3.css";
+    this->GlobalConfig_UserConf = "User:$1/huggle3.css";        // user-config-hg3
+    this->GlobalConfig_UserConf_old = "User:$1/huggle.css";    // user-config
 
     // Local
     this->LocalConfig_MinimalVersion = "3.0.0.0";
@@ -574,7 +575,15 @@ bool Configuration::ParseGlobalConfig(QString config)
     {
         Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath = temp;
     }
-    // user-config isn't loaded here, but better so to use users huggle3.css instead
+
+    QString userConf = Configuration::ConfigurationParse("user-config-hg3", config);
+    QString userConf_old = Configuration::ConfigurationParse("user-config", config);
+    // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
+    Configuration::HuggleConfiguration->GlobalConfig_UserConf =
+            userConf.replace("Special:Mypage", "User:$1").replace("Special:Mytalk", "User talk:$1");
+    Configuration::HuggleConfiguration->GlobalConfig_UserConf_old =
+            userConf_old.replace("Special:Mypage", "User:$1").replace("Special:Mytalk", "User talk:$1");
+
     Configuration::HuggleConfiguration->GlobalConfigWasLoaded = true;
     return true;
 }

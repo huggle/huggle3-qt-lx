@@ -749,7 +749,7 @@ missing-aiv:               This project doesn't support AIV system
 merging:                   Merging
 missing-page:              There is no page $1 on this wiki
 updating-wl:               Updating whitelist...
-updating-uc:               Updating user configuration page at huggle.css on wiki
+updating-uc:               Updating user configuration page at huggle3.css on wiki
 feature-nfru:              This feature is for ip users only
 report-no-user:            No user has been selected to report, please select some user first
 welcome-tp-empty-fail:     This user doesn't have empty talk page, are you sure you want to send a message to him?
