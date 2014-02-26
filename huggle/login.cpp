@@ -19,7 +19,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
 {
     this->ui->setupUi(this);
     this->_Status = Nothing;
-    this->loadOldConfig = false;
+    this->LoadedOldConfig = false;
     this->LoginQuery = NULL;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
@@ -468,17 +468,19 @@ void Login::RetrievePrivateConfig()
             }
             QDomDocument d;
             d.setContent(this->LoginQuery->Result->Data);
-            QDomNodeList l = d.elementsByTagName("rev");
-            if (l.count() == 0) // page is missing
+            QDomNodeList revisions = d.elementsByTagName("rev");
+            if (revisions.count() == 0) // page is missing
             {
-                if(this->loadOldConfig == false && Configuration::HuggleConfiguration->GlobalConfig_UserConf_old != ""){
-                    // try first with old location of config
-                    this->loadOldConfig = true;
+                if(this->LoadedOldConfig == false && Configuration::HuggleConfiguration->GlobalConfig_UserConf_old != "")
+                {
+                    // try first with old location of config, we don't need to switch the login step here we just
+                    // replace the old query with new query that retrieves the old config and call this function
+                    // once more, trying to parse the old config
+                    this->LoadedOldConfig = true;
                     Syslog::HuggleLogs->DebugLog("couldn't find user config at new location, trying old one");
-
                     this->LoginQuery->SafeDelete();
                     this->LoginQuery = NULL;
-
+                    /// \todo LOCALIZE ME
                     this->ui->label_6->setText("Retrieving user config from old location");
                     this->LoginQuery = new ApiQuery();
                     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf_old;
@@ -508,9 +510,15 @@ void Login::RetrievePrivateConfig()
                 this->LoginQuery = NULL;
                 return;
             }
-            QDomElement data = l.at(0).toElement();
+            QDomElement data = revisions.at(0).toElement();
             if (Configuration::ParseUserConfig(data.text()))
             {
+                if (this->LoadedOldConfig)
+                {
+                    // if we loaded the old config we write that to debug log because othewise we hardly check this
+                    // piece of code really works
+                    Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config (huggle.css) :)");
+                }
                 if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
                 {
                     /// \todo LOCALIZE ME

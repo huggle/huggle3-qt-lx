@@ -290,6 +290,22 @@ QString Configuration::GetConfigurationPath()
     return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration" + QDir::separator();
 }
 
+QString Configuration::ReplaceSpecialUserPage(QString PageName)
+{
+    QString result = PageName;
+    PageName = PageName.toLower();
+    if (PageName.startsWith("special:mypage"))
+    {
+        result = result.mid(14);
+        result = "User:$1" + result;
+    } else if (PageName.startsWith("special:mytalk"))
+    {
+        result = result.mid(14);
+        result = "User_talk:$1" + result;
+    }
+    return result;
+}
+
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
     QString summary = Configuration::HuggleConfiguration->LocalConfig_DefaultSummary;
@@ -575,15 +591,11 @@ bool Configuration::ParseGlobalConfig(QString config)
     {
         Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath = temp;
     }
-
-    QString userConf = Configuration::ConfigurationParse("user-config-hg3", config);
-    QString userConf_old = Configuration::ConfigurationParse("user-config", config);
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
-    Configuration::HuggleConfiguration->GlobalConfig_UserConf =
-            userConf.replace("Special:Mypage", "User:$1").replace("Special:Mytalk", "User talk:$1");
-    Configuration::HuggleConfiguration->GlobalConfig_UserConf_old =
-            userConf_old.replace("Special:Mypage", "User:$1").replace("Special:Mytalk", "User talk:$1");
-
+    Configuration::HuggleConfiguration->GlobalConfig_UserConf = Configuration::ReplaceSpecialUserPage
+                                       (Configuration::ConfigurationParse("user-config-hg3", config));
+    Configuration::HuggleConfiguration->GlobalConfig_UserConf_old = Configuration::ReplaceSpecialUserPage
+                                       (Configuration::ConfigurationParse("user-config", config));
     Configuration::HuggleConfiguration->GlobalConfigWasLoaded = true;
     return true;
 }

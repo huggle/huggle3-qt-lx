@@ -151,6 +151,7 @@ namespace Huggle
             static QString GetURLProtocolPrefix();
             //! Return a configuration path
             static QString GetConfigurationPath();
+            static QString ReplaceSpecialUserPage(QString PageName);
             static QString Bool2ExcludeRequire(bool b);
             /*!
              * \brief Bool2String Convert a bool to string
