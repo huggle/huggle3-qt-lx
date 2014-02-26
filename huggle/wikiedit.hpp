@@ -28,12 +28,11 @@
 #include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
+#include "definitions.hpp"
 #include "collectable.hpp"
 #include "mediawiki.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
-
-#define WIKI_UNKNOWN_REVID -1
 
 namespace Huggle
 {
