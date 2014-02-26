@@ -1417,14 +1417,14 @@ void MainWindow::ResendWarning()
                     continue;
                 }
                 // we get the new talk page
-                QDomDocument d;
-                d.setContent(warning->Query->Result->Data);
-                QDomNodeList page = d.elementsByTagName("rev");
-                QDomNodeList code = d.elementsByTagName("page");
+                QDomDocument TalkPage_;
+                TalkPage_.setContent(warning->Query->Result->Data);
+                QDomNodeList revisions_ = TalkPage_.elementsByTagName("rev");
+                QDomNodeList pages_ = TalkPage_.elementsByTagName("page");
                 QString TPRevBaseTime = "";
-                if (code.count() > 0)
+                if (pages_.count() > 0)
                 {
-                    QDomElement e = code.at(0).toElement();
+                    QDomElement e = pages_.at(0).toElement();
                     if (e.attributes().contains("missing"))
                     {
                         // the talk page which existed was probably deleted by someone
@@ -1436,9 +1436,9 @@ void MainWindow::ResendWarning()
                     }
                 }
                 // get last id
-                if (page.count() > 0)
+                if (revisions_.count() > 0)
                 {
-                    QDomElement e = page.at(0).toElement();
+                    QDomElement e = revisions_.at(0).toElement();
                     if (e.nodeName() == "rev")
                     {
                         if (!e.attributes().contains("timestamp"))

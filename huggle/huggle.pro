@@ -94,7 +94,8 @@ SOURCES += main.cpp\
     huggleparser.cpp \
     sleeper.cpp \
     warnings.cpp \
-    resources.cpp
+    resources.cpp \
+    mediawiki.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -162,7 +163,8 @@ HEADERS  += mainwindow.hpp \
     sleeper.hpp \
     config.hpp \
     warnings.hpp \
-    resources.hpp
+    resources.hpp \
+    mediawiki.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

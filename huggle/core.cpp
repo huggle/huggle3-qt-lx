@@ -253,7 +253,7 @@ Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString 
     Message *m = new Message(User, Text, Summary);
     m->Title = Title;
     m->Dependency = DependencyRevert;
-    m->Section = InsertSection;
+    m->CreateInNewSection = InsertSection;
     m->BaseTimestamp = bt;
     m->SectionKeep = SectionKeep;
     m->Suffix = !NoSuffix;

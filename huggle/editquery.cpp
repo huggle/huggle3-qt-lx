@@ -21,6 +21,7 @@ EditQuery::EditQuery()
     this->Page = "";
     this->qToken = NULL;
     this->BaseTimestamp = "";
+    this->StartTimestamp = "";
     this->text = "";
     this->Type = QueryEdit;
 }

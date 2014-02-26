@@ -313,7 +313,7 @@ bool Message::FinishToken()
 void Message::PreflightCheck()
 {
     // check if we can directly append the data or if we need to fetch the previous page content before we do that
-    if ((!this->Section || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
+    if ((!this->CreateInNewSection || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
     {
         if (this->query != NULL)
         {
@@ -367,7 +367,7 @@ void Message::ProcessSend()
     {
         s += " " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
     }
-    if (this->SectionKeep || !this->Section)
+    if (this->SectionKeep || !this->CreateInNewSection)
     {
         if (this->SectionKeep)
         {

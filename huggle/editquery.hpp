@@ -42,8 +42,15 @@ namespace Huggle
             QString text;
             //! Edit summary
             QString Summary;
-            //! base https://www.mediawiki.org/wiki/API:Edit#Parameters
+            //! Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp)
+
+            //! Used to detect edit conflicts; leave unset to ignore conflicts
             QString BaseTimestamp;
+            //! Timestamp when you started editing the page
+
+            //! when you fetched the current revision's text to begin editing it or checked the existence of the page.
+            //! Used to detect edit conflicts; leave unset to ignore conflicts
+            QString StartTimestamp;
             //! Whether the edit is minor or not
             bool Minor;
         private:

@@ -70,7 +70,7 @@ namespace Huggle
             //! Title
             QString Title;
             //! If edit will be created in new section
-            bool Section;
+            bool CreateInNewSection;
             //! Set this to false to remove huggle suffix from summary
             bool Suffix;
             //! User to deliver a message to

@@ -154,7 +154,7 @@ void HuggleFeedProviderWiki::Process(QString data)
             continue;
         }
 
-        QDateTime time = QDateTime::fromString(item.attribute("timestamp"), "yyyy-MM-ddThh:mm:ssZ");
+        QDateTime time = MediaWiki::FromMWTimestamp(item.attribute("timestamp"));
 
         if (time < t)
         {

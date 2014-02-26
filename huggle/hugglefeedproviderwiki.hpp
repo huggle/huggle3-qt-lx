@@ -26,6 +26,7 @@
 #include "core.hpp"
 #include "hugglefeed.hpp"
 #include "exception.hpp"
+#include "mediawiki.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"
 #include "wikiedit.hpp"

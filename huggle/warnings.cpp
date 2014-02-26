@@ -41,10 +41,10 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     *Report = false;
     if (Edit == NULL)
     {
-        Syslog::HuggleLogs->DebugLog("NULL");
-        return NULL;
+        throw new Huggle::Exception("WikiEdit *Edit must not be NULL",
+                                    "PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency, "\
+                                    "WikiEdit *Edit, bool *Report)");
     }
-
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Core::HuggleCore->DeveloperError();
@@ -53,7 +53,6 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
     // check if user wasn't changed and if was, let's update the info
     Edit->User->Resync();
-
     // get a template
     Edit->User->WarningLevel++;
 
@@ -69,6 +68,8 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         if (!Configuration::HuggleConfiguration->LocalConfig_AIV)
         {
             // there is no AIV function for this wiki
+            Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
+                                           "supported on this wiki, you should block the user now");
             return NULL;
         }
 
@@ -80,7 +81,6 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     QString Template_ = WarningType + QString::number(Edit->User->WarningLevel);
-
     QString MessageText_ = Core::HuggleCore->RetrieveTemplateToWarn(Template_);
 
     if (MessageText_ == "")
@@ -91,7 +91,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-
+    /// \todo This needs to be localized because it's in message, but it must be in config, not localization
     QString Summary_ = "Message re " + Edit->Page->PageName;
 
     switch (Edit->User->WarningLevel)
@@ -111,7 +111,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
-    /// \todo This really needs to be localized somehow
+    /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
     if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsStandard)
     {
@@ -123,12 +123,12 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
-    PendingWarning *w = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
+    PendingWarning *PendingWarning_ = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_,
+                                             Summary_, true, Dependency, false,
                                              Configuration::HuggleConfiguration->UserConfig_SectionKeep,
                                              false, Edit->TPRevBaseTime), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
-
-    return w;
+    return PendingWarning_;
 }
 
 void Warnings::ForceWarn(int Level, WikiEdit *Edit)
