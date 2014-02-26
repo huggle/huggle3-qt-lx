@@ -52,6 +52,8 @@ namespace Huggle
             QString ToString();
         private:
             void Process(QString data);
+            void ProcessEdit(QDomElement item);
+            void ProcessLog(QDomElement item);
             void InsertEdit(WikiEdit *edit);
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
