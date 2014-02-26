@@ -122,6 +122,8 @@ namespace Huggle
             QString Token;
             //! String that is used to test against the login failed text
             static QString Test;
+            //! for RetrievePrivateConfig, if we should try to load from
+            bool loadOldConfig;
     };
 }
 
