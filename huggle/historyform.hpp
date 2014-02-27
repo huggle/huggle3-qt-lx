@@ -54,7 +54,7 @@ namespace Huggle
 
         private:
             void Clear();
-            void Display(int row, QString html);
+            void Display(int row, QString html, bool turtlemode = false);
             //! Make the selected row bold
             void MakeSelectedRowBold();
             bool RetrievingEdit;

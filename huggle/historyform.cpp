@@ -299,7 +299,7 @@ void HistoryForm::onTick01()
     {
         if (Configuration::HuggleConfiguration->UserConfig_LastEdit)
         {
-            this->Display(0, Resources::Html_StopFire);
+            this->Display(0, Resources::Html_StopFire, true);
         } else
         {
             QPoint pntr(0, this->pos().y());
@@ -334,7 +334,7 @@ void HistoryForm::Clear()
     }
 }
 
-void HistoryForm::Display(int row, QString html)
+void HistoryForm::Display(int row, QString html, bool turtlemode)
 {
     if (this->query != NULL || this->RetrievingEdit)
     {
@@ -392,8 +392,12 @@ void HistoryForm::Display(int row, QString html)
     Core::HuggleCore->Main->Browser->RenderHtml(html);
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    // wait 800 miliseconds before displaying the page so that there is no quick flash which hurts eyes
-    this->t1->start(800);
+    if (!turtlemode)
+    {
+        this->t1->start(200);
+        return;
+    }
+    this->t1->start(2000);
 }
 
 void HistoryForm::MakeSelectedRowBold()
