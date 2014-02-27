@@ -74,6 +74,7 @@ namespace Huggle
     //! Wiki edit
 
     //! Basically all changes to pages can be represented by this class
+    //! \image html ../documentation/providers.png
     class WikiEdit : public Collectable
     {
         public:
