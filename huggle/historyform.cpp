@@ -389,6 +389,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         delete this->t1;
     }
     this->RetrievedEdit = w;
+    Core::HuggleCore->Main->LockPage();
     Core::HuggleCore->Main->Browser->RenderHtml(html);
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));

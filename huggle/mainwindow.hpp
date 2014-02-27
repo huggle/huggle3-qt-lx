@@ -159,6 +159,8 @@ namespace Huggle
             void DisplayNext(Query *q = NULL);
             void DeletePage();
             void DisplayTalk();
+            //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
+            void LockPage();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog

@@ -628,7 +628,7 @@ void MainWindow::DisplayWelcomeMessage()
 {
     WikiPage *welcome = new WikiPage(Configuration::HuggleConfiguration->WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
-    this->EditablePage = false;
+    this->LockPage();
     delete welcome;
     this->Render();
 }
@@ -1636,6 +1636,11 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
+void MainWindow::LockPage()
+{
+    this->EditablePage = false;
+}
+
 bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
@@ -2008,7 +2013,7 @@ void Huggle::MainWindow::on_actionWiki_triggered()
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
-    this->EditablePage = false;
+    this->LockPage();
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
