@@ -282,7 +282,7 @@ void Login::RetrieveGlobalConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Configuration::ParseGlobalConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ParseGlobalConfig(data.text()))
             {
                 if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
@@ -415,7 +415,7 @@ void Login::RetrieveLocalConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Configuration::ParseLocalConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ParseLocalConfig(data.text()))
             {
                 if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
                 {
@@ -511,7 +511,7 @@ void Login::RetrievePrivateConfig()
                 return;
             }
             QDomElement data = revisions.at(0).toElement();
-            if (Configuration::ParseUserConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ParseUserConfig(data.text()))
             {
                 if (this->LoadedOldConfig)
                 {

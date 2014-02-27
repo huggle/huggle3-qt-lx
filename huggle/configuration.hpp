@@ -142,7 +142,6 @@ namespace Huggle
             static void SaveConfig();
             //! Load the local configuration from disk
             static void LoadConfig();
-            static void NormalizeConf();
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
             /*!
@@ -153,11 +152,6 @@ namespace Huggle
              */
             static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
             static bool SafeBool(QString value, bool defaultvalue = false);
-            //! Parse all information from global config on meta
-            static bool ParseGlobalConfig(QString config);
-            //! Parse all information from local config, this function is used in login
-            static bool ParseLocalConfig(QString config);
-            static bool ParseUserConfig(QString config);
             //! Parse a string from configuration which has format used by huggle 2x
             /*!
              * \param key Key
@@ -182,7 +176,13 @@ namespace Huggle
              * \return New instance of data or NULL in case there is no such an option
              */
             Option *GetOption(QString key);
+            void NormalizeConf();
             QString GenerateSuffix(QString text);
+            //! Parse all information from global config on meta
+            bool ParseGlobalConfig(QString config);
+            //! Parse all information from local config, this function is used in login
+            bool ParseLocalConfig(QString config);
+            bool ParseUserConfig(QString config);
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
