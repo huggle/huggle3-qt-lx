@@ -95,7 +95,7 @@ QStringList Syslog::RingLogToQStringList()
 
 void Syslog::InsertToRingLog(HuggleLog_Line line)
 {
-    if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->RingLogMaxSize)
+    if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize)
     {
         this->RingLog.removeAt(0);
     }

@@ -90,7 +90,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
-    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
+    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
     this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig_HistoryLoad);
     this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs);
@@ -174,7 +174,7 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
     Configuration::HuggleConfiguration->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
     Configuration::HuggleConfiguration->UsingIRC = this->ui->checkBox_12->isChecked();
     Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();

@@ -25,7 +25,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
     this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleConfiguration->HuggleVersion + "]");
     this->Reset();
-    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UsingSSL);
+    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->SystemConfig_UsingSSL);
     // set the language to dummy english
     int l=0;
     while (l<Localizations::HuggleLocalizations->LocalizationData.count())
@@ -38,7 +38,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->wq = NULL;
     if (!QSslSocket::supportsSsl())
     {
-        Configuration::HuggleConfiguration->UsingSSL = false;
+        Configuration::HuggleConfiguration->SystemConfig_UsingSSL = false;
         this->ui->checkBox->setEnabled(false);
         this->ui->checkBox->setChecked(false);
     }
@@ -48,9 +48,9 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         this->Updater = new UpdateForm();
         this->Updater->Check();
     }
-    if (Configuration::HuggleConfiguration->UserName != "User")
+    if (Configuration::HuggleConfiguration->SystemConfig_Username != "User")
     {
-        this->ui->lineEdit_2->setText(Configuration::HuggleConfiguration->UserName);
+        this->ui->lineEdit_2->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->ui->lineEdit_3->setFocus();
     }
     this->Localize();
@@ -194,14 +194,14 @@ void Login::PressOK()
     }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
-    Configuration::HuggleConfiguration->UsingSSL = ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();
     if (this->ui->lineEdit_2->text() == "Developer Mode")
     {
         DeveloperMode();
         return;
     }
-    Configuration::HuggleConfiguration->UserName = ui->lineEdit_2->text();
-    Configuration::HuggleConfiguration->Password = ui->lineEdit_3->text();
+    Configuration::HuggleConfiguration->SystemConfig_Username = ui->lineEdit_2->text();
+    Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_3->text();
     this->_Status = LoggingIn;
     this->Disable();
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("[[cancel]]"));
@@ -216,7 +216,7 @@ void Login::PerformLogin()
     // we create an api request to login
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
-    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName);
+    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
     this->LoginQuery->HiddenQuery = true;
     this->LoginQuery->UsingPOST = true;
     this->LoginQuery->Process();
@@ -247,8 +247,8 @@ void Login::FinishLogin()
     this->LoginQuery = new ApiQuery();
     this->LoginQuery->SetAction(ActionLogin);
     this->LoginQuery->HiddenQuery = true;
-    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName)
-            + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Password) + "&lgtoken=" + Token ;
+    this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
+            + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_Password) + "&lgtoken=" + Token ;
     this->LoginQuery->UsingPOST = true;
     this->LoginQuery->Process();
 }
@@ -484,7 +484,7 @@ void Login::RetrievePrivateConfig()
                     this->ui->label_6->setText("Retrieving user config from old location");
                     this->LoginQuery = new ApiQuery();
                     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf_old;
-                    page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
+                    page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
                     this->LoginQuery->SetAction(ActionQuery);
                     this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
                             QUrl::toPercentEncoding(page);
@@ -549,7 +549,7 @@ void Login::RetrievePrivateConfig()
     this->ui->label_6->setText("Retrieving user config");
     this->LoginQuery = new ApiQuery();
     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
-    page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
+    page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
     this->LoginQuery->SetAction(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
             QUrl::toPercentEncoding(page);
@@ -669,12 +669,12 @@ void Login::Finish()
 {
     // we generate a random string of same size of current password
     QString pw = "";
-    while (pw.length() < Configuration::HuggleConfiguration->Password.length())
+    while (pw.length() < Configuration::HuggleConfiguration->TemporaryConfig_Password.length())
     {
         pw += ".";
     }
     // we no longer need a password since this
-    Configuration::HuggleConfiguration->Password = pw;
+    Configuration::HuggleConfiguration->TemporaryConfig_Password = pw;
     this->ui->lineEdit_3->setText(pw);
     this->Progress(100);
     this->ui->label_6->setText("Loading main huggle window");

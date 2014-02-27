@@ -80,7 +80,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->IgnoreSelf)
     {
-        if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower())
+        if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
         {
             return false;
         }

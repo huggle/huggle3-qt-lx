@@ -99,6 +99,28 @@ namespace Huggle
     };
 
     //! Run time configuration of huggle
+
+    //! Some interesting information regarding configuration:
+    //! Huggle is using different configurations
+
+    //! System config:
+    //! That is configuration which is related to selected computer, like fonts, sizes and layout of GUI
+    //! this configuration is not stored on wiki, it's only in local configuration file
+
+    //! Global config:
+    //! Is configuration used for all wikimedia projects, stored on meta, it can't be overriden neither by users
+    //! nor by project configs
+
+    //! Local config:
+    //! Is configuration local to projects, which contains definitions for templates and so on, this can be sometimes
+    //! overriden by user config
+
+    //! User config:
+    //! Maintained by user and stored in huggle3.css on wiki, this is only wiki-side configuration that is being
+    //! updated directly by huggle
+
+    //! Temporary config:
+    //! Is maintained accross 1 huggle session
     class Configuration
     {
         public:
@@ -184,7 +206,7 @@ namespace Huggle
             //! Size of feed
             int             SystemConfig_ProviderCache;
             //! Maximum size of ringlog
-            int             RingLogMaxSize;
+            int             SystemConfig_RingLogMaxSize;
             //! Path where huggle contains its data
             QString         HomePath;
             //! Path to a file where information about wikis are stored
@@ -194,9 +216,9 @@ namespace Huggle
             //! URL of wiki that contains a global config
             QString         GlobalConfigurationWikiAddress;
             //! Number of seconds for which the processed queries remain in list of processes
-            int             QueryListTimeLimit;
+            int             SystemConfig_QueryListTimeLimit;
             //! Number of edits to keep in history stack
-            int             HistorySize;
+            int             SystemConfig_HistorySize;
             //! Ask user if they really want to report someone
             bool            AskUserBeforeReport;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
@@ -206,14 +228,14 @@ namespace Huggle
             //! Whether new edits go to top or bottom (if true, they go to up)
             bool            QueueNewEditsUp;
             //! If this is true some functionalities will be disabled
-            bool            _SafeMode;
+            bool            SystemConfig_SafeMode;
             //! Resolve edit conflict without asking user
-            bool            AutomaticallyResolveConflicts;
+            bool            UserConfig_AutomaticallyResolveConflicts;
             /// \todo This option needs to be implemented to browser so that font size is different when this is changed by user
             //! Size of fonts in diff
-            int             FontSize;
+            int             SystemConfig_FontSize;
             //! Timeout for queries
-            int             ReadTimeout;
+            int             SystemConfig_ReadTimeout;
             //! Timeout for write / update queries
             int             SystemConfig_WriteTimeout;
             //! Whitelist is not useable
@@ -244,7 +266,7 @@ namespace Huggle
             //! We are storing index instead of wiki name, because in case it was a wiki that later
             //! was removed from the list, we would have nonexistent wiki in list
             int             IndexOfLastWiki;
-            QString         SystemConfig_EditToken;
+            QString         TemporaryConfig_EditToken;
 
             //////////////////////////////////////////////
             // User
@@ -413,13 +435,13 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! User name
-            QString     UserName;
+            QString     SystemConfig_Username;
             //! If SSL is being used
-            bool        UsingSSL;
+            bool        SystemConfig_UsingSSL;
             //! Consumer key
             QString     WmfOAuthConsumerKey;
             //! Password
-            QString     Password;
+            QString     TemporaryConfig_Password;
 
             //////////////////////////////////////////////
             // IRC
@@ -435,7 +457,7 @@ namespace Huggle
             QString IRCIdent;
             //! Port
             int     IRCPort;
-            int     IRCConnectionTimeOut;
+            int     SystemConfig_IRCConnectionTimeOut;
 
             //////////////////////////////////////////////
             // Friends

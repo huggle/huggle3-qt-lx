@@ -22,14 +22,7 @@ Configuration::Configuration()
     this->UAAP = NULL;
     this->Verbosity = 0;
     this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
-    this->UsingSSL = true;
-    this->UserName = "User";
-    this->SystemConfig_CacheHAN = 100;
-    this->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
-                                               "identified as test edits");
     this->IndexOfLastWiki = 0;
-    this->UserConfig_HistoryLoad = true;
-    this->Password = "";
     this->NewMessage = false;
     this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE
@@ -48,8 +41,6 @@ Configuration::Configuration()
     this->IRCServer = "irc.wikimedia.org";
     this->IRCNick = "huggle";
     this->IRCPort = 6667;
-    this->SystemConfig_EditToken = "";
-    this->RingLogMaxSize = 2000;
 #if QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
@@ -61,7 +52,9 @@ Configuration::Configuration()
     this->UserConfig_HistoryMax = 50;
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 
+    //////////////////////////////////////////////////////////////////////////////////////////
     // Global
+    //////////////////////////////////////////////////////////////////////////////////////////
     this->GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
     this->GlobalConfig_EnableAll = true;
     this->GlobalConfig_MinVersion = HUGGLE_VERSION;
@@ -70,9 +63,14 @@ Configuration::Configuration()
     this->GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
     this->GlobalConfig_UserConf = "User:$1/huggle3.css";        // user-config-hg3
     this->GlobalConfig_UserConf_old = "User:$1/huggle.css";    // user-config
+    this->GlobalConfigWasLoaded = false;
 
+    //////////////////////////////////////////////////////////////////////////////////////////
     // Local
+    //////////////////////////////////////////////////////////////////////////////////////////
     this->LocalConfig_MinimalVersion = "3.0.0.0";
+    this->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
+                                               "identified as test edits");
     this->LocalConfig_UseIrc = false;
     this->LocalConfig_RequireAdmin = false;
     this->LocalConfig_RequireAutoconfirmed = false;
@@ -105,15 +103,10 @@ Configuration::Configuration()
     this->LocalConfig_WarnSummary2 = "Warning (level 2)";
     this->LocalConfig_WarnSummary3 = "Warning (level 3)";
     this->LocalConfig_WarnSummary4 = "Warning (level 4)";
-    this->UserConfig_TruncateEdits = false;
-
-    this->QueryListTimeLimit = 2;
-    this->HistorySize = 20;
 
     this->LocalConfig_IPScore = 800;
     this->LocalConfig_ForeignUser = 800;
     this->LocalConfig_BotScore = -200;
-    this->UserConfig_LastEdit = false;
     this->LocalConfig_ScoreUser = -600;
     this->LocalConfig_WarningScore = 2000;
     this->LocalConfig_TalkPageWarningScore = -800;
@@ -122,7 +115,6 @@ Configuration::Configuration()
     this->LocalConfig_WelcomeGood = true;
     this->LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
     this->LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
-    this->GlobalConfigWasLoaded = false;
     this->LocalConfig_GlobalRequired = true;
     this->LocalConfig_AIV = false;
     this->LocalConfig_AIVExtend = true;
@@ -134,16 +126,9 @@ Configuration::Configuration()
     this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->TrimOldWarnings = true;
     this->AskUserBeforeReport = true;
-    this->SystemConfig_LanguageSanity = false;
-    this->UserConfig_SectionKeep = true;
-    this->SystemConfig_Dot = false;
     this->QueueNewEditsUp = false;
-    this->LocalConfig_WelcomeSummary = "Welcoming user";
-    this->LocalConfig_WelcomeTitle = "Welcome";
     this->WelcomeEmpty = true;
     this->LocalConfig_ReportSummary = "Reporting user";
-    this->_SafeMode = false;
-    this->IRCConnectionTimeOut = 2;
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -162,9 +147,6 @@ Configuration::Configuration()
                  << "November"
                  << "December";
 
-    // we need to maintain some compatibility with older huggle
-    this->UserConfig_EnforceMonthsAsHeaders = true;
-
     this->LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
     this->LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
     this->LocalConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
@@ -181,10 +163,13 @@ Configuration::Configuration()
     this->LocalConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
     this->LocalConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
     this->LocalConfig_Patrolling = false;
-
     this->LocalConfig_TemplateAge = -30;
     this->LocalConfig_ScoreChange = 100;
-    this->UserConfig_RevertNewBySame = true;
+    this->LocalConfig_UAAavailable = false;
+    this->LocalConfig_UAAPath = "Project:Usernames for administrator attention";
+    this->LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
+    this->LocalConfig_WelcomeSummary = "Welcoming user";
+    this->LocalConfig_WelcomeTitle = "Welcome";
 
     // Blocking users
     this->LocalConfig_BlockTime = "indefinite";
@@ -194,31 +179,58 @@ Configuration::Configuration()
     this->LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
     this->LocalConfig_BlockSummary = "Notification: Blocked";
     this->LocalConfig_RestoreSummary = "Restored revision $1 made by $2";
-    this->AutomaticallyResolveConflicts = false;
-    this->VandalNw_Server = "irc.tm-irc.org";
-    this->VandalNw_Login = true;
-
     this->LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->LocalConfig_BlockExpiryOptions.append("indefinite");
-
     this->LocalConfig_ConfirmMultipleEdits = false;
     this->LocalConfig_ConfirmRange = false;
     this->LocalConfig_ConfirmPage = false;
     this->LocalConfig_ConfirmSame = false;
     this->LocalConfig_ConfirmWarned = false;
-    this->FontSize = 10;
-    this->SystemConfig_WriteTimeout = 200;
-    this->ReadTimeout = 60;
-    this->EnforceManualSoftwareRollback = false;
-    this->UserConfig_DeleteEditsAfterRevert = true;
-    this->SystemConfig_WhitelistDisabled = false;
 
-    this->LocalConfig_UAAavailable = false;
-    this->LocalConfig_UAAPath = "Project:Usernames for administrator attention";
-    this->LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
-    this->RevertOnMultipleEdits = false;
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // User
+    //////////////////////////////////////////////////////////////////////////////////////////
+    this->UserConfig_LastEdit = false;
+    this->UserConfig_AutomaticallyResolveConflicts = false;
+    this->UserConfig_RevertNewBySame = true;
+    this->UserConfig_HistoryLoad = true;
+    this->UserConfig_TruncateEdits = false;
+    // we need to maintain some compatibility with older huggle
+    this->UserConfig_EnforceMonthsAsHeaders = true;
+    this->UserConfig_DeleteEditsAfterRevert = true;
+    this->UserConfig_SectionKeep = true;
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //System
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    this->SystemConfig_WhitelistDisabled = false;
+    this->SystemConfig_QueryListTimeLimit = 2;
+    this->SystemConfig_HistorySize = 20;
     this->SystemConfig_SyslogPath = "huggle.log";
     this->SystemConfig_Log2File = false;
+    this->SystemConfig_FontSize = 10;
+    this->SystemConfig_WriteTimeout = 200;
+    this->SystemConfig_ReadTimeout = 60;
+    this->SystemConfig_SafeMode = false;
+    this->SystemConfig_CacheHAN = 100;
+    this->SystemConfig_UsingSSL = true;
+    this->SystemConfig_Username = "User";
+    this->SystemConfig_RingLogMaxSize = 2000;
+    this->SystemConfig_IRCConnectionTimeOut = 2;
+    this->SystemConfig_LanguageSanity = false;
+    this->SystemConfig_Dot = false;
+
+    // Temporary only
+    this->TemporaryConfig_EditToken = "";
+    this->TemporaryConfig_Password = "";
+
+    // Unknown parts
+    this->RevertOnMultipleEdits = false;
+    this->EnforceManualSoftwareRollback = false;
+    this->VandalNw_Server = "irc.tm-irc.org";
+    this->VandalNw_Login = true;
 }
 
 Configuration::~Configuration()
@@ -273,7 +285,7 @@ QString Configuration::GetLocalizationDataPath()
 
 QString Configuration::GetURLProtocolPrefix()
 {
-    if (!Configuration::HuggleConfiguration->UsingSSL)
+    if (!Configuration::HuggleConfiguration->SystemConfig_UsingSSL)
     {
         return "http://";
     }
@@ -341,9 +353,9 @@ void Configuration::NormalizeConf()
     {
         Configuration::HuggleConfiguration->SystemConfig_QueueSize = 10;
     }
-    if (Configuration::HuggleConfiguration->HistorySize < 2)
+    if (Configuration::HuggleConfiguration->SystemConfig_HistorySize < 2)
     {
-        Configuration::HuggleConfiguration->HistorySize = 2;
+        Configuration::HuggleConfiguration->SystemConfig_HistorySize = 2;
     }
 }
 
@@ -386,12 +398,12 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" +
-            Configuration::Bool2String(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts) + "\n";
+            Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts) + "\n";
     configuration_ += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmPage) + "\n";
     configuration_ += "template-age:" + QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) + "\n";
     configuration_ += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmSame) + "\n";
     configuration_ += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
-    configuration_ += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
+    configuration_ += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->SystemConfig_FontSize) + "\n";
     configuration_ += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     configuration_ += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
     configuration_ += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
@@ -498,7 +510,7 @@ void Configuration::LoadConfig()
         }
         if (key == "HistorySize")
         {
-            Configuration::HuggleConfiguration->HistorySize = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_HistorySize = option.attribute("text").toInt();
             continue;
         }
         if (key == "VandalNw_Login")
@@ -508,12 +520,12 @@ void Configuration::LoadConfig()
         }
         if (key == "UserName")
         {
-            Configuration::HuggleConfiguration->UserName = option.attribute("text");
+            Configuration::HuggleConfiguration->SystemConfig_Username = option.attribute("text");
             continue;
         }
         if (key == "RingLogMaxSize")
         {
-            Configuration::HuggleConfiguration->RingLogMaxSize = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
             continue;
         }
         if (key == "WarnUserSpaceRoll")
@@ -561,13 +573,13 @@ void Configuration::SaveConfig()
     Configuration::InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, x);
     Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->SystemConfig_ProviderCache), x);
     Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
-    Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->HistorySize), x);
+    Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->SystemConfig_HistorySize), x);
     Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
-    Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->RingLogMaxSize), x);
+    Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize), x);
     Configuration::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), x);
     Configuration::InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), x);
     Configuration::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), x);
-    Configuration::InsertConfig("UserName", Configuration::HuggleConfiguration->UserName, x);
+    Configuration::InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, x);
     Configuration::InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), x);
     /////////////////////////////
     // Vandal network
@@ -664,7 +676,7 @@ bool Configuration::ParseLocalConfig(QString config)
                              (Configuration::ConfigurationParse("confirm-same", config));
     Configuration::HuggleConfiguration->LocalConfig_ConfirmWarned = Configuration::SafeBool
                              (Configuration::ConfigurationParse("confirm-warned", config));
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool
+    Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts = Configuration::SafeBool
          (Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     // Welcoming
     Configuration::HuggleConfiguration->WelcomeMP = Configuration::ConfigurationParse("startup-message-location",
@@ -897,7 +909,7 @@ bool Configuration::ParseUserConfig(QString config)
                                                                 Configuration::HuggleConfiguration->LocalConfig_WarnSummary3);
     Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config,
                                                                 Configuration::HuggleConfiguration->LocalConfig_WarnSummary4);
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool
+    Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts = Configuration::SafeBool
             (Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
     Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse
           ("template-age", config, QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();

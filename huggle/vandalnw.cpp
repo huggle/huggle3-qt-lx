@@ -15,7 +15,7 @@ using namespace Huggle;
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
-    this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server, Configuration::HuggleConfiguration->UserName);
+    this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server, Configuration::HuggleConfiguration->SystemConfig_Username);
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
@@ -165,7 +165,7 @@ void VandalNw::Message()
     if (this->Irc->IsConnected())
     {
         this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
-        this->Insert(Configuration::HuggleConfiguration->UserName + ": " + ui->lineEdit->text());
+        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + ui->lineEdit->text());
     }
     this->ui->lineEdit->setText("");
 }

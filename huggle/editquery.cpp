@@ -38,7 +38,7 @@ void EditQuery::Process()
 {
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    if (Configuration::HuggleConfiguration->SystemConfig_EditToken == "")
+    if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken == "")
     {
         this->qToken = new ApiQuery();
         this->qToken->SetAction(ActionQuery);
@@ -98,7 +98,7 @@ bool EditQuery::IsProcessed()
             this->qToken = NULL;
             return true;
         }
-        Configuration::HuggleConfiguration->SystemConfig_EditToken = element.attribute("edittoken");
+        Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
         this->qToken->Lock();
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qToken = NULL;
@@ -166,7 +166,7 @@ void EditQuery::EditPage()
     }
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
                       "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                      QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_EditToken);
+                      QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     Core::HuggleCore->AppendQuery(qEdit);
     this->qEdit->Process();
 }

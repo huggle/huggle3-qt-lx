@@ -70,7 +70,7 @@ Language *Localizations::MakeLanguage(QString text, QString name)
 void Localizations::LocalInit(QString name)
 {
     QFile *f;
-    if (Configuration::HuggleConfiguration->_SafeMode)
+    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         // we don't want to load custom files in safe mode
         f = new QFile(":/huggle/text/Localization/" + name + ".txt");

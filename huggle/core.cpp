@@ -20,7 +20,7 @@ void Core::Init()
     this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
-    if (Configuration::HuggleConfiguration->_SafeMode)
+    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Syslog::HuggleLogs->Log("DEBUG: Huggle is running in a safe mode");
     }
@@ -49,7 +49,7 @@ void Core::Init()
     // keep it low but precise enough
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
-    if (!Configuration::HuggleConfiguration->_SafeMode)
+    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
 #ifdef PYTHONENGINE
         Syslog::HuggleLogs->Log("Loading python engine");
@@ -770,7 +770,7 @@ void Core::LoadLocalizations()
 {
     Localizations::HuggleLocalizations = new Localizations();
     Localizations::HuggleLocalizations->LocalInit("en");
-    if (Configuration::HuggleConfiguration->_SafeMode)
+    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Huggle::Syslog::HuggleLogs->Log("Skipping load of other languages, because of safe mode");
         return;

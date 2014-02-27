@@ -71,9 +71,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     QList<HuggleLog_Line> _log = Syslog::HuggleLogs->RingLogToList();
-    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->UserName))
+    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
     {
-        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->UserName);
+        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
     }
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
     this->ui->verticalLayout->addWidget(this->Browser);
@@ -291,7 +291,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     // we need to safely delete the edit later
     e->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     // if there are actually some totaly old edits in history that we need to delete
-    while (this->Historical.count() > Configuration::HuggleConfiguration->HistorySize)
+    while (this->Historical.count() > Configuration::HuggleConfiguration->SystemConfig_HistorySize)
     {
         WikiEdit *prev = this->Historical.at(0);
         if (prev == e)
@@ -551,7 +551,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         Warn = true;
         type = "in userspace";
     } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs
-               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower()))
+               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower()))
     {
         type = "made by you";
         Warn = true;
@@ -943,7 +943,7 @@ void MainWindow::OnTimerTick0()
             this->wq = NULL;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
-            page = page.replace("$1", Configuration::HuggleConfiguration->UserName);
+            page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
             WikiPage *uc = new WikiPage(page);
             this->eq = Core::HuggleCore->EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
             this->eq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
@@ -2017,7 +2017,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
-    this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->UserName);
+    this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
 }
 
 void MainWindow::on_actionProtect_triggered()
@@ -2241,7 +2241,7 @@ void MainWindow::TimerCheckTPOnTick()
     {
         this->qTalkPage = new ApiQuery();
         this->qTalkPage->SetAction(ActionQuery);
-        this->qTalkPage->Parameters = "prop=revisions&titles=User_talk:" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->UserName);
+        this->qTalkPage->Parameters = "prop=revisions&titles=User_talk:" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->qTalkPage->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->qTalkPage->Process();
         return;

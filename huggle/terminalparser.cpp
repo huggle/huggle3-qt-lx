@@ -45,7 +45,7 @@ bool TerminalParser::Parse()
         }
         if (text == "--safe")
         {
-            Configuration::HuggleConfiguration->_SafeMode = true;
+            Configuration::HuggleConfiguration->SystemConfig_SafeMode = true;
             valid = true;
         }
         if (text == "--language-test")
