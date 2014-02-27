@@ -308,6 +308,7 @@ namespace Huggle
             QString         LocalConfig_IPVTemplateReport;
             //! Regular users
             QString         LocalConfig_RUTemplateReport;
+            QString         LocalConfig_ReportDefaultReason;
             QString         LocalConfig_WelcomeSummary;
             QString         LocalConfig_NSTalk;
             QString         LocalConfig_NSUserTalk;

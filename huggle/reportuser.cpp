@@ -18,6 +18,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->setupUi(this);
     this->ReportedUser = NULL;
     this->qHistory = NULL;
+    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->LocalConfig_ReportDefaultReason);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-history"));

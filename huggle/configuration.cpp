@@ -120,8 +120,9 @@ Configuration::Configuration()
     this->LocalConfig_AIVExtend = true;
     this->LocalConfig_ReportAIV = "";
     this->LocalConfig_ReportSt = 0;
-    this->LocalConfig_RUTemplateReport = "";
-    this->LocalConfig_IPVTemplateReport = "";
+    this->LocalConfig_ReportDefaultReason = "vandalism";
+    this->LocalConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
+    this->LocalConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
     this->LocalConfig_WhitelistScore = -800;
     this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->TrimOldWarnings = true;
@@ -619,8 +620,9 @@ bool Configuration::ParseLocalConfig(QString config)
     Configuration::HuggleConfiguration->LocalConfig_AIVExtend = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-extend", config));
     Configuration::HuggleConfiguration->LocalConfig_ReportAIV = Configuration::ConfigurationParse("aiv", config);
     Configuration::HuggleConfiguration->LocalConfig_ReportSt = Configuration::ConfigurationParse("aiv-section", config).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport = Configuration::ConfigurationParse("aiv-ip", config);
-    Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport = Configuration::ConfigurationParse("aiv-user", config);
+    Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport = Configuration::ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
+    Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport = Configuration::ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
+    Configuration::HuggleConfiguration->LocalConfig_ReportDefaultReason = Configuration::ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or unconstructive edits found with [[WP:HG|Huggle 3]].");
     // Restrictions
     Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
     Configuration::HuggleConfiguration->LocalConfig_RequireAdmin = Configuration::SafeBool(Configuration::ConfigurationParse("require-admin", config));

@@ -87,7 +87,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="text">
-        <string>Persistent vandalism and/or unconstructive edits found with [[WP:HG|Huggle 3]].</string>
+        <string>Report Reason</string>
        </property>
       </widget>
      </item>
@@ -154,7 +154,7 @@
   <customwidget>
    <class>QWebView</class>
    <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
+   <header>QtWebKitWidgets/QWebView</header>
   </customwidget>
  </customwidgets>
  <resources/>
