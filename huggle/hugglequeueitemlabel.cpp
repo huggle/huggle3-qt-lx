@@ -91,8 +91,8 @@ void HuggleQueueItemLabel::SetName(QString name)
 
         if (this->Page->User->IsBanned)
         {
-        	this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-blocked.png"));
-        	return;
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-blocked.png"));
+            return;
         }
 
         if (this->Page->User->IsReported)

@@ -171,29 +171,20 @@ void ReportUser::Tick()
                 {
                     continue;
                 }
-                if (!_e.attributes().contains("action"))
+                if (!_e.attributes().contains("action") ||
+                    !_e.attributes().contains("user") ||
+                    !_e.attributes().contains("timestamp") ||
+                    !_e.attributes().contains("comment"))
                 {
                     continue;
                 }
-                if (!_e.attributes().contains("user"))
-                {
-                    continue;
-                }
-                if (!_e.attributes().contains("timestamp"))
-                {
-                    continue;
-                }
-                if (!_e.attributes().contains("comment"))
-                {
-                    continue;
-                }
-                QString id = _e.attribute("logid");
-                QString action = _e.attribute("action");
-                QString user = _e.attribute("user");
-                QString timestamp = _e.attribute("timestamp");
-                QString comment = _e.attribute("comment");
-                QString duration = "indefinite";
-                QString expiration = "will not expire";
+                QString id =          _e.attribute("logid");
+                QString action =      _e.attribute("action");
+                QString user =        _e.attribute("user");
+                QString timestamp =   _e.attribute("timestamp");
+                QString comment =     _e.attribute("comment");
+                QString duration =    "indefinite";
+                QString expiration =  "will not expire";
                 QString flags = "";
                 if (action == "unblock")
                 {
@@ -537,7 +528,7 @@ void ReportUser::on_pushButton_clicked()
     if (reports == "")
     {
         QMessageBox::StandardButton mb;
-        mb = QMessageBox::question(this, "Question", Huggle::Localizations::HuggleLocalizations->Localize("report-evidence-none-provid")
+        mb = QMessageBox::question(this, "Question", Localizations::HuggleLocalizations->Localize("report-evidence-none-provid")
                                    , QMessageBox::Yes|QMessageBox::No);
         if (mb == QMessageBox::No)
         {
@@ -582,9 +573,10 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     }
     this->qDiff = new ApiQuery();
     this->qDiff->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
-    this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) + "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-            this->ui->tableWidget->item(index.row(), 3)->text() + "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
-            QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
+    this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                      "&rvlimit=1&rvtoken=rollback&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
+                      "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
+                      QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
     this->qDiff->SetAction(ActionQuery);
     this->qDiff->Process();
     this->tPageDiff->start(200);
