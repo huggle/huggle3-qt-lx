@@ -118,7 +118,7 @@ Configuration::Configuration()
     this->LocalConfig_GlobalRequired = true;
     this->LocalConfig_AIV = false;
     this->LocalConfig_AIVExtend = true;
-    this->LocalConfig_ReportPath = "";
+    this->LocalConfig_ReportAIV = "";
     this->LocalConfig_ReportSt = 0;
     this->LocalConfig_RUTemplateReport = "";
     this->LocalConfig_IPVTemplateReport = "";
@@ -617,7 +617,7 @@ bool Configuration::ParseLocalConfig(QString config)
     //AIV
     Configuration::HuggleConfiguration->LocalConfig_AIV = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-reports", config));
     Configuration::HuggleConfiguration->LocalConfig_AIVExtend = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-extend", config));
-    Configuration::HuggleConfiguration->LocalConfig_ReportPath = Configuration::ConfigurationParse("aiv", config);
+    Configuration::HuggleConfiguration->LocalConfig_ReportAIV = Configuration::ConfigurationParse("aiv", config);
     Configuration::HuggleConfiguration->LocalConfig_ReportSt = Configuration::ConfigurationParse("aiv-section", config).toInt();
     Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport = Configuration::ConfigurationParse("aiv-ip", config);
     Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport = Configuration::ConfigurationParse("aiv-user", config);
@@ -775,7 +775,7 @@ bool Configuration::ParseLocalConfig(QString config)
         delete Configuration::HuggleConfiguration->AIVP;
     }
 
-    Configuration::HuggleConfiguration->AIVP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
+    Configuration::HuggleConfiguration->AIVP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_ReportAIV);
     HuggleParser::ParsePats(config);
     HuggleParser::ParseWords(config);
     QStringList namespaces = HuggleParser::ConfigurationParse_QL("namespace-names", config, true);
@@ -875,7 +875,7 @@ bool Configuration::ParseLocalConfig(QString config)
         CurrentTemplate++;
     }
     // sanitize
-    if (Configuration::HuggleConfiguration->LocalConfig_ReportPath == "")
+    if (Configuration::HuggleConfiguration->LocalConfig_ReportAIV == "")
     {
         Configuration::HuggleConfiguration->LocalConfig_AIV = false;
     }

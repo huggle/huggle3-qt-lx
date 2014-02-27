@@ -77,13 +77,15 @@ namespace Huggle
         private:
             bool CheckUser();
             void InsertUser();
+            //! Stop all operations
+            void Kill();
             Ui::ReportUser *ui;
             //! Reported user
             WikiUser *ReportedUser;
             //! This query is used to retrieve a history of user
             ApiQuery *qHistory;
-            //! Timer is used to retrieve a history for user
-            QTimer *tHistoryUser;
+            //! Timer is used to report the user
+            QTimer *tReportUser;
             //! Timer to check the report page
             QTimer *tReportPageCheck;
             //! Used to retrieve a diff of page

@@ -163,7 +163,7 @@ namespace Huggle
              * \param key Key
              * \param content Text to parse from
              * \param missing Default value in case this key is missing in text
-             * \return Value of key
+             * \return Value of key, in case there is no such a key content of missing is returned
              */
             static QString ConfigurationParse(QString key, QString content, QString missing = "");
             /*!
@@ -301,7 +301,7 @@ namespace Huggle
 
             bool            LocalConfig_AIV;
             bool            LocalConfig_AIVExtend;
-            QString         LocalConfig_ReportPath;
+            QString         LocalConfig_ReportAIV;
             //! Section of report page to append template to
             int             LocalConfig_ReportSt;
             //! IP vandals
