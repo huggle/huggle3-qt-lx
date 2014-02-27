@@ -371,6 +371,7 @@ void ReportUser::Tick()
                 this->ui->tableWidget->setCellWidget(0, 4, Item);
                 xx++;
             }
+            this->ui->tableWidget->sortByColumn(1, Qt::DescendingOrder);
         }
         this->ui->tableWidget->resizeRowsToContents();
         this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
