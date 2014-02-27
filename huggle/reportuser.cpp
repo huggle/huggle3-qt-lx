@@ -254,8 +254,7 @@ void ReportUser::Tick()
                 mb.setText("Failed to report user because: " + this->qEdit->Result->ErrorMessage);
                 Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
                 mb.exec();
-                this->qEdit->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
-                this->qEdit = NULL;
+                this->Kill();
                 return;
             }
 
@@ -263,9 +262,7 @@ void ReportUser::Tick()
             this->ReportedUser->IsReported = true;
             this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-done"));
             WikiUser::UpdateUser(this->ReportedUser);
-            this->tReportUser->stop();
-            this->qEdit->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
-            this->qEdit = NULL;
+            this->Kill();
         }
         return;
     }
@@ -298,6 +295,7 @@ void ReportUser::Tick()
                 mb.setText("Unable to retrieve timestamp of current report page, api failure:\n\n" + this->qReport->Result->Data);
                 mb.exec();
                 this->Kill();
+                return;
             } else
             {
                 this->ReportTs = e.attribute("timestamp");
@@ -644,6 +642,11 @@ void ReportUser::Kill()
     {
         this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
         this->qHistory = NULL;
+    }
+    if (this->qEdit != NULL)
+    {
+        this->qEdit->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
+        this->qEdit = NULL;
     }
     this->tReportUser->stop();
 }
