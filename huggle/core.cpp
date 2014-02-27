@@ -228,7 +228,7 @@ void Core::SaveDefs()
 
 QString Core::MonthText(int n)
 {
-    if (n < 0 || n > 12)
+    if (n < 1 || n > 12)
     {
         throw new Huggle::Exception("Month must be between 1 and 12");
     }
