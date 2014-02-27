@@ -27,6 +27,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
     this->BaseTimestamp = "";
+    this->CreateOnly = false;
     this->StartTimestamp = "";
     this->Error = MessageError_NoError;
     this->ErrorText = "";

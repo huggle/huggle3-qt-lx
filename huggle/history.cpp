@@ -46,7 +46,7 @@ void History::Prepend(HistoryItem item)
     this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(HistoryItem::TypeToString(item.Type)));
     this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(item.Target));
     this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(item.Result));
-    this->ui->tableWidget->resizeRowsToContents();
+    this->ui->tableWidget->resizeRowToContents(0);
 }
 
 void History::Refresh()

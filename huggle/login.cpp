@@ -573,10 +573,10 @@ void Login::RetrieveUserInfo()
                 this->LoginQuery = NULL;
                 return;
             }
-            QDomDocument d;
-            d.setContent(this->LoginQuery->Result->Data);
-            QDomNodeList l = d.elementsByTagName("r");
-            if (l.count() == 0)
+            QDomDocument dLoginResult;
+            dLoginResult.setContent(this->LoginQuery->Result->Data);
+            QDomNodeList lRights_ = dLoginResult.elementsByTagName("r");
+            if (lRights_.count() == 0)
             {
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 /// \todo LOCALIZE ME
@@ -588,9 +588,9 @@ void Login::RetrieveUserInfo()
                 return;
             }
             int c=0;
-            while(c<l.count())
+            while(c<lRights_.count())
             {
-                Configuration::HuggleConfiguration->Rights.append(l.at(c).toElement().text());
+                Configuration::HuggleConfiguration->Rights.append(lRights_.at(c).toElement().text());
                 c++;
             }
             if (Configuration::HuggleConfiguration->LocalConfig_RequireRollback &&
@@ -617,7 +617,7 @@ void Login::RetrieveUserInfo()
                 return;
             }
 
-            QDomNodeList userinfos = d.elementsByTagName("userinfo");
+            QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (Configuration::HuggleConfiguration->LocalConfig_RequireEdits > editcount)
             {

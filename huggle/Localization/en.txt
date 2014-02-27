@@ -482,6 +482,7 @@ queue-usergroup:           Show only edits from these users
 === Report form ===
 report-title:                   Report $1
 report-reason:                  Reason:
+report-intro:                   You are going to report user $1
 report-message:                 Message:
 report-log:                     Warnings for this user:
 report-include:                 Include in report

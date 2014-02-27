@@ -63,15 +63,15 @@ namespace Huggle
         public:
             explicit ProcessList(QWidget *parent = 0);
             //! Insert a query to process list, the query is automatically removed once it's done
-            void InsertQuery(Query* q);
+            void InsertQuery(Query* query);
             //! Remove all entries in process list
             void Clear();
             //! Return true if there is already this in a list
-            bool ContainsQuery(Query *q);
+            bool ContainsQuery(Query *query);
             //! Remove a query from list no matter if it finished or not
-            void RemoveQuery(Query *q);
+            void RemoveQuery(Query *query);
             //! Update information about query in list
-            void UpdateQuery(Query *q);
+            void UpdateQuery(Query *query);
             void RemoveExpired();
             ~ProcessList();
 

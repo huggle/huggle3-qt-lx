@@ -237,7 +237,7 @@ QString Core::MonthText(int n)
 }
 
 Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
-                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove, QString bt)
+                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove, QString BaseTimestamp, bool CreateOnly)
 {
     if (User == NULL)
     {
@@ -254,8 +254,9 @@ Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString 
     m->Title = Title;
     m->Dependency = DependencyRevert;
     m->CreateInNewSection = InsertSection;
-    m->BaseTimestamp = bt;
+    m->BaseTimestamp = BaseTimestamp;
     m->SectionKeep = SectionKeep;
+    m->CreateOnly = CreateOnly;
     m->Suffix = !NoSuffix;
     Core::Messages.append(m);
     m->RegisterConsumer(HUGGLECONSUMER_CORE);

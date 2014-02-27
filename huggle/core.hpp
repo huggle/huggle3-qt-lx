@@ -177,10 +177,13 @@ namespace Huggle
              * \param InsertSection Whether this message should be created in a new section
              * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
              * the system will wait for it to finish before the message is sent
+             * \param NoSuffix will not append huggle suffix if this is true, useful if you need to use custom summary
+             *
              * \return NULL on error or instance of Huggle::Message in case it's success
              */
-            Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true, Query *DependencyRevert = NULL,
-                                 bool NoSuffix = false, bool SectionKeep = false, bool autoremove = false, QString bt = "");
+            Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
+                                 Query *DependencyRevert = NULL, bool NoSuffix = false, bool SectionKeep = false,
+                                 bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly = false);
             void FinalizeMessages();
             QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false, QString BaseTimestamp = "");

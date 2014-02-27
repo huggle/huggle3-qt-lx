@@ -23,7 +23,7 @@
       </size>
      </property>
      <property name="text">
-      <string/>
+      <string>Don't overlook me :-)</string>
      </property>
     </widget>
    </item>
@@ -154,7 +154,7 @@
   <customwidget>
    <class>QWebView</class>
    <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
+   <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
  <resources/>

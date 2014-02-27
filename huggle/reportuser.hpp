@@ -59,7 +59,7 @@ namespace Huggle
         public:
             explicit ReportUser(QWidget *parent = 0);
             //! Set a user
-            bool SetUser(WikiUser *u);
+            bool SetUser(WikiUser *user);
             ~ReportUser();
 
         private slots:

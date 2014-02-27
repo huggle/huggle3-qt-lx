@@ -109,17 +109,17 @@ ReportUser::~ReportUser()
     delete this->ui;
 }
 
-bool ReportUser::SetUser(WikiUser *u)
+bool ReportUser::SetUser(WikiUser *user)
 {
     if (this->qHistory != NULL)
     {
         this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
-    this->ReportedUser = u;
-    this->ui->label->setText(u->Username);
+    this->ReportedUser = user;
+    this->ui->label->setText(Localizations::HuggleLocalizations->Localize("report-intro", user->Username));
     this->qHistory = new ApiQuery();
     this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
-    this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(u->Username) +
+    this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->SetAction(ActionQuery);
     this->qHistory->Process();

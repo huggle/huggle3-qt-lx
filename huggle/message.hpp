@@ -82,6 +82,7 @@ namespace Huggle
             //! when you fetched the current revision's text to begin editing it or checked the existence of the page.
             //! Used to detect edit conflicts; leave unset to ignore conflicts
             QString StartTimestamp;
+            bool CreateOnly;
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;
