@@ -123,10 +123,15 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
+    bool CreateOnly = false;
+    if (Edit->User->TalkPage_GetContents() == "")
+    {
+        CreateOnly = true;
+    }
     PendingWarning *PendingWarning_ = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_,
                                              Summary_, true, Dependency, false,
-                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep,
-                                             false, Edit->TPRevBaseTime), WarningType, Edit);
+                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
+                                             Edit->TPRevBaseTime, CreateOnly), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
     return PendingWarning_;
 }

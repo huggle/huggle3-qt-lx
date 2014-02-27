@@ -214,9 +214,9 @@ void Message::Finish()
 
         bool sent = false;
 
-        QDomDocument d;
-        d.setContent(query->Result->Data);
-        QDomNodeList e = d.elementsByTagName("error");
+        QDomDocument dResult_;
+        dResult_.setContent(query->Result->Data);
+        QDomNodeList e = dResult_.elementsByTagName("error");
         if (e.count() > 0)
         {
             QDomElement element = e.at(0).toElement();
@@ -237,7 +237,7 @@ void Message::Finish()
                 return;
             }
         }
-        QDomNodeList editlist = d.elementsByTagName("edit");
+        QDomNodeList editlist = dResult_.elementsByTagName("edit");
         if (editlist.count() > 0)
         {
             QDomElement element = editlist.at(0).toElement();
@@ -356,23 +356,26 @@ void Message::ProcessSend()
     this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     this->query->SetAction(ActionEdit);
     QString s = Summary;
-    QString base = "";
+    QString parameters = "";
     if (this->BaseTimestamp != "")
     {
-        base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
+        parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
         Syslog::HuggleLogs->DebugLog("Using base timestamp for edit of " + user->GetTalk() + ": " + this->BaseTimestamp, 2);
     } else
     {
         Syslog::HuggleLogs->DebugLog("Not using base timestamp for edit of " + user->GetTalk() + " :o", 2);
     }
-    QString start_ = "";
     if (this->StartTimestamp != "")
     {
-        start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
+        parameters += "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
         Syslog::HuggleLogs->DebugLog("Using start timestamp for edit of " + user->GetTalk() + ": " + this->StartTimestamp, 2);
     } else
     {
         Syslog::HuggleLogs->DebugLog("Not using start timestamp for edit of " + user->GetTalk() + " :o", 2);
+    }
+    if (this->CreateOnly)
+    {
+        parameters += "&createonly=1";
     }
     if (this->Suffix)
     {
@@ -392,13 +395,13 @@ void Message::ProcessSend()
             }
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + start_
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
                 + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
-                + "&text=" + QUrl::toPercentEncoding(this->Text) + base + start_ + "&token="
+                + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }
     Core::HuggleCore->AppendQuery(query);
