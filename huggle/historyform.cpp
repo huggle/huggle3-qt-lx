@@ -25,11 +25,11 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->SelectedRow = 0;
     this->PreviouslySelectedRow = 2;
     QStringList header;
-    header << "" << Huggle::Localizations::HuggleLocalizations->Localize("user") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("size") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("summary") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("id") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("date");
+    header << "" << Huggle::Localizations::HuggleLocalizations->Localize("user")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("size")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("summary")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("id")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("date");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);

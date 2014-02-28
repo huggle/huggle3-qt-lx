@@ -298,6 +298,10 @@ namespace Huggle
             void on_actionHtml_dump_triggered();
             void on_actionEnforce_sysop_rights_triggered();
             void on_actionFeedback_triggered();
+            void on_actionConnect_triggered();
+            void on_actionDisplay_user_data_triggered();
+            void on_actionDisplay_user_messages_triggered();
+            void on_actionDisplay_bot_data_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well

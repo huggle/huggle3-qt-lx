@@ -2337,3 +2337,23 @@ void Huggle::MainWindow::on_actionFeedback_triggered()
 {
     QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath);
 }
+
+void Huggle::MainWindow::on_actionConnect_triggered()
+{
+    this->VandalDock->Connect();
+}
+
+void Huggle::MainWindow::on_actionDisplay_user_data_triggered()
+{
+    this->VandalDock->DisplayUser = this->ui->actionDisplay_user_data->isChecked();
+}
+
+void Huggle::MainWindow::on_actionDisplay_user_messages_triggered()
+{
+    this->VandalDock->DisplayChat = this->ui->actionDisplay_user_messages->isChecked();
+}
+
+void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
+{
+    this->VandalDock->DisplayBots = this->ui->actionDisplay_bot_data->isChecked();
+}

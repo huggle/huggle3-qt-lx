@@ -48,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>23</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -177,10 +177,12 @@
     <property name="title">
      <string>HAN</string>
     </property>
+    <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_user_messages"/>
     <addaction name="actionDisplay_user_data"/>
+    <addaction name="actionDisplay_bot_data"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -847,6 +849,22 @@
   <action name="actionEnforce_sysop_rights">
    <property name="text">
     <string>Enforce sysop rights</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisplay_bot_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display bot data</string>
    </property>
   </action>
  </widget>

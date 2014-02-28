@@ -19,6 +19,9 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
+    this->DisplayUser = true;
+    this->DisplayBots = true;
+    this->DisplayChat = true;
     this->Text = "";
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -35,6 +38,16 @@ VandalNw::~VandalNw()
 
 void VandalNw::Connect()
 {
+    if (this->Irc->IsConnected())
+    {
+        Syslog::HuggleLogs->Log("Not connecting to HAN because it's already connected");
+        return;
+    }
+    if (this->Irc->IsConnecting())
+    {
+        Syslog::HuggleLogs->Log("Please wait, I am already connecting to HAN");
+        return;
+    }
     if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
         Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("han-not"));
