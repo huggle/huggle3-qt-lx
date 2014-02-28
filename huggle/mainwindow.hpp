@@ -319,6 +319,7 @@ namespace Huggle
             void RequestPD();
             void closeEvent(QCloseEvent *event);
             void FinishPatrols();
+            void UpdateStatusBarData();
             void DecreaseBS();
             void IncreaseBS();
             //! This timer periodically executes various jobs that needs to be executed in main thread loop

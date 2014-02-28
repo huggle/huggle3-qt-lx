@@ -165,6 +165,7 @@ namespace Huggle
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
             QString MonthText(int n);
+            QString ShrinkText(QString text, int size);
             /*!
              * \brief MessageUser Message user
              *

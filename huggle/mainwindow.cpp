@@ -476,6 +476,65 @@ void MainWindow::FinishPatrols()
     }
 }
 
+void MainWindow::UpdateStatusBarData()
+{
+    /// \todo LOCALIZE ME
+    QString t = "Processing <b>" + QString::number(Core::HuggleCore->ProcessingEdits.count())
+            + "</b> edits and <b>" + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + "</b> queries."
+            + " Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+            + "</b>  queue size: <b>" + QString::number(HuggleQueueItemLabel::Count)
+            + "</b> Statistics: ";
+    // calculate stats, but not if huggle uptime is lower than 50 seconds
+    double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
+    if (this->ShuttingDown)
+    {
+        t += " none";
+    } else if (Uptime < 50)
+    {
+        t += " waiting for more edits";
+    } else
+    {
+        double EditsPerMinute = 0;
+        double RevertsPerMinute = 0;
+        if (Core::HuggleCore->PrimaryFeedProvider->EditCounter > 0)
+        {
+            EditsPerMinute = Core::HuggleCore->PrimaryFeedProvider->EditCounter / (Uptime / 60);
+        }
+        if (Core::HuggleCore->PrimaryFeedProvider->RvCounter > 0)
+        {
+            RevertsPerMinute = Core::HuggleCore->PrimaryFeedProvider->RvCounter / (Uptime / 60);
+        }
+        double VandalismLevel = 0;
+        if (EditsPerMinute > 0 && RevertsPerMinute > 0)
+        {
+            VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;
+        }
+        QString color = "green";
+        if (VandalismLevel > 0.8)
+        {
+            color = "blue";
+        }
+        if (VandalismLevel > 1.2)
+        {
+            color = "black";
+        }
+        if (VandalismLevel > 1.8)
+        {
+            color = "orange";
+        }
+        // make the numbers easier to read
+        EditsPerMinute = round(EditsPerMinute * 100) / 100;
+        RevertsPerMinute = round(RevertsPerMinute * 100) / 100;
+        t += " <font color=" + color + ">" + QString::number(EditsPerMinute) + " edits per minute " + QString::number(RevertsPerMinute)
+                + " reverts per minute, level " + QString::number(VandalismLevel) + "</font>";
+    }
+    if (Configuration::HuggleConfiguration->Verbosity > 0)
+    {
+        t += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
+    }
+    this->Status->setText(t);
+}
+
 void MainWindow::DecreaseBS()
 {
     if (this->CurrentEdit != NULL)
@@ -783,61 +842,7 @@ void MainWindow::OnMainTimerTick()
             }
         }
     }
-    /// \todo LOCALIZE ME
-    QString t = "Processing <b>" + QString::number(Core::HuggleCore->ProcessingEdits.count())
-            + "</b> edits and <b>" + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + "</b> queries."
-            + " Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
-            + "</b>  queue size: <b>" + QString::number(HuggleQueueItemLabel::Count)
-            + "</b> Statistics: ";
-    // calculate stats, but not if huggle uptime is lower than 50 seconds
-    double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
-    if (this->ShuttingDown)
-    {
-        t += " none";
-    } else if (Uptime < 50)
-    {
-        t += " waiting for more edits";
-    } else
-    {
-        double EditsPerMinute = 0;
-        double RevertsPerMinute = 0;
-        if (Core::HuggleCore->PrimaryFeedProvider->EditCounter > 0)
-        {
-            EditsPerMinute = Core::HuggleCore->PrimaryFeedProvider->EditCounter / (Uptime / 60);
-        }
-        if (Core::HuggleCore->PrimaryFeedProvider->RvCounter > 0)
-        {
-            RevertsPerMinute = Core::HuggleCore->PrimaryFeedProvider->RvCounter / (Uptime / 60);
-        }
-        double VandalismLevel = 0;
-        if (EditsPerMinute > 0 && RevertsPerMinute > 0)
-        {
-            VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;
-        }
-        QString color = "green";
-        if (VandalismLevel > 0.8)
-        {
-            color = "blue";
-        }
-        if (VandalismLevel > 1.2)
-        {
-            color = "black";
-        }
-        if (VandalismLevel > 1.8)
-        {
-            color = "orange";
-        }
-        // make the numbers easier to read
-        EditsPerMinute = round(EditsPerMinute * 100) / 100;
-        RevertsPerMinute = round(RevertsPerMinute * 100) / 100;
-        t += " <font color=" + color + ">" + QString::number(EditsPerMinute) + " edits per minute " + QString::number(RevertsPerMinute)
-                + " reverts per minute, level " + QString::number(VandalismLevel) + "</font>";
-    }
-    if (Configuration::HuggleConfiguration->Verbosity > 0)
-    {
-        t += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
-    }
-    this->Status->setText(t);
+    this->UpdateStatusBarData();
     // let's refresh the edits that are being post processed
     if (Core::HuggleCore->ProcessingEdits.count() > 0)
     {
@@ -2350,7 +2355,7 @@ void Huggle::MainWindow::on_actionDisplay_user_data_triggered()
 
 void Huggle::MainWindow::on_actionDisplay_user_messages_triggered()
 {
-    this->VandalDock->DisplayChat = this->ui->actionDisplay_user_messages->isChecked();
+    this->VandalDock->DisplayUserTalk = this->ui->actionDisplay_user_messages->isChecked();
 }
 
 void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()

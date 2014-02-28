@@ -45,8 +45,8 @@ void Core::Init()
     Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
     Syslog::HuggleLogs->DebugLog("Loading queue");
-    // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
-    // keep it low but precise enough
+    // These are separators that we use to parse words, less we have, faster huggle will be,
+    // despite it will fail more to detect vandals. Keep it low but precise enough!!
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
                                                                     << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
@@ -62,7 +62,7 @@ void Core::Init()
     {
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
-    Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
+    Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())) + "ms");
 }
 
 Core::Core()
@@ -236,8 +236,30 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
+QString Core::ShrinkText(QString text, int size)
+{
+    if (size < 3)
+    {
+        throw new Huggle::Exception("Parameter size must be more than 3", "QString Core::ShrinkText(QString text, int size)");
+    }
+    // let's copy the text into new variable so that we don't break the original
+    // who knows how these mutable strings are going to behave in qt :D
+    QString text_ = text;
+    int length = text_.length();
+    if (length > size)
+    {
+        text_ = text_.mid(0, size - 3);
+        return text_ + "...";
+    } else while (text_.length() < size)
+    {
+        text_ += " ";
+    }
+    return text;
+}
+
 Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
-                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove, QString BaseTimestamp, bool CreateOnly)
+                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove,
+                           QString BaseTimestamp, bool CreateOnly)
 {
     if (User == NULL)
     {
