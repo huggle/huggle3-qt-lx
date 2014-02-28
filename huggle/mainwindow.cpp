@@ -479,11 +479,11 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t = "Processing <b>" + QString::number(Core::HuggleCore->ProcessingEdits.count())
-            + "</b> edits and <b>" + QString::number(Core::HuggleCore->RunningQueriesGetCount()) + "</b> queries."
-            + " Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
-            + "</b>  queue size: <b>" + QString::number(HuggleQueueItemLabel::Count)
-            + "</b> Statistics: ";
+    QString t = "Processing <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4)
+            + "</b>edits and <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4)
+            + "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+            + "</b>  queue size: <b>" + Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4)
+            + "</b>Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
@@ -525,8 +525,10 @@ void MainWindow::UpdateStatusBarData()
         // make the numbers easier to read
         EditsPerMinute = round(EditsPerMinute * 100) / 100;
         RevertsPerMinute = round(RevertsPerMinute * 100) / 100;
-        t += " <font color=" + color + ">" + QString::number(EditsPerMinute) + " edits per minute " + QString::number(RevertsPerMinute)
-                + " reverts per minute, level " + QString::number(VandalismLevel) + "</font>";
+        VandalismLevel = round(VandalismLevel * 100) / 100;
+        t += " <font color=" + color + ">" + Core::ShrinkText(QString::number(EditsPerMinute), 6) + " edits per minute "
+             + Core::ShrinkText(QString::number(RevertsPerMinute), 6) + " reverts per minute, level "
+             + Core::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {

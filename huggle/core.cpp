@@ -236,7 +236,7 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-QString Core::ShrinkText(QString text, int size)
+QString Core::ShrinkText(QString text, int size, bool html)
 {
     if (size < 3)
     {
@@ -249,12 +249,16 @@ QString Core::ShrinkText(QString text, int size)
     if (length > size)
     {
         text_ = text_.mid(0, size - 3);
-        return text_ + "...";
+        text_ = text_ + "...";
     } else while (text_.length() < size)
     {
         text_ += " ";
     }
-    return text;
+    if (html)
+    {
+        text_.replace(" ", "&nbsp;");
+    }
+    return text_;
 }
 
 Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,

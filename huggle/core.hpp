@@ -97,6 +97,7 @@ namespace Huggle
     class Core
     {
         public:
+            static QString ShrinkText(QString text, int size, bool html = true);
             static QString GetProjectURL(WikiSite Project);
             static void ExceptionHandler(Exception *exception);
             //! Return a full url like http://en.wikipedia.org/wiki/
@@ -165,7 +166,6 @@ namespace Huggle
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
             QString MonthText(int n);
-            QString ShrinkText(QString text, int size);
             /*!
              * \brief MessageUser Message user
              *
