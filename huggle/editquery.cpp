@@ -69,7 +69,8 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error") + ": " + qToken->Result->ErrorMessage;
+            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error") + ": " +
+                                         this->qToken->Result->ErrorMessage;
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -93,7 +94,7 @@ bool EditQuery::IsProcessed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
-            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = NULL;
             return true;
@@ -165,8 +166,8 @@ void EditQuery::EditPage()
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     }
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
-                      "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                      QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                              "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
+                              QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     Core::HuggleCore->AppendQuery(qEdit);
     this->qEdit->Process();
 }

@@ -70,7 +70,8 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
     if (User == NULL)
     {
-        throw new Exception("Huggle::WikiUser *User must not be NULL", "void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)");
+        throw new Exception("Huggle::WikiUser *User must not be NULL", "void Huggle::Hooks::BadnessScore(Huggle::WikiUser "\
+                            "*User, int Score)");
     }
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
