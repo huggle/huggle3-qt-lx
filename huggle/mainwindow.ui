@@ -227,7 +227,14 @@
    <addaction name="separator"/>
    <addaction name="actionDelete_page"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <family>DejaVu Sans Mono</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
   <action name="actionPreferences">
    <property name="text">
     <string notr="true">Preferences</string>
