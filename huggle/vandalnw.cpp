@@ -25,7 +25,6 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->Text = "";
     this->JoinedMain = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->tm->start(200);
     this->Irc->UserName = Configuration::HuggleConfiguration->HuggleVersion;
 }
 
@@ -56,12 +55,14 @@ void VandalNw::Connect()
     {
         this->Insert(Localizations::HuggleLocalizations->Localize("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
+        this->tm->start(200);
     }
 }
 
 void VandalNw::Disconnect()
 {
     this->Irc->Disconnect();
+    this->JoinedMain = false;
     /// \todo LOCALIZE ME
     this->Insert("You are disconnected from HAN", HAN::MessageType_Info);
 }
