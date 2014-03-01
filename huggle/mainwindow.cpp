@@ -620,6 +620,10 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     {
         type = "made on talk page";
         Warn = true;
+    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmWL && _e->User->IsWhitelisted())
+    {
+        type = "made by a user who is on white list";
+        Warn = true;
     }
     if (Warn)
     {
