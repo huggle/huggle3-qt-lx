@@ -54,6 +54,8 @@ bool TerminalParse(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
+    QApplication::setApplicationName("Huggle");
+    QApplication::setOrganizationName("Wikimedia");
     try
     {
         // check if arguments don't need to exit program

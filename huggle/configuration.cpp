@@ -16,8 +16,6 @@ Configuration * Configuration::HuggleConfiguration = new Configuration();
 
 Configuration::Configuration()
 {
-    QApplication::setApplicationName("Huggle");
-    QApplication::setOrganizationName("Wikimedia");
     this->AIVP = NULL;
     this->UAAP = NULL;
     this->Verbosity = 0;
