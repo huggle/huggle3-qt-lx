@@ -192,7 +192,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
 
-    if (flags.contains("reviewed"))
+    if (flags.contains("review"))
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
