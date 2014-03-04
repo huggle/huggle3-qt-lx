@@ -39,7 +39,7 @@ void Core::Init()
     this->Processor = new ProcessorThread();
     this->Processor->start();
     this->LoadLocalizations();
-    Configuration::LoadConfig();
+    Configuration::LoadSystemConfig();
     Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
     Syslog::HuggleLogs->DebugLog("Loading wikis");
@@ -563,7 +563,7 @@ void Core::Shutdown()
         this->Processor->exit();
     }
     Core::SaveDefs();
-    Configuration::SaveConfig();
+    Configuration::SaveSystemConfig();
 #ifdef PYTHONENGINE
     if (!Configuration::HuggleConfiguration->_SafeMode)
     {

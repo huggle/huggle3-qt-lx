@@ -45,7 +45,7 @@ namespace Huggle
     {
         RetrievingGlobalConfig,
         RetrievingUserConfig,
-        RetrievingLocalConfig,
+        RetrievingProjectConfig,
         LoggingIn,
         WaitingForLoginQuery,
         Refreshing,
@@ -101,9 +101,9 @@ namespace Huggle
             void FinishLogin();
             void FinishToken();
             void RetrieveWhitelist();
-            void RetrieveLocalConfig();
+            void RetrieveProjectConfig();
             void RetrieveGlobalConfig();
-            void RetrievePrivateConfig();
+            void RetrieveUserConfig();
             void RetrieveUserInfo();
             void DeveloperMode();
             void DisplayError(QString message);

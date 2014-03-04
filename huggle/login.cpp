@@ -50,8 +50,8 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     }
     if (Configuration::HuggleConfiguration->SystemConfig_Username != "User")
     {
-        this->ui->lineEdit_2->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
-        this->ui->lineEdit_3->setFocus();
+        this->ui->lineEdit_username->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
+        this->ui->lineEdit_password->setFocus();
     }
     this->Localize();
 }
@@ -101,19 +101,19 @@ void Login::CancelLogin()
     this->ui->progressBar->setValue(0);
     this->Enable();
     this->_Status = Nothing;
-    this->ui->lineEdit_3->setText("");
+    this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
 }
 
 void Login::Enable()
 {
-    this->ui->lineEdit->setEnabled(true);
+    this->ui->lineEdit_oauth_username->setEnabled(true);
     this->ui->Language->setEnabled(true);
     this->ui->Project->setEnabled(true);
     this->ui->checkBox->setEnabled(QSslSocket::supportsSsl());
-    this->ui->lineEdit_2->setEnabled(true);
+    this->ui->lineEdit_username->setEnabled(true);
     this->ui->ButtonExit->setEnabled(true);
-    this->ui->lineEdit_3->setEnabled(true);
+    this->ui->lineEdit_password->setEnabled(true);
     this->ui->pushButton->setEnabled(true);
 }
 
@@ -172,13 +172,13 @@ void Login::DB()
 
 void Login::Disable()
 {
-    this->ui->lineEdit->setDisabled(true);
+    this->ui->lineEdit_oauth_username->setDisabled(true);
     this->ui->Language->setDisabled(true);
     this->ui->Project->setDisabled(true);
     this->ui->checkBox->setDisabled(true);
     this->ui->ButtonExit->setDisabled(true);
-    this->ui->lineEdit_3->setDisabled(true);
-    this->ui->lineEdit_2->setDisabled(true);
+    this->ui->lineEdit_username->setDisabled(true);
+    this->ui->lineEdit_password->setDisabled(true);
     this->ui->pushButton->setDisabled(true);
 }
 
@@ -195,13 +195,13 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();
-    if (this->ui->lineEdit_2->text() == "Developer Mode")
+    if (this->ui->lineEdit_username->text() == "Developer Mode")
     {
         DeveloperMode();
         return;
     }
-    Configuration::HuggleConfiguration->SystemConfig_Username = ui->lineEdit_2->text();
-    Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_3->text();
+    Configuration::HuggleConfiguration->SystemConfig_Username = ui->lineEdit_username->text();
+    Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_password->text();
     this->_Status = LoggingIn;
     this->Disable();
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("[[cancel]]"));
@@ -372,7 +372,7 @@ void Login::RetrieveWhitelist()
             this->wq->SafeDelete();
             this->wq = NULL;
             // Now local config
-            this->_Status = RetrievingLocalConfig;
+            this->_Status = RetrievingProjectConfig;
             return;
         }
         return;
@@ -385,7 +385,7 @@ void Login::RetrieveWhitelist()
     return;
 }
 
-void Login::RetrieveLocalConfig()
+void Login::RetrieveProjectConfig()
 {
     if (this->LoginQuery != NULL)
     {
@@ -415,9 +415,9 @@ void Login::RetrieveLocalConfig()
                 return;
             }
             QDomElement data = l.at(0).toElement();
-            if (Configuration::HuggleConfiguration->ParseLocalConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ParseProjectConfig(data.text()))
             {
-                if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig_EnableAll)
                 {
                     this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-error-projdisabled"));
                     this->Progress(0);
@@ -449,7 +449,7 @@ void Login::RetrieveLocalConfig()
     this->LoginQuery->Process();
 }
 
-void Login::RetrievePrivateConfig()
+void Login::RetrieveUserConfig()
 {
     if (this->LoginQuery != NULL)
     {
@@ -492,7 +492,7 @@ void Login::RetrievePrivateConfig()
                     return;
                 }
 
-                if (!Configuration::HuggleConfiguration->LocalConfig_RequireConfig)
+                if (!Configuration::HuggleConfiguration->ProjectConfig_RequireConfig)
                 {
                     // we don't care if user config is missing or not
                     this->LoginQuery->SafeDelete();
@@ -519,7 +519,7 @@ void Login::RetrievePrivateConfig()
                     // piece of code really works
                     Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config (huggle.css) :)");
                 }
-                if (!Configuration::HuggleConfiguration->LocalConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig_EnableAll)
                 {
                     /// \todo LOCALIZE ME
                     this->ui->label_6->setText("Login failed because you don't have enable:true in your personal config");
@@ -593,7 +593,7 @@ void Login::RetrieveUserInfo()
                 Configuration::HuggleConfiguration->Rights.append(lRights_.at(c).toElement().text());
                 c++;
             }
-            if (Configuration::HuggleConfiguration->LocalConfig_RequireRollback &&
+            if (Configuration::HuggleConfiguration->ProjectConfig_RequireRollback &&
                 !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
                 /// \todo LOCALIZE ME
@@ -604,7 +604,7 @@ void Login::RetrieveUserInfo()
                 this->LoginQuery = NULL;
                 return;
             }
-            if (Configuration::HuggleConfiguration->LocalConfig_RequireAutoconfirmed &&
+            if (Configuration::HuggleConfiguration->ProjectConfig_RequireAutoconfirmed &&
                 !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
@@ -619,7 +619,7 @@ void Login::RetrieveUserInfo()
 
             QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
-            if (Configuration::HuggleConfiguration->LocalConfig_RequireEdits > editcount)
+            if (Configuration::HuggleConfiguration->ProjectConfig_RequireEdits > editcount)
             {
                 /// \todo LOCALIZE ME
                 this->ui->label_6->setText("Login failed because you don't have enough edits on this project");
@@ -675,7 +675,7 @@ void Login::Finish()
     }
     // we no longer need a password since this
     Configuration::HuggleConfiguration->TemporaryConfig_Password = pw;
-    this->ui->lineEdit_3->setText(pw);
+    this->ui->lineEdit_password->setText(pw);
     this->Progress(100);
     this->ui->label_6->setText("Loading main huggle window");
     this->timer->stop();
@@ -730,7 +730,7 @@ bool Login::ProcessOutput()
     if (Result == "WrongPass")
     {
         /// \bug This sometimes doesn't work properly
-        this->ui->lineEdit_3->setFocus();
+        this->ui->lineEdit_password->setFocus();
         this->DisplayError(Localizations::HuggleLocalizations->Localize("login-error-password"));
         return false;
     }
@@ -808,11 +808,11 @@ void Login::OnTimerTick()
         case RetrievingGlobalConfig:
             RetrieveGlobalConfig();
             break;
-        case RetrievingLocalConfig:
-            RetrieveLocalConfig();
+        case RetrievingProjectConfig:
+            RetrieveProjectConfig();
             break;
         case RetrievingUserConfig:
-            RetrievePrivateConfig();
+            RetrieveUserConfig();
             break;
         case RetrievingUser:
             RetrieveUserInfo();

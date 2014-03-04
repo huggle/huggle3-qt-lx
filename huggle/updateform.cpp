@@ -47,7 +47,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
     if (this->ui->checkBox->isChecked())
     {
         Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
-        Configuration::HuggleConfiguration->SaveConfig();
+        Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     this->close();
 }
