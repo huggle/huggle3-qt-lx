@@ -111,8 +111,11 @@ namespace Huggle
     //! Is configuration used for all wikimedia projects, stored on meta, it can't be overriden neither by users
     //! nor by project configs
 
-    //! Local config:
-    //! Is configuration local to projects, which contains definitions for templates and so on, this can be sometimes
+    //! Project config:
+    //! Is configuration local to projects, which can't be overriden by user config
+
+    //! Shared config:
+    //! Is configuration local to projects, which contains definitions for templates and so on, this can be
     //! overriden by user config
 
     //! User config:
@@ -139,9 +142,9 @@ namespace Huggle
              */
             static QString Bool2String(bool b);
             //! Save the local configuration to file
-            static void SaveConfig();
+            static void SaveSystemConfig();
             //! Load the local configuration from disk
-            static void LoadConfig();
+            static void LoadSystemConfig();
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
             /*!
@@ -181,7 +184,7 @@ namespace Huggle
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
             //! Parse all information from local config, this function is used in login
-            bool ParseLocalConfig(QString config);
+            bool ParseProjectConfig(QString config);
             bool ParseUserConfig(QString config);
             ////////////////////////////////////////////
             // System
@@ -285,19 +288,37 @@ namespace Huggle
             bool                    UserConfig_TruncateEdits;
             bool                    UserConfig_RevertNewBySame;
 
+
+            //////////////////////////////////////////////
+            // Global config
+            //////////////////////////////////////////////
+
+            bool        GlobalConfig_EnableAll;
+            QString     GlobalConfig_MinVersion;
+            QString     GlobalConfig_LocalConfigWikiPath;
+            QString     GlobalConfig_DocumentationPath;
+            QString     GlobalConfig_FeedbackPath;
+            QString     GlobalConfig_UserConf;
+            QString     GlobalConfig_UserConf_old;
+            bool        GlobalConfigWasLoaded;
+
             //////////////////////////////////////////////
             // Local config
             //////////////////////////////////////////////
 
             //! Minimal version of huggle required to use it
-            QString LocalConfig_MinimalVersion;
+            QString ProjectConfig_MinimalVersion;
             bool    LocalConfig_UseIrc;
-            bool    LocalConfig_RequireRollback;
-            bool    LocalConfig_RequireConfig;
-            bool    LocalConfig_RequireAdmin;
-            bool    LocalConfig_RequireAutoconfirmed;
-            bool    LocalConfig_EnableAll;
-            int     LocalConfig_RequireEdits;
+            //! If admin rights are required to use huggle
+            bool    ProjectConfig_RequireAdmin;
+            //! If autoconfirmed is required to use huggle
+            bool    ProjectConfig_RequireAutoconfirmed;
+            bool    ProjectConfig_RequireConfig;
+            //! Amount of edits required to use huggle
+            int     ProjectConfig_RequireEdits;
+            //! If rollback right is required to use huggle
+            bool    ProjectConfig_RequireRollback;
+            bool    ProjectConfig_EnableAll;
 
             bool            LocalConfig_AIV;
             bool            LocalConfig_AIVExtend;
@@ -416,20 +437,6 @@ namespace Huggle
             QString          LocalConfig_UAAPath;
             bool             LocalConfig_UAAavailable;
             QString          LocalConfig_UAATemplate;
-
-
-            //////////////////////////////////////////////
-            // Global config
-            //////////////////////////////////////////////
-
-            bool        GlobalConfig_EnableAll;
-            QString     GlobalConfig_MinVersion;
-            QString     GlobalConfig_LocalConfigWikiPath;
-            QString     GlobalConfig_DocumentationPath;
-            QString     GlobalConfig_FeedbackPath;
-            QString     GlobalConfig_UserConf;
-            QString     GlobalConfig_UserConf_old;
-            bool        GlobalConfigWasLoaded;
 
             //////////////////////////////////////////////
             // Login

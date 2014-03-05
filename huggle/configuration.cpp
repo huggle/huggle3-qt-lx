@@ -66,21 +66,21 @@ Configuration::Configuration()
     //////////////////////////////////////////////////////////////////////////////////////////
     // Local
     //////////////////////////////////////////////////////////////////////////////////////////
-    this->LocalConfig_MinimalVersion = "3.0.0.0";
+    this->ProjectConfig_MinimalVersion = "3.0.0.0";
     this->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
                                                "identified as test edits");
     this->LocalConfig_UseIrc = false;
-    this->LocalConfig_RequireAdmin = false;
-    this->LocalConfig_RequireAutoconfirmed = false;
-    this->LocalConfig_RequireConfig = false;
-    this->LocalConfig_RequireEdits = 0;
-    this->LocalConfig_RequireRollback = false;
+    this->ProjectConfig_RequireAdmin = false;
+    this->ProjectConfig_RequireAutoconfirmed = false;
+    this->ProjectConfig_RequireConfig = false;
+    this->ProjectConfig_RequireEdits = 0;
+    this->ProjectConfig_RequireRollback = false;
     this->LocalConfig_ConfirmOnSelfRevs = true;
     this->LocalConfig_ConfirmWL = true;
     this->LocalConfig_ConfirmTalk = true;
     this->LocalConfig_SharedIPTemplateTags = "";
     this->LocalConfig_SharedIPTemplate = "";
-    this->LocalConfig_EnableAll = false;
+    this->ProjectConfig_EnableAll = false;
     this->LocalConfig_ScoreTalk = -800;
     this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
     this->LocalConfig_DeletionSummaries << "Deleted page using Huggle";
@@ -369,6 +369,7 @@ bool Configuration::SafeBool(QString value, bool defaultvalue)
 
 QString Configuration::MakeLocalUserConfig()
 {
+    /// \todo rewrite to save all SharedConfig only if different from project
     QString configuration_ = "<nowiki>\n";
     configuration_ += "enable:true\n";
     configuration_ += "version:" + Configuration::HuggleConfiguration->HuggleVersion + "\n\n";
@@ -429,12 +430,12 @@ QString Configuration::MakeLocalUserConfig()
             configuration_ += "\n";
         }
     }
-    /// \todo Missing options from huggle 2
+    /// \todo Missing options
     configuration_ += "</nowiki>";
     return configuration_;
 }
 
-void Configuration::LoadConfig()
+void Configuration::LoadSystemConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
     Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
@@ -551,7 +552,7 @@ void Configuration::LoadConfig()
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
-void Configuration::SaveConfig()
+void Configuration::SaveSystemConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
     if (!file.open(QIODevice::WriteOnly))
@@ -601,7 +602,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     return true;
 }
 
-bool Configuration::ParseLocalConfig(QString config)
+bool Configuration::ParseProjectConfig(QString config)
 {
     //AIV
     this->LocalConfig_AIV = SafeBool(ConfigurationParse("aiv-reports", config));
@@ -613,12 +614,12 @@ bool Configuration::ParseLocalConfig(QString config)
     this->LocalConfig_ReportDefaultReason = ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\
                                                                "unconstructive edits found with [[WP:HG|Huggle 3]].");
     // Restrictions
-    this->LocalConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
-    this->LocalConfig_RequireAdmin = SafeBool(ConfigurationParse("require-admin", config));
-    this->LocalConfig_RequireAutoconfirmed = SafeBool(ConfigurationParse("require-autoconfirmed", config, "false"));
-    this->LocalConfig_RequireConfig = SafeBool(ConfigurationParse("require-config", config, "false"));
-    this->LocalConfig_RequireEdits = ConfigurationParse("require-edits", config, "0").toInt();
-    this->LocalConfig_RequireRollback = SafeBool(ConfigurationParse("require-rollback", config));
+    this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
+    this->ProjectConfig_RequireAdmin = SafeBool(ConfigurationParse("require-admin", config));
+    this->ProjectConfig_RequireAutoconfirmed = SafeBool(ConfigurationParse("require-autoconfirmed", config, "false"));
+    this->ProjectConfig_RequireConfig = SafeBool(ConfigurationParse("require-config", config, "false"));
+    this->ProjectConfig_RequireEdits = ConfigurationParse("require-edits", config, "0").toInt();
+    this->ProjectConfig_RequireRollback = SafeBool(ConfigurationParse("require-rollback", config));
     // IRC
     this->LocalConfig_UseIrc = SafeBool(ConfigurationParse("irc", config));
     // Ignoring
@@ -860,7 +861,7 @@ bool Configuration::ParseLocalConfig(QString config)
 bool Configuration::ParseUserConfig(QString config)
 {
     this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
-    this->LocalConfig_EnableAll = SafeBool(ConfigurationParse("enable", config));
+    this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable", config));
     this->LocalConfig_Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, this->LocalConfig_Ignores);
     this->LocalConfig_IPScore = ConfigurationParse("score-ip", config, QString::number(this->LocalConfig_IPScore)).toInt();
     this->LocalConfig_ScoreFlag = ConfigurationParse("score-flag", config, QString::number(this->LocalConfig_ScoreFlag)).toInt();
@@ -892,6 +893,9 @@ bool Configuration::ParseUserConfig(QString config)
 
 QString Configuration::ConfigurationParse(QString key, QString content, QString missing)
 {
+    /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
+    /// \todo maybe move it to Huggle::HuggleParser like ConfigurationParse_QL
+    // if first line in config
     if (content.startsWith(key + ":"))
     {
         QString value = content.mid(key.length() + 1);

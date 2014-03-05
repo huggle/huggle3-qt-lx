@@ -201,7 +201,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Next;
     }
-    Configuration::SaveConfig();
+    Configuration::SaveSystemConfig();
     this->hide();
 }
 
