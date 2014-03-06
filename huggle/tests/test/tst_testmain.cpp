@@ -57,6 +57,7 @@ void HuggleTest::testCaseCoreTrim()
 
 void HuggleTest::testCaseScores()
 {
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.clear();
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
@@ -139,6 +140,8 @@ void HuggleTest::testCaseScores()
     edit->SafeDelete();
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
+    delete Huggle::Configuration::HuggleConfiguration;
+    Huggle::Configuration::HuggleConfiguration = NULL;
 }
 
 void HuggleTest::testCaseWikiUserCheckIP()
@@ -152,6 +155,7 @@ void HuggleTest::testCaseWikiUserCheckIP()
 
 void HuggleTest::testCaseTerminalParser()
 {
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     QStringList list;
     list.append("huggle");
     list.append("-v");
@@ -190,6 +194,8 @@ void HuggleTest::testCaseTerminalParser()
     p->Silent = true;
     QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
     delete p;
+    delete Huggle::Configuration::HuggleConfiguration;
+    Huggle::Configuration::HuggleConfiguration = NULL;
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)
