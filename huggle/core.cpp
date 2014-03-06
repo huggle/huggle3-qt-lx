@@ -25,6 +25,9 @@ void Core::Init()
     {
         Syslog::HuggleLogs->Log("DEBUG: Huggle is running in a safe mode");
     }
+#ifdef HUGGLE_BREAKPAD
+    Syslog::HuggleLogs->Log("Dumping enabled using google breakpad");
+#endif
     this->gc = new GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
