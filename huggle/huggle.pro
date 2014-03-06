@@ -14,7 +14,7 @@ TARGET = huggle
 TEMPLATE = app
 
 # breakpad currently works in linux only
-linux-g++ {
+linux {
     LIBS += libbreakpad_client.a
     INCLUDEPATH += "breakpad/src"
 }
