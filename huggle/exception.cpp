@@ -10,6 +10,14 @@
 
 #include "exception.hpp"
 
+#ifdef __linux__
+    //linux code goes here
+QString Breakpad_DumpPath = "/tmp";
+#elif _WIN32
+    // windows code goes here
+QString Breakpad_DumpPath = QDir::tempPath();
+#endif
+
 using namespace Huggle;
 
 Exception::Exception(QString Text, bool __IsRecoverable)
@@ -33,4 +41,15 @@ Exception::Exception(QString Text, QString _Source, bool __IsRecoverable)
 bool Exception::IsRecoverable() const
 {
     return this->_IsRecoverable;
+}
+
+
+void Exception::InitBreakpad()
+{
+
+}
+
+void Exception::ExitBreakpad()
+{
+
 }

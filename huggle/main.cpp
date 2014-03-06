@@ -54,6 +54,7 @@ bool TerminalParse(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
+    Huggle::Exception::InitBreakpad();
     QApplication::setApplicationName("Huggle");
     QApplication::setOrganizationName("Wikimedia");
     try
@@ -61,6 +62,7 @@ int main(int argc, char *argv[])
         // check if arguments don't need to exit program
         if (!TerminalParse(argc, argv))
         {
+            Huggle::Exception::ExitBreakpad();
             return 0;
         }
         // we load the core
@@ -72,6 +74,7 @@ int main(int argc, char *argv[])
         Huggle::Core::HuggleCore->fLogin->show();
         ReturnCode = a.exec();
         delete Huggle::Core::HuggleCore;
+        Huggle::Exception::ExitBreakpad();
         return ReturnCode;
     } catch (Huggle::Exception *fail)
     {
@@ -80,12 +83,14 @@ int main(int argc, char *argv[])
         delete Huggle::Core::HuggleCore;
         ReturnCode = fail->ErrorCode;
         delete fail;
+        Huggle::Exception::ExitBreakpad();
         return ReturnCode;
     } catch (Huggle::Exception& fail)
     {
         Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail.Message
                                              + "\nSource: " + fail.Source);
         delete Huggle::Core::HuggleCore;
+        Huggle::Exception::ExitBreakpad();
         return fail.ErrorCode;
     }
 }

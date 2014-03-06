@@ -20,6 +20,23 @@
 
 #include <iostream>
 #include <QString>
+#include <QDir>
+
+//////////////////////////////////////////////////////////////////////////
+// Breakpad init
+//////////////////////////////////////////////////////////////////////////
+#ifdef __linux__
+    //linux code goes here
+#define HUGGLE_BREAKPAD
+#include "client/linux/handler/exception_handler.h"
+#elif _WIN32
+    // windows code goes here
+//#define HUGGLE_BREAKPAD
+#endif
+//////////////////////////////////////////////////////////////////////////
+// remaining code must be surrounded with directives
+//////////////////////////////////////////////////////////////////////////
+
 
 namespace Huggle
 {
@@ -27,6 +44,8 @@ namespace Huggle
     class Exception
     {
         public:
+            static void InitBreakpad();
+            static void ExitBreakpad();
             //! Error code
             int ErrorCode;
             //! Source
@@ -38,6 +57,10 @@ namespace Huggle
             Exception(QString Text, QString _Source, bool __IsRecoverable = true);
             bool IsRecoverable() const;
         private:
+#ifdef HUGGLE_BREAKPAD
+            google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
+            google_breakpad::ExceptionHandler   *GoogleBP_handler;
+#endif
             bool _IsRecoverable;
     };
 }

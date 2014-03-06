@@ -13,6 +13,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 TARGET = huggle
 TEMPLATE = app
 
+INCLUDEPATH += "breakpad"
+
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################
 #QMAKE_CXXFLAGS += -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
