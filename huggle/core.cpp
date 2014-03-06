@@ -18,6 +18,7 @@ Core  *Core::HuggleCore = NULL;
 void Core::Init()
 {
     this->StartupTime = QDateTime::currentDateTime();
+    Configuration::HuggleConfiguration = new Huggle::Configuration();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)

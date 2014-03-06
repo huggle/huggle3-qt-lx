@@ -12,7 +12,7 @@
 
 using namespace Huggle;
 
-Configuration * Configuration::HuggleConfiguration = new Configuration();
+Configuration * Configuration::HuggleConfiguration = NULL;
 
 Configuration::Configuration()
 {
