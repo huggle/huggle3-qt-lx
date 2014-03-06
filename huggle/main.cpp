@@ -75,14 +75,16 @@ int main(int argc, char *argv[])
         return ReturnCode;
     } catch (Huggle::Exception *fail)
     {
-        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message);
+        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message
+                                             + "\nSource: " + fail->Source);
         delete Huggle::Core::HuggleCore;
         ReturnCode = fail->ErrorCode;
         delete fail;
         return ReturnCode;
     } catch (Huggle::Exception& fail)
     {
-        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail.Message);
+        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail.Message
+                                             + "\nSource: " + fail.Source););
         delete Huggle::Core::HuggleCore;
         return fail.ErrorCode;
     }
