@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     } catch (Huggle::Exception& fail)
     {
         Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail.Message
-                                             + "\nSource: " + fail.Source););
+                                             + "\nSource: " + fail.Source);
         delete Huggle::Core::HuggleCore;
         return fail.ErrorCode;
     }
