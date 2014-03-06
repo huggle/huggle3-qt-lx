@@ -58,8 +58,8 @@ namespace Huggle
             bool IsRecoverable() const;
         private:
 #ifdef HUGGLE_BREAKPAD
-            google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
-            google_breakpad::ExceptionHandler   *GoogleBP_handler;
+            static google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
+            static google_breakpad::ExceptionHandler   *GoogleBP_handler;
 #endif
             bool _IsRecoverable;
     };

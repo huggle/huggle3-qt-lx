@@ -20,6 +20,34 @@ QString Breakpad_DumpPath = QDir::tempPath();
 
 using namespace Huggle;
 
+#ifdef HUGGLE_BREAKPAD
+google_breakpad::MinidumpDescriptor *Exception::GoogleBP_descriptor = NULL;
+google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
+#endif
+
+#if _MSC_VER
+    #pragma warning ( push )
+    #pragma warning ( disable )
+#else
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+
+static bool dumpCallback(const google_breakpad::MinidumpDescriptor& descriptor,
+                         void* context,
+                         bool succeeded)
+{
+    std::cout << "Dump path: " << descriptor.path() << std::endl;
+    return succeeded;
+}
+
+#if _MSC_VER
+    #pragma warning ( pop )
+#else
+    #pragma GCC diagnostic pop
+#endif
+
+
 Exception::Exception(QString Text, bool __IsRecoverable)
 {
     std::cerr << "FATAL Exception thrown: " + Text.toStdString() << std::endl;
@@ -46,10 +74,21 @@ bool Exception::IsRecoverable() const
 
 void Exception::InitBreakpad()
 {
-
+#ifdef HUGGLE_BREAKPAD
+    Exception::GoogleBP_descriptor = new google_breakpad::MinidumpDescriptor("/tmp");
+    Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(*Exception::GoogleBP_descriptor,
+                                                                         NULL,
+                                                                         dumpCallback,
+                                                                         NULL,
+                                                                         true,
+                                                                         -1);
+#endif
 }
 
 void Exception::ExitBreakpad()
 {
-
+#ifdef HUGGLE_BREAKPAD
+    delete Exception::GoogleBP_descriptor;
+    delete Exception::GoogleBP_handler;
+#endif
 }
