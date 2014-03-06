@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
     Huggle::Exception::InitBreakpad();
     QApplication::setApplicationName("Huggle");
     QApplication::setOrganizationName("Wikimedia");
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     try
     {
         // check if arguments don't need to exit program
