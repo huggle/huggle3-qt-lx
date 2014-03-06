@@ -226,6 +226,25 @@ if [ "$QT5" -eq 1 ];then
     checkhf xslt "/usr/include/libxslt/xslt.h"
 fi
 
+text "Checking for breakpad library"
+
+if [ ! -f libbreakpad_client.a ];then
+    ok
+    echo "Breakpad library is not present, building now..."
+    cd breakpad || exit 1
+    ./configure || exit 1
+    make || exit 1
+    if [ ! -f src/client/linux/libbreakpad_client.a ];then
+        echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
+        exit 1
+    fi
+    cp src/client/linux/libbreakpad_client.a .. || exit 1
+    cd .. || exit 1
+else
+    ok
+fi
+
+
 text "Executing update.sh... "
 if [ ! -f update.sh ];then
         fail

@@ -12,7 +12,7 @@ TARGET = tst_testmain
 CONFIG   += console
 CONFIG   -= app_bundle
 
-INCLUDEPATH += ../../breakpad
+INCLUDEPATH += ../../breakpad/src
 
 TEMPLATE = app
 
