@@ -76,8 +76,8 @@ void Collectable::RegisterConsumer(const int consumer)
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
     {
         this->Unlock();
-        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const int consumer = " +
-                                    QString::number(consumer) + ");
+        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const "\
+                                    "int consumer = " +  QString::number(consumer) + ")");
     }
     if (!this->iConsumers.contains(consumer))
     {
