@@ -23,6 +23,7 @@ using namespace Huggle;
 #ifdef HUGGLE_BREAKPAD
 google_breakpad::MinidumpDescriptor *Exception::GoogleBP_descriptor = NULL;
 google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
+//! \todo Fix this
     #if _MSC_VER
         #pragma warning ( push )
         #pragma warning ( disable )
@@ -31,9 +32,7 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
         #pragma GCC diagnostic ignored "-Wunused-parameter"
     #endif
 
-    static bool dumpCallback(const google_breakpad::MinidumpDescriptor& descriptor,
-                             void* context,
-                             bool succeeded)
+    static bool dumpCallback(const google_breakpad::MinidumpDescriptor& descriptor, void* context, bool succeeded)
     {
         std::cout << "Dump path: " << descriptor.path() << std::endl;
         return succeeded;
@@ -45,7 +44,6 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
         #pragma GCC diagnostic pop
     #endif
 #endif
-
 
 Exception::Exception(QString Text, bool __IsRecoverable)
 {
@@ -70,36 +68,29 @@ bool Exception::IsRecoverable() const
     return this->_IsRecoverable;
 }
 
-
 void Exception::InitBreakpad()
 {
 #ifdef HUGGLE_BREAKPAD
-#if HUGGLE_BREAKPAD == 0
-    // linux code
-    Exception::GoogleBP_descriptor = new google_breakpad::MinidumpDescriptor("/tmp");
-    Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(*Exception::GoogleBP_descriptor,
-                                                                         NULL,
-                                                                         dumpCallback,
-                                                                         NULL,
-                                                                         true,
-                                                                         -1);
-#endif
-#if HUGGLE_BREAKPAD == 1
-    // windows code
-    Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(Breakpad_DumpPath,
-                                                                         NULL,
-                                                                         dumpCallback,
-                                                                         NULL,
-                                                                         true,
-                                                                         -1);
-#endif
+    #if HUGGLE_BREAKPAD == 0
+        // linux code
+        Exception::GoogleBP_descriptor = new google_breakpad::MinidumpDescriptor("/tmp");
+        Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(*Exception::GoogleBP_descriptor,  NULL,
+                                                                             dumpCallback, NULL, true, -1);
+    #endif
+    #if HUGGLE_BREAKPAD == 1
+        // windows code
+        Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(Breakpad_DumpPath.toStdWString(), NULL, dumpCallback,
+                                                                            NULL, true, -1);
+    #endif
 #endif
 }
 
 void Exception::ExitBreakpad()
 {
 #ifdef HUGGLE_BREAKPAD
-    delete Exception::GoogleBP_descriptor;
+    #if HUGGLE_BREAKPAD == 0
+        delete Exception::GoogleBP_descriptor;
+    #endif
     delete Exception::GoogleBP_handler;
 #endif
 }
