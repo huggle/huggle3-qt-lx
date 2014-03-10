@@ -51,6 +51,15 @@ bool TerminalParse(int argc, char *argv[])
     return true;
 }
 
+int Fatal(Huggle::Exception *fail)
+{
+    Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message
+                                         + "\nSource: " + fail->Source);
+    delete Huggle::Core::HuggleCore;
+    Huggle::Exception::ExitBreakpad();
+    return fail->ErrorCode;;
+}
+
 int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
@@ -79,20 +88,12 @@ int main(int argc, char *argv[])
         return ReturnCode;
     } catch (Huggle::Exception *fail)
     {
-        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message
-                                             + "\nSource: " + fail->Source);
-        delete Huggle::Core::HuggleCore;
-        ReturnCode = fail->ErrorCode;
+        ReturnCode = Fatal(fail);
         delete fail;
-        Huggle::Exception::ExitBreakpad();
         return ReturnCode;
     } catch (Huggle::Exception& fail)
     {
-        Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail.Message
-                                             + "\nSource: " + fail.Source);
-        delete Huggle::Core::HuggleCore;
-        Huggle::Exception::ExitBreakpad();
-        return fail.ErrorCode;
+        return Fatal(&fail);
     }
 }
 

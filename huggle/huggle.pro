@@ -18,6 +18,10 @@ linux-g++ {
     LIBS += libbreakpad_client.a
     INCLUDEPATH += "breakpad/src"
 }
+linux {
+    LIBS += libbreakpad_client.a
+    INCLUDEPATH += "breakpad/src"
+}
 
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################
