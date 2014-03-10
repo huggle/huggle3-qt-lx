@@ -130,12 +130,17 @@ namespace Huggle
                 void Part(QString name);
                 void Data(QString text);
                 void Send(QString name, QString text);
+                /*!
+                 * \brief GetMessage provides a last message from any channel and remove it from buffer
+                 * \return NULL in case there is no message in buffer remaining or message
+                 */
+                Message* GetMessage();
+                //! Hostname of IRC server to use
                 QString Server;
                 QString Nick;
                 QString UserName;
                 QString Ident;
                 QMutex *MessagesLock;
-                Message* GetMessage();
                 QStringList Channels;
                 int Port;
                 QList<Message> Messages;

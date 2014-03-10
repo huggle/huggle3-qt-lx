@@ -523,9 +523,9 @@ void MainWindow::UpdateStatusBarData()
             color = "orange";
         }
         // make the numbers easier to read
-        EditsPerMinute = qRound(EditsPerMinute * 100) / 100;
-        RevertsPerMinute = qRound(RevertsPerMinute * 100) / 100;
-        VandalismLevel = qRound(VandalismLevel * 100) / 100;
+        EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
+        RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
+        VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
         t += " <font color=" + color + ">" + Core::ShrinkText(QString::number(EditsPerMinute), 6) + " edits per minute "
              + Core::ShrinkText(QString::number(RevertsPerMinute), 6) + " reverts per minute, level "
              + Core::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
