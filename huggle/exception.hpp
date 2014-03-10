@@ -31,8 +31,8 @@
 #include "client/linux/handler/exception_handler.h"
 #elif _WIN32
     // windows code goes here
-#define HUGGLE_BREAKPAD 1
-#include "client/windows/handler/exception_handler.h"
+//#define HUGGLE_BREAKPAD 1
+//#include "client/windows/handler/exception_handler.h"
 #endif
 //////////////////////////////////////////////////////////////////////////
 // remaining code must be surrounded with directives

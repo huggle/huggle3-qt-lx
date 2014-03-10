@@ -26,9 +26,9 @@ unix {
     LIBS += libbreakpad_client.a
 }
 
-win32 {
-    LIBS += libbreakpad_client.lib
-}
+#win32 {
+#    LIBS += libbreakpad_client.lib
+#}
 
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################
