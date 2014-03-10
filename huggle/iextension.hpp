@@ -28,7 +28,7 @@
 
 #if _MSC_VER
 #pragma warning ( push )
-#pragma warning ( disable )
+#pragma warning ( disable : 4100 )
 #else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -89,7 +89,7 @@ namespace Huggle
 }
 
 #if _MSC_VER
-#pragma warning ( pop )
+#pragma warning ( default: 4100 )
 #else
 #pragma GCC diagnostic pop
 #endif
