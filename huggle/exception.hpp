@@ -27,11 +27,12 @@
 //////////////////////////////////////////////////////////////////////////
 #ifdef __linux__
     //linux code goes here
-#define HUGGLE_BREAKPAD
+#define HUGGLE_BREAKPAD 0
 #include "client/linux/handler/exception_handler.h"
 #elif _WIN32
     // windows code goes here
-//#define HUGGLE_BREAKPAD
+#define HUGGLE_BREAKPAD 1
+#include "client/windows/handler/exception_handler.h"
 #endif
 //////////////////////////////////////////////////////////////////////////
 // remaining code must be surrounded with directives
@@ -58,7 +59,9 @@ namespace Huggle
             bool IsRecoverable() const;
         private:
 #ifdef HUGGLE_BREAKPAD
+#if HUGGLE_BREAKPAD == 0
             static google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
+#endif
             static google_breakpad::ExceptionHandler   *GoogleBP_handler;
 #endif
             bool _IsRecoverable;

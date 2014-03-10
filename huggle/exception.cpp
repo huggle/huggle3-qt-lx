@@ -74,6 +74,8 @@ bool Exception::IsRecoverable() const
 void Exception::InitBreakpad()
 {
 #ifdef HUGGLE_BREAKPAD
+#if HUGGLE_BREAKPAD == 0
+    // linux code
     Exception::GoogleBP_descriptor = new google_breakpad::MinidumpDescriptor("/tmp");
     Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(*Exception::GoogleBP_descriptor,
                                                                          NULL,
@@ -81,6 +83,16 @@ void Exception::InitBreakpad()
                                                                          NULL,
                                                                          true,
                                                                          -1);
+#endif
+#if HUGGLE_BREAKPAD == 1
+    // windows code
+    Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(Breakpad_DumpPath,
+                                                                         NULL,
+                                                                         dumpCallback,
+                                                                         NULL,
+                                                                         true,
+                                                                         -1);
+#endif
 #endif
 }
 
