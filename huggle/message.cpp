@@ -404,6 +404,7 @@ void Message::ProcessSend()
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }
+    Syslog::HuggleLogs->DebugLog(QString(" Message to %1 with parameters: %2").arg(this->user->Username, parameters), 2);
     Core::HuggleCore->AppendQuery(query);
     this->query->Process();
 }

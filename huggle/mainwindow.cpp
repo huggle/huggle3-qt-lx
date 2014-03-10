@@ -479,11 +479,11 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t = "Processing <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4)
-            + "</b>edits and <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4)
-            + "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size())
-            + "</b>  queue size: <b>" + Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4)
-            + "</b>Statistics: ";
+    QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b>  queue size: <b>%4"\
+                        "</b>Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4),
+                                                Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4),
+                                                QString::number(Configuration::HuggleConfiguration->WhiteList.size()),
+                                                Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4));
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
@@ -526,9 +526,10 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        t += " <font color=" + color + ">" + Core::ShrinkText(QString::number(EditsPerMinute), 6) + " edits per minute "
-             + Core::ShrinkText(QString::number(RevertsPerMinute), 6) + " reverts per minute, level "
-             + Core::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
+        t += QString(" <font color=%1>%2edits per minute %3reverts per minute, level %4</font>")
+                .arg(color, Core::ShrinkText(QString::number(EditsPerMinute), 6),
+                     Core::ShrinkText(QString::number(RevertsPerMinute), 6),
+                     Core::ShrinkText(QString::number(VandalismLevel), 8));
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
