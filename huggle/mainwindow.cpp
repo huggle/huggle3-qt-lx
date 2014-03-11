@@ -479,7 +479,7 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b>  queue size: <b>%4"\
+    QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b>queue size: <b>%4"\
                         "</b>Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4),
                                                 Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4),
                                                 QString::number(Configuration::HuggleConfiguration->WhiteList.size()),
