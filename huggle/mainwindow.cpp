@@ -480,8 +480,8 @@ void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
     QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b> Queue size: <b>%4"\
-                        "</b> Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4),
-                                                Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4),
+                        "</b> Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 3),
+                                                Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 3),
                                                 QString::number(Configuration::HuggleConfiguration->WhiteList.size()),
                                                 Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4));
     // calculate stats, but not if huggle uptime is lower than 50 seconds

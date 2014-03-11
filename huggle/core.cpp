@@ -241,9 +241,9 @@ QString Core::MonthText(int n)
 
 QString Core::ShrinkText(QString text, int size, bool html)
 {
-    if (size < 3)
+    if (size < 2)
     {
-        throw new Huggle::Exception("Parameter size must be more than 3", "QString Core::ShrinkText(QString text, int size)");
+        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
     }
     // let's copy the text into new variable so that we don't break the original
     // who knows how these mutable strings are going to behave in qt :D
@@ -251,8 +251,8 @@ QString Core::ShrinkText(QString text, int size, bool html)
     int length = text_.length();
     if (length > size)
     {
-        text_ = text_.mid(0, size - 3);
-        text_ = text_ + "...";
+        text_ = text_.mid(0, size - 2);
+        text_ = text_ + "..";
     } else while (text_.length() < size)
     {
         text_ += " ";
