@@ -479,8 +479,8 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b>queue size: <b>%4"\
-                        "</b>Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4),
+    QString t = QString("Processing <b>%1</b>edits and <b>%2</b>queries. Whitelisted users: <b>%3</b> Queue size: <b>%4"\
+                        "</b> Statistics: ").arg(Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 4),
                                                 Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 4),
                                                 QString::number(Configuration::HuggleConfiguration->WhiteList.size()),
                                                 Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4));
@@ -526,7 +526,7 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        t += QString(" <font color=%1>%2edits per minute %3reverts per minute, level %4</font>")
+        t += QString(" <font color=%1>%2 edits per minute %3 reverts per minute, level %4</font>")
                 .arg(color, Core::ShrinkText(QString::number(EditsPerMinute), 6),
                      Core::ShrinkText(QString::number(RevertsPerMinute), 6),
                      Core::ShrinkText(QString::number(VandalismLevel), 8));
