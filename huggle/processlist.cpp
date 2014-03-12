@@ -26,14 +26,10 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-#if QT_VERSION >= 0x050000
-// Qt5 code
-    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
-    //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
+    this->ui->tableWidget->setColumnWidth(0, 20);
+    this->ui->tableWidget->setColumnWidth(1, 200);
+    this->ui->tableWidget->setColumnWidth(2, 200);
+    this->ui->tableWidget->setColumnWidth(3, 80);
     this->ui->tableWidget->setShowGrid(false);
     this->Removed = new QList<ProcessListRemovedItem*> ();
 }

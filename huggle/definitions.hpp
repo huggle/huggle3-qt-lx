@@ -20,7 +20,7 @@
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
 
-//#define DISABLE_BREAKPAD
+#define DISABLE_BREAKPAD
 
 //! Change this to 1 if you want to get in troubles
 //! push 1 there and you will get even bigger troubles :-)

@@ -34,14 +34,12 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-#if QT_VERSION >= 0x050000
-// Qt5 code
-    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     this->ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setColumnWidth(0, 20);
+    this->ui->tableWidget->setColumnWidth(1, 80);
+    this->ui->tableWidget->setColumnWidth(2, 60);
+    this->ui->tableWidget->setColumnWidth(3, 80);
+    this->ui->tableWidget->setColumnWidth(4, 60);
     this->query = NULL;
     this->t1 = NULL;
 }
@@ -93,7 +91,6 @@ void HistoryForm::Update(WikiEdit *edit)
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
-    this->ui->tableWidget->clearContents();
     this->Clear();
     if (this->RetrievedEdit != NULL)
     {
