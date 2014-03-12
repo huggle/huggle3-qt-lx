@@ -21,22 +21,40 @@ QString Breakpad_DumpPath = QDir::tempPath();
 using namespace Huggle;
 
 #ifdef HUGGLE_BREAKPAD
-google_breakpad::MinidumpDescriptor *Exception::GoogleBP_descriptor = NULL;
 google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
-//! \todo Fix this
     #if _MSC_VER
         #pragma warning ( push )
-        #pragma warning ( disable )
+        #pragma warning ( disable : 4100 )
     #else
         #pragma GCC diagnostic push
         #pragma GCC diagnostic ignored "-Wunused-parameter"
     #endif
 
+#if HUGGLE_BREAKPAD == 0
+    google_breakpad::MinidumpDescriptor *Exception::GoogleBP_descriptor = NULL;
     static bool dumpCallback(const google_breakpad::MinidumpDescriptor& descriptor, void* context, bool succeeded)
     {
         std::cout << "Dump path: " << descriptor.path() << std::endl;
         return succeeded;
     }
+#endif
+
+#if HUGGLE_BREAKPAD == 1
+    // windows
+    const wchar_t kPipeName[] = L"\\\\.\\pipe\\BreakpadCrashServices\\Huggle";
+    bool dumpCallback(const wchar_t* dump_path, const wchar_t* minidump_id, void* context, EXCEPTION_POINTERS* exinfo,
+                      MDRawAssertionInfo* assertion, bool succeeded) {
+
+        if (succeeded)
+        {
+            std::cout << "Dump generated in " + Breakpad_DumpPath.toStdString() << std::endl;
+        } else
+        {
+            std::cout << "Failed to generate dump in " + Breakpad_DumpPath.toStdString() << std::endl;
+        }
+      return succeeded;
+    }
+#endif
 
     #if _MSC_VER
         #pragma warning ( pop )
@@ -80,7 +98,8 @@ void Exception::InitBreakpad()
     #if HUGGLE_BREAKPAD == 1
         // windows code
         Exception::GoogleBP_handler = new google_breakpad::ExceptionHandler(Breakpad_DumpPath.toStdWString(), NULL, dumpCallback,
-                                                                            NULL, true, -1);
+                                                                            NULL, google_breakpad::ExceptionHandler::HANDLER_ALL,
+                                                                            MiniDumpNormal, kPipeName, NULL);
     #endif
 #endif
 }
