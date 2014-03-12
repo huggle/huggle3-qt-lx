@@ -247,6 +247,8 @@ namespace Huggle
             bool            EnforceManualSoftwareRollback;
             //! List of characters that separate words from each other, like dot, space etc, used by score words
             QStringList     SystemConfig_WordSeparators;
+            //! This is affecting if columns are auto-sized or not
+            bool            SystemConfig_DynamicColsInList;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits;
             //! Changing this to true will make the Syslog write all data to a file

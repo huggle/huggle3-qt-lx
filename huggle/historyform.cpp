@@ -35,11 +35,23 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
-    this->ui->tableWidget->setColumnWidth(0, 20);
-    this->ui->tableWidget->setColumnWidth(1, 100);
-    this->ui->tableWidget->setColumnWidth(2, 60);
-    this->ui->tableWidget->setColumnWidth(3, 200);
-    this->ui->tableWidget->setColumnWidth(4, 60);
+    if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
+    {
+#if QT_VERSION >= 0x050000
+// Qt5 code
+        this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+// Qt4 code
+        this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
+    } else
+    {
+        this->ui->tableWidget->setColumnWidth(0, 20);
+        this->ui->tableWidget->setColumnWidth(1, 100);
+        this->ui->tableWidget->setColumnWidth(2, 60);
+        this->ui->tableWidget->setColumnWidth(3, 200);
+        this->ui->tableWidget->setColumnWidth(4, 60);
+    }
     this->query = NULL;
     this->t1 = NULL;
 }

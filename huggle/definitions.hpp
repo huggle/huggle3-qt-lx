@@ -20,7 +20,9 @@
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
 
-#define DISABLE_BREAKPAD
+// Uncomment this in order to disable breakpad, this is useful when you are having troubles
+// linking or building its libraries
+//  #define DISABLE_BREAKPAD
 
 //! Change this to 1 if you want to get in troubles
 //! push 1 there and you will get even bigger troubles :-)

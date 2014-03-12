@@ -216,6 +216,7 @@ Configuration::Configuration()
     this->SystemConfig_CacheHAN = 100;
     this->SystemConfig_UsingSSL = true;
     this->SystemConfig_Username = "User";
+    this->SystemConfig_DynamicColsInList = false;
     this->SystemConfig_RingLogMaxSize = 2000;
     this->SystemConfig_IRCConnectionTimeOut = 2;
     this->SystemConfig_LanguageSanity = false;
@@ -528,6 +529,11 @@ void Configuration::LoadSystemConfig()
             Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
             continue;
         }
+        if (key == "DynamicColsInList")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
         if (key == "WarnUserSpaceRoll")
         {
             Configuration::HuggleConfiguration->WarnUserSpaceRoll = Configuration::SafeBool(option.attribute("text"));
@@ -581,6 +587,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), x);
     InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, x);
     InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), x);
+    InsertConfig("DynamicColsInList", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), x);
     /////////////////////////////
     // Vandal network
     /////////////////////////////
