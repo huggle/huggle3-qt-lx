@@ -36,9 +36,9 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
     this->ui->tableWidget->setColumnWidth(0, 20);
-    this->ui->tableWidget->setColumnWidth(1, 80);
+    this->ui->tableWidget->setColumnWidth(1, 100);
     this->ui->tableWidget->setColumnWidth(2, 60);
-    this->ui->tableWidget->setColumnWidth(3, 80);
+    this->ui->tableWidget->setColumnWidth(3, 200);
     this->ui->tableWidget->setColumnWidth(4, 60);
     this->query = NULL;
     this->t1 = NULL;

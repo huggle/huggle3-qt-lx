@@ -28,7 +28,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
               Localizations::HuggleLocalizations->Localize("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
-    this->ui->tableWidget->setColumnWidth(0, 120);
+    this->ui->tableWidget->setColumnWidth(0, 180);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
 }

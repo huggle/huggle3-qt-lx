@@ -26,7 +26,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->ui->tableWidget->setColumnWidth(0, 20);
+    this->ui->tableWidget->setColumnWidth(0, 60);
     this->ui->tableWidget->setColumnWidth(1, 200);
     this->ui->tableWidget->setColumnWidth(2, 200);
     this->ui->tableWidget->setColumnWidth(3, 80);
