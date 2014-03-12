@@ -1684,6 +1684,7 @@ void MainWindow::Welcome()
     }
 
     this->CurrentEdit->User->Resync();
+    bool create_only = true;
 
     if (this->CurrentEdit->User->TalkPage_GetContents() != "")
     {
@@ -1691,6 +1692,9 @@ void MainWindow::Welcome()
                                   QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
         {
             return;
+        } else
+        {
+            create_only = false;
         }
     } else if (!this->CurrentEdit->User->TalkPage_WasRetrieved())
     {
@@ -1711,7 +1715,7 @@ void MainWindow::Welcome()
         Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->LocalConfig_WelcomeAnon,
                                       Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
                                       Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary,
-                                      false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime);
+                                      false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
 
@@ -1735,7 +1739,7 @@ void MainWindow::Welcome()
     this->CurrentEdit->User->TalkPage_SetContents(message);
     Core::HuggleCore->MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->LocalConfig_WelcomeTitle,
                                   Configuration::HuggleConfiguration->LocalConfig_WelcomeSummary, false, NULL,
-                                  false, false, true, this->CurrentEdit->TPRevBaseTime);
+                                  false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
