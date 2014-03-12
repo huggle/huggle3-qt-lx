@@ -41,7 +41,7 @@ Python
 To enable python engine you need to:
 
 * open huggle.pro and uncomment / add python library
-* open config.hpp and uncomment PYTHONENGINE
+* open definitions.hpp and uncomment #define PYTHONENGINE
 
 now rebuild huggle and pray
 
