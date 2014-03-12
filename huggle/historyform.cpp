@@ -52,6 +52,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
         this->ui->tableWidget->setColumnWidth(3, 200);
         this->ui->tableWidget->setColumnWidth(4, 60);
     }
+    this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->query = NULL;
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->t1 = NULL;
