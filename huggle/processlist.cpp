@@ -42,6 +42,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
         this->ui->tableWidget->setColumnWidth(2, 200);
         this->ui->tableWidget->setColumnWidth(3, 80);
     }
+    this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
     this->Removed = new QList<ProcessListRemovedItem*> ();
 }

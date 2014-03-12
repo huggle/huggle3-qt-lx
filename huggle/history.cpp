@@ -34,7 +34,7 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 // Qt4 code
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
+    this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
 }
 
