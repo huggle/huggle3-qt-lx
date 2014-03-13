@@ -89,10 +89,15 @@ namespace Huggle
                 NetworkIrc_th();
                 ~NetworkIrc_th();
                 void Data(QString text);
+                void Line(QString line);
+                void ProcessPrivmsg(QString source, QString parameters, QString message);
+                void ProcessJoin(QString source, QString channel);
+                void ProcessChannel(QString channel, QString data);
+                void ProcessKick(QString source, QString parameters, QString message);
+                void ProcessQuit(QString source, QString message);
+                void ProcessPart(QString source, QString channel, QString message);
                 bool Running;
                 NetworkIrc *root;
-                void Line(QString line);
-                void ProcessPrivmsg(QString source, QString xx);
                 bool __Connected;
                 bool __IsConnecting;
                 QStringList IncomingBuffer;

@@ -266,7 +266,7 @@ void NetworkIrc_th::Data(QString text)
 void NetworkIrc_th::Line(QString line)
 {
     QString Command = "";
-    QString Source = "";
+    QString Source_ = "";
     if (line.startsWith("PING :"))
     {
         QString text = line.mid(6);
@@ -277,17 +277,27 @@ void NetworkIrc_th::Line(QString line)
         return;
     }
 
-    QString xx = line;
-    xx = xx.mid(1);
-    Source = xx.mid(0, xx.indexOf(" "));
-    xx= xx.mid(xx.indexOf(" ") + 1);
-    if (!xx.contains(" "))
+    line.replace("\r\n", "");
+    QString Parameters_ = line;
+    QString Message_ = "";
+    Parameters_ = Parameters_.mid(1);
+    Source_ = Parameters_.mid(0, Parameters_.indexOf(" "));
+    Parameters_= Parameters_.mid(Parameters_.indexOf(" ") + 1);
+    if (!Parameters_.contains(" "))
     {
-        Command = xx;
+        Command = Parameters_;
     } else
     {
-        Command = xx.mid(0, xx.indexOf(" "));
-        xx = xx.mid(xx.indexOf(" ") + 1);
+        Command = Parameters_.mid(0, Parameters_.indexOf(" "));
+        Parameters_ = Parameters_.mid(Parameters_.indexOf(" ") + 1);
+    }
+
+    if (Parameters_.contains(" :"))
+    {
+        // we store the index so that we don't need to look it up twice
+        int index_ = Parameters_.indexOf(" :");
+        Message_ = Parameters_.mid(index_ + 2);
+        Parameters_ = Parameters_.mid(0, index_);
     }
 
     if (Command == "002")
@@ -296,35 +306,87 @@ void NetworkIrc_th::Line(QString line)
         this->__Connected = true;
         return;
     }
-    /// \todo implement PART
-    /// \todo implement KICK
-    /// \todo implement QUIT
     /// \todo implement TOPIC
     /// \todo implement CTCP
     /// \todo implement NOTICES
     if (Command == "PRIVMSG")
     {
-        ProcessPrivmsg(Source, xx);
+        this->ProcessPrivmsg(Source_, Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "JOIN")
+    {
+        this->ProcessJoin(Source_, Parameters_);
+        return;
+    }
+
+    if (Command == "322")
+    {
+        this->ProcessChannel(Source_, Parameters_);
+        return;
+    }
+
+    if (Command == "KICK")
+    {
+        this->ProcessKick(Source_, Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "QUIT")
+    {
+        this->ProcessQuit(Source_, Message_);
+        return;
+    }
+
+    if (Command == "PART")
+    {
+        this->ProcessPart(Source_, Parameters_, Message_);
         return;
     }
 }
 
-void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
+void NetworkIrc_th::ProcessPrivmsg(QString source, QString parameters, QString message)
 {
     User user;
     user.Nick = source.mid(0, source.indexOf("!"));
-    Message message;
-    if (!xx.contains("#") || !xx.contains(" :"))
+    Message Message_;
+    if (!parameters.contains("#"))
     {
         return;
     }
-    message.Channel = xx.mid(xx.indexOf("#"), xx.indexOf(" :"));
-    message.user = user;
-    xx = xx.replace("\r\n", "");
-    message.Text = xx.mid(xx.indexOf(" :") + 2);
+    Message_.Channel = parameters;
+    Message_.user = user;
+    Message_.Text = message;
     this->root->MessagesLock->lock();
-    this->root->Messages.append(message);
+    this->root->Messages.append(Message_);
     this->root->MessagesLock->unlock();
+}
+
+void NetworkIrc_th::ProcessJoin(QString source, QString channel)
+{
+    User user;
+    user.Nick = source.mid(0, source.indexOf("!"));
+}
+
+void NetworkIrc_th::ProcessChannel(QString channel, QString data)
+{
+
+}
+
+void NetworkIrc_th::ProcessKick(QString source, QString parameters, QString message)
+{
+
+}
+
+void NetworkIrc_th::ProcessQuit(QString source, QString message)
+{
+
+}
+
+void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message)
+{
+
 }
 
 void NetworkIrc_th::run()
