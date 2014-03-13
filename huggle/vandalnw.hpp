@@ -121,6 +121,7 @@ namespace Huggle
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
             void Message();
+            QString Channel;
             //! Prefix to special commands that are being sent to network to other users
             QString Prefix;
             bool DisplayUserTalk;
@@ -136,7 +137,11 @@ namespace Huggle
             void ProcessGood(WikiEdit *edit, QString user);
             void ProcessRollback(WikiEdit *edit, QString user);
             void ProcessSusp(WikiEdit *edit, QString user);
+            void UpdateHeader();
             Ui::VandalNw *ui;
+            //! This is to track the changes to user list so that we don't need to update text in header
+            //! when there is no change (that is actually CPU expensive operation)
+            bool UsersModified;
             //! Pointer to irc server
             Huggle::IRC::NetworkIrc *Irc;
             //! Using this we track if channel was joined or not, because we need to send

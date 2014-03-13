@@ -14,7 +14,6 @@ using namespace Huggle::IRC;
 
 NetworkIrc::NetworkIrc(QString server, QString nick)
 {
-    this->MessagesLock = new QMutex(QMutex::Recursive);
     this->Ident = "huggle";
     this->Nick = nick;
     this->Port = 6667;
@@ -23,12 +22,15 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Timer = new QTimer(this);
     this->NetworkSocket = NULL;
     this->NetworkThread = NULL;
+    this->MessagesLock = new QMutex(QMutex::Recursive);
+    this->ChannelsLock = new QMutex(QMutex::Recursive);
 }
 
 NetworkIrc::~NetworkIrc()
 {
     delete this->MessagesLock;
     delete this->NetworkSocket;
+    delete this->ChannelsLock;
     delete this->Timer;
     delete this->NetworkThread;
 }

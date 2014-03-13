@@ -21,6 +21,7 @@
 #include <Python.h>
 #endif
 
+#include <QHash>
 #include <QString>
 #include <QtNetwork>
 #include <QThread>
@@ -141,7 +142,8 @@ namespace Huggle
                 QString UserName;
                 QString Ident;
                 QMutex *MessagesLock;
-                QStringList Channels;
+                QHash<QString, Channel*> Channels;
+                QMutex *ChannelsLock;
                 int Port;
                 QList<Message> Messages;
             private slots:

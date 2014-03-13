@@ -15,7 +15,8 @@ using namespace Huggle;
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
-    this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server, Configuration::HuggleConfiguration->SystemConfig_Username);
+    this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server,
+                                    Configuration::HuggleConfiguration->SystemConfig_Username);
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
@@ -24,6 +25,8 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->DisplayUserTalk = true;
     this->Text = "";
     this->JoinedMain = false;
+    this->Channel = this->GetChannel();
+    this->UsersModified = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->Irc->UserName = Configuration::HuggleConfiguration->HuggleVersion;
 }
@@ -73,7 +76,7 @@ void VandalNw::Good(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->Prefix + "GOOD " + QString::number(Edit->RevID));
+    this->Irc->Send(this->Channel, this->Prefix + "GOOD " + QString::number(Edit->RevID));
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
@@ -82,7 +85,7 @@ void VandalNw::Rollback(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
+    this->Irc->Send(this->Channel, this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
@@ -91,7 +94,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
-    this->Irc->Send(this->GetChannel(), this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
+    this->Irc->Send(this->Channel, this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
 void VandalNw::WarningSent(WikiUser *user, int Level)
@@ -100,12 +103,13 @@ void VandalNw::WarningSent(WikiUser *user, int Level)
     {
         throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
     }
-    this->Irc->Send(this->GetChannel(), this->Prefix + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username));
+    this->Irc->Send(this->Channel, this->Prefix + "WARN " + QString::number(Level)
+                    + " " + QUrl::toPercentEncoding(user->Username));
 }
 
 QString VandalNw::GetChannel()
 {
-    return Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle";
+    return QString(Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle").toLower();
 }
 
 bool VandalNw::IsParsed(WikiEdit *edit)
@@ -186,7 +190,7 @@ void VandalNw::Message()
 {
     if (this->Irc->IsConnected())
     {
-        this->Irc->Send(this->GetChannel(), this->ui->lineEdit->text());
+        this->Irc->Send(this->Channel, this->ui->lineEdit->text());
         this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + ui->lineEdit->text(),
                      HAN::MessageType_UserTalk);
     }
@@ -229,6 +233,27 @@ void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
     Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
 }
 
+void VandalNw::UpdateHeader()
+{
+    if (!this->UsersModified)
+    {
+        return;
+    }
+    if (!this->Irc->IsConnected())
+    {
+        this->setWindowTitle("Network");
+    } else
+    {
+        this->Irc->ChannelsLock->lock();
+        if (this->Irc->Channels.contains(this->Channel))
+        {
+            this->setWindowTitle(QString("Network ($0)").arg(QString::number(this->Irc->Channels[this->Channel]->Users.count())));
+        }
+        this->Irc->ChannelsLock->unlock();
+    }
+    this->UsersModified = false;
+}
+
 void VandalNw::onTick()
 {
     if (!this->Irc->IsConnecting() && !this->Irc->IsConnected())
@@ -248,7 +273,7 @@ void VandalNw::onTick()
         this->JoinedMain = true;
         /// \todo LOCALIZE ME
         this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
-        this->Irc->Join(this->GetChannel());
+        this->Irc->Join(this->Channel);
     }
     Huggle::IRC::Message *m = this->Irc->GetMessage();
     if (m != NULL)
@@ -353,6 +378,7 @@ void VandalNw::onTick()
         }
         delete m;
     }
+    this->UpdateHeader();
 }
 
 void VandalNw::Insert(QString text, HAN::MessageType type)
