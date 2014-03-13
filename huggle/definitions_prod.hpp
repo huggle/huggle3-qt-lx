@@ -22,10 +22,8 @@
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
 // linking or building its libraries
-//  #define DISABLE_BREAKPAD
+//#define DISABLE_BREAKPAD
 
-//! Change this to 1 if you want to get in troubles
-//! push 1 there and you will get even bigger troubles :-)
 #define PRODUCTION_BUILD                0
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999

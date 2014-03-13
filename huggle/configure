@@ -244,7 +244,6 @@ else
     ok
 fi
 
-
 text "Executing update.sh... "
 if [ ! -f update.sh ];then
         fail
@@ -263,6 +262,13 @@ if [ ! -f version.txt ];then
 fi
 
 ok
+
+if [ ! -f definitions.hpp ];then
+    text "Making definitions.hpp"
+    cp definitions_prod.hpp definitions.hpp || exit 1
+    ok
+fi
+
 text "Preparing makefile hunker..."
 
 if [ ! -d hunker ];then
