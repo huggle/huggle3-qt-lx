@@ -22,7 +22,8 @@ Windows
 * Download OpenSSL and Visual C++ 2008 Redistributables from http://slproweb.com/products/Win32OpenSSL.html
 * Checkout this repository
 * Create empty version.txt in folder huggle
-* Open huggle.pro in that and hit build
+* Copy definitions_prod.hpp to definitions.hpp
+* Open huggle.pro and hit build
 
 Linux
 -------------
