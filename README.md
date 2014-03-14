@@ -21,9 +21,14 @@ Windows
 * Download QT Creator from http://qt-project.org/downloads
 * Download OpenSSL and Visual C++ 2008 Redistributables from http://slproweb.com/products/Win32OpenSSL.html
 * Checkout this repository
+* Enable powershell (run `Set-ExecutionPolicy unrestricted` as administrator in power shell)
+* Execute huggle/configure.ps1 in powershell (from folder huggle)
+* Open huggle.pro and hit build
+
+Note in case you don't have power shell you need to do these 2 steps before you can build huggle:
+
 * Create empty version.txt in folder huggle
 * Copy definitions_prod.hpp to definitions.hpp
-* Open huggle.pro and hit build
 
 Linux
 -------------
