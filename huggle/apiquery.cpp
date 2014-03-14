@@ -137,7 +137,7 @@ void ApiQuery::Finished()
 
 void ApiQuery::Process()
 {
-    if (this->Status =! Huggle::StatusNull)
+    if (this->Status != Huggle::StatusNull)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
