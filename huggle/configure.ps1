@@ -27,10 +27,13 @@ if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
     }
 }
 
+$definitions_created = 0;
+
 if (!(Test-Path "definitions.hpp"))
 {
     echo "Preparing definitions file..."
     Copy-Item "definitions_prod.hpp" "definitions.hpp"
+    $definitions_created = 1;
 }
 
 echo "Checking if there is breakpad in your build folder"
@@ -44,13 +47,16 @@ if (!(Test-Path("huggle.tmp")) -and !(Test-Path("exception_handler.lib")))
 #!!!!!!!  #LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
 "@
     cat "huggle.tmp" | %{$_ -replace ".*exception_handler\.lib.*", $replace} | Set-Content huggle.pro
+    if ($definitions_created -eq 1)
+    {
         $replace = @"
 // This line was replaced with power shell, DO NOT COMMIT THIS CHANGE
 #define DISABLE_BREAKPAD
 // End of modified code, nothing else changed
 "@
-    cat "definitions_prod.hpp" | %{$_ -replace ".*DISABLE_BREAKPAD.*", $replace} | Set-Content definitions.hpp
+        cat "definitions_prod.hpp" | %{$_ -replace ".*DISABLE_BREAKPAD.*", $replace} | Set-Content definitions.hpp
+    }
 }
 
 echo "It's all done, you can build huggle now from withing Qt creator!"
-pause
+Read-Host -Prompt "Press Enter to continue"
