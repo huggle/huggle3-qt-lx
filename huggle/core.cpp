@@ -731,7 +731,8 @@ void Core::CheckQueries()
         if (q->IsProcessed())
         {
             Finished.append(q);
-            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 6);
+            // this is pretty spamy :o
+            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 8);
             Core::Main->Queries->UpdateQuery(q);
             Core::Main->Queries->RemoveQuery(q);
         }
