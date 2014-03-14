@@ -12,7 +12,7 @@ echo "Creating version.txt"
 if (Test-Path("..\.git\FETCH_HEAD"))
 {
     $first, $lines = cat "..\.git\FETCH_HEAD"
-    echo $first | %{$_ -replace " .*", ""} | Set-Content version.txt
+    echo $first | %{$_ -replace "[\t\s].*", ""} | Set-Content version.txt
 } else
 {
     echo "Development (non-git)" > version.txt
