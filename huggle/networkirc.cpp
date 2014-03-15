@@ -28,16 +28,7 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
 
 NetworkIrc::~NetworkIrc()
 {
-    this->ChannelsLock->lock();
-    // we need to delete all instances of channels before we wipe the hash table
-    QStringList keys = this->Channels.keys();
-    while (keys.count() > 0)
-    {
-        delete this->Channels[keys.at(0)];
-        this->Channels.remove(keys.at(0));
-        keys.removeAt(0);
-    }
-    this->ChannelsLock->unlock();
+    this->ClearList();
     delete this->MessagesLock;
     delete this->NetworkSocket;
     delete this->ChannelsLock;
@@ -117,6 +108,7 @@ void NetworkIrc::Disconnect()
     this->Timer->stop();
     this->NetworkThread->__IsConnecting = false;
     this->NetworkThread->__Connected = false;
+    this->ClearList();
     if (this->NetworkThread != NULL)
     {
         // we have to request the network thread to stop
@@ -188,6 +180,20 @@ void NetworkIrc::OnTime()
     this->NetworkThread->lIOBuffers->unlock();
 }
 
+void NetworkIrc::ClearList()
+{
+    this->ChannelsLock->lock();
+    // we need to delete all instances of channels before we wipe the hash table
+    QStringList keys = this->Channels.keys();
+    while (keys.count() > 0)
+    {
+        delete this->Channels[keys.at(0)];
+        this->Channels.remove(keys.at(0));
+        keys.removeAt(0);
+    }
+    this->ChannelsLock->unlock();
+}
+
 Message::Message(QString text, User us)
 {
     this->Text = text;
@@ -222,9 +228,18 @@ Message::Message(Message *ms)
     this->user = ms->user;
 }
 
+User::User(QString nick)
+{
+    this->Nick = nick;
+    this->Ident = "";
+    this->SanitizeNick();
+    this->Host = "";
+}
+
 User::User(QString nick, QString ident, QString host)
 {
     this->Nick = nick;
+    this->SanitizeNick();
     this->Ident = ident;
     this->Host = host;
 }
@@ -248,6 +263,15 @@ User::User(const User &user)
     this->Host = user.Host;
     this->Ident = user.Ident;
     this->Nick = user.Nick;
+}
+
+void User::SanitizeNick()
+{
+    this->Nick.replace("@", "");
+    this->Nick.replace("~", "");
+    this->Nick.replace("+", "");
+    this->Nick.replace("%", "");
+    this->Nick.replace("&", "");
 }
 
 NetworkIrc_th::NetworkIrc_th()
@@ -336,9 +360,9 @@ void NetworkIrc_th::Line(QString line)
         return;
     }
 
-    if (Command == "322")
+    if (Command == "353")
     {
-        this->ProcessChannel(Source_, Parameters_);
+        this->ProcessChannel(Source_, Message_);
         return;
     }
 
@@ -380,8 +404,12 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString parameters, QString m
 
 void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message)
 {
-    User user;
-    user.Nick = source.mid(0, source.indexOf("!"));
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
     if (channel == "")
     {
         // some irc servers are providing channel name as a message and not
@@ -422,7 +450,30 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
 
 void NetworkIrc_th::ProcessChannel(QString channel, QString data)
 {
-
+    // first check if there is any instance for this channel
+    channel = channel.toLower();
+    this->root->ChannelsLock->lock();
+    Channel *channel_ = NULL;
+    if (this->root->Channels.contains(channel))
+    {
+        channel_ = this->root->Channels[channel];
+    } else
+    {
+        // we need to create a new instance now
+        channel_ = new Channel(channel);
+        this->root->Channels.insert(channel, channel_);
+    }
+    QStringList Users = data.split(" ");
+    while (Users.count() > 0)
+    {
+        QString user = Users.at(0);
+        if (user != "")
+        {
+            channel_->InsertUser(User(user));
+        }
+        Users.removeAt(0);
+    }
+    this->root->ChannelsLock->unlock();
 }
 
 void NetworkIrc_th::ProcessKick(QString source, QString parameters, QString message)

@@ -64,10 +64,12 @@ namespace Huggle
         class User
         {
             public:
+                User(QString nick);
                 User(QString nick, QString ident, QString host);
                 User();
                 User(User *user);
                 User(const User &user);
+                void SanitizeNick();
                 QString Ident;
                 QString Nick;
                 QString Host;
@@ -163,6 +165,7 @@ namespace Huggle
                 void OnReceive();
                 void OnTime();
             private:
+                void ClearList();
                 NetworkIrc_th *NetworkThread;
                 QTcpSocket *NetworkSocket;
                 QTimer *Timer;
