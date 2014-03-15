@@ -61,7 +61,7 @@ namespace Huggle
              * \brief Open a page but append action=render to it
              * \param url
              */
-            void DisplayPreFormattedPage(const QString &url);
+            void DisplayPreFormattedPage(QString url);
             void DisplayPage(const QString &url);
             /*!
              * \brief Display a html text in window of huggle

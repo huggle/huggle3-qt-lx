@@ -137,7 +137,7 @@ void ApiQuery::Finished()
 
 void ApiQuery::Process()
 {
-    if (this->Status == StatusProcessing)
+    if (this->Status != Huggle::StatusNull)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
@@ -152,7 +152,8 @@ void ApiQuery::Process()
     QUrl url;
     if (this->UsingPOST)
     {
-        url = QUrl::fromEncoded(this->ConstructParameterLessUrl().toUtf8());
+        this->URL = this->ConstructParameterLessUrl();
+        url = QUrl::fromEncoded(this->URL.toUtf8());
     } else
     {
         url = QUrl::fromEncoded(this->URL.toUtf8());
@@ -245,6 +246,5 @@ QString ApiQuery::QueryTargetToString()
 
 QString ApiQuery::QueryTypeToString()
 {
-    return "ApiQuery (" +
-            this->ActionPart + ")";
+    return "ApiQuery (" + this->ActionPart + ")";
 }
