@@ -13,6 +13,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 TARGET = huggle
 TEMPLATE = app
 INCLUDEPATH += "breakpad/src"
+DEFINES *= QT_USE_QSTRINGBUILDER
 
 linux-g++ {
     LIBS += libbreakpad_client.a

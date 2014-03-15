@@ -1751,7 +1751,7 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName ));
+        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )));
     }
 }
 
@@ -1813,10 +1813,10 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
     {
         if (this->CurrentEdit->Diff > 0)
         {
-            QDesktopServices::openUrl(Core::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff));
+            QDesktopServices::openUrl(QString(Core::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
         } else
         {
-            QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName);
+            QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName));
         }
     }
 }
@@ -1825,7 +1825,7 @@ void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit");
+        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
     }
 }
 
@@ -1833,7 +1833,7 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history");
+        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history"));
     }
 }
 
@@ -1977,8 +1977,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk()
-                                  + "?action=edit");
+        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
     }
 }
 
