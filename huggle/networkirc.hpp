@@ -48,6 +48,7 @@ namespace Huggle
                 Channel(QString name);
                 ~Channel();
                 void InsertUser(User user);
+                void RemoveUser(QString user);
                 //! Returns true in case that user list has changed and reset the value to false
                 //! useful for one time check if user list needs to be redrawn
                 bool UsersChanged();

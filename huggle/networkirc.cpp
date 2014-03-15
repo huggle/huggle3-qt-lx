@@ -362,7 +362,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "353")
     {
-        this->ProcessChannel(Source_, Message_);
+        this->ProcessChannel(Parameters_, Message_);
         return;
     }
 
@@ -450,6 +450,11 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
 
 void NetworkIrc_th::ProcessChannel(QString channel, QString data)
 {
+    if (!channel.contains("#"))
+    {
+        return;
+    }
+    channel = channel.mid(channel.indexOf("#"));
     // first check if there is any instance for this channel
     channel = channel.toLower();
     this->root->ChannelsLock->lock();
@@ -478,17 +483,65 @@ void NetworkIrc_th::ProcessChannel(QString channel, QString data)
 
 void NetworkIrc_th::ProcessKick(QString source, QString parameters, QString message)
 {
-
+    /// \todo This needs to be finished :P
+    Syslog::HuggleLogs->DebugLog("IRC kick " + source + parameters + message);
 }
 
 void NetworkIrc_th::ProcessQuit(QString source, QString message)
 {
-
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
+    // check all channels and remove the user
+    this->root->ChannelsLock->lock();
+    QStringList list = this->root->Channels.keys();
+    while(list.count() > 0)
+    {
+        Channel *channel_ = this->root->Channels[list.at(0)];
+        channel_->RemoveUser(user.Nick);
+        list.removeAt(0);
+    }
+    Syslog::HuggleLogs->DebugLog("IRC User " + user.Nick + " quit: " + message, 5);
+    this->root->ChannelsLock->unlock();
 }
 
 void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message)
 {
-
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
+    if (channel == "")
+    {
+        throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessPart("\
+                                    "QString source, QString channel, QString message)");
+    }
+    channel = channel.toLower();
+    // first lock the channel list and check if we know this channel
+    this->root->ChannelsLock->lock();
+    if (this->root->Channels.contains(channel))
+    {
+        // this is a known channel to us
+        Channel *channel_ptr_ = this->root->Channels[channel];
+        channel_ptr_->RemoveUser(user.Nick);
+        // check if the user who parts isn't us
+        if (user.Nick.toLower() == this->root->Nick.toLower())
+        {
+            // it is us, now we need to remove the channel from memory
+            delete channel_ptr_;
+            this->root->Channels.remove(channel);
+        }
+    } else
+    {
+        Syslog::HuggleLogs->DebugLog("Ignoring PART event for unknown channel, user " + user.Nick + " channel " + channel
+                                     + " reason " + message);
+    }
+    this->root->ChannelsLock->unlock();
 }
 
 void NetworkIrc_th::run()
@@ -557,6 +610,20 @@ void Channel::InsertUser(User user)
     }
     this->UsersLock->unlock();
     this->UsersChange_ = true;
+}
+
+void Channel::RemoveUser(QString user)
+{
+    // we need to keep the user nicks in lower case in hash so that we can't have multiple same nicks
+    // with different letter case which isn't possible on irc
+    QString nick = user.toLower();
+    this->UsersLock->lock();
+    if (this->Users.contains(nick))
+    {
+        this->Users.remove(user);
+        this->UsersChange_ = true;
+    }
+    this->UsersLock->unlock();
 }
 
 bool Channel::UsersChanged()

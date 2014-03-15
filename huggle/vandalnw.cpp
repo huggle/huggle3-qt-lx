@@ -60,6 +60,7 @@ void VandalNw::Connect()
         this->Irc->Connect();
         this->tm->start(200);
     }
+    this->UsersModified = true;
 }
 
 void VandalNw::Disconnect()
@@ -242,16 +243,20 @@ void VandalNw::UpdateHeader()
     if (!this->Irc->IsConnected())
     {
         this->setWindowTitle("Network");
+        this->UsersModified = false;
     } else
     {
         this->Irc->ChannelsLock->lock();
         if (this->Irc->Channels.contains(this->Channel))
         {
-            this->setWindowTitle(QString("Network ($0)").arg(QString::number(this->Irc->Channels[this->Channel]->Users.count())));
+            Huggle::IRC::Channel *channel_ = this->Irc->Channels[this->Channel];
+            if (channel_->UsersChanged())
+            {
+                this->setWindowTitle(QString("Network (" + QString::number(channel_->Users.count()) + ")"));
+            }
         }
         this->Irc->ChannelsLock->unlock();
     }
-    this->UsersModified = false;
 }
 
 void VandalNw::onTick()
@@ -270,6 +275,7 @@ void VandalNw::onTick()
     }
     if (!this->JoinedMain && this->Irc->IsConnected())
     {
+        this->UsersModified = true;
         this->JoinedMain = true;
         /// \todo LOCALIZE ME
         this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
