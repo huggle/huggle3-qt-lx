@@ -45,9 +45,17 @@ namespace Huggle
         class Channel
         {
             public:
-                Channel();
+                Channel(QString name);
+                ~Channel();
+                void InsertUser(User user);
+                //! Returns true in case that user list has changed and reset the value to false
+                //! useful for one time check if user list needs to be redrawn
+                bool UsersChanged();
                 QString Name;
-                QList<User> Users;
+                QHash<QString, User> Users;
+                QMutex *UsersLock;
+            private:
+                bool UsersChange_;
         };
 
         /*!
@@ -91,7 +99,7 @@ namespace Huggle
                 void Data(QString text);
                 void Line(QString line);
                 void ProcessPrivmsg(QString source, QString parameters, QString message);
-                void ProcessJoin(QString source, QString channel);
+                void ProcessJoin(QString source, QString channel, QString message);
                 void ProcessChannel(QString channel, QString data);
                 void ProcessKick(QString source, QString parameters, QString message);
                 void ProcessQuit(QString source, QString message);
