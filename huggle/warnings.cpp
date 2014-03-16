@@ -259,6 +259,12 @@ void Warnings::ResendWarnings()
                 continue;
             }
             Syslog::HuggleLogs->DebugLog("Failed to deliver message to " + warning->Warning->user->Username);
+            // we need to decrease the warning level of that user because we didn't deliver the warning message
+            if (warning->RelatedEdit->User->WarningLevel > 0)
+            {
+                warning->RelatedEdit->User->WarningLevel--;
+                warning->RelatedEdit->User->Update();
+            }
             // check if the warning wasn't delivered because someone edited the page
             if (warning->Warning->Error == Huggle::MessageError_Obsolete)
             {

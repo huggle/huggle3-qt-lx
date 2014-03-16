@@ -84,6 +84,7 @@ void WikiUser::UpdateUser(WikiUser *us)
                 ProblematicUsers.at(c)->IsReported = true;
             }
             ProblematicUsers.at(c)->_talkPageWasRetrieved = us->_talkPageWasRetrieved;
+            ProblematicUsers.at(c)->DateOfTalkPage = us->DateOfTalkPage;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
             WikiUser::ProblematicUserListLock.unlock();
             return;
@@ -209,6 +210,7 @@ void WikiUser::Resync()
         this->BadnessScore = user->BadnessScore;
         this->ContentsOfTalkPage = user->TalkPage_GetContents();
         this->_talkPageWasRetrieved = user->_talkPageWasRetrieved;
+        this->DateOfTalkPage = user->DateOfTalkPage;
         if (user->WarningLevel > this->WarningLevel)
         {
             this->WarningLevel = user->WarningLevel;
