@@ -347,7 +347,7 @@ void RevertQuery::CheckPreflight()
         if (e.attributes().contains("user"))
         {
             QString user = e.attribute("user");
-            if (PreviousEditsMadeBySameUser && this->edit->RevID != WIKI_UNKNOWN_REVID && RevID < edit->RevID)
+            if (PreviousEditsMadeBySameUser && this->edit->RevID != WIKI_UNKNOWN_REVID && RevID > this->edit->RevID)
             {
                 if (user != this->edit->User->Username)
                 {
