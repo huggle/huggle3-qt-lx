@@ -122,6 +122,7 @@ namespace Huggle
             //! T- has talkpage
             //! R - is registered
             //! E - exception
+            //! b - bot
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);

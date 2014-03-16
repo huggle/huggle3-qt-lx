@@ -362,6 +362,12 @@ void Message::ProcessSend()
             this->Error = Huggle::MessageError_Expired;
             this->_Status = Huggle::MessageStatus_Failed;
             return;
+        } else if (!this->CreateOnly && Configuration::HuggleConfiguration->Verbosity >= 2)
+        {
+            Syslog::HuggleLogs->DebugLog("Message to " + this->user->Username + " old " +
+                                         QString::number(this->user->TalkPage_RetrievalTime()
+                                         .addSecs(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness)
+                                         .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
     if (this->query != NULL)
