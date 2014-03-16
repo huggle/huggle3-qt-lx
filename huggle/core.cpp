@@ -569,7 +569,7 @@ void Core::Shutdown()
     Core::SaveDefs();
     Configuration::SaveSystemConfig();
 #ifdef PYTHONENGINE
-    if (!Configuration::HuggleConfiguration->_SafeMode)
+    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Huggle::Syslog::HuggleLogs->Log("Unloading python");
         delete this->Python;
