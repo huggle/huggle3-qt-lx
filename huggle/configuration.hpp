@@ -276,9 +276,10 @@ namespace Huggle
             //////////////////////////////////////////////
             // User
             //////////////////////////////////////////////
-            bool            UserConfig_EnforceMonthsAsHeaders;
+            bool                    UserConfig_EnforceMonthsAsHeaders;
+            unsigned int            UserConfig_TalkPageFreshness;
             //! If history and user info should be automatically loaded for every edit
-            bool            UserConfig_HistoryLoad;
+            bool                    UserConfig_HistoryLoad;
             //! Defines what should be done on next edit
             Configuration_OnNext    UserConfig_GoNext;
             bool                    UserConfig_DeleteEditsAfterRevert;

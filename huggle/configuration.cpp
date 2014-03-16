@@ -199,6 +199,7 @@ Configuration::Configuration()
     this->UserConfig_EnforceMonthsAsHeaders = true;
     this->UserConfig_DeleteEditsAfterRevert = true;
     this->UserConfig_SectionKeep = true;
+    this->UserConfig_TalkPageFreshness = 20;
 
     //////////////////////////////////////////////////////////////////////////////////////////
     //System

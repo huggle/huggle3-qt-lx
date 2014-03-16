@@ -332,6 +332,11 @@ bool WikiUser::IsWhitelisted()
     }
 }
 
+QDateTime WikiUser::TalkPage_RetrievalTime()
+{
+    return this->DateOfTalkPage;
+}
+
 long WikiUser::GetBadnessScore(bool _resync)
 {
     if (_resync)

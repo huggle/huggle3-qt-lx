@@ -48,6 +48,7 @@ namespace Huggle
         MessageError_NoError,
         MessageError_Dependency,
         MessageError_Obsolete,
+        MessageError_Expired,
         MessageError_Unknown
     };
 
@@ -86,6 +87,9 @@ namespace Huggle
             //! Text of message that will be appended to talk page
             QString Text;
             QString Summary;
+            //! Doesn't send a message in case that current talk page (if we have any) is older than specified time
+            //! stored as Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness
+            bool RequireFresh;
             MessageError Error;
             QString ErrorText;
             //! Changing this to true will make the message be appended to existing section of same name

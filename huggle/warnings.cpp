@@ -129,12 +129,13 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         CreateOnly = true;
     }
-    PendingWarning *PendingWarning_ = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_,
-                                             Summary_, true, Dependency, false,
-                                             Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
-                                             Edit->TPRevBaseTime, CreateOnly), WarningType, Edit);
+    PendingWarning *pw = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_,
+                                                                          Summary_, true, Dependency, false,
+                                                                          Configuration::HuggleConfiguration->UserConfig_SectionKeep,
+                                                                          false, Edit->TPRevBaseTime, CreateOnly, true
+                                                                          ), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
-    return PendingWarning_;
+    return pw;
 }
 
 void Warnings::ResendWarnings()
@@ -269,8 +270,25 @@ void Warnings::ResendWarnings()
                 }
                 warning->Query = new Huggle::ApiQuery();
                 warning->Query->SetAction(ActionQuery);
-                warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-                        QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
+                warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
+                                             "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
+                warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+                Core::HuggleCore->AppendQuery(warning->Query);
+                //! \todo LOCALIZE ME
+                warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
+                warning->Query->Process();
+            } else if (warning->Warning->Error == Huggle::MessageError_Expired)
+            {
+                Syslog::HuggleLogs->DebugLog("Expired " + warning->Warning->user->Username + " reparsing it now");
+                // we need to fetch the talk page again and later we need to issue new warning
+                if (warning->Query != NULL)
+                {
+                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
+                }
+                warning->Query = new Huggle::ApiQuery();
+                warning->Query->SetAction(ActionQuery);
+                warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
+                                             "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
                 warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
                 Core::HuggleCore->AppendQuery(warning->Query);
                 //! \todo LOCALIZE ME

@@ -29,6 +29,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->BaseTimestamp = "";
     this->CreateOnly = false;
     this->StartTimestamp = "";
+    this->RequireFresh = false;
     this->Error = MessageError_NoError;
     this->ErrorText = "";
     this->Title = "Message from " + Configuration::HuggleConfiguration->SystemConfig_Username;
@@ -46,6 +47,10 @@ Message::~Message()
 void Message::RetrieveToken()
 {
     this->_Status = Huggle::MessageStatus_RetrievingToken;
+    if (this->qToken != NULL)
+    {
+        Syslog::HuggleLogs->DebugLog("Memory leak at void Message::RetrieveToken()");
+    }
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
     this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->user->GetTalk());
@@ -164,10 +169,15 @@ void Message::Finish()
         // we really need to quit now because query is null
         return;
     }
+    // Check if we have a valid token
     if (!this->HasValidEditToken())
     {
         // we need to get a token
-        if (this->query == NULL)
+        if (this->_Status == Huggle::MessageStatus_RetrievingToken)
+        {
+            // we are already retrieving the token, so let's wait for it to finish
+            return;
+        } else
         {
             this->RetrieveToken();
             return;
@@ -343,6 +353,17 @@ void Message::PreflightCheck()
 void Message::ProcessSend()
 {
     this->_Status = MessageStatus_SendingMessage;
+    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness != 0)
+    {
+        if (!this->CreateOnly && (this->user->TalkPage_RetrievalTime().addSecs(
+                                  Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness
+                                      ) < QDateTime::currentDateTime()))
+        {
+            this->Error = Huggle::MessageError_Expired;
+            this->_Status = Huggle::MessageStatus_Failed;
+            return;
+        }
+    }
     if (this->query != NULL)
     {
         Syslog::HuggleLogs->DebugLog("Warning, Message::query != NULL on new allocation, possible memory leak in void Message::ProcessSend()");

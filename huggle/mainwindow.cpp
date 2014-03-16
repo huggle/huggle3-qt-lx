@@ -1607,10 +1607,7 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 
 void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
-    if (this->CurrentEdit != NULL)
-    {
-        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
-    }
+    this->IncreaseBS();
 }
 
 void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
