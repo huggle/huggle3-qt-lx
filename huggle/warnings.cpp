@@ -12,6 +12,7 @@
 
 using namespace Huggle;
 
+QList<PendingWarning*> PendingWarning::PendingWarnings;
 int PendingWarning::GCID = 0;
 
 PendingWarning::PendingWarning(Message *message, QString warning, WikiEdit *edit)
@@ -136,6 +137,157 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     return PendingWarning_;
 }
 
+void Warnings::ResendWarnings()
+{
+    int x = 0;
+    while (x < PendingWarning::PendingWarnings.count())
+    {
+        PendingWarning *warning = PendingWarning::PendingWarnings.at(x);
+        if (warning->Query != NULL)
+        {
+            // we are already getting talk page so we need to check if it finished here
+            if (warning->Query->IsProcessed())
+            {
+                // this query is done so we check if it fallen to error now
+                if (warning->Query->IsFailed())
+                {
+                    // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                    // in doing anything else to fix it.
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                     + " the warning will not be delivered to this user");
+                    PendingWarning::PendingWarnings.removeAt(x);
+                    delete warning;
+                    continue;
+                }
+                // we get the new talk page
+                QDomDocument TalkPage_;
+                TalkPage_.setContent(warning->Query->Result->Data);
+                QDomNodeList revisions_ = TalkPage_.elementsByTagName("rev");
+                QDomNodeList pages_ = TalkPage_.elementsByTagName("page");
+                QString TPRevBaseTime = "";
+                if (pages_.count() > 0)
+                {
+                    QDomElement e = pages_.at(0).toElement();
+                    if (e.attributes().contains("missing"))
+                    {
+                        // the talk page which existed was probably deleted by someone
+                        Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user "
+                                                     + warning->Warning->user->Username
+                                                     + " because it was deleted meanwhile, the warning will not be delivered to this user");
+                        PendingWarning::PendingWarnings.removeAt(x);
+                        delete warning;
+                        continue;
+                    }
+                }
+                // get last id
+                if (revisions_.count() > 0)
+                {
+                    QDomElement e = revisions_.at(0).toElement();
+                    if (e.nodeName() == "rev")
+                    {
+                        if (!e.attributes().contains("timestamp"))
+                        {
+                            Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + warning->Warning->user->Username +
+                                                                 " couldn't be retrieved, mediawiki returned no data for it");
+                            PendingWarning::PendingWarnings.removeAt(x);
+                            delete warning;
+                            continue;
+                        } else
+                        {
+                            TPRevBaseTime = e.attribute("timestamp");
+                        }
+                        warning->Warning->user->TalkPage_SetContents(e.text());
+                    } else
+                    {
+                        // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                        // in doing anything else to fix it.
+                        Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user "
+                                                     + warning->Warning->user->Username
+                                                     + " the warning will not be delivered to this user, check debug logs for more");
+                        Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
+                        PendingWarning::PendingWarnings.removeAt(x);
+                        delete warning;
+                        continue;
+                    }
+                } else
+                {
+                    // there was some error, which suck, we print it to console and delete this warning, there is a little point
+                    // in doing anything else to fix it.
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->user->Username
+                                     + " the warning will not be delivered to this user, check debug logs for more");
+                    Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
+                    PendingWarning::PendingWarnings.removeAt(x);
+                    delete warning;
+                    continue;
+                }
+
+                // so we now have the new talk page content so we need to reclassify the user
+                warning->Warning->user->ParseTP();
+
+                // now when we have the new level of warning we can try to send a new warning and hope that talk page wasn't
+                // changed meanwhile again lol :D
+                warning->RelatedEdit->TPRevBaseTime = TPRevBaseTime;
+                bool Report_;
+                PendingWarning *ptr_warning_ = Warnings::WarnUser(warning->Template, NULL, warning->RelatedEdit, &Report_);
+                if (Report_)
+                {
+                    Core::HuggleCore->Main->DisplayReportUserWindow(warning->RelatedEdit->User);
+                }
+                if (ptr_warning_ != NULL)
+                {
+                    PendingWarning::PendingWarnings.append(ptr_warning_);
+                }
+
+                // we can delete this warning now because we created another one
+                PendingWarning::PendingWarnings.removeAt(x);
+                delete warning;
+                continue;
+            }
+            // in case that it isn't processed yet we can continue on next warning
+            x++;
+            continue;
+        }
+
+        if (warning->Warning->IsFinished())
+        {
+            if (!warning->Warning->IsFailed())
+            {
+                // we no longer need to care about this one
+                PendingWarning::PendingWarnings.removeAt(x);
+                delete warning;
+                continue;
+            }
+            Syslog::HuggleLogs->DebugLog("Failed to deliver message to " + warning->Warning->user->Username);
+            // check if the warning wasn't delivered because someone edited the page
+            if (warning->Warning->Error == Huggle::MessageError_Obsolete)
+            {
+                Syslog::HuggleLogs->DebugLog("Someone changed the content of " + warning->Warning->user->Username + " reparsing it now");
+                // we need to fetch the talk page again and later we need to issue new warning
+                if (warning->Query != NULL)
+                {
+                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
+                }
+                warning->Query = new Huggle::ApiQuery();
+                warning->Query->SetAction(ActionQuery);
+                warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
+                        QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
+                warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+                Core::HuggleCore->AppendQuery(warning->Query);
+                //! \todo LOCALIZE ME
+                warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
+                warning->Query->Process();
+            } else
+            {
+                PendingWarning::PendingWarnings.removeAt(x);
+                delete warning;
+                continue;
+            }
+        }
+        x++;
+        continue;
+    }
+}
+
 void Warnings::ForceWarn(int Level, WikiEdit *Edit)
 {
     if (Configuration::HuggleConfiguration->Restricted)
@@ -150,7 +302,6 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     QString __template = "warning" + QString::number(Level);
-
     QString MessageText_ = Core::HuggleCore->RetrieveTemplateToWarn(__template);
 
     if (MessageText_ == "")
@@ -161,7 +312,6 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-
     QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
 
     switch (Level)

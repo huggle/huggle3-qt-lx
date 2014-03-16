@@ -18,6 +18,7 @@ QRegExp WikiUser::IPv6Regex("^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9]
                             "?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\\.(?4)){3}))$");
 QList<WikiUser*> WikiUser::ProblematicUsers;
 QMutex WikiUser::ProblematicUserListLock(QMutex::Recursive);
+QDateTime WikiUser::InvalidTime = QDateTime::fromMSecsSinceEpoch(2);
 
 WikiUser *WikiUser::RetrieveUser(WikiUser *user)
 {
@@ -112,6 +113,7 @@ WikiUser::WikiUser()
     this->WarningLevel = 0;
     this->IsBanned = false;
     this->ContentsOfTalkPage = "";
+    this->DateOfTalkPage = InvalidTime;
     this->IsReported = false;
     this->_talkPageWasRetrieved = false;
     this->WhitelistInfo = 0;
@@ -125,6 +127,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->Username = u->Username;
     this->WarningLevel = u->WarningLevel;
     this->BadnessScore = u->BadnessScore;
+    this->DateOfTalkPage = u->DateOfTalkPage;
     this->IsBanned = u->IsBanned;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
@@ -142,6 +145,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
     this->IsBanned = u.IsBanned;
+    this->DateOfTalkPage = u.DateOfTalkPage;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
     this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
     this->WhitelistInfo = u.WhitelistInfo;
@@ -166,6 +170,7 @@ WikiUser::WikiUser(QString user)
     this->Sanitize();
     this->IsBanned = false;
     this->_talkPageWasRetrieved = false;
+    this->DateOfTalkPage = InvalidTime;
     int c=0;
     this->ContentsOfTalkPage = "";
     while (c<ProblematicUsers.count())
@@ -239,6 +244,7 @@ void WikiUser::TalkPage_SetContents(QString text)
     this->UserLock->lock();
     this->_talkPageWasRetrieved = true;
     this->ContentsOfTalkPage = text;
+    this->DateOfTalkPage = QDateTime::currentDateTime();
     this->Update();
     this->UserLock->unlock();
 }

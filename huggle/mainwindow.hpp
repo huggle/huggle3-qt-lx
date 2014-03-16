@@ -151,10 +151,6 @@ namespace Huggle
             void SuspiciousEdit();
             void PatrolThis(WikiEdit *e = NULL);
             void Localize();
-            //! Checks all warnings that weren't sent and try to send them
-
-            //! This is used on talk pages of users which changed while we tried to send them a warning
-            void ResendWarning();
             void _BlockUser();
             void DisplayNext(Query *q = NULL);
             void DeletePage();
@@ -330,7 +326,6 @@ namespace Huggle
             //! Status bar
             QLabel *Status;
             bool EditablePage;
-            QList <PendingWarning*> PendingWarnings;
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;

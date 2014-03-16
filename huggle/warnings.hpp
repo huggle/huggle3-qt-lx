@@ -12,9 +12,7 @@
 #define WARNINGS_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
+// now we need to ensure that python is included first, seriously, Python.h is shitty enough that it requires to be
 // included first. Don't believe it? See this:
 // http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
@@ -22,6 +20,7 @@
 #endif
 
 #include <QString>
+#include <QList>
 #include "revertquery.hpp"
 #include "wikiedit.hpp"
 #include "core.hpp"
@@ -53,6 +52,7 @@ namespace Huggle
         public:
             //! Unique garbage collector id used to lock the edit related to this warning
             static int GCID;
+            static QList<PendingWarning*> PendingWarnings;
 
             PendingWarning(Message *message, QString warning, WikiEdit *edit);
             ~PendingWarning();
@@ -80,6 +80,10 @@ namespace Huggle
         PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
         //! This sends a warning to user no matter if they should receive it or not
         void ForceWarn(int Level, WikiEdit *Edit);
+        //! Checks all warnings that weren't sent and try to send them
+
+        //! This is used on talk pages of users which changed while we tried to send them a warning
+        void ResendWarnings();
         //! In case there is no shared IP
         QString UpdateSharedIPTemplate(WikiUser *User, QString Text);
     }
