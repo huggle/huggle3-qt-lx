@@ -258,6 +258,7 @@ bool WikiEdit::FinalizePostProcessing()
     this->qDifference = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
+    this->RegisterConsumer(HUGGLECONSUMER_PROCESSOR);
     ProcessorThread::PendingEdits.append(this);
     ProcessorThread::EditLock.unlock();
     return false;
@@ -417,6 +418,8 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
+    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+    edit->UnregisterConsumer(HUGGLECONSUMER_PROCESSOR);
     bool IgnoreWords = false;
     if (edit->IsRevert)
     {
@@ -493,6 +496,5 @@ void ProcessorThread::Process(WikiEdit *edit)
 
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
-    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     edit->Status = StatusPostProcessed;
 }
