@@ -483,6 +483,7 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     this->lock.lock();
     if (this->Buffer.size() == 0)
     {
+        this->lock.unlock();
         return NULL;
     }
     WikiEdit *edit = this->Buffer.at(0);
