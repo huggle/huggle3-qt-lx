@@ -168,134 +168,18 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     // this below looks like a nasty hack to filter out just what we need
     // but I will later use all of these actions for something too
-    if (flags.contains("patrol"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("thank"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("modify"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("rights"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("review"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("block"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("protect"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("reblock"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("unhelpful"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("helpful"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("approve"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("resolve"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("upload"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("feature"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("noaction"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("selfadd"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("overwrite"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("hit"))
-    {
-        // abuse filter hit
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("create"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("delete"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("move"))
-    {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-        return;
-    }
-
-    if (flags.contains("tag"))
+    if (flags.contains("thank") || flags.contains("modify") ||
+        flags.contains("rights") || flags.contains("review") ||
+        flags.contains("block") || flags.contains("protect") ||
+        flags.contains("reblock") || flags.contains("unhelpful") ||
+        flags.contains("helpful") || flags.contains("approve") ||
+        flags.contains("resolve") || flags.contains("upload") ||
+        flags.contains("feature") || flags.contains("noaction") ||
+        flags.contains("selfadd") || flags.contains("overwrite") ||
+        flags.contains("create") || flags.contains("delete") ||
+        flags.contains("restore") || flags.contains("move") ||
+        flags.contains("tag") || /* abuse filter */flags.contains("hit") ||
+        flags.contains("patrol"))
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
