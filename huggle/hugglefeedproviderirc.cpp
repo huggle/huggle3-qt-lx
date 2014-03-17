@@ -168,17 +168,17 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
     // this below looks like a nasty hack to filter out just what we need
     // but I will later use all of these actions for something too
-    if (flags.contains("thank") || flags.contains("modify") ||
-        flags.contains("rights") || flags.contains("review") ||
-        flags.contains("block") || flags.contains("protect") ||
-        flags.contains("reblock") || flags.contains("unhelpful") ||
-        flags.contains("helpful") || flags.contains("approve") ||
-        flags.contains("resolve") || flags.contains("upload") ||
-        flags.contains("feature") || flags.contains("noaction") ||
-        flags.contains("selfadd") || flags.contains("overwrite") ||
-        flags.contains("create") || flags.contains("delete") ||
-        flags.contains("restore") || flags.contains("move") ||
-        flags.contains("tag") || /* abuse filter */flags.contains("hit") ||
+    if (flags.contains("thank")    || flags.contains("modify") ||
+        flags.contains("rights")   || flags.contains("review") ||
+        flags.contains("block")    || flags.contains("protect") ||
+        flags.contains("reblock")  || flags.contains("unhelpful") ||
+        flags.contains("helpful")  || flags.contains("approve") ||
+        flags.contains("resolve")  || flags.contains("upload") ||
+        flags.contains("feature")  || flags.contains("noaction") ||
+        flags.contains("selfadd")  || flags.contains("overwrite") ||
+        flags.contains("create")   || flags.contains("delete") ||
+        flags.contains("restore")  || flags.contains("move") ||
+        flags.contains("tag")      || /* abuse filter */flags.contains("hit") ||
         flags.contains("patrol"))
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
