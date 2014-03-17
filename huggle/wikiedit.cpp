@@ -21,7 +21,6 @@ WikiEdit::WikiEdit()
     this->Minor = false;
     this->NewPage = false;
     this->Size = 0;
-    this->User = NULL;
     this->Diff = 0;
     this->OldID = 0;
     this->Summary = "";
@@ -76,6 +75,14 @@ WikiEdit::~WikiEdit()
         {
             this->Next->Previous = NULL;
         }
+    }
+    if (this->qDifference != NULL)
+    {
+        this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+    }
+    if (this->qTalkpage != NULL)
+    {
+        this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     }
     delete this->User;
     delete this->Page;
@@ -173,7 +180,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->qDifference->Result->Failed)
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            this->qDifference->UnregisterConsumer("WikiEdit::PostProcess()");
+            this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
             this->qDifference = NULL;
             this->PostProcessing = false;
             return true;
@@ -245,9 +252,9 @@ bool WikiEdit::FinalizePostProcessing()
         Huggle::Syslog::HuggleLogs->ErrorLog("no diff available for " + this->Page->PageName + " unable to rescore");
     }
 
-    this->qTalkpage->UnregisterConsumer("WikiEdit::PostProcess()");
+    this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qTalkpage = NULL;
-    this->qDifference->UnregisterConsumer("WikiEdit::PostProcess()");
+    this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qDifference = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
@@ -340,7 +347,7 @@ void WikiEdit::PostProcess()
     this->qTalkpage->SetAction(ActionQuery);
     this->qTalkpage->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
                                         QUrl::toPercentEncoding(this->User->GetTalk());
-    this->qTalkpage->RegisterConsumer("WikiEdit::PostProcess()");
+    this->qTalkpage->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     Core::HuggleCore->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
@@ -362,7 +369,7 @@ void WikiEdit::PostProcess()
     this->qDifference->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
     Core::HuggleCore->AppendQuery(this->qDifference);
-    this->qDifference->RegisterConsumer("WikiEdit::PostProcess()");
+    this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qDifference->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
