@@ -132,7 +132,7 @@ void NetworkIrc::Data(QString text)
     {
         throw new Exception("You can't send data to network which you never connected to", "void NetworkIrc::Data(QString text)");
     }
-    this->NetworkSocket->write((text + "\n").toUtf8());
+    this->NetworkSocket->write(QString(text + "\n").toUtf8());
 }
 
 void NetworkIrc::Send(QString name, QString text)
