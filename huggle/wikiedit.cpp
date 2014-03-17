@@ -408,6 +408,7 @@ void ProcessorThread::run()
         while (e<ProcessorThread::PendingEdits.count())
         {
             this->Process(PendingEdits.at(e));
+            PendingEdits.at(e)->UnregisterConsumer(HUGGLECONSUMER_PROCESSOR);
             e++;
         }
         PendingEdits.clear();
@@ -418,8 +419,6 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
-    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
-    edit->UnregisterConsumer(HUGGLECONSUMER_PROCESSOR);
     bool IgnoreWords = false;
     if (edit->IsRevert)
     {

@@ -43,6 +43,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     {
         throw new Exception("WikiEdit *page must not be NULL", "void HuggleQueue::AddItem(WikiEdit *page)");
     }
+    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (Core::HuggleCore->Main != NULL)
     {
         if (Core::HuggleCore->Main->VandalDock != NULL)
@@ -50,7 +51,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
             if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
             {
                 // we don't even need to insert this page to queue
-                page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+                page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
                 return;
             }
             Core::HuggleCore->Main->VandalDock->Rescore(page);
@@ -90,7 +91,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
             // we found it
             Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
             WikiEdit::Lock_EditList->unlock();
-            page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+            page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
             return;
         }
         WikiEdit::Lock_EditList->unlock();
@@ -104,9 +105,6 @@ void HuggleQueue::AddItem(WikiEdit *page)
 
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
-    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
-    // we no longer to prevent this from being deleted because we already have different lock for that
-    page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)

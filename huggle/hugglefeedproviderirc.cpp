@@ -490,7 +490,6 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     this->Buffer.removeAt(0);
     this->lock.unlock();
     Core::HuggleCore->PostProcessEdit(edit);
-    edit->RegisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     return edit;
 }

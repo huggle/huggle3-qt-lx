@@ -828,6 +828,7 @@ void MainWindow::OnMainTimerTick()
             if (edit != NULL)
             {
                 Core::HuggleCore->PostProcessEdit(edit);
+                edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
                 this->PendingEdits.append(edit);
             }
         }
@@ -840,8 +841,10 @@ void MainWindow::OnMainTimerTick()
         {
             if (this->PendingEdits.at(c)->IsPostProcessed())
             {
-                this->Queue1->AddItem(this->PendingEdits.at(c));
+                WikiEdit *edit = this->PendingEdits.at(c);
+                this->Queue1->AddItem(edit);
                 this->PendingEdits.removeAt(c);
+                edit->UnregisterConsumer(HUGGLECONSUMER_MAINPEND);
             } else
             {
                 c++;

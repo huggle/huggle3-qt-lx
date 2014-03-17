@@ -682,7 +682,6 @@ void Core::PostProcessEdit(WikiEdit *_e)
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
     _e->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-    _e->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
     _e->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     _e->PostProcess();
     Core::ProcessingEdits.append(_e);
