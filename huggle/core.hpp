@@ -186,7 +186,6 @@ namespace Huggle
                                  Query *DependencyRevert = NULL, bool NoSuffix = false, bool SectionKeep = false,
                                  bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
             void FinalizeMessages();
-            QString RetrieveTemplateToWarn(QString type);
             EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false, QString BaseTimestamp = "");
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched

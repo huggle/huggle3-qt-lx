@@ -84,6 +84,7 @@ namespace Huggle
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
         void ResendWarnings();
+        QString RetrieveTemplateToWarn(QString type);
         //! In case there is no shared IP
         QString UpdateSharedIPTemplate(WikiUser *User, QString Text);
     }

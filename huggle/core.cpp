@@ -378,20 +378,6 @@ void Core::FinalizeMessages()
     }
 }
 
-QString Core::RetrieveTemplateToWarn(QString type)
-{
-    int x=0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.count())
-    {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
-        {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
-        }
-        x++;
-    }
-    return "";
-}
-
 EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
 {
     if (page == NULL)

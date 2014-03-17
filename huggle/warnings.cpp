@@ -82,7 +82,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     QString Template_ = WarningType + QString::number(Edit->User->WarningLevel);
-    QString MessageText_ = Core::HuggleCore->RetrieveTemplateToWarn(Template_);
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_);
 
     if (MessageText_ == "")
     {
@@ -326,7 +326,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     QString __template = "warning" + QString::number(Level);
-    QString MessageText_ = Core::HuggleCore->RetrieveTemplateToWarn(__template);
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template);
 
     if (MessageText_ == "")
     {
@@ -364,6 +364,20 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
     Core::HuggleCore->MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
                                Configuration::HuggleConfiguration->UserConfig_SectionKeep, true, Edit->TPRevBaseTime);
+}
+
+QString Warnings::RetrieveTemplateToWarn(QString type)
+{
+    int x=0;
+    while (x < Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.count())
+    {
+        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
+        {
+            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
+        }
+        x++;
+    }
+    return "";
 }
 
 QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text)
