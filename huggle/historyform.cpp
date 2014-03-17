@@ -22,7 +22,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("History"));
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
     this->ui->tableWidget->setColumnCount(6);
-    this->SelectedRow = 0;
+    this->SelectedRow = -1;
     this->PreviouslySelectedRow = 2;
     QStringList header;
     header << "" << Huggle::Localizations::HuggleLocalizations->Localize("user")
@@ -343,10 +343,16 @@ void HistoryForm::Clear()
     {
         this->ui->tableWidget->removeRow(0);
     }
+    this->SelectedRow = -1;
 }
 
 void HistoryForm::Display(int row, QString html, bool turtlemode)
 {
+    if (row == this->SelectedRow)
+    {
+        // there is nothing to do because we want to display exactly that row which was already selected
+        return;
+    }
     if (this->query != NULL || this->RetrievingEdit)
     {
         // we must not retrieve edit until previous operation did finish
@@ -415,16 +421,22 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
 void HistoryForm::MakeSelectedRowBold()
 {
     QFont font;
-    font.setBold(true);
-    this->ui->tableWidget->item(this->SelectedRow, 1)->setFont(font);
-    this->ui->tableWidget->item(this->SelectedRow, 2)->setFont(font);
-    this->ui->tableWidget->item(this->SelectedRow, 3)->setFont(font);
-    this->ui->tableWidget->item(this->SelectedRow, 4)->setFont(font);
-    this->ui->tableWidget->item(this->SelectedRow, 5)->setFont(font);
-    font.setBold(false);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 1)->setFont(font);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 2)->setFont(font);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->setFont(font);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->setFont(font);
-    this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->setFont(font);
+    if (this->SelectedRow != -1)
+    {
+        font.setBold(true);
+        this->ui->tableWidget->item(this->SelectedRow, 1)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 2)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 3)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 4)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 5)->setFont(font);
+    }
+    if (this->PreviouslySelectedRow != -1)
+    {
+        font.setBold(false);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 1)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 2)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->setFont(font);
+    }
 }
