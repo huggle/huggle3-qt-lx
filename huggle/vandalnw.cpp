@@ -29,6 +29,12 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->UsersModified = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->Irc->UserName = Configuration::HuggleConfiguration->HuggleVersion;
+    this->ui->tableWidget->setColumnCount(1);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setShowGrid(false);
 }
 
 VandalNw::~VandalNw()
@@ -246,6 +252,7 @@ void VandalNw::UpdateHeader()
         this->UsersModified = false;
     } else
     {
+        QStringList users;
         this->Irc->ChannelsLock->lock();
         if (this->Irc->Channels.contains(this->Channel))
         {
@@ -253,9 +260,26 @@ void VandalNw::UpdateHeader()
             if (channel_->UsersChanged())
             {
                 this->setWindowTitle(QString("Network (" + QString::number(channel_->Users.count()) + ")"));
+                // users
+                users = channel_->Users.keys();
             }
         }
         this->Irc->ChannelsLock->unlock();
+        if (users.count() > 0)
+        {
+            // remove all items from list
+            while (this->ui->tableWidget->rowCount() > 0)
+            {
+                this->ui->tableWidget->removeRow(0);
+            }
+            while (users.count() > 0)
+            {
+                this->ui->tableWidget->insertRow(0);
+                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0)));
+                users.removeAt(0);
+            }
+            this->ui->tableWidget->resizeRowsToContents();
+        }
     }
 }
 
