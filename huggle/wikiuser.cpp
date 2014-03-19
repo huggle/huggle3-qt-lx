@@ -260,6 +260,8 @@ void WikiUser::Update(bool MatchingOnly)
     WikiUser::ProblematicUserListLock.lock();
     if (MatchingOnly)
     {
+        // here we want to update the user only if it already is in database so we
+        // need to check if it is there and if yes, we continue
         if (WikiUser::RetrieveUser(this) == NULL)
         {
             WikiUser::ProblematicUserListLock.unlock();

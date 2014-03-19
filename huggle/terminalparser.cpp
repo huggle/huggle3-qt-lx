@@ -104,14 +104,14 @@ void TerminalParser::DisplayHelp()
     {
         return;
     }
-    cout << "Huggle 3 QT-LX" << endl << endl;
-    cout << "Parameters:" << endl;
-    cout << "  -v: Increases verbosity" << endl;
-    cout << "  --safe: Start huggle in special mode where lot of stuff is skipped during load" << endl;
-    cout << "  --dot: Debug on terminal only mode" << endl;
-    cout << "  --syslog [file]: Will write a logs to a file" << endl;
-    cout << "  --language-test: Will perform CPU expensive language test on startup, which report warnings found in localization files.\n"\
-            "                   this option is useful for developers and people who create localization files." << endl;
-    cout << "  -h | --help: Display this help" << endl<< endl;
-    cout << "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
+    cout << "Huggle 3 QT-LX\n\n"\
+            "Parameters:\n"\
+            "  -v: Increases verbosity\n"\
+            "  --safe: Start huggle in special mode where lot of stuff is skipped during load\n"\
+            "  --dot: Debug on terminal only mode\n"\
+            "  --syslog [file]: Will write a logs to a file\n"\
+            "  --language-test: Will perform CPU expensive language test on startup, which report warnings found in localization files.\n"\
+            "                   this option is useful for developers and people who create localization files.\n"\
+            "  -h | --help: Display this help\n\n"\
+            "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }
