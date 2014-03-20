@@ -6,6 +6,10 @@ language: cpp
 env:
   - THENEEDFORTHIS=FAIL
 
+branches:
+  except:
+    - ubuntu
+
 matrix:
   include:
     - env: QTTYPE=4
