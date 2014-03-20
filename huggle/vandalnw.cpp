@@ -252,7 +252,7 @@ void VandalNw::UpdateHeader()
         this->UsersModified = false;
     } else
     {
-        QStringList users;
+        QList<IRC::User> users;
         this->Irc->ChannelsLock->lock();
         if (this->Irc->Channels.contains(this->Channel))
         {
@@ -261,7 +261,7 @@ void VandalNw::UpdateHeader()
             {
                 this->setWindowTitle(QString("Network (" + QString::number(channel_->Users.count()) + ")"));
                 // users
-                users = channel_->Users.keys();
+                users = channel_->Users.values();
             }
         }
         this->Irc->ChannelsLock->unlock();
@@ -274,8 +274,11 @@ void VandalNw::UpdateHeader()
             }
             while (users.count() > 0)
             {
-                this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0)));
+                if (users.at(0).Nick != "ChanServ")
+                {
+                    this->ui->tableWidget->insertRow(0);
+                    this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0).Nick));
+                }
                 users.removeAt(0);
             }
             this->ui->tableWidget->resizeRowsToContents();
