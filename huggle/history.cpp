@@ -17,6 +17,7 @@ int History::Last = 0;
 History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     this->ui->setupUi(this);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userhistory-title"));
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
     header << Localizations::HuggleLocalizations->Localize("[[id]]") <<

@@ -1,9 +1,6 @@
-﻿<pre>
-name:                      Čeština
-</pre>
+﻿name:                      Čeština
 
 === General ===
-<pre>
 add:                       Přidat
 apply:                     Použít
 cancel:                    Zrušit
@@ -49,7 +46,7 @@ expiry-time:               Datum vypršení
 duration:                  Doba
 no-token:                  Chybí token
 flags:                     Flagy
-</pre>
+logs-widget-name:          Logy
 
 === Browser ===
 <pre>
@@ -181,20 +178,20 @@ delete-notify:             Notify creator
 </pre>
 
 === History form ===
-<pre>
+historyform-title:                     Historie
 historyform-no-info:                   Není otevřen diff
 historyform-retrieve-history:          Stáhnout historii
 historyform-retrieving-history:        Stahuji historii
-</pre>
+
+=== User history form ===
+userhistory-title:         Historie vašich změn
 
 === IRC feed ===
-<pre>
 irc-connected:             Připojen k serveru IRC
 irc-connecting:            Pokouším se připojit k IRC serveru...
 irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
-irc-nochannel:             IRC channel for {0} not found; using slower API queries instead
+irc-nochannel:             IRC channel for $1 not found; using slower API queries instead
 irc-error:                 Nepodařilo se připojit k IRC serveru, používám pomalejší API systém
-</pre>
 
 === List form ===
 <pre>
@@ -602,6 +599,7 @@ update-error:              Failed to download new version
 
 === User info form ===
 <pre>
+userinfo-generic:          Informace o uživateli
 userinfo-title:            User information for '{0}'
 userinfo-anonymous:        Anonymous:
 userinfo-ignored:          Whitelisted:

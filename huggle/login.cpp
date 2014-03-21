@@ -28,12 +28,17 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->SystemConfig_UsingSSL);
     // set the language to dummy english
     int l=0;
+    int p=0;
     while (l<Localizations::HuggleLocalizations->LocalizationData.count())
     {
         this->ui->Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(l)->LanguageID);
+        if (Localizations::HuggleLocalizations->LocalizationData.at(l)->LanguageName == Localizations::HuggleLocalizations->PreferredLanguage)
+        {
+            p = l;
+        }
         l++;
     }
-    this->ui->Language->setCurrentIndex(0);
+    this->ui->Language->setCurrentIndex(p);
     this->Reload();
     this->wq = NULL;
     if (!QSslSocket::supportsSsl())

@@ -185,9 +185,13 @@ delete-failed-no-info:     no page info was present in query (are you sysop?)
 
 === History form ===
 historyform-no-info:                 No edit info
+historyform-title:                   History
 historyform-retrieve-history:        Retrieve history
 historyform-retrieving-history:      Retrieving history
 historyform-not-latest-tip:          This is not a latest revision of this page, make sure you reviewed the newer versions as well. Also please, keep in mind that rollback may not be possible from this point.
+
+=== User history form ===
+userhistory-title:         History of your changes
 
 === IRC feed ===
 irc-connected:             Connected to IRC recent changes feed
@@ -567,6 +571,7 @@ update-progress:           Downloading new version...
 update-error:              Failed to download new version
 
 === User info form ===
+userinfo-generic:          User info
 userinfo-title:            User information for $1
 userinfo-anonymous:        Anonymous:
 userinfo-ignored:          Whitelisted:
@@ -743,7 +748,7 @@ provider-primary-failure:  primary feed provider has failed, fallback to wiki pr
 rc-error:                  Unable to retrieve data from wiki feed, last error: $1
 whitelist-download:        Downloading new whitelist
 queue-widget-name:         Queue
-system-widget-name:        System logs
+logs-widget-name:          System logs
 wait:                      Please wait...
 function-miss:             Function is not available now
 missing-aiv:               This project doesn't support AIV system

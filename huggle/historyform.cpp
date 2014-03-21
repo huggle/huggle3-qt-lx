@@ -19,7 +19,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->RetrievingEdit = false;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("History"));
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("historyform-title"));
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
     this->ui->tableWidget->setColumnCount(6);
     this->SelectedRow = -1;

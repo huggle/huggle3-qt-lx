@@ -22,6 +22,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     this->ui->pushButton->setEnabled(false);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     QStringList header;
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userinfo-generic"));
     this->ui->tableWidget->setColumnCount(3);
     header << Localizations::HuggleLocalizations->Localize("page") <<
               Localizations::HuggleLocalizations->Localize("time") <<

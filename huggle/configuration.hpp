@@ -131,7 +131,7 @@ namespace Huggle
             static QString GetExtensionsRootPath();
             //! Return a prefix for url
             static QString GetURLProtocolPrefix();
-            //! Return a configuration path
+            //! Returns full configuration path suffixed with slash
             static QString GetConfigurationPath();
             static QString ReplaceSpecialUserPage(QString PageName);
             static QString Bool2ExcludeRequire(bool b);
