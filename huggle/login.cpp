@@ -17,6 +17,7 @@ QString Login::Test = "<login result=\"NeedToken\" token=\"";
 
 Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
 {
+    this->Loading = true;
     this->ui->setupUi(this);
     this->_Status = Nothing;
     this->LoadedOldConfig = false;
@@ -58,6 +59,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         this->ui->lineEdit_username->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->ui->lineEdit_password->setFocus();
     }
+    this->Loading = false;
     this->Localize();
 }
 
@@ -861,6 +863,10 @@ void Login::on_pushButton_clicked()
 
 void Login::on_Language_currentIndexChanged(const QString &arg1)
 {
+    if (Loading)
+    {
+        return;
+    }
     QString lang = "en";
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())

@@ -118,6 +118,7 @@ namespace Huggle
             //! This query is used to get a wl
             WLQuery *wq;
             ApiQuery *LoginQuery;
+            bool Loading;
             //! The token obtained from login
             QString Token;
             //! String that is used to test against the login failed text
