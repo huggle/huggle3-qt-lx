@@ -27,6 +27,7 @@
 #define PRODUCTION_BUILD                0
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
+#define HUGGLE_CONF                     "huggle3.xml"
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""
