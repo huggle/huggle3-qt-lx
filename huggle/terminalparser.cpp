@@ -71,11 +71,25 @@ bool TerminalParser::Parse()
             }
             valid = true;
         }
+        if (text == "--chroot")
+        {
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                Configuration::HuggleConfiguration->HomePath = this->args.at(x + 1);
+                valid = true;
+                x++;
+            } else
+            {
+                cerr << "Parameter --chroot requires an argument for it to work!" << endl;
+                return true;
+            }
+        }
+
         if (!valid)
         {
             if (!this->Silent)
             {
-                cout << QString("This parameter isn't valid: " + text).toStdString() << endl;
+                cerr << QString("This parameter isn't valid: " + text).toStdString() << endl;
             }
             return true;
         }
@@ -106,12 +120,18 @@ void TerminalParser::DisplayHelp()
     }
     cout << "Huggle 3 QT-LX\n\n"\
             "Parameters:\n"\
-            "  -v: Increases verbosity\n"\
-            "  --safe: Start huggle in special mode where lot of stuff is skipped during load\n"\
-            "  --dot: Debug on terminal only mode\n"\
+            "  -v:              Increases verbosity\n"\
+            "  --safe:          Start huggle in special mode where lot of stuff is skipped\n"\
+            "                   during load\n"\
+            "  --dot:           Debug on terminal only mode\n"\
+            "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\
+            "                   reads a different configuration file and uses different data.\n"\
             "  --syslog [file]: Will write a logs to a file\n"\
-            "  --language-test: Will perform CPU expensive language test on startup, which report warnings found in localization files.\n"\
-            "                   this option is useful for developers and people who create localization files.\n"\
+            "  --language-test: Will perform CPU expensive language test on startup, which report\n"\
+            "                   warnings found in localization files. This option is useful for\n"\
+            "                   developers and people who create localization files.\n"\
             "  -h | --help: Display this help\n\n"\
+            "Note: every argument in [brackets] is optional\n"\
+            "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }
