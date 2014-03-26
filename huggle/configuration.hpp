@@ -128,6 +128,7 @@ namespace Huggle
     {
         public:
             static QString GetLocalizationDataPath();
+            //! Extension path (typically HR/extensions) where .py and .so files are in
             static QString GetExtensionsRootPath();
             //! Return a prefix for url
             static QString GetURLProtocolPrefix();
@@ -144,7 +145,7 @@ namespace Huggle
             //! Save the local configuration to file
             static void SaveSystemConfig();
             //! Load the local configuration from disk
-            static void LoadSystemConfig();
+            static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
             /*!
@@ -251,6 +252,7 @@ namespace Huggle
             bool            SystemConfig_DynamicColsInList;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits;
+            QString         SystemConfig_GlobalConfigWikiList;
             //! Changing this to true will make the Syslog write all data to a file
             bool            SystemConfig_Log2File;
             //! This path is used when Log2File is true to write the logs to

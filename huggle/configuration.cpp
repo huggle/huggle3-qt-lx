@@ -217,6 +217,7 @@ Configuration::Configuration()
     this->SystemConfig_SafeMode = false;
     this->SystemConfig_CacheHAN = 100;
     this->SystemConfig_UsingSSL = true;
+    this->SystemConfig_GlobalConfigWikiList = "Project:Huggle/List";
     this->SystemConfig_Username = "User";
     this->SystemConfig_DynamicColsInList = false;
     this->SystemConfig_RingLogMaxSize = 2000;
@@ -438,13 +439,12 @@ QString Configuration::MakeLocalUserConfig()
     return configuration_;
 }
 
-void Configuration::LoadSystemConfig()
+void Configuration::LoadSystemConfig(QString fn)
 {
-    QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
-    Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
-    if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
+    QFile file(fn);
+    if (!QFile().exists(fn))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
+        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + fn);
         return;
     }
     if(!file.open(QIODevice::ReadOnly))
@@ -454,6 +454,7 @@ void Configuration::LoadSystemConfig()
     }
     QDomDocument conf;
     conf.setContent(file.readAll());
+    file.close();
     QDomNodeList l = conf.elementsByTagName("local");
     int item = 0;
     while (item < l.count())
@@ -561,6 +562,11 @@ void Configuration::LoadSystemConfig()
             Configuration::HuggleConfiguration->SystemConfig_UsingSSL = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "GlobalConfigWikiList")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList = option.attribute("text");
+            continue;
+        }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -600,6 +606,7 @@ void Configuration::SaveSystemConfig()
     // Vandal network
     /////////////////////////////
     InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), x);
+    InsertConfig("GlobalConfigWikiList", Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList, x);
     x->writeEndElement();
     x->writeEndDocument();
     delete x;
