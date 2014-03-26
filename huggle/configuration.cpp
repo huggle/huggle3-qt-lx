@@ -555,6 +555,11 @@ void Configuration::LoadSystemConfig()
             Configuration::HuggleConfiguration->IndexOfLastWiki = option.attribute("text").toInt();
             continue;
         }
+        if (key == "UsingSSL")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_UsingSSL = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -571,6 +576,7 @@ void Configuration::SaveSystemConfig()
     x->setDevice(&file);
     x->writeStartDocument();
     x->writeStartElement("huggle");
+    InsertConfig("UsingSSL", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL), x);
     InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_QueueSize), x);
     InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, x);
     InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, x);
