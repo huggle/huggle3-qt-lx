@@ -1,4 +1,5 @@
 <db>
+  <wiki name="enwiki" url="en.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#en.wikipedia" wl="en"/>
   <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt"/>
   <wiki name="simplewiki" url="simple.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#simple.wikipedia" wl="simple"/>
   <wiki name="bgwiki" url="bg.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#bg.wikipedia" wl="bg"/>

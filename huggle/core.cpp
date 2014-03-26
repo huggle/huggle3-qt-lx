@@ -96,7 +96,10 @@ Core::~Core()
 void Core::LoadDB()
 {
     Configuration::HuggleConfiguration->ProjectList.clear();
-    Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
+    if (Configuration::HuggleConfiguration->Project != NULL)
+    {
+        Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
+    }
     QString text = "";
     if (QFile::exists(Configuration::HuggleConfiguration->WikiDB))
     {

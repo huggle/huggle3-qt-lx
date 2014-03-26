@@ -19,7 +19,8 @@ Configuration::Configuration()
     this->AIVP = NULL;
     this->UAAP = NULL;
     this->Verbosity = 0;
-    this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
+    //this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
+    this->Project = NULL;
     this->IndexOfLastWiki = 0;
     this->NewMessage = false;
     this->WelcomeMP = "Project:Huggle/Message";
