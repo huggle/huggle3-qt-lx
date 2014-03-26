@@ -850,9 +850,9 @@ void Login::on_pushButton_clicked()
     {
         this->LoginQuery->SafeDelete();
     }
-
     this->LoginQuery = new ApiQuery();
     this->_Status = Refreshing;
+    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();
     this->LoginQuery->SetAction(ActionQuery);
     this->timer->start(200);
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
