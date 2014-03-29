@@ -230,7 +230,10 @@ text "Checking for breakpad library"
 
 if [ ! -f libbreakpad_client.a ];then
     ok
-    echo "Breakpad library is not present, building now..."
+    text "Breakpad library is not present, unpacking it..."
+    tar -zxf breakpad.tar.gz || exit 1
+    ok
+    echo "Bulding it"
     cd breakpad || exit 1
     ./configure || exit 1
     make || exit 1
