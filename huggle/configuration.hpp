@@ -101,7 +101,8 @@ namespace Huggle
     //! Run time configuration of huggle
 
     //! Some interesting information regarding configuration:
-    //! Huggle is using different configurations
+    //! Huggle is using different configurations, they are divided to several sections which are described
+    //! in table here
 
     //! System config:
     //! That is configuration which is related to selected computer, like fonts, sizes and layout of GUI
@@ -312,18 +313,19 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! Minimal version of huggle required to use it
-            QString ProjectConfig_MinimalVersion;
-            bool    LocalConfig_UseIrc;
+            QString         ProjectConfig_MinimalVersion;
+            bool            LocalConfig_UseIrc;
             //! If admin rights are required to use huggle
-            bool    ProjectConfig_RequireAdmin;
+            bool            ProjectConfig_RequireAdmin;
             //! If autoconfirmed is required to use huggle
-            bool    ProjectConfig_RequireAutoconfirmed;
-            bool    ProjectConfig_RequireConfig;
+            bool            ProjectConfig_RequireAutoconfirmed;
+            bool            ProjectConfig_RequireConfig;
             //! Amount of edits required to use huggle
-            int     ProjectConfig_RequireEdits;
+            int             ProjectConfig_RequireEdits;
             //! If rollback right is required to use huggle
-            bool    ProjectConfig_RequireRollback;
-            bool    ProjectConfig_EnableAll;
+            bool            ProjectConfig_RequireRollback;
+            bool            ProjectConfig_EnableAll;
+            byte            ProjectConfig_WarningLevel;
 
             bool            LocalConfig_AIV;
             bool            LocalConfig_AIVExtend;

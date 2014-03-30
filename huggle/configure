@@ -174,9 +174,8 @@ checkpkg()
 }
 
 echo "Checking all required packages..."
-
-
 text "Checking for qmake... "
+
 if [ "`which $QMAKE_PATH`" = "" ];then
 	fail
 	echo "qmake can't be found"
@@ -226,14 +225,17 @@ if [ "$QT5" -eq 1 ];then
     checkhf xslt "/usr/include/libxslt/xslt.h"
 fi
 
+if [ ! -d breakpad ];then
+    text "Breakpad library is not present, unpacking it..."
+    tar -zxf breakpad.tar.gz || exit 1;ok
+fi 
+
+
 text "Checking for breakpad library"
 
 if [ ! -f libbreakpad_client.a ];then
     ok
-    text "Breakpad library is not present, unpacking it..."
-    tar -zxf breakpad.tar.gz || exit 1
-    ok
-    echo "Bulding it"
+    echo "Building it"
     cd breakpad || exit 1
     ./configure || exit 1
     make || exit 1
@@ -248,16 +250,16 @@ else
 fi
 
 text "Executing update.sh... "
+
 if [ ! -f update.sh ];then
-        fail
-	echo "update.sh is missing!"
-	exit 1
+    fail
+    echo "update.sh is missing!"
+    exit 1
 fi
 
-sh update.sh || exit 1
-
-ok
+sh update.sh || exit 1;ok
 text "Checking if version.txt exist... "
+
 if [ ! -f version.txt ];then
         fail
 	echo "Error! unable to create a version file!"
@@ -268,8 +270,7 @@ ok
 
 if [ ! -f definitions.hpp ];then
     text "Making definitions.hpp"
-    cp definitions_prod.hpp definitions.hpp || exit 1
-    ok
+    cp definitions_prod.hpp definitions.hpp || exit 1;ok
 fi
 
 text "Preparing makefile hunker..."
@@ -281,26 +282,17 @@ if [ ! -d hunker ];then
 fi
 
 cd hunker || exit 1
-$QMAKE_PATH || exit 1
-
-ok
+$QMAKE_PATH || exit 1;ok
 text "Building makefile hunker..."
-
 make -s || exit 1
-cd ..
-
-ok
+cd .. || exit 1;ok
 text "Creating makefile... "
-
-$QMAKE_PATH $FLAGS || exit 1
-
-ok
+$QMAKE_PATH $FLAGS || exit 1;ok
 text "Executing hunk..."
-
 cd hunker || exit 1
-./makefilehunker ../Makefile || exit 1
-
-ok
-
+./makefilehunker ../Makefile || exit 1;ok
 echo "Everything is ready, you can build huggle by typing"
 echo "make"
+
+# this isn't normally needed but ensure we return 0 here
+exit 0

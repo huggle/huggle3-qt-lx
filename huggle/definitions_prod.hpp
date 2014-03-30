@@ -11,8 +11,10 @@
 //! This file exist only for compiler options that can be changed before you build huggle
 //! Please do not commit any changes in this file
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef DEFINITIONS_H
+#define DEFINITIONS_H
+
+typedef char byte;
 
 #define HUGGLE_VERSION                  "3.0.0.0"
 #define HUGGLE_BYTE_VERSION             0x3000

@@ -57,7 +57,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     // get a template
     Edit->User->WarningLevel++;
 
-    if (Edit->User->WarningLevel > 4)
+    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig_WarningLevel)
     {
         // we should report this user instead
         if (Edit->User->IsReported)
