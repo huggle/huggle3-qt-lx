@@ -287,12 +287,12 @@ bool WikiUser::IsIP() const
     return IP;
 }
 
-void WikiUser::ParseTP()
+void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
     if (tp != "")
     {
-        this->WarningLevel = HuggleParser::GetLevel(tp);
+        this->WarningLevel = HuggleParser::GetLevel(tp, bt);
     }
 }
 

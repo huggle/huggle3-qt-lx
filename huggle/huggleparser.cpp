@@ -222,7 +222,7 @@ QString HuggleParser::Trim(QString text)
     return text;
 }
 
-byte HuggleParser::GetLevel(QString page)
+byte HuggleParser::GetLevel(QString page, QDate bt)
 {
     if (Configuration::HuggleConfiguration->TrimOldWarnings)
     {
@@ -313,7 +313,7 @@ byte HuggleParser::GetLevel(QString page)
             } else
             {
                 // now check if it's at least 1 month old
-                if (QDate::currentDate().addDays(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) > date)
+                if (bt.addDays(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) > date)
                 {
                     // we don't want to parse this thing
                     page = page.replace(sections.at(CurrentIndex), "");

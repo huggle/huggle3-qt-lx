@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include <QString>
+#include <iostream>
 #include <QtTest>
 #include "../../huggleparser.hpp"
 #include "../../configuration.hpp"
@@ -25,6 +26,7 @@ class HuggleTest : public QObject
         HuggleTest();
 
     private Q_SLOTS:
+        void testCaseTalkPage();
         //! Test if IsIP returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
@@ -46,6 +48,21 @@ void HuggleTest::testCaseConfigurationParse_QL()
     list = Huggle::HuggleParser::ConfigurationParse_QL("list1", test);
     QVERIFY2(list.count() == 4, "Invalid result for ConfigurationParse_QL, parsed wrong number of lines");
     QVERIFY2(list.at(2) == "c,", "Invalid result for ConfigurationParse_QL, parsed wrong item on position 3");
+}
+
+void HuggleTest::testCaseTalkPage()
+{
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
+    QFile *file = new QFile(":/test/wikipage/tp0001.txt");
+    Huggle::WikiUser *user = new Huggle::WikiUser();
+    file->open(QIODevice::ReadOnly);
+    QString text = QString(file->readAll());
+    user->TalkPage_SetContents(text);
+    user->ParseTP(QDate(2014, 4, 1));
+    QVERIFY2(user->WarningLevel == 4, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 4!!").toUtf8().data());
+    file->close();
+    delete file;
+    delete user;
 }
 
 void HuggleTest::testCaseCoreTrim()
@@ -143,6 +160,7 @@ void HuggleTest::testCaseScores()
     delete Huggle::Configuration::HuggleConfiguration;
     Huggle::Configuration::HuggleConfiguration = NULL;
 }
+
 
 void HuggleTest::testCaseWikiUserCheckIP()
 {

@@ -95,7 +95,7 @@ namespace Huggle
             //! This function will reparse whole talk page of user in order to figure out which level they have
 
             //! This function needs to be called after the content of talk page has changed
-            void ParseTP();
+            void ParseTP(QDate bt);
             //! Update the information of this user based on global user list
 
             //! This is useful when you created user in past and since then a global user has changed

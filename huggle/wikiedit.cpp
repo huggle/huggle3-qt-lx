@@ -469,7 +469,7 @@ void ProcessorThread::Process(WikiEdit *edit)
         edit->ProcessWords();
     }
 
-    edit->User->ParseTP();
+    edit->User->ParseTP(QDate::currentDate());
 
     switch(edit->User->WarningLevel)
     {

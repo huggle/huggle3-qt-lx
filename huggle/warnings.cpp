@@ -223,7 +223,7 @@ void Warnings::ResendWarnings()
                 }
 
                 // so we now have the new talk page content so we need to reclassify the user
-                warning->Warning->user->ParseTP();
+                warning->Warning->user->ParseTP(QDate::currentDate());
                 warning->Warning->user->Update(true);
 
                 // now when we have the new level of warning we can try to send a new warning and hope that talk page wasn't
