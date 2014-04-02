@@ -679,7 +679,7 @@ bool Configuration::ParseProjectConfig(QString config)
               config, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     // Warning types
     this->LocalConfig_WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config);
-    this->ProjectConfig_WarningLevel = (byte)ConfigurationParse("warning-mode", config, "4").toInt();
+    this->ProjectConfig_WarningLevel = (byte_ht)ConfigurationParse("warning-mode", config, "4").toInt();
     this->LocalConfig_WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
     // Reverting
     this->LocalConfig_ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config));

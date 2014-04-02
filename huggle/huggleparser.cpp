@@ -222,7 +222,7 @@ QString HuggleParser::Trim(QString text)
     return text;
 }
 
-byte HuggleParser::GetLevel(QString page, QDate bt)
+byte_ht HuggleParser::GetLevel(QString page, QDate bt)
 {
     if (Configuration::HuggleConfiguration->TrimOldWarnings)
     {
@@ -314,7 +314,7 @@ byte HuggleParser::GetLevel(QString page, QDate bt)
             CurrentIndex++;
         }
     }
-    byte level = 4;
+    byte_ht level = 4;
     while (level > 0)
     {
         int xx=0;

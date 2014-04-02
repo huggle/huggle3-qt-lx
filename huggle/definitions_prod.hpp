@@ -14,7 +14,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-typedef char byte;
+typedef char byte_ht;
 
 #define HUGGLE_VERSION                  "3.0.0.0"
 #define HUGGLE_BYTE_VERSION             0x3000

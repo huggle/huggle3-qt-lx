@@ -325,7 +325,7 @@ namespace Huggle
             //! If rollback right is required to use huggle
             bool            ProjectConfig_RequireRollback;
             bool            ProjectConfig_EnableAll;
-            byte            ProjectConfig_WarningLevel;
+            byte_ht            ProjectConfig_WarningLevel;
 
             bool            LocalConfig_AIV;
             bool            LocalConfig_AIVExtend;

@@ -104,7 +104,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
     this->Irc->Send(this->Channel, this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
-void VandalNw::WarningSent(WikiUser *user, byte Level)
+void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
 {
     if (user == NULL)
     {

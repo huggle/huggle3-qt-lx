@@ -113,7 +113,7 @@ namespace Huggle
             //! Notify others about a rollback of edit
             void Rollback(WikiEdit *Edit);
             void SuspiciousWikiEdit(WikiEdit *Edit);
-            void WarningSent(WikiUser *user, byte Level);
+            void WarningSent(WikiUser *user, byte_ht Level);
             QString GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
