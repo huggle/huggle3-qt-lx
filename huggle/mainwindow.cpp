@@ -1982,7 +1982,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
     bool ok;
     QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
                                            Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
-                                           QLineEdit::Normal, "No reason was provided by this lame user :(", &ok);
+                                           QLineEdit::Normal, "No reason was provided / custom revert", &ok);
 
     if (!ok)
     {
