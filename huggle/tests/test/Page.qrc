@@ -4,6 +4,8 @@
         <file>page02.txt</file>
         <file>page03.txt</file>
         <file>page04.txt</file>
+        <file>config.txt</file>
+        <file>tp0002.txt</file>
         <file>tp0001.txt</file>
     </qresource>
 </RCC>

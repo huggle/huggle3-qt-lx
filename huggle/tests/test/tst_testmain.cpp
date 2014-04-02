@@ -24,6 +24,7 @@ class HuggleTest : public QObject
 
     public:
         HuggleTest();
+        ~HuggleTest();
 
     private Q_SLOTS:
         void testCaseTalkPage();
@@ -37,6 +38,15 @@ class HuggleTest : public QObject
 
 HuggleTest::HuggleTest()
 {
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
+    QFile f(":/test/wikipage/config.txt");
+    f.open(QIODevice::ReadOnly);
+    Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
+}
+
+HuggleTest::~HuggleTest()
+{
+    delete Huggle::Configuration::HuggleConfiguration;
 }
 
 void HuggleTest::testCaseConfigurationParse_QL()
@@ -52,17 +62,25 @@ void HuggleTest::testCaseConfigurationParse_QL()
 
 void HuggleTest::testCaseTalkPage()
 {
-    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     QFile *file = new QFile(":/test/wikipage/tp0001.txt");
     Huggle::WikiUser *user = new Huggle::WikiUser();
     file->open(QIODevice::ReadOnly);
     QString text = QString(file->readAll());
     user->TalkPage_SetContents(text);
     user->ParseTP(QDate(2014, 4, 1));
-    QVERIFY2(user->WarningLevel == 4, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 4!!").toUtf8().data());
+    QVERIFY2(user->WarningLevel == 3, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 3!!").toUtf8().data());
     file->close();
     delete file;
     delete user;
+    file = new QFile(":/test/wikipage/tp0002.txt");
+    user = new Huggle::WikiUser();
+    file->open(QIODevice::ReadOnly);
+    text = QString(file->readAll());
+    user->TalkPage_SetContents(text);
+    user->ParseTP(QDate(2014, 1, 26));
+    QVERIFY2(user->WarningLevel == 3, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 3!!").toUtf8().data());
+    file->close();
+    delete file;
 }
 
 void HuggleTest::testCaseCoreTrim()
@@ -74,7 +92,6 @@ void HuggleTest::testCaseCoreTrim()
 
 void HuggleTest::testCaseScores()
 {
-    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.clear();
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
     Huggle::Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
@@ -157,8 +174,6 @@ void HuggleTest::testCaseScores()
     edit->SafeDelete();
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
-    delete Huggle::Configuration::HuggleConfiguration;
-    Huggle::Configuration::HuggleConfiguration = NULL;
 }
 
 
@@ -173,7 +188,6 @@ void HuggleTest::testCaseWikiUserCheckIP()
 
 void HuggleTest::testCaseTerminalParser()
 {
-    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     QStringList list;
     list.append("huggle");
     list.append("-v");
@@ -212,8 +226,6 @@ void HuggleTest::testCaseTerminalParser()
     p->Silent = true;
     QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
     delete p;
-    delete Huggle::Configuration::HuggleConfiguration;
-    Huggle::Configuration::HuggleConfiguration = NULL;
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)

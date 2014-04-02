@@ -230,41 +230,31 @@ byte HuggleParser::GetLevel(QString page, QDate bt)
         QString orig = page;
         // first we split the page by sections
         QStringList sections;
-        int CurrentIndex = 0;
-        while (CurrentIndex < page.length())
+        while (page.length() > 0)
         {
-            if (!page.startsWith("==") && !page.contains("\n=="))
+            while (page.startsWith("\n\n"))
+            {
+                // remove all leading extra lines on page
+                page = page.mid(2);
+            }
+            if (!page.contains("\n\n"))
             {
                 // no sections
                 sections.append(page);
                 break;
             }
 
-            // we need to get to start of section now
-            CurrentIndex = 0;
-            if (!page.startsWith("==") && page.contains("\n=="))
-            {
-                page = page.mid(page.indexOf("\n==") + 1);
-            }
-
             // get to bottom of it
             int bottom = 0;
-            if (!page.mid(CurrentIndex).contains("\n=="))
-            {
-                sections.append(page);
-                break;
-            }
-            bottom = page.indexOf("\n==", CurrentIndex);
+            bottom = page.indexOf("\n\n");
 
             QString section = page.mid(0, bottom);
-            page = page.mid(bottom);
+            page = page.mid(bottom + 2);
             sections.append(section);
         }
 
         // now we browse all sections and remove these with no current date
-
-        CurrentIndex = 0;
-
+        int CurrentIndex = 0;
         page = orig;
 
         while (CurrentIndex < sections.count())
@@ -324,7 +314,6 @@ byte HuggleParser::GetLevel(QString page, QDate bt)
             CurrentIndex++;
         }
     }
-
     byte level = 4;
     while (level > 0)
     {
