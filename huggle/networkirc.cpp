@@ -380,6 +380,11 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "PART")
     {
+        if (Parameters_ == "")
+        {
+            Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
+            return;
+        }
         this->ProcessPart(Source_, Parameters_, Message_);
         return;
     }
@@ -620,7 +625,7 @@ void Channel::RemoveUser(QString user)
     this->UsersLock->lock();
     if (this->Users.contains(nick))
     {
-        this->Users.remove(user);
+        this->Users.remove(nick);
         this->UsersChange_ = true;
     }
     this->UsersLock->unlock();
