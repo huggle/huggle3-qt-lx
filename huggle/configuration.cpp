@@ -124,7 +124,6 @@ Configuration::Configuration()
     this->ProjectConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
     this->ProjectConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
     this->ProjectConfig_WhitelistScore = -800;
-    this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->TrimOldWarnings = true;
     this->AskUserBeforeReport = true;
     this->QueueNewEditsUp = false;
@@ -202,6 +201,8 @@ Configuration::Configuration()
     this->UserConfig_DeleteEditsAfterRevert = true;
     this->UserConfig_SectionKeep = true;
     this->UserConfig_TalkPageFreshness = 20;
+    this->UserConfig_DisplayTitle = false;
+    this->UserConfig_GoNext = Configuration_OnNext_Next;
 
     //////////////////////////////////////////////////////////////////////////////////////////
     //System
@@ -416,6 +417,7 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "SkipToLastEdit:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_LastEdit) + "\n";
     configuration_ += "TruncateEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness) + "\n";
+    configuration_ += "DisplayTitle:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DisplayTitle) + "\n";
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())

@@ -98,6 +98,21 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         return;
     }
 
+    QString HTML = Resources::HtmlHeader;
+
+    if (Configuration::HuggleConfiguration->NewMessage)
+    {
+        // we display a notification that user received a new message
+        HTML += Resources::HtmlIncoming;
+    }
+
+    HTML += Resources::DiffHeader + "<tr></td colspan=2>";
+
+    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    {
+        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+    }
+
     QString Summary;
     QString size;
 
@@ -118,17 +133,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
 
     Summary += "<b> Size change: " + size + "</b>";
-
-    QString HTML = Resources::HtmlHeader;
-
-    if (Configuration::HuggleConfiguration->NewMessage)
-    {
-        // we display a notification that user received a new message
-        HTML += Resources::HtmlIncoming;
-    }
-
-    HTML += Resources::DiffHeader + "<tr></td colspan=2><b>" + Localizations::HuggleLocalizations->Localize("summary")
-          + ":</b> " + Summary + "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
+    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary +
+            "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
 
     this->ui->webView->setHtml(HTML);
 }
