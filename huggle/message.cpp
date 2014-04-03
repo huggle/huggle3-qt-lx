@@ -239,6 +239,10 @@ void Message::Finish()
                     this->Fail("Edit conflict");
                     Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->user->Username);
                     this->Error = MessageError_Obsolete;
+                } else if (ec == "articleexist")
+                {
+                    this->Fail("Edit conflict");
+                    this->Error = MessageError_ArticleExist;
                 } else
                 {
                     this->Fail("Unknown error: " + ec);

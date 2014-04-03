@@ -267,7 +267,7 @@ void Warnings::ResendWarnings()
                 warning->RelatedEdit->User->Update();
             }
             // check if the warning wasn't delivered because someone edited the page
-            if (warning->Warning->Error == Huggle::MessageError_Obsolete)
+            if (warning->Warning->Error == Huggle::MessageError_Obsolete || warning->Warning->Error == Huggle::MessageError_ArticleExist)
             {
                 Syslog::HuggleLogs->DebugLog("Someone changed the content of " + warning->Warning->user->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
