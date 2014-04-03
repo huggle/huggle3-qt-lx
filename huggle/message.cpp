@@ -239,7 +239,7 @@ void Message::Finish()
                     this->Fail("Edit conflict");
                     Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->user->Username);
                     this->Error = MessageError_Obsolete;
-                } else if (ec == "articleexist")
+                } else if (ec == "articleexists")
                 {
                     this->Fail("Edit conflict");
                     this->Error = MessageError_ArticleExist;
