@@ -227,8 +227,6 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
     if (Configuration::HuggleConfiguration->TrimOldWarnings)
     {
         // we need to get rid of old warnings now
-        QString orig = page;
-        // first we split the page by sections
         QStringList sections;
         while (page.length() > 0)
         {
@@ -255,7 +253,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
 
         // now we browse all sections and remove these with no current date
         int CurrentIndex = 0;
-        page = orig;
+        page = "";
 
         while (CurrentIndex < sections.count())
         {
@@ -263,7 +261,6 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (!sections.at(CurrentIndex).contains("(UTC)"))
             {
                 // there is none
-                page = page.replace(sections.at(CurrentIndex), "");
                 CurrentIndex++;
                 continue;
             }
@@ -278,7 +275,6 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (!section.contains(","))
             {
                 // this is some borked date let's remove it
-                page = page.replace(sections.at(CurrentIndex), "");
                 CurrentIndex++;
                 continue;
             }
@@ -287,7 +283,6 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (time.length() < 2)
             {
                 // what the fuck
-                page = page.replace(sections.at(CurrentIndex), "");
                 CurrentIndex++;
                 continue;
             }
@@ -297,7 +292,6 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             QDate date = QDate::fromString(time, "d MMMM yyyy");
             if (!date.isValid())
             {
-                page = page.replace(sections.at(CurrentIndex), "");
                 CurrentIndex++;
                 continue;
             } else
@@ -306,11 +300,11 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 if (bt.addDays(Configuration::HuggleConfiguration->ProjectConfig_TemplateAge) > date)
                 {
                     // we don't want to parse this thing
-                    page = page.replace(sections.at(CurrentIndex), "");
                     CurrentIndex++;
                     continue;
                 }
             }
+            page += sections.at(CurrentIndex) + "\n";
             CurrentIndex++;
         }
     }
