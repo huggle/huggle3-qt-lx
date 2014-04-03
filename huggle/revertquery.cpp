@@ -363,7 +363,7 @@ void RevertQuery::CheckPreflight()
         x++;
     }
 
-    if (MultipleEdits && Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits)
+    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig_ConfirmMultipleEdits)
     {
         passed = false;
     }
@@ -609,7 +609,7 @@ bool RevertQuery::ProcessRevert()
 
         if (summary == "")
         {
-            summary = Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary;
+            summary = Configuration::HuggleConfiguration->ProjectConfig_SoftwareRevertDefaultSummary;
         }
         summary = summary.replace("$1", this->edit->User->Username)
                 .replace("$2", this->SR_Target)
@@ -753,7 +753,7 @@ void RevertQuery::Rollback()
 
     if (this->Summary == "")
     {
-        this->Summary = Configuration::HuggleConfiguration->LocalConfig_RollbackSummaryUnknownTarget;
+        this->Summary = Configuration::HuggleConfiguration->ProjectConfig_RollbackSummaryUnknownTarget;
     }
 
     if (this->Summary.contains("$1"))

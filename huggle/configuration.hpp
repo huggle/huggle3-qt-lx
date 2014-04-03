@@ -293,7 +293,8 @@ namespace Huggle
             unsigned int            UserConfig_HistoryMax;
             bool                    UserConfig_TruncateEdits;
             bool                    UserConfig_RevertNewBySame;
-
+            //! Large title of every page in top of diff
+            bool                    UserConfig_DisplayTitle;
 
             //////////////////////////////////////////////
             // Global config
@@ -314,7 +315,7 @@ namespace Huggle
 
             //! Minimal version of huggle required to use it
             QString         ProjectConfig_MinimalVersion;
-            bool            LocalConfig_UseIrc;
+            bool            ProjectConfig_UseIrc;
             //! If admin rights are required to use huggle
             bool            ProjectConfig_RequireAdmin;
             //! If autoconfirmed is required to use huggle
@@ -325,125 +326,124 @@ namespace Huggle
             //! If rollback right is required to use huggle
             bool            ProjectConfig_RequireRollback;
             bool            ProjectConfig_EnableAll;
-            byte_ht            ProjectConfig_WarningLevel;
-
-            bool            LocalConfig_AIV;
-            bool            LocalConfig_AIVExtend;
-            QString         LocalConfig_ReportAIV;
+            byte_ht         ProjectConfig_WarningLevel;
+            bool            ProjectConfig_AIV;
+            bool            ProjectConfig_AIVExtend;
+            QString         ProjectConfig_ReportAIV;
             //! Section of report page to append template to
-            int             LocalConfig_ReportSt;
+            int             ProjectConfig_ReportSt;
             //! IP vandals
-            QString         LocalConfig_IPVTemplateReport;
+            QString         ProjectConfig_IPVTemplateReport;
             //! Regular users
-            QString         LocalConfig_RUTemplateReport;
-            QString         LocalConfig_ReportDefaultReason;
-            QString         LocalConfig_WelcomeSummary;
-            QString         LocalConfig_NSTalk;
-            QString         LocalConfig_NSUserTalk;
-            QString         LocalConfig_NSProject;
-            QString         LocalConfig_NSUser;
-            QString         LocalConfig_NSProjectTalk;
-            QString         LocalConfig_NSFile;
-            QString         LocalConfig_NSFileTalk;
-            QString         LocalConfig_NSMediaWiki;
-            QString         LocalConfig_NSMediaWikiTalk;
-            QString         LocalConfig_NSTemplate;
-            QString         LocalConfig_NSTemplateTalk;
-            QString         LocalConfig_NSHelp;
-            QString         LocalConfig_NSHelpTalk;
-            QString         LocalConfig_NSCategory;
-            QString         LocalConfig_NSCategoryTalk;
-            QString         LocalConfig_NSPortal;
-            QString         LocalConfig_NSPortalTalk;
-            Headings        LocalConfig_Headings;
-            int             LocalConfig_TemplateAge;
-            bool            LocalConfig_ConfirmTalk;
-            bool            LocalConfig_ConfirmWL;
-            bool            LocalConfig_ConfirmOnSelfRevs;
-            bool            LocalConfig_ConfirmMultipleEdits;
-            bool            LocalConfig_ConfirmRange;
-            bool            LocalConfig_ConfirmPage;
-            bool            LocalConfig_ConfirmSame;
-            bool            LocalConfig_ConfirmWarned;
-            bool            LocalConfig_Patrolling;
+            QString         ProjectConfig_RUTemplateReport;
+            QString         ProjectConfig_ReportDefaultReason;
+            QString         ProjectConfig_WelcomeSummary;
+            QString         ProjectConfig_NSTalk;
+            QString         ProjectConfig_NSUserTalk;
+            QString         ProjectConfig_NSProject;
+            QString         ProjectConfig_NSUser;
+            QString         ProjectConfig_NSProjectTalk;
+            QString         ProjectConfig_NSFile;
+            QString         ProjectConfig_NSFileTalk;
+            QString         ProjectConfig_NSMediaWiki;
+            QString         ProjectConfig_NSMediaWikiTalk;
+            QString         ProjectConfig_NSTemplate;
+            QString         ProjectConfig_NSTemplateTalk;
+            QString         ProjectConfig_NSHelp;
+            QString         ProjectConfig_NSHelpTalk;
+            QString         ProjectConfig_NSCategory;
+            QString         ProjectConfig_NSCategoryTalk;
+            QString         ProjectConfig_NSPortal;
+            QString         ProjectConfig_NSPortalTalk;
+            Headings        ProjectConfig_Headings;
+            int             ProjectConfig_TemplateAge;
+            bool            ProjectConfig_ConfirmTalk;
+            bool            ProjectConfig_ConfirmWL;
+            bool            ProjectConfig_ConfirmOnSelfRevs;
+            bool            ProjectConfig_ConfirmMultipleEdits;
+            bool            ProjectConfig_ConfirmRange;
+            bool            ProjectConfig_ConfirmPage;
+            bool            ProjectConfig_ConfirmSame;
+            bool            ProjectConfig_ConfirmWarned;
+            bool            ProjectConfig_Patrolling;
 
             // Reverting
-            QString         LocalConfig_MultipleRevertSummary;
-            QStringList     LocalConfig_RevertSummaries;
-            QString         LocalConfig_SoftwareRevertDefaultSummary;
-            QString         LocalConfig_RollbackSummary;
-            QString         LocalConfig_RollbackSummaryUnknownTarget;
-            QString         LocalConfig_DefaultSummary;
-            QString         LocalConfig_SingleRevert;
-            QString         LocalConfig_UndoSummary;
-            QString         LocalConfig_ClearTalkPageTemp;
-            QString         LocalConfig_WelcomeAnon;
-            QString         LocalConfig_WelcomeTitle;
+            QString         ProjectConfig_MultipleRevertSummary;
+            QStringList     ProjectConfig_RevertSummaries;
+            QString         ProjectConfig_SoftwareRevertDefaultSummary;
+            QString         ProjectConfig_RollbackSummary;
+            QString         ProjectConfig_RollbackSummaryUnknownTarget;
+            QString         ProjectConfig_DefaultSummary;
+            QString         ProjectConfig_SingleRevert;
+            QString         ProjectConfig_UndoSummary;
+            QString         ProjectConfig_ClearTalkPageTemp;
+            QString         ProjectConfig_WelcomeAnon;
+            QString         ProjectConfig_WelcomeTitle;
 
             // Deleting
-            QString         LocalConfig_DeletionTitle;
-            QStringList     LocalConfig_DeletionSummaries;
-            QString         LocalConfig_AssociatedDelete;
+            QString         ProjectConfig_DeletionTitle;
+            QStringList     ProjectConfig_DeletionSummaries;
+            QString         ProjectConfig_AssociatedDelete;
 
             // Warnings
-            QString         LocalConfig_AgfRevert;
-            QString         LocalConfig_WarnSummary;
-            QString         LocalConfig_WarnSummary2;
-            QString         LocalConfig_WarnSummary3;
-            QString         LocalConfig_WarnSummary4;
-            QStringList     LocalConfig_WarningTemplates;
-            QStringList     LocalConfig_WarningDefs;
-            QString         LocalConfig_ReportSummary;
-            QString         LocalConfig_RestoreSummary;
-            bool            LocalConfig_WelcomeGood;
+            QString         ProjectConfig_AgfRevert;
+            QString         ProjectConfig_WarnSummary;
+            QString         ProjectConfig_WarnSummary2;
+            QString         ProjectConfig_WarnSummary3;
+            QString         ProjectConfig_WarnSummary4;
+            QStringList     ProjectConfig_WarningTemplates;
+            QStringList     ProjectConfig_WarningDefs;
+            QString         ProjectConfig_ReportSummary;
+            QString         ProjectConfig_RestoreSummary;
+            bool            ProjectConfig_WelcomeGood;
 
             // Blocking users
-            QStringList     LocalConfig_BlockExpiryOptions;
-            QString         LocalConfig_BlockTime;
-            QString         LocalConfig_BlockTimeAnon;
-            QString         LocalConfig_BlockMessage;
-            QString         LocalConfig_BlockMessageIndef;
-            QString         LocalConfig_BlockReason;
-            QString         LocalConfig_BlockSummary;
+            QStringList     ProjectConfig_BlockExpiryOptions;
+            QString         ProjectConfig_BlockTime;
+            QString         ProjectConfig_BlockTimeAnon;
+            QString         ProjectConfig_BlockMessage;
+            QString         ProjectConfig_BlockMessageIndef;
+            QString         ProjectConfig_BlockReason;
+            QString         ProjectConfig_BlockSummary;
 
             // Protecting pages
-            QString         LocalConfig_ProtectReason;
+            QString         ProjectConfig_ProtectReason;
 
             // Templates
-            QString         LocalConfig_SharedIPTemplateTags;
-            QString         LocalConfig_SharedIPTemplate;
+            QString         ProjectConfig_SharedIPTemplateTags;
+            QString         ProjectConfig_SharedIPTemplate;
 
             // Definitions
-            QList<ScoreWord> LocalConfig_ScoreParts;
-            QList<ScoreWord> LocalConfig_ScoreWords;
-            int              LocalConfig_ScoreFlag;
-            int              LocalConfig_ForeignUser;
-            int              LocalConfig_ScoreTalk;
+            QList<ScoreWord> ProjectConfig_ScoreParts;
+            QList<ScoreWord> ProjectConfig_ScoreWords;
+            int              ProjectConfig_ScoreFlag;
+            int              ProjectConfig_ForeignUser;
+            int              ProjectConfig_ScoreTalk;
             //! Score that is added for every edit that has really big size
-            int              LocalConfig_ScoreChange;
-            int              LocalConfig_ScoreUser;
-            QStringList      LocalConfig_Ignores;
-            QStringList      LocalConfig_RevertPatterns;
-            QStringList      LocalConfig_Assisted;
-            QStringList      LocalConfig_Templates;
-            QStringList      LocalConfig_IgnorePatterns;
-            int              LocalConfig_TalkPageWarningScore;
-            bool             LocalConfig_GlobalRequired;
+            int              ProjectConfig_ScoreChange;
+            int              ProjectConfig_ScoreUser;
+            QStringList      ProjectConfig_Ignores;
+            QStringList      ProjectConfig_RevertPatterns;
+            QStringList      ProjectConfig_Assisted;
+            QStringList      ProjectConfig_Templates;
+            QStringList      ProjectConfig_IgnorePatterns;
+            int              ProjectConfig_TalkPageWarningScore;
+            bool             ProjectConfig_GlobalRequired;
             // This is internal only do not prefix it!!
             QList<QRegExp>   RevertPatterns;
 
-            int              LocalConfig_BotScore;
-            int              LocalConfig_IPScore;
-            int              LocalConfig_WarningScore;
-            QStringList      LocalConfig_WarningTypes;
-            QStringList      LocalConfig_SpeedyTemplates;
-            QStringList      LocalConfig_WelcomeTypes;
-            int              LocalConfig_WhitelistScore;
+            int              ProjectConfig_BotScore;
+            int              ProjectConfig_IPScore;
+            int              ProjectConfig_WarningScore;
+            QStringList      ProjectConfig_WarningTypes;
+            QStringList      ProjectConfig_SpeedyTemplates;
+            QStringList      ProjectConfig_WelcomeTypes;
+            int              ProjectConfig_WhitelistScore;
 
             // UAA
-            QString          LocalConfig_UAAPath;
-            bool             LocalConfig_UAAavailable;
-            QString          LocalConfig_UAATemplate;
+            QString          ProjectConfig_UAAPath;
+            bool             ProjectConfig_UAAavailable;
+            QString          ProjectConfig_UAATemplate;
 
             //////////////////////////////////////////////
             // Login
@@ -479,9 +479,9 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! Suffix used by huggle
-            QString     LocalConfig_EditSuffixOfHuggle;
+            QString     ProjectConfig_EditSuffixOfHuggle;
             //! Regexes that other tools can be identified with
-            QStringList LocalConfig_EditRegexOfTools;
+            QStringList ProjectConfig_EditRegexOfTools;
 
             //////////////////////////////////////////////
             // Reverting

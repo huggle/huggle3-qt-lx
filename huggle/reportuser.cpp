@@ -18,7 +18,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->setupUi(this);
     this->ReportedUser = NULL;
     this->qHistory = NULL;
-    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->LocalConfig_ReportDefaultReason);
+    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->ProjectConfig_ReportDefaultReason);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-history"));
@@ -275,7 +275,7 @@ void ReportUser::Tick()
             if (results.count() == 0)
             {
                 this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-fail2",
-                                            Configuration::HuggleConfiguration->LocalConfig_ReportAIV));
+                                            Configuration::HuggleConfiguration->ProjectConfig_ReportAIV));
                 this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
                 this->qHistory = NULL;
                 return;
@@ -301,7 +301,7 @@ void ReportUser::Tick()
             }
             this->InsertUser();
             // everything is ok we report user
-            QString summary = Configuration::HuggleConfiguration->LocalConfig_ReportSummary;
+            QString summary = Configuration::HuggleConfiguration->ProjectConfig_ReportSummary;
             summary = summary.replace("$1",this->ReportedUser->Username);
             if (this->qEdit != NULL)
             {
@@ -458,7 +458,7 @@ void ReportUser::Test()
     if (results.count() == 0)
     {
         QMessageBox mb;
-        mb.setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->LocalConfig_ReportAIV);
+        mb.setText("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
         mb.exec();
         this->tReportUser->stop();
         this->qReport->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
@@ -548,7 +548,7 @@ void ReportUser::on_pushButton_clicked()
     this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qHistory->SetAction(ActionQuery);
     this->qHistory->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportAIV);
+            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
     this->qHistory->Process();
     this->ReportText = reports;
     this->tReportUser->start(800);
@@ -619,10 +619,10 @@ bool ReportUser::CheckUser()
 
 void ReportUser::InsertUser()
 {
-    QString xx = Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport;
+    QString xx = Configuration::HuggleConfiguration->ProjectConfig_IPVTemplateReport;
     if (!this->ReportedUser->IsIP())
     {
-        xx = Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport;
+        xx = Configuration::HuggleConfiguration->ProjectConfig_RUTemplateReport;
     }
     xx = xx.replace("$1", this->ReportedUser->Username);
     xx = xx.replace("$2", ReportText);
@@ -656,7 +656,7 @@ void ReportUser::on_pushButton_3_clicked()
     this->qReport->SetAction(ActionQuery);
     this->qReport->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qReport->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ReportAIV);
+            QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
     this->qReport->Process();
     if (this->tReportPageCheck == NULL)
     {

@@ -66,7 +66,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
             return NULL;
         }
 
-        if (!Configuration::HuggleConfiguration->LocalConfig_AIV)
+        if (!Configuration::HuggleConfiguration->ProjectConfig_AIV)
         {
             // there is no AIV function for this wiki
             Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
@@ -98,27 +98,27 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     switch (Edit->User->WarningLevel)
     {
         case 1:
-            Summary_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary;
             break;
         case 2:
-            Summary_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary2;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2;
             break;
         case 3:
-            Summary_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary3;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3;
             break;
         case 4:
-            Summary_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary4;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4;
             break;
     }
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsStandard)
+    if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsStandard)
     {
         QDateTime d = QDateTime::currentDateTime();
         HeadingText_ = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
-    } else if (Configuration::HuggleConfiguration->LocalConfig_Headings == HeadingsNone)
+    } else if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsNone)
     {
         HeadingText_ = "";
     }
@@ -337,21 +337,21 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
+    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
 
     switch (Level)
     {
         case 1:
-            MessageTitle_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary;
             break;
         case 2:
-            MessageTitle_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary2;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2;
             break;
         case 3:
-            MessageTitle_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary3;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3;
             break;
         case 4:
-            MessageTitle_ = Configuration::HuggleConfiguration->LocalConfig_WarnSummary4;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4;
             break;
     }
 
@@ -370,11 +370,11 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
 QString Warnings::RetrieveTemplateToWarn(QString type)
 {
     int x=0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.count())
     {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.at(x)) == type)
         {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
+            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.at(x));
         }
         x++;
     }
@@ -388,14 +388,14 @@ QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text)
         return Text;
     }
 
-    if (Configuration::HuggleConfiguration->LocalConfig_SharedIPTemplate == "")
+    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplate == "")
     {
         return Text;
     }
 
     if (!User->TalkPage_ContainsSharedIPTemplate())
     {
-        Text += "\n" + Configuration::HuggleConfiguration->LocalConfig_SharedIPTemplate + "\n";
+        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplate + "\n";
     }
     return Text;
 }

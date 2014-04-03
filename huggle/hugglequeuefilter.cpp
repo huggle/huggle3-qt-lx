@@ -42,15 +42,15 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         return false;
     }
     int i = 0;
-    while (i < Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.count())
+    while (i < Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.count())
     {
-        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.at(i)))
+        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.at(i)))
         {
             return false;
         }
         i++;
     }
-    if (Configuration::HuggleConfiguration->LocalConfig_Ignores.contains(edit->Page->PageName))
+    if (Configuration::HuggleConfiguration->ProjectConfig_Ignores.contains(edit->Page->PageName))
     {
         return false;
     }

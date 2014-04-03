@@ -31,9 +31,9 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int x = 0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.count())
     {
-        ScoreWord word = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(x);
+        ScoreWord word = Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.at(x);
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
@@ -41,9 +41,9 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         x++;
     }
     x = 0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_ScoreParts.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.count())
     {
-        ScoreWord word = Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(x);
+        ScoreWord word = Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.at(x);
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));

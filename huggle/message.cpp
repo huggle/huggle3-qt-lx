@@ -400,7 +400,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
+        s += " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     }
     if (this->SectionKeep || !this->CreateInNewSection)
     {

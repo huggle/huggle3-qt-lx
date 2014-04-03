@@ -396,9 +396,9 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
     }
     // retrieve a token
     EditQuery *eq = new EditQuery();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle))
+    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
     {
-        summary = summary + " " + Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle;
+        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     }
     eq->RegisterConsumer("Core::EditPage");
     eq->Page = page->PageName;
@@ -655,12 +655,12 @@ void Core::PreProcessEdit(WikiEdit *_e)
         _e->User->SetBot(true);
     }
 
-    _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->LocalConfig_EditSuffixOfHuggle);
+    _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
 
     int x = 0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_Assisted.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig_Assisted.count())
     {
-        if (_e->Summary.contains(Configuration::HuggleConfiguration->LocalConfig_Assisted.at(x)))
+        if (_e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_Assisted.at(x)))
         {
             _e->TrustworthEdit = true;
             break;

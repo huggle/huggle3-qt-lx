@@ -26,7 +26,7 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ui->comboBox_3->setCurrentIndex(2);
     this->ProtectToken = "";
     this->tt = NULL;
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_ProtectReason);
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_ProtectReason);
 }
 
 ProtectPage::~ProtectPage()
@@ -120,7 +120,7 @@ void ProtectPage::checkTokenToProtect()
             break;
     }
     this->qProtection->Parameters = "title=" + QUrl::toPercentEncoding(this->PageToProtect->PageName)
-            + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_ProtectReason)
+            + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_ProtectReason)
             + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
             + "&protections=" + QUrl::toPercentEncoding(protection)
             + "&token=" + QUrl::toPercentEncoding(this->ProtectToken);

@@ -272,21 +272,21 @@ void WikiEdit::ProcessWords()
     {
         text = this->Page->Contents.toLower();
     }
-    while (xx<Configuration::HuggleConfiguration->LocalConfig_ScoreParts.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.count())
     {
-        QString w = Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.at(xx).word;
         if (text.contains(w))
         {
-            this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreParts.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
     }
 
     xx = 0;
-    while (xx<Configuration::HuggleConfiguration->LocalConfig_ScoreWords.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.count())
     {
-        QString w = Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.at(xx).word;
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
         {
@@ -330,7 +330,7 @@ void WikiEdit::ProcessWords()
         }
         if (found)
         {
-            this->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreWords.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
@@ -433,26 +433,26 @@ void ProcessorThread::Process(WikiEdit *edit)
     // score
     if (edit->User->IsIP())
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_IPScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_IPScore;
     }
     if (edit->Bot)
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_BotScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_BotScore;
     }
     if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ForeignUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ForeignUser;
     } else if (edit->Page->IsUserpage())
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreUser;
     }
     if (edit->Page->IsTalk())
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreTalk;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreTalk;
     }
     if (edit->Size > 1200 || edit->Size < -1200)
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_ScoreChange;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreChange;
     }
     if (edit->Page->IsUserpage())
     {
@@ -460,7 +460,7 @@ void ProcessorThread::Process(WikiEdit *edit)
     }
     if (edit->User->IsWhitelisted())
     {
-        edit->Score += Configuration::HuggleConfiguration->LocalConfig_WhitelistScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore;
     }
 
     edit->Score += edit->User->GetBadnessScore();

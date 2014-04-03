@@ -65,7 +65,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->GetBadnessScore(false) <= Configuration::HuggleConfiguration->LocalConfig_WhitelistScore)
+    if (!us->IP && us->GetBadnessScore(false) <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore)
     {
         if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
         {
@@ -298,7 +298,7 @@ void WikiUser::ParseTP(QDate bt)
 
 QString WikiUser::GetTalk()
 {
-    return Configuration::HuggleConfiguration->LocalConfig_NSUserTalk + this->Username;
+    return Configuration::HuggleConfiguration->ProjectConfig_NSUserTalk + this->Username;
 }
 
 bool WikiUser::TalkPage_WasRetrieved()
@@ -308,13 +308,13 @@ bool WikiUser::TalkPage_WasRetrieved()
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
-    if (Configuration::HuggleConfiguration->LocalConfig_SharedIPTemplateTags == "")
+    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags == "")
     {
         return false;
     }
     if (this->TalkPage_WasRetrieved())
     {
-        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->LocalConfig_SharedIPTemplateTags);
+        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags);
     }
     return false;
 }

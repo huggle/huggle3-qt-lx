@@ -22,11 +22,11 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->qTokenApi = NULL;
     this->t0 = NULL;
     this->qUser = NULL;
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockReason);
     int x = 0;
-    while (Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.count() > x)
+    while (Configuration::HuggleConfiguration->ProjectConfig_BlockExpiryOptions.count() > x)
     {
-        this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockExpiryOptions.at(x));
+        this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockExpiryOptions.at(x));
         x++;
     }
 }
@@ -47,11 +47,11 @@ void BlockUser::SetWikiUser(WikiUser *User)
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
-        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon);
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig_BlockTimeAnon);
         this->ui->checkBox_5->setChecked(true);
     } else
     {
-        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->LocalConfig_BlockTime);
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig_BlockTime);
     }
 }
 
@@ -251,12 +251,12 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     QString blocknotice;
     if (this->user->IsIP())
     {
-        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessage;
+        blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessage;
     }else
     {
-        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessageIndef;
+        blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessageIndef;
     }
-    QString blocksum = Configuration::HuggleConfiguration->LocalConfig_BlockSummary;
+    QString blocksum = Configuration::HuggleConfiguration->ProjectConfig_BlockSummary;
     blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
     blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
     Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);

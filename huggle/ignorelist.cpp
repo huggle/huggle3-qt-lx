@@ -16,18 +16,18 @@ using namespace Huggle;
 IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList)
 {
     this->ui->setupUi(this);
-    this->model = new QStandardItemModel(Configuration::HuggleConfiguration->LocalConfig_Ignores.count(), 1, this);
+    this->model = new QStandardItemModel(Configuration::HuggleConfiguration->ProjectConfig_Ignores.count(), 1, this);
     this->ui->listView->setModel(model);
     int it = 0;
-    while (it < Configuration::HuggleConfiguration->LocalConfig_Ignores.count())
+    while (it < Configuration::HuggleConfiguration->ProjectConfig_Ignores.count())
     {
-        this->model->setItem(it, new QStandardItem(Configuration::HuggleConfiguration->LocalConfig_Ignores.at(it)));
+        this->model->setItem(it, new QStandardItem(Configuration::HuggleConfiguration->ProjectConfig_Ignores.at(it)));
         it++;
     }
     it = 0;
-    while (it < Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.count())
+    while (it < Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.count())
     {
-        this->model->setItem(it, new QStandardItem("^.*" + Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns.at(it) + ".*$"));
+        this->model->setItem(it, new QStandardItem("^.*" + Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.at(it) + ".*$"));
         it++;
     }
 }

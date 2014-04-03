@@ -17,9 +17,9 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
 {
     this->ui->setupUi(this);
     int xx = 0;
-    while (xx < Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries.count())
+    while (xx < Configuration::HuggleConfiguration->ProjectConfig_DeletionSummaries.count())
     {
-        this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_DeletionSummaries.at(xx));
+        this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_DeletionSummaries.at(xx));
         xx++;
     }
     this->page = NULL;
@@ -151,7 +151,7 @@ void DeleteForm::CheckDeleteToken()
         this->qTalk = new ApiQuery();
         this->qTalk->SetAction(ActionDelete);
         this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
-                + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_AssociatedDelete);
+                + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_AssociatedDelete);
                 + "&token=" + QUrl::toPercentEncoding(this->DeleteToken2);
         this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
         this->qTalk->UsingPOST = true;

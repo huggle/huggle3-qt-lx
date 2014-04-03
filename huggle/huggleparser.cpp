@@ -15,24 +15,24 @@ using namespace Huggle;
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key)
 {
     int id=0;
-    while (id<Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.count())
+    while (id<Configuration::HuggleConfiguration->ProjectConfig_RevertSummaries.count())
     {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.at(id);
+        QString line = Configuration::HuggleConfiguration->ProjectConfig_RevertSummaries.at(id);
         if (line.startsWith(key + ";"))
         {
             return HuggleParser::GetValueFromKey(line);
         }
         id++;
     }
-    return Configuration::HuggleConfiguration->LocalConfig_DefaultSummary;
+    return Configuration::HuggleConfiguration->ProjectConfig_DefaultSummary;
 }
 
 QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key)
 {
     int id=0;
-    while (id<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
+    while (id<Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count())
     {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(id);
+        QString line = Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.at(id);
         if (line.startsWith(key) + ";")
         {
             return HuggleParser::GetValueFromKey(line);
@@ -45,9 +45,9 @@ QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key)
 QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id)
 {
     int i=0;
-    while (i<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
+    while (i<Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count())
     {
-        QString line = Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(i);
+        QString line = Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.at(i);
         if (line.endsWith(id) || line.endsWith(id + ","))
         {
             return HuggleParser::GetKeyFromValue(line);
@@ -59,7 +59,7 @@ QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id)
 
 void HuggleParser::ParsePats(QString text)
 {
-    Configuration::HuggleConfiguration->LocalConfig_ScoreParts.clear();
+    Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.clear();
     while (text.contains("score-parts("))
     {
         text = text.mid(text.indexOf("score-parts(") + 12);
@@ -112,7 +112,7 @@ void HuggleParser::ParsePats(QString text)
         line = 0;
         while (line < word.count())
         {
-            Configuration::HuggleConfiguration->LocalConfig_ScoreParts.append(ScoreWord(word.at(line), score));
+            Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.append(ScoreWord(word.at(line), score));
             line++;
         }
     }
@@ -120,7 +120,7 @@ void HuggleParser::ParsePats(QString text)
 
 void HuggleParser::ParseWords(QString text)
 {
-    Configuration::HuggleConfiguration->LocalConfig_ScoreWords.clear();
+    Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.clear();
     while (text.contains("score-words("))
     {
         text = text.mid(text.indexOf("score-words(") + 12);
@@ -173,7 +173,7 @@ void HuggleParser::ParseWords(QString text)
         line = 0;
         while (line < word.count())
         {
-            Configuration::HuggleConfiguration->LocalConfig_ScoreWords.append(ScoreWord(word.at(line), score));
+            Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(ScoreWord(word.at(line), score));
             line++;
         }
     }
@@ -303,7 +303,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             } else
             {
                 // now check if it's at least 1 month old
-                if (bt.addDays(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) > date)
+                if (bt.addDays(Configuration::HuggleConfiguration->ProjectConfig_TemplateAge) > date)
                 {
                     // we don't want to parse this thing
                     page = page.replace(sections.at(CurrentIndex), "");
@@ -318,9 +318,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
     while (level > 0)
     {
         int xx=0;
-        while (xx<Configuration::HuggleConfiguration->LocalConfig_WarningDefs.count())
+        while (xx<Configuration::HuggleConfiguration->ProjectConfig_WarningDefs.count())
         {
-            QString defs=Configuration::HuggleConfiguration->LocalConfig_WarningDefs.at(xx);
+            QString defs=Configuration::HuggleConfiguration->ProjectConfig_WarningDefs.at(xx);
             if (HuggleParser::GetKeyFromValue(defs).toInt() == level)
             {
                 if (page.contains(HuggleParser::GetValueFromKey(defs)))
