@@ -145,7 +145,7 @@ warn-summary-4:Level 4 warning re. [[$1]]
 
 // how many days old templates are considered fresh (-30 means 30 day templates
 // are fresh and counted, older than that are ignored)
-template-age:-60
+template-age:-5
 
 keep-section:true
 
