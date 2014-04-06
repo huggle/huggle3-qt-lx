@@ -62,6 +62,7 @@
 #include "scorewordsdbform.hpp"
 #include "deleteform.hpp"
 #include "warnings.hpp"
+#include "warninglist.hpp"
 #include "protectpage.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
@@ -104,6 +105,7 @@ namespace Huggle
     class DeleteForm;
     class BlockUser;
     class ProtectPage;
+    class WarningList;
     class UAAReport;
     class ScoreWordsDbForm;
 
@@ -305,6 +307,8 @@ namespace Huggle
             bool CheckExit();
             void DisplayWelcomeMessage();
             void FinishRestore();
+            //! When any button to warn current user is pressed it call this function
+            void TriggerWarn();
             //! Check if we can revert this edit
             bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
@@ -326,6 +330,7 @@ namespace Huggle
             //! Status bar
             QLabel *Status;
             bool EditablePage;
+            WarningList *fWarningList;
             WaitingForm *fWaiting;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;

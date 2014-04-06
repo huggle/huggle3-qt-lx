@@ -191,6 +191,7 @@ Configuration::Configuration()
     //////////////////////////////////////////////////////////////////////////////////////////
     // User
     //////////////////////////////////////////////////////////////////////////////////////////
+    this->UserConfig_ManualWarning = false;
     this->UserConfig_LastEdit = false;
     this->UserConfig_AutomaticallyResolveConflicts = false;
     this->UserConfig_RevertNewBySame = true;
@@ -260,7 +261,6 @@ QString Configuration::GenerateSuffix(QString text)
     {
         text = text + " " + this->ProjectConfig_EditSuffixOfHuggle;
     }
-
     return text;
 }
 
@@ -418,6 +418,7 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "TruncateEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness) + "\n";
     configuration_ += "DisplayTitle:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DisplayTitle) + "\n";
+    configuration_ += "ManualWarning:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_ManualWarning) + "\n";
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -911,6 +912,7 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig_TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->UserConfig_HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->UserConfig_LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
+    this->UserConfig_ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
     this->UserConfig_TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig_TalkPageFreshness)).toInt();
     this->UserConfig_GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->UserConfig_DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));

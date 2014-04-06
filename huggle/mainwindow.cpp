@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->OnNext_EvPage = NULL;
     this->fRemove = NULL;
     this->qTalkPage = NULL;
+    this->fWarningList = NULL;
     this->eq = NULL;
     this->RestoreEdit = NULL;
     this->CurrentEdit = NULL;
@@ -70,7 +71,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    QList<HuggleLog_Line> _log = Syslog::HuggleLogs->RingLogToList();
     if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
     {
         Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
@@ -209,6 +209,7 @@ MainWindow::~MainWindow()
     delete this->Status;
     delete this->Browser;
     delete this->fBlockForm;
+    delete this->fWarningList;
     delete this->fDeleteForm;
     delete this->fUaaReportForm;
     delete this->ui;
@@ -757,6 +758,30 @@ void MainWindow::FinishRestore()
     this->RestoreEdit = NULL;
 }
 
+void MainWindow::TriggerWarn()
+{
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    {
+        return;
+    }
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Core::HuggleCore->DeveloperError();
+        return;
+    }
+    if (Configuration::HuggleConfiguration->UserConfig_ManualWarning)
+    {
+        if (this->fWarningList != NULL)
+        {
+            delete this->fWarningList;
+        }
+        this->fWarningList = new Huggle::WarningList(this->CurrentEdit);
+        this->fWarningList->show();
+        return;
+    }
+    this->Warn("warning", NULL);
+}
+
 void MainWindow::on_actionPreferences_triggered()
 {
     this->preferencesForm->show();
@@ -991,16 +1016,7 @@ void MainWindow::on_actionNext_2_triggered()
 
 void MainWindow::on_actionWarn_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-    {
-        return;
-    }
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Core::HuggleCore->DeveloperError();
-        return;
-    }
-    this->Warn("warning", NULL);
+    this->TriggerWarn();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
@@ -1019,16 +1035,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 
 void MainWindow::on_actionWarn_the_user_triggered()
 {
-    if (!this->CheckExit())
-    {
-        return;
-    }
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Core::HuggleCore->DeveloperError();
-        return;
-    }
-    this->Warn("warning", NULL);
+    this->TriggerWarn();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
@@ -1311,7 +1318,7 @@ bool MainWindow::BrowserPageIsEditable()
 
 bool MainWindow::CheckEditableBrowserPage()
 {
-    if (!this->EditablePage)
+    if (!this->EditablePage || this->CurrentEdit == NULL)
     {
         QMessageBox mb;
         mb.setWindowTitle("Cannot perform action");

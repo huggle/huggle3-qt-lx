@@ -157,6 +157,21 @@
        <string>Warnings</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_8">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QCheckBox" name="checkBox_17">
          <property name="text">
@@ -168,6 +183,13 @@
         <widget class="QCheckBox" name="checkBox_16">
          <property name="text">
           <string>Use months as headers instead of name of page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_24">
+         <property name="text">
+          <string>Use automatic warning type and level on &quot;send warning&quot; function</string>
          </property>
         </widget>
        </item>

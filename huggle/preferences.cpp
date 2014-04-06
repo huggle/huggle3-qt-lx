@@ -106,6 +106,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
     this->ui->checkBox_20->setChecked(Configuration::HuggleConfiguration->UserConfig_RevertNewBySame);
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_24->setChecked(Configuration::HuggleConfiguration->UserConfig_ManualWarning);
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig_DisplayTitle);
 }
@@ -193,6 +194,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UserConfig_TruncateEdits = this->ui->checkBox_19->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
     Configuration::HuggleConfiguration->UserConfig_DisplayTitle = this->ui->checkBox_23->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_ManualWarning = this->ui->checkBox_24->isChecked();
     if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;

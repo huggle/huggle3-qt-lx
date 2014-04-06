@@ -293,6 +293,9 @@ namespace Huggle
             unsigned int            UserConfig_HistoryMax;
             bool                    UserConfig_TruncateEdits;
             bool                    UserConfig_RevertNewBySame;
+            //! If this is set to false the warning will be selected by huggle when user decide to
+            //! use the "warn only" feature in huggle (W) for example, it doesn't affect reverting
+            bool                    UserConfig_ManualWarning;
             //! Large title of every page in top of diff
             bool                    UserConfig_DisplayTitle;
 

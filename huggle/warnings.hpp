@@ -74,7 +74,7 @@ namespace Huggle
          * \param WarningType Type of warning
          * \param Dependency If the warnings is depending on some revert you can put a pointer to that here
          * \param Edit Pointer to edit this warning is related to
-         * \param Report This is address of boolean to which value whether user should be reported intead is stored
+         * \param Report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
         PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
