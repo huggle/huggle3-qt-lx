@@ -388,12 +388,8 @@ void Core::FinalizeMessages()
     }
 }
 
-EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
+EditQuery *Core::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
 {
-    if (page == NULL)
-    {
-        return NULL;
-    }
     // retrieve a token
     EditQuery *eq = new EditQuery();
     if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
@@ -401,14 +397,24 @@ EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool mi
         summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     }
     eq->RegisterConsumer("Core::EditPage");
-    eq->Page = page->PageName;
+    eq->Page = page;
     eq->BaseTimestamp = BaseTimestamp;
     this->PendingMods.append(eq);
     eq->text = text;
+    eq->Section = section;
     eq->Summary = summary;
     eq->Minor = minor;
     eq->Process();
     return eq;
+}
+
+EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
+{
+    if (page == NULL)
+    {
+        return NULL;
+    }
+    return this->EditPage(page->PageName, text, summary, minor, BaseTimestamp);
 }
 
 void Core::AppendQuery(Query *item)

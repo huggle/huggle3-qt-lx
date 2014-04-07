@@ -30,6 +30,7 @@
 namespace Huggle
 {
     class WikiUser;
+    class WikiEdit;
     class WikiPage;
     class Exception;
     class MainWindow;

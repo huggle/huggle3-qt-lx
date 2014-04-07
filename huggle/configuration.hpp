@@ -332,6 +332,12 @@ namespace Huggle
             byte_ht         ProjectConfig_WarningLevel;
             bool            ProjectConfig_AIV;
             bool            ProjectConfig_AIVExtend;
+            bool            ProjectConfig_RFPP;
+            unsigned int    ProjectConfig_RFPP_Section;
+            QString         ProjectConfig_RFPP_Template;
+            QString         ProjectConfig_RFPP_Summary;
+            QString         ProjectConfig_RFPP_Regex;
+            QString         ProjectConfig_RFPP_Page;
             QString         ProjectConfig_ReportAIV;
             //! Section of report page to append template to
             int             ProjectConfig_ReportSt;

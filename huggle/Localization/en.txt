@@ -696,8 +696,9 @@ loaduserconfig-fail:       Failed to load user configuration page
 
 reqprotection-badformat:   Format of request page unknown
 reqprotection-duplicate:   Protection has already been requested
-reqprotection-fail:        Did not request protection of '{0}'
+reqprotection-fail:        Did not request protection of '$1'
 reqprotection-progress:    Requesting protection of '$1'...
+reqprotection-title:       Request page protection of $1
 
 tag-alreadytagged:         The page has already been tagged
 tag-deleted:               The page has been deleted

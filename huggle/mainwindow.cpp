@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->eq = NULL;
     this->RestoreEdit = NULL;
     this->CurrentEdit = NULL;
+    this->fRFProtection = NULL;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->Shutdown = ShutdownOpRunning;
     this->EditablePage = false;
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
+    this->ui->actionRequest_protection->setEnabled(Configuration::HuggleConfiguration->ProjectConfig_RFPP);
     // we store the value in bool so that we don't need to call expensive string function twice
     bool PermissionBlock = Configuration::HuggleConfiguration->Rights.contains("block");
     this->ui->actionBlock_user->setEnabled(PermissionBlock);
@@ -2228,4 +2230,23 @@ void Huggle::MainWindow::on_actionDisplay_user_messages_triggered()
 void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
 {
     this->VandalDock->DisplayBots = this->ui->actionDisplay_bot_data->isChecked();
+}
+
+void Huggle::MainWindow::on_actionRequest_protection_triggered()
+{
+    if (!this->CheckExit() || !Configuration::HuggleConfiguration->ProjectConfig_RFPP || this->CurrentEdit == NULL)
+    {
+        return;
+    }
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Core::HuggleCore->DeveloperError();
+        return;
+    }
+    if (this->fRFProtection != NULL)
+    {
+        delete this->fRFProtection;
+    }
+    this->fRFProtection = new RequestProtect(this->CurrentEdit->Page);
+    this->fRFProtection->show();
 }

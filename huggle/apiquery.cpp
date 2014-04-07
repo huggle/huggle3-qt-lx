@@ -108,6 +108,20 @@ ApiQuery::ApiQuery()
     this->OverrideWiki = "";
 }
 
+ApiQuery::ApiQuery(Action a)
+{
+    this->RequestFormat = XML;
+    this->URL = "";
+    this->Type = QueryApi;
+    this->ActionPart = "";
+    this->Result = NULL;
+    this->Parameters = "";
+    this->UsingPOST = false;
+    this->SetAction(a);
+    this->Target = "none";
+    this->OverrideWiki = "";
+}
+
 void ApiQuery::Finished()
 {
     this->Result->Data += QString(this->reply->readAll());

@@ -13,18 +13,21 @@
 #define REQUESTPROTECT_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
+// now we need to ensure that python is included first. Don't believe it? See this:
 // http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
 
+#include <QTimer>
 #include <QDialog>
+#include <QRegExp>
+#include "wikipage.hpp"
+#include "localization.hpp"
+#include "apiquery.hpp"
+#include "editquery.hpp"
+#include "core.hpp"
 #include "configuration.hpp"
-#if !PRODUCTION_BUILD
 
 namespace Ui
 {
@@ -33,7 +36,8 @@ namespace Ui
 
 namespace Huggle
 {
-    /// \todo This class doesn't do anything now
+    class EditQuery;
+    class ApiQuery;
 
     //! This can be used to request protection of a page
     class RequestProtect : public QDialog
@@ -41,14 +45,23 @@ namespace Huggle
         Q_OBJECT
 
         public:
-            explicit RequestProtect(QWidget *parent = 0);
+            explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = 0);
             ~RequestProtect();
-
+        private slots:
+            void Tick();
+            void on_pushButton_clicked();
         private:
+            QString ProtectionType();
+            void Fail(QString message);
+            void RemoveQs();
+            QString Timestamp;
+            WikiPage *page;
+            QTimer *tm;
             Ui::RequestProtect *ui;
+            ApiQuery *qRFPPage;
+            EditQuery *qEditRFP;
     };
 }
 
 
 #endif // REQUESTPROTECT_H
-#endif

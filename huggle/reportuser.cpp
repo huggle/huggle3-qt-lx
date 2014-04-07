@@ -119,11 +119,10 @@ bool ReportUser::SetUser(WikiUser *user)
     }
     this->ReportedUser = user;
     this->ui->label->setText(Localizations::HuggleLocalizations->Localize("report-intro", user->Username));
-    this->qHistory = new ApiQuery();
+    this->qHistory = new ApiQuery(ActionQuery);
     this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
-    this->qHistory->SetAction(ActionQuery);
     this->qHistory->Process();
     if (this->qBlockHistory != NULL)
     {
@@ -133,11 +132,10 @@ bool ReportUser::SetUser(WikiUser *user)
     {
         this->ui->pushButton_4->setEnabled(false);
     }
-    this->qBlockHistory = new ApiQuery();
+    this->qBlockHistory = new ApiQuery(ActionQuery);
     this->qBlockHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qBlockHistory->Parameters = "list=logevents&leprop=ids%7Ctitle%7Ctype%7Cuser%7Ctimestamp%7Ccomment%7Cdetails%7Ctags&letype"\
                                       "=block&ledir=newer&letitle=User:" + QUrl::toPercentEncoding(this->ReportedUser->Username);
-    this->qBlockHistory->SetAction(ActionQuery);
     this->qBlockHistory->Process();
     this->tReportUser = new QTimer(this);
     connect(this->tReportUser, SIGNAL(timeout()), this, SLOT(Tick()));
@@ -544,9 +542,8 @@ void ReportUser::on_pushButton_clicked()
         this->qHistory->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
 
-    this->qHistory = new ApiQuery();
+    this->qHistory = new ApiQuery(ActionQuery);
     this->qHistory->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
-    this->qHistory->SetAction(ActionQuery);
     this->qHistory->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
     this->qHistory->Process();
@@ -571,13 +568,12 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
         this->qDiff->Kill();
         this->qDiff->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
-    this->qDiff = new ApiQuery();
+    this->qDiff = new ApiQuery(ActionQuery);
     this->qDiff->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
                       "&rvlimit=1&rvtoken=rollback&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
                       "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
                       QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
-    this->qDiff->SetAction(ActionQuery);
     this->qDiff->Process();
     this->tPageDiff->start(200);
 }
@@ -652,8 +648,7 @@ void ReportUser::on_pushButton_3_clicked()
         this->qReport->UnregisterConsumer(HUGGLECONSUMER_REPORTFORM);
     }
 
-    this->qReport = new ApiQuery();
-    this->qReport->SetAction(ActionQuery);
+    this->qReport = new ApiQuery(ActionQuery);
     this->qReport->RegisterConsumer(HUGGLECONSUMER_REPORTFORM);
     this->qReport->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
             QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);

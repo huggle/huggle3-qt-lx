@@ -28,46 +28,47 @@
 #include <QThread>
 #include <QSplitter>
 #include <QDockWidget>
+#include "aboutform.hpp"
+#include "blockuser.hpp"
+#include "collectable.hpp"
 #include "configuration.hpp"
 #include "core.hpp"
-#include "aboutform.hpp"
-#include "preferences.hpp"
+#include "deleteform.hpp"
+#include "editquery.hpp"
+#include "exception.hpp"
+#include "hooks.hpp"
+#include "history.hpp"
+#include "hugglefeedproviderwiki.hpp"
+#include "hugglefeedproviderirc.hpp"
 #include "hugglelog.hpp"
+#include "huggleparser.hpp"
 #include "hugglequeue.hpp"
 #include "huggletool.hpp"
 #include "huggleweb.hpp"
 #include "wikipage.hpp"
-#include "editquery.hpp"
+#include "preferences.hpp"
 #include "processlist.hpp"
+#include "protectpage.hpp"
 #include "wikiuser.hpp"
 #include "ignorelist.hpp"
 #include "speedyform.hpp"
-#include "exception.hpp"
-#include "hooks.hpp"
-#include "history.hpp"
-#include "blockuser.hpp"
-#include "hugglefeedproviderwiki.hpp"
-#include "hugglefeedproviderirc.hpp"
 #include "userinfoform.hpp"
 #include "vandalnw.hpp"
-#include "revertquery.hpp"
-#include "whitelistform.hpp"
-#include "collectable.hpp"
-#include "gc.hpp"
 #include "reportuser.hpp"
+#include "revertquery.hpp"
+#include "requestprotect.hpp"
+#include "whitelistform.hpp"
+#include "gc.hpp"
 #include "waitingform.hpp"
 #include "wlquery.hpp"
 #include "sessionform.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
-#include "deleteform.hpp"
 #include "warnings.hpp"
 #include "warninglist.hpp"
-#include "protectpage.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
-#include "huggleparser.hpp"
 
 namespace Ui
 {
@@ -102,6 +103,7 @@ namespace Huggle
     class Syslog;
     class WikiUser;
     class ReportUser;
+    class RequestProtect;
     class DeleteForm;
     class BlockUser;
     class ProtectPage;
@@ -300,6 +302,7 @@ namespace Huggle
             void on_actionDisplay_user_data_triggered();
             void on_actionDisplay_user_messages_triggered();
             void on_actionDisplay_bot_data_triggered();
+            void on_actionRequest_protection_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
@@ -332,6 +335,7 @@ namespace Huggle
             bool EditablePage;
             WarningList *fWarningList;
             WaitingForm *fWaiting;
+            RequestProtect *fRFProtection;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList <WikiEdit*> Historical;
             ApiQuery *RestoreQuery;

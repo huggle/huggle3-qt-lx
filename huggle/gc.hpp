@@ -42,6 +42,7 @@
 #define HUGGLECONSUMER_CORE_MESSAGE             17
 #define HUGGLECONSUMER_PROCESSOR                18
 #define HUGGLECONSUMER_MAINPEND                 19
+#define HUGGLECONSUMER_REQUESTPROTECT           20
 #define HUGGLECONSUMER_REPORTFORM               22
 #define HUGGLECONSUMER_CORE                     800
 

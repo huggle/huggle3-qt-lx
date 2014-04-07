@@ -12,8 +12,7 @@
 #define EDITQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -46,6 +45,7 @@ namespace Huggle
 
             //! Used to detect edit conflicts; leave unset to ignore conflicts
             QString BaseTimestamp;
+            unsigned int Section;
             //! Timestamp when you started editing the page
 
             //! when you fetched the current revision's text to begin editing it or checked the existence of the page.

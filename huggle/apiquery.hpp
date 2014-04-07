@@ -72,6 +72,7 @@ namespace Huggle
         public:
             //! Creates a new instance of this class and set the defaults
             explicit ApiQuery();
+            explicit ApiQuery(Action a);
             //! Run
             void Process();
             //! Change the action type

@@ -36,6 +36,7 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
+    class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
     class BlockUser : public QDialog

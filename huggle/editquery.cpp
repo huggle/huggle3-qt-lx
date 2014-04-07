@@ -20,6 +20,7 @@ EditQuery::EditQuery()
     this->Minor = false;
     this->Page = "";
     this->qToken = NULL;
+    this->Section = 0;
     this->BaseTimestamp = "";
     this->StartTimestamp = "";
     this->text = "";
@@ -40,8 +41,7 @@ void EditQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken == "")
     {
-        this->qToken = new ApiQuery();
-        this->qToken->SetAction(ActionQuery);
+        this->qToken = new ApiQuery(ActionQuery);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
         this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
         this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
@@ -157,6 +157,11 @@ void EditQuery::EditPage()
     this->qEdit->SetAction(ActionEdit);
     QString base = "";
     QString start_ = "";
+    QString section = "";
+    if (this->Section > 0)
+    {
+        section = "&section=" + QString::number(this->Section);
+    }
     if (this->BaseTimestamp != "")
     {
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
@@ -165,7 +170,7 @@ void EditQuery::EditPage()
     {
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     }
-    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) +
+    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     Core::HuggleCore->AppendQuery(qEdit);
