@@ -231,7 +231,7 @@ namespace Huggle
             //! User flags on current project, this may be empty if you fail to login
             QStringList     Rights;
             //! Whether new edits go to top or bottom (if true, they go to up)
-            bool            QueueNewEditsUp;
+            bool            SystemConfig_QueueNewEditsUp;
             //! If this is true some functionalities will be disabled
             bool            SystemConfig_SafeMode;
             //! Resolve edit conflict without asking user

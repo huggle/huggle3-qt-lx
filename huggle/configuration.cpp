@@ -65,7 +65,7 @@ Configuration::Configuration()
     this->GlobalConfigWasLoaded = false;
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Local
+    // Local (project wide)
     //////////////////////////////////////////////////////////////////////////////////////////
     this->ProjectConfig_MinimalVersion = "3.0.0.0";
     this->ProjectConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
@@ -126,7 +126,6 @@ Configuration::Configuration()
     this->ProjectConfig_WhitelistScore = -800;
     this->TrimOldWarnings = true;
     this->AskUserBeforeReport = true;
-    this->QueueNewEditsUp = false;
     this->WelcomeEmpty = true;
     this->ProjectConfig_ReportSummary = "Reporting user";
 
@@ -206,7 +205,7 @@ Configuration::Configuration()
     this->UserConfig_GoNext = Configuration_OnNext_Next;
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    //System
+    // System (pc wide)
     //////////////////////////////////////////////////////////////////////////////////////////
 
     this->SystemConfig_WhitelistDisabled = false;
@@ -227,6 +226,7 @@ Configuration::Configuration()
     this->SystemConfig_IRCConnectionTimeOut = 2;
     this->SystemConfig_LanguageSanity = false;
     this->SystemConfig_Dot = false;
+    this->SystemConfig_QueueNewEditsUp = false;
 
     // Temporary only
     this->TemporaryConfig_EditToken = "";
@@ -554,7 +554,7 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         if (key == "QueueNewEditsUp")
         {
-            Configuration::HuggleConfiguration->QueueNewEditsUp = Configuration::SafeBool(option.attribute("text"));
+            Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "IndexOfLastWiki")
@@ -599,7 +599,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->SystemConfig_ProviderCache), x);
     InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
     InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->SystemConfig_HistorySize), x);
-    InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
+    InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp), x);
     InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize), x);
     InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), x);
     InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), x);
@@ -639,7 +639,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_IPVTemplateReport = ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
     this->ProjectConfig_RUTemplateReport = ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
     this->ProjectConfig_ReportDefaultReason = ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\
-                                                               "unconstructive edits found with [[WP:HG|Huggle 3]].");
+                                                                 "unconstructive edits found with [[WP:HG|Huggle 3]].");
     // Restrictions
     this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
     this->ProjectConfig_RequireAdmin = SafeBool(ConfigurationParse("require-admin", config));
@@ -664,8 +664,8 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_WarnSummary2 = ConfigurationParse("warn-summary-2", config);
     this->ProjectConfig_DefaultSummary = ConfigurationParse("default-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
-    this->ProjectConfig_AgfRevert = ConfigurationParse("agf", config,
-              "Reverted good faith edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]");
+    this->ProjectConfig_AgfRevert = ConfigurationParse("agf", config, "Reverted good faith edits by [[Special:Contributions/$2|$2]]"\
+                                                       " [[User talk:$2|talk]]");
     this->ProjectConfig_WarnSummary3 = ConfigurationParse("warn-summary-3", config);
     this->ProjectConfig_WarnSummary4 = ConfigurationParse("warn-summary-4", config);
     this->ProjectConfig_RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
