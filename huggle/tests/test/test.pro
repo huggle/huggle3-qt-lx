@@ -29,6 +29,7 @@ SOURCES += tst_testmain.cpp \
     ../../resources.cpp \
     ../../core.cpp \
     ../../queryresult.cpp \
+    ../../warninglist.cpp \
     ../../huggleparser.cpp \
     ../../query.cpp \
     ../../syslog.cpp \
@@ -103,6 +104,7 @@ HEADERS += \
     ../../huggleparser.hpp \
     ../../syslog.cpp \
     ../../deleteform.hpp \
+    ../../warninglist.hpp \
     ../../localization.hpp \
     ../../blockuser.hpp \
     ../../apiquery.hpp \
