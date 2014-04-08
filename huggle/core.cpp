@@ -275,7 +275,7 @@ QString Core::ShrinkText(QString text, int size, bool html)
 }
 
 Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
-                           Query *DependencyRevert, bool NoSuffix, bool SectionKeep, bool autoremove,
+                           Query *Dependency, bool NoSuffix, bool SectionKeep, bool autoremove,
                            QString BaseTimestamp, bool CreateOnly_, bool FreshOnly_)
 {
     if (User == NULL)
@@ -291,7 +291,7 @@ Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString 
 
     Message *m = new Message(User, Text, Summary);
     m->Title = Title;
-    m->Dependency = DependencyRevert;
+    m->Dependency = Dependency;
     m->CreateInNewSection = InsertSection;
     m->BaseTimestamp = BaseTimestamp;
     m->SectionKeep = SectionKeep;

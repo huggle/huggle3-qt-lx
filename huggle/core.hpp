@@ -183,7 +183,7 @@ namespace Huggle
              * \return NULL on error or instance of Huggle::Message in case it's success
              */
             Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
-                                 Query *DependencyRevert = NULL, bool NoSuffix = false, bool SectionKeep = false,
+                                 Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
                                  bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
             void FinalizeMessages();
             EditQuery *EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,

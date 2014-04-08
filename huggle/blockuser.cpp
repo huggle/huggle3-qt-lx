@@ -93,11 +93,7 @@ void BlockUser::onTick()
 
 void BlockUser::CheckToken()
 {
-    if (this->qTokenApi == NULL)
-    {
-        return;
-    }
-    if (!this->qTokenApi->IsProcessed())
+    if (this->qTokenApi == NULL || !this->qTokenApi->IsProcessed())
     {
         return;
     }
@@ -165,7 +161,6 @@ void BlockUser::CheckToken()
     this->qUser->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     Core::HuggleCore->AppendQuery(this->qUser);
     this->qUser->Process();
-    this->sendBlockNotice(this->qUser);
 }
 
 void BlockUser::Block()
@@ -214,6 +209,7 @@ void BlockUser::Block()
     Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->qUser->Result->Data, 2);
     this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     this->t0->stop();
+    this->sendBlockNotice(NULL);
 }
 
 void BlockUser::Failed(QString reason)
