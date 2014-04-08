@@ -88,8 +88,17 @@ void HuggleTest::testCaseTalkPage()
     text = QString(file->readAll());
     user->TalkPage_SetContents(text);
     user->ParseTP(QDate(2014, 4, 2));
-    QVERIFY2(user->WarningLevel == 0, QString("level parsed was " +
-QString::number(user->WarningLevel) + " should be 0!!").toUtf8().data());
+    QVERIFY2(user->WarningLevel == 0, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 0!!").toUtf8().data());
+    file->close();
+    delete file;
+    delete user;
+    file = new QFile(":/test/wikipage/tp0004.txt");
+    user = new Huggle::WikiUser();
+    file->open(QIODevice::ReadOnly);
+    text = QString(file->readAll());
+    user->TalkPage_SetContents(text);
+    user->ParseTP(QDate(2014, 4, 2));
+    QVERIFY2(user->WarningLevel == 0, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 0!!").toUtf8().data());
     file->close();
     delete file;
     delete user;
