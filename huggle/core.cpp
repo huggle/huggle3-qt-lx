@@ -393,42 +393,6 @@ void Core::VersionRead()
     delete vf;
 }
 
-QString Core::GetProjectURL(WikiSite Project)
-{
-    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;
-}
-
-QString Core::GetProjectWikiURL(WikiSite Project)
-{
-    return Core::GetProjectURL(Project) + Project.LongPath;
-}
-
-QString Core::GetProjectScriptURL(WikiSite Project)
-{
-    return Core::GetProjectURL(Project) + Project.ScriptPath;
-}
-
-QString Core::GetProjectURL()
-{
-    return Configuration::GetURLProtocolPrefix() + Configuration::HuggleConfiguration->Project->URL;
-}
-
-QString Core::GetProjectWikiURL()
-{
-    return Core::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->LongPath;
-}
-
-QString Core::GetProjectScriptURL()
-{
-    return Core::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
-}
-
-QString Core::ParameterizedTitle(QString title, QString parameter)
-{
-    title = title.replace("$1", parameter);
-    return title;
-}
-
 void Core::ProcessEdit(WikiEdit *e)
 {
     Core::Main->ProcessEdit(e);

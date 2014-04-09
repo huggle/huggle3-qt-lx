@@ -375,7 +375,7 @@ void WikiEdit::PostProcess()
 
 QString WikiEdit::GetFullUrl()
 {
-    return Core::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
+    return Configuration::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
             "&diff=" + QString::number(this->RevID);
 }
 

@@ -591,7 +591,7 @@ warning-level3:            Level 3
 warning-level4:            Level 4 (final)
 warning-warntype:          Warning type:
 warning-warnlog:           Warnings for this user:
-warning-send:              Send
+warning-submit:            Send
 
 === HAN ===
 han-not:                   Vandalism network isn't allowed in options

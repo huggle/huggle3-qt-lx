@@ -194,7 +194,7 @@ void Collectable::SetManaged()
 
 bool Collectable::HasSomeConsumers()
 {
-    return (this->iConsumers.count() > 0 || this->Consumers.count() > 0);
+    return (this->_collectableRefs > 0 || this->iConsumers.count() > 0 || this->Consumers.count() > 0);
 }
 
 QString Collectable::DebugHgc()
@@ -203,6 +203,10 @@ QString Collectable::DebugHgc()
     if (this->HasSomeConsumers())
     {
         result += ("GC: Listing all dependencies for " + QString::number(this->CollectableID())) + "\n";
+        if (this->_collectableRefs > 0)
+        {
+            result += QString::number(this->_collectableRefs) + " unknown references\n";
+        }
         int Item=0;
         while (Item < this->Consumers.count())
         {

@@ -1614,7 +1614,7 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )));
+        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )));
     }
 }
 
@@ -1673,10 +1673,10 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
     {
         if (this->CurrentEdit->Diff > 0)
         {
-            QDesktopServices::openUrl(QString(Core::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
+            QDesktopServices::openUrl(QString(Configuration::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
         } else
         {
-            QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName));
+            QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName));
         }
     }
 }
@@ -1685,7 +1685,7 @@ void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
+        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
     }
 }
 
@@ -1693,7 +1693,7 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history"));
+        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history"));
     }
 }
 
@@ -1837,7 +1837,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 {
     if (this->CurrentEdit != NULL)
     {
-        QDesktopServices::openUrl(QString(Core::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
+        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
     }
 }
 
@@ -1892,7 +1892,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
-    this->Browser->DisplayPreFormattedPage(Core::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
+    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
 }
 
 void MainWindow::on_actionProtect_triggered()

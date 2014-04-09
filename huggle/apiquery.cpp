@@ -19,27 +19,27 @@ void ApiQuery::ConstructUrl()
         throw new Exception("No action provided for api request");
     }
 
-    if (OverrideWiki == "")
+    if (this->OverrideWiki == "")
     {
-        URL = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
+        this->URL = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
     }
     else
     {
-        URL = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
+        this->URL = Configuration::GetURLProtocolPrefix() + this->OverrideWiki + "api.php?action=" + this->ActionPart;
     }
 
     if (this->Parameters != "")
     {
-        URL = URL + "&" + this->Parameters;
+        this->URL += "&" + this->Parameters;
     }
 
     switch (this->RequestFormat)
     {
         case XML:
-            URL += "&format=xml";
+            this->URL += "&format=xml";
             break;
         case JSON:
-            URL += "&format=json";
+            this->URL += "&format=json";
             break;
         case PlainText:
         case Default:
@@ -56,11 +56,11 @@ QString ApiQuery::ConstructParameterLessUrl()
     }
     if (OverrideWiki == "")
     {
-        url = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
+        url = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
     }
     else
     {
-        url = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
+        url = Configuration::GetURLProtocolPrefix() + this->OverrideWiki + "api.php?action=" + this->ActionPart;
     }
 
     switch (this->RequestFormat)
@@ -143,7 +143,7 @@ void ApiQuery::Finished()
     this->reply = NULL;
     if (!this->HiddenQuery)
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 6);
+        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + this->URL, 6);
     }
     this->Status = StatusDone;
     this->ProcessCallback();

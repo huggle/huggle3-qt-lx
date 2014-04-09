@@ -26,7 +26,7 @@
 #include "resources.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
-#include "core.hpp"
+#include "configuration.hpp"
 
 namespace Ui
 {

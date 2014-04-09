@@ -936,6 +936,36 @@ bool Configuration::ParseUserConfig(QString config)
     return true;
 }
 
+QString Configuration::GetProjectURL(WikiSite Project)
+{
+    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;
+}
+
+QString Configuration::GetProjectWikiURL(WikiSite Project)
+{
+    return Configuration::GetProjectURL(Project) + Project.LongPath;
+}
+
+QString Configuration::GetProjectScriptURL(WikiSite Project)
+{
+    return Configuration::GetProjectURL(Project) + Project.ScriptPath;
+}
+
+QString Configuration::GetProjectURL()
+{
+    return Configuration::GetURLProtocolPrefix() + Configuration::HuggleConfiguration->Project->URL;
+}
+
+QString Configuration::GetProjectWikiURL()
+{
+    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->LongPath;
+}
+
+QString Configuration::GetProjectScriptURL()
+{
+    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
+}
+
 QString Configuration::ConfigurationParse(QString key, QString content, QString missing)
 {
     /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)

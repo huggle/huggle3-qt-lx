@@ -348,7 +348,7 @@ void ReportUser::Tick()
                 {
                     diff = edit.attribute("revid");
                 }
-                QString link = Core::GetProjectScriptURL() + "index.php?title=" + page + "&diff=" + diff;
+                QString link = Configuration::GetProjectScriptURL() + "index.php?title=" + page + "&diff=" + diff;
                 this->ui->tableWidget->insertRow(0);
                 this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(page));
                 this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(time));
@@ -498,7 +498,7 @@ void ReportUser::on_pushButton_clicked()
             if (this->CheckBoxes.at(xx)->isChecked())
             {
                 EvidenceID++;
-                reports += "[" + QString(Core::GetProjectScriptURL() + "index.php?title=" +
+                reports += "[" + QString(Configuration::GetProjectScriptURL() + "index.php?title=" +
                            QUrl::toPercentEncoding(this->ui->tableWidget->item(xx, 0)->text()) + "&diff=" +
                            this->ui->tableWidget->item(xx, 3)->text()).toUtf8() + " #" +
                            QString::number(EvidenceID) + "] ";
@@ -535,7 +535,7 @@ void ReportUser::on_pushButton_clicked()
 
 void ReportUser::on_pushButton_2_clicked()
 {
-    QUrl u = QUrl::fromEncoded(QString(Core::GetProjectWikiURL() + QUrl::toPercentEncoding
+    QUrl u = QUrl::fromEncoded(QString(Configuration::GetProjectWikiURL() + QUrl::toPercentEncoding
                                  (this->ReportedUser->GetTalk()) + "?action=render").toUtf8());
     this->ui->webView->load(u);
 }

@@ -36,7 +36,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
         throw new Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
     }
     this->ui->webView->history()->clear();
-    this->ui->webView->load(QString(Core::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
+    this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
 }
 
@@ -93,7 +93,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
-        this->ui->webView->load(QString(Core::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
+        this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
         return;
     }

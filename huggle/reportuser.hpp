@@ -24,12 +24,10 @@
 #include <QMutex>
 #include <QtXml>
 #include <QCheckBox>
-#include <QString>
 #include <QList>
-#include "core.hpp"
+#include "generic.hpp"
 #include "blockuser.hpp"
 #include "editquery.hpp"
-#include "generic.hpp"
 #include "resources.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"

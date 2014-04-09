@@ -29,7 +29,6 @@
 #include "query.hpp"
 #include "revertquery.hpp"
 #include "configuration.hpp"
-#include "core.hpp"
 #include "exception.hpp"
 
 namespace Huggle

@@ -21,7 +21,6 @@
 #include <QApplication>
 #include <QNetworkAccessManager>
 #include <QList>
-#include <QString>
 #include <QPluginLoader>
 #include <QFile>
 #include <QMap>
@@ -99,19 +98,7 @@ namespace Huggle
     class Core
     {
         public:
-            static QString GetProjectURL(WikiSite Project);
             static void ExceptionHandler(Exception *exception);
-            //! Return a full url like http://en.wikipedia.org/wiki/
-            static QString GetProjectWikiURL(WikiSite Project);
-            //! Return a script url like http://en.wikipedia.org/w/
-            static QString GetProjectScriptURL(WikiSite Project);
-            //! Return a base url of current project
-            static QString GetProjectURL();
-            //! Return a full url like http://en.wikipedia.org/wiki/
-            static QString GetProjectWikiURL();
-            //! Return a script url like http://en.wikipedia.org/w/
-            static QString GetProjectScriptURL();
-            static QString ParameterizedTitle(QString title, QString parameter);
             //! Pointer to core, there should be only 1 core for whole application and this is that one
             //! if you are running extension you need to update this pointer with that one you receive
             //! using iExtension::HuggleCore
