@@ -25,6 +25,7 @@
 #include <QStringList>
 #include <QString>
 #include "configuration.hpp"
+#include "core.hpp"
 
 namespace Huggle
 {

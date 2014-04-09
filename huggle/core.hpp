@@ -99,6 +99,12 @@ namespace Huggle
     {
         public:
             static void ExceptionHandler(Exception *exception);
+            /*!
+             * \brief VersionRead - read the version from embedded git file
+             *
+             * This function may be called also from terminal parser
+             */
+            static void VersionRead();
             //! Pointer to core, there should be only 1 core for whole application and this is that one
             //! if you are running extension you need to update this pointer with that one you receive
             //! using iExtension::HuggleCore
@@ -110,12 +116,6 @@ namespace Huggle
             void Init();
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
-            /*!
-             * \brief VersionRead - read the version from embedded git file
-             *
-             * This function may be called also from terminal parser
-             */
-            void VersionRead();
             //! Helper function that will return URL of project in question
             /*!
              * \param Project Site

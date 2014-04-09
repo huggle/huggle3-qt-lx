@@ -58,6 +58,13 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
             valid = true;
         }
+        if (text == "--version")
+        {
+            // version is stored in built in resource which we need to extract using call to core here
+            Core::VersionRead();
+            cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
+            return true;
+        }
         if (text == "--syslog")
         {
             Configuration::HuggleConfiguration->SystemConfig_Log2File = true;
@@ -127,10 +134,11 @@ void TerminalParser::DisplayHelp()
             "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\
             "                   reads a different configuration file and uses different data.\n"\
             "  --syslog [file]: Will write a logs to a file\n"\
-            "  --language-test: Will perform CPU expensive language test on startup, which report\n"\
+            "  --version:       Display a version\n"\
+            "  --language-test: Will perform CPU expensive language test on startup, which reports\n"\
             "                   warnings found in localization files. This option is useful for\n"\
             "                   developers and people who create localization files.\n"\
-            "  -h | --help: Display this help\n\n"\
+            "  -h | --help:     Display this help\n\n"\
             "Note: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
