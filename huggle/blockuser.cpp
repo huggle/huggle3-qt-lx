@@ -256,8 +256,6 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
         blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
     QString blocksum = Configuration::HuggleConfiguration->ProjectConfig_BlockSummary;
-
-
     Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
 }
 
