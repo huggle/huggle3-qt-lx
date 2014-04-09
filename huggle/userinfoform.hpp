@@ -25,6 +25,7 @@
 #include <QString>
 #include "core.hpp"
 #include "exception.hpp"
+#include "querypool.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"

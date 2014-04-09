@@ -89,13 +89,13 @@ void RequestProtect::Tick()
         // let's edit the page now
         if (Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section == 0)
         {
-            this->qEditRFP = Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Page, PageText,
-                                                        summary_, false, this->Timestamp);
+            this->qEditRFP = WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Page, PageText,
+                                                summary_, false, this->Timestamp);
         } else
         {
-            this->qEditRFP = Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Page, PageText,
-                                                        summary_, false, this->Timestamp,
-                                                        Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section);
+            this->qEditRFP = WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Page, PageText,
+                                                summary_, false, this->Timestamp,
+                                                Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section);
         }
         this->qEditRFP->RegisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
         return;
@@ -134,7 +134,7 @@ void Huggle::RequestProtect::on_pushButton_clicked()
                          "&titles=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Page) +
                          "&rvsection=" + QString::number(Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section);
     }
-    Core::HuggleCore->AppendQuery(this->qRFPPage);
+    QueryPool::HugglePool->AppendQuery(this->qRFPPage);
     this->qRFPPage->Process();
     this->tm->start(800);
     this->ui->pushButton->setText("Retrieving");
@@ -173,4 +173,9 @@ void RequestProtect::RemoveQs()
     {
         this->qRFPPage->UnregisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
     }
+}
+
+void Huggle::RequestProtect::on_pushButton_2_clicked()
+{
+    this->close();
 }

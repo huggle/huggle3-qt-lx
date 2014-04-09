@@ -129,11 +129,9 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         CreateOnly = true;
     }
-    PendingWarning *pw = new PendingWarning(Core::HuggleCore->MessageUser(Edit->User, MessageText_, HeadingText_,
-                                                                          Summary_, true, Dependency, false,
-                                                                          Configuration::HuggleConfiguration->UserConfig_SectionKeep,
-                                                                          false, Edit->TPRevBaseTime, CreateOnly, true
-                                                                          ), WarningType, Edit);
+    PendingWarning *pw = new PendingWarning(Message::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
+                                                                 Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
+                                                                 Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
     return pw;
 }
@@ -280,7 +278,7 @@ void Warnings::ResendWarnings()
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
                 warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-                Core::HuggleCore->AppendQuery(warning->Query);
+                QueryPool::HugglePool->AppendQuery(warning->Query);
                 //! \todo LOCALIZE ME
                 warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
                 warning->Query->Process();
@@ -297,7 +295,7 @@ void Warnings::ResendWarnings()
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
                 warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-                Core::HuggleCore->AppendQuery(warning->Query);
+                QueryPool::HugglePool->AppendQuery(warning->Query);
                 //! \todo LOCALIZE ME
                 warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
                 warning->Query->Process();
@@ -363,8 +361,8 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         id = Core::HuggleCore->MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
-    Core::HuggleCore->MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
-                               Configuration::HuggleConfiguration->UserConfig_SectionKeep, true, Edit->TPRevBaseTime);
+    Message::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
+                         Configuration::HuggleConfiguration->UserConfig_SectionKeep, true, Edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type)

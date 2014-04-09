@@ -26,7 +26,7 @@
 #include <QtXml>
 #include <QTimer>
 #include <QUrl>
-#include "core.hpp"
+#include "wikiutil.hpp"
 #include "configuration.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"

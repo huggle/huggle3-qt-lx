@@ -22,12 +22,15 @@ TEMPLATE = app
 SOURCES += tst_testmain.cpp \
     ../../wikiuser.cpp \
     ../../mediawiki.cpp \
+    ../../wikiutil.cpp \
+    ../../querypool.cpp \
     ../../configuration.cpp \
     ../../localization.cpp \
     ../../wikisite.cpp \
     ../../wikipage.cpp \
     ../../resources.cpp \
     ../../core.cpp \
+    ../../generic.cpp \
     ../../queryresult.cpp \
     ../../warninglist.cpp \
     ../../huggleparser.cpp \
@@ -116,6 +119,8 @@ HEADERS += \
     ../../iextension.hpp \
     ../../huggleweb.hpp \
     ../../huggletool.hpp \
+    ../../wikiutil.hpp \
+    ../../querypool.hpp \
     ../../hugglequeueitemlabel.hpp \
     ../../hugglequeuefilter.hpp \
     ../../hugglequeue.hpp \
@@ -135,7 +140,9 @@ HEADERS += \
     ../../wlquery.hpp \
     ../../wikiedit.hpp \
     ../../waitingform.hpp \
+    ../../generic.hpp \
     ../../vandalnw.hpp \
+    ../../userinfoform.hpp \
     ../../userinfoform.hpp \
     ../../uaareport.hpp \
     ../../terminalparser.hpp \

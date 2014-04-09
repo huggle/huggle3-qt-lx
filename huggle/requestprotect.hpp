@@ -13,8 +13,7 @@
 #define REQUESTPROTECT_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+// now we need to ensure that python is included first
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -23,8 +22,10 @@
 #include <QDialog>
 #include <QRegExp>
 #include "wikipage.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
 #include "apiquery.hpp"
+#include "querypool.hpp"
 #include "editquery.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
@@ -50,6 +51,7 @@ namespace Huggle
         private slots:
             void Tick();
             void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
         private:
             QString ProtectionType();
             void Fail(QString message);

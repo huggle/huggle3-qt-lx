@@ -104,7 +104,8 @@ int SomeLocalVariable;
 void ThisFunctionDoesALotOfStuff();
 void *ptr_SomePointer;
 
-IMPORTANT: leading character is capital not lower case
+IMPORTANT: leading character is capital for public variables and functions,
+           it's lowercase for private functions and variables.
 
 === Indentations ===
 
@@ -134,5 +135,5 @@ In every class static functions go on first place, right after them are static
 variables, then there is a space and follows constructors, destructor and
 functions with variables.
 
-Using this order in every class declaration (.h file) will make it easier to find
+Using this order in every class declaration (.hpp file) will make it easier to find
 where certain stuff is. It is recommended to order everything alphabetically too.

@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->RestoreQuery = NULL;
     this->fUaaReportForm = NULL;
     this->OnNext_EvPage = NULL;
-    this->fRemove = NULL;
+    this->fSpeedyDelete = NULL;
     this->qTalkPage = NULL;
     this->fWarningList = NULL;
     this->eq = NULL;
@@ -77,6 +77,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
     }
+    QueryPool::HugglePool->Processes = this->Queries;
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
     this->ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
@@ -188,7 +189,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow()
 {
     delete this->OnNext_EvPage;
-    delete this->fRemove;
+    delete this->fSpeedyDelete;
     delete this->wUserInfo;
     delete this->wHistory;
     delete this->wlt;
@@ -403,14 +404,14 @@ void MainWindow::RequestPD()
         return;
     }
 
-    if (this->fRemove != NULL)
+    if (this->fSpeedyDelete != NULL)
     {
-        delete this->fRemove;
+        delete this->fSpeedyDelete;
     }
 
-    this->fRemove = new SpeedyForm();
-    this->fRemove->Init(this->CurrentEdit->User, this->CurrentEdit->Page);
-    this->fRemove->show();
+    this->fSpeedyDelete = new SpeedyForm();
+    this->fSpeedyDelete->Init(this->CurrentEdit);
+    this->fSpeedyDelete->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -482,11 +483,11 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t =  "Processing <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 3) +
-                 "</b>edits and <b>" + Core::ShrinkText(QString::number(Core::HuggleCore->RunningQueriesGetCount()), 3) +
-                 "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size()) +
-                 "</b> Queue size: <b>" + Core::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4) +
-                 "</b> Statistics: ";
+    QString t = "Processing <b>" + MainWindow::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 3) +
+                "</b>edits and <b>" + MainWindow::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3) +
+                "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size()) +
+                "</b> Queue size: <b>" + MainWindow::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4) +
+                "</b> Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
@@ -529,9 +530,9 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        t += " <font color=" + color + ">" + Core::ShrinkText(QString::number(EditsPerMinute), 6) +
-             " edits per minute " + Core::ShrinkText(QString::number(RevertsPerMinute), 6) +
-             " reverts per minute, level " + Core::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
+        t += " <font color=" + color + ">" + MainWindow::ShrinkText(QString::number(EditsPerMinute), 6) +
+             " edits per minute " + MainWindow::ShrinkText(QString::number(RevertsPerMinute), 6) +
+             " reverts per minute, level " + MainWindow::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
@@ -748,7 +749,7 @@ void MainWindow::FinishRestore()
         sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
         sm = sm.replace("$3", this->RestoreEdit_RevertReason);
-        Core::HuggleCore->EditPage(this->RestoreEdit->Page, text, sm);
+        WikiUtil::EditPage(this->RestoreEdit->Page, text, sm);
     } else
     {
         Syslog::HuggleLogs->DebugLog(this->RestoreQuery->Result->Data);
@@ -801,7 +802,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
-    Core::HuggleCore->FinalizeMessages();
+    Message::FinalizeMessages();
     bool RetrieveEdit = true;
     // if garbage collector is already destroyed there is no point in doing anything in here
     if (GC::gc == NULL)
@@ -897,7 +898,7 @@ void MainWindow::OnMainTimerTick()
             }
         }
     }
-    Core::HuggleCore->CheckQueries();
+    QueryPool::HugglePool->CheckQueries();
     this->FinishPatrols();
     Syslog::HuggleLogs->lUnwrittenLogs.lock();
     if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
@@ -986,7 +987,7 @@ void MainWindow::OnTimerTick0()
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
             WikiPage *uc = new WikiPage(page);
-            this->eq = Core::HuggleCore->EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
+            this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
             this->eq->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
             delete uc;
             return;
@@ -1373,7 +1374,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
         // this uggly piece of code actually rocks
         query->CallbackResult = (void*)e;
         query->RegisterConsumer("patrol");
-        Core::HuggleCore->AppendQuery(query);
+        QueryPool::HugglePool->AppendQuery(query);
         query->Process();
         this->PatroledEdits.append(query);
         return;
@@ -1384,7 +1385,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
     query->Target = "Patrolling " + e->Page->PageName;
     query->UsingPOST = true;
     query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
-    Core::HuggleCore->AppendQuery(query);
+    QueryPool::HugglePool->AppendQuery(query);
     Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
     query->Process();
 }
@@ -1574,10 +1575,10 @@ void MainWindow::Welcome()
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon);
         }
-        Core::HuggleCore->MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
-                                      Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
-                                      Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
-                                      false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+        Message::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
+                             Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
+                             Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
+                             false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
 
@@ -1599,9 +1600,9 @@ void MainWindow::Welcome()
 
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
-    Core::HuggleCore->MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
-                                  Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, NULL,
-                                  false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+    Message::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
+                         Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, NULL,
+                         false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -1735,7 +1736,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
 
     /// \todo LOCALIZE ME
-    Core::HuggleCore->EditPage(page, Configuration::HuggleConfiguration->ProjectConfig_ClearTalkPageTemp
+    WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig_ClearTalkPageTemp
                    + "\n" + Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
                    "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
 
@@ -2249,4 +2250,29 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     }
     this->fRFProtection = new RequestProtect(this->CurrentEdit->Page);
     this->fRFProtection->show();
+}
+
+QString MainWindow::ShrinkText(QString text, int size, bool html)
+{
+    if (size < 2)
+    {
+        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
+    }
+    // let's copy the text into new variable so that we don't break the original
+    // who knows how these mutable strings are going to behave in qt :D
+    QString text_ = text;
+    int length = text_.length();
+    if (length > size)
+    {
+        text_ = text_.mid(0, size - 2);
+        text_ = text_ + "..";
+    } else while (text_.length() < size)
+    {
+        text_ += " ";
+    }
+    if (html)
+    {
+        text_.replace(" ", "&nbsp;");
+    }
+    return text_;
 }

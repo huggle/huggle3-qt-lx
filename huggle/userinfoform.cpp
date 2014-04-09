@@ -93,7 +93,7 @@ void UserinfoForm::Read()
     this->qContributions->SetAction(ActionQuery);
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
             "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
-    Core::HuggleCore->AppendQuery(this->qContributions);
+    QueryPool::HugglePool->AppendQuery(this->qContributions);
     this->qContributions->RegisterConsumer(HUGGLECONSUMER_USERINFO);
     ui->pushButton->hide();
     this->qContributions->Process();

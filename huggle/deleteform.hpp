@@ -25,10 +25,10 @@
 #include <QLineEdit>
 #include <QUrl>
 #include "localization.hpp"
+#include "querypool.hpp"
 #include "configuration.hpp"
 #include "wikipage.hpp"
 #include "apiquery.hpp"
-#include "core.hpp"
 
 namespace Ui
 {

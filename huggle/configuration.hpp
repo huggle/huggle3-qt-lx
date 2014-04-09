@@ -445,6 +445,8 @@ namespace Huggle
             int              ProjectConfig_IPScore;
             int              ProjectConfig_WarningScore;
             QStringList      ProjectConfig_WarningTypes;
+            QString          ProjectConfig_SpeedyEditSummary;
+            QString          ProjectConfig_SpeedyWarningSummary;
             QStringList      ProjectConfig_SpeedyTemplates;
             QStringList      ProjectConfig_WelcomeTypes;
             int              ProjectConfig_WhitelistScore;

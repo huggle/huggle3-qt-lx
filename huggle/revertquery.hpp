@@ -12,11 +12,7 @@
 #define REVERTQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+// now we need to ensure that python is included first, because it simply suck
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -25,9 +21,9 @@
 #include <QtXml>
 #include <QTimer>
 #include "configuration.hpp"
-#include "core.hpp"
 #include "editquery.hpp"
 #include "wikiedit.hpp"
+#include "wikiutil.hpp"
 #include "apiquery.hpp"
 
 namespace Huggle

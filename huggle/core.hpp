@@ -42,6 +42,7 @@
 #include "resources.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"
+#include "querypool.hpp"
 #include "sleeper.hpp"
 #include "revertquery.hpp"
 #include "huggleparser.hpp"
@@ -77,6 +78,7 @@ namespace Huggle
     class RevertQuery;
     class Message;
     class Syslog;
+    class QueryPool;
     class iExtension;
     class Configuration;
     class Localizations;
@@ -97,7 +99,6 @@ namespace Huggle
     class Core
     {
         public:
-            static QString ShrinkText(QString text, int size, bool html = true);
             static QString GetProjectURL(WikiSite Project);
             static void ExceptionHandler(Exception *exception);
             //! Return a full url like http://en.wikipedia.org/wiki/
@@ -146,8 +147,6 @@ namespace Huggle
             //! Perform more expensive tasks to finalize
             //! edit processing
             void PostProcessEdit(WikiEdit *_e);
-            //! Check if all running queries are finished and if so it removes them from list
-            void CheckQueries();
             /*!
              * \brief RevertEdit Reverts the edit
              * \param _e Pointer to edit that needs to be reverted
@@ -166,41 +165,12 @@ namespace Huggle
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
             QString MonthText(int n);
-            /*!
-             * \brief MessageUser Message user
-             *
-             * This function will deliver a message to user using Message class which is returned by this function
-             *
-             * \param User Pointer to user
-             * \param Text Text of message
-             * \param Title Title of message
-             * \param Summary Summary
-             * \param InsertSection Whether this message should be created in a new section
-             * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
-             * the system will wait for it to finish before the message is sent
-             * \param NoSuffix will not append huggle suffix if this is true, useful if you need to use custom summary
-             *
-             * \return NULL on error or instance of Huggle::Message in case it's success
-             */
-            Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
-                                 Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
-                                 bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
-            void FinalizeMessages();
-            EditQuery *EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                QString BaseTimestamp = "", unsigned int section = 0);
-            EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false, QString BaseTimestamp = "");
-            /*!
-             * \brief Insert a query to internal list of running queries, so that they can be watched
-             * This will insert it to a process list in main form
-             * \param item Query that is about to be inserted to list of running queries
-             */
-            void AppendQuery(Query* item);
             double GetUptimeInSeconds();
             bool ReportPreFlightCheck();
             void LoadLocalizations();
-            int RunningQueriesGetCount();
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
+            QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
             //! Pointer to main
@@ -214,10 +184,10 @@ namespace Huggle
             //! This is a list of all edits that are being processed by some way
             //! whole list needs to be checked and probed everytime once a while
             QList<WikiEdit*> ProcessingEdits;
-            //! Pending changes
-            QList<EditQuery*> PendingMods;
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
+            //! List of all messages that are being sent
+            QList<Message*> Messages;
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
@@ -227,16 +197,12 @@ namespace Huggle
             Python::PythonEngine *Python;
 #endif
         private:
-            //! List of all running queries
-            QList<Query*> RunningQueries;
             //! We need to store some recent reverts for wiki provider so that we can backward decide if edit
             //! was reverted before we parse it
             QList<WikiEdit*> RevertBuffer;
             QList<WikiEdit*> UncheckedReverts;
             //! This is a post-processor for edits
             ProcessorThread * Processor;
-            //! List of all messages that are being sent
-            QList<Message*> Messages;
     };
 }
 

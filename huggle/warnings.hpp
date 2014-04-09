@@ -26,6 +26,7 @@
 #include "core.hpp"
 #include "message.hpp"
 #include "wikiuser.hpp"
+#include "querypool.hpp"
 #include "reportuser.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"

@@ -119,7 +119,9 @@ Configuration::Configuration()
     this->ProjectConfig_AIV = false;
     this->ProjectConfig_AIVExtend = true;
     this->ProjectConfig_ReportAIV = "";
+    this->ProjectConfig_SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
     this->ProjectConfig_ReportSt = 0;
+    this->ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
     this->ProjectConfig_ReportDefaultReason = "vandalism";
     this->ProjectConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
     this->ProjectConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
@@ -700,6 +702,8 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_WelcomeGood = SafeBool(ConfigurationParse("welcome-on-good-edit", config, "true"));
     this->ProjectConfig_WelcomeTypes = HuggleParser::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
+    this->ProjectConfig_SpeedyEditSummary = ConfigurationParse("speedy-message-summary", config, "Notification: Speedy deletion of [[$1]]");
+    this->ProjectConfig_SpeedyWarningSummary = ConfigurationParse("speedy-message-summary", config, "Notification: [[$1]] has been listed for deletion");
     this->ProjectConfig_Patrolling = SafeBool(ConfigurationParse("patrolling-enabled", config));
     this->ProjectConfig_ReportSummary = ConfigurationParse("report-summary", config);
     this->ProjectConfig_SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);

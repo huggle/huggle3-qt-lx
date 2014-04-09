@@ -45,7 +45,7 @@ void EditQuery::Process()
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
         this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
         this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        Core::HuggleCore->AppendQuery(qToken);
+        QueryPool::HugglePool->AppendQuery(qToken);
         this->qToken->Process();
     } else
     {
@@ -173,6 +173,6 @@ void EditQuery::EditPage()
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
-    Core::HuggleCore->AppendQuery(qEdit);
+    QueryPool::HugglePool->AppendQuery(qEdit);
     this->qEdit->Process();
 }

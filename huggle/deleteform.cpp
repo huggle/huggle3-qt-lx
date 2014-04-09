@@ -64,7 +64,7 @@ void DeleteForm::GetToken()
     this->qToken->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
     this->qToken->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->page->PageName);
     this->qToken->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    Core::HuggleCore->AppendQuery(this->qToken);
+    QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
     if (this->TalkPage != NULL)
     {
@@ -73,7 +73,7 @@ void DeleteForm::GetToken()
         this->qTokenOfTalkPage->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->TalkPage->PageName);
         this->qTokenOfTalkPage->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->TalkPage->PageName);
         this->qTokenOfTalkPage->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-        Core::HuggleCore->AppendQuery(this->qTokenOfTalkPage);
+        QueryPool::HugglePool->AppendQuery(this->qTokenOfTalkPage);
         this->qTokenOfTalkPage->Process();
     }
     this->tDelete = new QTimer(this);
@@ -156,7 +156,7 @@ void DeleteForm::CheckDeleteToken()
         this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
         this->qTalk->UsingPOST = true;
         this->qTalk->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-        Core::HuggleCore->AppendQuery(this->qTalk);
+        QueryPool::HugglePool->AppendQuery(this->qTalk);
         this->qTalk->Process();
     }
     d.setContent(this->qToken->Result->Data);
@@ -188,7 +188,7 @@ void DeleteForm::CheckDeleteToken()
     this->qDelete->Target = "Deleting "  + this->page->PageName;
     this->qDelete->UsingPOST = true;
     this->qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    Core::HuggleCore->AppendQuery(qDelete);
+    QueryPool::HugglePool->AppendQuery(qDelete);
     this->qDelete->Process();
 }
 

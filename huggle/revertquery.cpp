@@ -388,7 +388,8 @@ void RevertQuery::CheckPreflight()
             if (MultipleEdits && !Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
                 /// \todo LOCALIZE ME
-                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are multiple edits by same user to " + this->edit->Page->PageName);
+                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are multiple edits by same user to "
+                                                + this->edit->Page->PageName);
                 this->Cancel();
                 return;
             } else if (MultipleEdits && Configuration::HuggleConfiguration->RevertOnMultipleEdits)
@@ -493,7 +494,7 @@ bool RevertQuery::ProcessRevert()
         this->qSR_PageToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", this->edit->Page->PageName);
         this->qSR_PageToken->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         this->CustomStatus = "Retrieving token";
-        Core::HuggleCore->AppendQuery(this->qSR_PageToken);
+        QueryPool::HugglePool->AppendQuery(this->qSR_PageToken);
         this->qSR_PageToken->Process();
         return false;
     }
@@ -624,7 +625,7 @@ bool RevertQuery::ProcessRevert()
                                "content was resolved to blank edit");
             return true;
         }
-        this->EditQuerySoftwareRollback = Core::HuggleCore->EditPage(this->edit->Page, content, summary, this->MinorEdit);
+        this->EditQuerySoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MinorEdit);
         this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         /// \todo LOCALIZE ME
         this->CustomStatus = "Editing page";
@@ -814,7 +815,7 @@ void RevertQuery::Rollback()
     this->qRevert->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
-        Core::HuggleCore->AppendQuery(this->qRevert);
+        QueryPool::HugglePool->AppendQuery(this->qRevert);
     }
     /// \todo LOCALIZE ME
     this->CustomStatus = "Rolling back " + edit->Page->PageName;

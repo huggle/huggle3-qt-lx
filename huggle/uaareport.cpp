@@ -51,7 +51,7 @@ void UAAReport::getPageContents()
     /// \todo LOCALIZE THIS
     this->qUAApage->Target = "Getting content of UAA";
     this->qUAApage->RegisterConsumer("UAAReport::getPageContents()");
-    Core::HuggleCore->AppendQuery(qUAApage);
+    QueryPool::HugglePool->AppendQuery(qUAApage);
     this->qUAApage->Process();
 
     if (this->uT != NULL)
@@ -104,7 +104,7 @@ void UAAReport::onTick()
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
-    Core::HuggleCore->EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);
+    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);
     /// \todo LOCALIZE ME
     Huggle::Syslog::HuggleLogs->Log("Reporting" + this->User->Username + " to UAA" );
     this->ui->pushButton->setText("Reported");
@@ -183,7 +183,7 @@ void UAAReport::on_pushButton_3_clicked()
     this->qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
             + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
     this->qChUAApage->RegisterConsumer("UAAReport::checkIfReported()");
-    Core::HuggleCore->AppendQuery(qChUAApage);
+    QueryPool::HugglePool->AppendQuery(qChUAApage);
     this->qChUAApage->Process();
 
     this->cuT = new QTimer(this);

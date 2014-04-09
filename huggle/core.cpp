@@ -30,6 +30,8 @@ void Core::Init()
     this->gc = new GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
+    QueryPool::HugglePool = new QueryPool();
+    this->HGQP = QueryPool::HugglePool;
     Core::VersionRead();
 #if QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
@@ -249,67 +251,6 @@ QString Core::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-QString Core::ShrinkText(QString text, int size, bool html)
-{
-    if (size < 2)
-    {
-        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
-    }
-    // let's copy the text into new variable so that we don't break the original
-    // who knows how these mutable strings are going to behave in qt :D
-    QString text_ = text;
-    int length = text_.length();
-    if (length > size)
-    {
-        text_ = text_.mid(0, size - 2);
-        text_ = text_ + "..";
-    } else while (text_.length() < size)
-    {
-        text_ += " ";
-    }
-    if (html)
-    {
-        text_.replace(" ", "&nbsp;");
-    }
-    return text_;
-}
-
-Message *Core::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
-                           Query *Dependency, bool NoSuffix, bool SectionKeep, bool autoremove,
-                           QString BaseTimestamp, bool CreateOnly_, bool FreshOnly_)
-{
-    if (User == NULL)
-    {
-        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
-        return NULL;
-    }
-
-    if (Title == "")
-    {
-        InsertSection = false;
-    }
-
-    Message *m = new Message(User, Text, Summary);
-    m->Title = Title;
-    m->Dependency = Dependency;
-    m->CreateInNewSection = InsertSection;
-    m->BaseTimestamp = BaseTimestamp;
-    m->SectionKeep = SectionKeep;
-    m->RequireFresh = FreshOnly_;
-    m->CreateOnly = CreateOnly_;
-    m->Suffix = !NoSuffix;
-    Core::Messages.append(m);
-    m->RegisterConsumer(HUGGLECONSUMER_CORE);
-    if (!autoremove)
-    {
-        m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
-    }
-    m->Send();
-    Huggle::Syslog::HuggleLogs->DebugLog("Sending message to user " + User->Username);
-
-    return m;
-}
-
 void Core::LoadDefs()
 {
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
@@ -360,67 +301,6 @@ void Core::LoadDefs()
     }
     Syslog::HuggleLogs->DebugLog("Loaded " + QString::number(WikiUser::ProblematicUsers.count()) + " records from last session");
     defs.close();
-}
-
-void Core::FinalizeMessages()
-{
-    if (this->Messages.count() < 1)
-    {
-        return;
-    }
-    int x=0;
-    QList<Message*> list;
-    while (x<this->Messages.count())
-    {
-        if (this->Messages.at(x)->IsFinished())
-        {
-            list.append(this->Messages.at(x));
-        }
-        x++;
-    }
-    x=0;
-    while (x<list.count())
-    {
-        Message *message = list.at(x);
-        message->UnregisterConsumer(HUGGLECONSUMER_CORE);
-        Core::Messages.removeOne(message);
-        x++;
-    }
-}
-
-EditQuery *Core::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
-{
-    // retrieve a token
-    EditQuery *eq = new EditQuery();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
-    {
-        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
-    }
-    eq->RegisterConsumer("Core::EditPage");
-    eq->Page = page;
-    eq->BaseTimestamp = BaseTimestamp;
-    this->PendingMods.append(eq);
-    eq->text = text;
-    eq->Section = section;
-    eq->Summary = summary;
-    eq->Minor = minor;
-    eq->Process();
-    return eq;
-}
-
-EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
-{
-    if (page == NULL)
-    {
-        return NULL;
-    }
-    return this->EditPage(page->PageName, text, summary, minor, BaseTimestamp);
-}
-
-void Core::AppendQuery(Query *item)
-{
-    item->RegisterConsumer("core");
-    this->RunningQueries.append(item);
 }
 
 void Core::ExtensionLoad()
@@ -577,9 +457,11 @@ void Core::Shutdown()
         delete this->Python;
     }
 #endif
+    QueryPool::HugglePool = NULL;
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;
     delete GC::gc;
+    delete this->HGQP;
     GC::gc = NULL;
     this->gc = NULL;
     QApplication::quit();
@@ -700,57 +582,7 @@ void Core::PostProcessEdit(WikiEdit *_e)
     _e->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
     _e->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     _e->PostProcess();
-    Core::ProcessingEdits.append(_e);
-}
-
-void Core::CheckQueries()
-{
-    int curr = 0;
-    if (Core::PendingMods.count() > 0)
-    {
-        while (curr < Core::PendingMods.count())
-        {
-            if (Core::PendingMods.at(curr)->IsProcessed())
-            {
-                EditQuery *e = Core::PendingMods.at(curr);
-                Core::PendingMods.removeAt(curr);
-                e->UnregisterConsumer("Core::EditPage");
-            } else
-            {
-                curr++;
-            }
-        }
-    }
-    curr = 0;
-    if (Core::RunningQueries.count() < 1)
-    {
-        return;
-    }
-    QList<Query*> Finished;
-    while (curr < Core::RunningQueries.count())
-    {
-        Query *q = Core::RunningQueries.at(curr);
-        Core::Main->Queries->UpdateQuery(q);
-        if (q->IsProcessed())
-        {
-            Finished.append(q);
-            // this is pretty spamy :o
-            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 8);
-            Core::Main->Queries->UpdateQuery(q);
-            Core::Main->Queries->RemoveQuery(q);
-        }
-        curr++;
-    }
-    curr = 0;
-    while (curr < Finished.count())
-    {
-        Query *item = Finished.at(curr);
-        Core::RunningQueries.removeOne(item);
-        item->Lock();
-        item->UnregisterConsumer("core");
-        item->SafeDelete();
-        curr++;
-    }
+    this->ProcessingEdits.append(_e);
 }
 
 RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
@@ -775,7 +607,7 @@ RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool ro
         query->Summary = summary;
     }
     query->MinorEdit = minor;
-    Core::AppendQuery(query);
+    this->HGQP->AppendQuery(query);
     if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
     {
         query->UsingSR = true;
@@ -857,11 +689,6 @@ bool Core::ReportPreFlightCheck()
         return false;
     }
     return true;
-}
-
-int Core::RunningQueriesGetCount()
-{
-    return this->RunningQueries.count();
 }
 
 void Core::TruncateReverts()

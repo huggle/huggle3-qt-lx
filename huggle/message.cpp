@@ -56,7 +56,7 @@ void Message::RetrieveToken()
     this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->user->GetTalk());
     this->qToken->Target = Localizations::HuggleLocalizations->Localize("message-retrieve-new-token", this->user->GetTalk());
     this->qToken->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    Core::HuggleCore->AppendQuery(this->qToken);
+    QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
 }
 
@@ -337,13 +337,10 @@ void Message::PreflightCheck()
         }
         this->_Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
-        this->query = new ApiQuery();
+        this->query = Generic::RetrieveWikiPageContents(this->user->GetTalk());
         this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query->SetAction(ActionQuery);
-        this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-                QUrl::toPercentEncoding(this->user->GetTalk());
         // inform user what is going on
-        Core::HuggleCore->AppendQuery(this->query);
+        QueryPool::HugglePool->AppendQuery(this->query);
         /// \todo LOCALIZE ME
         this->query->Target = "Reading TP of " + this->user->Username;
         this->query->Process();
@@ -430,7 +427,7 @@ void Message::ProcessSend()
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }
     Syslog::HuggleLogs->DebugLog(QString(" Message to %1 with parameters: %2").arg(this->user->Username, parameters), 2);
-    Core::HuggleCore->AppendQuery(query);
+    QueryPool::HugglePool->AppendQuery(query);
     this->query->Process();
 }
 
@@ -475,6 +472,67 @@ void Message::ProcessTalk()
             return;
         }
     }
+}
+
+void Message::FinalizeMessages()
+{
+    if (Core::HuggleCore->Messages.count() < 1)
+    {
+        return;
+    }
+    int x=0;
+    QList<Message*> list;
+    while (x<Core::HuggleCore->Messages.count())
+    {
+        if (Core::HuggleCore->Messages.at(x)->IsFinished())
+        {
+            list.append(Core::HuggleCore->Messages.at(x));
+        }
+        x++;
+    }
+    x=0;
+    while (x<list.count())
+    {
+        Message *message = list.at(x);
+        message->UnregisterConsumer(HUGGLECONSUMER_CORE);
+        Core::HuggleCore->Messages.removeOne(message);
+        x++;
+    }
+}
+
+Message *Message::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
+                              Query *Dependency, bool NoSuffix, bool SectionKeep, bool autoremove,
+                              QString BaseTimestamp, bool CreateOnly_, bool FreshOnly_)
+{
+    if (User == NULL)
+    {
+        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
+        return NULL;
+    }
+
+    if (Title == "")
+    {
+        InsertSection = false;
+    }
+
+    Message *m = new Message(User, Text, Summary);
+    m->Title = Title;
+    m->Dependency = Dependency;
+    m->CreateInNewSection = InsertSection;
+    m->BaseTimestamp = BaseTimestamp;
+    m->SectionKeep = SectionKeep;
+    m->RequireFresh = FreshOnly_;
+    m->CreateOnly = CreateOnly_;
+    m->Suffix = !NoSuffix;
+    Core::HuggleCore->Messages.append(m);
+    m->RegisterConsumer(HUGGLECONSUMER_CORE);
+    if (!autoremove)
+    {
+        m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
+    }
+    m->Send();
+    Huggle::Syslog::HuggleLogs->DebugLog("Sending message to user " + User->Username);
+    return m;
 }
 
 QString Message::Append(QString text, QString OriginalText, QString Label)

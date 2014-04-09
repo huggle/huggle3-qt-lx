@@ -29,6 +29,7 @@
 #include "core.hpp"
 #include "blockuser.hpp"
 #include "editquery.hpp"
+#include "generic.hpp"
 #include "resources.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
@@ -75,6 +76,7 @@ namespace Huggle
             void InsertUser();
             //! Stop all operations
             void Kill();
+            void failCheck(QString reason);
             Ui::ReportUser *ui;
             //! Reported user
             WikiUser *ReportedUser;

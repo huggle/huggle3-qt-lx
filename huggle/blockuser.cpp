@@ -64,7 +64,7 @@ void BlockUser::GetToken()
             QUrl::toPercentEncoding(this->user->Username);
     this->qTokenApi->Target = Localizations::HuggleLocalizations->Localize("block-token-1", this->user->Username);
     this->qTokenApi->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
-    Core::HuggleCore->AppendQuery(this->qTokenApi);
+    QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -153,13 +153,12 @@ void BlockUser::CheckToken()
     this->qUser->SetAction(ActionQuery);
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
-            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
-            + nocreate + anononly + noemail + autoblock + allowusertalk
-            + "&token=" + QUrl::toPercentEncoding(BlockToken);
+            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
+            + noemail + autoblock + allowusertalk + "&token=" + QUrl::toPercentEncoding(BlockToken);
     this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
     this->qUser->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
-    Core::HuggleCore->AppendQuery(this->qUser);
+    QueryPool::HugglePool->AppendQuery(this->qUser);
     this->qUser->Process();
 }
 
@@ -256,6 +255,6 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
         blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
     QString blocksum = Configuration::HuggleConfiguration->ProjectConfig_BlockSummary;
-    Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
+    Message::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
 }
 

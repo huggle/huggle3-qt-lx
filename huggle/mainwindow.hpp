@@ -62,10 +62,12 @@
 #include "waitingform.hpp"
 #include "wlquery.hpp"
 #include "sessionform.hpp"
+#include "querypool.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "warnings.hpp"
 #include "warninglist.hpp"
+#include "wikiutil.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
@@ -182,7 +184,7 @@ namespace Huggle
             AboutForm *aboutForm;
             //! Pointer to current edit, if it's NULL there is no edit being displayed
             WikiEdit *CurrentEdit;
-            SpeedyForm* fRemove;
+            SpeedyForm* fSpeedyDelete;
             //! Pointer to processes
             ProcessList *Queries;
             //! Pointer to history
@@ -305,6 +307,7 @@ namespace Huggle
             void on_actionRequest_protection_triggered();
 
         private:
+            static QString ShrinkText(QString text, int size, bool html = true);
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();

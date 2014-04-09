@@ -23,7 +23,7 @@
 #include <QString>
 #include <QtXml>
 #include <QTimer>
-#include "core.hpp"
+#include "querypool.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"
 #include "wikiuser.hpp"

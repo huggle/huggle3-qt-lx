@@ -48,7 +48,7 @@ void ProtectPage::getTokenToProtect()
     this->qToken1->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
     this->qToken1->Target = Localizations::HuggleLocalizations->Localize("protection-ft");
     this->qToken1->RegisterConsumer(HUGGLECONSUMER_PROTECTPAGE);
-    Core::HuggleCore->AppendQuery(qToken1);
+    QueryPool::HugglePool->AppendQuery(qToken1);
     this->qToken1->Process();
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -126,7 +126,7 @@ void ProtectPage::checkTokenToProtect()
             + "&token=" + QUrl::toPercentEncoding(this->ProtectToken);
     this->qProtection->Target = "Protecting " + this->PageToProtect->PageName;
     this->qProtection->RegisterConsumer(HUGGLECONSUMER_PROTECTPAGE);
-    Core::HuggleCore->AppendQuery(this->qProtection);
+    QueryPool::HugglePool->AppendQuery(this->qProtection);
     this->qProtection->Process();
 }
 

@@ -29,7 +29,9 @@
 #include <QList>
 #include "apiquery.hpp"
 #include "definitions.hpp"
+#include "generic.hpp"
 #include "collectable.hpp"
+#include "querypool.hpp"
 #include "mediawiki.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"

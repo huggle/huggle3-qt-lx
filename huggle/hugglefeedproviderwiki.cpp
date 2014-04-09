@@ -99,7 +99,7 @@ void HuggleFeedProviderWiki::Refresh()
             "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
     this->q->Target = "Recent changes refresh";
     this->q->RegisterConsumer("HuggleFeed::Refresh");
-    Core::HuggleCore->AppendQuery(this->q);
+    QueryPool::HugglePool->AppendQuery(this->q);
     this->q->Process();
 }
 

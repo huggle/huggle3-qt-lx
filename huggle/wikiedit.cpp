@@ -344,12 +344,9 @@ void WikiEdit::PostProcess()
         return;
     }
     this->PostProcessing = true;
-    this->qTalkpage = new ApiQuery();
-    this->qTalkpage->SetAction(ActionQuery);
-    this->qTalkpage->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "&titles=" +
-                                        QUrl::toPercentEncoding(this->User->GetTalk());
+    this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk());
     this->qTalkpage->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    Core::HuggleCore->AppendQuery(this->qTalkpage);
+    QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
     this->qDifference = new ApiQuery();
@@ -358,9 +355,9 @@ void WikiEdit::PostProcess()
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
         this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-                                            QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
-                                            QUrl::toPercentEncoding(this->Page->PageName);
+                                        "&rvlimit=1&rvtoken=rollback&rvstartid=" +
+                                        QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
+                                        QUrl::toPercentEncoding(this->Page->PageName);
     } else
     {
         this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
@@ -369,7 +366,7 @@ void WikiEdit::PostProcess()
     }
     this->qDifference->Target = Page->PageName;
     //this->DifferenceQuery->UsingPOST = true;
-    Core::HuggleCore->AppendQuery(this->qDifference);
+    QueryPool::HugglePool->AppendQuery(this->qDifference);
     this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qDifference->Process();
     this->ProcessingDiff = true;
