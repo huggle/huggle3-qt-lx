@@ -245,16 +245,19 @@ void BlockUser::on_pushButton_clicked()
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
-    if (this->user->IsIP())
+    if (this->ui->comboBox->currentText() != "indefinite")
     {
         blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessage;
+        blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
+        blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
     }else
     {
         blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessageIndef;
+        blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
     QString blocksum = Configuration::HuggleConfiguration->ProjectConfig_BlockSummary;
-    blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
-    blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
+
+
     Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
 }
 
