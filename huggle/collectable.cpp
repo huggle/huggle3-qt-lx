@@ -30,6 +30,7 @@ Collectable::Collectable()
 #endif
     this->_collectableLocked = false;
     this->_collectableManaged = false;
+    this->_collectableRefs = 0;
     this->_collectableQL = new QMutex(QMutex::Recursive);
 }
 
@@ -45,7 +46,7 @@ Collectable::~Collectable()
 
 bool Collectable::SafeDelete()
 {
-    if (this->Consumers.count() == 0 && this->iConsumers.count() == 0)
+    if (this->_collectableRefs == 0 && this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
         if (GC::gc != NULL)
         {
@@ -118,6 +119,21 @@ void Collectable::UnregisterConsumer(const QString consumer)
     this->Unlock();
 }
 
+void Collectable::IncRef()
+{
+    this->_collectableRefs++;
+    this->SetManaged();
+}
+
+void Collectable::DecRef()
+{
+    if (!this->_collectableRefs)
+    {
+        throw new Huggle::Exception("Decrementing negative reference");
+    }
+    this->_collectableRefs--;
+}
+
 unsigned long Collectable::CollectableID()
 {
     return this->CID;
@@ -160,6 +176,10 @@ QString Collectable::ConsumerIdToString(const int id)
 
 void Collectable::SetManaged()
 {
+    if (this->_collectableManaged)
+    {
+        return;
+    }
     this->_collectableManaged = true;
     if (GC::gc == NULL)
     {

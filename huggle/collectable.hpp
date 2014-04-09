@@ -103,6 +103,8 @@ namespace Huggle
              * \param consumer Unique string that unlock the object
              */
             void UnregisterConsumer(const QString consumer);
+            void IncRef();
+            void DecRef();
             /*!
              * \brief DebugHgc
              * \return debug info
@@ -138,6 +140,7 @@ namespace Huggle
             //! in extension you should use string instead
             QList<int> iConsumers;
             QMutex *_collectableQL;
+            unsigned int _collectableRefs;
             bool _collectableLocked;
     };
 }
