@@ -687,7 +687,9 @@ void Login::Finish()
     this->Progress(100);
     this->ui->label_6->setText("Loading main huggle window");
     this->timer->stop();
-    Core::HuggleCore->Main = new MainWindow();
+    MainWindow::HuggleMain = new MainWindow();
+    MainWindow::HuggleMain->show();
+    Core::HuggleCore->Main = MainWindow::HuggleMain;
     this->hide();
     Core::HuggleCore->Main->show();
 }
