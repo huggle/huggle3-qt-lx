@@ -12,14 +12,15 @@
 #define DELETEFORM_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
 
 #include <QDialog>
 #include <QTimer>
+#include <QtXml>
+#include <QLineEdit>
 #include <QString>
 #include <QUrl>
 #include "localization.hpp"

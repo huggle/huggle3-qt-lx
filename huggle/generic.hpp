@@ -19,6 +19,7 @@
 
 #include <QString>
 #include <QtXml>
+#include <QMessageBox>
 #include "exception.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
