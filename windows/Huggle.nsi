@@ -86,6 +86,7 @@ ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
 File "release\huggle.exe"
+File "release\huggle.ico"
 File "release\deps\icuin51.dll"
 File "release\deps\Qt5Core.dll"
 File "release\deps\Qt5Multimedia.dll"
@@ -186,6 +187,7 @@ Delete "$INSTDIR\Qt5Xml.dll"
 Delete "$INSTDIR\Qt5V8.dll"
 Delete "$INSTDIR\Qt5Gui.dll"
 Delete "$INSTDIR\libwinpthread-1.dll"
+Delete "$INSTDIR\huggle.ico"
 Delete "$INSTDIR\libgcc_s_dw2-1.dll"
 Delete "$INSTDIR\uninstall.exe"
 !ifdef WEB_SITE
