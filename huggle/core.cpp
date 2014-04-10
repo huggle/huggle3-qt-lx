@@ -32,6 +32,7 @@ void Core::Init()
     Query::NetworkManager = new QNetworkAccessManager();
     QueryPool::HugglePool = new QueryPool();
     this->HGQP = QueryPool::HugglePool;
+    this->HuggleSyslog = Syslog::HuggleLogs;
     Core::VersionRead();
 #if QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
@@ -86,7 +87,9 @@ Core::Core()
     this->fLogin = NULL;
     this->SecondaryFeedProvider = NULL;
     this->PrimaryFeedProvider = NULL;
+    this->HuggleLocalizations = NULL;
     this->Processor = NULL;
+    this->HuggleSyslog = NULL;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
     this->gc = NULL;
@@ -454,6 +457,7 @@ void Core::ExceptionHandler(Exception *exception)
 void Core::LoadLocalizations()
 {
     Localizations::HuggleLocalizations = new Localizations();
+    this->HuggleLocalizations = Localizations::HuggleLocalizations;
     Localizations::HuggleLocalizations->LocalInit("en");
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {

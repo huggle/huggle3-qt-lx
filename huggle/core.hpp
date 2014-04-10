@@ -137,6 +137,7 @@ namespace Huggle
             MainWindow *Main;
             //! Login form
             Login *fLogin;
+            Syslog *HuggleSyslog;
             //! Pointer to primary feed provider
             HuggleFeed *PrimaryFeedProvider;
             //! Pointer to secondary feed provider
@@ -146,6 +147,7 @@ namespace Huggle
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
+            Localizations *HuggleLocalizations;
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE
