@@ -29,7 +29,8 @@ unix {
 
 win32 {
     QMAKE_CFLAGS_RELEASE += -Zi
-    LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
+#!!!!!!!  #This line was replaced with power shell, DO NOT COMMIT THIS CHANGE
+#!!!!!!!  #LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
 }
 
 #PYTHON SUPPORT - uncomment me if you want to use python
