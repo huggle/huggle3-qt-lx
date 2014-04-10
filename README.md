@@ -41,6 +41,8 @@ make
 sudo make install
 ```
 
+Fedora users may need to use ```./configure --qmake /usr/bin/qmake-qt4``` if it can't find qmake by itself.
+
 MacOS
 ------------
 * Install homebrew at http://brew.sh/
