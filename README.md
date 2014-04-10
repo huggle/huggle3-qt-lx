@@ -1,8 +1,7 @@
 huggle3-qt-lx
 =============
 
-Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other Wikimedia projects, written in C++ (QT framework).
-It is supported for Windows and Linux
+Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other Wikimedia projects, written in C++ (QT framework).  It is officialy supported for Windows (2000 or newer) and Linux (debian/ubuntu), but it may work on other distributions as well as MacOS.
 
 [![Build Status](https://travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx)
 
@@ -40,6 +39,20 @@ Linux
 ./configure
 make
 sudo make install
+```
+
+MacOS
+------------
+* Install homebrew at http://brew.sh/
+* Install Qt:
+```sh
+brew install qt
+```
+* Checkout this repository and execute
+```sh
+./configure
+make
+open huggle.app
 ```
 
 Python
