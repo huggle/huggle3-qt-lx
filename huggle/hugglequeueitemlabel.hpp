@@ -23,8 +23,10 @@
 
 #include <QMouseEvent>
 #include <QFrame>
-#include "core.hpp"
+#include "wikiedit.hpp"
+#include "hugglequeue.hpp"
 #include "exception.hpp"
+#include "mainwindow.hpp"
 
 namespace Ui
 {

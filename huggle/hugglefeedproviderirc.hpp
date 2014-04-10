@@ -12,8 +12,7 @@
 #define HUGGLEFEEDPROVIDERIRC_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -23,13 +22,13 @@
 #include <QList>
 #include <QMutex>
 #include <QTcpSocket>
-#include "hugglefeed.hpp"
-#include "core.hpp"
-#include "exception.hpp"
 #include "configuration.hpp"
-#include "networkirc.hpp"
-#include "wikiedit.hpp"
+#include "exception.hpp"
 #include "localization.hpp"
+#include "mainwindow.hpp"
+#include "networkirc.hpp"
+#include "hugglefeed.hpp"
+#include "wikiedit.hpp"
 
 namespace Huggle
 {

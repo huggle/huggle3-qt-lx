@@ -30,7 +30,6 @@
 #include "editquery.hpp"
 #include "wikiutil.hpp"
 #include "wikiuser.hpp"
-#include "message.hpp"
 #include "configuration.hpp"
 
 namespace Ui

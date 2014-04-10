@@ -241,16 +241,6 @@ void Core::SaveDefs()
     QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
-QString Core::MonthText(int n)
-{
-    if (n < 1 || n > 12)
-    {
-        throw new Huggle::Exception("Month must be between 1 and 12");
-    }
-    n--;
-    return Configuration::HuggleConfiguration->Months.at(n);
-}
-
 void Core::LoadDefs()
 {
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
@@ -393,11 +383,6 @@ void Core::VersionRead()
     delete vf;
 }
 
-void Core::ProcessEdit(WikiEdit *e)
-{
-    Core::Main->ProcessEdit(e);
-}
-
 void Core::Shutdown()
 {
     this->Running = false;
@@ -431,23 +416,6 @@ void Core::Shutdown()
     QApplication::quit();
 }
 
-bool Core::IsRevert(QString Summary)
-{
-    if (Summary != "")
-    {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
-        {
-            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
-            {
-                return true;
-            }
-            xx++;
-        }
-    }
-    return false;
-}
-
 void Core::TestLanguages()
 {
     if (Configuration::HuggleConfiguration->SystemConfig_LanguageSanity)
@@ -474,119 +442,6 @@ void Core::TestLanguages()
             language++;
         }
     }
-}
-
-void Core::DeveloperError()
-{
-    QMessageBox *mb = new QMessageBox();
-    mb->setWindowTitle("Function is restricted now");
-    mb->setText("You can't perform this action in developer mode, because you aren't logged into the wiki");
-    mb->exec();
-    delete mb;
-}
-
-void Core::PreProcessEdit(WikiEdit *_e)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit");
-    }
-
-    if (_e->Status == StatusProcessed)
-    {
-        return;
-    }
-
-    if (_e->User == NULL)
-    {
-        throw new Exception("Edit user was NULL in Core::PreProcessEdit");
-    }
-
-    if (_e->Bot)
-    {
-        _e->User->SetBot(true);
-    }
-
-    _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
-
-    int x = 0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig_Assisted.count())
-    {
-        if (_e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_Assisted.at(x)))
-        {
-            _e->TrustworthEdit = true;
-            break;
-        }
-        x++;
-    }
-
-    if (this->IsRevert(_e->Summary))
-    {
-        _e->IsRevert = true;
-        if (this->PrimaryFeedProvider != NULL)
-        {
-            this->PrimaryFeedProvider->RvCounter++;
-        }
-        if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
-        {
-            _e->RegisterConsumer("UncheckedReverts");
-            this->UncheckedReverts.append(_e);
-        }
-    }
-
-    _e->Status = StatusProcessed;
-}
-
-void Core::PostProcessEdit(WikiEdit *_e)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
-    }
-    _e->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-    _e->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    _e->PostProcess();
-    this->ProcessingEdits.append(_e);
-}
-
-RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
-    }
-    if (_e->User == NULL)
-    {
-        throw new Exception("Object user was NULL in Core::Revert");
-    }
-    _e->RegisterConsumer("Core::RevertEdit");
-    if (_e->Page == NULL)
-    {
-        throw new Exception("Object page was NULL");
-    }
-
-    RevertQuery *query = new RevertQuery(_e);
-    if (summary != "")
-    {
-        query->Summary = summary;
-    }
-    query->MinorEdit = minor;
-    this->HGQP->AppendQuery(query);
-    if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
-    {
-        query->UsingSR = true;
-    } else
-    {
-        query->UsingSR = !rollback;
-    }
-    query->Process();
-
-    if (keep)
-    {
-        query->RegisterConsumer("keep");
-    }
-
-    return query;
 }
 
 void Core::ExceptionHandler(Exception *exception)
@@ -632,55 +487,6 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("sv");
     Localizations::HuggleLocalizations->LocalInit("zh");
     this->TestLanguages();
-}
-
-bool Core::ReportPreFlightCheck()
-{
-    if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
-    {
-        return true;
-    }
-    QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
-                  , "This user has already reached warning level 4, so no further templates will be "\
-                    "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
-                    "number of recent warnings! You can do so by clicking the \"talk page\" button in following form. "\
-                    "Keep in mind that this form and this warning is displayed no matter if your revert was successful "\
-                    "or not, so you might conflict with other users here (double check if user isn't already reported) "\
-                    "Do you want to report this user?"
-                  , QMessageBox::Yes|QMessageBox::No);
-    if (q == QMessageBox::No)
-    {
-        return false;
-    }
-    return true;
-}
-
-void Core::TruncateReverts()
-{
-    while (this->UncheckedReverts.count() > 0)
-    {
-        WikiEdit *edit = this->UncheckedReverts.at(0);
-        if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
-        {
-            // we need to delete older edits that we know and that is somewhere in queue
-            if (this->Main != NULL)
-            {
-                if (this->Main->Queue1 != NULL)
-                {
-                    this->Main->Queue1->DeleteOlder(edit);
-                }
-            }
-        }
-        this->UncheckedReverts.removeAt(0);
-        this->RevertBuffer.append(edit);
-    }
-
-    while (this->RevertBuffer.count() > 10)
-    {
-        WikiEdit *we = this->RevertBuffer.at(0);
-        this->RevertBuffer.removeAt(0);
-        we->UnregisterConsumer("UncheckedReverts");
-    }
 }
 
 double Core::GetUptimeInSeconds()

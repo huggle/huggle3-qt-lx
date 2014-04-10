@@ -111,7 +111,7 @@ void UserinfoForm::OnTick()
     {
         if (this->edit->IsPostProcessed())
         {
-            Core::HuggleCore->Main->ProcessEdit(this->edit, false, false, true);
+            MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
             this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
             this->edit = NULL;
         }
@@ -236,7 +236,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
         x++;
         if (edit->RevID == revid)
         {
-            Core::HuggleCore->Main->ProcessEdit(edit, true, false, true);
+            MainWindow::HuggleMain->ProcessEdit(edit, true, false, true);
             WikiEdit::Lock_EditList->unlock();
             return;
         }
@@ -248,7 +248,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
     this->edit->RevID = revid;
     this->edit->RegisterConsumer(HUGGLECONSUMER_USERINFO);
-    Core::HuggleCore->PostProcessEdit(this->edit);
-    Core::HuggleCore->Main->Browser->RenderHtml(Localizations::HuggleLocalizations->Localize("wait"));
+    QueryPool::HugglePool->PostProcessEdit(this->edit);
+    MainWindow::HuggleMain->Browser->RenderHtml(Localizations::HuggleLocalizations->Localize("wait"));
     this->timer->start(800);
 }

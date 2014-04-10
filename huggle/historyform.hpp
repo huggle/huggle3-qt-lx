@@ -24,8 +24,8 @@
 #include "apiquery.hpp"
 #include "resources.hpp"
 #include "exception.hpp"
-#include "core.hpp"
 #include "wikiedit.hpp"
+#include "mainwindow.hpp"
 #include "localization.hpp"
 
 namespace Ui

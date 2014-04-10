@@ -159,7 +159,7 @@ void SpeedyForm::OnTick()
                 QString summary = Configuration::HuggleConfiguration->ProjectConfig_SpeedyWarningSummary;
                 summary.replace("$1", this->edit->Page->PageName);
                 this->warning.replace("$1", this->edit->Page->PageName);
-                Message::MessageUser(this->edit->User, this->warning, "", summary, false);
+                WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
             }
             this->timer->stop();
             this->ui->pushButton->setText("Finished");

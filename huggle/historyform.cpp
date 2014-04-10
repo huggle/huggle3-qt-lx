@@ -131,7 +131,7 @@ void HistoryForm::onTick01()
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
-            Core::HuggleCore->Main->ProcessEdit(this->RetrievedEdit, false, true);
+            MainWindow::HuggleMain->ProcessEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
             this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
             this->RetrievedEdit = NULL;
@@ -148,6 +148,7 @@ void HistoryForm::onTick01()
     {
         return;
     }
+
     if (this->query->Result->Failed)
     {
         this->ui->pushButton->setEnabled(true);
@@ -210,7 +211,7 @@ void HistoryForm::onTick01()
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
 
-        if (Core::HuggleCore->IsRevert(summary))
+        if (WikiUtil::IsRevert(summary))
         {
             icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");
         } else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
@@ -382,7 +383,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         x++;
         if (edit->RevID == revid)
         {
-            Core::HuggleCore->Main->ProcessEdit(edit, true, true);
+            MainWindow::HuggleMain->ProcessEdit(edit, true, true);
             this->RetrievingEdit = false;
             WikiEdit::Lock_EditList->unlock();
             this->MakeSelectedRowBold();
@@ -400,14 +401,14 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     {
         this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     }
-    Core::HuggleCore->PostProcessEdit(w);
+    QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != NULL)
     {
         delete this->t1;
     }
     this->RetrievedEdit = w;
-    Core::HuggleCore->Main->LockPage();
-    Core::HuggleCore->Main->Browser->RenderHtml(html);
+    MainWindow::HuggleMain->LockPage();
+    MainWindow::HuggleMain->Browser->RenderHtml(html);
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
     if (!turtlemode)

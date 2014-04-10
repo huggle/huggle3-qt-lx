@@ -23,10 +23,10 @@
 #include <QString>
 #include <QtXml/QtXml>
 #include <QDateTime>
-#include "core.hpp"
 #include "hugglefeed.hpp"
 #include "exception.hpp"
 #include "querypool.hpp"
+#include "mainwindow.hpp"
 #include "mediawiki.hpp"
 #include "apiquery.hpp"
 #include "configuration.hpp"

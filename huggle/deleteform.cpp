@@ -8,6 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include <QtXml>
+#include <QLineEdit>
 #include "deleteform.hpp"
 #include "ui_deleteform.h"
 

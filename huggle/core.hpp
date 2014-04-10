@@ -12,8 +12,7 @@
 #define CORE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -33,7 +32,6 @@
 #include "wikiedit.hpp"
 #include "mainwindow.hpp"
 #include "exceptionwindow.hpp"
-#include "message.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #include "editquery.hpp"
@@ -75,7 +73,6 @@ namespace Huggle
     class WikiUser;
     class WikiEdit;
     class RevertQuery;
-    class Message;
     class Syslog;
     class QueryPool;
     class iExtension;
@@ -94,6 +91,11 @@ namespace Huggle
      * \brief Miscelanceous system functions
      *
      * Making any instance of this class is nonsense don't do it :D
+     *
+     * You may figure out that some pointers here are duplicates of static pointers that exist somewhere else but point
+     * to exactly same memory area as these, that is made so that extension which explicitly request memory area for
+     * core (in order to hook up into huggle internals) would get these memory addresses and can update these
+     * static pointers which it has inside of its own domain, there is no other better way I know how to handle that
      */
     class Core
     {
@@ -116,34 +118,9 @@ namespace Huggle
             void Init();
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
-            //! Helper function that will return URL of project in question
-            /*!
-             * \param Project Site
-             * \return String with url
-             */
-            void ProcessEdit(WikiEdit *e);
             //! Terminate the process, call this after you release all resources and finish all queries
             void Shutdown();
-            bool IsRevert(QString Summary);
             void TestLanguages();
-            //! Display a message box telling user that function is not allowed during developer mode
-            void DeveloperError();
-            //! Check the edit summary and similar in order to
-            //! determine several edit attributes etc
-            void PreProcessEdit(WikiEdit *_e);
-            //! Perform more expensive tasks to finalize
-            //! edit processing
-            void PostProcessEdit(WikiEdit *_e);
-            /*!
-             * \brief RevertEdit Reverts the edit
-             * \param _e Pointer to edit that needs to be reverted
-             * \param summary Summary to use if this is empty the default revert summary is used
-             * \param minor If revert should be considered as minor edit
-             * \param rollback If rollback feature should be used
-             * \param keep Whether the query produced by this function should not be automatically deleted
-             * \return Pointer to api query that executes this revert
-             */
-            RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
             void LoadDB();
             //! Remove edit in proper manner
             void DeleteEdit(WikiEdit *edit);
@@ -151,12 +128,8 @@ namespace Huggle
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
-            QString MonthText(int n);
             double GetUptimeInSeconds();
-            bool ReportPreFlightCheck();
             void LoadLocalizations();
-            //! This function is called by main thread and is used to remove edits that were already reverted
-            void TruncateReverts();
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
@@ -168,13 +141,8 @@ namespace Huggle
             HuggleFeed *PrimaryFeedProvider;
             //! Pointer to secondary feed provider
             HuggleFeed *SecondaryFeedProvider;
-            //! This is a list of all edits that are being processed by some way
-            //! whole list needs to be checked and probed everytime once a while
-            QList<WikiEdit*> ProcessingEdits;
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
-            //! List of all messages that are being sent
-            QList<Message*> Messages;
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
@@ -184,12 +152,8 @@ namespace Huggle
             Python::PythonEngine *Python;
 #endif
         private:
-            //! We need to store some recent reverts for wiki provider so that we can backward decide if edit
-            //! was reverted before we parse it
-            QList<WikiEdit*> RevertBuffer;
-            QList<WikiEdit*> UncheckedReverts;
             //! This is a post-processor for edits
-            ProcessorThread * Processor;
+            ProcessorThread *Processor;
     };
 }
 

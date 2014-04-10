@@ -18,15 +18,21 @@
 
 #include <QList>
 #include "query.hpp"
+#include "exception.hpp"
 #include "processlist.hpp"
 #include "syslog.hpp"
+#include "message.hpp"
+#include "hugglefeed.hpp"
+#include "wikiedit.hpp"
 #include "editquery.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
     class EditQuery;
+    class Message;
     class ProcessList;
+    class WikiEdit;
     class Query;
 
     class QueryPool
@@ -34,6 +40,7 @@ namespace Huggle
         public:
             static QueryPool *HugglePool;
             QueryPool();
+
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched
              * This will insert it to a process list in main form
@@ -41,10 +48,25 @@ namespace Huggle
              */
             void AppendQuery(Query* item);
             void CheckQueries();
+            //! Check the edit summary and similar in order to
+            //! determine several edit attributes etc
+            void PreProcessEdit(WikiEdit *_e);
+            //! Perform more expensive tasks to finalize
+            //! edit processing
+            void PostProcessEdit(WikiEdit *_e);
             int RunningQueriesGetCount();
             ProcessList *Processes;
+            //! List of all messages that are being sent
+            QList<Message*> Messages;
             //! Pending changes
             QList<EditQuery*> PendingMods;
+            //! We need to store some recent reverts for wiki provider so that we can backward decide if edit
+            //! was reverted before we parse it
+            QList<WikiEdit*> RevertBuffer;
+            //! This is a list of all edits that are being processed by some way
+            //! whole list needs to be checked and probed everytime once a while
+            QList<WikiEdit*> ProcessingEdits;
+            QList<WikiEdit*> UncheckedReverts;
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;

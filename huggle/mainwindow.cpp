@@ -13,6 +13,8 @@
 
 using namespace Huggle;
 
+MainWindow *MainWindow::HuggleMain = NULL;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     this->fScoreWord = NULL;
@@ -89,22 +91,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->ProjectConfig_UseIrc)
     {
-        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
+        this->ChangeProvider(new HuggleFeedProviderIRC());
         this->ui->actionIRC->setChecked(true);
         if (!Core::HuggleCore->PrimaryFeedProvider->Start())
         {
             Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("irc-failure"));
-            delete Core::HuggleCore->PrimaryFeedProvider;
             this->ui->actionIRC->setChecked(false);
             this->ui->actionWiki->setChecked(true);
-            Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            this->ChangeProvider(new HuggleFeedProviderWiki());
             Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     } else
     {
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(true);
-        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        this->ChangeProvider(new HuggleFeedProviderWiki());
         Core::HuggleCore->PrimaryFeedProvider->Start();
     }
     if (Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count() > 0)
@@ -228,7 +229,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -396,7 +397,7 @@ void MainWindow::RequestPD()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     if (this->CurrentEdit == NULL)
@@ -483,10 +484,10 @@ void MainWindow::FinishPatrols()
 void MainWindow::UpdateStatusBarData()
 {
     /// \todo LOCALIZE ME
-    QString t = "Processing <b>" + MainWindow::ShrinkText(QString::number(Core::HuggleCore->ProcessingEdits.count()), 3) +
-                "</b>edits and <b>" + MainWindow::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3) +
+    QString t = "Processing <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3) +
+                "</b>edits and <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3) +
                 "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size()) +
-                "</b> Queue size: <b>" + MainWindow::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4) +
+                "</b> Queue size: <b>" + Generic::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4) +
                 "</b> Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
@@ -530,9 +531,9 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        t += " <font color=" + color + ">" + MainWindow::ShrinkText(QString::number(EditsPerMinute), 6) +
-             " edits per minute " + MainWindow::ShrinkText(QString::number(RevertsPerMinute), 6) +
-             " reverts per minute, level " + MainWindow::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
+        t += " <font color=" + color + ">" + Generic::ShrinkText(QString::number(EditsPerMinute), 6) +
+             " edits per minute " + Generic::ShrinkText(QString::number(RevertsPerMinute), 6) +
+             " reverts per minute, level " + Generic::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
@@ -585,7 +586,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
-        RevertQuery *q = Core::HuggleCore->RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
+        RevertQuery *q = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
         if (next)
         {
             this->DisplayNext(q);
@@ -769,7 +770,7 @@ void MainWindow::TriggerWarn()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     if (Configuration::HuggleConfiguration->UserConfig_ManualWarning)
@@ -802,7 +803,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
-    Message::FinalizeMessages();
+    WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;
     // if garbage collector is already destroyed there is no point in doing anything in here
     if (GC::gc == NULL)
@@ -816,8 +817,7 @@ void MainWindow::OnMainTimerTick()
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("provider-failure"));
         if (!Core::HuggleCore->PrimaryFeedProvider->Restart())
         {
-            delete Core::HuggleCore->PrimaryFeedProvider;
-            Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+            this->ChangeProvider(new HuggleFeedProviderWiki());
             Core::HuggleCore->PrimaryFeedProvider->Start();
         }
     }
@@ -855,7 +855,7 @@ void MainWindow::OnMainTimerTick()
             WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
             if (edit != NULL)
             {
-                Core::HuggleCore->PostProcessEdit(edit);
+                QueryPool::HugglePool->PostProcessEdit(edit);
                 edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
                 this->PendingEdits.append(edit);
             }
@@ -881,15 +881,15 @@ void MainWindow::OnMainTimerTick()
     }
     this->UpdateStatusBarData();
     // let's refresh the edits that are being post processed
-    if (Core::HuggleCore->ProcessingEdits.count() > 0)
+    if (QueryPool::HugglePool->ProcessingEdits.count() > 0)
     {
         int Edit = 0;
-        while (Edit < Core::HuggleCore->ProcessingEdits.count())
+        while (Edit < QueryPool::HugglePool->ProcessingEdits.count())
         {
-            if (Core::HuggleCore->ProcessingEdits.at(Edit)->FinalizePostProcessing())
+            if (QueryPool::HugglePool->ProcessingEdits.at(Edit)->FinalizePostProcessing())
             {
-                WikiEdit *e = Core::HuggleCore->ProcessingEdits.at(Edit);
-                Core::HuggleCore->ProcessingEdits.removeAt(Edit);
+                WikiEdit *e = QueryPool::HugglePool->ProcessingEdits.at(Edit);
+                QueryPool::HugglePool->ProcessingEdits.removeAt(Edit);
                 e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
             }
             else
@@ -926,8 +926,33 @@ void MainWindow::OnMainTimerTick()
         }
     }
     this->FinishRestore();
-    Core::HuggleCore->TruncateReverts();
+    this->TruncateReverts();
     this->SystemLog->Render();
+}
+
+void MainWindow::TruncateReverts()
+{
+    while (QueryPool::HugglePool->UncheckedReverts.count() > 0)
+    {
+        WikiEdit *edit = QueryPool::HugglePool->UncheckedReverts.at(0);
+        if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+        {
+            // we need to delete older edits that we know and that may be somewhere in queue
+            if (this->Queue1 != NULL)
+            {
+                this->Queue1->DeleteOlder(edit);
+            }
+        }
+        QueryPool::HugglePool->UncheckedReverts.removeAt(0);
+        QueryPool::HugglePool->RevertBuffer.append(edit);
+    }
+
+    while (QueryPool::HugglePool->RevertBuffer.count() > 10)
+    {
+        WikiEdit *we = QueryPool::HugglePool->RevertBuffer.at(0);
+        QueryPool::HugglePool->RevertBuffer.removeAt(0);
+        we->UnregisterConsumer("UncheckedReverts");
+    }
 }
 
 void MainWindow::OnTimerTick0()
@@ -1030,7 +1055,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     this->Revert();
@@ -1049,7 +1074,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1073,7 +1098,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1097,7 +1122,7 @@ void MainWindow::on_actionRevert_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     this->Revert();
@@ -1147,7 +1172,7 @@ void MainWindow::CustomRevert()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     QAction *revert = (QAction*) QObject::sender();
@@ -1165,7 +1190,7 @@ void MainWindow::CustomRevertWarn()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1189,7 +1214,7 @@ void MainWindow::CustomWarn()
 {
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1299,17 +1324,15 @@ void MainWindow::ReconnectIRC()
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-ws"));
         Sleeper::usleep(200000);
     }
-    delete Core::HuggleCore->PrimaryFeedProvider;
     this->ui->actionIRC->setChecked(true);
     this->ui->actionWiki->setChecked(false);
-    Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderIRC();
+    this->ChangeProvider(new HuggleFeedProviderIRC());
     if (!Core::HuggleCore->PrimaryFeedProvider->Start())
     {
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(true);
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("provider-primary-failure"));
-        delete Core::HuggleCore->PrimaryFeedProvider;
-        Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+        this->ChangeProvider(new HuggleFeedProviderWiki());
         Core::HuggleCore->PrimaryFeedProvider->Start();
     }
 }
@@ -1538,7 +1561,7 @@ void MainWindow::Welcome()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     if (this->CurrentEdit == NULL)
@@ -1575,10 +1598,10 @@ void MainWindow::Welcome()
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon);
         }
-        Message::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
-                             Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
-                             Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
-                             false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+        WikiUtil::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
+                              Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
+                              Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
+                              false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
 
@@ -1600,9 +1623,19 @@ void MainWindow::Welcome()
 
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
-    Message::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
-                         Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, NULL,
-                         false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+    WikiUtil::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
+                          Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, NULL,
+                          false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+}
+
+void MainWindow::ChangeProvider(HuggleFeed *provider)
+{
+    if (HuggleFeed::PrimaryFeedProvider != NULL)
+    {
+        delete HuggleFeed::PrimaryFeedProvider;
+    }
+    HuggleFeed::PrimaryFeedProvider = provider;
+    Core::HuggleCore->PrimaryFeedProvider = provider;
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -1723,7 +1756,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1762,7 +1795,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -1782,7 +1815,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     this->Revert("", true, false);
@@ -1881,8 +1914,7 @@ void Huggle::MainWindow::on_actionWiki_triggered()
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-stop"));
         Sleeper::usleep(200000);
     }
-    delete Core::HuggleCore->PrimaryFeedProvider;
-    Core::HuggleCore->PrimaryFeedProvider = new HuggleFeedProviderWiki();
+    this->ChangeProvider(new HuggleFeedProviderWiki());
     Core::HuggleCore->PrimaryFeedProvider->Start();
 }
 
@@ -1986,7 +2018,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     bool ok;
@@ -2037,7 +2069,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     if (this->CurrentEdit == NULL)
@@ -2241,7 +2273,7 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
     if (this->fRFProtection != NULL)
@@ -2250,29 +2282,4 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     }
     this->fRFProtection = new RequestProtect(this->CurrentEdit->Page);
     this->fRFProtection->show();
-}
-
-QString MainWindow::ShrinkText(QString text, int size, bool html)
-{
-    if (size < 2)
-    {
-        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
-    }
-    // let's copy the text into new variable so that we don't break the original
-    // who knows how these mutable strings are going to behave in qt :D
-    QString text_ = text;
-    int length = text_.length();
-    if (length > size)
-    {
-        text_ = text_.mid(0, size - 2);
-        text_ = text_ + "..";
-    } else while (text_.length() < size)
-    {
-        text_ += " ";
-    }
-    if (html)
-    {
-        text_.replace(" ", "&nbsp;");
-    }
-    return text_;
 }

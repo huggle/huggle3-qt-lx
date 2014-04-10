@@ -105,8 +105,8 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         throw new Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
     }
     this->EditCounter++;
-    Core::HuggleCore->PreProcessEdit(edit);
-    if (Core::HuggleCore->Main->Queue1->CurrentFilter->Matches(edit))
+    QueryPool::HugglePool->PreProcessEdit(edit);
+    if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
     {
         this->lock.lock();
         if (this->Buffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
@@ -373,7 +373,7 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     WikiEdit *edit = this->Buffer.at(0);
     this->Buffer.removeAt(0);
     this->lock.unlock();
-    Core::HuggleCore->PostProcessEdit(edit);
+    QueryPool::HugglePool->PostProcessEdit(edit);
     edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     return edit;
 }

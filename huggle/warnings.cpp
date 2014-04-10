@@ -48,7 +48,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return NULL;
     }
 
@@ -74,7 +74,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
             return NULL;
         }
 
-        if (Core::HuggleCore->ReportPreFlightCheck())
+        if (Generic::ReportPreFlightCheck())
         {
             *Report = true;
         }
@@ -117,7 +117,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsStandard)
     {
         QDateTime d = QDateTime::currentDateTime();
-        HeadingText_ = Core::HuggleCore->MonthText(d.date().month()) + " " + QString::number(d.date().year());
+        HeadingText_ = WikiUtil::MonthText(d.date().month()) + " " + QString::number(d.date().year());
     } else if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsNone)
     {
         HeadingText_ = "";
@@ -129,9 +129,9 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         CreateOnly = true;
     }
-    PendingWarning *pw = new PendingWarning(Message::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
-                                                                 Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
-                                                                 Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
+    PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
+                                                                  Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
+                                                                  Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
     return pw;
 }
@@ -231,7 +231,7 @@ void Warnings::ResendWarnings()
                 PendingWarning *ptr_warning_ = Warnings::WarnUser(warning->Template, NULL, warning->RelatedEdit, &Report_);
                 if (Report_)
                 {
-                    Core::HuggleCore->Main->DisplayReportUserWindow(warning->RelatedEdit->User);
+                    MainWindow::HuggleMain->DisplayReportUserWindow(warning->RelatedEdit->User);
                 }
                 if (ptr_warning_ != NULL)
                 {
@@ -315,7 +315,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
 {
     if (Configuration::HuggleConfiguration->Restricted)
     {
-        Core::HuggleCore->DeveloperError();
+        Generic::DeveloperError();
         return;
     }
 
@@ -358,11 +358,12 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     if (Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders)
     {
         QDateTime date_ = QDateTime::currentDateTime();
-        id = Core::HuggleCore->MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
+        id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
-    Message::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
-                         Configuration::HuggleConfiguration->UserConfig_SectionKeep, true, Edit->TPRevBaseTime);
+    WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
+                              Configuration::HuggleConfiguration->UserConfig_SectionKeep,
+                              true, Edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type)

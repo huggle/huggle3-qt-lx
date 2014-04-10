@@ -58,15 +58,16 @@
 #include "revertquery.hpp"
 #include "requestprotect.hpp"
 #include "whitelistform.hpp"
+#include "generic.hpp"
 #include "gc.hpp"
-#include "waitingform.hpp"
-#include "wlquery.hpp"
 #include "sessionform.hpp"
 #include "querypool.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "warnings.hpp"
 #include "warninglist.hpp"
+#include "waitingform.hpp"
+#include "wlquery.hpp"
 #include "wikiutil.hpp"
 #include "uaareport.hpp"
 #include "localization.hpp"
@@ -132,8 +133,9 @@ namespace Huggle
     class MainWindow : public QMainWindow
     {
             Q_OBJECT
-
         public:
+            static MainWindow *HuggleMain;
+
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
             void DisplayReportUserWindow(WikiUser *User = NULL);
@@ -307,7 +309,6 @@ namespace Huggle
             void on_actionRequest_protection_triggered();
 
         private:
-            static QString ShrinkText(QString text, int size, bool html = true);
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();
@@ -319,10 +320,13 @@ namespace Huggle
             bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
             void Welcome();
+            void ChangeProvider(HuggleFeed *provider);
             //! Recreate interface, should be called everytime you do anything with main form
             void Render();
             //! Request a page deletion csd or afd and so on
             void RequestPD();
+            //! This function is called by main thread and is used to remove edits that were already reverted
+            void TruncateReverts();
             void closeEvent(QCloseEvent *event);
             void FinishPatrols();
             void UpdateStatusBarData();

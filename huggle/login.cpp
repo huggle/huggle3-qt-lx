@@ -659,8 +659,9 @@ void Login::RetrieveUserInfo()
 void Login::DeveloperMode()
 {
     Configuration::HuggleConfiguration->Restricted = true;
-    Core::HuggleCore->Main = new MainWindow();
-    Core::HuggleCore->Main->show();
+    MainWindow::HuggleMain = new MainWindow();
+    MainWindow::HuggleMain->show();
+    Core::HuggleCore->Main = MainWindow::HuggleMain;
     this->hide();
 }
 

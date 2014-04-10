@@ -12,8 +12,7 @@
 #define HUGGLEMASSROLLBACK_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -31,7 +30,6 @@ namespace Huggle
     class HuggleMassRollback : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit HuggleMassRollback(QWidget *parent = 0);
             ~HuggleMassRollback();

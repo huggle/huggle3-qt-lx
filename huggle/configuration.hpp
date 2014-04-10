@@ -138,6 +138,11 @@ namespace Huggle
             static QString GetProjectWikiURL();
             //! Return a script url like http://en.wikipedia.org/w/
             static QString GetProjectScriptURL();
+            //! Helper function that will return URL of project in question
+            /*!
+             * \param Project Site
+             * \return String with url
+             */
             static QString GetProjectURL(WikiSite Project);
             static QString GetLocalizationDataPath();
             //! Extension path (typically HR/extensions) where .py and .so files are in

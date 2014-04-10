@@ -111,7 +111,7 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
     }
     WikiEdit *edit = this->Buffer->at(0);
     this->Buffer->removeAt(0);
-    Core::HuggleCore->PostProcessEdit(edit);
+    QueryPool::HugglePool->PostProcessEdit(edit);
     return edit;
 }
 
@@ -297,8 +297,8 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
     this->EditCounter++;
-    Core::HuggleCore->PreProcessEdit(edit);
-    if (Core::HuggleCore->Main->Queue1->CurrentFilter->Matches(edit))
+    QueryPool::HugglePool->PreProcessEdit(edit);
+    if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
     {
         if (this->Buffer->size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {

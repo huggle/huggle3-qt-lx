@@ -124,13 +124,13 @@ bool EditQuery::IsProcessed()
                 if (element.attribute("result") == "Success")
                 {
                     failed = false;
-                    if (Core::HuggleCore->Main != NULL)
+                    if (MainWindow::HuggleMain != NULL)
                     {
                         HistoryItem item;
                         item.Result = Localizations::HuggleLocalizations->Localize("successful");
                         item.Type = HistoryEdit;
                         item.Target = this->Page;
-                        Core::HuggleCore->Main->_History->Prepend(item);
+                        MainWindow::HuggleMain->_History->Prepend(item);
                     }
                     Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", Page));
                 }

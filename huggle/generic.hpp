@@ -39,6 +39,10 @@ namespace Huggle
     //! Generic requests that are frequently issued to wiki
     namespace Generic
     {
+        //! Display a user message before reporting a user based on user preferences
+        bool ReportPreFlightCheck();
+        //! Display a message box telling user that function is not allowed during developer mode
+        void DeveloperError();
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
          * \param query
@@ -53,6 +57,7 @@ namespace Huggle
         QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = NULL, QString *comment = NULL,
                                          QString *user = NULL, int *revid = NULL, int *reason = NULL);
         ApiQuery *RetrieveWikiPageContents(QString page);
+        QString ShrinkText(QString text, int size, bool html = true);
     }
 }
 

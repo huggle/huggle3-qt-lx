@@ -21,13 +21,12 @@
 #include <QDialog>
 #include <QTimer>
 #include <QString>
-#include <QtXml>
-#include <QLineEdit>
 #include <QUrl>
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "configuration.hpp"
 #include "wikipage.hpp"
+#include "wikiuser.hpp"
 #include "apiquery.hpp"
 
 namespace Ui
@@ -38,6 +37,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiPage;
+    class ApiQuery;
+    class WikiUser;
 
     //! This is a delete form
     class DeleteForm : public QDialog

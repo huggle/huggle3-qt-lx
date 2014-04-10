@@ -57,29 +57,6 @@ namespace Huggle
     class Message : public Collectable
     {
         public:
-            /*!
-             * \brief MessageUser Message user
-             *
-             * This function will deliver a message to user using Message class which is returned by this function
-             *
-             * \param User Pointer to user
-             * \param Text Text of message
-             * \param Title Title of message
-             * \param Summary Summary
-             * \param InsertSection Whether this message should be created in a new section
-             * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
-             * the system will wait for it to finish before the message is sent
-             * \param NoSuffix will not append huggle suffix if this is true, useful if you need to use custom summary
-             *
-             * \return NULL on error or instance of Huggle::Message in case it's success
-             */
-            static Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary,
-                                        bool InsertSection = true, Query *Dependency = NULL,
-                                        bool NoSuffix = false, bool SectionKeep = false,
-                                        bool autoremove = false, QString BaseTimestamp = "",
-                                        bool CreateOnly_ = false, bool FreshOnly_ = false);
-            static void FinalizeMessages();
-
             //! Creates a new instance of message class that is used to deliver a message to users
             Message(WikiUser *target, QString MessageText, QString MessageSummary);
             ~Message();

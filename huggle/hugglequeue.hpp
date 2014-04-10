@@ -12,8 +12,7 @@
 #define HUGGLEQUEUE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -43,7 +42,6 @@ namespace Huggle
     class HuggleQueue : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit HuggleQueue(QWidget *parent = 0);
             ~HuggleQueue();

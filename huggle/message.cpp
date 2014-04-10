@@ -474,67 +474,6 @@ void Message::ProcessTalk()
     }
 }
 
-void Message::FinalizeMessages()
-{
-    if (Core::HuggleCore->Messages.count() < 1)
-    {
-        return;
-    }
-    int x=0;
-    QList<Message*> list;
-    while (x<Core::HuggleCore->Messages.count())
-    {
-        if (Core::HuggleCore->Messages.at(x)->IsFinished())
-        {
-            list.append(Core::HuggleCore->Messages.at(x));
-        }
-        x++;
-    }
-    x=0;
-    while (x<list.count())
-    {
-        Message *message = list.at(x);
-        message->UnregisterConsumer(HUGGLECONSUMER_CORE);
-        Core::HuggleCore->Messages.removeOne(message);
-        x++;
-    }
-}
-
-Message *Message::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
-                              Query *Dependency, bool NoSuffix, bool SectionKeep, bool autoremove,
-                              QString BaseTimestamp, bool CreateOnly_, bool FreshOnly_)
-{
-    if (User == NULL)
-    {
-        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
-        return NULL;
-    }
-
-    if (Title == "")
-    {
-        InsertSection = false;
-    }
-
-    Message *m = new Message(User, Text, Summary);
-    m->Title = Title;
-    m->Dependency = Dependency;
-    m->CreateInNewSection = InsertSection;
-    m->BaseTimestamp = BaseTimestamp;
-    m->SectionKeep = SectionKeep;
-    m->RequireFresh = FreshOnly_;
-    m->CreateOnly = CreateOnly_;
-    m->Suffix = !NoSuffix;
-    Core::HuggleCore->Messages.append(m);
-    m->RegisterConsumer(HUGGLECONSUMER_CORE);
-    if (!autoremove)
-    {
-        m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
-    }
-    m->Send();
-    Huggle::Syslog::HuggleLogs->DebugLog("Sending message to user " + User->Username);
-    return m;
-}
-
 QString Message::Append(QString text, QString OriginalText, QString Label)
 {
     QRegExp regex("\\s*==\\s*" + QRegExp::escape(Label) + "\\s*==");
