@@ -192,6 +192,7 @@ void UserinfoForm::OnTick()
                 }
                 int last = this->ui->tableWidget->rowCount();
                 this->ui->tableWidget->insertRow(last);
+                if (top) page += " (top)";
                 QTableWidgetItem *q = new QTableWidgetItem(page);
                 q->setBackgroundColor(xb);
                 this->ui->tableWidget->setItem(last, 0, q);
