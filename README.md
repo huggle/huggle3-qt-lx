@@ -101,3 +101,8 @@ minidump is generated during crash (you will see that in system log) you can
 send this to developers in order to get the issue analysed and fixed.
 
 Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
+
+License
+===============
+
+GPL v3+
