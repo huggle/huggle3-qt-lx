@@ -32,7 +32,6 @@ class HuggleTest : public QObject
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
         void testCaseConfigurationParse_QL();
-        void testCaseCoreTrim();
         void testCaseScores();
 };
 
@@ -102,13 +101,6 @@ void HuggleTest::testCaseTalkPage()
     file->close();
     delete file;
     delete user;
-}
-
-void HuggleTest::testCaseCoreTrim()
-{
-    QVERIFY2("hello world" == Huggle::HuggleParser::Trim("   hello world "), "wrong result for HuggleParser::Trim() when parsing words");
-    QVERIFY2("hello" == Huggle::HuggleParser::Trim("   hello"), "wrong result for Core::Trim() when parsing words");
-    QVERIFY2("hello" == Huggle::HuggleParser::Trim("                             hello                            "), "wrong result for Core::Trim() when parsing words");
 }
 
 void HuggleTest::testCaseScores()
@@ -200,11 +192,12 @@ void HuggleTest::testCaseScores()
 
 void HuggleTest::testCaseWikiUserCheckIP()
 {
-    QVERIFY2(Huggle::WikiUser("10.0.0.1").IsIP(), "Invalid result for new WikiUser with username of IP, the result of IsIP() was false, but should have been true");
-    QVERIFY2(Huggle::WikiUser("150.30.0.56").IsIP(), "Invalid result for new WikiUser with username of IP, the result of IsIP() was false, but should have been true");
-    QVERIFY2((Huggle::WikiUser("355.2.0.1").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
+    QVERIFY2(Huggle::WikiUser("10.0.0.1").IsIP(), "Invalid result for new WikiUser with username of 10.0.0.1, the result of IsIP() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("150.30.0.56").IsIP(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsIP() was false, but should have been true");
+    QVERIFY2((Huggle::WikiUser("355.2.0.1").IsIP() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsIP() was true, but should have been false");
     QVERIFY2((Huggle::WikiUser("Frank").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
     QVERIFY2((Huggle::WikiUser("Joe").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("2601:7:9380:135:1CCE:4CC0:7B6:8CD5").IsIP()), "Invalid result for new WikiUser with username of 2601:7:9380:135:1CCE:4CC0:7B6:8CD5, the result of IsIP() was false, but should have been true");
 }
 
 void HuggleTest::testCaseTerminalParser()
