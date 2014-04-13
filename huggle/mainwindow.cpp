@@ -2148,7 +2148,7 @@ void MainWindow::TimerCheckTPOnTick()
     {
         this->qTalkPage = new ApiQuery();
         this->qTalkPage->SetAction(ActionQuery);
-        this->qTalkPage->Parameters = "prop=revisions&titles=User_talk:" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
+        this->qTalkPage->Parameters = "meta=userinfo&uiprop=hasmsg";
         this->qTalkPage->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->qTalkPage->Process();
         return;
@@ -2159,33 +2159,18 @@ void MainWindow::TimerCheckTPOnTick()
             // we are still waiting for api query to finish
             return;
         }
-        // we need to parse the last rev id
         QDomDocument d;
         d.setContent(this->qTalkPage->Result->Data);
-        QDomNodeList page = d.elementsByTagName("rev");
-        // check if page exist and if it does we need to parse latest revid
+        QDomNodeList page = d.elementsByTagName("userinfo");
         if (page.count() > 0)
         {
             QDomElement _e = page.at(0).toElement();
-            if (_e.attributes().contains("revid"))
+            if (_e.attributes().contains("messages"))
             {
-                int revid = _e.attribute("revid").toInt();
-                if (revid != 0)
-                {
-                    // if revid is 0 then there is some borked mediawiki
-                    // we now check if we had previous revid, if not we just update it
-                    if (this->LastTPRevID == WIKI_UNKNOWN_REVID)
-                    {
-                        this->LastTPRevID = revid;
-                    } else
-                    {
-                        if (this->LastTPRevID != revid)
-                        {
-                            this->LastTPRevID = revid;
-                            Configuration::HuggleConfiguration->NewMessage = true;
-                        }
-                    }
-                }
+                Configuration::HuggleConfiguration->NewMessage = true;
+            } else
+            {
+                Configuration::HuggleConfiguration->NewMessage = false;
             }
         }
         this->qTalkPage->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
