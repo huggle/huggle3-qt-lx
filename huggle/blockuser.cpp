@@ -20,7 +20,8 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->BlockToken = "";
     this->user = NULL;
     this->qTokenApi = NULL;
-    this->t0 = NULL;
+    this->t0 = new QTimer(this);
+    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->qUser = NULL;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockReason);
     int x = 0;
@@ -66,8 +67,6 @@ void BlockUser::GetToken()
     this->qTokenApi->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
     QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
-    this->t0 = new QTimer(this);
-    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->QueryPhase = 0;
     this->t0->start(200);
 }
@@ -86,6 +85,9 @@ void BlockUser::onTick()
             return;
         case 1:
             this->Block();
+            return;
+        case 2:
+            this->Recheck();
             return;
     }
     this->t0->stop();
@@ -258,3 +260,54 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     WikiUtil::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
 }
 
+
+void Huggle::BlockUser::on_pushButton_3_clicked()
+{
+    if (this->qUser != NULL)
+        return;
+    this->ui->pushButton_3->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
+    this->qUser = new ApiQuery();
+    this->qUser->Parameters = "list=blocks&";
+    if (!this->user->IsIP())
+    {
+        this->qUser->Parameters += "bkusers=" + QUrl::toPercentEncoding(this->user->Username);
+    } else
+    {
+        this->qUser->Parameters += "bkip=" + QUrl::toPercentEncoding(this->user->Username);
+    }
+    this->qUser->SetAction(ActionQuery);
+    this->qUser->RegisterConsumer(HUGGLECONSUMER_BLOCKFORM);
+    this->qUser->Process();
+    this->QueryPhase = 2;
+    this->t0->start();
+}
+
+void BlockUser::Recheck()
+{
+    if (this->qUser == NULL)
+        throw new Huggle::Exception("user must not be NULL",  "void BlockUser::Recheck()");
+    if (this->qUser->IsProcessed())
+    {
+        QDomDocument d;
+        d.setContent(this->qUser->Result->Data);
+        QMessageBox mb;
+        mb.setWindowTitle("Result");
+        QDomNodeList l = d.elementsByTagName("block");
+        if (l.count() > 0)
+        {
+            mb.setText("User is already blocked");
+            this->user->IsBanned = true;
+            this->user->Update();
+        } else
+        {
+            mb.setText("User is not blocked");
+        }
+        mb.exec();
+        this->qUser->UnregisterConsumer(HUGGLECONSUMER_BLOCKFORM);
+        this->qUser = NULL;
+        this->t0->stop();
+        this->ui->pushButton_3->setEnabled(true);
+        this->ui->pushButton->setEnabled(true);
+    }
+}
