@@ -50,10 +50,10 @@ namespace Huggle
             void CheckQueries();
             //! Check the edit summary and similar in order to
             //! determine several edit attributes etc
-            void PreProcessEdit(WikiEdit *_e);
+            void PreProcessEdit(WikiEdit *edit);
             //! Perform more expensive tasks to finalize
             //! edit processing
-            void PostProcessEdit(WikiEdit *_e);
+            void PostProcessEdit(WikiEdit *edit);
             int RunningQueriesGetCount();
             ProcessList *Processes;
             //! List of all messages that are being sent

@@ -25,68 +25,59 @@ void QueryPool::AppendQuery(Query *item)
     this->RunningQueries.append(item);
 }
 
-void QueryPool::PreProcessEdit(WikiEdit *_e)
+void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
-    if (_e == NULL)
-    {
+    if (edit == NULL)
         throw new Exception("NULL edit");
-    }
-
-    if (_e->Status == StatusProcessed)
-    {
+    if (edit->Status == StatusProcessed)
         return;
-    }
-
-    if (_e->User == NULL)
-    {
+    if (edit->User == NULL)
         throw new Exception("Edit user was NULL in Core::PreProcessEdit");
-    }
 
-    if (_e->Bot)
+    if (edit->Bot)
     {
-        _e->User->SetBot(true);
+        edit->User->SetBot(true);
     }
 
-    _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
+    edit->EditMadeByHuggle = edit->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
 
     int x = 0;
     while (x < Configuration::HuggleConfiguration->ProjectConfig_Assisted.count())
     {
-        if (_e->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_Assisted.at(x)))
+        if (edit->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_Assisted.at(x)))
         {
-            _e->TrustworthEdit = true;
+            edit->TrustworthEdit = true;
             break;
         }
         x++;
     }
 
-    if (WikiUtil::IsRevert(_e->Summary))
+    if (WikiUtil::IsRevert(edit->Summary))
     {
-        _e->IsRevert = true;
+        edit->IsRevert = true;
         if (HuggleFeed::PrimaryFeedProvider != NULL)
         {
             HuggleFeed::PrimaryFeedProvider->RvCounter++;
         }
         if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
         {
-            _e->RegisterConsumer("UncheckedReverts");
-            this->UncheckedReverts.append(_e);
+            edit->RegisterConsumer("UncheckedReverts");
+            this->UncheckedReverts.append(edit);
         }
     }
-
-    _e->Status = StatusProcessed;
+    edit->Status = StatusProcessed;
 }
 
-void QueryPool::PostProcessEdit(WikiEdit *_e)
+void QueryPool::PostProcessEdit(WikiEdit *edit)
 {
-    if (_e == NULL)
+    if (edit == NULL)
     {
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
-    _e->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-    _e->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    _e->PostProcess();
-    this->ProcessingEdits.append(_e);
+    edit->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
+    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+    edit->PostProcess();
+    this->ProcessingEdits.append(edit);
 }
 
 void QueryPool::CheckQueries()

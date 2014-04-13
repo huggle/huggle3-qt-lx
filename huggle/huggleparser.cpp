@@ -68,23 +68,17 @@ void HuggleParser::ParsePats(QString text)
             return;
         }
         int score = text.mid(0, text.indexOf(")")).toInt();
-
         if (score == 0)
         {
             continue;
         }
-
         QStringList word;
-
         if (!text.contains(":"))
         {
             return;
         }
-
         text = text.mid(text.indexOf(":") + 1);
-
         QStringList lines = text.split("\n");
-
         int line = 1;
         while (line < lines.count())
         {
@@ -93,8 +87,8 @@ void HuggleParser::ParsePats(QString text)
             int CurrentItem = 0;
             while ( CurrentItem < items.count() )
             {
-                QString w = HuggleParser::Trim(items.at(CurrentItem));
-                if (w == "")
+                QString w = items.at(CurrentItem).trimmed();
+                if (w.length() == 0)
                 {
                     CurrentItem++;
                     continue;
@@ -102,13 +96,12 @@ void HuggleParser::ParsePats(QString text)
                 word.append(w);
                 CurrentItem++;
             }
-            if (!l.endsWith(",") || HuggleParser::Trim(l) == "")
+            if (!l.endsWith(",") || l.trimmed().length() <= 0)
             {
                 break;
             }
             line++;
         }
-
         line = 0;
         while (line < word.count())
         {
@@ -129,24 +122,18 @@ void HuggleParser::ParseWords(QString text)
             return;
         }
         int score = text.mid(0, text.indexOf(")")).toInt();
-
         if (score == 0)
         {
             continue;
         }
-
-        QStringList word;
-
         if (!text.contains(":"))
         {
             return;
         }
-
         text = text.mid(text.indexOf(":") + 1);
-
         QStringList lines = text.split("\n");
-
         int line = 1;
+        QStringList word;
         while (line < lines.count())
         {
             QString l = lines.at(line);
@@ -154,8 +141,8 @@ void HuggleParser::ParseWords(QString text)
             int CurrentItem = 0;
             while ( CurrentItem < items.count() )
             {
-                QString w = HuggleParser::Trim(items.at(CurrentItem));
-                if (w == "")
+                QString w = items.at(CurrentItem).trimmed();
+                if (w.length() == 0)
                 {
                     CurrentItem++;
                     continue;
@@ -163,13 +150,12 @@ void HuggleParser::ParseWords(QString text)
                 word.append(w);
                 CurrentItem++;
             }
-            if (!l.endsWith(",") || HuggleParser::Trim(l) == "")
+            if (!l.endsWith(",") || l.trimmed().length() == 0)
             {
                 break;
             }
             line++;
         }
-
         line = 0;
         while (line < word.count())
         {
@@ -203,34 +189,15 @@ QString HuggleParser::GetKeyFromValue(QString item)
     return item;
 }
 
-QString HuggleParser::Trim(QString text)
-{
-    while (text.startsWith(" "))
-    {
-        if (text == "")
-        {
-            break;
-        }
-        text = text.mid(1);
-    }
-
-    while (text.endsWith(" "))
-    {
-        text = text.mid(0, text.length() - 1);
-    }
-
-    return text;
-}
-
 byte_ht HuggleParser::GetLevel(QString page, QDate bt)
 {
     if (Configuration::HuggleConfiguration->TrimOldWarnings)
     {
         // we need to get rid of old warnings now
         QStringList sections;
-        while (page.length() > 0)
+        while (page.length() > 1)
         {
-            while (page.startsWith("\n\n"))
+            while (page[0] == '\n' && page.startsWith("\n\n"))
             {
                 // remove all leading extra lines on page
                 page = page.mid(2);
@@ -241,11 +208,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 sections.append(page);
                 break;
             }
-
             // get to bottom of it
             int bottom = 0;
             bottom = page.indexOf("\n\n");
-
             QString section = page.mid(0, bottom);
             page = page.mid(bottom + 2);
             sections.append(section);
@@ -265,12 +230,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 continue;
             }
             QString section = sections.at(CurrentIndex);
-            section = section.mid(0, section.indexOf("(UTC)"));
-            if (section.endsWith(" "))
-            {
-                // we remove trailing white space
-                section = section.mid(0, section.length() - 1);
-            }
+            section = section.mid(0, section.indexOf("(UTC)")).trimmed();
 
             if (!section.contains(","))
             {
@@ -339,13 +299,13 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
         int curr = 1;
         while (curr < lines.count())
         {
-            QString _line = HuggleParser::Trim(lines.at(curr));
+            QString _line = lines.at(curr).trimmed();
             if (_line.endsWith(","))
             {
                 list.append(_line);
             } else
             {
-                if (_line != "")
+                if (_line.length() > 0)
                 {
                     list.append(_line);
                     break;
@@ -364,9 +324,10 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
                 int i2 = 0;
                 while (i2<xx.count())
                 {
-                    if (HuggleParser::Trim(xx.at(i2)) != "")
+                    QString item = xx.at(i2).trimmed();
+                    if (item.length() > 0)
                     {
-                        f.append(HuggleParser::Trim(xx.at(i2)));
+                        f.append(item);
                     }
                     i2++;
                 }
@@ -382,13 +343,13 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
         int curr = 1;
         while (curr < lines.count())
         {
-            QString _line = HuggleParser::Trim(lines.at(curr));
+            QString _line = lines.at(curr).trimmed();
             if (_line.endsWith(","))
             {
                 list.append(_line);
             } else
             {
-                if (_line != "")
+                if (_line.length() > 0)
                 {
                     list.append(_line);
                     break;
@@ -407,9 +368,10 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
                 int i2 = 0;
                 while (i2<xx.count())
                 {
-                    if (HuggleParser::Trim(xx.at(i2)) != "")
+                    QString item_ = xx.at(i2).trimmed();
+                    if (item_.length() > 0)
                     {
-                        f.append(HuggleParser::Trim(xx.at(i2)));
+                        f.append(item_);
                     }
                     i2++;
                 }
@@ -417,7 +379,6 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
             }
             list = f;
         }
-        return list;
     }
     return list;
 }
@@ -440,7 +401,7 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString cont
     while (x < result.count())
     {
         QString item = result.at(x);
-        if (RemoveNull && item.replace(",", "") == "")
+        if (RemoveNull && item.replace(",", "").length() < 1)
         {
             x++;
             continue;
@@ -460,24 +421,20 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString cont
 QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString content, bool locked)
 {
     QList<HuggleQueueFilter*> ReturnValue;
-
     if (!content.contains("queues:"))
     {
         return ReturnValue;
     }
-
     // we need to parse all blocks that contain information about queue
     content = content.mid(content.indexOf("queues:") + 8);
     QStringList Filtered = content.split("\n");
     QStringList Info;
-
     // we need to assume that all queues are intended with at least 4 spaces
     int line = 0;
-
     while (line < Filtered.count())
     {
         QString lt = Filtered.at(line);
-        if (lt.startsWith("    ") || lt == "")
+        if (lt.startsWith("    ") || lt.length() == 0)
         {
             Info.append(lt);
         } else
@@ -487,7 +444,6 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
         }
         line++;
     }
-
     // now we can split the queue info
     line = 0;
     while (line < Info.count())
@@ -509,11 +465,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             filter->setIgnoreWL(false);
             ReturnValue.append(filter);
             filter->ProjectSpecific = locked;
-            QString name = text;
-            while (name.startsWith(" "))
-            {
-                name = name.mid(1);
-            }
+            QString name = text.trimmed();
             name.replace(":", "");
             filter->QueueName = name;
             line++;
@@ -612,6 +564,5 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             line++;
         }
     }
-
     return ReturnValue;
 }

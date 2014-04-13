@@ -34,8 +34,6 @@ namespace Huggle
         QString GetSummaryOfWarningTypeFromWarningKey(QString key);
         QString GetNameOfWarningTypeFromWarningKey(QString key);
         QString GetKeyOfWarningTypeFromWarningName(QString id);
-        //! Remove leading and finishing space of string
-        QString Trim(QString text);
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
          * The list must be either separated by comma and newline or it can be a list of values separated

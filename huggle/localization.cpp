@@ -26,7 +26,14 @@ Language *Localizations::MakeLanguage(QString text, QString name)
     int p = 0;
     while (p < keys.count())
     {
-        if (keys.at(p).startsWith("//") || keys.at(p).startsWith("<"))
+        QString line = keys.at(p);
+        if (line.length() == 0)
+        {
+            p++;
+            continue;
+        }
+        QChar first_char_ = line[0];
+        if ((first_char_ == '/' && line.startsWith("//")) || first_char_ == '<')
         {
             // this is comment in language file
             p++;
@@ -34,10 +41,10 @@ Language *Localizations::MakeLanguage(QString text, QString name)
         }
         if (keys.at(p).contains(":"))
         {
-            QString line = keys.at(p).trimmed();
-            QString key = line.mid(0, line.indexOf(":"));
-            QString lang = line.mid(line.indexOf(":") + 1).trimmed();
-            if (keys.at(p)[0] == '@')
+            int index_ = line.indexOf(":");
+            QString key = line.mid(0, index_);
+            QString lang = line.mid(index_+1).trimmed();
+            if (first_char_ == '@')
             {
                 // this language is using identical text purposefuly so we replace
                 // text with at symbol which means "use english locs"
@@ -45,6 +52,7 @@ Language *Localizations::MakeLanguage(QString text, QString name)
                 p++;
                 continue;
             }
+            // remove all spaces
             lang = lang.trimmed();
             if (!l->Messages.contains(key))
                 l->Messages.insert(key, lang);

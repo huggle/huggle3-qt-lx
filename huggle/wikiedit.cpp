@@ -71,7 +71,6 @@ WikiEdit::~WikiEdit()
         {
             this->Previous->Next = NULL;
         }
-
         if (this->Next != NULL)
         {
             this->Next->Previous = NULL;
