@@ -82,12 +82,14 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->ui->webView->history()->clear();
     if (edit == NULL)
-    {
         throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
-    }
     if (edit->Page == NULL)
-    {
         throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+    if (edit->NewPage)
+    {
+        this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
+        this->DisplayPreFormattedPage(edit->Page);
+        return;
     }
     if (edit->DiffText == "")
     {
@@ -97,17 +99,13 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
                                         + QString::number(edit->Diff) + "&action=render"));
         return;
     }
-
     QString HTML = Resources::HtmlHeader;
-
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
         HTML += Resources::HtmlIncoming;
     }
-
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
-
     if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";

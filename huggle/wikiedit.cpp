@@ -294,6 +294,8 @@ bool WikiEdit::FinalizePostProcessing()
             Huggle::Syslog::HuggleLogs->DebugLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
                                                  + qDifference->Result->Data);
         }
+        this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+        this->qDifference = NULL;
         // we are done processing the diff
         this->ProcessingDiff = false;
     }
@@ -302,16 +304,8 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->ProcessingRevs || this->ProcessingDiff)
         return false;
 
-    if (this->DiffText.length() == 0)
-    {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->ErrorLog("no diff available for " + this->Page->PageName + " unable to rescore");
-    }
-
     this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qTalkpage = NULL;
-    this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    this->qDifference = NULL;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
     this->RegisterConsumer(HUGGLECONSUMER_PROCESSOR);
@@ -401,25 +395,28 @@ void WikiEdit::PostProcess()
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
-    this->qDifference = new ApiQuery(ActionQuery);
-    if (this->RevID != -1)
+    if (!this->NewPage)
     {
-        // &rvprop=content can't be used because of fuck up of mediawiki
-        this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                        "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-                                        QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
-                                        QUrl::toPercentEncoding(this->Page->PageName);
-    } else
-    {
-        this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                        "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
-                                        QUrl::toPercentEncoding(this->Page->PageName);
+        this->qDifference = new ApiQuery(ActionQuery);
+        if (this->RevID != -1)
+        {
+            // &rvprop=content can't be used because of fuck up of mediawiki
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                                            "&rvlimit=1&rvtoken=rollback&rvstartid=" +
+                                            QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
+                                            QUrl::toPercentEncoding(this->Page->PageName);
+        } else
+        {
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+                                            QUrl::toPercentEncoding(this->Page->PageName);
+        }
+        this->qDifference->Target = Page->PageName;
+        QueryPool::HugglePool->AppendQuery(this->qDifference);
+        this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+        this->qDifference->Process();
+        this->ProcessingDiff = true;
     }
-    this->qDifference->Target = Page->PageName;
-    QueryPool::HugglePool->AppendQuery(this->qDifference);
-    this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    this->qDifference->Process();
-    this->ProcessingDiff = true;
     this->ProcessingRevs = true;
     if (this->User->IsIP())
         return;

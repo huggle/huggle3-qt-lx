@@ -133,39 +133,32 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     {
         return;
     }
-
     if (!line.contains(QString(QChar(003)) + "07"))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no07):" + line);
         return;
     }
-
     line = line.mid(line.indexOf(QString(QChar(003)) + "07") + 3);
-
     if (!line.contains(QString(QChar(003)) + "14"))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no14):" + line);
         return;
     }
-
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
     edit->RegisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no:x4:" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     line = line.mid(line.indexOf(QString(QChar(003)) + "4 ") + 2);
     QString flags = line.mid(0, line.indexOf(QChar(003)));
     edit->Bot = flags.contains("B");
     edit->NewPage = flags.contains("N");
     edit->Minor = flags.contains("M");
-
     // this below looks like a nasty hack to filter out just what we need
     // but I will later use all of these actions for something too
     if (flags.contains("thank")    || flags.contains("modify") ||
@@ -184,7 +177,6 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     if (!edit->NewPage)
     {
         if (!line.contains("?diff="))
@@ -202,55 +194,43 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
             edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
             return;
         }
-
         edit->Diff = line.mid(0, line.indexOf("&")).toInt();
         edit->RevID = line.mid(0, line.indexOf("&")).toInt();
     }
-
     if (!line.contains("oldid="))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no oldid?):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     line = line.mid(line.indexOf("oldid=") + 6);
-
     if (!line.contains(QString(QChar(003))))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     edit->OldID = line.mid(0, line.indexOf(QString(QChar(003)))).toInt();
-
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line, no user: " + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     line = line.mid(line.indexOf(QString(QChar(003)) + "03") + 3);
-
     if (!line.contains(QString(QChar(3))))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     QString name = line.mid(0, line.indexOf(QString(QChar(3))));
-
-    if (name == "")
+    if (name.length() <= 0)
     {
         edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
         return;
     }
-
     edit->User = new WikiUser(name);
-
     if (line.contains(QString(QChar(3)) + " ("))
     {
         line = line.mid(line.indexOf(QString(QChar(3)) + " (") + 3);
@@ -281,7 +261,6 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     {
         Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
     }
-
     if (line.contains(QString(QChar(3)) + "10"))
     {
         line = line.mid(line.indexOf(QString(QChar(3)) + "10") + 3);
@@ -290,7 +269,6 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
             edit->Summary = line.mid(0, line.indexOf(QString(QChar(3))));
         }
     }
-
     this->InsertEdit(edit);
 }
 

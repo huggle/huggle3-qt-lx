@@ -567,6 +567,15 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         return NULL;
     }
 
+    if (this->CurrentEdit->NewPage)
+    {
+        QMessageBox mb;
+        mb.setWindowTitle("Can't revert this");
+        mb.setText("This is a new page, so it can't be reverted, you can either tag it, or delete it.");
+        mb.exec();
+        return NULL;
+    }
+
     if (!this->CurrentEdit->IsPostProcessed())
     {
         // This shouldn't ever happen, there is no need to translate this message
