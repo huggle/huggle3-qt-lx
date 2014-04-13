@@ -135,7 +135,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     this->User->EditCount = user_info_.attribute("editcount").toInt();
                     // users with high number of edits aren't vandals
-                    this->Score -= this->User->EditCount*-2;
+                    this->Score += this->User->EditCount*-2;
                 }
                 else
                 {
