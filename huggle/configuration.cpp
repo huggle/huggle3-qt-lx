@@ -110,7 +110,7 @@ Configuration::Configuration()
     this->ProjectConfig_ScoreUser = -600;
     this->ProjectConfig_WarningScore = 2000;
     this->ProjectConfig_TalkPageWarningScore = -800;
-    this->ProjectConfig_ScoreFlag = -20000;
+    this->ProjectConfig_ScoreFlag = -60;
     this->WarnUserSpaceRoll = true;
     this->ProjectConfig_WelcomeGood = true;
     this->ProjectConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";

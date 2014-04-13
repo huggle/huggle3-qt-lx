@@ -86,6 +86,10 @@ void WikiUser::UpdateUser(WikiUser *us)
             ProblematicUsers.at(c)->_talkPageWasRetrieved = us->_talkPageWasRetrieved;
             ProblematicUsers.at(c)->DateOfTalkPage = us->DateOfTalkPage;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
+            if (ProblematicUsers.at(c)->EditCount < 0)
+            {
+                ProblematicUsers.at(c)->EditCount = us->EditCount;
+            }
             WikiUser::ProblematicUserListLock.unlock();
             return;
         }
@@ -118,6 +122,8 @@ WikiUser::WikiUser()
     this->IsReported = false;
     this->_talkPageWasRetrieved = false;
     this->WhitelistInfo = 0;
+    this->EditCount = -1;
+    this->RegistrationDate = "";
     this->Bot = false;
 }
 
@@ -135,6 +141,8 @@ WikiUser::WikiUser(WikiUser *u)
     this->_talkPageWasRetrieved = u->_talkPageWasRetrieved;
     this->WhitelistInfo = u->WhitelistInfo;
     this->Bot = u->Bot;
+    this->EditCount = u->EditCount;
+    this->RegistrationDate = u->RegistrationDate;
 }
 
 WikiUser::WikiUser(const WikiUser &u)
@@ -151,6 +159,8 @@ WikiUser::WikiUser(const WikiUser &u)
     this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
     this->WhitelistInfo = u.WhitelistInfo;
     this->Bot = u.Bot;
+    this->EditCount = u.EditCount;
+    this->RegistrationDate = u.RegistrationDate;
 }
 
 WikiUser::WikiUser(QString user)
@@ -189,6 +199,8 @@ WikiUser::WikiUser(QString user)
     this->WarningLevel = 0;
     this->Bot = false;
     this->IsReported = false;
+    this->EditCount = -1;
+    this->RegistrationDate = "";
 }
 
 WikiUser::~WikiUser()
@@ -216,9 +228,9 @@ void WikiUser::Resync()
         this->_talkPageWasRetrieved = user->_talkPageWasRetrieved;
         this->DateOfTalkPage = user->DateOfTalkPage;
         if (user->WarningLevel > this->WarningLevel)
-        {
             this->WarningLevel = user->WarningLevel;
-        }
+        if (this->EditCount < 0)
+            this->EditCount = user->EditCount;
     }
     // we can finally unlock it
     WikiUser::ProblematicUserListLock.unlock();

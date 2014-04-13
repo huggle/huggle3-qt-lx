@@ -136,6 +136,12 @@ namespace Huggle
             //! Local cache that holds information if user is reported or not. This information
             //! may be wrong, don't relly on it
             bool IsReported;
+            //! Number of contributions, if it's not known, it contains negative value
+            int EditCount;
+            //! This is a mediawiki string containing a time when user was registered
+            QString RegistrationDate;
+            //! Groups that this user is in, by default it's empty
+            QStringList Groups;
 
     private:
             //! Matches only IPv4

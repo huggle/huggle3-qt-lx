@@ -33,6 +33,7 @@ WikiEdit::WikiEdit()
     this->PostProcessing = false;
     this->qDifference = NULL;
     this->qTalkpage = NULL;
+    this->qUser = NULL;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
@@ -84,6 +85,10 @@ WikiEdit::~WikiEdit()
     {
         this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     }
+    if (this->qUser != NULL)
+    {
+        this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+    }
     delete this->User;
     delete this->Page;
 }
@@ -103,6 +108,67 @@ bool WikiEdit::FinalizePostProcessing()
     if (!this->PostProcessing)
     {
         return true;
+    }
+
+    if (this->qUser != NULL && this->qUser->IsProcessed())
+    {
+        if (this->qUser->IsFailed())
+        {
+            // it failed for some reason
+            Syslog::HuggleLogs->ErrorLog("Unable to fetch user information for " + this->User->Username + ": " +
+                                         this->qUser->Result->ErrorMessage);
+            // we can remove this query now
+            this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+            this->qUser = NULL;
+
+        } else
+        {
+            // we fetch the number of edits, registration and groups of user
+            QDomDocument d_;
+            d_.setContent(this->qUser->Result->Data);
+            QDomNodeList u_ = d_.elementsByTagName("user");
+            QDomNodeList g_ = d_.elementsByTagName("g");
+            if (u_.count() > 0)
+            {
+                QDomElement user_info_ = u_.at(0).toElement();
+                if (user_info_.attributes().contains("editcount"))
+                {
+                    this->User->EditCount = user_info_.attribute("editcount").toInt();
+                    // users with high number of edits aren't vandals
+                    this->Score -= this->User->EditCount*-2;
+                }
+                else
+                {
+                    Syslog::HuggleLogs->WarningLog("Failed to retrieve edit count for " + this->User->Username);
+                }
+                if (user_info_.attributes().contains("registration"))
+                {
+                    this->User->RegistrationDate = user_info_.attribute("registration");
+                }
+                else
+                {
+                    Syslog::HuggleLogs->WarningLog("Wiki returned no registration time of " + this->User->Username);
+                }
+            }
+            int x = 0;
+            while (x < g_.count())
+            {
+                QDomElement group = g_.at(x).toElement();
+                QString gn = group.text();
+                if (gn != "*" && gn != "user")
+                this->User->Groups.append(gn);
+                x++;
+            }
+            this->Score += (Configuration::HuggleConfiguration->ProjectConfig_ScoreFlag * this->User->Groups.count());
+            if (this->User->Groups.contains("bot"))
+            {
+                // if it's a flagged bot we likely don't need to watch them
+                this->Score += Configuration::HuggleConfiguration->ProjectConfig_BotScore;
+            }
+            // let's delete it now
+            this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+            this->qUser = NULL;
+        }
     }
 
     if (this->ProcessingRevs)
@@ -197,10 +263,8 @@ bool WikiEdit::FinalizePostProcessing()
             QDomElement e = l.at(0).toElement();
             if (e.nodeName() == "rev")
             {
-                if (e.text() != "")
-                {
+                if (e.text().length() > 0)
                     this->Page->Contents = e.text();
-                }
                 // check if this revision matches our user
                 if (e.attributes().contains("user"))
                 {
@@ -213,18 +277,12 @@ bool WikiEdit::FinalizePostProcessing()
                         }
                     }
                     if (e.attributes().contains("revid"))
-                    {
                         this->RevID = e.attribute("revid").toInt();
-                    }
                 }
                 if (e.attributes().contains("timestamp"))
-                {
                     this->Time = MediaWiki::FromMWTimestamp(e.attribute("timestamp"));
-                }
                 if (e.attributes().contains("comment"))
-                {
                     this->Summary = e.attribute("comment");
-                }
             }
         }
         if (diff.count() > 0)
@@ -242,11 +300,9 @@ bool WikiEdit::FinalizePostProcessing()
 
     // check if everything was processed and clean up
     if (this->ProcessingRevs || this->ProcessingDiff)
-    {
         return false;
-    }
 
-    if (this->DiffText == "")
+    if (this->DiffText.length() == 0)
     {
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->ErrorLog("no diff available for " + this->Page->PageName + " unable to rescore");
@@ -296,9 +352,7 @@ void WikiEdit::ProcessWords()
         int SD = 0;
         bool found = false;
         if (text == w)
-        {
             found = true;
-        }
         while (!found && SD < Configuration::HuggleConfiguration->SystemConfig_WordSeparators.count())
         {
             if (text.startsWith(w + Configuration::HuggleConfiguration->SystemConfig_WordSeparators.at(SD)))
@@ -321,9 +375,7 @@ void WikiEdit::ProcessWords()
                     break;
                 }
                 if (found)
-                {
                     break;
-                }
                 SL++;
             }
             SD++;
@@ -349,8 +401,7 @@ void WikiEdit::PostProcess()
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
-    this->qDifference = new ApiQuery();
-    this->qDifference->SetAction(ActionQuery);
+    this->qDifference = new ApiQuery(ActionQuery);
     if (this->RevID != -1)
     {
         // &rvprop=content can't be used because of fuck up of mediawiki
@@ -361,16 +412,22 @@ void WikiEdit::PostProcess()
     } else
     {
         this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
-                                            QUrl::toPercentEncoding(this->Page->PageName);
+                                        "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+                                        QUrl::toPercentEncoding(this->Page->PageName);
     }
     this->qDifference->Target = Page->PageName;
-    //this->DifferenceQuery->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qDifference);
     this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->qDifference->Process();
     this->ProcessingDiff = true;
     this->ProcessingRevs = true;
+    if (this->User->IsIP())
+        return;
+    this->qUser = new ApiQuery(ActionQuery);
+    this->qUser->Parameters = "list=users&usprop=blockinfo%7Cgroups%7Ceditcount%7Cregistration&ususers="
+                                + QUrl::toPercentEncoding(this->User->Username);
+    this->qUser->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+    this->qUser->Process();
 }
 
 QString WikiEdit::GetFullUrl()
