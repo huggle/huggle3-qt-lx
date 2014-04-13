@@ -34,6 +34,9 @@ Language *Localizations::MakeLanguage(QString text, QString name)
         }
         if (keys.at(p).contains(":"))
         {
+            QString line = keys.at(p).trimmed();
+            QString key = line.mid(0, line.indexOf(":"));
+            QString lang = line.mid(line.indexOf(":") + 1).trimmed();
             if (keys.at(p)[0] == '@')
             {
                 // this language is using identical text purposefuly so we replace
@@ -42,13 +45,9 @@ Language *Localizations::MakeLanguage(QString text, QString name)
                 p++;
                 continue;
             }
-            QString line = keys.at(p).trimmed();
-            QString key = line.mid(0, line.indexOf(":"));
-            QString lang = line.mid(line.indexOf(":") + 1).trimmed();
+            lang = lang.trimmed();
             if (!l->Messages.contains(key))
-            {
                 l->Messages.insert(key, lang);
-            }
         }
         p++;
     }
