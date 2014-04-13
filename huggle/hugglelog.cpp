@@ -59,7 +59,7 @@ QString HuggleLog::Format(HuggleLog_Line line)
             break;
     }
 
-    if (color == "")
+    if (color.length() == 0)
     {
         return "<font color=blue>" + line.Date + "</font>" + "<font>&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
     } else

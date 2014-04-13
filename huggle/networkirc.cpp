@@ -50,15 +50,11 @@ bool NetworkIrc::Connect()
         }
     }
     if (this->NetworkThread != NULL)
-    {
         delete this->NetworkThread;
-    }
     this->NetworkThread = new NetworkIrc_th();
     this->NetworkThread->root = this;
     if (this->NetworkSocket != NULL)
-    {
         delete this->NetworkSocket;
-    }
     this->NetworkSocket = new QTcpSocket();
     connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
     this->NetworkThread->__IsConnecting = true;
@@ -301,12 +297,12 @@ void NetworkIrc_th::Line(QString line)
 {
     QString Command = "";
     QString Source_ = "";
-    if (line.startsWith("PING :"))
+    if (line[0] == 'P' && line.startsWith("PING :"))
     {
         QString text = line.mid(6);
         this->Data("PONG :" + text);
     }
-    if (!line.startsWith(":") || !line.contains(" "))
+    if (line[0] != ':' || !line.contains(" "))
     {
         return;
     }
@@ -314,24 +310,27 @@ void NetworkIrc_th::Line(QString line)
     line.replace("\r\n", "");
     QString Parameters_ = line;
     QString Message_ = "";
+    int index_ = 0;
     if (Parameters_.contains(" :"))
     {
         // we store the index so that we don't need to look it up twice
-        int index_ = Parameters_.indexOf(" :");
+        index_ = Parameters_.indexOf(" :");
         Message_ = Parameters_.mid(index_ + 2);
         Parameters_ = Parameters_.mid(0, index_);
     }
     Parameters_ = Parameters_.mid(1);
-    Source_ = Parameters_.mid(0, Parameters_.indexOf(" "));
-    Parameters_= Parameters_.mid(Parameters_.indexOf(" ") + 1);
+    index_ = Parameters_.indexOf(" ");
+    Source_ = Parameters_.mid(0, index_);
+    Parameters_= Parameters_.mid(index_ + 1);
     if (!Parameters_.contains(" "))
     {
         Command = Parameters_;
         Parameters_ = "";
     } else
     {
-        Command = Parameters_.mid(0, Parameters_.indexOf(" "));
-        Parameters_ = Parameters_.mid(Parameters_.indexOf(" ") + 1);
+        index_ = Parameters_.indexOf(" ");
+        Command = Parameters_.mid(0, index_);
+        Parameters_ = Parameters_.mid(index_ + 1);
     }
 
     if (Command == "002")
@@ -380,7 +379,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "PART")
     {
-        if (Parameters_ == "")
+        if (Parameters_.length() < 1)
         {
             Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
             return;
@@ -395,7 +394,7 @@ void NetworkIrc_th::ProcessPrivmsg(QString source, QString parameters, QString m
     User user;
     user.Nick = source.mid(0, source.indexOf("!"));
     Message Message_;
-    if (!parameters.contains("#"))
+    if (parameters[0] != '#')
     {
         return;
     }
@@ -415,13 +414,13 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
-    if (channel == "")
+    if (channel.length() <= 0)
     {
         // some irc servers are providing channel name as a message and not
         // parameter, this is case of wikimedia irc server
         channel = message;
     }
-    if (channel == "")
+    if (channel.length() < 1)
     {
         throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessJoin"\
                                     "(QString source, QString channel, QString message)");
@@ -477,7 +476,7 @@ void NetworkIrc_th::ProcessChannel(QString channel, QString data)
     while (Users.count() > 0)
     {
         QString user = Users.at(0);
-        if (user != "")
+        if (user.length() > 0)
         {
             channel_->InsertUser(User(user));
         }
