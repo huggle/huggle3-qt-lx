@@ -13,9 +13,15 @@ using namespace Huggle;
 
 //QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
 QRegExp WikiUser::IPv4Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
-QRegExp WikiUser::IPv6Regex("^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9](?>:|$)){8,})((?1)(?>:(?1)){0,6})?:"\
-                            ":(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){6,})(?3)?::(?>((?1)(?>:(?1)){0,4}):)?)"\
-                            "?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\\.(?4)){3}))$");
+QRegExp WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]"\
+                            "{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|("\
+                            "[0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-"\
+                            "fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,"\
+                            "4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0"\
+                            ",4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0"\
+                            "-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}"\
+                            ":){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}["\
+                            "0-9]){0,1}[0-9]))");
 QList<WikiUser*> WikiUser::ProblematicUsers;
 QMutex WikiUser::ProblematicUserListLock(QMutex::Recursive);
 QDateTime WikiUser::InvalidTime = QDateTime::fromMSecsSinceEpoch(2);
@@ -167,7 +173,7 @@ WikiUser::WikiUser(QString user)
 {
     this->UserLock = new QMutex(QMutex::Recursive);
     this->IP = false;
-    if (user != "")
+    if (user.length() != 0)
     {
         if (WikiUser::IPv6Regex.exactMatch(user))
         {
@@ -302,7 +308,7 @@ bool WikiUser::IsIP() const
 void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
-    if (tp != "")
+    if (tp.length() > 0)
     {
         this->WarningLevel = HuggleParser::GetLevel(tp, bt);
     }
@@ -320,7 +326,7 @@ bool WikiUser::TalkPage_WasRetrieved()
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
-    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags == "")
+    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags.length() < 1)
     {
         return false;
     }
@@ -377,7 +383,7 @@ QString WikiUser::Flags()
 {
     QString pflags = "";
     QString nflags = "";
-    if (this->TalkPage_GetContents() == "" && this->TalkPage_WasRetrieved())
+    if (this->TalkPage_GetContents().length() == 0 && this->TalkPage_WasRetrieved())
     {
         nflags += "T";
     } else
@@ -405,7 +411,7 @@ QString WikiUser::Flags()
         pflags += "b";
     }
     QString flags = "";
-    if (nflags != "")
+    if (nflags.length() >= 1)
     {
         flags += "-" + nflags;
     }
@@ -424,5 +430,3 @@ void WikiUser::SetBot(bool value)
 {
     Bot = value;
 }
-
-
