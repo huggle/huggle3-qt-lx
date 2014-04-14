@@ -52,7 +52,7 @@ brew install qt
 ```
 * Checkout this repository and execute
 ```sh
-./configure
+./configure --no-breakpad
 make
 open huggle.app
 ```
