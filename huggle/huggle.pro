@@ -236,3 +236,6 @@ RESOURCES += \
 OTHER_FILES += \
     Resources/Header.txt \
     Resources/Definitions.txt
+
+# OSX Application icon
+    ICON = ./Resources/huggle.icns
