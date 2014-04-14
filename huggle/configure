@@ -35,6 +35,7 @@ RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
+BREAKPAD=0
 QT5=10
 FLAGS=''
 if [ x"$*" != x ];then
@@ -52,6 +53,7 @@ do
         echo " --build=[i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
+        echo " --no-breakpad: will not build breakpad library for huggle"
         echo " --qmake: change path to qmake"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
@@ -67,13 +69,17 @@ do
         GREEN=""
         NORMAL=""
     fi
+    if [ "$var" = "--no-breakpad" ];then
+        BREAKPAD=1
+        continue
+    fi
     if [ "$var" = "--qt4" ];then
         QT5=0
-        continue;
+        continue
     fi
     if [ "$var" = "--qt5" ];then
         QT5=1
-        continue;
+        continue
     fi
     if [ "$var" = "--build=i686-pc-linux-gnu" ];then
         FLAGS='-spec linux-g++-32'
@@ -225,28 +231,27 @@ if [ "$QT5" -eq 1 ];then
     checkhf xslt "/usr/include/libxslt/xslt.h"
 fi
 
-if [ ! -d breakpad ];then
-    text "Breakpad library is not present, unpacking it..."
-    tar -zxf breakpad.tar.gz || exit 1;ok
-fi 
-
-
-text "Checking for breakpad library"
-
-if [ ! -f libbreakpad_client.a ];then
-    ok
-    echo "Building it"
-    cd breakpad || exit 1
-    ./configure || exit 1
-    make || exit 1
-    if [ ! -f src/client/linux/libbreakpad_client.a ];then
-        echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
-        exit 1
+if [ $BREAKPAD -eq 0 ];then
+    if [ ! -d breakpad ];then
+        text "Breakpad library is not present, unpacking it..."
+        tar -zxf breakpad.tar.gz || exit 1;ok
+    fi 
+    text "Checking for breakpad library"
+    if [ ! -f libbreakpad_client.a ];then
+        ok
+        echo "Building it"
+        cd breakpad || exit 1
+        ./configure || exit 1
+        make || exit 1
+        if [ ! -f src/client/linux/libbreakpad_client.a ];then
+            echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
+            exit 1
+        fi
+        cp src/client/linux/libbreakpad_client.a .. || exit 1
+        cd .. || exit 1
+    else
+        ok
     fi
-    cp src/client/linux/libbreakpad_client.a .. || exit 1
-    cd .. || exit 1
-else
-    ok
 fi
 
 text "Executing update.sh... "
@@ -271,6 +276,9 @@ ok
 if [ ! -f definitions.hpp ];then
     text "Making definitions.hpp"
     cp definitions_prod.hpp definitions.hpp || exit 1;ok
+    if [ $BREAKPAD -eq 1 ];then
+        cat definitions_prod.hpp | sed 's/^.*DISABLE_BREAKPAD/#define DISABLE_BREAKPAD/' > definitions.hpp || exit 1
+    fi
 fi
 
 text "Preparing makefile hunker..."
