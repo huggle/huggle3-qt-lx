@@ -277,6 +277,7 @@ if [ ! -f definitions.hpp ];then
     text "Making definitions.hpp"
     cp definitions_prod.hpp definitions.hpp || exit 1;ok
     if [ $BREAKPAD -eq 1 ];then
+        cat huggle.pro | sed 's/libbreakpad_client.a//' > huggle__ && mv huggle__ huggle.pro || exit 1
         cat definitions_prod.hpp | sed 's/^.*DISABLE_BREAKPAD/#define DISABLE_BREAKPAD/' > definitions.hpp || exit 1
     fi
 fi
