@@ -84,6 +84,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->verticalLayout->addWidget(this->Browser);
     this->Ignore = NULL;
     this->DisplayWelcomeMessage();
+    if (Configuration::HuggleConfiguration->UserConfig_RemoveOldQueueEdits)
+    {
+        this->ui->actionRemove_old_edits->setChecked(true);
+        this->ui->actionStop_feed->setChecked(false);
+    } else
+    {
+        this->ui->actionRemove_old_edits->setChecked(false);
+        this->ui->actionStop_feed->setChecked(true);
+    }
     // initialise queues
     if (!Configuration::HuggleConfiguration->ProjectConfig_UseIrc)
     {
@@ -1712,12 +1721,14 @@ void MainWindow::on_actionDisplay_history_in_browser_triggered()
 
 void MainWindow::on_actionStop_feed_triggered()
 {
+    Configuration::HuggleConfiguration->UserConfig_RemoveOldQueueEdits = false;
     this->ui->actionRemove_old_edits->setChecked(false);
     this->ui->actionStop_feed->setChecked(true);
 }
 
 void MainWindow::on_actionRemove_old_edits_triggered()
 {
+    Configuration::HuggleConfiguration->UserConfig_RemoveOldQueueEdits = true;
     this->ui->actionRemove_old_edits->setChecked(true);
     this->ui->actionStop_feed->setChecked(false);
 }
