@@ -53,7 +53,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_2">
            <property name="text">
-            <string>Require confirmation for revert edit in user space</string>
+            <string>Require confirmation for revert of edit that was made in user space</string>
            </property>
           </widget>
          </item>
