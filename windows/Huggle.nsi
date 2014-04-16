@@ -4,6 +4,8 @@
 #              by Vlasis K. Barkas aka Red Wine red_wine@freemail.gr Sep 2006               
 ############################################################################################
 
+!define MUI_ICON "huggle.ico"
+!define MUI_UNICON "huggle.ico"
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
@@ -127,8 +129,8 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
 !ifdef WEB_SITE
