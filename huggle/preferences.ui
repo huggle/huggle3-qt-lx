@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>852</width>
-    <height>423</height>
+    <height>459</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -53,28 +53,28 @@
          <item>
           <widget class="QCheckBox" name="checkBox_2">
            <property name="text">
-            <string>Ask if you revert edit in user space</string>
+            <string>Require confirmation for revert edit in user space</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBox_3">
            <property name="text">
-            <string>Ask if you revert your own edit</string>
+            <string>Require confirmation for revert of own edit</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBox_4">
            <property name="text">
-            <string>Ask if you revert edit of whitelisted user</string>
+            <string>Require confirmation for revert of edit that was made by whitelisted user</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="checkBox_11">
            <property name="text">
-            <string>Ask if you revert a talk page</string>
+            <string>Require confirmation for revert of talk page</string>
            </property>
           </widget>
          </item>
