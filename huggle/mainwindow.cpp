@@ -1149,27 +1149,15 @@ void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 
 void MainWindow::on_actionForward_triggered()
 {
-    if (this->CurrentEdit == NULL)
-    {
+    if (this->CurrentEdit == NULL || this->CurrentEdit->Next == NULL)
         return;
-    }
-    if (this->CurrentEdit->Next == NULL)
-    {
-        return;
-    }
     this->ProcessEdit(this->CurrentEdit->Next, true);
 }
 
 void MainWindow::on_actionBack_triggered()
 {
-    if (this->CurrentEdit == NULL)
-    {
+    if (this->CurrentEdit == NULL || this->CurrentEdit->Previous == NULL)
         return;
-    }
-    if (this->CurrentEdit->Previous == NULL)
-    {
-        return;
-    }
     this->ProcessEdit(this->CurrentEdit->Previous, true);
 }
 
@@ -1202,13 +1190,11 @@ void MainWindow::CustomRevertWarn()
         Generic::DeveloperError();
         return;
     }
-
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
     rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
     RevertQuery *result = this->Revert(rs, true, false);
-
     if (result != NULL)
     {
         this->Warn(k, result);
@@ -1226,10 +1212,8 @@ void MainWindow::CustomWarn()
         Generic::DeveloperError();
         return;
     }
-
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
-
     this->Warn(k, NULL);
 }
 
@@ -1255,10 +1239,7 @@ QString MainWindow::GetSummaryText(QString text)
 void MainWindow::ForceWarn(int level)
 {
     if (!this->CheckExit())
-    {
         return;
-    }
-
     Warnings::ForceWarn(level, this->CurrentEdit);
 }
 
@@ -1564,7 +1545,7 @@ bool MainWindow::CheckExit()
 
 void MainWindow::Welcome()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || this->CurrentEdit == NULL)
     {
         return;
     }
@@ -1573,14 +1554,8 @@ void MainWindow::Welcome()
         Generic::DeveloperError();
         return;
     }
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-
     this->CurrentEdit->User->Resync();
     bool create_only = true;
-
     if (this->CurrentEdit->User->TalkPage_GetContents() != "")
     {
         if (QMessageBox::question(this, "Welcome :o", Localizations::HuggleLocalizations->Localize("welcome-tp-empty-fail"),
@@ -1599,7 +1574,6 @@ void MainWindow::Welcome()
             return;
         }
     }
-
     if (this->CurrentEdit->User->IsIP())
     {
         if (this->CurrentEdit->User->TalkPage_GetContents() == "")
@@ -1613,14 +1587,12 @@ void MainWindow::Welcome()
                               false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
-
     if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.count() == 0)
     {
         // This error should never happen so we don't need to localize this
         Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
         return;
     }
-
     QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.at(0));
 
     if (message == "")
@@ -1629,7 +1601,6 @@ void MainWindow::Welcome()
         Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
         return;
     }
-
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
     WikiUtil::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
@@ -1753,30 +1724,21 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == NULL)
     {
         return;
     }
-
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Generic::DeveloperError();
         return;
     }
-
     if (!this->CurrentEdit->User->IsIP())
     {
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("feature-nfru"));
         return;
     }
-
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
-
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig_ClearTalkPageTemp
                    + "\n" + Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
@@ -1799,17 +1761,13 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-    {
         return;
-    }
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Generic::DeveloperError();
         return;
     }
-
     RevertQuery *result = this->Revert("", false, false);
-
     if (result != NULL)
     {
         this->Warn("warning", result);
@@ -1911,9 +1869,7 @@ void Huggle::MainWindow::on_actionIRC_triggered()
 void Huggle::MainWindow::on_actionWiki_triggered()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-    {
         return;
-    }
     Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-switch-rc"));
     Core::HuggleCore->PrimaryFeedProvider->Stop();
     this->ui->actionIRC->setChecked(false);
@@ -1975,11 +1931,7 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 
 void MainWindow::on_actionReport_username_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-    {
-        return;
-    }
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == NULL || !this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -2017,11 +1969,7 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 
 void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 {
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-    if (!this->CheckExit())
+    if (this->CurrentEdit == NULL || !this->CheckExit())
     {
         return;
     }
@@ -2034,12 +1982,10 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
     QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
                                            Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
                                            QLineEdit::Normal, "No reason was provided / custom revert", &ok);
-
     if (!ok)
     {
         return;
     }
-
     QString summary = Configuration::HuggleConfiguration->ProjectConfig_AgfRevert.replace("$2", this->CurrentEdit->User->Username);
     summary = summary.replace("$1", reason);
     this->Revert(summary);
@@ -2072,7 +2018,7 @@ void Huggle::MainWindow::on_actionResort_queue_triggered()
 
 void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || this->CurrentEdit == NULL)
     {
         return;
     }
@@ -2081,28 +2027,20 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
         Generic::DeveloperError();
         return;
     }
-    if (this->CurrentEdit == NULL)
-    {
-        return;
-    }
-
     if (this->RestoreEdit != NULL || this->RestoreQuery != NULL)
     {
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("I am currently restoring another edit, please wait");
         return;
     }
-
     bool ok;
     QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
                                            Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
                                            QLineEdit::Normal, "No reason was provided by user :(", &ok);
-
     if (!ok)
     {
         return;
     }
-
     this->RestoreQuery = new ApiQuery();
     this->RestoreQuery->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
     this->RestoreQuery->Parameters = "prop=revisions&revids=" +
@@ -2197,12 +2135,10 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     bool ok;
     QString name = QInputDialog::getText(this, "File", "Please provide a file name you want to dump the current source code to",
                                            QLineEdit::Normal, "huggledump.htm", &ok);
-
     if (!ok)
     {
         return;
     }
-
     QFile *f = new QFile(name);
     if (!f->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
