@@ -108,11 +108,9 @@ closing-config:            Updating configuration subpage...
 config-summ:               Custom revert summaries for templates
 config-title:              Options
 config-rememberme:         Remember my username
-config-rememberpassword:   Remember my password
 config-autowhitelist:      Automatically whitelist users
 config-openinbrowser:      Open browser links in new browser window
 config-shownewedits:       Show new edits to the selected page as they are made
-config-preloads:           Enable preloading of diffs
 config-ircmode:            Use IRC feed for recent changes if possible
 config-ircport:            IRC port
 config-difffontsize:       Diff font size
@@ -120,10 +118,6 @@ config-logfile:            Log file
 config-viewlocalconfig:    View local configuration folder
 config-trayicon:           Show tray icon
 config-startupmessage:     Show startup message
-config-showlog:            Show log
-config-showqueue:          Show revision queue
-config-rightalignqueue:    Show queue on the right of the window
-config-showtooltips:       Show tooltips on menus
 config-shownewmessages:    Show new messages bar
 config-shortcutlist:       Keyboard shortcuts
 config-shortcutaction:     Action
@@ -145,9 +139,9 @@ config-autoadvance:        After reverting, move to next edit in the queue
 config-userollback:        Use rollback if available
 config-revertsummaries:    Revert summaries available in menu
 config-clearsummaries:     Summaries entered manually are remembered across sessions; click to clear these
-config-reportlinkexamples: Include links to instances of vandalism in reports
 config-extendreports:      Extend reports after additional vandalism
-config-autoreportgroup:    Auto-report
+// This is possibly going to be removed, depends on feedback
+//config-autoreportgroup:    Auto-report
 config-autoreport:         When asked to warn a user with a final warning
 config-reportnone:         Do nothing
 config-reportprompt:       Prompt for report
@@ -155,8 +149,6 @@ config-reportauto:         Issue report automatically
 config-templates:          User template messages
 config-templatetext:       Display text
 config-template:           Template
-config-highlightgroup:     Syntax highlight colors
-config-useadminfunctions:  Use administrator functions if available
 config-promptforblock:     Prompt for block if asked to warn a user with a final warning
 config-blockreason:        Default block reason
 config-blocktime:          Default block duration for
@@ -348,7 +340,6 @@ main-usermessageother:     Other message...
 main-advanced:             Advanced...
 main-stats:                $1 edits per minute, $2 reverts per minute
 main-display-session-data: Display a session data
-
 main-revert-custom-reson:  Please provide a reason why you want to revert this edit to previous revision
 main-log1:                 Restoring selected revision of $1
 main-tip-revertwarn:       Revert this revision, and issue a user warning
@@ -435,7 +426,6 @@ queue-sortorder:           Sort order:
 queue-removeviewed:        Remove edits when viewed
 queue-removeold:           Remove old edits to the same page
 queue-removeafter:         Remove edits after
-queue-removeaftertime:     minutes
 queue-preload:             Enable preloading of revisions when this queue is selected
 queue-ignorepages:         Ignore edits to pages on the ignored pages list
 queue-traynotification:    Show tray notification when a revision is added to this queue
@@ -563,8 +553,6 @@ tag-insertatend:           Insert at the end of the page
 === Update form ===
 update-title:              New version available
 update-notification:       This version of Huggle is out of date.
-update-required:           You must update to the latest version, $1.
-update-optional:           Updating to the latest version, $1, is recommended, and may be required in future.
 update-prompt:             Download and run the latest version now?
 update-download:           Update
 update-progress:           Downloading new version...
@@ -605,7 +593,6 @@ han-connecting:            Connecting to huggle anti vandalism network
 //xfd-reason:                Reason:
 
 === Web requests ===
-//error-apidisabled:         The MediaWiki API is disabled
 //error-exception:           Error retrieving $1
 //error-fail:                Failed to retrieve $1
 error-loggedout:           Account has been logged out, logging back in...
@@ -666,11 +653,11 @@ move-progress:             Moving $1 to $2...
 notify-fail:               Did not notify the creator of $1
 notify-unknowncreator:     Cannot find page creator
 
-patrol-duplicate:          The page is already patrolled
-patrol-done:               Marked $1 as patrolled
-patrol-fail:               Did not mark $1 as patrolled
-patrol-notfound:           Cannot find recent-changes id, page is too old
-patrol-progress:           Marking $1 as patrolled...
+//patrol-duplicate:          The page is already patrolled
+//patrol-done:               Marked $1 as patrolled
+//patrol-fail:               Did not mark $1 as patrolled
+//patrol-notfound:           Cannot find recent-changes id, page is too old
+//patrol-progress:           Marking $1 as patrolled...
 
 protect-done:              Changed protection level for $1
 protect-fail:              Did not change protection level for $1
@@ -700,10 +687,10 @@ reqprotection-fail:        Did not request protection of '$1'
 reqprotection-progress:    Requesting protection of '$1'...
 reqprotection-title:       Request page protection of $1
 
-tag-alreadytagged:         The page has already been tagged
-tag-deleted:               The page has been deleted
-tag-fail:                  Did not tag '$1'
-tag-progress:              Tagging '$1'...
+//tag-alreadytagged:         The page has already been tagged
+//tag-deleted:               The page has been deleted
+//tag-fail:                  Did not tag '$1'
+//tag-progress:              Tagging '$1'...
 
 //sight-done:                Marked revision {0} of '{1}' as sighted
 //sight-fail:                Failed to sight revision {0} of '{1}'
