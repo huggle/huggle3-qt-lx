@@ -141,3 +141,18 @@ QString Generic::ShrinkText(QString text, int size, bool html)
     }
     return text_;
 }
+
+QString Generic::RetrieveToken(QString page, QString token)
+{
+    QDomDocument d;
+    d.setContent(page);
+    QDomNodeList page_ = d.elementsByTagName("page");
+    if (page_.count() == 0)
+        return ""; // invalid token
+    QDomElement p = page_.at(0).toElement();
+    if (p.attributes().contains(token))
+    {
+        return p.attribute(token);
+    }
+    return ""; // no token
+}

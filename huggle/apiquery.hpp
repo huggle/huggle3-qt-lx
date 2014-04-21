@@ -46,6 +46,7 @@ namespace Huggle
         ActionTokens,
         ActionPurge,
         ActionRollback,
+        ActionSetNotificationTimestamp,
         ActionDelete,
         ActionUndelete,
         ActionBlock,

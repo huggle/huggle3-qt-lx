@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fWaiting = NULL;
     this->fWhitelist = NULL;
     this->wq = NULL;
+    this->qTalkpageTimestampReset = NULL;
     this->qNext = NULL;
     this->RestoreQuery = NULL;
     this->fUaaReportForm = NULL;
@@ -941,6 +942,28 @@ void MainWindow::OnMainTimerTick()
             delete this->OnNext_EvPage;
             this->OnNext_EvPage = NULL;
             this->qNext = NULL;
+        }
+    }
+    // check the status of talk page ts reset
+    if (this->qTalkpageTimestampReset != NULL && this->qTalkpageTimestampReset->IsProcessed())
+    {
+        // fetch the token
+        QString token = Generic::RetrieveToken(this->qTalkpageTimestampReset->Result->Data, "edittoken");
+        this->qTalkpageTimestampReset->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->qTalkpageTimestampReset = NULL;
+        if (token.length() == 0)
+        {
+            Syslog::HuggleLogs->DebugLog("Unable to retrieve the token for talk page: " + this->qTalkpageTimestampReset->Result->Data);
+            return;
+        } else
+        {
+            ApiQuery *q = new ApiQuery(ActionSetNotificationTimestamp);
+            q->Parameters = "titles=User_talk:" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
+                            + "&token=" + QUrl::toPercentEncoding(token);
+            q->UsingPOST = true;
+            q->Target = "Tagging your TP read";
+            q->Process();
+            QueryPool::HugglePool->AppendQuery(q);
         }
     }
     this->FinishRestore();
@@ -1897,6 +1920,19 @@ void Huggle::MainWindow::on_actionWiki_triggered()
 void Huggle::MainWindow::on_actionShow_talk_triggered()
 {
     this->LockPage();
+    // first we need to get a token to reset the timestamp of current talk page
+    if (this->qTalkpageTimestampReset != NULL)
+    {
+        // this means that we are already reseting it, we can just exit here
+        Syslog::HuggleLogs->ErrorLog("I am already checking out your talk page, please wait");
+    } else
+    {
+        this->qTalkpageTimestampReset = new ApiQuery(ActionQuery);
+        this->qTalkpageTimestampReset->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->qTalkpageTimestampReset->Parameters = "prop=info&titles=User_talk:" +
+                QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username) + "&intoken=edit";
+        this->qTalkpageTimestampReset->Process();
+    }
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;

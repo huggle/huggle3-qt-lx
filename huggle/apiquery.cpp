@@ -237,6 +237,9 @@ void ApiQuery::SetAction(const Action action)
         case ActionPatrol:
             this->ActionPart = "patrol";
             return;
+        case ActionSetNotificationTimestamp:
+            this->ActionPart = "setnotificationtimestamp";
+            return;
     }
 }
 
