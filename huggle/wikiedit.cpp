@@ -132,7 +132,7 @@ bool WikiEdit::FinalizePostProcessing()
                 QDomElement user_info_ = u_.at(0).toElement();
                 if (user_info_.attributes().contains("editcount"))
                 {
-                    this->User->EditCount = user_info_.attribute("editcount").toInt();
+                    this->User->EditCount = user_info_.attribute("editcount").toLong();
                     // users with high number of edits aren't vandals
                     this->Score += this->User->EditCount*-2;
                 }
