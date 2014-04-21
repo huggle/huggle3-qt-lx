@@ -300,7 +300,7 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser)
         return false;
 
     this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
