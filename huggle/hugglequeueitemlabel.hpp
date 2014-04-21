@@ -47,7 +47,7 @@ namespace Huggle
             void SetName(QString name);
             QString GetName();
             void Process(QLayoutItem *qi = NULL);
-            void Remove();
+            void Remove(QLayoutItem *qi = NULL);
             HuggleQueue *ParentQueue;
             WikiEdit *Page;
 

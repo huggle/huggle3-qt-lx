@@ -79,9 +79,6 @@ namespace Huggle
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
             Ui::HuggleQueue *ui;
-            QVBoxLayout *layout;
-            QWidget *xx;
-            QFrame *frame;
     };
 }
 

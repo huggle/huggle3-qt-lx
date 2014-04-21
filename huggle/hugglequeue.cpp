@@ -17,22 +17,13 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
 {
     this->ui->setupUi(this);
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
-    this->layout = new QVBoxLayout(ui->scrollArea);
-    this->layout->setMargin(0);
-    this->layout->setSpacing(0);
-    this->xx = new QWidget();
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
-    this->frame = new QFrame();
-    this->ui->scrollArea->setWidget(this->xx);
-    this->xx->setLayout(this->layout);
-    this->layout->addWidget(this->frame);
     this->Filters();
     this->ui->comboBox->setCurrentIndex(0);
 }
 
 HuggleQueue::~HuggleQueue()
 {
-    delete this->layout;
     delete this->CurrentFilter;
     delete this->ui;
 }
@@ -109,7 +100,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
-        this->layout->addWidget(label);
+        this->ui->itemList->addWidget(label);
     } else
     {
         int id = 0;
@@ -127,11 +118,11 @@ void HuggleQueue::AddItem(WikiEdit *page)
                 id++;
             }
         }
-        if (id >= this->layout->count() && this->layout->count() > 0)
+        if (id >= this->ui->itemList->count() && this->ui->itemList->count() > 0)
         {
-            id = this->layout->count() - 1;
+            id = this->ui->itemList->count() - 1;
         }
-        this->layout->insertWidget(id, label);
+        this->ui->itemList->insertWidget(id, label);
     }
     this->Items.append(label);
     HuggleQueueItemLabel::Count++;
@@ -141,12 +132,13 @@ void HuggleQueue::Next()
 {
     if (HuggleQueueItemLabel::Count < 1)
     {
+        // there are no items in a list
         return;
     }
-    QLayoutItem *i = this->layout->itemAt(0);
+    QLayoutItem *i = this->ui->itemList->itemAt(0);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
-    this->layout->removeItem(i);
+    this->ui->itemList->removeItem(i);
     delete label;
 }
 
@@ -189,9 +181,10 @@ bool HuggleQueue::DeleteByRevID(int RevID)
 void HuggleQueue::Sort()
 {
     int c = 0;
-    while (c < this->layout->count() - 1)
+    // we need to make sure that we won't touch the expander we have in list
+    while (c < this->ui->itemList->count() - 1)
     {
-        QLayoutItem *i = this->layout->itemAt(c);
+        QLayoutItem *i = this->ui->itemList->itemAt(c);
         this->ResortItem(i, c);
         c++;
     }
@@ -200,9 +193,9 @@ void HuggleQueue::Sort()
 void HuggleQueue::SortItemByEdit(WikiEdit *e)
 {
     int c = 0;
-    while (c < this->layout->count() - 1)
+    while (c < this->ui->itemList->count() - 1)
     {
-        QLayoutItem *i = this->layout->itemAt(c);
+        QLayoutItem *i = this->ui->itemList->itemAt(c);
         HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
         if (x->Page == e)
         {
@@ -219,15 +212,15 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // we don't know the position so we need to calculate it
         position = 0;
-        while (position < this->layout->count() - 1)
+        while (position < this->ui->itemList->count() - 1)
         {
-            if (item == this->layout->itemAt(position))
+            if (item == this->ui->itemList->itemAt(position))
             {
                 break;
             }
             position++;
         }
-        if (position == this->layout->count() - 1)
+        if (position == this->ui->itemList->count() - 1)
         {
             Syslog::HuggleLogs->DebugLog("Unable to sort the queue because item wasn't present");
             return;
@@ -243,7 +236,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // every item on left side has to be lower than this one
         // get the item by index and compare the size
-        QLayoutItem *l2 = this->layout->itemAt(x);
+        QLayoutItem *l2 = this->ui->itemList->itemAt(x);
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
@@ -255,11 +248,11 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         }
         x++;
     }
-    while (x < this->layout->count() - 1)
+    while (x < this->ui->itemList->count() - 1)
     {
         // every item on right side has to be bigger than this one
         // get the item by index and compare the size
-        QLayoutItem *l2 = this->layout->itemAt(x);
+        QLayoutItem *l2 = this->ui->itemList->itemAt(x);
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
@@ -294,17 +287,17 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
     {
         item->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
         item->Page = NULL;
-        this->layout->removeItem(qi);
+        this->ui->itemList->removeItem(qi);
         return;
     }
     int curr=0;
-    while(curr<(this->layout->count()-1))
+    while(curr<(this->ui->itemList->count()-1))
     {
-        QLayoutItem *i = this->layout->itemAt(curr);
+        QLayoutItem *i = this->ui->itemList->itemAt(curr);
         HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
         if (label == item)
         {
-            this->layout->removeItem(i);
+            this->ui->itemList->removeItem(i);
             if (label->Page != NULL)
             {
                 label->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
@@ -336,16 +329,16 @@ void HuggleQueue::Trim()
     {
         return;
     }
-    int x = this->layout->count() - 1;
-    QLayoutItem *i = this->layout->itemAt(x);
-    if (i->widget() == this->frame)
+    int x = this->ui->itemList->count() - 1;
+    QLayoutItem *i = this->ui->itemList->itemAt(x);
+    if (i == this->ui->verticalSpacer)
     {
         x--;
-        i = this->layout->itemAt(x);
+        i = this->ui->itemList->itemAt(x);
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Remove();
-    this->layout->removeItem(i);
+    this->ui->itemList->removeItem(i);
     delete label;
 }
 
@@ -408,13 +401,17 @@ void HuggleQueue::Clear()
 
 long HuggleQueue::GetScore(int id)
 {
-    if (this->layout->count() - 1 <= id)
+    if (this->ui->itemList->count() - 1 <= id)
     {
         return MINIMAL_SCORE;
     }
 
-    QLayoutItem *i = this->layout->itemAt(id);
+    QLayoutItem *i = this->ui->itemList->itemAt(id);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
+    if (!label)
+    {
+        throw new Huggle::Exception("label was NULL", "long HuggleQueue::GetScore(int id)");
+    }
     if (label->Page == NULL)
     {
         return MINIMAL_SCORE;
