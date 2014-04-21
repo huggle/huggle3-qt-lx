@@ -190,6 +190,7 @@ WikiUser::WikiUser(QString user)
     this->DateOfTalkPage = InvalidTime;
     int c=0;
     this->ContentsOfTalkPage = "";
+    WikiUser::ProblematicUserListLock.lock();
     while (c<ProblematicUsers.count())
     {
         if (ProblematicUsers.at(c)->Username == this->Username)
@@ -197,10 +198,12 @@ WikiUser::WikiUser(QString user)
             this->BadnessScore = ProblematicUsers.at(c)->BadnessScore;
             this->WarningLevel = ProblematicUsers.at(c)->WarningLevel;
             this->IsReported = ProblematicUsers.at(c)->IsReported;
+            WikiUser::ProblematicUserListLock.unlock();
             return;
         }
         c++;
     }
+    WikiUser::ProblematicUserListLock.unlock();
     this->BadnessScore = 0;
     this->WarningLevel = 0;
     this->Bot = false;

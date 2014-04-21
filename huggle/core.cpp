@@ -251,9 +251,7 @@ void Core::LoadDefs()
     {
         Huggle::Syslog::HuggleLogs->Log("WARNING: recovering definitions from last session");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
-        if (QFile(Configuration::GetConfigurationPath()
-                   + "users.xml~").copy(Configuration::GetConfigurationPath()
-                   + "users.xml"))
+        if (QFile(Configuration::GetConfigurationPath() + "users.xml~").copy(Configuration::GetConfigurationPath() + "users.xml"))
         {
             QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
         } else

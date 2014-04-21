@@ -18,6 +18,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     this->timer = new QTimer(this);
     this->qContributions = NULL;
     this->edit = NULL;
+    this->User = NULL;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
@@ -54,6 +55,7 @@ UserinfoForm::~UserinfoForm()
     {
         this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
     }
+    delete this->User;
     delete this->timer;
     delete this->ui;
 }
@@ -64,7 +66,12 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     {
         throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
     }
-    this->User = user;
+    if (this->User != NULL)
+    {
+        delete this->User;
+    }
+    // we create a copy of this wiki user so that we ensure it doesn't get deleted meanwhile
+    this->User = new WikiUser(user);
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Retrieve info");
