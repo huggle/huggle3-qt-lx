@@ -314,6 +314,8 @@ namespace Huggle
             bool                    UserConfig_ManualWarning;
             //! Large title of every page in top of diff
             bool                    UserConfig_DisplayTitle;
+            //! Result of "Stop feed, Remove old edits" in main form
+            bool                    UserConfig_RemoveOldQueueEdits;
 
             //////////////////////////////////////////////
             // Global config
