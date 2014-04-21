@@ -126,8 +126,6 @@ namespace Huggle
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);
-            //! Cache of contributions made by this user
-            QList<WikiEdit*> Contributions;
             //! Username
             QString Username;
             //! Current warning level of user

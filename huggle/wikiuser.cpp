@@ -215,15 +215,6 @@ WikiUser::WikiUser(QString user)
 WikiUser::~WikiUser()
 {
     delete this->UserLock;
-    while (this->Contributions.count() > 0)
-    {
-        if (!this->Contributions.at(0)->SafeDelete())
-        {
-            Syslog::HuggleLogs->DebugLog("Possible memory leak in WikiUser::~WikiUser() failed to delete WikiEdit, consumers: " +
-                                         this->Contributions.at(0)->DebugHgc());
-        }
-        this->Contributions.removeAt(0);
-    }
 }
 
 void WikiUser::Resync()
