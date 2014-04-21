@@ -279,7 +279,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     this->fReportForm->SetUser(User);
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)
+void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
 {
     if (e == NULL || this->ShuttingDown)
     {
@@ -342,6 +342,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     e->User->Resync();
     this->EditablePage = true;
+    Configuration::HuggleConfiguration->ForcedNoEditJump = ForcedJump;
     if (!KeepUser)
     {
         this->wUserInfo->ChangeUser(e->User);

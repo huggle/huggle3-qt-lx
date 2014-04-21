@@ -484,6 +484,12 @@ namespace Huggle
             bool        SystemConfig_UsingSSL;
             //! Consumer key
             QString     WmfOAuthConsumerKey;
+            //! This is automatically changed to false everytime when new edit is loaded
+            //! changing it to true will disable auto-jump to newer edit.
+            //! Typical usage for this is when you want to display a diff that may not be
+            //! latest revision and you want to force huggle to not load a latest version
+            //! even if user wants that (used by toolbar when user info is loaded).
+            bool        ForcedNoEditJump;
             //! Password
             QString     TemporaryConfig_Password;
 

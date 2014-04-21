@@ -59,6 +59,8 @@ namespace Huggle
             void onTick();
             void on_lineEdit_3_returnPressed();
 
+            void on_lineEdit_2_returnPressed();
+
         private:
             void FinishPage();
             void FinishEdit();

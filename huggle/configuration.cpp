@@ -192,7 +192,7 @@ Configuration::Configuration()
     this->ProjectConfig_ConfirmPage = false;
     this->ProjectConfig_ConfirmSame = false;
     this->ProjectConfig_ConfirmWarned = false;
-
+    this->ForcedNoEditJump = false;
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // User

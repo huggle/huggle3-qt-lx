@@ -139,7 +139,15 @@ namespace Huggle
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
             void DisplayReportUserWindow(WikiUser *User = NULL);
-            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false);
+            /*!
+             * \brief ProcessEdit Will display an edit in huggle window
+             * \param e Edit
+             * \param IgnoreHistory If true the history of huggle will not be updated
+             * \param KeepHistory
+             * \param KeepUser
+             * \param ForceJump
+             */
+            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false, bool ForceJump = false);
             RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
             //! Warn a current user
             bool Warn(QString WarningType, RevertQuery *dependency);
