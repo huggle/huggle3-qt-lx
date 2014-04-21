@@ -13,7 +13,7 @@
 using namespace Huggle;
 
 // definitions
-Core  *Core::HuggleCore = NULL;
+Core    *Core::HuggleCore = NULL;
 
 void Core::Init()
 {
@@ -125,7 +125,7 @@ void Core::LoadDB()
         db.close();
     }
 
-    if (text == "")
+    if (!text.length())
     {
         QFile vf(":/huggle/resources/Resources/Definitions.txt");
         vf.open(QIODevice::ReadOnly);
@@ -140,11 +140,8 @@ void Core::LoadDB()
     while (xx < list.count())
     {
         QDomElement e = list.at(xx).toElement();
-        if (!e.attributes().contains("name"))
-        {
-            continue;
-        }
-        if (!e.attributes().contains("url"))
+        if (!e.attributes().contains("name") ||
+            !e.attributes().contains("url"))
         {
             continue;
         }
@@ -154,29 +151,17 @@ void Core::LoadDB()
         site->SupportHttps = false;
         site->WhiteList = "test";
         if (e.attributes().contains("path"))
-        {
             site->LongPath = e.attribute("path");
-        }
         if (e.attributes().contains("wl"))
-        {
             site->WhiteList = e.attribute("wl");
-        }
         if (e.attributes().contains("script"))
-        {
             site->ScriptPath = e.attribute("script");
-        }
         if (e.attributes().contains("https"))
-        {
             site->SupportHttps = Configuration::SafeBool(e.attribute("https"));
-        }
         if (e.attributes().contains("oauth"))
-        {
             site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
-        }
         if (e.attributes().contains("channel"))
-        {
             site->IRCChannel = e.attribute("channel");
-        }
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }
@@ -505,6 +490,7 @@ bool HgApplication::notify(QObject *receiver, QEvent *event)
     }catch (Huggle::Exception *ex)
     {
         Core::ExceptionHandler(ex);
+        delete ex;
     }catch (Huggle::Exception &ex)
     {
         Core::ExceptionHandler(&ex);
