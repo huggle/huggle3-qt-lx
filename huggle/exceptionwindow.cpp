@@ -20,7 +20,8 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
                           "together with details of what were you doing to http://bugzilla.wikimedia.org/"\
                           "\n\nRing log\n==================\n" + Huggle::Syslog::HuggleLogs->RingLogToText()
                           + "\n\n\n\nException details\n===========================\nError code: "
-                          + QString::number(e->ErrorCode) + "\nReason: " + e->Message);
+                          + QString::number(e->ErrorCode) + "\nReason: "
+                          + e->Message + "\nSource:" + e->Source);
 }
 
 ExceptionWindow::~ExceptionWindow()

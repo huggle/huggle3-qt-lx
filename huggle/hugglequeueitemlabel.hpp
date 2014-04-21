@@ -40,8 +40,6 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            static int Count;
-
             explicit HuggleQueueItemLabel(QWidget *parent = 0);
             ~HuggleQueueItemLabel();
             void SetName(QString name);

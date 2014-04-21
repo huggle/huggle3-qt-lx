@@ -13,8 +13,6 @@
 
 using namespace Huggle;
 
-int HuggleQueueItemLabel::Count = 0;
-
 HuggleQueueItemLabel::HuggleQueueItemLabel(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleQueueItemLabel)
 {
     this->ParentQueue = (HuggleQueue*)parent;
@@ -159,12 +157,10 @@ void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 
 void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
 {
-    HuggleQueueItemLabel::Count--;
     if (this->ParentQueue->Items.contains(this))
     {
         this->ParentQueue->Items.removeAll(this);
     }
-    this->close();
     this->ParentQueue->Delete(this, qi);
 }
 
@@ -173,6 +169,5 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         this->Process();
-        delete this;
     }
 }

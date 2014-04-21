@@ -33,11 +33,8 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
         return;
     if (edit->User == NULL)
         throw new Exception("Edit user was NULL in Core::PreProcessEdit");
-
     if (edit->Bot)
-    {
         edit->User->SetBot(true);
-    }
 
     edit->EditMadeByHuggle = edit->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
 
@@ -61,7 +58,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
         }
         if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
         {
-            edit->RegisterConsumer("UncheckedReverts");
+            edit->RegisterConsumer(HUGGLECONSUMER_QP_UNCHECKED);
             this->UncheckedReverts.append(edit);
         }
     }
@@ -126,9 +123,7 @@ void QueryPool::CheckQueries()
     {
         Query *item = Finished.at(curr);
         this->RunningQueries.removeOne(item);
-        item->Lock();
         item->UnregisterConsumer(HUGGLECONSUMER_QP);
-        item->SafeDelete();
         curr++;
     }
 }

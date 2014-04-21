@@ -91,6 +91,12 @@ void Collectable::RegisterConsumer(const int consumer)
 void Collectable::UnregisterConsumer(const int consumer)
 {
     this->Lock();
+    if (this->IsManaged() && !this->HasSomeConsumers())
+    {
+        this->Unlock();
+        throw new Huggle::Exception("You are working with class that was already scheduled for collection",
+                                    "void Collectable::UnregisterConsumer(const int consumer)");
+    }
     this->iConsumers.removeAll(consumer);
     this->SetManaged();
     this->Unlock();
@@ -114,6 +120,12 @@ void Collectable::RegisterConsumer(const QString consumer)
 void Collectable::UnregisterConsumer(const QString consumer)
 {
     this->Lock();
+    if (this->IsManaged() && !this->HasSomeConsumers())
+    {
+        this->Unlock();
+        throw new Huggle::Exception("You are working with class that was already scheduled for collection",
+                                    "void Collectable::UnregisterConsumer(const int consumer)");
+    }
     this->Consumers.removeAll(consumer);
     this->SetManaged();
     this->Unlock();

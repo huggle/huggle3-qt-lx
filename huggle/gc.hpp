@@ -45,6 +45,8 @@
 #define HUGGLECONSUMER_REQUESTPROTECT           20
 #define HUGGLECONSUMER_QP                       21
 #define HUGGLECONSUMER_REPORTFORM               22
+#define HUGGLECONSUMER_QP_UNCHECKED             23
+#define HUGGLECONSUMER_QP_REVERTBUFFER          24
 #define HUGGLECONSUMER_CORE                     800
 
 namespace Huggle

@@ -100,7 +100,6 @@ bool EditQuery::IsProcessed()
             return true;
         }
         Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
-        this->qToken->Lock();
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qToken = NULL;
         this->EditPage();

@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->RestoreEdit = NULL;
     this->CurrentEdit = NULL;
     this->fRFProtection = NULL;
+    this->Ignore = NULL;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->Shutdown = ShutdownOpRunning;
     this->EditablePage = false;
@@ -82,7 +83,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QueryPool::HugglePool->Processes = this->Queries;
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
     this->ui->verticalLayout->addWidget(this->Browser);
-    this->Ignore = NULL;
     this->DisplayWelcomeMessage();
     if (Configuration::HuggleConfiguration->UserConfig_RemoveOldQueueEdits)
     {
@@ -146,11 +146,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionTag_2->setVisible(false);
     connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
     this->GeneralTimer->start(200);
-    QFile *layout = NULL;
+    QFile *layout;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
         Syslog::HuggleLogs->DebugLog("Loading state");
-        layout =new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
+        layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
             Syslog::HuggleLogs->ErrorLog("Unable to read state from a config file");
@@ -188,7 +188,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         QAction *debugm = this->ui->menuDebug_2->menuAction();
         this->ui->menuHelp->removeAction(debugm);
     }
-
     Hooks::MainWindowIsLoaded(this);
     this->VandalDock->Connect();
     this->tCheck = new QTimer(this);
@@ -232,32 +231,22 @@ MainWindow::~MainWindow()
 void MainWindow::DisplayReportUserWindow(WikiUser *User)
 {
     if (!this->CheckExit() || this->CurrentEdit == NULL)
-    {
         return;
-    }
 
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Generic::DeveloperError();
         return;
     }
-
     if (User == NULL)
-    {
         User = this->CurrentEdit->User;
-    }
-
     if (User == NULL)
-    {
         throw new Huggle::Exception("WikiUser must not be NULL", "void MainWindow::DisplayReportUserWindow(WikiUser *User)");
-    }
-
     if (User->IsReported)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-duplicate"));
         return;
     }
-
     if (!Configuration::HuggleConfiguration->ProjectConfig_AIV)
     {
         QMessageBox mb;
@@ -497,7 +486,7 @@ void MainWindow::UpdateStatusBarData()
     QString t = "Processing <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3) +
                 "</b>edits and <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3) +
                 "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size()) +
-                "</b> Queue size: <b>" + Generic::ShrinkText(QString::number(HuggleQueueItemLabel::Count), 4) +
+                "</b> Queue size: <b>" + Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4) +
                 "</b> Statistics: ";
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
@@ -905,9 +894,9 @@ void MainWindow::OnMainTimerTick()
         int Edit = 0;
         while (Edit < QueryPool::HugglePool->ProcessingEdits.count())
         {
-            if (QueryPool::HugglePool->ProcessingEdits.at(Edit)->FinalizePostProcessing())
+            WikiEdit *e = QueryPool::HugglePool->ProcessingEdits.at(Edit);
+            if (e->FinalizePostProcessing())
             {
-                WikiEdit *e = QueryPool::HugglePool->ProcessingEdits.at(Edit);
                 QueryPool::HugglePool->ProcessingEdits.removeAt(Edit);
                 e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
             }
@@ -962,6 +951,9 @@ void MainWindow::TruncateReverts()
                 this->Queue1->DeleteOlder(edit);
             }
         }
+        // we swap the edit from one pool to another, so we need to switch the consumers as well
+        edit->RegisterConsumer(HUGGLECONSUMER_QP_REVERTBUFFER);
+        edit->UnregisterConsumer(HUGGLECONSUMER_QP_UNCHECKED);
         QueryPool::HugglePool->UncheckedReverts.removeAt(0);
         QueryPool::HugglePool->RevertBuffer.append(edit);
     }
@@ -970,7 +962,7 @@ void MainWindow::TruncateReverts()
     {
         WikiEdit *we = QueryPool::HugglePool->RevertBuffer.at(0);
         QueryPool::HugglePool->RevertBuffer.removeAt(0);
-        we->UnregisterConsumer("UncheckedReverts");
+        we->UnregisterConsumer(HUGGLECONSUMER_QP_REVERTBUFFER);
     }
 }
 
