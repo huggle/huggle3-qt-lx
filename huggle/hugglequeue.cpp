@@ -359,7 +359,7 @@ void HuggleQueue::Trim()
     {
         return;
     }
-    int x = this->ui->itemList->count() - 1;
+    int x = this->ui->itemList->count() - 2;
     QLayoutItem *i = this->ui->itemList->itemAt(x);
     if (i == this->ui->verticalSpacer)
     {
