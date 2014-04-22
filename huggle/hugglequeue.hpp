@@ -21,7 +21,6 @@
 #include <QList>
 #include <QFrame>
 #include <QWidget>
-#include <QMutex>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
 #include "exception.hpp"
@@ -76,9 +75,6 @@ namespace Huggle
 
         private:
             long GetScore(int id);
-            //! This lock exists just to prevent some nasty bugs that are going on
-            //! in theory we shouldn't need to use it, but in practise there
-            //! may be some race conditions caused by various situations
             void ResortItem(QLayoutItem *item, int position = -1);
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
