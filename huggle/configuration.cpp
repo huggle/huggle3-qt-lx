@@ -211,6 +211,7 @@ Configuration::Configuration()
     this->UserConfig_TalkPageFreshness = 20;
     this->UserConfig_DisplayTitle = false;
     this->UserConfig_GoNext = Configuration_OnNext_Next;
+    this->UserConfig_CheckTP = false;
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // System (pc wide)
@@ -427,6 +428,8 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "TruncateEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness) + "\n";
     configuration_ += "DisplayTitle:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DisplayTitle) + "\n";
+    configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
+    configuration_ += "CheckTP:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_CheckTP) + "\n";
     configuration_ += "ManualWarning:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_ManualWarning) + "\n";
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
@@ -929,6 +932,7 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig_TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->UserConfig_HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->UserConfig_LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
+    this->UserConfig_CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
     this->UserConfig_ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
     this->UserConfig_TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig_TalkPageFreshness)).toInt();
     this->UserConfig_RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));

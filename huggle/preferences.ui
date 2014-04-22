@@ -522,7 +522,7 @@
        </sizepolicy>
       </property>
       <attribute name="title">
-       <string>Display</string>
+       <string>Interface</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <property name="spacing">
@@ -544,6 +544,13 @@
         <widget class="QCheckBox" name="checkBox_22">
          <property name="text">
           <string>Make the columns of lists dynamic (will resize based on size of items) or manual (user can change their size)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_25">
+         <property name="text">
+          <string>Display a notification when you receive a new message on your talk page</string>
          </property>
         </widget>
        </item>

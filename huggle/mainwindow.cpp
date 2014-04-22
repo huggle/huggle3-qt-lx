@@ -2095,6 +2095,10 @@ void MainWindow::TimerCheckTPOnTick()
         this->tCheck->stop();
         return;
     }
+    if (!Configuration::HuggleConfiguration->UserConfig_CheckTP)
+    {
+        return;
+    }
     if (this->qTalkPage == NULL)
     {
         this->qTalkPage = new ApiQuery();

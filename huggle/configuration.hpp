@@ -316,6 +316,7 @@ namespace Huggle
             bool                    UserConfig_DisplayTitle;
             //! Result of "Stop feed, Remove old edits" in main form
             bool                    UserConfig_RemoveOldQueueEdits;
+            bool                    UserConfig_CheckTP;
 
             //////////////////////////////////////////////
             // Global config
