@@ -106,16 +106,20 @@ void HuggleQueue::AddItem(WikiEdit *page)
         int id = 0;
         if (Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp)
         {
-            while (GetScore(id) > page->Score && GetScore(id) > MINIMAL_SCORE)
+            long score = GetScore(id);
+            while (score > page->Score && score > MINIMAL_SCORE)
             {
+                score = GetScore(id);
                 id++;
             }
         }
         else
         {
-            while (GetScore(id) >= page->Score && GetScore(id) > MINIMAL_SCORE)
+            long score = GetScore(id);
+            while (score >= page->Score && score > MINIMAL_SCORE)
             {
                 id++;
+                score = GetScore(id);
             }
         }
         if (id >= this->ui->itemList->count() && this->ui->itemList->count() > 0)
