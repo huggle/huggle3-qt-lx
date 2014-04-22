@@ -96,11 +96,17 @@ void HuggleQueue::AddItem(WikiEdit *page)
 
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
+    // we create a new label here
     label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
-        this->ui->itemList->addWidget(label);
+        if (this->ui->itemList->count() - 1 == 0)
+        {
+            // this should never happen - if there were 0 items in a queue it means there is no spacer, let's crash here
+            throw Huggle::Exception("The container must have at least one spacer", "void HuggleQueue::AddItem(WikiEdit *page)");
+        }
+        this->ui->itemList->insertWidget(this->ui->itemList->count() - 1, label);
     } else
     {
         int id = 0;
@@ -147,7 +153,6 @@ void HuggleQueue::Next()
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
-    this->ui->itemList->removeItem(i);
 }
 
 WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
@@ -286,6 +291,17 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     }
 }
 
+bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
+{
+    int removed = this->Items.removeAll(item);
+    this->Delete(item);
+    if (removed > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
 void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == NULL)
@@ -339,7 +355,7 @@ void HuggleQueue::Trim(int i)
 
 void HuggleQueue::Trim()
 {
-    if (this->Items.count() < 1)
+    if (this->ui->itemList->count() <= 1)
     {
         return;
     }
@@ -347,11 +363,10 @@ void HuggleQueue::Trim()
     QLayoutItem *i = this->ui->itemList->itemAt(x);
     if (i == this->ui->verticalSpacer)
     {
-        x--;
-        i = this->ui->itemList->itemAt(x);
+        throw new Huggle::Exception("Vertical spacer was not last in queue",
+                                    "void HuggleQueue::Trim()");
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
-    this->ui->itemList->removeItem(i);
     label->Remove();
 }
 
@@ -430,17 +445,6 @@ long HuggleQueue::GetScore(int id)
         return MINIMAL_SCORE;
     }
     return label->Page->Score;
-}
-
-bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
-{
-    int removed = this->Items.removeAll(item);
-    this->Delete(item);
-    if (removed > 0)
-    {
-        return true;
-    }
-    return false;
 }
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)
