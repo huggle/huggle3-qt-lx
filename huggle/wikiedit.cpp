@@ -15,7 +15,6 @@ QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
 
 WikiEdit::WikiEdit()
 {
-    this->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     this->Bot = false;
     this->User = NULL;
     this->Minor = false;

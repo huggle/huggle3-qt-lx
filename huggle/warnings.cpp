@@ -32,7 +32,7 @@ PendingWarning::~PendingWarning()
     this->RelatedEdit->UnregisterConsumer("PendingWarning" + QString::number(gcid));
     if (this->Query != NULL)
     {
-        this->Query->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
+        this->Query->DecRef();
     }
     this->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
 }
@@ -277,7 +277,7 @@ void Warnings::ResendWarnings()
                 warning->Query->SetAction(ActionQuery);
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
-                warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+                warning->Query->IncRef();
                 QueryPool::HugglePool->AppendQuery(warning->Query);
                 //! \todo LOCALIZE ME
                 warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();
@@ -294,7 +294,7 @@ void Warnings::ResendWarnings()
                 warning->Query->SetAction(ActionQuery);
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->user->GetTalk());
-                warning->Query->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
+                warning->Query->IncRef();
                 QueryPool::HugglePool->AppendQuery(warning->Query);
                 //! \todo LOCALIZE ME
                 warning->Query->Target = "Retrieving tp of " + warning->Warning->user->GetTalk();

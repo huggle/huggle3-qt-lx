@@ -31,7 +31,7 @@
 #define HUGGLECONSUMER_HUGGLETOOL               6
 #define HUGGLECONSUMER_EDITQUERY                7
 #define HUGGLECONSUMER_REVERTQUERY              8
-#define HUGGLECONSUMER_MAINFORM                 9
+//#define HUGGLECONSUMER_MAINFORM                 9
 #define HUGGLECONSUMER_LOGINFORM                10
 #define HUGGLECONSUMER_MESSAGE_SEND             11
 #define HUGGLECONSUMER_PROTECTPAGE              12
@@ -47,6 +47,8 @@
 #define HUGGLECONSUMER_REPORTFORM               22
 #define HUGGLECONSUMER_QP_UNCHECKED             23
 #define HUGGLECONSUMER_QP_REVERTBUFFER          24
+#define HUGGLECONSUMER_MAINFORM_HISTORICAL      26
+#define HUGGLECONSUMER_PROVIDER_WIKI            27
 #define HUGGLECONSUMER_CORE                     800
 
 namespace Huggle

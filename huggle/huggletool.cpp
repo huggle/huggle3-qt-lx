@@ -130,7 +130,6 @@ void HuggleTool::FinishPage()
             return;
         }
         this->edit = new WikiEdit();
-        this->edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
         this->edit->Page = new WikiPage(first_one.attribute("title"));
         this->edit->User = new WikiUser(first_one.attribute("user"));
         this->edit->RevID = first_one.attribute("revid").toInt();
@@ -139,8 +138,6 @@ void HuggleTool::FinishPage()
     } else
     {
         this->edit = new WikiEdit();
-        this->edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-        this->edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
         this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
         QDomNodeList l = d.elementsByTagName("rev");
         if (l.count() > 0)
@@ -153,8 +150,6 @@ void HuggleTool::FinishPage()
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
                 Huggle::Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
-                this->edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-                this->edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
                 this->edit = NULL;
                 return;
             }
@@ -172,7 +167,6 @@ void HuggleTool::FinishPage()
             this->edit->User = new WikiUser();
         }
         QueryPool::HugglePool->PostProcessEdit(this->edit);
-        this->edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
         this->QueryPhase = 2;
     }
 }

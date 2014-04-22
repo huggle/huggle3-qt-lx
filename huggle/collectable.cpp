@@ -181,8 +181,6 @@ QString Collectable::ConsumerIdToString(const int id)
             return "EditQuery";
         case HUGGLECONSUMER_REVERTQUERY:
             return "RevertQuery";
-        case HUGGLECONSUMER_MAINFORM:
-            return "Main Form";
         case HUGGLECONSUMER_LOGINFORM:
             return "Login Form";
     }

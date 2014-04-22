@@ -72,7 +72,6 @@ void QueryPool::PostProcessEdit(WikiEdit *edit)
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
     edit->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     edit->PostProcess();
     this->ProcessingEdits.append(edit);
 }

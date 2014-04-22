@@ -147,7 +147,6 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
     edit->RegisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
-    edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no:x4:" + line);
@@ -351,8 +350,6 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     WikiEdit *edit = this->Buffer.at(0);
     this->Buffer.removeAt(0);
     this->lock.unlock();
-    QueryPool::HugglePool->PostProcessEdit(edit);
-    edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
     return edit;
 }
 

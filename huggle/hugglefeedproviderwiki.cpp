@@ -26,7 +26,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
     while (this->Buffer->count() > 0)
     {
-        this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+        this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
         this->Buffer->removeAt(0);
     }
     delete this->Buffer;
@@ -111,7 +111,6 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
     }
     WikiEdit *edit = this->Buffer->at(0);
     this->Buffer->removeAt(0);
-    QueryPool::HugglePool->PostProcessEdit(edit);
     return edit;
 }
 
@@ -204,38 +203,19 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
 {
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(item.attribute("title"));
-
     QString type = item.attribute("type");
     if (type == "new")
-    {
         edit->NewPage = true;
-    }
-
     if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
-    {
         edit->Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
-    }
-
     if (item.attributes().contains("user"))
-    {
         edit->User = new WikiUser(item.attribute("user"));
-    }
-
     if (item.attributes().contains("comment"))
-    {
         edit->Summary = item.attribute("comment");
-    }
-
     if (item.attributes().contains("bot"))
-    {
         edit->Bot = true;
-    }
-
     if (item.attributes().contains("anon"))
-    {
         edit->User->ForceIP();
-    }
-
     if (item.attributes().contains("revid"))
     {
         edit->RevID = QString(item.attribute("revid")).toInt();
@@ -244,12 +224,9 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
             edit->RevID = WIKI_UNKNOWN_REVID;
         }
     }
-
     if (item.attributes().contains("minor"))
-    {
         edit->Minor = true;
-    }
-
+    edit->RegisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
     this->InsertEdit(edit);
 }
 
@@ -304,7 +281,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         {
             while (this->Buffer->size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+                this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
                 this->Buffer->removeAt(0);
             }
             Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in wiki cache, increase ProviderCache size, otherwise you will be loosing edits");
@@ -312,6 +289,6 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         this->Buffer->append(edit);
     } else
     {
-        edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
+        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
     }
 }

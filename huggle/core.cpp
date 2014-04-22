@@ -180,7 +180,6 @@ void Core::DeleteEdit(WikiEdit *edit)
         edit->Next->Previous = edit->Previous;
         edit->Previous = NULL;
         edit->Next = NULL;
-        edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
         return;
     }
 
@@ -195,8 +194,6 @@ void Core::DeleteEdit(WikiEdit *edit)
         edit->Next->Previous = NULL;
         edit->Next = NULL;
     }
-
-    edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
 }
 
 void Core::SaveDefs()
