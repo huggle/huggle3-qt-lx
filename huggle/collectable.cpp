@@ -10,6 +10,7 @@
 
 #include "definitions.hpp"
 #include "collectable.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
 
@@ -71,7 +72,7 @@ void Collectable::SetReclaimable()
     this->ReclaimingAllowed = true;
 }
 
-void Collectable::RegisterConsumer(const int consumer)
+void Collectable::RegisterConsumer(int consumer)
 {
     this->Lock();
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
@@ -88,16 +89,17 @@ void Collectable::RegisterConsumer(const int consumer)
     this->Unlock();
 }
 
-void Collectable::UnregisterConsumer(const int consumer)
+void Collectable::UnregisterConsumer(int consumer)
 {
     this->Lock();
     if (this->IsManaged() && !this->HasSomeConsumers())
     {
         this->Unlock();
-        throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-                                    "void Collectable::UnregisterConsumer(const int consumer)");
+        Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
+        //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
+        //                            "void Collectable::UnregisterConsumer(const int consumer)");
     }
-    this->iConsumers.removeAll(consumer);
+    this->iConsumers.removeOne(consumer);
     this->SetManaged();
     this->Unlock();
 }
@@ -123,10 +125,11 @@ void Collectable::UnregisterConsumer(const QString consumer)
     if (this->IsManaged() && !this->HasSomeConsumers())
     {
         this->Unlock();
-        throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-                                    "void Collectable::UnregisterConsumer(const int consumer)");
+        Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
+        //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
+        //                            "void Collectable::UnregisterConsumer(const int consumer)");
     }
-    this->Consumers.removeAll(consumer);
+    this->Consumers.removeOne(consumer);
     this->SetManaged();
     this->Unlock();
 }

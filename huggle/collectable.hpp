@@ -84,12 +84,12 @@ namespace Huggle
              * by GC, by calling this function you change type to managed
              * \param consumer String that lock the object
              */
-            void RegisterConsumer(const int consumer);
+            void RegisterConsumer(int consumer);
             /*!
              * \brief This function will remove a string which prevent the object from being removed
              * \param consumer Unique string that unlock the object
              */
-            void UnregisterConsumer(const int consumer);
+            void UnregisterConsumer(int consumer);
             /*!
              * \brief Registers a consumer
              *
