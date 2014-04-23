@@ -383,6 +383,30 @@ void WikiEdit::ProcessWords()
     }
 }
 
+void WikiEdit::RemoveFromHistoryChain()
+{
+    if (this->Previous != NULL && this->Next != NULL)
+    {
+        this->Previous->Next = this->Next;
+        this->Next->Previous = this->Previous;
+        this->Previous = NULL;
+        this->Next = NULL;
+        return;
+    }
+
+    if (this->Previous != NULL)
+    {
+        this->Previous->Next = NULL;
+        this->Previous = NULL;
+    }
+
+    if (this->Next != NULL)
+    {
+        this->Next->Previous = NULL;
+        this->Next = NULL;
+    }
+}
+
 void WikiEdit::PostProcess()
 {
     if (this->PostProcessing)

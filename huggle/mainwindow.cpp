@@ -278,7 +278,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (this->qNext != NULL)
     {
         // we need to delete this because it's related to an old edit
-        this->qNext->UnregisterConsumer("OnNext");
+        this->qNext->DecRef();
         this->qNext = NULL;
     }
     if (e->Page == NULL || e->User == NULL)
@@ -302,7 +302,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
             break;
         }
         this->Historical.removeAt(0);
-        Core::HuggleCore->DeleteEdit(prev);
+        prev->RemoveFromHistoryChain();
         prev->UnregisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
     }
     if (this->Historical.contains(e) == false)
@@ -313,21 +313,15 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         {
             if (!IgnoreHistory)
             {
-                if (this->CurrentEdit->Next != NULL)
+                e->RemoveFromHistoryChain();
+                // now we need to get to last edit in chain
+                WikiEdit *latest = CurrentEdit;
+                while (latest->Next != NULL)
                 {
-                    // now we need to get to last edit in chain
-                    WikiEdit *latest = CurrentEdit;
-                    while (latest->Next != NULL)
-                    {
-                        latest = latest->Next;
-                    }
-                    latest->Next = e;
-                    e->Previous = latest;
-                } else
-                {
-                    this->CurrentEdit->Next = e;
-                    e->Previous = this->CurrentEdit;
+                    latest = latest->Next;
                 }
+                latest->Next = e;
+                e->Previous = latest;
             }
         }
     }
@@ -931,7 +925,7 @@ void MainWindow::OnMainTimerTick()
         {
             this->tb->SetPage(this->OnNext_EvPage);
             this->tb->RenderEdit();
-            this->qNext->UnregisterConsumer("OnNext");
+            this->qNext->DecRef();
             delete this->OnNext_EvPage;
             this->OnNext_EvPage = NULL;
             this->qNext = NULL;
@@ -1486,11 +1480,11 @@ void MainWindow::DisplayNext(Query *q)
             }
             if (this->qNext != NULL)
             {
-                this->qNext->UnregisterConsumer("OnNext");
+                this->qNext->DecRef();
             }
             this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
             this->qNext = q;
-            this->qNext->RegisterConsumer("OnNext");
+            this->qNext->IncRef();
             return;
     }
 }

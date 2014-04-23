@@ -95,6 +95,7 @@ namespace Huggle
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
             void ProcessWords();
+            void RemoveFromHistoryChain();
             //! Page that was changed by edit
             WikiPage *Page;
             //! User who changed the page

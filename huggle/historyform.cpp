@@ -383,7 +383,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         x++;
         if (edit->RevID == revid)
         {
-            MainWindow::HuggleMain->ProcessEdit(edit, true, true);
+            MainWindow::HuggleMain->ProcessEdit(edit, false, true);
             this->RetrievingEdit = false;
             WikiEdit::Lock_EditList->unlock();
             this->MakeSelectedRowBold();

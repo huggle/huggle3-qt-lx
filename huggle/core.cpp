@@ -167,35 +167,6 @@ void Core::LoadDB()
     }
 }
 
-void Core::DeleteEdit(WikiEdit *edit)
-{
-    if (edit == NULL)
-    {
-        return;
-    }
-
-    if (edit->Previous != NULL && edit->Next != NULL)
-    {
-        edit->Previous->Next = edit->Next;
-        edit->Next->Previous = edit->Previous;
-        edit->Previous = NULL;
-        edit->Next = NULL;
-        return;
-    }
-
-    if (edit->Previous != NULL)
-    {
-        edit->Previous->Next = NULL;
-        edit->Previous = NULL;
-    }
-
-    if (edit->Next != NULL)
-    {
-        edit->Next->Previous = NULL;
-        edit->Next = NULL;
-    }
-}
-
 void Core::SaveDefs()
 {
     QFile file(Configuration::GetConfigurationPath() + "users.xml");

@@ -122,8 +122,6 @@ namespace Huggle
             void Shutdown();
             void TestLanguages();
             void LoadDB();
-            //! Remove edit in proper manner
-            void DeleteEdit(WikiEdit *edit);
             //! Load a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
