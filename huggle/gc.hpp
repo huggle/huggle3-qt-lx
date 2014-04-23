@@ -23,25 +23,21 @@
 #include "collectable.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
-#define HUGGLECONSUMER_QUEUE                    2
-#define HUGGLECONSUMER_CORE_POSTPROCESS         3
-#define HUGGLECONSUMER_PROCESSLIST              5
-#define HUGGLECONSUMER_HUGGLETOOL               6
-#define HUGGLECONSUMER_EDITQUERY                7
-#define HUGGLECONSUMER_REVERTQUERY              8
-#define HUGGLECONSUMER_MESSAGE_SEND             9
-#define HUGGLECONSUMER_HISTORYWIDGET            10
-//#define HUGGLECONSUMER_BLOCKFORM                16
+#define HUGGLECONSUMER_QUEUE                    1
+#define HUGGLECONSUMER_CORE_POSTPROCESS         2
+#define HUGGLECONSUMER_EDITQUERY                3
+#define HUGGLECONSUMER_REVERTQUERY              4
+#define HUGGLECONSUMER_MESSAGE_SEND             5
+#define HUGGLECONSUMER_HISTORYWIDGET            6
 //! This is used to lock the message resource before it's passed to parent object
-#define HUGGLECONSUMER_CORE_MESSAGE             11
-#define HUGGLECONSUMER_PROCESSOR                12
-#define HUGGLECONSUMER_MAINPEND                 13
-#define HUGGLECONSUMER_QP                       14
-//#define HUGGLECONSUMER_REPORTFORM               22
-#define HUGGLECONSUMER_QP_UNCHECKED             15
-#define HUGGLECONSUMER_QP_REVERTBUFFER          16
-#define HUGGLECONSUMER_MAINFORM_HISTORICAL      17
-#define HUGGLECONSUMER_QP_MODS                  30
+#define HUGGLECONSUMER_CORE_MESSAGE             7
+#define HUGGLECONSUMER_PROCESSOR                8
+#define HUGGLECONSUMER_MAINPEND                 9
+#define HUGGLECONSUMER_QP                       10
+#define HUGGLECONSUMER_QP_UNCHECKED             11
+#define HUGGLECONSUMER_QP_REVERTBUFFER          12
+#define HUGGLECONSUMER_MAINFORM_HISTORICAL      13
+#define HUGGLECONSUMER_QP_MODS                  14
 #define HUGGLECONSUMER_CORE                     800
 
 namespace Huggle

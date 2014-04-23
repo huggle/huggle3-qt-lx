@@ -70,12 +70,11 @@ void HuggleTool::RenderEdit()
     this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
     this->DeleteQuery();
-    this->query = new ApiQuery();
+    this->query = new ApiQuery(ActionQuery);
     this->QueryPhase = 1;
-    this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
                                 + QUrl::toPercentEncoding(this->ui->lineEdit_3->text());
-    this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
+    this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
 }
@@ -106,10 +105,7 @@ void HuggleTool::onTick()
 void HuggleTool::FinishPage()
 {
     if (this->query == NULL || !this->query->IsProcessed())
-    {
         return;
-    }
-
     QDomDocument d;
     d.setContent(this->query->Result->Data);
     if (this->QueryPhase == 3)
@@ -184,7 +180,7 @@ void HuggleTool::DeleteQuery()
 {
     if (this->query == NULL)
         return;
-    this->query->UnregisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
+    this->query->DecRef();
     this->query = NULL;
 }
 
@@ -203,12 +199,11 @@ void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
     this->ui->lineEdit_2->setStyleSheet("color: green;");
     // retrieve information about the user
     this->DeleteQuery();
-    this->query = new ApiQuery();
+    this->query = new ApiQuery(ActionQuery);
     this->QueryPhase = 3;
-    this->query->SetAction(ActionQuery);
     this->query->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->ui->lineEdit_2->text()) +
                               "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
-    this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
+    this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
 }

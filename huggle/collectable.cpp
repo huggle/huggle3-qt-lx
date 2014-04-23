@@ -169,10 +169,6 @@ QString Collectable::ConsumerIdToString(const int id)
             return "Queue";
         case HUGGLECONSUMER_CORE_POSTPROCESS:
             return "Core::Postprocess";
-        case HUGGLECONSUMER_PROCESSLIST:
-            return "ProcessList";
-        case HUGGLECONSUMER_HUGGLETOOL:
-            return "HuggleTool";
         case HUGGLECONSUMER_EDITQUERY:
             return "EditQuery";
         case HUGGLECONSUMER_REVERTQUERY:
