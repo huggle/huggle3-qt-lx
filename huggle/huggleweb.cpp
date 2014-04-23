@@ -38,6 +38,8 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
+    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPreFormattedPage(QString url)
