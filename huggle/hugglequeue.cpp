@@ -101,7 +101,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
-        if (this->ui->itemList->count() - 1 == 0)
+        if (this->ui->itemList->count() == 0)
         {
             // this should never happen - if there were 0 items in a queue it means there is no spacer, let's crash here
             throw Huggle::Exception("The container must have at least one spacer", "void HuggleQueue::AddItem(WikiEdit *page)");
