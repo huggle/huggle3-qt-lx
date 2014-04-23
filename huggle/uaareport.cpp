@@ -104,7 +104,7 @@ void UAAReport::onTick()
     QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
-    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);
+    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true)->DecRef();
     /// \todo LOCALIZE ME
     Huggle::Syslog::HuggleLogs->Log("Reporting" + this->User->Username + " to UAA" );
     this->ui->pushButton->setText("Reported");

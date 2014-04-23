@@ -74,7 +74,7 @@ void SpeedyForm::Remove()
     }
     if (this->Template != NULL)
     {
-        this->Template->UnregisterConsumer("SpeedyForm");
+        this->Template->DecRef();
         this->Template = NULL;
     }
 }
@@ -107,7 +107,6 @@ void SpeedyForm::processTags()
     QString summary = Configuration::HuggleConfiguration->ProjectConfig_SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
-    this->Template->RegisterConsumer("SpeedyForm");
 }
 
 void SpeedyForm::on_pushButton_2_clicked()
@@ -152,7 +151,7 @@ void SpeedyForm::OnTick()
                 this->Fail("Unable to tag the page: " + this->Template->Result->ErrorMessage);
                 return;
             }
-            this->Template->UnregisterConsumer("SpeedyForm");
+            this->Template->DecRef();
             this->Template = NULL;
             if (this->ui->checkBox->isChecked())
             {

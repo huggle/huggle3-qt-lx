@@ -57,6 +57,7 @@ namespace Huggle
         private:
             void GetToken();
             void Delete();
+            void DelRef();
             void CheckDeleteToken();
             void Failed(QString Reason);
             Ui::DeleteForm *ui;

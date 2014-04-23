@@ -53,7 +53,8 @@ UserinfoForm::~UserinfoForm()
 {
     if (this->edit != NULL)
     {
-        this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->edit->DecRef();
+        this->edit = NULL;
     }
     delete this->User;
     delete this->timer;
@@ -77,12 +78,12 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->ui->pushButton->setText("Retrieve info");
     if (this->edit != NULL)
     {
-        this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->edit->DecRef();
         this->edit = NULL;
     }
     if (this->qContributions != NULL)
     {
-        this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->qContributions->DecRef();
         this->qContributions = NULL;
     }
     while (this->ui->tableWidget->rowCount() > 0)
@@ -106,7 +107,7 @@ void UserinfoForm::Read()
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
             "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     QueryPool::HugglePool->AppendQuery(this->qContributions);
-    this->qContributions->RegisterConsumer(HUGGLECONSUMER_USERINFO);
+    this->qContributions->IncRef();
     ui->pushButton->hide();
     this->qContributions->Process();
     this->timer->start(600);
@@ -124,7 +125,7 @@ void UserinfoForm::OnTick()
         if (this->edit->IsPostProcessed())
         {
             MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
-            this->edit->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+            this->edit->DecRef();
             this->edit = NULL;
         }
         return;
@@ -138,7 +139,7 @@ void UserinfoForm::OnTick()
     {
         if (this->qContributions->Result->Failed)
         {
-            this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+            this->qContributions->DecRef();
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
             this->qContributions = NULL;
             this->timer->stop();
@@ -216,7 +217,7 @@ void UserinfoForm::OnTick()
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
         }
         this->ui->tableWidget->resizeRowsToContents();
-        this->qContributions->UnregisterConsumer(HUGGLECONSUMER_USERINFO);
+        this->qContributions->DecRef();
         this->qContributions = NULL;
     }
     this->timer->stop();
@@ -240,6 +241,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     int revid = this->ui->tableWidget->item(index.row(), 2)->text().toInt();
     if (revid == 0)
     {
+        // unable to read the revid
         return;
     }
     WikiEdit::Lock_EditList->lock();
@@ -260,7 +262,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->User = new WikiUser(this->User->Username);
     this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
     this->edit->RevID = revid;
-    this->edit->RegisterConsumer(HUGGLECONSUMER_USERINFO);
+    this->edit->IncRef();
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(Localizations::HuggleLocalizations->Localize("wait"));
     this->timer->start(800);

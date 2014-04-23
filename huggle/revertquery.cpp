@@ -627,6 +627,8 @@ bool RevertQuery::ProcessRevert()
         }
         this->EditQuerySoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MinorEdit);
         this->EditQuerySoftwareRollback->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
+        // we can remove the anonymous ref now
+        this->EditQuerySoftwareRollback->DecRef();
         /// \todo LOCALIZE ME
         this->CustomStatus = "Editing page";
         return false;

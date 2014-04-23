@@ -171,8 +171,6 @@ QString Collectable::ConsumerIdToString(const int id)
             return "Queue";
         case HUGGLECONSUMER_CORE_POSTPROCESS:
             return "Core::Postprocess";
-        case HUGGLECONSUMER_DELETEFORM:
-            return "Delete Form";
         case HUGGLECONSUMER_PROCESSLIST:
             return "ProcessList";
         case HUGGLECONSUMER_HUGGLETOOL:
@@ -181,8 +179,6 @@ QString Collectable::ConsumerIdToString(const int id)
             return "EditQuery";
         case HUGGLECONSUMER_REVERTQUERY:
             return "RevertQuery";
-        case HUGGLECONSUMER_LOGINFORM:
-            return "Login Form";
     }
     return "Unknown consumer: " + QString::number(id);
 }

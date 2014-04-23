@@ -87,7 +87,7 @@ void QueryPool::CheckQueries()
             {
                 EditQuery *e = this->PendingMods.at(curr);
                 this->PendingMods.removeAt(curr);
-                e->UnregisterConsumer("WikiUtil::EditPage");
+                e->UnregisterConsumer(HUGGLECONSUMER_QP_MODS);
             } else
             {
                 curr++;

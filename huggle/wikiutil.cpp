@@ -144,11 +144,12 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
 {
     // retrieve a token
     EditQuery *eq = new EditQuery();
+    eq->IncRef();
     if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
     {
         summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     }
-    eq->RegisterConsumer("WikiUtil::EditPage");
+    eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
     eq->Page = page;
     eq->BaseTimestamp = BaseTimestamp;
     QueryPool::HugglePool->PendingMods.append(eq);
@@ -164,7 +165,8 @@ EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString summary, boo
 {
     if (page == NULL)
     {
-        return NULL;
+        throw Huggle::Exception("Invalid page (NULL)", "EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString"\
+                                " summary, bool minor, QString BaseTimestamp)");
     }
     return EditPage(page->PageName, text, summary, minor, BaseTimestamp);
 }

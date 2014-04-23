@@ -71,6 +71,19 @@ namespace Huggle
                              Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
                              bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
         void FinalizeMessages();
+        /*!
+         * \brief EditPage Run a new EditQuery that will edit the page
+         *
+         * NOTE: References are incremented during query creation so that you can work with it later, in case you don't want to work
+         *       with returned value you have to decrement its reference count, otherwise it will never be collected out
+         * \param page
+         * \param text
+         * \param summary
+         * \param minor
+         * \param BaseTimestamp
+         * \param section
+         * \return New instance of edit query
+         */
         EditQuery *EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
                             QString BaseTimestamp = "", unsigned int section = 0);
         EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle",

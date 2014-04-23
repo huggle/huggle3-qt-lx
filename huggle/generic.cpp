@@ -9,15 +9,14 @@
 //GNU General Public License for more details.
 
 #include "generic.hpp"
+#include <QMessageBox>
 
 using namespace Huggle;
 
 bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
-    {
         return true;
-    }
     QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
                   , "This user has already reached warning level 4, so no further templates will be "\
                     "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
@@ -26,11 +25,7 @@ bool Generic::ReportPreFlightCheck()
                     "or not, so you might conflict with other users here (double check if user isn't already reported) "\
                     "Do you want to report this user?"
                   , QMessageBox::Yes|QMessageBox::No);
-    if (q == QMessageBox::No)
-    {
-        return false;
-    }
-    return true;
+    return (q != QMessageBox::No);
 }
 
 ApiQuery *Generic::RetrieveWikiPageContents(QString page)

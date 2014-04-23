@@ -36,6 +36,7 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
 
 DeleteForm::~DeleteForm()
 {
+    this->DelRef();
     delete this->ui;
     delete this->page;
     delete this->TalkPage;
@@ -59,20 +60,18 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
 
 void DeleteForm::GetToken()
 {
-    this->qToken = new ApiQuery();
-    this->qToken->SetAction(ActionQuery);
+    this->qToken = new ApiQuery(ActionQuery);
     this->qToken->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
     this->qToken->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->page->PageName);
-    this->qToken->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qToken->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
     if (this->TalkPage != NULL)
     {
-        this->qTokenOfTalkPage = new ApiQuery();
-        this->qTokenOfTalkPage->SetAction(ActionQuery);
+        this->qTokenOfTalkPage = new ApiQuery(ActionQuery);
         this->qTokenOfTalkPage->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->TalkPage->PageName);
         this->qTokenOfTalkPage->Target = Localizations::HuggleLocalizations->Localize("delete-token01", this->TalkPage->PageName);
-        this->qTokenOfTalkPage->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qTokenOfTalkPage->IncRef();
         QueryPool::HugglePool->AppendQuery(this->qTokenOfTalkPage);
         this->qTokenOfTalkPage->Process();
     }
@@ -98,11 +97,7 @@ void DeleteForm::OnTick()
 
 void DeleteForm::CheckDeleteToken()
 {
-    if (this->qToken == NULL)
-    {
-        return;
-    }
-    if (!this->qToken->IsProcessed())
+    if (this->qToken == NULL || !this->qToken->IsProcessed())
     {
         return;
     }
@@ -143,19 +138,18 @@ void DeleteForm::CheckDeleteToken()
             return;
         }
         this->DeleteToken2 = element.attribute("deletetoken");
-        this->qTokenOfTalkPage->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qTokenOfTalkPage->DecRef();
         this->qTokenOfTalkPage = NULL;
         Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->TalkPage->PageName + ": " + this->DeleteToken2);
 
         // let's delete the page
-        this->qTalk = new ApiQuery();
-        this->qTalk->SetAction(ActionDelete);
+        this->qTalk = new ApiQuery(ActionDelete);
         this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
                 + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_AssociatedDelete);
                 + "&token=" + QUrl::toPercentEncoding(this->DeleteToken2);
         this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
         this->qTalk->UsingPOST = true;
-        this->qTalk->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+        this->qTalk->IncRef();
         QueryPool::HugglePool->AppendQuery(this->qTalk);
         this->qTalk->Process();
     }
@@ -175,35 +169,26 @@ void DeleteForm::CheckDeleteToken()
     }
     this->DeleteToken = element.attribute("deletetoken");
     this->delQueryPhase++;
-    this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qToken->DecRef();
     this->qToken = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Delete token for " + this->page->PageName + ": " + this->DeleteToken);
 
     // let's delete the page
-    this->qDelete = new ApiQuery();
-    this->qDelete->SetAction(ActionDelete);
+    this->qDelete = new ApiQuery(ActionDelete);
     this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
             + "&reason=" + QUrl::toPercentEncoding(this->ui->comboBox->lineEdit()->text())
             + "&token=" + QUrl::toPercentEncoding(this->DeleteToken);
     this->qDelete->Target = "Deleting "  + this->page->PageName;
     this->qDelete->UsingPOST = true;
-    this->qDelete->RegisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qDelete->IncRef();
     QueryPool::HugglePool->AppendQuery(qDelete);
     this->qDelete->Process();
 }
 
 void DeleteForm::Delete()
 {
-    if (this->qDelete == NULL)
-    {
+    if (this->qDelete == NULL || !this->qDelete->IsProcessed())
         return;
-    }
-
-    if (!this->qDelete->IsProcessed())
-    {
-        return;
-    }
-
     if (this->qDelete->Result->Failed)
     {
         this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("delete-e1", this->qDelete->Result->ErrorMessage));
@@ -212,8 +197,32 @@ void DeleteForm::Delete()
     // let's assume the page was deleted
     this->ui->pushButton->setText(Huggle::Localizations::HuggleLocalizations->Localize("deleted"));
     Huggle::Syslog::HuggleLogs->DebugLog("Deletion result: " + this->qDelete->Result->Data, 2);
-    this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
+    this->qDelete->DecRef();
     this->tDelete->stop();
+}
+
+void DeleteFormW::DelRef()
+{
+    if (this->qToken != NULL)
+    {
+        this->qToken->DecRef();
+        this->qToken = NULL;
+    }
+    if (this->qTokenOfTalkPage != NULL)
+    {
+        this->qTokenOfTalkPage->DecRef();
+        this->qTokenOfTalkPage = NULL;
+    }
+    if (this->qDelete != NULL)
+    {
+        this->qDelete->DecRef();
+        this->qDelete = NULL;
+    }
+    if (this->qTalk != NULL)
+    {
+        this->qTalk->DecRef();
+        this->qTalk = NULL;
+    }
 }
 
 void DeleteForm::Failed(QString Reason)
@@ -226,23 +235,8 @@ void DeleteForm::Failed(QString Reason)
     this->tDelete->stop();
     delete this->tDelete;
     this->tDelete = NULL;
+    this->DelRef();
     this->ui->pushButton->setEnabled(true);
-    if (this->qToken != NULL)
-    {
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-        this->qToken = NULL;
-    }
-    if (this->qTokenOfTalkPage != NULL)
-    {
-        this->qTokenOfTalkPage->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-        this->qTokenOfTalkPage = NULL;
-    }
-    if (this->qDelete != NULL)
-    {
-        this->qDelete->UnregisterConsumer(HUGGLECONSUMER_DELETEFORM);
-    }
-    this->qDelete = NULL;
-    this->qTalk = NULL;
 }
 
 void DeleteForm::on_pushButton_clicked()

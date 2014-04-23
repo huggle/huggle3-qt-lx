@@ -42,7 +42,6 @@ namespace Huggle
     class ProtectPage : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit ProtectPage(QWidget *parent = 0);
             ~ProtectPage();
@@ -59,6 +58,7 @@ namespace Huggle
             void Failed(QString reason);
             void Protect();
             void getTokenToProtect();
+            void DelRefs();
             void checkTokenToProtect();
             QString ProtectToken;
             //! Pointer to get first token

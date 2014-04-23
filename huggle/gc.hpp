@@ -26,29 +26,24 @@
 #define HUGGLECONSUMER_PROVIDERIRC              1
 #define HUGGLECONSUMER_QUEUE                    2
 #define HUGGLECONSUMER_CORE_POSTPROCESS         3
-#define HUGGLECONSUMER_DELETEFORM               4
 #define HUGGLECONSUMER_PROCESSLIST              5
 #define HUGGLECONSUMER_HUGGLETOOL               6
 #define HUGGLECONSUMER_EDITQUERY                7
 #define HUGGLECONSUMER_REVERTQUERY              8
-//#define HUGGLECONSUMER_MAINFORM                 9
-#define HUGGLECONSUMER_LOGINFORM                10
-#define HUGGLECONSUMER_MESSAGE_SEND             11
-#define HUGGLECONSUMER_PROTECTPAGE              12
-#define HUGGLECONSUMER_HISTORYWIDGET            13
-#define HUGGLECONSUMER_USERINFO                 14
-#define HUGGLECONSUMER_BLOCKFORM                16
+#define HUGGLECONSUMER_MESSAGE_SEND             9
+#define HUGGLECONSUMER_HISTORYWIDGET            10
+//#define HUGGLECONSUMER_BLOCKFORM                16
 //! This is used to lock the message resource before it's passed to parent object
-#define HUGGLECONSUMER_CORE_MESSAGE             17
-#define HUGGLECONSUMER_PROCESSOR                18
-#define HUGGLECONSUMER_MAINPEND                 19
-#define HUGGLECONSUMER_REQUESTPROTECT           20
-#define HUGGLECONSUMER_QP                       21
-#define HUGGLECONSUMER_REPORTFORM               22
-#define HUGGLECONSUMER_QP_UNCHECKED             23
-#define HUGGLECONSUMER_QP_REVERTBUFFER          24
-#define HUGGLECONSUMER_MAINFORM_HISTORICAL      26
-#define HUGGLECONSUMER_PROVIDER_WIKI            27
+#define HUGGLECONSUMER_CORE_MESSAGE             11
+#define HUGGLECONSUMER_PROCESSOR                12
+#define HUGGLECONSUMER_MAINPEND                 13
+#define HUGGLECONSUMER_QP                       14
+//#define HUGGLECONSUMER_REPORTFORM               22
+#define HUGGLECONSUMER_QP_UNCHECKED             15
+#define HUGGLECONSUMER_QP_REVERTBUFFER          16
+#define HUGGLECONSUMER_MAINFORM_HISTORICAL      17
+#define HUGGLECONSUMER_PROVIDER_WIKI            18
+#define HUGGLECONSUMER_QP_MODS                  30
 #define HUGGLECONSUMER_CORE                     800
 
 namespace Huggle

@@ -27,8 +27,8 @@ RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : QDialog(pa
 RequestProtect::~RequestProtect()
 {
     delete this->tm;
-    this->RemoveQs();
     delete this->page;
+    this->DelRef();
     delete this->ui;
 }
 
@@ -80,7 +80,7 @@ void RequestProtect::Tick()
         report.replace("$protection", this->ProtectionType());
         PageText += "\n\n" + report;
         // we no longer need the query we used
-        this->qRFPPage->UnregisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
+        this->qRFPPage->DecRef();
         this->qRFPPage = NULL;
         QString summary_ = Configuration::HuggleConfiguration->ProjectConfig_RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
@@ -97,7 +97,6 @@ void RequestProtect::Tick()
                                                 summary_, false, this->Timestamp,
                                                 Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section);
         }
-        this->qEditRFP->RegisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
         return;
     }
 
@@ -119,10 +118,9 @@ void RequestProtect::Tick()
 
 void Huggle::RequestProtect::on_pushButton_clicked()
 {
-    this->RemoveQs();
-    this->qEditRFP = NULL;
+    this->DelRef();
     this->qRFPPage = new ApiQuery(ActionQuery);
-    this->qRFPPage->RegisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
+    this->qRFPPage->IncRef();
     // if this wiki has the requests in separate section, get it, if not, we get a whole page
     if (Configuration::HuggleConfiguration->ProjectConfig_RFPP_Section == 0)
     {
@@ -157,21 +155,23 @@ void RequestProtect::Fail(QString message)
     mb.setText(message);
     mb.exec();
     // delete the queries and stop
-    this->RemoveQs();
+    this->DelRef();
     this->tm->stop();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Request");
 }
 
-void RequestProtect::RemoveQs()
+void RequestProtect::DelRef()
 {
     if (this->qEditRFP)
     {
-        this->qEditRFP->UnregisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
+        this->qEditRFP->DecRef();
+        this->qEditRFP = NULL;
     }
     if (this->qRFPPage)
     {
-        this->qRFPPage->UnregisterConsumer(HUGGLECONSUMER_REQUESTPROTECT);
+        this->qRFPPage->DecRef();
+        this->qRFPPage = NULL;
     }
 }
 

@@ -12,8 +12,7 @@
 #define LOGIN_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
+// now we need to ensure that python is included first
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif

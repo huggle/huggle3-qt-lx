@@ -761,7 +761,7 @@ void MainWindow::FinishRestore()
         sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
         sm = sm.replace("$3", this->RestoreEdit_RevertReason);
-        WikiUtil::EditPage(this->RestoreEdit->Page, text, sm);
+        WikiUtil::EditPage(this->RestoreEdit->Page, text, sm)->DecRef();
     } else
     {
         Syslog::HuggleLogs->DebugLog(this->RestoreQuery->Result->Data);
@@ -1030,7 +1030,6 @@ void MainWindow::OnTimerTick0()
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
             WikiPage *uc = new WikiPage(page);
             this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
-            this->eq->IncRef();
             delete uc;
             return;
         }
@@ -1752,7 +1751,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig_ClearTalkPageTemp
                    + "\n" + Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
-                   "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle);
+                   "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle)->DecRef();
 
     delete page;
 }

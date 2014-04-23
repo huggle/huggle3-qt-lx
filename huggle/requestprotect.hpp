@@ -55,7 +55,7 @@ namespace Huggle
         private:
             QString ProtectionType();
             void Fail(QString message);
-            void RemoveQs();
+            void DelRef();
             QString Timestamp;
             WikiPage *page;
             QTimer *tm;
