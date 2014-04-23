@@ -498,10 +498,8 @@ void ReportUser::on_pushButton_clicked()
             if (this->CheckBoxes.at(xx)->isChecked())
             {
                 EvidenceID++;
-                reports += "[" + QString(Configuration::GetProjectScriptURL() + "index.php?title=" +
-                           QUrl::toPercentEncoding(this->ui->tableWidget->item(xx, 0)->text()) + "&diff=" +
-                           this->ui->tableWidget->item(xx, 3)->text()).toUtf8() + " #" +
-                           QString::number(EvidenceID) + "] ";
+                reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
+                           QString::number(EvidenceID) + "]] ";
             }
         }
         xx++;
