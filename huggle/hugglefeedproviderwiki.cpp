@@ -26,7 +26,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
     while (this->Buffer->count() > 0)
     {
-        this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
+        this->Buffer->at(0)->DecRef();
         this->Buffer->removeAt(0);
     }
     delete this->Buffer;
@@ -145,16 +145,13 @@ void HuggleFeedProviderWiki::Process(QString data)
             CurrentNode--;
             continue;
         }
-
         if (!item.attributes().contains("timestamp"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
             CurrentNode--;
             continue;
         }
-
         QDateTime time = MediaWiki::FromMWTimestamp(item.attribute("timestamp"));
-
         if (time < t)
         {
             // this record is older than latest parsed record, so we don't want to parse it
@@ -165,21 +162,18 @@ void HuggleFeedProviderWiki::Process(QString data)
             Changed = true;
             t = time;
         }
-
         if (!item.attributes().contains("type"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing type attribute: " + item.text());
             CurrentNode--;
             continue;
         }
-
         if (!item.attributes().contains("title"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing title attribute: " + item.text());
             CurrentNode--;
             continue;
         }
-
         QString type = item.attribute("type");
 
         if (type == "edit" || type == "new")
@@ -190,7 +184,6 @@ void HuggleFeedProviderWiki::Process(QString data)
         {
             ProcessLog(item);
         }
-
         CurrentNode--;
     }
     if (Changed)
@@ -226,7 +219,7 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
     }
     if (item.attributes().contains("minor"))
         edit->Minor = true;
-    edit->RegisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
+    edit->IncRef();
     this->InsertEdit(edit);
 }
 
@@ -281,7 +274,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         {
             while (this->Buffer->size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer->at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
+                this->Buffer->at(0)->DecRef();
                 this->Buffer->removeAt(0);
             }
             Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in wiki cache, increase ProviderCache size, otherwise you will be loosing edits");
@@ -289,6 +282,6 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
         this->Buffer->append(edit);
     } else
     {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
+        edit->DecRef();
     }
 }

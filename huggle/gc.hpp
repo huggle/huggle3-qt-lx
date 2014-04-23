@@ -23,7 +23,6 @@
 #include "collectable.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
-#define HUGGLECONSUMER_PROVIDERIRC              1
 #define HUGGLECONSUMER_QUEUE                    2
 #define HUGGLECONSUMER_CORE_POSTPROCESS         3
 #define HUGGLECONSUMER_PROCESSLIST              5
@@ -42,7 +41,6 @@
 #define HUGGLECONSUMER_QP_UNCHECKED             15
 #define HUGGLECONSUMER_QP_REVERTBUFFER          16
 #define HUGGLECONSUMER_MAINFORM_HISTORICAL      17
-#define HUGGLECONSUMER_PROVIDER_WIKI            18
 #define HUGGLECONSUMER_QP_MODS                  30
 #define HUGGLECONSUMER_CORE                     800
 

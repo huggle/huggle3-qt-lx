@@ -868,9 +868,7 @@ void MainWindow::OnMainTimerTick()
             {
                 QueryPool::HugglePool->PostProcessEdit(edit);
                 edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
-                //! \todo replace with a proper method
-                edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDER_WIKI);
-                edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+                edit->DecRef();
                 this->PendingEdits.append(edit);
             }
         }

@@ -201,7 +201,7 @@ void DeleteForm::Delete()
     this->tDelete->stop();
 }
 
-void DeleteFormW::DelRef()
+void DeleteForm::DelRef()
 {
     if (this->qToken != NULL)
     {

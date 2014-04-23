@@ -165,8 +165,6 @@ QString Collectable::ConsumerIdToString(const int id)
     {
         case HUGGLECONSUMER_WIKIEDIT:
             return "WikiEdit";
-        case HUGGLECONSUMER_PROVIDERIRC:
-            return "ProviderIRC";
         case HUGGLECONSUMER_QUEUE:
             return "Queue";
         case HUGGLECONSUMER_CORE_POSTPROCESS:

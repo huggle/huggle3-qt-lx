@@ -24,7 +24,7 @@ HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
     while (this->Buffer.count() > 0)
     {
-        this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        this->Buffer.at(0)->DecRef();
         this->Buffer.removeAt(0);
     }
     this->Stop();
@@ -113,7 +113,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         {
             while (this->Buffer.size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer.at(0)->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+                this->Buffer.at(0)->DecRef();
                 this->Buffer.removeAt(0);
             }
             Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in irc cache, increase ProviderCache size, otherwise you will be loosing edits");
@@ -122,7 +122,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         this->lock.unlock();
     } else
     {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
     }
 }
 
@@ -146,11 +146,11 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     }
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
-    edit->RegisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+    edit->IncRef();
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no:x4:" + line);
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     line = line.mid(line.indexOf(QString(QChar(003)) + "4 ") + 2);
@@ -173,7 +173,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         flags.contains("tag")      || /* abuse filter */flags.contains("hit") ||
         flags.contains("patrol"))
     {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     if (!edit->NewPage)
@@ -181,7 +181,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("?diff="))
         {
             Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
-            edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+            edit->DecRef();
             return;
         }
 
@@ -190,7 +190,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         if (!line.contains("&"))
         {
             Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no &):" + line);
-            edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+            edit->DecRef();
             return;
         }
         edit->Diff = line.mid(0, line.indexOf("&")).toInt();
@@ -199,34 +199,34 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     if (!line.contains("oldid="))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no oldid?):" + line);
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     line = line.mid(line.indexOf("oldid=") + 6);
     if (!line.contains(QString(QChar(003))))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     edit->OldID = line.mid(0, line.indexOf(QString(QChar(003)))).toInt();
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line, no user: " + line);
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     line = line.mid(line.indexOf(QString(QChar(003)) + "03") + 3);
     if (!line.contains(QString(QChar(3))))
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     QString name = line.mid(0, line.indexOf(QString(QChar(3))));
     if (name.length() <= 0)
     {
-        edit->UnregisterConsumer(HUGGLECONSUMER_PROVIDERIRC);
+        edit->DecRef();
         return;
     }
     edit->User = new WikiUser(name);
