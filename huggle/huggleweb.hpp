@@ -74,6 +74,9 @@ namespace Huggle
             QString RetrieveHtml();
             static QString Encode(const QString &string);
 
+        private slots:
+            void Click(const QUrl &page);
+
         private:
             Ui::HuggleWeb *ui;
             QString CurrentPage;

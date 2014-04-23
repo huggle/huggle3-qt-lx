@@ -46,11 +46,15 @@ void HuggleWeb::DisplayPreFormattedPage(QString url)
     url += "&action=render";
     this->ui->webView->load(url);
     this->CurrentPage = this->ui->webView->title();
+    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->load(url);
+    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::RenderHtml(const QString &html)
@@ -76,6 +80,11 @@ QString HuggleWeb::Encode(const QString &string)
     encoded = encoded.replace("<", "&lt;");
     encoded = encoded.replace(">", "&gt;");
     return encoded;
+}
+
+void HuggleWeb::Click(const QUrl &page)
+{
+    QDesktopServices::openUrl(page);
 }
 
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
