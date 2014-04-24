@@ -113,7 +113,10 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
 {
     if (!us->IsIP() && score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore)
     {
-        if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
+        QString spaces = us->Username;
+        spaces.replace("_", " ");
+        if (!Configuration::HuggleConfiguration->WhiteList.contains(spaces) &&
+                !Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
         {
             Configuration::HuggleConfiguration->WhiteList.append(us->Username);
         }
