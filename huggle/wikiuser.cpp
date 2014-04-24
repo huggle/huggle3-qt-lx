@@ -341,7 +341,10 @@ bool WikiUser::IsWhitelisted()
     {
         return false;
     }
-    if (Configuration::HuggleConfiguration->WhiteList.contains(this->Username))
+    QString spaced = this->Username;
+    spaced.replace("_", " ");
+    if (Configuration::HuggleConfiguration->WhiteList.contains(this->Username) ||
+            Configuration::HuggleConfiguration->WhiteList.contains(spaced))
     {
         this->WhitelistInfo = 1;
         return true;
