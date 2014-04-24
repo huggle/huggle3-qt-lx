@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikiuser.hpp"
+#include "syslog.hpp"
 using namespace Huggle;
 
 //QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
@@ -116,6 +117,7 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
         score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore &&
         !us->IsWhitelisted())
     {
+        Syslog::HuggleLogs->Log("User " + us->Username + " with score " + QString::number(score) + " has been inserted to wl");
         Configuration::HuggleConfiguration->WhiteList.append(us->Username);
         us->WhitelistInfo = 1;
         us->Update();
