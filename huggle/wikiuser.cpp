@@ -111,15 +111,11 @@ bool WikiUser::IsIPv6(QString user)
 
 void WikiUser::UpdateWl(WikiUser *us, long score)
 {
-    if (!us->IsIP() && score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore)
+    if (!us->IsIP() &&
+        score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore &&
+        !us->IsWhitelisted())
     {
-        QString spaces = us->Username;
-        spaces.replace("_", " ");
-        if (!Configuration::HuggleConfiguration->WhiteList.contains(spaces) &&
-                !Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
-        {
-            Configuration::HuggleConfiguration->WhiteList.append(us->Username);
-        }
+        Configuration::HuggleConfiguration->WhiteList.append(us->Username);
     }
 }
 
