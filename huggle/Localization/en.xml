@@ -1,0 +1,757 @@
+name:                      English
+
+=== General ===
+add:                       Add
+apply:                     Apply
+cancel:                    Cancel
+clear:                     Clear
+close:                     Close
+continue:                  Continue
+copy:                      Copy
+delete:                    Delete
+deleted:                   Deleted
+error:                     Error
+exit:                      Exit
+minimizewindow:            Minimize
+no:                        No
+ok:                        OK
+remove:                    Remove
+rename:                    Rename
+reload:                    Reload
+result:                    Result
+restorewindow:             Restore
+save:                      Save
+selectfile:                Browse...
+yes:                       Yes
+agf:                       Revert as good faith edit with custom reason
+import:                    Import from global conf
+successful:                Successful
+summary:                   Summary
+id:                        ID
+type:                      Type
+target:                    Target
+user:                      User
+size:                      Size
+date:                      Date
+page:                      Page
+time:                      Time
+version:                   Version
+// this is just a translation of name in general, for example "Name of user" or "Name of file"
+general-name:              Name
+author:                    Author
+description:               Description
+status:                    Status
+link:                      Link
+reason:                    Reason
+diffid:                    DiffID
+whitelisted:               User $1 with score $2 has been inserted to wl
+expiry-time:               Expiry time
+duration:                  Duration
+no-token:                  No token
+flags:                     Flags
+
+=== Browser ===
+browser-none:              No page is displayed now
+browser-load:              Please wait, downloading diff using a web rendering fallback...
+browser-miss-summ:         No summary was provided
+browser-diff:              Diff of page: $1 (score: $2)
+browser-fail:              Unable to retrieve diff: $1
+
+=== Edit types ===
+//edittype-blocknote:        Block notifications
+//edittype-deletenote:       Deletion request notifications
+//edittype-deletetag:        Deletion discussion tags
+//edittype-deletereq:        Other deletion discussion edits
+//edittype-manual:           Manual edits
+//edittype-message:          User messages
+//edittype-note:             Other notifications
+//edittype-prodtag:          Proposed deletion tags
+//edittype-protectreq:       Protection requests
+//edittype-report:           Reports
+//edittype-revert:           Reverts
+//edittype-speedytag:        Speedy deletion tags
+//edittype-tag:              Other tags
+//edittype-warning:          Warnings
+
+=== About form ===
+about-contributors:        Developers:
+
+=== Block form ===
+block-title:               Block $1
+block-reason:              Reason:
+block-duration:            Duration:
+block-message:             Talk page message:
+block-anononly:            Block anonymous users only
+block-creation:            Block account creation
+block-autoblock:           Enable autoblocks
+block-email:               Block e-mail
+block-usertalk:            Talk
+block-usercontribs:        Contribs
+block-blockloglabel:       Block log:
+block-warnloglabel:        Warnings:
+block-sharedipwarning:     Note: $1 is tagged as a shared or dynamic IP address.
+block-sensitivewarning:    This IP address is listed as 'sensitive' for the following reason:\n\n   $1\n\nContinue anyway?
+block-rangeblockwarning:   $1 is already affected by a rangeblock on $2.\nThis block will override the effect of the rangeblock. Continue?
+block-token-1:             Getting token to block $1
+block-fail:                Unable to block user, $1
+block-token-e1:            token can't be retrieved: $1
+block-error-no-info:       no user info was present in query (are you sysop?)
+block-type:                Block / unblock
+block-admin:               Blocking sysop
+blocking:                  Blocking $1
+block-none:                There is no user that I can block
+
+=== Closing form ===
+closing-whitelist:         Updating user whitelist...
+closing-config:            Updating configuration subpage...
+
+=== Configuration form ===
+config-summ:               Custom revert summaries for templates
+config-title:              Options
+config-rememberme:         Remember my username
+config-autowhitelist:      Automatically whitelist users
+config-openinbrowser:      Open browser links in new browser window
+config-shownewedits:       Show new edits to the selected page as they are made
+config-ircmode:            Use IRC feed for recent changes if possible
+config-ircport:            IRC port
+config-difffontsize:       Diff font size
+config-logfile:            Log file
+config-viewlocalconfig:    View local configuration folder
+config-trayicon:           Show tray icon
+config-startupmessage:     Show startup message
+config-shownewmessages:    Show new messages bar
+config-shortcutlist:       Keyboard shortcuts
+config-shortcutaction:     Action
+config-shortcut:           Shortcut
+config-changeshortcut:     Change shortcut for $1
+config-noshortcut:         None
+config-defaults:           Defaults
+config-minor:              Mark as minor
+config-watchlist:          Add to watchlist
+config-defaultsummary:     Default summary for manual edits
+config-undosummary:        Summary when undoing own edits
+config-confirmmultiple:    Confirm multiple reversions of an edit by the same user
+config-confirmsame:        Confirm reversion to an edit by the user being reverted
+config-confirmselfrevert:  Confirm reversion of own edits (except undo)
+config-confirmwarned:      Confirm reversion to an edit by a warned user
+config-confirmrange:       Confirm reversion to edit by an anonymous user in the same /16 range as the user being reverted
+config-confirmpage:        Confirm reversion of ignored pages
+config-autoadvance:        After reverting, move to next edit in the queue
+config-userollback:        Use rollback if available
+config-revertsummaries:    Revert summaries available in menu
+config-clearsummaries:     Summaries entered manually are remembered across sessions; click to clear these
+config-extendreports:      Extend reports after additional vandalism
+// This is possibly going to be removed, depends on feedback
+//config-autoreportgroup:    Auto-report
+config-autoreport:         When asked to warn a user with a final warning
+config-reportnone:         Do nothing
+config-reportprompt:       Prompt for report
+config-reportauto:         Issue report automatically
+config-templates:          User template messages
+config-templatetext:       Display text
+config-template:           Template
+config-promptforblock:     Prompt for block if asked to warn a user with a final warning
+config-blockreason:        Default block reason
+config-blocktime:          Default block duration for
+config-blocktimeanon:      anonymous users
+config-blocktimereg:       registered users
+config-summaryprompt:      Enter summary
+config-history:	           Download whole history of all articles
+config-defaultsprompt:     Restore defaults?
+config-logbrowsetitle:     Log file location
+config-shortcutconflict:   Shortcut '$1' conflicts with the existing shortcut for '$1'.
+config-no-colon:           You can't use : in name of queue
+
+=== Delete form ===
+delete-title:              Delete $1
+delete-reason:             Reason:
+delete-deletionlog:        Deletion log:
+delete-rem-talk:           Delete associated talk
+delete-notify:             Notify creator
+delete-error-token:        ERROR: Retreiving the delete token failed. The reason provided was: $1
+delete-token01:            Getting token to delete $1
+delete-token02:            There was no token returned by the query
+delete-e1:                 the page can't be deleted: $1
+delete-e2:                 Unable to delete page
+delete-edsc:               Unable to delete page because $1
+delete-failed-no-info:     no page info was present in query (are you sysop?)
+
+=== History form ===
+historyform-no-info:                 No edit info
+historyform-title:                   History
+historyform-retrieve-history:        Retrieve history
+historyform-retrieving-history:      Retrieving history
+historyform-not-latest-tip:          This is not a latest revision of this page, make sure you reviewed the newer versions as well. Also please, keep in mind that rollback may not be possible from this point.
+
+=== User history form ===
+userhistory-title:         History of your changes
+
+=== IRC feed ===
+irc-connected:             Connected to IRC recent changes feed
+irc-connecting:            Attempting connection to IRC recent changes feed; this may take a few moments...
+irc-disconnected:          Connection to IRC recent changes feed lost; reconnecting...
+irc-nochannel:             IRC channel for $1 not found; using slower API queries instead
+irc-error:                 Unable to connect to IRC recent changes feed ($1). Using slower API queries instead
+irc-stop:                  Waiting for primary feed provider to stop
+irc-not:                   Feed: irc is disabled by project config
+irc-failure:               primary feed provider has failed, fallback to wiki provider
+irc-wait:                  Waiting for irc feed provider to stop
+irc-switch-rc:             Switching to wiki RC feed
+
+=== Login ===
+login-intro:               Please enter your wikipedia username and pick a project
+login-language:            Language:
+login-project:             Project:
+login-username:            Username:
+login-password:            Password:
+login-proxygroup:          Proxy settings
+login-proxy:               Use a proxy server
+login-proxyaddress:        Address:
+login-proxyport:           Port:
+login-proxydomain:         Domain:
+login-start:               Login
+login-translate:           Translate...
+login-captchatitle:        Captcha required to log in
+
+login-progress-start:      Logging in...
+login-progress-language:   Updating message files...
+login-progress-global:     Checking global configuration...
+login-progress-config:     Checking configuration pages...
+login-progress-userlist:   Checking user list...
+login-progress-whitelist:  Retrieving user whitelist...
+login-ssl:                 Enforce SSL (requires openssl)
+
+login-fail:                Login failed
+login-error-admin:         Use of Huggle on this project requires an administrator account.
+login-error-age:           Use of Huggle on this project requires an account at least $1 days old.
+login-error-alldisabled:   Huggle is currently disabled on all projects.
+login-error-approval:      Use of Huggle on this project requires approval.
+login-error-autoconfirmed: Use of Huggle on this project requires that your account is autoconfirmed.
+login-error-cancelled:     Cancelled.
+login-error-captcha:       Incorrect password or confirmation code.
+login-error-config:        Login failed unable to retrieve local config: $1
+login-error-count:         Use of Huggle on this project requires at least $1 edits.
+login-error-disabled:      Huggle is not enabled for your account, check user configuration page.
+login-error-global:        Login failed unable to parse the global config, see debug log for more details
+login-error-invalid:       Invalid username
+login-error-language:      Failed to load message files
+login-error-nocaptcha:     Captcha not solved
+login-error-noconfig:      This project does not have a Huggle configuration page
+login-error-nouser:        User does not exist
+login-error-password:      Incorrect password
+login-error-projdisabled:  Huggle is currently disabled on this project.
+login-error-rollback:      Use of Huggle on this project requires rollback.
+login-error-unknown:       Unable to log in.
+login-error-userlist:      Failed to load user list.
+login-error-version:       Version is out of date. Update to the latest version.
+login-error-whitelist:     Failed to load user whitelist.
+
+=== Main window ===
+main-page:                 Page
+main-user:                 User
+main-contribs:             Contribs
+main-history:              History
+main-new-messages:         You have new messages; select System -> Show new messages or press M to view them.
+main-system:               System
+main-system-messages:      Show new messages
+main-system-reconnectirc:  Reconnect IRC feed
+main-system-savelog:       Save log...
+main-system-lists:         List Builder...
+main-system-requests:      Requests...
+main-system-statistics:    Statistics...
+main-system-showlog:       Show log
+main-system-showqueue:     Show queue
+main-system-showtwoqueues: Show two queues
+main-system-options:       Options...
+main-system-logout:        Log out
+main-system-exit:          Exit
+main-queue:                Queue
+main-queue-next:           Next
+main-queue-trim:           Trim
+main-queue-clear:          Clear current
+main-queue-count:          {0} items
+main-queue-query:          Running query...
+main-queue-reset:          Reset
+main-queue-clearall:       Clear all
+main-queue-options:        Manage Queues...
+main-goto:                 Go to
+main-goto-mytalk:          My talk page
+main-goto-mycontribs:      My contributions
+main-revision-decline:     Reject revision
+main-revision:             Revision
+main-revision-view:        View
+main-revision-revert:      Revert
+main-revision-faith:       Revert AGF
+main-revision-previous:    Previous
+main-revision-next:        Next
+main-revision-latest:      Latest
+//main-revision-sight:       Sight
+main-tools:                Tools
+main-tools-sess:           Display session info
+main-tools-wl:             Display whitelist
+main-tools-il:             Show ignore list of current wiki
+main-page-switchtotalk:    Switch to talk page
+main-page-switchtosubject: Switch to subject page
+main-page-switchtoarticle: Switch to article
+main-page-viewlatest:      View latest revision
+main-page-history:         Retrieve history
+main-page-historypage:     Show history page
+main-page-edit:            Edit
+main-page-tag:             Tag
+main-page-reqdeletion:     Request deletion
+main-page-reqprotection:   Request protection
+main-page-watch:           Watch
+main-page-unwatch:         Unwatch
+main-page-purge:           Purge
+main-page-patrol:          Mark patrolled
+main-page-move:            Move...
+main-page-protect:         Protect...
+main-page-delete:          Delete...
+main-page-restore:         Restore this revision of article
+main-user-info:            Show user info
+main-user-ignore:          Ignore
+main-user-unignore:        Unignore
+main-user-clear-talk:      Clear talk page of user
+main-user-contribs:        Retrieve contributions
+main-user-talk:            View talk page
+main-user-message:         Message...
+//main-user-email:           E-mail...
+main-user-warn:            Warn...
+main-user-db:              Decrease badness score of user
+main-user-report:          Report
+main-user-ib:              Increase badness score
+main-user-clear-tp:        Clear talk page of user
+main-user-block:           Block...
+main-browser:              Browser
+main-browser-newtab:       New tab
+main-browser-closetab:     Close tab
+main-browser-closeothers:  Close other tabs
+main-browser-back:         Back
+main-browser-forward:      Forward
+main-browser-open:         View this in external browser
+main-browser-newedits:     Show new edits to page
+main-browser-newcontribs:  Show new contributions by user
+main-help:                 Help
+main-help-documentation:   Documentation
+main-help-feedback:        Feedback
+main-help-about:           About Huggle...
+main-addqueue:             Add...
+main-savelogtitle:         Save log
+main-usermessageother:     Other message...
+main-advanced:             Advanced...
+main-stats:                $1 edits per minute, $2 reverts per minute
+main-display-session-data: Display a session data
+main-revert-custom-reson:  Please provide a reason why you want to revert this edit to previous revision
+main-log1:                 Restoring selected revision of $1
+main-tip-revertwarn:       Revert this revision, and issue a user warning
+main-tip-nextdiff:         Show the next revision in the queue
+main-tip-revert:           Revert this revision
+main-tip-template:         Send template message to user
+main-tip-warn:             Warn user
+main-tip-cancel:           Cancel all pending actions
+main-tip-undo:             Undo recent actions
+main-tip-browserback:      Back
+main-tip-browserforward:   Forward
+main-tip-browseropen:      View this in external browser
+main-tip-browsernewtab:    New tab
+main-tip-browserclosetab:  Close tab
+main-tip-history:          Retrieve page history
+main-tip-historyprev:      Show previous revision to this page
+main-tip-historynext:      Show next revision to this page
+main-tip-historylast:      Show latest revision to this page
+main-tip-historydifftocur: Show diff between this revision and the latest revision to this page
+main-tip-contribs:         Retrieve user contributions
+main-tip-contribsprev:     Show previous revision by this user
+main-tip-contribsnext:     Show next revision by this user
+main-tip-contribslast:     Show latest revision by this user
+main-tip-pageview:         View this revision
+main-tip-pageedit:         Edit this page
+main-tip-pagewatch:        Watch this page
+main-tip-pagetag:          Tag this page
+main-tip-pagetagdelete:    Tag this page for deletion
+main-tip-pagedelete:       Delete this page
+main-tip-userinfo:         Show user information
+main-tip-usertalk:         Show user talk page
+main-tip-usermessage:      Message this user
+main-tip-userignore:       Ignore all contributions by this user
+main-tip-userreport:       Report this user
+main-tip-userblock:        Block this user
+main-revision-acceptpend:  Accept this pending revision
+main-no-page:              The action you have requested requires a page to be loaded. Please load a page before trying again.
+main-revert-null:          Unable to revert, edit is null
+main-revert-manual:        Rollback token for edit $1 could not be retrieved, fallback to manual edit
+
+=== Message form ===
+message-title:                Message $1
+message-help:                 Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.
+message-subject:              Subject:
+message-message:              Message:
+message-summary:              Summary:
+message-autosign:             Automatically append signature
+message-retrieve-new-token:   Retrieving token to edit $1
+message-er:                   Unable to deliver the message to $1: $2
+message-fail-retrieve-talk:   unable to retrieve the user talk page
+message-done:                 Successfuly delivered message to: $1
+
+=== Move form ===
+//move-title:                Move $1
+//move-target:               Destination:
+//move-reason:               Reason:
+//move-movetalk:             Move talk page
+
+=== Prod form ===
+//prod-title:                Proposed deletion of $1
+//prod-reason:               Reason:
+
+=== Protect form ===
+protect-title:             Protect $1
+protect-request-title:     Request protection of $1
+protect-reason:            Reason:
+protect-expiry:            Expiry:
+protect-log:               Protection log:
+protect-currentlevel:      Current protection level:
+protect-type:              Protection type:
+protect-none:              None
+protect-semiprotection:    Semi-protection
+protect-fullprotection:    Full protection
+protect-moveprotection:    Move protection
+protect-ft:                Fetching token to protect $1
+
+=== Queue form ===
+queue-title:               Queues
+queue-queues:              Queues:
+queue-typegroup:           Queue type
+queue-listselector:        List:
+queue-listbuilder:         List Builder...
+queue-sortorder:           Sort order:
+queue-removeviewed:        Remove edits when viewed
+queue-removeold:           Remove old edits to the same page
+queue-removeafter:         Remove edits after
+queue-preload:             Enable preloading of revisions when this queue is selected
+queue-ignorepages:         Ignore edits to pages on the ignored pages list
+queue-traynotification:    Show tray notification when a revision is added to this queue
+queue-diffsgroup:          Diffs
+queue-nodiffs:             Load diffs only when the revision is viewed
+queue-preloaddiffs:        Preload diffs when queue is active
+queue-alldiffs:            Load diffs for every revision in the queue
+queue-pagefiltersgroup:    Page title filters
+queue-pageregex:           Title matches regular expression:
+queue-namespaces:          Namespaces:
+queue-applylabel:          Click Apply to apply these filters to the existing page list.
+queue-editfiltersgroup:    Edit filters
+queue-userregex:           Username matches regular expression:
+queue-summaryregex:        Summary matches regular expression:
+queue-filternewpage:       New page
+queue-filterownuserspace:  User's own userspace
+queue-filteranonymous:     Anonymous user
+queue-filterignored:       Ignored user
+queue-filterreverts:       Revert
+queue-filternotifications: Notification
+queue-filterwarnings:      Warning
+queue-filtertags:          Tag
+queue-filterbot:           Bot edit
+queue-filterassisted:      Assisted edit
+queue-filterhuggle:        Huggle edit
+queue-filterme:            My edit
+queue-examplelabel1:       Require this attribute
+queue-examplelabel2:       Exclude this attribute
+queue-examplelabel3:       Don't check this attribute
+queue-usergroup:           Show only edits from these users
+
+=== Queue trim form ===
+//queuetrim-title:           Trim queue
+//queuetrim-age:             Discard all queued revisions older than
+//queuetrim-ageunit:         minutes
+
+=== Requests form ===
+//requests-title:            Requests
+//requests-cancelall:        Cancel all
+//requests-cancelled:        Cancelled
+//requests-inprogress:       In progress
+//requests-failed:           Failed
+//requests-completed:        Completed
+//requests-time:             Time
+//requests-type:             Type
+//requests-query:            Query
+
+=== Report form ===
+report-title:                   Report $1
+report-reason:                  Reason:
+report-intro:                   You are going to report user $1
+report-message:                 Message:
+report-log:                     Warnings for this user:
+report-include:                 Include in report
+report-evidence-none-provid:    You didn't provide any diffs as evidence, this will make it extremery hard for administrators to figure out if this user is vandal or not. Are you sure you want to continue?
+report-duplicate:               The user has already been reported
+report-fail:                    Did not report $1
+report-fail2:                   Error unable to retrieve report page at $1
+report-progress:                Reporting $1...
+report-retrieving:              Retrieving current report page...
+report-done:                    Reported
+report-user:                    Report
+
+== UAA ==
+uaa-not-supported:         UAA not available
+uaa-not-supported-text:    The usernames for administrator attention noticeboard is not available on your wiki.
+
+=== Reverting ===
+revert-confirm-ignored:    Revert edit by whitelisted user $1?
+revert-confirm-multiple:   This will revert multiple edits by $1. Continue?
+revert-confirm-page:       Revert edit to ignored page $1?
+revert-confirm-range:      The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person; ensure the target revision is correct before proceeding. Continue?
+revert-confirm-same:       This will revert to another revision by the user that is being reverted, $1. Continue?
+revert-confirm-self:       This will revert your own edit. Continue?
+revert-confirm-warned:     This will revert to a revision by $1; this user has previously been warned. Continue?
+revert-error-first:        Edit is the first edit to the page; unable to revert.
+revert-only:               Edit is the only edit to the page.
+revert-creator:            Last edit was made by page creator, $1.
+revert-preflightcheck:     Preflight check
+revert-delete-instead:     Delete page instead?
+revert-speedy-instead:     Tag for speedy deletion instead?
+revert-cannotundo:         Cannot undo due to conflicting intermediate edits
+revert-conflict:           The page was edited by whitelisted user '$1'
+revert-fail:               Did not revert $1: $2
+revert-nochange:           The content of the target revision is identical to that of the current revision
+revert-nootheruser:        No other user has edited the page
+revert-progress:           Reverting '$1'...
+revert-fail-pre-flight:    Preflight check failed: $1
+
+=== Speedy form ===
+speedy-title:              Speedy tag $1
+speedy-reason:             Reason:
+speedy-parameters:         Parameters:
+speedy-notifycreator:      Notify page creator
+
+=== Statistics form ===
+stats-title:               Statistics
+stats-actions:             Actions this session:
+stats-session:             Session time: $1
+stats-edits:               Edits
+stats-assisted:            Assisted edits
+stats-huggle:              Huggle edits
+stats-reverts:             Reverts
+stats-warnings:            Warnings
+stats-reports:             Reports
+stats-tags:                Tags
+stats-notifications:       Notifications
+stats-blocks:              Blocks
+stats-deletes:             Deletes
+stats-protections:         Protections
+stats-allusers:            All users
+stats-me:                  Me
+stats-ignored:             Ignored
+stats-anon:                Anonymous
+stats-bots:                Bots
+stats-other:               Other
+
+=== Tag form ===
+tag-title:                 Tag $1
+tag-tagselector:           Add tag:
+tag-tags:                  Tag(s):
+tag-summary:               Summary:
+tag-insertatend:           Insert at the end of the page
+
+=== Update form ===
+update-title:              New version available
+update-notification:       This version of Huggle is out of date.
+update-prompt:             Download and run the latest version now?
+update-download:           Update
+update-progress:           Downloading new version...
+update-error:              Failed to download new version
+
+=== User info form ===
+userinfo-generic:          User info
+userinfo-title:            User information for $1
+userinfo-anonymous:        Anonymous:
+userinfo-ignored:          Whitelisted:
+userinfo-edits:            Number of edits:
+userinfo-sessionedits:     Edits this session:
+userinfo-sharedip:         Shared/dynamic IP:
+userinfo-blocklog:         Blocks:
+userinfo-warnlog:          Warnings:
+
+=== Warning form ===
+warning-title:             Warn $1
+warning-levelgroup:        Warning level
+warning-levelauto:         Automatic
+warning-level1:            Level 1
+warning-level2:            Level 2
+warning-level3:            Level 3
+warning-level4:            Level 4 (final)
+warning-warntype:          Warning type:
+warning-warnlog:           Warnings for this user:
+warning-submit:            Send
+
+=== HAN ===
+han-not:                   Vandalism network isn't allowed in options
+han-connecting:            Connecting to huggle anti vandalism network
+
+=== XfD form ===
+//xfd-title:                 Nominate $1 for deletion
+//xfd-category:              Category:
+//xfd-nominationtype:        Nomination type:
+//xfd-notify:                Notify creator
+//xfd-reason:                Reason:
+
+=== Web requests ===
+//error-exception:           Error retrieving $1
+//error-fail:                Failed to retrieve $1
+error-loggedout:           Account has been logged out, logging back in...
+error-noresponse:          No response
+error-pagemissing:         The page does not exist
+error-reloginfail:         Failed to log back in, try restarting Huggle
+error-timeout:             Request timed out
+error-unknown:             Unknown error
+
+retrying:                  Retrying...
+
+block-done:                Blocked $1
+block-fail:                Did not block $1
+block-progress:            Blocking $1...
+
+blocklog-fail:             Failed to retrieve block log for $1
+blocklog-none:             No block log for $1
+blocklog-progress:         Retrieving block log for $1...
+
+blocknotify-fail:          Did not notify $1 of block
+blocknotify-progress:      Notifying $1 of block...
+
+delete-done:               Deleted $1
+delete-fail:               Did not delete $1
+delete-progress:           Deleting $1...
+
+deletelog-fail:            Failed to retrieve deletion log for $1
+deletelog-none:            No deletion log for $1
+deletelog-progress:        Retrieving deletion log for $1...
+
+diff-deleted:              This revision has been deleted.
+diff-fail:                 Failed to retrieve diff of $1
+
+//reqdelete-duplicate:       The page is already tagged
+//reqdelete-tagfail:         Did not tag $1 for deletion discussion
+//reqdelete-redirectfail:    The page is a redirect and no redirect discussion process is defined
+//reqdelete-tagprogress:     Tagging $1 for deletion discussion...
+
+//reqdelete-subpageprogress: Creating deletion discussion subpage for $1...
+//reqdelete-subpagefail:     Did not create deletion discussion subpage for $1
+//reqdelete-logprogress:     Adding $1 to deletion discussion log...
+//reqdelete-logfail:         Did not add $1 to deletion discussion log
+
+edit-fail:                 Did not edit $1
+edit-progress:             Editing $1...
+
+//email-done:                Sent e-mail to '{0}'
+//email-fail:                Failed to send e-mail to '{0}'
+//email-progress:            Sending e-mail to '{0}'...
+
+history-fail:              Failed to retrieve history of $1
+history-progress:          Retrieving history of $1 ($2)...
+
+move-done:                 Moved $1 to $2
+move-fail:                 Did not move $1 to $2
+move-progress:             Moving $1 to $2...
+
+notify-fail:               Did not notify the creator of $1
+notify-unknowncreator:     Cannot find page creator
+
+//patrol-duplicate:          The page is already patrolled
+//patrol-done:               Marked $1 as patrolled
+//patrol-fail:               Did not mark $1 as patrolled
+//patrol-notfound:           Cannot find recent-changes id, page is too old
+//patrol-progress:           Marking $1 as patrolled...
+
+protect-done:              Changed protection level for $1
+protect-fail:              Did not change protection level for $1
+protect-progress:          Changing protection level for $1...
+
+protectlog-fail:           Failed to retrieve protection log for $1
+protectlog-none:           No protection log for $1
+protectlog-progress:       Retrieving protection log for $1...
+
+//purge-done:                Purged '$1'
+//purge-fail:                Failed to purge '$1'
+//purge-progress:            Purging '$1'
+
+//queue-refresh-fail:        Error refreshing queue '{0}'
+
+saveuserconfig-done:       Updated user configuration page
+saveuserconfig-fail:       Did not update user configuration page
+saveuserconfig-progress:   Updating user configuration page...
+
+loadglobalconfig-fail:     Failed to load global configuration page
+loadprojectconfig-fail:    Failed to load project configuration page
+loaduserconfig-fail:       Failed to load user configuration page
+
+reqprotection-badformat:   Format of request page unknown
+reqprotection-duplicate:   Protection has already been requested
+reqprotection-fail:        Did not request protection of '$1'
+reqprotection-progress:    Requesting protection of '$1'...
+reqprotection-title:       Request page protection of $1
+
+//tag-alreadytagged:         The page has already been tagged
+//tag-deleted:               The page has been deleted
+//tag-fail:                  Did not tag '$1'
+//tag-progress:              Tagging '$1'...
+
+//sight-done:                Marked revision {0} of '{1}' as sighted
+//sight-fail:                Failed to sight revision {0} of '{1}'
+//sight-progress:            Marking revision {0} of '{1}' as sighted
+
+speedy-fail:               Did not tag '{0}' for speedy deletion
+speedy-progress:           Tagging '{0}' for speedy deletion...
+
+warnlog-fail:              Failed to retrieve warning log for '{0}'
+warnlog-none:              '{0}' has not been warned
+warnlog-progress:          Retrieving warning log for '{0}'...
+
+//unwatch-done:              Removed '{0}' from watchlist
+//unwatch-fail:              Failed to remove '{0}' from watchlist
+//unwatch-progress:          Removing '{0}' from watchlist...
+
+usermessage-duplicate:     A message about the same thing was already present
+usermessage-fail:          Did not message '$1'
+usermessage-progress:      Messaging '$1'...
+
+//watch-done:                Added '{0}' to watchlist
+//watch-fail:                Failed to add '{0}' to watchlist
+//watch-progress:            Adding '{0}' to watchlist...
+
+warn-alreadyfinal:         The user already has a final warning
+warn-alreadyblocked:       The user has already been blocked
+warn-alreadyreported:      The user has already been reported
+warn-oldedit:              The user has not edited since their latest warning
+warn-recent:               The user was warned less than $1 seconds ago
+warn-fail:                 Did not warn '$1'
+warn-progress:             Warning '$1'...
+
+=== API ===
+//api-help:                  No parameters in API query
+
+=== Query text ===
+editquery-success:         Successfuly edit $1
+editquery-token:           Retrieving token to edit $1
+editquery-token-error:     Unable to retrieve edit token
+
+=== Unknown ===
+provider-failure:          Failure of primary feed provider, trying to recover
+provider-primary-failure:  primary feed provider has failed, fallback to wiki provider
+rc-error:                  Unable to retrieve data from wiki feed, last error: $1
+whitelist-download:        Downloading new whitelist
+queue-widget-name:         Queue
+logs-widget-name:          System logs
+wait:                      Please wait...
+function-miss:             Function is not available now
+missing-aiv:               This project doesn't support AIV system
+merging:                   Merging
+missing-page:              There is no page $1 on this wiki
+updating-wl:               Updating whitelist...
+updating-uc:               Updating user configuration page at huggle3.css on wiki
+feature-nfru:              This feature is for ip users only
+report-no-user:            No user has been selected to report, please select some user first
+welcome-tp-empty-fail:     This user doesn't have empty talk page, are you sure you want to send a message to him?
+welcome-page-miss-fail:    Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?
+cr-newer-edits:            Conflict resolved: revert all edits including new edits. Edits are by same user: $1.
+cr-stop-new-edit:          Conflict resolved: do not perform any action - there are newer edits to $1
+cr-message-same:           There are multiple edits to $1 by same user, are you sure you want to revert them?
+cr-message-new:            There are new edits to $1 are you sure you really want to revert them?
+cr-message-not-same:       There are new edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)
