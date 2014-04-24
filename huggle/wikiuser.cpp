@@ -72,7 +72,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    WikiUser::UpdateWl(us, us->GetBadnessScore());
+    WikiUser::UpdateWl(us, us->GetBadnessScore(false));
     int c=0;
     while (c<ProblematicUsers.count())
     {
