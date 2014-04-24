@@ -271,11 +271,8 @@ void VandalNw::UpdateHeader()
             }
             while (users.count() > 0)
             {
-                if (users.at(0).Nick != "ChanServ")
-                {
-                    this->ui->tableWidget->insertRow(0);
-                    this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0).Nick));
-                }
+                this->ui->tableWidget->insertRow(0);
+                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0).Nick));
                 users.removeAt(0);
             }
             this->ui->tableWidget->resizeRowsToContents();
