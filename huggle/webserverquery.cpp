@@ -39,7 +39,6 @@ void WebserverQuery::Process()
     if (this->UsingPOST)
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        //this->reply = Query::NetworkManager.post(request, url.encodedQuery());
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
     } else
     {

@@ -105,7 +105,7 @@ void UserinfoForm::Read()
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
     this->qContributions->SetAction(ActionQuery);
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
-            "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
+                                       "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     QueryPool::HugglePool->AppendQuery(this->qContributions);
     this->qContributions->IncRef();
     ui->pushButton->hide();
