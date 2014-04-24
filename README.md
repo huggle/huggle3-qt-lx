@@ -105,4 +105,5 @@ Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
 License
 ===============
 
-GPL v3+
+Huggle 3 is licensed under GPL v3+, some contents of this repository may be licensed under
+different license. See the local README or file headers for more information.
