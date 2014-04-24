@@ -182,7 +182,10 @@ Configuration::Configuration()
     this->ProjectConfig_RestoreSummary = "Restored revision $1 made by $2";
     this->ProjectConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->ProjectConfig_BlockExpiryOptions.append("indefinite");
+
+    // RFPP
     this->ProjectConfig_RFPP_Page = "";
+    this->ProjectConfig_RFPP_PlaceTop = false;
     this->ProjectConfig_RFPP_Summary = "Sending request to protect a page";
     this->ProjectConfig_RFPP = false;
     this->ProjectConfig_RFPP_Template = "";
@@ -758,6 +761,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_SharedIPTemplate = ConfigurationParse("shared-ip-template", config, "");
     this->ProjectConfig_ProtectReason =  ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     this->ProjectConfig_RevertPatterns = HuggleParser::ConfigurationParse_QL("revert-patterns", config, true);
+    this->ProjectConfig_RFPP_PlaceTop = SafeBool(ConfigurationParse("protection-request-top", config));
     this->ProjectConfig_RFPP_Regex = ConfigurationParse("rfpp-verify", config);
     this->ProjectConfig_RFPP_Section = (unsigned int)ConfigurationParse("rfpp-section", config, "0").toInt();
     this->ProjectConfig_RFPP_Page = ConfigurationParse("protection-request-page", config);
