@@ -121,9 +121,6 @@ namespace Huggle
             QString Channel;
             //! Prefix to special commands that are being sent to network to other users
             QString Prefix;
-            bool DisplayUserTalk;
-            bool DisplayUser;
-            bool DisplayBots;
             //! Timer that is used to connect to network
             QTimer *tm;
             QList<HAN::RescoreItem> UnparsedScores;

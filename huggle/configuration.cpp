@@ -198,6 +198,9 @@ Configuration::Configuration()
     // User
     //////////////////////////////////////////////////////////////////////////////////////////
     this->UserConfig_ManualWarning = false;
+    this->UserConfig_HAN_DisplayBots = true;
+    this->UserConfig_HAN_DisplayUserTalk = true;
+    this->UserConfig_HAN_DisplayUser = true;
     this->UserConfig_LastEdit = false;
     this->UserConfig_AutomaticallyResolveConflicts = false;
     this->UserConfig_RevertNewBySame = true;
@@ -431,6 +434,10 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
     configuration_ += "CheckTP:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_CheckTP) + "\n";
     configuration_ += "ManualWarning:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_ManualWarning) + "\n";
+    configuration_ += "// HAN\n";
+    configuration_ += "HAN_DisplayUserTalk:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk) + "\n";
+    configuration_ += "HAN_DisplayBots:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots) + "\n";
+    configuration_ += "HAN_DisplayUser:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser) + "\n";
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -933,7 +940,10 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig_HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->UserConfig_LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
     this->UserConfig_CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
+    this->UserConfig_HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));
+    this->UserConfig_HAN_DisplayUser = SafeBool(ConfigurationParse("HAN_DisplayUser", config, "true"));
     this->UserConfig_ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
+    this->UserConfig_HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->UserConfig_TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig_TalkPageFreshness)).toInt();
     this->UserConfig_RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
     this->UserConfig_GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());

@@ -317,6 +317,10 @@ namespace Huggle
             //! Result of "Stop feed, Remove old edits" in main form
             bool                    UserConfig_RemoveOldQueueEdits;
             bool                    UserConfig_CheckTP;
+            //! Display messages from users in vandal window
+            bool                    UserConfig_HAN_DisplayUser;
+            bool                    UserConfig_HAN_DisplayBots;
+            bool                    UserConfig_HAN_DisplayUserTalk;
 
             //////////////////////////////////////////////
             // Global config

@@ -66,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->ui->actionRequest_protection->setEnabled(Configuration::HuggleConfiguration->ProjectConfig_RFPP);
+    this->ui->actionDisplay_bot_data->setChecked(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots);
+    this->ui->actionDisplay_user_data->setChecked(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser);
+    this->ui->actionDisplay_user_messages->setChecked(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk);
     // we store the value in bool so that we don't need to call expensive string function twice
     bool PermissionBlock = Configuration::HuggleConfiguration->Rights.contains("block");
     this->ui->actionBlock_user->setEnabled(PermissionBlock);
@@ -2187,17 +2190,17 @@ void Huggle::MainWindow::on_actionConnect_triggered()
 
 void Huggle::MainWindow::on_actionDisplay_user_data_triggered()
 {
-    this->VandalDock->DisplayUser = this->ui->actionDisplay_user_data->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser = this->ui->actionDisplay_user_data->isChecked();
 }
 
 void Huggle::MainWindow::on_actionDisplay_user_messages_triggered()
 {
-    this->VandalDock->DisplayUserTalk = this->ui->actionDisplay_user_messages->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk = this->ui->actionDisplay_user_messages->isChecked();
 }
 
 void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
 {
-    this->VandalDock->DisplayBots = this->ui->actionDisplay_bot_data->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots = this->ui->actionDisplay_bot_data->isChecked();
 }
 
 void Huggle::MainWindow::on_actionRequest_protection_triggered()

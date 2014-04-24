@@ -416,18 +416,10 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text, HAN::MessageType type)
 {
-    if (type == HAN::MessageType_Bot && !this->DisplayBots)
-    {
-        return;
-    }
-    if (type == HAN::MessageType_User && !this->DisplayUser)
-    {
-        return;
-    }
-    if (type == HAN::MessageType_UserTalk && !this->DisplayUserTalk)
-    {
-        return;
-    }
+    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots)      ||
+        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser)     ||
+        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk))
+          return;
     this->Text.prepend(text + "<br>");
     this->ui->textEdit->setHtml(this->Text);
 }
