@@ -20,9 +20,6 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
-    this->DisplayUser = true;
-    this->DisplayBots = true;
-    this->DisplayUserTalk = true;
     this->Text = "";
     this->JoinedMain = false;
     this->Channel = this->GetChannel();
