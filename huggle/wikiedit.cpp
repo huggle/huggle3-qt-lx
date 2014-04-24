@@ -314,7 +314,7 @@ void WikiEdit::ProcessWords()
 {
     QString text = this->DiffText.toLower();
     int xx = 0;
-    if (this->Page->Contents != "")
+    if (this->Page->Contents.length() > 0)
     {
         text = this->Page->Contents.toLower();
     }

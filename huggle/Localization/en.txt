@@ -44,6 +44,7 @@ status:                    Status
 link:                      Link
 reason:                    Reason
 diffid:                    DiffID
+whitelisted:               User $1 with score $2 has been inserted to wl
 expiry-time:               Expiry time
 duration:                  Duration
 no-token:                  No token
