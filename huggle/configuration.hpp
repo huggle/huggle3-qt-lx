@@ -358,6 +358,7 @@ namespace Huggle
             bool            ProjectConfig_RFPP;
             unsigned int    ProjectConfig_RFPP_Section;
             QString         ProjectConfig_RFPP_Template;
+            QString         ProjectConfig_RFPP_TemplateUser;
             QString         ProjectConfig_RFPP_Summary;
             bool            ProjectConfig_RFPP_PlaceTop;
             QString         ProjectConfig_RFPP_Regex;

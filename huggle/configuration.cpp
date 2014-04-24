@@ -189,6 +189,7 @@ Configuration::Configuration()
     this->ProjectConfig_RFPP_Summary = "Sending request to protect a page";
     this->ProjectConfig_RFPP = false;
     this->ProjectConfig_RFPP_Template = "";
+    this->ProjectConfig_RFPP_TemplateUser = "";
     this->ProjectConfig_RFPP_Regex = "";
     this->ProjectConfig_ConfirmMultipleEdits = false;
     this->ProjectConfig_ConfirmRange = false;
@@ -768,6 +769,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_RFPP_Template = ConfigurationParse("rfpp-template", config);
     this->ProjectConfig_RFPP_Summary = ConfigurationParse("protection-request-summary", config, "Request to protect page");
     this->ProjectConfig_RFPP = (this->ProjectConfig_RFPP_Template.length() && this->ProjectConfig_RFPP_Regex.length());
+    this->ProjectConfig_RFPP_TemplateUser = ConfigurationParse("rfpp-template-user", config);
     QStringList MonthsHeaders_ = HuggleParser::ConfigurationParse_QL("months", config);
     if (MonthsHeaders_.count() != 12)
     {
