@@ -61,7 +61,7 @@ namespace Huggle
              * using Core::MakeLanguage() and insert that to language list
              * \param name Name of a localization that is a name of language without txt suffix in localization folder
              */
-            void LocalInit(QString name, bool xml = false);
+            void LocalInit(QString name, bool xml = true);
             QString Localize(QString key);
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameters);

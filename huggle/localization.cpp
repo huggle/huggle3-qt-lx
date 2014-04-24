@@ -106,17 +106,17 @@ void Localizations::LocalInit(QString name, bool xml)
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         // we don't want to load custom files in safe mode
-        f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+        f = new QFile(":/huggle/text/Localization/" + name + ".xml");
     } else
     {
         if (QFile().exists(Configuration::GetLocalizationDataPath() + name + ".txt"))
         {
             // there is a custom localization file in directory
             f = new QFile(Configuration::GetLocalizationDataPath() + name + ".txt");
+            xml = false;
         } else if (QFile().exists(Configuration::GetLocalizationDataPath() + name + ".xml"))
         {
             f = new QFile(Configuration::GetLocalizationDataPath() + name + ".xml");
-            xml = true;
         } else
         {
             if (!xml)
