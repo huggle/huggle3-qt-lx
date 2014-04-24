@@ -79,6 +79,7 @@ void WikiUser::UpdateUser(WikiUser *us)
         {
             ProblematicUsers.at(c)->BadnessScore = us->BadnessScore;
             ProblematicUsers.at(c)->WarningLevel = us->WarningLevel;
+            ProblematicUsers.at(c)->WhitelistInfo = us->WhitelistInfo;
             if (us->IsReported)
             {
                 ProblematicUsers.at(c)->IsReported = true;
@@ -116,6 +117,8 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
         !us->IsWhitelisted())
     {
         Configuration::HuggleConfiguration->WhiteList.append(us->Username);
+        us->WhitelistInfo = 1;
+        us->Update();
     }
 }
 
