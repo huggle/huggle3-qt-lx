@@ -16,7 +16,7 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
     this->Buffer = new QList<WikiEdit*>();
     this->Refreshing = false;
-    this->q = NULL;
+    this->qReload = NULL;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
     this->LatestTime = QDateTime::currentDateTime().addDays(-1);
     this->LastRefresh = QDateTime::currentDateTime().addDays(-1);
@@ -30,9 +30,9 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
         this->Buffer->removeAt(0);
     }
     delete this->Buffer;
-    if (this->q != NULL)
+    if (this->qReload != NULL)
     {
-        this->q->SafeDelete();
+        this->qReload->DecRef();
     }
 }
 
@@ -72,35 +72,32 @@ void HuggleFeedProviderWiki::Refresh()
     if (this->Refreshing)
     {
         // the query is still in progress now
-        if (!this->q->IsProcessed())
-        {
+        if (!this->qReload->IsProcessed())
             return;
-        }
-        if (this->q->Result->Failed)
+        if (this->qReload->Result->Failed)
         {
             // failed to obtain the data
-            Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("rc-error", q->Result->ErrorMessage));
-            this->q->UnregisterConsumer("HuggleFeed::Refresh");
-            this->q = NULL;
+            Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("rc-error",
+                                                              this->qReload->Result->ErrorMessage));
+            this->qReload->DecRef();
+            this->qReload = NULL;
             this->Refreshing = false;
             return;
         }
-        this->Process(q->Result->Data);
-        this->q->UnregisterConsumer("HuggleFeed::Refresh");
-        this->q = NULL;
+        this->Process(qReload->Result->Data);
+        this->qReload->DecRef();
+        this->qReload = NULL;
         this->Refreshing = false;
         return;
     }
-
     this->Refreshing = true;
-    this->q = new ApiQuery();
-    this->q->SetAction(ActionQuery);
-    this->q->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
-            "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
-    this->q->Target = "Recent changes refresh";
-    this->q->RegisterConsumer("HuggleFeed::Refresh");
-    QueryPool::HugglePool->AppendQuery(this->q);
-    this->q->Process();
+    this->qReload = new ApiQuery(ActionQuery);
+    this->qReload->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
+                                "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
+    this->qReload->Target = "Recent changes refresh";
+    this->qReload->IncRef();
+    QueryPool::HugglePool->AppendQuery(this->qReload);
+    this->qReload->Process();
 }
 
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
@@ -242,10 +239,11 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
         if (logaction == "block" || logaction == "reblock")
         {
             QDomElement blockinfo = item.elementsByTagName("block").at(0).toElement(); // nested element "block"
-            QString flags = blockinfo.attribute("flags");
+            //QString flags = blockinfo.attribute("flags");
             QString duration = blockinfo.attribute("duration");
 
-            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin + " for the duration \"" + duration + "\": " + reason);
+            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin +
+                                                 " for the duration \"" + duration + "\": " + reason);
         }
         else if (logaction == "unblock")
         {

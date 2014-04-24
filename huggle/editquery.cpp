@@ -161,14 +161,10 @@ void EditQuery::EditPage()
     {
         section = "&section=" + QString::number(this->Section);
     }
-    if (this->BaseTimestamp != "")
-    {
+    if (this->BaseTimestamp.length())
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-    }
-    if (this->StartTimestamp != "")
-    {
+    if (this->StartTimestamp.length())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-    }
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);

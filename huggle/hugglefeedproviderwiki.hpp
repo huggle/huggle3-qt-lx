@@ -58,7 +58,7 @@ namespace Huggle
             void InsertEdit(WikiEdit *edit);
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
-            ApiQuery *q;
+            ApiQuery *qReload;
             QDateTime LastRefresh;
             QDateTime LatestTime;
     };
