@@ -12,9 +12,6 @@
 #define WIKIUSER_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, seriously Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -41,6 +38,7 @@ namespace Huggle
             static void UpdateUser(WikiUser *us);
             static bool IsIPv4(QString user);
             static bool IsIPv6(QString user);
+            static void UpdateWl(WikiUser *us, long score);
             /*!
              * \brief Function that return static version of this user
              *

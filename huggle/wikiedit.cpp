@@ -93,19 +93,15 @@ WikiEdit::~WikiEdit()
 
 bool WikiEdit::FinalizePostProcessing()
 {
-    if (this->ProcessedByWorkerThread)
+    if (this->ProcessedByWorkerThread || !this->PostProcessing)
     {
+        WikiUser::UpdateWl(this->User, this->Score);
         return true;
     }
 
     if (this->ProcessingByWorkerThread)
     {
         return false;
-    }
-
-    if (!this->PostProcessing)
-    {
-        return true;
     }
 
     if (this->qUser != NULL && this->qUser->IsProcessed())

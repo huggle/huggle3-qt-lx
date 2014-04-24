@@ -71,13 +71,7 @@ void WikiUser::TrimProblematicUsersList()
 void WikiUser::UpdateUser(WikiUser *us)
 {
     WikiUser::ProblematicUserListLock.lock();
-    if (!us->IP && us->GetBadnessScore(false) <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore)
-    {
-        if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
-        {
-            Configuration::HuggleConfiguration->WhiteList.append(us->Username);
-        }
-    }
+    WikiUser::UpdateWl(us, us->GetBadnessScore());
     int c=0;
     while (c<ProblematicUsers.count())
     {
@@ -92,7 +86,7 @@ void WikiUser::UpdateUser(WikiUser *us)
             ProblematicUsers.at(c)->_talkPageWasRetrieved = us->_talkPageWasRetrieved;
             ProblematicUsers.at(c)->DateOfTalkPage = us->DateOfTalkPage;
             ProblematicUsers.at(c)->ContentsOfTalkPage = us->ContentsOfTalkPage;
-            if (ProblematicUsers.at(c)->EditCount < 0)
+            if (!us->IsIP() && ProblematicUsers.at(c)->EditCount < 0)
             {
                 ProblematicUsers.at(c)->EditCount = us->EditCount;
             }
@@ -113,6 +107,17 @@ bool WikiUser::IsIPv4(QString user)
 bool WikiUser::IsIPv6(QString user)
 {
     return WikiUser::IPv6Regex.exactMatch(user);
+}
+
+void WikiUser::UpdateWl(WikiUser *us, long score)
+{
+    if (!us->IsIP() && score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore)
+    {
+        if (!Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
+        {
+            Configuration::HuggleConfiguration->WhiteList.append(us->Username);
+        }
+    }
 }
 
 WikiUser::WikiUser()
