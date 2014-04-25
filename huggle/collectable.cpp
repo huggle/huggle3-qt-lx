@@ -259,5 +259,5 @@ bool Collectable::IsManaged()
     {
         return true;
     }
-    return ((this->Consumers.count() > 0) || (this->iConsumers.count() > 0));
+    return this->HasSomeConsumers();
 }
