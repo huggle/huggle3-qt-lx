@@ -50,13 +50,11 @@ namespace Huggle
     class ReportUser : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit ReportUser(QWidget *parent = 0);
             //! Set a user
             bool SetUser(WikiUser *user);
             ~ReportUser();
-
         private slots:
             void Tick();
             void On_DiffTick();
@@ -66,9 +64,9 @@ namespace Huggle
             void on_tableWidget_clicked(const QModelIndex &index);
             void on_pushButton_3_clicked();
             void on_pushButton_4_clicked();
-            void on_pushButton_6_clicked();
             void on_pushButton_5_clicked();
-
+            void on_pushButton_6_clicked();
+            void on_pushButton_7_clicked();
         private:
             bool CheckUser();
             void InsertUser();
@@ -80,6 +78,7 @@ namespace Huggle
             WikiUser *ReportedUser;
             //! This query is used to retrieve a history of user
             ApiQuery *qHistory;
+            ApiQuery *qCheckIfBlocked;
             //! Timer is used to report the user
             QTimer *tReportUser;
             //! Timer to check the report page

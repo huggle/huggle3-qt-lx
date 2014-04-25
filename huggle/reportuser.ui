@@ -107,12 +107,8 @@
        <property name="text">
         <string>Report</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string>Check if user is reported</string>
+       <property name="default">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -120,6 +116,20 @@
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
         <string>Talk page</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>Check if user is blocked</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>Check if user is reported</string>
        </property>
       </widget>
      </item>
@@ -140,8 +150,8 @@
     </layout>
    </item>
    <item>
-    <widget class="QWebView" name="webView">
-     <property name="url">
+    <widget class="QWebView" name="webView" native="true">
+     <property name="url" stdset="0">
       <url>
        <string>about:blank</string>
       </url>
