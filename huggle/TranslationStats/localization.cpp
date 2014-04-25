@@ -8,6 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include <QtXml>
+#include <QFile>
 #include "localization.hpp"
 
 using namespace Huggle;
@@ -26,7 +28,14 @@ Language *Localizations::MakeLanguage(QString text, QString name)
     int p = 0;
     while (p < keys.count())
     {
-        if (keys.at(p).startsWith("//") || keys.at(p).startsWith("<"))
+        QString line = keys.at(p);
+        if (line.length() == 0)
+        {
+            p++;
+            continue;
+        }
+        QChar first_char_ = line[0];
+        if ((first_char_ == '/' && line.startsWith("//")) || first_char_ == '<')
         {
             // this is comment in language file
             p++;
@@ -34,14 +43,10 @@ Language *Localizations::MakeLanguage(QString text, QString name)
         }
         if (keys.at(p).contains(":"))
         {
-            QString line = keys.at(p);
-            while (line.startsWith(" "))
-            {
-                line = line.mid(1);
-            }
-            QString key = line.mid(0, line.indexOf(":"));
-            QString lang = line.mid(line.indexOf(":") + 1);
-            if (keys.at(p).startsWith("@"))
+            int index_ = line.indexOf(":");
+            QString key = line.mid(0, index_);
+            QString lang = line.mid(index_+1).trimmed();
+            if (first_char_ == '@')
             {
                 // this language is using identical text purposefuly so we replace
                 // text with at symbol which means "use english locs"
@@ -49,14 +54,10 @@ Language *Localizations::MakeLanguage(QString text, QString name)
                 p++;
                 continue;
             }
-            while (lang.startsWith(" "))
-            {
-                lang = lang.mid(1);
-            }
+            // remove all spaces
+            lang = lang.trimmed();
             if (!l->Messages.contains(key))
-            {
                 l->Messages.insert(key, lang);
-            }
         }
         p++;
     }
@@ -67,11 +68,41 @@ Language *Localizations::MakeLanguage(QString text, QString name)
     return l;
 }
 
-void Localizations::LocalInit(QString name)
+Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
 {
-    QFile *f = new QFile(":/huggle/text/Localization/" + name + ".txt");
+    Language *l = new Language(name);
+    QDomDocument in_;
+    in_.setContent(text);
+    QDomNodeList keys = in_.elementsByTagName("string");
+    int i = 0;
+    while (i < keys.count())
+    {
+        QDomElement item = keys.at(i).toElement();
+        i++;
+        if (!item.attributes().contains("name"))
+        {
+            continue;
+        }
+        QString n_ = item.attribute("name");
+        if (l->Messages.contains(n_))
+        {
+            continue;
+        }
+        l->Messages.insert(item.attribute("name"), item.text());
+    }
+    if (l->Messages.contains("name"))
+    {
+        l->LanguageID = l->Messages["name"];
+    }
+    return l;
+}
+
+void Localizations::LocalInit(QString name, bool xml)
+{
+    QFile *f;
+    f = new QFile(":/huggle/text/Localization/" + name + ".xml");
     f->open(QIODevice::ReadOnly);
-    this->LocalizationData.append(Localizations::MakeLanguage(QString(f->readAll()), name));
+    this->LocalizationData.append(Localizations::MakeLanguageUsingXML(QString(f->readAll()), name));
     f->close();
     delete f;
 }
@@ -166,6 +197,13 @@ QString Localizations::Localize(QString key, QStringList parameters)
         }
     }
     return key;
+}
+
+QString Localizations::Localize(QString key, QString par1, QString par2)
+{
+    QStringList list;
+    list << par1 << par2;
+    return Localize(key, list);
 }
 
 QString Localizations::Localize(QString key, QString parameters)
