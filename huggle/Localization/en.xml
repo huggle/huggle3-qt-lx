@@ -496,7 +496,6 @@
     <string name="error-unknown">Unknown error</string>
     <string name="retrying">Retrying...</string>
     <string name="block-done">Blocked $1</string>
-    <string name="block-fail">Did not block $1</string>
     <string name="block-progress">Blocking $1...</string>
     <string name="blocklog-fail">Failed to retrieve block log for $1</string>
     <string name="blocklog-none">No block log for $1</string>
