@@ -53,7 +53,6 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     this->ui->tableWidget->setShowGrid(false);
-
     QStringList header_bl;
     this->ui->tableWidget_2->setColumnCount(8);
     header_bl << Localizations::HuggleLocalizations->Localize("id") <<
@@ -75,7 +74,6 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     this->ui->tableWidget_2->setShowGrid(false);
-    this->tReportPageCheck = NULL;
     this->qBlockHistory = NULL;
     this->tReportUser = NULL;
     /// \todo LOCALIZE ME
