@@ -110,14 +110,9 @@ void DeleteForm::CheckDeleteToken()
     QDomNodeList l;
     if (this->TalkPage != NULL)
     {
-        if (this->qTokenOfTalkPage == NULL)
-        {
+        if (this->qTokenOfTalkPage == NULL || !this->qTokenOfTalkPage->IsProcessed())
             return;
-        }
-        if (!this->qTokenOfTalkPage->IsProcessed())
-        {
-            return;
-        }
+
         if (this->qTokenOfTalkPage->Result->Failed)
         {
             this->Failed(Localizations::HuggleLocalizations->Localize("delete-error-token", this->qToken->Result->ErrorMessage));

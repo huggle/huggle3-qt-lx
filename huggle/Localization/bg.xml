@@ -27,10 +27,8 @@
     <string name="edittype-speedytag">Отбелязване за бързо изтриване</string>
     <string name="edittype-tag">Други етикети</string>
     <string name="edittype-warning">Предупреждения</string>
-    <string name="about-contributors">Contributors:</string>
     <string name="block-reason">Причина:</string>
     <string name="block-duration">Срок:</string>
-    <string name="block-message">Talk page message:</string>
     <string name="block-anononly">Блокиране само на анонимни потребители</string>
     <string name="block-creation">Забрана за създаване на потребителски сметки</string>
     <string name="block-autoblock">Enable autoblocks</string>

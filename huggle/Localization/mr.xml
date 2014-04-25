@@ -20,7 +20,6 @@
     <string name="save">जतन करा</string>
     <string name="selectfile">Browse...</string>
     <string name="yes">हो</string>
-    <string name="edittype-blocknote">Block notifications</string>
     <string name="edittype-deletenote">Deletion चर्चा notifications</string>
     <string name="edittype-deletetag">Deletion चर्चा tags</string>
     <string name="edittype-deletereq">इतर deletion चर्चा संपादन</string>
@@ -35,19 +34,7 @@
     <string name="edittype-tag">इतर tags</string>
     <string name="edittype-warning">सूचना</string>
     <string name="about-contributors">सहभागी:</string>
-    <string name="block-title">Block {0}</string>
     <string name="block-reason">कारण:</string>
     <string name="block-duration">कालावधी:</string>
-    <string name="block-message">Talk page message:</string>
-    <string name="block-anononly">Block anonymous users only</string>
-    <string name="block-creation">Block account creation</string>
-    <string name="block-autoblock">Enable autoblocks</string>
-    <string name="block-email">Block e-mail</string>
-    <string name="block-usertalk">Talk</string>
-    <string name="block-usercontribs">Contribs</string>
-    <string name="block-blockloglabel">Block log:</string>
     <string name="block-warnloglabel">सूचना:</string>
-    <string name="block-sharedipwarning">Note: {0} is tagged as a shared or dynamic IP address.</string>
-    <string name="block-sensitivewarning">This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?</string>
-    <string name="block-rangeblockwarning">{0} is already affected by a rangeblock on {1}.\nThis block will override the effect of the rangeblock. Continue?</string>
 </resource>
