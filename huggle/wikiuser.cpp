@@ -117,6 +117,12 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
         score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore &&
         !us->IsWhitelisted())
     {
+        if (Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
+        {
+            us->WhitelistInfo = 1;
+            us->Update();
+            return;
+        }
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("whitelisted", us->Username, QString::number(score)));
         Configuration::HuggleConfiguration->WhiteList.append(us->Username);
         us->WhitelistInfo = 1;
