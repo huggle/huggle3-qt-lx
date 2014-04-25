@@ -462,10 +462,9 @@ void ReportUser::Test()
         mb.exec();
         this->qCheckIfBlocked->DecRef();
         this->qCheckIfBlocked = NULL;
-        this->ui->pushButton_3->setEnabled(true);
-        this->ui->pushButton->setEnabled(true);
+        this->ui->pushButton_7->setEnabled(true);
     }
-
+    // check if user was reported is here
     if (this->qReport != NULL && this->qReport->IsProcessed())
     {
         QDomDocument d;
@@ -477,6 +476,7 @@ void ReportUser::Test()
             this->failCheck("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
             return;
         }
+        this->ui->pushButton_3->setEnabled(true);
         QDomElement e = results.at(0).toElement();
         if (e.attributes().contains("timestamp"))
         {
@@ -653,11 +653,11 @@ void ReportUser::failCheck(QString reason)
 
 void ReportUser::on_pushButton_3_clicked()
 {
+    this->ui->pushButton_3->setEnabled(false);
     if (this->qReport != NULL)
     {
         this->qReport->DecRef();
     }
-
     this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
     this->qReport->IncRef();
     this->qReport->Process();
