@@ -311,7 +311,7 @@ void WikiUser::ForceIP()
 
 bool WikiUser::IsIP() const
 {
-    return IP;
+    return this->IP;
 }
 
 void WikiUser::ParseTP(QDate bt)
@@ -381,13 +381,13 @@ long WikiUser::GetBadnessScore(bool _resync)
     {
         this->Resync();
     }
-    return BadnessScore;
+    return this->BadnessScore;
 }
 
 void WikiUser::SetBadnessScore(long value)
 {
     this->Resync();
-    BadnessScore = value;
+    this->BadnessScore = value;
     this->Update(true);
 }
 
@@ -435,10 +435,10 @@ QString WikiUser::Flags()
 }
 bool WikiUser::GetBot() const
 {
-    return Bot;
+    return this->Bot;
 }
 
 void WikiUser::SetBot(bool value)
 {
-    Bot = value;
+    this->Bot = value;
 }

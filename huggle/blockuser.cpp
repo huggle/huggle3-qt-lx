@@ -234,7 +234,7 @@ void BlockUser::on_pushButton_clicked()
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
-    if (this->ui->comboBox->currentText() != "indefinite")
+    if (this->ui->comboBox_2->currentText() != "indefinite")
     {
         blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessage;
         blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
