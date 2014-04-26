@@ -909,14 +909,9 @@ bool Configuration::ParseProjectConfig(QString config)
     }
     // sanitize
     if (this->ProjectConfig_ReportAIV == "")
-    {
         this->ProjectConfig_AIV = false;
-    }
     // Do the same for UAA as well
-    if (this->ProjectConfig_UAAPath == "")
-    {
-        this->ProjectConfig_UAAavailable = false;
-    }
+    this->ProjectConfig_UAAavailable = this->ProjectConfig_UAAPath != "";
     return true;
 }
 

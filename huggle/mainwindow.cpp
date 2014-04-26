@@ -501,31 +501,19 @@ void MainWindow::UpdateStatusBarData()
         double EditsPerMinute = 0;
         double RevertsPerMinute = 0;
         if (Core::HuggleCore->PrimaryFeedProvider->EditCounter > 0)
-        {
             EditsPerMinute = Core::HuggleCore->PrimaryFeedProvider->EditCounter / (Uptime / 60);
-        }
         if (Core::HuggleCore->PrimaryFeedProvider->RvCounter > 0)
-        {
             RevertsPerMinute = Core::HuggleCore->PrimaryFeedProvider->RvCounter / (Uptime / 60);
-        }
         double VandalismLevel = 0;
         if (EditsPerMinute > 0 && RevertsPerMinute > 0)
-        {
             VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;
-        }
         QString color = "green";
         if (VandalismLevel > 0.8)
-        {
             color = "blue";
-        }
         if (VandalismLevel > 1.2)
-        {
             color = "black";
-        }
         if (VandalismLevel > 1.8)
-        {
             color = "orange";
-        }
         // make the numbers easier to read
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
@@ -1939,7 +1927,7 @@ void MainWindow::on_actionReport_username_triggered()
     {
         return;
     }
-    if (Configuration::HuggleConfiguration->ProjectConfig_UAAavailable)
+    if (!Configuration::HuggleConfiguration->ProjectConfig_UAAavailable)
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
@@ -1949,7 +1937,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (this->CurrentEdit->User->IsIP())
     {
-        this->ui->actionReport_username->setDisabled(true);
+        Syslog::HuggleLogs->ErrorLog("You can't report IP address using this feature");
         return;
     }
     if (this->fUaaReportForm != NULL)
