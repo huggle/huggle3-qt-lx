@@ -11,6 +11,7 @@
 #include "uaareport.hpp"
 #include "wikiutil.hpp"
 #include "configuration.hpp"
+#include "generic.hpp"
 #include "ui_uaareport.h"
 
 using namespace Huggle;
@@ -20,11 +21,13 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
     this->ui->setupUi(this);
     this->User = NULL;
     this->ContentsOfUAA = "";
+    this->Timer = new QTimer(this);
+    connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
     this->qUAApage = NULL;
     this->page = NULL;
-    this->Timer = NULL;
-    this->qChUAApage = NULL;
-    this->cuT = NULL;
+    this->qCheckUAAUser = NULL;
+    this->TimerCheck = new QTimer(this);
+    connect(this->TimerCheck, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
     this->dr = "";
     this->OptionalReason = "";
     this->ta = "";
@@ -34,6 +37,7 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
 UAAReport::~UAAReport()
 {
     this->DelRef();
+    delete this->TimerCheck;
     delete this->User;
     delete this->ui;
     delete this->Timer;
@@ -52,21 +56,12 @@ void UAAReport::getPageContents()
     {
         this->qUAApage->DecRef();
     }
-    this->qUAApage = new ApiQuery();
-    this->qUAApage->SetAction(ActionQuery);
-    this->qUAApage->Parameters = "prop=revisions&rvprop=content&titles=" + QUrl::toPercentEncoding
-                                        (Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
+    this->qUAApage = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
     /// \todo LOCALIZE THIS
     this->qUAApage->Target = "Getting content of UAA";
     this->qUAApage->IncRef();
-    QueryPool::HugglePool->AppendQuery(qUAApage);
+    QueryPool::HugglePool->AppendQuery(this->qUAApage);
     this->qUAApage->Process();
-    if (this->Timer != NULL)
-    {
-        delete this->Timer;
-    }
-    this->Timer = new QTimer(this);
-    connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
     this->Timer->start(200);
 }
 
@@ -179,16 +174,13 @@ void UAAReport::on_pushButton_2_clicked()
 
 void UAAReport::on_pushButton_3_clicked()
 {
-    this->qChUAApage = new ApiQuery();
-    this->qChUAApage->SetAction(ActionQuery);
-    this->qChUAApage->Parameters = "prop=revisons&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") + "titles="
-            + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
-    this->qChUAApage->IncRef();
-    QueryPool::HugglePool->AppendQuery(qChUAApage);
-    this->qChUAApage->Process();
-    this->cuT = new QTimer(this);
-    connect(this->cuT, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
-    this->cuT->start(100);
+    this->ui->pushButton_3->setEnabled(false);
+    this->qCheckUAAUser = new ApiQuery(ActionQuery);
+    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
+    this->qCheckUAAUser->IncRef();
+    QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
+    this->qCheckUAAUser->Process();
+    this->TimerCheck->start(100);
 }
 
 bool UAAReport::checkIfReported()
@@ -198,14 +190,14 @@ bool UAAReport::checkIfReported()
 
 void UAAReport::onStartOfSearch()
 {
-    if (this->qChUAApage == NULL || !this->qChUAApage->IsProcessed())
+    if (this->qCheckUAAUser == NULL || !this->qCheckUAAUser->IsProcessed())
         return;
     QDomDocument tj;
-    tj.setContent(qChUAApage->Result->Data);
+    tj.setContent(this->qCheckUAAUser->Result->Data);
     QDomNodeList chkusr = tj.elementsByTagName("rev");
-    this->cuT->stop();
-    this->qChUAApage->DecRef();
-    this->qChUAApage = NULL;
+    this->TimerCheck->stop();
+    this->qCheckUAAUser->DecRef();
+    this->qCheckUAAUser = NULL;
     QMessageBox mb;
     if (chkusr.count() == 0)
     {
@@ -231,10 +223,10 @@ void UAAReport::onStartOfSearch()
 
 void UAAReport::DelRef()
 {
-    if (this->qChUAApage != NULL)
+    if (this->qCheckUAAUser != NULL)
     {
-        this->qChUAApage->DecRef();
-        this->qChUAApage = NULL;
+        this->qCheckUAAUser->DecRef();
+        this->qCheckUAAUser = NULL;
     }
     if (this->qUAApage != NULL)
     {

@@ -80,9 +80,9 @@ namespace Huggle
             //! Timer pointer that allows us to do magical things
             QTimer *Timer;
             //! Timer that does other magical things
-            QTimer *cuT;
+            QTimer *TimerCheck;
             //! Pointer that also gets UAA contents; this time it is used for checking if a user is reported or not
-            ApiQuery *qChUAApage;
+            ApiQuery *qCheckUAAUser;
     };
 }
 
