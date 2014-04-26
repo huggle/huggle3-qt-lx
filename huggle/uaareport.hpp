@@ -12,11 +12,6 @@
 #define UAAREPORT_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -26,8 +21,6 @@
 #include <QtXml>
 #include <QTimer>
 #include <QUrl>
-#include "wikiutil.hpp"
-#include "configuration.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
 #include "apiquery.hpp"
@@ -58,6 +51,7 @@ namespace Huggle
             void onTick();
             void onStartOfSearch();
         private:
+            void DelRef();
             //! Function to decide what we are reporting
             void whatToReport();
             //! Check if user is reported
@@ -84,7 +78,7 @@ namespace Huggle
             //! Pointer to get UAA contents (we don't want replace the page with our content, do we?)
             ApiQuery *qUAApage;
             //! Timer pointer that allows us to do magical things
-            QTimer *uT;
+            QTimer *Timer;
             //! Timer that does other magical things
             QTimer *cuT;
             //! Pointer that also gets UAA contents; this time it is used for checking if a user is reported or not
