@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -182,6 +182,8 @@
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
     <addaction name="actionClear"/>
+    <addaction name="actionRemove_edits_made_by_whitelisted_users"/>
+    <addaction name="actionDelete_all_edits_with_score_lower_than_200"/>
    </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
@@ -887,6 +889,16 @@
   <action name="actionRequest_protection">
    <property name="text">
     <string>Request protection of page</string>
+   </property>
+  </action>
+  <action name="actionRemove_edits_made_by_whitelisted_users">
+   <property name="text">
+    <string>Remove edits made by whitelisted users</string>
+   </property>
+  </action>
+  <action name="actionDelete_all_edits_with_score_lower_than_200">
+   <property name="text">
+    <string>Delete edits with score lower than -200</string>
    </property>
   </action>
  </widget>

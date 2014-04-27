@@ -2209,3 +2209,15 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     this->fRFProtection = new RequestProtect(this->CurrentEdit->Page);
     this->fRFProtection->show();
 }
+
+void Huggle::MainWindow::on_actionRemove_edits_made_by_whitelisted_users_triggered()
+{
+    // the number must be higher that the real score so that we match even the edits
+    // which have the same score (-800 + 1) > (-800)
+    this->Queue1->DeleteByScore(Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore + 1);
+}
+
+void Huggle::MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_triggered()
+{
+    this->Queue1->DeleteByScore(-200);
+}

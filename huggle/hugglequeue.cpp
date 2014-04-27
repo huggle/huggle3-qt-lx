@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "hugglequeue.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
 #include "ui_hugglequeue.h"
 
 using namespace Huggle;
@@ -337,6 +339,36 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         }
         curr++;
     }
+}
+
+int HuggleQueue::DeleteByScore(long Score)
+{
+    int result = 0;
+    int c = 0;
+    while (c < this->Items.count())
+    {
+        HuggleQueueItemLabel *item = this->Items.at(c);
+        if (item->Page->Score < Score)
+        {
+            if (Core::HuggleCore->Main->CurrentEdit == item->Page)
+            {
+                // we can't delete item that is being reviewed now
+                c++;
+                continue;
+            }
+            if (this->DeleteItem(item))
+            {
+                // we sucessfuly deleted the item
+                result++;
+            } else
+            {
+                c++;
+                continue;
+            }
+        }
+        c++;
+    }
+    return result;
 }
 
 void HuggleQueue::Trim(int i)

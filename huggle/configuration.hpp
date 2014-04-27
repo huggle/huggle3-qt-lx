@@ -474,7 +474,7 @@ namespace Huggle
             QString          ProjectConfig_SpeedyWarningSummary;
             QStringList      ProjectConfig_SpeedyTemplates;
             QStringList      ProjectConfig_WelcomeTypes;
-            int              ProjectConfig_WhitelistScore;
+            long             ProjectConfig_WhitelistScore;
 
             // UAA
             QString          ProjectConfig_UAAPath;

@@ -23,10 +23,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
-#include "exception.hpp"
 #include "hugglequeueitemlabel.hpp"
 #include "wikiedit.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -53,6 +51,12 @@ namespace Huggle
              */
             void AddItem(WikiEdit *page);
             void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+            /*!
+             * \brief DeleteByScore deletes all edits that have lower than specified score
+             * \param Score
+             * \return number of records that matched the score
+             */
+            int DeleteByScore(long Score);
             bool DeleteByRevID(int RevID);
             //! Delete all edits to the page that are older than this edit
             void DeleteOlder(WikiEdit *edit);
@@ -69,10 +73,8 @@ namespace Huggle
             void Clear();
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
-
         private slots:
             void on_comboBox_currentIndexChanged(int index);
-
         private:
             long GetScore(int id);
             void ResortItem(QLayoutItem *item, int position = -1);
