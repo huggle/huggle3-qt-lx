@@ -224,6 +224,8 @@ Configuration::Configuration()
     // System (pc wide)
     //////////////////////////////////////////////////////////////////////////////////////////
 
+    this->SystemConfig_DelayVal = 0;
+    this->SystemConfig_RequestDelay = false;
     this->SystemConfig_WhitelistDisabled = false;
     this->SystemConfig_QueryListTimeLimit = 2;
     this->SystemConfig_HistorySize = 20;
@@ -595,6 +597,16 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList = option.attribute("text");
             continue;
         }
+        if (key == "DelayVal")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_DelayVal = option.attribute("text").toUInt();
+            continue;
+        }
+        if (key == "RequestDelay")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_RequestDelay = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -612,6 +624,8 @@ void Configuration::SaveSystemConfig()
     writer->setAutoFormatting(true);
     writer->writeStartDocument();
     writer->writeStartElement("huggle");
+    InsertConfig("DelayVal", QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal), writer);
+    InsertConfig("RequestDelay", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_RequestDelay), writer);
     InsertConfig("UsingSSL", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL), writer);
     InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_QueueSize), writer);
     InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, writer);

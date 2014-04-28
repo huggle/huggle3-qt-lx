@@ -314,9 +314,7 @@ namespace Huggle
             void on_actionDisplay_user_messages_triggered();
             void on_actionDisplay_bot_data_triggered();
             void on_actionRequest_protection_triggered();
-
             void on_actionRemove_edits_made_by_whitelisted_users_triggered();
-
             void on_actionDelete_all_edits_with_score_lower_than_200_triggered();
 
         private:
@@ -345,6 +343,7 @@ namespace Huggle
             void IncreaseBS();
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QDateTime EditLoad;
             QString RestoreEdit_RevertReason;
             // Whitelist
             QTimer *wlt;

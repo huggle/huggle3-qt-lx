@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->fRFProtection = NULL;
     this->Ignore = NULL;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
+    this->EditLoad = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
     this->EditablePage = false;
     this->ShuttingDown = false;
@@ -348,6 +349,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         }
     }
     this->CurrentEdit = e;
+    this->EditLoad = QDateTime::currentDateTime();
     this->Browser->DisplayDiff(e);
     this->Render();
     e->DecRef();
@@ -1048,7 +1050,7 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1067,7 +1069,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1091,7 +1093,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1115,7 +1117,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
 void MainWindow::on_actionRevert_triggered()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1153,7 +1155,7 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1171,7 +1173,7 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-    if (!this->CheckExit())
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1331,6 +1333,16 @@ bool MainWindow::CheckEditableBrowserPage()
         mb.setText(Localizations::HuggleLocalizations->Localize("main-no-page"));
         mb.exec();
         return false;
+    }
+    if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
+    {
+        qint64 wt = QDateTime::currentDateTime().msecsTo(this->EditLoad.addSecs(Configuration::HuggleConfiguration->SystemConfig_DelayVal));
+        if (wt > 0)
+        {
+            Syslog::HuggleLogs->WarningLog("Ignoring edit request because you are too fast, please wait " +
+                                           QString::number(wt)+ " ms");
+            return false;
+        }
     }
     return true;
 }
@@ -1961,7 +1973,7 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 
 void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 {
-    if (this->CurrentEdit == NULL || !this->CheckExit())
+    if (this->CurrentEdit == NULL || !this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }

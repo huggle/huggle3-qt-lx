@@ -136,7 +136,6 @@ void HuggleFeedProviderWiki::Process(QString data)
         CurrentNode--;
         // get a time of rc change
         QDomElement item = l.at(CurrentNode).toElement();
-
         if (item.nodeName() != "rc")
         {
             CurrentNode--;
@@ -172,7 +171,6 @@ void HuggleFeedProviderWiki::Process(QString data)
             continue;
         }
         QString type = item.attribute("type");
-
         if (type == "edit" || type == "new")
         {
             ProcessEdit(item);
@@ -235,7 +233,6 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
         QString admin = item.attribute("user");
         QString blockeduser = item.attribute("title"); // including User-namespaceprefix
         QString reason = item.attribute("comment");
-
         if (logaction == "block" || logaction == "reblock")
         {
             QDomElement blockinfo = item.elementsByTagName("block").at(0).toElement(); // nested element "block"
@@ -256,7 +253,6 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
         QString page = item.attribute("title");
         QString admin = item.attribute("user");
         QString reason = item.attribute("comment");
-
         Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason);
         // TODO: process page deletes further (e.g. remove page from queue)
     }

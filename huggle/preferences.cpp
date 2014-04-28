@@ -87,6 +87,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     }
     this->Disable();
     // options
+    this->ui->checkBox_26->setChecked(Configuration::HuggleConfiguration->SystemConfig_RequestDelay);
+    this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
+    this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
@@ -98,6 +101,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->ProjectConfig_ConfirmTalk);
     this->ui->checkBox_16->setChecked(Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders);
     this->ui->checkBox_19->setChecked(Configuration::HuggleConfiguration->UserConfig_TruncateEdits);
+    this->ui->lineEdit_2->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal));
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
     this->ui->checkBox_21->setChecked(Configuration::HuggleConfiguration->UserConfig_LastEdit);
     this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
@@ -197,6 +201,8 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UserConfig_DisplayTitle = this->ui->checkBox_23->isChecked();
     Configuration::HuggleConfiguration->UserConfig_ManualWarning = this->ui->checkBox_24->isChecked();
     Configuration::HuggleConfiguration->UserConfig_CheckTP = this->ui->checkBox_25->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
     if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;
@@ -301,4 +307,10 @@ void Preferences::Reload()
         this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
         c++;
     }
+}
+
+void Huggle::Preferences::on_checkBox_26_clicked()
+{
+    this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
+    this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
 }

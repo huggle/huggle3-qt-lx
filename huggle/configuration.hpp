@@ -277,6 +277,8 @@ namespace Huggle
             //! Whether huggle check for an update on startup
             bool            SystemConfig_UpdatesEnabled;
             bool            SystemConfig_LanguageSanity;
+            bool            SystemConfig_RequestDelay;
+            unsigned int    SystemConfig_DelayVal;
             //! This is a size of cache used by HAN to keep data about other user messages
 
             //! HAN need this so that changes that are first announced on there, but parsed from slower

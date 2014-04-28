@@ -331,6 +331,27 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_26">
+         <property name="text">
+          <string>Require a delay after every load of next edit, for which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Time for which you need to wait between edit features are enabled (seconds):</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_2"/>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>On change of page, revert etc</string>
