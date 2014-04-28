@@ -48,8 +48,9 @@ SOURCES += tst_testmain.cpp \
     ../../login.cpp \
     ../../ignorelist.cpp \
     ../../iextension.cpp \
-    ../../huggleweb.cpp \
+    ../../reloginform.cpp \
     ../../huggletool.cpp \
+    ../../huggleweb.cpp \
     ../../hugglequeueitemlabel.cpp \
     ../../hugglequeuefilter.cpp \
     ../../hugglequeue.cpp \
@@ -116,6 +117,7 @@ HEADERS += \
     ../../login.hpp \
     ../../ignorelist.hpp \
     ../../sleeper.hpp \
+    ../../reloginform.hpp \
     ../../iextension.hpp \
     ../../huggleweb.hpp \
     ../../huggletool.hpp \
