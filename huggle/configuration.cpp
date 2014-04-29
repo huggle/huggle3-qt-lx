@@ -11,6 +11,7 @@
 #include "configuration.hpp"
 #include <QDir>
 #include <QtXml>
+#include <QDesktopServices>
 #include "syslog.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
