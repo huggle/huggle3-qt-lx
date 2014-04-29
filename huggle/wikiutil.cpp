@@ -42,40 +42,24 @@ QString WikiUtil::MonthText(int n)
 RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
 {
     if (_e == NULL)
-    {
         throw new Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
-    }
     if (_e->User == NULL)
-    {
         throw new Exception("Object user was NULL in Core::Revert");
-    }
     _e->RegisterConsumer("Core::RevertEdit");
     if (_e->Page == NULL)
-    {
         throw new Exception("Object page was NULL");
-    }
 
     RevertQuery *query = new RevertQuery(_e);
-    if (summary != "")
-    {
+    if (summary.length())
         query->Summary = summary;
-    }
     query->MinorEdit = minor;
     QueryPool::HugglePool->AppendQuery(query);
     if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
-    {
         query->UsingSR = true;
-    } else
-    {
+    else
         query->UsingSR = !rollback;
-    }
-    query->Process();
-
     if (keep)
-    {
         query->RegisterConsumer("keep");
-    }
-
     return query;
 }
 

@@ -110,10 +110,13 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
     this->ui->checkBox_20->setChecked(Configuration::HuggleConfiguration->UserConfig_RevertNewBySame);
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->lineEdit_3->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_RevertDelay));
     this->ui->checkBox_24->setChecked(Configuration::HuggleConfiguration->UserConfig_ManualWarning);
     this->ui->checkBox_25->setChecked(Configuration::HuggleConfiguration->UserConfig_CheckTP);
+    this->ui->checkBox_27->setChecked(Configuration::HuggleConfiguration->SystemConfig_InstantReverts);
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig_DisplayTitle);
+    this->on_checkBox_27_clicked();
 }
 
 Preferences::~Preferences()
@@ -203,6 +206,8 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->UserConfig_CheckTP = this->ui->checkBox_25->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
+    Configuration::HuggleConfiguration->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
+    Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
     if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;
@@ -313,4 +318,10 @@ void Huggle::Preferences::on_checkBox_26_clicked()
 {
     this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
     this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
+}
+
+void Huggle::Preferences::on_checkBox_27_clicked()
+{
+    this->ui->label_3->setEnabled(!this->ui->checkBox_27->isChecked());
+    this->ui->lineEdit_3->setEnabled(!this->ui->checkBox_27->isChecked());
 }

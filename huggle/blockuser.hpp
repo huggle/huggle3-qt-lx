@@ -24,7 +24,6 @@
 #include <QTimer>
 #include "querypool.hpp"
 #include "apiquery.hpp"
-#include "configuration.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 

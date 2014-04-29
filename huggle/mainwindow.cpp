@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "mainwindow.hpp"
+#include "configuration.hpp"
 #include "reloginform.hpp"
 #include "ui_mainwindow.h"
 
@@ -548,6 +549,29 @@ void MainWindow::IncreaseBS()
     }
 }
 
+void MainWindow::ProcessReverts()
+{
+    if (this->RevertStack.count())
+    {
+        QDateTime now = QDateTime::currentDateTime().addSecs(-1 * Configuration::HuggleConfiguration->SystemConfig_RevertDelay);
+        int x = 0;
+        while (x < this->RevertStack.count())
+        {
+            RevertQuery *query_ = this->RevertStack.at(x);
+            if (now > query_->Date)
+            {
+                // we can finally revert it
+                query_->Process();
+                query_->DecRef();
+                this->RevertStack.removeAt(x);
+            } else
+            {
+                x++;
+            }
+        }
+    }
+}
+
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
@@ -586,6 +610,15 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
+        if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
+        {
+            q->Process();
+        } else
+        {
+            q->Date = QDateTime::currentDateTime();
+            q->IncRef();
+            this->RevertStack.append(q);
+        }
         if (next)
         {
             this->DisplayNext(q);
@@ -802,13 +835,12 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
+    this->ProcessReverts();
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;
     // if garbage collector is already destroyed there is no point in doing anything in here
     if (GC::gc == NULL)
-    {
         return;
-    }
     GC::gc->DeleteOld();
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
@@ -838,27 +870,21 @@ void MainWindow::OnMainTimerTick()
         }
     } else
     {
-        if (this->ui->actionStop_feed->isChecked())
+        if (this->ui->actionStop_feed->isChecked() && Core::HuggleCore->PrimaryFeedProvider->IsPaused())
         {
-            if (Core::HuggleCore->PrimaryFeedProvider->IsPaused())
-            {
-                Core::HuggleCore->PrimaryFeedProvider->Resume();
-            }
+            Core::HuggleCore->PrimaryFeedProvider->Resume();
         }
     }
-    if (RetrieveEdit)
+    if (RetrieveEdit && Core::HuggleCore->PrimaryFeedProvider->ContainsEdit())
     {
-        if (Core::HuggleCore->PrimaryFeedProvider->ContainsEdit())
+        // we take the edit and start post processing it
+        WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
+        if (edit != NULL)
         {
-            // we take the edit and start post processing it
-            WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
-            if (edit != NULL)
-            {
-                QueryPool::HugglePool->PostProcessEdit(edit);
-                edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
-                edit->DecRef();
-                this->PendingEdits.append(edit);
-            }
+            QueryPool::HugglePool->PostProcessEdit(edit);
+            edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
+            edit->DecRef();
+            this->PendingEdits.append(edit);
         }
     }
     if (this->PendingEdits.count() > 0)
@@ -913,17 +939,14 @@ void MainWindow::OnMainTimerTick()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
-    if (this->OnNext_EvPage != NULL && this->qNext != NULL)
+    if (this->OnNext_EvPage != NULL && this->qNext != NULL && this->qNext->IsProcessed())
     {
-        if (this->qNext->IsProcessed())
-        {
-            this->tb->SetPage(this->OnNext_EvPage);
-            this->tb->RenderEdit();
-            this->qNext->DecRef();
-            delete this->OnNext_EvPage;
-            this->OnNext_EvPage = NULL;
-            this->qNext = NULL;
-        }
+        this->tb->SetPage(this->OnNext_EvPage);
+        this->tb->RenderEdit();
+        this->qNext->DecRef();
+        delete this->OnNext_EvPage;
+        this->OnNext_EvPage = NULL;
+        this->qNext = NULL;
     }
     this->FinishRestore();
     this->TruncateReverts();
@@ -2240,4 +2263,23 @@ void Huggle::MainWindow::on_actionRelog_triggered()
     ReloginForm *form = new ReloginForm(this);
     form->exec();
     delete form;
+}
+
+void Huggle::MainWindow::on_actionAbort_2_triggered()
+{
+    if (!this->RevertStack.count())
+    {
+        Syslog::HuggleLogs->ErrorLog("Nothing to stop");
+        return;
+    }
+    if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
+    {
+        Syslog::HuggleLogs->ErrorLog("Unable to cancel the current operation, you need to disable Instant reverts in preferences for this feature to work");
+        return;
+    }
+    // we cancel the latest revert query that is waiting in a stack
+    RevertQuery *revert_query = this->RevertStack.last();
+    revert_query->Kill();
+    this->RevertStack.removeLast();
+    revert_query->DecRef();
 }

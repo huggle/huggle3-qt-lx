@@ -105,7 +105,7 @@ QString Query::QueryStatusToString()
     switch (this->Status)
     {
         case StatusNull:
-            return "NULL";
+            return "Waiting";
         case StatusDone:
             return "Done";
         case StatusProcessing:

@@ -19,6 +19,7 @@
 
 #include <QString>
 #include <QtXml>
+#include <QDateTime>
 #include <QTimer>
 #include "configuration.hpp"
 #include "editquery.hpp"
@@ -51,6 +52,8 @@ namespace Huggle
             bool IsProcessed();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR;
+            //! Time when a query was issued (this is set externaly)
+            QDateTime Date;
             QString Summary;
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck;
@@ -73,7 +76,7 @@ namespace Huggle
             ApiQuery *qRevert;
             ApiQuery *qRetrieve;
             ApiQuery *qSR_PageToken;
-            EditQuery *EditQuerySoftwareRollback;
+            EditQuery *eqSoftwareRollback;
             WikiEdit* edit;
             QTimer *timer;
             bool RollingBack;

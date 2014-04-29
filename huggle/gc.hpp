@@ -38,6 +38,7 @@
 #define HUGGLECONSUMER_QP_REVERTBUFFER          12
 #define HUGGLECONSUMER_MAINFORM_HISTORICAL      13
 #define HUGGLECONSUMER_QP_MODS                  14
+#define HUGGLECONSUMER_REVERTQUERYTMR           16
 #define HUGGLECONSUMER_CORE                     800
 
 namespace Huggle

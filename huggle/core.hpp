@@ -28,7 +28,6 @@
 #include "syslog.hpp"
 #include "query.hpp"
 #include "login.hpp"
-#include "configuration.hpp"
 #include "wikiedit.hpp"
 #include "mainwindow.hpp"
 #include "exceptionwindow.hpp"

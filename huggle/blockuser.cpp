@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "blockuser.hpp"
+#include "configuration.hpp"
 #include "ui_blockuser.h"
 
 using namespace Huggle;
