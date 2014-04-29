@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -92,6 +92,7 @@
      <addaction name="actionSimulate_message"/>
      <addaction name="actionHtml_dump"/>
      <addaction name="actionEnforce_sysop_rights"/>
+     <addaction name="actionRelog"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -899,6 +900,11 @@
   <action name="actionDelete_all_edits_with_score_lower_than_200">
    <property name="text">
     <string>Delete edits with score lower than -200</string>
+   </property>
+  </action>
+  <action name="actionRelog">
+   <property name="text">
+    <string>Re_login</string>
    </property>
   </action>
  </widget>

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "mainwindow.hpp"
+#include "reloginform.hpp"
 #include "ui_mainwindow.h"
 
 using namespace Huggle;
@@ -2232,4 +2233,11 @@ void Huggle::MainWindow::on_actionRemove_edits_made_by_whitelisted_users_trigger
 void Huggle::MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_triggered()
 {
     this->Queue1->DeleteByScore(-200);
+}
+
+void Huggle::MainWindow::on_actionRelog_triggered()
+{
+    ReloginForm *form = new ReloginForm(this);
+    form->exec();
+    delete form;
 }
