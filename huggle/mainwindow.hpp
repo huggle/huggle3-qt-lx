@@ -316,6 +316,7 @@ namespace Huggle
             void on_actionRequest_protection_triggered();
             void on_actionRemove_edits_made_by_whitelisted_users_triggered();
             void on_actionDelete_all_edits_with_score_lower_than_200_triggered();
+            void on_actionRelog_triggered();
 
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well

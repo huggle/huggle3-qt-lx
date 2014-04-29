@@ -27,10 +27,14 @@ namespace Huggle
     class ReloginForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit ReloginForm(QWidget *parent = 0);
             ~ReloginForm();
+
+        private slots:
+            void on_pushButton_clicked();
+
+            void on_pushButton_2_clicked();
 
         private:
             Ui::ReloginForm *ui;

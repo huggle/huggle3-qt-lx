@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "reloginform.hpp"
+#include "core.hpp"
 #include "ui_reloginform.h"
 
 using namespace Huggle;
@@ -20,4 +21,14 @@ ReloginForm::ReloginForm(QWidget *parent) : QDialog(parent), ui(new Ui::ReloginF
 ReloginForm::~ReloginForm()
 {
     delete ui;
+}
+
+void Huggle::ReloginForm::on_pushButton_clicked()
+{
+    Core::HuggleCore->Shutdown();
+}
+
+void Huggle::ReloginForm::on_pushButton_2_clicked()
+{
+
 }
