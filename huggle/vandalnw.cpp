@@ -9,7 +9,10 @@
 //GNU General Public License for more details.
 
 #include "vandalnw.hpp"
+#include "core.hpp"
+#include "configuration.hpp"
 #include "ui_vandalnw.h"
+#include "syslog.hpp"
 
 using namespace Huggle;
 

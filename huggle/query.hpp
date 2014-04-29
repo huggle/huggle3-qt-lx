@@ -23,8 +23,6 @@
 #include <QNetworkAccessManager>
 #include "queryresult.hpp"
 #include "collectable.hpp"
-#include "exception.hpp"
-#include "gc.hpp"
 
 namespace Huggle
 {

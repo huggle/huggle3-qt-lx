@@ -23,9 +23,6 @@
 #include <QPluginLoader>
 #include <QFile>
 #include <QMap>
-#include <QtXml>
-#include <QMessageBox>
-#include "syslog.hpp"
 #include "query.hpp"
 #include "login.hpp"
 #include "wikiedit.hpp"
@@ -34,7 +31,6 @@
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #include "editquery.hpp"
-#include "localization.hpp"
 #include "resources.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"

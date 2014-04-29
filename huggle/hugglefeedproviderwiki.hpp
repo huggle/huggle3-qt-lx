@@ -21,17 +21,10 @@
 #include <QList>
 #include <QStringList>
 #include <QString>
-#include <QtXml/QtXml>
 #include <QDateTime>
 #include "hugglefeed.hpp"
-#include "exception.hpp"
-#include "querypool.hpp"
-#include "mainwindow.hpp"
-#include "mediawiki.hpp"
 #include "apiquery.hpp"
-#include "configuration.hpp"
 #include "wikiedit.hpp"
-#include "localization.hpp"
 
 namespace Huggle
 {

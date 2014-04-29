@@ -24,7 +24,6 @@
 #include <QString>
 #include <QtNetwork/QtNetwork>
 #include <QUrl>
-#include "configuration.hpp"
 #include "query.hpp"
 
 namespace Huggle

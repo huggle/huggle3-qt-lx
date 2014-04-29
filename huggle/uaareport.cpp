@@ -9,9 +9,12 @@
 //GNU General Public License for more details.
 
 #include "uaareport.hpp"
+#include <QtXml>
+#include <QMessageBox>
 #include "wikiutil.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
+#include "querypool.hpp"
 #include "ui_uaareport.h"
 
 using namespace Huggle;

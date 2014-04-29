@@ -8,8 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "definitions.hpp"
 #include "collectable.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;

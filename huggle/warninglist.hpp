@@ -12,8 +12,6 @@
 #define WARNINGLIST_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -21,9 +19,6 @@
 #include <QDialog>
 #include "wikiedit.hpp"
 #include "warnings.hpp"
-#include "configuration.hpp"
-#include "huggleparser.hpp"
-#include "localization.hpp"
 
 namespace Ui
 {

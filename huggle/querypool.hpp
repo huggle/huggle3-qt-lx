@@ -18,9 +18,7 @@
 
 #include <QList>
 #include "query.hpp"
-#include "exception.hpp"
 #include "processlist.hpp"
-#include "syslog.hpp"
 #include "message.hpp"
 #include "hugglefeed.hpp"
 #include "wikiedit.hpp"

@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "userinfoform.hpp"
+#include "exception.hpp"
+#include "querypool.hpp"
+#include "mainwindow.hpp"
 #include "ui_userinfoform.h"
 
 using namespace Huggle;

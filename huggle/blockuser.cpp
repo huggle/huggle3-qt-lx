@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "blockuser.hpp"
+#include <QCheckBox>
+#include <QtXml>
+#include <QMessageBox>
+#include "wikiutil.hpp"
+#include "querypool.hpp"
 #include "configuration.hpp"
 #include "ui_blockuser.h"
 

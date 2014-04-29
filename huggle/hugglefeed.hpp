@@ -18,7 +18,6 @@
 #endif
 
 #include <qdatetime.h>
-#include "exception.hpp"
 
 namespace Huggle
 {

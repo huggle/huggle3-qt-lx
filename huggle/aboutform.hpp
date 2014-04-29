@@ -19,8 +19,6 @@
 #endif
 
 #include <QDialog>
-#include "configuration.hpp"
-#include "localization.hpp"
 
 namespace Ui
 {
@@ -33,17 +31,14 @@ namespace Huggle
     class AboutForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit AboutForm(QWidget *parent = 0);
             ~AboutForm();
-
         private slots:
             void on_pushButton_clicked();
             void on_label_8_linkActivated(const QString &link);
             void on_label_5_linkActivated(const QString &link);
             void on_label_3_linkActivated(const QString &link);
-
         private:
                 Ui::AboutForm *ui;
     };

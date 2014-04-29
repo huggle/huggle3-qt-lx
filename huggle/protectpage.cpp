@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "protectpage.hpp"
+#include <QMessageBox>
+#include "configuration.hpp"
+#include "querypool.hpp"
 #include "ui_protectpage.h"
 
 using namespace Huggle;

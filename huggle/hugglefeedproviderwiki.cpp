@@ -9,6 +9,13 @@
 //GNU General Public License for more details.
 
 #include "hugglefeedproviderwiki.hpp"
+#include <QtXml>
+#include "mediawiki.hpp"
+#include "exception.hpp"
+#include "mainwindow.hpp"
+#include "localization.hpp"
+#include "configuration.hpp"
+#include "querypool.hpp"
 
 using namespace Huggle;
 

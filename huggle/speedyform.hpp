@@ -19,14 +19,10 @@
 
 #include <QTimer>
 #include <QDialog>
-#include "exception.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
-#include "generic.hpp"
 #include "editquery.hpp"
-#include "wikiutil.hpp"
 #include "wikiuser.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

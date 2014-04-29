@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "preferences.hpp"
+#include <QMessageBox>
+#include "core.hpp"
+#include "configuration.hpp"
 #include "ui_preferences.h"
 
 using namespace Huggle;

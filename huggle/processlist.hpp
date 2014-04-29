@@ -24,9 +24,6 @@
 #include <QHeaderView>
 #include <QDockWidget>
 #include "query.hpp"
-#include "exception.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

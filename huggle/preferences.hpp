@@ -19,7 +19,6 @@
 
 #include <QDialog>
 #include <QList>
-#include "configuration.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #ifdef PYTHONENGINE

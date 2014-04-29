@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "historyform.hpp"
+#include "querypool.hpp"
+#include "resources.hpp"
+#include "exception.hpp"
+#include "mainwindow.hpp"
+#include "localization.hpp"
+#include "wikiutil.hpp"
 #include "ui_historyform.h"
 
 using namespace Huggle;

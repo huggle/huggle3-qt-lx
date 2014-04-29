@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "query.hpp"
+#include "exception.hpp"
+#include "gc.hpp"
 
 using namespace Huggle;
 

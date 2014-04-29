@@ -9,7 +9,10 @@
 //GNU General Public License for more details.
 
 #include "updateform.hpp"
+#include <QDesktopServices>
+#include "configuration.hpp"
 #include "ui_updateform.h"
+
 using namespace Huggle;
 
 UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm)

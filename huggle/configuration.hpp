@@ -21,13 +21,8 @@
 #include <QList>
 #include <QStringList>
 #include <QHash>
-#include <QDir>
-#include <QtXml>
 #include <QString>
 #include "hugglequeuefilter.hpp"
-#include "syslog.hpp"
-#include "huggleparser.hpp"
-#include "localization.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 

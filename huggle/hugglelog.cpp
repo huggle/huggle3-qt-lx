@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "hugglelog.hpp"
+#include "exception.hpp"
+#include "syslog.hpp"
 #include "ui_hugglelog.h"
 
 using namespace Huggle;

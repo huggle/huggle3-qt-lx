@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "warnings.hpp"
+#include "configuration.hpp"
+#include "mainwindow.hpp"
+#include "querypool.hpp"
+#include "generic.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 

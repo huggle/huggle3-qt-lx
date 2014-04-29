@@ -20,18 +20,14 @@
 
 #include <QDialog>
 #include <QTimer>
-#include <QWebView>
 #include <QMutex>
-#include <QtXml>
 #include <QCheckBox>
 #include <QList>
-#include "generic.hpp"
 #include "blockuser.hpp"
 #include "editquery.hpp"
 #include "resources.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
-#include "configuration.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui

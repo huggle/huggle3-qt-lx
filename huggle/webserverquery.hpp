@@ -18,12 +18,8 @@
 
 #include <QList>
 #include <QString>
-#include <QtNetwork/QtNetwork>
-#include <QUrl>
-#include <QtXml/QtXml>
 #include <QObject>
 #include <QThread>
-#include "syslog.hpp"
 #include "query.hpp"
 
 namespace Huggle

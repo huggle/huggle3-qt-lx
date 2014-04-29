@@ -13,6 +13,9 @@
 #ifdef PYTHONENGINE
 
 #include "pythonengine.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
 using namespace Huggle::Python;

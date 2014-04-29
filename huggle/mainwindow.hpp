@@ -21,19 +21,14 @@
 #include <QTimer>
 #include <QInputDialog>
 #include <QLabel>
-#include <QDesktopServices>
 #include <QMutex>
-#include <QToolTip>
 #include <QThread>
 #include <QSplitter>
 #include <QDockWidget>
 #include "aboutform.hpp"
 #include "blockuser.hpp"
-#include "collectable.hpp"
-#include "core.hpp"
 #include "deleteform.hpp"
 #include "editquery.hpp"
-#include "exception.hpp"
 #include "hooks.hpp"
 #include "history.hpp"
 #include "hugglefeedproviderwiki.hpp"
@@ -56,20 +51,14 @@
 #include "revertquery.hpp"
 #include "requestprotect.hpp"
 #include "whitelistform.hpp"
-#include "generic.hpp"
-#include "gc.hpp"
 #include "sessionform.hpp"
-#include "querypool.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "warnings.hpp"
 #include "warninglist.hpp"
 #include "waitingform.hpp"
 #include "wlquery.hpp"
-#include "wikiutil.hpp"
 #include "uaareport.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 
 namespace Ui
 {
@@ -109,6 +98,7 @@ namespace Huggle
     class BlockUser;
     class ProtectPage;
     class WarningList;
+    class WLQuery;
     class UAAReport;
     class ScoreWordsDbForm;
 

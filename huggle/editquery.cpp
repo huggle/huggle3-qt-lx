@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include "querypool.hpp"
 
 using namespace Huggle;
 

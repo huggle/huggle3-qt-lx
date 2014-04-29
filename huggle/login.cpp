@@ -9,6 +9,14 @@
 //GNU General Public License for more details.
 
 #include "login.hpp"
+#include <QMessageBox>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtXml>
+#include "syslog.hpp"
+#include "localization.hpp"
+#include "core.hpp"
+#include "configuration.hpp"
 #include "ui_login.h"
 
 using namespace Huggle;

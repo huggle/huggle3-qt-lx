@@ -18,8 +18,6 @@
 #endif
 
 #include <QString>
-#include <QtXml>
-#include "exception.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
 

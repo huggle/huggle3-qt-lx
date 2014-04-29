@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "speedyform.hpp"
+#include <QMessageBox>
+#include "exception.hpp"
+#include "wikiutil.hpp"
+#include "generic.hpp"
+#include "configuration.hpp"
 #include "ui_speedyform.h"
 
 using namespace Huggle;

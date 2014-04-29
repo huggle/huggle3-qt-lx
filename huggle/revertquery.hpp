@@ -18,13 +18,10 @@
 #endif
 
 #include <QString>
-#include <QtXml>
 #include <QDateTime>
 #include <QTimer>
-#include "configuration.hpp"
 #include "editquery.hpp"
 #include "wikiedit.hpp"
-#include "wikiutil.hpp"
 #include "apiquery.hpp"
 
 namespace Huggle

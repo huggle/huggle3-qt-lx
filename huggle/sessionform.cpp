@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "sessionform.hpp"
+#include "configuration.hpp"
+#include "core.hpp"
 #include "ui_sessionform.h"
 
 using namespace Huggle;

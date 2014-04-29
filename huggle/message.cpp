@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "message.hpp"
+#include <QtXml>
+#include "core.hpp"
+#include "collectable.hpp"
+#include "querypool.hpp"
+#include "syslog.hpp"
+#include "generic.hpp"
 
 using namespace Huggle;
 

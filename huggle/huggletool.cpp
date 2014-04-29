@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "huggletool.hpp"
+#include "core.hpp"
+#include "exception.hpp"
+#include "configuration.hpp"
+#include "querypool.hpp"
+#include "syslog.hpp"
 #include "ui_huggletool.h"
 
 using namespace Huggle;

@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "history.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
+#include "exception.hpp"
 #include "ui_history.h"
 
 using namespace Huggle;

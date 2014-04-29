@@ -22,9 +22,7 @@
 #include <QtXml>
 #include <QTimer>
 #include "apiquery.hpp"
-#include "configuration.hpp"
 #include "wikipage.hpp"
-#include "querypool.hpp"
 
 namespace Ui
 {

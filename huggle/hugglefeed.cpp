@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "hugglefeed.hpp"
+#include "exception.hpp"
 
 using namespace Huggle;
 

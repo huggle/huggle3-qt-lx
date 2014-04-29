@@ -9,6 +9,10 @@
 //GNU General Public License for more details.
 
 #include "webserverquery.hpp"
+#include <QtNetwork>
+#include <QUrl>
+#include <QtXml>
+#include "syslog.hpp"
 
 using namespace Huggle;
 

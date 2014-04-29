@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "warninglist.hpp"
+#include <QMessageBox>
+#include "configuration.hpp"
+#include "core.hpp"
+#include "huggleparser.hpp"
+#include "localization.hpp"
 #include "ui_warninglist.h"
 
 using namespace Huggle;
@@ -44,7 +49,7 @@ WarningList::~WarningList()
 void WarningList::on_pushButton_clicked()
 {
     QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText());
-    if (wt == "")
+    if (wt.size() < 1)
     {
         QMessageBox mb;
         mb.setWindowTitle("No warning");

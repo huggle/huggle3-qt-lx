@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "aboutform.hpp"
+#include <QDesktopServices>
+#include "configuration.hpp"
+#include "localization.hpp"
 #include "ui_aboutform.h"
 
 using namespace Huggle;

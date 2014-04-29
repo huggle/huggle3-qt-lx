@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "hooks.hpp"
+#include "core.hpp"
+#include "syslog.hpp"
+#include "exception.hpp"
 
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {

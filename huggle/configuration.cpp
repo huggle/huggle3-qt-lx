@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "configuration.hpp"
+#include <QDir>
+#include <QtXml>
+#include "syslog.hpp"
+#include "huggleparser.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 

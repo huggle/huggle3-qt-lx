@@ -19,13 +19,8 @@
 
 #include <QDialog>
 #include <QTimer>
-#include <QtXml>
-#include <QLineEdit>
 #include <QString>
 #include <QUrl>
-#include "localization.hpp"
-#include "querypool.hpp"
-#include "configuration.hpp"
 #include "wikipage.hpp"
 #include "wikiuser.hpp"
 #include "apiquery.hpp"

@@ -18,14 +18,10 @@
 #endif
 
 #include <QDialog>
-#include <QCheckBox>
 #include <QString>
-#include <QtXml>
 #include <QTimer>
-#include "querypool.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"
-#include "wikiutil.hpp"
 
 namespace Ui
 {

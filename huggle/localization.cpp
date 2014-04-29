@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QFile>
 #include "exception.hpp"
+#include "configuration.hpp"
 
 using namespace Huggle;
 

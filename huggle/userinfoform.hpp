@@ -19,10 +19,7 @@
 
 #include <QDockWidget>
 #include <QString>
-#include "exception.hpp"
-#include "querypool.hpp"
 #include "wikiedit.hpp"
-#include "mainwindow.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"
 

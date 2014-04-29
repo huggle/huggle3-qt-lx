@@ -21,8 +21,6 @@
 #include <QFrame>
 #include "wikiedit.hpp"
 #include "hugglequeue.hpp"
-#include "exception.hpp"
-#include "mainwindow.hpp"
 
 namespace Ui
 {

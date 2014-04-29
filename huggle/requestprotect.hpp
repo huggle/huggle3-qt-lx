@@ -22,13 +22,8 @@
 #include <QDialog>
 #include <QRegExp>
 #include "wikipage.hpp"
-#include "generic.hpp"
-#include "localization.hpp"
 #include "apiquery.hpp"
-#include "querypool.hpp"
 #include "editquery.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

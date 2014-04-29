@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "revertquery.hpp"
+#include <QMessageBox>
+#include <QtXml>
+#include "configuration.hpp"
+#include "core.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 

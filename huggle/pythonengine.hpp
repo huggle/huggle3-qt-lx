@@ -23,9 +23,6 @@
 #include <QThread>
 #include <QMutex>
 #include <QList>
-#include "configuration.hpp"
-#include "exception.hpp"
-#include "syslog.hpp"
 
 namespace Huggle
 {

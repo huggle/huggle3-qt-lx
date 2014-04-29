@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wlquery.hpp"
+#include "configuration.hpp"
 using namespace Huggle;
 
 WLQuery::WLQuery()

@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "processlist.hpp"
+#include "exception.hpp"
+#include "core.hpp"
+#include "configuration.hpp"
 #include "ui_processlist.h"
 
 using namespace Huggle;

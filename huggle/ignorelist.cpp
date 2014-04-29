@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "ignorelist.hpp"
+#include "configuration.hpp"
 #include "ui_ignorelist.h"
 
 using namespace Huggle;

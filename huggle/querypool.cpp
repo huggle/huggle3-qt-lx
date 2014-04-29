@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "querypool.hpp"
+#include "wikiutil.hpp"
+#include "exception.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
 

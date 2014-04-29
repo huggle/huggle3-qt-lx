@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikiuser.hpp"
+#include "configuration.hpp"
 #include "syslog.hpp"
 using namespace Huggle;
 

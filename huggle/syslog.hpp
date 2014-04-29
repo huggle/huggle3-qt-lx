@@ -20,7 +20,6 @@
 #include <QFile>
 #include <QStringList>
 #include <QMutex>
-#include "configuration.hpp"
 
 namespace Huggle
 {

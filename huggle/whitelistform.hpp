@@ -19,7 +19,6 @@
 #include <QDialog>
 #include <QString>
 #include <QTimer>
-#include "configuration.hpp"
 
 namespace Ui
 {

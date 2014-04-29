@@ -9,6 +9,10 @@
 //GNU General Public License for more details.
 
 #include "huggleweb.hpp"
+#include <QDesktopServices>
+#include "exception.hpp"
+#include "syslog.hpp"
+#include "configuration.hpp"
 #include "ui_huggleweb.h"
 
 using namespace Huggle;

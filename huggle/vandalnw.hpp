@@ -20,11 +20,8 @@
 
 #include <QDockWidget>
 #include <QTimer>
-#include "syslog.hpp"
 #include "networkirc.hpp"
 #include "wikiedit.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

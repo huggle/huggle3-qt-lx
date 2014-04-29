@@ -18,18 +18,13 @@
 #endif
 
 #include <QString>
-#include <QtXml>
-#include "core.hpp"
 #include "history.hpp"
-#include "collectable.hpp"
 #include "apiquery.hpp"
-#include "querypool.hpp"
-#include "syslog.hpp"
-#include "generic.hpp"
 #include "wikiuser.hpp"
 
 namespace Huggle
 {
+    class ApiQuery;
     class Query;
 
     enum MessageStatus

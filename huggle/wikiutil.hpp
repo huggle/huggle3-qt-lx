@@ -20,13 +20,9 @@
 #endif
 
 #include <QString>
-#include "querypool.hpp"
 #include "editquery.hpp"
 #include "message.hpp"
-#include "exception.hpp"
-#include "syslog.hpp"
 #include "revertquery.hpp"
-#include "configuration.hpp"
 #include "wikipage.hpp"
 
 namespace Huggle

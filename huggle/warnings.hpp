@@ -19,16 +19,11 @@
 #include <QString>
 #include <QList>
 #include "apiquery.hpp"
-#include "configuration.hpp"
-#include "generic.hpp"
-#include "mainwindow.hpp"
 #include "message.hpp"
 #include "reportuser.hpp"
 #include "revertquery.hpp"
 #include "wikiedit.hpp"
-#include "wikiutil.hpp"
 #include "wikiuser.hpp"
-#include "querypool.hpp"
 
 namespace Huggle
 {

@@ -17,21 +17,13 @@
 #include <Python.h>
 #endif
 
-
 #include <QDialog>
-#include <QMessageBox>
 #include <QThread>
-#include <QUrl>
-#include <QtXml>
 #include <QTimer>
-#include "syslog.hpp"
-#include "localization.hpp"
-#include "core.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
 #include "updateform.hpp"
 #include "apiquery.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

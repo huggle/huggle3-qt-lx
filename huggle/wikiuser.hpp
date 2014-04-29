@@ -21,7 +21,6 @@
 #include <QString>
 #include <QRegExp>
 #include "huggleparser.hpp"
-#include "configuration.hpp"
 #include "wikiedit.hpp"
 
 namespace Huggle

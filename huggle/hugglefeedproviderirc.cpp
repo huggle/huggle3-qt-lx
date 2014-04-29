@@ -9,6 +9,10 @@
 //GNU General Public License for more details.
 
 #include "hugglefeedproviderirc.hpp"
+#include "querypool.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 

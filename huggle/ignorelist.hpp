@@ -19,7 +19,6 @@
 
 #include <QDialog>
 #include <QStandardItemModel>
-#include "configuration.hpp"
 
 namespace Ui
 {

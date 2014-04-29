@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "hugglequeue.hpp"
+#include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "ui_hugglequeue.h"

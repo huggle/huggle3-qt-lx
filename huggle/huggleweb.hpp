@@ -24,9 +24,6 @@
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
 #include "resources.hpp"
-#include "exception.hpp"
-#include "syslog.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {

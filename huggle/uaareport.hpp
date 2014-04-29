@@ -18,7 +18,6 @@
 
 #include <QDialog>
 #include <QString>
-#include <QtXml>
 #include <QTimer>
 #include <QUrl>
 #include "wikiuser.hpp"

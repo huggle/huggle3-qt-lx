@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "deleteform.hpp"
+#include <QtXml>
+#include <QLineEdit>
+#include "localization.hpp"
+#include <QMessageBox>
+#include "querypool.hpp"
+#include "configuration.hpp"
 #include "ui_deleteform.h"
 
 using namespace Huggle;

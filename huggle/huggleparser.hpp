@@ -21,7 +21,6 @@
 #include <QString>
 #include <QList>
 #include "hugglequeuefilter.hpp"
-#include "configuration.hpp"
 
 namespace Huggle
 {

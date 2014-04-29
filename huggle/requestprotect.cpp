@@ -9,6 +9,13 @@
 //GNU General Public License for more details.
 
 #include "requestprotect.hpp"
+#include <QMessageBox>
+#include "querypool.hpp"
+#include "generic.hpp"
+#include "core.hpp"
+#include "wikiutil.hpp"
+#include "localization.hpp"
+#include "configuration.hpp"
 #include "ui_requestprotect.h"
 
 using namespace Huggle;

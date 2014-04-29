@@ -9,6 +9,11 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.hpp"
+#include "generic.hpp"
+#include "core.hpp"
+#include "collectable.hpp"
+#include "querypool.hpp"
+#include "mediawiki.hpp"
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
 QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);

@@ -9,12 +9,22 @@
 //GNU General Public License for more details.
 
 #include "mainwindow.hpp"
+#include <QDesktopServices>
+#include <QMessageBox>
 #include "configuration.hpp"
 #include "reloginform.hpp"
+#include "generic.hpp"
+#include "gc.hpp"
+#include "querypool.hpp"
+#include "collectable.hpp"
+#include "core.hpp"
+#include "wikiutil.hpp"
+#include "exception.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_mainwindow.h"
 
 using namespace Huggle;
-
 MainWindow *MainWindow::HuggleMain = NULL;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)

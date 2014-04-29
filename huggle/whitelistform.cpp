@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "whitelistform.hpp"
+#include "configuration.hpp"
 #include "ui_whitelistform.h"
 
 using namespace Huggle;

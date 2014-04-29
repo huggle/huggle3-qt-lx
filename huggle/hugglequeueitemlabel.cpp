@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "hugglequeueitemlabel.hpp"
+#include "exception.hpp"
+#include "mainwindow.hpp"
 #include "ui_hugglequeueitemlabel.h"
 
 using namespace Huggle;

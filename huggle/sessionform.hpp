@@ -17,7 +17,6 @@
 #endif
 
 #include <QDialog>
-#include "configuration.hpp"
 
 namespace Ui
 {

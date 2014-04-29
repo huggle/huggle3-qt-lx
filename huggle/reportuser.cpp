@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "reportuser.hpp"
+#include <QMessageBox>
+#include <QtXml>
+#include <QWebView>
+#include "wikiutil.hpp"
+#include "generic.hpp"
+#include "configuration.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 

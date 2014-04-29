@@ -24,9 +24,7 @@
 #include <QDockWidget>
 #include <QMutex>
 #include <QDateTime>
-#include "exception.hpp"
 #include "huggleweb.hpp"
-#include "syslog.hpp"
 
 namespace Ui
 {

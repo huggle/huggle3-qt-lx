@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "terminalparser.hpp"
+#include <iostream>
+#include "configuration.hpp"
+#include "core.hpp"
 using namespace Huggle;
 using namespace std;
 

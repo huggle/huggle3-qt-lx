@@ -21,15 +21,9 @@
 #include <QString>
 #include <QObject>
 #include <QtNetwork/QtNetwork>
-#include <QUrl>
-#include <QtXml/QtXml>
-#include <QObject>
 #include <QThread>
-#include "syslog.hpp"
 #include "query.hpp"
 #include "revertquery.hpp"
-#include "configuration.hpp"
-#include "exception.hpp"
 
 namespace Huggle
 {
@@ -67,7 +61,6 @@ namespace Huggle
     class ApiQuery : public QObject, public Query
     {
             Q_OBJECT
-
         public:
             //! Creates a new instance of this class and set the defaults
             explicit ApiQuery();
@@ -97,11 +90,9 @@ namespace Huggle
             QString Target;
             //! You can change this to url of different wiki than a project
             QString OverrideWiki;
-
         private slots:
             void ReadData();
             void Finished();
-
         private:
             //! Generate api url
             void ConstructUrl();

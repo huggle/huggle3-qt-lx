@@ -22,7 +22,6 @@
 #include <QString>
 #include <QList>
 #include <QMap>
-#include "configuration.hpp"
 
 namespace Huggle
 {

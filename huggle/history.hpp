@@ -20,9 +20,6 @@
 #include <QString>
 #include <QList>
 #include <QDockWidget>
-#include "exception.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 
 namespace Ui
 {
