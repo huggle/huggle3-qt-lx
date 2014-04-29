@@ -79,6 +79,7 @@ void WLQuery::ReadData()
 void WLQuery::Finished()
 {
     this->Result->Data += QString(this->r->readAll());
+    Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
     // now we need to check if request was successful or not
     if (this->r->error())
     {
