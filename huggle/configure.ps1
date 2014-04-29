@@ -57,6 +57,13 @@ if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
     }
 }
 
+if (!(Test-Path "huggle.pro"))
+{
+    echo "Creating huggle.pro"
+    Copy-Item "huggle.orig" "huggle.pro"
+}
+
+
 $definitions_created = 0;
 
 if (!(Test-Path "definitions.hpp"))

@@ -231,6 +231,12 @@ if [ "$QT5" -eq 1 ];then
     checkhf xslt "/usr/include/libxslt/xslt.h"
 fi
 
+if [ ! -f huggle.pro ];then
+    text "Preparing huggle.pro file"
+    cp huggle.orig huggle.pro || exit 1
+    ok
+fi
+
 if [ $BREAKPAD -eq 0 ];then
     if [ ! -d breakpad ];then
         text "Breakpad library is not present, unpacking it..."
