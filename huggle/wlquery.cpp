@@ -38,12 +38,11 @@ void WLQuery::Process()
         url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
         QString whitelist = "";
         int p = 0;
-        Configuration::HuggleConfiguration->WhiteList.sort();
-        while (p < Configuration::HuggleConfiguration->WhiteList.count())
+        while (p < Configuration::HuggleConfiguration->NewWhitelist.count())
         {
-            if (Configuration::HuggleConfiguration->WhiteList.at(p) != "")
+            if (Configuration::HuggleConfiguration->NewWhitelist.at(p) != "")
             {
-                whitelist += Configuration::HuggleConfiguration->WhiteList.at(p) + "|";
+                whitelist += Configuration::HuggleConfiguration->NewWhitelist.at(p) + "|";
             }
             p++;
         }
@@ -55,7 +54,7 @@ void WLQuery::Process()
         params = "wl=" + QUrl::toPercentEncoding(whitelist);
         data = params.toUtf8();
         long size = (long)data.size();
-        Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size / 1024) + " kb");
+        Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte");
     }
     QNetworkRequest request(url);
     if (!Save)

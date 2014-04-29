@@ -229,6 +229,7 @@ namespace Huggle
             QString         WikiDB;
             //! Data of wl (list of users)
             QStringList     WhiteList;
+            QStringList     NewWhitelist;
             //! URL of wiki that contains a global config
             QString         GlobalConfigurationWikiAddress;
             //! Number of seconds for which the processed queries remain in list of processes

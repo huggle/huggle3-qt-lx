@@ -995,38 +995,10 @@ void MainWindow::OnTimerTick0()
 {
     if (this->Shutdown != ShutdownOpUpdatingConf)
     {
-        if (this->wq == NULL)
-        {
-            return;
-        }
         if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
-            if (Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled)
-            {
-                this->Shutdown = ShutdownOpUpdatingWhitelist;
-                return;
-            }
-            if (!this->wq->IsProcessed())
-            {
-                return;
-            }
-            QString list = wq->Result->Data;
-            list = list.replace("<!-- list -->", "");
-            QStringList wl = list.split("|");
-            int c=0;
-            this->fWaiting->Status(40, Localizations::HuggleLocalizations->Localize("merging"));
-            while (c < wl.count())
-            {
-                if (wl.at(c) != "")
-                {
-                    Configuration::HuggleConfiguration->WhiteList.append(wl.at(c));
-                }
-                c++;
-            }
-            Configuration::HuggleConfiguration->WhiteList.removeDuplicates();
-            this->fWaiting->Status(60, Localizations::HuggleLocalizations->Localize("updating-wl"));
             this->Shutdown = ShutdownOpUpdatingWhitelist;
-            this->wq->DecRef();
+            this->fWaiting->Status(60, Localizations::HuggleLocalizations->Localize("updating-wl"));
             this->wq = new WLQuery();
             this->wq->IncRef();
             this->wq->Save = true;
@@ -1314,9 +1286,6 @@ void MainWindow::Exit()
     this->fWaiting = new WaitingForm(this);
     this->fWaiting->show();
     this->fWaiting->Status(10, Localizations::HuggleLocalizations->Localize("whitelist-download"));
-    this->wq = new WLQuery();
-    this->wq->IncRef();
-    this->wq->Process();
     this->wlt = new QTimer(this);
     connect(this->wlt, SIGNAL(timeout()), this, SLOT(OnTimerTick0()));
     this->wlt->start(800);
