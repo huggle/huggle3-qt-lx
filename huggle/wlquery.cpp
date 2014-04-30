@@ -35,7 +35,9 @@ void WLQuery::Process()
     QByteArray data;
     if (Save)
     {
-        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
+        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&user=" +
+                      QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
+                      "&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
         QString whitelist = "";
         int p = 0;
         while (p < Configuration::HuggleConfiguration->NewWhitelist.count())
