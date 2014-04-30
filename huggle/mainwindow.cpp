@@ -113,6 +113,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (!Configuration::HuggleConfiguration->ProjectConfig_UseIrc)
     {
         Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("irc-not"));
+        this->ui->actionReconnect_IRC->setEnabled(false);
+        this->ui->actionIRC->setEnabled(false);
     }
     if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->ProjectConfig_UseIrc)
     {
