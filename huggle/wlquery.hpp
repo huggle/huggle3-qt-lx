@@ -22,12 +22,17 @@
 #endif
 
 #include <QString>
-#include <QtNetwork/QtNetwork>
-#include <QUrl>
 #include "query.hpp"
 
 namespace Huggle
 {
+    enum WLQueryType
+    {
+        WLQueryType_WriteWL,
+        WLQueryType_ReadWL,
+        WLQueryType_SuspWL
+    };
+ 
     //! Whitelist query :o
     class WLQuery : public QObject, public Query
     {
@@ -35,8 +40,13 @@ namespace Huggle
         public:
             WLQuery();
             ~WLQuery();
+            //! Get a query target as a string
+            QString QueryTargetToString();
+            //! Returns a type of query as a string
+            QString QueryTypeToString();
             void Process();
-            bool Save;
+            QString Parameters;
+            WLQueryType Type;
             double Progress;
         private slots:
             void ReadData();

@@ -1003,7 +1003,7 @@ void MainWindow::OnTimerTick0()
             this->fWaiting->Status(60, Localizations::HuggleLocalizations->Localize("updating-wl"));
             this->wq = new WLQuery();
             this->wq->IncRef();
-            this->wq->Save = true;
+            this->wq->Type = WLQueryType_WriteWL;
             this->wq->Process();
             return;
         }
@@ -1361,6 +1361,16 @@ void MainWindow::SuspiciousEdit()
     if (this->CurrentEdit != NULL)
     {
         Hooks::Suspicious(this->CurrentEdit);
+        WLQuery *wq_ = new WLQuery();
+        wq_->Type = WLQueryType_SuspWL;
+        wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
+                          + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Project->WhiteList) + "&user="
+                          + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username) + "&score="
+                          + QString::number(this->CurrentEdit->Score) + "&revid="
+                          + QString::number(this->CurrentEdit->RevID) + "&summary="
+                          + QUrl::toPercentEncoding(this->CurrentEdit->Summary);
+        wq_->Process();
+        QueryPool::HugglePool->AppendQuery(wq_);
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 1);
     }
     this->DisplayNext();
