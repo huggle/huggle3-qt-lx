@@ -33,7 +33,7 @@ void WLQuery::Process()
     QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
     QString params = "";
     QByteArray data;
-    if (Save)
+    if (this->Save)
     {
         url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&user=" +
                       QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
@@ -59,7 +59,7 @@ void WLQuery::Process()
         Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte");
     }
     QNetworkRequest request(url);
-    if (!Save)
+    if (!this->Save)
     {
         this->r = Query::NetworkManager->get(request);
     } else
@@ -81,7 +81,8 @@ void WLQuery::ReadData()
 void WLQuery::Finished()
 {
     this->Result->Data += QString(this->r->readAll());
-    Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
+    if (this->Save)
+        Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
     // now we need to check if request was successful or not
     if (this->r->error())
     {
