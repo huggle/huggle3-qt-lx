@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Huggle
 GenericName=Huggle
-Comment=Huggle is an antivandalism tool for use on wikipedia and related projects
+Comment=Huggle is an anti-vandalism tool for use on Wikipedia and related projects
 Exec=huggle
 Icon=/usr/share/huggle/huggle3_newlogo.png
 StartupNotify=true
