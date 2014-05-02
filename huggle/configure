@@ -222,7 +222,7 @@ else
             checkqt "qtlocation5-dev" "libqtlocation1"
             checkqt "libqtsensors5-dev" "qtsensors5-dev"
             # This is for Ubuntu 14.04; libqt5core5 has an a at the end of it
-            if [ "`lsb_release -a | grep trusty | wc -l`" -eq 1 ];then
+            if [ "`lsb_release -a | grep 'trusty\|amd64' | wc -l`" -eq 1 ];then
                 checkpkg "libqt5core5a"
             else
                 checkpkg "libqt5core5"
