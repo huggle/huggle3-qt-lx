@@ -465,11 +465,7 @@ QDateTime WikiEdit::GetUnknownEditTime()
 
 bool WikiEdit::IsPostProcessed()
 {
-    if (this->Status == StatusPostProcessed)
-    {
-        return true;
-    }
-    return false;
+    return (this->Status == StatusPostProcessed);
 }
 
 QMutex ProcessorThread::EditLock(QMutex::Recursive);

@@ -46,16 +46,19 @@ void WLQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
-    QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
+    QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist
+             + "?action=read&wp="
+             + Configuration::HuggleConfiguration->Project->WhiteList);
     switch (this->Type)
     {
         case WLQueryType_ReadWL:
             break;
         case WLQueryType_SuspWL:
-            url = QUrl("http://huggle.wmflabs.org/data/susp.php?action=insert&" + this->Parameters);
+            url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist +
+                       "susp.php?action=insert&" + this->Parameters);
             break;
         case WLQueryType_WriteWL:
-            url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&user=" +
+            url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist + "?action=save&user=" +
                       QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
                       "&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
             break;
@@ -108,15 +111,16 @@ void WLQuery::Finished()
 {
     this->Result->Data += QString(this->r->readAll());
     if (this->Type == WLQueryType_WriteWL)
+    {
         Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
+        if (!this->Result->Data.contains("written"))
+            Syslog::HuggleLogs->ErrorLog("Failed to store data to white list: " + this->Result->Data);
+    }
     // now we need to check if request was successful or not
     if (this->r->error())
     {
         this->Result->ErrorMessage = r->errorString();
         this->Result->Failed = true;
-        this->r->deleteLater();
-        this->r = NULL;
-        return;
     }
     this->r->deleteLater();
     this->r = NULL;

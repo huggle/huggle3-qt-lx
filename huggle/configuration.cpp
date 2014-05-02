@@ -60,6 +60,7 @@ Configuration::Configuration()
     //////////////////////////////////////////////////////////////////////////////////////////
     // Global
     //////////////////////////////////////////////////////////////////////////////////////////
+    this->GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
     this->GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
     this->GlobalConfig_EnableAll = true;
     this->GlobalConfig_MinVersion = HUGGLE_VERSION;

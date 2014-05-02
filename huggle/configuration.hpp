@@ -333,6 +333,7 @@ namespace Huggle
             QString     GlobalConfig_FeedbackPath;
             QString     GlobalConfig_UserConf;
             QString     GlobalConfig_UserConf_old;
+            QString     GlobalConfig_Whitelist;
             bool        GlobalConfigWasLoaded;
 
             //////////////////////////////////////////////
