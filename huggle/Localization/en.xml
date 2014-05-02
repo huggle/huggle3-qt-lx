@@ -402,7 +402,7 @@
     <string name="report-message">Message:</string>
     <string name="report-log">Warnings for this user:</string>
     <string name="report-include">Include in report</string>
-    <string name="report-evidence-none-provid">No diffs were provided as evidence, this will make it extremery hard for administrators to figure out if the user is a vandal or not. Are you sure you want to continue?</string>
+    <string name="report-evidence-none-provid">No diffs were provided as evidence, this will make it very hard for administrators to figure out if the user is a vandal or not. Are you sure you want to continue?</string>
     <string name="report-duplicate">The user has already been reported</string>
     <string name="report-fail">Did not report $1</string>
     <string name="report-fail2">Error unable to retrieve report page at $1</string>
