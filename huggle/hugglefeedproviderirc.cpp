@@ -175,7 +175,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         flags.contains("create")   || flags.contains("delete") ||
         flags.contains("restore")  || flags.contains("move") ||
         flags.contains("tag")      || /* abuse filter */flags.contains("hit") ||
-        flags.contains("patrol"))
+        flags.contains("patrol")   || flags.contains("revision"))
     {
         edit->DecRef();
         return;
