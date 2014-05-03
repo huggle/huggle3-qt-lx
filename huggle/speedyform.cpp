@@ -11,6 +11,7 @@
 #include "speedyform.hpp"
 #include <QMessageBox>
 #include "exception.hpp"
+#include "core.hpp"
 #include "wikiutil.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
@@ -51,6 +52,15 @@ SpeedyForm::~SpeedyForm()
 
 void SpeedyForm::on_pushButton_clicked()
 {
+    if (this->edit->Page->IsUserpage())
+    {
+        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "This page is in userspace, are you sure you want to delete it?",
+                                   text, QMessageBox::Yes|QMessageBox::No);
+        if (qb == QMessageBox::No)
+        {
+            return;
+        }
+    }
     if (this->ui->comboBox->currentText() == "")
     {
         QMessageBox mb;

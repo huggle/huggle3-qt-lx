@@ -41,14 +41,9 @@ RequestProtect::~RequestProtect()
 
 void RequestProtect::Tick()
 {
-    if (this->qRFPPage != NULL)
+    if (this->qRFPPage != NULL && this->qRFPPage->IsProcessed())
     {
         // we are reading the request page let's see if we got it
-        if (!this->qRFPPage->IsProcessed())
-        {
-            return;
-        }
-        // we finished let's parse the page now
         if (this->qRFPPage->IsFailed())
         {
             this->Fail("Unable to retrieve the current report page: " + this->qRFPPage->Result->ErrorMessage);
@@ -114,12 +109,8 @@ void RequestProtect::Tick()
         return;
     }
 
-    if (this->qEditRFP != NULL)
+    if (this->qEditRFP != NULL && this->qEditRFP->IsProcessed())
     {
-        if (!this->qEditRFP->IsProcessed())
-        {
-            return;
-        }
         if (this->qEditRFP->IsFailed())
         {
             this->Fail("Unable to process: " + this->qEditRFP->Result->ErrorMessage);
@@ -165,7 +156,7 @@ QString RequestProtect::ProtectionType()
 void RequestProtect::Fail(QString message)
 {
     QMessageBox mb;
-    mb.setWindowTitle(":(");
+    mb.setWindowTitle("Error");
     mb.setText(message);
     mb.exec();
     // delete the queries and stop

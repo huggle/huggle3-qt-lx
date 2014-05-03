@@ -11,6 +11,7 @@
 #include "huggletool.hpp"
 #include "core.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "configuration.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
@@ -75,10 +76,8 @@ void HuggleTool::RenderEdit()
     this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
     GC_DECREF(this->query);
-    this->query = new ApiQuery(ActionQuery);
     this->QueryPhase = 1;
-    this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
-                                + QUrl::toPercentEncoding(this->ui->lineEdit_3->text());
+    this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text());
     this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
