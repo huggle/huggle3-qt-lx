@@ -30,11 +30,13 @@ bool Generic::ReportPreFlightCheck()
     return (q != QMessageBox::No);
 }
 
-ApiQuery *Generic::RetrieveWikiPageContents(QString page)
+ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
 {
     ApiQuery *query = new ApiQuery(ActionQuery);
     query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                         "&titles=" + QUrl::toPercentEncoding(page);
+    if (parse)
+        query->Parameters += "&rvparse";
     return query;
 }
 

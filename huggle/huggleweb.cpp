@@ -179,7 +179,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
         Summary = Encode(edit->Summary);
     }
     HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "</td></tr>" +
-            HuggleWeb::Encode(edit->Page->Contents) + Resources::DiffFooter + Resources::HtmlFooter;
+            edit->Page->Contents + Resources::DiffFooter + Resources::HtmlFooter;
 
     this->ui->webView->setHtml(HTML);
 }

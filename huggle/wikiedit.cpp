@@ -445,7 +445,7 @@ void WikiEdit::PostProcess()
         this->ProcessingDiff = true;
     } else if (!this->Page->Contents.size())
     {
-        this->qText = Generic::RetrieveWikiPageContents(this->Page->PageName);
+        this->qText = Generic::RetrieveWikiPageContents(this->Page->PageName, true);
         this->qText->IncRef();
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         QueryPool::HugglePool->AppendQuery(this->qText);

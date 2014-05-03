@@ -54,7 +54,7 @@ namespace Huggle
          */
         QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = NULL, QString *comment = NULL,
                                          QString *user = NULL, int *revid = NULL, int *reason = NULL);
-        ApiQuery *RetrieveWikiPageContents(QString page);
+        ApiQuery *RetrieveWikiPageContents(QString page, bool parse = false);
         QString ShrinkText(QString text, int size, bool html = true);
     }
 }
