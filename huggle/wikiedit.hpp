@@ -158,6 +158,7 @@ namespace Huggle
             //! This is a query used to retrieve information about the user
             ApiQuery* qUser;
             ApiQuery* qDifference;
+            ApiQuery* qText;
     };
 }
 

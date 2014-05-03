@@ -37,6 +37,7 @@ WikiEdit::WikiEdit()
     this->PostProcessing = false;
     this->qDifference = NULL;
     this->qTalkpage = NULL;
+    this->qText = NULL;
     this->qUser = NULL;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
@@ -80,18 +81,9 @@ WikiEdit::~WikiEdit()
             this->Next->Previous = NULL;
         }
     }
-    if (this->qDifference != NULL)
-    {
-        this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    }
-    if (this->qTalkpage != NULL)
-    {
-        this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    }
-    if (this->qUser != NULL)
-    {
-        this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    }
+    GC_DECNAMEDREF(this->qDifference, HUGGLECONSUMER_WIKIEDIT);
+    GC_DECNAMEDREF(this->qTalkpage, HUGGLECONSUMER_WIKIEDIT);
+    GC_DECNAMEDREF(this->qUser, HUGGLECONSUMER_WIKIEDIT);
     delete this->User;
     delete this->Page;
 }
@@ -301,8 +293,19 @@ bool WikiEdit::FinalizePostProcessing()
         this->ProcessingDiff = false;
     }
 
+    if (this->qText != NULL && this->qText->IsProcessed())
+    {
+        bool failed = false;
+        QString result = Generic::EvaluateWikiPageContents(this->qText, &failed);
+        if (failed)
+            Syslog::HuggleLogs->ErrorLog("Failed to obtain text of " + this->Page->PageName + ": " + result);
+        else
+            this->Page->Contents = result;
+        GC_DECREF(this->qText);
+    }
+
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser || this->qText)
         return false;
 
     this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
@@ -333,7 +336,6 @@ void WikiEdit::ProcessWords()
         }
         xx++;
     }
-
     xx = 0;
     while (xx<Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.count())
     {
@@ -441,6 +443,13 @@ void WikiEdit::PostProcess()
         this->qDifference->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
         this->qDifference->Process();
         this->ProcessingDiff = true;
+    } else if (!this->Page->Contents.size())
+    {
+        this->qText = Generic::RetrieveWikiPageContents(this->Page->PageName);
+        this->qText->IncRef();
+        this->qText->Target = "Retrieving content of " + this->Page->PageName;
+        QueryPool::HugglePool->AppendQuery(this->qText);
+        this->qText->Process();
     }
     this->ProcessingRevs = true;
     if (this->User->IsIP())
@@ -499,6 +508,7 @@ void ProcessorThread::Process(WikiEdit *edit)
             edit->Score += 200;
         } else
         {
+            // we have to ignore the score words here because there is always lot of them in revert text
             IgnoreWords = true;
         }
     }
@@ -508,41 +518,23 @@ void ProcessorThread::Process(WikiEdit *edit)
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_IPScore;
     }
     if (edit->Bot)
-    {
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_BotScore;
-    }
     if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-    {
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ForeignUser;
-    } else if (edit->Page->IsUserpage())
-    {
+    else if (edit->Page->IsUserpage())
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreUser;
-    }
     if (edit->Page->IsTalk())
-    {
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreTalk;
-    }
     if (edit->Size > 1200 || edit->Size < -1200)
-    {
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreChange;
-    }
     if (edit->Page->IsUserpage())
-    {
         IgnoreWords = true;
-    }
     if (edit->User->IsWhitelisted())
-    {
         edit->Score += Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore;
-    }
-
     edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
-    {
         edit->ProcessWords();
-    }
-
     edit->User->ParseTP(QDate::currentDate());
-
     switch(edit->User->WarningLevel)
     {
         case 1:
@@ -564,7 +556,6 @@ void ProcessorThread::Process(WikiEdit *edit)
             edit->CurrentUserWarningLevel = WarningLevel4;
             break;
     }
-
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
     edit->Status = StatusPostProcessed;

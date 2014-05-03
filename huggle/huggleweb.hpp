@@ -68,6 +68,7 @@ namespace Huggle
              * \param edit
              */
             void DisplayDiff(WikiEdit *edit);
+            void DisplayNewPageEdit(WikiEdit *edit);
             QString RetrieveHtml();
             static QString Encode(const QString &string);
 

@@ -100,10 +100,14 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
     if (edit->Page == NULL)
         throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
-    if (edit->NewPage)
+    if (edit->NewPage && edit->Page->Contents == "")
     {
         this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
         this->DisplayPreFormattedPage(edit->Page);
+        return;
+    } else if (edit->NewPage)
+    {
+        this->DisplayNewPageEdit(edit);
         return;
     }
     if (!edit->DiffText.length())
@@ -125,10 +129,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
-
     QString Summary;
     QString size;
-
     if (edit->Size > 0)
     {
         size = "+" + QString::number(edit->Size);
@@ -148,6 +150,36 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     Summary += "<b> Size change: " + size + "</b>";
     HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary +
             "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
+
+    this->ui->webView->setHtml(HTML);
+}
+
+void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
+{
+    if (!edit)
+        throw new Exception("Edit must not be NULL");
+
+    QString HTML = Resources::HtmlHeader;
+    if (Configuration::HuggleConfiguration->NewMessage)
+    {
+        // we display a notification that user received a new message
+        HTML += Resources::HtmlIncoming;
+    }
+    HTML += Resources::DiffHeader + "<tr></td colspan=2>";
+    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    {
+        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+    }
+    QString Summary;
+    if (edit->Summary == "")
+    {
+        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+    } else
+    {
+        Summary = Encode(edit->Summary);
+    }
+    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "</td></tr>" +
+            HuggleWeb::Encode(edit->Page->Contents) + Resources::DiffFooter + Resources::HtmlFooter;
 
     this->ui->webView->setHtml(HTML);
 }

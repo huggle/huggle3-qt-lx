@@ -10,10 +10,11 @@
 
 #include "deleteform.hpp"
 #include <QtXml>
+#include <QMessageBox>
 #include <QLineEdit>
 #include "localization.hpp"
-#include <QMessageBox>
 #include "querypool.hpp"
+#include "gc.hpp"
 #include "configuration.hpp"
 #include "ui_deleteform.h"
 
@@ -204,26 +205,10 @@ void DeleteForm::Delete()
 
 void DeleteForm::DelRef()
 {
-    if (this->qToken != NULL)
-    {
-        this->qToken->DecRef();
-        this->qToken = NULL;
-    }
-    if (this->qTokenOfTalkPage != NULL)
-    {
-        this->qTokenOfTalkPage->DecRef();
-        this->qTokenOfTalkPage = NULL;
-    }
-    if (this->qDelete != NULL)
-    {
-        this->qDelete->DecRef();
-        this->qDelete = NULL;
-    }
-    if (this->qTalk != NULL)
-    {
-        this->qTalk->DecRef();
-        this->qTalk = NULL;
-    }
+    GC_DECREF(this->qToken);
+    GC_DECREF(this->qTokenOfTalkPage);
+    GC_DECREF(this->qDelete);
+    GC_DECREF(this->qTalk);
 }
 
 void DeleteForm::Failed(QString Reason)

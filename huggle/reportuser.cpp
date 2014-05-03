@@ -545,10 +545,7 @@ void ReportUser::on_pushButton_clicked()
     this->Loading = true;
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("report-retrieving"));
     if (this->qHistory != NULL)
-    {
         this->qHistory->DecRef();
-    }
-
     this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
     this->qHistory->IncRef();
     this->qHistory->Process();

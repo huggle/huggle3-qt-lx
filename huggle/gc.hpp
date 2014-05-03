@@ -41,6 +41,10 @@
 #define HUGGLECONSUMER_REVERTQUERYTMR           16
 #define HUGGLECONSUMER_CORE                     800
 
+// some macros so that people hate us
+#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=NULL
+#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=NULL
+
 namespace Huggle
 {
     class Collectable;
@@ -52,7 +56,12 @@ namespace Huggle
     class GC
     {
         public:
-            //! Garbage collector
+            /*!
+             * \brief Collect will safely decrement a reference of an object and set the pointer to NULL
+             * \param object
+             */
+            //static void Collect(Collectable **object);
+            //static void Collect(Collectable **object, int ConsumerID);
             static GC *gc;
 
             GC();

@@ -274,13 +274,11 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         mb.exec();
         return;
     }
-
     if (this->fReportForm != NULL)
     {
         delete this->fReportForm;
         this->fReportForm = NULL;
     }
-
     this->fReportForm = new ReportUser(this);
     this->fReportForm->show();
     this->fReportForm->SetUser(User);
@@ -749,16 +747,8 @@ void MainWindow::DisplayWelcomeMessage()
 
 void MainWindow::FinishRestore()
 {
-    if (this->RestoreEdit == NULL || this->RestoreQuery == NULL)
-    {
+    if (this->RestoreEdit == NULL || this->RestoreQuery == NULL || !this->RestoreQuery->IsProcessed())
         return;
-    }
-
-    if (!this->RestoreQuery->IsProcessed())
-    {
-        return;
-    }
-
     QDomDocument d;
     d.setContent(this->RestoreQuery->Result->Data);
     QDomNodeList page = d.elementsByTagName("rev");
@@ -1078,17 +1068,13 @@ void MainWindow::on_actionWarn_the_user_triggered()
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-    {
         return;
-    }
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Generic::DeveloperError();
         return;
     }
-
     RevertQuery *result = this->Revert("", true, false);
-
     if (result != NULL)
     {
         this->Warn("warning", result);
