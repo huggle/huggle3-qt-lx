@@ -1,6 +1,5 @@
   <!-- Diff which was parsed from mediawiki begins here -->
   <table class='diff diff-contentalign-left'>
-
 <colgroup><col class="diff-marker">
         <col class="diff-content">
         <col class="diff-marker">

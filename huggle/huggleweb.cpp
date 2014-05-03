@@ -138,19 +138,16 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
          size = QString::number(edit->Size);
     }
-
-    if (edit->Summary == "")
+    if (!edit->Summary.size())
     {
         Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
     }
-
     Summary += "<b> Size change: " + size + "</b>";
     HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary +
             "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
-
     this->ui->webView->setHtml(HTML);
 }
 
@@ -165,22 +162,20 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
         // we display a notification that user received a new message
         HTML += Resources::HtmlIncoming;
     }
-    HTML += Resources::DiffHeader + "<tr></td colspan=2>";
     if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary;
-    if (edit->Summary == "")
+    if (!edit->Summary.size())
     {
         Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
     }
-    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "</td></tr>" +
-            edit->Page->Contents + Resources::DiffFooter + Resources::HtmlFooter;
-
+    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "<br>" +
+            edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
 
