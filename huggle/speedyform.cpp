@@ -54,8 +54,9 @@ void SpeedyForm::on_pushButton_clicked()
 {
     if (this->edit->Page->IsUserpage())
     {
-        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "This page is in userspace, are you sure you want to delete it?",
-                                   text, QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "Request",
+             "This page is in userspace, are you sure you want to delete it?",
+             QMessageBox::Yes|QMessageBox::No);
         if (qb == QMessageBox::No)
         {
             return;
