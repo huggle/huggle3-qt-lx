@@ -66,16 +66,8 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
 
 HistoryForm::~HistoryForm()
 {
-    if (this->RetrievedEdit != NULL)
-    {
-        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-        this->RetrievedEdit = NULL;
-    }
-    if (this->query != NULL)
-    {
-        this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-        this->query = NULL;
-    }
+    GC_DECNAMEDREF(this->RetrievedEdit, HUGGLECONSUMER_HISTORYWIDGET);
+    GC_DECNAMEDREF(this->query, HUGGLECONSUMER_HISTORYWIDGET);
     delete this->t1;
     delete this->ui;
 }

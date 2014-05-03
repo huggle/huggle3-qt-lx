@@ -19,8 +19,7 @@ using namespace Huggle;
 ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectPage)
 {
     this->ui->setupUi(this);
-    this->qToken2 = NULL;
-    this->qToken1 = NULL;
+    this->qToken = NULL;
     this->PageToProtect = NULL;
     this->qProtection = NULL;
     this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-none"));
@@ -47,13 +46,13 @@ void ProtectPage::setPageToProtect(WikiPage *Page)
 
 void ProtectPage::getTokenToProtect()
 {
-    this->qToken1 = new ApiQuery();
-    this->qToken1->SetAction(ActionQuery);
-    this->qToken1->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
-    this->qToken1->Target = Localizations::HuggleLocalizations->Localize("protection-ft");
-    this->qToken1->IncRef();
-    QueryPool::HugglePool->AppendQuery(qToken1);
-    this->qToken1->Process();
+    this->qToken = new ApiQuery();
+    this->qToken->SetAction(ActionQuery);
+    this->qToken->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
+    this->qToken->Target = Localizations::HuggleLocalizations->Localize("protection-ft");
+    this->qToken->IncRef();
+    QueryPool::HugglePool->AppendQuery(qToken);
+    this->qToken->Process();
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
     this->PtQueryPhase = 0;
@@ -62,16 +61,8 @@ void ProtectPage::getTokenToProtect()
 
 void ProtectPage::DelRefs()
 {
-    if (this->qToken1 != NULL)
-    {
-        this->qToken1->DecRef();
-        this->qToken1 = NULL;
-    }
-    if (this->qProtection != NULL)
-    {
-        this->qProtection->DecRef();
-        this->qProtection = NULL;
-    }
+    GC_DECREF(this->qToken);
+    GC_DECREF(this->qProtection);
 }
 
 void ProtectPage::onTick()
@@ -90,20 +81,20 @@ void ProtectPage::onTick()
 
 void ProtectPage::checkTokenToProtect()
 {
-    if (this->qToken1 == NULL || !this->qToken1->IsProcessed())
+    if (this->qToken == NULL || !this->qToken->IsProcessed())
         return;
-    if (this->qToken1->Result->Failed)
+    if (this->qToken->Result->Failed)
     {
         /// \todo LOCALIZE ME
-        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + this->qToken1->Result->ErrorMessage);
+        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + this->qToken->Result->ErrorMessage);
         return;
     }
     QDomDocument r;
-    r.setContent(qToken1->Result->Data);
+    r.setContent(qToken->Result->Data);
     QDomNodeList l = r.elementsByTagName("page");
     if (l.count() == 0)
     {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->qToken1->Result->Data);
+        Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
         /// \todo LOCALIZE ME
         this->Failed("No page info was available (are you an admin?)");
         return;
@@ -116,8 +107,8 @@ void ProtectPage::checkTokenToProtect()
     }
     this->ProtectToken = element.attribute("protecttoken");
     this->PtQueryPhase++;
-    this->qToken1->DecRef();
-    this->qToken1 = NULL;
+    this->qToken->DecRef();
+    this->qToken = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);
     this->qProtection = new ApiQuery();
     this->qProtection->SetAction(ActionProtect);

@@ -88,37 +88,13 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 
 ReportUser::~ReportUser()
 {
-    if (this->qHistory != NULL)
-    {
-        this->qHistory->DecRef();
-        this->qHistory = NULL;
-    }
-    if (this->qBlockHistory != NULL)
-    {
-        this->qBlockHistory->DecRef();
-        this->qBlockHistory = NULL;
-    }
-    if (this->qDiff != NULL)
-    {
-        this->qDiff->DecRef();
-        this->qDiff = NULL;
-    }
     delete this->tPageDiff;
-    if (this->qReport != NULL)
-    {
-        this->qReport->DecRef();
-        this->qReport = NULL;
-    }
-    if (this->qEdit != NULL)
-    {
-        this->qEdit->DecRef();
-        this->qEdit = NULL;
-    }
-    if (this->qCheckIfBlocked != NULL)
-    {
-        this->qCheckIfBlocked->DecRef();
-        this->qCheckIfBlocked = NULL;
-    }
+    GC_DECREF(this->qHistory);
+    GC_DECREF(this->qBlockHistory);
+    GC_DECREF(this->qDiff);
+    GC_DECREF(this->qReport);
+    GC_DECREF(this->qEdit);
+    GC_DECREF(this->qCheckIfBlocked);
     delete this->BlockForm;
     delete this->ui;
 }

@@ -54,13 +54,11 @@ namespace Huggle
             void on_pushButton_clicked();
             void onTick();
             void on_lineEdit_3_returnPressed();
-
             void on_lineEdit_2_returnPressed();
 
         private:
             void FinishPage();
             void FinishEdit();
-            void DeleteQuery();
             Ui::HuggleTool *ui;
             ApiQuery *query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved

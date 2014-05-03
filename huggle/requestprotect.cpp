@@ -177,16 +177,8 @@ void RequestProtect::Fail(QString message)
 
 void RequestProtect::DelRef()
 {
-    if (this->qEditRFP)
-    {
-        this->qEditRFP->DecRef();
-        this->qEditRFP = NULL;
-    }
-    if (this->qRFPPage)
-    {
-        this->qRFPPage->DecRef();
-        this->qRFPPage = NULL;
-    }
+    GC_DECREF(this->qEditRFP);
+    GC_DECREF(this->qRFPPage);
 }
 
 void Huggle::RequestProtect::on_pushButton_2_clicked()

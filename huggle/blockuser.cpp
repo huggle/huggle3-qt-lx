@@ -40,16 +40,8 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 
 BlockUser::~BlockUser()
 {
-    if (this->qUser)
-    {
-        this->qUser->DecRef();
-        this->qUser = NULL;
-    }
-    if (this->qTokenApi)
-    {
-        this->qTokenApi->DecRef();
-        this->qTokenApi = NULL;
-    }
+    GC_DECREF(this->qUser);
+    GC_DECREF(this->qTokenApi);
     delete this->t0;
     delete this->ui;
 }

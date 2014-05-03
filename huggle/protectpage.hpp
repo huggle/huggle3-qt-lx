@@ -60,9 +60,7 @@ namespace Huggle
             void checkTokenToProtect();
             QString ProtectToken;
             //! Pointer to get first token
-            ApiQuery *qToken1;
-            //! Pointer for second token
-            ApiQuery *qToken2;
+            ApiQuery *qToken;
             //! Pointer for	protection
             ApiQuery *qProtection;
             Ui::ProtectPage *ui;

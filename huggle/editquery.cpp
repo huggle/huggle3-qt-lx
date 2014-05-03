@@ -31,9 +31,7 @@ EditQuery::EditQuery()
 EditQuery::~EditQuery()
 {
     if (this->qToken != NULL)
-    {
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-    }
 }
 
 void EditQuery::Process()
