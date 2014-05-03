@@ -39,12 +39,13 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
 
 UAAReport::~UAAReport()
 {
-    this->DelRef();
     delete this->TimerCheck;
     delete this->User;
     delete this->ui;
     delete this->Timer;
     delete this->page;
+    GC_DECREF(this->qCheckUAAUser);
+    GC_DECREF(this->qUAApage);
 }
 
 void UAAReport::setUserForUAA(WikiUser *user)
@@ -222,18 +223,4 @@ void UAAReport::onStartOfSearch()
         mb.setText("This user is not reported to UAA.");
     }
     mb.exec();
-}
-
-void UAAReport::DelRef()
-{
-    if (this->qCheckUAAUser != NULL)
-    {
-        this->qCheckUAAUser->DecRef();
-        this->qCheckUAAUser = NULL;
-    }
-    if (this->qUAApage != NULL)
-    {
-        this->qUAApage->DecRef();
-        this->qUAApage = NULL;
-    }
 }

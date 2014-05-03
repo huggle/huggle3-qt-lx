@@ -41,7 +41,7 @@ void UpdateForm::Check()
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
     this->qData->Process();
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
-    this->qData->RegisterConsumer("updater");
+    this->qData->IncRef();
     this->timer->start(60);
 }
 
@@ -68,7 +68,7 @@ void UpdateForm::OnTick()
     if (l.count() == 0)
     {
         // there is no new version of huggle
-        this->qData->UnregisterConsumer("updater");
+        this->qData->DecRef();
         this->timer->stop();
         return;
     } else
@@ -85,7 +85,7 @@ void UpdateForm::OnTick()
             info = info.replace("$LATESTHUGGLE", version);
             this->ui->label->setText(info);
             this->show();
-            this->qData->UnregisterConsumer("updater");
+            this->qData->DecRef();
             this->timer->stop();
             return;
         } else
@@ -102,7 +102,7 @@ void UpdateForm::OnTick()
                     if (!element.attributes().contains("target"))
                     {
                         Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ingoring the update");
-                        this->qData->UnregisterConsumer("updater");
+                        this->qData->DecRef();
                         this->timer->stop();
                         return;
                     }

@@ -50,7 +50,6 @@ namespace Huggle
             void onTick();
             void onStartOfSearch();
         private:
-            void DelRef();
             //! Function to decide what we are reporting
             void whatToReport();
             //! Check if user is reported
