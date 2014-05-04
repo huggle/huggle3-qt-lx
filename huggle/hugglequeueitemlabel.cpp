@@ -138,6 +138,11 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->Page->NewPage)
+        {
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-new.png"));
+        }
+
         if (this->Page->User->IsIP())
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
