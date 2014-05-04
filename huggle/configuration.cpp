@@ -378,17 +378,11 @@ QString Configuration::Bool2String(bool b)
 void Configuration::NormalizeConf()
 {
     if (this->ProjectConfig_TemplateAge > -1)
-    {
         this->ProjectConfig_TemplateAge = -30;
-    }
     if (this->SystemConfig_QueueSize < 10)
-    {
         this->SystemConfig_QueueSize = 10;
-    }
     if (this->SystemConfig_HistorySize < 2)
-    {
         this->SystemConfig_HistorySize = 2;
-    }
 }
 
 bool Configuration::SafeBool(QString value, bool defaultvalue)
@@ -470,6 +464,7 @@ QString Configuration::MakeLocalUserConfig()
             configuration_ += "        filter-new-pages:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
             configuration_ += "        filter-me:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
             configuration_ += "        filter-users:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
+            configuration_ += "        nsfilter-user:" + Configuration::Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\n";
             configuration_ += "\n";
         }
     }

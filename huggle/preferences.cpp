@@ -145,6 +145,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->checkBox_7->setChecked(f->getIgnoreBots());
     this->ui->checkBox_8->setChecked(f->getIgnoreNP());
     this->ui->checkBox_9->setChecked(f->getIgnoreWL());
+    this->ui->checkBox_28->setChecked(f->getIgnore_UserSpace());
     this->ui->checkBox_10->setChecked(f->getIgnoreFriends());
     this->ui->checkBox_18->setChecked(f->getIgnoreReverts());
     this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
@@ -161,6 +162,7 @@ void Preferences::Disable()
     this->ui->pushButton_4->setEnabled(false);
     this->ui->checkBox_18->setEnabled(false);
     this->ui->pushButton_5->setEnabled(false);
+    this->ui->checkBox_28->setEnabled(false);
     this->ui->pushButton_6->setEnabled(false);
     this->ui->checkBox_13->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
@@ -179,6 +181,7 @@ void Preferences::EnableQueues()
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
     this->ui->checkBox_13->setEnabled(true);
+    this->ui->checkBox_28->setEnabled(true);
 }
 
 void Preferences::on_pushButton_clicked()
@@ -260,6 +263,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->setIgnoreSelf(this->ui->checkBox_6->isChecked());
     filter->setIgnoreReverts(this->ui->checkBox_18->isChecked());
     filter->setIgnoreFriends(this->ui->checkBox_10->isChecked());
+    filter->setIgnore_UserSpace(this->ui->checkBox_28->isChecked());
     filter->QueueName = this->ui->lineEdit->text();
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();

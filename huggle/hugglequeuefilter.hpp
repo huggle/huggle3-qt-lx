@@ -76,6 +76,8 @@ namespace Huggle
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
+            bool getIgnore_UserSpace() const;
+            void setIgnore_UserSpace(bool value);
 
         private:
             bool IgnoreMinor;
@@ -87,6 +89,7 @@ namespace Huggle
             bool IgnoreNP;
             bool IgnoreFriends;
             bool IgnoreSelf;
+            bool Ignore_UserSpace;
             bool IgnoreTalk;
     };
 }

@@ -419,6 +419,11 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString cont
     return trimmed;
 }
 
+static bool F2B(QString result)
+{
+    return result == "exclude";
+}
+
 QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString content, bool locked)
 {
     QList<HuggleQueueFilter*> ReturnValue;
@@ -462,6 +467,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             filter->setIgnoreNP(false);
             filter->setIgnoreReverts(false);
             filter->setIgnoreSelf(false);
+            filter->setIgnore_UserSpace(false);
             filter->setIgnoreUsers(false);
             filter->setIgnoreWL(false);
             ReturnValue.append(filter);
@@ -484,46 +490,22 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                 text = Info.at(line);
                 if (key == "filter-ignored")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreWL(true);
-                    } else
-                    {
-                        filter->setIgnoreWL(false);
-                    }
+                    filter->setIgnoreWL(F2B(val));
                     continue;
                 }
                 if (key == "filter-bots")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreBots(true);
-                    } else
-                    {
-                        filter->setIgnoreBots(false);
-                    }
+                    filter->setIgnoreBots(F2B(val));
                     continue;
                 }
                 if (key == "filter-assisted")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreFriends(true);
-                    } else
-                    {
-                        filter->setIgnoreFriends(false);
-                    }
+                    filter->setIgnoreFriends(F2B(val));
                     continue;
                 }
                 if (key == "filter-ip")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreIP(true);
-                    } else
-                    {
-                        filter->setIgnoreIP(false);
-                    }
+                    filter->setIgnoreIP(F2B(val));
                     continue;
                 }
                 if (key == "filter-reverts")
@@ -539,24 +521,17 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                 }
                 if (key == "filter-new-pages")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreNP(true);
-                    } else
-                    {
-                        filter->setIgnoreNP(false);
-                    }
+                    filter->setIgnoreNP(F2B(val));
                     continue;
                 }
                 if (key == "filter-me")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreSelf(true);
-                    } else
-                    {
-                        filter->setIgnoreSelf(false);
-                    }
+                    filter->setIgnoreSelf(F2B(val));
+                    continue;
+                }
+                if (key == "nsfilter-user")
+                {
+                    filter->setIgnore_UserSpace(F2B(val));
                     continue;
                 }
             }

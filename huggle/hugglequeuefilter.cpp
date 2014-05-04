@@ -30,18 +30,17 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->IgnoreReverts = false;
     this->IgnoreUsers = false;
     this->IgnoreTalk = true;
+    this->Ignore_UserSpace = false;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
     if (edit == NULL)
-    {
         throw new Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
-    }
-    if (edit->Page->IsTalk() && this->IgnoreTalk)
-    {
+    if (this->Ignore_UserSpace && edit->Page->GetNS() == MediaWikiNS_User)
         return false;
-    }
+    if (edit->Page->IsTalk() && this->IgnoreTalk)
+        return false;
     int i = 0;
     while (i < Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.count())
     {
@@ -52,40 +51,21 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         i++;
     }
     if (Configuration::HuggleConfiguration->ProjectConfig_Ignores.contains(edit->Page->PageName))
-    {
         return false;
-    }
     if (edit->User->IsWhitelisted() && this->IgnoreWL)
-    {
         return false;
-    }
     if (edit->TrustworthEdit && this->IgnoreFriends)
-    {
         return false;
-    }
     if (edit->Minor && this->IgnoreMinor)
-    {
         return false;
-    }
     if (edit->IsRevert && this->IgnoreReverts)
-    {
         return false;
-    }
     if (edit->NewPage && this->IgnoreNP)
-    {
         return false;
-    }
     if (edit->Bot && this->IgnoreBots)
-    {
         return false;
-    }
-    if (this->IgnoreSelf)
-    {
-        if (edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
-        {
-            return false;
-        }
-    }
+    if (this->IgnoreSelf && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+        return false;
     return true;
 }
 
@@ -163,6 +143,16 @@ void HuggleQueueFilter::setIgnoreReverts(bool value)
 {
     this->IgnoreReverts = value;
 }
+bool HuggleQueueFilter::getIgnore_UserSpace() const
+{
+    return Ignore_UserSpace;
+}
+
+void HuggleQueueFilter::setIgnore_UserSpace(bool value)
+{
+    Ignore_UserSpace = value;
+}
+
 
 void HuggleQueueFilter::setIgnoreFriends(bool value)
 {

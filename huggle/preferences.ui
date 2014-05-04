@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>852</width>
+    <width>1072</width>
     <height>459</height>
    </rect>
   </property>
@@ -445,6 +445,9 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
@@ -512,6 +515,26 @@
             <string>Friends (edits made by tools like huggle)</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_28">
+           <property name="text">
+            <string>Userspace edits</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QLineEdit" name="lineEdit"/>

@@ -103,13 +103,13 @@ void HuggleQueueItemLabel::SetName(QString name)
 
         if (this->Page->IsRevert)
         {
-            this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-revert.png") );
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-revert.png"));
             return;
         }
 
         if (this->Page->Bot)
         {
-            this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-bot.png") );
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-bot.png"));
             return;
         }
 
