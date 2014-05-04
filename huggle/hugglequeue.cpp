@@ -22,7 +22,6 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
     this->Filters();
-    this->ui->comboBox->setCurrentIndex(0);
 }
 
 HuggleQueue::~HuggleQueue()
@@ -64,24 +63,16 @@ void HuggleQueue::AddItem(WikiEdit *page)
             i++;
             // if this is a same edit we can go next
             if (edit == page)
-            {
                 continue;
-            }
             // if this edit is not newer we can continue
             if (edit->RevID < page->RevID)
-            {
                 continue;
-            }
             // if edit is not a revert we can continue
             if (!edit->IsRevert)
-            {
                 continue;
-            }
             // if edit is not made to this page, we can continue
             if (edit->Page->PageName != page->Page->PageName)
-            {
                 continue;
-            }
             // we found it
             Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
             WikiEdit::Lock_EditList->unlock();
@@ -90,13 +81,11 @@ void HuggleQueue::AddItem(WikiEdit *page)
         }
         WikiEdit::Lock_EditList->unlock();
     }
-
     if (Configuration::HuggleConfiguration->UserConfig_TruncateEdits)
     {
         // if we want to keep only newest edits in queue we can remove all older edits made to this page
         this->DeleteOlder(page);
     }
-
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     // we create a new label here
@@ -405,19 +394,21 @@ void HuggleQueue::Trim()
 
 void HuggleQueue::Filters()
 {
+    this->loading = true;
     this->ui->comboBox->clear();
     int x = 0;
     int id = 0;
     while (x < HuggleQueueFilter::Filters.count())
     {
         HuggleQueueFilter *FilthyFilter = HuggleQueueFilter::Filters.at(x);
-        if (this->CurrentFilter == FilthyFilter)
+        if (Configuration::HuggleConfiguration->UserConfig_QueueID == FilthyFilter->QueueName)
         {
             id = x;
         }
         x++;
         this->ui->comboBox->addItem(FilthyFilter->QueueName);
     }
+    this->loading = false;
     this->ui->comboBox->setCurrentIndex(id);
 }
 
@@ -482,9 +473,13 @@ long HuggleQueue::GetScore(int id)
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)
 {
-    if (index > -1 && index < HuggleQueueFilter::Filters.count())
+    if (!this->loading)
     {
-        this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
+        if (index > -1 && index < HuggleQueueFilter::Filters.count())
+        {
+            this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
+        }
+        Configuration::HuggleConfiguration->UserConfig_QueueID = this->CurrentFilter->QueueName;
     }
 }
 

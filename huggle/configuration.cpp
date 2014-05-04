@@ -226,6 +226,7 @@ Configuration::Configuration()
     this->UserConfig_DisplayTitle = false;
     this->UserConfig_GoNext = Configuration_OnNext_Next;
     this->UserConfig_CheckTP = false;
+    this->UserConfig_QueueID = "default";
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // System (pc wide)
@@ -447,6 +448,7 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "HAN_DisplayUserTalk:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk) + "\n";
     configuration_ += "HAN_DisplayBots:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser) + "\n";
+    configuration_ += "QueueID:" + Configuration::HuggleConfiguration->UserConfig_QueueID + "\n";
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
@@ -978,6 +980,7 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig_HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->UserConfig_TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig_TalkPageFreshness)).toInt();
     this->UserConfig_RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
+    this->UserConfig_QueueID = ConfigurationParse("QueueID", config);
     this->UserConfig_GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->UserConfig_DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     this->NormalizeConf();
