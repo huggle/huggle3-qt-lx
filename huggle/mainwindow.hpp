@@ -307,6 +307,7 @@ namespace Huggle
             void on_actionDelete_all_edits_with_score_lower_than_200_triggered();
             void on_actionRelog_triggered();
             void on_actionAbort_2_triggered();
+            void on_actionUser_contributions_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
