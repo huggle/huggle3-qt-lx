@@ -540,6 +540,8 @@ void ProcessorThread::Process(WikiEdit *edit)
     if (!IgnoreWords)
         edit->ProcessWords();
     edit->User->ParseTP(QDate::currentDate());
+    if (edit->Summary.size() == 0)
+        edit->Score += 10;
     switch(edit->User->WarningLevel)
     {
         case 1:
