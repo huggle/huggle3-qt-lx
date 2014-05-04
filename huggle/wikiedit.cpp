@@ -298,9 +298,14 @@ bool WikiEdit::FinalizePostProcessing()
         bool failed = false;
         QString result = Generic::EvaluateWikiPageContents(this->qText, &failed);
         if (failed)
+        {
             Syslog::HuggleLogs->ErrorLog("Failed to obtain text of " + this->Page->PageName + ": " + result);
+        }
         else
+        {
             this->Page->Contents = result;
+            this->Page->Contents.replace("//", "https://");
+        }
         GC_DECREF(this->qText);
     }
 
