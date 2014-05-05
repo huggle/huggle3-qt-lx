@@ -1659,6 +1659,14 @@ void MainWindow::on_actionGood_edit_triggered()
     this->DisplayNext();
 }
 
+void MainWindow::on_actionUser_contributions_triggered()
+{
+    if (this->CurrentEdit != NULL)
+    {
+        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + "Special:Contributions/" + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)));
+    }
+}
+
 void MainWindow::on_actionTalk_page_triggered()
 {
     this->DisplayTalk();

@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -160,6 +160,7 @@
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
     <addaction name="actionClear_template_meta_data"/>
+    <addaction name="actionUser_contributions"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
     <addaction name="separator"/>
@@ -919,6 +920,11 @@
    </property>
    <property name="shortcut">
     <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionUser_contributions">
+   <property name="text">
+    <string>User contributions</string>
    </property>
   </action>
  </widget>
