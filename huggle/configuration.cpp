@@ -22,14 +22,6 @@ Configuration * Configuration::HuggleConfiguration = NULL;
 
 Configuration::Configuration()
 {
-    this->AIVP = NULL;
-    this->UAAP = NULL;
-    this->Verbosity = 0;
-    //this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
-    this->Project = NULL;
-    this->IndexOfLastWiki = 0;
-    this->NewMessage = false;
-    this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE
     this->PythonEngine = true;
 #else
@@ -37,25 +29,13 @@ Configuration::Configuration()
 #endif
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
-    this->SystemConfig_QueueSize = 200;
-    this->Restricted = false;
-    this->SystemConfig_ProviderCache = 200;
     this->HuggleVersion = HUGGLE_VERSION;
     this->UsingIRC = true;
-    this->IRCIdent = "huggle";
-    this->IRCServer = "irc.wikimedia.org";
-    this->IRCNick = "huggle";
-    this->IRCPort = 6667;
 #if QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
-    this->SystemConfig_UpdatesEnabled = true;
-    this->ProjectConfig_EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
-    this->WikiDB = "";
-    this->Login = false;
-    this->UserConfig_HistoryMax = 50;
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -134,8 +114,6 @@ Configuration::Configuration()
     this->ProjectConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
     this->ProjectConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
     this->ProjectConfig_WhitelistScore = -800;
-    this->TrimOldWarnings = true;
-    this->AskUserBeforeReport = true;
     this->WelcomeEmpty = true;
     this->ProjectConfig_ReportSummary = "Reporting user";
 
@@ -238,8 +216,6 @@ Configuration::Configuration()
     this->SystemConfig_WhitelistDisabled = false;
     this->SystemConfig_RevertDelay = 0;
     this->SystemConfig_InstantReverts = true;
-    this->SystemConfig_QueryListTimeLimit = 2;
-    this->SystemConfig_HistorySize = 20;
     this->SystemConfig_SyslogPath = "huggle.log";
     this->SystemConfig_Log2File = false;
     this->SystemConfig_FontSize = 10;
@@ -251,7 +227,6 @@ Configuration::Configuration()
     this->SystemConfig_GlobalConfigWikiList = "Project:Huggle/List";
     this->SystemConfig_Username = "User";
     this->SystemConfig_DynamicColsInList = false;
-    this->SystemConfig_RingLogMaxSize = 2000;
     this->SystemConfig_IRCConnectionTimeOut = 2;
     this->SystemConfig_LanguageSanity = false;
     this->SystemConfig_Dot = false;

@@ -208,41 +208,41 @@ namespace Huggle
             //! Version
             QString         HuggleVersion;
             //! currently selected project
-            WikiSite        *Project;
+            WikiSite        *Project = NULL;
             //! List of projects
             QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
-            bool            Restricted;
+            bool            Restricted = false;
             //! Where the welcome message is stored
-            QString         WelcomeMP;
+            QString         WelcomeMP = "Project:Huggle/Message";
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information
-            bool            Login;
+            bool            Login = false;
             //! Maximum number of queue stuff
-            int             SystemConfig_QueueSize;
+            int             SystemConfig_QueueSize = 200;
             //! Whether python is available
             bool            PythonEngine;
             //! Size of feed
-            int             SystemConfig_ProviderCache;
+            int             SystemConfig_ProviderCache = 200;
             //! Maximum size of ringlog
-            int             SystemConfig_RingLogMaxSize;
+            int             SystemConfig_RingLogMaxSize = 2000;
             //! Path where huggle contains its data
             QString         HomePath;
             //! Path to a file where information about wikis are stored
-            QString         WikiDB;
+            QString         WikiDB = "";
             //! Data of wl (list of users)
             QStringList     WhiteList;
             QStringList     NewWhitelist;
             //! URL of wiki that contains a global config
             QString         GlobalConfigurationWikiAddress;
             //! Number of seconds for which the processed queries remain in list of processes
-            int             SystemConfig_QueryListTimeLimit;
+            int             SystemConfig_QueryListTimeLimit = 2;
             //! Number of edits to keep in history stack
-            int             SystemConfig_HistorySize;
+            int             SystemConfig_HistorySize = 20;
             //! Ask user if they really want to report someone
-            bool            AskUserBeforeReport;
+            bool            AskUserBeforeReport = true;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
-            bool            TrimOldWarnings;
+            bool            TrimOldWarnings = true;
             //! User flags on current project, this may be empty if you fail to login
             QStringList     Rights;
             //! Whether new edits go to top or bottom (if true, they go to up)
@@ -274,7 +274,7 @@ namespace Huggle
             //! This path is used when Log2File is true to write the logs to
             QString         SystemConfig_SyslogPath;
             //! Whether huggle check for an update on startup
-            bool            SystemConfig_UpdatesEnabled;
+            bool            SystemConfig_UpdatesEnabled = true;
             bool            SystemConfig_LanguageSanity;
             bool            SystemConfig_RequestDelay;
             unsigned int    SystemConfig_DelayVal;
@@ -292,7 +292,7 @@ namespace Huggle
 
             //! We are storing index instead of wiki name, because in case it was a wiki that later
             //! was removed from the list, we would have nonexistent wiki in list
-            int             IndexOfLastWiki;
+            int             IndexOfLastWiki = 0;
             QString         TemporaryConfig_EditToken;
 
             //////////////////////////////////////////////
@@ -309,7 +309,7 @@ namespace Huggle
             //! it get automatically loaded instead of cached version
             bool                    UserConfig_LastEdit;
             bool                    UserConfig_SectionKeep;
-            unsigned int            UserConfig_HistoryMax;
+            unsigned int            UserConfig_HistoryMax = 50;
             bool                    UserConfig_TruncateEdits;
             bool                    UserConfig_RevertNewBySame;
             //! If this is set to false the warning will be selected by huggle when user decide to
@@ -512,13 +512,13 @@ namespace Huggle
             //! Whether IRC is being used
             bool    UsingIRC;
             //! Server
-            QString IRCServer;
+            QString IRCServer = "irc.wikimedia.org";
             //! Nick
-            QString IRCNick;
+            QString IRCNick = "huggle";
             //! Ident
-            QString IRCIdent;
+            QString IRCIdent = "huggle";
             //! Port
-            int     IRCPort;
+            int     IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut;
 
             //////////////////////////////////////////////
@@ -526,7 +526,7 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! Suffix used by huggle
-            QString     ProjectConfig_EditSuffixOfHuggle;
+            QString     ProjectConfig_EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
             //! Regexes that other tools can be identified with
             QStringList ProjectConfig_EditRegexOfTools;
 
@@ -540,14 +540,14 @@ namespace Huggle
             //! Send a message to user on good edit
             bool        WelcomeEmpty;
             //! This is changed to true in case that someone send a message to user
-            bool        NewMessage;
+            bool        NewMessage = false;
             QString     VandalNw_Server;
             QString     VandalNw_Ident;
             bool        VandalNw_Login;
             //! Pointer to AIV page
-            WikiPage    *AIVP;
+            WikiPage    *AIVP = NULL;
             //! Pointer to UAA page
-            WikiPage    *UAAP;
+            WikiPage    *UAAP = NULL;
             //! Operating system that is sent to update server
             QString     Platform;
         private:

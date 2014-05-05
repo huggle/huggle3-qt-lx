@@ -4,9 +4,17 @@
 #
 #-------------------------------------------------
 
-CONFIG += qt
+CONFIG += c++11 qt
 QT       += network opengl core gui webkit xml testlib
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets webkitwidgets
+}
+
+lessThan(QT_MAJOR_VERSION, 5) {
+    QMAKE_CXXFLAGS += -std=c++11
+}
+
 
 TARGET = tst_testmain
 CONFIG   += console
