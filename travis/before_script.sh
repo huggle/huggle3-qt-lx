@@ -2,7 +2,6 @@
 
 cd /home/travis/build/huggle/huggle3-qt-lx/travis
 gunzip *.gz
-cp *.lib ../huggle
 cd /home/travis/build/huggle/huggle3-qt-lx/huggle
 
 if [ "$QTTYPE" = "4" ]; then

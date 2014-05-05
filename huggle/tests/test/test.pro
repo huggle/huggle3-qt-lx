@@ -7,22 +7,36 @@
 CONFIG += c++11 qt
 QT       += network opengl core gui webkit xml testlib
 
+# this is a horrible hack that makes it possible to get a compiler version so that we can use
+# proper args for it
+COMPILER = "unknown"
+
+linux-g++ {
+    system( g++ --version | grep -e "\<4\.[3456]" ) {
+        message( g++ ancient version found, using c++0x flag )
+        COMPILER = "ancient"
+    }
+    else {
+        COMPILER = "proper gcc"
+    }
+}
+
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets webkitwidgets
 }
 
 lessThan(QT_MAJOR_VERSION, 5) {
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(COMPILER, "ancient") {
+        QMAKE_CXXFLAGS += -std=c++0x
+    }
+    else {
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
-
 
 TARGET = tst_testmain
 CONFIG   += console
 CONFIG   -= app_bundle
-
-LIBS += ../../libbreakpad_client.a
-
-INCLUDEPATH += ../../breakpad/src
 
 TEMPLATE = app
 
