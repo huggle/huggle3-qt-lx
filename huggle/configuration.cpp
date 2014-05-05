@@ -54,6 +54,7 @@ Configuration::Configuration()
     this->SystemConfig_UpdatesEnabled = true;
     this->ProjectConfig_EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
     this->WikiDB = "";
+    this->Login = false;
     this->UserConfig_HistoryMax = 50;
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
 

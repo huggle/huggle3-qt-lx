@@ -67,8 +67,14 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         this->ui->lineEdit_username->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->ui->lineEdit_password->setFocus();
     }
+    this->ui->lineEdit_password->setText(Configuration::HuggleConfiguration->TemporaryConfig_Password);
     this->Loading = false;
     this->Localize();
+    if (Configuration::HuggleConfiguration->Login)
+    {
+        // user wanted to login using a terminal
+        this->PressOK();
+    }
 }
 
 Login::~Login()

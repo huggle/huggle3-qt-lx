@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "terminalparser.hpp"
+#include <QFile>
 #include <iostream>
 #include "configuration.hpp"
 #include "core.hpp"
@@ -94,7 +95,41 @@ bool TerminalParser::Parse()
                 return true;
             }
         }
-
+        if (text == "--login-file")
+        {
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                QString path = this->args.at(x + 1);
+                QFile *lf = new QFile(path);
+                if (!lf->open(QIODevice::ReadOnly))
+                {
+                    delete lf;
+                    cerr << "Unable to open: " << path.toStdString() << endl;
+                    return true;
+                }
+                QString credentials = lf->readAll();
+                delete lf;
+                if (!credentials.contains(":"))
+                {
+                    cerr << "Unable to read the credential file, expected colon as a separator" << endl;
+                    return true;
+                }
+                // we need to split it by first colon now
+                Configuration::HuggleConfiguration->SystemConfig_Username = credentials.mid(0, credentials.indexOf(":"));
+                Configuration::HuggleConfiguration->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
+                valid = true;
+                x++;
+            } else
+            {
+                cerr << "Parameter --login-file requires an argument for it to work!" << endl;
+                return true;
+            }
+        }
+        if (text == "--login")
+        {
+            valid = true;
+            Configuration::HuggleConfiguration->Login = true;
+        }
         if (!valid)
         {
             if (!this->Silent)
@@ -138,9 +173,13 @@ void TerminalParser::DisplayHelp()
             "                   reads a different configuration file and uses different data.\n"\
             "  --syslog [file]: Will write a logs to a file\n"\
             "  --version:       Display a version\n"\
+            "  --login:         Can be used in combination of --login-file only, this will tell huggle\n"\
+            "                   to start login process immediately without letting you to change any login\n"\
+            "                   preferences on login form\n"\
+            "  --login-file:    Read a username and password from plain text file, separated by a colon\n"\
             "  --language-test: Will perform CPU expensive language test on startup, which reports\n"\
             "                   warnings found in localization files. This option is useful for\n"\
-            "                   developers and people who create localization files.\n"\
+            "                   developers and people who create localization files\n"\
             "  -h | --help:     Display this help\n\n"\
             "Note: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
