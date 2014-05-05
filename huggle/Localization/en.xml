@@ -315,7 +315,7 @@
     <string name="main-tip-historynext">Show next revision to this page</string>
     <string name="main-tip-historylast">Show latest revision to this page</string>
     <string name="main-tip-historydifftocur">Show diff between this revision and the latest revision to this page</string>
-    <string name="main-tip-contribs">Retrieve user contributions</string>
+    <string name="main-tip-contribs">Show user contributions</string>
     <string name="main-tip-contribsprev">Show previous revision by this user</string>
     <string name="main-tip-contribsnext">Show next revision by this user</string>
     <string name="main-tip-contribslast">Show latest revision by this user</string>

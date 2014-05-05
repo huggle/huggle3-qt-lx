@@ -1432,6 +1432,7 @@ void MainWindow::Localize()
     this->ui->actionDisplay_this_page_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-browser-open"));
     this->ui->actionFeedback->setText(Localizations::HuggleLocalizations->Localize("main-help-feedback"));
     this->ui->actionReport_user->setText(Localizations::HuggleLocalizations->Localize("main-user-report"));
+    this->ui->actionUser_contributions->setText(Localizations::HuggleLocalizations->Localize("main-tip-contribs"));
 }
 
 void MainWindow::_BlockUser()
