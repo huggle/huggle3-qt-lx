@@ -111,6 +111,7 @@ void SpeedyForm::processTags()
     {
         this->Fail("There is already a CSD tag on the page.");
         this->close();
+        return;
     }
     // insert a tag to page
     this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
