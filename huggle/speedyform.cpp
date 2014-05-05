@@ -107,6 +107,11 @@ void SpeedyForm::processTags()
         this->Fail("Invalid CSD tag, there is no message and wiki tag to use");
         return;
     }
+    if (this->Text.contains("{{db"))
+    {
+        this->Fail("There is already a CSD tag on the page.");
+        this->close();
+    }
     // insert a tag to page
     this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
     // store a message we later send to user (we need to check if edit is successful first)
