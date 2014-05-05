@@ -24,7 +24,7 @@ typedef char byte_ht;
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
 // linking or building its libraries
-//#define DISABLE_BREAKPAD
+#define DISABLE_BREAKPAD
 
 #define PRODUCTION_BUILD                0
 //! Minimal score the edit can have

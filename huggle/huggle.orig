@@ -4,34 +4,39 @@
 #
 #-------------------------------------------------
 
-CONFIG += qt
+CONFIG += c++11 qt
 
-QT       += xml webkit core gui network
+QT += xml webkit core gui network
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets webkitwidgets
+}
+
+lessThan(QT_MAJOR_VERSION, 5) {
+    QMAKE_CXXFLAGS += -std=c++11
+}
 
 TARGET = huggle
 TEMPLATE = app
 INCLUDEPATH += "breakpad/src"
 DEFINES *= QT_USE_QSTRINGBUILDER
 
-linux-g++ {
-    LIBS += libbreakpad_client.a
-}
+#linux-g++ {
+#    LIBS += libbreakpad_client.a
+#}
 
-linux {
-    LIBS += libbreakpad_client.a
-}
+#linux {
+#    LIBS += libbreakpad_client.a
+#}
 
-unix {
-    LIBS += libbreakpad_client.a
-}
+#unix {
+#    LIBS += libbreakpad_client.a
+#}
 
-win32 {
-    QMAKE_CFLAGS_RELEASE += -Zi
-    LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
-}
-
+#win32 {
+#    QMAKE_CFLAGS_RELEASE += -Zi
+#    LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
+#}
 
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################

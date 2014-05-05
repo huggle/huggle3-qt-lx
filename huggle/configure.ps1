@@ -73,27 +73,27 @@ if (!(Test-Path "definitions.hpp"))
     $definitions_created = 1;
 }
 
-echo "Checking if there is breakpad in your build folder"
+#echo "Checking if there is breakpad in your build folder"
 
-if (!(Test-Path("huggle.tmp")) -and !(Test-Path("exception_handler.lib")))
-{
-    echo "There is no breakpad installed on your system, disabling it"
-    Move-Item "huggle.pro" "huggle.tmp"
-    $replace = @"
+#if (!(Test-Path("huggle.tmp")) -and !(Test-Path("exception_handler.lib")))
+#{
+#    echo "There is no breakpad installed on your system, disabling it"
+#    Move-Item "huggle.pro" "huggle.tmp"
+#    $replace = @"
 #!!!!!!!  #This line was replaced with power shell, DO NOT COMMIT THIS CHANGE
 #!!!!!!!  #LIBS +=  ..\huggle\exception_handler.lib ..\huggle\crash_generation_client.lib
-"@
-    cat "huggle.tmp" | %{$_ -replace ".*exception_handler\.lib.*", $replace} | Set-Content huggle.pro
-    if ($definitions_created -eq 1)
-    {
-        $replace = @"
-// This line was replaced with power shell, DO NOT COMMIT THIS CHANGE
-#define DISABLE_BREAKPAD
-// End of modified code, nothing else changed
-"@
-        cat "definitions_prod.hpp" | %{$_ -replace ".*DISABLE_BREAKPAD.*", $replace} | Set-Content definitions.hpp
-    }
-}
+#"@
+#    cat "huggle.tmp" | %{$_ -replace ".*exception_handler\.lib.*", $replace} | Set-Content huggle.pro
+#    if ($definitions_created -eq 1)
+#    {
+#        $replace = @"
+#// This line was replaced with power shell, DO NOT COMMIT THIS CHANGE
+##define DISABLE_BREAKPAD
+#// End of modified code, nothing else changed
+#"@
+#        cat "definitions_prod.hpp" | %{$_ -replace ".*DISABLE_BREAKPAD.*", $replace} | Set-Content definitions.hpp
+#    }
+#}
 
 echo "It's all done, you can build huggle now from withing Qt creator!"
 Read-Host -Prompt "Press Enter to continue"

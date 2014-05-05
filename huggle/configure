@@ -242,28 +242,28 @@ if [ ! -f huggle.pro ];then
     ok
 fi
 
-if [ $BREAKPAD -eq 0 ];then
-    if [ ! -d breakpad ];then
-        text "Breakpad library is not present, unpacking it..."
-        tar -zxf breakpad.tar.gz || exit 1;ok
-    fi 
-    text "Checking for breakpad library"
-    if [ ! -f libbreakpad_client.a ];then
-        ok
-        echo "Building it"
-        cd breakpad || exit 1
-        ./configure || exit 1
-        make || exit 1
-        if [ ! -f src/client/linux/libbreakpad_client.a ];then
-            echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
-            exit 1
-        fi
-        cp src/client/linux/libbreakpad_client.a .. || exit 1
-        cd .. || exit 1
-    else
-        ok
-    fi
-fi
+#if [ $BREAKPAD -eq 0 ];then
+#    if [ ! -d breakpad ];then
+#        text "Breakpad library is not present, unpacking it..."
+#        tar -zxf breakpad.tar.gz || exit 1;ok
+#    fi 
+#    text "Checking for breakpad library"
+#    if [ ! -f libbreakpad_client.a ];then
+#        ok
+#        echo "Building it"
+#        cd breakpad || exit 1
+#        ./configure || exit 1
+#        make || exit 1
+#        if [ ! -f src/client/linux/libbreakpad_client.a ];then
+#            echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
+#            exit 1
+#        fi
+#        cp src/client/linux/libbreakpad_client.a .. || exit 1
+#        cd .. || exit 1
+#    else
+#        ok
+#    fi
+#fi
 
 text "Executing update.sh... "
 

@@ -204,7 +204,7 @@ namespace Huggle
             ////////////////////////////////////////////
 
             //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
-            unsigned int    Verbosity;
+            unsigned int    Verbosity = 0;
             //! Version
             QString         HuggleVersion;
             //! currently selected project
