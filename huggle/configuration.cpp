@@ -30,92 +30,15 @@ Configuration::Configuration()
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
     this->HuggleVersion = HUGGLE_VERSION;
-    this->UsingIRC = true;
 #if QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // Global
-    //////////////////////////////////////////////////////////////////////////////////////////
-    this->GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
-    this->GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
-    this->GlobalConfig_EnableAll = true;
-    this->GlobalConfig_MinVersion = HUGGLE_VERSION;
-    this->GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
-    this->GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
-    this->GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
-    this->GlobalConfig_UserConf = "User:$1/huggle3.css";        // user-config-hg3
-    this->GlobalConfig_UserConf_old = "User:$1/huggle.css";    // user-config
-    this->GlobalConfigWasLoaded = false;
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // Local (project wide)
-    //////////////////////////////////////////////////////////////////////////////////////////
-    this->ProjectConfig_MinimalVersion = "3.0.0.0";
-    this->ProjectConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] "\
-                                               "identified as test edits");
-    this->ProjectConfig_UseIrc = false;
-    this->ProjectConfig_RequireAdmin = false;
-    this->ProjectConfig_RequireAutoconfirmed = false;
-    this->ProjectConfig_RequireConfig = false;
-    this->ProjectConfig_RequireEdits = 0;
-    this->ProjectConfig_RequireRollback = false;
-    this->ProjectConfig_ConfirmOnSelfRevs = true;
-    this->ProjectConfig_ConfirmWL = true;
-    this->ProjectConfig_ConfirmTalk = true;
-    this->ProjectConfig_SharedIPTemplateTags = "";
-    this->ProjectConfig_SharedIPTemplate = "";
-    this->ProjectConfig_EnableAll = false;
-    this->ProjectConfig_WarningLevel = 4;
-    this->ProjectConfig_ScoreTalk = -800;
-    this->ProjectConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
     this->ProjectConfig_DeletionSummaries << "Deleted page using Huggle";
-
-    // Reverting
-    this->ProjectConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
-    this->ProjectConfig_RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-    this->ProjectConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-    this->ProjectConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-    this->ProjectConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
     this->ProjectConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
-    this->ProjectConfig_RollbackSummaryUnknownTarget = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-
-    // Warnings
-    this->ProjectConfig_AgfRevert = "Reverted good faith edits";
-    this->ProjectConfig_WarnSummary = "Warning (level 1)";
-    this->ProjectConfig_WarnSummary2 = "Warning (level 2)";
-    this->ProjectConfig_WarnSummary3 = "Warning (level 3)";
-    this->ProjectConfig_WarnSummary4 = "Warning (level 4)";
-
-    this->ProjectConfig_IPScore = 800;
-    this->ProjectConfig_ForeignUser = 800;
-    this->ProjectConfig_BotScore = -200;
-    this->ProjectConfig_ScoreUser = -600;
-    this->ProjectConfig_WarningScore = 2000;
-    this->ProjectConfig_TalkPageWarningScore = -800;
-    this->ProjectConfig_ScoreFlag = -60;
-    this->WarnUserSpaceRoll = true;
-    this->ProjectConfig_WelcomeGood = true;
-    this->ProjectConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
-    this->ProjectConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
-    this->ProjectConfig_GlobalRequired = true;
-    this->ProjectConfig_AIV = false;
-    this->ProjectConfig_AIVExtend = true;
-    this->ProjectConfig_ReportAIV = "";
-    this->ProjectConfig_SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
-    this->ProjectConfig_ReportSt = 0;
-    this->ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
-    this->ProjectConfig_ReportDefaultReason = "vandalism";
-    this->ProjectConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
-    this->ProjectConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
-    this->ProjectConfig_WhitelistScore = -800;
-    this->WelcomeEmpty = true;
-    this->ProjectConfig_ReportSummary = "Reporting user";
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -149,98 +72,8 @@ Configuration::Configuration()
     this->ProjectConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
     this->ProjectConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
     this->ProjectConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
-    this->ProjectConfig_Patrolling = false;
-    this->ProjectConfig_TemplateAge = -30;
-    this->ProjectConfig_ScoreChange = 100;
-    this->ProjectConfig_UAAavailable = false;
-    this->ProjectConfig_UAAPath = "Project:Usernames for administrator attention";
-    this->ProjectConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
-    this->ProjectConfig_WelcomeSummary = "Welcoming user";
-    this->ProjectConfig_WelcomeTitle = "Welcome";
-
-    // Blocking users
-    this->ProjectConfig_BlockTime = "indefinite";
-    this->ProjectConfig_BlockTimeAnon = "31 hours";
-    this->ProjectConfig_BlockMessage = "{{subst:huggle/block|1=$1|2=$2}}";
-    this->ProjectConfig_BlockMessageIndef = "{{subst:huggle/block-indef|1=$1}}";
-    this->ProjectConfig_BlockReason = "[[WP:VAND|Vandalism]]";
-    this->ProjectConfig_BlockSummary = "Notification: Blocked";
-    this->ProjectConfig_RestoreSummary = "Restored revision $1 made by $2";
     this->ProjectConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->ProjectConfig_BlockExpiryOptions.append("indefinite");
-
-    // RFPP
-    this->ProjectConfig_RFPP_Page = "";
-    this->ProjectConfig_RFPP_PlaceTop = false;
-    this->ProjectConfig_RFPP_Summary = "Sending request to protect a page";
-    this->ProjectConfig_RFPP = false;
-    this->ProjectConfig_RFPP_Template = "";
-    this->ProjectConfig_RFPP_TemplateUser = "";
-    this->ProjectConfig_RFPP_Regex = "";
-    this->ProjectConfig_ConfirmMultipleEdits = false;
-    this->ProjectConfig_ConfirmRange = false;
-    this->ProjectConfig_ConfirmPage = false;
-    this->ProjectConfig_ConfirmSame = false;
-    this->ProjectConfig_ConfirmWarned = false;
-    this->ForcedNoEditJump = false;
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // User
-    //////////////////////////////////////////////////////////////////////////////////////////
-    this->UserConfig_ManualWarning = false;
-    this->UserConfig_HAN_DisplayBots = true;
-    this->UserConfig_HAN_DisplayUserTalk = true;
-    this->UserConfig_HAN_DisplayUser = true;
-    this->UserConfig_LastEdit = false;
-    this->UserConfig_AutomaticallyResolveConflicts = false;
-    this->UserConfig_RevertNewBySame = true;
-    this->UserConfig_RemoveOldQueueEdits = false;
-    this->UserConfig_HistoryLoad = true;
-    this->UserConfig_TruncateEdits = false;
-    // we need to maintain some compatibility with older huggle
-    this->UserConfig_EnforceMonthsAsHeaders = true;
-    this->UserConfig_DeleteEditsAfterRevert = true;
-    this->UserConfig_SectionKeep = true;
-    this->UserConfig_TalkPageFreshness = 20;
-    this->UserConfig_DisplayTitle = false;
-    this->UserConfig_GoNext = Configuration_OnNext_Next;
-    this->UserConfig_CheckTP = false;
-    this->UserConfig_QueueID = "default";
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // System (pc wide)
-    //////////////////////////////////////////////////////////////////////////////////////////
-
-    this->SystemConfig_DelayVal = 0;
-    this->SystemConfig_RequestDelay = false;
-    this->SystemConfig_WhitelistDisabled = false;
-    this->SystemConfig_RevertDelay = 0;
-    this->SystemConfig_InstantReverts = true;
-    this->SystemConfig_SyslogPath = "huggle.log";
-    this->SystemConfig_Log2File = false;
-    this->SystemConfig_FontSize = 10;
-    this->SystemConfig_WriteTimeout = 200;
-    this->SystemConfig_ReadTimeout = 60;
-    this->SystemConfig_SafeMode = false;
-    this->SystemConfig_CacheHAN = 100;
-    this->SystemConfig_UsingSSL = true;
-    this->SystemConfig_GlobalConfigWikiList = "Project:Huggle/List";
-    this->SystemConfig_Username = "User";
-    this->SystemConfig_DynamicColsInList = false;
-    this->SystemConfig_IRCConnectionTimeOut = 2;
-    this->SystemConfig_LanguageSanity = false;
-    this->SystemConfig_Dot = false;
-    this->SystemConfig_QueueNewEditsUp = false;
-
-    // Temporary only
-    this->TemporaryConfig_EditToken = "";
-    this->TemporaryConfig_Password = "";
-
-    // Unknown parts
-    this->RevertOnMultipleEdits = false;
-    this->EnforceManualSoftwareRollback = false;
-    this->VandalNw_Server = "irc.tm-irc.org";
-    this->VandalNw_Login = true;
 }
 
 Configuration::~Configuration()
