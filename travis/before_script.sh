@@ -1,5 +1,7 @@
 #! /bin/bash
 
+g++ --version
+
 cd /home/travis/build/huggle/huggle3-qt-lx/travis
 gunzip *.gz
 cd /home/travis/build/huggle/huggle3-qt-lx/huggle
