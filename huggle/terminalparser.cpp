@@ -109,6 +109,8 @@ bool TerminalParser::Parse()
                 }
                 QString credentials = lf->readAll();
                 delete lf;
+                //remove the newlines, the file is meant to contain 1 line only
+                credentials.replace("\n", "");
                 if (!credentials.contains(":"))
                 {
                     cerr << "Unable to read the credential file, expected colon as a separator" << endl;
