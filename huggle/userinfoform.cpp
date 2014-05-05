@@ -161,51 +161,42 @@ void UserinfoForm::OnTick()
             {
                 QDomElement edit = results.at(xx).toElement();
                 if (!edit.attributes().contains("user"))
-                {
                     continue;
-                }
                 top = edit.attributes().contains("top");
                 if (top)
                 {
                     // set a different color for edits that are top
                     if (xt)
-                    {
                         xb = QColor(110, 202, 250);
-                    } else
-                    {
+                    else
                         xb = QColor(120, 222, 250);
-                    }
                 } else
                 {
                     if (xt)
-                    {
                         xb = QColor(206, 202, 250);
-                    } else
-                    {
+                    else
                         xb = QColor(224, 222, 250);
-                    }
                 }
                 xt = !xt;
                 QString page = "unknown page";
                 if (edit.attributes().contains("title"))
-                {
                     page = edit.attribute("title");
-                }
                 QString time = "unknown time";
                 if (edit.attributes().contains("timestamp"))
-                {
                     time = edit.attribute("timestamp");
-                }
                 QString diff = "";
                 if (edit.attributes().contains("revid"))
-                {
                     diff = edit.attribute("revid");
-                }
                 int last = this->ui->tableWidget->rowCount();
                 this->ui->tableWidget->insertRow(last);
-                if (top) page += " (top)";
+                QFont font;
+                if (top)
+                {
+                    font.setBold(true);
+                }
                 QTableWidgetItem *q = new QTableWidgetItem(page);
                 q->setBackgroundColor(xb);
+                q->setFont(font);
                 this->ui->tableWidget->setItem(last, 0, q);
                 q = new QTableWidgetItem(time);
                 q->setBackgroundColor(xb);
@@ -216,9 +207,7 @@ void UserinfoForm::OnTick()
                 xx++;
             }
         } else
-        {
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
-        }
         this->ui->tableWidget->resizeRowsToContents();
         this->qContributions->DecRef();
         this->qContributions = NULL;
@@ -228,16 +217,10 @@ void UserinfoForm::OnTick()
 
 void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
 {
-    if (this->qContributions != NULL)
-    {
-        // we must not retrieve edit until previous operation did finish
+    // in case there are no edits we can safely quit here, there is also check because
+    // we must not retrieve edit until previous operation did finish
+    if (this->qContributions != NULL || this->ui->tableWidget->rowCount() == 0)
         return;
-    }
-
-    if (this->ui->tableWidget->rowCount() == 0)
-    {
-        return;
-    }
 
     // check if we don't have this edit in a buffer
     int x = 0;
