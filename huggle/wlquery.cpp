@@ -43,6 +43,16 @@ QString WLQuery::QueryTargetToString()
 
 void WLQuery::Process()
 {
+    if (!Configuration::HuggleConfiguration->GlobalConfig_Whitelist.size())
+    {
+        // there is no whitelist in config for this wiki
+        Syslog::HuggleLogs->ErrorLog("Unable to process WL request, there is no whitelist server defined");
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Invalid URL";
+        this->Result->Failed = true;
+        this->Status = Huggle::StatusInError;
+        return;
+    }
     this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
