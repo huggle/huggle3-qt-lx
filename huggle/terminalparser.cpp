@@ -18,7 +18,6 @@ using namespace std;
 
 TerminalParser::TerminalParser(QStringList argv)
 {
-    this->Silent = false;
     this->args = argv;
 }
 
@@ -108,6 +107,7 @@ bool TerminalParser::Parse()
                     return true;
                 }
                 QString credentials = lf->readAll();
+                lf->close();
                 delete lf;
                 //remove the newlines, the file is meant to contain 1 line only
                 credentials.replace("\n", "");

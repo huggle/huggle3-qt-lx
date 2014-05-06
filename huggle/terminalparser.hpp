@@ -34,7 +34,7 @@ namespace Huggle
             bool Parse();
             bool ParseChar(QChar x);
             void DisplayHelp();
-            bool Silent;
+            bool Silent = false;
         private:
             QStringList args;
     };
