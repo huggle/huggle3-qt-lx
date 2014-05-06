@@ -363,7 +363,6 @@ text "Creating makefile... "
 $QMAKE_PATH $FLAGS || exit 1;ok
 text "Executing hunk..."
 cd hunker || exit 1
-echo ./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
 ./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
 echo "Everything is ready, you can build huggle by typing"
 echo "make"
