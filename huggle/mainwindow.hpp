@@ -175,55 +175,54 @@ namespace Huggle
             //! Pointer to toolbar
             HuggleTool *tb;
             //! Pointer to options
-            Preferences *preferencesForm;
+            Preferences *preferencesForm = nullptr;
             //! Pointer to ignore list (see ignorelist.h)
-            IgnoreList *Ignore;
+            IgnoreList *Ignore = nullptr;
             //! Pointer to about dialog (see aboutform.h)
-            AboutForm *aboutForm;
+            AboutForm *aboutForm = nullptr;
             //! Pointer to current edit, if it's NULL there is no edit being displayed
-            WikiEdit *CurrentEdit;
-            SpeedyForm* fSpeedyDelete;
+            WikiEdit *CurrentEdit = nullptr;
+            SpeedyForm* fSpeedyDelete = nullptr;
             //! Pointer to processes
             ProcessList *Queries;
             //! Pointer to history
-            History * _History;
+            History *_History;
             //! Pointer to menu of revert warn button
             QMenu *RevertWarn;
             //! Pointer to vandal network
-            VandalNw * VandalDock;
-            SessionForm *fSessionData;
+            VandalNw *VandalDock;
+            SessionForm *fSessionData = nullptr;
             //! Pointer to query that is used to store user config on exit of huggle
-            EditQuery *eq;
+            EditQuery *eq = nullptr;
             //! This query is used to refresh white list
-            WLQuery *wq;
+            WLQuery *wq = nullptr;
             //! Warning menu
             QMenu *WarnMenu;
             //! Revert menu
             QMenu *RevertSummaries;
-            ScoreWordsDbForm *fScoreWord;
+            ScoreWordsDbForm *fScoreWord = nullptr;
             Ui::MainWindow *ui;
             bool ShuttingDown;
             //! If system is shutting down this is displaying which part of shutdown is currently being executed
             ShutdownOp Shutdown;
-            ReportUser *fReportForm;
+            ReportUser *fReportForm = nullptr;
             //! Pointer to a form to block user
-            BlockUser *fBlockForm;
+            BlockUser *fBlockForm = nullptr;
             //! Pointer to a form to delete a page
-            DeleteForm *fDeleteForm;
+            DeleteForm *fDeleteForm = nullptr;
             //! Pointer to a form to protect a page
-            ProtectPage *fProtectForm;
+            ProtectPage *fProtectForm = nullptr;
             //! Pointer to UAA dialog
-            UAAReport *fUaaReportForm;
-            WhitelistForm *fWhitelist;
+            UAAReport *fUaaReportForm = nullptr;
+            WhitelistForm *fWhitelist = nullptr;
             int LastTPRevID;
             //! This is a query for rollback of current edit which we need to keep in case
             //! that user wants to display their own revert instead of next page
-            Query *qNext;
+            Query *qNext = nullptr;
             //! Timer that is used to check if there are new messages on talk page
             QTimer *tCheck;
             //! Query that is used to check if talk page contains new messages
-            ApiQuery *qTalkPage;
-
+            ApiQuery *qTalkPage = nullptr;
         private slots:
             void on_actionExit_triggered();
             void on_actionPreferences_triggered();
@@ -337,23 +336,22 @@ namespace Huggle
             QTimer *GeneralTimer;
             QDateTime EditLoad;
             QString RestoreEdit_RevertReason;
-            // Whitelist
-            QTimer *wlt;
+            QTimer *wlt = nullptr;
             //! Status bar
             QLabel *Status;
             bool EditablePage;
-            WarningList *fWarningList;
-            WaitingForm *fWaiting;
-            RequestProtect *fRFProtection;
+            WarningList *fWarningList = nullptr;
+            WaitingForm *fWaiting = nullptr;
+            RequestProtect *fRFProtection = nullptr;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
-            ApiQuery *RestoreQuery;
-            WikiEdit *RestoreEdit;
+            ApiQuery *RestoreQuery = nullptr;
+            WikiEdit *RestoreEdit = nullptr;
             QList<RevertQuery*> RevertStack;
             //! This is a page that is going to be displayed if users request their latest action to be
             //! reviewed when it's done (for example when they rollback an edit and they want to
             //! display it, instead of next one)
-            WikiPage *OnNext_EvPage;
+            WikiPage *OnNext_EvPage = nullptr;
     };
 }
 #endif // MAINWINDOW_H

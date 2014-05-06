@@ -25,32 +25,10 @@
 #include "ui_mainwindow.h"
 
 using namespace Huggle;
-MainWindow *MainWindow::HuggleMain = NULL;
+MainWindow *MainWindow::HuggleMain = nullptr;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    this->fScoreWord = NULL;
-    this->fSessionData = NULL;
-    this->fReportForm = NULL;
-    this->fBlockForm = NULL;
-    this->fDeleteForm = NULL;
-    this->wlt = NULL;
-    this->fProtectForm = NULL;
-    this->fWaiting = NULL;
-    this->fWhitelist = NULL;
-    this->wq = NULL;
-    this->qNext = NULL;
-    this->RestoreQuery = NULL;
-    this->fUaaReportForm = NULL;
-    this->OnNext_EvPage = NULL;
-    this->fSpeedyDelete = NULL;
-    this->qTalkPage = NULL;
-    this->fWarningList = NULL;
-    this->eq = NULL;
-    this->RestoreEdit = NULL;
-    this->CurrentEdit = NULL;
-    this->fRFProtection = NULL;
-    this->Ignore = NULL;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->EditLoad = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
@@ -248,7 +226,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::DisplayReportUserWindow(WikiUser *User)
 {
-    if (!this->CheckExit() || this->CurrentEdit == NULL)
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 
     if (Configuration::HuggleConfiguration->Restricted)
@@ -256,10 +234,10 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         Generic::DeveloperError();
         return;
     }
-    if (User == NULL)
+    if (User == nullptr)
         User = this->CurrentEdit->User;
-    if (User == NULL)
-        throw new Huggle::Exception("WikiUser must not be NULL", "void MainWindow::DisplayReportUserWindow(WikiUser *User)");
+    if (User == nullptr)
+        throw new Huggle::Exception("WikiUser must not be nullptr", "void MainWindow::DisplayReportUserWindow(WikiUser *User)");
     if (User->IsReported)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-duplicate"));
@@ -274,10 +252,10 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         mb.exec();
         return;
     }
-    if (this->fReportForm != NULL)
+    if (this->fReportForm != nullptr)
     {
         delete this->fReportForm;
-        this->fReportForm = NULL;
+        this->fReportForm = nullptr;
     }
     this->fReportForm = new ReportUser(this);
     this->fReportForm->show();
@@ -286,26 +264,26 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
 {
-    if (e == NULL || this->ShuttingDown)
+    if (e == nullptr || this->ShuttingDown)
     {
-        // Huggle is either shutting down or edit is NULL so we can't do anything here
+        // Huggle is either shutting down or edit is nullptr so we can't do anything here
         return;
     }
-    if (this->qNext != NULL)
+    if (this->qNext != nullptr)
     {
         // we need to delete this because it's related to an old edit
         this->qNext->DecRef();
-        this->qNext = NULL;
+        this->qNext = nullptr;
     }
-    if (e->Page == NULL || e->User == NULL)
+    if (e->Page == nullptr || e->User == NULL)
     {
-        throw new Huggle::Exception("Page and User must not be NULL in edit that is supposed to be displayed on form",
+        throw new Huggle::Exception("Page and User must not be nullptr in edit that is supposed to be displayed on form",
                   "void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)");
     }
-    if (this->OnNext_EvPage != NULL)
+    if (this->OnNext_EvPage != nullptr)
     {
         delete this->OnNext_EvPage;
-        this->OnNext_EvPage = NULL;
+        this->OnNext_EvPage = nullptr;
     }
     // we need to safely delete the edit later
     e->IncRef();
@@ -325,14 +303,14 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     {
         e->RegisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
         this->Historical.append(e);
-        if (this->CurrentEdit != NULL)
+        if (this->CurrentEdit != nullptr)
         {
             if (!IgnoreHistory)
             {
                 e->RemoveFromHistoryChain();
                 // now we need to get to last edit in chain
                 WikiEdit *latest = CurrentEdit;
-                while (latest->Next != NULL)
+                while (latest->Next != nullptr)
                 {
                     latest = latest->Next;
                 }
@@ -369,11 +347,11 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
 
 void MainWindow::Render()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
-        if (this->CurrentEdit->Page == NULL)
+        if (this->CurrentEdit->Page == nullptr)
         {
-            throw new Exception("Page of CurrentEdit can't be NULL at MainWindow::Render()");
+            throw new Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);
@@ -413,12 +391,12 @@ void MainWindow::RequestPD()
         Generic::DeveloperError();
         return;
     }
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         return;
     }
 
-    if (this->fSpeedyDelete != NULL)
+    if (this->fSpeedyDelete != nullptr)
     {
         delete this->fSpeedyDelete;
     }
@@ -446,7 +424,7 @@ void MainWindow::FinishPatrols()
     {
         ApiQuery *query = this->PatroledEdits.at(x);
         // check if this query has actually some edit associated to it
-        if (query->CallbackResult == NULL)
+        if (query->CallbackResult == nullptr)
         {
             // we really don't want to mess up with this
             query->UnregisterConsumer("patrol");
@@ -474,7 +452,7 @@ void MainWindow::FinishPatrols()
                     // get rid of it
                     this->PatroledEdits.removeAt(x);
                     edit->UnregisterConsumer("patrol");
-                    query->CallbackResult = NULL;
+                    query->CallbackResult = nullptr;
                     query->UnregisterConsumer("patrol");
                     continue;
                 }
@@ -484,7 +462,7 @@ void MainWindow::FinishPatrols()
             // get rid of it
             this->PatroledEdits.removeAt(x);
             edit->UnregisterConsumer("patrol");
-            query->CallbackResult = NULL;
+            query->CallbackResult = nullptr;
             query->UnregisterConsumer("patrol");
             continue;
         } else
@@ -545,7 +523,7 @@ void MainWindow::UpdateStatusBarData()
 
 void MainWindow::DecreaseBS()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
     }
@@ -553,7 +531,7 @@ void MainWindow::DecreaseBS()
 
 void MainWindow::IncreaseBS()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
     }
@@ -585,10 +563,10 @@ void MainWindow::ProcessReverts()
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("main-revert-null"));
-        return NULL;
+        return nullptr;
     }
 
     if (this->CurrentEdit->NewPage)
@@ -597,7 +575,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         mb.setWindowTitle("Can't revert this");
         mb.setText("This is a new page, so it can't be reverted, you can either tag it, or delete it.");
         mb.exec();
-        return NULL;
+        return nullptr;
     }
 
     if (!this->CurrentEdit->IsPostProcessed())
@@ -605,7 +583,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         // This shouldn't ever happen, there is no need to translate this message
         // becase it's nearly impossible to be ever displayed
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
-        return NULL;
+        return nullptr;
     }
 
     if (this->CurrentEdit->RollbackToken == "")
@@ -635,12 +613,12 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         }
         return q;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
-    if (this->qNext != NULL)
+    if (this->qNext != nullptr)
     {
         QMessageBox *mb = new QMessageBox();
         mb->setWindowTitle("This edit is already being reverted");
@@ -648,9 +626,9 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         mb->exec();
         return false;
     }
-    if (_e == NULL)
+    if (_e == nullptr)
     {
-        throw new Huggle::Exception("NULL edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
+        throw new Huggle::Exception("nullptr edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
     }
     bool Warn = false;
     QString type = "unknown";
@@ -674,7 +652,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (Warn)
     {
-        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
+        QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Revert edit"
                       , "This edit is " + type + ", so even if it looks like it is a vandalism,"\
                       " it may not be, are you sure you want to revert it?"
                       , QMessageBox::Yes|QMessageBox::No);
@@ -688,7 +666,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
 
 bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 {
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         return false;
     }
@@ -698,7 +676,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     {
         this->DisplayReportUserWindow(this->CurrentEdit->User);
     }
-    if (ptr_Warning_ != NULL)
+    if (ptr_Warning_ != nullptr)
     {
         PendingWarning::PendingWarnings.append(ptr_Warning_);
         return true;
@@ -747,7 +725,7 @@ void MainWindow::DisplayWelcomeMessage()
 
 void MainWindow::FinishRestore()
 {
-    if (this->RestoreEdit == NULL || this->RestoreQuery == NULL || !this->RestoreQuery->IsProcessed())
+    if (this->RestoreEdit == nullptr || this->RestoreQuery == NULL || !this->RestoreQuery->IsProcessed())
         return;
     QDomDocument d;
     d.setContent(this->RestoreQuery->Result->Data);
@@ -759,10 +737,10 @@ void MainWindow::FinishRestore()
         if (e.attributes().contains("missing"))
         {
             this->RestoreQuery->DecRef();
-            this->RestoreQuery = NULL;
+            this->RestoreQuery = nullptr;
             Huggle::Syslog::HuggleLogs->ErrorLog("Unable to restore the revision, because there is no text available for it");
             this->RestoreEdit->DecRef();
-            this->RestoreEdit = NULL;
+            this->RestoreEdit = nullptr;
             return;
         }
     }
@@ -774,10 +752,10 @@ void MainWindow::FinishRestore()
         if (text == "")
         {
             this->RestoreQuery->DecRef();
-            this->RestoreQuery = NULL;
+            this->RestoreQuery = nullptr;
             Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
             this->RestoreEdit->DecRef();
-            this->RestoreEdit = NULL;
+            this->RestoreEdit = nullptr;
             return;
         }
         QString sm = Configuration::HuggleConfiguration->ProjectConfig_RestoreSummary;
@@ -791,9 +769,9 @@ void MainWindow::FinishRestore()
         Syslog::HuggleLogs->ErrorLog("Unable to restore the revision because wiki provided no data for selected version");
     }
     this->RestoreQuery->DecRef();
-    this->RestoreQuery = NULL;
+    this->RestoreQuery = nullptr;
     this->RestoreEdit->DecRef();
-    this->RestoreEdit = NULL;
+    this->RestoreEdit = nullptr;
 }
 
 void MainWindow::TriggerWarn()
@@ -809,7 +787,7 @@ void MainWindow::TriggerWarn()
     }
     if (Configuration::HuggleConfiguration->UserConfig_ManualWarning)
     {
-        if (this->fWarningList != NULL)
+        if (this->fWarningList != nullptr)
         {
             delete this->fWarningList;
         }
@@ -817,7 +795,7 @@ void MainWindow::TriggerWarn()
         this->fWarningList->show();
         return;
     }
-    this->Warn("warning", NULL);
+    this->Warn("warning", nullptr);
 }
 
 void MainWindow::on_actionPreferences_triggered()
@@ -841,7 +819,7 @@ void MainWindow::OnMainTimerTick()
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;
     // if garbage collector is already destroyed there is no point in doing anything in here
-    if (GC::gc == NULL)
+    if (GC::gc == nullptr)
         return;
     GC::gc->DeleteOld();
     // if there is no working feed, let's try to fix it
@@ -881,7 +859,7 @@ void MainWindow::OnMainTimerTick()
     {
         // we take the edit and start post processing it
         WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
-        if (edit != NULL)
+        if (edit != nullptr)
         {
             QueryPool::HugglePool->PostProcessEdit(edit);
             edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
@@ -941,14 +919,14 @@ void MainWindow::OnMainTimerTick()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
-    if (this->OnNext_EvPage != NULL && this->qNext != NULL && this->qNext->IsProcessed())
+    if (this->OnNext_EvPage != nullptr && this->qNext != NULL && this->qNext->IsProcessed())
     {
         this->tb->SetPage(this->OnNext_EvPage);
         this->tb->RenderEdit();
         this->qNext->DecRef();
         delete this->OnNext_EvPage;
-        this->OnNext_EvPage = NULL;
-        this->qNext = NULL;
+        this->OnNext_EvPage = nullptr;
+        this->qNext = nullptr;
     }
     this->FinishRestore();
     this->TruncateReverts();
@@ -963,7 +941,7 @@ void MainWindow::TruncateReverts()
         if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
         {
             // we need to delete older edits that we know and that may be somewhere in queue
-            if (this->Queue1 != NULL)
+            if (this->Queue1 != nullptr)
             {
                 this->Queue1->DeleteOlder(edit);
             }
@@ -1007,7 +985,7 @@ void MainWindow::OnTimerTick0()
             // we finished writing the wl
             this->wq->DecRef();
             this->fWaiting->Status(90, Localizations::HuggleLocalizations->Localize("updating-uc"));
-            this->wq = NULL;
+            this->wq = nullptr;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
@@ -1024,7 +1002,7 @@ void MainWindow::OnTimerTick0()
             return;
         }
         this->eq->DecRef();
-        this->eq = NULL;
+        this->eq = nullptr;
         this->wlt->stop();
         this->GeneralTimer->stop();
         Core::HuggleCore->Shutdown();
@@ -1075,7 +1053,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
         return;
     }
     RevertQuery *result = this->Revert("", true, false);
-    if (result != NULL)
+    if (result != nullptr)
     {
         this->Warn("warning", result);
         this->DisplayNext(result);
@@ -1099,7 +1077,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
     RevertQuery *result = this->Revert("", true, false);
 
-    if (result != NULL)
+    if (result != nullptr)
     {
         this->Warn("warning", result);
         this->DisplayNext(result);
@@ -1125,7 +1103,7 @@ void MainWindow::on_actionRevert_triggered()
 
 void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 {
-    if (this->Ignore != NULL)
+    if (this->Ignore != nullptr)
     {
         delete this->Ignore;
     }
@@ -1135,14 +1113,14 @@ void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 
 void MainWindow::on_actionForward_triggered()
 {
-    if (this->CurrentEdit == NULL || this->CurrentEdit->Next == NULL)
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == NULL)
         return;
     this->ProcessEdit(this->CurrentEdit->Next, true);
 }
 
 void MainWindow::on_actionBack_triggered()
 {
-    if (this->CurrentEdit == NULL || this->CurrentEdit->Previous == NULL)
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == NULL)
         return;
     this->ProcessEdit(this->CurrentEdit->Previous, true);
 }
@@ -1181,7 +1159,7 @@ void MainWindow::CustomRevertWarn()
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
     rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
     RevertQuery *result = this->Revert(rs, true, false);
-    if (result != NULL)
+    if (result != nullptr)
     {
         this->Warn(k, result);
         this->DisplayNext(result);
@@ -1200,7 +1178,7 @@ void MainWindow::CustomWarn()
     }
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
-    this->Warn(k, NULL);
+    this->Warn(k, nullptr);
 }
 
 QString MainWindow::GetSummaryText(QString text)
@@ -1263,11 +1241,11 @@ void MainWindow::Exit()
         return;
     }
     this->Shutdown = ShutdownOpRetrievingWhitelist;
-    if (Core::HuggleCore->PrimaryFeedProvider != NULL)
+    if (Core::HuggleCore->PrimaryFeedProvider != nullptr)
     {
         Core::HuggleCore->PrimaryFeedProvider->Stop();
     }
-    if (this->fWaiting != NULL)
+    if (this->fWaiting != nullptr)
     {
         delete this->fWaiting;
     }
@@ -1317,7 +1295,7 @@ bool MainWindow::BrowserPageIsEditable()
 
 bool MainWindow::CheckEditableBrowserPage()
 {
-    if (!this->EditablePage || this->CurrentEdit == NULL)
+    if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
         QMessageBox mb;
         mb.setWindowTitle("Cannot perform action");
@@ -1344,7 +1322,7 @@ void MainWindow::SuspiciousEdit()
     {
         return;
     }
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         Hooks::Suspicious(this->CurrentEdit);
         WLQuery *wq_ = new WLQuery();
@@ -1364,11 +1342,11 @@ void MainWindow::SuspiciousEdit()
 
 void MainWindow::PatrolThis(WikiEdit *e)
 {
-    if (e == NULL)
+    if (e == nullptr)
     {
         e = this->CurrentEdit;
     }
-    if (e == NULL)
+    if (e == nullptr)
     {
         // ignore this
         return;
@@ -1377,7 +1355,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
     {
         return;
     }
-    ApiQuery *query = NULL;
+    ApiQuery *query = nullptr;
     // if this edit doesn't have the patrol token we need to get one
     if (e->PatrolToken == "")
     {
@@ -1442,13 +1420,13 @@ void MainWindow::_BlockUser()
         return;
     }
 
-    if(this->CurrentEdit == NULL)
+    if(this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("block-none"));
         return;
     }
 
-    if (this->fBlockForm != NULL)
+    if (this->fBlockForm != nullptr)
     {
         delete this->fBlockForm;
     }
@@ -1470,20 +1448,20 @@ void MainWindow::DisplayNext(Query *q)
             return;
         case Configuration_OnNext_Revert:
             //! \bug This doesn't seem to work
-            if (this->CurrentEdit == NULL)
+            if (this->CurrentEdit == nullptr)
             {
                 return;
             }
-            if (q == NULL)
+            if (q == nullptr)
             {
                 this->Queue1->Next();
                 return;
             }
-            if (this->OnNext_EvPage != NULL)
+            if (this->OnNext_EvPage != nullptr)
             {
                 delete this->OnNext_EvPage;
             }
-            if (this->qNext != NULL)
+            if (this->qNext != nullptr)
             {
                 this->qNext->DecRef();
             }
@@ -1501,13 +1479,13 @@ void MainWindow::DeletePage()
         return;
     }
 
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
-        Syslog::HuggleLogs->ErrorLog("No, you cannot delete a NULL page :)");
+        Syslog::HuggleLogs->ErrorLog("No, you cannot delete a nullptr page :)");
         return;
     }
 
-    if (this->fDeleteForm != NULL)
+    if (this->fDeleteForm != nullptr)
     {
         delete this->fDeleteForm;
     }
@@ -1518,7 +1496,7 @@ void MainWindow::DeletePage()
 
 void MainWindow::DisplayTalk()
 {
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         return;
     }
@@ -1549,7 +1527,7 @@ bool MainWindow::CheckExit()
 
 void MainWindow::Welcome()
 {
-    if (!this->CheckExit() || this->CurrentEdit == NULL)
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
     {
         return;
     }
@@ -1588,7 +1566,7 @@ void MainWindow::Welcome()
         WikiUtil::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
                               Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
                               Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
-                              false, NULL, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
+                              false, nullptr, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
     if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.count() == 0)
@@ -1608,13 +1586,13 @@ void MainWindow::Welcome()
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
     WikiUtil::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
-                          Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, NULL,
+                          Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, false, nullptr,
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
 void MainWindow::ChangeProvider(HuggleFeed *provider)
 {
-    if (HuggleFeed::PrimaryFeedProvider != NULL)
+    if (HuggleFeed::PrimaryFeedProvider != nullptr)
     {
         delete HuggleFeed::PrimaryFeedProvider;
     }
@@ -1629,7 +1607,7 @@ void MainWindow::on_actionWelcome_user_triggered()
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + QUrl::toPercentEncoding( this->CurrentEdit->Page->PageName )));
     }
@@ -1647,7 +1625,7 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 
 void MainWindow::on_actionGood_edit_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
@@ -1662,7 +1640,7 @@ void MainWindow::on_actionGood_edit_triggered()
 
 void MainWindow::on_actionUser_contributions_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + "Special:Contributions/" + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)));
     }
@@ -1679,7 +1657,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
     {
         return;
     }
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         Hooks::OnGood(this->CurrentEdit);
         this->PatrolThis();
@@ -1694,7 +1672,7 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Diff > 0)
         {
@@ -1708,7 +1686,7 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 
 void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
     }
@@ -1716,7 +1694,7 @@ void MainWindow::on_actionEdit_page_in_browser_triggered()
 
 void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history"));
     }
@@ -1738,7 +1716,7 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == NULL)
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == nullptr)
     {
         return;
     }
@@ -1782,7 +1760,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
         return;
     }
     RevertQuery *result = this->Revert("", false, false);
-    if (result != NULL)
+    if (result != nullptr)
     {
         this->Warn("warning", result);
     }
@@ -1809,7 +1787,7 @@ void MainWindow::on_actionWelcome_user_2_triggered()
 
 void MainWindow::on_actionReport_user_triggered()
 {
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
@@ -1819,7 +1797,7 @@ void MainWindow::on_actionReport_user_triggered()
 
 void MainWindow::on_actionReport_user_2_triggered()
 {
-    if(this->CurrentEdit == NULL)
+    if(this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("report-no-user"));
         return;
@@ -1849,7 +1827,7 @@ void MainWindow::on_actionWarning_4_triggered()
 
 void MainWindow::on_actionEdit_user_talk_triggered()
 {
-    if (this->CurrentEdit != NULL)
+    if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
     }
@@ -1912,13 +1890,13 @@ void MainWindow::on_actionProtect_triggered()
     {
         return;
     }
-    if (this->CurrentEdit == NULL)
+    if (this->CurrentEdit == nullptr)
     {
         // This doesn't need to be localized
-        Syslog::HuggleLogs->ErrorLog("Cannot protect NULL page");
+        Syslog::HuggleLogs->ErrorLog("Cannot protect nullptr page");
         return;
     }
-    if (this->fProtectForm != NULL)
+    if (this->fProtectForm != nullptr)
     {
         delete this->fProtectForm;
     }
@@ -1945,7 +1923,7 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 
 void MainWindow::on_actionReport_username_triggered()
 {
-    if (this->CurrentEdit == NULL || !this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -1962,7 +1940,7 @@ void MainWindow::on_actionReport_username_triggered()
         Syslog::HuggleLogs->ErrorLog("You can't report IP address using this feature");
         return;
     }
-    if (this->fUaaReportForm != NULL)
+    if (this->fUaaReportForm != nullptr)
     {
         delete this->fUaaReportForm;
     }
@@ -1973,7 +1951,7 @@ void MainWindow::on_actionReport_username_triggered()
 
 void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 {
-    if (this->fScoreWord != NULL)
+    if (this->fScoreWord != nullptr)
     {
         delete this->fScoreWord;
     }
@@ -1983,7 +1961,7 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 
 void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 {
-    if (this->CurrentEdit == NULL || !this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
     {
         return;
     }
@@ -2007,7 +1985,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 
 void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
 {
-    if (this->fSessionData != NULL)
+    if (this->fSessionData != nullptr)
     {
         delete this->fSessionData;
     }
@@ -2017,7 +1995,7 @@ void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
 
 void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
 {
-    if (this->fWhitelist != NULL)
+    if (this->fWhitelist != nullptr)
     {
         delete this->fWhitelist;
     }
@@ -2032,7 +2010,7 @@ void Huggle::MainWindow::on_actionResort_queue_triggered()
 
 void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 {
-    if (!this->CheckExit() || this->CurrentEdit == NULL)
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
     {
         return;
     }
@@ -2041,7 +2019,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
         Generic::DeveloperError();
         return;
     }
-    if (this->RestoreEdit != NULL || this->RestoreQuery != NULL)
+    if (this->RestoreEdit != nullptr || this->RestoreQuery != NULL)
     {
         /// \todo LOCALIZE ME
         Huggle::Syslog::HuggleLogs->Log("I am currently restoring another edit, please wait");
@@ -2109,7 +2087,7 @@ void MainWindow::TimerCheckTPOnTick()
     {
         return;
     }
-    if (this->qTalkPage == NULL)
+    if (this->qTalkPage == nullptr)
     {
         this->qTalkPage = new ApiQuery();
         this->qTalkPage->SetAction(ActionQuery);
@@ -2139,7 +2117,7 @@ void MainWindow::TimerCheckTPOnTick()
             }
         }
         this->qTalkPage->DecRef();
-        this->qTalkPage = NULL;
+        this->qTalkPage = nullptr;
     }
 }
 
@@ -2215,7 +2193,7 @@ void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
 
 void Huggle::MainWindow::on_actionRequest_protection_triggered()
 {
-    if (!this->CheckExit() || !Configuration::HuggleConfiguration->ProjectConfig_RFPP || this->CurrentEdit == NULL)
+    if (!this->CheckExit() || !Configuration::HuggleConfiguration->ProjectConfig_RFPP || this->CurrentEdit == nullptr)
     {
         return;
     }
@@ -2224,7 +2202,7 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
         Generic::DeveloperError();
         return;
     }
-    if (this->fRFProtection != NULL)
+    if (this->fRFProtection != nullptr)
     {
         delete this->fRFProtection;
     }
