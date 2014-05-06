@@ -31,18 +31,20 @@
 SKIPCHECKS=0
 QMAKE_PATH=qmake
 _QMAKE=0
+_G=0
 RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 BREAKPAD=0
+GCC_PATH="g++"
 QT5=10
 FLAGS=''
 if [ x"$*" != x ];then
     echo "Options used: $*"
 fi
 # first we parse all arguments we got
-for var in "$@"
+for var in $@
 do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
@@ -55,11 +57,18 @@ do
         echo " --version: show version"
         echo " --no-breakpad: will not build breakpad library for huggle"
         echo " --qmake: change path to qmake"
+        echo " --g++: change path to g++ binaries"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
     fi
+    if [ "$_G" = "1" ];then
+	GCC_PATH="$var"
+        _G=0
+        continue
+    fi
     if [ "$_QMAKE" = "1" ];then
+        _QMAKE=0
 	QMAKE_PATH="$var"
         continue
     fi
@@ -89,6 +98,10 @@ do
         FLAGS='-spec linux-g++-64'
         continue
     fi
+    if [ "$var" = "--g++" ];then
+        _G=1
+        continue
+    fi
     if [ "$var" = "--qmake" ];then
         _QMAKE=1
         continue
@@ -111,6 +124,11 @@ ok()
 fail()
 {
     printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
+}
+
+warn()
+{
+    printf '%s%s%s\n' "$WARN" "WARNING!" "$NORMAL"
 }
 
 text()
@@ -178,6 +196,42 @@ checkpkg()
     echo "or execute apt-get install $1 as root"
     exit 1
 }
+text "Checking for g++"
+FAILED=0
+if [ "`which $GCC_PATH`" != "" ];then
+    GCC_VERSION=`$GCC_PATH --version | head -1`
+    if [ `echo "$GCC_VERSION" | grep -Ec '\s[1234]\.[0123456]\.'` -gt 0 ];then
+       warn
+       text "Found $GCC_VERSION but 4.7 or newer is required, trying some alternative options"
+       FAILED=1
+    fi
+else
+    warn
+    text "No g++ found, trying some alternative options"
+    FAILED=1
+fi
+if [ $FAILED -eq 1 ];then
+    if [ "`which g++-4.7`" ];then
+        GCC_PATH=`which g++-4.7`
+        FAILED=0
+    elif [ "`which g++-4.8`" ];then
+        GCC_PATH=`which g++-4.8`
+        FAILED=0
+    elif [ "`which g++-4.9`" ];then
+        GCC_PATH=`which g++-4.9`
+        FAILED=0
+    fi
+    if [ $FAILED -eq 1 ];then
+        fail
+        echo "No suitable compilers were found, if you have g++ 4.7 or newer somewhere in the system, please run ./configure --g++ <path>"
+        exit 1
+    fi
+    ok
+    echo "Found $GCC_PATH"
+else
+    ok
+    echo "Found $GCC_VERSION"
+fi
 
 echo "Checking all required packages..."
 text "Checking for qmake... "
@@ -198,7 +252,6 @@ fi
 if [ "`which apt-cache`" = "" ];then
 	echo $WARN"WARNING: Unable to verify packages, let's just hope they are all installed"$NORMAL
 else
-	checkpkg "g++"
         checkpkg "make"
         if [ "$QT5" -eq 0 ];then
             checkpkg "qt4-dev-tools"
@@ -310,7 +363,8 @@ text "Creating makefile... "
 $QMAKE_PATH $FLAGS || exit 1;ok
 text "Executing hunk..."
 cd hunker || exit 1
-./makefilehunker ../Makefile || exit 1;ok
+echo ./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
+./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
 echo "Everything is ready, you can build huggle by typing"
 echo "make"
 
