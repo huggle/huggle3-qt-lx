@@ -93,13 +93,6 @@ sanity check, like documentation or comments, please append [ci skip] to your me
 
 Reporting bugs
 ===============
-
-Huggle is using google breakpad so when it crash a minidump should be generated.
-In addition a core dump may be produced on linux systems. Both of these, or at
-least minidump is very useful for developers to track the problems. So if the
-minidump is generated during crash (you will see that in system log) you can
-send this to developers in order to get the issue analysed and fixed.
-
 Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
 
 License
