@@ -1,0 +1,9 @@
+
+
+== May 2014 ==
+[[File:Information.svg|left|25px|alt=|link=]] Hello, and welcome to Wikipedia. This is a message letting you know that one or more of your recent edits to [[:South African general election, 2014]] has been undone by an automated computer program called [[User:ClueBot NG|ClueBot NG]].
+{{clear}}
+* ClueBot NG makes very few [[User:ClueBot NG#Information About False Positives|mistakes]], but it does happen. If you believe the change you made was constructive, please [[User:ClueBot NG#Information About False Positives|read about it]], [{{User:ClueBot NG/Warnings/FPReport|1825821}} report it here], remove this message from your talk page, and then make the edit again.
+* For help, take a look at the [[Wikipedia:Introduction|introduction]].
+* The following is the log entry regarding this message: [[South African general election, 2014]] was [http://en.wikipedia.org/w/index.php?title=South+African+general+election%2C+2014&diff=607512641&oldid=607492209 changed] by [[Special:Contributions/41.13.128.34|41.13.128.34]] [[User:41.13.128.34|(u)]] [[User talk:41.13.128.34|(t)]] ANN scored at 0.967478 on 2014-05-07T18:08:43+00:00 <!-- MySQL ID: 1825821 -->. Thank you. <!-- Template:uw-cluebotwarning1 --><!-- Template:uw-vandalism1 --> [[User:ClueBot NG|ClueBot NG]] ([[User talk:ClueBot NG|talk]]) 18:08, 7 May 2014 (UTC)
+

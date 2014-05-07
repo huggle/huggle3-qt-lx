@@ -101,6 +101,26 @@ void HuggleTest::testCaseTalkPage()
     file->close();
     delete file;
     delete user;
+    file = new QFile(":/test/wikipage/tp0005.txt");
+    user = new Huggle::WikiUser();
+    file->open(QIODevice::ReadOnly);
+    text = QString(file->readAll());
+    user->TalkPage_SetContents(text);
+    user->ParseTP(QDate(2014, 5, 7));
+    QVERIFY2(user->WarningLevel == 4, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 4!!").toUtf8().data());
+    file->close();
+    delete file;
+    delete user;
+    file = new QFile(":/test/wikipage/tp0006.txt");
+    user = new Huggle::WikiUser();
+    file->open(QIODevice::ReadOnly);
+    text = QString(file->readAll());
+    user->TalkPage_SetContents(text);
+    user->ParseTP(QDate(2014, 5, 7));
+    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
+    file->close();
+    delete file;
+    delete user;
 }
 
 void HuggleTest::testCaseScores()

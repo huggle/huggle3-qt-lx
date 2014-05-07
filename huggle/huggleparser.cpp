@@ -198,10 +198,10 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
         QStringList sections;
         while (page.length() > 1)
         {
-            while (page[0] == '\n' && page.startsWith("\n\n"))
+            while (page[0] == '\n')
             {
                 // remove all leading extra lines on page
-                page = page.mid(2);
+                page = page.mid(1);
             }
             if (!page.contains("\n\n"))
             {
