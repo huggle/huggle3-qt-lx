@@ -28,12 +28,16 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
     this->edit = NULL;
+
+    this->titleWidget = new QWidget(this); /* where this a QMainWindow object */
+    this->setTitleBarWidget( titleWidget );
 }
 
 HuggleTool::~HuggleTool()
 {
     delete this->tick;
     delete this->ui;
+    delete this->titleWidget;
     GC_DECREF(this->query);
 }
 

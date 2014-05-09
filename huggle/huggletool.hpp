@@ -59,6 +59,7 @@ namespace Huggle
         private:
             void FinishPage();
             void FinishEdit();
+            QWidget *titleWidget;
             Ui::HuggleTool *ui;
             ApiQuery *query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
