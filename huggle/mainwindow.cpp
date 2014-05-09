@@ -2139,10 +2139,12 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     if (!f->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
         Syslog::HuggleLogs->ErrorLog("Unable to write to " + name);
+        delete f;
         return;
     }
     f->write(this->Browser->RetrieveHtml().toUtf8());
     f->close();
+    delete f;
 }
 
 void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
