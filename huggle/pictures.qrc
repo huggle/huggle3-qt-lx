@@ -39,8 +39,6 @@
         <file>Resources/user-info.png</file>
         <file>Resources/user-report.png</file>
         <file>Resources/user-talk.png</file>
-        <file>Resources/user-unwhitelist.png</file>
         <file>Resources/user-warn.png</file>
-        <file>Resources/user-whitelist.png</file>
     </qresource>
 </RCC>

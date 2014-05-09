@@ -237,8 +237,6 @@
    <addaction name="separator"/>
    <addaction name="actionWelcome_user"/>
    <addaction name="actionDisplay_talk"/>
-   <addaction name="actionDecrease_badness"/>
-   <addaction name="actionIncrease_badness"/>
    <addaction name="actionReport_user"/>
    <addaction name="actionBlock_user_2"/>
    <addaction name="separator"/>
@@ -832,24 +830,6 @@
    </property>
    <property name="text">
     <string>Block user</string>
-   </property>
-  </action>
-  <action name="actionIncrease_badness">
-   <property name="icon">
-    <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/user-unwhitelist.png</normaloff>:/huggle/pictures/Resources/user-unwhitelist.png</iconset>
-   </property>
-   <property name="text">
-    <string>Increase badness</string>
-   </property>
-  </action>
-  <action name="actionDecrease_badness">
-   <property name="icon">
-    <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/user-whitelist.png</normaloff>:/huggle/pictures/Resources/user-whitelist.png</iconset>
-   </property>
-   <property name="text">
-    <string>Decrease badness</string>
    </property>
   </action>
   <action name="actionDisplay_talk">

@@ -2066,16 +2066,6 @@ void Huggle::MainWindow::on_actionDisplay_talk_triggered()
     this->DisplayTalk();
 }
 
-void Huggle::MainWindow::on_actionIncrease_badness_triggered()
-{
-    this->IncreaseBS();
-}
-
-void Huggle::MainWindow::on_actionDecrease_badness_triggered()
-{
-    this->DecreaseBS();
-}
-
 void MainWindow::TimerCheckTPOnTick()
 {
     if (Configuration::HuggleConfiguration->Restricted || this->ShuttingDown)
