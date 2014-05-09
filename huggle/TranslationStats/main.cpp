@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("oc");
     Localizations::HuggleLocalizations->LocalInit("or");
     Localizations::HuggleLocalizations->LocalInit("pt");
-    Localizations::HuggleLocalizations->LocalInit("ptb");
+    Localizations::HuggleLocalizations->LocalInit("pt-BR");
     Localizations::HuggleLocalizations->LocalInit("ru");
     Localizations::HuggleLocalizations->LocalInit("sv");
     Localizations::HuggleLocalizations->LocalInit("zh");
