@@ -17,6 +17,12 @@
    <iconset resource="pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>40</width>
+    <height>40</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
     <bool>true</bool>
@@ -57,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
