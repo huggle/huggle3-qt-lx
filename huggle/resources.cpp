@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "resources.hpp"
+#include "configuration.hpp"
 
 QString Huggle::Resources::DiffFooter;
 QString Huggle::Resources::DiffHeader;
@@ -54,6 +55,20 @@ void Huggle::Resources::Init()
 
 QString Huggle::Resources::GetHtmlHeader()
 {
-    return QString( Resources::HtmlHeader ).replace( "<<<CUSTOM-CSS>>>", "" );
+    QString Css = "";
 
+    /// \todo Auto detect RTL languages (rather than hardcoded fa!)
+    if( Huggle::Configuration::HuggleConfiguration->Project->Name == "fawiki" )
+        Css.append( "/*GENERATED IN resources.cpp*/\n"\
+                    "td.diff-context {\n"\
+                    "   text-align: right;\n"\
+                    "}\n\n"\
+                    "td.diff-addedline {\n"\
+                    "   text-align: right;\n"\
+                    "}\n\n"\
+                    "td.diff-deletedline {\n"\
+                    "   text-align: right;\n"\
+                    "}\n\n" );
+
+    return QString( Resources::HtmlHeader ).replace( "<<<CUSTOM-CSS>>>", Css );
 }
