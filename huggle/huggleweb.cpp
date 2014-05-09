@@ -118,7 +118,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
                                         + QString::number(edit->Diff) + "&action=render"));
         return;
     }
-    QString HTML = Resources::HtmlHeader;
+    QString HTML = Resources::GetHtmlHeader();
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
@@ -156,7 +156,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     if (!edit)
         throw new Exception("Edit must not be NULL");
 
-    QString HTML = Resources::HtmlHeader;
+    QString HTML = Resources::GetHtmlHeader();
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message

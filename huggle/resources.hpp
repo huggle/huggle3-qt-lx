@@ -27,6 +27,7 @@ namespace Huggle
     {
         public:
             static void Init();
+            static QString GetHtmlHeader();
             static QString HtmlIncoming;
             //! This string contains a html header
             static QString HtmlHeader;

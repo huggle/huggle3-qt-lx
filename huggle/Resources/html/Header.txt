@@ -97,6 +97,9 @@ td.diff-addedline .diffchange {
 td.diff-deletedline .diffchange {
 	background: #feeec8;
 }
+
+<<<CUSTOM-CSS>>>
+
   </style>
   </head>
   <body>

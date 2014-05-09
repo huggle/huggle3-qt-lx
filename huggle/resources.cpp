@@ -51,3 +51,9 @@ void Huggle::Resources::Init()
     vf->close();
     delete vf;
 }
+
+QString Huggle::Resources::GetHtmlHeader()
+{
+    return QString( Resources::HtmlHeader ).replace( "<<<CUSTOM-CSS>>>", "" );
+
+}
