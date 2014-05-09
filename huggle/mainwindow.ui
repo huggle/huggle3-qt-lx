@@ -408,7 +408,7 @@
   <action name="actionOpen_in_a_browser">
    <property name="icon">
     <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/page-watch.png</normaloff>:/huggle/pictures/Resources/page-watch.png</iconset>
+     <normaloff>:/huggle/pictures/Resources/browser-open.png</normaloff>:/huggle/pictures/Resources/browser-open.png</iconset>
    </property>
    <property name="text">
     <string notr="true">Open in a browser (O)</string>
