@@ -2118,13 +2118,8 @@ void Huggle::MainWindow::on_actionSimulate_message_triggered()
 
 void Huggle::MainWindow::on_actionHtml_dump_triggered()
 {
-    bool ok;
-    QString name = QInputDialog::getText(this, "File", "Please provide a file name you want to dump the current source code to",
-                                           QLineEdit::Normal, "huggledump.htm", &ok);
-    if (!ok)
-    {
-        return;
-    }
+    QString name = "huggleDump.html";
+
     QFile *f = new QFile(name);
     if (!f->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
@@ -2135,6 +2130,7 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     f->write(this->Browser->RetrieveHtml().toUtf8());
     f->close();
     delete f;
+    QDesktopServices::openUrl( QDir().absoluteFilePath( name ) );
 }
 
 void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
