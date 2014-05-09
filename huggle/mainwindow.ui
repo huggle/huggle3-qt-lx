@@ -226,27 +226,24 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionRevert_and_warn"/>
+   <addaction name="actionBack"/>
+   <addaction name="actionForward"/>
    <addaction name="actionNext"/>
    <addaction name="separator"/>
+   <addaction name="actionGood_edit"/>
+   <addaction name="actionRevert_and_warn"/>
    <addaction name="actionRevert"/>
    <addaction name="actionWarn"/>
    <addaction name="separator"/>
-   <addaction name="actionBack"/>
-   <addaction name="actionForward"/>
-   <addaction name="separator"/>
    <addaction name="actionWelcome_user"/>
-   <addaction name="actionOpen_in_a_browser"/>
-   <addaction name="separator"/>
-   <addaction name="actionGood_edit"/>
-   <addaction name="separator"/>
-   <addaction name="actionBlock_user_2"/>
-   <addaction name="actionReport_user"/>
    <addaction name="actionDisplay_talk"/>
    <addaction name="actionDecrease_badness"/>
    <addaction name="actionIncrease_badness"/>
+   <addaction name="actionReport_user"/>
+   <addaction name="actionBlock_user_2"/>
    <addaction name="separator"/>
    <addaction name="actionDelete_page"/>
+   <addaction name="actionOpen_in_a_browser"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="font">
