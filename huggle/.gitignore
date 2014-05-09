@@ -1,0 +1,7 @@
+*.o
+definitions.hpp
+huggle.pro
+hunker/*.o
+hunker/Makefile
+hunker/makefilehunker
+version.txt
