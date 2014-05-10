@@ -39,5 +39,7 @@
         <file>Resources/user-report.png</file>
         <file>Resources/user-talk.png</file>
         <file>Resources/user-warn.png</file>
+        <file>Resources/done.png</file>
+        <file>Resources/sc.png</file>
     </qresource>
 </RCC>
