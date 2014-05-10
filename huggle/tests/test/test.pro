@@ -87,6 +87,7 @@ SOURCES += tst_testmain.cpp \
     ../../proxy.cpp \
     ../../protectpage.cpp \
     ../../processlist.cpp \
+    ../../loadingform.cpp \
     ../../preferences.cpp \
     ../../oauthloginquery.cpp \
     ../../networkirc.cpp
@@ -161,6 +162,7 @@ HEADERS += \
     ../../protectpage.hpp \
     ../../processlist.hpp \
     ../../warnings.hpp \
+    ../../loadingform.hpp \
     ../../preferences.hpp \
     ../../oauthloginquery.hpp \
     ../../networkirc.hpp
