@@ -35,9 +35,9 @@
         <file>Resources/page-delete.png</file>
         <file>Resources/sight-and-next.png</file>
         <file>Resources/user-block.png</file>
-        <file>Resources/user-info.png</file>
         <file>Resources/user-report.png</file>
         <file>Resources/user-talk.png</file>
         <file>Resources/user-warn.png</file>
+        <file>Resources/user-welcome.png</file>
     </qresource>
 </RCC>

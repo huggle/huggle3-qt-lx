@@ -312,7 +312,7 @@
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset>
      <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
    </property>
    <property name="text">
@@ -389,7 +389,7 @@
   <action name="actionWelcome_user">
    <property name="icon">
     <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/user-info.png</normaloff>:/huggle/pictures/Resources/user-info.png</iconset>
+     <normaloff>:/huggle/pictures/Resources/user-welcome.png</normaloff>:/huggle/pictures/Resources/user-welcome.png</iconset>
    </property>
    <property name="text">
     <string notr="true">Welcome user (Ctrl-H)</string>
