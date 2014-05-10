@@ -23,6 +23,7 @@
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
 #include "updateform.hpp"
+#include "loadingform.hpp"
 #include "apiquery.hpp"
 
 namespace Ui
@@ -62,10 +63,13 @@ namespace Huggle
         public:
             explicit Login(QWidget *parent = 0);
             ~Login();
-            //! Display a progress in progress bar, thread unsafe
-            void Progress(const int progress);
             /// \todo DOCUMENT ME
             void Localize();
+            //! Updates the info message down on login form as well as on LoadingForm
+            void Update(QString ms);
+            void Kill();
+            //! Cancel currently running login jobs
+            void CancelLogin();
             //! Status we are in (loggin it, waiting for this and that etc)
             Status _Status;
 
@@ -84,8 +88,6 @@ namespace Huggle
             void Enable();
             void Reload();
             void DB();
-            //! Cancel currently running login attempt
-            void CancelLogin();
             void Disable();
             void PressOK();
             void PerformLogin();
@@ -103,12 +105,13 @@ namespace Huggle
             //! This function make sure that login result is done
             bool ProcessOutput();
             QString GetToken();
-            UpdateForm *Updater;
+            UpdateForm *Updater = nullptr;
             Ui::Login *ui;
             QTimer *timer;
             //! This query is used to get a wl
-            WLQuery *wq;
-            ApiQuery *LoginQuery;
+            WLQuery *wq = nullptr;
+            ApiQuery *LoginQuery = nullptr;
+            LoadingForm *loadingForm = nullptr;
             bool Loading;
             //! The token obtained from login
             QString Token;

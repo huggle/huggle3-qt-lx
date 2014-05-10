@@ -122,7 +122,8 @@ SOURCES += main.cpp\
     generic.cpp \
     querypool.cpp \
     wikiutil.cpp \
-    reloginform.cpp
+    reloginform.cpp \
+    loadingform.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -196,7 +197,8 @@ HEADERS  += mainwindow.hpp \
     generic.hpp \
     querypool.hpp \
     wikiutil.hpp \
-    reloginform.hpp
+    reloginform.hpp \
+    loadingform.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -231,7 +233,8 @@ FORMS    += mainwindow.ui \
     sessionform.ui \
     whitelistform.ui \
     warninglist.ui \
-    reloginform.ui
+    reloginform.ui \
+    loadingform.ui
 
 RESOURCES += \
     pictures.qrc \

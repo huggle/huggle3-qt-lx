@@ -138,14 +138,9 @@ void HistoryForm::onTick01()
         }
         return;
     }
-    if (this->query == NULL)
-    {
+
+    if (this->query == NULL || !this->query->IsProcessed())
         return;
-    }
-    if (!this->query->IsProcessed())
-    {
-        return;
-    }
 
     if (this->query->Result->Failed)
     {
@@ -208,18 +203,12 @@ void HistoryForm::onTick01()
         }
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
-
         if (WikiUtil::IsRevert(summary))
-        {
             icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");
-        } else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
-        {
+        else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-anon.png");
-        } else if (Configuration::HuggleConfiguration->WhiteList.contains(user))
-        {
+        else if (Configuration::HuggleConfiguration->WhiteList.contains(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
-        }
-
         WikiUser *wu = WikiUser::RetrieveUser(user);
         if (wu != NULL)
         {
