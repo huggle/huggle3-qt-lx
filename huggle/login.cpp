@@ -18,6 +18,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "ui_login.h"
+#include "loadingform.hpp"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_MW 1
