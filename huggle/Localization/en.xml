@@ -137,7 +137,7 @@
     <string name="delete-deletionlog">Deletion log:</string>
     <string name="delete-rem-talk">Delete associated talk</string>
     <string name="delete-notify">Notify creator</string>
-    <string name="delete-error-token">ERROR: Retreiving the delete token failed. The reason provided was: $1</string>
+    <string name="delete-error-token">Error: Retreiving the delete token failed. The reason provided was: $1</string>
     <string name="delete-token01">Getting token to delete $1</string>
     <string name="delete-token02">There was no token returned by the query</string>
     <string name="delete-e1">The page can't be deleted: $1</string>
@@ -230,7 +230,7 @@
     <string name="main-queue-query">Running query...</string>
     <string name="main-queue-reset">Reset</string>
     <string name="main-queue-clearall">Clear all</string>
-    <string name="main-queue-options">Manage Queues...</string>
+    <string name="main-queue-options">Manage queues...</string>
     <string name="main-goto">Go to</string>
     <string name="main-goto-mytalk">My talk page</string>
     <string name="main-goto-mycontribs">My contributions</string>
@@ -361,7 +361,7 @@
     <string name="queue-queues">Queues:</string>
     <string name="queue-typegroup">Queue type</string>
     <string name="queue-listselector">List:</string>
-    <string name="queue-listbuilder">List Builder...</string>
+    <string name="queue-listbuilder">List builder...</string>
     <string name="queue-sortorder">Sort order:</string>
     <string name="queue-removeviewed">Remove edits when viewed</string>
     <string name="queue-removeold">Remove old edits to the same page</string>
@@ -567,7 +567,7 @@
     <string name="missing-page">There is no page $1 on this wiki</string>
     <string name="updating-wl">Updating whitelist...</string>
     <string name="updating-uc">Updating user configuration page at huggle3.css on wiki</string>
-    <string name="feature-nfru">This feature is for ip users only</string>
+    <string name="feature-nfru">This feature is for IP users only</string>
     <string name="report-no-user">No user has been selected to report, please select some user first</string>
     <string name="welcome-tp-empty-fail">This user doesn't have empty talk page, are you sure you want to send a message to him?</string>
     <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
