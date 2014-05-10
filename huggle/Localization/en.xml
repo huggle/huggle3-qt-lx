@@ -179,7 +179,7 @@
     <string name="login-progress-config">Checking configuration pages...</string>
     <string name="login-progress-userlist">Checking user list...</string>
     <string name="login-progress-whitelist">Retrieving user whitelist...</string>
-    <string name="login-ssl">Enforce SSL (requires openssl)</string>
+    <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
     <string name="login-fail">Login failed</string>
     <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
     <string name="login-error-age">Use of Huggle on this project requires an account at least $1 days old.</string>
