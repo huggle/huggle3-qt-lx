@@ -17,6 +17,7 @@ QString Huggle::Resources::HtmlFooter;
 QString Huggle::Resources::HtmlHeader;
 QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_StopFire;
+QString Huggle::Resources::CssRtl;
 
 void Huggle::Resources::Init()
 {
@@ -51,6 +52,11 @@ void Huggle::Resources::Init()
     HtmlIncoming = QString(vf->readAll());
     vf->close();
     delete vf;
+    vf = new QFile(":/huggle/resources/Resources/html/RTL.css");
+    vf->open(QIODevice::ReadOnly);
+    CssRtl = QString(vf->readAll());
+    vf->close();
+    delete vf;
 }
 
 QString Huggle::Resources::GetHtmlHeader()
@@ -59,16 +65,7 @@ QString Huggle::Resources::GetHtmlHeader()
 
     /// \todo Auto detect RTL languages (rather than hardcoded fa!)
     if( Huggle::Configuration::HuggleConfiguration->Project->Name == "fawiki" )
-        Css.append( "/*GENERATED IN resources.cpp*/\n"\
-                    "td.diff-context {\n"\
-                    "   text-align: right;\n"\
-                    "}\n\n"\
-                    "td.diff-addedline {\n"\
-                    "   text-align: right;\n"\
-                    "}\n\n"\
-                    "td.diff-deletedline {\n"\
-                    "   text-align: right;\n"\
-                    "}\n\n" );
+        Css.append( Resources::CssRtl );
 
     return QString( Resources::HtmlHeader ).replace( "<<<CUSTOM-CSS>>>", Css );
 }

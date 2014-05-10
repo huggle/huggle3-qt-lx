@@ -1,0 +1,10 @@
+/* snippet from RTL.css */
+td.diff-context {
+	text-align: right;
+}
+td.diff-addedline {
+	text-align: right;
+}
+td.diff-deletedline {
+	text-align: right;
+}
