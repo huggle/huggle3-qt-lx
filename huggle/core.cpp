@@ -132,7 +132,7 @@ void Core::LoadDB()
 
     if (!text.length())
     {
-        QFile vf(":/huggle/resources/Resources/Definitions.txt");
+        QFile vf(":/huggle/resources/Resources/Definitions.xml");
         vf.open(QIODevice::ReadOnly);
         text = QString(vf.readAll());
         vf.close();

@@ -22,12 +22,12 @@ QString Huggle::Resources::CssRtl;
 void Huggle::Resources::Init()
 {
     QFile *vf;
-    vf = new QFile(":/huggle/resources/Resources/html/Header.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/Header.html");
     vf->open(QIODevice::ReadOnly);
     HtmlHeader = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/DiffBeginning.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/DiffBeginning.html");
     vf->open(QIODevice::ReadOnly);
     DiffHeader = QString(vf->readAll());
     vf->close();
@@ -37,17 +37,17 @@ void Huggle::Resources::Init()
     Html_StopFire = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/PageEnd.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/PageEnd.html");
     vf->open(QIODevice::ReadOnly);
     HtmlFooter = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/DiffEnd.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/DiffEnd.html");
     vf->open(QIODevice::ReadOnly);
     DiffFooter = QString(vf->readAll());
     vf->close();
     delete vf;
-    vf = new QFile(":/huggle/resources/Resources/html/Message.txt");
+    vf = new QFile(":/huggle/resources/Resources/html/Message.html");
     vf->open(QIODevice::ReadOnly);
     HtmlIncoming = QString(vf->readAll());
     vf->close();
