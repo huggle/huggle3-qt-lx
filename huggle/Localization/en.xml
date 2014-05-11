@@ -171,7 +171,7 @@
     <string name="login-proxyport">Port:</string>
     <string name="login-proxydomain">Domain:</string>
     <string name="login-start">Login</string>
-    <string name="login-translate">Translate...</string>
+    <string name="login-translate">Translate huggle</string>
     <string name="login-captchatitle">Captcha required to log in</string>
     <string name="login-progress-start">Logging in...</string>
     <string name="login-progress-language">Updating message files...</string>
