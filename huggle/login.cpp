@@ -354,11 +354,18 @@ void Login::RetrieveGlobalConfig()
     this->loadingForm->ModifyIcon(LOGINFORM_LOGIN, LoadingForm_Icon_Success);
     this->loadingForm->ModifyIcon(LOGINFORM_GLOBAL, LoadingForm_Icon_Loading);
     this->Update(Localizations::HuggleLocalizations->Localize("[[login-progress-global]]"));
+
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->IncRef();
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
+
+    this->qInfo = new ApiQuery(ActionQuery);
+    this->qInfo->IncRef();
+    this->qInfo->Parameters = "meta=siteinfo&siprop=general";
+    this->qInfo->Process();
+
 }
 
 void Login::FinishToken()
@@ -660,7 +667,23 @@ void Login::DeveloperMode()
 
 void Login::ProcessWiki()
 {
-
+    if (this->qInfo->IsProcessed())
+    {
+        //! \todo Check that request isnt failed
+        QDomDocument d;
+        d.setContent(this->qInfo->Result->Data);
+        QDomNodeList l = d.elementsByTagName("general");
+        if( l.count() < 1 ) {
+            //! \todo throw some exception
+        }
+        QDomElement item = l.at(0).toElement();
+        if (item.attributes().contains("rtl")){
+            //! \todo set a value and use this to determine project RTL status
+        }
+        this->qInfo->DecRef();
+        this->qInfo = nullptr;
+        this->loadingForm->ModifyIcon(LOGINFORM_MW,LoadingForm_Icon_Success);
+    }
 }
 
 void Login::DisplayError(QString message)
