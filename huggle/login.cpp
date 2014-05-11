@@ -18,7 +18,6 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "ui_login.h"
-#include "loadingform.hpp"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_MW 1
@@ -90,6 +89,8 @@ Login::~Login()
     delete this->loadingForm;
     GC_DECREF(this->wq);
     GC_DECREF(this->LoginQuery);
+    GC_DECREF(this->qInfo);
+    GC_DECREF(this->qCfg);
     delete this->timer;
 }
 
@@ -146,6 +147,7 @@ void Login::CancelLogin()
         this->loadingForm = nullptr;
     }
     this->_Status = Nothing;
+    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
 }
@@ -251,12 +253,12 @@ void Login::PressOK()
     // First of all, we need to login to the site
     this->timer->start(200);
     this->loadingForm->Insert(LOGINFORM_LOGIN, "Logging in to " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Loading);
-    this->loadingForm->Insert(LOGINFORM_MW, "Retrieving information about mediawiki of " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_MW, "Retrieving information about mediawiki for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
     this->loadingForm->Insert(LOGINFORM_GLOBAL, "Retrieving global configuration", LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(3, "Retrieving whitelist for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(4, "Retrieving local configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(5, "Retrieving user configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(6, "Retrieving the user information", LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_WHITELIST, Localizations::HuggleLocalizations->Localize("login-progress-whitelist"), LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_LOCAL, "Retrieving local configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_USER, "Retrieving user configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_INFO, "Retrieving the user information", LoadingForm_Icon_Waiting);
 }
 
 void Login::PerformLogin()
@@ -338,13 +340,13 @@ void Login::RetrieveGlobalConfig()
                     return;
                 }
                 this->loadingForm->ModifyIcon(LOGINFORM_GLOBAL, LoadingForm_Icon_Success);
-                this->_Status = RetrievingWhitelist;
+                this->_Status = RetrievingProjectConfig;
+                this->RetrieveWhitelist();
                 return;
             }
             this->Update(Localizations::HuggleLocalizations->Localize("login-error-global"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->_Status = LoginFailed;
-            return;
         }
         return;
     }
@@ -399,22 +401,17 @@ void Login::RetrieveWhitelist()
                 Configuration::HuggleConfiguration->WhiteList = list.split("|");
                 Configuration::HuggleConfiguration->WhiteList.removeAll("");
             }
+            this->loadingForm->ModifyIcon(LOGINFORM_WHITELIST, LoadingForm_Icon_Success);
             this->wq->DecRef();
             this->wq = nullptr;
-            this->loadingForm->ModifyIcon(LOGINFORM_WHITELIST, LoadingForm_Icon_Success);
-            // Now local config
-            this->_Status = RetrievingProjectConfig;
-            return;
         }
         return;
     }
     this->loadingForm->ModifyIcon(LOGINFORM_WHITELIST, LoadingForm_Icon_Loading);
-    this->Update(Localizations::HuggleLocalizations->Localize("login-progress-whitelist"));
     this->wq = new WLQuery();
     this->wq->RetryOnTimeoutFailure = false;
     this->wq->Process();
     this->wq->IncRef();
-    return;
 }
 
 void Login::RetrieveProjectConfig()
@@ -461,7 +458,6 @@ void Login::RetrieveProjectConfig()
             this->Update(Localizations::HuggleLocalizations->Localize("login-error-config"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->_Status = LoginFailed;
-            return;
         }
         return;
     }
@@ -511,7 +507,6 @@ void Login::RetrieveUserConfig()
                     this->LoginQuery->Process();
                     return;
                 }
-
                 if (!Configuration::HuggleConfiguration->ProjectConfig_RequireConfig)
                 {
                     // we don't care if user config is missing or not
@@ -555,7 +550,6 @@ void Login::RetrieveUserConfig()
             this->Update("Login failed unable to parse the user config, see debug log for more details");
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Kill();
-            return;
         }
         return;
     }
@@ -627,24 +621,21 @@ void Login::RetrieveUserInfo()
             }
 
             QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
+            this->Kill();
+            this->LoginQuery->DecRef();
+            this->LoginQuery = nullptr;
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (Configuration::HuggleConfiguration->ProjectConfig_RequireEdits > editcount)
             {
                 /// \todo LOCALIZE ME
                 this->Update("Login failed because you don't have enough edits on this project");
-                this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
 
             /// \todo Implement check for "require-time"
             ///
-            this->LoginQuery->DecRef();
-            this->LoginQuery = nullptr;
             this->_Status = LoginDone;
             this->Finish();
-            return;
         }
         return;
     }
@@ -666,6 +657,11 @@ void Login::DeveloperMode()
     this->hide();
 }
 
+void Login::ProcessWiki()
+{
+
+}
+
 void Login::DisplayError(QString message)
 {
     this->Kill();
@@ -676,8 +672,12 @@ void Login::DisplayError(QString message)
 
 void Login::Finish()
 {
+    // let's check if all processes are finished
+    if (this->wq || this->qInfo || this->_Status != LoginDone)
+        return;
     // we generate a random string of same size of current password
     QString pw = "";
+    this->_Status = Nothing;
     while (pw.length() < Configuration::HuggleConfiguration->TemporaryConfig_Password.length())
     {
         pw += ".";
@@ -687,13 +687,17 @@ void Login::Finish()
     this->ui->lineEdit_password->setText(pw);
     this->Update("Loading main huggle window");
     this->timer->stop();
+    if (this->loadingForm != nullptr)
+    {
+        this->loadingForm->close();
+        delete this->loadingForm;
+        this->loadingForm = nullptr;
+    }
+    this->hide();
     MainWindow::HuggleMain = new MainWindow();
     MainWindow::HuggleMain->show();
     Core::HuggleCore->Main = MainWindow::HuggleMain;
-    this->loadingForm->close();
-    this->hide();
     Core::HuggleCore->Main->show();
-    delete this->loadingForm;
 }
 
 void Login::reject()
@@ -801,6 +805,11 @@ void Login::on_ButtonExit_clicked()
 
 void Login::OnTimerTick()
 {
+    if (this->wq != nullptr)
+        this->RetrieveWhitelist();
+    if (this->qInfo != nullptr)
+        this->ProcessWiki();
+
     switch (this->_Status)
     {
         case LoggingIn:
@@ -808,9 +817,6 @@ void Login::OnTimerTick()
             break;
         case WaitingForLoginQuery:
             FinishLogin();
-            break;
-        case RetrievingWhitelist:
-            RetrieveWhitelist();
             break;
         case WaitingForToken:
             FinishToken();
@@ -843,6 +849,9 @@ void Login::OnTimerTick()
         this->timer->stop();
         this->ui->ButtonOK->setText("Login");
         this->_Status = Nothing;
+    } else
+    {
+        this->Finish();
     }
 }
 

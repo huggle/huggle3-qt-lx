@@ -47,8 +47,7 @@ namespace Huggle
         Cancelling,
         LoginFailed,
         RetrievingUser,
-        LoginDone,
-        RetrievingWhitelist
+        LoginDone
     };
 
     class WLQuery;
@@ -99,6 +98,7 @@ namespace Huggle
             void RetrieveUserConfig();
             void RetrieveUserInfo();
             void DeveloperMode();
+            void ProcessWiki();
             void DisplayError(QString message);
             void Finish();
             void reject();
@@ -113,6 +113,8 @@ namespace Huggle
             ApiQuery *LoginQuery = nullptr;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
+            ApiQuery *qInfo = nullptr;
+            ApiQuery *qCfg = nullptr;
             //! The token obtained from login
             QString Token;
             //! String that is used to test against the login failed text
