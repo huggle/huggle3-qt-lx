@@ -11,6 +11,11 @@
 #ifndef LOADINGFORM_HPP
 #define LOADINGFORM_HPP
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 
 namespace Ui
