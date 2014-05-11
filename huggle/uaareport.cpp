@@ -22,13 +22,13 @@ using namespace Huggle;
 UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
 {
     this->ui->setupUi(this);
-    this->User = NULL;
+    this->User = nullptr;
     this->ContentsOfUAA = "";
     this->Timer = new QTimer(this);
     connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->qUAApage = NULL;
-    this->page = NULL;
-    this->qCheckUAAUser = NULL;
+    this->qUAApage = nullptr;
+    this->page = nullptr;
+    this->qCheckUAAUser = nullptr;
     this->TimerCheck = new QTimer(this);
     connect(this->TimerCheck, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
     this->dr = "";
