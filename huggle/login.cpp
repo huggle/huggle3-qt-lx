@@ -125,6 +125,7 @@ void Login::Update(QString ms)
 void Login::Kill()
 {
     this->_Status = LoginFailed;
+    this->timer->stop();
     if (this->loadingForm != nullptr)
     {
         this->loadingForm->close();
@@ -461,7 +462,6 @@ void Login::RetrieveProjectConfig()
                     this->Update(Localizations::HuggleLocalizations->Localize("login-error-projdisabled"));
                     return;
                 }
-                this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Loading);
                 this->loadingForm->ModifyIcon(LOGINFORM_LOCALCONFIG, LoadingForm_Icon_Success);
                 this->_Status = RetrievingUserConfig;
                 return;
