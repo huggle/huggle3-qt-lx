@@ -63,8 +63,10 @@ QString Huggle::Resources::GetHtmlHeader()
 {
     QString Css = "";
 
-    /// \todo Auto detect RTL languages (rather than hardcoded fa!)
+    /// \todo Auto detect RTL languages (rather than hardcoded fa and ar!)
     if( Huggle::Configuration::HuggleConfiguration->Project->Name == "fawiki" )
+        Css.append( Resources::CssRtl );
+    if( Huggle::Configuration::HuggleConfiguration->Project->Name == "arwiki" )
         Css.append( Resources::CssRtl );
 
     return QString( Resources::HtmlHeader ).replace( "<<<CUSTOM-CSS>>>", Css );
