@@ -20,12 +20,12 @@
 #include "ui_login.h"
 
 #define LOGINFORM_LOGIN 0
-#define LOGINFORM_MW 1
-#define LOGINFORM_GLOBAL 2
+#define LOGINFORM_SITEINFO 1
+#define LOGINFORM_GLOBALCONFIG 2
 #define LOGINFORM_WHITELIST 3
-#define LOGINFORM_LOCAL 4
-#define LOGINFORM_USER 5
-#define LOGINFORM_INFO 6
+#define LOGINFORM_LOCALCONFIG 4
+#define LOGINFORM_USERCONFIG 5
+#define LOGINFORM_USERINFO 6
 
 using namespace Huggle;
 
@@ -42,6 +42,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
     this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleConfiguration->HuggleVersion + "]");
     this->Reset();
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->SystemConfig_UsingSSL);
+
     // set the language to dummy english
     int l=0;
     int p=0;
@@ -54,6 +55,7 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         }
         l++;
     }
+
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
     if (!QSslSocket::supportsSsl())
@@ -89,7 +91,7 @@ Login::~Login()
     delete this->loadingForm;
     GC_DECREF(this->wq);
     GC_DECREF(this->LoginQuery);
-    GC_DECREF(this->qInfo);
+    GC_DECREF(this->qSiteInfo);
     GC_DECREF(this->qCfg);
     delete this->timer;
 }
@@ -254,12 +256,12 @@ void Login::PressOK()
     this->timer->start(200);
     //! \todo Localize string for loadingForm
     this->loadingForm->Insert(LOGINFORM_LOGIN, "Logging in to " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Loading);
-    this->loadingForm->Insert(LOGINFORM_MW, "Retrieving information about mediawiki for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_GLOBAL, "Retrieving global configuration", LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_SITEINFO, "Retrieving information about mediawiki for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_GLOBALCONFIG, "Retrieving global configuration", LoadingForm_Icon_Waiting);
     this->loadingForm->Insert(LOGINFORM_WHITELIST, Localizations::HuggleLocalizations->Localize("login-progress-whitelist"), LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_LOCAL, "Retrieving local configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_USER, "Retrieving user configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_INFO, "Retrieving the user information", LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_LOCALCONFIG, "Retrieving local configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_USERCONFIG, "Retrieving user configuration for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_USERINFO, "Retrieving the user information", LoadingForm_Icon_Waiting);
 }
 
 void Login::PerformLogin()
@@ -276,7 +278,7 @@ void Login::PerformLogin()
     this->_Status = WaitingForLoginQuery;
 }
 
-void Login::FinishLogin()
+void Login::PerformLoginPart2()
 {
     if (!this->LoginQuery->IsProcessed())
     {
@@ -340,7 +342,7 @@ void Login::RetrieveGlobalConfig()
                     this->_Status = LoginFailed;
                     return;
                 }
-                this->loadingForm->ModifyIcon(LOGINFORM_GLOBAL, LoadingForm_Icon_Success);
+                this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Success);
                 this->_Status = RetrievingProjectConfig;
                 this->RetrieveWhitelist();
                 return;
@@ -352,7 +354,7 @@ void Login::RetrieveGlobalConfig()
         return;
     }
     this->loadingForm->ModifyIcon(LOGINFORM_LOGIN, LoadingForm_Icon_Success);
-    this->loadingForm->ModifyIcon(LOGINFORM_GLOBAL, LoadingForm_Icon_Loading);
+    this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Loading);
     this->Update(Localizations::HuggleLocalizations->Localize("[[login-progress-global]]"));
 
     this->LoginQuery = new ApiQuery(ActionQuery);
@@ -361,14 +363,14 @@ void Login::RetrieveGlobalConfig()
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 
-    this->qInfo = new ApiQuery(ActionQuery);
-    this->qInfo->IncRef();
-    this->qInfo->Parameters = "meta=siteinfo&siprop=general";
-    this->qInfo->Process();
+    this->qSiteInfo = new ApiQuery(ActionQuery);
+    this->qSiteInfo->IncRef();
+    this->qSiteInfo->Parameters = "meta=siteinfo&siprop=general";
+    this->qSiteInfo->Process();
 
 }
 
-void Login::FinishToken()
+void Login::FinishLogin()
 {
     if (!this->LoginQuery->IsProcessed())
     {
@@ -458,8 +460,8 @@ void Login::RetrieveProjectConfig()
                     this->Update(Localizations::HuggleLocalizations->Localize("login-error-projdisabled"));
                     return;
                 }
-                this->loadingForm->ModifyIcon(LOGINFORM_USER, LoadingForm_Icon_Loading);
-                this->loadingForm->ModifyIcon(LOGINFORM_LOCAL, LoadingForm_Icon_Success);
+                this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Loading);
+                this->loadingForm->ModifyIcon(LOGINFORM_LOCALCONFIG, LoadingForm_Icon_Success);
                 this->_Status = RetrievingUserConfig;
                 return;
             }
@@ -469,7 +471,7 @@ void Login::RetrieveProjectConfig()
         }
         return;
     }
-    this->loadingForm->ModifyIcon(LOGINFORM_LOCAL, LoadingForm_Icon_Loading);
+    this->loadingForm->ModifyIcon(LOGINFORM_LOCALCONFIG, LoadingForm_Icon_Loading);
     this->Update(Localizations::HuggleLocalizations->Localize("login-progress-config"));
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
@@ -550,7 +552,7 @@ void Login::RetrieveUserConfig()
                     this->Update("Login failed because you don't have enable:true in your personal config");
                     return;
                 }
-                this->loadingForm->ModifyIcon(LOGINFORM_USER, LoadingForm_Icon_Success);
+                this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Success);
                 this->_Status = RetrievingUser;
                 return;
             }
@@ -561,7 +563,7 @@ void Login::RetrieveUserConfig()
         }
         return;
     }
-    this->loadingForm->ModifyIcon(LOGINFORM_USER, LoadingForm_Icon_Loading);
+    this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Loading);
     this->Update("Retrieving user config");
     this->LoginQuery = new ApiQuery(ActionQuery);
     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
@@ -649,7 +651,7 @@ void Login::RetrieveUserInfo()
     }
     /// \todo LOCALIZE ME
     this->Update("Retrieving user info");
-    this->loadingForm->ModifyIcon(LOGINFORM_INFO, LoadingForm_Icon_Loading);
+    this->loadingForm->ModifyIcon(LOGINFORM_USERINFO, LoadingForm_Icon_Loading);
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
     this->LoginQuery->IncRef();
@@ -665,13 +667,13 @@ void Login::DeveloperMode()
     this->hide();
 }
 
-void Login::ProcessWiki()
+void Login::ProcessSiteInfo()
 {
-    if (this->qInfo->IsProcessed())
+    if (this->qSiteInfo->IsProcessed())
     {
         //! \todo Check that request isnt failed
         QDomDocument d;
-        d.setContent(this->qInfo->Result->Data);
+        d.setContent(this->qSiteInfo->Result->Data);
         QDomNodeList l = d.elementsByTagName("general");
         if( l.count() < 1 ) {
             //! \todo throw some exception
@@ -680,9 +682,9 @@ void Login::ProcessWiki()
         if (item.attributes().contains("rtl")){
             //! \todo set a value and use this to determine project RTL status
         }
-        this->qInfo->DecRef();
-        this->qInfo = nullptr;
-        this->loadingForm->ModifyIcon(LOGINFORM_MW,LoadingForm_Icon_Success);
+        this->qSiteInfo->DecRef();
+        this->qSiteInfo = nullptr;
+        this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO,LoadingForm_Icon_Success);
     }
 }
 
@@ -697,7 +699,7 @@ void Login::DisplayError(QString message)
 void Login::Finish()
 {
     // let's check if all processes are finished
-    if (this->wq || this->qInfo || this->_Status != LoginDone)
+    if (this->wq || this->qSiteInfo || this->_Status != LoginDone)
         return;
     // we generate a random string of same size of current password
     QString pw = "";
@@ -831,8 +833,8 @@ void Login::OnTimerTick()
 {
     if (this->wq != nullptr)
         this->RetrieveWhitelist();
-    if (this->qInfo != nullptr)
-        this->ProcessWiki();
+    if (this->qSiteInfo != nullptr)
+        this->ProcessSiteInfo();
 
     switch (this->_Status)
     {
@@ -840,10 +842,10 @@ void Login::OnTimerTick()
             PerformLogin();
             break;
         case WaitingForLoginQuery:
-            FinishLogin();
+            PerformLoginPart2();
             break;
         case WaitingForToken:
-            FinishToken();
+            FinishLogin();
             break;
         case RetrievingGlobalConfig:
             RetrieveGlobalConfig();

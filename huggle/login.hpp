@@ -98,7 +98,7 @@ namespace Huggle
             void RetrieveUserConfig();
             void RetrieveUserInfo();
             void DeveloperMode();
-            void ProcessWiki();
+            void ProcessSiteInfo();
             void DisplayError(QString message);
             void Finish();
             void reject();
