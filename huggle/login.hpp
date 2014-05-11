@@ -90,8 +90,8 @@ namespace Huggle
             void Disable();
             void PressOK();
             void PerformLogin();
+            void PerformLoginPart2();
             void FinishLogin();
-            void FinishToken();
             void RetrieveWhitelist();
             void RetrieveProjectConfig();
             void RetrieveGlobalConfig();
@@ -113,7 +113,7 @@ namespace Huggle
             ApiQuery *LoginQuery = nullptr;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
-            ApiQuery *qInfo = nullptr;
+            ApiQuery *qSiteInfo = nullptr;
             ApiQuery *qCfg = nullptr;
             //! The token obtained from login
             QString Token;
