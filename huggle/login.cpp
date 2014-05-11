@@ -363,6 +363,7 @@ void Login::RetrieveGlobalConfig()
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
 
+    this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO, LoadingForm_Icon_Loading);
     this->qSiteInfo = new ApiQuery(ActionQuery);
     this->qSiteInfo->IncRef();
     this->qSiteInfo->Parameters = "meta=siteinfo&siprop=general";
@@ -691,9 +692,8 @@ void Login::ProcessSiteInfo()
 void Login::DisplayError(QString message)
 {
     this->Kill();
-    Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
-    this->Update(message);
     this->CancelLogin();
+    this->Update(message);
 }
 
 void Login::Finish()
