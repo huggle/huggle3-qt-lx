@@ -252,6 +252,7 @@ void Login::PressOK()
     this->loadingForm->show();
     // First of all, we need to login to the site
     this->timer->start(200);
+    //! \todo Localize string for loadingForm
     this->loadingForm->Insert(LOGINFORM_LOGIN, "Logging in to " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Loading);
     this->loadingForm->Insert(LOGINFORM_MW, "Retrieving information about mediawiki for " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
     this->loadingForm->Insert(LOGINFORM_GLOBAL, "Retrieving global configuration", LoadingForm_Icon_Waiting);
