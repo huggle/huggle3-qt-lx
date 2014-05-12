@@ -32,7 +32,7 @@
    <string>Huggle</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -59,7 +59,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
+      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -270,6 +270,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="ButtonOK">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string notr="true">Login</string>
        </property>
@@ -289,6 +292,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

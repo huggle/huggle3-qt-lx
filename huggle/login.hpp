@@ -80,7 +80,10 @@ namespace Huggle
             void on_Language_currentIndexChanged(const QString &arg1);
             void on_label_9_linkActivated(const QString &link);
 
-        private:
+            void on_lineEdit_username_textChanged(const QString &arg1);
+            void on_lineEdit_password_textChanged(const QString &arg1);
+
+    private:
             //! Reset the interface to default
             void Reset();
             //! Enable parts of interface
@@ -102,6 +105,7 @@ namespace Huggle
             void DisplayError(QString message);
             void Finish();
             void reject();
+            void on_login_textChanged();
             //! This function make sure that login result is done
             bool ProcessOutput();
             QString GetToken();
