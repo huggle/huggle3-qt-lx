@@ -42,7 +42,7 @@ echo "Creating version.txt"
 if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
 {
     $revision_count = git rev-list HEAD --count
-    $hash = git describe --always
+    $hash = git describe --always --tags
     echo "build: $revision_count $hash" | Set-Content version.txt
 } else
 {
