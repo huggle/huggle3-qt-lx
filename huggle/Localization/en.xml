@@ -226,7 +226,7 @@
     <string name="main-queue-next">Next</string>
     <string name="main-queue-trim">Trim</string>
     <string name="main-queue-clear">Clear current</string>
-    <string name="main-queue-count">{0} items</string>
+    <string name="main-queue-count">$1 items</string>
     <string name="main-queue-query">Running query...</string>
     <string name="main-queue-reset">Reset</string>
     <string name="main-queue-clearall">Clear all</string>
@@ -536,11 +536,11 @@
     <string name="reqprotection-fail">Did not request protection of '$1'</string>
     <string name="reqprotection-progress">Requesting protection of '$1'...</string>
     <string name="reqprotection-title">Request page protection of $1</string>
-    <string name="speedy-fail">Did not tag '{0}' for speedy deletion</string>
-    <string name="speedy-progress">Tagging '{0}' for speedy deletion...</string>
-    <string name="warnlog-fail">Failed to retrieve warning log for '{0}'</string>
-    <string name="warnlog-none">'{0}' has not been warned</string>
-    <string name="warnlog-progress">Retrieving warning log for '{0}'...</string>
+    <string name="speedy-fail">Did not tag '$1' for speedy deletion</string>
+    <string name="speedy-progress">Tagging '$1' for speedy deletion...</string>
+    <string name="warnlog-fail">Failed to retrieve warning log for '$1'</string>
+    <string name="warnlog-none">'$1' has not been warned</string>
+    <string name="warnlog-progress">Retrieving warning log for '$1'...</string>
     <string name="usermessage-duplicate">A message about the same thing was already present</string>
     <string name="usermessage-fail">Did not message '$1'</string>
     <string name="usermessage-progress">Messaging '$1'...</string>
