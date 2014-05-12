@@ -101,14 +101,14 @@ void Login::Localize()
     this->ui->ButtonExit->setText(Localizations::HuggleLocalizations->Localize("main-system-exit"));
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
     this->ui->checkBox->setText(Localizations::HuggleLocalizations->Localize("login-ssl"));
-    this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("login-username"));
+    this->ui->labelOauthUsername->setText(Localizations::HuggleLocalizations->Localize("login-username"));
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("reload"));
-    this->ui->label_3->setText(Localizations::HuggleLocalizations->Localize("login-username"));
-    this->ui->label_4->setText(Localizations::HuggleLocalizations->Localize("login-project"));
-    this->ui->label_5->setText(Localizations::HuggleLocalizations->Localize("login-language"));
-    this->ui->label_7->setText(Localizations::HuggleLocalizations->Localize("login-password"));
-    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
-    this->ui->label_9->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\" text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>")
+    this->ui->labelUsername->setText(Localizations::HuggleLocalizations->Localize("login-username"));
+    this->ui->labelProject->setText(Localizations::HuggleLocalizations->Localize("login-project"));
+    this->ui->labelLanguage->setText(Localizations::HuggleLocalizations->Localize("login-language"));
+    this->ui->labelPassword->setText(Localizations::HuggleLocalizations->Localize("login-password"));
+    this->ui->labelIntro->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
+    this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\" text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>")
                                .arg(Localizations::HuggleLocalizations->Localize("login-translate")));
 }
 
@@ -119,7 +119,7 @@ void Login::Update(QString ms)
         this->loadingForm->Info(ms);
 
     // update the label
-    this->ui->label_6->setText(ms);
+    this->ui->labelIntro->setText(ms);
 }
 
 void Login::Kill()
@@ -136,7 +136,7 @@ void Login::Kill()
 
 void Login::Reset()
 {
-    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("[[login-intro]]"));
+    this->ui->labelIntro->setText(Localizations::HuggleLocalizations->Localize("[[login-intro]]"));
 }
 
 void Login::CancelLogin()
@@ -150,7 +150,7 @@ void Login::CancelLogin()
         this->loadingForm = nullptr;
     }
     this->_Status = Nothing;
-    this->ui->label_6->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
+    this->ui->labelIntro->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
 }
