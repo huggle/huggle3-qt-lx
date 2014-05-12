@@ -928,11 +928,13 @@ void Huggle::Login::on_label_9_linkActivated(const QString &link)
 
 void Huggle::Login::on_lineEdit_username_textChanged(const QString &arg1)
 {
+    Q_UNUSED( arg1 )
     Login::on_login_textChanged();
 }
 
 void Huggle::Login::on_lineEdit_password_textChanged(const QString &arg1)
 {
+    Q_UNUSED( arg1 )
     Login::on_login_textChanged();
 }
 
