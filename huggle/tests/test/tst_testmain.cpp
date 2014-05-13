@@ -41,6 +41,7 @@ class HuggleTest : public QObject
         void testCaseTalkPageParser0011() { testTalkPageWarningParser("0011", QDate(2014, 5, 10), 1); }
         void testCaseTalkPageParser0012() { testTalkPageWarningParser("0012", QDate(2014, 5, 10), 1); }
         void testCaseTalkPageParser0013() { testTalkPageWarningParser("0013", QDate(2014, 5, 13), 2); }
+        void testCaseTalkPageParser0014() { testTalkPageWarningParser("0014", QDate(2014, 5, 13), 4); }
         //! Test if IsIP returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
