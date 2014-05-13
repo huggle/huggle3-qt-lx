@@ -203,15 +203,25 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 // remove all leading extra lines on page
                 page = page.mid(1);
             }
+            bool windows = false;
             if (!page.contains("\n\n"))
             {
-                // no sections
-                sections.append(page);
-                break;
+                if (page.contains("\r\n\r\n"))
+                {
+                    windows = true;
+                } else
+                {
+                    // no sections
+                    sections.append(page);
+                    break;
+                }
             }
             // get to bottom of it
             int bottom = 0;
-            bottom = page.indexOf("\n\n");
+            if (windows)
+                bottom = page.indexOf("\r\n\r\n");
+            else
+                bottom = page.indexOf("\n\n");
             QString section = page.mid(0, bottom);
             page = page.mid(bottom + 2);
             sections.append(section);
