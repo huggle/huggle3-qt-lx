@@ -16,8 +16,10 @@
 
 typedef char byte_ht;
 
-#define HUGGLE_VERSION                  "3.0.0.0"
-#define HUGGLE_BYTE_VERSION             0x3000
+#define HUGGLE_VERSION                  "3.0.0"
+#define HUGGLE_BYTE_VERSION_MAJOR       0x3
+#define HUGGLE_BYTE_VERSION_MINOR       0x0
+#define HUGGLE_BYTE_VERSION_RELEASE     0x0
 
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
