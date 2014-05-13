@@ -105,7 +105,7 @@ namespace Huggle
             void DisplayError(QString message);
             void Finish();
             void reject();
-            void on_login_textChanged();
+            void VerifyLogin();
             //! This function make sure that login result is done
             bool ProcessOutput();
             QString GetToken();
