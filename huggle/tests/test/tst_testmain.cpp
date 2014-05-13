@@ -17,6 +17,7 @@
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
 
+static void testTalkPageWarningParser(QString id, QDate date, int level);
 //! This is a unit test
 class HuggleTest : public QObject
 {
@@ -27,7 +28,19 @@ class HuggleTest : public QObject
         ~HuggleTest();
 
     private Q_SLOTS:
-        void testCaseTalkPage();
+        void testCaseTalkPageParser0001() { testTalkPageWarningParser("0001", QDate(2014, 4, 1), 3); }
+        void testCaseTalkPageParser0002() { testTalkPageWarningParser("0002", QDate(2014, 1, 22), 3); }
+        void testCaseTalkPageParser0003() { testTalkPageWarningParser("0003", QDate(2014, 4, 2), 0); }
+        void testCaseTalkPageParser0004() { testTalkPageWarningParser("0004", QDate(2014, 4, 2), 0); }
+        void testCaseTalkPageParser0005() { testTalkPageWarningParser("0005", QDate(2014, 5, 7), 4); }
+        void testCaseTalkPageParser0006() { testTalkPageWarningParser("0006", QDate(2014, 5, 7), 1); }
+        void testCaseTalkPageParser0007() { testTalkPageWarningParser("0007", QDate(2014, 5, 4), 1); }
+        void testCaseTalkPageParser0008() { testTalkPageWarningParser("0008", QDate(2014, 5, 10), 1); }
+        void testCaseTalkPageParser0009() { testTalkPageWarningParser("0009", QDate(2014, 5, 10), 1); }
+        void testCaseTalkPageParser0010() { testTalkPageWarningParser("0010", QDate(2014, 5, 12), 3); }
+        void testCaseTalkPageParser0011() { testTalkPageWarningParser("0011", QDate(2014, 5, 10), 1); }
+        void testCaseTalkPageParser0012() { testTalkPageWarningParser("0012", QDate(2014, 5, 10), 1); }
+        void testCaseTalkPageParser0013() { testTalkPageWarningParser("0013", QDate(2014, 5, 13), 2); }
         //! Test if IsIP returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
@@ -59,128 +72,19 @@ void HuggleTest::testCaseConfigurationParse_QL()
     QVERIFY2(list.at(2) == "c,", "Invalid result for ConfigurationParse_QL, parsed wrong item on position 3");
 }
 
-void HuggleTest::testCaseTalkPage()
+static void testTalkPageWarningParser(QString id, QDate date, int level)
 {
-    QFile *file = new QFile(":/test/wikipage/tp0001.txt");
+    QFile *file = new QFile(":/test/wikipage/tp" + id + ".txt");
     Huggle::WikiUser *user = new Huggle::WikiUser();
     file->open(QIODevice::ReadOnly);
     QString text = QString(file->readAll());
     user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 4, 1));
-    QVERIFY2(user->WarningLevel == 3, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 3!!").toUtf8().data());
+    user->ParseTP(date);
+    QVERIFY2(user->WarningLevel == level, QString("level parsed was " + QString::number(user->WarningLevel) + " should be " + QString::number(level) + "!!").toUtf8().data());
     file->close();
     delete file;
     delete user;
-    file = new QFile(":/test/wikipage/tp0002.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 1, 22));
-    QVERIFY2(user->WarningLevel == 3, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 3!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0003.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 4, 2));
-    QVERIFY2(user->WarningLevel == 0, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 0!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0004.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 4, 2));
-    QVERIFY2(user->WarningLevel == 0, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 0!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0005.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 7));
-    QVERIFY2(user->WarningLevel == 4, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 4!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0006.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 7));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0007.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 4));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0008.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 10));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0009.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 10));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0010.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 12));
-    QVERIFY2(user->WarningLevel == 3, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 3!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0011.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 10));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
-    file = new QFile(":/test/wikipage/tp0012.txt");
-    user = new Huggle::WikiUser();
-    file->open(QIODevice::ReadOnly);
-    text = QString(file->readAll());
-    user->TalkPage_SetContents(text);
-    user->ParseTP(QDate(2014, 5, 10));
-    QVERIFY2(user->WarningLevel == 1, QString("level parsed was " + QString::number(user->WarningLevel) + " should be 1!!").toUtf8().data());
-    file->close();
-    delete file;
-    delete user;
+
 }
 
 void HuggleTest::testCaseScores()
