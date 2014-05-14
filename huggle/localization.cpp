@@ -18,6 +18,8 @@ using namespace Huggle;
 
 Localizations *Localizations::HuggleLocalizations = NULL;
 
+const QString Localizations::LANG_QQX = "qqx";
+
 Localizations::Localizations()
 {
     this->PreferredLanguage = "en";
@@ -144,6 +146,7 @@ void Localizations::LocalInit(QString name, bool xml)
 
 QString Localizations::Localize(QString key)
 {
+    /// \todo almost duplicates Localize(QString key, QStringList parameters)
     QString id = key;
     if (id.endsWith("]]"))
     {
@@ -175,6 +178,12 @@ QString Localizations::Localize(QString key)
                 break;
             }
             c++;
+        }
+
+        // performance wise check this last
+        if (this->PreferredLanguage == LANG_QQX)
+        {
+            return "("+key+")";
         }
         if (this->LocalizationData.at(0)->Messages.contains(id))
         {
@@ -219,6 +228,12 @@ QString Localizations::Localize(QString key, QStringList parameters)
             }
             c++;
         }
+
+        // performance wise check this last
+        if (this->PreferredLanguage == LANG_QQX)
+        {
+            return "("+key+")";
+        }
         if (this->LocalizationData.at(0)->Messages.contains(id))
         {
             QString text = this->LocalizationData.at(0)->Messages[id];
@@ -241,10 +256,10 @@ QString Localizations::Localize(QString key, QString par1, QString par2)
     return Localize(key, list);
 }
 
-QString Localizations::Localize(QString key, QString parameters)
+QString Localizations::Localize(QString key, QString parameter)
 {
     QStringList list;
-    list << parameters;
+    list << parameter;
     return Localize(key, list);
 }
 

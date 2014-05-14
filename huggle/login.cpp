@@ -55,6 +55,12 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         }
         l++;
     }
+    // add debug lang "qqx" last
+    this->ui->Language->addItem(Localizations::LANG_QQX);
+    if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX){
+        p = l;
+    }
+    l++;
 
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
@@ -920,6 +926,10 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
             break;
         }
         c++;
+    }
+    if (Localizations::LANG_QQX == arg1)
+    {
+        lang = Localizations::LANG_QQX;
     }
     Localizations::HuggleLocalizations->PreferredLanguage = lang;
     this->Localize();

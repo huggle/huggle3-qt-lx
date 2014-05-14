@@ -51,6 +51,8 @@ namespace Huggle
     {
         public:
             static Localizations *HuggleLocalizations;
+            //! "qqx"-Language for outputting the used keys
+            static const QString LANG_QQX;
 
             Localizations();
             /*!
