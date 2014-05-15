@@ -65,7 +65,7 @@ namespace Huggle
             void LocalInit(QString name, bool xml = true);
             QString Localize(QString key);
             QString Localize(QString key, QStringList parameters);
-            QString Localize(QString key, QString parameters);
+            QString Localize(QString key, QString parameter);
             QString Localize(QString key, QString par1, QString par2);
             //! Languages
             QList<Language*> LocalizationData;

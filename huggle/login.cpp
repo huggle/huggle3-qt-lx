@@ -55,13 +55,14 @@ Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
         }
         l++;
     }
-    // add debug lang "qqx" last
-    this->ui->Language->addItem(Localizations::LANG_QQX);
-    if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX){
-        p = l;
+    if (Configuration::HuggleConfiguration->Verbosity > 0)
+    {
+        // add debug lang "qqx" last
+        this->ui->Language->addItem(Localizations::LANG_QQX);
+        if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX)
+            p = l;
+        l++;
     }
-    l++;
-
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
     if (!QSslSocket::supportsSsl())
