@@ -1319,6 +1319,13 @@ void MainWindow::Localize()
     this->ui->actionFeedback->setText(Localizations::HuggleLocalizations->Localize("main-help-feedback"));
     this->ui->actionReport_user->setText(Localizations::HuggleLocalizations->Localize("main-user-report"));
     this->ui->actionUser_contributions->setText(Localizations::HuggleLocalizations->Localize("main-tip-contribs"));
+    this->ui->actionPreferences->setText(Localizations::HuggleLocalizations->Localize("main-system-options"));
+    this->ui->actionReconnect_IRC->setText(Localizations::HuggleLocalizations->Localize("main-system-reconnectirc"));
+    this->ui->actionShow_talk->setText(Localizations::HuggleLocalizations->Localize("main-goto-mytalk"));
+    this->ui->menuChange_provider->setTitle(Localizations::HuggleLocalizations->Localize("main-system-change-provider"));
+    this->ui->actionIRC->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
+    this->ui->actionWiki->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
+    this->ui->actionNext->setText(Localizations::HuggleLocalizations->Localize("main-queue-next"));
 }
 
 void MainWindow::_BlockUser()
