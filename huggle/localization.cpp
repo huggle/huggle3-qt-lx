@@ -17,7 +17,6 @@
 using namespace Huggle;
 
 Localizations *Localizations::HuggleLocalizations = NULL;
-
 const QString Localizations::LANG_QQX = "qqx";
 
 Localizations::Localizations()
@@ -133,13 +132,9 @@ void Localizations::LocalInit(QString name, bool xml)
     }
     f->open(QIODevice::ReadOnly);
     if (!xml)
-    {
         this->LocalizationData.append(Localizations::MakeLanguage(QString(f->readAll()), name));
-    }
     else
-    {
         this->LocalizationData.append(Localizations::MakeLanguageUsingXML(QString(f->readAll()), name));
-    }
     f->close();
     delete f;
 }
