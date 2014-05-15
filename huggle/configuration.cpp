@@ -571,6 +571,7 @@ bool Configuration::ParseProjectConfig(QString config)
     // UAA
     this->ProjectConfig_UAAPath = ConfigurationParse("uaa", config);
     // Blocking
+    this->ProjectConfig_WhitelistScore = ConfigurationParse("score-wl", config, "-800");
     this->ProjectConfig_BlockMessage = ConfigurationParse("block-message", config);
     this->ProjectConfig_BlockReason = ConfigurationParse("block-reason", config);
     this->ProjectConfig_BlockExpiryOptions.clear();
