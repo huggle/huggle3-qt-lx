@@ -443,7 +443,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
     }
     // we need to parse all blocks that contain information about queue
     content = content.mid(content.indexOf("queues:") + 8);
-    QStringList Filtered = content.split("\n");
+    QStringList Filtered = content.replace("\r", "").split("\n");
     QStringList Info;
     // we need to assume that all queues are intended with at least 4 spaces
     int line = 0;

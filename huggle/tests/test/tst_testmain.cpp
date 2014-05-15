@@ -55,6 +55,7 @@ HuggleTest::HuggleTest()
     QFile f(":/test/wikipage/config.txt");
     f.open(QIODevice::ReadOnly);
     Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
+    f.close();
 }
 
 HuggleTest::~HuggleTest()
