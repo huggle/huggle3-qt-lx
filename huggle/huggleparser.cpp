@@ -196,6 +196,8 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
     {
         // we need to get rid of old warnings now
         QStringList sections;
+        // windows fix
+        page.replace("\r", "");
         while (page.length() > 1)
         {
             while (page[0] == '\n')
@@ -203,25 +205,15 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 // remove all leading extra lines on page
                 page = page.mid(1);
             }
-            bool windows = false;
             if (!page.contains("\n\n"))
             {
-                if (page.contains("\r\n\r\n"))
-                {
-                    windows = true;
-                } else
-                {
-                    // no sections
-                    sections.append(page);
-                    break;
-                }
+                // no sections
+                sections.append(page);
+                break;
             }
             // get to bottom of it
             int bottom = 0;
-            if (windows)
-                bottom = page.indexOf("\r\n\r\n");
-            else
-                bottom = page.indexOf("\n\n");
+            bottom = page.indexOf("\n\n");
             QString section = page.mid(0, bottom);
             page = page.mid(bottom + 2);
             sections.append(section);
