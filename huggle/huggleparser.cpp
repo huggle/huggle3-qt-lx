@@ -190,6 +190,20 @@ QString HuggleParser::GetKeyFromValue(QString item)
     return item;
 }
 
+static QString DateMark(QString page)
+{
+    QStringList marks;
+    marks << "(UTC)" << "(CET)" << "(CEST)";
+    int m = 0;
+    while (m < marks.count())
+    {
+        if (page.contains(marks.at(m)))
+            return marks.at(m);
+        m++;
+    }
+    return "";
+}
+
 byte_ht HuggleParser::GetLevel(QString page, QDate bt)
 {
     if (Configuration::HuggleConfiguration->TrimOldWarnings)
@@ -222,39 +236,56 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
         // now we browse all sections and remove these with no current date
         int CurrentIndex = 0;
         page = "";
-
         while (CurrentIndex < sections.count())
         {
+            QString Datem_ = DateMark(sections.at(CurrentIndex));
             // we need to find a date in this section
-            if (!sections.at(CurrentIndex).contains("(UTC)"))
+            if (!Datem_.size())
             {
                 // there is none
                 CurrentIndex++;
                 continue;
             }
             QString section = sections.at(CurrentIndex);
-            section = section.mid(0, section.indexOf("(UTC)")).trimmed();
-
+            section = section.mid(0, section.indexOf(Datem_)).trimmed();
             if (!section.contains(","))
             {
                 // this is some borked date let's remove it
                 CurrentIndex++;
                 continue;
             }
-
             QString time = section.mid(section.lastIndexOf(","));
             if (time.length() < 2)
             {
                 // what the fuck
+                Syslog::HuggleLogs->DebugLog("Negative position: " + time);
                 CurrentIndex++;
                 continue;
             }
-
             // we remove the comma
             time = time.mid(2);
-            QDate date = QDate::fromString(time, "d MMMM yyyy");
+            // now we need this uberhack so that we can get a month name from localized version
+            // let's hope that month is a word in a middle of string
+            QString month_name = time;
+            QStringList parts_time = time.split(' ');
+            if (parts_time.count() < 3)
+            {
+                // this is invalid string
+                Syslog::HuggleLogs->DebugLog("Unable to convert month to number: " + time, 12);
+                CurrentIndex++;
+                continue;
+            }
+            month_name = parts_time.at(1);
+            int month = HuggleParser::GetIDOfMonth(month_name);
+            if (month > 0)
+            {
+                // let's create a new time string from converted one, just to make sure it will be parsed properly
+                time = parts_time.at(0) + " " + QString::number(month) + " " + parts_time.at(2);
+            }
+            QDate date = QDate::fromString(time, "d M yyyy");
             if (!date.isValid())
             {
+                Syslog::HuggleLogs->DebugLog("Invalid date: " + time);
                 CurrentIndex++;
                 continue;
             } else
@@ -543,4 +574,18 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
         }
     }
     return ReturnValue;
+}
+
+
+int HuggleParser::GetIDOfMonth(QString month)
+{
+    int i = 0;
+    month = month.toLower();
+    while (i < Configuration::HuggleConfiguration->Months.count())
+    {
+        if (Configuration::HuggleConfiguration->Months.at(i).toLower() == month)
+            return i+1;
+        i++;
+    }
+    return -800;
 }

@@ -46,6 +46,12 @@ namespace Huggle
         QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
         QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
         QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
+        /*!
+         * \brief GetIDOfMonth retrieve a month based on list of localized months in configuration file
+         * \param month
+         * \return If there is no such a month this function will return negative number
+         */
+        int GetIDOfMonth(QString month);
         //! Parse a part patterns for score words
         void ParsePats(QString text);
         void ParseWords(QString text);
