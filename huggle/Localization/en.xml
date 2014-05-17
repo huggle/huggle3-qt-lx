@@ -160,7 +160,7 @@
     <string name="irc-failure">Primary feed provider has failed, fallback to wiki provider</string>
     <string name="irc-wait">Waiting for IRC feed provider to stop</string>
     <string name="irc-switch-rc">Switching to wiki RC feed</string>
-    <string name="login-intro">Please enter your Wikipedia username and pick a project.</string>
+    <string name="login-intro">Please pick a project and enter your username and password.</string>
     <string name="login-language">Language:</string>
     <string name="login-project">Project:</string>
     <string name="login-username">Username:</string>
@@ -262,7 +262,7 @@
     <string name="main-page-watch">Watch</string>
     <string name="main-page-unwatch">Unwatch</string>
     <string name="main-page-purge">Purge</string>
-    <string name="main-page-patrol">Mark patrolled</string>
+    <string name="main-page-patrol">Mark as patrolled</string>
     <string name="main-page-move">Move...</string>
     <string name="main-page-protect">Protect...</string>
     <string name="main-page-delete">Delete...</string>
