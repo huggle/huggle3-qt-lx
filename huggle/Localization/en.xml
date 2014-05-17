@@ -137,7 +137,7 @@
     <string name="delete-deletionlog">Deletion log:</string>
     <string name="delete-rem-talk">Delete associated talk</string>
     <string name="delete-notify">Notify creator</string>
-    <string name="delete-error-token">Error: Retreiving the delete token failed. The reason provided was: $1</string>
+    <string name="delete-error-token">Error: Retrieving the delete token failed. The reason provided was: $1</string>
     <string name="delete-token01">Getting token to delete $1</string>
     <string name="delete-token02">There was no token returned by the query</string>
     <string name="delete-e1">The page can't be deleted: $1</string>
@@ -347,7 +347,7 @@
     <string name="message-retrieve-new-token">Retrieving token to edit $1</string>
     <string name="message-er">Unable to deliver the message to $1: $2</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
-    <string name="message-done">Successfuly delivered message to: $1</string>
+    <string name="message-done">Successfully delivered message to: $1</string>
     <string name="protect-title">Protect $1</string>
     <string name="protect-request-title">Request protection of $1</string>
     <string name="protect-reason">Reason:</string>
@@ -554,7 +554,7 @@
     <string name="warn-recent">The user was warned less than $1 seconds ago</string>
     <string name="warn-fail">Did not warn '$1'</string>
     <string name="warn-progress">Warning '$1'...</string>
-    <string name="editquery-success">Successfuly edit $1</string>
+    <string name="editquery-success">Successfully edit $1</string>
     <string name="editquery-token">Retrieving token to edit $1</string>
     <string name="editquery-token-error">Unable to retrieve edit token</string>
     <string name="provider-failure">Failure of primary feed provider, trying to recover</string>
