@@ -571,12 +571,12 @@
     <string name="updating-wl">Updating whitelist...</string>
     <string name="updating-uc">Updating user configuration page at huggle3.css on wiki</string>
     <string name="feature-nfru">This feature is for IP users only</string>
-    <string name="report-no-user">No user has been selected to report, please select some user first</string>
-    <string name="welcome-tp-empty-fail">This user doesn't have empty talk page, are you sure you want to send a message to him?</string>
+    <string name="report-no-user">No user has been selected to report, please select a user first</string>
+    <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
     <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
-    <string name="cr-newer-edits">Conflict resolved: revert all edits including new edits. Edits are by same user: $1.</string>
-    <string name="cr-stop-new-edit">Conflict resolved: do not perform any action - there are newer edits to $1</string>
+    <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
+    <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
     <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
-    <string name="cr-message-new">There are new edits to $1 are you sure you really want to revert them?</string>
-    <string name="cr-message-not-same">There are new edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)</string>
+    <string name="cr-message-new">There are newer edits to $1 are you sure you really want to revert them?</string>
+    <string name="cr-message-not-same">There are newer edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)</string>
 </resource>
