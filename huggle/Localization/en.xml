@@ -224,6 +224,7 @@
     <string name="main-system-change-provider">Change provider</string>
     <string name="main-system-change-provider-irc">IRC</string>
     <string name="main-system-change-provider-wiki">Wiki</string>
+    <string name="main-system-exit">Exit</string>
     <string name="main-queue">Queue</string>
     <string name="main-queue-next">Next</string>
     <string name="main-queue-trim">Trim</string>
