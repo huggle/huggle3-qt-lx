@@ -602,6 +602,7 @@ int HuggleParser::GetIDOfMonth(QString month)
     {
         if (Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths[i].contains(month))
             return i;
+        i++;
     }
     return -800;
 }
