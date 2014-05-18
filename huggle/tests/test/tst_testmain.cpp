@@ -55,6 +55,7 @@ HuggleTest::HuggleTest()
     Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     QFile f(":/test/wikipage/config.txt");
     f.open(QIODevice::ReadOnly);
+    Huggle::Configuration::HuggleConfiguration->Project = new WikiSite("en", "en.wikipedia");
     Huggle::Configuration::HuggleConfiguration->Verbosity=10;
     Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
     f.close();
@@ -62,6 +63,7 @@ HuggleTest::HuggleTest()
 
 HuggleTest::~HuggleTest()
 {
+    delete Huggle::Configuration::HuggleConfiguration->Project;
     delete Huggle::Configuration::HuggleConfiguration;
 }
 
