@@ -439,36 +439,37 @@ namespace Huggle
             QString         ProjectConfig_SharedIPTemplate = "";
 
             // Definitions
-            QList<ScoreWord> ProjectConfig_ScoreParts;
-            QList<ScoreWord> ProjectConfig_ScoreWords;
-            int              ProjectConfig_ScoreFlag = -60;
-            int              ProjectConfig_ForeignUser = 800;
-            int              ProjectConfig_ScoreTalk = -200;
+            QList<ScoreWord>        ProjectConfig_ScoreParts;
+            QList<ScoreWord>        ProjectConfig_ScoreWords;
+            int                     ProjectConfig_ScoreFlag = -60;
+            int                     ProjectConfig_ForeignUser = 800;
+            int                     ProjectConfig_ScoreTalk = -200;
             //! Score that is added for every edit that has really big size
-            int              ProjectConfig_ScoreChange = 100;
-            int              ProjectConfig_ScoreUser = -600;
-            QStringList      ProjectConfig_Ignores;
-            QStringList      ProjectConfig_RevertPatterns;
-            QStringList      ProjectConfig_Assisted;
-            QStringList      ProjectConfig_Templates;
-            QStringList      ProjectConfig_IgnorePatterns;
-            int              ProjectConfig_TalkPageWarningScore = -800;
-            bool             ProjectConfig_GlobalRequired = true;
+            int                     ProjectConfig_ScoreChange = 100;
+            int                     ProjectConfig_ScoreUser = -600;
+            QStringList             ProjectConfig_Ignores;
+            QStringList             ProjectConfig_RevertPatterns;
+            QStringList             ProjectConfig_Assisted;
+            QStringList             ProjectConfig_Templates;
+            QStringList             ProjectConfig_IgnorePatterns;
+            int                     ProjectConfig_TalkPageWarningScore = -800;
+            bool                    ProjectConfig_GlobalRequired = true;
             // This is internal only do not prefix it!!
-            QList<QRegExp>   RevertPatterns;
-            int              ProjectConfig_BotScore = -200;
-            int              ProjectConfig_IPScore = 800;
-            int              ProjectConfig_WarningScore = 2000;
-            QStringList      ProjectConfig_WarningTypes;
-            QString          ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
-            QString          ProjectConfig_SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
-            QStringList      ProjectConfig_SpeedyTemplates;
-            QStringList      ProjectConfig_WelcomeTypes;
-            long             ProjectConfig_WhitelistScore = -800;
+            QList<QRegExp>          RevertPatterns;
+            int                     ProjectConfig_BotScore = -200;
+            int                     ProjectConfig_IPScore = 800;
+            int                     ProjectConfig_WarningScore = 2000;
+            QStringList             ProjectConfig_WarningTypes;
+            QString                 ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
+            QString                 ProjectConfig_SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
+            QHash<int,QStringList>  ProjectConfig_AlternativeMonths;
+            QStringList             ProjectConfig_SpeedyTemplates;
+            QStringList             ProjectConfig_WelcomeTypes;
+            long                    ProjectConfig_WhitelistScore = -800;
             // UAA
-            QString          ProjectConfig_UAAPath = "Project:Usernames for administrator attention";
-            bool             ProjectConfig_UAAavailable = false;
-            QString          ProjectConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
+            QString                 ProjectConfig_UAAPath = "Project:Usernames for administrator attention";
+            bool                    ProjectConfig_UAAavailable = false;
+            QString                 ProjectConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
 
             //////////////////////////////////////////////
             // Login

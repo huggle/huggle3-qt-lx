@@ -622,6 +622,20 @@ bool Configuration::ParseProjectConfig(QString config)
             i++;
         }
     }
+    this->ProjectConfig_AlternativeMonths.clear();
+    QStringList AMH_ = HuggleParser::ConfigurationParse_QL("alternative-months", config);
+    int month_ = 1;
+    foreach (QString months, AMH_)
+    {
+        this->ProjectConfig_AlternativeMonths.insert(month_, months.split(';'));
+        month_++;
+    }
+    while (month_ < 13)
+    {
+        Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        this->ProjectConfig_AlternativeMonths.insert(month_, QStringList());
+        month_++;
+    }
     this->RevertPatterns.clear();
     int xx = 0;
     while (xx < this->ProjectConfig_RevertPatterns.count())
@@ -631,19 +645,13 @@ bool Configuration::ParseProjectConfig(QString config)
     }
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
     if (this->AIVP != NULL)
-    {
         delete this->AIVP;
-    }
     this->AIVP = new WikiPage(this->ProjectConfig_ReportAIV);
     HuggleParser::ParsePats(config);
     HuggleParser::ParseWords(config);
     if (this->UAAP != NULL)
-    {
         delete this->UAAP;
-    }
-
     this->UAAP = new WikiPage(this->ProjectConfig_UAAPath);
-
     // templates
     int CurrentTemplate=0;
     while (CurrentTemplate<this->ProjectConfig_WarningTypes.count())
@@ -662,10 +670,10 @@ bool Configuration::ParseProjectConfig(QString config)
         CurrentTemplate++;
     }
     // sanitize
-    if (this->ProjectConfig_ReportAIV == "")
+    if (this->ProjectConfig_ReportAIV.size() == 0)
         this->ProjectConfig_AIV = false;
     // Do the same for UAA as well
-    this->ProjectConfig_UAAavailable = this->ProjectConfig_UAAPath != "";
+    this->ProjectConfig_UAAavailable = this->ProjectConfig_UAAPath.size() > 0;
     return true;
 }
 
