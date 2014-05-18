@@ -236,6 +236,9 @@ void Login::Disable()
 
 void Login::PressOK()
 {
+    this->processedSiteinfo = false;
+    this->processedLogin = false;
+    this->processedWlQuery = false;
     if (this->ui->tab->isVisible())
     {
         QMessageBox mb;
@@ -644,7 +647,6 @@ void Login::RetrieveUserInfo()
             }
 
             QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
-            this->Kill();
             this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
@@ -656,6 +658,7 @@ void Login::RetrieveUserInfo()
             }
 
             /// \todo Implement check for "require-time"
+            this->loadingForm->ModifyIcon(LOGINFORM_USERINFO, LoadingForm_Icon_Success);
             this->processedLogin = true;
             this->_Status = LoginDone;
         }
@@ -736,7 +739,7 @@ void Login::DisplayError(QString message)
 void Login::Finish()
 {
     // let's check if all processes are finished
-    if (!this->processedLogin || !this->processedSiteinfo || this->_Status != LoginDone)
+    if (!this->processedWlQuery || !this->processedLogin || !this->processedSiteinfo || this->_Status != LoginDone)
         return;
     // we generate a random string of same size of current password
     QString pw = "";
@@ -915,9 +918,6 @@ void Login::OnTimerTick()
 void Login::on_pushButton_clicked()
 {
     this->Disable();
-    this->processedSiteinfo = false;
-    this->processedLogin = false;
-    this->processedWlQuery = false;
     if(this->LoginQuery != nullptr)
     {
         this->LoginQuery->DecRef();
