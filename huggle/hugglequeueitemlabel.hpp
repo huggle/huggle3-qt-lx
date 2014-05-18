@@ -17,6 +17,7 @@
 #include <Python.h>
 #endif
 
+#include <QHash>
 #include <QMouseEvent>
 #include <QFrame>
 #include "wikiedit.hpp"
@@ -51,7 +52,9 @@ namespace Huggle
             void mousePressEvent(QMouseEvent *event);
 
         private:
+            QString getColor(int id);
             Ui::HuggleQueueItemLabel *ui;
+            QHash<int, QString> buffer;
     };
 }
 

@@ -31,55 +31,10 @@ void HuggleQueueItemLabel::SetName(QString name)
     this->ui->label_2->setText(name);
     if (this->Page != NULL)
     {
-        switch (this->Page->Page->GetNS()->GetID())
-        {
-            case MEDIAWIKI_NSID_MAIN:
-                break;
-            case MEDIAWIKI_NSID_TALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #82E682; }");
-                break;
-            case MEDIAWIKI_NSID_PROJECT:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #6699FF; }");
-                break;
-            case MEDIAWIKI_NSID_PROJECTTALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #6600FF; }");
-                break;
-            case MEDIAWIKI_NSID_USER:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF99FF; }");
-                break;
-            case MEDIAWIKI_NSID_USERTALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #CC66FF; }");
-                break;
-            case MEDIAWIKI_NSID_HELP:
-            case MEDIAWIKI_NSID_MEDIAWIKI:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFFCC; }");
-                break;
-            case MEDIAWIKI_NSID_HELPTALK:
-            case MEDIAWIKI_NSID_MEDIAWIKITALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFCC66; }");
-                break;
-            case MEDIAWIKI_NSID_CATEGORY:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6699; }");
-                break;
-            case MEDIAWIKI_NSID_CATEGORYTALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF0066; }");
-                break;
-            case MEDIAWIKI_NSID_FILE:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
-                break;
-            case MEDIAWIKI_NSID_FILETALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6600; }");
-                break;
-            case MEDIAWIKI_NSID_PORTAL:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFF66; }");
-                break;
-            case MEDIAWIKI_NSID_PORTALTALK:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
-                break;
-        }
-
+        int id = this->Page->Page->GetNS()->GetID();
+        if (id != 0)
+            this->ui->label_2->setStyleSheet("QLabel { background-color : #" + getColor(id) + "; }");
         // change the icon according to edit type (descending priority)
-
         if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
@@ -174,4 +129,17 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     {
         this->Process();
     }
+}
+
+QString HuggleQueueItemLabel::getColor(int id)
+{
+    if (this->buffer.contains(id))
+        return this->buffer[id];
+
+    // let's create some hash color from the id
+    QString color = QString(QCryptographicHash::hash(QString::number(id).toUtf8(), QCryptographicHash::Md5).toHex());
+    if (color.length() > 6)
+        color = color.mid(0, 6);
+    this->buffer.insert(id, color);
+    return color;
 }
