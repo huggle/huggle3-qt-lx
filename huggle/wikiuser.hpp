@@ -22,6 +22,7 @@
 #include <QRegExp>
 #include "huggleparser.hpp"
 #include "wikiedit.hpp"
+#include "wikisite.hpp"
 
 namespace Huggle
 {
@@ -161,6 +162,7 @@ namespace Huggle
             QMutex *UserLock;
             bool Bot;
             bool IP;
+            WikiSite *Site;
     };
 }
 

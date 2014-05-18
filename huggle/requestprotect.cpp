@@ -75,8 +75,8 @@ void RequestProtect::Tick()
         }
         delete rx;
         QString report = Configuration::HuggleConfiguration->ProjectConfig_RFPP_Template;
-        if ((this->page->IsUserpage() || this->page->GetNS() == MediaWikiNS_UserTalk) &&
-            Configuration::HuggleConfiguration->ProjectConfig_RFPP_TemplateUser != "")
+        if ((this->page->IsUserpage() || this->page->GetNS()->GetCanonicalName() == "User talk") &&
+            Configuration::HuggleConfiguration->ProjectConfig_RFPP_TemplateUser.size() > 0)
         {
             report = Configuration::HuggleConfiguration->ProjectConfig_RFPP_TemplateUser;
         }

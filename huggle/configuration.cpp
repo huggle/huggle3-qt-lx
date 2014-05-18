@@ -57,21 +57,6 @@ Configuration::Configuration()
                  << "November"
                  << "December";
 
-    this->ProjectConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
-    this->ProjectConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
-    this->ProjectConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
-    this->ProjectConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
-    this->ProjectConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
-    this->ProjectConfig_NSFile = MEDIAWIKI_DEFAULT_NS_FILE;
-    this->ProjectConfig_NSFileTalk = MEDIAWIKI_DEFAULT_NS_FILETALK;
-    this->ProjectConfig_NSCategory = MEDIAWIKI_DEFAULT_NS_CATEGORY;
-    this->ProjectConfig_NSCategoryTalk = MEDIAWIKI_DEFAULT_NS_CATEGORYTALK;
-    this->ProjectConfig_NSMediaWiki = MEDIAWIKI_DEFAULT_NS_MEDIAWIKI;
-    this->ProjectConfig_NSMediaWikiTalk = MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK;
-    this->ProjectConfig_NSHelp = MEDIAWIKI_DEFAULT_NS_HELP;
-    this->ProjectConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
-    this->ProjectConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
-    this->ProjectConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
     this->ProjectConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->ProjectConfig_BlockExpiryOptions.append("indefinite");
 }
@@ -645,87 +630,13 @@ bool Configuration::ParseProjectConfig(QString config)
         xx++;
     }
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
-
     if (this->AIVP != NULL)
     {
         delete this->AIVP;
     }
-
     this->AIVP = new WikiPage(this->ProjectConfig_ReportAIV);
     HuggleParser::ParsePats(config);
     HuggleParser::ParseWords(config);
-    QStringList namespaces = HuggleParser::ConfigurationParse_QL("namespace-names", config, true);
-    int NS=0;
-    while (namespaces.count() > NS)
-    {
-        QString line = namespaces.at(NS);
-        NS++;
-
-        if (!line.contains(";"))
-        {
-            continue;
-        }
-
-        int ns = line.mid(0, line.indexOf(";")).toInt();
-        QString name = line.mid(line.indexOf(";") + 1) + ":";
-
-        switch (ns)
-        {
-            /// \todo Some NS are missing here
-            case MEDIAWIKI_NSID_TALK:
-                this->ProjectConfig_NSTalk = name;
-                break;
-            case MEDIAWIKI_NSID_CATEGORY:
-                this->ProjectConfig_NSCategory = name;
-                break;
-            case MEDIAWIKI_NSID_CATEGORYTALK:
-                this->ProjectConfig_NSCategoryTalk = name;
-                break;
-            case MEDIAWIKI_NSID_FILE:
-                this->ProjectConfig_NSFile = name;
-                break;
-            case MEDIAWIKI_NSID_FILETALK:
-                this->ProjectConfig_NSFileTalk = name;
-                break;
-            case MEDIAWIKI_NSID_HELP:
-                this->ProjectConfig_NSHelp = name;
-                break;
-            case MEDIAWIKI_NSID_HELPTALK:
-                this->ProjectConfig_NSHelpTalk = name;
-                break;
-            case MEDIAWIKI_NSID_MEDIAWIKI:
-                this->ProjectConfig_NSMediaWiki = name;
-                break;
-            case MEDIAWIKI_NSID_MEDIAWIKITALK:
-                this->ProjectConfig_NSMediaWikiTalk = name;
-                break;
-            case MEDIAWIKI_NSID_PORTAL:
-                this->ProjectConfig_NSPortal = name;
-                break;
-            case MEDIAWIKI_NSID_PORTALTALK:
-                this->ProjectConfig_NSPortalTalk = name;
-                break;
-            case MEDIAWIKI_NSID_PROJECT:
-                this->ProjectConfig_NSProject = name;
-                break;
-            case MEDIAWIKI_NSID_PROJECTTALK:
-                this->ProjectConfig_NSProjectTalk = name;
-                break;
-            case MEDIAWIKI_NSID_USER:
-                this->ProjectConfig_NSUser = name;
-                break;
-            case MEDIAWIKI_NSID_USERTALK:
-                this->ProjectConfig_NSUserTalk = name;
-                break;
-            case MEDIAWIKI_NSID_TEMPLATE:
-                this->ProjectConfig_NSTemplate = name;
-                break;
-            case MEDIAWIKI_NSID_TEMPLATETALK:
-                this->ProjectConfig_NSTemplateTalk = name;
-                break;
-        }
-    }
-
     if (this->UAAP != NULL)
     {
         delete this->UAAP;

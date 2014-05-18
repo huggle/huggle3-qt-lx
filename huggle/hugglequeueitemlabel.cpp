@@ -31,53 +31,50 @@ void HuggleQueueItemLabel::SetName(QString name)
     this->ui->label_2->setText(name);
     if (this->Page != NULL)
     {
-        switch (this->Page->Page->GetNS())
+        switch (this->Page->Page->GetNS()->GetID())
         {
-            case MediaWikiNS_Main:
+            case MEDIAWIKI_NSID_MAIN:
                 break;
-            case MediaWikiNS_Talk:
+            case MEDIAWIKI_NSID_TALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #82E682; }");
                 break;
-            case MediaWikiNS_Project:
+            case MEDIAWIKI_NSID_PROJECT:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #6699FF; }");
                 break;
-            case MediaWikiNS_ProjectTalk:
+            case MEDIAWIKI_NSID_PROJECTTALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #6600FF; }");
                 break;
-            case MediaWikiNS_User:
+            case MEDIAWIKI_NSID_USER:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF99FF; }");
                 break;
-            case MediaWikiNS_UserTalk:
+            case MEDIAWIKI_NSID_USERTALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #CC66FF; }");
                 break;
-            case MediaWikiNS_Help:
-            case MediaWikiNS_Mediawiki:
+            case MEDIAWIKI_NSID_HELP:
+            case MEDIAWIKI_NSID_MEDIAWIKI:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFFCC; }");
                 break;
-            case MediaWikiNS_HelpTalk:
-            case MediaWikiNS_MediawikiTalk:
+            case MEDIAWIKI_NSID_HELPTALK:
+            case MEDIAWIKI_NSID_MEDIAWIKITALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FFCC66; }");
                 break;
-            case MediaWikiNS_Category:
+            case MEDIAWIKI_NSID_CATEGORY:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6699; }");
                 break;
-            case MediaWikiNS_CategoryTalk:
+            case MEDIAWIKI_NSID_CATEGORYTALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF0066; }");
                 break;
-            case MediaWikiNS_File:
+            case MEDIAWIKI_NSID_FILE:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
                 break;
-            case MediaWikiNS_FileTalk:
+            case MEDIAWIKI_NSID_FILETALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6600; }");
                 break;
-            case MediaWikiNS_Portal:
+            case MEDIAWIKI_NSID_PORTAL:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFF66; }");
                 break;
-            case MediaWikiNS_PortalTalk:
+            case MEDIAWIKI_NSID_PORTALTALK:
                 this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
-                break;
-            case MediaWikiNS_Special:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : red; }");
                 break;
         }
 

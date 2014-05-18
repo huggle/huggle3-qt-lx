@@ -379,9 +379,8 @@ void Login::RetrieveGlobalConfig()
     this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO, LoadingForm_Icon_Loading);
     this->qSiteInfo = new ApiQuery(ActionQuery);
     this->qSiteInfo->IncRef();
-    this->qSiteInfo->Parameters = "meta=siteinfo&siprop=general";
+    this->qSiteInfo->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
     this->qSiteInfo->Process();
-
 }
 
 void Login::FinishLogin()
@@ -687,12 +686,32 @@ void Login::ProcessSiteInfo()
         QDomDocument d;
         d.setContent(this->qSiteInfo->Result->Data);
         QDomNodeList l = d.elementsByTagName("general");
-        if( l.count() < 1 ) {
+        if( l.count() < 1 )
+        {
             //! \todo throw some exception
         }
         QDomElement item = l.at(0).toElement();
-        if (item.attributes().contains("rtl")){
+        if (item.attributes().contains("rtl"))
+        {
             //! \todo set a value and use this to determine project RTL status
+        }
+        l = d.elementsByTagName("ns");
+        if (l.count() < 1)
+        {
+            Syslog::HuggleLogs->WarningLog("Mediawiki provided no information about namespaces");
+        } else
+        {
+            register int index = 0;
+            while (index < l.count())
+            {
+                QDomElement e = l.at(index).toElement();
+                index++;
+                if (!e.attributes().contains("id") || !e.attributes().contains("canonical"))
+                    continue;
+                Configuration::HuggleConfiguration->Project->InsertNS(new WikiPageNS(e.attribute("id").toInt(),
+                                                                                     e.text(),
+                                                                                     e.attribute("canonical")));
+            }
         }
         this->qSiteInfo->DecRef();
         this->qSiteInfo = nullptr;
@@ -717,7 +736,7 @@ void Login::Finish()
     this->_Status = Nothing;
     while (pw.length() < Configuration::HuggleConfiguration->TemporaryConfig_Password.length())
     {
-        pw += ".";
+        pw += "x";
     }
     // we no longer need a password since this
     Configuration::HuggleConfiguration->TemporaryConfig_Password = pw;
@@ -763,21 +782,15 @@ bool Login::ProcessOutput()
                            "log for precise information");
         return false;
     }
-
     Result = Result.mid(0, Result.indexOf("\""));
-
     if (Result == "Success")
-    {
         return true;
-    }
-
     if (Result == "EmptyPass")
     {
         /// \todo LOCALIZE ME
         this->DisplayError("The password you entered was empty");
         return false;
     }
-
     if (Result == "WrongPass")
     {
         /// \bug This sometimes doesn't work properly
@@ -785,7 +798,6 @@ bool Login::ProcessOutput()
         this->DisplayError(Localizations::HuggleLocalizations->Localize("login-error-password"));
         return false;
     }
-
     if (Result == "NoName")
     {
         /// \todo LOCALIZE ME

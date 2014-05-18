@@ -146,6 +146,7 @@ WikiUser::WikiUser()
     this->_talkPageWasRetrieved = false;
     this->WhitelistInfo = 0;
     this->EditCount = -1;
+    this->Site = Configuration::HuggleConfiguration->Project;
     this->RegistrationDate = "";
     this->Bot = false;
 }
@@ -162,6 +163,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
     this->_talkPageWasRetrieved = u->_talkPageWasRetrieved;
+    this->Site = u->Site;
     this->WhitelistInfo = u->WhitelistInfo;
     this->Bot = u->Bot;
     this->EditCount = u->EditCount;
@@ -179,6 +181,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->IsBanned = u.IsBanned;
     this->DateOfTalkPage = u.DateOfTalkPage;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
+    this->Site = u.Site;
     this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
     this->WhitelistInfo = u.WhitelistInfo;
     this->Bot = u.Bot;
@@ -207,6 +210,7 @@ WikiUser::WikiUser(QString user)
     this->DateOfTalkPage = InvalidTime;
     int c=0;
     this->ContentsOfTalkPage = "";
+    this->Site = Configuration::HuggleConfiguration->Project;
     WikiUser::ProblematicUserListLock.lock();
     while (c<ProblematicUsers.count())
     {
@@ -320,14 +324,18 @@ void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
     if (tp.length() > 0)
-    {
         this->WarningLevel = HuggleParser::GetLevel(tp, bt);
-    }
 }
 
 QString WikiUser::GetTalk()
 {
-    return Configuration::HuggleConfiguration->ProjectConfig_NSUserTalk + this->Username;
+    // get a usertalk prefix for this site
+    WikiPageNS *ns = this->Site->RetrieveNSByCanonicalName("User talk");
+    QString prefix = ns->GetName();
+    if (!prefix.size())
+        prefix = "User talk";
+    prefix += ":";
+    return prefix + this->Username;
 }
 
 bool WikiUser::TalkPage_WasRetrieved()
@@ -338,9 +346,7 @@ bool WikiUser::TalkPage_WasRetrieved()
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
     if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags.length() < 1)
-    {
         return false;
-    }
     if (this->TalkPage_WasRetrieved())
     {
         return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags);
@@ -351,13 +357,9 @@ bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 bool WikiUser::IsWhitelisted()
 {
     if (this->WhitelistInfo == 1)
-    {
         return true;
-    }
     if (this->WhitelistInfo == 2)
-    {
         return false;
-    }
     QString spaced = this->Username;
     spaced.replace("_", " ");
     if (Configuration::HuggleConfiguration->WhiteList.contains(this->Username) ||

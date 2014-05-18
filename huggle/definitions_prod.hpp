@@ -29,11 +29,6 @@ typedef char byte_ht;
 #define DISABLE_BREAKPAD
 
 #define PRODUCTION_BUILD                0
-//! Minimal score the edit can have
-#define MINIMAL_SCORE                   -999999
-#define HUGGLE_CONF                     "huggle3.xml"
-//! Path where the extensions are located
-#define EXTENSION_PATH                  "extensions"
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""
 #define MEDIAWIKI_DEFAULT_NS_TALK               "Talk:"
 #define MEDIAWIKI_DEFAULT_NS_USER               "User:"
@@ -70,6 +65,11 @@ typedef char byte_ht;
 #define MEDIAWIKI_NSID_CATEGORYTALK             15
 #define MEDIAWIKI_NSID_PORTAL                   100
 #define MEDIAWIKI_NSID_PORTALTALK               101
+//! Minimal score the edit can have
+#define MINIMAL_SCORE                   -999999
+#define HUGGLE_CONF                     "huggle3.xml"
+//! Path where the extensions are located
+#define EXTENSION_PATH                  "extensions"
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
 //! Revid of edit that doesn't exist

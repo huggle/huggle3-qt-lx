@@ -9,21 +9,28 @@
 //GNU General Public License for more details.
 
 #include "wikipage.hpp"
+#include "exception.hpp"
 #include "configuration.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()
 {
-    this->Site = NULL;
+    this->Site = Configuration::HuggleConfiguration->Project;
     this->PageName = "Unknown page";
     this->Contents = "";
+    if (!this->Site)
+        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+    this->NS = this->Site->Unknown;
 }
 
 WikiPage::WikiPage(const QString &name)
 {
     this->PageName = name;
-    this->Site = NULL;
+    this->Site = Configuration::HuggleConfiguration->Project;
     this->Contents = "";
+    if (!this->Site)
+        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+    this->NS = this->Site->RetrieveNSFromTitle(this->PageName);
 }
 
 WikiPage::WikiPage(WikiPage *page)
@@ -31,6 +38,7 @@ WikiPage::WikiPage(WikiPage *page)
     this->PageName = page->PageName;
     this->Site = page->Site;
     this->Contents = page->Contents;
+    this->NS = page->NS;
 }
 
 WikiPage::WikiPage(const WikiPage &page)
@@ -38,6 +46,7 @@ WikiPage::WikiPage(const WikiPage &page)
     this->PageName = page.PageName;
     this->Site = page.Site;
     this->Contents = page.Contents;
+    this->NS = page.NS;
 }
 
 QString WikiPage::SanitizedName()
@@ -45,125 +54,40 @@ QString WikiPage::SanitizedName()
     return this->PageName.replace(" ", "_");
 }
 
-MediaWikiNS WikiPage::GetNS()
+WikiPageNS *WikiPage::GetNS()
 {
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_TALK))
-    {
-        return MediaWikiNS_Talk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSProject) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECT))
-    {
-        return MediaWikiNS_Project;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSProjectTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PROJECTTALK))
-    {
-        return MediaWikiNS_ProjectTalk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSUser) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USER))
-    {
-        return MediaWikiNS_User;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSUserTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_USERTALK))
-    {
-        return MediaWikiNS_UserTalk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSCategory) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORY))
-    {
-        return MediaWikiNS_Category;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSCategoryTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_CATEGORYTALK))
-    {
-        return MediaWikiNS_CategoryTalk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSFile) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILE))
-    {
-        return MediaWikiNS_File;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSFileTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_FILETALK))
-    {
-        return MediaWikiNS_FileTalk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSMediaWikiTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK))
-    {
-        return MediaWikiNS_MediawikiTalk;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSMediaWiki) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_MEDIAWIKI))
-    {
-        return MediaWikiNS_Mediawiki;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSPortal) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTAL))
-    {
-        return MediaWikiNS_Portal;
-    }
-    if (PageName.startsWith(Configuration::HuggleConfiguration->ProjectConfig_NSPortalTalk) || PageName.startsWith(MEDIAWIKI_DEFAULT_NS_PORTALTALK))
-    {
-        return MediaWikiNS_PortalTalk;
-    }
-    return MediaWikiNS_Main;
+    return this->NS;
 }
 
 bool WikiPage::IsTalk()
 {
-    MediaWikiNS NS = this->GetNS();
-    if (NS == MediaWikiNS_Talk ||
-            NS == MediaWikiNS_HelpTalk ||
-            NS == MediaWikiNS_UserTalk ||
-            NS == MediaWikiNS_CategoryTalk ||
-            NS == MediaWikiNS_FileTalk ||
-            NS == MediaWikiNS_MediawikiTalk ||
-            NS == MediaWikiNS_ProjectTalk)
-    {
-        return true;
-    }
-    return false;
+    return this->NS->IsTalkPage();
 }
 
 WikiPage *WikiPage::RetrieveTalk()
 {
-    MediaWikiNS NS = this->GetNS();
-    if (!this->IsTalk())
+    if (this->IsTalk())
     {
         return NULL;
     }
-    QString prefix = "Talk:";
-    switch (NS)
+    // now we need to get a talk namespace for this ns
+    QString prefix = "Talk";
+    if (this->NS->GetName().size() > 0)
     {
-        case MediaWikiNS_Category:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSCategoryTalk;
-            break;
-        case MediaWikiNS_File:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSFileTalk;
-            break;
-        case MediaWikiNS_Help:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSHelpTalk;
-            break;
-        case MediaWikiNS_Mediawiki:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSMediaWikiTalk;
-            break;
-        case MediaWikiNS_Portal:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSPortalTalk;
-            break;
-        case MediaWikiNS_Project:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSProjectTalk;
-            break;
-        case MediaWikiNS_User:
-            prefix = Configuration::HuggleConfiguration->ProjectConfig_NSUserTalk;
-            break;
-        default:
-            prefix = "";
-            break;
+        prefix = this->Site->RetrieveNSByCanonicalName(this->NS->GetCanonicalName() + " talk")->GetName();
+        if (!prefix.size())
+        {
+            prefix = "Talk";
+        }
     }
-    if (prefix == "")
-    {
-        return NULL;
-    }
-    return new WikiPage(prefix + this->RootName());;
+    prefix += ":";
+    return new WikiPage(prefix + this->RootName());
 }
 
 QString WikiPage::RootName()
 {
     QString sanitized = this->PageName;
-    if (this->GetNS() != MediaWikiNS_Main)
+    if (this->GetNS()->GetName().size())
     {
         // first we need to get a colon
         if (this->PageName.contains(":"))
@@ -180,9 +104,5 @@ QString WikiPage::RootName()
 
 bool WikiPage::IsUserpage()
 {
-    if (this->GetNS() == MediaWikiNS_User)
-    {
-        return true;
-    }
-    return false;
+    return this->GetNS()->GetCanonicalName() == "User";
 }

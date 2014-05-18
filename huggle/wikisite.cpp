@@ -9,7 +9,40 @@
 //GNU General Public License for more details.
 
 #include "wikisite.hpp"
+#include "syslog.hpp"
 using namespace Huggle;
+
+WikiPageNS *WikiSite::Unknown = new WikiPageNS(0, "", "");
+
+WikiPageNS::WikiPageNS(int id, QString name, QString canonical_name)
+{
+    QString lc = canonical_name.toLower();
+    QString lw = name.toLower();
+    this->Talk = (lc.startsWith("talk") || lc.contains(" talk") || lw.startsWith("talk") || lw.contains(" talk"));
+    this->ID = id;
+    this->CanonicalName = canonical_name;
+    this->Name = name;
+}
+
+QString WikiPageNS::GetName()
+{
+    return this->Name;
+}
+
+QString WikiPageNS::GetCanonicalName()
+{
+    return this->CanonicalName;
+}
+
+bool WikiPageNS::IsTalkPage()
+{
+    return this->Talk;
+}
+
+int WikiPageNS::GetID()
+{
+    return this->ID;
+}
 
 WikiSite::WikiSite(const WikiSite &w)
 {
@@ -22,6 +55,65 @@ WikiSite::WikiSite(const WikiSite &w)
     this->SupportOAuth = w.SupportOAuth;
     this->URL = w.URL;
     this->WhiteList = w.WhiteList;
+}
+
+WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
+{
+    WikiPageNS *dns_ = nullptr;
+    foreach(WikiPageNS *ns_, this->NamespaceList)
+    {
+        if (!ns_->GetName().size())
+            dns_ = ns_;
+        else if (title.startsWith(ns_->GetName() + ":"))
+            return ns_;
+    }
+    // let's try canonical names
+    foreach(WikiPageNS *ns_, this->NamespaceList)
+    {
+        if (!ns_->GetName().size())
+            continue;
+        else if (title.startsWith(ns_->GetCanonicalName() + ":"))
+            return ns_;
+    }
+    if (!dns_)
+        return WikiSite::Unknown;
+    return dns_;
+}
+
+WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
+{
+    WikiPageNS *dns_ = nullptr;
+    // let's try canonical names
+    foreach(WikiPageNS *ns_, this->NamespaceList)
+    {
+        if (!ns_->GetName().size())
+            dns_ = ns_;
+        else if (CanonicalName == ns_->GetCanonicalName())
+            return ns_;
+    }
+    if (!dns_)
+        return WikiSite::Unknown;
+    return dns_;
+}
+
+void WikiSite::InsertNS(WikiPageNS *Ns)
+{
+    if (this->NamespaceList.contains(Ns->GetID()))
+    {
+        Syslog::HuggleLogs->WarningLog("Ignoring multiple definitions of namespace " + QString::number(Ns->GetID()) + " mw bug?");
+        return;
+    }
+    this->NamespaceList.insert(Ns->GetID(), Ns);
+}
+
+void WikiSite::RemoveNS(int ns)
+{
+    if (this->NamespaceList.contains(ns))
+    {
+        WikiPageNS *n = this->NamespaceList[ns];
+        this->NamespaceList.remove(ns);
+        delete n;
+    }
 }
 
 WikiSite::WikiSite(WikiSite *w)
@@ -61,4 +153,13 @@ WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool
     this->URL = url;
     this->SupportOAuth = oauth;
     this->WhiteList = wl;
+}
+
+WikiSite::~WikiSite()
+{
+    QList<int> list = this->NamespaceList.keys();
+    foreach (int id, list)
+    {
+        this->RemoveNS(id);
+    }
 }
