@@ -424,6 +424,7 @@ void Login::RetrieveWhitelist()
                 Configuration::HuggleConfiguration->WhiteList = list.split("|");
                 Configuration::HuggleConfiguration->WhiteList.removeAll("");
             }
+            this->processedWlQuery = true;
             this->loadingForm->ModifyIcon(LOGINFORM_WHITELIST, LoadingForm_Icon_Success);
             this->wq->DecRef();
             this->wq = nullptr;
@@ -655,9 +656,8 @@ void Login::RetrieveUserInfo()
             }
 
             /// \todo Implement check for "require-time"
-            ///
+            this->processedLogin = true;
             this->_Status = LoginDone;
-            this->Finish();
         }
         return;
     }
@@ -719,6 +719,7 @@ void Login::ProcessSiteInfo()
                                                                                      e.attribute("canonical")));
             }
         }
+        this->processedSiteinfo = true;
         this->qSiteInfo->DecRef();
         this->qSiteInfo = nullptr;
         this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO,LoadingForm_Icon_Success);
@@ -735,7 +736,7 @@ void Login::DisplayError(QString message)
 void Login::Finish()
 {
     // let's check if all processes are finished
-    if (this->wq || this->qSiteInfo || this->_Status != LoginDone)
+    if (!this->processedLogin || !this->processedSiteinfo || this->_Status != LoginDone)
         return;
     // we generate a random string of same size of current password
     QString pw = "";
@@ -757,7 +758,6 @@ void Login::Finish()
     }
     this->hide();
     MainWindow::HuggleMain = new MainWindow();
-    MainWindow::HuggleMain->show();
     Core::HuggleCore->Main = MainWindow::HuggleMain;
     Core::HuggleCore->Main->show();
 }
@@ -904,7 +904,9 @@ void Login::OnTimerTick()
         this->timer->stop();
         this->ui->ButtonOK->setText("Login");
         this->_Status = Nothing;
-    } else
+    }
+
+    if (this->processedLogin && this->processedSiteinfo && this->processedWlQuery)
     {
         this->Finish();
     }
@@ -913,6 +915,9 @@ void Login::OnTimerTick()
 void Login::on_pushButton_clicked()
 {
     this->Disable();
+    this->processedSiteinfo = false;
+    this->processedLogin = false;
+    this->processedWlQuery = false;
     if(this->LoginQuery != nullptr)
     {
         this->LoginQuery->DecRef();
