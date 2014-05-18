@@ -137,7 +137,7 @@
     <string name="delete-deletionlog">Deletion log:</string>
     <string name="delete-rem-talk">Delete associated talk</string>
     <string name="delete-notify">Notify creator</string>
-    <string name="delete-error-token">Error: Retreiving the delete token failed. The reason provided was: $1</string>
+    <string name="delete-error-token">Error: Retrieving the delete token failed. The reason provided was: $1</string>
     <string name="delete-token01">Getting token to delete $1</string>
     <string name="delete-token02">There was no token returned by the query</string>
     <string name="delete-e1">The page can't be deleted: $1</string>
@@ -160,7 +160,7 @@
     <string name="irc-failure">Primary feed provider has failed, fallback to wiki provider</string>
     <string name="irc-wait">Waiting for IRC feed provider to stop</string>
     <string name="irc-switch-rc">Switching to wiki RC feed</string>
-    <string name="login-intro">Please enter your Wikipedia username and pick a project.</string>
+    <string name="login-intro">Please pick a project and enter your username and password.</string>
     <string name="login-language">Language:</string>
     <string name="login-project">Project:</string>
     <string name="login-username">Username:</string>
@@ -262,7 +262,7 @@
     <string name="main-page-watch">Watch</string>
     <string name="main-page-unwatch">Unwatch</string>
     <string name="main-page-purge">Purge</string>
-    <string name="main-page-patrol">Mark patrolled</string>
+    <string name="main-page-patrol">Mark as patrolled</string>
     <string name="main-page-move">Move...</string>
     <string name="main-page-protect">Protect...</string>
     <string name="main-page-delete">Delete...</string>
@@ -347,7 +347,7 @@
     <string name="message-retrieve-new-token">Retrieving token to edit $1</string>
     <string name="message-er">Unable to deliver the message to $1: $2</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
-    <string name="message-done">Successfuly delivered message to: $1</string>
+    <string name="message-done">Successfully delivered message to: $1</string>
     <string name="protect-title">Protect $1</string>
     <string name="protect-request-title">Request protection of $1</string>
     <string name="protect-reason">Reason:</string>
@@ -554,7 +554,7 @@
     <string name="warn-recent">The user was warned less than $1 seconds ago</string>
     <string name="warn-fail">Did not warn '$1'</string>
     <string name="warn-progress">Warning '$1'...</string>
-    <string name="editquery-success">Successfuly edit $1</string>
+    <string name="editquery-success">Successfully edit $1</string>
     <string name="editquery-token">Retrieving token to edit $1</string>
     <string name="editquery-token-error">Unable to retrieve edit token</string>
     <string name="provider-failure">Failure of primary feed provider, trying to recover</string>
@@ -571,12 +571,12 @@
     <string name="updating-wl">Updating whitelist...</string>
     <string name="updating-uc">Updating user configuration page at huggle3.css on wiki</string>
     <string name="feature-nfru">This feature is for IP users only</string>
-    <string name="report-no-user">No user has been selected to report, please select some user first</string>
-    <string name="welcome-tp-empty-fail">This user doesn't have empty talk page, are you sure you want to send a message to him?</string>
+    <string name="report-no-user">No user has been selected to report, please select a user first</string>
+    <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
     <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
-    <string name="cr-newer-edits">Conflict resolved: revert all edits including new edits. Edits are by same user: $1.</string>
-    <string name="cr-stop-new-edit">Conflict resolved: do not perform any action - there are newer edits to $1</string>
+    <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
+    <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
     <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
-    <string name="cr-message-new">There are new edits to $1 are you sure you really want to revert them?</string>
-    <string name="cr-message-not-same">There are new edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)</string>
+    <string name="cr-message-new">There are newer edits to $1 are you sure you really want to revert them?</string>
+    <string name="cr-message-not-same">There are newer edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)</string>
 </resource>
