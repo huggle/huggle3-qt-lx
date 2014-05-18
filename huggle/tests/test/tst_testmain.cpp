@@ -63,7 +63,6 @@ HuggleTest::HuggleTest()
 
 HuggleTest::~HuggleTest()
 {
-    delete Huggle::Configuration::HuggleConfiguration->Project;
     delete Huggle::Configuration::HuggleConfiguration;
 }
 
