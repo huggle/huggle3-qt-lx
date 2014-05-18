@@ -14,6 +14,7 @@
 #include <QDesktopServices>
 #include <QtXml>
 #include "syslog.hpp"
+#include "mediawiki.hpp"
 #include "localization.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
@@ -694,6 +695,11 @@ void Login::ProcessSiteInfo()
         if (item.attributes().contains("rtl"))
         {
             //! \todo set a value and use this to determine project RTL status
+        }
+        if (item.attributes().contains("time"))
+        {
+            QDateTime server_time = MediaWiki::FromMWTimestamp(item.attribute("time"));
+            Configuration::HuggleConfiguration->ServerOffset = QDateTime::currentDateTime().secsTo(server_time);
         }
         l = d.elementsByTagName("ns");
         if (l.count() < 1)

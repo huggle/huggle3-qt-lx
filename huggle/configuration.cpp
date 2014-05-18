@@ -710,6 +710,11 @@ bool Configuration::ParseUserConfig(QString config)
     return true;
 }
 
+QDateTime Configuration::ServerTime()
+{
+    return QDateTime::currentDateTime().addSecs(this->ServerOffset);
+}
+
 QString Configuration::GetProjectURL(WikiSite Project)
 {
     return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;

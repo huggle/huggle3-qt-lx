@@ -199,6 +199,7 @@ namespace Huggle
             //! Parse all information from local config, this function is used in login
             bool ParseProjectConfig(QString config);
             bool ParseUserConfig(QString config);
+            QDateTime ServerTime();
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
@@ -294,6 +295,8 @@ namespace Huggle
             //! was removed from the list, we would have nonexistent wiki in list
             int             IndexOfLastWiki = 0;
             QString         TemporaryConfig_EditToken = "";
+            //! This is a number that can be used to get a current server time
+            qint64          ServerOffset = 0;
 
             //////////////////////////////////////////////
             // User
