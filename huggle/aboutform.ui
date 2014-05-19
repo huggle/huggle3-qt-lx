@@ -111,6 +111,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="label_11">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;se4598&lt;/span&gt; [[&lt;a href=&quot;http://de.wikipedia.org/wiki/User:se4598&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;user:se4598&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label_10">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Based on original by &lt;span style=&quot; font-weight:600;&quot;&gt;Gurch&lt;/span&gt; [[&lt;a href=&quot;http://en.wikipedia.org/wiki/User:Gurch&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Gurch&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
