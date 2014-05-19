@@ -32,7 +32,7 @@ using namespace Huggle;
 
 QString Login::Test = "<login result=\"NeedToken\" token=\"";
 
-Login::Login(QWidget *parent) :   QDialog(parent),   ui(new Ui::Login)
+Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 {
     this->Loading = true;
     this->ui->setupUi(this);
@@ -373,13 +373,11 @@ void Login::RetrieveGlobalConfig()
     this->loadingForm->ModifyIcon(LOGINFORM_LOGIN, LoadingForm_Icon_Success);
     this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Loading);
     this->Update(Localizations::HuggleLocalizations->Localize("[[login-progress-global]]"));
-
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->IncRef();
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
-
     this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO, LoadingForm_Icon_Loading);
     this->qSiteInfo = new ApiQuery(ActionQuery);
     this->qSiteInfo->IncRef();

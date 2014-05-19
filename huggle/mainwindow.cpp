@@ -1324,7 +1324,7 @@ void MainWindow::Localize()
     this->ui->actionShow_talk->setText(Localizations::HuggleLocalizations->Localize("main-goto-mytalk"));
     this->ui->menuChange_provider->setTitle(Localizations::HuggleLocalizations->Localize("main-system-change-provider"));
     this->ui->actionIRC->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
-    this->ui->actionWiki->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
+    this->ui->actionWiki->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-wiki"));
     this->ui->actionNext->setText(Localizations::HuggleLocalizations->Localize("main-queue-next"));
 }
 
