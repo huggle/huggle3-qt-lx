@@ -89,7 +89,7 @@
      <property name="currentIndex">
       <number>1</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tab_oauth">
       <attribute name="title">
        <string>OAuth</string>
       </attribute>
@@ -112,10 +112,16 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <property name="leftMargin">
-          <number>0</number>
+          <number>8</number>
          </property>
          <property name="topMargin">
           <number>2</number>
+         </property>
+         <property name="rightMargin">
+          <number>8</number>
+         </property>
+         <property name="bottomMargin">
+          <number>8</number>
          </property>
          <item>
           <widget class="QLabel" name="labelOauthUsername">
@@ -132,13 +138,13 @@
        <item>
         <widget class="QLabel" name="labelOauthNotSupported">
          <property name="text">
-          <string>This method is not supported in this moment</string>
+          <string>This method is not supported at this moment</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tab_login">
       <attribute name="title">
        <string>Login</string>
       </attribute>
