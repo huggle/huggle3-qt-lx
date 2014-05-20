@@ -32,14 +32,14 @@ HuggleQueue::~HuggleQueue()
 
 void HuggleQueue::AddItem(WikiEdit *page)
 {
-    if (page == NULL)
+    if (page == nullptr)
     {
-        throw new Exception("WikiEdit *page must not be NULL", "void HuggleQueue::AddItem(WikiEdit *page)");
+        throw new Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
     }
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
-    if (Core::HuggleCore->Main != NULL)
+    if (Core::HuggleCore->Main != nullptr)
     {
-        if (Core::HuggleCore->Main->VandalDock != NULL)
+        if (Core::HuggleCore->Main->VandalDock != nullptr)
         {
             if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
             {
@@ -159,7 +159,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
         }
         c++;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool HuggleQueue::DeleteByRevID(int RevID)
@@ -263,7 +263,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
             // we need to check here if we accidentaly didn't get some
             // element that actually isn't an item
-            if (q2 != NULL && q2->Page->Score > Score)
+            if (q2 != nullptr && q2->Page->Score > Score)
             {
                 sorted = false;
                 break;
@@ -296,15 +296,15 @@ bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
 
 void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
-    if (item == NULL)
+    if (item == nullptr)
     {
-        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context",
+        throw new Exception("HuggleQueueItemLabel *item must not be nullptr in this context",
                "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
     }
-    if (qi != NULL)
+    if (qi != nullptr)
     {
         item->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-        item->Page = NULL;
+        item->Page = nullptr;
         this->ui->itemList->removeItem(qi);
         delete qi;
         delete item;
@@ -318,10 +318,10 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         if (label == item)
         {
             this->ui->itemList->removeItem(i);
-            if (label->Page != NULL)
+            if (label->Page != nullptr)
             {
                 label->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-                label->Page = NULL;
+                label->Page = nullptr;
             }
             delete i;
             delete item;
@@ -350,6 +350,7 @@ int HuggleQueue::DeleteByScore(long Score)
             {
                 // we sucessfuly deleted the item
                 result++;
+                continue;
             } else
             {
                 c++;
@@ -462,9 +463,9 @@ long HuggleQueue::GetScore(int id)
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     if (!label)
     {
-        throw new Huggle::Exception("label was NULL", "long HuggleQueue::GetScore(int id)");
+        throw new Huggle::Exception("label was nullptr", "long HuggleQueue::GetScore(int id)");
     }
-    if (label->Page == NULL)
+    if (label->Page == nullptr)
     {
         return MINIMAL_SCORE;
     }
