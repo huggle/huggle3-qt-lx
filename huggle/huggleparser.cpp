@@ -286,7 +286,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
                 continue;
             }
             month_name = parts_time.at(1);
-            int month = HuggleParser::GetIDOfMonth(month_name);
+            byte_ht month = HuggleParser::GetIDOfMonth(month_name);
             if (month > 0)
             {
                 // let's create a new time string from converted one, just to make sure it will be parsed properly
@@ -586,8 +586,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
     return ReturnValue;
 }
 
-
-int HuggleParser::GetIDOfMonth(QString month)
+byte_ht HuggleParser::GetIDOfMonth(QString month)
 {
     int i = 0;
     month = month.toLower();
@@ -604,5 +603,5 @@ int HuggleParser::GetIDOfMonth(QString month)
             return i;
         i++;
     }
-    return -800;
+    return -6;
 }

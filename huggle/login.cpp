@@ -271,7 +271,6 @@ void Login::PressOK()
     this->loadingForm->show();
     // First of all, we need to login to the site
     this->timer->start(200);
-    //! \todo Localize string for loadingForm
     this->loadingForm->Insert(LOGINFORM_LOGIN, Localizations::HuggleLocalizations->Localize("login-progress-start",
                               Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Loading);
     this->loadingForm->Insert(LOGINFORM_SITEINFO, Localizations::HuggleLocalizations->Localize("login-progress-retrieve-mw",

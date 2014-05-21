@@ -51,7 +51,7 @@ namespace Huggle
          * \param month
          * \return If there is no such a month this function will return negative number
          */
-        int GetIDOfMonth(QString month);
+        byte_ht GetIDOfMonth(QString month);
         //! Parse a part patterns for score words
         void ParsePats(QString text);
         void ParseWords(QString text);
