@@ -605,11 +605,11 @@ byte_ht HuggleParser::GetIDOfMonth(QString month)
             return i+1;
         i++;
     }
-    i = 0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths.count())
+    i = 1;
+    while (i < 13)
     {
         if (Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths[i].contains(month, Qt::CaseInsensitive))
-            return i+1;
+            return i;
         i++;
     }
     return -6;
