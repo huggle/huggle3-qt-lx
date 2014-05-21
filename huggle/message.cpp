@@ -25,10 +25,10 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->Text = MessageText;
     this->Summary = MessageSummary;
     this->Suffix = true;
-    this->Dependency = NULL;
-    this->qToken = NULL;
+    this->Dependency = nullptr;
+    this->qToken = nullptr;
     this->SectionKeep = false;
-    this->query = NULL;
+    this->query = nullptr;
     this->_Status = Huggle::MessageStatus_None;
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
@@ -43,7 +43,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 
 Message::~Message()
 {
-    if (this->query != NULL)
+    if (this->query != nullptr)
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     }
@@ -53,7 +53,7 @@ Message::~Message()
 void Message::RetrieveToken()
 {
     this->_Status = Huggle::MessageStatus_RetrievingToken;
-    if (this->qToken != NULL)
+    if (this->qToken != nullptr)
     {
         Syslog::HuggleLogs->DebugLog("Memory leak at void Message::RetrieveToken()");
     }
@@ -85,15 +85,15 @@ void Message::Fail(QString reason)
     this->_Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
     this->ErrorText = reason;
-    if (this->qToken != NULL)
+    if (this->qToken != nullptr)
     {
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->qToken = NULL;
+        this->qToken = nullptr;
     }
-    if (this->query != NULL)
+    if (this->query != nullptr)
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query = NULL;
+        this->query = nullptrptr;
     }
 }
 
@@ -103,7 +103,7 @@ bool Message::IsFinished()
     {
         return true;
     }
-    if (this->Dependency != NULL)
+    if (this->Dependency != nullptr)
     {
         if (!this->Dependency->IsProcessed())
         {
@@ -114,19 +114,19 @@ bool Message::IsFinished()
             {
                 // we can't continue because the dependency is fucked
                 this->Dependency->UnregisterConsumer("keep");
-                this->Dependency = NULL;
+                this->Dependency = nullptr;
                 this->_Status = Huggle::MessageStatus_Failed;
                 this->Error = MessageError_Dependency;
-                if (this->query != NULL)
+                if (this->query != nullptr)
                 {
                     this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-                    this->query = NULL;
+                    this->query = nullptr;
                 }
                 return true;
             }
             // dependency finished OK so we can remove a pointer to it
             this->Dependency->UnregisterConsumer("keep");
-            this->Dependency = NULL;
+            this->Dependency = nullptr;
         }
     }
     if (this->RetrievingToken())
@@ -150,7 +150,7 @@ bool Message::IsFailed()
 
 bool Message::HasValidEditToken()
 {
-    return (Configuration::HuggleConfiguration->TemporaryConfig_EditToken != "");
+    return (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.size() != 0);
 }
 
 bool Message::RetrievingToken()
@@ -189,7 +189,7 @@ void Message::Finish()
             return;
         }
     }
-    if (this->query == NULL)
+    if (this->query == nullptr)
     {
         // we should never reach this code
         return;
@@ -208,7 +208,7 @@ void Message::Finish()
         }
         this->ProcessTalk();
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query = NULL;
+        this->query = nullptr;
         // we should be able to finish sending now
         this->ProcessSend();
         return;
@@ -221,15 +221,12 @@ void Message::Finish()
         {
             return;
         }
-
         if (this->query->IsFailed())
         {
             this->Fail("Failed to deliver the message");
             return;
         }
-
         bool sent = false;
-
         QDomDocument dResult_;
         dResult_.setContent(query->Result->Data);
         QDomNodeList e = dResult_.elementsByTagName("error");
@@ -271,7 +268,7 @@ void Message::Finish()
                     item.Result = "Success";
                     item.Type = HistoryMessage;
                     item.Target = user->Username;
-                    if (Core::HuggleCore->Main != NULL)
+                    if (Core::HuggleCore->Main != nullptr)
                     {
                         Core::HuggleCore->Main->_History->Prepend(item);
                     }
@@ -288,13 +285,13 @@ void Message::Finish()
 
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
         this->_Status = Huggle::MessageStatus_Done;
-        this->query = NULL;
+        this->query = nullptr;
     }
 }
 
 bool Message::FinishToken()
 {
-    if (this->qToken == NULL)
+    if (this->qToken == nullptr)
     {
         throw new Huggle::Exception("qToken must not be NULL in this context", "void Message::FinishToken()");
     }
@@ -328,7 +325,7 @@ bool Message::FinishToken()
     }
     Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
     this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    this->qToken = NULL;
+    this->qToken = nullptr;
     return true;
 }
 
@@ -337,7 +334,7 @@ void Message::PreflightCheck()
     // check if we can directly append the data or if we need to fetch the previous page content before we do that
     if ((!this->CreateInNewSection || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
     {
-        if (this->query != NULL)
+        if (this->query != nullptr)
         {
             Syslog::HuggleLogs->DebugLog("Warning, Message::query != NULL on new allocation, possible memory leak in void Message::PreflightCheck()");
         }
@@ -377,7 +374,7 @@ void Message::ProcessSend()
                                          .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
-    if (this->query != NULL)
+    if (this->query != nullptr)
     {
         Syslog::HuggleLogs->DebugLog("Warning, Message::query != NULL on new allocation, possible memory leak in void Message::ProcessSend()");
     }

@@ -19,15 +19,15 @@ using namespace Huggle;
 ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectPage)
 {
     this->ui->setupUi(this);
-    this->qToken = NULL;
-    this->PageToProtect = NULL;
-    this->qProtection = NULL;
+    this->qToken = nullptr;
+    this->PageToProtect = nullptr;
+    this->qProtection = nullptr;
     this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-none"));
     this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-semiprotection"));
     this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-fullprotection"));
     this->ui->comboBox_3->setCurrentIndex(2);
     this->ProtectToken = "";
-    this->tt = NULL;
+    this->tt = nullptr;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_ProtectReason);
 }
 
@@ -81,7 +81,7 @@ void ProtectPage::onTick()
 
 void ProtectPage::checkTokenToProtect()
 {
-    if (this->qToken == NULL || !this->qToken->IsProcessed())
+    if (this->qToken == nullptr || !this->qToken->IsProcessed())
         return;
     if (this->qToken->Result->Failed)
     {
@@ -108,7 +108,7 @@ void ProtectPage::checkTokenToProtect()
     this->ProtectToken = element.attribute("protecttoken");
     this->PtQueryPhase++;
     this->qToken->DecRef();
-    this->qToken = NULL;
+    this->qToken = nullptr;
     Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);
     this->qProtection = new ApiQuery();
     this->qProtection->SetAction(ActionProtect);
@@ -156,17 +156,13 @@ void ProtectPage::Failed(QString reason)
     this->tt->stop();
     delete this->tt;
     this->DelRefs();
-    this->tt = NULL;
+    this->tt = nullptr;
     ui->pushButton->setEnabled(true);
 }
 
 void ProtectPage::Protect()
 {
-    if (!this->qProtection->IsProcessed())
-    {
-        return;
-    }
-    if (this->qProtection == NULL)
+    if (!this->qProtection->IsProcessed() || this->qProtection == nullptr)
     {
         return;
     }
@@ -179,6 +175,6 @@ void ProtectPage::Protect()
     Huggle::Syslog::HuggleLogs->DebugLog("The page " + PageToProtect->PageName + " has successfully been protected");
     this->qProtection->DecRef();
     this->tt->stop();
-    this->qProtection = NULL;
+    this->qProtection = nullptr;
 }
 
