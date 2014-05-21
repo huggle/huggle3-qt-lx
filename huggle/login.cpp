@@ -657,6 +657,7 @@ void Login::RetrieveUserInfo()
             {
                 /// \todo LOCALIZE ME
                 this->Update("Login failed because you don't have enough edits on this project");
+                this->Kill();
                 return;
             }
 

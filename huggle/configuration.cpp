@@ -627,6 +627,8 @@ bool Configuration::ParseProjectConfig(QString config)
     int month_ = 1;
     foreach (QString months, AMH_)
     {
+        if (months.endsWith(","))
+            months = months.mid(0, months.size() - 1);
         this->ProjectConfig_AlternativeMonths.insert(month_, months.split(';'));
         month_++;
     }

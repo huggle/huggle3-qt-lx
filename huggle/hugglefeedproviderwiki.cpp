@@ -235,7 +235,7 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
     QString logtype = item.attribute("logtype");
     QString logaction = item.attribute("logaction");
 
-    if (logtype == "block" && (logaction == "block" || logaction == "reblock") )
+    if (logtype == "block" && (logaction == "block" || logaction == "reblock"))
     {
         QString admin = item.attribute("user");
         QString blockeduser = item.attribute("title"); // including User-namespaceprefix
@@ -245,7 +245,6 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
             QDomElement blockinfo = item.elementsByTagName("block").at(0).toElement(); // nested element "block"
             //QString flags = blockinfo.attribute("flags");
             QString duration = blockinfo.attribute("duration");
-
             Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin +
                                                  " for the duration \"" + duration + "\": " + reason);
         }
