@@ -1299,6 +1299,7 @@ void MainWindow::Localize()
     this->ui->menuUser->setTitle(Localizations::HuggleLocalizations->Localize("main-user"));
     this->ui->menuQueue->setTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
     this->ui->menuFile->setTitle(Localizations::HuggleLocalizations->Localize("main-system"));
+    this->ui->menuHAN->setTitle(Localizations::HuggleLocalizations->Localize("main-han"));
     this->ui->actionAbout->setText(Localizations::HuggleLocalizations->Localize("main-help-about"));
     this->ui->actionBack->setText(Localizations::HuggleLocalizations->Localize("main-browser-back"));
     this->ui->actionBlock_user->setText(Localizations::HuggleLocalizations->Localize("main-user-block"));
@@ -1314,6 +1315,7 @@ void MainWindow::Localize()
     this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
     this->ui->actionDelete_page->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
     this->ui->actionDisplay_a_session_data->setText(Localizations::HuggleLocalizations->Localize("main-display-session-data"));
+    this->ui->actionDisplay_whitelist->setText(Localizations::HuggleLocalizations->Localize("main-display-whitelist"));
     this->ui->actionDisplay_history_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-page-historypage"));
     this->ui->actionDisplay_this_page_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-browser-open"));
     this->ui->actionFeedback->setText(Localizations::HuggleLocalizations->Localize("main-help-feedback"));
@@ -1322,6 +1324,7 @@ void MainWindow::Localize()
     this->ui->actionPreferences->setText(Localizations::HuggleLocalizations->Localize("main-system-options"));
     this->ui->actionReconnect_IRC->setText(Localizations::HuggleLocalizations->Localize("main-system-reconnectirc"));
     this->ui->actionShow_talk->setText(Localizations::HuggleLocalizations->Localize("main-goto-mytalk"));
+    this->ui->actionAbort_2->setText(Localizations::HuggleLocalizations->Localize("main-system-abort"));
     this->ui->menuChange_provider->setTitle(Localizations::HuggleLocalizations->Localize("main-system-change-provider"));
     this->ui->actionIRC->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
     this->ui->actionWiki->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-wiki"));

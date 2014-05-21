@@ -67,3 +67,8 @@ void Huggle::AboutForm::on_label_9_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
+
+void Huggle::AboutForm::on_label_11_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}

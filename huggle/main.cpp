@@ -57,7 +57,7 @@ int Fatal(Huggle::Exception *fail)
                                          + "\nSource: " + fail->Source);
     delete Huggle::Core::HuggleCore;
     Huggle::Exception::ExitBreakpad();
-    return fail->ErrorCode;;
+    return fail->ErrorCode;
 }
 
 int main(int argc, char *argv[])

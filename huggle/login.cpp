@@ -111,6 +111,9 @@ void Login::Localize()
     this->ui->checkBox->setText(Localizations::HuggleLocalizations->Localize("login-ssl"));
     this->ui->labelOauthUsername->setText(Localizations::HuggleLocalizations->Localize("login-username"));
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("reload"));
+    this->ui->tabWidget->setTabText(0, Localizations::HuggleLocalizations->Localize("login-tab-oauth"));
+    this->ui->tabWidget->setTabText(1, Localizations::HuggleLocalizations->Localize("login-tab-login"));
+    this->ui->labelOauthNotSupported->setText(Localizations::HuggleLocalizations->Localize("login-oauth-notsupported"));
     this->ui->labelUsername->setText(Localizations::HuggleLocalizations->Localize("login-username"));
     this->ui->labelProject->setText(Localizations::HuggleLocalizations->Localize("login-project"));
     this->ui->labelLanguage->setText(Localizations::HuggleLocalizations->Localize("login-language"));
@@ -239,8 +242,9 @@ void Login::PressOK()
     this->processedSiteinfo = false;
     this->processedLogin = false;
     this->processedWlQuery = false;
-    if (this->ui->tab->isVisible())
+    if (this->ui->tab_oauth->isVisible())
     {
+        // can't be currently reached?
         QMessageBox mb;
         mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("function-miss"));
         mb.setText("This function is not available for wmf wikis in this moment");
