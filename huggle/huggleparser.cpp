@@ -281,16 +281,25 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (parts_time.count() < 3)
             {
                 // this is invalid string
-                Syslog::HuggleLogs->DebugLog("Unable to convert month to number: " + time, 12);
+                Syslog::HuggleLogs->DebugLog("Unable to split month: " + time, 12);
                 CurrentIndex++;
                 continue;
             }
+            QString day = parts_time.at(0);
+            // e.g. dewiki's days end with dot
+            if(day.endsWith('.')){
+                day = day.mid(0, day.length() - 1);
+            }
             month_name = parts_time.at(1);
             byte_ht month = HuggleParser::GetIDOfMonth(month_name);
+
+             // let's create a new time string from converted one, just to make sure it will be parsed properly
             if (month > 0)
             {
-                // let's create a new time string from converted one, just to make sure it will be parsed properly
-                time = parts_time.at(0) + " " + QString::number(month) + " " + parts_time.at(2);
+                time = day + " " + QString::number(month) + " " + parts_time.at(2);
+            } else
+            {
+                time = day + " " + parts_time.at(1); + " " + parts_time.at(2);
             }
             QDate date = QDate::fromString(time, "d M yyyy");
             if (!date.isValid())
@@ -596,11 +605,11 @@ byte_ht HuggleParser::GetIDOfMonth(QString month)
             return i+1;
         i++;
     }
-    i = 1;
-    while (i < 13)
+    i = 0;
+    while (i < Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths.count())
     {
-        if (Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths[i].contains(month))
-            return i;
+        if (Configuration::HuggleConfiguration->ProjectConfig_AlternativeMonths[i].contains(month, Qt::CaseInsensitive))
+            return i+1;
         i++;
     }
     return -6;

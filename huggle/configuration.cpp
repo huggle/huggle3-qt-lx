@@ -624,13 +624,17 @@ bool Configuration::ParseProjectConfig(QString config)
     }
     this->ProjectConfig_AlternativeMonths.clear();
     QStringList AMH_ = HuggleParser::ConfigurationParse_QL("alternative-months", config);
-    int month_ = 1;
+    int month_ = 0;
     foreach (QString months, AMH_)
     {
+        if (months.endsWith(','))
+        {
+            months = months.mid(0, months.length() - 1);
+        }
         this->ProjectConfig_AlternativeMonths.insert(month_, months.split(';'));
         month_++;
     }
-    while (month_ < 13)
+    while (month_ < 12)
     {
         Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
         this->ProjectConfig_AlternativeMonths.insert(month_, QStringList());
