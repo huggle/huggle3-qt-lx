@@ -93,7 +93,7 @@ void Message::Fail(QString reason)
     if (this->query != nullptr)
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query = nullptrptr;
+        this->query = nullptr;
     }
 }
 
