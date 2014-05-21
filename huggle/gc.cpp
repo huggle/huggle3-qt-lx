@@ -12,7 +12,7 @@
 
 using namespace Huggle;
 
-GC *GC::gc = NULL;
+GC *GC::gc = nullptr;
 
 Huggle::GC::GC()
 {

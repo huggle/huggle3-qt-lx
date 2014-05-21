@@ -272,17 +272,19 @@ void Login::PressOK()
     // First of all, we need to login to the site
     this->timer->start(200);
     //! \todo Localize string for loadingForm
-    this->loadingForm->Insert(LOGINFORM_LOGIN, "Logging in to " + Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Loading);
-    this->loadingForm->Insert(LOGINFORM_SITEINFO, "Retrieving information about mediawiki for " +
-                              Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_GLOBALCONFIG, "Retrieving global configuration", LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_LOGIN, Localizations::HuggleLocalizations->Localize("login-progress-start",
+                              Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Loading);
+    this->loadingForm->Insert(LOGINFORM_SITEINFO, Localizations::HuggleLocalizations->Localize("login-progress-retrieve-mw",
+                              Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_GLOBALCONFIG, Localizations::HuggleLocalizations->Localize("login-progress-global"), LoadingForm_Icon_Waiting);
     this->loadingForm->Insert(LOGINFORM_WHITELIST, Localizations::HuggleLocalizations->Localize("login-progress-whitelist"),
                               LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_LOCALCONFIG, "Retrieving local configuration for " +
-                              Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_USERCONFIG, "Retrieving user configuration for " +
-                              Configuration::HuggleConfiguration->Project->Name, LoadingForm_Icon_Waiting);
-    this->loadingForm->Insert(LOGINFORM_USERINFO, "Retrieving the user information", LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_LOCALCONFIG, Localizations::HuggleLocalizations->Localize("login-progress-local",
+                              Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_USERCONFIG, Localizations::HuggleLocalizations->Localize("login-progress-user",
+                              Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Waiting);
+    this->loadingForm->Insert(LOGINFORM_USERINFO, Localizations::HuggleLocalizations->Localize("login-progress-user-info",
+                              Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Waiting);
 }
 
 void Login::PerformLogin()

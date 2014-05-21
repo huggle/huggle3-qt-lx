@@ -42,8 +42,8 @@
 #define HUGGLECONSUMER_CORE                     800
 
 // some macros so that people hate us
-#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=NULL
-#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=NULL
+#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=nullptr
+#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=nullptr
 
 namespace Huggle
 {
