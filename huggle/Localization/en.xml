@@ -177,7 +177,7 @@
     <string name="login-translate">Translate huggle</string>
     <string name="login-captchatitle">Captcha required to log in</string>
     <string name="login-progress-start">Logging in to $1</string>
-    <string name="login-progress-retrieve-mw">Retrieving information about mediawiki for $1</string>
+    <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
     <string name="login-progress-language">Updating message files...</string>
     <string name="login-progress-global">Checking global configuration...</string>
     <string name="login-progress-config">Checking configuration pages...</string>
