@@ -33,6 +33,7 @@ namespace Huggle
     class WikiEdit;
     class Query;
 
+    //! Pool of all queries that are monitored by huggle itself
     class QueryPool
     {
         public:

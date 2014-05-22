@@ -33,6 +33,7 @@ namespace Huggle
         LoadingForm_Icon_Success
     };
 
+    //! Working form that is used for tasks that needs to perform multiple simultaneous things in same time
     class LoadingForm : public QDialog
     {
             Q_OBJECT
