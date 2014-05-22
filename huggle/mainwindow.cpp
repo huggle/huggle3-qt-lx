@@ -1327,6 +1327,11 @@ void MainWindow::Localize()
     this->ui->actionAbort_2->setText(Localizations::HuggleLocalizations->Localize("main-system-abort"));
     this->ui->menuChange_provider->setTitle(Localizations::HuggleLocalizations->Localize("main-system-change-provider"));
     this->ui->actionIRC->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-irc"));
+    this->ui->actionConnect->setText(Localizations::HuggleLocalizations->Localize("main-han-connect"));
+    this->ui->actionDisconnect->setText(Localizations::HuggleLocalizations->Localize("main-han-disconnect"));
+    this->ui->actionDisplay_user_messages->setText(Localizations::HuggleLocalizations->Localize("main-han-display-user-messages"));
+    this->ui->actionDisplay_user_data->setText(Localizations::HuggleLocalizations->Localize("main-han-display-user-data"));
+    this->ui->actionDisplay_bot_data->setText(Localizations::HuggleLocalizations->Localize("main-han-display-bot-data"));
     this->ui->actionWiki->setText(Localizations::HuggleLocalizations->Localize("main-system-change-provider-wiki"));
     this->ui->actionNext->setText(Localizations::HuggleLocalizations->Localize("main-queue-next"));
 }

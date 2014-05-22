@@ -299,7 +299,12 @@
     <string name="main-browser-newedits">Show new edits to page</string>
     <string name="main-browser-newcontribs">Show new contributions by user</string>
     <string name="main-han">HAN</string>
+    <string name="main-han-disconnect">Disconnect</string>
+    <string name="main-han-connect">Connect</string>
     <string name="main-help">Help</string>
+    <string name="main-han-display-bot-data">Display bot data</string>
+    <string name="main-han-display-user-messages">Display user messages</string>
+    <string name="main-han-display-user-data">Display user data</string>
     <string name="main-help-documentation">Documentation</string>
     <string name="main-help-feedback">Feedback</string>
     <string name="main-help-about">About Huggle...</string>
