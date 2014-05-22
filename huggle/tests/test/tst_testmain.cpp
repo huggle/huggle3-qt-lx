@@ -182,6 +182,7 @@ void HuggleTest::testCaseScores()
 void HuggleTest::testCaseWikiUserCheckIP()
 {
     QVERIFY2(Huggle::WikiUser("10.0.0.1").IsIP(), "Invalid result for new WikiUser with username of 10.0.0.1, the result of IsIP() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("132.185.160.97").IsIP(), "Invalid result for new WikiUser with username of 132.185.160.97, the result of IsIP() was false, but should have been true");
     QVERIFY2(Huggle::WikiUser("150.30.0.56").IsIP(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsIP() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("355.2.0.1").IsIP() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsIP() was true, but should have been false");
     QVERIFY2((Huggle::WikiUser("Frank").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
