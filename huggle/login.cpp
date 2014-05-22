@@ -288,7 +288,7 @@ void Login::PressOK()
 
 void Login::PerformLogin()
 {
-    this->Update(Localizations::HuggleLocalizations->Localize("[[login-progress-start]]"));
+    this->Update(Localizations::HuggleLocalizations->Localize("[[login-progress-start]]", Configuration::HuggleConfiguration->Project->Name));
     GC_DECREF(this->LoginQuery);
     // we create an api request to login
     this->LoginQuery = new ApiQuery(ActionLogin);
