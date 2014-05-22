@@ -312,7 +312,7 @@
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset>
+    <iconset resource="pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
    </property>
    <property name="text">
@@ -881,10 +881,16 @@
    <property name="text">
     <string>Remove edits made by whitelisted users</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
   </action>
   <action name="actionDelete_all_edits_with_score_lower_than_200">
    <property name="text">
     <string>Delete edits with score lower than -200</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+D</string>
    </property>
   </action>
   <action name="actionRelog">
