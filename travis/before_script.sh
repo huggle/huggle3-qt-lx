@@ -12,6 +12,7 @@ if [ "$QTTYPE" = "4" ]; then
 	make
         cd ..
         qmake
+        make
 	cd tests/test
 	qmake
 	make
@@ -23,6 +24,7 @@ if [ "$QTTYPE" = "5" ]; then
 	make
         cd ..
         /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+        make
 	cd tests/test
 	/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 	make
