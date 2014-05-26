@@ -11,6 +11,12 @@
 #ifndef HUGGLENUKE_H
 #define HUGGLENUKE_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 
 namespace Ui
@@ -24,7 +30,6 @@ namespace Huggle
     class HuggleNuke : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit HuggleNuke(QWidget *parent = 0);
             ~HuggleNuke();

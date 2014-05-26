@@ -11,6 +11,12 @@
 #ifndef HUGGLEMASSROLLBACK_H
 #define HUGGLEMASSROLLBACK_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 
 namespace Ui
@@ -20,11 +26,10 @@ namespace Ui
 
 namespace Huggle
 {
-    //! DOCUMENT ME
+    //! Window that allows users to mass rollback the edits done by a certain user
     class HuggleMassRollback : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit HuggleMassRollback(QWidget *parent = 0);
             ~HuggleMassRollback();

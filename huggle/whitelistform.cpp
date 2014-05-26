@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "whitelistform.hpp"
+#include "configuration.hpp"
 #include "ui_whitelistform.h"
 
 using namespace Huggle;
@@ -36,7 +37,7 @@ void WhitelistForm::OnTick()
         this->timer->stop();
     }
     int i = 0;
-    while (i < 200 || this->Whitelist.count() == 0)
+    while (this->Whitelist.count() > 0 && i < 200)
     {
         QString xx = this->Whitelist.at(0);
         xx = xx.replace(QRegExp("[^\\w\\s]"), "");

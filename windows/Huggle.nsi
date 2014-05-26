@@ -4,6 +4,8 @@
 #              by Vlasis K. Barkas aka Red Wine red_wine@freemail.gr Sep 2006               
 ############################################################################################
 
+!define MUI_ICON "huggle.ico"
+!define MUI_UNICON "huggle.ico"
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
@@ -86,6 +88,9 @@ ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
 File "release\huggle.exe"
+File "release\huggle.ico"
+File "release\deps\ssleay32.dll"
+File "release\deps\libeay32.dll"
 File "release\deps\icuin51.dll"
 File "release\deps\Qt5Core.dll"
 File "release\deps\Qt5Multimedia.dll"
@@ -124,8 +129,8 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
 !ifdef WEB_SITE
@@ -184,8 +189,11 @@ Delete "$INSTDIR\Qt5Sensors.dll"
 Delete "$INSTDIR\Qt5XmlPatterns.dll"
 Delete "$INSTDIR\Qt5Xml.dll"
 Delete "$INSTDIR\Qt5V8.dll"
+Delete "$INSTDIR\ssleay32.dll"
+Delete "$INSTDIR\libeay32.dll"
 Delete "$INSTDIR\Qt5Gui.dll"
 Delete "$INSTDIR\libwinpthread-1.dll"
+Delete "$INSTDIR\huggle.ico"
 Delete "$INSTDIR\libgcc_s_dw2-1.dll"
 Delete "$INSTDIR\uninstall.exe"
 !ifdef WEB_SITE

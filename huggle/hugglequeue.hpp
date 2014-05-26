@@ -11,16 +11,20 @@
 #ifndef HUGGLEQUEUE_H
 #define HUGGLEQUEUE_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDockWidget>
 #include <QList>
 #include <QFrame>
 #include <QWidget>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
-#include "exception.hpp"
 #include "hugglequeueitemlabel.hpp"
 #include "wikiedit.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -36,39 +40,48 @@ namespace Huggle
     class HuggleQueue : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit HuggleQueue(QWidget *parent = 0);
             ~HuggleQueue();
+            /*!
+             * \brief Insert a new item to queue
+             *  This function is automatically inserting the item to proper location, you shouldn't
+             *  call a sort function after this
+             * \param page is a pointer to wiki edit you want to insert to queue
+             */
             void AddItem(WikiEdit *page);
+            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+            /*!
+             * \brief DeleteByScore deletes all edits that have lower than specified score
+             * \param Score
+             * \return number of records that matched the score
+             */
+            int DeleteByScore(long Score);
+            bool DeleteByRevID(int RevID);
+            //! Delete all edits to the page that are older than this edit
+            void DeleteOlder(WikiEdit *edit);
+            //! Reload filters
+            void Filters();
+            //! Switch and render next edit in queue
             void Next();
             WikiEdit *GetWikiEditByRevID(int RevID);
-            bool DeleteByRevID(int RevID);
             void Sort();
             void SortItemByEdit(WikiEdit *e);
-            void ResortItem(QLayoutItem *item, int position = -1);
-            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
             void Trim(int i);
             //! Remove 1 item
             void Trim();
-            //! Reload filters
-            void Filters();
-            //! Delete all edits to the page that are older than this edit
-            void DeleteOlder(WikiEdit *edit);
+            void Clear();
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
-
         private slots:
             void on_comboBox_currentIndexChanged(int index);
-
         private:
             long GetScore(int id);
+            void ResortItem(QLayoutItem *item, int position = -1);
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
             Ui::HuggleQueue *ui;
-            QVBoxLayout *layout;
-            QWidget *xx;
-            QFrame *frame;
+            bool loading;
     };
 }
 

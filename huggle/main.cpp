@@ -8,6 +8,16 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+// this is nasty hack to ensure that Python.h is included first
+// see http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+// we can finally include the normal, unbroken headers now
 #include <QApplication>
 #include <QStringList>
 #include <QString>
@@ -41,14 +51,28 @@ bool TerminalParse(int argc, char *argv[])
     return true;
 }
 
+int Fatal(Huggle::Exception *fail)
+{
+    Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message
+                                         + "\nSource: " + fail->Source);
+    delete Huggle::Core::HuggleCore;
+    Huggle::Exception::ExitBreakpad();
+    return fail->ErrorCode;
+}
+
 int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
+    Huggle::Exception::InitBreakpad();
+    QApplication::setApplicationName("Huggle");
+    QApplication::setOrganizationName("Wikimedia");
+    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     try
     {
         // check if arguments don't need to exit program
         if (!TerminalParse(argc, argv))
         {
+            Huggle::Exception::ExitBreakpad();
             return 0;
         }
         // we load the core
@@ -56,23 +80,20 @@ int main(int argc, char *argv[])
         Huggle::Core::HuggleCore->Init();
         // now we can start the huggle :o
         Huggle::HgApplication a(argc, argv);
-        Huggle::Core::HuggleCore->f_Login = new Huggle::Login();
-        Huggle::Core::HuggleCore->f_Login->show();
+        Huggle::Core::HuggleCore->fLogin = new Huggle::Login();
+        Huggle::Core::HuggleCore->fLogin->show();
         ReturnCode = a.exec();
         delete Huggle::Core::HuggleCore;
+        Huggle::Exception::ExitBreakpad();
         return ReturnCode;
     } catch (Huggle::Exception *fail)
     {
-        Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail->Message);
-        delete Huggle::Core::HuggleCore;
-        ReturnCode = fail->ErrorCode;
+        ReturnCode = Fatal(fail);
         delete fail;
         return ReturnCode;
     } catch (Huggle::Exception& fail)
     {
-        Huggle::Syslog::HuggleLogs->Log("FATAL: Unhandled exception occured, description: " + fail.Message);
-        delete Huggle::Core::HuggleCore;
-        return fail.ErrorCode;
+        return Fatal(&fail);
     }
 }
 

@@ -11,6 +11,12 @@
 #ifndef WIKIEDIT_H
 #define WIKIEDIT_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QThread>
 #include <QMutex>
@@ -18,11 +24,9 @@
 #include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
-#include "collectable.hpp"
+#include "definitions.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
-
-#define WIKI_UNKNOWN_REVID -1
 
 namespace Huggle
 {
@@ -64,9 +68,13 @@ namespace Huggle
     //! Wiki edit
 
     //! Basically all changes to pages can be represented by this class
+    //! \image html ../documentation/providers.png
     class WikiEdit : public Collectable
     {
         public:
+            //! This function will return a constant (which needs to be generated runtime)
+            //! which is used as "unknown time" in case we don't know the edit's time
+            static QDateTime GetUnknownEditTime();
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;
@@ -74,8 +82,6 @@ namespace Huggle
             //! Creates a new empty wiki edit
             WikiEdit();
             ~WikiEdit();
-            //! Get a level of warning from talk page
-            static int GetLevel(QString page);
             //! This function is called by core
             bool FinalizePostProcessing();
             //! This function is called by internals of huggle
@@ -85,6 +91,7 @@ namespace Huggle
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
             void ProcessWords();
+            void RemoveFromHistoryChain();
             //! Page that was changed by edit
             WikiPage *Page;
             //! User who changed the page
@@ -106,13 +113,22 @@ namespace Huggle
             bool IsRevert;
             //! Revision ID
             int RevID;
+            //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level
             WarningLevel CurrentUserWarningLevel;
             //! Summary of edit
             QString Summary;
+            //! Token that can be used to rollback this edit
+
+            //! This token needs to be retrieved in same time as information about edit, so that
+            //! it's not possible for other user to change the page meanwhile it's reviewed
             QString RollbackToken;
+            //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
+            //! Base time of last revision of talk page which is needed to check if someone changed the talk
+            //! page meanwhile before we change it
+            QString TPRevBaseTime;
             //! If this is true the edit was made by huggle
             bool EditMadeByHuggle;
             //! If this is true the edit was made by some other
@@ -120,20 +136,29 @@ namespace Huggle
             bool TrustworthEdit;
             //! Edit was made by you
             bool OwnEdit;
+            //! Link to previous edit in huggle history
             WikiEdit *Previous;
+            //! Link to next edit in huggle history
             WikiEdit *Next;
+            //! Badness score of this edit
             long Score;
+            //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
-            bool PostProcessing;
             QString PatrolToken;
-            bool ProcessingByWorkerThread;
             QDateTime Time;
+            //! This variable is used by worker thread and needs to be public so that it is working
+            bool PostProcessing;
+            //! This variable is used by worker thread and needs to be public so that it is working
             bool ProcessedByWorkerThread;
         private:
+            bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
-            ApiQuery* ProcessingQuery;
-            ApiQuery* DifferenceQuery;
+            ApiQuery* qTalkpage;
+            //! This is a query used to retrieve information about the user
+            ApiQuery* qUser;
+            ApiQuery* qDifference;
+            ApiQuery* qText;
     };
 }
 

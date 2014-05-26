@@ -6,15 +6,19 @@ huggle \- launch huggle
 .SH SYNOPSIS
 huggle [-vh]
 .SH DESCRIPTION
-Huggle is an antivandalism software for use on wikimedia projects. It requires X server to run.
+Huggle is an anti-vandalism software for use on Wikimedia projects. It requires X server to run.
 .SH OPTIONS
 Following options can be used to adjust huggle
 
- -h|--help:         Display help
- -v:                Increases verbosity
- --safe:            Start huggle in special mode where lot of stuff is skipped during load
- --dot:             Debug on terminal only mode
- --syslog [file]:   Will write a logs to a file
+ -h|--help:         Display help for program and its license.
+ -v:                Increases verbosity, you can use multiple -vvv parameters to make the verbosity level much higher. In case you use high verbosity, the performance will be significantly slower unless you combine this with --dot mode.
+ --safe:            Start huggle in special mode where lot of stuff is skipped during load.
+ --dot:             Debug on terminal only mode, in this mode debug lines are only stored on terminal. This is a very useful option in case that use are using high verbosity level.
+ --chroot <path>:   Changes the home path of huggle to a given folder, so that huggle reads a different configuration file and uses different data.
+ --login:           Can be used in combination of --login-file only, this will tell huggle to start login process immediately without letting you to change any login preferences on login form
+ --login-file:      Read a username and password from plain text file, separated by a colon warnings found in localization files. This option is useful for developers and people who create localization files
+ --language-test:   Will perform CPU expensive language test on startup, which report warnings found in localization files. This option is useful for developers and people who create localization files.
+ --syslog [file]:   Will write a logs to a file. You can specify the file name. In case that no file is provided, huggle.log is used.
 
 .SH BUGS
 See http://bugzilla.wikimedia.org/ for bug reports

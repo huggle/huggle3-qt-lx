@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1113</width>
-    <height>644</height>
+    <height>617</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,25 +23,59 @@
       </size>
      </property>
      <property name="text">
-      <string/>
+      <string>Don't overlook me :-)</string>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>You want to report this user for following edits:</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>200</height>
-      </size>
-     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Edits</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>You want to report this user for following edits:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Blocks</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>List of all blocks that were ever issued on this user</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget_2"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -56,7 +90,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="text">
-        <string>Persistent vandalism and/or unconstructive edits found with [[WP:HG|Huggle 3]].</string>
+        <string>Report Reason</string>
        </property>
       </widget>
      </item>
@@ -65,9 +99,33 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>Block</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string>Report</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Talk page</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>Check if user is blocked</string>
        </property>
       </widget>
      </item>
@@ -79,17 +137,24 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_5">
        <property name="text">
-        <string>Talk page</string>
+        <string>Select all</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="text">
+        <string>Remove selection</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QWebView" name="webView">
-     <property name="url">
+    <widget class="QWebView" name="webView" native="true">
+     <property name="url" stdset="0">
       <url>
        <string>about:blank</string>
       </url>
@@ -102,7 +167,7 @@
   <customwidget>
    <class>QWebView</class>
    <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
+   <header>QtWebKitWidgets/QWebView</header>
   </customwidget>
  </customwidgets>
  <resources/>

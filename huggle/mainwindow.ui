@@ -17,6 +17,12 @@
    <iconset resource="pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>40</width>
+    <height>40</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
     <bool>true</bool>
@@ -37,7 +43,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
    </layout>
@@ -48,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>27</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -65,6 +80,7 @@
     <addaction name="actionPreferences"/>
     <addaction name="actionReconnect_IRC"/>
     <addaction name="actionShow_talk"/>
+    <addaction name="actionAbort_2"/>
     <addaction name="separator"/>
     <addaction name="menuChange_provider"/>
     <addaction name="actionExit"/>
@@ -73,10 +89,23 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <widget class="QMenu" name="menuDebug_2">
+     <property name="title">
+      <string>Debug</string>
+     </property>
+     <addaction name="actionResort_queue"/>
+     <addaction name="actionEdit_info"/>
+     <addaction name="actionList_all_QGC_items"/>
+     <addaction name="actionSimulate_message"/>
+     <addaction name="actionHtml_dump"/>
+     <addaction name="actionEnforce_sysop_rights"/>
+     <addaction name="actionRelog"/>
+    </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
     <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
+    <addaction name="menuDebug_2"/>
    </widget>
    <widget class="QMenu" name="menuPage">
     <property name="title">
@@ -104,6 +133,7 @@
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionProtect"/>
+    <addaction name="actionRequest_protection"/>
     <addaction name="actionRestore_this_revision"/>
    </widget>
    <widget class="QMenu" name="menuTools">
@@ -136,6 +166,7 @@
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
     <addaction name="actionClear_template_meta_data"/>
+    <addaction name="actionUser_contributions"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
     <addaction name="separator"/>
@@ -159,23 +190,20 @@
      <addaction name="actionRemove_old_edits"/>
     </widget>
     <addaction name="menuWhen_queue_is_full"/>
-   </widget>
-   <widget class="QMenu" name="menuDebug">
-    <property name="title">
-     <string notr="true">Debug</string>
-    </property>
-    <addaction name="actionList_all_QGC_items"/>
-    <addaction name="actionEdit_info"/>
-    <addaction name="actionResort_queue"/>
+    <addaction name="actionClear"/>
+    <addaction name="actionRemove_edits_made_by_whitelisted_users"/>
+    <addaction name="actionDelete_all_edits_with_score_lower_than_200"/>
    </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
      <string>HAN</string>
     </property>
+    <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_user_messages"/>
     <addaction name="actionDisplay_user_data"/>
+    <addaction name="actionDisplay_bot_data"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -184,7 +212,6 @@
    <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
    <addaction name="menuHelp"/>
-   <addaction name="menuDebug"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="windowTitle">
@@ -199,23 +226,31 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionRevert_and_warn"/>
+   <addaction name="actionBack"/>
+   <addaction name="actionForward"/>
    <addaction name="actionNext"/>
    <addaction name="separator"/>
+   <addaction name="actionGood_edit"/>
+   <addaction name="actionRevert_and_warn"/>
    <addaction name="actionRevert"/>
    <addaction name="actionWarn"/>
    <addaction name="separator"/>
-   <addaction name="actionBack"/>
-   <addaction name="actionForward"/>
-   <addaction name="separator"/>
    <addaction name="actionWelcome_user"/>
-   <addaction name="actionOpen_in_a_browser"/>
-   <addaction name="separator"/>
-   <addaction name="actionGood_edit"/>
-   <addaction name="separator"/>
+   <addaction name="actionDisplay_talk"/>
    <addaction name="actionReport_user"/>
+   <addaction name="actionBlock_user_2"/>
+   <addaction name="separator"/>
+   <addaction name="actionDelete_page"/>
+   <addaction name="actionOpen_in_a_browser"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <family>DejaVu Sans Mono</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
   <action name="actionPreferences">
    <property name="text">
     <string notr="true">Preferences</string>
@@ -354,7 +389,7 @@
   <action name="actionWelcome_user">
    <property name="icon">
     <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/user-info.png</normaloff>:/huggle/pictures/Resources/user-info.png</iconset>
+     <normaloff>:/huggle/pictures/Resources/user-welcome.png</normaloff>:/huggle/pictures/Resources/user-welcome.png</iconset>
    </property>
    <property name="text">
     <string notr="true">Welcome user (Ctrl-H)</string>
@@ -371,7 +406,7 @@
   <action name="actionOpen_in_a_browser">
    <property name="icon">
     <iconset resource="pictures.qrc">
-     <normaloff>:/huggle/pictures/Resources/page-watch.png</normaloff>:/huggle/pictures/Resources/page-watch.png</iconset>
+     <normaloff>:/huggle/pictures/Resources/browser-open.png</normaloff>:/huggle/pictures/Resources/browser-open.png</iconset>
    </property>
    <property name="text">
     <string notr="true">Open in a browser (O)</string>
@@ -678,6 +713,9 @@
    <property name="text">
     <string notr="true">Show talk</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+M</string>
+   </property>
   </action>
   <action name="actionProtect">
    <property name="text">
@@ -741,6 +779,9 @@
    <property name="text">
     <string notr="true">Revert assuming good faith</string>
    </property>
+   <property name="shortcut">
+    <string>Y</string>
+   </property>
   </action>
   <action name="actionDisplay_a_session_data">
    <property name="text">
@@ -760,6 +801,119 @@
   <action name="actionRestore_this_revision">
    <property name="text">
     <string>Restore this revision</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Remove all edits</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Space</string>
+   </property>
+  </action>
+  <action name="actionDelete_page">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/page-delete.png</normaloff>:/huggle/pictures/Resources/page-delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete page</string>
+   </property>
+  </action>
+  <action name="actionBlock_user_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-block.png</normaloff>:/huggle/pictures/Resources/user-block.png</iconset>
+   </property>
+   <property name="text">
+    <string>Block user</string>
+   </property>
+  </action>
+  <action name="actionDisplay_talk">
+   <property name="icon">
+    <iconset resource="pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-talk.png</normaloff>:/huggle/pictures/Resources/user-talk.png</iconset>
+   </property>
+   <property name="text">
+    <string>Display talk</string>
+   </property>
+  </action>
+  <action name="actionSimulate_message">
+   <property name="text">
+    <string>Simulate new message info</string>
+   </property>
+  </action>
+  <action name="actionHtml_dump">
+   <property name="text">
+    <string>Load in webpage</string>
+   </property>
+  </action>
+  <action name="actionEnforce_sysop_rights">
+   <property name="text">
+    <string>Enforce sysop rights</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisplay_bot_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display bot data</string>
+   </property>
+  </action>
+  <action name="actionRequest_protection">
+   <property name="text">
+    <string>Request protection of page</string>
+   </property>
+  </action>
+  <action name="actionRemove_edits_made_by_whitelisted_users">
+   <property name="text">
+    <string>Remove edits made by whitelisted users</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
+  </action>
+  <action name="actionDelete_all_edits_with_score_lower_than_200">
+   <property name="text">
+    <string>Delete edits with score lower than -200</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+D</string>
+   </property>
+  </action>
+  <action name="actionRelog">
+   <property name="text">
+    <string>Re_login</string>
+   </property>
+  </action>
+  <action name="actionAbort">
+   <property name="text">
+    <string>Abort</string>
+   </property>
+  </action>
+  <action name="actionAbort_2">
+   <property name="text">
+    <string>Abort</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionUser_contributions">
+   <property name="text">
+    <string>User contributions</string>
    </property>
   </action>
  </widget>

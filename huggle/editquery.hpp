@@ -11,10 +11,16 @@
 #ifndef EDITQUERY_H
 #define EDITQUERY_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QUrl>
 #include "apiquery.hpp"
-#include "core.hpp"
+#include "mainwindow.hpp"
 #include "history.hpp"
 
 namespace Huggle
@@ -28,21 +34,30 @@ namespace Huggle
             EditQuery();
             ~EditQuery();
             void Process();
-            bool Processed();
+            bool IsProcessed();
             //! Page that is going to be edited
             QString Page;
             //! Text a page will be replaced with
             QString text;
             //! Edit summary
             QString Summary;
+            //! Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp)
+
+            //! Used to detect edit conflicts; leave unset to ignore conflicts
+            QString BaseTimestamp;
+            unsigned int Section;
+            //! Timestamp when you started editing the page
+
+            //! when you fetched the current revision's text to begin editing it or checked the existence of the page.
+            //! Used to detect edit conflicts; leave unset to ignore conflicts
+            QString StartTimestamp;
             //! Whether the edit is minor or not
             bool Minor;
         private:
+            void EditPage();
             ApiQuery *qToken;
             //! Api query to edit page
             ApiQuery *qEdit;
-            //! Edit token, will be retrieved during request
-            QString _Token;
     };
 }
 

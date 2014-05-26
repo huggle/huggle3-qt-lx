@@ -14,7 +14,6 @@ using namespace Huggle::IRC;
 
 NetworkIrc::NetworkIrc(QString server, QString nick)
 {
-    this->MessagesLock = new QMutex(QMutex::Recursive);
     this->Ident = "huggle";
     this->Nick = nick;
     this->Port = 6667;
@@ -23,12 +22,16 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Timer = new QTimer(this);
     this->NetworkSocket = NULL;
     this->NetworkThread = NULL;
+    this->MessagesLock = new QMutex(QMutex::Recursive);
+    this->ChannelsLock = new QMutex(QMutex::Recursive);
 }
 
 NetworkIrc::~NetworkIrc()
 {
+    this->ClearList();
     delete this->MessagesLock;
     delete this->NetworkSocket;
+    delete this->ChannelsLock;
     delete this->Timer;
     delete this->NetworkThread;
 }
@@ -47,15 +50,11 @@ bool NetworkIrc::Connect()
         }
     }
     if (this->NetworkThread != NULL)
-    {
         delete this->NetworkThread;
-    }
     this->NetworkThread = new NetworkIrc_th();
     this->NetworkThread->root = this;
     if (this->NetworkSocket != NULL)
-    {
         delete this->NetworkSocket;
-    }
     this->NetworkSocket = new QTcpSocket();
     connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
     this->NetworkThread->__IsConnecting = true;
@@ -95,7 +94,7 @@ bool NetworkIrc::IsConnecting()
 
 void NetworkIrc::Disconnect()
 {
-    if (!this->IsConnected())
+    if (!this->IsConnected() && !this->IsConnecting())
     {
         return;
     }
@@ -105,6 +104,7 @@ void NetworkIrc::Disconnect()
     this->Timer->stop();
     this->NetworkThread->__IsConnecting = false;
     this->NetworkThread->__Connected = false;
+    this->ClearList();
     if (this->NetworkThread != NULL)
     {
         // we have to request the network thread to stop
@@ -128,7 +128,7 @@ void NetworkIrc::Data(QString text)
     {
         throw new Exception("You can't send data to network which you never connected to", "void NetworkIrc::Data(QString text)");
     }
-    this->NetworkSocket->write((text + "\n").toUtf8());
+    this->NetworkSocket->write(QString(text + "\n").toUtf8());
 }
 
 void NetworkIrc::Send(QString name, QString text)
@@ -176,6 +176,20 @@ void NetworkIrc::OnTime()
     this->NetworkThread->lIOBuffers->unlock();
 }
 
+void NetworkIrc::ClearList()
+{
+    this->ChannelsLock->lock();
+    // we need to delete all instances of channels before we wipe the hash table
+    QStringList keys = this->Channels.keys();
+    while (keys.count() > 0)
+    {
+        delete this->Channels[keys.at(0)];
+        this->Channels.remove(keys.at(0));
+        keys.removeAt(0);
+    }
+    this->ChannelsLock->unlock();
+}
+
 Message::Message(QString text, User us)
 {
     this->Text = text;
@@ -210,9 +224,18 @@ Message::Message(Message *ms)
     this->user = ms->user;
 }
 
+User::User(QString nick)
+{
+    this->Nick = nick;
+    this->Ident = "";
+    this->SanitizeNick();
+    this->Host = "";
+}
+
 User::User(QString nick, QString ident, QString host)
 {
     this->Nick = nick;
+    this->SanitizeNick();
     this->Ident = ident;
     this->Host = host;
 }
@@ -236,6 +259,15 @@ User::User(const User &user)
     this->Host = user.Host;
     this->Ident = user.Ident;
     this->Nick = user.Nick;
+}
+
+void User::SanitizeNick()
+{
+    this->Nick.replace("@", "");
+    this->Nick.replace("~", "");
+    this->Nick.replace("+", "");
+    this->Nick.replace("%", "");
+    this->Nick.replace("&", "");
 }
 
 NetworkIrc_th::NetworkIrc_th()
@@ -264,23 +296,41 @@ void NetworkIrc_th::Data(QString text)
 void NetworkIrc_th::Line(QString line)
 {
     QString Command = "";
-    QString Source = "";
-    if (!line.startsWith(":") || !line.contains(" "))
+    QString Source_ = "";
+    if (line[0] == 'P' && line.startsWith("PING :"))
+    {
+        QString text = line.mid(6);
+        this->Data("PONG :" + text);
+    }
+    if (line[0] != ':' || !line.contains(" "))
     {
         return;
     }
 
-    QString xx = line;
-    xx = xx.mid(1);
-    Source = xx.mid(0, xx.indexOf(" "));
-    xx= xx.mid(xx.indexOf(" ") + 1);
-    if (!xx.contains(" "))
+    line.replace("\r\n", "");
+    QString Parameters_ = line;
+    QString Message_ = "";
+    int index_ = 0;
+    if (Parameters_.contains(" :"))
     {
-        Command = xx;
+        // we store the index so that we don't need to look it up twice
+        index_ = Parameters_.indexOf(" :");
+        Message_ = Parameters_.mid(index_ + 2);
+        Parameters_ = Parameters_.mid(0, index_);
+    }
+    Parameters_ = Parameters_.mid(1);
+    index_ = Parameters_.indexOf(" ");
+    Source_ = Parameters_.mid(0, index_);
+    Parameters_= Parameters_.mid(index_ + 1);
+    if (!Parameters_.contains(" "))
+    {
+        Command = Parameters_;
+        Parameters_ = "";
     } else
     {
-        Command = xx.mid(0, xx.indexOf(" "));
-        xx = xx.mid(xx.indexOf(" ") + 1);
+        index_ = Parameters_.indexOf(" ");
+        Command = Parameters_.mid(0, index_);
+        Parameters_ = Parameters_.mid(index_ + 1);
     }
 
     if (Command == "002")
@@ -289,35 +339,213 @@ void NetworkIrc_th::Line(QString line)
         this->__Connected = true;
         return;
     }
-    /// \todo implement PART
-    /// \todo implement KICK
-    /// \todo implement QUIT
     /// \todo implement TOPIC
     /// \todo implement CTCP
     /// \todo implement NOTICES
     if (Command == "PRIVMSG")
     {
-        ProcessPrivmsg(Source, xx);
+        this->ProcessPrivmsg(Source_, Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "JOIN")
+    {
+        if (Parameters_ == "" && Message_ == "")
+        {
+            Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
+            return;
+        }
+        this->ProcessJoin(Source_, Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "353")
+    {
+        this->ProcessChannel(Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "KICK")
+    {
+        this->ProcessKick(Source_, Parameters_, Message_);
+        return;
+    }
+
+    if (Command == "QUIT")
+    {
+        this->ProcessQuit(Source_, Message_);
+        return;
+    }
+
+    if (Command == "PART")
+    {
+        if (Parameters_.length() < 1)
+        {
+            Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
+            return;
+        }
+        this->ProcessPart(Source_, Parameters_, Message_);
         return;
     }
 }
 
-void NetworkIrc_th::ProcessPrivmsg(QString source, QString xx)
+void NetworkIrc_th::ProcessPrivmsg(QString source, QString parameters, QString message)
 {
     User user;
     user.Nick = source.mid(0, source.indexOf("!"));
-    Message message;
-    if (!xx.contains("#") || !xx.contains(" :"))
+    Message Message_;
+    if (parameters[0] != '#')
     {
         return;
     }
-    message.Channel = xx.mid(xx.indexOf("#"), xx.indexOf(" :"));
-    message.user = user;
-    xx = xx.replace("\r\n", "");
-    message.Text = xx.mid(xx.indexOf(" :") + 2);
+    Message_.Channel = parameters;
+    Message_.user = user;
+    Message_.Text = message;
     this->root->MessagesLock->lock();
-    this->root->Messages.append(message);
+    this->root->Messages.append(Message_);
     this->root->MessagesLock->unlock();
+}
+
+void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message)
+{
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
+    if (channel.length() <= 0)
+    {
+        // some irc servers are providing channel name as a message and not
+        // parameter, this is case of wikimedia irc server
+        channel = message;
+    }
+    if (channel.length() < 1)
+    {
+        throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessJoin"\
+                                    "(QString source, QString channel, QString message)");
+    }
+    channel = channel.toLower();
+    // first lock the channel list and check if we know this channel
+    // it is also possible that this is us joining the channel
+    // and not some other user so in this case we need to
+    // make a new instance for this channel and put ourselve in
+    this->root->ChannelsLock->lock();
+    if (this->root->Channels.contains(channel))
+    {
+        // this is a known channel to us
+        Channel *channel_ptr_ = this->root->Channels[channel];
+        channel_ptr_->InsertUser(user);
+    } else
+    {
+        // check if it's us who joined the channel
+        if (this->root->Nick.toLower() == user.Nick.toLower())
+        {
+            Channel *channel_ptr_ = new Channel(channel);
+            this->root->Channels.insert(channel, channel_ptr_);
+            channel_ptr_->InsertUser(user);
+        } else
+        {
+            Syslog::HuggleLogs->DebugLog("Ignoring JOIN event for unknown channel, user " + user.Nick + " channel " + channel);
+        }
+    }
+    this->root->ChannelsLock->unlock();
+}
+
+void NetworkIrc_th::ProcessChannel(QString channel, QString data)
+{
+    if (!channel.contains("#"))
+    {
+        return;
+    }
+    channel = channel.mid(channel.indexOf("#"));
+    // first check if there is any instance for this channel
+    channel = channel.toLower();
+    this->root->ChannelsLock->lock();
+    Channel *channel_ = NULL;
+    if (this->root->Channels.contains(channel))
+    {
+        channel_ = this->root->Channels[channel];
+    } else
+    {
+        // we need to create a new instance now
+        channel_ = new Channel(channel);
+        this->root->Channels.insert(channel, channel_);
+    }
+    QStringList Users = data.split(" ");
+    while (Users.count() > 0)
+    {
+        QString user = Users.at(0);
+        if (user.length() > 0)
+        {
+            channel_->InsertUser(User(user));
+        }
+        Users.removeAt(0);
+    }
+    this->root->ChannelsLock->unlock();
+}
+
+void NetworkIrc_th::ProcessKick(QString source, QString parameters, QString message)
+{
+    /// \todo This needs to be finished :P
+    Syslog::HuggleLogs->DebugLog("IRC kick " + source + parameters + message);
+}
+
+void NetworkIrc_th::ProcessQuit(QString source, QString message)
+{
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
+    // check all channels and remove the user
+    this->root->ChannelsLock->lock();
+    QStringList list = this->root->Channels.keys();
+    while(list.count() > 0)
+    {
+        Channel *channel_ = this->root->Channels[list.at(0)];
+        channel_->RemoveUser(user.Nick);
+        list.removeAt(0);
+    }
+    Syslog::HuggleLogs->DebugLog("IRC User " + user.Nick + " quit: " + message, 5);
+    this->root->ChannelsLock->unlock();
+}
+
+void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message)
+{
+    if (!source.contains("!"))
+    {
+        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        return;
+    }
+    User user(source.mid(0, source.indexOf("!")));
+    if (channel == "")
+    {
+        throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessPart("\
+                                    "QString source, QString channel, QString message)");
+    }
+    channel = channel.toLower();
+    // first lock the channel list and check if we know this channel
+    this->root->ChannelsLock->lock();
+    if (this->root->Channels.contains(channel))
+    {
+        // this is a known channel to us
+        Channel *channel_ptr_ = this->root->Channels[channel];
+        channel_ptr_->RemoveUser(user.Nick);
+        // check if the user who parts isn't us
+        if (user.Nick.toLower() == this->root->Nick.toLower())
+        {
+            // it is us, now we need to remove the channel from memory
+            delete channel_ptr_;
+            this->root->Channels.remove(channel);
+        }
+    } else
+    {
+        Syslog::HuggleLogs->DebugLog("Ignoring PART event for unknown channel, user " + user.Nick + " channel " + channel
+                                     + " reason " + message);
+    }
+    this->root->ChannelsLock->unlock();
 }
 
 void NetworkIrc_th::run()
@@ -350,4 +578,64 @@ void NetworkIrc_th::run()
     }
     this->__Connected = false;
     return;
+}
+
+Channel::Channel(QString name)
+{
+    this->Name = name;
+    this->UsersChange_ = false;
+    this->UsersLock = new QMutex(QMutex::Recursive);
+}
+
+Channel::~Channel()
+{
+    this->UsersLock->lock();
+    this->Users.clear();
+    this->UsersLock->unlock();
+    delete this->UsersLock;
+}
+
+void Channel::InsertUser(User user)
+{
+    // we need to keep the user nicks in lower case in hash so that we can't have multiple same nicks
+    // with different letter case which isn't possible on irc
+    QString nick = user.Nick.toLower();
+    this->UsersLock->lock();
+    if (this->Users.contains(nick))
+    {
+        // there already is this user in a list, so we just update it
+        User *user_ptr_ = &this->Users[nick];
+        user_ptr_->Nick = user.Nick;
+        user_ptr_->Ident = user.Ident;
+        user_ptr_->Host = user.Host;
+    } else
+    {
+        this->Users.insert(nick, user);
+    }
+    this->UsersLock->unlock();
+    this->UsersChange_ = true;
+}
+
+void Channel::RemoveUser(QString user)
+{
+    // we need to keep the user nicks in lower case in hash so that we can't have multiple same nicks
+    // with different letter case which isn't possible on irc
+    QString nick = user.toLower();
+    this->UsersLock->lock();
+    if (this->Users.contains(nick))
+    {
+        this->Users.remove(nick);
+        this->UsersChange_ = true;
+    }
+    this->UsersLock->unlock();
+}
+
+bool Channel::UsersChanged()
+{
+    if (this->UsersChange_)
+    {
+        this->UsersChange_ = false;
+        return true;
+    }
+    return false;
 }

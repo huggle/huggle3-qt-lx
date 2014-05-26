@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "query.hpp"
+#include "exception.hpp"
+#include "gc.hpp"
 
 using namespace Huggle;
 
@@ -42,7 +44,7 @@ Query::~Query()
     this->Result = NULL;
 }
 
-bool Query::Processed()
+bool Query::IsProcessed()
 {
     if (this->Status == StatusDone || this->Status == StatusInError)
     {
@@ -105,7 +107,7 @@ QString Query::QueryStatusToString()
     switch (this->Status)
     {
         case StatusNull:
-            return "NULL";
+            return "Waiting";
         case StatusDone:
             return "Done";
         case StatusProcessing:
@@ -135,4 +137,20 @@ void Query::ProcessCallback()
 unsigned int Query::QueryID()
 {
     return this->ID;
+}
+
+bool Query::IsFailed()
+{
+    if (this->Result != NULL)
+    {
+        if (this->Result->Failed)
+        {
+            return true;
+        }
+    }
+    if (this->Status == Huggle::StatusInError)
+    {
+        return true;
+    }
+    return false;
 }

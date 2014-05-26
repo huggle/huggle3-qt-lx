@@ -11,13 +11,17 @@
 #ifndef VANDALNW_H
 #define VANDALNW_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, don't believe it? See this:
+// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDockWidget>
 #include <QTimer>
-#include "syslog.hpp"
 #include "networkirc.hpp"
 #include "wikiedit.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -31,8 +35,24 @@ namespace Huggle
         class NetworkIrc;
     }
 
+    //! This namespace contains HAN classes
+
+    //! Huggle Antivandalism Network is a system that allows users of huggle and other tools
+    //! cooperate with each other so that they are more effective
     namespace HAN
     {
+        enum MessageType
+        {
+            MessageType_User,
+            MessageType_Bot,
+            MessageType_UserTalk,
+            MessageType_Info
+        };
+
+        //! This is base class that can be used to store information about HAN items
+
+        //! These "HAN items" are for example information about rollbacks, because they
+        //! share common properties, they are all inherited from this GenericItem :o
         class GenericItem
         {
             public:
@@ -40,7 +60,7 @@ namespace Huggle
                 GenericItem(int _revID, QString _user);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
-                //! User who scored the edit
+                //! User who changed the edit
                 QString User;
                 //! ID of edit
                 int RevID;
@@ -82,7 +102,7 @@ namespace Huggle
              * \brief Insert text to window
              * \param text is a string that will be inserted to window, must not be terminated with newline
              */
-            void Insert(QString text);
+            void Insert(QString text, HAN::MessageType type);
             void Connect();
             void Disconnect();
             //! This will deliver an edit to others as a good edit
@@ -90,12 +110,14 @@ namespace Huggle
             //! Notify others about a rollback of edit
             void Rollback(WikiEdit *Edit);
             void SuspiciousWikiEdit(WikiEdit *Edit);
-            void WarningSent(WikiUser *user, int Level);
+            void WarningSent(WikiUser *user, byte_ht Level);
             QString GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
+            void Message();
+            QString Channel;
             //! Prefix to special commands that are being sent to network to other users
-            QString pref;
+            QString Prefix;
             //! Timer that is used to connect to network
             QTimer *tm;
             QList<HAN::RescoreItem> UnparsedScores;
@@ -106,7 +128,11 @@ namespace Huggle
             void ProcessGood(WikiEdit *edit, QString user);
             void ProcessRollback(WikiEdit *edit, QString user);
             void ProcessSusp(WikiEdit *edit, QString user);
+            void UpdateHeader();
             Ui::VandalNw *ui;
+            //! This is to track the changes to user list so that we don't need to update text in header
+            //! when there is no change (that is actually CPU expensive operation)
+            bool UsersModified;
             //! Pointer to irc server
             Huggle::IRC::NetworkIrc *Irc;
             //! Using this we track if channel was joined or not, because we need to send
@@ -116,6 +142,7 @@ namespace Huggle
         private slots:
             void onTick();
             void on_pushButton_clicked();
+            void on_lineEdit_returnPressed();
     };
 }
 

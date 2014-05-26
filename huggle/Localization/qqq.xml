@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="name">This is a name of the language as shown on the login form (it is meant to be localized to target language so that user can easily find it)</string>
+</resources>

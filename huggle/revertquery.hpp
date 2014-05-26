@@ -11,11 +11,15 @@
 #ifndef REVERTQUERY_H
 #define REVERTQUERY_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
-#include <QtXml>
+#include <QDateTime>
 #include <QTimer>
-#include "configuration.hpp"
-#include "core.hpp"
 #include "editquery.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
@@ -42,9 +46,11 @@ namespace Huggle
             void Kill();
             ~RevertQuery();
             QString QueryTargetToString();
-            bool Processed();
+            bool IsProcessed();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR;
+            //! Time when a query was issued (this is set externaly)
+            QDateTime Date;
             QString Summary;
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck;
@@ -53,14 +59,7 @@ namespace Huggle
         public slots:
             void OnTick();
         private:
-            ApiQuery *qPreflight;
-            ApiQuery *qRevert;
-            ApiQuery *qRetrieve;
-            EditQuery *EditQuerySoftwareRollback;
-            WikiEdit* edit;
-            QTimer *timer;
-            bool RollingBack;
-            bool PreflightFinished;
+            void DisplayError(QString error, QString reason = "");
             void Preflight();
             void CheckPreflight();
             bool CheckRevert();
@@ -69,6 +68,19 @@ namespace Huggle
             void Rollback();
             void Revert();
             void Exit();
+            QString SR_EditToken;
+            ApiQuery *qPreflight;
+            ApiQuery *qRevert;
+            ApiQuery *qRetrieve;
+            ApiQuery *qSR_PageToken;
+            EditQuery *eqSoftwareRollback;
+            WikiEdit* edit;
+            QTimer *timer;
+            bool RollingBack;
+            bool PreflightFinished;
+            int SR_RevID;
+            int SR_Depth;
+            QString SR_Target;
     };
 }
 

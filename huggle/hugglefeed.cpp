@@ -9,13 +9,25 @@
 //GNU General Public License for more details.
 
 #include "hugglefeed.hpp"
+#include "exception.hpp"
 
 using namespace Huggle;
 
+HuggleFeed *HuggleFeed::PrimaryFeedProvider = NULL;
+HuggleFeed *HuggleFeed::SecondaryFeedProvider = NULL;
+
 HuggleFeed::HuggleFeed()
 {
+    this->EditCounter = 0;
+    this->RvCounter = 0;
+    this->UptimeDate = QDateTime::currentDateTime();
 }
 
 HuggleFeed::~HuggleFeed()
 {
+}
+
+double HuggleFeed::GetUptime()
+{
+    return (double)this->UptimeDate.secsTo(QDateTime::currentDateTime());
 }

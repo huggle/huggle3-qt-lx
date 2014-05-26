@@ -11,11 +11,19 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QList>
-#include "configuration.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
+#ifdef PYTHONENGINE
+#include "pythonengine.hpp"
+#endif
 
 namespace Ui
 {
@@ -25,6 +33,12 @@ namespace Ui
 namespace Huggle
 {
     class HuggleQueueFilter;
+#ifdef PYTHONENGINE
+    namespace Python
+    {
+        class PythonScript;
+    }
+#endif
     //! Preferences window
     class Preferences : public QDialog
     {
@@ -45,6 +59,8 @@ namespace Huggle
             void on_pushButton_5_clicked();
             void on_pushButton_4_clicked();
             void on_pushButton_3_clicked();
+            void on_checkBox_26_clicked();
+            void on_checkBox_27_clicked();
 
         private:
             void Reload();

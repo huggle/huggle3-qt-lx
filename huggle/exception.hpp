@@ -11,8 +11,38 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <iostream>
 #include <QString>
+#include <QDir>
+
+//////////////////////////////////////////////////////////////////////////
+// Breakpad init
+//////////////////////////////////////////////////////////////////////////
+#ifndef DISABLE_BREAKPAD
+    #ifdef __linux__
+        //linux code goes here
+    #define HUGGLE_BREAKPAD 0
+    #include "client/linux/handler/exception_handler.h"
+    #elif _WIN32
+        // windows code goes here
+    #define HUGGLE_BREAKPAD 1
+    // This fixes the qdatetime bug which produces error with compiler on windows
+    #define NOMINMAX
+    // Ensure that NOMINMAX is there before including this file
+    #include "client/windows/handler/exception_handler.h"
+    #endif
+#endif
+//////////////////////////////////////////////////////////////////////////
+// remaining code must be surrounded with directives
+//////////////////////////////////////////////////////////////////////////
+
 
 namespace Huggle
 {
@@ -20,6 +50,8 @@ namespace Huggle
     class Exception
     {
         public:
+            static void InitBreakpad();
+            static void ExitBreakpad();
             //! Error code
             int ErrorCode;
             //! Source
@@ -31,6 +63,12 @@ namespace Huggle
             Exception(QString Text, QString _Source, bool __IsRecoverable = true);
             bool IsRecoverable() const;
         private:
+#ifdef HUGGLE_BREAKPAD
+#if HUGGLE_BREAKPAD == 0
+            static google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
+#endif
+            static google_breakpad::ExceptionHandler   *GoogleBP_handler;
+#endif
             bool _IsRecoverable;
     };
 }

@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "huggletool.hpp"
+#include "core.hpp"
+#include "exception.hpp"
+#include "generic.hpp"
+#include "configuration.hpp"
+#include "querypool.hpp"
+#include "syslog.hpp"
 #include "ui_huggletool.h"
 
 using namespace Huggle;
@@ -16,22 +22,27 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
-    this->query = NULL;
+    this->query = nullptr;
+    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("main-page-load"));
+    this->ui->label_3->setText(Localizations::HuggleLocalizations->Localize("main-page-curr-disp"));
     this->tick = new QTimer(this);
+    this->ui->label->setText(Localizations::HuggleLocalizations->Localize("User"));
+    this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->edit = NULL;
+    this->edit = nullptr;
 }
 
 HuggleTool::~HuggleTool()
 {
     delete this->tick;
     delete this->ui;
+    GC_DECREF(this->query);
 }
 
 void HuggleTool::SetTitle(QString title)
 {
     this->ui->lineEdit->setText(title);
-    this->ui->comboBox_2->lineEdit()->setText(title);
+    this->ui->lineEdit_3->setText(title);
 }
 
 void HuggleTool::SetInfo(QString info)
@@ -41,38 +52,35 @@ void HuggleTool::SetInfo(QString info)
 
 void HuggleTool::SetUser(QString user)
 {
-    this->ui->comboBox->lineEdit()->setText(user);
+    this->ui->lineEdit_2->setText(user);
 }
 
 void HuggleTool::SetPage(WikiPage *page)
 {
-    if (page == NULL)
+    if (page == nullptr)
     {
-        throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be null");
+        throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
     }
-    this->ui->comboBox_2->lineEdit()->setText(page->PageName);
+    this->ui->lineEdit_3->setText(page->PageName);
     this->tick->stop();
-    this->DeleteQuery();
+    GC_DECREF(this->query);
     this->ui->pushButton->setEnabled(true);
     // change color to default
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: black;");
+    this->ui->lineEdit_2->setStyleSheet("color: black;");
+    this->ui->lineEdit_3->setStyleSheet("color: black;");
 }
 
 void HuggleTool::RenderEdit()
 {
-    if (this->ui->comboBox_2->lineEdit()->text() == "")
-    {
+    if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_3->text().length())
         return;
-    }
     this->ui->pushButton->setEnabled(false);
-    this->ui->comboBox_2->lineEdit()->setStyleSheet("color: green;");
+    this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
-    this->query = new ApiQuery();
+    GC_DECREF(this->query);
     this->QueryPhase = 1;
-    this->query->SetAction(ActionQuery);
-    this->query->Parameters = "prop=revisions&rvprop=ids%7Cflags%7Ctimestamp%7Cuser%7Cuserid%7Csize%7Csha1%7Ccomment&rvlimit=1&titles="
-                                + QUrl::toPercentEncoding(this->ui->comboBox_2->lineEdit()->text());
-    this->query->RegisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
+    this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text());
+    this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
 }
@@ -90,9 +98,11 @@ void HuggleTool::onTick()
             this->tick->stop();
             return;
         case 1:
+        case 3:
             this->FinishPage();
             return;
         case 2:
+        case 4:
             this->FinishEdit();
             return;
     }
@@ -100,74 +110,98 @@ void HuggleTool::onTick()
 
 void HuggleTool::FinishPage()
 {
-    if (this->query == NULL)
-    {
+    if (this->query == nullptr || !this->query->IsProcessed())
         return;
-    }
-    if (!this->query->Processed())
-    {
-        return;
-    }
-
-    this->edit = new WikiEdit();
-    this->edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    this->edit->Page = new WikiPage(this->ui->comboBox_2->lineEdit()->text());
     QDomDocument d;
     d.setContent(this->query->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
-    if (l.count() > 0)
+    if (this->QueryPhase == 3)
     {
-        QDomElement e = l.at(0).toElement();
-        if (e.attributes().contains("missing"))
+        GC_DECREF(this->query);
+        QDomNodeList l = d.elementsByTagName("item");
+        if (l.count() == 0)
         {
-            // there is no such a page
-            this->DeleteQuery();
-            this->ui->comboBox_2->lineEdit()->setStyleSheet("color: red;");
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("There is no page " + ui->comboBox_2->lineEdit()->text() + " on wiki");
+            this->ui->lineEdit_2->setStyleSheet("color: red;");
             this->tick->stop();
-            this->edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-            this->edit = NULL;
             return;
         }
-        if (e.attributes().contains("user"))
+        QDomElement first_one = l.at(0).toElement();
+        if (!first_one.attributes().contains("title"))
         {
-            this->edit->User = new WikiUser(e.attribute("user"));
+            this->ui->lineEdit_2->setStyleSheet("color: red;");
+            this->tick->stop();
+            return;
         }
-        if (e.attributes().contains("revid"))
-        {
-            this->edit->RevID = e.attribute("revid").toInt();
-        }
-    }
-    if (this->edit->User == NULL)
+        this->edit = new WikiEdit();
+        this->edit->Page = new WikiPage(first_one.attribute("title"));
+        this->edit->User = new WikiUser(first_one.attribute("user"));
+        this->edit->RevID = first_one.attribute("revid").toInt();
+        QueryPool::HugglePool->PostProcessEdit(this->edit);
+        this->QueryPhase = 4;
+    } else
     {
-        this->edit->User = new WikiUser();
+        this->edit = new WikiEdit();
+        this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
+        QDomNodeList l = d.elementsByTagName("rev");
+        if (l.count() > 0)
+        {
+            QDomElement e = l.at(0).toElement();
+            if (e.attributes().contains("missing"))
+            {
+                // there is no such a page
+                GC_DECREF(this->query);
+                this->ui->lineEdit_3->setStyleSheet("color: red;");
+                Huggle::Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("missing-page", ui->lineEdit_3->text()));
+                this->tick->stop();
+                this->edit = nullptr;
+                return;
+            }
+            if (e.attributes().contains("user"))
+            {
+                this->edit->User = new WikiUser(e.attribute("user"));
+            }
+            if (e.attributes().contains("revid"))
+            {
+                this->edit->RevID = e.attribute("revid").toInt();
+            }
+        }
+        if (this->edit->User == nullptr)
+        {
+            this->edit->User = new WikiUser();
+        }
+        QueryPool::HugglePool->PostProcessEdit(this->edit);
+        this->QueryPhase = 2;
     }
-    Core::HuggleCore->PostProcessEdit(this->edit);
-    this->edit->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    this->QueryPhase = 2;
 }
 
 void HuggleTool::FinishEdit()
 {
-    if (this->edit == NULL)
-    {
+    if (this->edit == nullptr || !this->edit->IsPostProcessed())
         return;
-    }
-    if (!this->edit->IsPostProcessed())
-    {
-        return;
-    }
     this->tick->stop();
-    Core::HuggleCore->Main->ProcessEdit(edit);
+    this->ui->pushButton->setEnabled(true);
+    Core::HuggleCore->Main->ProcessEdit(this->edit, false, false, false, true);
 }
 
-void HuggleTool::DeleteQuery()
+void Huggle::HuggleTool::on_lineEdit_3_returnPressed()
 {
-    if (this->query == NULL)
+    this->RenderEdit();
+}
+
+void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
+{
+    if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_2->text().length())
     {
         return;
     }
-    this->query->UnregisterConsumer(HUGGLECONSUMER_HUGGLETOOL);
-    this->query = NULL;
+    this->ui->pushButton->setEnabled(false);
+    this->ui->lineEdit_2->setStyleSheet("color: green;");
+    // retrieve information about the user
+    GC_DECREF(this->query);
+    this->query = new ApiQuery(ActionQuery);
+    this->QueryPhase = 3;
+    this->query->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->ui->lineEdit_2->text()) +
+                              "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
+    this->query->IncRef();
+    this->query->Process();
+    this->tick->start(200);
 }

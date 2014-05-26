@@ -11,10 +11,15 @@
 #ifndef HUGGLEQUEUEFILTER_H
 #define HUGGLEQUEUEFILTER_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QList>
 #include "wikiedit.hpp"
-#include "exception.hpp"
 
 namespace Huggle
 {
@@ -71,6 +76,8 @@ namespace Huggle
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
+            bool getIgnore_UserSpace() const;
+            void setIgnore_UserSpace(bool value);
 
         private:
             bool IgnoreMinor;
@@ -82,6 +89,7 @@ namespace Huggle
             bool IgnoreNP;
             bool IgnoreFriends;
             bool IgnoreSelf;
+            bool Ignore_UserSpace;
             bool IgnoreTalk;
     };
 }

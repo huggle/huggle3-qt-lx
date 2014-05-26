@@ -11,9 +11,14 @@
 #ifndef ABOUTFORM_H
 #define ABOUTFORM_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
-#include "configuration.hpp"
-#include "localization.hpp"
 
 namespace Ui
 {
@@ -26,16 +31,18 @@ namespace Huggle
     class AboutForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit AboutForm(QWidget *parent = 0);
             ~AboutForm();
-
         private slots:
             void on_pushButton_clicked();
             void on_label_8_linkActivated(const QString &link);
             void on_label_5_linkActivated(const QString &link);
             void on_label_3_linkActivated(const QString &link);
+            void on_label_4_linkActivated(const QString &link);
+            void on_label_10_linkActivated(const QString &link);
+            void on_label_9_linkActivated(const QString &link);
+            void on_label_11_linkActivated(const QString &link);
 
         private:
                 Ui::AboutForm *ui;

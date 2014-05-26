@@ -11,10 +11,17 @@
 #ifndef HUGGLEQUEUEITEMLABEL_H
 #define HUGGLEQUEUEITEMLABEL_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
+#include <QHash>
 #include <QMouseEvent>
 #include <QFrame>
-#include "core.hpp"
-#include "exception.hpp"
+#include "wikiedit.hpp"
+#include "hugglequeue.hpp"
 
 namespace Ui
 {
@@ -32,14 +39,12 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            static int Count;
-
             explicit HuggleQueueItemLabel(QWidget *parent = 0);
             ~HuggleQueueItemLabel();
             void SetName(QString name);
             QString GetName();
             void Process(QLayoutItem *qi = NULL);
-            void Remove();
+            void Remove(QLayoutItem *qi = NULL);
             HuggleQueue *ParentQueue;
             WikiEdit *Page;
 
@@ -47,7 +52,9 @@ namespace Huggle
             void mousePressEvent(QMouseEvent *event);
 
         private:
+            QString getColor(int id);
             Ui::HuggleQueueItemLabel *ui;
+            QHash<int, QString> buffer;
     };
 }
 

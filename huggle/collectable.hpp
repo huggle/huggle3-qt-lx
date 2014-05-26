@@ -12,12 +12,18 @@
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QMutex>
 #include <QList>
 #include <QString>
 #include <QStringList>
 #include "gc.hpp"
-#include "exception.hpp"
 
 namespace Huggle
 {
@@ -31,6 +37,8 @@ namespace Huggle
     //! unrecoverable exception will be thrown. The class which is managed (you can verify that by calling Collectable::IsManaged)
     //! can be only deleted by garbage collector when no consumers are using it. Basically every
     //! object that has 0 consumers, will be deleted.
+
+    //! \image html ../documentation/gc01.png
     class Collectable
     {
         public:
@@ -47,8 +55,16 @@ namespace Huggle
              * \return whether the class is managed
              */
             bool IsManaged();
+            //! \brief Tries to delete the object immediately if not used anymore
             //! Use this if you are not sure if you can delete this object in this moment
+            //! If the object is not deleted after calling this, it will be managed by GC
             virtual bool SafeDelete();
+            //! You can change this to reclaimable by calling this
+
+            //! Reclaimable object can register new consumers even after last consumer was deleted. This shouldn't be ever
+            //! used by any other but atomic functions, because in theory collectable which lost its last consumer might
+            //! be deleted by GC any time.
+            void SetReclaimable();
             //! Whether the object is locked (other threads can't register nor unregister consumers
             //! neither it is possible to delete this object by any other thread)
             bool IsLocked();
@@ -67,12 +83,12 @@ namespace Huggle
              * by GC, by calling this function you change type to managed
              * \param consumer String that lock the object
              */
-            void RegisterConsumer(const int consumer);
+            void RegisterConsumer(int consumer);
             /*!
              * \brief This function will remove a string which prevent the object from being removed
              * \param consumer Unique string that unlock the object
              */
-            void UnregisterConsumer(const int consumer);
+            void UnregisterConsumer(int consumer);
             /*!
              * \brief Registers a consumer
              *
@@ -86,6 +102,8 @@ namespace Huggle
              * \param consumer Unique string that unlock the object
              */
             void UnregisterConsumer(const QString consumer);
+            void IncRef();
+            void DecRef();
             /*!
              * \brief DebugHgc
              * \return debug info
@@ -102,6 +120,7 @@ namespace Huggle
             static unsigned long LastCID;
 
             void SetManaged();
+            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;
@@ -109,6 +128,10 @@ namespace Huggle
 
             //! Every consumer needs to use unique string that identifies them
             QStringList Consumers;
+            //! Changing to true will prevent an exception from being thrown if you register consumer after deleting last consumer
+
+            //! Doing so may result in unpredictable crashes, because object should never be accessed after last consumer was removed
+            bool ReclaimingAllowed;
             //! List of int consumers that are using this object
 
             //! Every consumer needs to use a unique int that identifies them
@@ -116,6 +139,7 @@ namespace Huggle
             //! in extension you should use string instead
             QList<int> iConsumers;
             QMutex *_collectableQL;
+            unsigned int _collectableRefs;
             bool _collectableLocked;
     };
 }

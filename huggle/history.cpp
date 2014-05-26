@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "history.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
+#include "exception.hpp"
 #include "ui_history.h"
 
 using namespace Huggle;
@@ -17,6 +20,7 @@ int History::Last = 0;
 History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     this->ui->setupUi(this);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userhistory-title"));
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
     header << Localizations::HuggleLocalizations->Localize("[[id]]") <<
@@ -34,7 +38,8 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 // Qt4 code
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    //ui->tableWidget->horizontalHeaderItem(0)->setSizeHint(QSize(20,-1));
+    this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
 }
 
@@ -46,6 +51,7 @@ void History::Prepend(HistoryItem item)
     this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(HistoryItem::TypeToString(item.Type)));
     this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(item.Target));
     this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(item.Result));
+    this->ui->tableWidget->resizeRowToContents(0);
 }
 
 void History::Refresh()
@@ -56,6 +62,11 @@ void History::Refresh()
 History::~History()
 {
     delete this->ui;
+}
+
+void History::Undo(HistoryItem *hist)
+{
+
 }
 
 QString HistoryItem::TypeToString(HistoryType type)
@@ -77,7 +88,9 @@ QString HistoryItem::TypeToString(HistoryType type)
 HistoryItem::HistoryItem()
 {
     History::Last++;
+    this->UndoDependency = NULL;
     this->Target = "Unknown target";
+    this->UndoRevBaseTime = "";
     this->Type = HistoryUnknown;
     this->ID = History::Last;
     this->Result = "Unknown??";
@@ -87,7 +100,9 @@ HistoryItem::HistoryItem(const HistoryItem &item)
 {
     this->ID = item.ID;
     this->Target = item.Target;
+    this->UndoRevBaseTime = item.UndoRevBaseTime;
     this->Type = item.Type;
+    this->UndoDependency = item.UndoDependency;
     this->Result = item.Result;
 }
 
@@ -99,6 +114,8 @@ HistoryItem::HistoryItem(HistoryItem *item)
     }
     this->ID = item->ID;
     this->Type = item->Type;
+    this->UndoRevBaseTime = item->UndoRevBaseTime;
     this->Target = item->Target;
+    this->UndoDependency = item->UndoDependency;
     this->Result = item->Result;
 }

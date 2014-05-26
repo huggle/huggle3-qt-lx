@@ -9,37 +9,35 @@
 //GNU General Public License for more details.
 
 #include "apiquery.hpp"
+#include <QtXml/QtXml>
+#include <QUrl>
+#include "syslog.hpp"
+#include "exception.hpp"
+#include "configuration.hpp"
 
 using namespace Huggle;
 
 void ApiQuery::ConstructUrl()
 {
-    if (this->ActionPart == "")
-    {
+    if (!this->ActionPart.length())
         throw new Exception("No action provided for api request");
-    }
-
-    if (OverrideWiki == "")
+    if (!this->OverrideWiki.length())
     {
-        URL = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
-    }
-    else
+        this->URL = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project)
+                    + "api.php?action=" + this->ActionPart;
+    } else
     {
-        URL = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
+        this->URL = Configuration::GetURLProtocolPrefix() + this->OverrideWiki + "api.php?action=" + this->ActionPart;
     }
-
-    if (this->Parameters != "")
-    {
-        URL = URL + "&" + this->Parameters;
-    }
-
+    if (this->Parameters.length() > 0)
+        this->URL += "&" + this->Parameters;
     switch (this->RequestFormat)
     {
         case XML:
-            URL += "&format=xml";
+            this->URL += "&format=xml";
             break;
         case JSON:
-            URL += "&format=json";
+            this->URL += "&format=json";
             break;
         case PlainText:
         case Default:
@@ -50,18 +48,15 @@ void ApiQuery::ConstructUrl()
 QString ApiQuery::ConstructParameterLessUrl()
 {
     QString url;
-    if (this->ActionPart == "")
+    if (!this->ActionPart.length())
     {
         throw new Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
     }
-    if (OverrideWiki == "")
-    {
-        url = Core::GetProjectScriptURL(Configuration::HuggleConfiguration->Project) + "api.php?action=" + this->ActionPart;
-    }
+    if (!this->OverrideWiki.size())
+        url = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project)
+                + "api.php?action=" + this->ActionPart;
     else
-    {
-        url = Configuration::GetURLProtocolPrefix() + OverrideWiki + "api.php?action=" + this->ActionPart;
-    }
+        url = Configuration::GetURLProtocolPrefix() + this->OverrideWiki + "api.php?action=" + this->ActionPart;
 
     switch (this->RequestFormat)
     {
@@ -75,7 +70,6 @@ QString ApiQuery::ConstructParameterLessUrl()
         case Default:
             break;
     }
-
     return url;
 }
 
@@ -90,9 +84,7 @@ void ApiQuery::FinishRollback()
 {
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result->Data);
     if (this->CustomStatus != "Reverted")
-    {
         this->Result->Failed = true;
-    }
 }
 
 ApiQuery::ApiQuery()
@@ -104,6 +96,20 @@ ApiQuery::ApiQuery()
     this->Result = NULL;
     this->Parameters = "";
     this->UsingPOST = false;
+    this->Target = "none";
+    this->OverrideWiki = "";
+}
+
+ApiQuery::ApiQuery(Action a)
+{
+    this->RequestFormat = XML;
+    this->URL = "";
+    this->Type = QueryApi;
+    this->ActionPart = "";
+    this->Result = NULL;
+    this->Parameters = "";
+    this->UsingPOST = false;
+    this->SetAction(a);
     this->Target = "none";
     this->OverrideWiki = "";
 }
@@ -128,40 +134,35 @@ void ApiQuery::Finished()
     this->reply->deleteLater();
     this->reply = NULL;
     if (!this->HiddenQuery)
-    {
-        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 2);
-    }
+        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + this->URL, 6);
     this->Status = StatusDone;
     this->ProcessCallback();
 }
 
 void ApiQuery::Process()
 {
-    if (this->Status == StatusProcessing)
+    if (this->Status != Huggle::StatusNull)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
     }
     this->StartTime = QDateTime::currentDateTime();
-    if (this->URL == "")
-    {
+    if (!this->URL.size())
         this->ConstructUrl();
-    }
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url;
     if (this->UsingPOST)
     {
-        url = QUrl::fromEncoded(this->ConstructParameterLessUrl().toUtf8());
+        this->URL = this->ConstructParameterLessUrl();
+        url = QUrl::fromEncoded(this->URL.toUtf8());
     } else
     {
         url = QUrl::fromEncoded(this->URL.toUtf8());
     }
     QNetworkRequest request(url);
     if (this->UsingPOST)
-    {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-    }
     if (this->UsingPOST)
     {
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
@@ -170,9 +171,7 @@ void ApiQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
-    {
-        Huggle::Syslog::HuggleLogs->DebugLog("Processing api request " + this->URL, 2);
-    }
+        Huggle::Syslog::HuggleLogs->DebugLog("Processing api request " + this->URL, 6);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
@@ -233,9 +232,7 @@ void ApiQuery::SetAction(const QString action)
 void ApiQuery::Kill()
 {
     if (this->reply != NULL)
-    {
         this->reply->abort();
-    }
 }
 
 QString ApiQuery::QueryTargetToString()
@@ -245,6 +242,5 @@ QString ApiQuery::QueryTargetToString()
 
 QString ApiQuery::QueryTypeToString()
 {
-    return "ApiQuery (" +
-            this->ActionPart + ")";
+    return "ApiQuery (" + this->ActionPart + ")";
 }

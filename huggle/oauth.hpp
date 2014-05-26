@@ -11,6 +11,11 @@
 #ifndef OAUTH_H
 #define OAUTH_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 
 namespace Huggle

@@ -1,0 +1,9 @@
+
+
+== May 2014 ==
+[[File:Information.svg|left|25px|alt=|link=]] Hello, and welcome to Wikipedia. This is a message letting you know that one or more of your recent edits to [[:John Green (author)]] has been undone by an automated computer program called [[User:ClueBot NG|ClueBot NG]].
+{{clear}}
+* ClueBot NG makes very few [[User:ClueBot NG#Information About False Positives|mistakes]], but it does happen. If you believe the change you made was constructive, please [[User:ClueBot NG#Information About False Positives|read about it]], [{{User:ClueBot NG/Warnings/FPReport|1826239}} report it here], remove this message from your talk page, and then make the edit again.
+* For help, take a look at the [[Wikipedia:Introduction|introduction]].
+* The following is the log entry regarding this message: [[John Green (author)]] was [http://en.wikipedia.org/w/index.php?title=John+Green+%28author%29&diff=607541715&oldid=607541515 changed] by [[Special:Contributions/174.119.70.7|174.119.70.7]] [[User:174.119.70.7|(u)]] [[User talk:174.119.70.7|(t)]] ANN scored at 0.855997 on 2014-05-07T21:42:02+00:00 <!-- MySQL ID: 1826239 -->. Thank you. <!-- Template:uw-cluebotwarning1 --><!-- Template:uw-vandalism1 --> [[User:ClueBot NG|ClueBot NG]] ([[User talk:ClueBot NG|talk]]) 21:42, 7 May 2014 (UTC)
+

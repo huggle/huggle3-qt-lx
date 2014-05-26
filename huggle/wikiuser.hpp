@@ -11,13 +11,18 @@
 #ifndef WIKIUSER_H
 #define WIKIUSER_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QList>
 #include <QMutex>
 #include <QString>
 #include <QRegExp>
-
-#include "configuration.hpp"
+#include "huggleparser.hpp"
 #include "wikiedit.hpp"
+#include "wikisite.hpp"
 
 namespace Huggle
 {
@@ -31,6 +36,9 @@ namespace Huggle
             static void TrimProblematicUsersList();
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
+            static bool IsIPv4(QString user);
+            static bool IsIPv6(QString user);
+            static void UpdateWl(WikiUser *us, long score);
             /*!
              * \brief Function that return static version of this user
              *
@@ -40,6 +48,7 @@ namespace Huggle
              * \param user
              * \return static user from list of problematic users
              */
+            static WikiUser *RetrieveUser(QString user);
             static WikiUser *RetrieveUser(WikiUser *user);
             /*!
              * \brief List of users that are scored in this instance of huggle
@@ -48,6 +57,7 @@ namespace Huggle
              */
             static QList<WikiUser*> ProblematicUsers;
             static QMutex ProblematicUserListLock;
+            static QDateTime InvalidTime;
 
             WikiUser();
             WikiUser(WikiUser *u);
@@ -65,12 +75,12 @@ namespace Huggle
              * of calling this function repeatedly
              * \return a precached content of this users talk page
              */
-            QString GetContentsOfTalkPage();
+            QString TalkPage_GetContents();
             /*!
              * \brief SetContentsOfTalkPage Change a cache for talk page in local and global cache
              * \param text New content of talk page
              */
-            void SetContentsOfTalkPage(QString text);
+            void TalkPage_SetContents(QString text);
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
             void Sanitize();
@@ -80,6 +90,10 @@ namespace Huggle
             void ForceIP();
             //! Returns true in case the current user is IP user
             bool IsIP() const;
+            //! This function will reparse whole talk page of user in order to figure out which level they have
+
+            //! This function needs to be called after the content of talk page has changed
+            void ParseTP(QDate bt);
             //! Update the information of this user based on global user list
 
             //! This is useful when you created user in past and since then a global user has changed
@@ -87,11 +101,18 @@ namespace Huggle
             void Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
+            bool TalkPage_WasRetrieved();
+            bool TalkPage_ContainsSharedIPTemplate();
             //! Returns true if this user is wl
             bool IsWhitelisted();
-            //! Retrieve a badness score for current user, see WikiUser::BadnessScore for more
-            long getBadnessScore(bool _resync = true);
-            void setBadnessScore(long value);
+            QDateTime TalkPage_RetrievalTime();
+            /*!
+             * \brief Retrieve a badness score for current user, see WikiUser::BadnessScore for more
+             * \param _resync If true the user will be resynced before the score is returned
+             * \return badness score
+             */
+            long GetBadnessScore(bool _resync = true);
+            void SetBadnessScore(long value);
             //! Flags
 
             //! w - is warned
@@ -99,21 +120,31 @@ namespace Huggle
             //! T- has talkpage
             //! R - is registered
             //! E - exception
+            //! b - bot
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);
-            //! Cache of contributions made by this user
-            QList<WikiEdit*> Contributions;
             //! Username
             QString Username;
             //! Current warning level of user
-            int WarningLevel;
+            byte_ht WarningLevel;
             bool IsBanned;
             //! Local cache that holds information if user is reported or not. This information
             //! may be wrong, don't relly on it
             bool IsReported;
+            //! Number of contributions, if it's not known, it contains negative value
+            long EditCount;
+            //! This is a mediawiki string containing a time when user was registered
+            QString RegistrationDate;
+            //! Groups that this user is in, by default it's empty
+            QStringList Groups;
 
     private:
+            //! Matches only IPv4
+            static QRegExp IPv4Regex;
+            //! Matches all IP
+            static QRegExp IPv6Regex;
+
             /*!
              * \brief Badness score of current user
              *
@@ -121,16 +152,17 @@ namespace Huggle
              * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
              */
             long BadnessScore;
-            //! Matches only IPv4
-            static QRegExp IPv4Regex;
-            //! Matches all IP
-            static QRegExp IPv6Regex;
-            int WhitelistInfo;
+            //! Status of whitelist 0 means user is not whitelisted, 1 that it is and different value means we don't know
+            byte_ht WhitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
             QString ContentsOfTalkPage;
+            bool _talkPageWasRetrieved;
+            //! This is a date when we retrieved this talk page
+            QDateTime DateOfTalkPage;
             QMutex *UserLock;
             bool Bot;
             bool IP;
+            WikiSite *Site;
     };
 }
 

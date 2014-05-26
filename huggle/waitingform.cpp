@@ -23,6 +23,11 @@ WaitingForm::~WaitingForm()
     delete this->ui;
 }
 
+void WaitingForm::Status(int progress)
+{
+    this->ui->progressBar->setValue(progress);
+}
+
 void WaitingForm::Status(int progress, QString text)
 {
     this->ui->label->setText(text);

@@ -11,13 +11,16 @@
 #ifndef PROTECTPAGE_H
 #define PROTECTPAGE_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QString>
 #include <QtXml>
 #include <QTimer>
 #include "apiquery.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 #include "wikipage.hpp"
 
 namespace Ui
@@ -36,9 +39,8 @@ namespace Huggle
     class ProtectPage : public QDialog
     {
             Q_OBJECT
-
         public:
-            explicit ProtectPage(QWidget *parent = 0);
+            explicit ProtectPage(QWidget *parent = nullptr);
             ~ProtectPage();
             /*!
              * \brief set a page that is supposed to be protected, this needs to be called by owner who created this form
@@ -53,12 +55,11 @@ namespace Huggle
             void Failed(QString reason);
             void Protect();
             void getTokenToProtect();
+            void DelRefs();
             void checkTokenToProtect();
             QString ProtectToken;
             //! Pointer to get first token
-            ApiQuery *qToken1;
-            //! Pointer for second token
-            ApiQuery *qToken2;
+            ApiQuery *qToken;
             //! Pointer for	protection
             ApiQuery *qProtection;
             Ui::ProtectPage *ui;

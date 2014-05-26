@@ -25,7 +25,20 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="font">
+       <font>
+        <family>Bitstream Vera Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>4</number>
+      </property>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>19</number>
+      </attribute>
+     </widget>
     </item>
    </layout>
   </widget>

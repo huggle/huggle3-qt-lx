@@ -11,13 +11,19 @@
 #ifndef HUGGLEWEB_H
 #define HUGGLEWEB_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first. Don't believe? See this:
+// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QFrame>
 #include <QWebHistory>
+#include <QWebFrame>
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
-#include "exception.hpp"
-#include "syslog.hpp"
-#include "core.hpp"
+#include "resources.hpp"
 
 namespace Ui
 {
@@ -28,6 +34,7 @@ namespace Huggle
 {
     class WikiEdit;
     class WikiPage;
+    class Resources;
     class Exception;
 
     //! Web browser
@@ -49,19 +56,24 @@ namespace Huggle
              * \param url
              */
             void DisplayPreFormattedPage(QString url);
-            void DisplayPage(QString url);
+            void DisplayPage(const QString &url);
             /*!
              * \brief Display a html text in window of huggle
              * \param html
              */
-            void RenderHtml(QString html);
+            void RenderHtml(const QString &html);
             /*!
-             * \brief Display a diff of an edit using it's RevID
+             * \brief Display a diff of an edit using its RevID
              * Either uses an api or in case that api fails, the page is downloaded using standard rendering
              * \param edit
              */
             void DisplayDiff(WikiEdit *edit);
+            void DisplayNewPageEdit(WikiEdit *edit);
+            QString RetrieveHtml();
             static QString Encode(const QString &string);
+
+        private slots:
+            void Click(const QUrl &page);
 
         private:
             Ui::HuggleWeb *ui;

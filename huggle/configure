@@ -1,5 +1,5 @@
 #!/bin/bash
-#  Copyright (c) 2013, Petr Bena
+#  Copyright (c) 2013 - 2014, Petr Bena
 #  All rights reserved.
 
 #  Redistribution and use in source and binary forms, with
@@ -31,31 +31,44 @@
 SKIPCHECKS=0
 QMAKE_PATH=qmake
 _QMAKE=0
+_G=0
 RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
+BREAKPAD=0
+GCC_PATH="g++"
 QT5=10
 FLAGS=''
-
+if [ x"$*" != x ];then
+    echo "Options used: $*"
+fi
 # first we parse all arguments we got
-for var in "$@"
+for var in $@
 do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
-        echo " --skip-checks: skip all package checks"
+        echo " --skip-checks|--disable-dependency-tracking: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
         echo " --build=[i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
+        echo " --no-breakpad: will not build breakpad library for huggle"
         echo " --qmake: change path to qmake"
+        echo " --g++: change path to g++ binaries"
         echo
-        echo "Copyright (c) 2013 Petr Bena and Huggle team. This script is licensed under the BSD license."
+        echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
     fi
+    if [ "$_G" = "1" ];then
+	GCC_PATH="$var"
+        _G=0
+        continue
+    fi
     if [ "$_QMAKE" = "1" ];then
+        _QMAKE=0
 	QMAKE_PATH="$var"
         continue
     fi
@@ -65,13 +78,17 @@ do
         GREEN=""
         NORMAL=""
     fi
+    if [ "$var" = "--no-breakpad" ];then
+        BREAKPAD=1
+        continue
+    fi
     if [ "$var" = "--qt4" ];then
         QT5=0
-        continue;
+        continue
     fi
     if [ "$var" = "--qt5" ];then
         QT5=1
-        continue;
+        continue
     fi
     if [ "$var" = "--build=i686-pc-linux-gnu" ];then
         FLAGS='-spec linux-g++-32'
@@ -79,6 +96,10 @@ do
     fi
     if [ "$var" = "--build=x86_64-pc-linux-gnu" ];then
         FLAGS='-spec linux-g++-64'
+        continue
+    fi
+    if [ "$var" = "--g++" ];then
+        _G=1
         continue
     fi
     if [ "$var" = "--qmake" ];then
@@ -89,7 +110,7 @@ do
         echo "Huggle configure v 1.0"
         exit 0
     fi
-    if [ "$var" = "--skip-checks" ];then
+    if [ "$var" = "--skip-checks" ] || [ "$var" = "--disable-dependency-tracking" ];then
         SKIPCHECKS=1
         continue
     fi
@@ -103,6 +124,11 @@ ok()
 fail()
 {
     printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
+}
+
+warn()
+{
+    printf '%s%s%s\n' "$WARN" "WARNING!" "$NORMAL"
 }
 
 text()
@@ -170,11 +196,46 @@ checkpkg()
     echo "or execute apt-get install $1 as root"
     exit 1
 }
+text "Checking for g++"
+FAILED=0
+if [ "`which $GCC_PATH`" != "" ];then
+    GCC_VERSION=`$GCC_PATH --version | head -1`
+    if [ `echo "$GCC_VERSION" | grep -Ec '\s[1234]\.[0123456]\.'` -gt 0 ];then
+       warn
+       text "Found $GCC_VERSION but 4.7 or newer is required, trying some alternative options"
+       FAILED=1
+    fi
+else
+    warn
+    text "No g++ found, trying some alternative options"
+    FAILED=1
+fi
+if [ $FAILED -eq 1 ];then
+    if [ "`which g++-4.7`" ];then
+        GCC_PATH=`which g++-4.7`
+        FAILED=0
+    elif [ "`which g++-4.8`" ];then
+        GCC_PATH=`which g++-4.8`
+        FAILED=0
+    elif [ "`which g++-4.9`" ];then
+        GCC_PATH=`which g++-4.9`
+        FAILED=0
+    fi
+    if [ $FAILED -eq 1 ];then
+        fail
+        echo "No suitable compilers were found, if you have g++ 4.7 or newer somewhere in the system, please run ./configure --g++ <path>"
+        exit 1
+    fi
+    ok
+    echo "Found $GCC_PATH"
+else
+    ok
+    echo "Found $GCC_VERSION"
+fi
 
 echo "Checking all required packages..."
-
-
 text "Checking for qmake... "
+
 if [ "`which $QMAKE_PATH`" = "" ];then
 	fail
 	echo "qmake can't be found"
@@ -191,7 +252,6 @@ fi
 if [ "`which apt-cache`" = "" ];then
 	echo $WARN"WARNING: Unable to verify packages, let's just hope they are all installed"$NORMAL
 else
-	checkpkg "g++"
         checkpkg "make"
         if [ "$QT5" -eq 0 ];then
             checkpkg "qt4-dev-tools"
@@ -206,6 +266,7 @@ else
             checkpkg "libqt4-xml"
             checkpkg "qt4-qmake"
         else
+            checkpkg "libsqlite3-dev"
             checkpkg "libqt5webkit5-dev"
             checkpkg "qt5-qmake" 
             checkpkg "qt5-default"
@@ -213,7 +274,12 @@ else
             checkpkg "qtquick1-5-dev"
             checkqt "qtlocation5-dev" "libqtlocation1"
             checkqt "libqtsensors5-dev" "qtsensors5-dev"
-            checkpkg "libqt5core5"
+            # This is for Ubuntu 14.04; libqt5core5 has an a at the end of it
+            if [ "`lsb_release -a | grep 'trusty\|amd64' | wc -l`" -eq 1 ];then
+                checkpkg "libqt5core5a"
+            else
+                checkpkg "libqt5core5"
+            fi
             checkpkg "qtdeclarative5-dev"
         fi
 fi
@@ -223,17 +289,46 @@ if [ "$QT5" -eq 1 ];then
     checkhf xslt "/usr/include/libxslt/xslt.h"
 fi
 
-text "Executing update.sh... "
-if [ ! -f update.sh ];then
-        fail
-	echo "update.sh is missing!"
-	exit 1
+if [ ! -f huggle.pro ];then
+    text "Preparing huggle.pro file"
+    cp huggle.orig huggle.pro || exit 1
+    ok
 fi
 
-sh update.sh || exit 1
+#if [ $BREAKPAD -eq 0 ];then
+#    if [ ! -d breakpad ];then
+#        text "Breakpad library is not present, unpacking it..."
+#        tar -zxf breakpad.tar.gz || exit 1;ok
+#    fi 
+#    text "Checking for breakpad library"
+#    if [ ! -f libbreakpad_client.a ];then
+#        ok
+#        echo "Building it"
+#        cd breakpad || exit 1
+#        ./configure || exit 1
+#        make || exit 1
+#        if [ ! -f src/client/linux/libbreakpad_client.a ];then
+#            echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
+#            exit 1
+#        fi
+#        cp src/client/linux/libbreakpad_client.a .. || exit 1
+#        cd .. || exit 1
+#    else
+#        ok
+#    fi
+#fi
 
-ok
+text "Executing update.sh... "
+
+if [ ! -f update.sh ];then
+    fail
+    echo "update.sh is missing!"
+    exit 1
+fi
+
+sh update.sh || exit 1;ok
 text "Checking if version.txt exist... "
+
 if [ ! -f version.txt ];then
         fail
 	echo "Error! unable to create a version file!"
@@ -241,6 +336,16 @@ if [ ! -f version.txt ];then
 fi
 
 ok
+
+if [ ! -f definitions.hpp ];then
+    text "Making definitions.hpp"
+    cp definitions_prod.hpp definitions.hpp || exit 1;ok
+    if [ $BREAKPAD -eq 1 ];then
+        cat huggle.pro | sed 's/libbreakpad_client.a//' > huggle__ && mv huggle__ huggle.pro || exit 1
+        cat definitions_prod.hpp | sed 's/^.*DISABLE_BREAKPAD/#define DISABLE_BREAKPAD/' > definitions.hpp || exit 1
+    fi
+fi
+
 text "Preparing makefile hunker..."
 
 if [ ! -d hunker ];then
@@ -250,26 +355,17 @@ if [ ! -d hunker ];then
 fi
 
 cd hunker || exit 1
-$QMAKE_PATH || exit 1
-
-ok
+$QMAKE_PATH || exit 1;ok
 text "Building makefile hunker..."
-
 make -s || exit 1
-cd ..
-
-ok
+cd .. || exit 1;ok
 text "Creating makefile... "
-
-$QMAKE_PATH $FLAGS || exit 1
-
-ok
+$QMAKE_PATH $FLAGS || exit 1;ok
 text "Executing hunk..."
-
 cd hunker || exit 1
-./makefilehunker ../Makefile || exit 1
-
-ok
-
+./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
 echo "Everything is ready, you can build huggle by typing"
 echo "make"
+
+# this isn't normally needed but ensure we return 0 here
+exit 0

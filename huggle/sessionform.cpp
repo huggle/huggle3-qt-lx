@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "sessionform.hpp"
+#include "configuration.hpp"
+#include "core.hpp"
 #include "ui_sessionform.h"
 
 using namespace Huggle;
@@ -17,8 +19,8 @@ SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionF
 {
     this->ui->setupUi(this);
     /// \todo TRANSLATE ME
-    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->UserName + "\n" +
-                               "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->UsingSSL) + "\n" +
+    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
+                               "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
                                "RC feed: " + Core::HuggleCore->PrimaryFeedProvider->ToString());
     int xx=0;
     while (xx < Configuration::HuggleConfiguration->Rights.count())

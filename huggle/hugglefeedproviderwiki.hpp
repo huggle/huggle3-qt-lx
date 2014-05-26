@@ -11,18 +11,20 @@
 #ifndef HUGGLEFEEDPROVIDERWIKI_H
 #define HUGGLEFEEDPROVIDERWIKI_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QList>
 #include <QStringList>
 #include <QString>
-#include <QtXml/QtXml>
 #include <QDateTime>
-#include "core.hpp"
 #include "hugglefeed.hpp"
-#include "exception.hpp"
 #include "apiquery.hpp"
-#include "configuration.hpp"
 #include "wikiedit.hpp"
-#include "localization.hpp"
 
 namespace Huggle
 {
@@ -44,10 +46,12 @@ namespace Huggle
             QString ToString();
         private:
             void Process(QString data);
+            void ProcessEdit(QDomElement item);
+            void ProcessLog(QDomElement item);
             void InsertEdit(WikiEdit *edit);
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
-            ApiQuery *q;
+            ApiQuery *qReload;
             QDateTime LastRefresh;
             QDateTime LatestTime;
     };

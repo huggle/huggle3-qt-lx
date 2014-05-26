@@ -11,6 +11,11 @@
 #ifndef UPDATEFORM_H
 #define UPDATEFORM_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QTimer>
 #include "webserverquery.hpp"
@@ -46,7 +51,7 @@ namespace Huggle
         private:
             Ui::UpdateForm *ui;
             QStringList Instructions;
-            QTimer *t;
+            QTimer *timer;
     };
 }
 #endif // UPDATEFORM_H

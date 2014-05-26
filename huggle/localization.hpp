@@ -11,12 +11,17 @@
 #ifndef LOCALIZATION_HPP
 #define LOCALIZATION_HPP
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QStringList>
 #include <QString>
-#include <QFile>
 #include <QList>
 #include <QMap>
-#include "exception.hpp"
 
 namespace Huggle
 {
@@ -38,14 +43,16 @@ namespace Huggle
 
     //! This class is used to localize strings
 
-    //! Huggle is using own localization system and none other
-    //! usage of any 3rd localization system or libraries
-    //! is strictly forbidden and your commits that introduce
-    //! those will be reverted mercillesly
+    //! Huggle is using own localization system and usage of
+    //! other 3rd localization system or libraries
+    //! is strictly forbidden. Your commits that introduce
+    //! those will be reverted mercillesly.
     class Localizations
     {
         public:
             static Localizations *HuggleLocalizations;
+            //! "qqx"-Language for outputting the used keys
+            static const QString LANG_QQX;
 
             Localizations();
             /*!
@@ -55,16 +62,18 @@ namespace Huggle
              * using Core::MakeLanguage() and insert that to language list
              * \param name Name of a localization that is a name of language without txt suffix in localization folder
              */
-            void LocalInit(QString name);
+            void LocalInit(QString name, bool xml = true);
             QString Localize(QString key);
             QString Localize(QString key, QStringList parameters);
-            QString Localize(QString key, QString parameters);
+            QString Localize(QString key, QString parameter);
+            QString Localize(QString key, QString par1, QString par2);
             //! Languages
             QList<Language*> LocalizationData;
             //! Language selected by user this is only a language of interface
             QString PreferredLanguage;
         private:
             static Language *MakeLanguage(QString text, QString name);
+            static Language *MakeLanguageUsingXML(QString text, QString name);
     };
 }
 

@@ -9,25 +9,19 @@
 //GNU General Public License for more details.
 
 #include "configuration.hpp"
+#include <QDir>
+#include <QtXml>
+#include <QDesktopServices>
+#include "syslog.hpp"
+#include "huggleparser.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 
-Configuration * Configuration::HuggleConfiguration = new Configuration();
+Configuration * Configuration::HuggleConfiguration = NULL;
 
 Configuration::Configuration()
 {
-    QApplication::setApplicationName("Huggle");
-    QApplication::setOrganizationName("Wikimedia");
-    this->AIVP = NULL;
-    this->UAAP = NULL;
-    this->Verbosity = 0;
-    this->Project = new WikiSite("enwiki", "en.wikipedia.org/", "wiki/", "w/", true, true, "#en.wikipedia", "en");
-    this->UsingSSL = true;
-    this->UserName = "User";
-    this->Cache_HAN = 100;
-    this->UserConfig_HistoryLoad = true;
-    this->Password = "";
-    this->WelcomeMP = "Project:Huggle/Message";
 #ifdef PYTHONENGINE
     this->PythonEngine = true;
 #else
@@ -35,105 +29,16 @@ Configuration::Configuration()
 #endif
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
-    this->Cache_InfoSize = 200;
-    this->Restricted = false;
-    this->ProviderCache = 200;
     this->HuggleVersion = HUGGLE_VERSION;
-    this->UsingIRC = true;
-    this->IRCIdent = "huggle";
-    this->IRCServer = "irc.wikimedia.org";
-    this->IRCNick = "huggle";
-    this->IRCPort = 6667;
-    this->RingLogMaxSize = 2000;
 #if QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
-    this->UpdatesEnabled = true;
-    this->EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
-    this->WikiDB = "";
-    this->UserConfig_HistoryMax = 50;
-    this->DefaultRevertSummary = "Reverted edits by $1 identified as vandalism";
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
-
-    // Global
-    this->GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
-    this->GlobalConfig_EnableAll = true;
-    this->GlobalConfig_MinVersion = HUGGLE_VERSION;
-    this->GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
-    this->GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
-    this->GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
-    this->GlobalConfig_UserConf = "User:$1/huggle.css";
-
-    // Local
-    this->LocalConfig_MinimalVersion = "3.0.0.0";
-    this->LocalConfig_UseIrc = false;
-    this->LocalConfig_RequireRollback = false;
-    this->LocalConfig_RequireAdmin = false;
-    this->LocalConfig_ConfirmOnSelfRevs = true;
-    this->LocalConfig_ConfirmWL = true;
-    this->LocalConfig_ConfirmTalk = true;
-    this->LocalConfig_EnableAll = false;
-    this->LocalConfig_RequireEdits = 0;
-    this->LocalConfig_ScoreTalk = -800;
-    this->LocalConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
-    this->LocalConfig_DeletionSummary = "Deleted page using Huggle";
-
-    // Reverting
-    this->LocalConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
-    this->LocalConfig_RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-    this->LocalConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-    this->LocalConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-    this->LocalConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-    this->LocalConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
+    this->ProjectConfig_DeletionSummaries << "Deleted page using Huggle";
+    this->ProjectConfig_SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
-
-    // Warnings
-
-    this->LocalConfig_AgfRevert = "Reverted good faith edits";
-    this->LocalConfig_WarnSummary = "Warning (level 1)";
-    this->LocalConfig_WarnSummary2 = "Warning (level 2)";
-    this->LocalConfig_WarnSummary3 = "Warning (level 3)";
-    this->LocalConfig_WarnSummary4 = "Warning (level 4)";
-
-    this->QueryListTimeLimit = 2;
-    this->HistorySize = 20;
-
-    this->LocalConfig_IPScore = 800;
-    this->LocalConfig_ForeignUser = 800;
-    this->LocalConfig_BotScore = -200;
-    this->LocalConfig_ScoreUser = -600;
-    this->LocalConfig_WarningScore = 2000;
-    this->LocalConfig_TalkPageWarningScore = -800;
-    this->LocalConfig_ScoreFlag = -20000;
-    this->WarnUserSpaceRoll = true;
-    this->LocalConfig_WelcomeGood = true;
-    this->LocalConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
-    this->LocalConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
-    this->GlobalConfigWasLoaded = false;
-    this->LocalConfig_GlobalRequired = true;
-    this->LocalConfig_AIV = false;
-    this->LocalConfig_AIVExtend = true;
-    this->LocalConfig_ReportPath = "";
-    this->LocalConfig_ReportSt = 0;
-    this->LocalConfig_RUTemplateReport = "";
-    this->LocalConfig_IPVTemplateReport = "";
-    this->LocalConfig_WhitelistScore = -800;
-    this->UserConfig_GoNext = Configuration_OnNext_Next;
-    this->RvCounter = 0;
-    this->TrimOldWarnings = true;
-    this->EditCounter = 0;
-    this->AskUserBeforeReport = true;
-    this->UserConfig_SectionKeep = true;
-    this->SystemConfig_Dot = false;
-    this->QueueNewEditsUp = false;
-    this->LocalConfig_WelcomeSummary = "Welcoming user";
-    this->LocalConfig_WelcomeTitle = "Welcome";
-    this->WelcomeEmpty = true;
-    this->LocalConfig_ReportSummary = "Reporting user";
-    this->_SafeMode = false;
-    this->IRCConnectionTimeOut = 2;
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -152,60 +57,8 @@ Configuration::Configuration()
                  << "November"
                  << "December";
 
-    // we need to maintain some compatibility with older huggle
-    this->UserConfig_EnforceMonthsAsHeaders = true;
-
-    this->LocalConfig_NSProject = MEDIAWIKI_DEFAULT_NS_PROJECT;
-    this->LocalConfig_NSProjectTalk = MEDIAWIKI_DEFAULT_NS_PROJECTTALK;
-    this->LocalConfig_NSTalk = MEDIAWIKI_DEFAULT_NS_TALK;
-    this->LocalConfig_NSUser = MEDIAWIKI_DEFAULT_NS_USER;
-    this->LocalConfig_NSUserTalk = MEDIAWIKI_DEFAULT_NS_USERTALK;
-    this->LocalConfig_NSFile = MEDIAWIKI_DEFAULT_NS_FILE;
-    this->LocalConfig_NSFileTalk = MEDIAWIKI_DEFAULT_NS_FILETALK;
-    this->LocalConfig_NSCategory = MEDIAWIKI_DEFAULT_NS_CATEGORY;
-    this->LocalConfig_NSCategoryTalk = MEDIAWIKI_DEFAULT_NS_CATEGORYTALK;
-    this->LocalConfig_NSMediaWiki = MEDIAWIKI_DEFAULT_NS_MEDIAWIKI;
-    this->LocalConfig_NSMediaWikiTalk = MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK;
-    this->LocalConfig_NSHelp = MEDIAWIKI_DEFAULT_NS_HELP;
-    this->LocalConfig_NSHelpTalk = MEDIAWIKI_DEFAULT_NS_HELPTALK;
-    this->LocalConfig_NSPortal = MEDIAWIKI_DEFAULT_NS_PORTAL;
-    this->LocalConfig_NSPortalTalk = MEDIAWIKI_DEFAULT_NS_PORTALTALK;
-
-    this->LocalConfig_TemplateAge = -30;
-    this->LocalConfig_ScoreChange = 100;
-
-    // Blocking users
-    this->LocalConfig_BlockTime = "indefinite";
-    this->LocalConfig_BlockTimeAnon = "31 hours";
-    this->LocalConfig_BlockMessage = "{{subst:huggle/block|1=$1|2=$2}}";
-    this->LocalConfig_BlockMessageIndef = "{{subst:huggle/block-indef|1=$1}}";
-    this->LocalConfig_BlockReason = "[[WP:VAND|Vandalism]]";
-    this->LocalConfig_BlockSummary = "Notification: Blocked";
-    this->LocalConfig_RestoreSummary = "Restored revision $1 made by $2";
-    this->AutomaticallyResolveConflicts = false;
-    this->VandalNw_Server = "hub.tm-irc.org";
-    this->VandalNw_Login = true;
-
-    this->LocalConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
-
-    this->LocalConfig_ConfirmMultipleEdits = false;
-    this->LocalConfig_ConfirmRange = false;
-    this->LocalConfig_ConfirmPage = false;
-    this->LocalConfig_ConfirmSame = false;
-    this->LocalConfig_ConfirmWarned = false;
-    this->FontSize = 10;
-    this->WriteTimeout = 200;
-    this->ReadTimeout = 60;
-    this->EnforceManualSoftwareRollback = false;
-    this->UserConfig_DeleteEditsAfterRevert = true;
-    this->WhitelistDisabled = false;
-
-    this->LocalConfig_UAAavailable = false;
-    this->LocalConfig_UAAPath = "Project:Usernames for administrator attention";
-    this->LocalConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
-    this->RevertOnMultipleEdits = false;
-    this->SyslogPath = "huggle.log";
-    this->Log2File = false;
+    this->ProjectConfig_ProtectReason = "Persistent [[WP:VAND|vandalism]]";
+    this->ProjectConfig_BlockExpiryOptions.append("indefinite");
 }
 
 Configuration::~Configuration()
@@ -215,9 +68,51 @@ Configuration::~Configuration()
     delete this->UAAP;
 }
 
+Option *Configuration::GetOption(QString key)
+{
+    if (this->Options.contains(key))
+    {
+        return new Option(this->Options[key]);
+    }
+    return NULL;
+}
+
+QString Configuration::GenerateSuffix(QString text)
+{
+    if (!text.endsWith(this->ProjectConfig_EditSuffixOfHuggle))
+    {
+        text = text + " " + this->ProjectConfig_EditSuffixOfHuggle;
+    }
+    return text;
+}
+
+QString Configuration::GetExtensionsRootPath()
+{
+    QString path_ = Configuration::HuggleConfiguration->HomePath + QDir::separator() + EXTENSION_PATH;
+    QDir conf(path_);
+    if (!conf.exists())
+    {
+        if(!conf.mkpath(path_))
+        {
+            Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
+        }
+    }
+    return path_ + QDir::separator();
+}
+
+QString Configuration::GetLocalizationDataPath()
+{
+    QDir conf(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+    if (!conf.exists())
+    {
+        conf.mkpath(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+    }
+    return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization" + QDir::separator();
+}
+
 QString Configuration::GetURLProtocolPrefix()
 {
-    if (!Configuration::HuggleConfiguration->UsingSSL)
+    if (!Configuration::HuggleConfiguration->SystemConfig_UsingSSL)
     {
         return "http://";
     }
@@ -234,10 +129,26 @@ QString Configuration::GetConfigurationPath()
     return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration" + QDir::separator();
 }
 
+QString Configuration::ReplaceSpecialUserPage(QString PageName)
+{
+    QString result = PageName;
+    PageName = PageName.toLower();
+    if (PageName.startsWith("special:mypage"))
+    {
+        result = result.mid(14);
+        result = "User:$1" + result;
+    } else if (PageName.startsWith("special:mytalk"))
+    {
+        result = result.mid(14);
+        result = "User_talk:$1" + result;
+    }
+    return result;
+}
+
 QString Configuration::GetDefaultRevertSummary(QString source)
 {
-    QString summary = Configuration::HuggleConfiguration->DefaultRevertSummary;
-    summary = summary.replace("$1", source) + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
+    QString summary = Configuration::HuggleConfiguration->ProjectConfig_DefaultSummary;
+    summary = summary.replace("$1", source) + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
     return summary;
 }
 
@@ -261,21 +172,13 @@ QString Configuration::Bool2String(bool b)
 
 void Configuration::NormalizeConf()
 {
-    if (Configuration::HuggleConfiguration->LocalConfig_TemplateAge > -1)
-    {
-        Configuration::HuggleConfiguration->LocalConfig_TemplateAge = -30;
-    }
-    if (Configuration::HuggleConfiguration->Cache_InfoSize < 10)
-    {
-        Configuration::HuggleConfiguration->Cache_InfoSize = 10;
-    }
-    if (Configuration::HuggleConfiguration->HistorySize < 2)
-    {
-        Configuration::HuggleConfiguration->HistorySize = 2;
-    }
-    Configuration::HuggleConfiguration->EditCounter = 0;
+    if (this->ProjectConfig_TemplateAge > -1)
+        this->ProjectConfig_TemplateAge = -30;
+    if (this->SystemConfig_QueueSize < 10)
+        this->SystemConfig_QueueSize = 10;
+    if (this->SystemConfig_HistorySize < 2)
+        this->SystemConfig_HistorySize = 2;
 }
-
 
 bool Configuration::SafeBool(QString value, bool defaultvalue)
 {
@@ -288,39 +191,59 @@ bool Configuration::SafeBool(QString value, bool defaultvalue)
 
 QString Configuration::MakeLocalUserConfig()
 {
-    QString conf = "<nowiki>\n";
-    conf += "enable:true\n";
-    conf += "version:" + Configuration::HuggleConfiguration->HuggleVersion + "\n\n";
-    conf += "admin:true\n";
-    conf += "patrol-speedy:true\n";
-    conf += "speedy-message-title:Speedy deleted\n";
-    conf += "report-summary:" + Configuration::HuggleConfiguration->LocalConfig_ReportSummary + "\n";
-    conf += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
-    conf += "warn-summary-4:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 + "\n";
-    conf += "warn-summary-3:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 + "\n";
-    conf += "warn-summary-2:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 + "\n";
-    conf += "warn-summary:" + Configuration::HuggleConfiguration->LocalConfig_WarnSummary + "\n";
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \todo rewrite to save all SharedConfig only if different from project
+    QString configuration_ = "<nowiki>\n";
+    configuration_ += "enable:true\n";
+    configuration_ += "version:" + Configuration::HuggleConfiguration->HuggleVersion + "\n\n";
+    configuration_ += "speedy-message-title:Speedy deleted\n";
+    configuration_ += "report-summary:" + Configuration::HuggleConfiguration->ProjectConfig_ReportSummary + "\n";
+    configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
+    configuration_ += "warn-summary-4:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4 + "\n";
+    configuration_ += "warn-summary-3:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3 + "\n";
+    configuration_ += "warn-summary-2:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2 + "\n";
+    configuration_ += "warn-summary:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary + "\n";
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // huggle 2 options
-    conf += "auto-advance:false\n";
-    conf += "auto-whitelist:true\n";
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    conf += "confirm-multiple:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits) + "\n";
-    conf += "confirm-range:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmRange) + "\n";
-    conf += "// this option will change the behaviour of automatic resolution, be carefull\n";
-    conf += "revert-auto-multiple-edits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
-    conf += "automatically-resolve-conflicts:" + Configuration::Bool2String(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts) + "\n";
-    conf += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmPage) + "\n";
-    conf += "template-age:" + QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge) + "\n";
-    conf += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->LocalConfig_ConfirmSame) + "\n";
-    conf += "default-summary:" + Configuration::HuggleConfiguration->DefaultRevertSummary + "\n";
-    conf += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
-    conf += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->FontSize) + "\n";
-    conf += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
-    conf += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
-    conf += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
-    conf += "DeleteEditsAfterRevert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert) + "\n";
-    conf += "// queues\nqueues:\n";
+    configuration_ += "auto-advance:false\n";
+    configuration_ += "auto-whitelist:true\n";
+    configuration_ += "username-listed:true\n";
+    configuration_ += "admin:true\n";
+    configuration_ += "patrol-speedy:true\n";
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    configuration_ += "confirm-multiple:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmMultipleEdits) + "\n";
+    configuration_ += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmPage) + "\n";
+    configuration_ += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmSame) + "\n";
+    configuration_ += "confirm-self-revert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmOnSelfRevs) + "\n";
+    configuration_ += "confirm-warned:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmWarned) + "\n";
+    configuration_ += "confirm-range:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmRange) + "\n";
+    configuration_ += "default-summary:" + Configuration::HuggleConfiguration->ProjectConfig_DefaultSummary + "\n";
+    configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
+    configuration_ += "revert-auto-multiple-edits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
+    configuration_ += "automatically-resolve-conflicts:" +
+            Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts) + "\n";
+    configuration_ += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmPage) + "\n";
+    configuration_ += "template-age:" + QString::number(Configuration::HuggleConfiguration->ProjectConfig_TemplateAge) + "\n";
+    configuration_ += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmSame) + "\n";
+    configuration_ += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
+    configuration_ += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->SystemConfig_FontSize) + "\n";
+    configuration_ += "RevertOnMultipleEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->RevertOnMultipleEdits) + "\n";
+    configuration_ += "HistoryLoad:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HistoryLoad) + "\n";
+    configuration_ += "OnNext:" + QString::number(static_cast<int>(Configuration::HuggleConfiguration->UserConfig_GoNext)) + "\n";
+    configuration_ += "DeleteEditsAfterRevert:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert) + "\n";
+    configuration_ += "SkipToLastEdit:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_LastEdit) + "\n";
+    configuration_ += "RemoveOldestQueueEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_RemoveOldQueueEdits) + "\n";
+    configuration_ += "TruncateEdits:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_TruncateEdits) + "\n";
+    configuration_ += "TalkpageFreshness:" + QString::number(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness) + "\n";
+    configuration_ += "DisplayTitle:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_DisplayTitle) + "\n";
+    configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
+    configuration_ += "CheckTP:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_CheckTP) + "\n";
+    configuration_ += "ManualWarning:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_ManualWarning) + "\n";
+    configuration_ += "// HAN\n";
+    configuration_ += "HAN_DisplayUserTalk:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk) + "\n";
+    configuration_ += "HAN_DisplayBots:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots) + "\n";
+    configuration_ += "HAN_DisplayUser:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser) + "\n";
+    configuration_ += "QueueID:" + Configuration::HuggleConfiguration->UserConfig_QueueID + "\n";
+    configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
     {
@@ -328,30 +251,30 @@ QString Configuration::MakeLocalUserConfig()
         c++;
         if (fltr->IsChangeable())
         {
-            conf += "    " + fltr->QueueName + ":\n";
-            conf += "        filter-ignored:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\n";
-            conf += "        filter-bots:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\n";
-            conf += "        filter-assisted:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\n";
-            conf += "        filter-ip:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\n";
-            conf += "        filter-minor:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\n";
-            conf += "        filter-np:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
-            conf += "        filter-self:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
-            conf += "        filter-users:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
-            conf += "\n";
+            configuration_ += "    " + fltr->QueueName + ":\n";
+            configuration_ += "        filter-ignored:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\n";
+            configuration_ += "        filter-bots:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\n";
+            configuration_ += "        filter-assisted:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\n";
+            configuration_ += "        filter-ip:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\n";
+            configuration_ += "        filter-minor:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\n";
+            configuration_ += "        filter-new-pages:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
+            configuration_ += "        filter-me:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
+            configuration_ += "        filter-users:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
+            configuration_ += "        nsfilter-user:" + Configuration::Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\n";
+            configuration_ += "\n";
         }
     }
-    /// \todo Missing options from huggle 2
-    conf += "</nowiki>";
-    return conf;
+    /// \todo Missing options
+    configuration_ += "</nowiki>";
+    return configuration_;
 }
 
-void Configuration::LoadConfig()
+void Configuration::LoadSystemConfig(QString fn)
 {
-    QFile file(Configuration::GetConfigurationPath() + "huggle3.xml");
-    Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
-    if (!QFile().exists(Configuration::GetConfigurationPath() + "huggle3.xml"))
+    QFile file(fn);
+    if (!QFile().exists(fn))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + Configuration::GetConfigurationPath() + "huggle3.xml");
+        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + fn);
         return;
     }
     if(!file.open(QIODevice::ReadOnly))
@@ -361,6 +284,7 @@ void Configuration::LoadConfig()
     }
     QDomDocument conf;
     conf.setContent(file.readAll());
+    file.close();
     QDomNodeList l = conf.elementsByTagName("local");
     int item = 0;
     while (item < l.count())
@@ -373,14 +297,9 @@ void Configuration::LoadConfig()
             continue;
         }
         QString key = option.attribute("key");
-        if (key == "DefaultRevertSummary")
-        {
-            Configuration::HuggleConfiguration->DefaultRevertSummary = option.attribute("text");
-            continue;
-        }
         if (key == "Cache_InfoSize")
         {
-            Configuration::HuggleConfiguration->Cache_InfoSize = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_QueueSize = option.attribute("text").toInt();
             continue;
         }
         if (key == "GlobalConfigurationWikiAddress")
@@ -415,7 +334,7 @@ void Configuration::LoadConfig()
         }
         if (key == "ProviderCache")
         {
-            Configuration::HuggleConfiguration->ProviderCache = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_ProviderCache = option.attribute("text").toInt();
             continue;
         }
         if (key == "AskUserBeforeReport")
@@ -425,7 +344,7 @@ void Configuration::LoadConfig()
         }
         if (key == "HistorySize")
         {
-            Configuration::HuggleConfiguration->HistorySize = option.attribute("text").toInt();
+            Configuration::HuggleConfiguration->SystemConfig_HistorySize = option.attribute("text").toInt();
             continue;
         }
         if (key == "VandalNw_Login")
@@ -435,7 +354,17 @@ void Configuration::LoadConfig()
         }
         if (key == "UserName")
         {
-            Configuration::HuggleConfiguration->UserName = option.attribute("text");
+            Configuration::HuggleConfiguration->SystemConfig_Username = option.attribute("text");
+            continue;
+        }
+        if (key == "RingLogMaxSize")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
+            continue;
+        }
+        if (key == "DynamicColsInList")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "WarnUserSpaceRoll")
@@ -445,14 +374,54 @@ void Configuration::LoadConfig()
         }
         if (key == "EnableUpdates")
         {
-            Configuration::HuggleConfiguration->UpdatesEnabled = Configuration::SafeBool(option.attribute("text"));
+            Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
+        if (key == "QueueNewEditsUp")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
+        if (key == "IndexOfLastWiki")
+        {
+            Configuration::HuggleConfiguration->IndexOfLastWiki = option.attribute("text").toInt();
+            continue;
+        }
+        if (key == "UsingSSL")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_UsingSSL = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
+        if (key == "GlobalConfigWikiList")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList = option.attribute("text");
+            continue;
+        }
+        if (key == "DelayVal")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_DelayVal = option.attribute("text").toUInt();
+            continue;
+        }
+        if (key == "RequestDelay")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_RequestDelay = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
+        if (key == "RevertDelay")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_RevertDelay = option.attribute("text").toUInt();
+            continue;
+        }
+        if (key == "InstantReverts")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_InstantReverts = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
-void Configuration::SaveConfig()
+void Configuration::SaveSystemConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
     if (!file.open(QIODevice::WriteOnly))
@@ -460,537 +429,337 @@ void Configuration::SaveConfig()
         Huggle::Syslog::HuggleLogs->Log("Unable to save configuration because the file can't be open");
         return;
     }
-    QXmlStreamWriter *x = new QXmlStreamWriter();
-    x->setDevice(&file);
-    x->writeStartDocument();
-    x->writeStartElement("huggle");
-    Configuration::InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->Cache_InfoSize), x);
-    Configuration::InsertConfig("DefaultRevertSummary", Configuration::HuggleConfiguration->DefaultRevertSummary, x);
-    Configuration::InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, x);
-    Configuration::InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, x);
-    Configuration::InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, x);
-    Configuration::InsertConfig("IRCPort", QString::number(Configuration::HuggleConfiguration->IRCPort), x);
-    Configuration::InsertConfig("IRCServer", Configuration::HuggleConfiguration->IRCServer, x);
-    Configuration::InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, x);
-    Configuration::InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->ProviderCache), x);
-    Configuration::InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), x);
-    Configuration::InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->HistorySize), x);
-    Configuration::InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->QueueNewEditsUp), x);
-    Configuration::InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->RingLogMaxSize), x);
-    Configuration::InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), x);
-    Configuration::InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->UpdatesEnabled), x);
-    Configuration::InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), x);
-    Configuration::InsertConfig("UserName", Configuration::HuggleConfiguration->UserName, x);
+    QXmlStreamWriter *writer = new QXmlStreamWriter();
+    writer->setDevice(&file);
+    writer->setAutoFormatting(true);
+    writer->writeStartDocument();
+    writer->writeStartElement("huggle");
+    InsertConfig("DelayVal", QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal), writer);
+    InsertConfig("RequestDelay", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_RequestDelay), writer);
+    InsertConfig("RevertDelay", QString::number(Configuration::HuggleConfiguration->SystemConfig_RevertDelay), writer);
+    InsertConfig("InstantReverts", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_InstantReverts), writer);
+    InsertConfig("UsingSSL", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL), writer);
+    InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_QueueSize), writer);
+    InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, writer);
+    InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, writer);
+    InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, writer);
+    InsertConfig("IRCPort", QString::number(Configuration::HuggleConfiguration->IRCPort), writer);
+    InsertConfig("IRCServer", Configuration::HuggleConfiguration->IRCServer, writer);
+    InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, writer);
+    InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->SystemConfig_ProviderCache), writer);
+    InsertConfig("AskUserBeforeReport", Configuration::Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), writer);
+    InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->SystemConfig_HistorySize), writer);
+    InsertConfig("QueueNewEditsUp", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp), writer);
+    InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize), writer);
+    InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), writer);
+    InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), writer);
+    InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), writer);
+    InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, writer);
+    InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), writer);
+    InsertConfig("DynamicColsInList", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), writer);
     /////////////////////////////
     // Vandal network
     /////////////////////////////
-    Configuration::InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), x);
-    x->writeEndElement();
-    x->writeEndDocument();
-    delete x;
-}
-
-QStringList Configuration::ConfigurationParse_QL(QString key, QString content, bool CS)
-{
-    QStringList list;
-    if (content.startsWith(key + ":"))
-    {
-        QString value = content.mid(key.length() + 1);
-        QStringList lines = value.split("\n");
-        int curr = 1;
-        while (curr < lines.count())
-        {
-            QString _line = HuggleParser::Trim(lines.at(curr));
-            if (_line.endsWith(","))
-            {
-                list.append(_line);
-            } else
-            {
-                if (_line != "")
-                {
-                    list.append(_line);
-                    break;
-                }
-            }
-            curr++;
-        }
-        if (CS)
-        {
-            // now we need to split values by comma as well
-            QStringList f;
-            int c = 0;
-            while (c<list.count())
-            {
-                QStringList xx = list.at(c).split(",");
-                int i2 = 0;
-                while (i2<xx.count())
-                {
-                    if (HuggleParser::Trim(xx.at(i2)) != "")
-                    {
-                        f.append(HuggleParser::Trim(xx.at(i2)));
-                    }
-                    i2++;
-                }
-                c++;
-            }
-            list = f;
-        }
-        return list;
-    } else if (content.contains("\n" + key + ":"))
-    {
-        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
-        QStringList lines = value.split("\n");
-        int curr = 1;
-        while (curr < lines.count())
-        {
-            QString _line = HuggleParser::Trim(lines.at(curr));
-            if (_line.endsWith(","))
-            {
-                list.append(_line);
-            } else
-            {
-                if (_line != "")
-                {
-                    list.append(_line);
-                    break;
-                }
-            }
-            curr++;
-        }
-        if (CS)
-        {
-            // now we need to split values by comma as well
-            QStringList f;
-            int c = 0;
-            while (c<list.count())
-            {
-                QStringList xx = list.at(c).split(",");
-                int i2 = 0;
-                while (i2<xx.count())
-                {
-                    if (HuggleParser::Trim(xx.at(i2)) != "")
-                    {
-                        f.append(HuggleParser::Trim(xx.at(i2)));
-                    }
-                    i2++;
-                }
-                c++;
-            }
-            list = f;
-        }
-        return list;
-    }
-    return list;
-}
-
-QStringList Configuration::ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS)
-{
-    QStringList result = Configuration::ConfigurationParse_QL(key, content, CS);
-    if (result.count() == 0)
-    {
-        return list;
-    }
-    return result;
-}
-
-QList<HuggleQueueFilter *> Configuration::ConfigurationParseQueueList(QString content, bool locked)
-{
-    QList<HuggleQueueFilter*> ReturnValue;
-
-    if (!content.contains("queues:"))
-    {
-        return ReturnValue;
-    }
-
-    // we need to parse all blocks that contain information about queue
-
-    content = content.mid(content.indexOf("queues:") + 8);
-    QStringList Filtered = content.split("\n");
-
-    QStringList Info;
-
-    // we need to assume that all queues are intended with at least 4 spaces
-
-    int line = 0;
-
-    while (line < Filtered.count())
-    {
-        QString lt = Filtered.at(line);
-        if (lt.startsWith("    ") || lt == "")
-        {
-            Info.append(lt);
-        } else
-        {
-            // we reached the end of block with queue defs
-            break;
-        }
-        line++;
-    }
-
-    // now we can split the queue info
-
-    line = 0;
-    while (line < Info.count())
-    {
-        QString text = Info.at(line);
-        if (text.startsWith("    ") && !text.startsWith("        ") && text.contains(":"))
-        {
-            // this is a queue definition beginning, because it is intended with 4 spaces
-            HuggleQueueFilter *filter = new HuggleQueueFilter();
-            ReturnValue.append(filter);
-            filter->ProjectSpecific = locked;
-            QString name = text;
-            while (name.startsWith(" "))
-            {
-                name = name.mid(1);
-            }
-            name.replace(":", "");
-            filter->QueueName = name;
-            line++;
-            text = Info.at(line);
-            while (text.startsWith("        ") && text.contains(":") && line < Info.count())
-            {
-                // we need to parse the info
-                line++;
-                while (text.startsWith(" "))
-                {
-                    text = text.mid(1);
-                }
-                QString val = text.mid(text.indexOf(":") + 1);
-                QString key = text.mid(0, text.indexOf(":"));
-                text = Info.at(line);
-                if (key == "filter-ignored")
-                {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreWL(true);
-                    } else
-                    {
-                        filter->setIgnoreWL(false);
-                    }
-                    continue;
-                }
-                if (key == "filter-bots")
-                {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreBots(true);
-                    } else
-                    {
-                        filter->setIgnoreBots(false);
-                    }
-                    continue;
-                }
-                if (key == "filter-assisted")
-                {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreFriends(true);
-                    } else
-                    {
-                        filter->setIgnoreFriends(false);
-                    }
-                    continue;
-                }
-                if (key == "filter-ip")
-                {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreIP(true);
-                    } else
-                    {
-                        filter->setIgnoreIP(false);
-                    }
-                    continue;
-                }
-            }
-        } else
-        {
-            line++;
-        }
-    }
-
-    return ReturnValue;
+    InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), writer);
+    InsertConfig("GlobalConfigWikiList", Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList, writer);
+    writer->writeEndElement();
+    writer->writeEndDocument();
+    delete writer;
 }
 
 bool Configuration::ParseGlobalConfig(QString config)
 {
-    Configuration::HuggleConfiguration->GlobalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
-    QString temp = Configuration::ConfigurationParse("documentation", config);
-    if (temp != "")
-    {
-        Configuration::HuggleConfiguration->GlobalConfig_DocumentationPath = temp;
-    }
-    temp = Configuration::ConfigurationParse("feedback", config);
-    if (temp != "")
-    {
-        Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath = temp;
-    }
-    Configuration::HuggleConfiguration->GlobalConfigWasLoaded = true;
+    this->GlobalConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
+    this->GlobalConfig_DocumentationPath = ConfigurationParse("documentation", config, this->GlobalConfig_DocumentationPath);
+    this->GlobalConfig_FeedbackPath = ConfigurationParse("feedback", config, this->GlobalConfig_FeedbackPath);
+    // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
+    this->GlobalConfig_UserConf = ReplaceSpecialUserPage(ConfigurationParse("user-config-hg3", config));
+    this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(ConfigurationParse("user-config", config));
+    this->GlobalConfig_Whitelist = ConfigurationParse("whitelist-server", config);
+    this->GlobalConfigWasLoaded = true;
     return true;
 }
 
-bool Configuration::ParseLocalConfig(QString config)
+bool Configuration::ParseProjectConfig(QString config)
 {
     //AIV
-    Configuration::HuggleConfiguration->LocalConfig_AIV = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-reports", config));
-    Configuration::HuggleConfiguration->LocalConfig_AIVExtend = Configuration::SafeBool(Configuration::ConfigurationParse("aiv-extend", config));
-    Configuration::HuggleConfiguration->LocalConfig_ReportPath = Configuration::ConfigurationParse("aiv", config);
-    Configuration::HuggleConfiguration->LocalConfig_ReportSt = Configuration::ConfigurationParse("aiv-section", config).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_IPVTemplateReport = Configuration::ConfigurationParse("aiv-ip", config);
-    Configuration::HuggleConfiguration->LocalConfig_RUTemplateReport = Configuration::ConfigurationParse("aiv-user", config);
+    this->ProjectConfig_AIV = SafeBool(ConfigurationParse("aiv-reports", config));
+    this->ProjectConfig_AIVExtend = SafeBool(ConfigurationParse("aiv-extend", config));
+    this->ProjectConfig_ReportAIV = ConfigurationParse("aiv", config);
+    this->ProjectConfig_ReportSt = ConfigurationParse("aiv-section", config).toInt();
+    this->ProjectConfig_IPVTemplateReport = ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
+    this->ProjectConfig_RUTemplateReport = ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
+    this->ProjectConfig_ReportDefaultReason = ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\
+                                                                 "unconstructive edits found with [[WP:HG|Huggle 3]].");
     // Restrictions
-    Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable-all", config));
-    Configuration::HuggleConfiguration->LocalConfig_RequireAdmin = Configuration::SafeBool(Configuration::ConfigurationParse("require-admin", config));
-    Configuration::HuggleConfiguration->LocalConfig_RequireRollback = Configuration::SafeBool(Configuration::ConfigurationParse("require-rollback", config));
-    Configuration::HuggleConfiguration->LocalConfig_RequireEdits = Configuration::ConfigurationParse("require-edits", config, "0").toInt();
+    this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
+    this->ProjectConfig_RequireAdmin = SafeBool(ConfigurationParse("require-admin", config));
+    this->ProjectConfig_RequireAutoconfirmed = SafeBool(ConfigurationParse("require-autoconfirmed", config, "false"));
+    this->ProjectConfig_RequireConfig = SafeBool(ConfigurationParse("require-config", config, "false"));
+    this->ProjectConfig_RequireEdits = ConfigurationParse("require-edits", config, "0").toInt();
+    this->ProjectConfig_RequireRollback = SafeBool(ConfigurationParse("require-rollback", config));
     // IRC
-    Configuration::HuggleConfiguration->LocalConfig_UseIrc = Configuration::SafeBool(Configuration::ConfigurationParse("irc", config));
+    this->ProjectConfig_UseIrc = SafeBool(ConfigurationParse("irc", config));
     // Ignoring
-    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config, true);
-    Configuration::HuggleConfiguration->LocalConfig_IgnorePatterns = Configuration::ConfigurationParse_QL("ignore-patterns", config, true);
+    this->ProjectConfig_Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, true);
+    this->ProjectConfig_IgnorePatterns = HuggleParser::ConfigurationParse_QL("ignore-patterns", config, true);
     // Scoring
-    Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config, "800").toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ForeignUser = Configuration::ConfigurationParse("score-foreign-user", config, "200").toInt();
-    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config, "-200000").toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config, "-200").toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config, "-800").toInt();
+    this->ProjectConfig_IPScore = ConfigurationParse("score-ip", config, "800").toInt();
+    this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config).toInt();
+    this->ProjectConfig_ForeignUser = ConfigurationParse("score-foreign-user", config, "200").toInt();
+    this->ProjectConfig_BotScore = ConfigurationParse("score-bot", config, "-200000").toInt();
+    this->ProjectConfig_ScoreUser = ConfigurationParse("score-user", config, "-200").toInt();
+    this->ProjectConfig_ScoreTalk = ConfigurationParse("score-talk", config, "-800").toInt();
     // Summaries
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config);
-    Configuration::HuggleConfiguration->LocalConfig_DefaultSummary = Configuration::ConfigurationParse("default-summary", config,
+    this->ProjectConfig_WarnSummary = ConfigurationParse("warn-summary", config);
+    this->ProjectConfig_WarnSummary2 = ConfigurationParse("warn-summary-2", config);
+    this->ProjectConfig_DefaultSummary = ConfigurationParse("default-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
-    Configuration::HuggleConfiguration->LocalConfig_AgfRevert = Configuration::ConfigurationParse("agf", config,
-              "Reverted good faith edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]");
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config);
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config);
-    Configuration::HuggleConfiguration->LocalConfig_RollbackSummary = Configuration::ConfigurationParse("rollback-summary", config,
+    this->ProjectConfig_AgfRevert = ConfigurationParse("agf", config, "Reverted good faith edits by [[Special:Contributions/$2|$2]]"\
+                                                       " [[User talk:$2|talk]]");
+    this->ProjectConfig_WarnSummary3 = ConfigurationParse("warn-summary-3", config);
+    this->ProjectConfig_WarnSummary4 = ConfigurationParse("warn-summary-4", config);
+    this->ProjectConfig_RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
+    this->ProjectConfig_RollbackSummary = ConfigurationParse("rollback-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
-    Configuration::HuggleConfiguration->LocalConfig_SingleRevert = Configuration::ConfigurationParse("single-revert-summary", config,
+    this->ProjectConfig_SingleRevert = ConfigurationParse("single-revert-summary", config,
               "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
-    Configuration::HuggleConfiguration->LocalConfig_UndoSummary = Configuration::ConfigurationParse("undo-summary", config);
-    Configuration::HuggleConfiguration->LocalConfig_SoftwareRevertDefaultSummary = Configuration::ConfigurationParse("manual-revert-summary", config,
+    this->ProjectConfig_UndoSummary = ConfigurationParse("undo-summary", config);
+    this->ProjectConfig_SoftwareRevertDefaultSummary = ConfigurationParse("manual-revert-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2");
-    Configuration::HuggleConfiguration->LocalConfig_MultipleRevertSummary = Configuration::ConfigurationParse("multiple-revert-summary-parts", config,
+    this->ProjectConfig_MultipleRevertSummary = ConfigurationParse("multiple-revert-summary-parts", config,
               "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
+    this->ProjectConfig_RollbackSummaryUnknownTarget = ConfigurationParse("rollback-summary-unknown",
+              config, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     // Warning types
-    Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config);
-    Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config);
+    this->ProjectConfig_WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config);
+    this->ProjectConfig_WarningLevel = (byte_ht)ConfigurationParse("warning-mode", config, "4").toInt();
+    this->ProjectConfig_WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
     // Reverting
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmMultipleEdits = Configuration::SafeBool(
-                                      Configuration::ConfigurationParse("confirm-multiple", config));
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmRange = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-range", config));
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmSame = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-same", config));
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmWarned = Configuration::SafeBool(Configuration::ConfigurationParse("confirm-warned", config));
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(Configuration::ConfigurationParse(
-                                                                                "automatically-resolve-conflicts", config), false);
+    this->ProjectConfig_ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config));
+    this->ProjectConfig_ConfirmRange = SafeBool(ConfigurationParse("confirm-range", config));
+    this->ProjectConfig_ConfirmSame = SafeBool(ConfigurationParse("confirm-same", config));
+    this->ProjectConfig_ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config));
+    this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
     // Welcoming
-    Configuration::HuggleConfiguration->LocalConfig_WelcomeGood = Configuration::SafeBool(Configuration::ConfigurationParse("welcome-on-good-edit",
-                                                                                                                                 config, "true"));
-    Configuration::HuggleConfiguration->LocalConfig_WelcomeTypes = Configuration::ConfigurationParse_QL("welcome-messages", config);
+    this->WelcomeMP = ConfigurationParse("startup-message-location", config, "Project:Huggle/Message");
+    this->ProjectConfig_WelcomeGood = SafeBool(ConfigurationParse("welcome-on-good-edit", config, "true"));
+    this->ProjectConfig_WelcomeTypes = HuggleParser::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
-    Configuration::HuggleConfiguration->LocalConfig_ReportSummary = Configuration::ConfigurationParse("report-summary", config);
-    Configuration::HuggleConfiguration->LocalConfig_SpeedyTemplates = Configuration::ConfigurationParse_QL("speedy-options", config);
+    this->ProjectConfig_SpeedyEditSummary = ConfigurationParse("speedy-summary", config, "Tagging page for deletion");
+    this->ProjectConfig_SpeedyWarningSummary = ConfigurationParse("speedy-message-summary", config, "Notification: [[$1]] has been listed for deletion");
+    this->ProjectConfig_Patrolling = SafeBool(ConfigurationParse("patrolling-enabled", config));
+    this->ProjectConfig_ReportSummary = ConfigurationParse("report-summary", config);
+    this->ProjectConfig_SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
     // Parsing
-    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config,
-                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
+    this->ProjectConfig_TemplateAge = ConfigurationParse("template-age", config, QString::number(this->ProjectConfig_TemplateAge)).toInt();
     // UAA
-    Configuration::HuggleConfiguration->LocalConfig_UAAPath = Configuration::ConfigurationParse("uaa", config);
+    this->ProjectConfig_UAAPath = ConfigurationParse("uaa", config);
     // Blocking
-    Configuration::HuggleConfiguration->LocalConfig_BlockMessage = Configuration::ConfigurationParse("block-message", config);
-    Configuration::HuggleConfiguration->LocalConfig_BlockReason = Configuration::ConfigurationParse("block-reason", config);
-    Configuration::HuggleConfiguration->LocalConfig_BlockSummary = Configuration::ConfigurationParse("block-summary", config, "Notification: Blocked");
-    Configuration::HuggleConfiguration->LocalConfig_BlockTime = Configuration::ConfigurationParse("blocktime", config, "indef");
-    Configuration::HuggleConfiguration->LocalConfig_ClearTalkPageTemp = Configuration::ConfigurationParse("template-clear-talk-page", config,
-                                                                                                                       "{{Huggle/Cleared}}");
-    Configuration::HuggleConfiguration->LocalConfig_Assisted = Configuration::ConfigurationParse_QL("assisted-summaries", config, true);
-    Configuration::HuggleConfiguration->LocalConfig_ProtectReason = Configuration::ConfigurationParse("protection-reason", config,
-                                                                                   "Excessive [[Wikipedia:Vandalism|vandalism]]");
-    Configuration::HuggleConfiguration->LocalConfig_RevertPatterns = Configuration::ConfigurationParse_QL("revert-patterns", config, true);
-    Configuration::HuggleConfiguration->RevertPatterns.clear();
-    int xx = 0;
-    while (xx < Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.count())
+    this->ProjectConfig_WhitelistScore = ConfigurationParse("score-wl", config, "-800").toInt();
+    this->ProjectConfig_BlockMessage = ConfigurationParse("block-message", config);
+    this->ProjectConfig_BlockReason = ConfigurationParse("block-reason", config);
+    this->ProjectConfig_BlockExpiryOptions.clear();
+    // Templates
+    this->ProjectConfig_Headings = HeadingsStandard;
+    QString headings = ConfigurationParse("headings", config, "standard");
+    if (headings == "page")
     {
-        Configuration::HuggleConfiguration->RevertPatterns.append(QRegExp(Configuration::HuggleConfiguration->LocalConfig_RevertPatterns.at(xx)));
+        this->ProjectConfig_Headings = HeadingsPageName;
+        this->UserConfig_EnforceMonthsAsHeaders = false;
+    } else if(headings == "none")
+    {
+        this->ProjectConfig_Headings = HeadingsNone;
+        this->UserConfig_EnforceMonthsAsHeaders = false;
+    }
+    QString Options = ConfigurationParse("block-expiry-options", config);
+    QStringList list = Options.split(",");
+    while (list.count() > 0)
+    {
+        QString item = list.at(0);
+        item = item.trimmed();
+        this->ProjectConfig_BlockExpiryOptions.append(item);
+        list.removeAt(0);
+    }
+    this->ProjectConfig_DeletionSummaries = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
+    this->ProjectConfig_BlockSummary = ConfigurationParse("block-summary", config, "Notification: Blocked");
+    this->ProjectConfig_BlockTime = ConfigurationParse("blocktime", config, "indef");
+    this->ProjectConfig_ClearTalkPageTemp = ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+    this->ProjectConfig_Assisted = HuggleParser::ConfigurationParse_QL("assisted-summaries", config, true);
+    this->ProjectConfig_SharedIPTemplateTags = ConfigurationParse("shared-ip-template-tag", config, "");
+    this->ProjectConfig_SharedIPTemplate = ConfigurationParse("shared-ip-template", config, "");
+    this->ProjectConfig_ProtectReason =  ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    this->ProjectConfig_RevertPatterns = HuggleParser::ConfigurationParse_QL("revert-patterns", config, true);
+    this->ProjectConfig_RFPP_PlaceTop = SafeBool(ConfigurationParse("protection-request-top", config));
+    this->ProjectConfig_RFPP_Regex = ConfigurationParse("rfpp-verify", config);
+    this->ProjectConfig_RFPP_Section = (unsigned int)ConfigurationParse("rfpp-section", config, "0").toInt();
+    this->ProjectConfig_RFPP_Page = ConfigurationParse("protection-request-page", config);
+    this->ProjectConfig_RFPP_Template = ConfigurationParse("rfpp-template", config);
+    this->ProjectConfig_RFPP_Summary = ConfigurationParse("protection-request-summary", config, "Request to protect page");
+    this->ProjectConfig_RFPP = (this->ProjectConfig_RFPP_Template.length() && this->ProjectConfig_RFPP_Regex.length());
+    this->ProjectConfig_RFPP_TemplateUser = ConfigurationParse("rfpp-template-user", config);
+    QStringList MonthsHeaders_ = HuggleParser::ConfigurationParse_QL("months", config);
+    if (MonthsHeaders_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for this project contains " + QString::number(MonthsHeaders_.count()) +
+                                       " months, which is weird and I will not use them");
+    } else
+    {
+        this->Months.clear();
+        int i = 0;
+        while (i < 12)
+        {
+            QString month_ = MonthsHeaders_.at(i);
+            if (month_.contains(";"))
+            {
+                month_ = month_.mid(month_.indexOf(";") + 1);
+            }
+            if (month_.endsWith(','))
+            {
+                month_ = month_.mid(0, month_.length() - 1);
+            }
+            this->Months.append(month_);
+            i++;
+        }
+    }
+    this->ProjectConfig_AlternativeMonths.clear();
+    QStringList AMH_ = HuggleParser::ConfigurationParse_QL("alternative-months", config);
+    int month_ = 1;
+    foreach (QString months, AMH_)
+    {
+        if (months.endsWith(","))
+            months = months.mid(0, months.size() - 1);
+        this->ProjectConfig_AlternativeMonths.insert(month_, months.split(';'));
+        month_++;
+    }
+    while (month_ < 13)
+    {
+        Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        this->ProjectConfig_AlternativeMonths.insert(month_, QStringList());
+        month_++;
+    }
+    this->RevertPatterns.clear();
+    int xx = 0;
+    while (xx < this->ProjectConfig_RevertPatterns.count())
+    {
+        this->RevertPatterns.append(QRegExp(this->ProjectConfig_RevertPatterns.at(xx)));
         xx++;
     }
-    HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, true);
-
-    if (Configuration::HuggleConfiguration->AIVP != NULL)
-    {
-        delete Configuration::HuggleConfiguration->AIVP;
-    }
-
-    Configuration::HuggleConfiguration->AIVP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_ReportPath);
+    HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
+    if (this->AIVP != NULL)
+        delete this->AIVP;
+    this->AIVP = new WikiPage(this->ProjectConfig_ReportAIV);
     HuggleParser::ParsePats(config);
     HuggleParser::ParseWords(config);
-    QStringList namespaces = Configuration::ConfigurationParse_QL("namespace-names", config, true);
-    int NS=0;
-    while (namespaces.count() > NS)
-    {
-        QString line = namespaces.at(NS);
-        NS++;
-
-        if (!line.contains(",") || !line.contains(";"))
-        {
-            continue;
-        }
-
-        int ns = line.mid(0, line.indexOf(";")).toInt();
-        QString name = line.mid(line.indexOf(";"));
-
-        if (!name.contains(","))
-        {
-            continue;
-        }
-
-        name = name.mid(0, name.indexOf(","));
-        QString talk = line.mid(line.indexOf(",") + 1);
-
-        if (talk.endsWith(","))
-        {
-            talk = talk.mid(0, talk.length() - 1);
-        }
-
-        if (talk.contains(";"))
-        {
-            talk = talk.mid(talk.indexOf(";") + 1);
-        }
-
-        switch (ns)
-        {
-            /// \todo Some NS are missing here
-            case MEDIAWIKI_NSID_MAIN:
-                Configuration::HuggleConfiguration->LocalConfig_NSTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_CATEGORY:
-                Configuration::HuggleConfiguration->LocalConfig_NSCategory = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSCategoryTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_FILE:
-                Configuration::HuggleConfiguration->LocalConfig_NSFile = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSFileTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_HELP:
-                Configuration::HuggleConfiguration->LocalConfig_NSHelp = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSHelpTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_MEDIAWIKI:
-                Configuration::HuggleConfiguration->LocalConfig_NSMediaWiki = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSMediaWikiTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_PORTAL:
-                Configuration::HuggleConfiguration->LocalConfig_NSPortal = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSPortalTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_PROJECT:
-                Configuration::HuggleConfiguration->LocalConfig_NSProject = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSProjectTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_USER:
-                Configuration::HuggleConfiguration->LocalConfig_NSUser = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSUserTalk = talk;
-                break;
-            case MEDIAWIKI_NSID_TEMPLATE:
-                Configuration::HuggleConfiguration->LocalConfig_NSTemplate = name;
-                Configuration::HuggleConfiguration->LocalConfig_NSTemplateTalk = talk;
-                break;
-        }
-    }
-
-    if (Configuration::HuggleConfiguration->UAAP != NULL)
-    {
-        delete Configuration::HuggleConfiguration->UAAP;
-    }
-
-    Configuration::HuggleConfiguration->UAAP = new WikiPage(Configuration::HuggleConfiguration->LocalConfig_UAAPath);
-
+    if (this->UAAP != NULL)
+        delete this->UAAP;
+    this->UAAP = new WikiPage(this->ProjectConfig_UAAPath);
     // templates
     int CurrentTemplate=0;
-    while (CurrentTemplate<Configuration::HuggleConfiguration->LocalConfig_WarningTypes.count())
+    while (CurrentTemplate<this->ProjectConfig_WarningTypes.count())
     {
-        QString type = HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTypes.at(CurrentTemplate));
+        QString type = HuggleParser::GetKeyFromValue(this->ProjectConfig_WarningTypes.at(CurrentTemplate));
         int CurrentWarning = 1;
         while (CurrentWarning <= 4)
         {
-            QString xx = Configuration::ConfigurationParse(type + QString::number(CurrentWarning), config);
+            QString xx = ConfigurationParse(type + QString::number(CurrentWarning), config);
             if (xx != "")
             {
-                Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
+                this->ProjectConfig_WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
             }
             CurrentWarning++;
         }
         CurrentTemplate++;
     }
     // sanitize
-    if (Configuration::HuggleConfiguration->LocalConfig_ReportPath == "")
-    {
-        Configuration::HuggleConfiguration->LocalConfig_AIV = false;
-    }
+    if (this->ProjectConfig_ReportAIV.size() == 0)
+        this->ProjectConfig_AIV = false;
     // Do the same for UAA as well
-    if (Configuration::HuggleConfiguration->LocalConfig_UAAPath == "")
-    {
-        Configuration::HuggleConfiguration->LocalConfig_UAAavailable = false;
-    }
+    this->ProjectConfig_UAAavailable = this->ProjectConfig_UAAPath.size() > 0;
     return true;
 }
 
 bool Configuration::ParseUserConfig(QString config)
 {
-    Configuration::HuggleConfiguration->RevertOnMultipleEdits = Configuration::SafeBool(Configuration::ConfigurationParse("RevertOnMultipleEdits", config));
-    Configuration::HuggleConfiguration->LocalConfig_EnableAll = Configuration::SafeBool(Configuration::ConfigurationParse("enable", config));
-    Configuration::HuggleConfiguration->LocalConfig_Ignores = Configuration::ConfigurationParse_QL("ignore", config,
-                                                           Configuration::HuggleConfiguration->LocalConfig_Ignores);
-    Configuration::HuggleConfiguration->LocalConfig_IPScore = Configuration::ConfigurationParse("score-ip", config,
-                                 QString::number(Configuration::HuggleConfiguration->LocalConfig_IPScore)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,
-                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary = Configuration::ConfigurationParse("warn-summary", config,
-                                                              Configuration::HuggleConfiguration->LocalConfig_WarnSummary);
-    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = Configuration::SafeBool(
-                Configuration::ConfigurationParse("software-rollback", config));
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary2 = Configuration::ConfigurationParse("warn-summary-2", config,
-                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary2);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary3 = Configuration::ConfigurationParse("warn-summary-3", config,
-                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary3);
-    Configuration::HuggleConfiguration->LocalConfig_WarnSummary4 = Configuration::ConfigurationParse("warn-summary-4", config,
-                                                                Configuration::HuggleConfiguration->LocalConfig_WarnSummary4);
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = Configuration::SafeBool(
-                                       Configuration::ConfigurationParse("automatically-resolve-conflicts", config), false);
-    Configuration::HuggleConfiguration->LocalConfig_TemplateAge = Configuration::ConfigurationParse("template-age", config,
-                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_TemplateAge)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries = Configuration::ConfigurationParse_QL("template-summ", config,
-                                                                  Configuration::HuggleConfiguration->LocalConfig_RevertSummaries);
-    Configuration::HuggleConfiguration->LocalConfig_WarningTypes = Configuration::ConfigurationParse_QL("warning-types", config,
-                                                                     Configuration::HuggleConfiguration->LocalConfig_WarningTypes);
-    Configuration::HuggleConfiguration->LocalConfig_ScoreChange = Configuration::ConfigurationParse("score-change", config,
-                                     QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreChange)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreFlag = Configuration::ConfigurationParse("score-flag", config,
-                                       QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreFlag)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreUser = Configuration::ConfigurationParse("score-user", config,
-                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreUser)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_ScoreTalk = Configuration::ConfigurationParse("score-talk", config,
-                                   QString::number(Configuration::HuggleConfiguration->LocalConfig_ScoreTalk)).toInt();
-    Configuration::HuggleConfiguration->LocalConfig_WarningDefs = Configuration::ConfigurationParse_QL("warning-template-tags", config,
-                                                                          Configuration::HuggleConfiguration->LocalConfig_WarningDefs);
-    Configuration::HuggleConfiguration->LocalConfig_BotScore = Configuration::ConfigurationParse("score-bot", config,
-                                  QString::number(Configuration::HuggleConfiguration->LocalConfig_BotScore)).toInt();
-    HuggleQueueFilter::Filters += Configuration::ConfigurationParseQueueList(config, false);
-    Configuration::HuggleConfiguration->UserConfig_HistoryLoad = Configuration::SafeBool(Configuration::ConfigurationParse("HistoryLoad",
-                                                                                                                        config, "true"));
-    Configuration::HuggleConfiguration->UserConfig_GoNext = static_cast<Configuration_OnNext>
-                          (Configuration::ConfigurationParse("GoNext", config, "1").toInt());
-    Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = Configuration::SafeBool(
-                Configuration::ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
-    Configuration::NormalizeConf();
+    this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
+    this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable", config));
+    this->ProjectConfig_Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, this->ProjectConfig_Ignores);
+    this->ProjectConfig_IPScore = ConfigurationParse("score-ip", config, QString::number(this->ProjectConfig_IPScore)).toInt();
+    this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config, QString::number(this->ProjectConfig_ScoreFlag)).toInt();
+    this->ProjectConfig_WarnSummary = ConfigurationParse("warn-summary", config, this->ProjectConfig_WarnSummary);
+    this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
+    this->ProjectConfig_WarnSummary2 = ConfigurationParse("warn-summary-2", config, this->ProjectConfig_WarnSummary2);
+    this->ProjectConfig_WarnSummary3 = ConfigurationParse("warn-summary-3", config, this->ProjectConfig_WarnSummary3);
+    this->ProjectConfig_WarnSummary4 = ConfigurationParse("warn-summary-4", config, this->ProjectConfig_WarnSummary4);
+    this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
+    this->ProjectConfig_TemplateAge = ConfigurationParse("template-age", config, QString::number(this->ProjectConfig_TemplateAge)).toInt();
+    this->ProjectConfig_RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config, this->ProjectConfig_RevertSummaries);
+    this->ProjectConfig_WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config, this->ProjectConfig_WarningTypes);
+    this->ProjectConfig_ScoreChange = ConfigurationParse("score-change", config, QString::number(this->ProjectConfig_ScoreChange)).toInt();
+    this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config, QString::number(this->ProjectConfig_ScoreFlag)).toInt();
+    this->ProjectConfig_ScoreUser = ConfigurationParse("score-user", config, QString::number(this->ProjectConfig_ScoreUser)).toInt();
+    this->ProjectConfig_ScoreTalk = ConfigurationParse("score-talk", config, QString::number(this->ProjectConfig_ScoreTalk)).toInt();
+    this->ProjectConfig_WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config, this->ProjectConfig_WarningDefs);
+    this->ProjectConfig_BotScore = ConfigurationParse("score-bot", config, QString::number(this->ProjectConfig_BotScore)).toInt();
+    HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
+    this->UserConfig_TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
+    this->UserConfig_HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
+    this->UserConfig_LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
+    this->UserConfig_CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
+    this->UserConfig_HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));
+    this->UserConfig_HAN_DisplayUser = SafeBool(ConfigurationParse("HAN_DisplayUser", config, "true"));
+    this->UserConfig_ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
+    this->UserConfig_HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
+    this->UserConfig_TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig_TalkPageFreshness)).toInt();
+    this->UserConfig_RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
+    this->UserConfig_QueueID = ConfigurationParse("QueueID", config);
+    this->UserConfig_GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
+    this->UserConfig_DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
+    this->NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;
 }
 
+QDateTime Configuration::ServerTime()
+{
+    return QDateTime::currentDateTime().addSecs(this->ServerOffset);
+}
+
+QString Configuration::GetProjectURL(WikiSite Project)
+{
+    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;
+}
+
+QString Configuration::GetProjectWikiURL(WikiSite Project)
+{
+    return Configuration::GetProjectURL(Project) + Project.LongPath;
+}
+
+QString Configuration::GetProjectScriptURL(WikiSite Project)
+{
+    return Configuration::GetProjectURL(Project) + Project.ScriptPath;
+}
+
+QString Configuration::GetProjectURL()
+{
+    return Configuration::GetURLProtocolPrefix() + Configuration::HuggleConfiguration->Project->URL;
+}
+
+QString Configuration::GetProjectWikiURL()
+{
+    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->LongPath;
+}
+
+QString Configuration::GetProjectScriptURL()
+{
+    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
+}
+
 QString Configuration::ConfigurationParse(QString key, QString content, QString missing)
 {
+    /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
+    /// \todo maybe move it to Huggle::HuggleParser like ConfigurationParse_QL
+    // if first line in config
     if (content.startsWith(key + ":"))
     {
         QString value = content.mid(key.length() + 1);
@@ -1038,4 +807,29 @@ ScoreWord::ScoreWord(const ScoreWord &word)
 {
     this->score = word.score;
     this->word = word.word;
+}
+
+Option::Option()
+{
+    this->Name = "";
+    this->Type = OptionType_String;
+    this->ContainerString = "";
+}
+
+Option::Option(QString name, OptionType type)
+{
+    this->Name = name;
+    this->Type = type;
+}
+
+Option::Option(Option *option)
+{
+    this->Name = option->Name;
+    this->Type = option->Type;
+}
+
+Option::Option(const Option &option)
+{
+    this->Name = option.Name;
+    this->Type = option.Type;
 }

@@ -11,12 +11,18 @@
 #ifndef SPEEDYFORM_H
 #define SPEEDYFORM_H
 
-#include <QString>
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
+#include <QTimer>
 #include <QDialog>
-#include "wikipage.hpp"
+#include "wikiedit.hpp"
+#include "apiquery.hpp"
+#include "editquery.hpp"
 #include "wikiuser.hpp"
-#include "configuration.hpp"
-#include "core.hpp"
 
 namespace Ui
 {
@@ -25,8 +31,10 @@ namespace Ui
 
 namespace Huggle
 {
-    class WikiPage;
+    class WikiEdit;
     class WikiUser;
+    class ApiQuery;
+    class EditQuery;
 
     /*!
      * \brief The window that is used to report a page for deletion
@@ -37,15 +45,24 @@ namespace Huggle
         public:
             explicit SpeedyForm(QWidget *parent = 0);
             ~SpeedyForm();
-            void Init(WikiUser *user, WikiPage *page);
-            WikiPage *Page;
-            WikiUser *User;
+            void Init(WikiEdit *edit_);
+            QString Text;
 
         private slots:
+            void OnTick();
             void on_pushButton_2_clicked();
             void on_pushButton_clicked();
 
         private:
+            void Remove();
+            void Fail(QString reason);
+            void processTags();
+            EditQuery *Template;
+            ApiQuery *qObtainText;
+            QString base;
+            WikiEdit *edit;
+            QString warning;
+            QTimer *timer;
             Ui::SpeedyForm *ui;
     };
 }

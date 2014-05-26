@@ -11,12 +11,15 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QList>
 #include <QDockWidget>
-#include "exception.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 
 namespace Ui
 {
@@ -25,6 +28,7 @@ namespace Ui
 
 namespace Huggle
 {
+    //! Types of history items
     enum HistoryType
     {
         HistoryUnknown,
@@ -44,26 +48,29 @@ namespace Huggle
             HistoryItem(HistoryItem * item);
             //! Unique ID of this item
             int ID;
+            HistoryItem *UndoDependency;
+            QString UndoRevBaseTime;
             QString Result;
             QString Target;
             //! Type of item
             HistoryType Type;
-        private:
-
     };
 
     /// \todo It should be possible to go back in history to review what you have you done
     /// currently nothing happens when you click on history items
     /// \todo Function to revert your own changes
+    /// \todo Option to remove the items / trim them etc so that operating memory is not cluttered by these
 
     //! History of actions done by user
+
+    //! This is a widget that displays the user history
     class History : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit History(QWidget *parent = 0);
             ~History();
+            void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
             void Prepend(HistoryItem item);
             void Refresh();

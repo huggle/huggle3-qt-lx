@@ -11,7 +11,13 @@
 #ifndef HUGGLEFEED_H
 #define HUGGLEFEED_H
 
-#include "exception.hpp"
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
+#include <qdatetime.h>
 
 namespace Huggle
 {
@@ -22,6 +28,11 @@ namespace Huggle
     class HuggleFeed
     {
         public:
+            //! Pointer to primary feed provider
+            static HuggleFeed *PrimaryFeedProvider;
+            //! Pointer to secondary feed provider
+            static HuggleFeed *SecondaryFeedProvider;
+
             HuggleFeed();
             virtual ~HuggleFeed();
             //! Return true if this feed is operational or not
@@ -47,7 +58,14 @@ namespace Huggle
             //! Return a last edit from cache or NULL
             virtual WikiEdit *RetrieveEdit() { return NULL; }
             virtual QString ToString() = 0;
+            double GetUptime();
             HuggleQueueFilter *Filter;
+            //! Number of edits made since you logged in
+            double EditCounter;
+            //! Number of reverts made since you logged in
+            double RvCounter;
+        protected:
+            QDateTime UptimeDate;
     };
 }
 

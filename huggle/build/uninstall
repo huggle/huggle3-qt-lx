@@ -6,7 +6,8 @@ if [ "$#" -gt 0 ];then
   DEST=$1
 fi
 
-echo "Uninstalling huggle to $DEST"
+echo "Uninstalling huggle from $DEST"
 
-rm -v "$DEST"usr/bin/huggle 
-rm -v "$DEST"usr/share/man/man1/huggle.1.gz
+rm -fv "$DEST"usr/bin/huggle
+rm -fv "$DEST"usr/share/applications/huggle.desktop
+rm -fv "$DEST"usr/share/man/man1/huggle.1.gz

@@ -9,11 +9,11 @@
 //GNU General Public License for more details.
 
 #include "hugglequeueitemlabel.hpp"
+#include "exception.hpp"
+#include "mainwindow.hpp"
 #include "ui_hugglequeueitemlabel.h"
 
 using namespace Huggle;
-
-int HuggleQueueItemLabel::Count = 0;
 
 HuggleQueueItemLabel::HuggleQueueItemLabel(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleQueueItemLabel)
 {
@@ -31,10 +31,19 @@ void HuggleQueueItemLabel::SetName(QString name)
     this->ui->label_2->setText(name);
     if (this->Page != NULL)
     {
-        // change the icon according to edit type
+        int id = this->Page->Page->GetNS()->GetID();
+        if (id != 0)
+            this->ui->label_2->setStyleSheet("QLabel { background-color : #" + getColor(id) + "; }");
+        // change the icon according to edit type (descending priority)
         if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
+            return;
+        }
+
+        if (this->Page->User->IsBanned)
+        {
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-blocked.png"));
             return;
         }
 
@@ -46,13 +55,13 @@ void HuggleQueueItemLabel::SetName(QString name)
 
         if (this->Page->IsRevert)
         {
-            this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-revert.png") );
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-revert.png"));
             return;
         }
 
         if (this->Page->Bot)
         {
-            this->ui->label->setPixmap( QPixmap(":/huggle/pictures/Resources/blob-bot.png") );
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-bot.png"));
             return;
         }
 
@@ -81,6 +90,11 @@ void HuggleQueueItemLabel::SetName(QString name)
             return;
         }
 
+        if (this->Page->NewPage)
+        {
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-new.png"));
+        }
+
         if (this->Page->User->IsIP())
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
@@ -96,29 +110,17 @@ QString HuggleQueueItemLabel::GetName()
 
 void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 {
-    HuggleQueueItemLabel::Count--;
-    if (this->ParentQueue->Items.contains(this))
-    {
-        this->ParentQueue->Items.removeAll(this);
-    }
-    Core::HuggleCore->ProcessEdit(this->Page);
-    this->close();
-    this->Page->RegisterConsumer(HUGGLECONSUMER_MAINFORM);
-    this->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-    this->ParentQueue->Delete(this, qi);
+    MainWindow::HuggleMain->ProcessEdit(this->Page);
+    this->Remove(qi);
 }
 
-void HuggleQueueItemLabel::Remove()
+void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
 {
-    HuggleQueueItemLabel::Count--;
     if (this->ParentQueue->Items.contains(this))
     {
         this->ParentQueue->Items.removeAll(this);
     }
-    this->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-    this->Page = NULL;
-    this->close();
-    this->ParentQueue->Delete(this);
+    this->ParentQueue->Delete(this, qi);
 }
 
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
@@ -126,6 +128,18 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         this->Process();
-        delete this;
     }
+}
+
+QString HuggleQueueItemLabel::getColor(int id)
+{
+    if (this->buffer.contains(id))
+        return this->buffer[id];
+
+    // let's create some hash color from the id
+    QString color = QString(QCryptographicHash::hash(QString::number(id).toUtf8(), QCryptographicHash::Md5).toHex());
+    if (color.length() > 6)
+        color = color.mid(0, 6);
+    this->buffer.insert(id, color);
+    return color;
 }

@@ -11,8 +11,12 @@
 #ifndef SCOREWORDSDBFORM_H
 #define SCOREWORDSDBFORM_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
-#include "configuration.hpp"
 
 namespace Ui
 {

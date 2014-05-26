@@ -21,7 +21,16 @@
     <property name="sizeConstraint">
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -52,6 +61,9 @@
       <property name="text">
        <string/>
       </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item>
@@ -62,7 +74,17 @@
      </widget>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="font">
+       <font>
+        <family>Bitstream Vera Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>19</number>
+      </attribute>
+     </widget>
     </item>
    </layout>
   </widget>

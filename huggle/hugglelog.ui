@@ -38,6 +38,12 @@
         <height>80</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <family>Bitstream Vera Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>

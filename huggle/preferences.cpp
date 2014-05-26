@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "preferences.hpp"
+#include <QMessageBox>
+#include "core.hpp"
+#include "configuration.hpp"
 #include "ui_preferences.h"
 
 using namespace Huggle;
@@ -17,11 +20,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 {
     this->ui->setupUi(this);
     // headers
-    this->ui->tableWidget->setColumnCount(4);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("preferences"));
+    this->ui->tableWidget->setColumnCount(5);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("config-title"));
     this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
     QStringList header;
-    header << Localizations::HuggleLocalizations->Localize("name")
+    header << Localizations::HuggleLocalizations->Localize("general-name")
            << Localizations::HuggleLocalizations->Localize("author")
            << Localizations::HuggleLocalizations->Localize("description")
            << Localizations::HuggleLocalizations->Localize("status")
@@ -52,6 +55,21 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
+#ifdef PYTHONENGINE
+    c = 0;
+    QList<Python::PythonScript*> scripts(Core::HuggleCore->Python->ScriptsList());
+    while (c < scripts.count())
+    {
+        Python::PythonScript *script = scripts.at(c);
+        c++;
+        this->ui->tableWidget->insertRow(0);
+        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(script->GetModule()));
+        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(script->GetAuthor()));
+        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
+        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
+    }
+#endif
     switch(Configuration::HuggleConfiguration->UserConfig_GoNext)
     {
         case Configuration_OnNext_Stay:
@@ -72,17 +90,41 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     }
     this->Disable();
     // options
+    this->ui->checkBox_26->setChecked(Configuration::HuggleConfiguration->SystemConfig_RequestDelay);
+    this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
+    this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
-    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->AutomaticallyResolveConflicts);
+    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
     this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig_HistoryLoad);
-    this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs);
-    this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmWL);
-    this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk);
+    this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->ProjectConfig_ConfirmOnSelfRevs);
+    this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->ProjectConfig_ConfirmWL);
+    this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->ProjectConfig_ConfirmTalk);
+    this->ui->checkBox_16->setChecked(Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders);
+    this->ui->checkBox_19->setChecked(Configuration::HuggleConfiguration->UserConfig_TruncateEdits);
+    this->ui->lineEdit_2->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal));
     this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_21->setChecked(Configuration::HuggleConfiguration->UserConfig_LastEdit);
+    this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig_SectionKeep);
     this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_20->setChecked(Configuration::HuggleConfiguration->UserConfig_RevertNewBySame);
+    this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->lineEdit_3->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_RevertDelay));
+    this->ui->checkBox_24->setChecked(Configuration::HuggleConfiguration->UserConfig_ManualWarning);
+    this->ui->checkBox_25->setChecked(Configuration::HuggleConfiguration->UserConfig_CheckTP);
+    this->ui->checkBox_27->setChecked(Configuration::HuggleConfiguration->SystemConfig_InstantReverts);
+    this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
+    this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig_DisplayTitle);
+    this->on_checkBox_27_clicked();
+}
+
+Preferences::~Preferences()
+{
+    delete this->ui;
 }
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
@@ -103,15 +145,11 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->checkBox_7->setChecked(f->getIgnoreBots());
     this->ui->checkBox_8->setChecked(f->getIgnoreNP());
     this->ui->checkBox_9->setChecked(f->getIgnoreWL());
+    this->ui->checkBox_28->setChecked(f->getIgnore_UserSpace());
     this->ui->checkBox_10->setChecked(f->getIgnoreFriends());
     this->ui->checkBox_18->setChecked(f->getIgnoreReverts());
     this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
     this->ui->lineEdit->setText(f->QueueName);
-}
-
-Preferences::~Preferences()
-{
-    delete this->ui;
 }
 
 void Preferences::Disable()
@@ -123,8 +161,8 @@ void Preferences::Disable()
     this->ui->checkBox_10->setEnabled(false);
     this->ui->pushButton_4->setEnabled(false);
     this->ui->checkBox_18->setEnabled(false);
-    this->ui->checkBox_12->setEnabled(false);
     this->ui->pushButton_5->setEnabled(false);
+    this->ui->checkBox_28->setEnabled(false);
     this->ui->pushButton_6->setEnabled(false);
     this->ui->checkBox_13->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
@@ -142,8 +180,8 @@ void Preferences::EnableQueues()
     this->ui->checkBox_18->setEnabled(true);
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
-    this->ui->checkBox_12->setEnabled(true);
     this->ui->checkBox_13->setEnabled(true);
+    this->ui->checkBox_28->setEnabled(true);
 }
 
 void Preferences::on_pushButton_clicked()
@@ -153,35 +191,49 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    Configuration::HuggleConfiguration->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
     Configuration::HuggleConfiguration->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
     Configuration::HuggleConfiguration->UsingIRC = this->ui->checkBox_12->isChecked();
     Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
     Configuration::HuggleConfiguration->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmWL = this->ui->checkBox_4->isChecked();
+    Configuration::HuggleConfiguration->ProjectConfig_ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
+    Configuration::HuggleConfiguration->ProjectConfig_ConfirmWL = this->ui->checkBox_4->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_RevertNewBySame = this->ui->checkBox_20->isChecked();
     Configuration::HuggleConfiguration->UserConfig_HistoryLoad = this->ui->checkBox_14->isChecked();
-    Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk = this->ui->checkBox_11->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_SectionKeep = this->ui->checkBox_17->isChecked();
+    Configuration::HuggleConfiguration->ProjectConfig_ConfirmTalk = this->ui->checkBox_11->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_LastEdit = this->ui->checkBox_21->isChecked();
     Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
-    if (ui->radioButton_5->isChecked())
+    Configuration::HuggleConfiguration->UserConfig_TruncateEdits = this->ui->checkBox_19->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_DisplayTitle = this->ui->checkBox_23->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_ManualWarning = this->ui->checkBox_24->isChecked();
+    Configuration::HuggleConfiguration->UserConfig_CheckTP = this->ui->checkBox_25->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
+    Configuration::HuggleConfiguration->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
+    Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
+    if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Stay;
     }
-    if (ui->radioButton_4->isChecked())
+    if (this->ui->radioButton_4->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Revert;
     }
-    if (ui->radioButton_3->isChecked())
+    if (this->ui->radioButton_3->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig_GoNext = Configuration_OnNext_Next;
     }
-    Configuration::SaveConfig();
+    Configuration::SaveSystemConfig();
     this->hide();
 }
 
 void Huggle::Preferences::on_checkBox_clicked()
 {
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }
 
@@ -211,6 +263,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->setIgnoreSelf(this->ui->checkBox_6->isChecked());
     filter->setIgnoreReverts(this->ui->checkBox_18->isChecked());
     filter->setIgnoreFriends(this->ui->checkBox_10->isChecked());
+    filter->setIgnore_UserSpace(this->ui->checkBox_28->isChecked());
     filter->QueueName = this->ui->lineEdit->text();
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();
@@ -266,4 +319,16 @@ void Preferences::Reload()
         this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
         c++;
     }
+}
+
+void Huggle::Preferences::on_checkBox_26_clicked()
+{
+    this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
+    this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
+}
+
+void Huggle::Preferences::on_checkBox_27_clicked()
+{
+    this->ui->label_3->setEnabled(!this->ui->checkBox_27->isChecked());
+    this->ui->lineEdit_3->setEnabled(!this->ui->checkBox_27->isChecked());
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+    <string name="name">ಕನ್ನಡ</string>
+    <string name="add">ಸೇರಿಸು</string>
+    <string name="apply">ಅನ್ವಯಿಸು</string>
+    <string name="cancel">ರದ್ದುಪಡಿಸು</string>
+    <string name="clear">ಅಳಿಸು</string>
+    <string name="close">ಮುಚ್ಚು</string>
+    <string name="continue">ಮುಂದುವರೆಸು</string>
+    <string name="copy">ನಕಲಿಸು</string>
+    <string name="delete">ತೊಡೆದುಹಾಕು</string>
+    <string name="error">ದೋಷ</string>
+    <string name="exit">ನಿರ್ಗಮಿಸು</string>
+    <string name="minimizewindow">ಕುಗ್ಗಿಸು</string>
+    <string name="no">ಇಲ್ಲ</string>
+    <string name="ok">ಸರಿ</string>
+    <string name="remove">ತೆಗೆದುಹಾಕು</string>
+    <string name="rename">ಮರುಹೆಸರಿಸು</string>
+    <string name="restorewindow">ಹಿಂದಿರುಗಿಸು</string>
+    <string name="save">ಉಳಿಸು...</string>
+    <string name="selectfile">ವೀಕ್ಷಿಸು...</string>
+    <string name="yes">ಹೌದು</string>
+</resource>

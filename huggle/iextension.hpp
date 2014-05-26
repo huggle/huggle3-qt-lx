@@ -11,6 +11,12 @@
 #ifndef IEXTENSION_H
 #define IEXTENSION_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QtPlugin>
 #include <QList>
 #include <QNetworkAccessManager>
@@ -18,7 +24,7 @@
 
 #if _MSC_VER
 #pragma warning ( push )
-#pragma warning ( disable )
+#pragma warning ( disable : 4100 )
 #else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -79,7 +85,7 @@ namespace Huggle
 }
 
 #if _MSC_VER
-#pragma warning ( pop )
+#pragma warning ( default: 4100 )
 #else
 #pragma GCC diagnostic pop
 #endif

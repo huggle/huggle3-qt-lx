@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/test/wikipage">
+        <file>page01.txt</file>
+        <file>page02.txt</file>
+        <file>page03.txt</file>
+        <file>page04.txt</file>
+        <file>config.txt</file>
+        <file>tp0015.txt</file>
+        <file>tp0014.txt</file>
+        <file>tp0013.txt</file>
+        <file>tp0012.txt</file>
+        <file>tp0011.txt</file>
+        <file>tp0010.txt</file>
+        <file>tp0009.txt</file>
+        <file>tp0008.txt</file>
+        <file>tp0007.txt</file>
+        <file>tp0006.txt</file>
+        <file>tp0005.txt</file>
+        <file>tp0004.txt</file>
+        <file>tp0003.txt</file>
+        <file>tp0002.txt</file>
+        <file>tp0001.txt</file>
+    </qresource>
+</RCC>

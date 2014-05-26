@@ -11,15 +11,19 @@
 #ifndef PROCESSLIST_H
 #define PROCESSLIST_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QList>
 #include <QTableWidgetItem>
 #include <QDateTime>
 #include <QHeaderView>
 #include <QDockWidget>
 #include "query.hpp"
-#include "exception.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -53,18 +57,17 @@ namespace Huggle
         public:
             explicit ProcessList(QWidget *parent = 0);
             //! Insert a query to process list, the query is automatically removed once it's done
-            void InsertQuery(Query* q);
+            void InsertQuery(Query* query);
             //! Remove all entries in process list
             void Clear();
             //! Return true if there is already this in a list
-            bool ContainsQuery(Query *q);
+            bool ContainsQuery(Query *query);
             //! Remove a query from list no matter if it finished or not
-            void RemoveQuery(Query *q);
+            void RemoveQuery(Query *query);
             //! Update information about query in list
-            void UpdateQuery(Query *q);
+            void UpdateQuery(Query *query);
             void RemoveExpired();
             ~ProcessList();
-
 
         private:
             int GetItem(Query *q);

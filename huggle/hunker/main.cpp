@@ -17,17 +17,18 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    if (argc < 2)
+    if (argc < 3)
     {
-        std::cout << "it would be cool if you gave me makefile path" << std::endl;
-        return 400;
+        std::cout << "it would be cool if you gave me makefile path and some compiler" << std::endl;
+        return 1;
     }
     QString f(argv[1]);
+    QString gc(argv[2]);
     QFile *file = new QFile(f);
     if (!file->open(QIODevice::ReadWrite | QIODevice::Text))
     {
         std::cout << "unable to open a file" << std::endl;
-        return 400;
+        return 2;
     }
     QString value(file->readAll());
     file->close();
@@ -36,16 +37,20 @@ int main(int argc, char *argv[])
     if (!file->open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
         std::cout << "unable to open a file" << std::endl;
-        return 400;
+        return 3;
     }
-    
     if (value.contains("install:"))
     {
         value = value.mid(0, value.indexOf("install:"));
         value += QString("\n") + QString("install:\n\t ./build/install \"$(DESTDIR)\"\nuninstall:\n\t ./build/uninstall\n\nFORCE:\n");
-        file->write(value.toUtf8());
-        file->close();
     }
+    if (value.contains(" g++"))
+    {
+        value.replace(" g++", " " + gc);
+    }
+    file->write(value.toUtf8());
+    file->close();
+
     delete file;
     return 0;
 }

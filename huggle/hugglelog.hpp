@@ -11,13 +11,20 @@
 #ifndef HUGGLELOG_H
 #define HUGGLELOG_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QCursor>
+#include <QList>
 #include <QDockWidget>
+#include <QMutex>
 #include <QDateTime>
-#include "exception.hpp"
 #include "huggleweb.hpp"
-#include "syslog.hpp"
 
 namespace Ui
 {
@@ -26,16 +33,23 @@ namespace Ui
 
 namespace Huggle
 {
+    class HuggleLog_Line;
+
     //! This window contains all the messages that are stored in ring log
     class HuggleLog : public QDockWidget
     {
             Q_OBJECT
         public:
             explicit HuggleLog(QWidget *parent = 0);
-            void InsertText(QString text);
-            QString Format(QString date, QString text);
             ~HuggleLog();
+            void InsertText(HuggleLog_Line line);
+            QString Format(HuggleLog_Line line);
+            void Render();
+            bool Modified;
+
         private:
+            QMutex *lock;
+            QList<HuggleLog_Line> Text;
             Ui::HuggleLog *ui;
     };
 }

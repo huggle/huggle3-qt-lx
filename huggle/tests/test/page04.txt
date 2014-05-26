@@ -1,0 +1,246 @@
+
+Line 1:	Line 1:
+ 	+	
+{{Use dmy dates|date=December 2013}}
+ 	+	
+{{Use South African English|date=December 2013}}
+ 	
+{{Infobox locomotive
+shit 	
+{{Infobox locomotive
+−	
+| fuck name             = South African Class 8X 2-8-0<br>& South African Class 8R 4-8-0<br>Ex CGR 8th Class 2-8-0
++	
+| name             = South African Class 8X 2-8-0<br>& South African Class 8R 4-8-0<br>ex CGR 8th Class 2-8-0
+ 	
+| powertype        = Steam
+ 	
+| powertype        = Steam
+ 	
+| image            = SAR Class 8X 894 (2-8-0).jpg
+ 	
+| image            = SAR Class 8X 894 (2-8-0).jpg
+Line 35:	Line 37:
+ 	
+| tenderweight     = {{convert|38080|lb|t|1|abbr=on}} empty<br>{{convert|36.75|LT|t|1|abbr=on}} w/o
+ 	
+| tenderweight     = {{convert|38080|lb|t|1|abbr=on}} empty<br>{{convert|36.75|LT|t|1|abbr=on}} w/o
+ 	
+| locotenderweight = {{convert|88.45|LT|t|1|abbr=on}}
+ 	
+| locotenderweight = {{convert|88.45|LT|t|1|abbr=on}}
+−	
+| tendertype       = '''WG''' - WE, WG permitted<br>* 2 axle bogies<br>* Wheels {{convert|34|in|mm|abbr=on|sigfig=3}} dia<br>* Length {{convert|20|ft|3.5|in|m|3|abbr=on}}
++	
+| tendertype       = '''WG''' - WE, WG permitted<br>* 2 axle bogies<br>* {{convert|34|in|mm|abbr=on|sigfig=3}} wheels<br>* Length {{convert|20|ft|3.5|in|m|3|abbr=on}}
+ 	
+| fueltype         = Coal
+ 	
+| fueltype         = Coal
+ 	
+| fuelcap          = {{convert|6|LT|t|1|abbr=on}}
+ 	
+| fuelcap          = {{convert|6|LT|t|1|abbr=on}}
+Line 55:	Line 57:
+ 	
+| generator        = 
+ 	
+| generator        = 
+ 	
+| tractionmotors   = 
+ 	
+| tractionmotors   = 
+−	
+| boiler           = {{convert|4|ft|11|in|m|3|abbr=on}} int dia<br>{{convert|12|ft|5.375|in|m|3|abbr=on}} int length<br>{{convert|7|ft|1|in|m|3|abbr=on}} pitch
++	
+| boiler           = {{convert|4|ft|11|in|m|3|abbr=on}} inside diameter<br>{{convert|12|ft|5.375|in|m|3|abbr=on}} inside length<br>{{convert|7|ft|1|in|m|3|abbr=on}} pitch
+ 	
+| boilerpressure   = {{convert|180|psi|kPa|abbr=on|sigfig=3}}
+ 	
+| boilerpressure   = {{convert|180|psi|kPa|abbr=on|sigfig=3}}
+ 	
+| feedwaterheater  = 
+ 	
+| feedwaterheater  = 
+ 	
+| firearea         = {{convert|20|sqft|m2|3|abbr=on}}
+ 	
+| firearea         = {{convert|20|sqft|m2|3|abbr=on}}
+−	
+| tubearea         = 194 tubes {{convert|2|in|mm|abbr=on|sigfig=3}} ext dia<br>{{convert|1267|sqft|m2|3|abbr=on}}
++	
+| tubearea         = 194 tubes {{convert|2|in|mm|abbr=on|sigfig=3}} diameter<br>{{convert|1267|sqft|m2|3|abbr=on}}
+ 	
+| fluearea         = 
+ 	
+| fluearea         = 
+ 	
+| tubesandflues    = 
+ 	
+| tubesandflues    = 
+Line 88:	Line 90:
+ 	
+| trainbrakes      = 
+ 	
+| trainbrakes      = 
+ 	
+| safety           = 
+ 	
+| safety           = 
+−	
+| railroad         = Cape Government Railways<br>South African Railways
++	
+| operator         = Cape Government Railways<br>South African Railways
+ 	
+| railroadclass    = CGR 8th Class (2-8-0)<br>SAR Class 8X (2-8-0)<br>SAR Class 8R (4-8-0)
+ 	
+| railroadclass    = CGR 8th Class (2-8-0)<br>SAR Class 8X (2-8-0)<br>SAR Class 8R (4-8-0)
+ 	
+| powerclass       = 
+ 	
+| powerclass       = 
+Line 106:	Line 108:
+ 	
+| scrapdate        = 
+ 	
+| scrapdate        = 
+ 	
+| currentowner     = 
+ 	
+| currentowner     = 
+−	
+| disposition      = Retired
++	
+| disposition      = 
+ 	
+| notes            = 
+ 	
+| notes            = 
+ 	
+}}
+ 	
+}}
+ 		 	
+−	
+Between 1901 and 1902 the [[Cape Government Railways]] placed sixteen 8th Class [[2-8-0|{{nowrap|2-8-0}}]] Consolidation type [[steam locomotive]]s in service. In 1912, when they were assimilated into the South African Railways, they were renumbered and reclassified to '''Class 8X'''. One of them was later converted to a 4-8-0 Mastodon type wheel arrangement and reclassified to '''Class 8R'''.<ref name="Holland 1"/><ref name="SAR Renumber"/>
++	
+The '''South African Class 8X 2-8-0''' of 1901 is a [[South Africa]]n steam locomotive from the pre-[[Union of South Africa|Union]] era in the [[British Cape Colony|Cape Colony]].
+ 	+	
+ 	+	
+In 1901 and 1902 the [[Cape Government Railways]] placed sixteen 8th Class [[2-8-0|{{nowrap|2-8-0}}]] Consolidation type [[steam locomotive]]s in service. In 1912, when they were assimilated into the South African Railways, they were renumbered and reclassified to '''Class 8X'''. One of them was later converted to a 4-8-0 Mastodon type wheel arrangement and reclassified to '''Class 8R'''.<ref name="Holland 1"/><ref name="SAR Renumber"/>
+ 		 	
+ 	
+==Manufacturers==
+ 	
+==Manufacturers==
+ 	
+The first locomotive in the Cape Government Railways (CGR) {{nowrap|2-8-0}} Consolidation type 8th Class was designed by H.M. Beatty, the Chief Locomotive Superintendent of the CGR from 1896 to 1910, and sixteen were ordered from the [[Schenectady Locomotive Works]] in the United States. While they were being built, in 1901, Schenectady merged with seven other locomotive builders to form the [[American Locomotive Company]] (ALCO).<ref name="Holland 1"/>
+ 	
+The first locomotive in the Cape Government Railways (CGR) {{nowrap|2-8-0}} Consolidation type 8th Class was designed by H.M. Beatty, the Chief Locomotive Superintendent of the CGR from 1896 to 1910, and sixteen were ordered from the [[Schenectady Locomotive Works]] in the United States. While they were being built, in 1901, Schenectady merged with seven other locomotive builders to form the [[American Locomotive Company]] (ALCO).<ref name="Holland 1"/>
+ 		 	
+−	
+As a result the first two locomotives, numbered 749 and 750, were built by Schenectady in 1901, while ALCO built the rest in 1902. Of those, the first seven were numbered 351 to 357 and were allocated to the CGR’s Midland System, while the last seven were numbered 751 tot 757 and joined the two Schenectady builts on the CGR’s Western System.<ref name="Holland 1"/>
++	
+As a result the first two locomotives, numbered 749 and 750, were built by Schenectady in 1901, while ALCO built the rest in 1902. Of those, the first seven were numbered in the range from 351 to 357 and were allocated to the CGR’s Midland System, while the last seven were numbered in the range from 751 tot 757 and joined the two Schenectady builts on the CGR’s Western System.<ref name="Holland 1"/>
+ 		 	
+ 	
+They were conceived as mixed traffic locomotives equally suitable for goods and passenger work and had bar frames, narrow fireboxes, used [[saturated steam]] and had cylinders with overhead slide valves actuated by inside [[Stephenson valve gear]].<ref name="Holland 1"/><ref name="Paxton-Bourne"/>
+ 	
+They were conceived as mixed traffic locomotives equally suitable for goods and passenger work and had bar frames, narrow fireboxes, used [[saturated steam]] and had cylinders with overhead slide valves actuated by inside [[Stephenson valve gear]].<ref name="Holland 1"/><ref name="Paxton-Bourne"/>
+Line 122:	Line 124:
+ 	
+These sixteen {{nowrap|2-8-0}} locomotives were followed by several more orders, placed with various manufacturers, for similar locomotives for the CGR between 1902 and 1904. While subjecting these first sixteen locomotives to exhaustive testing on all types of traffic and under varying conditions, some trouble was experienced with the leading pony truck and it was dropped in favour of a four wheeled bogie in later orders for more locomotives. Most of the later locomotives were therefore built with a 4-8-0 Mastodon type wheel arrangement, but in spite of the difference they were all grouped together into 8th Class by the CGR.<ref name="Holland 1"/><ref name="Paxton-Bourne"/>
+ 	
+These sixteen {{nowrap|2-8-0}} locomotives were followed by several more orders, placed with various manufacturers, for similar locomotives for the CGR between 1902 and 1904. While subjecting these first sixteen locomotives to exhaustive testing on all types of traffic and under varying conditions, some trouble was experienced with the leading pony truck and it was dropped in favour of a four wheeled bogie in later orders for more locomotives. Most of the later locomotives were therefore built with a 4-8-0 Mastodon type wheel arrangement, but in spite of the difference they were all grouped together into 8th Class by the CGR.<ref name="Holland 1"/><ref name="Paxton-Bourne"/>
+ 		 	
+−	
+In 1912, when these Consolidations were assimilated into the newly established SAR and renumbered, they were reclassified to '''Class 8X'''.<ref name="diagram-book"/><ref name="SAR Renumber"/>
++	
+The [[Union of South Africa]] was established on 31 May 1910, in terms of the South Africa Act. One of the clauses in the Act required that the three Colonial Government railways, the CGR, the [[Natal Government Railways]] and the [[Central South African Railways]], also be united under one single administration to control and administer the railways, ports and harbours of the Union. While the [[South African Railways]] (SAR) came into existence in 1910, the actual classification and renumbering of all the rolling stock of the three constituent railways required careful planning and was only implemented with {{nowrap|effect}} from 1 January 1912.<ref name="SAR Renumber"/><ref name="SAR History">''The South African Railways - Historical Survey''. Editor George Hart, Publisher Bill Hart, Sponsored by Dorbyl Ltd., Published c. 1978, p. 25.</ref>
+ 		 	
+−	
+These locomotives, together with the rest of the CGR’s 8th Class {{nowrap|2-8-0}} Consolidations and 8th Class 4-8-0 Mastodons, plus the Class 8-L1 to 8-L3 4-8-0 Mastodon locomotives from the [[Central South African Railways]] (CSAR), were grouped into ten different sub-classes by the SAR. The 4-8-0 locomotives became SAR Classes 8 and 8A to 8F and the {{nowrap|2-8-0}} locomotives became Classes 8X to 8Z.<ref name="diagram-book"/>
++	
+In 1912 these Consolidations were reclassified to '''Class 8X''' on the SAR. They, together with the rest of the CGR’s 8th Class {{nowrap|2-8-0}} Consolidations and 8th Class 4-8-0 Mastodons, plus the Class 8-L1 to 8-L3 4-8-0 Mastodon locomotives from the [[Central South African Railways]] (CSAR), were grouped into ten different sub-classes by the SAR. The 4-8-0 locomotives became SAR Classes 8 and 8A to 8F and the {{nowrap|2-8-0}} locomotives became Classes 8X to 8Z.<ref name="diagram-book"/><ref name="SAR Renumber"/><ref name="diagram-book"/>
+ 		 	
+ 	
+The table displays the locomotive builders, works numbers and the CGR to SAR renumbering for the Class 8X locomotives.<ref name="Holland 1"/><ref name="SAR Renumber"/>
+ 	
+The table displays the locomotive builders, works numbers and the CGR to SAR renumbering for the Class 8X locomotives.<ref name="Holland 1"/><ref name="SAR Renumber"/>
+Line 235:	Line 237:
+ 		 	
+ 	
+==Wheel arrangement modification==
+ 	
+==Wheel arrangement modification==
+−	
+In 1930 one of the Class 8X locomotives, SAR 883, was reboilered with a purpose built boiler. At the same time it was superheated and converted to a 4-8-0 Mastodon type wheel arrangement by replacing the leading pony truck with a bogie. Because of the modification it was reclassified and became the sole '''Class 8R'''.<ref name="Paxton-Bourne"/>
++	
+In 1930 one of the Class 8X locomotives, SAR no. 883, was reboilered with a purpose built boiler. At the same time it was superheated and converted to a 4-8-0 Mastodon type wheel arrangement by replacing the leading pony truck with a bogie. Because of the modification it was reclassified and became the sole '''Class 8R'''.<ref name="Paxton-Bourne"/>
+ 		 	
+ 	
+==Service==
+ 	
+==Service==
+−	
+In SAR service, the {{nowrap|2-8-0}} Class 8X was used mainly on the Cape Midlands. The majority of the class were withdrawn by 1937, with a lone locomotive, SAR 894, surviving to 1950 before being scrapped. The sole Class 8R 4-8-0 was put to work in the Eastern Transvaal until it was withdrawn in 1939.<ref name="Paxton-Bourne"/>
++	
+In SAR service, the {{nowrap|2-8-0}} Class 8X was used mainly on the Cape Midlands. The majority of the class were withdrawn by 1937, with a lone locomotive, SAR no. 894, surviving to 1950 before being scrapped. The sole Class 8R 4-8-0 was put to work in the Eastern Transvaal until it was withdrawn from service in 1939.<ref name="Paxton-Bourne"/>
+ 		 	
+ 	
+==Sides illustrated==
+ 	
+==Sides illustrated==
+ 	
+The main picture and the following photograph offer views of both sides of the Class 8X locomotive.
+ 	
+The main picture and the following photograph offer views of both sides of the Class 8X locomotive.
+−	
+<center>
++	
+<gallery mode=packed heights="400px" perrow="3">
+−	
+{|
++	
+File:SAR Class 8X 882 (2-8-0).jpg|Ex CGR 8th Class no. 751, reclassified and renumbered to SAR Class 8X no. 882, circa 1930
+−	
+|[[File:SAR Class 8X 882 (2-8-0).jpg|thumb|x170px|Ex CGR 8th Class no. 751 ({{nowrap|2-8-0}}), reclassified and renumbered to SAR Class 8X no. 882, circa 1930]]
++	
+</gallery>
+−	
+|}
+ 
+−	
+</center>
+ 
+ 		 	
+ 	
+==See also==
+ 	
+==See also==
+Line 270:	Line 272:
+ 	
+{{Locomotives of South Africa}}
+ 	
+{{Locomotives of South Africa}}
+ 		 	
+−	
+{{DEFAULTSORT:South African Steam Class 08X}}
++	
+{{DEFAULTSORT:South African Steam 08X}}
+ 		 	
+ 	
+[[Category:Steam locomotives of South Africa]]
+ 	
+[[Category:Steam locomotives of South Africa]]
+Line 280:	Line 282:
+ 	
+[[Category:Cape gauge railway locomotives]]
+ 	
+[[Category:Cape gauge railway locomotives]]
+ 	
+[[Category:Railway locomotives introduced in 1901]]
+ 	
+[[Category:Railway locomotives introduced in 1901]]
+ 	+	
+[[Category:1901 in South Africa]]

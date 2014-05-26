@@ -11,19 +11,19 @@
 #ifndef APIQUERY_H
 #define APIQUERY_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QObject>
 #include <QtNetwork/QtNetwork>
-#include <QUrl>
-#include <QtXml/QtXml>
-#include <QObject>
 #include <QThread>
-#include "syslog.hpp"
 #include "query.hpp"
 #include "revertquery.hpp"
-#include "configuration.hpp"
-#include "core.hpp"
-#include "exception.hpp"
 
 namespace Huggle
 {
@@ -61,10 +61,10 @@ namespace Huggle
     class ApiQuery : public QObject, public Query
     {
             Q_OBJECT
-
         public:
             //! Creates a new instance of this class and set the defaults
             explicit ApiQuery();
+            explicit ApiQuery(Action a);
             //! Run
             void Process();
             //! Change the action type
@@ -90,11 +90,9 @@ namespace Huggle
             QString Target;
             //! You can change this to url of different wiki than a project
             QString OverrideWiki;
-
         private slots:
             void ReadData();
             void Finished();
-
         private:
             //! Generate api url
             void ConstructUrl();

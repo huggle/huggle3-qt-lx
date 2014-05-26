@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "blockuser.hpp"
+#include <QCheckBox>
+#include <QtXml>
+#include <QMessageBox>
+#include "wikiutil.hpp"
+#include "querypool.hpp"
+#include "configuration.hpp"
 #include "ui_blockuser.h"
 
 using namespace Huggle;
@@ -20,25 +26,22 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->BlockToken = "";
     this->user = NULL;
     this->qTokenApi = NULL;
-    this->Dependency = NULL;
-    this->t0 = NULL;
+    this->t0 = new QTimer(this);
+    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->qUser = NULL;
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->LocalConfig_BlockReason);
-    this->ui->comboBox_2->addItem("indefinite");
-    this->ui->comboBox_2->addItem("1 year");
-    this->ui->comboBox_2->addItem("6 months");
-    this->ui->comboBox_2->addItem("3 months");
-    this->ui->comboBox_2->addItem("1 month");
-    this->ui->comboBox_2->addItem("2 weeks");
-    this->ui->comboBox_2->addItem("1 week");
-    this->ui->comboBox_2->addItem("3 days");
-    this->ui->comboBox_2->addItem("1 day");
-    this->ui->comboBox_2->addItem("1 hour");
-    this->ui->checkBox_2->setText("indefinite");
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockReason);
+    int x = 0;
+    while (Configuration::HuggleConfiguration->ProjectConfig_BlockExpiryOptions.count() > x)
+    {
+        this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockExpiryOptions.at(x));
+        x++;
+    }
 }
 
 BlockUser::~BlockUser()
 {
+    GC_DECREF(this->qUser);
+    GC_DECREF(this->qTokenApi);
     delete this->t0;
     delete this->ui;
 }
@@ -53,6 +56,11 @@ void BlockUser::SetWikiUser(WikiUser *User)
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig_BlockTimeAnon);
+        this->ui->checkBox_5->setChecked(true);
+    } else
+    {
+        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig_BlockTime);
     }
 }
 
@@ -63,13 +71,10 @@ void BlockUser::GetToken()
     this->qTokenApi->SetAction(ActionQuery);
     this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
-    /// \todo LOCALIZE ME
-    this->qTokenApi->Target = "Getting token to block" + this->user->Username;
-    this->qTokenApi->RegisterConsumer("BlockUser::GetToken");
-    Core::HuggleCore->AppendQuery(this->qTokenApi);
+    this->qTokenApi->Target = Localizations::HuggleLocalizations->Localize("block-token-1", this->user->Username);
+    this->qTokenApi->IncRef();
+    QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
-    this->t0 = new QTimer(this);
-    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->QueryPhase = 0;
     this->t0->start(200);
 }
@@ -89,24 +94,20 @@ void BlockUser::onTick()
         case 1:
             this->Block();
             return;
+        case 2:
+            this->Recheck();
+            return;
     }
     this->t0->stop();
 }
 
 void BlockUser::CheckToken()
 {
-    if (this->qTokenApi == NULL)
-    {
+    if (this->qTokenApi == NULL || !this->qTokenApi->IsProcessed())
         return;
-    }
-    if (!this->qTokenApi->Processed())
-    {
-        return;
-    }
     if (this->qTokenApi->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("token can't be retrieved: " + this->qTokenApi->Result->ErrorMessage);
+        this->Failed(Localizations::HuggleLocalizations->Localize("block-token-e1", this->qTokenApi->Result->ErrorMessage));
         return;
     }
     QDomDocument d;
@@ -115,65 +116,57 @@ void BlockUser::CheckToken()
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qTokenApi->Result->Data);
-        /// \todo LOCALIZE ME
-        this->Failed("no user info was present in query (are you sysop?)");
+        this->Failed(Localizations::HuggleLocalizations->Localize("block-error-no-info"));
         return;
     }
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("blocktoken"))
     {
-        /// \todo LOCALIZE ME
-        this->Failed("No token");
+        this->Failed(Localizations::HuggleLocalizations->Localize("no-token"));
         return;
     }
     this->BlockToken = element.attribute("blocktoken");
     this->QueryPhase++;
-    this->qTokenApi->UnregisterConsumer("BlockUser::GetToken");
+    this->qTokenApi->DecRef();
     this->qTokenApi = NULL;
     Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->BlockToken);
 
     // let's block them
     this->qUser = new ApiQuery();
-    this->Dependency = this->qUser;
+    QString nocreate = "";
+    if (this->ui->checkBox_4->isChecked())
+        nocreate = "&nocreate=";
+    QString anononly = "";
+    if (this->ui->checkBox_5->isChecked())
+        anononly = "&anononly=";
+    QString noemail = "";
+    if (this->ui->checkBox_2->isChecked())
+        noemail = "&noemail=";
+    QString autoblock = "";
+    if (!this->ui->checkBox_3->isChecked())
+        autoblock = "&autoblock=";
+    QString allowusertalk = "";
+    if (!this->ui->checkBox->isChecked())
+        allowusertalk = "&allowusertalk=";
     this->qUser->SetAction(ActionQuery);
-    if (this->user->IsIP())
-    {
-        this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&expiry="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockTimeAnon) + "&token="
-                + QUrl::toPercentEncoding(BlockToken);
-
-    }else
-    {
-        this->qUser->Parameters = "action=block&user=" + QUrl::toPercentEncoding(this->user->Username) + "&reason="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->LocalConfig_BlockReason) + "&token="
-                + QUrl::toPercentEncoding(BlockToken);
-    }
-    /// \todo LOCALIZE ME
-    this->qUser->Target = "Blocking " + this->user->Username;
+    this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
+            + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
+            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
+            + noemail + autoblock + allowusertalk + "&token=" + QUrl::toPercentEncoding(BlockToken);
+    this->qUser->Target = Localizations::HuggleLocalizations->Localize("blocking", this->user->Username);
     this->qUser->UsingPOST = true;
-    this->qUser->RegisterConsumer("BlockUser::on_pushButton_clicked()");
-    Core::HuggleCore->AppendQuery(this->qUser);
+    this->qUser->IncRef();
+    QueryPool::HugglePool->AppendQuery(this->qUser);
     this->qUser->Process();
-    this->sendBlockNotice(this->Dependency);
 }
 
 void BlockUser::Block()
 {
-    if (this->qUser == NULL)
-    {
+    if (this->qUser == NULL || !this->qUser->IsProcessed())
         return;
-    }
-
-    if (!this->qUser->Processed())
-    {
-        return;
-    }
-
     if (this->qUser->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("user can't be blocked: " + this->qUser->Result->ErrorMessage);
+        this->Failed(Huggle::Localizations::HuggleLocalizations->Localize("block-fail", this->qUser->Result->ErrorMessage));
         return;
     }
     QDomDocument d;
@@ -189,10 +182,13 @@ void BlockUser::Block()
         }
         QMessageBox mb;
         mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
-        mb.setText("Unable to block: " + reason);
+        mb.setText(Localizations::HuggleLocalizations->Localize("block-fail", reason));
         mb.exec();
         this->ui->pushButton->setText("Block");
-        this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+        this->qUser->Result->Failed = true;
+        this->qUser->Result->ErrorMessage = "Unable to block: " + reason;
+        this->qUser->DecRef();
+        this->qUser = NULL;
         this->ui->pushButton->setEnabled(true);
         this->t0->stop();
         return;
@@ -201,8 +197,10 @@ void BlockUser::Block()
     Huggle::Syslog::HuggleLogs->DebugLog(this->qUser->Result->Data);
     this->ui->pushButton->setText("Blocked");
     Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->qUser->Result->Data, 2);
-    this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
+    this->qUser->DecRef();
+    this->qUser = NULL;
     this->t0->stop();
+    this->sendBlockNotice(NULL);
 }
 
 void BlockUser::Failed(QString reason)
@@ -217,13 +215,9 @@ void BlockUser::Failed(QString reason)
     this->t0 = NULL;
     this->ui->pushButton->setEnabled(true);
     if (this->qTokenApi != NULL)
-    {
-        this->qTokenApi->UnregisterConsumer("BlockUser::GetToken");
-    }
+        this->qTokenApi->DecRef();
     if (this->qUser != NULL)
-    {
-        this->qUser->UnregisterConsumer("BlockUser::on_pushButton_clicked()");
-    }
+        this->qUser->DecRef();
     this->qUser = NULL;
     this->qTokenApi = NULL;
 }
@@ -238,16 +232,68 @@ void BlockUser::on_pushButton_clicked()
 void BlockUser::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
-    if (this->user->IsIP())
+    if (this->ui->comboBox_2->currentText() != "indefinite")
     {
-        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessage;
+        blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessage;
+        blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
+        blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
     }else
     {
-        blocknotice = Configuration::HuggleConfiguration->LocalConfig_BlockMessageIndef;
+        blocknotice = Configuration::HuggleConfiguration->ProjectConfig_BlockMessageIndef;
+        blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
-    QString blocksum = Configuration::HuggleConfiguration->LocalConfig_BlockSummary;
-    Core::HuggleCore->MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency);
+    QString blocksum = Configuration::HuggleConfiguration->ProjectConfig_BlockSummary;
+    WikiUtil::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false, true);
 }
 
 
+void Huggle::BlockUser::on_pushButton_3_clicked()
+{
+    if (this->qUser != NULL)
+        return;
+    this->ui->pushButton_3->setEnabled(false);
+    this->ui->pushButton->setEnabled(false);
+    this->qUser = new ApiQuery(ActionQuery);
+    this->qUser->Target = "user";
+    this->qUser->Parameters = "list=blocks&";
+    if (!this->user->IsIP())
+    {
+        this->qUser->Parameters += "bkusers=" + QUrl::toPercentEncoding(this->user->Username);
+    } else
+    {
+        this->qUser->Parameters += "bkip=" + QUrl::toPercentEncoding(this->user->Username);
+    }
+    this->qUser->IncRef();
+    this->qUser->Process();
+    this->QueryPhase = 2;
+    this->t0->start();
+}
 
+void BlockUser::Recheck()
+{
+    if (this->qUser == NULL)
+        throw new Huggle::Exception("user must not be NULL",  "void BlockUser::Recheck()");
+    if (this->qUser->IsProcessed())
+    {
+        QDomDocument d;
+        d.setContent(this->qUser->Result->Data);
+        QMessageBox mb;
+        mb.setWindowTitle("Result");
+        QDomNodeList l = d.elementsByTagName("block");
+        if (l.count() > 0)
+        {
+            mb.setText("User is already blocked");
+            this->user->IsBanned = true;
+            this->user->Update();
+        } else
+        {
+            mb.setText("User is not blocked");
+        }
+        mb.exec();
+        this->qUser->DecRef();
+        this->qUser = NULL;
+        this->t0->stop();
+        this->ui->pushButton_3->setEnabled(true);
+        this->ui->pushButton->setEnabled(true);
+    }
+}

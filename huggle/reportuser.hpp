@@ -12,18 +12,22 @@
 #ifndef REPORTUSER_H
 #define REPORTUSER_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QTimer>
-#include <QWebView>
 #include <QMutex>
-#include <QtXml>
 #include <QCheckBox>
-#include <QString>
 #include <QList>
-#include "core.hpp"
+#include "blockuser.hpp"
+#include "editquery.hpp"
+#include "resources.hpp"
 #include "apiquery.hpp"
 #include "huggleweb.hpp"
-#include "configuration.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui
@@ -34,18 +38,19 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
+    class ApiQuery;
+    class EditQuery;
+    class BlockUser;
 
     //! Report user
     class ReportUser : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit ReportUser(QWidget *parent = 0);
             //! Set a user
-            bool SetUser(WikiUser *u);
+            bool SetUser(WikiUser *user);
             ~ReportUser();
-
         private slots:
             void Tick();
             void On_DiffTick();
@@ -54,30 +59,43 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void on_tableWidget_clicked(const QModelIndex &index);
             void on_pushButton_3_clicked();
-
+            void on_pushButton_4_clicked();
+            void on_pushButton_5_clicked();
+            void on_pushButton_6_clicked();
+            void on_pushButton_7_clicked();
         private:
             bool CheckUser();
             void InsertUser();
+            //! Stop all operations
+            void Kill();
+            void failCheck(QString reason);
             Ui::ReportUser *ui;
             //! Reported user
-            WikiUser *user;
+            WikiUser *ReportedUser;
             //! This query is used to retrieve a history of user
             ApiQuery *qHistory;
-            //! Timer is used to retrieve a history for user
-            QTimer *timer;
+            ApiQuery *qCheckIfBlocked;
+            //! Timer is used to report the user
+            QTimer *tReportUser;
             //! Timer to check the report page
-            QTimer *t2;
+            QTimer *tReportPageCheck;
             //! Used to retrieve a diff of page
-            QTimer *diff;
+            QTimer *tPageDiff;
+            EditQuery *qEdit;
             QList <QCheckBox*> CheckBoxes;
             //! Text of report to send to AIV page
             QString ReportText;
             //! Content of report
-            QString _p;
+            QString ReportContent;
+            QString ReportTs;
             bool Loading;
             bool Messaging;
-            ApiQuery *tq;
-            ApiQuery *qd;
+            BlockUser *BlockForm;
+            //! This query is used to get a block history
+            ApiQuery *qBlockHistory;
+            //! This is used to retrieve current report page and write to it
+            ApiQuery *qReport;
+            ApiQuery *qDiff;
     };
 }
 

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "syslog.hpp"
+#include "configuration.hpp"
 
 using namespace Huggle;
 
@@ -24,23 +25,32 @@ Syslog::~Syslog()
     delete this->WriterLock;
 }
 
-void Syslog::Log(QString Message, bool TerminalOnly)
+void Syslog::Log(QString Message, bool TerminalOnly, HuggleLogType Type)
 {
-    Message = QDateTime::currentDateTime().toString() + "   " + Message;
-    std::cout << Message.toStdString() << std::endl;
+    QString d = QDateTime::currentDateTime().toString();
+    QString message = d + "   " + Message;
+    if (Type == HuggleLogType_Error)
+    {
+        std::cerr << message.toStdString() << std::endl;
+    } else
+    {
+        std::cout << message.toStdString() << std::endl;
+    }
+    HuggleLog_Line line(Message, d);
+    line.Type = Type;
     if (!TerminalOnly)
     {
-        this->InsertToRingLog(Message);
+        this->InsertToRingLog(line);
         this->lUnwrittenLogs.lock();
-        this->UnwrittenLogs.append(Message);
+        this->UnwrittenLogs.append(line);
         this->lUnwrittenLogs.unlock();
-        if (Configuration::HuggleConfiguration->Log2File)
+        if (Configuration::HuggleConfiguration->SystemConfig_Log2File)
         {
             this->WriterLock->lock();
-            QFile *file = new QFile(Configuration::HuggleConfiguration->SyslogPath);
+            QFile *file = new QFile(Configuration::HuggleConfiguration->SystemConfig_SyslogPath);
             if (file->open(QIODevice::Append))
             {
-                file->write(QString(Message + "\n").toUtf8());
+                file->write(QString(message + "\n").toUtf8());
                 file->close();
             }
             delete file;
@@ -49,13 +59,23 @@ void Syslog::Log(QString Message, bool TerminalOnly)
     }
 }
 
+void Syslog::ErrorLog(QString Message, bool TerminalOnly)
+{
+    this->Log("ERROR: " + Message, TerminalOnly, HuggleLogType_Error);
+}
+
+void Syslog::WarningLog(QString Message, bool TerminalOnly)
+{
+    this->Log("WARNING: " + Message, TerminalOnly, HuggleLogType_Warn);
+}
+
 QString Syslog::RingLogToText()
 {
     int i = 0;
     QString text = "";
     while (i<this->RingLog.size())
     {
-        text = this->RingLog.at(i) + "\n" + text;
+        text = this->RingLog.at(i).Date + ": " + this->RingLog.at(i).Text + "\n" + text;
         i++;
     }
     return text;
@@ -63,22 +83,39 @@ QString Syslog::RingLogToText()
 
 QStringList Syslog::RingLogToQStringList()
 {
-    return QStringList(this->RingLog);
+    QStringList list;
+    int i = 0;
+    while (i<this->RingLog.size())
+    {
+        QString text = this->RingLog.at(i).Date + ": " + this->RingLog.at(i).Text;
+        list.append(text);
+        i++;
+    }
+    return list;
 }
 
-void Syslog::InsertToRingLog(QString text)
+void Syslog::InsertToRingLog(HuggleLog_Line line)
 {
-    if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->RingLogMaxSize)
+    if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize)
     {
         this->RingLog.removeAt(0);
     }
-    this->RingLog.append(text);
+    this->RingLog.append(line);
+}
+
+QList<HuggleLog_Line> Syslog::RingLogToList()
+{
+    QList<HuggleLog_Line> list;
+    list << this->RingLog;
+    return list;
 }
 
 void Syslog::DebugLog(QString Message, unsigned int Verbosity)
 {
     if (Huggle::Configuration::HuggleConfiguration->Verbosity >= Verbosity)
     {
-        this->Log("DEBUG[" + QString::number(Verbosity) + "]: " + Message, Huggle::Configuration::HuggleConfiguration->SystemConfig_Dot);
+        this->Log("DEBUG[" + QString::number(Verbosity) + "]: " + Message,
+                  Huggle::Configuration::HuggleConfiguration->SystemConfig_Dot,
+                  Huggle::HuggleLogType_Debug);
     }
 }

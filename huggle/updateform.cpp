@@ -9,20 +9,23 @@
 //GNU General Public License for more details.
 
 #include "updateform.hpp"
+#include <QDesktopServices>
+#include "configuration.hpp"
 #include "ui_updateform.h"
+
 using namespace Huggle;
 
 UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm)
 {
     this->ui->setupUi(this);
     this->qData = NULL;
-    this->t = new QTimer(this);
+    this->timer = new QTimer(this);
 }
 
 UpdateForm::~UpdateForm()
 {
     delete this->ui;
-    delete this->t;
+    delete this->timer;
 }
 
 void UpdateForm::Check()
@@ -37,24 +40,24 @@ void UpdateForm::Check()
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
     this->qData->Process();
-    connect(this->t, SIGNAL(timeout()), this, SLOT(OnTick()));
-    this->qData->RegisterConsumer("updater");
-    this->t->start(60);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->qData->IncRef();
+    this->timer->start(60);
 }
 
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
     if (this->ui->checkBox->isChecked())
     {
-        Configuration::HuggleConfiguration->UpdatesEnabled = false;
-        Configuration::HuggleConfiguration->SaveConfig();
+        Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     this->close();
 }
 
 void UpdateForm::OnTick()
 {
-    if (!this->qData->Processed())
+    if (!this->qData->IsProcessed())
     {
         return;
     }
@@ -65,12 +68,13 @@ void UpdateForm::OnTick()
     if (l.count() == 0)
     {
         // there is no new version of huggle
-        this->qData->UnregisterConsumer("updater");
-        this->t->stop();
+        this->qData->DecRef();
+        this->timer->stop();
         return;
     } else
     {
         QString version = l.at(0).toElement().text();
+        /// \todo LOCALIZE ME
         QString info = "New version of huggle is available: version " + version;
         l = r.elementsByTagName("info");
         if (l.count() > 0)
@@ -81,8 +85,8 @@ void UpdateForm::OnTick()
             info = info.replace("$LATESTHUGGLE", version);
             this->ui->label->setText(info);
             this->show();
-            this->qData->UnregisterConsumer("updater");
-            this->t->stop();
+            this->qData->DecRef();
+            this->timer->stop();
             return;
         } else
         {
@@ -98,8 +102,8 @@ void UpdateForm::OnTick()
                     if (!element.attributes().contains("target"))
                     {
                         Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ingoring the update");
-                        this->qData->UnregisterConsumer("updater");
-                        this->t->stop();
+                        this->qData->DecRef();
+                        this->timer->stop();
                         return;
                     }
                     this->Instructions.append("download " + element.text() + " " + element.attribute("target"));
@@ -129,7 +133,7 @@ void UpdateForm::OnTick()
     }
 
     this->qData->UnregisterConsumer("updater");
-    this->t->stop();
+    this->timer->stop();
 }
 
 void Huggle::UpdateForm::on_label_linkActivated(const QString &link)

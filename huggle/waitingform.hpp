@@ -11,6 +11,11 @@
 #ifndef WAITINGFORM_H
 #define WAITINGFORM_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 
 namespace Ui
@@ -28,6 +33,7 @@ namespace Huggle
         public:
             explicit WaitingForm(QWidget *parent = 0);
             ~WaitingForm();
+            void Status(int progress);
             void Status(int progress, QString text);
 
         private:

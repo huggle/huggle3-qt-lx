@@ -11,17 +11,19 @@
 #ifndef DELETEFORM_H
 #define DELETEFORM_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QTimer>
 #include <QString>
-#include <QtXml>
-#include <QLineEdit>
 #include <QUrl>
-#include "localization.hpp"
-#include "configuration.hpp"
 #include "wikipage.hpp"
+#include "wikiuser.hpp"
 #include "apiquery.hpp"
-#include "core.hpp"
 
 namespace Ui
 {
@@ -31,6 +33,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiPage;
+    class ApiQuery;
+    class WikiUser;
 
     //! This is a delete form
     class DeleteForm : public QDialog
@@ -40,15 +44,16 @@ namespace Huggle
         public:
             explicit DeleteForm(QWidget *parent = 0);
             ~DeleteForm();
-            void setPage(WikiPage *Page, WikiUser *User);
+            void SetPage(WikiPage *Page, WikiUser *User);
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
-            void onTick();
+            void OnTick();
         private:
-            void getToken();
+            void GetToken();
             void Delete();
-            void checkDelToken();
+            void DelRef();
+            void CheckDeleteToken();
             void Failed(QString Reason);
             Ui::DeleteForm *ui;
             WikiPage *page;
@@ -61,9 +66,9 @@ namespace Huggle
             ApiQuery *qToken;
             ApiQuery *qTokenOfTalkPage;
             //! Set the page to delete
-            QTimer *dt;
-            WikiPage *TP;
-            WikiUser *user;
+            QTimer *tDelete;
+            WikiPage *TalkPage;
+            WikiUser *PageUser;
             //! This is used to figure out what are we doing now in timer signal
             int delQueryPhase;
     };

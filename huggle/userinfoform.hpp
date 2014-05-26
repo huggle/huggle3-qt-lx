@@ -11,10 +11,14 @@
 #ifndef USERINFOFORM_H
 #define USERINFOFORM_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDockWidget>
 #include <QString>
-#include "core.hpp"
-#include "exception.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"
@@ -37,7 +41,6 @@ namespace Huggle
     class UserinfoForm : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit UserinfoForm(QWidget *parent = 0);
             ~UserinfoForm();
@@ -52,7 +55,7 @@ namespace Huggle
         private:
             Ui::UserinfoForm *ui;
             WikiUser *User;
-            ApiQuery *q;
+            ApiQuery *qContributions;
             QTimer *timer;
             WikiEdit *edit;
     };

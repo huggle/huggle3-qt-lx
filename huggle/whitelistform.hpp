@@ -11,10 +11,14 @@
 #ifndef WHITELISTFORM_H
 #define WHITELISTFORM_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
 #include <QString>
 #include <QTimer>
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -29,14 +33,12 @@ namespace Huggle
     class WhitelistForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit WhitelistForm(QWidget *parent = 0);
             ~WhitelistForm();
         private slots:
             void OnTick();
             void on_pushButton_clicked();
-
         private:
             QStringList Whitelist;
             QTimer *timer;

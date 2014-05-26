@@ -9,12 +9,17 @@
 //GNU General Public License for more details.
 
 #include "wlquery.hpp"
+#include <QtNetwork>
+#include <QUrl>
+#include "configuration.hpp"
 using namespace Huggle;
 
 WLQuery::WLQuery()
 {
+    this->Type = WLQueryType_ReadWL;
     this->Result = NULL;
-    Save = false;
+    this->Parameters = "";
+    this->Progress = 0;
 }
 
 WLQuery::~WLQuery()
@@ -23,24 +28,62 @@ WLQuery::~WLQuery()
     this->Result = NULL;
 }
 
+QString WLQuery::QueryTypeToString()
+{
+    return "Whitelist";
+}
+
+QString WLQuery::QueryTargetToString()
+{
+    if (this->Type != WLQueryType_SuspWL)
+        return "Writing users to WhiteList";
+    else
+        return "Reporting suspicious edit";
+}
+
 void WLQuery::Process()
 {
+    if (!Configuration::HuggleConfiguration->GlobalConfig_Whitelist.size())
+    {
+        // there is no whitelist in config for this wiki
+        Syslog::HuggleLogs->ErrorLog("Unable to process WL request, there is no whitelist server defined");
+        this->Result = new QueryResult();
+        this->Result->ErrorMessage = "Invalid URL";
+        this->Result->Failed = true;
+        this->Status = Huggle::StatusInError;
+        return;
+    }
     this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
-    QUrl url("http://huggle.wmflabs.org/data/wl.php?action=read&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
-    QString params = "";
-    if (Save)
+    QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist
+             + "?action=read&wp="
+             + Configuration::HuggleConfiguration->Project->WhiteList);
+    switch (this->Type)
     {
-        url = QUrl("http://huggle.wmflabs.org/data/wl.php?action=save&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
+        case WLQueryType_ReadWL:
+            break;
+        case WLQueryType_SuspWL:
+            url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist +
+                       "susp.php?action=insert&" + this->Parameters);
+            break;
+        case WLQueryType_WriteWL:
+            url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist + "?action=save&user=" +
+                      QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
+                      "&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
+            break;
+    }
+    QString params = "";
+    QByteArray data;
+    if (this->Type == WLQueryType_WriteWL)
+    {
         QString whitelist = "";
         int p = 0;
-        Configuration::HuggleConfiguration->WhiteList.sort();
-        while (p < Configuration::HuggleConfiguration->WhiteList.count())
+        while (p < Configuration::HuggleConfiguration->NewWhitelist.count())
         {
-            if (Configuration::HuggleConfiguration->WhiteList.at(p) != "")
+            if (Configuration::HuggleConfiguration->NewWhitelist.at(p) != "")
             {
-                whitelist += Configuration::HuggleConfiguration->WhiteList.at(p) + "|";
+                whitelist += Configuration::HuggleConfiguration->NewWhitelist.at(p) + "|";
             }
             p++;
         }
@@ -50,16 +93,21 @@ void WLQuery::Process()
         }
         whitelist += "||EOW||";
         params = "wl=" + QUrl::toPercentEncoding(whitelist);
+        data = params.toUtf8();
+        long size = (long)data.size();
+        Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte");
     }
     QNetworkRequest request(url);
-    if (!Save)
+    if (this->Type == WLQueryType_ReadWL)
     {
         this->r = Query::NetworkManager->get(request);
     } else
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        this->r = Query::NetworkManager->post(request, params.toUtf8());
+        this->r = Query::NetworkManager->post(request, data);
     }
+    QObject::connect(this->r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
+    QObject::connect(this->r, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
     QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
@@ -72,16 +120,33 @@ void WLQuery::ReadData()
 void WLQuery::Finished()
 {
     this->Result->Data += QString(this->r->readAll());
+    if (this->Type == WLQueryType_WriteWL)
+    {
+        Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
+        if (!this->Result->Data.contains("written"))
+            Syslog::HuggleLogs->ErrorLog("Failed to store data to white list: " + this->Result->Data);
+    }
     // now we need to check if request was successful or not
     if (this->r->error())
     {
         this->Result->ErrorMessage = r->errorString();
         this->Result->Failed = true;
-        this->r->deleteLater();
-        this->r = NULL;
-        return;
     }
     this->r->deleteLater();
     this->r = NULL;
     this->Status = StatusDone;
+}
+
+void WLQuery::WriteProgress(qint64 n, qint64 m)
+{
+    if (m < 0 || n < 0)
+    {
+        // we don't know the target size
+        return;
+    }
+    if (n == 0 || m == 0)
+    {
+        return;
+    }
+    this->Progress = (n / m) * 100;
 }

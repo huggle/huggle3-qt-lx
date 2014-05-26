@@ -11,16 +11,19 @@
 #ifndef HUGGLETOOL_H
 #define HUGGLETOOL_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
 #include <QTimer>
 #include <QDockWidget>
 #include <QFont>
-#include "syslog.hpp"
 #include "apiquery.hpp"
 #include "wikipage.hpp"
 #include "wikiedit.hpp"
-#include "exception.hpp"
-#include "configuration.hpp"
 
 namespace Ui
 {
@@ -37,7 +40,6 @@ namespace Huggle
     class HuggleTool : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit HuggleTool(QWidget *parent = 0);
             ~HuggleTool();
@@ -50,16 +52,17 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void onTick();
+            void on_lineEdit_3_returnPressed();
+            void on_lineEdit_2_returnPressed();
 
         private:
             void FinishPage();
             void FinishEdit();
-            void DeleteQuery();
             Ui::HuggleTool *ui;
             ApiQuery *query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
             QTimer *tick;
-            /// \todo DOCUMENT ME
+            //! Pointer used to create an instance of page before passing it to processing function
             WikiEdit *edit;
             //! Page download phase
 

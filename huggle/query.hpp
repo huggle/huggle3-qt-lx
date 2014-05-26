@@ -11,14 +11,18 @@
 #ifndef QUERY_H
 #define QUERY_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
 #include <QNetworkAccessManager>
 #include "queryresult.hpp"
 #include "collectable.hpp"
-#include "exception.hpp"
-#include "gc.hpp"
 
 namespace Huggle
 {
@@ -70,7 +74,7 @@ namespace Huggle
             //! Destructor for query
             virtual ~Query();
             //! Returns true in case that query is processed
-            virtual bool Processed();
+            virtual bool IsProcessed();
             //! Execute query
 
             //! This is a main() of every query, your implementation goes here
@@ -98,6 +102,7 @@ namespace Huggle
             //! Every query has own unique ID which can be used to work with them
             //! this function returns that
             unsigned int QueryID();
+            bool IsFailed();
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result;
             //! Current status of a query

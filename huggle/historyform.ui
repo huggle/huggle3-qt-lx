@@ -18,7 +18,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -32,9 +41,13 @@
      <widget class="QTableWidget" name="tableWidget">
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>9</pointsize>
        </font>
       </property>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>19</number>
+      </attribute>
      </widget>
     </item>
    </layout>

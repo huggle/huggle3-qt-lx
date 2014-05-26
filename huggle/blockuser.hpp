@@ -11,14 +11,16 @@
 #ifndef BLOCKUSER_H
 #define BLOCKUSER_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QDialog>
-#include <QCheckBox>
 #include <QString>
-#include <QtXml>
 #include <QTimer>
-#include "core.hpp"
 #include "apiquery.hpp"
-#include "configuration.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui
@@ -29,12 +31,12 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
+    class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
     class BlockUser : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit BlockUser(QWidget *parent = 0);
             ~BlockUser();
@@ -48,7 +50,9 @@ namespace Huggle
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
             void onTick();
+            void on_pushButton_3_clicked();
         private:
+            void Recheck();
             Ui::BlockUser *ui;
             //! Timer that switches between steps of block workflow
             QTimer *t0;
@@ -56,8 +60,6 @@ namespace Huggle
             //! Query to exec api to block user
             ApiQuery *qUser;
             ApiQuery *qTokenApi;
-            //! This is api query that is used to block user and used as dependency to deliver the message
-            ApiQuery *Dependency;
             QString BlockToken;
             int QueryPhase;
     };

@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "hugglequeue.hpp"
+#include "core.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
 #include "ui_hugglequeue.h"
 
 using namespace Huggle;
@@ -17,39 +20,31 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
 {
     this->ui->setupUi(this);
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
-    this->layout = new QVBoxLayout(ui->scrollArea);
-    this->layout->setMargin(0);
-    this->layout->setSpacing(0);
-    this->xx = new QWidget();
-    this->frame = new QFrame();
-    this->ui->scrollArea->setWidget(this->xx);
-    this->xx->setLayout(this->layout);
-    this->layout->addWidget(this->frame);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
     this->Filters();
-    this->ui->comboBox->setCurrentIndex(0);
 }
 
 HuggleQueue::~HuggleQueue()
 {
-    delete this->layout;
     delete this->CurrentFilter;
     delete this->ui;
 }
 
 void HuggleQueue::AddItem(WikiEdit *page)
 {
-    if (page == NULL)
+    if (page == nullptr)
     {
-        throw new Exception("WikiEdit *page must not be NULL", "void HuggleQueue::AddItem(WikiEdit *page)");
+        throw new Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
     }
-    if (Core::HuggleCore->Main != NULL)
+    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
+    if (Core::HuggleCore->Main != nullptr)
     {
-        if (Core::HuggleCore->Main->VandalDock != NULL)
+        if (Core::HuggleCore->Main->VandalDock != nullptr)
         {
             if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
             {
                 // we don't even need to insert this page to queue
-                page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+                page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
                 return;
             }
             Core::HuggleCore->Main->VandalDock->Rescore(page);
@@ -68,79 +63,88 @@ void HuggleQueue::AddItem(WikiEdit *page)
             i++;
             // if this is a same edit we can go next
             if (edit == page)
-            {
                 continue;
-            }
             // if this edit is not newer we can continue
             if (edit->RevID < page->RevID)
-            {
                 continue;
-            }
             // if edit is not a revert we can continue
             if (!edit->IsRevert)
-            {
                 continue;
-            }
             // if edit is not made to this page, we can continue
             if (edit->Page->PageName != page->Page->PageName)
-            {
                 continue;
-            }
             // we found it
             Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
             WikiEdit::Lock_EditList->unlock();
+            page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
             return;
         }
         WikiEdit::Lock_EditList->unlock();
     }
+    if (Configuration::HuggleConfiguration->UserConfig_TruncateEdits)
+    {
+        // if we want to keep only newest edits in queue we can remove all older edits made to this page
+        this->DeleteOlder(page);
+    }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
-    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
-    // we no longer to prevent this from being deleted because we already have different lock for that
-    page->UnregisterConsumer(HUGGLECONSUMER_DELETIONLOCK);
+    // we create a new label here
     label->Page = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
-        this->layout->addWidget(label);
+        if (this->ui->itemList->count() == 0)
+        {
+            // this should never happen - if there were 0 items in a queue it means there is no spacer, let's crash here
+            throw Huggle::Exception("The container must have at least one spacer", "void HuggleQueue::AddItem(WikiEdit *page)");
+        }
+        this->ui->itemList->insertWidget(this->ui->itemList->count() - 1, label);
     } else
     {
         int id = 0;
-        if (Configuration::HuggleConfiguration->QueueNewEditsUp)
+        if (Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp)
         {
-            while (GetScore(id) > page->Score && GetScore(id) > MINIMAL_SCORE)
+            long score = GetScore(id);
+            while (score > page->Score && score > MINIMAL_SCORE)
             {
+                score = GetScore(id);
                 id++;
             }
         }
         else
         {
-            while (GetScore(id) >= page->Score && GetScore(id) > MINIMAL_SCORE)
+            long score = GetScore(id);
+            while (score >= page->Score && score > MINIMAL_SCORE)
             {
                 id++;
+                score = GetScore(id);
             }
         }
-        if (id >= this->layout->count() && this->layout->count() > 0)
+        if (id >= this->ui->itemList->count() && this->ui->itemList->count() > 0)
         {
-            id = this->layout->count() - 1;
+            id = this->ui->itemList->count() - 1;
         }
-        this->layout->insertWidget(id, label);
+        this->ui->itemList->insertWidget(id, label);
     }
     this->Items.append(label);
-    HuggleQueueItemLabel::Count++;
 }
 
 void HuggleQueue::Next()
 {
-    if (HuggleQueueItemLabel::Count < 1)
+    if (this->Items.count() < 1)
     {
+        // there are no items in a list
         return;
     }
-    QLayoutItem *i = this->layout->itemAt(0);
+    QLayoutItem *i = this->ui->itemList->itemAt(0);
+    if (i == this->ui->verticalSpacer)
+    {
+        // this should never happen
+        Syslog::HuggleLogs->DebugLog("Reached spacer");
+        return;
+    }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
-    this->layout->removeItem(i);
-    delete label;
 }
 
 WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
@@ -155,7 +159,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
         }
         c++;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool HuggleQueue::DeleteByRevID(int RevID)
@@ -182,9 +186,10 @@ bool HuggleQueue::DeleteByRevID(int RevID)
 void HuggleQueue::Sort()
 {
     int c = 0;
-    while (c < this->layout->count() - 1)
+    // we need to make sure that we won't touch the expander we have in list
+    while (c < this->ui->itemList->count() - 1)
     {
-        QLayoutItem *i = this->layout->itemAt(c);
+        QLayoutItem *i = this->ui->itemList->itemAt(c);
         this->ResortItem(i, c);
         c++;
     }
@@ -193,11 +198,11 @@ void HuggleQueue::Sort()
 void HuggleQueue::SortItemByEdit(WikiEdit *e)
 {
     int c = 0;
-    while (c < this->layout->count() - 1)
+    while (c < this->ui->itemList->count() - 1)
     {
-        QLayoutItem *i = this->layout->itemAt(c);
+        QLayoutItem *i = this->ui->itemList->itemAt(c);
         HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
-        if (x->Page == e)
+        if (x && x->Page == e)
         {
             this->ResortItem(i, c);
             return;
@@ -212,15 +217,15 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // we don't know the position so we need to calculate it
         position = 0;
-        while (position < this->layout->count() - 1)
+        while (position < this->ui->itemList->count() - 1)
         {
-            if (item == this->layout->itemAt(position))
+            if (item == this->ui->itemList->itemAt(position))
             {
                 break;
             }
             position++;
         }
-        if (position == this->layout->count() - 1)
+        if (position == this->ui->itemList->count() - 1)
         {
             Syslog::HuggleLogs->DebugLog("Unable to sort the queue because item wasn't present");
             return;
@@ -236,7 +241,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // every item on left side has to be lower than this one
         // get the item by index and compare the size
-        QLayoutItem *l2 = this->layout->itemAt(x);
+        QLayoutItem *l2 = this->ui->itemList->itemAt(x);
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
@@ -248,15 +253,17 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         }
         x++;
     }
-    while (x < this->layout->count() - 1)
+    while (x < this->ui->itemList->count() - 1)
     {
         // every item on right side has to be bigger than this one
         // get the item by index and compare the size
-        QLayoutItem *l2 = this->layout->itemAt(x);
+        QLayoutItem *l2 = this->ui->itemList->itemAt(x);
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
-            if (q2->Page->Score > Score)
+            // we need to check here if we accidentaly didn't get some
+            // element that actually isn't an item
+            if (q2 != nullptr && q2->Page->Score > Score)
             {
                 sorted = false;
                 break;
@@ -276,37 +283,83 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     }
 }
 
+bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
+{
+    int removed = this->Items.removeAll(item);
+    this->Delete(item);
+    if (removed > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
 void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
-    if (item == NULL)
+    if (item == nullptr)
     {
-        throw new Exception("HuggleQueueItemLabel *item must not be NULL in this context",
+        throw new Exception("HuggleQueueItemLabel *item must not be nullptr in this context",
                "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
     }
-    if (qi != NULL)
+    if (qi != nullptr)
     {
         item->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-        item->Page = NULL;
-        this->layout->removeItem(qi);
+        item->Page = nullptr;
+        this->ui->itemList->removeItem(qi);
+        delete qi;
+        delete item;
         return;
     }
     int curr=0;
-    while(curr<(this->layout->count()-1))
+    while(curr<(this->ui->itemList->count()-1))
     {
-        QLayoutItem *i = this->layout->itemAt(curr);
+        QLayoutItem *i = this->ui->itemList->itemAt(curr);
         HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
         if (label == item)
         {
-            this->layout->removeItem(i);
-            if (label->Page != NULL)
+            this->ui->itemList->removeItem(i);
+            if (label->Page != nullptr)
             {
                 label->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-                label->Page = NULL;
+                label->Page = nullptr;
             }
-            break;
+            delete i;
+            delete item;
+            return;
         }
         curr++;
     }
+}
+
+int HuggleQueue::DeleteByScore(long Score)
+{
+    int result = 0;
+    int c = 0;
+    while (c < this->Items.count())
+    {
+        HuggleQueueItemLabel *item = this->Items.at(c);
+        if (item->Page->Score < Score)
+        {
+            if (Core::HuggleCore->Main->CurrentEdit == item->Page)
+            {
+                // we can't delete item that is being reviewed now
+                c++;
+                continue;
+            }
+            if (this->DeleteItem(item))
+            {
+                // we sucessfuly deleted the item
+                result++;
+                continue;
+            } else
+            {
+                c++;
+                continue;
+            }
+        }
+        c++;
+    }
+    return result;
 }
 
 void HuggleQueue::Trim(int i)
@@ -325,38 +378,38 @@ void HuggleQueue::Trim(int i)
 
 void HuggleQueue::Trim()
 {
-    if (HuggleQueueItemLabel::Count < 1)
+    if (this->ui->itemList->count() <= 1)
     {
         return;
     }
-    int x = this->layout->count() - 1;
-    QLayoutItem *i = this->layout->itemAt(x);
-    if (i->widget() == this->frame)
+    int x = this->ui->itemList->count() - 2;
+    QLayoutItem *i = this->ui->itemList->itemAt(x);
+    if (i == this->ui->verticalSpacer)
     {
-        x--;
-        i = this->layout->itemAt(x);
+        throw new Huggle::Exception("Vertical spacer was not last in queue",
+                                    "void HuggleQueue::Trim()");
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Remove();
-    this->layout->removeItem(i);
-    delete label;
 }
 
 void HuggleQueue::Filters()
 {
+    this->loading = true;
     this->ui->comboBox->clear();
     int x = 0;
     int id = 0;
     while (x < HuggleQueueFilter::Filters.count())
     {
         HuggleQueueFilter *FilthyFilter = HuggleQueueFilter::Filters.at(x);
-        if (this->CurrentFilter == FilthyFilter)
+        if (Configuration::HuggleConfiguration->UserConfig_QueueID == FilthyFilter->QueueName)
         {
             id = x;
         }
         x++;
         this->ui->comboBox->addItem(FilthyFilter->QueueName);
     }
+    this->loading = false;
     this->ui->comboBox->setCurrentIndex(id);
 }
 
@@ -384,41 +437,50 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
     }
 }
 
+void HuggleQueue::Clear()
+{
+    // now we need to remove all items
+    while (this->Items.count() > 0)
+    {
+        if (!this->DeleteItem(this->Items.at(0)))
+        {
+            // we failed to remove the item, break or we end up
+            // looping here
+            Huggle::Syslog::HuggleLogs->DebugLog("Failed to clear the queue");
+            return;
+        }
+    }
+}
+
 long HuggleQueue::GetScore(int id)
 {
-    if (this->layout->count() - 1 <= id)
+    if (this->ui->itemList->count() - 1 <= id)
     {
         return MINIMAL_SCORE;
     }
 
-    QLayoutItem *i = this->layout->itemAt(id);
+    QLayoutItem *i = this->ui->itemList->itemAt(id);
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
-    if (label->Page == NULL)
+    if (!label)
+    {
+        throw new Huggle::Exception("label was nullptr", "long HuggleQueue::GetScore(int id)");
+    }
+    if (label->Page == nullptr)
     {
         return MINIMAL_SCORE;
     }
     return label->Page->Score;
 }
 
-bool HuggleQueue::DeleteItem(HuggleQueueItemLabel *item)
-{
-    HuggleQueueItemLabel::Count--;
-    item->close();
-    this->Delete(item);
-    int removed = this->Items.removeAll(item);
-    delete item;
-    if (removed > 0)
-    {
-        return true;
-    }
-    return false;
-}
-
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)
 {
-    if (index > -1 && index < HuggleQueueFilter::Filters.count())
+    if (!this->loading)
     {
-        this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
+        if (index > -1 && index < HuggleQueueFilter::Filters.count())
+        {
+            this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
+        }
+        Configuration::HuggleConfiguration->UserConfig_QueueID = this->CurrentFilter->QueueName;
     }
 }
 

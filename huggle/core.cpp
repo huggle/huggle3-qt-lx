@@ -9,65 +9,78 @@
 //GNU General Public License for more details.
 
 #include "core.hpp"
+#include <QtXml>
+#include <QMessageBox>
+#include "syslog.hpp"
+#include "localization.hpp"
+#include "configuration.hpp"
 
 using namespace Huggle;
 
 // definitions
-Core  *Core::HuggleCore = NULL;
+Core    *Core::HuggleCore = NULL;
 
 void Core::Init()
 {
     this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
-    if (Configuration::HuggleConfiguration->_SafeMode)
+    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Syslog::HuggleLogs->Log("DEBUG: Huggle is running in a safe mode");
     }
+#ifdef HUGGLE_BREAKPAD
+    Syslog::HuggleLogs->Log("Dumping enabled using google breakpad");
+#endif
     this->gc = new GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
+    QueryPool::HugglePool = new QueryPool();
+    this->HGQP = QueryPool::HugglePool;
+    this->HuggleSyslog = Syslog::HuggleLogs;
     Core::VersionRead();
-    QFile *vf;
 #if QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
-    vf = new QFile(":/huggle/resources/Resources/Header.txt");
-    vf->open(QIODevice::ReadOnly);
-    this->HtmlHeader = QString(vf->readAll());
-    vf->close();
-    delete vf;
     Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
+    Resources::Init();
     Syslog::HuggleLogs->Log("Loading configuration");
     this->Processor = new ProcessorThread();
     this->Processor->start();
     this->LoadLocalizations();
-    Configuration::LoadConfig();
+    Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
+    if (QFile().exists(Configuration::GetConfigurationPath() + HUGGLE_CONF))
+    {
+        Configuration::LoadSystemConfig(Configuration::GetConfigurationPath() + HUGGLE_CONF);
+    } else if (QFile().exists(QCoreApplication::applicationDirPath() + HUGGLE_CONF))
+    {
+        Configuration::LoadSystemConfig(QCoreApplication::applicationDirPath() + HUGGLE_CONF);
+    }
     Syslog::HuggleLogs->DebugLog("Loading defs");
     this->LoadDefs();
-    Configuration::HuggleConfiguration->LocalConfig_RevertSummaries.append("Test edits;Reverted edits by [[Special:Contributions/$1|$1]] identified as test edits");
-#ifdef PYTHONENGINE
-    Syslog::HuggleLogs->Log("Loading python engine");
-    this->Python = new PythonEngine();
-#endif
     Syslog::HuggleLogs->DebugLog("Loading wikis");
     this->LoadDB();
     Syslog::HuggleLogs->DebugLog("Loading queue");
-    // these are separators that we use to parse words, less we have, faster huggle will be, despite it will fail more to detect vandals
-    // keep it low but precise enough
-    Configuration::HuggleConfiguration->Separators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
+    // These are separators that we use to parse words, less we have, faster huggle will be,
+    // despite it will fail more to detect vandals. Keep it low but precise enough!!
+    Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
+                                                                    << "?" << "/" << "<" << ">" << "[" << "]";
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
-    if (!Configuration::HuggleConfiguration->_SafeMode)
+    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
-        Syslog::HuggleLogs->Log("Loading plugins");
+#ifdef PYTHONENGINE
+        Syslog::HuggleLogs->Log("Loading python engine");
+        this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
+#endif
+        Syslog::HuggleLogs->Log("Loading plugins in " + Configuration::GetExtensionsRootPath());
         this->ExtensionLoad();
     } else
     {
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
-    Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())));
+    Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())) + "ms");
 }
 
 Core::Core()
@@ -75,13 +88,13 @@ Core::Core()
 #ifdef PYTHONENGINE
     this->Python = NULL;
 #endif
-    this->HtmlHeader = "";
-    this->HtmlFooter = "</table></body></html>";
     this->Main = NULL;
-    this->f_Login = NULL;
+    this->fLogin = NULL;
     this->SecondaryFeedProvider = NULL;
     this->PrimaryFeedProvider = NULL;
+    this->HuggleLocalizations = NULL;
     this->Processor = NULL;
+    this->HuggleSyslog = NULL;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
     this->gc = NULL;
@@ -90,7 +103,7 @@ Core::Core()
 Core::~Core()
 {
     delete this->Main;
-    delete this->f_Login;
+    delete this->fLogin;
     delete this->SecondaryFeedProvider;
     delete this->PrimaryFeedProvider;
     delete this->gc;
@@ -100,23 +113,26 @@ Core::~Core()
 void Core::LoadDB()
 {
     Configuration::HuggleConfiguration->ProjectList.clear();
-    Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
+    if (Configuration::HuggleConfiguration->Project != NULL)
+    {
+        Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
+    }
     QString text = "";
     if (QFile::exists(Configuration::HuggleConfiguration->WikiDB))
     {
         QFile db(Configuration::HuggleConfiguration->WikiDB);
         if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            Syslog::HuggleLogs->Log("ERROR: Unable to read " + Configuration::HuggleConfiguration->WikiDB);
+            Syslog::HuggleLogs->ErrorLog("Unable to read " + Configuration::HuggleConfiguration->WikiDB);
             return;
         }
         text = QString(db.readAll());
         db.close();
     }
 
-    if (text == "")
+    if (!text.length())
     {
-        QFile vf(":/huggle/resources/Resources/Definitions.txt");
+        QFile vf(":/huggle/resources/Resources/Definitions.xml");
         vf.open(QIODevice::ReadOnly);
         text = QString(vf.readAll());
         vf.close();
@@ -129,11 +145,8 @@ void Core::LoadDB()
     while (xx < list.count())
     {
         QDomElement e = list.at(xx).toElement();
-        if (!e.attributes().contains("name"))
-        {
-            continue;
-        }
-        if (!e.attributes().contains("url"))
+        if (!e.attributes().contains("name") ||
+            !e.attributes().contains("url"))
         {
             continue;
         }
@@ -142,62 +155,21 @@ void Core::LoadDB()
         site->SupportOAuth = false;
         site->SupportHttps = false;
         site->WhiteList = "test";
-        // name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test
         if (e.attributes().contains("path"))
-        {
             site->LongPath = e.attribute("path");
-        }
         if (e.attributes().contains("wl"))
-        {
             site->WhiteList = e.attribute("wl");
-        }
         if (e.attributes().contains("script"))
-        {
             site->ScriptPath = e.attribute("script");
-        }
         if (e.attributes().contains("https"))
-        {
             site->SupportHttps = Configuration::SafeBool(e.attribute("https"));
-        }
         if (e.attributes().contains("oauth"))
-        {
             site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
-        }
         if (e.attributes().contains("channel"))
-        {
             site->IRCChannel = e.attribute("channel");
-        }
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }
-}
-
-void Core::DeleteEdit(WikiEdit *edit)
-{
-    if (edit == NULL)
-    {
-        return;
-    }
-
-    if (edit->Previous != NULL && edit->Next != NULL)
-    {
-        edit->Previous->Next = edit->Next;
-        edit->Next->Previous = edit->Previous;
-        edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
-        return;
-    }
-
-    if (edit->Previous != NULL)
-    {
-        edit->Previous->Next = NULL;
-    }
-
-    if (edit->Next != NULL)
-    {
-        edit->Next->Previous = NULL;
-    }
-
-    edit->UnregisterConsumer(HUGGLECONSUMER_MAINFORM);
 }
 
 void Core::SaveDefs()
@@ -210,7 +182,7 @@ void Core::SaveDefs()
     }
     if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
     {
-        Huggle::Syslog::HuggleLogs->Log("ERROR: can't open " + Configuration::GetConfigurationPath() + "users.xml");
+        Huggle::Syslog::HuggleLogs->ErrorLog("Can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
     QString xx = "<definitions>\n";
@@ -220,7 +192,7 @@ void Core::SaveDefs()
     while (x<WikiUser::ProblematicUsers.count())
     {
         xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
-                QString::number(WikiUser::ProblematicUsers.at(x)->getBadnessScore()) +"\"></user>\n";
+                QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore()) +"\"></user>\n";
         x++;
     }
     WikiUser::ProblematicUserListLock.unlock();
@@ -230,26 +202,6 @@ void Core::SaveDefs()
     QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
-Message *Core::MessageUser(WikiUser *user, QString message, QString title, QString summary, bool section, Query *dependency, bool nosuffix)
-{
-    if (user == NULL)
-    {
-        Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
-        return NULL;
-    }
-
-    Message *m = new Message(user, message, summary);
-    m->title = title;
-    m->Dependency = dependency;
-    m->Section = section;
-    m->Suffix = !nosuffix;
-    Core::Messages.append(m);
-    m->Send();
-    Huggle::Syslog::HuggleLogs->Log("Sending message to user " + user->Username);
-
-    return m;
-}
-
 void Core::LoadDefs()
 {
     QFile defs(Configuration::GetConfigurationPath() + "users.xml");
@@ -257,9 +209,7 @@ void Core::LoadDefs()
     {
         Huggle::Syslog::HuggleLogs->Log("WARNING: recovering definitions from last session");
         QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
-        if (QFile(Configuration::GetConfigurationPath()
-                   + "users.xml~").copy(Configuration::GetConfigurationPath()
-                   + "users.xml"))
+        if (QFile(Configuration::GetConfigurationPath() + "users.xml~").copy(Configuration::GetConfigurationPath() + "users.xml"))
         {
             QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
         } else
@@ -292,7 +242,7 @@ void Core::LoadDefs()
             user->Username = e.attribute("name");
             if (e.attributes().contains("badness"))
             {
-                user->setBadnessScore(e.attribute("badness").toInt());
+                user->SetBadnessScore(e.attribute("badness").toInt());
             }
             WikiUser::ProblematicUsers.append(user);
             i++;
@@ -302,77 +252,12 @@ void Core::LoadDefs()
     defs.close();
 }
 
-void Core::FinalizeMessages()
-{
-    if (this->Messages.count() < 1)
-    {
-        return;
-    }
-    int x=0;
-    QList<Message*> list;
-    while (x<this->Messages.count())
-    {
-        if (this->Messages.at(x)->Finished())
-        {
-            list.append(this->Messages.at(x));
-        }
-        x++;
-    }
-    x=0;
-    while (x<list.count())
-    {
-        Core::Messages.removeOne(list.at(x));
-        x++;
-    }
-}
-
-QString Core::RetrieveTemplateToWarn(QString type)
-{
-    int x=0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.count())
-    {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x)) == type)
-        {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->LocalConfig_WarningTemplates.at(x));
-        }
-        x++;
-    }
-    return "";
-}
-
-EditQuery *Core::EditPage(WikiPage *page, QString text, QString summary, bool minor)
-{
-    if (page == NULL)
-    {
-        return NULL;
-    }
-    // retrieve a token
-    EditQuery *_e = new EditQuery();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->EditSuffixOfHuggle))
-    {
-        summary = summary + " " + Configuration::HuggleConfiguration->EditSuffixOfHuggle;
-    }
-    _e->RegisterConsumer("Core::EditPage");
-    _e->Page = page->PageName;
-    this->PendingMods.append(_e);
-    _e->text = text;
-    _e->Summary = summary;
-    _e->Minor = minor;
-    _e->Process();
-    return _e;
-}
-
-void Core::AppendQuery(Query *item)
-{
-    item->RegisterConsumer("core");
-    this->RunningQueries.append(item);
-}
-
 void Core::ExtensionLoad()
 {
-    if (QDir().exists(EXTENSION_PATH))
+    QString path_ = Configuration::GetExtensionsRootPath();
+    if (QDir().exists(path_))
     {
-        QDir d(EXTENSION_PATH);
+        QDir d(path_);
         QStringList extensions = d.entryList();
         int xx = 0;
         while (xx < extensions.count())
@@ -380,7 +265,7 @@ void Core::ExtensionLoad()
             QString name = extensions.at(xx).toLower();
             if (name.endsWith(".so") || name.endsWith(".dll"))
             {
-                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                name = QString(path_) + extensions.at(xx);
                 QPluginLoader *extension = new QPluginLoader(name);
                 if (extension->load())
                 {
@@ -424,7 +309,7 @@ void Core::ExtensionLoad()
             } else if (name.endsWith(".py"))
             {
 #ifdef PYTHONENGINE
-                name = QString(EXTENSION_PATH) + QDir::separator() + extensions.at(xx);
+                name = QString(path_) + extensions.at(xx);
                 if (Core::Python->LoadScript(name))
                 {
                     Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + name);
@@ -457,47 +342,6 @@ void Core::VersionRead()
     delete vf;
 }
 
-QString Core::GetProjectURL(WikiSite Project)
-{
-    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;
-}
-
-QString Core::GetProjectWikiURL(WikiSite Project)
-{
-    return Core::GetProjectURL(Project) + Project.LongPath;
-}
-
-QString Core::GetProjectScriptURL(WikiSite Project)
-{
-    return Core::GetProjectURL(Project) + Project.ScriptPath;
-}
-
-QString Core::GetProjectURL()
-{
-    return Configuration::GetURLProtocolPrefix() + Configuration::HuggleConfiguration->Project->URL;
-}
-
-QString Core::GetProjectWikiURL()
-{
-    return Core::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->LongPath;
-}
-
-QString Core::GetProjectScriptURL()
-{
-    return Core::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
-}
-
-QString Core::ParameterizedTitle(QString title, QString parameter)
-{
-    title = title.replace("$1", parameter);
-    return title;
-}
-
-void Core::ProcessEdit(WikiEdit *e)
-{
-    Core::Main->ProcessEdit(e);
-}
-
 void Core::Shutdown()
 {
     this->Running = false;
@@ -513,220 +357,50 @@ void Core::Shutdown()
         this->Processor->exit();
     }
     Core::SaveDefs();
-    Configuration::SaveConfig();
+    Configuration::SaveSystemConfig();
 #ifdef PYTHONENGINE
-    Huggle::Syslog::HuggleLogs->Log("Unloading python");
-    delete this->Python;
+    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
+    {
+        Huggle::Syslog::HuggleLogs->Log("Unloading python");
+        delete this->Python;
+    }
 #endif
+    QueryPool::HugglePool = NULL;
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;
     delete GC::gc;
+    delete this->HGQP;
     GC::gc = NULL;
     this->gc = NULL;
     QApplication::quit();
 }
 
-void Core::DeveloperError()
+void Core::TestLanguages()
 {
-    QMessageBox *mb = new QMessageBox();
-    mb->setWindowTitle("Function is restricted now");
-    mb->setText("You can't perform this action in developer mode, because you aren't logged into the wiki");
-    mb->exec();
-    delete mb;
-}
-
-void Core::PreProcessEdit(WikiEdit *_e)
-{
-    if (_e == NULL)
+    if (Configuration::HuggleConfiguration->SystemConfig_LanguageSanity)
     {
-        throw new Exception("NULL edit");
-    }
-
-    if (_e->Status == StatusProcessed)
-    {
-        return;
-    }
-
-    if (_e->User == NULL)
-    {
-        throw new Exception("Edit user was NULL in Core::PreProcessEdit");
-    }
-
-    if (_e->Bot)
-    {
-        _e->User->SetBot(true);
-    }
-
-    _e->EditMadeByHuggle = _e->Summary.contains(Configuration::HuggleConfiguration->EditSuffixOfHuggle);
-
-    int x = 0;
-    while (x < Configuration::HuggleConfiguration->LocalConfig_Assisted.count())
-    {
-        if (_e->Summary.contains(Configuration::HuggleConfiguration->LocalConfig_Assisted.at(x)))
+        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(0);
+        QList<QString> keys = english->Messages.keys();
+        int language = 1;
+        while (language < Localizations::HuggleLocalizations->LocalizationData.count())
         {
-            _e->TrustworthEdit = true;
-            break;
-        }
-        x++;
-    }
-
-    if (_e->Summary != "")
-    {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
-        {
-            if (Configuration::HuggleConfiguration->RevertPatterns.at(xx).exactMatch(_e->Summary))
+            Language *l = Localizations::HuggleLocalizations->LocalizationData.at(language);
+            int x = 0;
+            while (x < keys.count())
             {
-                _e->IsRevert = true;
-                if (Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+                if (!l->Messages.contains(keys.at(x)))
                 {
-                    _e->RegisterConsumer("UncheckedReverts");
-                    this->UncheckedReverts.append(_e);
+                    Syslog::HuggleLogs->WarningLog("Language " + l->LanguageName + " is missing key " + keys.at(x));
+                } else if (english->Messages[keys.at(x)] == l->Messages[keys.at(x)])
+                {
+                    Syslog::HuggleLogs->WarningLog("Language " + l->LanguageName + " has key " + keys.at(x)
+                            + " but its content is identical to english version");
                 }
-                break;
+                x++;
             }
-            xx++;
+            language++;
         }
     }
-
-    _e->Status = StatusProcessed;
-}
-
-void Core::PostProcessEdit(WikiEdit *_e)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
-    }
-    _e->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-    _e->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    _e->PostProcess();
-    Core::ProcessingEdits.append(_e);
-}
-
-void Core::CheckQueries()
-{
-    int curr = 0;
-    if (Core::PendingMods.count() > 0)
-    {
-        while (curr < Core::PendingMods.count())
-        {
-            if (Core::PendingMods.at(curr)->Processed())
-            {
-                EditQuery *e = Core::PendingMods.at(curr);
-                Core::PendingMods.removeAt(curr);
-                e->UnregisterConsumer("Core::EditPage");
-            } else
-            {
-                curr++;
-            }
-        }
-    }
-    curr = 0;
-    if (Core::RunningQueries.count() < 1)
-    {
-        return;
-    }
-    QList<Query*> Finished;
-    while (curr < Core::RunningQueries.count())
-    {
-        Query *q = Core::RunningQueries.at(curr);
-        Core::Main->Queries->UpdateQuery(q);
-        if (q->Processed())
-        {
-            Finished.append(q);
-            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 6);
-            Core::Main->Queries->UpdateQuery(q);
-            Core::Main->Queries->RemoveQuery(q);
-        }
-        curr++;
-    }
-    curr = 0;
-    while (curr < Finished.count())
-    {
-        Query *item = Finished.at(curr);
-        Core::RunningQueries.removeOne(item);
-        item->Lock();
-        item->UnregisterConsumer("core");
-        item->SafeDelete();
-        curr++;
-    }
-}
-
-bool Core::PreflightCheck(WikiEdit *_e)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
-    }
-    bool Warn = false;
-    QString type = "unknown";
-    if (Configuration::HuggleConfiguration->WarnUserSpaceRoll && _e->Page->IsUserpage())
-    {
-        Warn = true;
-        type = "in userspace";
-    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmOnSelfRevs
-               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->UserName.toLower()))
-    {
-        type = "made by you";
-        Warn = true;
-    } else if (Configuration::HuggleConfiguration->LocalConfig_ConfirmTalk && _e->Page->IsTalk())
-    {
-        type = "made on talk page";
-        Warn = true;
-    }
-    if (Warn)
-    {
-        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Revert edit"
-                      , "This edit is " + type + ", so even if it looks like it is a vandalism,"\
-                      " it may not be, are you sure you want to revert it?"
-                      , QMessageBox::Yes|QMessageBox::No);
-        if (q == QMessageBox::No)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-RevertQuery *Core::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
-{
-    if (_e == NULL)
-    {
-        throw new Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
-    }
-    if (_e->User == NULL)
-    {
-        throw new Exception("Object user was NULL in Core::Revert");
-    }
-    _e->RegisterConsumer("Core::RevertEdit");
-    if (_e->Page == NULL)
-    {
-        throw new Exception("Object page was NULL");
-    }
-
-    RevertQuery *query = new RevertQuery(_e);
-    if (summary != "")
-    {
-        query->Summary = summary;
-    }
-    query->MinorEdit = minor;
-    Core::AppendQuery(query);
-    if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
-    {
-        query->UsingSR = true;
-    } else
-    {
-        query->UsingSR = !rollback;
-    }
-    query->Process();
-
-    if (keep)
-    {
-        query->RegisterConsumer("keep");
-    }
-
-    return query;
 }
 
 void Core::ExceptionHandler(Exception *exception)
@@ -739,8 +413,9 @@ void Core::ExceptionHandler(Exception *exception)
 void Core::LoadLocalizations()
 {
     Localizations::HuggleLocalizations = new Localizations();
+    this->HuggleLocalizations = Localizations::HuggleLocalizations;
     Localizations::HuggleLocalizations->LocalInit("en");
-    if (Configuration::HuggleConfiguration->_SafeMode)
+    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Huggle::Syslog::HuggleLogs->Log("Skipping load of other languages, because of safe mode");
         return;
@@ -767,64 +442,16 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("oc");
     Localizations::HuggleLocalizations->LocalInit("or");
     Localizations::HuggleLocalizations->LocalInit("pt");
-    Localizations::HuggleLocalizations->LocalInit("ptb");
+    Localizations::HuggleLocalizations->LocalInit("pt-BR");
     Localizations::HuggleLocalizations->LocalInit("ru");
     Localizations::HuggleLocalizations->LocalInit("sv");
     Localizations::HuggleLocalizations->LocalInit("zh");
+    this->TestLanguages();
 }
 
-bool Core::ReportPreFlightCheck()
+double Core::GetUptimeInSeconds()
 {
-    if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
-    {
-        return true;
-    }
-    QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
-                  , "This user has already reached warning level 4, so no further templates will be "\
-                    "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
-                    "number of recent warnings! You can do so by clicking the \"talk page\" button in following form. "\
-                    "Keep in mind that this form and this warning is displayed no matter if your revert was successful "\
-                    "or not, so you might conflict with other users here (double check if user isn't already reported) "\
-                    "Do you want to report this user?"
-                  , QMessageBox::Yes|QMessageBox::No);
-    if (q == QMessageBox::No)
-    {
-        return false;
-    }
-    return true;
-}
-
-int Core::RunningQueriesGetCount()
-{
-    return this->RunningQueries.count();
-}
-
-void Core::TruncateReverts()
-{
-    while (this->UncheckedReverts.count() > 0)
-    {
-        WikiEdit *edit = this->UncheckedReverts.at(0);
-        if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
-        {
-            // we need to delete older edits that we know and that is somewhere in queue
-            if (this->Main != NULL)
-            {
-                if (this->Main->Queue1 != NULL)
-                {
-                    this->Main->Queue1->DeleteOlder(edit);
-                }
-            }
-        }
-        this->UncheckedReverts.removeAt(0);
-        this->RevertBuffer.append(edit);
-    }
-
-    while (this->RevertBuffer.count() > 10)
-    {
-        WikiEdit *we = this->RevertBuffer.at(0);
-        this->RevertBuffer.removeAt(0);
-        we->UnregisterConsumer("UncheckedReverts");
-    }
+    return (double)this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)
@@ -836,6 +463,7 @@ bool HgApplication::notify(QObject *receiver, QEvent *event)
     }catch (Huggle::Exception *ex)
     {
         Core::ExceptionHandler(ex);
+        delete ex;
     }catch (Huggle::Exception &ex)
     {
         Core::ExceptionHandler(&ex);

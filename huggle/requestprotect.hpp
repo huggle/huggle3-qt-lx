@@ -12,9 +12,18 @@
 #ifndef REQUESTPROTECT_H
 #define REQUESTPROTECT_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
+#include <QTimer>
 #include <QDialog>
-#include "configuration.hpp"
-#if !PRODUCTION_BUILD
+#include <QRegExp>
+#include "wikipage.hpp"
+#include "apiquery.hpp"
+#include "editquery.hpp"
 
 namespace Ui
 {
@@ -23,7 +32,8 @@ namespace Ui
 
 namespace Huggle
 {
-    /// \todo This class doesn't do anything now
+    class EditQuery;
+    class ApiQuery;
 
     //! This can be used to request protection of a page
     class RequestProtect : public QDialog
@@ -31,14 +41,24 @@ namespace Huggle
         Q_OBJECT
 
         public:
-            explicit RequestProtect(QWidget *parent = 0);
+            explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = 0);
             ~RequestProtect();
-
+        private slots:
+            void Tick();
+            void on_pushButton_clicked();
+            void on_pushButton_2_clicked();
         private:
+            QString ProtectionType();
+            void Fail(QString message);
+            void DelRef();
+            QString Timestamp;
+            WikiPage *page;
+            QTimer *tm;
             Ui::RequestProtect *ui;
+            ApiQuery *qRFPPage;
+            EditQuery *qEditRFP;
     };
 }
 
 
 #endif // REQUESTPROTECT_H
-#endif

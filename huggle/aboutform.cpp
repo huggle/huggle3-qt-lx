@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "aboutform.hpp"
+#include <QDesktopServices>
+#include "configuration.hpp"
+#include "localization.hpp"
 #include "ui_aboutform.h"
 
 using namespace Huggle;
@@ -46,6 +49,26 @@ void AboutForm::on_label_5_linkActivated(const QString &link)
 }
 
 void AboutForm::on_label_3_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_4_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_10_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_9_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_11_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }

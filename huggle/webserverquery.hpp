@@ -11,14 +11,15 @@
 #ifndef WEBSERVERQUERY_H
 #define WEBSERVERQUERY_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QList>
 #include <QString>
-#include <QtNetwork/QtNetwork>
-#include <QUrl>
-#include <QtXml/QtXml>
 #include <QObject>
 #include <QThread>
-#include "syslog.hpp"
 #include "query.hpp"
 
 namespace Huggle

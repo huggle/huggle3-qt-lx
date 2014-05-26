@@ -11,14 +11,39 @@
 #ifndef WIKISITE_H
 #define WIKISITE_H
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QString>
+#include <QHash>
 
 namespace Huggle
 {
+    class WikiPageNS
+    {
+        public:
+            WikiPageNS(int id, QString name, QString canonical_name);
+            //~WikiPageNS();
+            QString GetName();
+            QString GetCanonicalName();
+            bool IsTalkPage();
+            int GetID();
+        private:
+            QString Name;
+            QString CanonicalName;
+            bool Talk;
+            int ID;
+    };
+
     //! Site
     class WikiSite
     {
         public:
+            //! This NS is used in case we can't find a match for page
+            static WikiPageNS *Unknown;
+
             WikiSite(WikiSite *w);
             WikiSite(const WikiSite &w);
             WikiSite(QString name, QString url);
@@ -34,6 +59,12 @@ namespace Huggle
               \param wl whitelist
             */
             WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
+            ~WikiSite();
+            WikiPageNS *RetrieveNSFromTitle(QString title);
+            WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
+            void InsertNS(WikiPageNS *Ns);
+            void RemoveNS(int ns);
+            QHash<int, WikiPageNS*> NamespaceList;
             //! Name of wiki, used by huggle only
             QString Name;
             //! URL of wiki, no http prefix must be present

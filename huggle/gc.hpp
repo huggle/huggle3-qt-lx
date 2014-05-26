@@ -11,26 +11,39 @@
 #ifndef GC_H
 #define GC_H
 
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QList>
 #include <QMutex>
 #include "collectable.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
-#define HUGGLECONSUMER_PROVIDERIRC              1
-#define HUGGLECONSUMER_QUEUE                    2
-#define HUGGLECONSUMER_CORE_POSTPROCESS         3
-#define HUGGLECONSUMER_DELETEFORM               4
-#define HUGGLECONSUMER_PROCESSLIST              5
-#define HUGGLECONSUMER_HUGGLETOOL               6
-#define HUGGLECONSUMER_EDITQUERY                7
-#define HUGGLECONSUMER_REVERTQUERY              8
-#define HUGGLECONSUMER_MAINFORM                 9
-#define HUGGLECONSUMER_LOGINFORM                10
-#define HUGGLECONSUMER_MESSAGE_SEND             11
-#define HUGGLECONSUMER_PROTECTPAGE              12
-#define HUGGLECONSUMER_HISTORYWIDGET            13
-#define HUGGLECONSUMER_USERINFO                 14
-#define HUGGLECONSUMER_DELETIONLOCK             15
+#define HUGGLECONSUMER_QUEUE                    1
+#define HUGGLECONSUMER_CORE_POSTPROCESS         2
+#define HUGGLECONSUMER_EDITQUERY                3
+#define HUGGLECONSUMER_REVERTQUERY              4
+#define HUGGLECONSUMER_MESSAGE_SEND             5
+#define HUGGLECONSUMER_HISTORYWIDGET            6
+//! This is used to lock the message resource before it's passed to parent object
+#define HUGGLECONSUMER_CORE_MESSAGE             7
+#define HUGGLECONSUMER_PROCESSOR                8
+#define HUGGLECONSUMER_MAINPEND                 9
+#define HUGGLECONSUMER_QP                       10
+#define HUGGLECONSUMER_QP_UNCHECKED             11
+#define HUGGLECONSUMER_QP_REVERTBUFFER          12
+#define HUGGLECONSUMER_MAINFORM_HISTORICAL      13
+#define HUGGLECONSUMER_QP_MODS                  14
+#define HUGGLECONSUMER_REVERTQUERYTMR           16
+#define HUGGLECONSUMER_CORE                     800
+
+// some macros so that people hate us
+#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=nullptr
+#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=nullptr
 
 namespace Huggle
 {
@@ -43,7 +56,12 @@ namespace Huggle
     class GC
     {
         public:
-            //! Garbage collector
+            /*!
+             * \brief Collect will safely decrement a reference of an object and set the pointer to NULL
+             * \param object
+             */
+            //static void Collect(Collectable **object);
+            //static void Collect(Collectable **object, int ConsumerID);
             static GC *gc;
 
             GC();

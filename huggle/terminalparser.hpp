@@ -11,10 +11,18 @@
 #ifndef TERMINALPARSER_H
 #define TERMINALPARSER_H
 
-#include <iostream>
+#include "definitions.hpp"
+// now we need to ensure that python is included first, because it
+// simply suck :P
+// seriously, Python.h is shitty enough that it requires to be
+// included first. Don't believe it? See this:
+// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 #include <QStringList>
 #include <QString>
-#include "configuration.hpp"
 
 namespace Huggle
 {
@@ -26,7 +34,7 @@ namespace Huggle
             bool Parse();
             bool ParseChar(QChar x);
             void DisplayHelp();
-            bool Silent;
+            bool Silent = false;
         private:
             QStringList args;
     };

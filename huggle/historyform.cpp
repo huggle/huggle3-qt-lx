@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "historyform.hpp"
+#include "querypool.hpp"
+#include "resources.hpp"
+#include "exception.hpp"
+#include "mainwindow.hpp"
+#include "localization.hpp"
+#include "wikiutil.hpp"
 #include "ui_historyform.h"
 
 using namespace Huggle;
@@ -19,32 +25,49 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->RetrievingEdit = false;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
+    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("historyform-title"));
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
-    this->ui->tableWidget->setColumnCount(5);
+    this->ui->tableWidget->setColumnCount(6);
+    this->SelectedRow = -1;
+    this->PreviouslySelectedRow = 2;
     QStringList header;
-    header << Huggle::Localizations::HuggleLocalizations->Localize("user") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("size") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("summary") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("id") <<
-              Huggle::Localizations::HuggleLocalizations->Localize("date");
+    header << "" << Huggle::Localizations::HuggleLocalizations->Localize("user")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("size")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("summary")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("id")
+                 << Huggle::Localizations::HuggleLocalizations->Localize("date");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setShowGrid(false);
+    if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
+    {
 #if QT_VERSION >= 0x050000
 // Qt5 code
-    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+        this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
 // Qt4 code
-    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+        this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    this->ui->tableWidget->setShowGrid(false);
+    } else
+    {
+        this->ui->tableWidget->setColumnWidth(0, 20);
+        this->ui->tableWidget->setColumnWidth(1, 100);
+        this->ui->tableWidget->setColumnWidth(2, 60);
+        this->ui->tableWidget->setColumnWidth(3, 200);
+        this->ui->tableWidget->setColumnWidth(4, 60);
+    }
+    this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->query = NULL;
+    this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->t1 = NULL;
 }
 
 HistoryForm::~HistoryForm()
 {
+    GC_DECNAMEDREF(this->RetrievedEdit, HUGGLECONSUMER_HISTORYWIDGET);
+    GC_DECNAMEDREF(this->query, HUGGLECONSUMER_HISTORYWIDGET);
     delete this->t1;
     delete this->ui;
 }
@@ -80,8 +103,13 @@ void HistoryForm::Update(WikiEdit *edit)
     this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
-    this->ui->tableWidget->clearContents();
     this->Clear();
+    if (this->RetrievedEdit != NULL)
+    {
+        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+        this->RetrievedEdit = NULL;
+    }
+    this->RetrievingEdit = false;
     if (this->t1 != NULL)
     {
         this->t1->stop();
@@ -90,7 +118,7 @@ void HistoryForm::Update(WikiEdit *edit)
     }
     if (this->query != NULL)
     {
-        this->query->UnregisterConsumer("HistoryForm");
+        this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
         this->query = NULL;
     }
 }
@@ -101,37 +129,45 @@ void HistoryForm::onTick01()
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
-            Core::HuggleCore->Main->ProcessEdit(this->RetrievedEdit, false, true);
+            MainWindow::HuggleMain->ProcessEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
             this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
             this->RetrievedEdit = NULL;
             this->t1->stop();
+            this->MakeSelectedRowBold();
         }
         return;
     }
-    if (this->query == NULL)
-    {
+
+    if (this->query == NULL || !this->query->IsProcessed())
         return;
-    }
-    if (!this->query->Processed())
-    {
-        return;
-    }
+
     if (this->query->Result->Failed)
     {
         this->ui->pushButton->setEnabled(true);
-        Huggle::Syslog::HuggleLogs->Log("ERROR: unable to retrieve history");
+        Huggle::Syslog::HuggleLogs->ErrorLog("Unable to retrieve history");
         this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
         this->query = NULL;
         this->t1->stop();
         return;
     }
+    bool IsLatest = false;
     QDomDocument d;
     d.setContent(this->query->Result->Data);
     QDomNodeList l = d.elementsByTagName("rev");
     int x=0;
+    QColor xb;
+    bool xt = false;
     while (x < l.count())
     {
+        if (xt)
+        {
+            xb = QColor(206, 202, 250);
+        } else
+        {
+            xb = QColor(224, 222, 250);
+        }
+        xt = !xt;
         QDomElement e = l.at(x).toElement();
         QString RevID;
         if (e.attributes().contains("revid"))
@@ -152,7 +188,7 @@ void HistoryForm::onTick01()
         {
             size = e.attribute("size");
         }
-        QString date = "<unknown>";
+        QString date = "<Unknown>";
         if (e.attributes().contains("timestamp"))
         {
             date = e.attribute("timestamp");
@@ -166,38 +202,117 @@ void HistoryForm::onTick01()
             }
         }
         this->ui->tableWidget->insertRow(x);
+        QIcon icon(":/huggle/pictures/Resources/blob-none.png");
+        if (WikiUtil::IsRevert(summary))
+            icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");
+        else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
+            icon = QIcon(":/huggle/pictures/Resources/blob-anon.png");
+        else if (Configuration::HuggleConfiguration->WhiteList.contains(user))
+            icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
+        WikiUser *wu = WikiUser::RetrieveUser(user);
+        if (wu != NULL)
+        {
+            if (wu->IsReported)
+            {
+                icon = QIcon(":/huggle/pictures/Resources/blob-reported.png");
+            } else if (wu->WarningLevel > 0)
+            {
+                switch(wu->WarningLevel)
+                {
+                    case 1:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-1.png");
+                        break;
+                    case 2:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-2.png");
+                        break;
+                    case 3:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-3.png");
+                        break;
+                    case 4:
+                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-4.png");
+                        break;
+                }
+            }
+        }
+
         if (this->CurrentEdit->RevID == RevID.toInt())
         {
+            if (x == 0)
+            {
+                IsLatest = true;
+            }
+            this->SelectedRow = x;
             QFont font;
             font.setBold(true);
-            QTableWidgetItem *i = new QTableWidgetItem(user);
-            i->setFont(font);
+            QTableWidgetItem *i = new QTableWidgetItem(icon, "");
+            i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 0, i);
+            i = new QTableWidgetItem(user);
+            i->setFont(font);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 1, i);
             i = new QTableWidgetItem(size);
             i->setFont(font);
-            this->ui->tableWidget->setItem(x, 1, i);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 2, i);
             i = new QTableWidgetItem(summary);
             i->setFont(font);
-            this->ui->tableWidget->setItem(x, 2, i);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 3, i);
             i = new QTableWidgetItem(RevID);
             i->setFont(font);
-            this->ui->tableWidget->setItem(x, 3, i);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 4, i);
             i = new QTableWidgetItem(date);
             i->setFont(font);
-            this->ui->tableWidget->setItem(x, 4, i);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 5, i);
         } else
         {
-            this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(user));
-            this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(size));
-            this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(summary));
-            this->ui->tableWidget->setItem(x, 3, new QTableWidgetItem(RevID));
-            this->ui->tableWidget->setItem(x, 4, new QTableWidgetItem(date));
+            QTableWidgetItem *i = new QTableWidgetItem(icon, "");
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 0, i);
+            i = new QTableWidgetItem(user);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 1, i);
+            i = new QTableWidgetItem(size);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 2, i);
+            i = new QTableWidgetItem(summary);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 3, i);
+            i = new QTableWidgetItem(RevID);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 4, i);
+            i = new QTableWidgetItem(date);
+            i->setBackgroundColor(xb);
+            this->ui->tableWidget->setItem(x, 5, i);
         }
         x++;
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    this->ui->tableWidget->resizeRowsToContents();
     this->query = NULL;
     this->t1->stop();
+    if (!this->CurrentEdit->NewPage && !Configuration::HuggleConfiguration->ForcedNoEditJump && !IsLatest)
+    {
+        if (Configuration::HuggleConfiguration->UserConfig_LastEdit)
+        {
+            this->Display(0, Resources::Html_StopFire, true);
+        } else
+        {
+            QPoint pntr(0, this->pos().y());
+            if (this->pos().x() > 400)
+            {
+                pntr.setX(this->pos().x() - 200);
+            } else
+            {
+                pntr.setX(this->pos().x() + 100);
+            }
+            QToolTip::showText(pntr, "<b><big>" +Localizations::HuggleLocalizations->Localize("historyform-not-latest-tip")
+                               + "</big></b>", this);
+        }
+    }
 }
 
 void HistoryForm::on_pushButton_clicked()
@@ -207,6 +322,25 @@ void HistoryForm::on_pushButton_clicked()
 
 void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
 {
+    this->Display(index.row(), Huggle::Localizations::HuggleLocalizations->Localize("wait"));
+}
+
+void HistoryForm::Clear()
+{
+    while (this->ui->tableWidget->rowCount() > 0)
+    {
+        this->ui->tableWidget->removeRow(0);
+    }
+    this->SelectedRow = -1;
+}
+
+void HistoryForm::Display(int row, QString html, bool turtlemode)
+{
+    if (row == this->SelectedRow)
+    {
+        // there is nothing to do because we want to display exactly that row which was already selected
+        return;
+    }
     if (this->query != NULL || this->RetrievingEdit)
     {
         // we must not retrieve edit until previous operation did finish
@@ -218,10 +352,12 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         return;
     }
 
+    this->PreviouslySelectedRow = this->SelectedRow;
+    this->SelectedRow = row;
     this->RetrievingEdit = true;
     // check if we don't have this edit in a buffer
     int x = 0;
-    int revid = this->ui->tableWidget->item(index.row(), 3)->text().toInt();
+    int revid = this->ui->tableWidget->item(row, 4)->text().toInt();
     if (revid == 0)
     {
         this->RetrievingEdit = false;
@@ -234,35 +370,61 @@ void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
         x++;
         if (edit->RevID == revid)
         {
-            Core::HuggleCore->Main->ProcessEdit(edit, true, true);
+            MainWindow::HuggleMain->ProcessEdit(edit, false, true);
             this->RetrievingEdit = false;
             WikiEdit::Lock_EditList->unlock();
+            this->MakeSelectedRowBold();
             return;
         }
     }
     WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
-    w->User = new WikiUser(this->ui->tableWidget->item(index.row(), 0)->text());
+    w->User = new WikiUser(this->ui->tableWidget->item(row, 1)->text());
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
     w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-    Core::HuggleCore->PostProcessEdit(w);
+    if (this->RetrievedEdit != NULL)
+    {
+        this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
+    }
+    QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != NULL)
     {
         delete this->t1;
     }
     this->RetrievedEdit = w;
-    Core::HuggleCore->Main->Browser->RenderHtml(Huggle::Localizations::HuggleLocalizations->Localize("wait"));
+    MainWindow::HuggleMain->LockPage();
+    MainWindow::HuggleMain->Browser->RenderHtml(html);
     this->t1 = new QTimer();
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start();
+    if (!turtlemode)
+    {
+        this->t1->start(200);
+        return;
+    }
+    this->t1->start(2000);
 }
 
-void HistoryForm::Clear()
+void HistoryForm::MakeSelectedRowBold()
 {
-    while (this->ui->tableWidget->rowCount() > 0)
+    QFont font;
+    if (this->SelectedRow != -1)
     {
-        this->ui->tableWidget->removeRow(0);
+        font.setBold(true);
+        this->ui->tableWidget->item(this->SelectedRow, 1)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 2)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 3)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 4)->setFont(font);
+        this->ui->tableWidget->item(this->SelectedRow, 5)->setFont(font);
+    }
+    if (this->PreviouslySelectedRow != -1)
+    {
+        font.setBold(false);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 1)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 2)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->setFont(font);
+        this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->setFont(font);
     }
 }
