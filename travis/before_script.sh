@@ -12,11 +12,9 @@ if [ "$QTTYPE" = "4" ]; then
         cd huggle_prod
 	make
         cd ..
-        #qmake
-        #make
-	#cd tests/test
-	#qmake
-	#make
+	cd tests/test
+	cmake .
+	make
 fi
 
 if [ "$QTTYPE" = "5" ]; then
@@ -25,9 +23,7 @@ if [ "$QTTYPE" = "5" ]; then
         cd huggle_prod
 	make
         cd ..
-        /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-        make
 	cd tests/test
-	/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+        cmake . -DQT5_BUILD=true
 	make
 fi

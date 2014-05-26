@@ -33,12 +33,10 @@ RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
-BREAKPAD=0
 QT5=10
-FLAGS=''
 CMAKE_ARGS=''
 _BUILD=0
-BUILD=huggle_prod
+BUILD=huggle_release
 if [ x"$*" != x ];then
     echo "Options used: $*"
 fi
@@ -51,11 +49,9 @@ do
         echo " --disable-dependency-tracking: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
-        echo " --build [i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
         echo " --folder <folder>: change the default build folder"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
-        echo " --no-breakpad: will not build breakpad library for huggle"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
@@ -71,24 +67,12 @@ do
         GREEN=""
         NORMAL=""
     fi
-    if [ "$var" = "--no-breakpad" ];then
-        BREAKPAD=1
-        continue
-    fi
     if [ "$var" = "--qt4" ];then
         QT5=0
         continue
     fi
     if [ "$var" = "--qt5" ];then
         QT5=1
-        continue
-    fi
-    if [ "$var" = "--build=i686-pc-linux-gnu" ];then
-        FLAGS='-spec linux-g++-32'
-        continue
-    fi
-    if [ "$var" = "--build=x86_64-pc-linux-gnu" ];then
-        FLAGS='-spec linux-g++-64'
         continue
     fi
     if [ "$var" = "--folder" ];then
@@ -185,6 +169,7 @@ checkpkg()
     echo "or execute apt-get install $1 as root"
     exit 1
 }
+
 echo "Checking all required packages..."
 text "Checking for cmake... "
 
@@ -210,29 +195,6 @@ if [ ! -f huggle.pro ];then
     cp huggle.orig huggle.pro || exit 1
     ok
 fi
-
-#if [ $BREAKPAD -eq 0 ];then
-#    if [ ! -d breakpad ];then
-#        text "Breakpad library is not present, unpacking it..."
-#        tar -zxf breakpad.tar.gz || exit 1;ok
-#    fi 
-#    text "Checking for breakpad library"
-#    if [ ! -f libbreakpad_client.a ];then
-#        ok
-#        echo "Building it"
-#        cd breakpad || exit 1
-#        ./configure || exit 1
-#        make || exit 1
-#        if [ ! -f src/client/linux/libbreakpad_client.a ];then
-#            echo "Failed to build breakpad, src/client/linux/libbreakpad_client.a not found"
-#            exit 1
-#        fi
-#        cp src/client/linux/libbreakpad_client.a .. || exit 1
-#        cd .. || exit 1
-#    else
-#        ok
-#    fi
-#fi
 
 text "Executing update.sh... "
 
