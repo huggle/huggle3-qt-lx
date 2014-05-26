@@ -37,6 +37,7 @@ Linux
 
 ```sh
 ./configure
+cd huggle_prod
 make
 sudo make install
 ```
