@@ -8,6 +8,7 @@ env:
 
 branches:
   except:
+    - debian
     - ubuntu
 
 matrix:
