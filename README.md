@@ -13,6 +13,32 @@ Easy
  * git merge master
  * run debian.sh
 
+Documentation
+=============
+
+Developers: http://tools.wmflabs.org/huggle/docs/head
+
+This is a documentation for users: https://meta.wikimedia.org/wiki/Huggle
+
+Getting help
+=============
+
+We have a channel irc://chat.freenode.org/#huggle so if you need any kind of help please go there
+
+Contributing
+=============
+
+Everyone is allowed to send the pull requests to this repository, and all regular contributors
+get a developer access to directly push if they need it. If you want to join a huggle
+developer team, please see https://meta.wikimedia.org/wiki/Huggle/Members and insert yourself
+
+This repository is running CI using travis, if you want to change anything what doesn't require
+sanity check, like documentation or comments, please append [ci skip] to your message
+
+Reporting bugs
+===============
+Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
+
 License
 ===============
 

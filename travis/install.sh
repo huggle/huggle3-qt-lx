@@ -1,11 +1,11 @@
 #! /bin/bash
 
 if [ "$QTTYPE" = "4" ]; then
-	sudo apt-get install -y libqt4-webkit libqtwebkit-dev qt4-qmake qt4-dev-tools
+	sudo apt-get install -y libqt4-webkit libqtwebkit-dev qt4-qmake qt4-dev-tools cmake
 fi
 
 if [ "$QTTYPE" = "5" ]; then
-	sudo apt-get install -y ubuntu-sdk qtquick1-5-dev
+	sudo apt-get install -y ubuntu-sdk qtquick1-5-dev cmake
 fi
 
 sudo apt-get install g++-4.7
