@@ -1,5 +1,5 @@
-huggle (3.0.0.0) UNRELEASED; urgency=low
+huggle (3.0.0) stable; urgency=low
 
-  * Initial release
+  * release of 3.0.0
 
- -- Petr Bena <benapetr@gmail.com>  Wed, 27 Nov 2013 14:25:23 +0100
+ -- Petr Bena <benapetr@gmail.com>  Mon, 26 May 2014 17:42:37 +0200
