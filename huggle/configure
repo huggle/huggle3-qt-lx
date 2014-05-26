@@ -29,13 +29,11 @@
 #  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 SKIPCHECKS=0
-_G=0
 RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 BREAKPAD=0
-GCC_PATH="g++"
 QT5=10
 FLAGS=''
 CMAKE_ARGS=''
@@ -50,7 +48,7 @@ do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
-        echo " --skip-checks|--disable-dependency-tracking: skip all package checks"
+        echo " --disable-dependency-tracking: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
         echo " --build [i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
@@ -58,7 +56,6 @@ do
         echo " --no-colors: suppress colors"
         echo " --version: show version"
         echo " --no-breakpad: will not build breakpad library for huggle"
-        echo " --g++ <path>: change path to g++ binaries"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
@@ -66,11 +63,6 @@ do
     if [ "$_BUILD" = "1" ];then
 	BUILD="$var"
         _BUILD=0
-        continue
-    fi
-    if [ "$_G" = "1" ];then
-	GCC_PATH="$var"
-        _G=0
         continue
     fi
     if [ "$var" = "--no-colors" ];then
@@ -99,10 +91,6 @@ do
         FLAGS='-spec linux-g++-64'
         continue
     fi
-    if [ "$var" = "--g++" ];then
-        _G=1
-        continue
-    fi
     if [ "$var" = "--folder" ];then
         _BUILD=1
         continue
@@ -111,7 +99,7 @@ do
         echo "Huggle configure v 1.0"
         exit 0
     fi
-    if [ "$var" = "--skip-checks" ] || [ "$var" = "--disable-dependency-tracking" ];then
+    if [ "$var" = "--disable-dependency-tracking" ];then
         SKIPCHECKS=1
         continue
     fi
@@ -197,43 +185,6 @@ checkpkg()
     echo "or execute apt-get install $1 as root"
     exit 1
 }
-text "Checking for g++"
-FAILED=0
-if [ "`which $GCC_PATH`" != "" ];then
-    GCC_VERSION=`$GCC_PATH --version | head -1`
-    if [ `echo "$GCC_VERSION" | grep -Ec '\s[1234]\.[0123456]\.'` -gt 0 ];then
-       warn
-       text "Found $GCC_VERSION but 4.7 or newer is required, trying some alternative options"
-       FAILED=1
-    fi
-else
-    warn
-    text "No g++ found, trying some alternative options"
-    FAILED=1
-fi
-if [ $FAILED -eq 1 ];then
-    if [ "`which g++-4.7`" ];then
-        GCC_PATH=`which g++-4.7`
-        FAILED=0
-    elif [ "`which g++-4.8`" ];then
-        GCC_PATH=`which g++-4.8`
-        FAILED=0
-    elif [ "`which g++-4.9`" ];then
-        GCC_PATH=`which g++-4.9`
-        FAILED=0
-    fi
-    if [ $FAILED -eq 1 ];then
-        fail
-        echo "No suitable compilers were found, if you have g++ 4.7 or newer somewhere in the system, please run ./configure --g++ <path>"
-        exit 1
-    fi
-    ok
-    echo "Found $GCC_PATH"
-else
-    ok
-    echo "Found $GCC_VERSION"
-fi
-
 echo "Checking all required packages..."
 text "Checking for cmake... "
 
@@ -300,15 +251,6 @@ if [ ! -f version.txt ];then
 	exit 1
 fi
 ok
-if [ ! -f definitions.hpp ];then
-    text "Making definitions.hpp"
-    cp definitions_prod.hpp definitions.hpp || exit 1;ok
-    if [ $BREAKPAD -eq 1 ];then
-        cat huggle.pro | sed 's/libbreakpad_client.a//' > huggle__ && mv huggle__ huggle.pro || exit 1
-        cat definitions_prod.hpp | sed 's/^.*DISABLE_BREAKPAD/#define DISABLE_BREAKPAD/' > definitions.hpp || exit 1
-    fi
-fi
-
 if [ -d "$BUILD" ];then
   echo $WARN"WARNING: build directory already exist make sure it's clean"$NORMAL
 else

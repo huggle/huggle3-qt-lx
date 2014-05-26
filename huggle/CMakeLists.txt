@@ -33,6 +33,8 @@ if(QT5_BUILD)
 else()
   find_package(Qt4 REQUIRED)
 endif()
+find_package(PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
 
 file(GLOB srcx
     "*.cpp"
@@ -61,7 +63,7 @@ if (NOT QT5_BUILD)
 endif()
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 ADD_EXECUTABLE(huggle ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
-TARGET_LINK_LIBRARIES(huggle ${QT_LIBRARIES})
+TARGET_LINK_LIBRARIES(huggle ${PYTHON_LIBRARIES} ${QT_LIBRARIES})
 if (QT5_BUILD)
     qt5_use_modules(huggle Core Gui Widgets WebKitWidgets WebKit Network Xml)
 endif()

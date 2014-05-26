@@ -22,7 +22,7 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_RELEASE     0x0
 
 // uncomment this if you want to enable python support
-//#define PYTHONENGINE
+#define PYTHONENGINE
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
 // linking or building its libraries
