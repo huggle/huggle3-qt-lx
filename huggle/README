@@ -13,6 +13,7 @@ How to build:
 =============
 
 ./configure 
+cd huggle_release
 make
 
 Structure of this folder:

@@ -8,8 +8,9 @@ Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other Wikimedi
 Building
 =========
 
-Libraries you need to have to build:
+Libraries and tools you need to have to build:
 * GCC (gcc g++ make)
+* [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
 * QT4 sdk (libqt4-dev libqt4-webkit libqt4-network qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
@@ -36,12 +37,11 @@ Linux
 * cd REPO/huggle, execute
 
 ```sh
-./configure
+./configure --qt4 #you can use --qt5 in case you have it
+cd huggle_release
 make
 sudo make install
 ```
-
-Fedora users may need to use ```./configure --skip-checks --qt4 --qmake /usr/bin/qmake-qt4``` if it can't find qmake by itself.
 
 MacOS
 ------------
@@ -52,7 +52,8 @@ brew install qt
 ```
 * Checkout this repository and execute
 ```sh
-./configure --no-breakpad
+./configure
+cd huggle_release
 make
 open huggle.app
 ```
