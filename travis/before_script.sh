@@ -11,11 +11,11 @@ if [ "$QTTYPE" = "4" ]; then
         cd huggle_prod
 	make
         cd ..
-        qmake
-        make
-	cd tests/test
-	qmake
-	make
+        #qmake
+        #make
+	#cd tests/test
+	#qmake
+	#make
 fi
 
 if [ "$QTTYPE" = "5" ]; then
