@@ -29,8 +29,6 @@
 #  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 SKIPCHECKS=0
-QMAKE_PATH=qmake
-_QMAKE=0
 _G=0
 RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
@@ -40,6 +38,8 @@ BREAKPAD=0
 GCC_PATH="g++"
 QT5=10
 FLAGS=''
+CMAKE_ARGS=''
+BUILD=huggle_prod
 if [ x"$*" != x ];then
     echo "Options used: $*"
 fi
@@ -56,7 +56,6 @@ do
         echo " --no-colors: suppress colors"
         echo " --version: show version"
         echo " --no-breakpad: will not build breakpad library for huggle"
-        echo " --qmake: change path to qmake"
         echo " --g++: change path to g++ binaries"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
@@ -65,11 +64,6 @@ do
     if [ "$_G" = "1" ];then
 	GCC_PATH="$var"
         _G=0
-        continue
-    fi
-    if [ "$_QMAKE" = "1" ];then
-        _QMAKE=0
-	QMAKE_PATH="$var"
         continue
     fi
     if [ "$var" = "--no-colors" ];then
@@ -100,10 +94,6 @@ do
     fi
     if [ "$var" = "--g++" ];then
         _G=1
-        continue
-    fi
-    if [ "$var" = "--qmake" ];then
-        _QMAKE=1
         continue
     fi
     if [ "$var" = "--version" ];then
@@ -234,11 +224,11 @@ else
 fi
 
 echo "Checking all required packages..."
-text "Checking for qmake... "
+text "Checking for cmake... "
 
-if [ "`which $QMAKE_PATH`" = "" ];then
+if [ "`which cmake`" = "" ];then
 	fail
-	echo "qmake can't be found"
+	echo "cmake can't be found"
 	exit 1
 fi
 
@@ -249,44 +239,8 @@ if [ "$QT5" -eq 10 ];then
     echo $WARN"WARNING: No version of QT was explicitly specified, assuming you want to use QT4 (use --qt5 if not)"$NORMAL
 fi
 
-if [ "`which apt-cache`" = "" ];then
-	echo $WARN"WARNING: Unable to verify packages, let's just hope they are all installed"$NORMAL
-else
-        checkpkg "make"
-        if [ "$QT5" -eq 0 ];then
-            checkpkg "qt4-dev-tools"
-            checkpkg "libqt4-opengl"
-            checkpkg "libqt4-dbus"
-            checkpkg "libqt4-dev"
-            checkpkg "libqt4-network"
-            checkpkg "libqt4-webkit"
-            checkpkg "libqtwebkit-dev"
-            checkpkg "libqtgui4"
-            checkpkg "libqtcore4"
-            checkpkg "libqt4-xml"
-            checkpkg "qt4-qmake"
-        else
-            checkpkg "libsqlite3-dev"
-            checkpkg "libqt5webkit5-dev"
-            checkpkg "qt5-qmake" 
-            checkpkg "qt5-default"
-            checkpkg "libqt5xml5" 
-            checkpkg "qtquick1-5-dev"
-            checkqt "qtlocation5-dev" "libqtlocation1"
-            checkqt "libqtsensors5-dev" "qtsensors5-dev"
-            # This is for Ubuntu 14.04; libqt5core5 has an a at the end of it
-            if [ "`lsb_release -a | grep 'trusty\|amd64' | wc -l`" -eq 1 ];then
-                checkpkg "libqt5core5a"
-            else
-                checkpkg "libqt5core5"
-            fi
-            checkpkg "qtdeclarative5-dev"
-        fi
-fi
-
 if [ "$QT5" -eq 1 ];then
-    # these libraries are also needed to build qt 5 programs
-    checkhf xslt "/usr/include/libxslt/xslt.h"
+    CMAKE_ARGS="$CMAKE_ARGS -DQT5_BUILD=true"
 fi
 
 if [ ! -f huggle.pro ];then
@@ -334,9 +288,7 @@ if [ ! -f version.txt ];then
 	echo "Error! unable to create a version file!"
 	exit 1
 fi
-
 ok
-
 if [ ! -f definitions.hpp ];then
     text "Making definitions.hpp"
     cp definitions_prod.hpp definitions.hpp || exit 1;ok
@@ -346,25 +298,14 @@ if [ ! -f definitions.hpp ];then
     fi
 fi
 
-text "Preparing makefile hunker..."
-
-if [ ! -d hunker ];then
-    fail
-    echo "There is no hunker in here"
-    exit 1
+if [ -d "$BUILD" ];then
+  echo $WARN"WARNING: build directory already exist make sure it's clean"$NORMAL
+else
+  mkdir "$BUILD" || exit 1
 fi
-
-cd hunker || exit 1
-$QMAKE_PATH || exit 1;ok
-text "Building makefile hunker..."
-make -s || exit 1
-cd .. || exit 1;ok
-text "Creating makefile... "
-$QMAKE_PATH $FLAGS || exit 1;ok
-text "Executing hunk..."
-cd hunker || exit 1
-./makefilehunker ../Makefile $GCC_PATH || exit 1;ok
-echo "Everything is ready, you can build huggle by typing"
+cd "$BUILD" || exit 1
+cmake .. $CMAKE_ARGS || exit 1
+echo "Everything is ready, you can build huggle by entering "$BUILD" and typing"
 echo "make"
 
 # this isn't normally needed but ensure we return 0 here
