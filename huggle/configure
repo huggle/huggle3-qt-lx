@@ -39,6 +39,7 @@ GCC_PATH="g++"
 QT5=10
 FLAGS=''
 CMAKE_ARGS=''
+_BUILD=0
 BUILD=huggle_prod
 if [ x"$*" != x ];then
     echo "Options used: $*"
@@ -52,14 +53,20 @@ do
         echo " --skip-checks|--disable-dependency-tracking: skip all package checks"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
-        echo " --build=[i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
+        echo " --build [i686-pc-linux-gnu|x86_64-pc-linux-gnu]: change the target architecture to specified"
+        echo " --folder <folder>: change the default build folder"
         echo " --no-colors: suppress colors"
         echo " --version: show version"
         echo " --no-breakpad: will not build breakpad library for huggle"
-        echo " --g++: change path to g++ binaries"
+        echo " --g++ <path>: change path to g++ binaries"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
+    fi
+    if [ "$_BUILD" = "1" ];then
+	BUILD="$var"
+        _BUILD=0
+        continue
     fi
     if [ "$_G" = "1" ];then
 	GCC_PATH="$var"
@@ -94,6 +101,10 @@ do
     fi
     if [ "$var" = "--g++" ];then
         _G=1
+        continue
+    fi
+    if [ "$var" = "--folder" ];then
+        _BUILD=1
         continue
     fi
     if [ "$var" = "--version" ];then
