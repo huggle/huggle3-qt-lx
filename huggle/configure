@@ -268,18 +268,13 @@ else
         else
             checkpkg "libsqlite3-dev"
             checkpkg "libqt5webkit5-dev"
-            checkpkg "qt5-qmake" 
+            checkpkg "qt5-qmake"
             checkpkg "qt5-default"
-            checkpkg "libqt5xml5" 
+            checkpkg "libqt5xml5"
             checkpkg "qtquick1-5-dev"
             checkqt "qtlocation5-dev" "libqtlocation1"
-            checkqt "libqtsensors5-dev" "qtsensors5-dev"
-            # This is for Ubuntu 14.04; libqt5core5 has an a at the end of it
-            if [ "`lsb_release -a | grep 'trusty\|amd64' | wc -l`" -eq 1 ];then
-                checkpkg "libqt5core5a"
-            else
-                checkpkg "libqt5core5"
-            fi
+            checkqt "libqtsensors5-dev" "libqt5sensors5-dev" "qtsensors5-dev"
+            checkpkg "libqt5core5a" "libqt5core5"
             checkpkg "qtdeclarative5-dev"
         fi
 fi
