@@ -5,6 +5,7 @@ PROJECT(huggle)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 #  cmake <folder> -DQT5_BUILD=true
+option(PYTHON_BUILD "Build huggle with python" FALSE)
 option(QT5_BUILD "Build huggle using the Qt5 framework" FALSE)
 SET(CMAKE_CXX_FLAGS "-std=c++11")
 SET(QT_USE_QTNETWORK TRUE)
@@ -15,26 +16,28 @@ SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 SET(CMAKE_AUTOMOC ON)
 #### Qt 4 and 5 ####
 if(QT5_BUILD)
-  find_package(Qt5Core REQUIRED)
-  find_package(Qt5Gui REQUIRED)
-  find_package(Qt5WebKit REQUIRED)
-  find_package(Qt5Xml REQUIRED)
-  find_package(Qt5Widgets REQUIRED)
-  find_package(Qt5Network REQUIRED)
-  set(QT_INCLUDES
-    ${Qt5Gui_INCLUDE_DIRS}
-    ${Qt5Widgets_INCLUDE_DIRS}
-    ${Qt5Network_INCLUDE_DIRS}
-    ${Qt5WebKit_INCLUDE_DIRS}
-    ${Qt5Xml_INCLUDE_DIRS}
-    ${Qt5Svg_INCLUDE_DIRS}
-  )
-  include_directories(${QT_INCLUDES})
+    find_package(Qt5Core REQUIRED)
+    find_package(Qt5Gui REQUIRED)
+    find_package(Qt5WebKit REQUIRED)
+    find_package(Qt5Xml REQUIRED)
+    find_package(Qt5Widgets REQUIRED)
+    find_package(Qt5Network REQUIRED)
+    set(QT_INCLUDES
+        ${Qt5Gui_INCLUDE_DIRS}
+        ${Qt5Widgets_INCLUDE_DIRS}
+        ${Qt5Network_INCLUDE_DIRS}
+        ${Qt5WebKit_INCLUDE_DIRS}
+        ${Qt5Xml_INCLUDE_DIRS}
+        ${Qt5Svg_INCLUDE_DIRS}
+    )
+    include_directories(${QT_INCLUDES})
 else()
-  find_package(Qt4 REQUIRED)
+    find_package(Qt4 REQUIRED)
 endif()
-#find_package(PythonLibs REQUIRED)
-#include_directories(${PYTHON_INCLUDE_DIRS})
+if (PYTHON_BUILD)
+    find_package(PythonLibs REQUIRED)
+    include_directories(${PYTHON_INCLUDE_DIRS})
+endif()
 
 file(GLOB srcx
     "*.cpp"
@@ -63,8 +66,11 @@ if (NOT QT5_BUILD)
 endif()
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 ADD_EXECUTABLE(huggle ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
-TARGET_LINK_LIBRARIES(huggle ${QT_LIBRARIES})
-#TARGET_LINK_LIBRARIES(huggle ${PYTHON_LIBRARIES} ${QT_LIBRARIES})
+if (NOT PYTHON_BUILD)
+    TARGET_LINK_LIBRARIES(huggle ${QT_LIBRARIES})
+else()
+    TARGET_LINK_LIBRARIES(huggle ${PYTHON_LIBRARIES} ${QT_LIBRARIES})
+endif()
 if (QT5_BUILD)
     qt5_use_modules(huggle Core Gui Widgets WebKitWidgets WebKit Network Xml)
 endif()
