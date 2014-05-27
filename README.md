@@ -62,6 +62,13 @@ Python
 ------------
 To enable python engine you need to:
 
+On linux / mac:
+run ./configure with --python option, for example
+```
+./configure --qt5 --python
+```
+
+On windows:
 * open huggle.pro and uncomment / add python library
 * open definitions.hpp and uncomment #define PYTHONENGINE
 
