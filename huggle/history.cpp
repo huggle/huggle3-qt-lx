@@ -72,7 +72,14 @@ void History::Prepend(HistoryItem item)
 
 History::~History()
 {
+    while (this->Items.count() > 0)
+    {
+        HistoryItem *hi = this->Items.at(0);
+        this->Items.removeAt(0);
+        delete hi;
+    }
     GC_DECREF(this->qSelf);
+    GC_DECREF(this->qTalk);
     GC_DECREF(this->qEdit);
     delete this->ui;
     delete this->timerRetrievePageInformation;
@@ -94,7 +101,7 @@ void History::Undo(HistoryItem *hist)
             return;
         }
 
-        hist = new HistoryItem(this->Items.at(this->CurrentItem));
+        hist = this->Items.at(this->CurrentItem);
     }
     if (hist->Undone)
     {
@@ -109,7 +116,6 @@ void History::Undo(HistoryItem *hist)
         mb.setText(Localizations::HuggleLocalizations->Localize("history-error"));
         mb.setIcon(QMessageBox::Warning);
         mb.exec();
-        delete hist;
         return;
     }
     switch (hist->Type)
@@ -125,7 +131,6 @@ void History::Undo(HistoryItem *hist)
                                               "want to revert both of these)", QMessageBox::Yes|QMessageBox::No);
                 if (reply == QMessageBox::No)
                 {
-                    delete hist;
                     return;
                 }
                 hist->ReferencedBy->UndoDependency = nullptr;
@@ -139,6 +144,7 @@ void History::Undo(HistoryItem *hist)
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryRollback:
+        case HistoryEdit:
             // we need to revert both warning of user as well as page we rolled back
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents(hist->Target);
@@ -147,8 +153,13 @@ void History::Undo(HistoryItem *hist)
             QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
+        case HistoryUnknown:
+            QMessageBox mb;
+            mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("history-error-message-title"));
+            mb.setText("Unknown item");
+            mb.exec();
+            break;
     }
-    delete hist;
 }
 
 void History::ContextMenu(const QPoint &position)
@@ -165,16 +176,19 @@ void History::ContextMenu(const QPoint &position)
 
 void History::Tick()
 {
-    if (this->qSelf && this->qSelf->IsProcessed())
+    if ((this->qSelf && this->qSelf->IsProcessed()) || (this->qTalk && this->qTalk->IsProcessed()))
     {
         // we finished reverting the edit
         this->RevertingItem->Undone = true;
         Syslog::HuggleLogs->Log("Successfully undone edit to " + this->RevertingItem->Target);
+        int position = this->ui->tableWidget->rowCount() - this->RevertingItem->ID;
+        this->ui->tableWidget->setItem(position, 3, new QTableWidgetItem("Undone"));
         // let's see if there is any dep and if so, let's undo it as well
         if (this->RevertingItem->UndoDependency)
         {
             HistoryItem *deps = this->RevertingItem->UndoDependency;
             deps->ReferencedBy = nullptr;
+            GC_DECREF(this->qTalk);
             GC_DECREF(this->qSelf);
             this->RevertingItem = nullptr;
             this->Undo(deps);
@@ -202,6 +216,41 @@ void History::Tick()
         edit->User = new WikiUser(user);
         edit->Page->Contents = result;
         edit->RevID = revid;
+        if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
+        {
+            QMessageBox mb;
+            mb.setWindowTitle("Send welcome message instead?");
+            mb.setText("You created this talk page, so it can't be undone, do you want to replace it with a welcome template?");
+            mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            mb.setDefaultButton(QMessageBox::Yes);
+            if (mb.exec() == QMessageBox::Yes)
+            {
+                if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.count() == 0)
+                {
+                    // This error should never happen so we don't need to localize this
+                    Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
+                    this->RevertingItem = nullptr;
+                    this->timerRetrievePageInformation->stop();
+                    return;
+                }
+                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.at(0));
+                if (!message.size())
+                {
+                    // This error should never happen so we don't need to localize this
+                    Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
+                    this->RevertingItem = nullptr;
+                    this->timerRetrievePageInformation->stop();
+                    return;
+                }
+                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, true);
+                return;
+            } else
+            {
+                this->RevertingItem = nullptr;
+                this->timerRetrievePageInformation->stop();
+                return;
+            }
+        }
         // so now we have likely everything we need, let's revert that page :D
         this->qSelf = WikiUtil::RevertEdit(edit, "Undoing own edit");
         // set it to undo only a last edit
@@ -242,6 +291,7 @@ HistoryItem::HistoryItem(const HistoryItem &item)
 {
     this->ID = item.ID;
     this->Target = item.Target;
+    this->NewPage = item.NewPage;
     this->UndoRevBaseTime = item.UndoRevBaseTime;
     this->Type = item.Type;
     this->UndoDependency = item.UndoDependency;
@@ -257,6 +307,7 @@ HistoryItem::HistoryItem(HistoryItem *item)
     }
     this->ID = item->ID;
     this->Type = item->Type;
+    this->NewPage = item->NewPage;
     this->IsRevertable = item->IsRevertable;
     this->UndoRevBaseTime = item->UndoRevBaseTime;
     this->Target = item->Target;

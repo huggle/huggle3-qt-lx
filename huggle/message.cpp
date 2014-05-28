@@ -266,6 +266,7 @@ void Message::Finish()
                     sent = true;
                     HistoryItem item;
                     item.Result = "Success";
+                    item.NewPage = this->CreateOnly;
                     item.Type = HistoryMessage;
                     item.Target = user->Username;
                     if (Core::HuggleCore->Main != nullptr)

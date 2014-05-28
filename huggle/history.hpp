@@ -21,8 +21,9 @@
 #include <QTimer>
 #include <QList>
 #include <QDockWidget>
-#include "revertquery.hpp"
 #include "apiquery.hpp"
+#include "editquery.hpp"
+#include "revertquery.hpp"
 
 namespace Ui
 {
@@ -32,6 +33,7 @@ namespace Ui
 namespace Huggle
 {
     class ApiQuery;
+    class EditQuery;
     class RevertQuery;
     //! Types of history items
     enum HistoryType
@@ -59,6 +61,7 @@ namespace Huggle
             QString Target;
             //! Change this to false in case that item can't be reverted
             bool IsRevertable = true;
+            bool NewPage = false;
             //! Type of item
             HistoryType Type;
             bool Undone = false;
@@ -95,6 +98,8 @@ namespace Huggle
             HistoryItem *RevertingItem = nullptr;
             //! This is a query we need to use to retrieve our own edit before we undo it
             ApiQuery *qEdit = nullptr;
+            //! This is for welcome message that is used to replace a talk page
+            EditQuery *qTalk = nullptr;
             //! Used to revert edits we made
             RevertQuery *qSelf = nullptr;
             int CurrentItem = -200;
