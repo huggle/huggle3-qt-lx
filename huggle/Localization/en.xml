@@ -149,6 +149,8 @@
     <string name="historyform-retrieve-history">Retrieve history</string>
     <string name="historyform-retrieving-history">Retrieving history</string>
     <string name="historyform-not-latest-tip">This is not a latest revision of this page - make sure you reviewed the newer versions as well. Please also keep in mind that rollback may not be possible from this point.</string>
+    <string name="history-error-message-title">Unable to undo</string>
+    <string name="history-error">This item can't be undone, the page might have been changed or deleted meanwhile, and huggle is unable to perform undo from this point. If you really want to undo it, you will need to do that by hand using mediawiki interface.</string>
     <string name="userhistory-title">History of your changes</string>
     <string name="irc-connected">Connected to IRC recent changes feed</string>
     <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a few moments...</string>

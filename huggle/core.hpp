@@ -25,18 +25,15 @@
 #include <QMap>
 #include "query.hpp"
 #include "login.hpp"
-#include "wikiedit.hpp"
 #include "mainwindow.hpp"
 #include "exceptionwindow.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
-#include "editquery.hpp"
 #include "resources.hpp"
 #include "history.hpp"
 #include "apiquery.hpp"
 #include "querypool.hpp"
 #include "sleeper.hpp"
-#include "revertquery.hpp"
 #include "huggleparser.hpp"
 
 #ifdef PYTHONENGINE
@@ -58,16 +55,8 @@ namespace Huggle
     class ApiQuery;
     class MainWindow;
     class HuggleFeed;
-    class EditQuery;
     class ProcessorThread;
-    class Collectable;
     class HuggleQueueFilter;
-    class WikiSite;
-    class WikiPage;
-    class OAuthLoginQuery;
-    class WikiUser;
-    class WikiEdit;
-    class RevertQuery;
     class Syslog;
     class QueryPool;
     class iExtension;

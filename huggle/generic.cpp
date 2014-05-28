@@ -22,7 +22,7 @@ bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
         return true;
-    QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
+    QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Report user"
                   , "This user has already reached warning level 4, so no further templates will be "\
                     "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
                     "number of recent warnings! You can do so by clicking the \"talk page\" button in following form. "\
@@ -36,6 +36,7 @@ bool Generic::ReportPreFlightCheck()
 ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
 {
     ApiQuery *query = new ApiQuery(ActionQuery);
+    query->Target = "Retrieving contents of " + page;
     query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options_ + "&titles=" + QUrl::toPercentEncoding(page);
     if (parse)
         query->Parameters += "&rvparse";
@@ -43,14 +44,14 @@ ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
 }
 
 QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user,
-                                          int *revid, int *reason)
+                                          int *revid, int *reason, QString *title)
 {
     if (!failed)
     {
         throw new Huggle::Exception("failed was NULL", "QString Generic::EvaluateWikiPageContents(ApiQuery *query, "\
                                     "bool *failed, QDateTime *base, QString *comment, QString *user, int *revid)");
     }
-    if (query == NULL)
+    if (query == nullptr)
     {
         if (reason) { *reason = EvaluatePageErrorReason_NULL; }
         *failed = true;
@@ -89,19 +90,23 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
         return "No revisions were provided for this page";
     }
     QDomElement e = page.at(0).toElement();
-    if (user != NULL && e.attributes().contains("user"))
+    if (user && e.attributes().contains("user"))
     {
         *user = e.attribute("user");
     }
-    if (comment != NULL && e.attributes().contains("comment"))
+    if (comment && e.attributes().contains("comment"))
     {
         *comment = e.attribute("comment");
     }
-    if (ts != NULL && e.attributes().contains("timestamp"))
+    if (title && e.attributes().contains("title"))
+    {
+        *title = e.attribute("title");
+    }
+    if (ts && e.attributes().contains("timestamp"))
     {
         *ts = e.attribute("timestamp");
     }
-    if (revid != NULL && e.attributes().contains("revid"))
+    if (revid && e.attributes().contains("revid"))
     {
         *revid = e.attribute("revid").toInt();
     }

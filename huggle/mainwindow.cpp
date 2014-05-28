@@ -1389,7 +1389,7 @@ void MainWindow::DeletePage()
         return;
     if (this->CurrentEdit == nullptr)
     {
-        Syslog::HuggleLogs->ErrorLog("No, you cannot delete a nullptr page :)");
+        Syslog::HuggleLogs->ErrorLog("unable to delete: nullptr page");
         return;
     }
     if (this->fDeleteForm != nullptr)
@@ -1439,7 +1439,7 @@ void MainWindow::Welcome()
     }
     this->CurrentEdit->User->Resync();
     bool create_only = true;
-    if (this->CurrentEdit->User->TalkPage_GetContents() != "")
+    if (this->CurrentEdit->User->TalkPage_GetContents().size() > 0)
     {
         if (QMessageBox::question(this, "Welcome :o", Localizations::HuggleLocalizations->Localize("welcome-tp-empty-fail"),
                                   QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
@@ -1454,7 +1454,7 @@ void MainWindow::Welcome()
     }
     if (this->CurrentEdit->User->IsIP())
     {
-        if (this->CurrentEdit->User->TalkPage_GetContents() == "")
+        if (this->CurrentEdit->User->TalkPage_GetContents().size() == 0)
         {
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon);

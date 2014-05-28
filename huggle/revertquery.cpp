@@ -20,22 +20,22 @@ using namespace Huggle;
 RevertQuery::RevertQuery()
 {
     this->Type = QueryRevert;
-    this->qRevert = NULL;
-    this->edit = NULL;
+    this->qRevert = nullptr;
+    this->edit = nullptr;
     this->PreflightFinished = false;
     this->RollingBack = false;
-    this->timer = NULL;
+    this->timer = nullptr;
     this->UsingSR = false;
     this->Token = "";
-    this->qRetrieve = NULL;
+    this->qRetrieve = nullptr;
     this->Summary = "";
     this->MinorEdit = false;
-    this->eqSoftwareRollback = NULL;
-    this->qPreflight = NULL;
+    this->eqSoftwareRollback = nullptr;
+    this->qPreflight = nullptr;
     this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
-    this->qSR_PageToken = NULL;
+    this->qSR_PageToken = nullptr;
     this->SR_EditToken = "";
 }
 
@@ -43,47 +43,47 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
 {
     Edit->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->Type = QueryRevert;
-    this->qRevert = NULL;
+    this->qRevert = nullptr;
     this->edit = Edit;
     this->PreflightFinished = false;
     this->RollingBack = false;
-    this->timer = NULL;
-    this->qRetrieve = NULL;
+    this->timer = nullptr;
+    this->qRetrieve = nullptr;
     this->IgnorePreflightCheck = false;
     this->UsingSR = false;
-    this->eqSoftwareRollback = NULL;
+    this->eqSoftwareRollback = nullptr;
     this->Token = "";
     this->MinorEdit = false;
     this->Summary = "";
-    this->qPreflight = NULL;
+    this->qPreflight = nullptr;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
     this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
-    this->qSR_PageToken = NULL;
+    this->qSR_PageToken = nullptr;
     this->SR_EditToken = "";
 }
 
 RevertQuery::~RevertQuery()
 {
-    if (this->edit != NULL)
+    if (this->edit != nullptr)
     {
         this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         this->edit->UnregisterConsumer("Core::RevertEdit");
     }
-    if (this->qSR_PageToken != NULL)
+    if (this->qSR_PageToken != nullptr)
     {
         this->qSR_PageToken->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qSR_PageToken = NULL;
+        this->qSR_PageToken = nullptr;
     }
-    if (this->qPreflight != NULL)
+    if (this->qPreflight != nullptr)
     {
         this->qPreflight->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qPreflight = NULL;
+        this->qPreflight = nullptr;
     }
-    if (this->qRetrieve != NULL)
+    if (this->qRetrieve != nullptr)
     {
         this->qRetrieve->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qRetrieve = NULL;
+        this->qRetrieve = nullptr;
     }
     delete this->timer;
 }
@@ -96,10 +96,9 @@ void RevertQuery::Process()
         return;
     }
     this->Status = StatusProcessing;
-    if (timer != NULL)
-    {
-        delete timer;
-    }
+    if (this->timer != nullptr)
+        delete this->timer;
+
     this->StartTime = QDateTime::currentDateTime();
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
@@ -109,27 +108,33 @@ void RevertQuery::Process()
     this->Preflight();
 }
 
+void RevertQuery::SetLast()
+{
+    this->OneEditOnly = true;
+    this->UsingSR = true;
+}
+
 void RevertQuery::Kill()
 {
-    if (this->PreflightFinished && this->qRevert != NULL)
+    if (this->PreflightFinished && this->qRevert != nullptr)
     {
         this->qRevert->Kill();
-    } else if (this->qPreflight != NULL)
+    } else if (this->qPreflight != nullptr)
     {
         this->qPreflight->Kill();
     }
     this->Status = StatusInError;
-    if (this->Result == NULL)
+    if (this->Result == nullptr)
     {
         this->Result = new QueryResult();
         this->Result->ErrorMessage = "Killed";
         this->Result->Failed = true;
     }
-    if (this->qRetrieve != NULL)
+    if (this->qRetrieve != nullptr)
     {
         this->qRetrieve->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     }
-    this->qRetrieve = NULL;
+    this->qRetrieve = nullptr;
     this->Exit();
 }
 
@@ -291,7 +296,7 @@ void RevertQuery::CheckPreflight()
         this->PreflightFinished = true;
         return;
     }
-    if (this->qPreflight == NULL || !this->qPreflight->IsProcessed())
+    if (this->qPreflight == nullptr || !this->qPreflight->IsProcessed())
         return;
     if (this->qPreflight->Result->Failed)
     {
@@ -418,7 +423,7 @@ bool RevertQuery::CheckRevert()
     {
         return ProcessRevert();
     }
-    if (this->qRevert == NULL || !this->qRevert->IsProcessed())
+    if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result->Data);
     if (this->CustomStatus != "Reverted")
@@ -437,13 +442,13 @@ bool RevertQuery::CheckRevert()
         item.Target = this->qRevert->Target;
         item.Type = HistoryRollback;
         item.Result = "Success";
-        if (Core::HuggleCore->Main != NULL)
+        if (Core::HuggleCore->Main != nullptr)
         {
             Core::HuggleCore->Main->_History->Prepend(item);
         }
     }
     this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-    this->qRevert = NULL;
+    this->qRevert = nullptr;
     return true;
 }
 
@@ -460,7 +465,7 @@ void RevertQuery::Cancel()
 
 bool RevertQuery::ProcessRevert()
 {
-    if (this->SR_EditToken == "" && this->qSR_PageToken == NULL)
+    if (this->SR_EditToken == "" && this->qSR_PageToken == nullptr)
     {
         // we need to obtain edit token on beginning so that we prevent edit conflict resolution
         this->qSR_PageToken = new ApiQuery();
@@ -473,7 +478,7 @@ bool RevertQuery::ProcessRevert()
         this->qSR_PageToken->Process();
         return false;
     }
-    if (this->qSR_PageToken != NULL)
+    if (this->qSR_PageToken != nullptr)
     {
         if (!this->qSR_PageToken->IsProcessed())
         {
@@ -506,9 +511,9 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         this->qSR_PageToken->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qSR_PageToken = NULL;
+        this->qSR_PageToken = nullptr;
     }
-    if (this->eqSoftwareRollback != NULL)
+    if (this->eqSoftwareRollback != nullptr)
     {
         // we already reverted the page so check if we were successful in that
         if (this->eqSoftwareRollback->IsProcessed() == false)
@@ -531,7 +536,7 @@ bool RevertQuery::ProcessRevert()
         Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->edit->Page->PageName);
         return true;
     }
-    if (this->qRetrieve != NULL)
+    if (this->qRetrieve != nullptr)
     {
         // we are retrieving the content of previous edit made by a different user
         if (!this->qRetrieve->IsProcessed())
@@ -592,7 +597,7 @@ bool RevertQuery::ProcessRevert()
         this->CustomStatus = "Editing page";
         return false;
     }
-    if (this->qPreflight == NULL)
+    if (this->qPreflight == nullptr)
         return false;
     if (this->qPreflight->IsProcessed() != true)
         return false;
@@ -761,19 +766,19 @@ void RevertQuery::Revert()
 
 void RevertQuery::Exit()
 {
-    if (this->timer != NULL)
+    if (this->timer != nullptr)
     {
         this->timer->stop();
     }
-    if (this->eqSoftwareRollback != NULL)
+    if (this->eqSoftwareRollback != nullptr)
     {
         this->eqSoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->eqSoftwareRollback = NULL;
+        this->eqSoftwareRollback = nullptr;
     }
     this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
-    if (this->qRevert != NULL)
+    if (this->qRevert != nullptr)
     {
         this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qRevert = NULL;
+        this->qRevert = nullptr;
     }
 }

@@ -18,8 +18,11 @@
 #endif
 
 #include <QString>
+#include <QTimer>
 #include <QList>
 #include <QDockWidget>
+#include "revertquery.hpp"
+#include "apiquery.hpp"
 
 namespace Ui
 {
@@ -28,6 +31,8 @@ namespace Ui
 
 namespace Huggle
 {
+    class ApiQuery;
+    class RevertQuery;
     //! Types of history items
     enum HistoryType
     {
@@ -52,6 +57,8 @@ namespace Huggle
             QString UndoRevBaseTime;
             QString Result;
             QString Target;
+            //! Change this to false in case that item can't be reverted
+            bool IsRevertable = true;
             //! Type of item
             HistoryType Type;
             bool Undone = false;
@@ -75,15 +82,21 @@ namespace Huggle
             void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
             void Prepend(HistoryItem item);
-            QList<HistoryItem> Items;
+            QList<HistoryItem*> Items;
             static int Last;
 
         private slots:
             void ContextMenu(const QPoint& position);
-
+            void Tick();
             void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
+            QTimer *timerRetrievePageInformation;
+            HistoryItem *RevertingItem = nullptr;
+            //! This is a query we need to use to retrieve our own edit before we undo it
+            ApiQuery *qEdit = nullptr;
+            //! Used to revert edits we made
+            RevertQuery *qSelf = nullptr;
             int CurrentItem = -200;
             Ui::History *ui;
     };
