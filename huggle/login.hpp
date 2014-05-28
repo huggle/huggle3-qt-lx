@@ -93,6 +93,8 @@ namespace Huggle
             void Reload();
             void DB();
             void Disable();
+            //! Remove all references to all queries that are used
+            void DeleteQr();
             void PressOK();
             void PerformLogin();
             void PerformLoginPart2();

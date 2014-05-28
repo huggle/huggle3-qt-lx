@@ -95,12 +95,9 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 Login::~Login()
 {
     delete this->Updater;
+    this->DeleteQr();
     delete this->ui;
     delete this->loadingForm;
-    GC_DECREF(this->wq);
-    GC_DECREF(this->LoginQuery);
-    GC_DECREF(this->qSiteInfo);
-    GC_DECREF(this->qCfg);
     delete this->timer;
 }
 
@@ -136,6 +133,7 @@ void Login::Update(QString ms)
 
 void Login::Kill()
 {
+    this->DeleteQr();
     this->_Status = LoginFailed;
     this->timer->stop();
     if (this->loadingForm != nullptr)
@@ -165,6 +163,14 @@ void Login::CancelLogin()
     this->ui->labelIntro->setText(Localizations::HuggleLocalizations->Localize("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(Localizations::HuggleLocalizations->Localize("login-start"));
+}
+
+void Login::DeleteQr()
+{
+    GC_DECREF(this->wq);
+    GC_DECREF(this->LoginQuery);
+    GC_DECREF(this->qSiteInfo);
+    GC_DECREF(this->qCfg);
 }
 
 void Login::Enable()
