@@ -48,12 +48,14 @@ namespace Huggle
             HistoryItem(HistoryItem * item);
             //! Unique ID of this item
             int ID;
-            HistoryItem *UndoDependency;
+            HistoryItem *UndoDependency = nullptr;
             QString UndoRevBaseTime;
             QString Result;
             QString Target;
             //! Type of item
             HistoryType Type;
+            bool Undone = false;
+            HistoryItem *ReferencedBy = nullptr;
     };
 
     /// \todo It should be possible to go back in history to review what you have you done
@@ -73,11 +75,16 @@ namespace Huggle
             void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
             void Prepend(HistoryItem item);
-            void Refresh();
             QList<HistoryItem> Items;
             static int Last;
 
+        private slots:
+            void ContextMenu(const QPoint& position);
+
+            void on_tableWidget_clicked(const QModelIndex &index);
+
         private:
+            int CurrentItem = -200;
             Ui::History *ui;
     };
 }

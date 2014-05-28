@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "history.hpp"
+#include <QMenu>
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
@@ -21,6 +22,8 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     this->ui->setupUi(this);
     this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userhistory-title"));
+    this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
     header << Localizations::HuggleLocalizations->Localize("[[id]]") <<
@@ -54,11 +57,6 @@ void History::Prepend(HistoryItem item)
     this->ui->tableWidget->resizeRowToContents(0);
 }
 
-void History::Refresh()
-{
-
-}
-
 History::~History()
 {
     delete this->ui;
@@ -66,7 +64,28 @@ History::~History()
 
 void History::Undo(HistoryItem *hist)
 {
+    if (hist == nullptr)
+    {
+        // we need to get a currently selected item
+        if (this->CurrentItem < 0)
+            return;
 
+        hist = new HistoryItem(this->Items.at(this->CurrentItem));
+    }
+
+    delete hist;
+}
+
+void History::ContextMenu(const QPoint &position)
+{
+    QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
+    QMenu menu;
+    menu.addAction("Undo");
+    QAction *selection = menu.exec(g_);
+    if (selection)
+    {
+        this->Undo(nullptr);
+    }
 }
 
 QString HistoryItem::TypeToString(HistoryType type)
@@ -88,7 +107,6 @@ QString HistoryItem::TypeToString(HistoryType type)
 HistoryItem::HistoryItem()
 {
     History::Last++;
-    this->UndoDependency = NULL;
     this->Target = "Unknown target";
     this->UndoRevBaseTime = "";
     this->Type = HistoryUnknown;
@@ -108,7 +126,7 @@ HistoryItem::HistoryItem(const HistoryItem &item)
 
 HistoryItem::HistoryItem(HistoryItem *item)
 {
-    if (item == NULL)
+    if (item == nullptr)
     {
         throw new Exception("HistoryItem item must not be NULL", "HistoryItem::HistoryItem(HistoryItem *item)");
     }
@@ -118,4 +136,9 @@ HistoryItem::HistoryItem(HistoryItem *item)
     this->Target = item->Target;
     this->UndoDependency = item->UndoDependency;
     this->Result = item->Result;
+}
+
+void Huggle::History::on_tableWidget_clicked(const QModelIndex &index)
+{
+    this->CurrentItem = index.row();
 }
