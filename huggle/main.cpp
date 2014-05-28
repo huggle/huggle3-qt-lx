@@ -64,6 +64,7 @@ int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
     Huggle::Exception::InitBreakpad();
+    Huggle::HgApplication a(argc, argv);
     QApplication::setApplicationName("Huggle");
     QApplication::setOrganizationName("Wikimedia");
     Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
@@ -79,7 +80,6 @@ int main(int argc, char *argv[])
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
         // now we can start the huggle :o
-        Huggle::HgApplication a(argc, argv);
         Huggle::Core::HuggleCore->fLogin = new Huggle::Login();
         Huggle::Core::HuggleCore->fLogin->show();
         ReturnCode = a.exec();
