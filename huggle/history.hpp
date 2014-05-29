@@ -23,6 +23,7 @@
 #include <QDockWidget>
 #include "apiquery.hpp"
 #include "editquery.hpp"
+#include "historyitem.hpp"
 #include "revertquery.hpp"
 
 namespace Ui
@@ -34,39 +35,8 @@ namespace Huggle
 {
     class ApiQuery;
     class EditQuery;
+    class HistoryItem;
     class RevertQuery;
-    //! Types of history items
-    enum HistoryType
-    {
-        HistoryUnknown,
-        HistoryEdit,
-        HistoryRollback,
-        HistoryMessage
-    };
-
-    //! History consist of these items
-    class HistoryItem
-    {
-        public:
-            static QString TypeToString(HistoryType type);
-
-            HistoryItem();
-            HistoryItem(const HistoryItem &item);
-            HistoryItem(HistoryItem * item);
-            //! Unique ID of this item
-            int ID;
-            HistoryItem *UndoDependency = nullptr;
-            QString UndoRevBaseTime;
-            QString Result;
-            QString Target;
-            //! Change this to false in case that item can't be reverted
-            bool IsRevertable = true;
-            bool NewPage = false;
-            //! Type of item
-            HistoryType Type;
-            bool Undone = false;
-            HistoryItem *ReferencedBy = nullptr;
-    };
 
     /// \todo It should be possible to go back in history to review what you have you done
     /// currently nothing happens when you click on history items
@@ -84,9 +54,8 @@ namespace Huggle
             ~History();
             void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
-            void Prepend(HistoryItem item);
+            void Prepend(HistoryItem *item);
             QList<HistoryItem*> Items;
-            static int Last;
 
         private slots:
             void ContextMenu(const QPoint& position);

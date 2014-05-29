@@ -47,6 +47,7 @@ Message::~Message()
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     }
+    GC_DECNAMEDREF(this->Dependency, "keep");
     delete this->user;
 }
 
@@ -108,25 +109,19 @@ bool Message::IsFinished()
         if (!this->Dependency->IsProcessed())
         {
             return false;
-        } else
+        } else if (this->Dependency->IsFailed())
         {
-            if (this->Dependency->IsFailed())
-            {
-                // we can't continue because the dependency is fucked
-                this->Dependency->UnregisterConsumer("keep");
-                this->Dependency = nullptr;
-                this->_Status = Huggle::MessageStatus_Failed;
-                this->Error = MessageError_Dependency;
-                if (this->query != nullptr)
-                {
-                    this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-                    this->query = nullptr;
-                }
-                return true;
-            }
-            // dependency finished OK so we can remove a pointer to it
+            // we can't continue because the dependency is fucked
             this->Dependency->UnregisterConsumer("keep");
             this->Dependency = nullptr;
+            this->_Status = Huggle::MessageStatus_Failed;
+            this->Error = MessageError_Dependency;
+            if (this->query != nullptr)
+            {
+                this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+                this->query = nullptr;
+            }
+            return true;
         }
     }
     if (this->RetrievingToken())
@@ -264,11 +259,16 @@ void Message::Finish()
                 {
                     Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("message-done", this->user->Username));
                     sent = true;
-                    HistoryItem item;
-                    item.Result = "Success";
-                    item.NewPage = this->CreateOnly;
-                    item.Type = HistoryMessage;
-                    item.Target = user->Username;
+                    HistoryItem *item = new HistoryItem();
+                    item->Result = "Success";
+                    item->NewPage = this->CreateOnly;
+                    item->Type = HistoryMessage;
+                    item->Target = user->Username;
+                    if (this->Dependency && this->Dependency->HI)
+                    {
+                        this->Dependency->HI->UndoDependency = item;
+                        item->ReferencedBy = this->Dependency->HI;
+                    }
                     if (Core::HuggleCore->Main != nullptr)
                     {
                         Core::HuggleCore->Main->_History->Prepend(item);
@@ -276,15 +276,14 @@ void Message::Finish()
                 }
             }
         }
-
         if (!sent)
         {
             /// \todo LOCALIZE ME
             Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + this->user->Username + " please check logs");
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
-
         this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+        GC_DECNAMEDREF(this->Dependency, "keep");
         this->_Status = Huggle::MessageStatus_Done;
         this->query = nullptr;
     }

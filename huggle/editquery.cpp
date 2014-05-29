@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include "historyitem.hpp"
 #include "querypool.hpp"
 
 using namespace Huggle;
@@ -16,11 +17,11 @@ using namespace Huggle;
 EditQuery::EditQuery()
 {
     this->Summary = "";
-    this->Result = NULL;
-    this->qEdit = NULL;
+    this->Result = nullptr;
+    this->qEdit = nullptr;
     this->Minor = false;
     this->Page = "";
-    this->qToken = NULL;
+    this->qToken = nullptr;
     this->Section = 0;
     this->BaseTimestamp = "";
     this->StartTimestamp = "";
@@ -30,8 +31,9 @@ EditQuery::EditQuery()
 
 EditQuery::~EditQuery()
 {
-    if (this->qToken != NULL)
+    if (this->qToken != nullptr)
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+    GC_DECREF(this->HI);
 }
 
 void EditQuery::Process()
@@ -54,11 +56,11 @@ void EditQuery::Process()
 
 bool EditQuery::IsProcessed()
 {
-    if (this->Result != NULL)
+    if (this->Result != nullptr)
     {
         return true;
     }
-    if (this->qToken != NULL)
+    if (this->qToken != nullptr)
     {
         if (!this->qToken->IsProcessed())
         {
@@ -71,7 +73,7 @@ bool EditQuery::IsProcessed()
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error") + ": " +
                                          this->qToken->Result->ErrorMessage;
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
+            this->qToken = nullptr;
             return true;
         }
         QDomDocument dToken_;
@@ -84,7 +86,7 @@ bool EditQuery::IsProcessed()
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
+            this->qToken = nullptr;
             return true;
         }
         QDomElement element = l.at(0).toElement();
@@ -95,16 +97,16 @@ bool EditQuery::IsProcessed()
             this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
+            this->qToken = nullptr;
             return true;
         }
         Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qToken = NULL;
+        this->qToken = nullptr;
         this->EditPage();
         return false;
     }
-    if (this->qEdit != NULL)
+    if (this->qEdit != nullptr)
     {
         if (!this->qEdit->IsProcessed())
         {
@@ -122,12 +124,14 @@ bool EditQuery::IsProcessed()
                 if (element.attribute("result") == "Success")
                 {
                     failed = false;
-                    if (MainWindow::HuggleMain != NULL)
+                    if (MainWindow::HuggleMain != nullptr)
                     {
-                        HistoryItem item;
-                        item.Result = Localizations::HuggleLocalizations->Localize("successful");
-                        item.Type = HistoryEdit;
-                        item.Target = this->Page;
+                        HistoryItem *item = new HistoryItem();
+                        item->Result = Localizations::HuggleLocalizations->Localize("successful");
+                        item->Type = HistoryEdit;
+                        item->Target = this->Page;
+                        item->IncRef();
+                        this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
                     Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", Page));
@@ -141,7 +145,7 @@ bool EditQuery::IsProcessed()
             this->Result->ErrorMessage = this->qEdit->Result->Data;
         }
         this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qEdit = NULL;
+        this->qEdit = nullptr;
     }
     return true;
 }

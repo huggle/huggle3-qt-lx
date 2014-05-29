@@ -22,7 +22,6 @@
 
 using namespace Huggle;
 
-int History::Last = 0;
 History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     this->ui->setupUi(this);
@@ -53,30 +52,13 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     this->ui->tableWidget->setShowGrid(false);
 }
 
-void History::Prepend(HistoryItem item)
-{
-    // first of all check all items we have in a list
-    foreach (HistoryItem* item_, this->Items)
-    {
-        if (item_->IsRevertable && item_->Target == item.Target)
-            item_->IsRevertable = false;
-    }
-    this->Items.insert(0, new HistoryItem(item));
-    this->ui->tableWidget->insertRow(0);
-    this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(QString::number(item.ID)));
-    this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(HistoryItem::TypeToString(item.Type)));
-    this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(item.Target));
-    this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(item.Result));
-    this->ui->tableWidget->resizeRowToContents(0);
-}
-
 History::~History()
 {
     while (this->Items.count() > 0)
     {
         HistoryItem *hi = this->Items.at(0);
         this->Items.removeAt(0);
-        delete hi;
+        hi->DecRef();
     }
     GC_DECREF(this->qSelf);
     GC_DECREF(this->qTalk);
@@ -283,58 +265,22 @@ void History::Tick()
     }
 }
 
-QString HistoryItem::TypeToString(HistoryType type)
+void History::Prepend(HistoryItem *item)
 {
-    switch (type)
+    // first of all check all items we have in a list
+    item->IncRef();
+    foreach (HistoryItem* item_, this->Items)
     {
-        case HistoryUnknown:
-            return "Unknown";
-        case HistoryMessage:
-            return "Message";
-        case HistoryEdit:
-            return "Edit";
-        case HistoryRollback:
-            return "Rollback";
+        if (item_->IsRevertable && item_->Target == item->Target)
+            item_->IsRevertable = false;
     }
-    return "Unknown";
-}
-
-HistoryItem::HistoryItem()
-{
-    History::Last++;
-    this->Target = "Unknown target";
-    this->UndoRevBaseTime = "";
-    this->Type = HistoryUnknown;
-    this->ID = History::Last;
-    this->Result = "Unknown??";
-}
-
-HistoryItem::HistoryItem(const HistoryItem &item)
-{
-    this->ID = item.ID;
-    this->Target = item.Target;
-    this->NewPage = item.NewPage;
-    this->UndoRevBaseTime = item.UndoRevBaseTime;
-    this->Type = item.Type;
-    this->UndoDependency = item.UndoDependency;
-    this->Result = item.Result;
-    this->IsRevertable = item.IsRevertable;
-}
-
-HistoryItem::HistoryItem(HistoryItem *item)
-{
-    if (item == nullptr)
-    {
-        throw new Huggle::Exception("HistoryItem item must not be NULL", "HistoryItem::HistoryItem(HistoryItem *item)");
-    }
-    this->ID = item->ID;
-    this->Type = item->Type;
-    this->NewPage = item->NewPage;
-    this->IsRevertable = item->IsRevertable;
-    this->UndoRevBaseTime = item->UndoRevBaseTime;
-    this->Target = item->Target;
-    this->UndoDependency = item->UndoDependency;
-    this->Result = item->Result;
+    this->Items.insert(0, item);
+    this->ui->tableWidget->insertRow(0);
+    this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(QString::number(item->ID)));
+    this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(HistoryItem::TypeToString(item->Type)));
+    this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(item->Target));
+    this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(item->Result));
+    this->ui->tableWidget->resizeRowToContents(0);
 }
 
 void Huggle::History::on_tableWidget_clicked(const QModelIndex &index)

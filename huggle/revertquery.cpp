@@ -13,6 +13,7 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "historyitem.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;
@@ -63,6 +64,7 @@ RevertQuery::~RevertQuery()
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
     delete this->timer;
     GC_DECREF(this->qHistoryInfo);
+    GC_DECREF(this->HI);
 }
 
 void RevertQuery::DisplayError(QString error, QString reason)
@@ -437,16 +439,16 @@ bool RevertQuery::CheckRevert()
         this->Result->Failed = true;
     } else
     {
-        HistoryItem item;
+        HistoryItem *item = new HistoryItem();
+        item->IncRef();
+        this->HI = item;
         this->Result = new QueryResult();
         this->Result->Data = this->qRevert->Result->Data;
-        item.Target = this->qRevert->Target;
-        item.Type = HistoryRollback;
-        item.Result = "Success";
+        item->Target = this->qRevert->Target;
+        item->Type = HistoryRollback;
+        item->Result = "Success";
         if (Core::HuggleCore->Main != nullptr)
-        {
             Core::HuggleCore->Main->_History->Prepend(item);
-        }
     }
     this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->qRevert = nullptr;

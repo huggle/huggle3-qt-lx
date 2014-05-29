@@ -21,6 +21,7 @@
 #include <QString>
 #include <QStringList>
 #include <QNetworkAccessManager>
+#include "historyitem.hpp"
 #include "queryresult.hpp"
 #include "collectable.hpp"
 
@@ -132,6 +133,8 @@ namespace Huggle
             //! Query doesn't have internal data displayed in debug log, this is usefull
             //! when you are working with passwords in parameters
             bool HiddenQuery;
+            //! History item
+            HistoryItem *HI = nullptr;
             //! Dependency for query
 
             //! If you put anything in here, it either must be NULL or query
