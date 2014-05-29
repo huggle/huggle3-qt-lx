@@ -59,9 +59,9 @@ RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, boo
     query->MinorEdit = minor;
     QueryPool::HugglePool->AppendQuery(query);
     if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
-        query->UsingSR = true;
+        query->SetUsingSR(true);
     else
-        query->UsingSR = !rollback;
+        query->SetUsingSR(!rollback);
     if (keep)
         query->RegisterConsumer("keep");
     return query;

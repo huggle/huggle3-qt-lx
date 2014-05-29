@@ -100,7 +100,6 @@ void History::Undo(HistoryItem *hist)
             Syslog::HuggleLogs->ErrorLog("Nothing was found to undo");
             return;
         }
-
         hist = this->Items.at(this->CurrentItem);
     }
     if (hist->Undone)
@@ -178,20 +177,37 @@ void History::Tick()
 {
     if ((this->qSelf && this->qSelf->IsProcessed()) || (this->qTalk && this->qTalk->IsProcessed()))
     {
+        if (this->qSelf && this->qSelf->IsFailed())
+        {
+            Syslog::HuggleLogs->ErrorLog("Unable to undo your edit to " + this->RevertingItem->Target
+                                         + " error during revert: " + this->qSelf->Result->ErrorMessage);
+            this->Fail();
+            return;
+        }
+        if (this->qTalk && this->qTalk->IsFailed())
+        {
+            Syslog::HuggleLogs->ErrorLog("Unable to undo your edit to " + this->RevertingItem->Target
+                                         + " error during revert: " + this->qTalk->Result->ErrorMessage);
+            this->Fail();
+            return;
+        }
         // we finished reverting the edit
         this->RevertingItem->Undone = true;
         Syslog::HuggleLogs->Log("Successfully undone edit to " + this->RevertingItem->Target);
         int position = this->ui->tableWidget->rowCount() - this->RevertingItem->ID;
         this->ui->tableWidget->setItem(position, 3, new QTableWidgetItem("Undone"));
+        GC_DECREF(this->qTalk);
+        GC_DECREF(this->qSelf);
         // let's see if there is any dep and if so, let's undo it as well
         if (this->RevertingItem->UndoDependency)
         {
             HistoryItem *deps = this->RevertingItem->UndoDependency;
             deps->ReferencedBy = nullptr;
-            GC_DECREF(this->qTalk);
-            GC_DECREF(this->qSelf);
             this->RevertingItem = nullptr;
             this->Undo(deps);
+        } else
+        {
+            this->RevertingItem = nullptr;
         }
         this->timerRetrievePageInformation->stop();
         return;
@@ -212,7 +228,8 @@ void History::Tick()
             return;
         }
         WikiEdit *edit = new WikiEdit();
-        edit->Page = new WikiPage(title);
+        edit->IncRef();
+        edit->Page = new WikiPage(this->RevertingItem->Target);
         edit->User = new WikiUser(user);
         edit->Page->Contents = result;
         edit->RevID = revid;
@@ -231,6 +248,7 @@ void History::Tick()
                     Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
                     this->RevertingItem = nullptr;
                     this->timerRetrievePageInformation->stop();
+                    edit->DecRef();
                     return;
                 }
                 QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.at(0));
@@ -240,19 +258,23 @@ void History::Tick()
                     Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
                     this->RevertingItem = nullptr;
                     this->timerRetrievePageInformation->stop();
+                    edit->DecRef();
                     return;
                 }
                 this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, true);
+                edit->DecRef();
                 return;
             } else
             {
                 this->RevertingItem = nullptr;
                 this->timerRetrievePageInformation->stop();
+                edit->DecRef();
                 return;
             }
         }
         // so now we have likely everything we need, let's revert that page :D
         this->qSelf = WikiUtil::RevertEdit(edit, "Undoing own edit");
+        edit->DecRef();
         // set it to undo only a last edit
         this->qSelf->SetLast();
         // revert it!!
@@ -318,4 +340,12 @@ HistoryItem::HistoryItem(HistoryItem *item)
 void Huggle::History::on_tableWidget_clicked(const QModelIndex &index)
 {
     this->CurrentItem = index.row();
+}
+
+void History::Fail()
+{
+    this->RevertingItem = nullptr;
+    this->timerRetrievePageInformation->stop();
+    GC_DECREF(this->qTalk);
+    GC_DECREF(this->qSelf);
 }

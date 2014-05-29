@@ -94,6 +94,7 @@ namespace Huggle
             void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
+            void Fail();
             QTimer *timerRetrievePageInformation;
             HistoryItem *RevertingItem = nullptr;
             //! This is a query we need to use to retrieve our own edit before we undo it

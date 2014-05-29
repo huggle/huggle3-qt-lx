@@ -76,6 +76,10 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
     if (code.count() > 0)
     {
         QDomElement e = code.at(0).toElement();
+        if (title && e.attributes().contains("title"))
+        {
+            *title = e.attribute("title");
+        }
         if (e.attributes().contains("missing"))
         {
             if (reason) { *reason = EvaluatePageErrorReason_Missing; }
@@ -97,10 +101,6 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
     if (comment && e.attributes().contains("comment"))
     {
         *comment = e.attribute("comment");
-    }
-    if (title && e.attributes().contains("title"))
-    {
-        *title = e.attribute("title");
     }
     if (ts && e.attributes().contains("timestamp"))
     {
