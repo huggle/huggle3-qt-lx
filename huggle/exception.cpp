@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "exception.hpp"
+#include "configuration.hpp"
+#include "syslog.hpp"
 
 #ifdef __linux__
     //linux code goes here
@@ -84,6 +86,17 @@ Exception::Exception(QString Text, QString _Source, bool __IsRecoverable)
 bool Exception::IsRecoverable() const
 {
     return this->_IsRecoverable;
+}
+
+void Exception::ThrowSoftException(QString Text, QString Source)
+{
+    if (Configuration::HuggleConfiguration->Verbosity > 0)
+    {
+        throw new Huggle::Exception(Text, Source);
+    } else
+    {
+        Syslog::HuggleLogs->WarningLog("Soft exception: " + Text + " source: " + Source);
+    }
 }
 
 void Exception::InitBreakpad()

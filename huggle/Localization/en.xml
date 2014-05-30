@@ -149,6 +149,8 @@
     <string name="historyform-retrieve-history">Retrieve history</string>
     <string name="historyform-retrieving-history">Retrieving history</string>
     <string name="historyform-not-latest-tip">This is not a latest revision of this page - make sure you reviewed the newer versions as well. Please also keep in mind that rollback may not be possible from this point.</string>
+    <string name="history-error-message-title">Unable to undo</string>
+    <string name="history-error">This item can't be undone, the page might have been changed or deleted meanwhile, and huggle is unable to perform undo from this point. If you really want to undo it, you will need to do that by hand using mediawiki interface.</string>
     <string name="userhistory-title">History of your changes</string>
     <string name="irc-connected">Connected to IRC recent changes feed</string>
     <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a few moments...</string>
@@ -458,6 +460,7 @@
     <string name="speedy-reason">Reason:</string>
     <string name="speedy-parameters">Parameters:</string>
     <string name="speedy-notifycreator">Notify page creator</string>
+    <string name="software-rollback">You don't have rollback rights, fallback to software rollback</string>
     <string name="stats-title">Statistics</string>
     <string name="stats-actions">Actions this session:</string>
     <string name="stats-session">Session time: $1</string>
@@ -594,7 +597,9 @@
     <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
     <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
     <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
+    <string name="cr-resolved-same-user">Conflict resolved: revert all edits including new edits, made by same users - edits are by same user: $1</string>
     <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
+    <string name="cr-stop-multiple-same">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
     <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
     <string name="cr-message-new">There are newer edits to $1 are you sure you really want to revert them?</string>
     <string name="cr-message-not-same">There are newer edits made to $1 by a different user, are you sure you want to revert them all? (it will likely fail anyway because of old token)</string>

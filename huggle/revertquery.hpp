@@ -42,13 +42,15 @@ namespace Huggle
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
-            void Process();
-            void Kill();
             ~RevertQuery();
+            void Process();
+            //! In case you want to revert only last edit, set this to true
+            void SetLast();
+            void Kill();
             QString QueryTargetToString();
             bool IsProcessed();
-            //! Whether software rollback should be used instead of regular rollback
-            bool UsingSR;
+            void SetUsingSR(bool software_rollback);
+            bool IsUsingSR();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
             QString Summary;
@@ -68,14 +70,19 @@ namespace Huggle
             void Rollback();
             void Revert();
             void Exit();
+            //! Whether software rollback should be used instead of regular rollback
+            bool UsingSR;
             QString SR_EditToken;
-            ApiQuery *qPreflight;
-            ApiQuery *qRevert;
-            ApiQuery *qRetrieve;
-            ApiQuery *qSR_PageToken;
-            EditQuery *eqSoftwareRollback;
-            WikiEdit* edit;
-            QTimer *timer;
+            ApiQuery *qPreflight = nullptr;
+            ApiQuery *qRevert = nullptr;
+            ApiQuery *qHistoryInfo = nullptr;
+            ApiQuery *qRetrieve = nullptr;
+            ApiQuery *qSR_PageToken = nullptr;
+            EditQuery *eqSoftwareRollback = nullptr;
+            WikiEdit *edit;
+            QTimer *timer = nullptr;
+            //! Revert only and only last edit
+            bool OneEditOnly = false;
             bool RollingBack;
             bool PreflightFinished;
             int SR_RevID;
