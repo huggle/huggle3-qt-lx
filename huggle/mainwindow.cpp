@@ -1313,8 +1313,23 @@ void MainWindow::Localize()
     this->ui->actionClear->setText(Localizations::HuggleLocalizations->Localize("main-queue-clear"));
     this->ui->actionClear_talk_page_of_user->setText(Localizations::HuggleLocalizations->Localize("main-user-clear-tp"));
     this->ui->actionDecrease_badness_score_by_20->setText(Localizations::HuggleLocalizations->Localize("main-user-db"));
+    this->ui->actionNext_2->setText(Localizations::HuggleLocalizations->Localize("main-page-next"));
+    this->ui->actionEdit_page_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-page-edit"));
+    this->ui->actionFlag_as_suspicious_edit->setText(Localizations::HuggleLocalizations->Localize("main-page-flag-suspicious-edit"));
+    this->ui->actionFlag_as_a_good_edit->setText(Localizations::HuggleLocalizations->Localize("main-page-flag-good-edit"));
+    this->ui->actionRequest_speedy_deletion->setText(Localizations::HuggleLocalizations->Localize("main-page-reqdeletion"));
     this->ui->actionDelete->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
-    this->ui->actionDelete_page->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
+    // button action depends on adminrights
+    if (Configuration::HuggleConfiguration->Rights.contains("delete"))
+    {
+        this->ui->actionDelete_page->setText(Localizations::HuggleLocalizations->Localize("main-page-delete"));
+    } else
+    {
+        this->ui->actionDelete_page->setText(Localizations::HuggleLocalizations->Localize("main-page-reqdeletion"));
+    }
+    this->ui->actionRequest_protection->setText(Localizations::HuggleLocalizations->Localize("main-page-reqprotection"));
+    this->ui->actionProtect->setText(Localizations::HuggleLocalizations->Localize("main-page-protect"));
+    this->ui->actionRestore_this_revision->setText(Localizations::HuggleLocalizations->Localize("main-page-restore"));
     this->ui->actionDisplay_a_session_data->setText(Localizations::HuggleLocalizations->Localize("main-display-session-data"));
     this->ui->actionDisplay_whitelist->setText(Localizations::HuggleLocalizations->Localize("main-display-whitelist"));
     this->ui->actionDisplay_history_in_browser->setText(Localizations::HuggleLocalizations->Localize("main-page-historypage"));
@@ -2012,6 +2027,7 @@ void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
     this->ui->actionDelete_page->setEnabled(true);
     this->ui->actionDelete->setEnabled(true);
     this->ui->actionProtect->setEnabled(true);
+    this->Localize();
 }
 
 void Huggle::MainWindow::on_actionFeedback_triggered()
