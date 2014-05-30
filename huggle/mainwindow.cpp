@@ -67,7 +67,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionBlock_user->setEnabled(PermissionBlock);
     this->ui->actionBlock_user_2->setEnabled(PermissionBlock);
     bool PermissionDelete = Configuration::HuggleConfiguration->Rights.contains("delete");
-    this->ui->actionDelete_page->setEnabled(PermissionDelete);
     this->ui->actionDelete->setEnabled(PermissionDelete);
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
@@ -1052,14 +1051,14 @@ void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 
 void MainWindow::on_actionForward_triggered()
 {
-    if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == NULL)
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == nullptr)
         return;
     this->ProcessEdit(this->CurrentEdit->Next, true);
 }
 
 void MainWindow::on_actionBack_triggered()
 {
-    if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == NULL)
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
         return;
     this->ProcessEdit(this->CurrentEdit->Previous, true);
 }
@@ -1911,7 +1910,13 @@ void Huggle::MainWindow::on_actionClear_triggered()
 
 void Huggle::MainWindow::on_actionDelete_page_triggered()
 {
-    this->DeletePage();
+    if (Configuration::HuggleConfiguration->Rights.contains("delete"))
+    {
+        this->DeletePage();
+    } else
+    {
+        this->RequestPD();
+    }
 }
 
 void Huggle::MainWindow::on_actionBlock_user_2_triggered()
