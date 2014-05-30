@@ -203,7 +203,7 @@ void Login::Reload()
 
 void Login::DB()
 {
-    if (this->LoginQuery == nullptr || this->LoginQuery->IsProcessed())
+    if (this->LoginQuery == nullptr || !this->LoginQuery->IsProcessed())
     {
         return;
     }
@@ -308,7 +308,7 @@ void Login::PerformLogin()
 
 void Login::PerformLoginPart2()
 {
-    if (!this->LoginQuery->IsProcessed())
+    if (!this->LoginQuery || !this->LoginQuery->IsProcessed())
     {
         return;
     }
@@ -398,10 +398,9 @@ void Login::RetrieveGlobalConfig()
 
 void Login::FinishLogin()
 {
-    if (!this->LoginQuery->IsProcessed())
-    {
+    if (!this->LoginQuery || !this->LoginQuery->IsProcessed())
         return;
-    }
+
     if (this->LoginQuery->Result->Failed)
     {
         this->Update("Login failed: " + this->LoginQuery->Result->ErrorMessage);
@@ -416,8 +415,7 @@ void Login::FinishLogin()
         this->_Status = RetrievingGlobalConfig;
 
     // that's all
-    this->LoginQuery->DecRef();
-    this->LoginQuery = nullptr;
+    GC_DECREF(this->LoginQuery);
 }
 
 void Login::RetrieveWhitelist()
