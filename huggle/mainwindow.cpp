@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
     this->Status->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    this->ui->statusBar->addWidget(this->Status);
+    this->ui->statusBar->addWidget(this->Status, 1);
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
