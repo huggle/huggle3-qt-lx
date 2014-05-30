@@ -457,6 +457,7 @@
     <string name="speedy-reason">Reason:</string>
     <string name="speedy-parameters">Parameters:</string>
     <string name="speedy-notifycreator">Notify page creator</string>
+    <string name="software-rollback">You don't have rollback rights, fallback to software rollback</string>
     <string name="stats-title">Statistics</string>
     <string name="stats-actions">Actions this session:</string>
     <string name="stats-session">Session time: $1</string>
