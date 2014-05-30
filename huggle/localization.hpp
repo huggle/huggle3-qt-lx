@@ -50,6 +50,7 @@ namespace Huggle
     class Localizations
     {
         public:
+            static unsigned int EnglishID;
             static Localizations *HuggleLocalizations;
             //! "qqx"-Language for outputting the used keys
             static const QString LANG_QQX;
