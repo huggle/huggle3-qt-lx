@@ -84,6 +84,7 @@ namespace Huggle
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
             void InsertNS(WikiPageNS *Ns);
             void RemoveNS(int ns);
+            void ClearNS();
             QHash<int, WikiPageNS*> NamespaceList;
             //! Name of wiki, used by huggle only
             QString Name;

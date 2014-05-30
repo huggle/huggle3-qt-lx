@@ -720,6 +720,8 @@ void Login::ProcessSiteInfo()
             Syslog::HuggleLogs->WarningLog("Mediawiki provided no information about namespaces");
         } else
         {
+            // let's prepare a NS list
+            Configuration::HuggleConfiguration->Project->ClearNS();
             register int index = 0;
             while (index < l.count())
             {

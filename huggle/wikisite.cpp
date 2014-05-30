@@ -137,6 +137,11 @@ WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool
 
 WikiSite::~WikiSite()
 {
+    this->ClearNS();
+}
+
+void WikiSite::ClearNS()
+{
     QList<int> list = this->NamespaceList.keys();
     foreach (int id, list)
     {
