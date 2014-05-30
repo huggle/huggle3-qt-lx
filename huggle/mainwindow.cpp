@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->setupUi(this);
     this->Localize();
     this->Status = new QLabel();
+    this->Status->setWordWrap(true);
     this->ui->statusBar->addWidget(this->Status);
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
