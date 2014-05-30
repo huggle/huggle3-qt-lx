@@ -472,16 +472,6 @@ QString WikiEdit::GetFullUrl()
             "&diff=" + QString::number(this->RevID);
 }
 
-QDateTime WikiEdit::GetUnknownEditTime()
-{
-    return QDateTime::fromMSecsSinceEpoch(0);
-}
-
-bool WikiEdit::IsPostProcessed()
-{
-    return (this->Status == StatusPostProcessed);
-}
-
 QMutex ProcessorThread::EditLock(QMutex::Recursive);
 QList<WikiEdit*> ProcessorThread::PendingEdits;
 

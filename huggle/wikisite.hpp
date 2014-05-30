@@ -37,6 +37,26 @@ namespace Huggle
             int ID;
     };
 
+    inline QString WikiPageNS::GetName()
+    {
+        return this->Name;
+    }
+
+    inline QString WikiPageNS::GetCanonicalName()
+    {
+        return this->CanonicalName;
+    }
+
+    inline bool WikiPageNS::IsTalkPage()
+    {
+        return this->Talk;
+    }
+
+    inline int WikiPageNS::GetID()
+    {
+        return this->ID;
+    }
+
     //! Site
     class WikiSite
     {

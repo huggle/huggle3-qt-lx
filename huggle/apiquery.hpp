@@ -105,6 +105,33 @@ namespace Huggle
             //! Reply from qnet
             QNetworkReply *reply;
     };
+
+    inline bool ApiQuery::FormatIsCurrentlySupported()
+    {
+        // other formats will be supported later
+        return (this->RequestFormat == XML);
+    }
+
+    inline void ApiQuery::SetAction(const QString action)
+    {
+        this->ActionPart = action;
+    }
+
+    inline void ApiQuery::Kill()
+    {
+        if (this->reply != NULL)
+            this->reply->abort();
+    }
+
+    inline QString ApiQuery::QueryTargetToString()
+    {
+        return this->Target;
+    }
+
+    inline QString ApiQuery::QueryTypeToString()
+    {
+        return "ApiQuery (" + this->ActionPart + ")";
+    }
 }
 
 #endif // APIQUERY_H

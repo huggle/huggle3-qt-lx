@@ -133,11 +133,6 @@ void RevertQuery::Kill()
     this->Exit();
 }
 
-QString RevertQuery::QueryTargetToString()
-{
-    return this->edit->Page->PageName;
-}
-
 bool RevertQuery::IsProcessed()
 {
     if (this->Status == StatusInError)
@@ -747,6 +742,11 @@ void RevertQuery::Rollback()
     this->CustomStatus = "Rolling back " + edit->Page->PageName;
     Huggle::Syslog::HuggleLogs->DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();
+}
+
+QString RevertQuery::QueryTargetToString()
+{
+    return this->edit->Page->PageName;
 }
 
 void RevertQuery::Revert()

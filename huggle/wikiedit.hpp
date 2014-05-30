@@ -160,6 +160,16 @@ namespace Huggle
             ApiQuery* qDifference;
             ApiQuery* qText;
     };
+
+    inline QDateTime WikiEdit::GetUnknownEditTime()
+    {
+        return QDateTime::fromMSecsSinceEpoch(0);
+    }
+
+    inline bool WikiEdit::IsPostProcessed()
+    {
+        return (this->Status == StatusPostProcessed);
+    }
 }
 
 #endif // WIKIEDIT_H

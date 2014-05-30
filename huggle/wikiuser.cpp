@@ -305,21 +305,6 @@ void WikiUser::Update(bool MatchingOnly)
     WikiUser::ProblematicUserListLock.unlock();
 }
 
-void WikiUser::Sanitize()
-{
-    this->Username = this->Username.replace(" ", "_");
-}
-
-void WikiUser::ForceIP()
-{
-    this->IP = true;
-}
-
-bool WikiUser::IsIP() const
-{
-    return this->IP;
-}
-
 void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
@@ -336,11 +321,6 @@ QString WikiUser::GetTalk()
         prefix = "User talk";
     prefix += ":";
     return prefix + this->Username;
-}
-
-bool WikiUser::TalkPage_WasRetrieved()
-{
-    return this->_talkPageWasRetrieved;
 }
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()

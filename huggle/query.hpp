@@ -148,6 +148,16 @@ namespace Huggle
             //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
             bool Repeated;
     };
+
+    inline QString Query::QueryTargetToString()
+    {
+        return "Invalid target";
+    }
+
+    inline unsigned int Query::QueryID()
+    {
+        return this->ID;
+    }
 }
 
 #endif // QUERY_H

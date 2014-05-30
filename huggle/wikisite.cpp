@@ -24,26 +24,6 @@ WikiPageNS::WikiPageNS(int id, QString name, QString canonical_name)
     this->Name = name;
 }
 
-QString WikiPageNS::GetName()
-{
-    return this->Name;
-}
-
-QString WikiPageNS::GetCanonicalName()
-{
-    return this->CanonicalName;
-}
-
-bool WikiPageNS::IsTalkPage()
-{
-    return this->Talk;
-}
-
-int WikiPageNS::GetID()
-{
-    return this->ID;
-}
-
 WikiSite::WikiSite(const WikiSite &w)
 {
     this->LongPath = w.LongPath;

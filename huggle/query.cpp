@@ -92,11 +92,6 @@ QString Query::QueryTypeToString()
     return "Unknown";
 }
 
-QString Query::QueryTargetToString()
-{
-    return "Invalid target";
-}
-
 QString Query::QueryStatusToString()
 {
     if (this->CustomStatus != "")
@@ -132,11 +127,6 @@ void Query::ProcessCallback()
         this->RegisterConsumer("delegate");
         this->CallbackResult = this->callback(this);
     }
-}
-
-unsigned int Query::QueryID()
-{
-    return this->ID;
 }
 
 bool Query::IsFailed()

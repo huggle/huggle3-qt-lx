@@ -73,12 +73,6 @@ QString ApiQuery::ConstructParameterLessUrl()
     return url;
 }
 
-bool ApiQuery::FormatIsCurrentlySupported()
-{
-    // other formats will be supported later
-    return (this->RequestFormat == XML);
-}
-
 // TODO: move this function to RevertQuery
 void ApiQuery::FinishRollback()
 {
@@ -222,25 +216,4 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "patrol";
             return;
     }
-}
-
-void ApiQuery::SetAction(const QString action)
-{
-    this->ActionPart = action;
-}
-
-void ApiQuery::Kill()
-{
-    if (this->reply != NULL)
-        this->reply->abort();
-}
-
-QString ApiQuery::QueryTargetToString()
-{
-    return this->Target;
-}
-
-QString ApiQuery::QueryTypeToString()
-{
-    return "ApiQuery (" + this->ActionPart + ")";
 }

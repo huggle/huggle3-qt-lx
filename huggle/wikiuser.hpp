@@ -164,6 +164,26 @@ namespace Huggle
             bool IP;
             WikiSite *Site;
     };
+
+    inline void WikiUser::Sanitize()
+    {
+        this->Username = this->Username.replace(" ", "_");
+    }
+
+    inline void WikiUser::ForceIP()
+    {
+        this->IP = true;
+    }
+
+    inline bool WikiUser::TalkPage_WasRetrieved()
+    {
+        return this->_talkPageWasRetrieved;
+    }
+
+    inline bool WikiUser::IsIP() const
+    {
+        return this->IP;
+    }
 }
 
 #endif // WIKIUSER_H
