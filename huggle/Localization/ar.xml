@@ -115,13 +115,12 @@
   <string name="login-proxyport">منفذ:</string>
   <string name="login-proxydomain">نطاق:</string>
   <string name="login-start">ولوج</string>
-  <string name="login-translate">ترجم...</string>
+  <string name="login-translate" fuzzy="true">ترجم...</string>
   <string name="login-captchatitle">يتطلب الولوج كابتشا</string>
-  <string name="login-progress-start">قيد الولوج...</string>
+  <string name="login-progress-start" fuzzy="true">قيد الولوج...</string>
   <string name="login-progress-language">ملفات الرسائل قيد التحديث...</string>
   <string name="login-progress-global">الخيارات العمومية قيد الفحص...</string>
   <string name="login-progress-config">صفحات الخيارات قيد الفحص...</string>
-  <string name="login-progress-userlist">قائمة المستخدمين قيد الفحص...</string>
   <string name="login-progress-whitelist">قيد استرجاع القائمة البيضاء للمستخدم...</string>
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره {0} يوما على الأقل.</string>
@@ -168,7 +167,7 @@
   <string name="main-queue-next">تالي</string>
   <string name="main-queue-trim">تقليم</string>
   <string name="main-queue-clear">امسح الحالي</string>
-  <string name="main-queue-count">{0} عناصر</string>
+  <string name="main-queue-count" fuzzy="true">{0} عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
   <string name="main-queue-reset">تصفير</string>
   <string name="main-queue-clearall">امسح الكل</string>
@@ -188,17 +187,17 @@
   <string name="main-page-viewlatest">شاهد المراجعة الأخيرة</string>
   <string name="main-page-history">اجلب التاريخ</string>
   <string name="main-page-historypage">أظهر صفحة التاريخ</string>
-  <string name="main-page-edit">عدل</string>
+  <string name="main-page-edit" fuzzy="true">عدل</string>
   <string name="main-page-tag">وسم</string>
-  <string name="main-page-reqdeletion">اطلب الحذف</string>
-  <string name="main-page-reqprotection">اطلب الحماية</string>
+  <string name="main-page-reqdeletion" fuzzy="true">اطلب الحذف</string>
+  <string name="main-page-reqprotection" fuzzy="true">اطلب الحماية</string>
   <string name="main-page-watch">راقب</string>
   <string name="main-page-unwatch">لا تراقب</string>
   <string name="main-page-purge">امسح اختزان الصفحة</string>
   <string name="main-page-patrol">علم كمراجعة</string>
   <string name="main-page-move">انقل...</string>
-  <string name="main-page-protect">احم...</string>
-  <string name="main-page-delete">احذف...</string>
+  <string name="main-page-protect" fuzzy="true">احم...</string>
+  <string name="main-page-delete" fuzzy="true">احذف...</string>
   <string name="main-user-info">أظهر معلومات المستخدم</string>
   <string name="main-user-ignore">تجاهل</string>
   <string name="main-user-unignore">لا تتجاهل</string>
@@ -439,11 +438,11 @@
   <string name="reqprotection-duplicate">تم طلب الحماية بالفعل</string>
   <string name="reqprotection-fail">لم يتم طلب الحماية لـ\'{0}\'ء</string>
   <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'{0}\'...ء</string>
-  <string name="speedy-fail">لم يتم وسم \'{0}\' للحذف السريع</string>
-  <string name="speedy-progress">قيد وسم \'{0}\' للحذف السريع...</string>
-  <string name="warnlog-fail">فشل جلب سجل الانذار لـ \'{0}\'ء</string>
-  <string name="warnlog-none">\'{0}\' لم يسبق انذار</string>
-  <string name="warnlog-progress">قيد جلب سجل الانذار \'{0}\'...ء</string>
+  <string name="speedy-fail" fuzzy="true">لم يتم وسم \'{0}\' للحذف السريع</string>
+  <string name="speedy-progress" fuzzy="true">قيد وسم \'{0}\' للحذف السريع...</string>
+  <string name="warnlog-fail" fuzzy="true">فشل جلب سجل الانذار لـ \'{0}\'ء</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' لم يسبق انذار</string>
+  <string name="warnlog-progress" fuzzy="true">قيد جلب سجل الانذار \'{0}\'...ء</string>
   <string name="usermessage-duplicate">رسالة موجودة عن نفس الشيء</string>
   <string name="usermessage-fail">لم يتم ارسال رسالة \'{0}\'ء</string>
   <string name="usermessage-progress">قيد ارسال رسالة \'{0}\'...ء</string>

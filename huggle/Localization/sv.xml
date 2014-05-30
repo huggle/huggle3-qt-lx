@@ -1,52 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Svenska</string>
-  <string name="add">Add</string>
-  <string name="apply">Apply</string>
+  <string name="add">Lägg till</string>
+  <string name="apply">Verkställ</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Rensa</string>
   <string name="close">Stäng</string>
   <string name="continue">Fortsätt</string>
   <string name="copy">Kopiera</string>
-  <string name="delete">Ta bort</string>
-  <string name="error">Error</string>
+  <string name="delete">Radera</string>
+  <string name="deleted">Raderad</string>
+  <string name="error">Fel</string>
   <string name="exit">Stäng</string>
   <string name="minimizewindow">Minimera</string>
   <string name="no">Nej</string>
   <string name="ok">OK</string>
   <string name="remove">Ta bort</string>
   <string name="rename">Byt namn</string>
-  <string name="restorewindow">Restore</string>
+  <string name="reload">Uppdatera</string>
+  <string name="result">Resultat</string>
+  <string name="restorewindow">Återställ</string>
   <string name="save">Spara</string>
   <string name="selectfile">Bläddra...</string>
   <string name="yes">Ja</string>
-  <string name="block-title">Blockering {0}</string>
+  <string name="agf">Rulla tillbaka i god tro med en specifik anledning</string>
+  <string name="import">Importera från global konfigurering</string>
+  <string name="successful">Framgångsrik</string>
+  <string name="summary">Sammanfattning</string>
+  <string name="id">ID</string>
+  <string name="type">Typ</string>
+  <string name="target">Mål</string>
+  <string name="user">Användare</string>
+  <string name="size">Storlek</string>
+  <string name="date">Datum</string>
+  <string name="page">Sida</string>
+  <string name="time">Tid</string>
+  <string name="version">Version</string>
+  <string name="general-name">Namn</string>
+  <string name="author">Författare</string>
+  <string name="description">Beskrivning</string>
+  <string name="status">Status</string>
+  <string name="link">Länk</string>
+  <string name="reason">Anledning</string>
+  <string name="diffid">DiffID</string>
+  <string name="whitelisted">$1 med poängen $2 har lagts till i vitlistan</string>
+  <string name="expiry-time">Förfallotid</string>
+  <string name="duration">Längd</string>
+  <string name="no-token">Ingen token</string>
+  <string name="flags">Flaggor</string>
+  <string name="browser-none">Ingen sida visas nu</string>
+  <string name="browser-load">Ladda ner diff hjälp av en \"webb-rendering fallback\", vänligen vänta...</string>
+  <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
+  <string name="browser-diff">Skillnad på sida: $1 (poäng: $2)</string>
+  <string name="browser-fail">Det gick inte att hämta skillnad:$1</string>
+  <string name="about-contributors">Utvecklare:</string>
+  <string name="block-title">Blockera $1</string>
   <string name="block-reason">Anledning:</string>
-  <string name="block-duration">Duration:</string>
-  <string name="block-message">Talk page message:</string>
-  <string name="block-anononly">Block anonymous users only</string>
-  <string name="block-creation">Block account  creation</string>
-  <string name="block-autoblock">Enable autoblocks</string>
+  <string name="block-duration">Tidsperiod:</string>
+  <string name="block-message">Diskussionssidmeddelande:</string>
+  <string name="block-anononly">Blockera endast oinloggade användare</string>
+  <string name="block-creation">Blockera kontoskapande</string>
+  <string name="block-autoblock">Aktivera autoblockeringar</string>
   <string name="block-email">Blockera e-mail</string>
   <string name="block-usertalk">Diskussion</string>
-  <string name="block-usercontribs">Contribs</string>
-  <string name="block-blockloglabel">Blockerings log:</string>
+  <string name="block-usercontribs">Bidrag</string>
+  <string name="block-blockloglabel">Blockeringslogg:</string>
   <string name="block-warnloglabel">Varningar:</string>
-  <string name="block-sharedipwarning">Note: {0} is tagged as a shared or  dynamic IP address.</string>
+  <string name="block-sharedipwarning">Note: $1 is tagged as a shared or  dynamic IP address.</string>
   <string name="block-sensitivewarning">This IP address is  listed as \'sensitive\' for the following reason:
 
-   {0}
+   $1
 
 Continue  anyway?</string>
-  <string name="block-rangeblockwarning">{0} is already affected by a rangeblock on {1}.
+  <string name="block-rangeblockwarning">$1 is already affected by a rangeblock on {1}.
 This block will  override the effect of the rangeblock. Continue?</string>
-  <string name="block-fail">Did not block \'{0}\'</string>
-  <string name="closing-whitelist">Updating user whitelist...</string>
-  <string name="closing-config">Updating  configuration subpage...</string>
+  <string name="block-token-1">Få token att blockera $1</string>
+  <string name="block-fail">Det gick inte att blockera användaren, $1</string>
+  <string name="block-token-e1">Token kan inte hämtas: $1</string>
+  <string name="block-type">Blockera / avblockera</string>
+  <string name="block-admin">Blockerande administratör</string>
+  <string name="blocking">Blockerar $1</string>
+  <string name="block-none">Det finns ingen användare att blockera.</string>
+  <string name="closing-whitelist">Uppdaterar användarvitlista...</string>
+  <string name="closing-config">Uppdaterar konfigureringsundersida...</string>
   <string name="config-title">Inställningar</string>
   <string name="config-rememberme">Kom i håg mitt användarnamn</string>
-  <string name="config-autowhitelist">Automatically  whitelist users</string>
-  <string name="config-openinbrowser">Open browser links in new browser  window</string>
+  <string name="config-autowhitelist">Vitlista automatiskt användare</string>
+  <string name="config-openinbrowser">Öppna webbläsarlänkar i ett nytt fönster</string>
   <string name="config-shownewedits">Show new edits to the selected page as they are made</string>
   <string name="config-ircmode">Use IRC feed for  recent changes if possible</string>
   <string name="config-ircport">IRC port</string>
@@ -54,17 +94,17 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="config-logfile">Log file</string>
   <string name="config-viewlocalconfig">View local configuration folder</string>
   <string name="config-trayicon">Show tray icon</string>
-  <string name="config-startupmessage">Show startup message</string>
-  <string name="config-shownewmessages">Show new messages  bar</string>
-  <string name="config-shortcutlist">Keyboard shortcuts</string>
-  <string name="config-shortcutaction">Action</string>
-  <string name="config-shortcut">Shortcut</string>
-  <string name="config-changeshortcut">Change shortcut for {0}</string>
+  <string name="config-startupmessage">Visa uppstartsmeddelande</string>
+  <string name="config-shownewmessages">Visa fält för nya meddelanden</string>
+  <string name="config-shortcutlist">Kortkommandon</string>
+  <string name="config-shortcutaction">Åtgärd</string>
+  <string name="config-shortcut">Genväg</string>
+  <string name="config-changeshortcut">Ändra genväg för $1</string>
   <string name="config-noshortcut">Inget</string>
-  <string name="config-defaults">Defaults</string>
-  <string name="config-minor">Markera som miniatyrändring</string>
-  <string name="config-watchlist">Lägg till på bevakningslistan</string>
-  <string name="config-defaultsummary">Default summary for  manual edits</string>
+  <string name="config-defaults">Standard</string>
+  <string name="config-minor">Markera som mindre ändring</string>
+  <string name="config-watchlist">Lägg till i bevakningslistan</string>
+  <string name="config-defaultsummary">Standardsammanfattning för manuella redigeringar</string>
   <string name="config-undosummary">Summary when undoing own edits</string>
   <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
@@ -90,16 +130,28 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="config-blocktimeanon">anonyma användare</string>
   <string name="config-blocktimereg">registrerade användare</string>
   <string name="config-summaryprompt">Enter summary</string>
+  <string name="config-history">Ladda ner hela historiken för alla artiklar</string>
   <string name="config-defaultsprompt">Restore defaults?</string>
   <string name="config-logbrowsetitle">Log file location</string>
-  <string name="config-shortcutconflict">Shortcut \'{0}\' conflicts with the existing shortcut for \'{1}\'.</string>
-  <string name="delete-title">Delete {0}</string>
+  <string name="config-shortcutconflict">Shortcut \'$1\' conflicts with the existing shortcut for \'$1\'.</string>
+  <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
+  <string name="delete-rem-talk">Radera tillhörande diskussionssida</string>
+  <string name="delete-notify">Meddela skaparen</string>
+  <string name="delete-e1">Sidan kan inte tas raderas: $1</string>
+  <string name="delete-e2">Det går inte att ta bort sida</string>
+  <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
+  <string name="delete-failed-no-info">Ingen sidinfo fanns i frågan (är du sysop?)</string>
+  <string name="historyform-no-info">Ingen redigeringsinformation</string>
+  <string name="historyform-title">Historik</string>
+  <string name="historyform-retrieve-history">Hämta historia</string>
+  <string name="historyform-retrieving-history">Hämtar historia</string>
+  <string name="userhistory-title">Historik över dina ändringar</string>
   <string name="irc-connected">Connected to IRC recent changes feed</string>
   <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a  few moments...</string>
   <string name="irc-disconnected">Connection to IRC recent changes  feed lost; reconnecting...</string>
-  <string name="irc-nochannel">IRC channel for  {0} not found; using slower API queries instead</string>
+  <string name="irc-nochannel">IRC-kanalen för $1 kunde inte hittas, använder långsammare API-köer istället</string>
   <string name="irc-error">Unable to connect to IRC recent changes feed. Using slower API  queries instead</string>
   <string name="login-language">Language:</string>
   <string name="login-project">Project:</string>
@@ -111,14 +163,14 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-start">Login</string>
-  <string name="login-translate">Translate...</string>
+  <string name="login-translate" fuzzy="true">Translate...</string>
   <string name="login-captchatitle">Captcha required to log in</string>
-  <string name="login-progress-start">Logging in...</string>
+  <string name="login-progress-start" fuzzy="true">Logging in...</string>
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
   <string name="login-progress-config">Checking configuration  pages...</string>
-  <string name="login-progress-userlist">Checking user list...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-fail">Inloggningen misslyckades</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age">Use of Huggle on this project requires an account at least {0} days old.</string>
   <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
@@ -164,7 +216,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-queue-next">Next</string>
   <string name="main-queue-trim">Trim</string>
   <string name="main-queue-clear">Clear current</string>
-  <string name="main-queue-count">{0} items</string>
+  <string name="main-queue-count" fuzzy="true">{0} items</string>
   <string name="main-queue-query">Running query...</string>
   <string name="main-queue-reset">Reset</string>
   <string name="main-queue-clearall">Clear all</string>
@@ -178,31 +230,35 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-revision-previous">Previous</string>
   <string name="main-revision-next">Next</string>
   <string name="main-revision-latest">Latest</string>
+  <string name="main-tools">Verktyg</string>
+  <string name="main-tools-wl">Visa vitlistan</string>
   <string name="main-page-switchtotalk">Switch to talk page</string>
   <string name="main-page-switchtosubject">Switch to subject page</string>
   <string name="main-page-switchtoarticle">Switch to article</string>
   <string name="main-page-viewlatest">View latest revision</string>
   <string name="main-page-history">Retrieve history</string>
   <string name="main-page-historypage">Show history page</string>
-  <string name="main-page-edit">Redigera</string>
+  <string name="main-page-edit" fuzzy="true">Redigera</string>
   <string name="main-page-tag">Tag</string>
-  <string name="main-page-reqdeletion">Request deletion</string>
-  <string name="main-page-reqprotection">Request protection</string>
+  <string name="main-page-reqdeletion" fuzzy="true">Request deletion</string>
+  <string name="main-page-reqprotection" fuzzy="true">Request protection</string>
   <string name="main-page-watch">Bevaka</string>
   <string name="main-page-unwatch">Obevaka</string>
   <string name="main-page-purge">Purge</string>
   <string name="main-page-patrol">Mark patrolled</string>
   <string name="main-page-move">Move...</string>
-  <string name="main-page-protect">Protect...</string>
-  <string name="main-page-delete">Delete...</string>
+  <string name="main-page-protect" fuzzy="true">Protect...</string>
+  <string name="main-page-delete" fuzzy="true">Delete...</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
   <string name="main-user-unignore">Unignore</string>
+  <string name="main-user-clear-talk">Töm användarens diskussionssida</string>
   <string name="main-user-contribs">Retrieve contributions</string>
   <string name="main-user-talk">View talk page</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warn...</string>
   <string name="main-user-report">Report</string>
+  <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
   <string name="main-user-block">Block...</string>
   <string name="main-browser">Browser</string>
   <string name="main-browser-newtab">New tab</string>
@@ -261,6 +317,8 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="message-message">Message:</string>
   <string name="message-summary">Summary:</string>
   <string name="message-autosign">Automatically append signature</string>
+  <string name="message-er">Det gick inte att leverera meddelandet till $1: $2</string>
+  <string name="message-done">Levererades framgångsrikt meddelandet till: $1</string>
   <string name="protect-title">Protect {0}</string>
   <string name="protect-request-title">Request protection of {0}</string>
   <string name="protect-reason">Reason:</string>
@@ -315,9 +373,13 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="report-reason">Reason:</string>
   <string name="report-message">Message:</string>
   <string name="report-log">Warnings for this user:</string>
+  <string name="report-include">Inkludera i rapporten</string>
   <string name="report-duplicate">The user has already  been reported</string>
   <string name="report-fail">Did not report \'{0}\'</string>
   <string name="report-progress">Reporting \'{0}\'...</string>
+  <string name="report-done">Rapporterade</string>
+  <string name="report-user">Rapportera</string>
+  <string name="uaa-not-supported">UAA är inte tillgänglig</string>
   <string name="revert-confirm-ignored">Revert edit by whitelisted user \'{0}\'?</string>
   <string name="revert-confirm-multiple">This  will revert multiple edits by \'{0}\'. Continue?</string>
   <string name="revert-confirm-page">Revert edit to ignored page \'{0}\'?</string>
@@ -371,6 +433,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="update-download">Update</string>
   <string name="update-progress">Downloading new version...</string>
   <string name="update-error">Failed to download new version</string>
+  <string name="userinfo-generic">Användarinformation</string>
   <string name="userinfo-title">User information for \'{0}\'</string>
   <string name="userinfo-anonymous">Anonymous:</string>
   <string name="userinfo-ignored">Whitelisted:</string>
@@ -388,6 +451,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="warning-level4">Level 4 (final)</string>
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
+  <string name="warning-submit">Sänd</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>
   <string name="error-noresponse">No response</string>
   <string name="error-pagemissing">The page does not exist</string>
@@ -435,11 +499,11 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="reqprotection-duplicate">Protection has already been requested</string>
   <string name="reqprotection-fail">Did  not request protection of \'{0}\'</string>
   <string name="reqprotection-progress">Requesting protection of \'{0}\'...</string>
-  <string name="speedy-fail">Did not tag \'{0}\' for speedy deletion</string>
-  <string name="speedy-progress">Tagging \'{0}\' for speedy deletion...</string>
-  <string name="warnlog-fail">Failed to retrieve warning log for \'{0}\'</string>
-  <string name="warnlog-none">\'{0}\' has not been warned</string>
-  <string name="warnlog-progress">Retrieving warning  log for \'{0}\'...</string>
+  <string name="speedy-fail" fuzzy="true">Did not tag \'{0}\' for speedy deletion</string>
+  <string name="speedy-progress" fuzzy="true">Tagging \'{0}\' for speedy deletion...</string>
+  <string name="warnlog-fail" fuzzy="true">Failed to retrieve warning log for \'{0}\'</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' has not been warned</string>
+  <string name="warnlog-progress" fuzzy="true">Retrieving warning  log for \'{0}\'...</string>
   <string name="usermessage-duplicate">A  message about the same thing was already present</string>
   <string name="usermessage-fail">Did not message \'{0}\'</string>
   <string name="usermessage-progress">Messaging \'{0}\'...</string>
@@ -450,4 +514,19 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="warn-recent">The user was warned less than {0} seconds ago</string>
   <string name="warn-fail">Did not warn \'{0}\'</string>
   <string name="warn-progress">Warning \'{0}\'...</string>
+  <string name="editquery-success">Framgångsrik redigering $1</string>
+  <string name="whitelist-download">Ladda ner ny vitlista</string>
+  <string name="queue-widget-name">Kö</string>
+  <string name="logs-widget-name">Systemlogg</string>
+  <string name="wait">Var god vänta...</string>
+  <string name="function-miss">Funktionen är inte tillgänglig nu</string>
+  <string name="missing-aiv">Detta projekt använder inte AIV</string>
+  <string name="merging">Sammanslagning</string>
+  <string name="missing-page">Det finns ingen sida som heter $1 på denna wiki</string>
+  <string name="updating-wl">Uppdaterar vitlista...</string>
+  <string name="updating-uc">Uppdaterar användarens konfigurationssida som heter huggle3.css</string>
+  <string name="feature-nfru">Den här funktionen är endast för IP-användare</string>
+  <string name="report-no-user">Ingen användare har valt att rapportera, vänligen välj en användare först</string>
+  <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
+  <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
 </resources>
