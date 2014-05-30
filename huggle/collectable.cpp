@@ -9,7 +9,6 @@
 //GNU General Public License for more details.
 
 #include "collectable.hpp"
-#include "exception.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
@@ -134,31 +133,6 @@ void Collectable::UnregisterConsumer(const QString consumer)
     this->Unlock();
 }
 
-void Collectable::IncRef()
-{
-    this->_collectableRefs++;
-    this->SetManaged();
-}
-
-void Collectable::DecRef()
-{
-    if (!this->_collectableRefs)
-    {
-        throw new Huggle::Exception("Decrementing negative reference");
-    }
-    this->_collectableRefs--;
-}
-
-unsigned long Collectable::CollectableID()
-{
-    return this->CID;
-}
-
-unsigned long *Collectable::GetLastCIDPtr()
-{
-    return &Collectable::LastCID;
-}
-
 QString Collectable::ConsumerIdToString(const int id)
 {
     switch (id)
@@ -195,11 +169,6 @@ void Collectable::SetManaged()
     }
 }
 
-bool Collectable::HasSomeConsumers()
-{
-    return (this->_collectableRefs > 0 || this->iConsumers.count() > 0 || this->Consumers.count() > 0);
-}
-
 QString Collectable::DebugHgc()
 {
     QString result = "";
@@ -229,11 +198,6 @@ QString Collectable::DebugHgc()
     return result;
 }
 
-bool Collectable::IsLocked()
-{
-    return this->_collectableLocked;
-}
-
 void Collectable::Lock()
 {
     // this is actually pretty lame check but better than nothing
@@ -251,13 +215,4 @@ void Collectable::Unlock()
         this->_collectableQL->unlock();
         this->_collectableLocked = false;
     }
-}
-
-bool Collectable::IsManaged()
-{
-    if (this->_collectableManaged)
-    {
-        return true;
-    }
-    return this->HasSomeConsumers();
 }

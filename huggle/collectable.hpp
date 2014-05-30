@@ -23,6 +23,7 @@
 #include <QList>
 #include <QString>
 #include <QStringList>
+#include "exception.hpp"
 #include "gc.hpp"
 
 namespace Huggle
@@ -142,5 +143,56 @@ namespace Huggle
             unsigned int _collectableRefs;
             bool _collectableLocked;
     };
+
+    //_________________________________________________________________________
+    // inline defs
+    // you will not see any interesting declarations of collectable here
+    //_________________________________________________________________________
+
+
+    inline bool Collectable::HasSomeConsumers()
+    {
+        return (this->_collectableRefs > 0 || this->iConsumers.count() > 0 || this->Consumers.count() > 0);
+    }
+
+    inline void Collectable::IncRef()
+    {
+        this->_collectableRefs++;
+        this->SetManaged();
+    }
+
+    inline void Collectable::DecRef()
+    {
+        if (!this->_collectableRefs)
+        {
+            throw new Huggle::Exception("Decrementing negative reference",
+                      "inline void Collectable::DecRef()");
+        }
+        this->_collectableRefs--;
+    }
+
+    inline unsigned long Collectable::CollectableID()
+    {
+        return this->CID;
+    }
+
+    inline bool Collectable::IsLocked()
+    {
+        return this->_collectableLocked;
+    }
+
+    inline unsigned long *Collectable::GetLastCIDPtr()
+    {
+        return &Collectable::LastCID;
+    }
+
+    inline bool Collectable::IsManaged()
+    {
+        if (this->_collectableManaged)
+        {
+            return true;
+        }
+        return this->HasSomeConsumers();
+    }
 }
 #endif // COLLECTABLE_H
