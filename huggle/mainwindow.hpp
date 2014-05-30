@@ -188,7 +188,7 @@ namespace Huggle
             //! Pointer to history
             History *_History;
             //! Pointer to menu of revert warn button
-            QMenu *RevertWarn;
+            QMenu *RevertWarn = nullptr;
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
@@ -197,9 +197,9 @@ namespace Huggle
             //! This query is used to refresh white list
             WLQuery *wq = nullptr;
             //! Warning menu
-            QMenu *WarnMenu;
+            QMenu *WarnMenu = nullptr;
             //! Revert menu
-            QMenu *RevertSummaries;
+            QMenu *RevertSummaries = nullptr;
             ScoreWordsDbForm *fScoreWord = nullptr;
             Ui::MainWindow *ui;
             bool ShuttingDown;
