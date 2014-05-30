@@ -12,11 +12,13 @@
         <file>Localization/it.xml</file>
         <file>Localization/ja.xml</file>
         <file>Localization/ka.xml</file>
+        <file>Localization/mk.xml</file>
         <file>Localization/mr.xml</file>
+        <file>Localization/ml.xml</file>
         <file>Localization/km.xml</file>
         <file>Localization/kn.xml</file>
         <file>Localization/ko.xml</file>
-        <file>Localization/ml.xml</file>
+        <file>Localization/lb.xml</file>
         <file>Localization/nl.xml</file>
         <file>Localization/no.xml</file>
         <file>Localization/oc.xml</file>

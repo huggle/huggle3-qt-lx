@@ -73,8 +73,10 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
+    Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanese
     Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
     Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
+    Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
     Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
     Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
     Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
