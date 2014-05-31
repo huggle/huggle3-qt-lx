@@ -198,9 +198,10 @@ QString Localizations::Localize(QString key, QStringList parameters)
     QString id = key;
     if (id.length() > 4 && id[0] == '[' && id[1] == '[')
     {
-        if (id.endsWith("]]"))
+        id = id.mid(2);
+        if (key.endsWith("]]"))
         {
-            id = key.mid(0, key.length() - 2);
+            id = id.mid(0, id.length() - 2);
         }
     }
     if (this->LocalizationData.count() > 0)
