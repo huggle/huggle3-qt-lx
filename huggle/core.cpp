@@ -379,7 +379,7 @@ void Core::TestLanguages()
 {
     if (Configuration::HuggleConfiguration->SystemConfig_LanguageSanity)
     {
-        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(0);
+        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(Localizations::EnglishID);
         QList<QString> keys = english->Messages.keys();
         int language = 1;
         while (language < Localizations::HuggleLocalizations->LocalizationData.count())
