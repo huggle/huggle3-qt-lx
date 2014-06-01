@@ -119,6 +119,7 @@ void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
     if (this->ParentQueue->Items.contains(this))
     {
         this->ParentQueue->Items.removeAll(this);
+        this->ParentQueue->RedrawTitle();
     }
     this->ParentQueue->Delete(this, qi);
 }

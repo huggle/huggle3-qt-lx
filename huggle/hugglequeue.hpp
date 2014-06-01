@@ -71,6 +71,7 @@ namespace Huggle
             //! Remove 1 item
             void Trim();
             void Clear();
+            void RedrawTitle();
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
         private slots:
