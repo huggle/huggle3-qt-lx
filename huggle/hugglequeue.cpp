@@ -127,7 +127,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
         this->ui->itemList->insertWidget(id, label);
     }
     this->Items.append(label);
-    this->ParentQueue->RedrawTitle();
+    this->RedrawTitle();
 }
 
 void HuggleQueue::Next()
