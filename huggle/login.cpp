@@ -40,7 +40,6 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
     this->LoadedOldConfig = false;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
-    this->setWindowTitle("Huggle 3 QT [" + Configuration::HuggleConfiguration->HuggleVersion + "]");
     this->Reset();
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->SystemConfig_UsingSSL);
 
@@ -56,14 +55,17 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         }
         l++;
     }
+    QString title = "Huggle 3 QT";
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
         // add debug lang "qqx" last
         this->ui->Language->addItem(Localizations::LANG_QQX);
         if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX)
             p = l;
+        title += " [" + Configuration::HuggleConfiguration->HuggleVersion + "]";
         l++;
     }
+    this->setWindowTitle(title);
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
     if (!QSslSocket::supportsSsl())
