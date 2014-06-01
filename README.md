@@ -32,7 +32,6 @@ Note in case you don't have power shell you need to do these 2 steps before you 
 
 Linux
 -------------
-
 * checkout this repository
 * cd REPO/huggle, execute
 
@@ -50,6 +49,7 @@ MacOS
 ```sh
 brew install qt
 ```
+* Install cmake from http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Darwin64-universal.dmg
 * Checkout this repository and execute
 ```sh
 ./configure
