@@ -18,7 +18,7 @@
 
 using namespace Huggle;
 
-Configuration * Configuration::HuggleConfiguration = NULL;
+Configuration * Configuration::HuggleConfiguration = nullptr;
 
 Configuration::Configuration()
 {
@@ -63,18 +63,77 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+    QStringList ol = this->UserOptions.keys();
+    while (ol.count())
+    {
+        HuggleOption *option = this->UserOptions[ol[0]];
+        this->UserOptions.remove(ol[0]);
+        delete option;
+        ol.removeAt(0);
+    }
     delete this->AIVP;
     delete this->Project;
     delete this->UAAP;
 }
 
-Option *Configuration::GetOption(QString key)
+HuggleOption *Configuration::GetOption(QString key)
 {
-    if (this->Options.contains(key))
+    if (this->UserOptions.contains(key))
     {
-        return new Option(this->Options[key]);
+        this->UserOptions[key];
     }
-    return NULL;
+    return nullptr;
+}
+
+QVariant Configuration::SetOption(QString key_, QString config_, QVariant default_)
+{
+    if (this->UserOptions.contains(key_))
+    {
+        // we must not add 2 same
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
+                                    "void Configuration::SetOption(QString key, QVariant data)");
+    }
+    QString d_ = default_.toString();
+    QString value = ConfigurationParse(key_, config_, d_);
+    HuggleOption *h;
+    switch (default_.type())
+    {
+        case QVariant::Int:
+            h = new HuggleOption(key_, value.toInt(), value != d_);
+            break;
+        case QVariant::Bool:
+            h = new HuggleOption(key_, SafeBool(value), value != d_);
+            break;
+        default:
+            h = new HuggleOption(key_, value, value != d_);
+            break;
+    }
+    this->UserOptions.insert(key_, h);
+    return h->GetVariant();
+}
+
+int Configuration::GetSafeUserInt(QString key_, int default_value)
+{
+    HuggleOption *option = this->GetOption(key_);
+    if (option != nullptr)
+        return option->GetVariant().toInt();
+    return default_value;
+}
+
+bool Configuration::GetSafeUserBool(QString key_, bool default_value)
+{
+    HuggleOption *option = this->GetOption(key_);
+    if (option != nullptr)
+        return option->GetVariant().toBool();
+    return default_value;
+}
+
+QString Configuration::GetSafeUserString(QString key_, QString default_value)
+{
+    HuggleOption *option = this->GetOption(key_);
+    if (option != nullptr)
+        return option->GetVariant().toString();
+    return default_value;
 }
 
 QString Configuration::GenerateSuffix(QString text)
@@ -198,10 +257,6 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "speedy-message-title:Speedy deleted\n";
     configuration_ += "report-summary:" + Configuration::HuggleConfiguration->ProjectConfig_ReportSummary + "\n";
     configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
-    configuration_ += "warn-summary-4:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4 + "\n";
-    configuration_ += "warn-summary-3:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3 + "\n";
-    configuration_ += "warn-summary-2:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2 + "\n";
-    configuration_ += "warn-summary:" + Configuration::HuggleConfiguration->ProjectConfig_WarnSummary + "\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // huggle 2 options
     configuration_ += "auto-advance:false\n";
@@ -222,7 +277,6 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "automatically-resolve-conflicts:" +
             Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts) + "\n";
     configuration_ += "confirm-page:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmPage) + "\n";
-    configuration_ += "template-age:" + QString::number(Configuration::HuggleConfiguration->ProjectConfig_TemplateAge) + "\n";
     configuration_ += "confirm-same:" + Configuration::Bool2String(Configuration::HuggleConfiguration->ProjectConfig_ConfirmSame) + "\n";
     configuration_ += "software-rollback:" + Configuration::Bool2String(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     configuration_ += "diff-font-size:" + QString::number(Configuration::HuggleConfiguration->SystemConfig_FontSize) + "\n";
@@ -244,6 +298,21 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "HAN_DisplayUser:" + Configuration::Bool2String(Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser) + "\n";
     configuration_ += "QueueID:" + Configuration::HuggleConfiguration->UserConfig_QueueID + "\n";
     configuration_ += "// queues\nqueues:\n";
+    QStringList kl = HuggleConfiguration->UserOptions.keys();
+    foreach (QString item, kl)
+    {
+        HuggleOption *option = HuggleConfiguration->GetOption(item);
+        if (option == nullptr)
+        {
+            // this must never happen
+            throw new Huggle::Exception("Option key was nullptr during store", "QString Configuration::MakeLocalUserConfig()");
+        }
+        if (!option->IsDefault())
+        {
+            // in case we modified this item we store it
+            configuration_ += item + ":" + option->GetVariant().toString() + "\n";
+        }
+    }
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
     {
@@ -504,7 +573,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig_Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, true);
     this->ProjectConfig_IgnorePatterns = HuggleParser::ConfigurationParse_QL("ignore-patterns", config, true);
     // Scoring
-    this->ProjectConfig_IPScore = ConfigurationParse("score-ip", config, "800").toInt();
+    this->ProjectConfig_IPScore = ConfigurationParse(ProjectConfig_IPScore_Key, config, "800").toInt();
     this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config).toInt();
     this->ProjectConfig_ForeignUser = ConfigurationParse("score-foreign-user", config, "200").toInt();
     this->ProjectConfig_BotScore = ConfigurationParse("score-bot", config, "-200000").toInt();
@@ -647,12 +716,12 @@ bool Configuration::ParseProjectConfig(QString config)
         xx++;
     }
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
-    if (this->AIVP != NULL)
+    if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ProjectConfig_ReportAIV);
     HuggleParser::ParsePats(config);
     HuggleParser::ParseWords(config);
-    if (this->UAAP != NULL)
+    if (this->UAAP != nullptr)
         delete this->UAAP;
     this->UAAP = new WikiPage(this->ProjectConfig_UAAPath);
     // templates
@@ -685,23 +754,24 @@ bool Configuration::ParseUserConfig(QString config)
     this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
     this->ProjectConfig_EnableAll = SafeBool(ConfigurationParse("enable", config));
     this->ProjectConfig_Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, this->ProjectConfig_Ignores);
-    this->ProjectConfig_IPScore = ConfigurationParse("score-ip", config, QString::number(this->ProjectConfig_IPScore)).toInt();
-    this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config, QString::number(this->ProjectConfig_ScoreFlag)).toInt();
-    this->ProjectConfig_WarnSummary = ConfigurationParse("warn-summary", config, this->ProjectConfig_WarnSummary);
+    // this is a hack so that we can access this value more directly, it can't be changed in huggle
+    // so there is no point in using a hash for it
+    this->ProjectConfig_IPScore = this->SetOption(ProjectConfig_IPScore_Key, config, this->ProjectConfig_IPScore).toInt();
+    this->ProjectConfig_ScoreFlag = this->SetOption("score-flag", config, this->ProjectConfig_ScoreFlag).toInt();
+    this->ProjectConfig_WarnSummary = this->SetOption("warn-summary", config, this->ProjectConfig_WarnSummary).toString();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
-    this->ProjectConfig_WarnSummary2 = ConfigurationParse("warn-summary-2", config, this->ProjectConfig_WarnSummary2);
-    this->ProjectConfig_WarnSummary3 = ConfigurationParse("warn-summary-3", config, this->ProjectConfig_WarnSummary3);
-    this->ProjectConfig_WarnSummary4 = ConfigurationParse("warn-summary-4", config, this->ProjectConfig_WarnSummary4);
+    this->ProjectConfig_WarnSummary2 = this->SetOption("warn-summary-2", config, this->ProjectConfig_WarnSummary2).toString();
+    this->ProjectConfig_WarnSummary3 = this->SetOption("warn-summary-3", config, this->ProjectConfig_WarnSummary3).toString();
+    this->ProjectConfig_WarnSummary4 = this->SetOption("warn-summary-4", config, this->ProjectConfig_WarnSummary4).toString();
     this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
-    this->ProjectConfig_TemplateAge = ConfigurationParse("template-age", config, QString::number(this->ProjectConfig_TemplateAge)).toInt();
+    this->ProjectConfig_TemplateAge = this->SetOption("template-age", config, this->ProjectConfig_TemplateAge).toInt();
     this->ProjectConfig_RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config, this->ProjectConfig_RevertSummaries);
     this->ProjectConfig_WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config, this->ProjectConfig_WarningTypes);
-    this->ProjectConfig_ScoreChange = ConfigurationParse("score-change", config, QString::number(this->ProjectConfig_ScoreChange)).toInt();
-    this->ProjectConfig_ScoreFlag = ConfigurationParse("score-flag", config, QString::number(this->ProjectConfig_ScoreFlag)).toInt();
-    this->ProjectConfig_ScoreUser = ConfigurationParse("score-user", config, QString::number(this->ProjectConfig_ScoreUser)).toInt();
-    this->ProjectConfig_ScoreTalk = ConfigurationParse("score-talk", config, QString::number(this->ProjectConfig_ScoreTalk)).toInt();
+    this->ProjectConfig_ScoreChange = this->SetOption("score-change", config, this->ProjectConfig_ScoreChange).toInt();
+    this->ProjectConfig_ScoreUser = this->SetOption("score-user", config, this->ProjectConfig_ScoreUser).toInt();
+    this->ProjectConfig_ScoreTalk = this->SetOption("score-talk", config, this->ProjectConfig_ScoreTalk).toInt();
     this->ProjectConfig_WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config, this->ProjectConfig_WarningDefs);
-    this->ProjectConfig_BotScore = ConfigurationParse("score-bot", config, QString::number(this->ProjectConfig_BotScore)).toInt();
+    this->ProjectConfig_BotScore = this->SetOption("score-bot", config, this->ProjectConfig_BotScore).toInt();
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
     this->UserConfig_TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->UserConfig_HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
@@ -810,27 +880,15 @@ ScoreWord::ScoreWord(const ScoreWord &word)
     this->word = word.word;
 }
 
-Option::Option()
-{
-    this->Name = "";
-    this->Type = OptionType_String;
-    this->ContainerString = "";
-}
-
-Option::Option(QString name, OptionType type)
+HuggleOption::HuggleOption(QString name, QVariant value, bool isdefault)
 {
     this->Name = name;
-    this->Type = type;
+    this->isDefault = isdefault;
+    this->Value = value;
 }
 
-Option::Option(Option *option)
+void HuggleOption::SetVariant(QVariant value)
 {
-    this->Name = option->Name;
-    this->Type = option->Type;
-}
-
-Option::Option(const Option &option)
-{
-    this->Name = option.Name;
-    this->Type = option.Type;
+    this->isDefault = false;
+    this->Value = value;
 }

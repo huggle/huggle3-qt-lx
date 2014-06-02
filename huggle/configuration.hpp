@@ -47,19 +47,34 @@ namespace Huggle
         HeadingsNone
     };
 
-    enum OptionType
-    {
-        OptionType_String,
-        OptionType_List,
-        OptionType_Dictionary
-    };
-
     class WikiSite;
     class HuggleQueueFilter;
     class HuggleQueue;
     class WikiPage;
     class Syslog;
     class HuggleQueueParser;
+
+    /*!
+     * \brief The HuggleOption class can be used to store user options in a very simple way
+     *
+     *  Every option here is tracked for changes, that makes the huggle store it to user config file only if it has changed,
+     *  this is necessary for options that override the project configuration, because we want to store these, only if they
+     *  differ
+     */
+    class HuggleOption
+    {
+        public:
+            HuggleOption(QString name, QVariant value, bool isdefault);
+            bool IsDefault()  { return this->isDefault; }
+            void SetVariant(QVariant value);
+            QVariant GetVariant()  { return this->Value; }
+            QString Name;
+
+        private:
+            QVariant Value;
+            bool isDefault = true;
+    };
+
     /*!
      * \brief The ScoreWord class
      *
@@ -75,22 +90,6 @@ namespace Huggle
             ScoreWord(const ScoreWord &word);
             QString word;
             int score;
-    };
-
-    /*!
-     * \brief The Option class is one option that is parsed from configuration no matter of its type
-     */
-    class Option
-    {
-        public:
-            Option();
-            Option(QString name, OptionType type);
-            Option(Option *option);
-            Option(const Option &option);
-            QString Name;
-            OptionType Type;
-        private:
-            QString ContainerString;
     };
 
     //! Run time configuration of huggle
@@ -147,7 +146,6 @@ namespace Huggle
             //! Returns full configuration path suffixed with slash
             static QString GetConfigurationPath();
             static QString ReplaceSpecialUserPage(QString PageName);
-            static QString Bool2ExcludeRequire(bool b);
             /*!
              * \brief Bool2String Convert a bool to string
              * \param b bool
@@ -160,13 +158,6 @@ namespace Huggle
             static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
-            /*!
-             * \brief InsertConfig
-             * \param key Configuration key
-             * \param value Value of key
-             * \param s Stream writer
-             */
-            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
             static bool SafeBool(QString value, bool defaultvalue = false);
             //! Parse a string from configuration which has format used by huggle 2x
             /*!
@@ -191,7 +182,17 @@ namespace Huggle
              * \param key
              * \return New instance of data or NULL in case there is no such an option
              */
-            Option *GetOption(QString key);
+            HuggleOption *GetOption(QString key);
+            /*!
+             * \brief SetOption lookup for a key in config file, if there is no such a key, insert a default one
+             * \param key_ Name of configuration key in user config file
+             * \param config_ Config file text
+             * \param default_ Value that is used in case there is no such a key
+             */
+            QVariant SetOption(QString key_, QString config_, QVariant default_);
+            int GetSafeUserInt(QString key_, int default_value = 0);
+            bool GetSafeUserBool(QString key_, bool default_value = false);
+            QString GetSafeUserString(QString key_, QString default_value = "");
             void NormalizeConf();
             QString GenerateSuffix(QString text);
             //! Parse all information from global config on meta
@@ -301,6 +302,7 @@ namespace Huggle
             //////////////////////////////////////////////
             // User
             //////////////////////////////////////////////
+            QHash<QString, HuggleOption*> UserOptions;
             bool                    UserConfig_EnforceMonthsAsHeaders = true;
             unsigned int            UserConfig_TalkPageFreshness = 20;
             //! If history and user info should be automatically loaded for every edit
@@ -328,6 +330,12 @@ namespace Huggle
             bool                    UserConfig_HAN_DisplayUser = true;
             bool                    UserConfig_HAN_DisplayBots = true;
             bool                    UserConfig_HAN_DisplayUserTalk = true;
+            // Private key names
+            // these need to be stored in separate variables so that we can
+            // 1. Change them on 1 place
+            // 2. Track them (we need to be able to find where these options
+            //    are being used)
+            #define                 ProjectConfig_IPScore_Key "score-ip"
 
             //////////////////////////////////////////////
             // Global config
@@ -391,6 +399,7 @@ namespace Huggle
             bool            ProjectConfig_ConfirmSame = false;
             bool            ProjectConfig_ConfirmWarned = false;
             bool            ProjectConfig_Patrolling = false;
+            int             ProjectConfig_IPScore = 20;
 
             // Reverting
             QString         ProjectConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
@@ -457,7 +466,6 @@ namespace Huggle
             // This is internal only do not prefix it!!
             QList<QRegExp>          RevertPatterns;
             int                     ProjectConfig_BotScore = -200;
-            int                     ProjectConfig_IPScore = 800;
             int                     ProjectConfig_WarningScore = 2000;
             QStringList             ProjectConfig_WarningTypes;
             QString                 ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
@@ -536,7 +544,16 @@ namespace Huggle
             //! Operating system that is sent to update server
             QString     Platform;
         private:
-            QHash       <QString, Option> Options;
+            /*!
+             * \brief InsertConfig
+             * \param key Configuration key
+             * \param value Value of key
+             * \param s Stream writer
+             */
+            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+            static QString Bool2ExcludeRequire(bool b);
+            // USER
+
     };
 }
 
