@@ -319,8 +319,6 @@ void Login::PerformLoginPart2()
         this->Update(Localizations::HuggleLocalizations->Localize("[[login-fail]]") +
                      ": " + this->LoginQuery->Result->ErrorMessage);
         this->Kill();
-        this->LoginQuery->DecRef();
-        this->LoginQuery = nullptr;
         return;
     }
     this->Token = this->LoginQuery->Result->Data;
@@ -348,8 +346,6 @@ void Login::RetrieveGlobalConfig()
                 this->Update(Localizations::HuggleLocalizations->Localize("[[login-error-global]]") + ": "
                              + this->LoginQuery->Result->ErrorMessage);
                 this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             QDomDocument d;
@@ -461,7 +457,6 @@ void Login::RetrieveProjectConfig()
                 this->Update(Localizations::HuggleLocalizations->Localize("login-error-config", this->LoginQuery->Result->ErrorMessage));
                 this->LoginQuery->DecRef();
                 this->Kill();
-                this->LoginQuery = nullptr;
                 return;
             }
             QDomDocument d;
@@ -471,8 +466,6 @@ void Login::RetrieveProjectConfig()
             {
                 this->Kill();
                 this->Update(Localizations::HuggleLocalizations->Localize("login-error-config", "the api query returned no data"));
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             this->LoginQuery->DecRef();
@@ -514,8 +507,6 @@ void Login::RetrieveUserConfig()
             {
                 this->Kill();
                 this->Update("Login failed unable to retrieve user config: " + this->LoginQuery->Result->ErrorMessage);
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             QDomDocument d;
@@ -555,8 +546,6 @@ void Login::RetrieveUserConfig()
                 this->Update("Login failed unable to retrieve user config, did you create huggle3.css "\
                              "in your userspace? (Special:MyPage/huggle3.css is missing)");
                 this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             this->LoginQuery->DecRef();
@@ -610,8 +599,6 @@ void Login::RetrieveUserInfo()
                 /// \todo LOCALIZE ME
                 this->Update("Login failed unable to retrieve user info: " + this->LoginQuery->Result->ErrorMessage);
                 this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             QDomDocument dLoginResult;
@@ -623,8 +610,6 @@ void Login::RetrieveUserInfo()
                 this->Kill();
                 /// \todo LOCALIZE ME
                 this->Update("Login failed unable to retrieve user info, the api query returned no data");
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             int c=0;
@@ -639,8 +624,6 @@ void Login::RetrieveUserInfo()
                 /// \todo LOCALIZE ME
                 this->Update("Login failed because you don't have rollback permissions on this project");
                 this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
             if (Configuration::HuggleConfiguration->ProjectConfig_RequireAutoconfirmed &&
@@ -650,8 +633,6 @@ void Login::RetrieveUserInfo()
                 /// \todo LOCALIZE ME
                 this->Update("Login failed because you are not autoconfirmed on this project");
                 this->Kill();
-                this->LoginQuery->DecRef();
-                this->LoginQuery = nullptr;
                 return;
             }
 
