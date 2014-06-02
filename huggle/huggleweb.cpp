@@ -11,6 +11,7 @@
 #include "huggleweb.hpp"
 #include <QDesktopServices>
 #include "exception.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
 #include "configuration.hpp"
 #include "ui_huggleweb.h"
@@ -20,7 +21,7 @@ using namespace Huggle;
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
-    this->CurrentPage = Localizations::HuggleLocalizations->Localize("browser-none");
+    this->CurrentPage = _l("browser-none");
 }
 
 HuggleWeb::~HuggleWeb()
@@ -113,7 +114,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     if (!edit->DiffText.length())
     {
         Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
-        this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
+        this->ui->webView->setHtml(_l("browser-load"));
         this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
         return;
@@ -140,13 +141,13 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
     if (!edit->Summary.size())
     {
-        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+        Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
     }
     Summary += "<b> Size change: " + size + "</b>";
-    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary +
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary +
             "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
@@ -169,12 +170,12 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     QString Summary;
     if (!edit->Summary.size())
     {
-        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+        Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
     }
-    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "<br>" +
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary + "<br>" +
             edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }

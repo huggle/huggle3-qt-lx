@@ -13,10 +13,11 @@
 #include <QFile>
 #include "exception.hpp"
 #include "configuration.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
 unsigned int Localizations::EnglishID = 0;
-Localizations *Localizations::HuggleLocalizations = NULL;
+Localizations *Localizations::HuggleLocalizations = nullptr;
 const QString Localizations::LANG_QQX = "qqx";
 
 Localizations::Localizations()

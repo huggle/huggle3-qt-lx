@@ -15,12 +15,12 @@
 using namespace Huggle;
 ReloginForm::ReloginForm(QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 }
 
 ReloginForm::~ReloginForm()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void Huggle::ReloginForm::on_pushButton_clicked()

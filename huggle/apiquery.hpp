@@ -20,7 +20,7 @@
 
 #include <QString>
 #include <QObject>
-#include <QtNetwork/QtNetwork>
+#include <QtNetwork>
 #include <QThread>
 #include "query.hpp"
 #include "revertquery.hpp"

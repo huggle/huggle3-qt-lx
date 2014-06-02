@@ -14,6 +14,7 @@
 #include "wikiutil.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
+#include "syslog.hpp"
 #include "querypool.hpp"
 #include "ui_uaareport.h"
 
@@ -56,10 +57,8 @@ void UAAReport::setUserForUAA(WikiUser *user)
 
 void UAAReport::getPageContents()
 {
-    if (this->qUAApage != NULL)
-    {
+    if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
-    }
     this->qUAApage = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_UAAPath);
     /// \todo LOCALIZE THIS
     this->qUAApage->Target = "Getting content of UAA";
@@ -71,12 +70,12 @@ void UAAReport::getPageContents()
 
 void UAAReport::onTick()
 {
-    if (this->qUAApage == NULL || !this->qUAApage->IsProcessed())
+    if (this->qUAApage == nullptr || !this->qUAApage->IsProcessed())
         return;
     QDomDocument r;
     r.setContent(this->qUAApage->Result->Data);
     this->qUAApage->DecRef();
-    this->qUAApage = NULL;
+    this->qUAApage = nullptr;
     QDomNodeList l = r.elementsByTagName("rev");
     if (l.count() == 0)
     {
@@ -194,14 +193,14 @@ bool UAAReport::checkIfReported()
 
 void UAAReport::onStartOfSearch()
 {
-    if (this->qCheckUAAUser == NULL || !this->qCheckUAAUser->IsProcessed())
+    if (this->qCheckUAAUser == nullptr || !this->qCheckUAAUser->IsProcessed())
         return;
     QDomDocument tj;
     tj.setContent(this->qCheckUAAUser->Result->Data);
     QDomNodeList chkusr = tj.elementsByTagName("rev");
     this->TimerCheck->stop();
     this->qCheckUAAUser->DecRef();
-    this->qCheckUAAUser = NULL;
+    this->qCheckUAAUser = nullptr;
     QMessageBox mb;
     if (chkusr.count() == 0)
     {

@@ -10,6 +10,7 @@
 
 #include "wikiuser.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
 using namespace Huggle;
 
@@ -48,7 +49,7 @@ WikiUser *WikiUser::RetrieveUser(QString user)
         User++;
     }
     WikiUser::ProblematicUserListLock.unlock();
-    return NULL;
+    return nullptr;
 }
 
 void WikiUser::TrimProblematicUsersList()
@@ -124,7 +125,7 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
             us->Update();
             return;
         }
-        Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("whitelisted", us->Username, QString::number(score)));
+        Syslog::HuggleLogs->Log(_l("whitelisted", us->Username, QString::number(score)));
         Configuration::HuggleConfiguration->NewWhitelist.append(us->Username);
         Configuration::HuggleConfiguration->WhiteList.append(us->Username);
         us->WhitelistInfo = 1;
@@ -242,7 +243,7 @@ void WikiUser::Resync()
 {
     WikiUser::ProblematicUserListLock.lock();
     WikiUser *user = WikiUser::RetrieveUser(this);
-    if (user != NULL)
+    if (user)
     {
         this->BadnessScore = user->BadnessScore;
         this->ContentsOfTalkPage = user->TalkPage_GetContents();
@@ -266,7 +267,7 @@ QString WikiUser::TalkPage_GetContents()
     // we need to copy the value to local variable so that if someone change it from different
     // thread we are still working with same data
     QString contents = "";
-    if (user != NULL && user->TalkPage_WasRetrieved())
+    if (user != nullptr && user->TalkPage_WasRetrieved())
     {
         // we return a value of user from global db instead of local
         contents = user->ContentsOfTalkPage;
@@ -295,7 +296,7 @@ void WikiUser::Update(bool MatchingOnly)
     {
         // here we want to update the user only if it already is in database so we
         // need to check if it is there and if yes, we continue
-        if (WikiUser::RetrieveUser(this) == NULL)
+        if (WikiUser::RetrieveUser(this) == nullptr)
         {
             WikiUser::ProblematicUserListLock.unlock();
             return;

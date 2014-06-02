@@ -25,9 +25,7 @@
 #include <QList>
 #include "blockuser.hpp"
 #include "editquery.hpp"
-#include "resources.hpp"
 #include "apiquery.hpp"
-#include "huggleweb.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui

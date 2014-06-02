@@ -11,6 +11,7 @@
 #include "vandalnw.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "ui_vandalnw.h"
 #include "syslog.hpp"
 
@@ -58,11 +59,11 @@ void VandalNw::Connect()
     }
     if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
-        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("han-not"));
+        Huggle::Syslog::HuggleLogs->Log(_l("han-not"));
         return;
     } else
     {
-        this->Insert(Localizations::HuggleLocalizations->Localize("han-connecting"), HAN::MessageType_Info);
+        this->Insert(_l("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
         this->tm->start(200);
     }

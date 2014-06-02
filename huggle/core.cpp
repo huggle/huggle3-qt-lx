@@ -92,7 +92,6 @@ Core::Core()
     this->fLogin = NULL;
     this->SecondaryFeedProvider = NULL;
     this->PrimaryFeedProvider = NULL;
-    this->HuggleLocalizations = NULL;
     this->Processor = NULL;
     this->HuggleSyslog = NULL;
     this->StartupTime = QDateTime::currentDateTime();
@@ -413,7 +412,6 @@ void Core::ExceptionHandler(Exception *exception)
 void Core::LoadLocalizations()
 {
     Localizations::HuggleLocalizations = new Localizations();
-    this->HuggleLocalizations = Localizations::HuggleLocalizations;
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Localizations::HuggleLocalizations->LocalInit("en"); // English, when in safe mode

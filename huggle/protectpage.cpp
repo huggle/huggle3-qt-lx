@@ -11,7 +11,9 @@
 #include "protectpage.hpp"
 #include <QMessageBox>
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "querypool.hpp"
+#include "syslog.hpp"
 #include "ui_protectpage.h"
 
 using namespace Huggle;
@@ -22,9 +24,9 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->qToken = nullptr;
     this->PageToProtect = nullptr;
     this->qProtection = nullptr;
-    this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-none"));
-    this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-semiprotection"));
-    this->ui->comboBox_3->addItem(Localizations::HuggleLocalizations->Localize("protect-fullprotection"));
+    this->ui->comboBox_3->addItem(_l("protect-none"));
+    this->ui->comboBox_3->addItem(_l("protect-semiprotection"));
+    this->ui->comboBox_3->addItem(_l("protect-fullprotection"));
     this->ui->comboBox_3->setCurrentIndex(2);
     this->ProtectToken = "";
     this->tt = nullptr;
@@ -49,7 +51,7 @@ void ProtectPage::getTokenToProtect()
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
     this->qToken->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
-    this->qToken->Target = Localizations::HuggleLocalizations->Localize("protection-ft");
+    this->qToken->Target = _l("protection-ft");
     this->qToken->IncRef();
     QueryPool::HugglePool->AppendQuery(qToken);
     this->qToken->Process();

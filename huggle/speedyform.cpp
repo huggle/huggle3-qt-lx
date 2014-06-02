@@ -15,6 +15,8 @@
 #include "wikiutil.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_speedyform.h"
 
 using namespace Huggle;

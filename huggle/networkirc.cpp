@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "networkirc.hpp"
+#include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle::IRC;
 

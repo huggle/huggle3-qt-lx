@@ -13,6 +13,7 @@
 #include "exception.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
@@ -23,11 +24,11 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
 {
     this->ui->setupUi(this);
     this->query = nullptr;
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("main-page-load"));
-    this->ui->label_3->setText(Localizations::HuggleLocalizations->Localize("main-page-curr-disp"));
+    this->ui->pushButton->setText(_l("main-page-load"));
+    this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
-    this->ui->label->setText(Localizations::HuggleLocalizations->Localize("User"));
-    this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("Page"));
+    this->ui->label->setText(_l("User"));
+    this->ui->label_2->setText(_l("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
     this->edit = nullptr;
 }
@@ -150,7 +151,7 @@ void HuggleTool::FinishPage()
                 // there is no such a page
                 GC_DECREF(this->query);
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
-                Huggle::Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("missing-page", ui->lineEdit_3->text()));
+                Huggle::Syslog::HuggleLogs->WarningLog(_l("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
                 this->edit = nullptr;
                 return;

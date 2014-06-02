@@ -9,11 +9,14 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.hpp"
+#include "configuration.hpp"
 #include "generic.hpp"
 #include "core.hpp"
 #include "collectable.hpp"
 #include "querypool.hpp"
+#include "syslog.hpp"
 #include "mediawiki.hpp"
+
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
 QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
@@ -21,7 +24,7 @@ QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
 WikiEdit::WikiEdit()
 {
     this->Bot = false;
-    this->User = NULL;
+    this->User = nullptr;
     this->Minor = false;
     this->NewPage = false;
     this->Size = 0;
@@ -35,10 +38,10 @@ WikiEdit::WikiEdit()
     this->TrustworthEdit = false;
     this->RollbackToken = "";
     this->PostProcessing = false;
-    this->qDifference = NULL;
-    this->qTalkpage = NULL;
-    this->qText = NULL;
-    this->qUser = NULL;
+    this->qDifference = nullptr;
+    this->qTalkpage = nullptr;
+    this->qText = nullptr;
+    this->qUser = nullptr;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
@@ -47,12 +50,12 @@ WikiEdit::WikiEdit()
     this->IsRevert = false;
     this->TPRevBaseTime = "";
     this->PatrolToken = "";
-    this->Previous = NULL;
+    this->Previous = nullptr;
     // this is a problem we can't do this if we don't know the datetime because then the older edits
     // become newer and preflight checks will slap us for no reason
     // this->Time = QDateTime::currentDateTime();
     this->Time = GetUnknownEditTime();
-    this->Next = NULL;
+    this->Next = nullptr;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
@@ -72,13 +75,13 @@ WikiEdit::~WikiEdit()
         this->Next->Previous = this->Previous;
     } else
     {
-        if (this->Previous != NULL)
+        if (this->Previous != nullptr)
         {
-            this->Previous->Next = NULL;
+            this->Previous->Next = nullptr;
         }
-        if (this->Next != NULL)
+        if (this->Next != nullptr)
         {
-            this->Next->Previous = NULL;
+            this->Next->Previous = nullptr;
         }
     }
     GC_DECNAMEDREF(this->qDifference, HUGGLECONSUMER_WIKIEDIT);

@@ -21,6 +21,7 @@
 #include <QApplication>
 #include <QStringList>
 #include <QString>
+#include "configuration.hpp"
 #include "syslog.hpp"
 #include "core.hpp"
 #include "terminalparser.hpp"

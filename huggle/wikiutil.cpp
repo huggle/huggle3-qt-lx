@@ -18,7 +18,7 @@ using namespace Huggle;
 
 bool WikiUtil::IsRevert(QString Summary)
 {
-    if (Summary != "")
+    if (Summary.size() > 0)
     {
         int xx = 0;
         while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())

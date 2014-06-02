@@ -68,7 +68,7 @@ WikiPage *WikiPage::RetrieveTalk()
 {
     if (this->IsTalk())
     {
-        return NULL;
+        return nullptr;
     }
     // now we need to get a talk namespace for this ns
     QString prefix = "Talk";

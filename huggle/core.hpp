@@ -18,11 +18,9 @@
 #endif
 
 #include <QApplication>
-#include <QNetworkAccessManager>
 #include <QList>
 #include <QPluginLoader>
 #include <QFile>
-#include <QMap>
 #include "query.hpp"
 #include "login.hpp"
 #include "mainwindow.hpp"
@@ -30,11 +28,9 @@
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #include "resources.hpp"
-#include "history.hpp"
 #include "apiquery.hpp"
 #include "querypool.hpp"
 #include "sleeper.hpp"
-#include "huggleparser.hpp"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.hpp"
@@ -60,8 +56,6 @@ namespace Huggle
     class Syslog;
     class QueryPool;
     class iExtension;
-    class Configuration;
-    class Localizations;
 
     //! Override of qapplication so that we can reimplement notify
     class HgApplication : public QApplication
@@ -129,7 +123,6 @@ namespace Huggle
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
-            Localizations *HuggleLocalizations;
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE

@@ -12,6 +12,8 @@
 #include <QMessageBox>
 #include "core.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_preferences.h"
 
 using namespace Huggle;

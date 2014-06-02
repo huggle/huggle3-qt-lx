@@ -23,7 +23,7 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
     this->ui->setupUi(this);
     this->wikiEdit = edit;
     this->wikiEdit->RegisterConsumer("WarningList");
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize(this->ui->pushButton->text()));
+    this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
     // insert all possible warnings now
     if (Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count() > 0)
     {
@@ -39,7 +39,7 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
 
 WarningList::~WarningList()
 {
-    if (this->wikiEdit != NULL)
+    if (this->wikiEdit != nullptr)
     {
         this->wikiEdit->UnregisterConsumer("WarningList");
     }
@@ -58,10 +58,10 @@ void WarningList::on_pushButton_clicked()
         return;
     }
     bool Report_ = false;
-    PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, NULL, this->wikiEdit, &Report_);
+    PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, nullptr, this->wikiEdit, &Report_);
     if (Report_)
     {
-        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Warning" , "This user has already received a final warning"\
+        QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Warning" , "This user has already received a final warning"\
                                                               ", so I will not send any more warnings to them, do you want to"\
                                                               " report them instead?", QMessageBox::Yes|QMessageBox::No);
         if (q == QMessageBox::Yes)
@@ -69,12 +69,12 @@ void WarningList::on_pushButton_clicked()
             Core::HuggleCore->Main->DisplayReportUserWindow(this->wikiEdit->User);
         }
     }
-    if (ptr_Warning_ != NULL)
+    if (ptr_Warning_ != nullptr)
     {
         PendingWarning::PendingWarnings.append(ptr_Warning_);
         return;
     }
     this->wikiEdit->UnregisterConsumer("WarningList");
-    this->wikiEdit = NULL;
+    this->wikiEdit = nullptr;
     this->hide();
 }

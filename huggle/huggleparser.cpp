@@ -10,6 +10,7 @@
 
 #include "huggleparser.hpp"
 #include "configuration.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
 

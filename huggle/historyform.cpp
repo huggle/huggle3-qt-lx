@@ -10,10 +10,12 @@
 
 #include "historyform.hpp"
 #include "querypool.hpp"
-#include "resources.hpp"
+#include "configuration.hpp"
 #include "exception.hpp"
 #include "mainwindow.hpp"
 #include "localization.hpp"
+#include "resources.hpp"
+#include "syslog.hpp"
 #include "wikiutil.hpp"
 #include "ui_historyform.h"
 
@@ -74,7 +76,7 @@ HistoryForm::~HistoryForm()
 
 void HistoryForm::Read()
 {
-    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
+    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->nullptrze("historyform-retrieving-history"));
     this->ui->pushButton->hide();
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);

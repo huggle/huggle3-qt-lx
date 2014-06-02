@@ -11,6 +11,7 @@
 #include "generic.hpp"
 #include <QMessageBox>
 #include <QtXml>
+#include "configuration.hpp"
 #include "exception.hpp"
 
 using namespace Huggle;

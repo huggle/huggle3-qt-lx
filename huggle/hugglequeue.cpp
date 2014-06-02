@@ -12,7 +12,9 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
 #include "ui_hugglequeue.h"
+#include "syslog.hpp"
 
 using namespace Huggle;
 

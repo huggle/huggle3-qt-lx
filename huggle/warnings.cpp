@@ -13,6 +13,8 @@
 #include "mainwindow.hpp"
 #include "querypool.hpp"
 #include "generic.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;

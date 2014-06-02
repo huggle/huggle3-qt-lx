@@ -22,9 +22,6 @@
 #include <QtNetwork>
 #include <QThread>
 #include <QMutex>
-#include "configuration.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 #include "sleeper.hpp"
 #include "exception.hpp"
 

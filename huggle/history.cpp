@@ -19,6 +19,7 @@
 #include "generic.hpp"
 #include "revertquery.hpp"
 #include "ui_history.h"
+#include "configuration.hpp"
 
 using namespace Huggle;
 

@@ -16,8 +16,6 @@
 #include <Python.h>
 #endif
 
-#include <iostream>
-#include <QFile>
 #include <QStringList>
 #include <QMutex>
 

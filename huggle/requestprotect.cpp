@@ -22,11 +22,11 @@ using namespace Huggle;
 
 RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : QDialog(parent), ui(new Ui::RequestProtect)
 {
-    this->qEditRFP = NULL;
-    this->qRFPPage = NULL;
+    this->qEditRFP = nullptr;
+    this->qRFPPage = nullptr;
     this->page = new Huggle::WikiPage(wikiPage);
     this->ui->setupUi(this);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("reqprotection-title", this->page->PageName));
+    this->setWindowTitle(_l("reqprotection-title", this->page->PageName));
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
 }
@@ -69,7 +69,7 @@ void RequestProtect::Tick()
         QRegExp *rx = new QRegExp(Huggle::Configuration::HuggleConfiguration->ProjectConfig_RFPP_Regex);
         if (rx->exactMatch(PageText))
         {
-            this->Fail(Localizations::HuggleLocalizations->Localize("reqprotection-duplicate"));
+            this->Fail(_l("reqprotection-duplicate"));
             delete rx;
             return;
         }

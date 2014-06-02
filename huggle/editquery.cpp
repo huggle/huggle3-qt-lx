@@ -9,7 +9,10 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include "configuration.hpp"
 #include "historyitem.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "querypool.hpp"
 
 using namespace Huggle;

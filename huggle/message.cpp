@@ -10,9 +10,11 @@
 
 #include "message.hpp"
 #include <QtXml>
+#include "configuration.hpp"
 #include "core.hpp"
 #include "collectable.hpp"
 #include "querypool.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
 #include "generic.hpp"
 
@@ -318,7 +320,7 @@ bool Message::FinishToken()
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("edittoken"))
     {
-        /// \todo LOCALIZE ME
+        /// \todo ZE ME
         this->Fail("the result doesn't contain the token");
         Huggle::Syslog::HuggleLogs->DebugLog("No token");
         return false;
@@ -344,7 +346,7 @@ void Message::PreflightCheck()
         this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
         // inform user what is going on
         QueryPool::HugglePool->AppendQuery(this->query);
-        /// \todo LOCALIZE ME
+        /// \todo ZE ME
         this->query->Target = "Reading TP of " + this->user->Username;
         this->query->Process();
     } else
@@ -461,7 +463,7 @@ void Message::ProcessTalk()
             return;
         } else
         {
-            /// \todo LOCALIZE ME
+            /// \todo ZE ME
             this->Fail("Unable to retrieve " + this->user->GetTalk() + " stopping message delivery to that user");
             return;
         }
@@ -469,7 +471,7 @@ void Message::ProcessTalk()
     {
         if (!missing)
         {
-            /// \todo LOCALIZE ME
+            /// \todo ZE ME
             this->Fail("Unable to retrieve " + this->user->GetTalk() + " stopping message delivery to that user");
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
             return;

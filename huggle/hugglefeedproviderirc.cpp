@@ -11,6 +11,7 @@
 #include "hugglefeedproviderirc.hpp"
 #include "querypool.hpp"
 #include "configuration.hpp"
+#include "syslog.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
 
@@ -95,7 +96,7 @@ void HuggleFeedProviderIRC::Stop()
     this->Network->Disconnect();
     while (!IsStopped())
     {
-        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-stop"));
+        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop"));
         Sleeper::usleep(200000);
     }
     this->Connected = false;

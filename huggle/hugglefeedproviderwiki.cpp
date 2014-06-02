@@ -12,6 +12,7 @@
 #include <QtXml>
 #include "mediawiki.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "localization.hpp"
 #include "configuration.hpp"
