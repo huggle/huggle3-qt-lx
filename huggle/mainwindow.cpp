@@ -1436,8 +1436,7 @@ bool MainWindow::CheckExit()
     {
         QMessageBox mb;
         mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("error"));
-        /// \todo LOCALIZE ME
-        mb.setText("Huggle is shutting down, ignored");
+        mb.setText(Localizations::HuggleLocalizations->Localize("main-shutting-down"));
         mb.exec();
         return false;
     }
@@ -1895,14 +1894,13 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     }
     if (this->RestoreEdit != nullptr || this->RestoreQuery != NULL)
     {
-        /// \todo LOCALIZE ME
-        Huggle::Syslog::HuggleLogs->Log("I am currently restoring another edit, please wait");
+        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("main-restoring-slap"));
         return;
     }
     bool ok;
     QString reason = QInputDialog::getText(this, Localizations::HuggleLocalizations->Localize("reason"),
                                            Localizations::HuggleLocalizations->Localize("main-revert-custom-reson"),
-                                           QLineEdit::Normal, "No reason was provided by user :(", &ok);
+                                           QLineEdit::Normal, Localizations::HuggleLocalizations->Localize("main-no-reason"), &ok);
     if (!ok)
         return;
     this->RestoreQuery = new ApiQuery();
@@ -2011,17 +2009,11 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
 void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
 {
     if (!Configuration::HuggleConfiguration->Rights.contains("delete"))
-    {
         Configuration::HuggleConfiguration->Rights.append("delete");
-    }
     if (!Configuration::HuggleConfiguration->Rights.contains("protect"))
-    {
         Configuration::HuggleConfiguration->Rights.append("protect");
-    }
     if (!Configuration::HuggleConfiguration->Rights.contains("block"))
-    {
         Configuration::HuggleConfiguration->Rights.append("block");
-    }
     this->ui->actionBlock_user->setEnabled(true);
     this->ui->actionBlock_user_2->setEnabled(true);
     this->ui->actionDelete_page->setEnabled(true);
