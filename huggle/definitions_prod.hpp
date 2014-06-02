@@ -71,7 +71,13 @@ typedef char byte_ht;
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
-#define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
+#ifdef __linux__
+    #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
+#elif _WIN32
+    #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows"
+#else
+    #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
+#endif
 //! Revid of edit that doesn't exist
 #define WIKI_UNKNOWN_REVID -1
 
