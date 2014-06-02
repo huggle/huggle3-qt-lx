@@ -80,7 +80,7 @@ HuggleOption *Configuration::GetOption(QString key)
 {
     if (this->UserOptions.contains(key))
     {
-        this->UserOptions[key];
+        return this->UserOptions[key];
     }
     return nullptr;
 }
