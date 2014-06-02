@@ -61,7 +61,7 @@ void Message::RetrieveToken()
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
     this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->user->GetTalk());
-    this->qToken->Target = Localizations::HuggleLocalizations->Localize("message-retrieve-new-token", this->user->GetTalk());
+    this->qToken->Target = _l("message-retrieve-new-token", this->user->GetTalk());
     this->qToken->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
@@ -82,7 +82,7 @@ void Message::Fail(QString reason)
 {
     QStringList parameters;
     parameters << this->user->Username << reason;
-    Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("message-er", parameters));
+    Huggle::Syslog::HuggleLogs->ErrorLog(_l("message-er", parameters));
     this->_Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
     this->ErrorText = reason;
@@ -198,7 +198,7 @@ void Message::Finish()
         }
         if (this->query->Result->Failed)
         {
-            this->Fail(Localizations::HuggleLocalizations->Localize("message-fail-retrieve-talk"));
+            this->Fail(_l("message-fail-retrieve-talk"));
             return;
         }
         this->ProcessTalk();
@@ -257,7 +257,7 @@ void Message::Finish()
             {
                 if (element.attribute("result") == "Success")
                 {
-                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("message-done", this->user->Username));
+                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->user->Username));
                     sent = true;
                     HistoryItem *item = new HistoryItem();
                     item->Result = "Success";

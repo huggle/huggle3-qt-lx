@@ -21,10 +21,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
-    header << Huggle::Localizations::HuggleLocalizations->Localize("id")
-           << Huggle::Localizations::HuggleLocalizations->Localize("type")
-           << Huggle::Localizations::HuggleLocalizations->Localize("target")
-           << Huggle::Localizations::HuggleLocalizations->Localize("status");
+    header << _l("id") << _l("type") << _l("target") << _l("status");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -53,7 +50,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
 
 void ProcessList::InsertQuery(Query *query)
 {
-    if (query == NULL)
+    if (query == nullptr)
     {
         throw new Exception("NULL query");
     }

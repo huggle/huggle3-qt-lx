@@ -21,14 +21,10 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->setupUi(this);
     // headers
     this->ui->tableWidget->setColumnCount(5);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("config-title"));
-    this->ui->checkBox_12->setText(Localizations::HuggleLocalizations->Localize("config-ircmode"));
+    this->setWindowTitle(_l("config-title"));
+    this->ui->checkBox_12->setText(_l("config-ircmode"));
     QStringList header;
-    header << Localizations::HuggleLocalizations->Localize("general-name")
-           << Localizations::HuggleLocalizations->Localize("author")
-           << Localizations::HuggleLocalizations->Localize("description")
-           << Localizations::HuggleLocalizations->Localize("status")
-           << Localizations::HuggleLocalizations->Localize("version");
+    header << _l("general-name") << _l("author") << _l("description") << _l("status") << _l("version");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -253,7 +249,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     if (this->ui->lineEdit->text().contains(":"))
     {
         QMessageBox mb;
-        mb.setText(Localizations::HuggleLocalizations->Localize("config-no-colon"));
+        mb.setText(_l("config-no-colon"));
         mb.exec();
         return;
     }

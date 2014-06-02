@@ -29,7 +29,7 @@ HuggleQueueItemLabel::~HuggleQueueItemLabel()
 void HuggleQueueItemLabel::SetName(QString name)
 {
     this->ui->label_2->setText(name);
-    if (this->Page != NULL)
+    if (this->Page != nullptr)
     {
         int id = this->Page->Page->GetNS()->GetID();
         if (id != 0)

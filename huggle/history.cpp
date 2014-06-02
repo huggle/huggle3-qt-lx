@@ -25,17 +25,14 @@ using namespace Huggle;
 History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 {
     this->ui->setupUi(this);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userhistory-title"));
+    this->setWindowTitle(_l("userhistory-title"));
     this->timerRetrievePageInformation = new QTimer(this);
     connect(this->timerRetrievePageInformation, SIGNAL(timeout()), this, SLOT(Tick()));
     this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
-    header << Localizations::HuggleLocalizations->Localize("[[id]]") <<
-              Localizations::HuggleLocalizations->Localize("[[type]]") <<
-              Localizations::HuggleLocalizations->Localize("[[target]]") <<
-              Localizations::HuggleLocalizations->Localize("result");
+    header << _l("[[id]]") << _l("[[type]]") << _l("[[target]]") << _l("result");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
@@ -93,8 +90,8 @@ void History::Undo(HistoryItem *hist)
     {
         // there is no way to revert this
         QMessageBox mb;
-        mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("history-error-message-title"));
-        mb.setText(Localizations::HuggleLocalizations->Localize("history-error"));
+        mb.setWindowTitle(_l("history-error-message-title"));
+        mb.setText(_l("history-error"));
         mb.setIcon(QMessageBox::Warning);
         mb.exec();
         return;
@@ -136,7 +133,7 @@ void History::Undo(HistoryItem *hist)
             break;
         case HistoryUnknown:
             QMessageBox mb;
-            mb.setWindowTitle(Localizations::HuggleLocalizations->Localize("history-error-message-title"));
+            mb.setWindowTitle(_l("history-error-message-title"));
             mb.setText("Unknown item");
             mb.exec();
             break;

@@ -20,7 +20,7 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
 {
     this->ui->setupUi(this);
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue"));
+    this->setWindowTitle(_l("main-queue"));
     this->Filters();
 }
 
@@ -459,7 +459,7 @@ void HuggleQueue::Clear()
 
 void HuggleQueue::RedrawTitle()
 {
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("main-queue") + "[" + QString::number(this->Items.count()) + "]");
+    this->setWindowTitle(_l("main-queue") + "[" + QString::number(this->Items.count()) + "]");
 }
 
 long HuggleQueue::GetScore(int id)

@@ -44,7 +44,7 @@ void EditQuery::Process()
     {
         this->qToken = new ApiQuery(ActionQuery);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
-        this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
+        this->qToken->Target = _l("editquery-token", Page);
         this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
         QueryPool::HugglePool->AppendQuery(qToken);
         this->qToken->Process();
@@ -70,8 +70,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error") + ": " +
-                                         this->qToken->Result->ErrorMessage;
+            this->Result->ErrorMessage = _l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage;
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
             return true;
@@ -83,7 +82,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
+            this->Result->ErrorMessage = _l("editquery-token-error");
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
@@ -94,7 +93,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
+            this->Result->ErrorMessage = _l("editquery-token-error");
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
@@ -127,14 +126,14 @@ bool EditQuery::IsProcessed()
                     if (MainWindow::HuggleMain != nullptr)
                     {
                         HistoryItem *item = new HistoryItem();
-                        item->Result = Localizations::HuggleLocalizations->Localize("successful");
+                        item->Result = _l("successful");
                         item->Type = HistoryEdit;
                         item->Target = this->Page;
                         item->IncRef();
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
-                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", Page));
+                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", Page));
                 }
             }
         }

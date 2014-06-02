@@ -18,6 +18,9 @@
 #include <Python.h>
 #endif
 
+// localization tool
+#define _l Huggle::Localizations::HuggleLocalizations->Localize
+
 #include <QStringList>
 #include <QString>
 #include <QList>

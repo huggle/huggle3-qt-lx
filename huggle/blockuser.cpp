@@ -71,7 +71,7 @@ void BlockUser::GetToken()
     this->qTokenApi->SetAction(ActionQuery);
     this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
-    this->qTokenApi->Target = Localizations::HuggleLocalizations->Localize("block-token-1", this->user->Username);
+    this->qTokenApi->Target = _l("block-token-1", this->user->Username);
     this->qTokenApi->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
@@ -107,7 +107,7 @@ void BlockUser::CheckToken()
         return;
     if (this->qTokenApi->Result->Failed)
     {
-        this->Failed(Localizations::HuggleLocalizations->Localize("block-token-e1", this->qTokenApi->Result->ErrorMessage));
+        this->Failed(_l("block-token-e1", this->qTokenApi->Result->ErrorMessage));
         return;
     }
     QDomDocument d;

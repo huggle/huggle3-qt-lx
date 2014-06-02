@@ -23,7 +23,7 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
     this->Buffer = new QList<WikiEdit*>();
     this->Refreshing = false;
-    this->qReload = NULL;
+    this->qReload = nullptr;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
     this->LatestTime = QDateTime::currentDateTime().addDays(-1);
     this->LastRefresh = QDateTime::currentDateTime().addDays(-1);
@@ -37,7 +37,7 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
         this->Buffer->removeAt(0);
     }
     delete this->Buffer;
-    if (this->qReload != NULL)
+    if (this->qReload != nullptr)
     {
         this->qReload->DecRef();
     }
@@ -84,16 +84,15 @@ void HuggleFeedProviderWiki::Refresh()
         if (this->qReload->Result->Failed)
         {
             // failed to obtain the data
-            Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("rc-error",
-                                                              this->qReload->Result->ErrorMessage));
+            Huggle::Syslog::HuggleLogs->Log(_l("rc-error", this->qReload->Result->ErrorMessage));
             this->qReload->DecRef();
-            this->qReload = NULL;
+            this->qReload = nullptr;
             this->Refreshing = false;
             return;
         }
         this->Process(qReload->Result->Data);
         this->qReload->DecRef();
-        this->qReload = NULL;
+        this->qReload = nullptr;
         this->Refreshing = false;
         return;
     }
@@ -111,7 +110,7 @@ WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
 {
     if (this->Buffer->size() < 1)
     {
-        return NULL;
+        return nullptr;
     }
     WikiEdit *edit = this->Buffer->at(0);
     this->Buffer->removeAt(0);

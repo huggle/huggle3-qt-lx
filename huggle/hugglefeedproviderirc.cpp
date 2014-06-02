@@ -20,8 +20,8 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC()
 {
     this->Paused = false;
     this->Connected = false;
-    this->thread = NULL;
-    this->Network = NULL;
+    this->thread = nullptr;
+    this->Network = nullptr;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
@@ -43,7 +43,7 @@ bool HuggleFeedProviderIRC::Start()
         Huggle::Syslog::HuggleLogs->DebugLog("Attempted to start connection which was already started");
         return false;
     }
-    if (this->Network != NULL)
+    if (this->Network != nullptr)
     {
         delete this->Network;
     }
@@ -55,15 +55,14 @@ bool HuggleFeedProviderIRC::Start()
     this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
     if (!this->Network->Connect())
     {
-        Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-error",
-                                        Configuration::HuggleConfiguration->IRCServer));
+        Huggle::Syslog::HuggleLogs->Log(_l("irc-error", Configuration::HuggleConfiguration->IRCServer));
         delete this->Network;
-        this->Network = NULL;
+        this->Network = nullptr;
         return false;
     }
     this->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
-    Huggle::Syslog::HuggleLogs->Log(Huggle::Localizations::HuggleLocalizations->Localize("irc-connected"));
-    if (this->thread != NULL)
+    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected"));
+    if (this->thread != nullptr)
     {
         delete this->thread;
     }
@@ -76,7 +75,7 @@ bool HuggleFeedProviderIRC::Start()
 
 bool HuggleFeedProviderIRC::IsWorking()
 {
-    if (this->Network != NULL)
+    if (this->Network != nullptr)
     {
         return this->Connected && (this->Network->IsConnected() || this->Network->IsConnecting());
     }
@@ -85,11 +84,11 @@ bool HuggleFeedProviderIRC::IsWorking()
 
 void HuggleFeedProviderIRC::Stop()
 {
-    if (!this->Connected || this->Network == NULL)
+    if (!this->Connected || this->Network == nullptr)
     {
         return;
     }
-    if (this->thread != NULL)
+    if (this->thread != nullptr)
     {
         this->thread->Running = false;
     }
@@ -104,7 +103,7 @@ void HuggleFeedProviderIRC::Stop()
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 {
-    if (edit == NULL)
+    if (edit == nullptr)
     {
         throw new Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
     }
@@ -281,7 +280,7 @@ bool HuggleFeedProviderIRC::IsStopped()
     {
         return false;
     }
-    if (this->thread != NULL)
+    if (this->thread != nullptr)
     {
         if (this->thread->Running || !this->thread->IsFinished())
         {
@@ -298,7 +297,7 @@ bool HuggleFeedProviderIRC::ContainsEdit()
 
 void HuggleFeedProviderIRC_t::run()
 {
-    if (this->p == NULL)
+    if (this->p == nullptr)
     {
         this->Stopped = true;
         throw new Exception("Pointer to parent IRC feed is NULL");
@@ -311,7 +310,7 @@ void HuggleFeedProviderIRC_t::run()
     while (this->Running && this->p->Network->IsConnected())
     {
         Huggle::IRC::Message *message = p->Network->GetMessage();
-        if (message != NULL)
+        if (message != nullptr)
         {
             QString text = message->Text;
             this->p->ParseEdit(text);
@@ -330,7 +329,7 @@ HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t()
 {
     this->Stopped = false;
     this->Running = true;
-    this->p = NULL;
+    this->p = nullptr;
 }
 
 HuggleFeedProviderIRC_t::~HuggleFeedProviderIRC_t()
@@ -349,7 +348,7 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     if (this->Buffer.size() == 0)
     {
         this->lock.unlock();
-        return NULL;
+        return nullptr;
     }
     WikiEdit *edit = this->Buffer.at(0);
     this->Buffer.removeAt(0);
