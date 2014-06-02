@@ -121,6 +121,7 @@
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
+    <addaction name="actionDisplay_this_page"/>
     <addaction name="actionDisplay_history_in_browser"/>
     <addaction name="actionEdit_page_in_browser"/>
     <addaction name="separator"/>
@@ -135,6 +136,7 @@
     <addaction name="actionProtect"/>
     <addaction name="actionRequest_protection"/>
     <addaction name="actionRestore_this_revision"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -914,6 +916,14 @@
   <action name="actionUser_contributions">
    <property name="text">
     <string>User contributions</string>
+   </property>
+  </action>
+  <action name="actionDisplay_this_page">
+   <property name="text">
+    <string>Display this page</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
    </property>
   </action>
  </widget>

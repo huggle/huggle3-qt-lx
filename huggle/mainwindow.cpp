@@ -2107,3 +2107,10 @@ void Huggle::MainWindow::on_actionAbort_2_triggered()
     this->RevertStack.removeLast();
     revert_query->DecRef();
 }
+
+void Huggle::MainWindow::on_actionDisplay_this_page_triggered()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+    this->Browser->DisplayPreFormattedPage(this->CurrentEdit->Page);
+}
