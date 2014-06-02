@@ -15,21 +15,21 @@
 using namespace Huggle;
 
 unsigned int Query::LastID = 0;
-QNetworkAccessManager *Query::NetworkManager = NULL;
+QNetworkAccessManager *Query::NetworkManager = nullptr;
 
 Query::Query()
 {
-    this->Result = NULL;
+    this->Result = nullptr;
     this->Type = QueryNull;
     this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
-    this->callback = NULL;
+    this->callback = nullptr;
     this->HiddenQuery = false;
-    this->Dependency = NULL;
+    this->Dependency = nullptr;
     this->Timeout = 60;
-    this->CallbackResult = NULL;
+    this->CallbackResult = nullptr;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;
 }
@@ -37,11 +37,10 @@ Query::Query()
 Query::~Query()
 {
     delete this->Result;
-    if (this->CallbackResult != NULL)
+    if (this->CallbackResult != nullptr)
     {
         throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
     }
-    this->Result = NULL;
 }
 
 bool Query::IsProcessed()
@@ -61,7 +60,7 @@ bool Query::IsProcessed()
             return false;
         }
         // query is timed out
-        if (this->Result == NULL)
+        if (this->Result == nullptr)
         {
             this->Result = new QueryResult();
         }
@@ -94,7 +93,7 @@ QString Query::QueryTypeToString()
 
 QString Query::QueryStatusToString()
 {
-    if (this->CustomStatus != "")
+    if (this->CustomStatus.size())
     {
         return CustomStatus;
     }
@@ -108,9 +107,9 @@ QString Query::QueryStatusToString()
         case StatusProcessing:
             return "Processing";
         case StatusInError:
-            if (this->Result != NULL)
+            if (this->Result != nullptr)
             {
-                if (this->Result->Failed && this->Result->ErrorMessage != "")
+                if (this->Result->Failed && this->Result->ErrorMessage.size())
                 {
                     return "In error: " + this->Result->ErrorMessage;
                 }
@@ -122,7 +121,7 @@ QString Query::QueryStatusToString()
 
 void Query::ProcessCallback()
 {
-    if (this->callback != NULL)
+    if (this->callback != nullptr)
     {
         this->RegisterConsumer("delegate");
         this->CallbackResult = this->callback(this);
@@ -131,7 +130,7 @@ void Query::ProcessCallback()
 
 bool Query::IsFailed()
 {
-    if (this->Result != NULL)
+    if (this->Result != nullptr)
     {
         if (this->Result->Failed)
         {

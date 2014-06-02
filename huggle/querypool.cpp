@@ -15,11 +15,11 @@
 
 using namespace Huggle;
 
-QueryPool *QueryPool::HugglePool = NULL;
+QueryPool *QueryPool::HugglePool = nullptr;
 
 QueryPool::QueryPool()
 {
-    this->Processes = NULL;
+    this->Processes = nullptr;
 }
 
 void QueryPool::AppendQuery(Query *item)
@@ -30,11 +30,11 @@ void QueryPool::AppendQuery(Query *item)
 
 void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
-    if (edit == NULL)
-        throw new Exception("NULL edit");
+    if (edit == nullptr)
+        throw new Exception("NULL edit", "void QueryPool::PreProcessEdit(WikiEdit *edit)");
     if (edit->Status == StatusProcessed)
         return;
-    if (edit->User == NULL)
+    if (edit->User == nullptr)
         throw new Exception("Edit user was NULL in Core::PreProcessEdit");
     if (edit->Bot)
         edit->User->SetBot(true);
@@ -55,7 +55,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     if (WikiUtil::IsRevert(edit->Summary))
     {
         edit->IsRevert = true;
-        if (HuggleFeed::PrimaryFeedProvider != NULL)
+        if (HuggleFeed::PrimaryFeedProvider != nullptr)
         {
             HuggleFeed::PrimaryFeedProvider->RvCounter++;
         }
@@ -70,7 +70,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
 
 void QueryPool::PostProcessEdit(WikiEdit *edit)
 {
-    if (edit == NULL)
+    if (edit == nullptr)
     {
         throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
     }
@@ -103,14 +103,14 @@ void QueryPool::CheckQueries()
     while (curr < this->RunningQueries.count())
     {
         Query *q = this->RunningQueries.at(curr);
-        if (this->Processes != NULL)
+        if (this->Processes != nullptr)
             this->Processes->UpdateQuery(q);
         if (q->IsProcessed())
         {
             this->RunningQueries.removeAt(curr);
             // this is pretty spamy :o
             Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 8);
-            if (this->Processes != NULL)
+            if (this->Processes != nullptr)
             {
                 this->Processes->UpdateQuery(q);
                 this->Processes->RemoveQuery(q);
