@@ -19,7 +19,7 @@
 using namespace Huggle;
 
 // definitions
-Core    *Core::HuggleCore = NULL;
+Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
 {
@@ -87,17 +87,17 @@ void Core::Init()
 Core::Core()
 {
 #ifdef PYTHONENGINE
-    this->Python = NULL;
+    this->Python = nullptr;
 #endif
-    this->Main = NULL;
-    this->fLogin = NULL;
-    this->SecondaryFeedProvider = NULL;
-    this->PrimaryFeedProvider = NULL;
-    this->Processor = NULL;
-    this->HuggleSyslog = NULL;
+    this->Main = nullptr;
+    this->fLogin = nullptr;
+    this->SecondaryFeedProvider = nullptr;
+    this->PrimaryFeedProvider = nullptr;
+    this->Processor = nullptr;
+    this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
-    this->gc = NULL;
+    this->gc = nullptr;
 }
 
 Core::~Core()
@@ -113,7 +113,7 @@ Core::~Core()
 void Core::LoadDB()
 {
     Configuration::HuggleConfiguration->ProjectList.clear();
-    if (Configuration::HuggleConfiguration->Project != NULL)
+    if (Configuration::HuggleConfiguration->Project != nullptr)
     {
         Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
     }
@@ -346,8 +346,12 @@ void Core::Shutdown()
 {
     this->Running = false;
     // grace time for subthreads to finish
-    if (this->Main != NULL)
+    if (this->Main != nullptr)
     {
+        if (this->PrimaryFeedProvider && this->PrimaryFeedProvider->IsWorking())
+        {
+            this->PrimaryFeedProvider->Stop();
+        }
         this->Main->hide();
     }
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
@@ -365,13 +369,23 @@ void Core::Shutdown()
         delete this->Python;
     }
 #endif
-    QueryPool::HugglePool = NULL;
+    QueryPool::HugglePool = nullptr;
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;
     delete GC::gc;
     delete this->HGQP;
-    GC::gc = NULL;
-    this->gc = NULL;
+    GC::gc = nullptr;
+    this->gc = nullptr;
+    if (this->fLogin != nullptr)
+    {
+        delete this->fLogin;
+        this->fLogin = nullptr;
+    }
+    if (this->Main != nullptr)
+    {
+        delete this->Main;
+        this->Main = nullptr;
+    }
     QApplication::quit();
 }
 
