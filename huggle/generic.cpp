@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QtXml>
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "exception.hpp"
 
 using namespace Huggle;
@@ -23,7 +24,7 @@ bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
         return true;
-    QMessageBox::StandardButton q = QMessageBox::question(nullptr, _l("report-tu"), _l("report-warn") , QMessageBox::Yes|QMessageBox::No);
+    QMessageBox::StandardButton q = QMessageBox::question(nullptr, _l("report-tu"), _l("report-warn"), QMessageBox::Yes|QMessageBox::No);
     return (q != QMessageBox::No);
 }
 
