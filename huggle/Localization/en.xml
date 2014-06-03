@@ -234,6 +234,7 @@
     <string name="main-history">History</string>
     <string name="main-new-messages">You have new messages; select System -&gt; Show new messages or press M to view them.</string>
     <string name="main-system">System</string>
+    <string name="main-status-bar">Processing <b>$1</b>edits and <b>$2</b>queries. Whitelisted users: <b>$3</b> Queue size: <b>$4</b> Statistics: $5</string>
     <string name="main-shutting-down">Huggle is shutting down, ignored</string>
     <string name="main-system-messages">Show new messages</string>
     <string name="main-system-reconnectirc">Reconnect IRC feed</string>

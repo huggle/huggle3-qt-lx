@@ -453,20 +453,20 @@ void MainWindow::FinishPatrols()
 
 void MainWindow::UpdateStatusBarData()
 {
-    /// \todo LOCALIZE ME
-    QString t = "Processing <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3) +
-                "</b>edits and <b>" + Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3) +
-                "</b>queries. Whitelisted users: <b>" + QString::number(Configuration::HuggleConfiguration->WhiteList.size()) +
-                "</b> Queue size: <b>" + Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4) +
-                "</b> Statistics: ";
+    QStringList params;
+    params << Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3)
+           << Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3)
+           << QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+           << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
+    QString statistics_;
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
     if (this->ShuttingDown)
     {
-        t += " none";
+        statistics_ = "none";
     } else if (Uptime < 50)
     {
-        t += " waiting for more edits";
+        statistics_ = "waiting for more edits";
     } else
     {
         double EditsPerMinute = 0;
@@ -489,13 +489,14 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        t += " <font color=" + color + ">" + Generic::ShrinkText(QString::number(EditsPerMinute), 6) +
+        statistics_ = " <font color=" + color + ">" + Generic::ShrinkText(QString::number(EditsPerMinute), 6) +
              " edits per minute " + Generic::ShrinkText(QString::number(RevertsPerMinute), 6) +
              " reverts per minute, level " + Generic::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
-        t += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
-    this->Status->setText(t);
+        statistics_ += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
+    params << statistics_;
+    this->Status->setText(_l("main-status-bar", params));
 }
 
 void MainWindow::DecreaseBS()
@@ -556,7 +557,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
         return nullptr;
     }
-    if (this->CurrentEdit->RollbackToken.size() < 1)
+    if (this->CurrentEdit->RollbackToken.isEmpty())
     {
         Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
         rollback = false;
@@ -708,7 +709,7 @@ void MainWindow::FinishRestore()
     {
         QDomElement e = page.at(0).toElement();
         QString text = e.text();
-        if (!text.size())
+        if (text.isEmpty())
         {
             this->RestoreQuery->DecRef();
             this->RestoreQuery = nullptr;
@@ -1266,7 +1267,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
         return;
     ApiQuery *query = nullptr;
     // if this edit doesn't have the patrol token we need to get one
-    if (!e->PatrolToken.size())
+    if (e->PatrolToken.isEmpty())
     {
         // register consumer so that gc doesn't delete this edit meanwhile
         e->RegisterConsumer("patrol");
@@ -1454,7 +1455,7 @@ void MainWindow::Welcome()
     }
     this->CurrentEdit->User->Resync();
     bool create_only = true;
-    if (this->CurrentEdit->User->TalkPage_GetContents().size() > 0)
+    if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
     {
         if (QMessageBox::question(this, "Welcome :o", _l("welcome-tp-empty-fail"),
                          QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
@@ -1468,7 +1469,7 @@ void MainWindow::Welcome()
     }
     if (this->CurrentEdit->User->IsIP())
     {
-        if (this->CurrentEdit->User->TalkPage_GetContents().size() == 0)
+        if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
         {
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon);
@@ -1486,7 +1487,7 @@ void MainWindow::Welcome()
         return;
     }
     QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.at(0));
-    if (!message.size())
+    if (message.isEmpty())
     {
         // This error should never happen so we don't need to localize this
         Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
@@ -1537,7 +1538,7 @@ void MainWindow::on_actionGood_edit_triggered()
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
         Hooks::OnGood(this->CurrentEdit);
         this->PatrolThis();
-        if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeGood && !this->CurrentEdit->User->TalkPage_GetContents().size())
+        if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
             this->Welcome();
     }
     this->DisplayNext();
