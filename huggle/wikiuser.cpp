@@ -10,6 +10,7 @@
 
 #include "wikiuser.hpp"
 #include "configuration.hpp"
+#include "huggleparser.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 using namespace Huggle;

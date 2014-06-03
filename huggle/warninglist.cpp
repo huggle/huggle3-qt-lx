@@ -14,6 +14,7 @@
 #include "core.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
+#include "warnings.hpp"
 #include "ui_warninglist.h"
 
 using namespace Huggle;

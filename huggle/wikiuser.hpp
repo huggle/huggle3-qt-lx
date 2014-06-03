@@ -20,7 +20,6 @@
 #include <QMutex>
 #include <QString>
 #include <QRegExp>
-#include "huggleparser.hpp"
 #include "wikiedit.hpp"
 #include "wikisite.hpp"
 

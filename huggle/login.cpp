@@ -513,8 +513,7 @@ void Login::RetrieveUserConfig()
                     this->LoadedOldConfig = true;
                     Syslog::HuggleLogs->DebugLog("couldn't find user config at new location, trying old one");
                     this->LoginQuery->DecRef();
-                    /// \todo LOCALIZE ME
-                    this->Update("Retrieving user config from old location");
+                    this->Update(_l("login-old"));
                     this->LoginQuery = new ApiQuery(ActionQuery);
                     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf_old;
                     page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
@@ -533,9 +532,7 @@ void Login::RetrieveUserConfig()
                     return;
                 }
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
-                /// \todo LOCALIZE ME
-                this->Update("Login failed unable to retrieve user config, did you create huggle3.css "\
-                             "in your userspace? (Special:MyPage/huggle3.css is missing)");
+                this->Update(_l("login-fail-css"));
                 this->Kill();
                 return;
             }
@@ -553,23 +550,22 @@ void Login::RetrieveUserConfig()
                 if (!Configuration::HuggleConfiguration->ProjectConfig_EnableAll)
                 {
                     this->Kill();
-                    /// \todo LOCALIZE ME
-                    this->Update("Login failed because you don't have enable:true in your personal config");
+                    this->Update(_l("login-fail-enable-true"));
                     return;
                 }
                 this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Success);
                 this->_Status = RetrievingUser;
                 return;
             }
-            /// \todo LOCALIZE ME
-            this->Update("Login failed unable to parse the user config, see debug log for more details");
+            // failed unable to parse the user config
+            this->Update(_l("login-fail-parse-config"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Kill();
         }
         return;
     }
     this->loadingForm->ModifyIcon(LOGINFORM_USERCONFIG, LoadingForm_Icon_Loading);
-    this->Update("Retrieving user config");
+    this->Update(_l("login-retrieving-user-conf"));
     this->LoginQuery = new ApiQuery(ActionQuery);
     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
     page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
@@ -587,8 +583,7 @@ void Login::RetrieveUserInfo()
         {
             if (this->LoginQuery->Result->Failed)
             {
-                /// \todo LOCALIZE ME
-                this->Update("Login failed unable to retrieve user info: " + this->LoginQuery->Result->ErrorMessage);
+                this->Update(_l("login-fail-no-info", this->LoginQuery->Result->ErrorMessage));
                 this->Kill();
                 return;
             }
@@ -599,8 +594,8 @@ void Login::RetrieveUserInfo()
             {
                 Syslog::HuggleLogs->DebugLog(this->LoginQuery->Result->Data);
                 this->Kill();
-                /// \todo LOCALIZE ME
-                this->Update("Login failed unable to retrieve user info, the api query returned no data");
+                // Login failed unable to retrieve user info since the api query returned no data
+                this->Update(_l("login-fail-user-data"));
                 return;
             }
             int c=0;
@@ -612,8 +607,7 @@ void Login::RetrieveUserInfo()
             if (Configuration::HuggleConfiguration->ProjectConfig_RequireRollback &&
                 !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
-                /// \todo LOCALIZE ME
-                this->Update("Login failed because you don't have rollback permissions on this project");
+                this->Update(_l("login-fail-rollback-rights"));
                 this->Kill();
                 return;
             }
@@ -621,8 +615,7 @@ void Login::RetrieveUserInfo()
                 !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
-                /// \todo LOCALIZE ME
-                this->Update("Login failed because you are not autoconfirmed on this project");
+                this->Update(_l("login-failed-autoconfirm-rights"));
                 this->Kill();
                 return;
             }
@@ -633,8 +626,7 @@ void Login::RetrieveUserInfo()
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (Configuration::HuggleConfiguration->ProjectConfig_RequireEdits > editcount)
             {
-                /// \todo LOCALIZE ME
-                this->Update("Login failed because you don't have enough edits on this project");
+                this->Update(_l("login-failed-edit"));
                 this->Kill();
                 return;
             }
@@ -646,8 +638,7 @@ void Login::RetrieveUserInfo()
         }
         return;
     }
-    /// \todo LOCALIZE ME
-    this->Update("Retrieving user info");
+    this->Update(_l("login-retrieving-info"));
     this->loadingForm->ModifyIcon(LOGINFORM_USERINFO, LoadingForm_Icon_Loading);
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
@@ -780,8 +771,7 @@ bool Login::ProcessOutput()
         return true;
     if (Result == "EmptyPass")
     {
-        /// \todo LOCALIZE ME
-        this->DisplayError("The password you entered was empty");
+        this->DisplayError(_l("login-password-empty"));
         return false;
     }
     if (Result == "WrongPass")
@@ -793,13 +783,10 @@ bool Login::ProcessOutput()
     }
     if (Result == "NoName")
     {
-        /// \todo LOCALIZE ME
-        this->DisplayError("You provided no correct user name for login");
+        this->DisplayError(_l("login-fail-wrong-name"));
         return false;
     }
-
-    /// \todo LOCALIZE ME
-    this->DisplayError("ERROR: The api.php responded with unknown result: " + Result);
+    this->DisplayError(_l("login-api", Result));
     return false;
 }
 
@@ -808,7 +795,6 @@ QString Login::GetToken()
     QString token = this->Token;
     if (!token.contains(Login::Test))
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
         Syslog::HuggleLogs->DebugLog("The token didn't contain the correct string, token was " + token);
         return "<invalid token>";
@@ -816,7 +802,6 @@ QString Login::GetToken()
     token = token.mid(token.indexOf(Login::Test) + Login::Test.length());
     if (!token.contains("\""))
     {
-        /// \todo LOCALIZE ME
         Syslog::HuggleLogs->Log("WARNING: the result of api request doesn't contain valid token");
         Syslog::HuggleLogs->DebugLog("The token didn't contain the closing mark, token was " + token);
         return "<invalid token>";

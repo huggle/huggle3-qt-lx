@@ -18,7 +18,6 @@
 
 #include <QDialog>
 #include "wikiedit.hpp"
-#include "warnings.hpp"
 
 namespace Ui
 {

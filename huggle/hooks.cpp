@@ -10,6 +10,7 @@
 
 #include "hooks.hpp"
 #include "core.hpp"
+#include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
 
