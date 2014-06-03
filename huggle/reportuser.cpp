@@ -14,6 +14,7 @@
 #include <QWebView>
 #include "wikiutil.hpp"
 #include "generic.hpp"
+#include "huggleweb.hpp"
 #include "syslog.hpp"
 #include "localization.hpp"
 #include "configuration.hpp"

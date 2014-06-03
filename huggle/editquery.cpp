@@ -12,6 +12,7 @@
 #include "configuration.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
+#include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
 

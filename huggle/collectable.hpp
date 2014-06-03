@@ -23,7 +23,6 @@
 #include <QList>
 #include <QString>
 #include <QStringList>
-#include "exception.hpp"
 #include "gc.hpp"
 
 namespace Huggle
@@ -159,16 +158,6 @@ namespace Huggle
     {
         this->_collectableRefs++;
         this->SetManaged();
-    }
-
-    inline void Collectable::DecRef()
-    {
-        if (!this->_collectableRefs)
-        {
-            throw new Huggle::Exception("Decrementing negative reference",
-                      "inline void Collectable::DecRef()");
-        }
-        this->_collectableRefs--;
     }
 
     inline unsigned long Collectable::CollectableID()

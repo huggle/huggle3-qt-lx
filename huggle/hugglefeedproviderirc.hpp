@@ -22,7 +22,6 @@
 #include <QList>
 #include <QMutex>
 #include <QTcpSocket>
-#include "mainwindow.hpp"
 #include "networkirc.hpp"
 #include "hugglefeed.hpp"
 #include "wikiedit.hpp"

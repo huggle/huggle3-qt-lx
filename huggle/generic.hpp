@@ -30,8 +30,6 @@
 namespace Huggle
 {
     class WikiEdit;
-    class WikiUser;
-    class Query;
     class ApiQuery;
 
     //! Generic requests that are frequently issued to wiki

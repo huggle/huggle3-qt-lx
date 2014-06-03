@@ -11,6 +11,7 @@
 #include "hugglefeedproviderirc.hpp"
 #include "querypool.hpp"
 #include "configuration.hpp"
+#include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
 #include "localization.hpp"

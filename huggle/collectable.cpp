@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "collectable.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
@@ -69,6 +70,16 @@ bool Collectable::SafeDelete()
 void Collectable::SetReclaimable()
 {
     this->ReclaimingAllowed = true;
+}
+
+void Collectable::DecRef()
+{
+    if (!this->_collectableRefs)
+    {
+        throw new Huggle::Exception("Decrementing negative reference",
+                  "inline void Collectable::DecRef()");
+    }
+    this->_collectableRefs--;
 }
 
 void Collectable::RegisterConsumer(int consumer)

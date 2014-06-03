@@ -17,7 +17,7 @@
 #include <Python.h>
 #endif
 
-#include <qdatetime.h>
+#include <QDateTime>
 
 namespace Huggle
 {

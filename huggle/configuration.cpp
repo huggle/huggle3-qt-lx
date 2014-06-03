@@ -13,6 +13,7 @@
 #include <QtXml>
 #include <QDesktopServices>
 #include "syslog.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
 

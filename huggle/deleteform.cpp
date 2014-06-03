@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <QLineEdit>
+#include "exception.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"

@@ -21,16 +21,12 @@
 #include <QList>
 #include <QPluginLoader>
 #include <QFile>
-#include "query.hpp"
 #include "login.hpp"
 #include "mainwindow.hpp"
-#include "exceptionwindow.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
 #include "resources.hpp"
-#include "apiquery.hpp"
 #include "querypool.hpp"
-#include "sleeper.hpp"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.hpp"
@@ -45,10 +41,7 @@ namespace Huggle
         class PythonEngine;
     }
 #endif
-    class Sleeper;
     class Login;
-    class Query;
-    class ApiQuery;
     class MainWindow;
     class HuggleFeed;
     class ProcessorThread;

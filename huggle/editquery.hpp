@@ -19,8 +19,6 @@
 #include <QString>
 #include <QUrl>
 #include "apiquery.hpp"
-#include "mainwindow.hpp"
-#include "history.hpp"
 
 namespace Huggle
 {

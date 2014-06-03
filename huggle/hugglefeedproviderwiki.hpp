@@ -28,6 +28,7 @@
 
 namespace Huggle
 {
+    class WikiEdit;
     class ApiQuery;
 
     //! This is a very simple provider of changes that basically refresh recent changes every 6 seconds

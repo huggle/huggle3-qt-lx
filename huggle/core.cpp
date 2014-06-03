@@ -11,8 +11,9 @@
 #include "core.hpp"
 #include <QtXml>
 #include <QMessageBox>
-#include "syslog.hpp"
+#include "exceptionwindow.hpp"
 #include "localization.hpp"
+#include "syslog.hpp"
 #include "configuration.hpp"
 
 using namespace Huggle;
