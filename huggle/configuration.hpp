@@ -190,6 +190,7 @@ namespace Huggle
              * \param default_ Value that is used in case there is no such a key
              */
             QVariant SetOption(QString key_, QString config_, QVariant default_);
+            QStringList SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS = false);
             int GetSafeUserInt(QString key_, int default_value = 0);
             bool GetSafeUserBool(QString key_, bool default_value = false);
             QString GetSafeUserString(QString key_, QString default_value = "");
@@ -210,7 +211,7 @@ namespace Huggle
             //! Version
             QString         HuggleVersion;
             //! currently selected project
-            WikiSite        *Project = NULL;
+            WikiSite        *Project = nullptr;
             //! List of projects
             QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
@@ -538,9 +539,9 @@ namespace Huggle
             QString     VandalNw_Ident;
             bool        VandalNw_Login = true;
             //! Pointer to AIV page
-            WikiPage    *AIVP = NULL;
+            WikiPage    *AIVP = nullptr;
             //! Pointer to UAA page
-            WikiPage    *UAAP = NULL;
+            WikiPage    *UAAP = nullptr;
             //! Operating system that is sent to update server
             QString     Platform;
         private:

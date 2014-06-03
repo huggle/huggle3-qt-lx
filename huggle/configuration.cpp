@@ -100,17 +100,31 @@ QVariant Configuration::SetOption(QString key_, QString config_, QVariant defaul
     switch (default_.type())
     {
         case QVariant::Int:
-            h = new HuggleOption(key_, value.toInt(), value != d_);
+            h = new HuggleOption(key_, value.toInt(), value == d_);
             break;
         case QVariant::Bool:
-            h = new HuggleOption(key_, SafeBool(value), value != d_);
+            h = new HuggleOption(key_, SafeBool(value), value == d_);
             break;
         default:
-            h = new HuggleOption(key_, value, value != d_);
+            h = new HuggleOption(key_, value, value == d_);
             break;
     }
     this->UserOptions.insert(key_, h);
     return h->GetVariant();
+}
+
+QStringList Configuration::SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS)
+{
+    if (this->UserOptions.contains(key_))
+    {
+        // we must not add 2 same
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
+                                    "void Configuration::SetOption(QString key, QVariant data)");
+    }
+    QStringList value = HuggleParser::ConfigurationParse_QL(key_, config_, default_, CS);
+    HuggleOption *h = new HuggleOption(key_, value, value == default_);
+    this->UserOptions.insert(key_, h);
+    return value;
 }
 
 int Configuration::GetSafeUserInt(QString key_, int default_value)
@@ -297,7 +311,6 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "HAN_DisplayBots:" + Bool2String(HuggleConfiguration->UserConfig_HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Bool2String(HuggleConfiguration->UserConfig_HAN_DisplayUser) + "\n";
     configuration_ += "QueueID:" + HuggleConfiguration->UserConfig_QueueID + "\n";
-    configuration_ += "// queues\nqueues:\n";
     QStringList kl = HuggleConfiguration->UserOptions.keys();
     foreach (QString item, kl)
     {
@@ -309,10 +322,30 @@ QString Configuration::MakeLocalUserConfig()
         }
         if (!option->IsDefault())
         {
-            // in case we modified this item we store it
-            configuration_ += item + ":" + option->GetVariant().toString() + "\n";
+            if (option->GetVariant().type() != QVariant::StringList)
+            {
+                // in case we modified this item we store it
+                configuration_ += item + ":" + option->GetVariant().toString() + "\n";
+            } else
+            {
+                QStringList list = option->GetVariant().toStringList();
+                configuration_ += item + ":\n";
+                int x = 0;
+                while (x < list.count())
+                {
+                    if (x+1 < list.count())
+                    {
+                        configuration_ += "    " + list.at(x) + ",\n";
+                    } else
+                    {
+                        configuration_ += "    " + list.at(x) + "\n\n";
+                    }
+                    x++;
+                }
+            }
         }
     }
+    configuration_ += "// queues\nqueues:\n";
     int c = 0;
     while (c < HuggleQueueFilter::Filters.count())
     {
@@ -764,12 +797,12 @@ bool Configuration::ParseUserConfig(QString config)
     this->ProjectConfig_WarnSummary4 = this->SetOption("warn-summary-4", config, this->ProjectConfig_WarnSummary4).toString();
     this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
     this->ProjectConfig_TemplateAge = this->SetOption("template-age", config, this->ProjectConfig_TemplateAge).toInt();
-    this->ProjectConfig_RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config, this->ProjectConfig_RevertSummaries);
-    this->ProjectConfig_WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config, this->ProjectConfig_WarningTypes);
+    this->ProjectConfig_RevertSummaries = this->SetUserOptionList("template-summ", config, this->ProjectConfig_RevertSummaries);
+    this->ProjectConfig_WarningTypes = this->SetUserOptionList("warning-types", config, this->ProjectConfig_WarningTypes);
     this->ProjectConfig_ScoreChange = this->SetOption("score-change", config, this->ProjectConfig_ScoreChange).toInt();
     this->ProjectConfig_ScoreUser = this->SetOption("score-user", config, this->ProjectConfig_ScoreUser).toInt();
     this->ProjectConfig_ScoreTalk = this->SetOption("score-talk", config, this->ProjectConfig_ScoreTalk).toInt();
-    this->ProjectConfig_WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config, this->ProjectConfig_WarningDefs);
+    this->ProjectConfig_WarningDefs = this->SetUserOptionList("warning-template-tags", config, this->ProjectConfig_WarningDefs);
     this->ProjectConfig_BotScore = this->SetOption("score-bot", config, this->ProjectConfig_BotScore).toInt();
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
     this->UserConfig_TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
