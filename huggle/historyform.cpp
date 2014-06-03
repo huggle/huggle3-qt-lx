@@ -61,9 +61,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
         this->ui->tableWidget->setColumnWidth(4, 60);
     }
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-    this->query = nullptr;
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    this->t1 = nullptr;
 }
 
 HistoryForm::~HistoryForm()
@@ -234,7 +232,6 @@ void HistoryForm::onTick01()
                 }
             }
         }
-
         if (this->CurrentEdit->RevID == RevID.toInt())
         {
             if (x == 0)
@@ -341,14 +338,9 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         // there is nothing to do because we want to display exactly that row which was already selected
         return;
     }
-    if (this->query != nullptr || this->RetrievingEdit)
+    if (this->query != nullptr || this->RetrievingEdit || this->ui->tableWidget->rowCount() == 0 || this->CurrentEdit == nullptr)
     {
         // we must not retrieve edit until previous operation did finish
-        return;
-    }
-
-    if (this->ui->tableWidget->rowCount() == 0 || this->CurrentEdit == nullptr)
-    {
         return;
     }
 

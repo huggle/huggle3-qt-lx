@@ -160,7 +160,7 @@ void NetworkIrc::OnReceive()
 {
     QString data(this->NetworkSocket->readLine());
     this->NetworkThread->lIOBuffers->lock();
-    while (data != "")
+    while (!data.isEmpty())
     {
         this->NetworkThread->IncomingBuffer.append(data);
         data = QString(this->NetworkSocket->readLine());
@@ -523,7 +523,7 @@ void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
-    if (channel == "")
+    if (channel.isEmpty())
     {
         throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessPart("\
                                     "QString source, QString channel, QString message)");

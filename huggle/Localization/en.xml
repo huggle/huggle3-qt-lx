@@ -383,6 +383,7 @@
     <string name="message-summary">Summary:</string>
     <string name="message-autosign">Automatically append signature</string>
     <string name="message-retrieve-new-token">Retrieving token to edit $1</string>
+    <string name="message-fail-re-user-tp">Unable to retrieve $1 stopping message delivery to that user</string>
     <string name="message-er">Unable to deliver the message to $1: $2</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
     <string name="message-done">Successfully delivered message to: $1</string>
@@ -438,6 +439,8 @@
     <string name="queue-examplelabel3">Don't check this attribute</string>
     <string name="queue-usergroup">Show only edits from these users</string>
     <string name="report-title">Report $1</string>
+    <string name="report-warn">"This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the "talk page" button in following form. Keep in mind that this form and this warning is displayed no matter if your revert was successful or not, so you might conflict with other users here (double check if user isn't already reported) Do you want to report this user?</string>
+    <string name="report-tu">Report user</string>
     <string name="report-reason">Reason:</string>
     <string name="report-intro">You are going to report user $1</string>
     <string name="report-message">Message:</string>
