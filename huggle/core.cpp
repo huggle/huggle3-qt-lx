@@ -435,7 +435,7 @@ void Core::LoadLocalizations()
     }
     Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
     Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
-    Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
+    //Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
     Localizations::HuggleLocalizations->LocalInit("en"); // English
@@ -443,10 +443,10 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
     Localizations::HuggleLocalizations->LocalInit("fr"); // French
     Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
-    Localizations::HuggleLocalizations->LocalInit("it"); // Italian
+    //Localizations::HuggleLocalizations->LocalInit("it"); // Italian
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
     Localizations::HuggleLocalizations->LocalInit("ka"); // ?
-    Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
+    //Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
     Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
