@@ -233,7 +233,15 @@ QString Localizations::Localize(QString key, QStringList parameters)
         // performance wise check this last
         if (this->PreferredLanguage == LANG_QQX)
         {
-            return "("+key+")";
+            QString result = "("+key;
+            int x = 0;
+            while (x<parameters.count())
+            {
+                result += "|$" + QString::number(x + 1) + "=" + parameters.at(x);
+                x++;
+            }
+            result = result + ")";
+            return result;
         }
         if (this->LocalizationData.at(0)->Messages.contains(id))
         {
