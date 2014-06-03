@@ -49,7 +49,7 @@ bool Collectable::SafeDelete()
 {
     if (this->_collectableRefs == 0 && this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
-        if (GC::gc != NULL)
+        if (GC::gc != nullptr)
         {
             GC::gc->Lock->lock();
             if (GC::gc->list.contains(this))
@@ -169,7 +169,7 @@ void Collectable::SetManaged()
         return;
     }
     this->_collectableManaged = true;
-    if (GC::gc == NULL)
+    if (GC::gc == nullptr)
     {
         // huggle is probably shutting down
         return;

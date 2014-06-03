@@ -41,7 +41,6 @@ namespace Huggle
     class HuggleWeb : public QFrame
     {
             Q_OBJECT
-
         public:
             explicit HuggleWeb(QWidget *parent = 0);
             ~HuggleWeb();

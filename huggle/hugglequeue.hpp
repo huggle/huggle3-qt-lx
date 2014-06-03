@@ -50,7 +50,7 @@ namespace Huggle
              * \param page is a pointer to wiki edit you want to insert to queue
              */
             void AddItem(WikiEdit *page);
-            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = nullptr);
             /*!
              * \brief DeleteByScore deletes all edits that have lower than specified score
              * \param Score

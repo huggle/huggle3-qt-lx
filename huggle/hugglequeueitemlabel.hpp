@@ -37,7 +37,6 @@ namespace Huggle
     class HuggleQueueItemLabel : public QFrame
     {
             Q_OBJECT
-
         public:
             explicit HuggleQueueItemLabel(QWidget *parent = 0);
             ~HuggleQueueItemLabel();

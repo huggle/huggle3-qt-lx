@@ -31,7 +31,7 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->qTokenApi = nullptr;
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->qUser = NULL;
+    this->qUser = nullptr;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig_BlockReason);
     int x = 0;
     while (Configuration::HuggleConfiguration->ProjectConfig_BlockExpiryOptions.count() > x)
@@ -51,7 +51,7 @@ BlockUser::~BlockUser()
 
 void BlockUser::SetWikiUser(WikiUser *User)
 {
-    if (User == NULL)
+    if (User == nullptr)
     {
         throw new Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
     }
@@ -131,7 +131,7 @@ void BlockUser::CheckToken()
     this->BlockToken = element.attribute("blocktoken");
     this->QueryPhase++;
     this->qTokenApi->DecRef();
-    this->qTokenApi = NULL;
+    this->qTokenApi = nullptr;
     Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->BlockToken);
 
     // let's block them
@@ -165,7 +165,7 @@ void BlockUser::CheckToken()
 
 void BlockUser::Block()
 {
-    if (this->qUser == NULL || !this->qUser->IsProcessed())
+    if (this->qUser == nullptr || !this->qUser->IsProcessed())
         return;
     if (this->qUser->Result->Failed)
     {

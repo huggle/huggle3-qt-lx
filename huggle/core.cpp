@@ -130,7 +130,7 @@ void Core::LoadDB()
         db.close();
     }
 
-    if (!text.length())
+    if (text.isEmpty())
     {
         QFile vf(":/huggle/resources/Resources/Definitions.xml");
         vf.open(QIODevice::ReadOnly);

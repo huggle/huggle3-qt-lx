@@ -62,7 +62,7 @@ namespace Huggle
         public:
             explicit Login(QWidget *parent = 0);
             ~Login();
-            /// \todo DOCUMENT ME
+            //! This function will reload all localizations for login form, called when user change a language
             void Localize();
             //! Updates the info message down on login form as well as on LoadingForm
             void Update(QString ms);

@@ -56,7 +56,7 @@ namespace Huggle
             //! wait for them to finish before we can delete the object
             virtual bool IsStopped() { return true; }
             //! Return a last edit from cache or NULL
-            virtual WikiEdit *RetrieveEdit() { return NULL; }
+            virtual WikiEdit *RetrieveEdit() { return nullptr; }
             virtual QString ToString() = 0;
             double GetUptime();
             HuggleQueueFilter *Filter;

@@ -40,7 +40,6 @@ namespace Huggle
 
     /// \todo It should be possible to go back in history to review what you have you done
     /// currently nothing happens when you click on history items
-    /// \todo Function to revert your own changes
     /// \todo Option to remove the items / trim them etc so that operating memory is not cluttered by these
 
     //! History of actions done by user
