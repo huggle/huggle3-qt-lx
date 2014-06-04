@@ -44,19 +44,7 @@ sudo make install
 
 MacOS
 ------------
-* Install homebrew at http://brew.sh/
-* Install Qt:
-```sh
-brew install qt
-```
-* Install cmake from http://www.cmake.org/files/v2.8/cmake-2.8.12.2-Darwin64-universal.dmg
-* Checkout this repository and execute
-```sh
-./configure
-cd huggle_release
-make
-open huggle.app
-```
+https://github.com/huggle/huggle3-qt-lx/wiki/Guide-to-Mac-Building
 
 Python
 ------------
