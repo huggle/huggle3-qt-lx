@@ -243,9 +243,9 @@ QString Localizations::Localize(QString key, QStringList parameters)
             result = result + ")";
             return result;
         }
-        if (this->LocalizationData.at(0)->Messages.contains(id))
+        if (this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(id))
         {
-            QString text = this->LocalizationData.at(0)->Messages[id];
+            QString text = this->LocalizationData.at(Localizations::EnglishID)->Messages[id];
             int x = 0;
             while (x<parameters.count())
             {
