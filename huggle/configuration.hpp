@@ -412,7 +412,7 @@ namespace Huggle
             QString         ProjectConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
             QString         ProjectConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
             QString         ProjectConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
-            QString         ProjectConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
+            QString         ProjectConfig_WelcomeAnon = "{{subst:Welcome-anon}}";
             QString         ProjectConfig_WelcomeTitle = "Welcome";
 
             // Deleting

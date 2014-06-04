@@ -1474,7 +1474,7 @@ void MainWindow::Welcome()
             // write something to talk page so that we don't welcome this user twice
             this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon);
         }
-        WikiUtil::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
+        WikiUtil::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon + " ~~~~",
                               Configuration::HuggleConfiguration->ProjectConfig_WelcomeTitle,
                               Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary,
                               false, nullptr, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
@@ -1627,8 +1627,8 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig_ClearTalkPageTemp
-                   + "\n" + Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon,
-                   "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle)->DecRef();
+                       + "\n" + Configuration::HuggleConfiguration->ProjectConfig_WelcomeAnon + " ~~~~",
+                       "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle)->DecRef();
     delete page;
 }
 

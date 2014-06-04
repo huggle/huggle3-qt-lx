@@ -646,6 +646,7 @@ bool Configuration::ParseProjectConfig(QString config)
     // Welcoming
     this->WelcomeMP = ConfigurationParse("startup-message-location", config, "Project:Huggle/Message");
     this->ProjectConfig_WelcomeGood = SafeBool(ConfigurationParse("welcome-on-good-edit", config, "true"));
+    this->ProjectConfig_WelcomeAnon = ConfigurationParse("welcome-anon", config, "{{subst:welcome-anon}}");
     this->ProjectConfig_WelcomeTypes = HuggleParser::ConfigurationParse_QL("welcome-messages", config);
     // Reporting
     this->ProjectConfig_SpeedyEditSummary = ConfigurationParse("speedy-summary", config, "Tagging page for deletion");
