@@ -167,6 +167,8 @@ void Core::LoadDB()
             site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
         if (e.attributes().contains("channel"))
             site->IRCChannel = e.attribute("channel");
+        if (e.attributes().contains("rtl"))
+            site->IsRightToLeft = Configuration::SafeBool(e.attribute("rtl"));
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }

@@ -78,7 +78,7 @@ namespace Huggle
               \param channel irc
               \param wl whitelist
             */
-            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
+            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl = false);
             ~WikiSite();
             WikiPageNS *RetrieveNSFromTitle(QString title);
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
@@ -103,6 +103,7 @@ namespace Huggle
             QString WhiteList;
             //! Whether the site supports the ssl
             bool SupportHttps;
+            bool IsRightToLeft = false;
             bool SupportOAuth;
     };
 }

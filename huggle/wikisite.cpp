@@ -122,7 +122,7 @@ WikiSite::WikiSite(QString name, QString url)
     this->WhiteList = "test.wikipedia";
 }
 
-WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl)
+WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl)
 {
     this->IRCChannel = channel;
     this->LongPath = path;
@@ -131,6 +131,7 @@ WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool
     this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
     this->ScriptPath = script;
     this->URL = url;
+    this->IsRightToLeft = isrtl;
     this->SupportOAuth = oauth;
     this->WhiteList = wl;
 }
