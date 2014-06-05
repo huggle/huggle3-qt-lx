@@ -33,6 +33,32 @@ void Huggle::GC::DeleteOld()
 {
     this->Lock->lock();
     int x=0;
+    if (this->list.count() > GC_LIMIT)
+    {
+        QList<Collectable*> copy(this->list);
+        this->Lock->unlock();
+        while(x < copy.count())
+        {
+            Collectable *q = copy.at(x);
+            q->Lock();
+            if (!q->IsManaged())
+            {
+                copy.removeAt(x);
+                delete q;
+                continue;
+            }
+            if (!q->SafeDelete())
+            {
+                q->Unlock();
+                x++;
+            } else
+            {
+                // we can remove it now because it's deleted
+                copy.removeOne(q);
+            }
+        }
+        return;
+    }
     while(x < this->list.count())
     {
         Collectable *q = this->list.at(x);

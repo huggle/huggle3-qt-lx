@@ -46,6 +46,7 @@
 // some macros so that people hate us
 #define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=nullptr
 #define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=nullptr
+#define GC_LIMIT 60
 
 namespace Huggle
 {
