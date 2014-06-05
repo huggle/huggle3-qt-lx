@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "gc.hpp"
+#include "exception.hpp"
 
 using namespace Huggle;
 
@@ -17,11 +18,15 @@ GC *GC::gc = nullptr;
 Huggle::GC::GC()
 {
     this->Lock = new QMutex(QMutex::Recursive);
+    this->gc_t = new GC_t();
+    // this is a background task
+    this->gc_t->start(QThread::LowestPriority);
 }
 
 Huggle::GC::~GC()
 {
     delete this->Lock;
+    delete this->gc_t;
 }
 
 void Huggle::GC::DeleteOld()
@@ -45,4 +50,36 @@ void Huggle::GC::DeleteOld()
         }
     }
     this->Lock->unlock();
+}
+
+void GC::Start()
+{
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    if (this->gc_t->IsStopped())
+    {
+        delete this->gc_t;
+        this->gc_t = new GC_t();
+        this->gc_t->start(QThread::LowestPriority);
+    }
+}
+
+void GC::Stop()
+{
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    if (this->gc_t->IsRunning())
+    {
+        this->gc_t->Stop();
+    }
+}
+
+bool GC::IsRunning()
+{
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    return (this->gc_t->IsRunning() || !this->gc_t->IsStopped());
 }
