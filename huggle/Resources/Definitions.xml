@@ -7,6 +7,7 @@
   <wiki name="eswiki" url="es.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#es.wikipedia" wl="es.wikipedia.org"/>
   <wiki name="fawiki" url="fa.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#fa.wikipedia" wl="fa.wikipedia.org" rtl="true"/>
   <wiki name="frwiki" url="fr.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#fr.wikipedia" wl="fr.wikipedia.org"/>
+  <wiki name="hewiki" url="he.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#he.wikipedia" wl="he.wikipedia.org" rtl="true"/>
   <wiki name="hiwiki" url="hi.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#hi.wikipedia" wl="hi.wikipedia.org"/>
   <wiki name="jawiki" url="ja.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ja.wikipedia" wl="ja.wikipedia.org"/>
   <wiki name="nlwiki" url="nl.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#nl.wikipedia" wl="nl.wikipedia.org"/>
