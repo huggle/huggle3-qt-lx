@@ -19,6 +19,7 @@
 #endif
 
 #include <QList>
+#include <QThread>
 #include <QMutex>
 #include "collectable.hpp"
 
@@ -49,6 +50,11 @@ namespace Huggle
 {
     class Collectable;
 
+    class GC_t : public QThread
+    {
+
+    };
+
     //! Garbage collector that can be used to collect some objects
 
     //! Every object must be derived from Collectable, otherwise it
@@ -75,6 +81,8 @@ namespace Huggle
             //! This lock needs to be aquired every time when you need to access this list
             //! from any thread during runtime
             QMutex * Lock;
+        private:
+            GC_t *gc_t;
     };
 }
 
