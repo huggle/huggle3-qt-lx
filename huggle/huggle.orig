@@ -124,7 +124,8 @@ SOURCES += main.cpp\
     wikiutil.cpp \
     reloginform.cpp \
     loadingform.cpp \
-    historyitem.cpp
+    historyitem.cpp \
+    gc_thread.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -200,7 +201,8 @@ HEADERS  += mainwindow.hpp \
     wikiutil.hpp \
     reloginform.hpp \
     loadingform.hpp \
-    historyitem.hpp
+    historyitem.hpp \
+    gc_thread.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

@@ -374,6 +374,11 @@ void Core::Shutdown()
     QueryPool::HugglePool = nullptr;
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;
+    // now stop the garbage collector and wait for it to finish
+    GC::gc->Stop();
+    Syslog::HuggleLogs->Log("SHUTDOWN: waiting for garbage collector to finish");
+    while(GC::gc->IsRunning())
+        Sleeper::usleep(200);
     delete GC::gc;
     delete this->HGQP;
     GC::gc = nullptr;

@@ -18,9 +18,11 @@
 #include <Python.h>
 #endif
 
-#include <QList>
+#include <QThread>
 #include <QMutex>
+#include <QList>
 #include "collectable.hpp"
+#include "gc_thread.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
 #define HUGGLECONSUMER_QUEUE                    1
@@ -48,6 +50,7 @@
 namespace Huggle
 {
     class Collectable;
+    class GC_t;
 
     //! Garbage collector that can be used to collect some objects
 
@@ -68,6 +71,9 @@ namespace Huggle
             ~GC();
             //! Function that walks through the list and delete these that can be deleted
             void DeleteOld();
+            void Start();
+            void Stop();
+            bool IsRunning();
             //! List of all managed queries that qgc keeps track of
             QList<Collectable*> list;
             //! QMutex that is used to lock the GC::list object
@@ -75,6 +81,8 @@ namespace Huggle
             //! This lock needs to be aquired every time when you need to access this list
             //! from any thread during runtime
             QMutex * Lock;
+        private:
+            GC_t *gc_t;
     };
 }
 
