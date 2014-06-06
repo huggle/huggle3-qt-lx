@@ -258,6 +258,15 @@ void Login::PressOK()
         mb.exec();
         return;
     }
+    if (this->ui->Project->count() == 0)
+    {
+        // there are no projects in login form
+        QMessageBox mb;
+        mb.setWindowTitle(_l("error"));
+        mb.setText("There are no projects defined in a list you need to set up some on global wiki");
+        mb.exec();
+        return;
+    }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();

@@ -19,17 +19,13 @@ QNetworkAccessManager *Query::NetworkManager = nullptr;
 
 Query::Query()
 {
-    this->Result = nullptr;
     this->Type = QueryNull;
     this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
-    this->callback = nullptr;
     this->HiddenQuery = false;
-    this->Dependency = nullptr;
     this->Timeout = 60;
-    this->CallbackResult = nullptr;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;
 }

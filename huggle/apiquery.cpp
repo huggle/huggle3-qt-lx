@@ -19,9 +19,9 @@ using namespace Huggle;
 
 void ApiQuery::ConstructUrl()
 {
-    if (!this->ActionPart.length())
+    if (this->ActionPart.isEmpty())
         throw new Exception("No action provided for api request");
-    if (!this->OverrideWiki.length())
+    if (this->OverrideWiki.isEmpty())
     {
         this->URL = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project)
                     + "api.php?action=" + this->ActionPart;
@@ -84,28 +84,14 @@ void ApiQuery::FinishRollback()
 ApiQuery::ApiQuery()
 {
     this->RequestFormat = XML;
-    this->URL = "";
     this->Type = QueryApi;
-    this->ActionPart = "";
-    this->Result = NULL;
-    this->Parameters = "";
-    this->UsingPOST = false;
-    this->Target = "none";
-    this->OverrideWiki = "";
 }
 
 ApiQuery::ApiQuery(Action a)
 {
     this->RequestFormat = XML;
-    this->URL = "";
     this->Type = QueryApi;
-    this->ActionPart = "";
-    this->Result = NULL;
-    this->Parameters = "";
-    this->UsingPOST = false;
     this->SetAction(a);
-    this->Target = "none";
-    this->OverrideWiki = "";
 }
 
 void ApiQuery::Finished()
@@ -117,7 +103,7 @@ void ApiQuery::Finished()
         this->Result->ErrorMessage = reply->errorString();
         this->Result->Failed = true;
         this->reply->deleteLater();
-        this->reply = NULL;
+        this->reply = nullptr;
         this->Status = StatusDone;
         return;
     }
@@ -126,7 +112,7 @@ void ApiQuery::Finished()
         FinishRollback();
     }
     this->reply->deleteLater();
-    this->reply = NULL;
+    this->reply = nullptr;
     if (!this->HiddenQuery)
         Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + this->URL, 6);
     this->Status = StatusDone;

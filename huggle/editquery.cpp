@@ -21,7 +21,6 @@ using namespace Huggle;
 EditQuery::EditQuery()
 {
     this->Summary = "";
-    this->Result = nullptr;
     this->qEdit = nullptr;
     this->Minor = false;
     this->Page = "";
@@ -37,6 +36,7 @@ EditQuery::~EditQuery()
 {
     if (this->qToken != nullptr)
         this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+
     GC_DECREF(this->HI);
 }
 
@@ -44,7 +44,7 @@ void EditQuery::Process()
 {
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken == "")
+    if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.isEmpty())
     {
         this->qToken = new ApiQuery(ActionQuery);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
@@ -61,15 +61,13 @@ void EditQuery::Process()
 bool EditQuery::IsProcessed()
 {
     if (this->Result != nullptr)
-    {
         return true;
-    }
+
     if (this->qToken != nullptr)
     {
         if (!this->qToken->IsProcessed())
-        {
             return false;
-        }
+
         if (this->qToken->Result->Failed)
         {
             this->Result = new QueryResult();
@@ -112,9 +110,8 @@ bool EditQuery::IsProcessed()
     if (this->qEdit != nullptr)
     {
         if (!this->qEdit->IsProcessed())
-        {
             return false;
-        }
+
         QDomDocument dEdit_;
         dEdit_.setContent(this->qEdit->Result->Data);
         QDomNodeList edits_ = dEdit_.elementsByTagName("edit");

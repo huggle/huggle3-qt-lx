@@ -105,7 +105,7 @@ namespace Huggle
             unsigned int QueryID();
             bool IsFailed();
             //! Result of query, see documentation of QueryResult for more
-            QueryResult *Result;
+            QueryResult *Result = nullptr;
             //! Current status of a query
             enum _Status Status;
             //! Custom status
@@ -124,9 +124,9 @@ namespace Huggle
             //! once it's finished, a consumer called "delegate" will be created and you
             //! will have to either replace it or remove in your function
             //! otherwise you create a leak in huggle
-            Callback callback;
+            Callback callback = nullptr;
             //! This is a pointer to object returned by your callback function
-            void* CallbackResult;
+            void* CallbackResult = nullptr;
             bool RetryOnTimeoutFailure;
             QDateTime StartTime;
             int Timeout;
@@ -141,7 +141,7 @@ namespace Huggle
             //! that is processed. The query will not be flagged as processed
             //! until the dependency is processed as well, for most types
             //! of queries they will not even start before that
-            Query *Dependency;
+            Query *Dependency = nullptr;
 
         private:
             //! Every query has own unique ID which can be used to work with them

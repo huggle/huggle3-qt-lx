@@ -152,7 +152,7 @@ void HuggleParser::ParseWords(QString text)
                 word.append(w);
                 CurrentItem++;
             }
-            if (!l.endsWith(",") || l.trimmed().length() == 0)
+            if (l.trimmed().isEmpty() || !l.endsWith(","))
             {
                 break;
             }

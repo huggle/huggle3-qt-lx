@@ -353,7 +353,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "JOIN")
     {
-        if (Parameters_ == "" && Message_ == "")
+        if (Parameters_.isEmpty() && Message_.isEmpty())
         {
             Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
             return;
@@ -382,7 +382,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "PART")
     {
-        if (Parameters_.length() < 1)
+        if (Parameters_.isEmpty())
         {
             Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
             return;
@@ -423,7 +423,7 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
         // parameter, this is case of wikimedia irc server
         channel = message;
     }
-    if (channel.length() < 1)
+    if (channel.isEmpty())
     {
         throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessJoin"\
                                     "(QString source, QString channel, QString message)");

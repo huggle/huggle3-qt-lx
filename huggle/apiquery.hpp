@@ -78,18 +78,18 @@ namespace Huggle
             //! Returns a type of query as a string
             QString QueryTypeToString();
             //! Whether the query will submit parameters using POST data
-            bool UsingPOST;
+            bool UsingPOST = false;
             //! This is a requested format in which the result should be written in
             Format RequestFormat;
             //! This is an url of api request, you probably don't want to change it unless
             //! you want to construct whole api request yourself
-            QString URL;
+            QString URL = "";
             //! Parameters for action, for example page title
-            QString Parameters;
+            QString Parameters = "";
             //! This is optional property which contains a label of target this query is for
-            QString Target;
+            QString Target = "none";
             //! You can change this to url of different wiki than a project
-            QString OverrideWiki;
+            QString OverrideWiki = "";
         private slots:
             void ReadData();
             void Finished();
