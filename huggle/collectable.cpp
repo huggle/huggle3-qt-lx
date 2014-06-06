@@ -57,6 +57,9 @@ bool Collectable::SafeDelete()
                 GC::gc->list.removeAll(this);
             }
             GC::gc->Lock->unlock();
+        } else
+        {
+            Syslog::HuggleLogs->DebugLog("SafeDelete() called after GC pointer was removed");
         }
         this->_collectableManaged = false;
         delete this;

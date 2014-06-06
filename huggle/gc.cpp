@@ -44,6 +44,11 @@ void Huggle::GC::DeleteOld()
             if (!q->IsManaged())
             {
                 copy.removeAt(x);
+                // this is very unlikely to happen, so despite this
+                // is rather slow, it needs to be done
+                this->Lock->lock();
+                this->list.removeAll(q);
+                this->Lock->unlock();
                 delete q;
                 continue;
             }
@@ -54,7 +59,7 @@ void Huggle::GC::DeleteOld()
             } else
             {
                 // we can remove it now because it's deleted
-                copy.removeOne(q);
+                copy.removeAll(q);
             }
         }
         return;
