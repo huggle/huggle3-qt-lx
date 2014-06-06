@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
         if (!TerminalParse(argc, argv))
         {
             Huggle::Exception::ExitBreakpad();
+            delete Huggle::Configuration::HuggleConfiguration;
             return 0;
         }
         // we load the core
