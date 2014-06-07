@@ -79,7 +79,7 @@ void HistoryForm::Read()
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
-            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig_HistoryMax) +
+            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig.HistoryMax) +
             "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
     this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->query->Process();
@@ -293,7 +293,7 @@ void HistoryForm::onTick01()
     this->t1->stop();
     if (!this->CurrentEdit->NewPage && !Configuration::HuggleConfiguration->ForcedNoEditJump && !IsLatest)
     {
-        if (Configuration::HuggleConfiguration->UserConfig_LastEdit)
+        if (Configuration::HuggleConfiguration->UserConfig.LastEdit)
         {
             this->Display(0, Resources::Html_StopFire, true);
         } else

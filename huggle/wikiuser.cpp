@@ -117,7 +117,7 @@ bool WikiUser::IsIPv6(QString user)
 void WikiUser::UpdateWl(WikiUser *us, long score)
 {
     if (!us->IsIP() &&
-        score <= Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore &&
+        score <= Configuration::HuggleConfiguration->ProjectConfig.WhitelistScore &&
         !us->IsWhitelisted())
     {
         if (Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
@@ -327,11 +327,11 @@ QString WikiUser::GetTalk()
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
-    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags.length() < 1)
+    if (Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplateTags.length() < 1)
         return false;
     if (this->TalkPage_WasRetrieved())
     {
-        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplateTags);
+        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplateTags);
     }
     return false;
 }

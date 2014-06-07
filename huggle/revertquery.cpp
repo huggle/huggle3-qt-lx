@@ -246,7 +246,7 @@ void RevertQuery::Preflight()
     {
         if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts)
         {
-            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig_RevertNewBySame)
+            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig.RevertNewBySame)
             {
                 this->IgnorePreflightCheck = true;
                 // Conflict resolved: revert all edits including new edits made by same users
@@ -353,7 +353,7 @@ void RevertQuery::CheckPreflight()
         }
         x++;
     }
-    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig_ConfirmMultipleEdits)
+    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig.ConfirmMultipleEdits)
     {
         passed = false;
     }
@@ -385,7 +385,7 @@ void RevertQuery::CheckPreflight()
                 Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
             } else
             {
-                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig_RevertNewBySame)
+                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig.RevertNewBySame)
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("cr-resolved-same-user", this->edit->Page->PageName));
                 } else
@@ -571,7 +571,7 @@ bool RevertQuery::ProcessRevert()
         }
         content = element.text();
         if (summary.size() == 0)
-            summary = Configuration::HuggleConfiguration->ProjectConfig_SoftwareRevertDefaultSummary;
+            summary = Configuration::HuggleConfiguration->ProjectConfig.SoftwareRevertDefaultSummary;
         summary = summary.replace("$1", this->edit->User->Username)
                 .replace("$2", this->SR_Target)
                 .replace("$3", QString::number(this->SR_Depth))
@@ -690,7 +690,7 @@ void RevertQuery::Rollback()
     }
     this->RollingBack = true;
     if (!this->Summary.length())
-        this->Summary = Configuration::HuggleConfiguration->ProjectConfig_RollbackSummaryUnknownTarget;
+        this->Summary = Configuration::HuggleConfiguration->ProjectConfig.RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     // we need to make sure there is edit suffix in revert summary for huggle

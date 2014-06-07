@@ -21,9 +21,9 @@ bool WikiUtil::IsRevert(QString Summary)
     if (Summary.size() > 0)
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->ProjectConfig._RevertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig._RevertPatterns.at(xx)))
             {
                 return true;
             }
@@ -133,9 +133,9 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
     // retrieve a token
     EditQuery *eq = new EditQuery();
     eq->IncRef();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
+    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle))
     {
-        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
+        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
     }
     eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
     eq->Page = page;

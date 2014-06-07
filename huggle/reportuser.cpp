@@ -27,7 +27,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->setupUi(this);
     this->ReportedUser = NULL;
     this->qHistory = NULL;
-    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->ProjectConfig_ReportDefaultReason);
+    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->ProjectConfig.ReportDefaultReason);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(_l("report-history"));
@@ -264,7 +264,7 @@ void ReportUser::Tick()
             if (results.count() == 0)
             {
                 this->ui->pushButton->setText(_l("report-fail2",
-                                            Configuration::HuggleConfiguration->ProjectConfig_ReportAIV));
+                                            Configuration::HuggleConfiguration->ProjectConfig.ReportAIV));
                 this->qHistory->DecRef();
                 this->qHistory = NULL;
                 return;
@@ -290,7 +290,7 @@ void ReportUser::Tick()
             }
             this->InsertUser();
             // everything is ok we report user
-            QString summary = Configuration::HuggleConfiguration->ProjectConfig_ReportSummary;
+            QString summary = Configuration::HuggleConfiguration->ProjectConfig.ReportSummary;
             summary = summary.replace("$1",this->ReportedUser->Username);
             if (this->qEdit != NULL)
             {
@@ -457,7 +457,7 @@ void ReportUser::Test()
         this->ui->pushButton_3->setEnabled(true);
         if (results.count() == 0)
         {
-            this->failCheck("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
+            this->failCheck("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->ProjectConfig.ReportAIV);
             return;
         }
         this->ui->pushButton_3->setEnabled(true);
@@ -523,7 +523,7 @@ void ReportUser::on_pushButton_clicked()
     this->ui->pushButton->setText(_l("report-retrieving"));
     if (this->qHistory != NULL)
         this->qHistory->DecRef();
-    this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
+    this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig.ReportAIV);
     this->qHistory->IncRef();
     this->qHistory->Process();
     this->ReportText = reports;
@@ -594,10 +594,10 @@ bool ReportUser::CheckUser()
 
 void ReportUser::InsertUser()
 {
-    QString xx = Configuration::HuggleConfiguration->ProjectConfig_IPVTemplateReport;
+    QString xx = Configuration::HuggleConfiguration->ProjectConfig.IPVTemplateReport;
     if (!this->ReportedUser->IsIP())
     {
-        xx = Configuration::HuggleConfiguration->ProjectConfig_RUTemplateReport;
+        xx = Configuration::HuggleConfiguration->ProjectConfig.RUTemplateReport;
     }
     xx = xx.replace("$1", this->ReportedUser->Username);
     xx = xx.replace("$2", ReportText);
@@ -638,7 +638,7 @@ void ReportUser::on_pushButton_3_clicked()
     {
         this->qReport->DecRef();
     }
-    this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig_ReportAIV);
+    this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig.ReportAIV);
     this->qReport->IncRef();
     this->qReport->Process();
     this->tReportPageCheck->start(60);

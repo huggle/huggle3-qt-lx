@@ -223,7 +223,7 @@ void History::Tick()
             mb.setDefaultButton(QMessageBox::Yes);
             if (mb.exec() == QMessageBox::Yes)
             {
-                if (Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.count() == 0)
+                if (Configuration::HuggleConfiguration->ProjectConfig.WelcomeTypes.count() == 0)
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
@@ -232,7 +232,7 @@ void History::Tick()
                     edit->DecRef();
                     return;
                 }
-                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WelcomeTypes.at(0));
+                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig.WelcomeTypes.at(0));
                 if (!message.size())
                 {
                     // This error should never happen so we don't need to localize this
@@ -242,7 +242,7 @@ void History::Tick()
                     edit->DecRef();
                     return;
                 }
-                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig_WelcomeSummary, true);
+                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig.WelcomeSummary, true);
                 edit->DecRef();
                 return;
             } else

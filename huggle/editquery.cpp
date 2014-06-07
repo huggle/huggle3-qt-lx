@@ -47,10 +47,10 @@ void EditQuery::Process()
     if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.isEmpty())
     {
         this->qToken = new ApiQuery(ActionQuery);
-        this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
-        this->qToken->Target = _l("editquery-token", Page);
+        this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page);
+        this->qToken->Target = _l("editquery-token", this->Page);
         this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        QueryPool::HugglePool->AppendQuery(qToken);
+        QueryPool::HugglePool->AppendQuery(this->qToken);
         this->qToken->Process();
     } else
     {
@@ -85,7 +85,7 @@ bool EditQuery::IsProcessed()
             this->Result = new QueryResult();
             this->Result->Failed = true;
             this->Result->ErrorMessage = _l("editquery-token-error");
-            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
+            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
             return true;
@@ -134,7 +134,7 @@ bool EditQuery::IsProcessed()
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
-                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", Page));
+                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page));
                 }
             }
         }
@@ -171,6 +171,6 @@ void EditQuery::EditPage()
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
-    QueryPool::HugglePool->AppendQuery(qEdit);
+    QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();
 }

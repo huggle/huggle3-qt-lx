@@ -473,7 +473,7 @@ void Login::RetrieveProjectConfig()
             QDomElement data = l.at(0).toElement();
             if (Configuration::HuggleConfiguration->ParseProjectConfig(data.text()))
             {
-                if (!Configuration::HuggleConfiguration->ProjectConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig.EnableAll)
                 {
                     this->Kill();
                     this->Update(_l("login-error-projdisabled"));
@@ -532,7 +532,7 @@ void Login::RetrieveUserConfig()
                     this->LoginQuery->Process();
                     return;
                 }
-                if (!Configuration::HuggleConfiguration->ProjectConfig_RequireConfig)
+                if (!Configuration::HuggleConfiguration->ProjectConfig.RequireConfig)
                 {
                     // we don't care if user config is missing or not
                     this->LoginQuery->DecRef();
@@ -556,7 +556,7 @@ void Login::RetrieveUserConfig()
                     // piece of code really works
                     Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config (huggle.css) :)");
                 }
-                if (!Configuration::HuggleConfiguration->ProjectConfig_EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig.EnableAll)
                 {
                     this->Kill();
                     this->Update(_l("login-fail-enable-true"));
@@ -613,14 +613,14 @@ void Login::RetrieveUserInfo()
                 Configuration::HuggleConfiguration->Rights.append(lRights_.at(c).toElement().text());
                 c++;
             }
-            if (Configuration::HuggleConfiguration->ProjectConfig_RequireRollback &&
+            if (Configuration::HuggleConfiguration->ProjectConfig.RequireRollback &&
                 !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
                 this->Update(_l("login-fail-rollback-rights"));
                 this->Kill();
                 return;
             }
-            if (Configuration::HuggleConfiguration->ProjectConfig_RequireAutoconfirmed &&
+            if (Configuration::HuggleConfiguration->ProjectConfig.RequireAutoconfirmed &&
                 !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
@@ -633,7 +633,7 @@ void Login::RetrieveUserInfo()
             this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
-            if (Configuration::HuggleConfiguration->ProjectConfig_RequireEdits > editcount)
+            if (Configuration::HuggleConfiguration->ProjectConfig.RequireEdits > editcount)
             {
                 this->Update(_l("login-failed-edit"));
                 this->Kill();

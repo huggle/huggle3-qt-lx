@@ -126,7 +126,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         HTML += Resources::HtmlIncoming;
     }
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
-    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    if (Configuration::HuggleConfiguration->UserConfig.DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
@@ -163,7 +163,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
         // we display a notification that user received a new message
         HTML += Resources::HtmlIncoming;
     }
-    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    if (Configuration::HuggleConfiguration->UserConfig.DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }

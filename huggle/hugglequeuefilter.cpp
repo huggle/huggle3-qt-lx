@@ -43,15 +43,15 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     if (edit->Page->IsTalk() && this->IgnoreTalk)
         return false;
     int i = 0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.count())
+    while (i < Configuration::HuggleConfiguration->ProjectConfig.IgnorePatterns.count())
     {
-        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.at(i)))
+        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig.IgnorePatterns.at(i)))
         {
             return false;
         }
         i++;
     }
-    if (Configuration::HuggleConfiguration->ProjectConfig_Ignores.contains(edit->Page->PageName))
+    if (Configuration::HuggleConfiguration->ProjectConfig.Ignores.contains(edit->Page->PageName))
         return false;
     if (edit->User->IsWhitelisted() && this->IgnoreWL)
         return false;
