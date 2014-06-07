@@ -134,25 +134,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
             connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
         }
-        // replace abstract QAction with QToolButton to be able to set PopupMode
+        this->ui->actionWarn->setMenu(this->WarnMenu);
+        this->ui->actionRevert->setMenu(this->RevertSummaries);
+        this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
+
+        // replace abstract QAction with QToolButton to be able to set PopupMode for nicer menu opening
         QToolButton* aW = new QToolButton(this->ui->mainToolBar);
         QToolButton* aR = new QToolButton(this->ui->mainToolBar);
         QToolButton* aRaW = new QToolButton(this->ui->mainToolBar);
         aW->setDefaultAction(this->ui->actionWarn);
         aR->setDefaultAction(this->ui->actionRevert);
         aRaW->setDefaultAction(this->ui->actionRevert_and_warn);
-        aW->setMenu(this->WarnMenu);
-        aR->setMenu(this->RevertSummaries);
-        aRaW->setMenu(this->RevertWarn);
+
         aW->setPopupMode(QToolButton::MenuButtonPopup);
         aR->setPopupMode(QToolButton::MenuButtonPopup);
         aRaW->setPopupMode(QToolButton::MenuButtonPopup);
+
+        // insert them before their counterparts and then delete the counterpart
         this->ui->mainToolBar->insertWidget(this->ui->actionRevert_and_warn, aRaW);
-        this->ui->mainToolBar->insertWidget(this->ui->actionRevert_and_warn, aR);
-        this->ui->mainToolBar->insertWidget(this->ui->actionRevert_and_warn, aW);
-        this->ui->mainToolBar->removeAction(this->ui->actionWarn);
-        this->ui->mainToolBar->removeAction(this->ui->actionRevert);
         this->ui->mainToolBar->removeAction(this->ui->actionRevert_and_warn);
+        this->ui->mainToolBar->insertWidget(this->ui->actionRevert, aR);
+        this->ui->mainToolBar->removeAction(this->ui->actionRevert);
+        this->ui->mainToolBar->insertWidget(this->ui->actionWarn, aW);
+        this->ui->mainToolBar->removeAction(this->ui->actionWarn);
     }
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
