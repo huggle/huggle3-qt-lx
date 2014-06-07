@@ -25,6 +25,15 @@ Localizations::Localizations()
     this->PreferredLanguage = "en";
 }
 
+Localizations::~Localizations()
+{
+    while (this->LocalizationData.count() > 0)
+    {
+        delete this->LocalizationData.at(0);
+        this->LocalizationData.removeAt(0);
+    }
+}
+
 Language *Localizations::MakeLanguage(QString text, QString name)
 {
     Language *l = new Language(name);

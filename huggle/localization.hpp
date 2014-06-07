@@ -59,6 +59,7 @@ namespace Huggle
             static const QString LANG_QQX;
 
             Localizations();
+            ~Localizations();
             /*!
              * \brief Initializes a localization with given name
              *
