@@ -420,16 +420,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::FinishPatrols()
 {
     int x = 0;
-    while (x < this->PatroledEdits.count())
+    while (x < this->PatrolledEdits.count())
     {
-        ApiQuery *query = this->PatroledEdits.at(x);
+        ApiQuery *query = this->PatrolledEdits.at(x);
         // check if this query has actually some edit associated to it
         if (query->CallbackResult == nullptr)
         {
             // we really don't want to mess up with this
             query->UnregisterConsumer("patrol");
             // get rid of it
-            this->PatroledEdits.removeAt(x);
+            this->PatrolledEdits.removeAt(x);
             continue;
         }
         // check if it's done
@@ -450,7 +450,7 @@ void MainWindow::FinishPatrols()
                     edit->PatrolToken = token;
                     this->PatrolThis(edit);
                     // get rid of it
-                    this->PatroledEdits.removeAt(x);
+                    this->PatrolledEdits.removeAt(x);
                     edit->UnregisterConsumer("patrol");
                     query->CallbackResult = nullptr;
                     query->UnregisterConsumer("patrol");
@@ -460,7 +460,7 @@ void MainWindow::FinishPatrols()
             // this edit is fucked up
             Syslog::HuggleLogs->DebugLog("Unable to retrieve token for " + edit->Page->PageName);
             // get rid of it
-            this->PatroledEdits.removeAt(x);
+            this->PatrolledEdits.removeAt(x);
             edit->UnregisterConsumer("patrol");
             query->CallbackResult = nullptr;
             query->UnregisterConsumer("patrol");
@@ -1308,7 +1308,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
         query->RegisterConsumer("patrol");
         QueryPool::HugglePool->AppendQuery(query);
         query->Process();
-        this->PatroledEdits.append(query);
+        this->PatrolledEdits.append(query);
         return;
     }
     // we can execute patrol now
