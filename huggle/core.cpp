@@ -372,8 +372,6 @@ void Core::Shutdown()
     }
 #endif
     QueryPool::HugglePool = nullptr;
-    delete Configuration::HuggleConfiguration;
-    delete Localizations::HuggleLocalizations;
     // now stop the garbage collector and wait for it to finish
     GC::gc->Stop();
     Syslog::HuggleLogs->Log("SHUTDOWN: waiting for garbage collector to finish");
@@ -393,6 +391,8 @@ void Core::Shutdown()
         delete this->Main;
         this->Main = nullptr;
     }
+    delete Configuration::HuggleConfiguration;
+    delete Localizations::HuggleLocalizations;
     QApplication::quit();
 }
 
