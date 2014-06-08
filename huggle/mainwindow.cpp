@@ -444,7 +444,7 @@ void MainWindow::FinishPatrols()
             if (l.count() > 0)
             {
                 QDomElement element = l.at(0).toElement();
-                char *tokenname = flaggedrevs ? "edittoken" : "patroltoken";
+                const char *tokenname = flaggedrevs ? "edittoken" : "patroltoken";
                 if (element.attributes().contains(tokenname))
                 {
                     // we can finish this
