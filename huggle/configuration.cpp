@@ -654,6 +654,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig.SpeedyEditSummary = ConfigurationParse("speedy-summary", config, "Tagging page for deletion");
     this->ProjectConfig.SpeedyWarningSummary = ConfigurationParse("speedy-message-summary", config, "Notification: [[$1]] has been listed for deletion");
     this->ProjectConfig.Patrolling = SafeBool(ConfigurationParse("patrolling-enabled", config));
+    this->ProjectConfig.PatrollingFlaggedRevs = SafeBool(ConfigurationParse("patrolling-flaggedrevs", config, "false"));
     this->ProjectConfig.ReportSummary = ConfigurationParse("report-summary", config);
     this->ProjectConfig.SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
     // Parsing

@@ -201,5 +201,8 @@ void ApiQuery::SetAction(const Action action)
         case ActionPatrol:
             this->ActionPart = "patrol";
             return;
+        case ActionReview: // FlaggedRevs
+            this->ActionPart = "review";
+            return;
     }
 }

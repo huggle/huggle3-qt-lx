@@ -420,6 +420,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::FinishPatrols()
 {
     int x = 0;
+    bool flaggedrevs = Configuration::HuggleConfiguration->ProjectConfig.PatrollingFlaggedRevs;
     while (x < this->PatrolledEdits.count())
     {
         ApiQuery *query = this->PatrolledEdits.at(x);
@@ -443,10 +444,11 @@ void MainWindow::FinishPatrols()
             if (l.count() > 0)
             {
                 QDomElement element = l.at(0).toElement();
-                if (element.attributes().contains("patroltoken"))
+                const char *tokenname = flaggedrevs ? "edittoken" : "patroltoken";
+                if (element.attributes().contains(tokenname))
                 {
                     // we can finish this
-                    QString token = element.attribute("patroltoken");
+                    QString token = element.attribute(tokenname);
                     edit->PatrolToken = token;
                     this->PatrolThis(edit);
                     // get rid of it
@@ -1300,15 +1302,25 @@ void MainWindow::PatrolThis(WikiEdit *e)
     if (e == nullptr || !Configuration::HuggleConfiguration->ProjectConfig.Patrolling)
         return;
     ApiQuery *query = nullptr;
+    bool flaggedrevs = Configuration::HuggleConfiguration->ProjectConfig.PatrollingFlaggedRevs;
+
     // if this edit doesn't have the patrol token we need to get one
+    // if we're using flaggedrevs this will actually be an edit token, but we pretend it's a patrol one
     if (e->PatrolToken.isEmpty())
     {
         // register consumer so that gc doesn't delete this edit meanwhile
         e->RegisterConsumer("patrol");
         query = new ApiQuery();
         query->SetAction(ActionTokens);
-        query->Target = "Retrieving patrol token for " + e->Page->PageName;
-        query->Parameters = "type=patrol";
+        if (flaggedrevs)
+        {
+            query->Target = "Retrieving patrol token (FlaggedRevs) for " + e->Page->PageName;
+            query->Parameters = "type=edit";
+        } else
+        {
+            query->Target = "Retrieving patrol token for " + e->Page->PageName;
+            query->Parameters = "type=patrol";
+        }
         // this uggly piece of code actually rocks
         query->CallbackResult = (void*)e;
         query->RegisterConsumer("patrol");
@@ -1317,12 +1329,23 @@ void MainWindow::PatrolThis(WikiEdit *e)
         this->PatrolledEdits.append(query);
         return;
     }
+
     // we can execute patrol now
     query = new ApiQuery();
-    query->SetAction(ActionPatrol);
-    query->Target = "Patrolling " + e->Page->PageName;
     query->UsingPOST = true;
+    if (flaggedrevs)
+    {
+        query->SetAction(ActionReview);
+        query->Target = "Patrolling (FlaggedRevs) " + e->Page->PageName;
+    } else
+    {
+        query->SetAction(ActionPatrol);
+        query->Target = "Patrolling " + e->Page->PageName;
+    }
     query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
+    if (flaggedrevs)
+        query->Parameters += "&flag_accuracy=1";
+
     QueryPool::HugglePool->AppendQuery(query);
     Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
     query->Process();
