@@ -806,6 +806,12 @@ void MainWindow::OnMainTimerTick()
     this->ProcessReverts();
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;
+#ifndef MTGC
+    if (Core::HuggleCore->gc)
+    {
+        Core::HuggleCore->gc->DeleteOld();
+    }
+#endif
     // if there is no working feed, let's try to fix it
     if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
     {

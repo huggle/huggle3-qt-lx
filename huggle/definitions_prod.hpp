@@ -21,6 +21,8 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_MINOR       0x0
 #define HUGGLE_BYTE_VERSION_RELEASE     0x2
 
+//#define MTGC true
+
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
 
