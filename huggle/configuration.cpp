@@ -166,12 +166,9 @@ QString Configuration::GetExtensionsRootPath()
 {
     QString path_ = Configuration::HuggleConfiguration->HomePath + QDir::separator() + EXTENSION_PATH;
     QDir conf(path_);
-    if (!conf.exists())
+    if (!conf.exists() && !conf.mkpath(path_))
     {
-        if(!conf.mkpath(path_))
-        {
             Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
-        }
     }
     return path_ + QDir::separator();
 }
@@ -505,6 +502,11 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->SystemConfig_DelayVal = option.attribute("text").toUInt();
             continue;
         }
+        if (key == "WikiRC")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_WikiRC = option.attribute("text").toUInt();
+            continue;
+        }
         if (key == "RequestDelay")
         {
             Configuration::HuggleConfiguration->SystemConfig_RequestDelay = Configuration::SafeBool(option.attribute("text"));
@@ -557,6 +559,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), writer);
     InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), writer);
     InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), writer);
+    InsertConfig("WikiRC"), QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC), writer);
     InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), writer);

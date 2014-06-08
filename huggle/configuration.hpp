@@ -448,6 +448,7 @@ namespace Huggle
             bool            SystemConfig_LanguageSanity = false;
             bool            SystemConfig_RequestDelay = false;
             unsigned int    SystemConfig_DelayVal = 0;
+            unsigned int    SystemConfig_WikiRC = 200;
             //! This is a size of cache used by HAN to keep data about other user messages
 
             //! HAN need this so that changes that are first announced on there, but parsed from slower

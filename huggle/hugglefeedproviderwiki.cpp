@@ -100,7 +100,7 @@ void HuggleFeedProviderWiki::Refresh()
     this->Refreshing = true;
     this->qReload = new ApiQuery(ActionQuery);
     this->qReload->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
-                                "&rcshow=" + QUrl::toPercentEncoding("!bot") + "&rclimit=200";
+                                "&rclimit=" + QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC);
     this->qReload->Target = "Recent changes refresh";
     this->qReload->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qReload);
