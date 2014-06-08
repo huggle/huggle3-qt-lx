@@ -150,7 +150,7 @@
     <string name="historyform-retrieving-history">Retrieving history</string>
     <string name="historyform-not-latest-tip">This is not a latest revision of this page - make sure you reviewed the newer versions as well. Please also keep in mind that rollback may not be possible from this point.</string>
     <string name="history-error-message-title">Unable to undo</string>
-    <string name="history-error">This item can't be undone, the page might have been changed or deleted meanwhile, and huggle is unable to perform undo from this point. If you really want to undo it, you will need to do that by hand using mediawiki interface.</string>
+    <string name="history-error">This item can't be undone, the page might have been changed or deleted meanwhile, and Huggle is unable to perform undo from this point. If you really want to undo it, you will need to do that by hand using mediawiki interface.</string>
     <string name="userhistory-title">History of your changes</string>
     <string name="irc-connected">Connected to IRC recent changes feed</string>
     <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a few moments...</string>
@@ -190,7 +190,7 @@
     <string name="login-api">ERROR: The api.php responded with unknown result: $1</string>
     <string name="login-start">Login</string>
     <string name="login-oauth-notsupported">This method is not supported at this moment</string>
-    <string name="login-translate">Translate huggle</string>
+    <string name="login-translate">Translate Huggle</string>
     <string name="login-captchatitle">Captcha required to log in</string>
     <string name="login-progress-start">Logging in to $1</string>
     <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
@@ -540,7 +540,7 @@
     <string name="warning-warnlog">Warnings for this user:</string>
     <string name="warning-submit">Send</string>
     <string name="han-not">Vandalism network isn't allowed in options</string>
-    <string name="han-connecting">Connecting to huggle anti vandalism network</string>
+    <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
     <string name="error-loggedout">Account has been logged out, logging back in...</string>
     <string name="error-noresponse">No response</string>
     <string name="error-pagemissing">The page does not exist</string>
