@@ -167,7 +167,7 @@ namespace Huggle
             HuggleLog *SystemLog;
             //! Pointer to queue
             HuggleQueue *Queue1;
-            QList<ApiQuery*> PatroledEdits;
+            QList<ApiQuery*> PatrolledEdits;
             //! Pointer to browser
             HuggleWeb *Browser;
             HistoryForm *wHistory;
