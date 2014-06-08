@@ -39,6 +39,7 @@ namespace Huggle
         public:
             static QueryPool *HugglePool;
             QueryPool();
+            ~QueryPool();
 
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched

@@ -23,6 +23,20 @@ QueryPool::QueryPool()
     this->Processes = nullptr;
 }
 
+QueryPool::~QueryPool()
+{
+    while (this->PendingMods.count() != 0)
+    {
+        this->PendingMods.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_MODS);
+        this->PendingMods.removeAt(0);
+    }
+    while(this->RunningQueries.count() != 0)
+    {
+        this->RunningQueries.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP);
+        this->RunningQueries.removeAt(0);
+    }
+}
+
 void QueryPool::AppendQuery(Query *item)
 {
     item->RegisterConsumer(HUGGLECONSUMER_QP);
