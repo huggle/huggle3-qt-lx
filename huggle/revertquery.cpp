@@ -773,6 +773,7 @@ void RevertQuery::Exit()
     {
         this->timer->stop();
         delete this->timer;
+        this->timer = nullptr;
     }
     if (this->eqSoftwareRollback != nullptr)
     {
