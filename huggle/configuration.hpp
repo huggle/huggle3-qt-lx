@@ -174,6 +174,7 @@ namespace Huggle
             bool            ConfirmSame = false;
             bool            ConfirmWarned = false;
             bool            Patrolling = false;
+            bool            PatrollingFlaggedRevs = false;
             int             IPScore = 20;
             // Reverting
             QString         MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
