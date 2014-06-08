@@ -332,6 +332,8 @@ namespace Huggle
             void DecreaseBS();
             void IncreaseBS();
             void ProcessReverts();
+            QString WikiScriptURL();
+            QString ProjectURL();
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
             QDateTime EditLoad;

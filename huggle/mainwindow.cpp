@@ -555,6 +555,17 @@ void MainWindow::ProcessReverts()
     }
 }
 
+QString MainWindow::WikiScriptURL()
+{
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
+    {
+        return Configuration::GetProjectScriptURL();
+    } else
+    {
+        return Configuration::GetProjectScriptURL(this->CurrentEdit->Page->Site);
+    }
+}
+
 RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
 {
     bool rollback = true;
@@ -1448,6 +1459,15 @@ void MainWindow::LockPage()
     this->EditablePage = false;
 }
 
+QString MainWindow::ProjectURL()
+{
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
+    {
+        return Configuration::GetProjectWikiURL();
+    }
+    return Configuration::GetProjectWikiURL(this->CurrentEdit->Page->Site);
+}
+
 bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
@@ -1534,7 +1554,7 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName));
+        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName));
     }
 }
 
@@ -1565,7 +1585,7 @@ void MainWindow::on_actionUser_contributions_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + "Special:Contributions/"
+        QDesktopServices::openUrl(QString(this->ProjectURL() + "Special:Contributions/"
                                           + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)));
     }
 }
@@ -1595,22 +1615,22 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Diff > 0)
-            QDesktopServices::openUrl(QString(Configuration::GetProjectScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
+            QDesktopServices::openUrl(QString(this->WikiScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
         else
-            QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName));
+            QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName));
     }
 }
 
 void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
+        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
 }
 
 void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->Page->PageName + "?action=history"));
+        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName + "?action=history"));
 }
 
 void MainWindow::on_actionStop_feed_triggered()
@@ -1736,7 +1756,7 @@ void MainWindow::on_actionWarning_4_triggered()
 void MainWindow::on_actionEdit_user_talk_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
+        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
 }
 
 void MainWindow::on_actionReconnect_IRC_triggered()
@@ -1787,7 +1807,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
-    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
+    this->Browser->DisplayPreFormattedPage(this->WikiScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
 }
 
 void MainWindow::on_actionProtect_triggered()
