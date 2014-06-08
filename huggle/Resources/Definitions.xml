@@ -15,6 +15,8 @@
   <wiki name="orwiki" url="or.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#or.wikipedia" wl="or.wikipedia.org"/>
   <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt.wikipedia.org"/>
   <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ru.wikipedia" wl="ru.wikipedia.org"/>
+  <wiki name="svwiki" url="sv.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#sv.wikipedia" wl="sv.wikipedia.org"/>
+  <wiki name="trwiki" url="tr.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#tr.wikipedia" wl="tr.wikipedia.org"/>
   <wiki name="simplewiki" url="simple.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#simple.wikipedia" wl="simple.wikipedia.org"/>
   <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#zh.wikipedia" wl="zh.wikipedia.org"/>
   <wiki name="es.wikivoyage" url="es.wikivoyage.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#es.wikivoyage" wl="es.wikivoyage.org"/>

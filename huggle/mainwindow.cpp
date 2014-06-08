@@ -214,6 +214,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    while (this->Historical.count())
+    {
+        this->Historical.at(0)->UnregisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
+        this->Historical.removeAt(0);
+    }
+    while (this->RevertStack.count())
+    {
+        this->RevertStack.at(0)->DecRef();
+        this->RevertStack.removeAt(0);
+    }
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
     delete this->wUserInfo;
@@ -950,6 +960,8 @@ void MainWindow::OnTimerTick0()
 {
     if (this->Shutdown != ShutdownOpUpdatingConf)
     {
+        // we can clear the queue meanwhile
+        this->Queue1->Clear();
         if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
             this->Shutdown = ShutdownOpUpdatingWhitelist;
