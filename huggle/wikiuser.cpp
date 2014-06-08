@@ -166,7 +166,7 @@ WikiUser::WikiUser(WikiUser *u)
     this->IsReported = u->IsReported;
     this->_talkPageWasRetrieved = u->_talkPageWasRetrieved;
     this->Site = u->Site;
-    this->WhitelistInfo = u->WhitelistInfo;
+    this->WhitelistInfo = 0;
     this->Bot = u->Bot;
     this->EditCount = u->EditCount;
     this->RegistrationDate = u->RegistrationDate;
@@ -185,7 +185,7 @@ WikiUser::WikiUser(const WikiUser &u)
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
     this->Site = u.Site;
     this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
-    this->WhitelistInfo = u.WhitelistInfo;
+    this->WhitelistInfo = 0;
     this->Bot = u.Bot;
     this->EditCount = u.EditCount;
     this->RegistrationDate = u.RegistrationDate;
@@ -231,6 +231,7 @@ WikiUser::WikiUser(QString user)
     this->WarningLevel = 0;
     this->Bot = false;
     this->IsReported = false;
+    this->WhitelistInfo = 0;
     this->EditCount = -1;
     this->RegistrationDate = "";
 }
