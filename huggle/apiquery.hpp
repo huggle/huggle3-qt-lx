@@ -44,6 +44,7 @@ namespace Huggle
         ActionUndelete,
         ActionBlock,
         ActionPatrol,
+        ActionReview, // FlaggedRevs
         ActionProtect,
         ActionEdit
     };
