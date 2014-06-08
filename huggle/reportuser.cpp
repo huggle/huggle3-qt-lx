@@ -25,15 +25,15 @@ using namespace Huggle;
 ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser)
 {
     this->ui->setupUi(this);
-    this->ReportedUser = NULL;
-    this->qHistory = NULL;
+    this->ReportedUser = nullptr;
+    this->qHistory = nullptr;
     this->ui->lineEdit->setText(Configuration::HuggleConfiguration->ProjectConfig.ReportDefaultReason);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(_l("report-history"));
     QStringList header;
     this->ui->tableWidget->setColumnCount(5);
-    this->qEdit = NULL;
+    this->qEdit = nullptr;
     this->tPageDiff = new QTimer(this);
     connect(this->tPageDiff, SIGNAL(timeout()), this, SLOT(On_DiffTick()));
     header << _l("page") <<
@@ -42,16 +42,16 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
               _l("diffid") <<
               _l("report-include");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
-    this->qReport = NULL;
+    this->qReport = nullptr;
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->Messaging = false;
     this->ReportTs = "null";
     this->tReportPageCheck = new QTimer(this);
     connect(this->tReportPageCheck, SIGNAL(timeout()), this, SLOT(Test()));
-    this->BlockForm = NULL;
-    this->qDiff = NULL;
-    this->qCheckIfBlocked = NULL;
+    this->BlockForm = nullptr;
+    this->qDiff = nullptr;
+    this->qCheckIfBlocked = nullptr;
     this->ReportText = "";
     this->Loading = false;
 #if QT_VERSION >= 0x050000
@@ -83,9 +83,9 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     this->ui->tableWidget_2->setShowGrid(false);
-    this->qBlockHistory = NULL;
-    this->tReportUser = NULL;
-    /// \todo ZE ME
+    this->qBlockHistory = nullptr;
+    this->tReportUser = nullptr;
+    /// \todo LOCALIZE ME
     this->ui->webView->setHtml("Please select a diff in list in order to open preview");
 }
 
@@ -104,7 +104,7 @@ ReportUser::~ReportUser()
 
 bool ReportUser::SetUser(WikiUser *user)
 {
-    if (this->qHistory != NULL)
+    if (this->qHistory != nullptr)
     {
         this->qHistory->DecRef();
     }
@@ -115,7 +115,7 @@ bool ReportUser::SetUser(WikiUser *user)
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->Process();
-    if (this->qBlockHistory != NULL)
+    if (this->qBlockHistory != nullptr)
     {
         this->qBlockHistory->DecRef();
     }
@@ -136,7 +136,7 @@ bool ReportUser::SetUser(WikiUser *user)
 
 void ReportUser::Tick()
 {
-    if (this->qBlockHistory != NULL)
+    if (this->qBlockHistory != nullptr)
     {
         if (this->qBlockHistory->IsProcessed())
         {
@@ -150,16 +150,11 @@ void ReportUser::Tick()
                 QDomElement _e = results.at(CurrentId).toElement();
                 CurrentId++;
                 if (!_e.attributes().contains("logid"))
-                {
                     continue;
-                }
                 if (!_e.attributes().contains("type"))
-                {
                     continue;
-                } else if (_e.attribute("type") != "block")
-                {
+                else if (_e.attribute("type") != "block")
                     continue;
-                }
                 if (!_e.attributes().contains("action") ||
                     !_e.attributes().contains("user") ||
                     !_e.attributes().contains("timestamp") ||
@@ -216,11 +211,11 @@ void ReportUser::Tick()
             }
             this->qBlockHistory->DecRef();
             this->ui->tableWidget_2->resizeRowsToContents();
-            this->qBlockHistory = NULL;
+            this->qBlockHistory = nullptr;
         }
     }
 
-    if (this->qEdit != NULL)
+    if (this->qEdit != nullptr)
     {
         // we already reported user and now we need to check if it was written or not
         if (this->qEdit->IsProcessed())
@@ -248,10 +243,8 @@ void ReportUser::Tick()
         return;
     }
 
-    if (this->qHistory == NULL)
-    {
+    if (this->qHistory == nullptr)
         return;
-    }
 
     if (this->Loading)
     {
@@ -266,7 +259,7 @@ void ReportUser::Tick()
                 this->ui->pushButton->setText(_l("report-fail2",
                                             Configuration::HuggleConfiguration->ProjectConfig.ReportAIV));
                 this->qHistory->DecRef();
-                this->qHistory = NULL;
+                this->qHistory = nullptr;
                 return;
             }
             QDomElement e = results.at(0).toElement();
@@ -292,7 +285,7 @@ void ReportUser::Tick()
             // everything is ok we report user
             QString summary = Configuration::HuggleConfiguration->ProjectConfig.ReportSummary;
             summary = summary.replace("$1",this->ReportedUser->Username);
-            if (this->qEdit != NULL)
+            if (this->qEdit != nullptr)
             {
                 Syslog::HuggleLogs->DebugLog("this->qEdit != NULL @reportuser.cpp:Tick() memory leak");
             }
@@ -301,7 +294,7 @@ void ReportUser::Tick()
             /// \todo LOCALIZE ME
             this->ui->pushButton->setText("Writing");
             this->qHistory->DecRef();
-            this->qHistory = NULL;
+            this->qHistory = nullptr;
             return;
         }
         return;
@@ -483,7 +476,7 @@ void ReportUser::Test()
             mb.setText("This user is not reported now");
             mb.exec();
             this->qReport->DecRef();
-            this->qReport = NULL;
+            this->qReport = nullptr;
         }
     }
 }
@@ -508,7 +501,7 @@ void ReportUser::on_pushButton_clicked()
         }
         xx++;
     }
-    if (reports == "")
+    if (reports.isEmpty())
     {
         QMessageBox::StandardButton mb;
         mb = QMessageBox::question(this, "Question", _l("report-evidence-none-provid"), QMessageBox::Yes|QMessageBox::No);

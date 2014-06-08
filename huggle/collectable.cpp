@@ -39,7 +39,7 @@ Collectable::~Collectable()
 {
     if (this->IsManaged())
     {
-        throw new Exception("Request to delete managed entity");
+        throw new Huggle::Exception("Request to delete managed entity");
     }
     this->Unlock();
     delete this->_collectableQL;
@@ -138,9 +138,8 @@ void Collectable::UnregisterConsumer(const QString consumer)
     if (this->IsManaged() && !this->HasSomeConsumers())
     {
         this->Unlock();
-        Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
-        //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-        //                            "void Collectable::UnregisterConsumer(const int consumer)");
+        Huggle::Exception::ThrowSoftException("You are working with class that was already scheduled for collection",
+                                              "void Collectable::UnregisterConsumer(const int consumer)");
     }
     this->Consumers.removeOne(consumer);
     this->SetManaged();

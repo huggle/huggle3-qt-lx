@@ -35,7 +35,7 @@ Query::~Query()
     delete this->Result;
     if (this->CallbackResult != nullptr)
     {
-        throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
+        throw new Huggle::Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
     }
 }
 
@@ -57,9 +57,8 @@ bool Query::IsProcessed()
         }
         // query is timed out
         if (this->Result == nullptr)
-        {
             this->Result = new QueryResult();
-        }
+
         this->Kill();
         this->Result->Failed = true;
         this->Result->ErrorMessage = "Timed out";
@@ -90,9 +89,7 @@ QString Query::QueryTypeToString()
 QString Query::QueryStatusToString()
 {
     if (this->CustomStatus.size())
-    {
         return CustomStatus;
-    }
 
     switch (this->Status)
     {
@@ -103,13 +100,9 @@ QString Query::QueryStatusToString()
         case StatusProcessing:
             return "Processing";
         case StatusInError:
-            if (this->Result != nullptr)
-            {
-                if (this->Result->Failed && this->Result->ErrorMessage.size())
-                {
-                    return "In error: " + this->Result->ErrorMessage;
-                }
-            }
+            if (this->Result != nullptr && this->Result->Failed && !this->Result->ErrorMessage.isEmpty())
+                return "In error: " + this->Result->ErrorMessage;
+
             return "InError";
     }
     return "Unknown";
@@ -126,16 +119,11 @@ void Query::ProcessCallback()
 
 bool Query::IsFailed()
 {
-    if (this->Result != nullptr)
-    {
-        if (this->Result->Failed)
-        {
-            return true;
-        }
-    }
-    if (this->Status == Huggle::StatusInError)
-    {
+    if (this->Result != nullptr && this->Result->Failed)
         return true;
-    }
+
+    if (this->Status == Huggle::StatusInError)
+        return true;
+
     return false;
 }

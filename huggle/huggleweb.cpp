@@ -38,7 +38,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
 {
     if (page == nullptr)
     {
-        throw new Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
+        throw new Huggle::Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
     }
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
@@ -98,9 +98,9 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->ui->webView->history()->clear();
     if (edit == nullptr)
-        throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
     if (edit->Page == nullptr)
-        throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
     if (edit->NewPage && !edit->Page->Contents.size())
     {
         this->ui->webView->setHtml(_l("browser-load"));

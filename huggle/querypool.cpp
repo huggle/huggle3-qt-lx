@@ -32,11 +32,11 @@ void QueryPool::AppendQuery(Query *item)
 void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Exception("NULL edit", "void QueryPool::PreProcessEdit(WikiEdit *edit)");
+        throw new Huggle::Exception("NULL edit", "void QueryPool::PreProcessEdit(WikiEdit *edit)");
     if (edit->Status == StatusProcessed)
         return;
     if (edit->User == nullptr)
-        throw new Exception("Edit user was NULL in Core::PreProcessEdit");
+        throw new Huggle::Exception("Edit user was NULL in Core::PreProcessEdit");
     if (edit->Bot)
         edit->User->SetBot(true);
 

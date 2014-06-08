@@ -64,6 +64,10 @@ RevertQuery::~RevertQuery()
     GC_DECNAMEDREF(this->qSR_PageToken, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qPreflight, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
+    if (this->timer != nullptr && this->timer->isActive())
+    {
+        throw new Huggle::Exception("Timer must not be running before its deletion", "dtor::RevertQuery()");
+    }
     delete this->timer;
     GC_DECREF(this->qHistoryInfo);
     GC_DECREF(this->HI);
@@ -71,7 +75,7 @@ RevertQuery::~RevertQuery()
 
 void RevertQuery::DisplayError(QString error, QString reason)
 {
-    if (reason.size() == 0)
+    if (reason.isEmpty())
         reason = error;
     Huggle::Syslog::HuggleLogs->ErrorLog(error);
     this->Kill();
@@ -92,8 +96,6 @@ void RevertQuery::Process()
     if (this->timer != nullptr)
         delete this->timer;
     this->StartTime = QDateTime::currentDateTime();
-    if (this->timer != nullptr)
-        delete this->timer;
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->timer->start(100);
@@ -770,6 +772,7 @@ void RevertQuery::Exit()
     if (this->timer != nullptr)
     {
         this->timer->stop();
+        delete this->timer;
     }
     if (this->eqSoftwareRollback != nullptr)
     {

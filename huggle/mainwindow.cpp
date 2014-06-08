@@ -364,7 +364,7 @@ void MainWindow::Render()
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Page == nullptr)
-            throw new Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
+            throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);

@@ -53,7 +53,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
 {
     if (User == nullptr)
     {
-        throw new Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
+        throw new Huggle::Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
     }
     this->user = User;
     if (this->user->IsIP())

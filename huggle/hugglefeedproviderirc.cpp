@@ -106,9 +106,8 @@ void HuggleFeedProviderIRC::Stop()
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
-    {
-        throw new Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
-    }
+        throw new Huggle::Exception("WikiEdit *edit must not be NULL", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
+
     this->EditCounter++;
     QueryPool::HugglePool->PreProcessEdit(edit);
     if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
@@ -302,7 +301,7 @@ void HuggleFeedProviderIRC_t::run()
     if (this->p == nullptr)
     {
         this->Stopped = true;
-        throw new Exception("Pointer to parent IRC feed is NULL");
+        throw new Huggle::Exception("Pointer to parent IRC feed is NULL");
     }
     // wait until we finish connecting to a network
     while (this->Running && !this->p->Network->IsConnected())

@@ -28,9 +28,6 @@
 namespace Huggle
 {
     class RevertQuery;
-    class Exception;
-    class Core;
-    class Configuration;
 
     enum Action
     {

@@ -37,7 +37,8 @@ HuggleQueueFilter::HuggleQueueFilter()
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
+        throw new Huggle::Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
+
     if (this->Ignore_UserSpace && edit->Page->GetNS()->GetCanonicalName() == "User")
         return false;
     if (edit->Page->IsTalk() && this->IgnoreTalk)

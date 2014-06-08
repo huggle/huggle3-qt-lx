@@ -59,9 +59,8 @@ void HuggleTool::SetUser(QString user)
 void HuggleTool::SetPage(WikiPage *page)
 {
     if (page == nullptr)
-    {
-        throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
-    }
+        throw new Huggle::Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
+
     this->ui->lineEdit_3->setText(page->PageName);
     this->tick->stop();
     GC_DECREF(this->query);

@@ -53,7 +53,7 @@ void ProcessList::InsertQuery(Query *query)
 {
     if (query == nullptr)
     {
-        throw new Exception("NULL query");
+        throw new Huggle::Exception("NULL query");
     }
     int size = this->ui->tableWidget->rowCount();
     this->ui->tableWidget->insertRow(size);

@@ -55,7 +55,7 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
 {
     if (Page == nullptr)
     {
-        throw new Exception("Page must not be NULL", "void DeleteForm::setPage(WikiPage *Page)");
+        throw new Huggle::Exception("Page must not be NULL", "void DeleteForm::setPage(WikiPage *Page)");
     }
     this->page = new WikiPage(Page);
     if (this->page->IsTalk())

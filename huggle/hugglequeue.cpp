@@ -35,9 +35,8 @@ HuggleQueue::~HuggleQueue()
 void HuggleQueue::AddItem(WikiEdit *page)
 {
     if (page == nullptr)
-    {
-        throw new Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
-    }
+        throw new Huggle::Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
+
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (Core::HuggleCore->Main != nullptr)
     {
@@ -302,8 +301,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == nullptr)
     {
-        throw new Exception("HuggleQueueItemLabel *item must not be nullptr in this context",
-               "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
+        throw new Huggle::Exception("HuggleQueueItemLabel *item must not be nullptr in this context",
+                            "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
     }
     if (qi != nullptr)
     {

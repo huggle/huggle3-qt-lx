@@ -96,7 +96,7 @@ void HistoryForm::Read()
 void HistoryForm::Update(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Exception("WikiEdit edit must not be nullptr", "void HistoryForm::Update(WikiEdit *edit)");
+        throw new Huggle::Exception("WikiEdit edit must not be nullptr", "void HistoryForm::Update(WikiEdit *edit)");
     this->CurrentEdit = edit;
     this->ui->pushButton->setText(_l("historyform-retrieve-history"));
     this->ui->pushButton->show();

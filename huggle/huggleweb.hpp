@@ -35,7 +35,6 @@ namespace Huggle
     class WikiEdit;
     class WikiPage;
     class Resources;
-    class Exception;
 
     //! Web browser
     class HuggleWeb : public QFrame
