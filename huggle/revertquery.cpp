@@ -190,7 +190,10 @@ void RevertQuery::OnTick()
     }
     if (this->IsProcessed())
     {
-        this->timer->stop();
+        if (this->timer != nullptr)
+        {
+            this->timer->stop();
+        }
         this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
     }
 }

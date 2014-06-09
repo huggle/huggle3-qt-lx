@@ -17,6 +17,7 @@
 #include "generic.hpp"
 #include "gc.hpp"
 #include "querypool.hpp"
+#include "hooks.hpp"
 #include "collectable.hpp"
 #include "core.hpp"
 #include "wikiutil.hpp"
@@ -2182,4 +2183,18 @@ void Huggle::MainWindow::on_actionDisplay_this_page_triggered()
         return;
     this->Browser->DisplayPreFormattedPage(this->CurrentEdit->Page);
     this->LockPage();
+}
+
+void Huggle::MainWindow::on_actionResume_provider_triggered()
+{
+    this->ui->actionResume_provider->setVisible(false);
+    this->ui->actionStop_provider->setVisible(true);
+    Core::HuggleCore->PrimaryFeedProvider->Resume();
+}
+
+void Huggle::MainWindow::on_actionStop_provider_triggered()
+{
+    Core::HuggleCore->PrimaryFeedProvider->Pause();
+    this->ui->actionResume_provider->setVisible(true);
+    this->ui->actionStop_provider->setVisible(false);
 }

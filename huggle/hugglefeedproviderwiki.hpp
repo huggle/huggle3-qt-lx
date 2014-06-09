@@ -38,6 +38,9 @@ namespace Huggle
             HuggleFeedProviderWiki();
             ~HuggleFeedProviderWiki();
             bool Start();
+            bool IsPaused();
+            void Resume();
+            void Pause();
             bool IsWorking();
             void Stop();
             bool Restart() { this->Stop(); return this->Start(); }
@@ -50,12 +53,28 @@ namespace Huggle
             void ProcessEdit(QDomElement item);
             void ProcessLog(QDomElement item);
             void InsertEdit(WikiEdit *edit);
+            bool Paused = false;
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
             ApiQuery *qReload;
             QDateTime LastRefresh;
             QDateTime LatestTime;
     };
+
+    inline bool HuggleFeedProviderWiki::IsPaused()
+    {
+        return this->Paused;
+    }
+
+    inline void HuggleFeedProviderWiki::Resume()
+    {
+        this->Paused = false;
+    }
+
+    inline void HuggleFeedProviderWiki::Pause()
+    {
+        this->Paused = true;
+    }
 }
 
 #endif // HUGGLEFEEDPROVIDERWIKI_H

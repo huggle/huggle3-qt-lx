@@ -14,6 +14,7 @@
 #include "querypool.hpp"
 #include "generic.hpp"
 #include "localization.hpp"
+#include "hooks.hpp"
 #include "syslog.hpp"
 #include "wikiutil.hpp"
 
@@ -130,7 +131,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
     bool CreateOnly = false;
-    if (Edit->User->TalkPage_GetContents() == "")
+    if (Edit->User->TalkPage_GetContents().isEmpty())
     {
         CreateOnly = true;
     }

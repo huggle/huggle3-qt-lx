@@ -18,15 +18,14 @@
 
 #include <QList>
 #include <QMutex>
+#include <QStringList>
+#include <QDateTime>
 #include <QString>
 #include <QRegExp>
-#include "wikiedit.hpp"
 #include "wikisite.hpp"
 
 namespace Huggle
 {
-    class WikiEdit;
-
     //! User
     class WikiUser
     {

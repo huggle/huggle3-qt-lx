@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -83,6 +83,8 @@
     <addaction name="actionAbort_2"/>
     <addaction name="separator"/>
     <addaction name="menuChange_provider"/>
+    <addaction name="actionStop_provider"/>
+    <addaction name="actionResume_provider"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -924,6 +926,19 @@
    </property>
    <property name="shortcut">
     <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionStop_provider">
+   <property name="text">
+    <string>Stop provider</string>
+   </property>
+  </action>
+  <action name="actionResume_provider">
+   <property name="text">
+    <string>Resume provider</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
    </property>
   </action>
  </widget>
