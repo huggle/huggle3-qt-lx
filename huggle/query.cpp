@@ -113,7 +113,7 @@ void Query::ProcessCallback()
     if (this->callback != nullptr)
     {
         this->RegisterConsumer("delegate");
-        this->CallbackResult = this->callback(this);
+        this->callback(this);
     }
 }
 

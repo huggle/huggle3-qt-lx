@@ -134,6 +134,7 @@ bool EditQuery::IsProcessed()
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
+                    this->ProcessCallback();
                     Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page));
                 }
             }
