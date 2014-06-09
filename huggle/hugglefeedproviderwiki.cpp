@@ -77,6 +77,8 @@ bool HuggleFeedProviderWiki::ContainsEdit()
 
 void HuggleFeedProviderWiki::Refresh()
 {
+    if (this->Paused)
+        return;
     if (this->Refreshing)
     {
         // the query is still in progress now

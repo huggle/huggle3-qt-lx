@@ -32,6 +32,7 @@ namespace Huggle
             ~EditQuery();
             void Process();
             bool IsProcessed();
+            bool InsertTargetToWatchlist = false;
             //! Page that is going to be edited
             QString Page;
             //! Text a page will be replaced with

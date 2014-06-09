@@ -24,7 +24,6 @@
 #include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
-#include "definitions.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
 

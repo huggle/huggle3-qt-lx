@@ -83,6 +83,14 @@ void SpeedyForm::on_pushButton_clicked()
     this->qObtainText->Process();
 }
 
+void Finalize(Query *result)
+{
+    SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
+    result->CallbackResult = nullptr;
+    result->UnregisterConsumer("delegate");
+    form->close();
+}
+
 void SpeedyForm::Remove()
 {
     GC_DECREF(this->qObtainText);
@@ -123,6 +131,8 @@ void SpeedyForm::processTags()
     QString summary = Configuration::HuggleConfiguration->ProjectConfig.SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
+    this->Template->CallbackResult = (void*)this;
+    this->Template->callback = (Callback)Finalize;
 }
 
 void SpeedyForm::on_pushButton_2_clicked()

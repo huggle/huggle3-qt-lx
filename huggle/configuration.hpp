@@ -155,6 +155,7 @@ namespace Huggle
             QString         RFPP_Regex = "";
             QString         RFPP_Page = "";
             QString         ReportAIV = "";
+            QString         Feedback = "";
             //! Section of report page to append template to
             int             ReportSt = 0;
             //! IP vandals

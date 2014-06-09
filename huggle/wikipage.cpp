@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikipage.hpp"
+#include <QUrl>
 #include "exception.hpp"
 #include "configuration.hpp"
 using namespace Huggle;
@@ -105,4 +106,9 @@ QString WikiPage::RootName()
 bool WikiPage::IsUserpage()
 {
     return this->GetNS()->GetCanonicalName() == "User";
+}
+
+QString WikiPage::EncodedName()
+{
+    return QUrl::toPercentEncoding(this->PageName);
 }

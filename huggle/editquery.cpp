@@ -134,6 +134,7 @@ bool EditQuery::IsProcessed()
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
+                    this->ProcessCallback();
                     Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page));
                 }
             }
@@ -160,6 +161,9 @@ void EditQuery::EditPage()
     QString base = "";
     QString start_ = "";
     QString section = "";
+    QString wl = "&watchlist=nochange";
+    if (this->InsertTargetToWatchlist)
+        wl = "";
     if (this->Section > 0)
     {
         section = "&section=" + QString::number(this->Section);
@@ -169,7 +173,7 @@ void EditQuery::EditPage()
     if (this->StartTimestamp.length())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
-                              "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
+                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();

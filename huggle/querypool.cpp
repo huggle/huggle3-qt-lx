@@ -30,10 +30,20 @@ QueryPool::~QueryPool()
         this->PendingMods.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_MODS);
         this->PendingMods.removeAt(0);
     }
+    while (this->ProcessingEdits.count() != 0)
+    {
+        this->ProcessingEdits.at(0)->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
+        this->ProcessingEdits.removeAt(0);
+    }
     while(this->RunningQueries.count() != 0)
     {
         this->RunningQueries.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP);
         this->RunningQueries.removeAt(0);
+    }
+    while (this->UncheckedReverts.count() != 0)
+    {
+        this->UncheckedReverts.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_UNCHECKED);
+        this->UncheckedReverts.removeAt(0);
     }
 }
 
