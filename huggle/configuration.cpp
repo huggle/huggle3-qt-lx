@@ -669,6 +669,8 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig.BlockMessage = ConfigurationParse("block-message", config);
     this->ProjectConfig.BlockReason = ConfigurationParse("block-reason", config);
     this->ProjectConfig.BlockExpiryOptions.clear();
+    // Feedback
+    this->ProjectConfig.Feedback = ConfigurationParse("feedback", config);
     // Templates
     this->ProjectConfig.MessageHeadings = HeadingsStandard;
     QString headings = ConfigurationParse("headings", config, "standard");

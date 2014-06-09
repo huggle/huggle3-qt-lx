@@ -2101,7 +2101,10 @@ void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
 
 void Huggle::MainWindow::on_actionFeedback_triggered()
 {
-    QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath);
+    QString feedback = Configuration::HuggleConfiguration->ProjectConfig.Feedback;
+    if (feedback.isEmpty())
+        feedback = Configuration::HuggleConfiguration->GlobalConfig_FeedbackPath;
+    QDesktopServices::openUrl(feedback);
 }
 
 void Huggle::MainWindow::on_actionConnect_triggered()
