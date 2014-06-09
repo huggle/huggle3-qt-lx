@@ -225,6 +225,11 @@ MainWindow::~MainWindow()
         this->RevertStack.at(0)->DecRef();
         this->RevertStack.removeAt(0);
     }
+    while (this->PatrolledEdits.count())
+    {
+        this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
+        this->PatrolledEdits.removeAt(0);
+    }
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
     delete this->wUserInfo;
@@ -806,7 +811,7 @@ void MainWindow::on_actionPreferences_triggered()
 
 void MainWindow::on_actionContents_triggered()
 {
-    QDesktopServices::openUrl(Configuration::HuggleConfiguration->GlobalConfig_DocumentationPath);
+    QDesktopServices::openUrl(QUrl(Configuration::HuggleConfiguration->GlobalConfig_DocumentationPath));
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -1596,7 +1601,7 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName()).toUtf8()));
     }
 }
 
@@ -1627,8 +1632,8 @@ void MainWindow::on_actionUser_contributions_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QString(this->ProjectURL() + "Special:Contributions/"
-                                          + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + "Special:Contributions/"
+                                          + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)).toUtf8()));
     }
 }
 
@@ -1657,22 +1662,22 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Diff > 0)
-            QDesktopServices::openUrl(QString(this->WikiScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)));
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->WikiScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)).toUtf8()));
         else
-            QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName));
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName()).toUtf8()));
     }
 }
 
 void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName + "?action=edit"));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName() + "?action=edit").toUtf8()));
 }
 
 void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->Page->PageName + "?action=history"));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName() + "?action=history").toUtf8()));
 }
 
 void MainWindow::on_actionStop_feed_triggered()
@@ -1798,7 +1803,8 @@ void MainWindow::on_actionWarning_4_triggered()
 void MainWindow::on_actionEdit_user_talk_triggered()
 {
     if (this->CurrentEdit != nullptr)
-        QDesktopServices::openUrl(QString(this->ProjectURL() + this->CurrentEdit->User->GetTalk() + "?action=edit"));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + QUrl::toPercentEncoding(this->CurrentEdit->User->GetTalk()) +
+                                                            "?action=edit").toUtf8()));
 }
 
 void MainWindow::on_actionReconnect_IRC_triggered()
@@ -2080,7 +2086,7 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     f->write(this->Browser->RetrieveHtml().toUtf8());
     f->close();
     delete f;
-    QDesktopServices::openUrl( QDir().absoluteFilePath( name ) );
+    QDesktopServices::openUrl(QDir().absoluteFilePath(name));
 }
 
 void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()

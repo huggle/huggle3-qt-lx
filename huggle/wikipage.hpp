@@ -41,6 +41,8 @@ namespace Huggle
             WikiPage *RetrieveTalk();
             QString RootName();
             bool IsUserpage();
+            //! Writes a wikipage name that is encoded using percent encoding
+            QString EncodedName();
             QString Contents;
             //! Name of page
             QString PageName;
