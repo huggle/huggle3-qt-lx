@@ -9,9 +9,8 @@
 //GNU General Public License for more details.
 
 #include "updateform.hpp"
-#include "configuration.hpp"
 #include <QDesktopServices>
-#include <QUrl>
+#include "configuration.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "ui_updateform.h"

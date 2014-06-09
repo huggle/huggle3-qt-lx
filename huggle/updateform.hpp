@@ -16,6 +16,7 @@
 #include <Python.h>
 #endif
 
+#include <QUrl>
 #include <QDialog>
 #include <QTimer>
 #include "webserverquery.hpp"
