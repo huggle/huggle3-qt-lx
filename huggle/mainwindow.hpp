@@ -306,7 +306,6 @@ namespace Huggle
             void on_actionUser_contributions_triggered();
             void on_actionDisplay_this_page_triggered();
             void on_actionResume_provider_triggered();
-
             void on_actionStop_provider_triggered();
 
         private:
