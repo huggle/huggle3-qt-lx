@@ -66,6 +66,8 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         l++;
     }
     this->setWindowTitle(title);
+    // show somewhere the simple huggle version
+    this->ui->labelHeader->setText("Huggle " + QString(HUGGLE_VERSION));
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
     if (!QSslSocket::supportsSsl())
@@ -269,7 +271,7 @@ void Login::PressOK()
     }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
-    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     if (this->ui->lineEdit_username->text() == "Developer Mode")
     {
         this->DeveloperMode();
