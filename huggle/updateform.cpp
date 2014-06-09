@@ -42,6 +42,10 @@ void UpdateForm::Check()
     }
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
+    if (Configuration::HuggleConfiguration->SystemConfig_NotifyBeta)
+    {
+       this->qData->URL += "&notifybeta";
+    }
     Syslog::HuggleLogs->DebugLog("checking for update at "+this->qData->URL);
     this->qData->Process();
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));

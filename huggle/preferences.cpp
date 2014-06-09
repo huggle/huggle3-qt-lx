@@ -117,7 +117,8 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_27->setChecked(Configuration::HuggleConfiguration->SystemConfig_InstantReverts);
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig.DisplayTitle);
-    this->ui->checkBox_29->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
+    this->ui->checkBox_notifyUpdate->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
+    this->ui->checkBox_notifyBeta->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
     this->on_checkBox_27_clicked();
 }
 
@@ -213,7 +214,8 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
     Configuration::HuggleConfiguration->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
     Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = this->ui->checkBox_29->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
     if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig.GoNext = Configuration_OnNext_Stay;

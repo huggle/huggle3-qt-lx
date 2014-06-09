@@ -477,6 +477,11 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "NotifyBeta")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = Configuration::SafeBool(option.attribute("text"));
+            continue;
+        }
         if (key == "QueueNewEditsUp")
         {
             Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp = Configuration::SafeBool(option.attribute("text"));
@@ -558,6 +563,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize), writer);
     InsertConfig("TrimOldWarnings", Configuration::Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), writer);
     InsertConfig("EnableUpdates", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), writer);
+    InsertConfig("NotifyBeta", Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta), writer);
     InsertConfig("WarnUserSpaceRoll", Configuration::Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), writer);
     InsertConfig("WikiRC", QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC), writer);
     InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, writer);

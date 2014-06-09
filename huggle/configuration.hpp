@@ -446,6 +446,7 @@ namespace Huggle
             QString         SystemConfig_SyslogPath = "huggle.log";
             //! Whether huggle check for an update on startup
             bool            SystemConfig_UpdatesEnabled = true;
+            bool            SystemConfig_NotifyBeta = false;
             bool            SystemConfig_LanguageSanity = false;
             bool            SystemConfig_RequestDelay = false;
             unsigned int    SystemConfig_DelayVal = 0;
