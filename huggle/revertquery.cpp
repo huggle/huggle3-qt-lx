@@ -23,13 +23,9 @@ using namespace Huggle;
 RevertQuery::RevertQuery()
 {
     this->Type = QueryRevert;
-    this->PreflightFinished = false;
-    this->RollingBack = false;
-    this->UsingSR = false;
     this->edit = nullptr;
     this->Token = "";
     this->Summary = "";
-    this->MinorEdit = false;
     this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
@@ -41,12 +37,7 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     Edit->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->Type = QueryRevert;
     this->edit = Edit;
-    this->PreflightFinished = false;
-    this->RollingBack = false;
-    this->IgnorePreflightCheck = false;
-    this->UsingSR = false;
     this->Token = "";
-    this->MinorEdit = false;
     this->Summary = "";
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
     this->SR_Target = "";
