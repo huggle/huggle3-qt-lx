@@ -44,6 +44,7 @@ namespace Huggle
             WebserverQuery *qData;
 
         private slots:
+            void on_pushButton_clicked();
             void on_pushButton_2_clicked();
             void OnTick();
             void on_label_linkActivated(const QString &link);
@@ -52,6 +53,7 @@ namespace Huggle
             Ui::UpdateForm *ui;
             QStringList Instructions;
             QTimer *timer;
+            QUrl *manualDownloadpage = nullptr;
     };
 }
 #endif // UPDATEFORM_H

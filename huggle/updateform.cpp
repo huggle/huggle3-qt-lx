@@ -28,6 +28,7 @@ UpdateForm::~UpdateForm()
 {
     delete this->ui;
     delete this->timer;
+    delete this->manualDownloadpage;
 }
 
 void UpdateForm::Check()
@@ -41,16 +42,27 @@ void UpdateForm::Check()
     }
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
+    Syslog::HuggleLogs->DebugLog("checking for update at "+this->qData->URL);
     this->qData->Process();
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->qData->IncRef();
     this->timer->start(60);
 }
 
+void Huggle::UpdateForm::on_pushButton_clicked()
+{
+    if (this->manualDownloadpage != nullptr)
+    {
+        QDesktopServices::openUrl(*(this->manualDownloadpage));
+    }
+    this->close();
+
+}
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
     if (this->ui->checkBox->isChecked())
     {
+        ///! \todo Add option to enable updates again later on
         Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
@@ -66,7 +78,7 @@ void UpdateForm::OnTick()
 
     QDomDocument r;
     r.setContent(this->qData->Result->Data);
-    QDomNodeList l = r.elementsByTagName("obsolete");
+    QDomNodeList l = r.elementsByTagName("newversion");
     if (l.count() == 0)
     {
         // there is no new version of huggle
@@ -86,6 +98,13 @@ void UpdateForm::OnTick()
             this->ui->pushButton->setEnabled(false);
             info = info.replace("$LATESTHUGGLE", version);
             this->ui->label->setText(info);
+            l = r.elementsByTagName("manualDownloadpage");
+            if(l.count() > 0)
+            {
+                this->manualDownloadpage = new QUrl(l.at(0).toElement().text());
+                this->ui->pushButton->setText("open download page");
+                this->ui->pushButton->setEnabled(true);
+            }
             this->show();
             this->qData->DecRef();
             this->timer->stop();
@@ -103,7 +122,7 @@ void UpdateForm::OnTick()
                 {
                     if (!element.attributes().contains("target"))
                     {
-                        Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ingoring the update");
+                        Syslog::HuggleLogs->Log("WARNING: Invalid updater instruction: download is missing target, ignoring the update");
                         this->qData->DecRef();
                         this->timer->stop();
                         return;
