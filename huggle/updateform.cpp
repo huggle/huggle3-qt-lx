@@ -63,7 +63,6 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
     if (this->ui->checkBox->isChecked())
     {
-        ///! \todo Add option to enable updates again later on
         Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
