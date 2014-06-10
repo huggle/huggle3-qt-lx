@@ -96,7 +96,7 @@ void ProtectPage::checkTokenToProtect()
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
-        this->Failed(_("protect-fail-no-info"));
+        this->Failed(_l("protect-fail-no-info"));
         return;
     }
     QDomElement element = l.at(0).toElement();
@@ -147,8 +147,7 @@ void ProtectPage::on_pushButton_2_clicked()
 void ProtectPage::Failed(QString reason)
 {
     QMessageBox *_pmb = new QMessageBox();
-    /// \todo LOCALIZE ME
-    _pmb->setWindowTitle("Unable to protect page");
+    _pmb->setWindowTitle(_l("protect-message-title-fail"));
     /// \todo LOCALIZE ME
     _pmb->setText("Unable to protect the page because " + reason);
     _pmb->exec();

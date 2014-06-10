@@ -295,8 +295,7 @@ bool Message::FinishToken()
     }
     if (this->qToken->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Fail("unable to retrieve the edit token");
+        this->Fail(_l("message-fail-token-1"));
         return false;
     }
     QDomDocument dToken_;
@@ -304,8 +303,7 @@ bool Message::FinishToken()
     QDomNodeList l = dToken_.elementsByTagName("page");
     if (l.count() == 0)
     {
-        /// \todo LOCALIZE ME
-        this->Fail("no token was returned by request");
+        this->Fail(_l("message-fail-token-2"));
         Huggle::Syslog::HuggleLogs->DebugLog("No page");
         return false;
     }
