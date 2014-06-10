@@ -26,12 +26,12 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
     this->wikiEdit->RegisterConsumer("WarningList");
     this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
     // insert all possible warnings now
-    if (Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.count() > 0)
+    if (Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count() > 0)
     {
         int r=0;
-        while (r<Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.count())
+        while (r<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
         {
-            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.at(r)));
+            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)));
             r++;
         }
         this->ui->comboBox->setCurrentIndex(0);

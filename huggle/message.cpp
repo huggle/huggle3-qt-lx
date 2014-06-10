@@ -349,10 +349,10 @@ void Message::PreflightCheck()
 void Message::ProcessSend()
 {
     this->_Status = MessageStatus_SendingMessage;
-    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness != 0)
+    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
         if (!this->CreateOnly && (this->user->TalkPage_RetrievalTime().addSecs(
-                                  Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness
+                                  Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness
                                       ) < QDateTime::currentDateTime()))
         {
             this->Error = Huggle::MessageError_Expired;
@@ -362,7 +362,7 @@ void Message::ProcessSend()
         {
             Syslog::HuggleLogs->DebugLog("Message to " + this->user->Username + " old " +
                                          QString::number(this->user->TalkPage_RetrievalTime()
-                                         .addSecs(Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness)
+                                         .addSecs(Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness)
                                          .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
@@ -396,7 +396,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
+        s += " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     }
     if (this->SectionKeep || !this->CreateInNewSection)
     {

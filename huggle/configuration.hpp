@@ -472,7 +472,7 @@ namespace Huggle
             //////////////////////////////////////////////
             // User
             //////////////////////////////////////////////
-            UserConfiguration       UserConfig;
+            UserConfiguration *UserConfig = nullptr;
 
             // Private key names
             // these need to be stored in separate variables so that we can
@@ -499,7 +499,7 @@ namespace Huggle
             // Local config
             //////////////////////////////////////////////
 
-            ProjectConfiguration ProjectConfig;
+            ProjectConfiguration *ProjectConfig = nullptr;
 
             //////////////////////////////////////////////
             // Login

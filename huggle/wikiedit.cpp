@@ -153,11 +153,11 @@ bool WikiEdit::FinalizePostProcessing()
                 this->User->Groups.append(gn);
                 x++;
             }
-            this->Score += (Configuration::HuggleConfiguration->ProjectConfig.ScoreFlag * this->User->Groups.count());
+            this->Score += (Configuration::HuggleConfiguration->ProjectConfig->ScoreFlag * this->User->Groups.count());
             if (this->User->Groups.contains("bot"))
             {
                 // if it's a flagged bot we likely don't need to watch them
-                this->Score += Configuration::HuggleConfiguration->ProjectConfig.BotScore;
+                this->Score += Configuration::HuggleConfiguration->ProjectConfig->BotScore;
             }
             // let's delete it now
             this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
@@ -334,20 +334,20 @@ void WikiEdit::ProcessWords()
     {
         text = this->Page->Contents.toLower();
     }
-    while (xx<Configuration::HuggleConfiguration->ProjectConfig.ScoreParts.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.count())
     {
-        QString w = Configuration::HuggleConfiguration->ProjectConfig.ScoreParts.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(xx).word;
         if (text.contains(w))
         {
-            this->Score += Configuration::HuggleConfiguration->ProjectConfig.ScoreParts.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
     }
     xx = 0;
-    while (xx<Configuration::HuggleConfiguration->ProjectConfig.ScoreWords.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.count())
     {
-        QString w = Configuration::HuggleConfiguration->ProjectConfig.ScoreWords.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(xx).word;
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
         {
@@ -387,7 +387,7 @@ void WikiEdit::ProcessWords()
         }
         if (found)
         {
-            this->Score += Configuration::HuggleConfiguration->ProjectConfig.ScoreWords.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
@@ -513,22 +513,22 @@ void ProcessorThread::Process(WikiEdit *edit)
     // score
     if (edit->User->IsIP())
     {
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.IPScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->IPScore;
     }
     if (edit->Bot)
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.BotScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->BotScore;
     if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.ForeignUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ForeignUser;
     else if (edit->Page->IsUserpage())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.ScoreUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreUser;
     if (edit->Page->IsTalk())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.ScoreTalk;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreTalk;
     if (edit->Size > 1200 || edit->Size < -1200)
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.ScoreChange;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreChange;
     if (edit->Page->IsUserpage())
         IgnoreWords = true;
     if (edit->User->IsWhitelisted())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig.WhitelistScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore;
     edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
         edit->ProcessWords();

@@ -218,7 +218,7 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
     this->Insert("<font color=orange>" + user + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username
                  + " (" + QString::number(edit->RevID) + ")" + "</font>", HAN::MessageType_User);
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() + 200);
-    if (Huggle::Configuration::HuggleConfiguration->UserConfig.DeleteEditsAfterRevert)
+    if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
         // we need to delete older edits that we know and that is somewhere in queue
         if (Core::HuggleCore->Main != NULL)
@@ -414,9 +414,9 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text, HAN::MessageType type)
 {
-    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig.HAN_DisplayBots)      ||
-        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig.HAN_DisplayUser)     ||
-        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig.HAN_DisplayUserTalk))
+    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots)      ||
+        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser)     ||
+        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk))
           return;
     this->Text.prepend(text + "<br>");
     this->ui->textEdit->setHtml(this->Text);

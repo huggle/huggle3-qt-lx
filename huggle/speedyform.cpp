@@ -30,9 +30,9 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
     int i=0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig.SpeedyTemplates.count())
+    while (i < Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates.count())
     {
-        QString item = Configuration::HuggleConfiguration->ProjectConfig.SpeedyTemplates.at(i);
+        QString item = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates.at(i);
         // now we need to get first 2 items
         QStringList vals = item.split(";");
         if (vals.count() < 4)
@@ -108,7 +108,7 @@ void SpeedyForm::Fail(QString reason)
 void SpeedyForm::processTags()
 {
     // insert the template to bottom of the page
-    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig.SpeedyTemplates
+    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates
                        .at(this->ui->comboBox->currentIndex()).split(";");
     if (vals.count() < 4)
     {
@@ -126,7 +126,7 @@ void SpeedyForm::processTags()
     // store a message we later send to user (we need to check if edit is successful first)
     this->warning = vals.at(3);
     // let's modify the page now
-    QString summary = Configuration::HuggleConfiguration->ProjectConfig.SpeedyEditSummary;
+    QString summary = Configuration::HuggleConfiguration->ProjectConfig->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
     this->Template->CallbackResult = (void*)this;
@@ -179,7 +179,7 @@ void SpeedyForm::OnTick()
             this->Template = NULL;
             if (this->ui->checkBox->isChecked())
             {
-                QString summary = Configuration::HuggleConfiguration->ProjectConfig.SpeedyWarningSummary;
+                QString summary = Configuration::HuggleConfiguration->ProjectConfig->SpeedyWarningSummary;
                 summary.replace("$1", this->edit->Page->PageName);
                 this->warning.replace("$1", this->edit->Page->PageName);
                 WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
