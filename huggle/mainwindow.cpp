@@ -1390,7 +1390,7 @@ void MainWindow::Localize()
     this->ui->actionClear_talk_page_of_user->setText(_l("main-user-clear-tp"));
     this->ui->actionDecrease_badness_score_by_20->setText(_l("main-user-db"));
     this->ui->actionNext_2->setText(_l("main-page-next"));
-    this->ui->actionIncrease_badness_score_by_20(_l("main-user-ib"));
+    this->ui->actionIncrease_badness_score_by_20->setText(_l("main-user-ib"));
     this->ui->actionEdit_page_in_browser->setText(_l("main-page-edit"));
     this->ui->actionFlag_as_suspicious_edit->setText(_l("main-page-flag-suspicious-edit"));
     this->ui->actionFlag_as_a_good_edit->setText(_l("main-page-flag-good-edit"));
