@@ -312,7 +312,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         this->qNext->DecRef();
         this->qNext = nullptr;
     }
-    if (e->Page == nullptr || e->User == NULL)
+    if (e->Page == nullptr || e->User == nullptr)
     {
         throw new Huggle::Exception("Page and User must not be nullptr in edit that is supposed to be displayed on form",
                   "void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)");
