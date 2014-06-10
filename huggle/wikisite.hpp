@@ -18,6 +18,8 @@
 
 #include <QString>
 #include <QHash>
+#include "projectconfiguration.hpp"
+#include "userconfiguration.hpp"
 
 namespace Huggle
 {
@@ -82,6 +84,8 @@ namespace Huggle
             ~WikiSite();
             WikiPageNS *RetrieveNSFromTitle(QString title);
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
+            ProjectConfiguration *GetProjectConfig();
+            UserConfiguration    *GetUserConfig();
             void InsertNS(WikiPageNS *Ns);
             void RemoveNS(int ns);
             void ClearNS();
@@ -98,6 +102,8 @@ namespace Huggle
             QString OAuthURL;
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
+            ProjectConfiguration *Project = nullptr;
+            UserConfiguration    *User = nullptr;
             //! URL of whitelist, every site needs to have some, if your site doesn't have it
             //! leave it as test
             QString WhiteList;

@@ -925,15 +925,3 @@ ScoreWord::ScoreWord(const ScoreWord &word)
     this->word = word.word;
 }
 
-HuggleOption::HuggleOption(QString name, QVariant value, bool isdefault)
-{
-    this->Name = name;
-    this->isDefault = isdefault;
-    this->Value = value;
-}
-
-void HuggleOption::SetVariant(QVariant value)
-{
-    this->isDefault = false;
-    this->Value = value;
-}

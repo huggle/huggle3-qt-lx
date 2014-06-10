@@ -768,7 +768,7 @@ void MainWindow::FinishRestore()
             this->RestoreEdit = nullptr;
             return;
         }
-        QString sm = Configuration::HuggleConfiguration->ProjectConfig->RestoreSummary;
+        QString sm = this->RestoreEdit->Page->Site->GetProjectConfig()->RestoreSummary;
         sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
         sm = sm.replace("$3", this->RestoreEdit_RevertReason);
