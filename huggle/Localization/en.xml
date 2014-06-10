@@ -373,7 +373,9 @@
     <string name="protect-currentlevel">Current protection level:</string>
     <string name="protect-type">Protection type:</string>
     <string name="protect-none">None</string>
+    <string name="protect-token">Token cannot be retrieved. The reason was: $1</string>
     <string name="protect-semiprotection">Semi-protection</string>
+    <string name="protect-fail-no-info">No page info was available (are you an admin?)</string>
     <string name="protect-fullprotection">Full protection</string>
     <string name="protect-moveprotection">Move protection</string>
     <string name="protect-ft">Fetching token to protect $1</string>
@@ -435,12 +437,9 @@
     <string name="uaa-g1">Getting content of UAA</string>
     <string name="uaa-e1">the query for the page contents returned no data.</string>
     <string name="uaa-e2">the page contents weren't available.</string>
-    <string name="revert-confirm-ignored">Revert edit by whitelisted user $1?</string>
     <string name="revert-confirm-multiple">This will revert multiple edits by $1. Continue?</string>
-    <string name="revert-confirm-page">Revert edit to ignored page $1?</string>
     <string name="revert-confirm-range">The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person; ensure the target revision is correct before proceeding. Continue?</string>
     <string name="revert-confirm-same">This will revert to another revision by the user that is being reverted, $1. Continue?</string>
-    <string name="revert-confirm-self">This will revert your own edit. Continue?</string>
     <string name="revert-confirm-warned">This will revert to a revision by $1; this user has previously been warned. Continue?</string>
     <string name="revert-error-first">Edit is the first edit to the page; unable to revert.</string>
     <string name="revert-only">Edit is the only edit to the page.</string>
@@ -452,13 +451,12 @@
     <string name="revert-conflict">The page was edited by whitelisted user '$1'</string>
     <string name="revert-fail">Did not revert $1: $2</string>
     <string name="revert-nochange">The content of the target revision is identical to that of the current revision</string>
-    <string name="revert-nootheruser">No other user has edited the page</string>
-    <string name="revert-progress">Reverting '$1'...</string>
     <string name="revert-fail-pre-flight">Preflight check failed: $1</string>
     <string name="speedy-title">Speedy tag $1</string>
     <string name="speedy-reason">Reason:</string>
     <string name="speedy-parameters">Parameters:</string>
     <string name="speedy-notifycreator">Notify page creator</string>
+    <string name="rollback">Rolling back $1</string>
     <string name="software-rollback">You don't have rollback rights, fallback to software rollback</string>
     <string name="stats-title">Statistics</string>
     <string name="stats-actions">Actions this session:</string>
@@ -526,6 +524,7 @@
     <string name="delete-done">Deleted $1</string>
     <string name="delete-fail">Did not delete $1</string>
     <string name="delete-progress">Deleting $1...</string>
+    <string name="delete-user">This page is in userspace, are you sure you want to delete it?</string>
     <string name="deletelog-fail">Failed to retrieve deletion log for $1</string>
     <string name="deletelog-none">No deletion log for $1</string>
     <string name="deletelog-progress">Retrieving deletion log for $1...</string>
@@ -557,8 +556,10 @@
     <string name="reqprotection-fail">Did not request protection of '$1'</string>
     <string name="reqprotection-progress">Requesting protection of '$1'...</string>
     <string name="reqprotection-title">Request page protection of $1</string>
-    <string name="speedy-fail">Did not tag '$1' for speedy deletion</string>
+    <string name="speedy-fail">Unable to tag page for speedy deletion: $1</string>
     <string name="speedy-progress">Tagging '$1' for speedy deletion...</string>
+    <string name="speedy-wrong">The requested tag is not valid, please choose a different deletion reason</string>
+    <string name="speedy-finished">Finished</string>
     <string name="warnlog-fail">Failed to retrieve warning log for '$1'</string>
     <string name="warnlog-none">'$1' has not been warned</string>
     <string name="warnlog-progress">Retrieving warning log for '$1'...</string>

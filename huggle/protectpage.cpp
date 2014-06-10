@@ -87,8 +87,7 @@ void ProtectPage::checkTokenToProtect()
         return;
     if (this->qToken->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + this->qToken->Result->ErrorMessage);
+        this->Failed(_l("protect-token", this->qToken->Result->ErrorMessage));
         return;
     }
     QDomDocument r;
@@ -97,8 +96,7 @@ void ProtectPage::checkTokenToProtect()
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
-        /// \todo LOCALIZE ME
-        this->Failed("No page info was available (are you an admin?)");
+        this->Failed(_("protect-fail-no-info"));
         return;
     }
     QDomElement element = l.at(0).toElement();

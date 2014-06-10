@@ -53,10 +53,10 @@ namespace Huggle
             bool IsUsingSR();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
-            QString Summary;
+            QString Summary = "";
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck = false;
-            QString Token;
+            QString Token = "";
             bool MinorEdit = false;
         public slots:
             void OnTick();
@@ -72,7 +72,7 @@ namespace Huggle
             void Exit();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR = false;
-            QString SR_EditToken;
+            QString SR_EditToken = "";
             ApiQuery *qPreflight = nullptr;
             ApiQuery *qRevert = nullptr;
             ApiQuery *qHistoryInfo = nullptr;
@@ -87,7 +87,7 @@ namespace Huggle
             bool PreflightFinished = false;
             int SR_RevID;
             int SR_Depth;
-            QString SR_Target;
+            QString SR_Target = "";
     };
 }
 

@@ -24,12 +24,8 @@ RevertQuery::RevertQuery()
 {
     this->Type = QueryRevert;
     this->edit = nullptr;
-    this->Token = "";
-    this->Summary = "";
-    this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
-    this->SR_EditToken = "";
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
@@ -37,12 +33,8 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     Edit->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->Type = QueryRevert;
     this->edit = Edit;
-    this->Token = "";
-    this->Summary = "";
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
-    this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
-    this->SR_EditToken = "";
 }
 
 RevertQuery::~RevertQuery()
@@ -685,7 +677,7 @@ void RevertQuery::Rollback()
         return;
     }
     this->RollingBack = true;
-    if (!this->Summary.length())
+    if (this->Summary.isEmpty())
         this->Summary = Configuration::HuggleConfiguration->ProjectConfig.RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
         this->Summary = this->Summary.replace("$1", edit->User->Username);
@@ -705,7 +697,7 @@ void RevertQuery::Rollback()
         this->Revert();
         return;
     }
-    if (!this->Token.size())
+    if (this->Token.isEmpty())
         this->Token = this->edit->RollbackToken;
     if (!this->Token.size())
     {
@@ -735,8 +727,7 @@ void RevertQuery::Rollback()
     {
         QueryPool::HugglePool->AppendQuery(this->qRevert);
     }
-    /// \todo LOCALIZE ME
-    this->CustomStatus = "Rolling back " + edit->Page->PageName;
+    this->CustomStatus = _l("rollback", edit->Page->PageName);
     Huggle::Syslog::HuggleLogs->DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();
 }

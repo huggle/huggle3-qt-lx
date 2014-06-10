@@ -23,9 +23,9 @@ using namespace Huggle;
 
 SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm)
 {
-    this->edit = NULL;
-    this->Template = NULL;
-    this->qObtainText = NULL;
+    this->edit = nullptr;
+    this->Template = nullptr;
+    this->qObtainText = nullptr;
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
@@ -56,18 +56,16 @@ void SpeedyForm::on_pushButton_clicked()
 {
     if (this->edit->Page->IsUserpage())
     {
-        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "Request",
-             "This page is in userspace, are you sure you want to delete it?",
-             QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "Request",  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
         if (qb == QMessageBox::No)
         {
             return;
         }
     }
-    if (this->ui->comboBox->currentText() == "")
+    if (this->ui->comboBox->currentText().isEmpty())
     {
         QMessageBox mb;
-        mb.setText("The requested tag is not valid, please choose a different deletion reason");
+        mb.setText(_l("speedy-wrong"));
         mb.setWindowTitle("Wrong csd");
         mb.exec();
         return;
@@ -143,7 +141,7 @@ void SpeedyForm::on_pushButton_2_clicked()
 
 void SpeedyForm::Init(WikiEdit *edit_)
 {
-    if (edit_ == NULL)
+    if (edit_ == nullptr)
     {
         throw new Huggle::Exception("edit was NULL", "void SpeedyForm::Init(WikiEdit *edit_)");
     }
@@ -153,7 +151,7 @@ void SpeedyForm::Init(WikiEdit *edit_)
 
 void SpeedyForm::OnTick()
 {
-    if (this->qObtainText != NULL)
+    if (this->qObtainText != nullptr)
     {
         if (!this->qObtainText->IsProcessed()) { return; }
         bool failed = false;
@@ -164,17 +162,17 @@ void SpeedyForm::OnTick()
             return;
         }
         this->qObtainText->DecRef();
-        this->qObtainText = NULL;
+        this->qObtainText = nullptr;
         this->processTags();
         return;
     }
-    if (this->Template != NULL)
+    if (this->Template != nullptr)
     {
         if (this->Template->IsProcessed())
         {
             if(this->Template->IsFailed())
             {
-                this->Fail("Unable to tag the page: " + this->Template->Result->ErrorMessage);
+                this->Fail(_l("speedy-fail", this->Template->Result->ErrorMessage));
                 return;
             }
             this->Template->DecRef();
@@ -187,7 +185,7 @@ void SpeedyForm::OnTick()
                 WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
             }
             this->timer->stop();
-            this->ui->pushButton->setText("Finished");
+            this->ui->pushButton->setText(_l("speedy-finished"));
         }
     }
 }
