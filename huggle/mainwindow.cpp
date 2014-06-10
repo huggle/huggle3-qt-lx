@@ -1390,6 +1390,7 @@ void MainWindow::Localize()
     this->ui->actionClear_talk_page_of_user->setText(_l("main-user-clear-tp"));
     this->ui->actionDecrease_badness_score_by_20->setText(_l("main-user-db"));
     this->ui->actionNext_2->setText(_l("main-page-next"));
+    this->ui->actionIncrease_badness_score_by_20(_l("main-user-ib"));
     this->ui->actionEdit_page_in_browser->setText(_l("main-page-edit"));
     this->ui->actionFlag_as_suspicious_edit->setText(_l("main-page-flag-suspicious-edit"));
     this->ui->actionFlag_as_a_good_edit->setText(_l("main-page-flag-good-edit"));
@@ -1426,6 +1427,17 @@ void MainWindow::Localize()
     this->ui->actionDisplay_bot_data->setText(_l("main-han-display-bot-data"));
     this->ui->actionWiki->setText(_l("main-system-change-provider-wiki"));
     this->ui->actionNext->setText(_l("main-queue-next"));
+    this->ui->actionStop_provider->setText(_l("main-menu-provider-stop"));
+    this->ui->actionResume_provider->setText(_l("main-menu-provider-resume"));
+    this->ui->actionShow_list_of_score_words->setText(_l("main-tools-scoreword-list"));
+    this->ui->actionRevert_currently_displayed_edit->setText(_l("main-revision-revert"));
+    this->ui->actionRevert_currently_displayed_edit_and_stay_on_page->setText(_l("main-revision-rv-stay"));
+    this->ui->actionRevert_currently_displayed_edit_and_warn_the_user->setText(_l("main-revision-revert-warn"));
+    this->ui->actionRevert_currently_displayed_edit_warn_user_and_stay_on_page->setText(_l("main-revision-rws"));
+    this->ui->actionRevert_AGF->setText(_l("main-revision-faith"));
+    this->ui->actionWarn_the_user->setText(_l("main-user-warn"));
+    this->ui->actionOpen_in_a_browser->setText(_l("main-browser-open"));
+    this->ui->actionDisplay_this_page->setText(_l("main-page-display"));
 }
 
 void MainWindow::_BlockUser()
