@@ -1413,7 +1413,7 @@ void MainWindow::Localize()
     this->ui->actionDisplay_this_page_in_browser->setText(_l("main-browser-open"));
     this->ui->actionFeedback->setText(_l("main-help-feedback"));
     this->ui->actionReport_user->setText(_l("main-user-report"));
-    this->ui->actionUser_contributions->setText(_l("main-tip-contribs"));
+    this->ui->actionUser_contributions->setText(_l("main-user-contribs"));
     this->ui->actionPreferences->setText(_l("main-system-options"));
     this->ui->actionReconnect_IRC->setText(_l("main-system-reconnectirc"));
     this->ui->actionShow_talk->setText(_l("main-goto-mytalk"));

@@ -306,6 +306,7 @@
     <string name="main-user-info">Show user info</string>
     <string name="main-user-ignore">Ignore</string>
     <string name="main-user-unignore">Unignore</string>
+    <string name="main-user-contribs">Show user contributions in a browser</string>
     <string name="main-user-clear-talk">Clear talk page of user</string>
     <string name="main-user-contribs">Retrieve contributions</string>
     <string name="main-user-talk">View talk page</string>
