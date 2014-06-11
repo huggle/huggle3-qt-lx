@@ -23,7 +23,13 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
 {
     this->ui->setupUi(this);
     this->wikiEdit = edit;
+    if (edit->User == nullptr)
+    {
+        // unlikely to happen
+        throw new Huggle::Exception("null user", "WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(new Ui::WarningList)");
+    }
     this->wikiEdit->RegisterConsumer("WarningList");
+    this->setWindowTitle(_l("warning-title", edit->User->Username));
     this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
     // insert all possible warnings now
     if (Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count() > 0)
