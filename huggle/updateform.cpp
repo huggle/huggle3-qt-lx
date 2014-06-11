@@ -11,6 +11,8 @@
 #include "updateform.hpp"
 #include <QDesktopServices>
 #include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_updateform.h"
 
 using namespace Huggle;

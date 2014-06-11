@@ -9,9 +9,12 @@
 //GNU General Public License for more details.
 
 #include "userinfoform.hpp"
+#include "configuration.hpp"
 #include "exception.hpp"
 #include "querypool.hpp"
+#include "localization.hpp"
 #include "mainwindow.hpp"
+#include "syslog.hpp"
 #include "ui_userinfoform.h"
 
 using namespace Huggle;
@@ -19,18 +22,16 @@ using namespace Huggle;
 UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
     this->timer = new QTimer(this);
-    this->qContributions = NULL;
-    this->edit = NULL;
-    this->User = NULL;
+    this->qContributions = nullptr;
+    this->edit = nullptr;
+    this->User = nullptr;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     QStringList header;
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("userinfo-generic"));
+    this->setWindowTitle(_l("userinfo-generic"));
     this->ui->tableWidget->setColumnCount(3);
-    header << Localizations::HuggleLocalizations->Localize("page") <<
-              Localizations::HuggleLocalizations->Localize("time") <<
-              Localizations::HuggleLocalizations->Localize("id");
+    header << _l("page") << _l("time") << _l("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
@@ -54,11 +55,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
 
 UserinfoForm::~UserinfoForm()
 {
-    if (this->edit != NULL)
-    {
-        this->edit->DecRef();
-        this->edit = NULL;
-    }
+    GC_DECREF(this->edit);
     delete this->User;
     delete this->timer;
     delete this->ui;
@@ -66,11 +63,9 @@ UserinfoForm::~UserinfoForm()
 
 void UserinfoForm::ChangeUser(WikiUser *user)
 {
-    if (user == NULL)
-    {
+    if (user == nullptr)
         throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
-    }
-    if (this->User != NULL)
+    if (this->User != nullptr)
     {
         delete this->User;
     }
@@ -79,16 +74,8 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Retrieve info");
-    if (this->edit != NULL)
-    {
-        this->edit->DecRef();
-        this->edit = NULL;
-    }
-    if (this->qContributions != NULL)
-    {
-        this->qContributions->DecRef();
-        this->qContributions = NULL;
-    }
+    GC_DECREF(this->edit);
+    GC_DECREF(this->qContributions);
     while (this->ui->tableWidget->rowCount() > 0)
     {
         this->ui->tableWidget->removeRow(0);
@@ -123,17 +110,17 @@ void UserinfoForm::on_pushButton_clicked()
 
 void UserinfoForm::OnTick()
 {
-    if (this->edit != NULL)
+    if (this->edit != nullptr)
     {
         if (this->edit->IsPostProcessed())
         {
             MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
             this->edit->DecRef();
-            this->edit = NULL;
+            this->edit = nullptr;
         }
         return;
     }
-    if (this->qContributions == NULL)
+    if (this->qContributions == nullptr)
     {
         this->timer->stop();
         return;
@@ -250,6 +237,6 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->RevID = revid;
     this->edit->IncRef();
     QueryPool::HugglePool->PostProcessEdit(this->edit);
-    MainWindow::HuggleMain->Browser->RenderHtml(Localizations::HuggleLocalizations->Localize("wait"));
+    MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(800);
 }

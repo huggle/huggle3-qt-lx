@@ -12,7 +12,6 @@
 #define EDITQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -20,8 +19,6 @@
 #include <QString>
 #include <QUrl>
 #include "apiquery.hpp"
-#include "mainwindow.hpp"
-#include "history.hpp"
 
 namespace Huggle
 {
@@ -35,6 +32,7 @@ namespace Huggle
             ~EditQuery();
             void Process();
             bool IsProcessed();
+            bool InsertTargetToWatchlist = false;
             //! Page that is going to be edited
             QString Page;
             //! Text a page will be replaced with

@@ -30,8 +30,6 @@
 namespace Huggle
 {
     class WikiEdit;
-    class WikiUser;
-    class Query;
     class ApiQuery;
 
     //! Generic requests that are frequently issued to wiki
@@ -43,6 +41,8 @@ namespace Huggle
         void DeveloperError();
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
+         * This function can be only used to check the results of query that was created in order to
+         * retrieve contents of a wiki page.
          * \param query
          * \param failed In case the query has failed, this will be set to true
          * \param ts pointer where timestamp string should be stored (optional)
@@ -52,8 +52,9 @@ namespace Huggle
          * \param reason if there is a failure this is a number of error that happened
          * \return Text of wiki page or error message
          */
-        QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = NULL, QString *comment = NULL,
-                                         QString *user = NULL, int *revid = NULL, int *reason = NULL);
+        QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
+                                         QString *user = nullptr, int *revid = nullptr, int *reason = nullptr,
+                                         QString *title = nullptr);
         ApiQuery *RetrieveWikiPageContents(QString page, bool parse = false);
         QString ShrinkText(QString text, int size, bool html = true);
     }

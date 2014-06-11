@@ -57,33 +57,35 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     Localizations::HuggleLocalizations = new Localizations();
-    Localizations::HuggleLocalizations->LocalInit("en");
-    Localizations::HuggleLocalizations->LocalInit("ar");
-    Localizations::HuggleLocalizations->LocalInit("bg");
-    Localizations::HuggleLocalizations->LocalInit("bn");
-    Localizations::HuggleLocalizations->LocalInit("cz");
-    Localizations::HuggleLocalizations->LocalInit("es");
-    Localizations::HuggleLocalizations->LocalInit("de");
-    Localizations::HuggleLocalizations->LocalInit("fa");
-    Localizations::HuggleLocalizations->LocalInit("fr");
-    Localizations::HuggleLocalizations->LocalInit("hi");
-    Localizations::HuggleLocalizations->LocalInit("it");
-    Localizations::HuggleLocalizations->LocalInit("ja");
-    Localizations::HuggleLocalizations->LocalInit("ka");
-    Localizations::HuggleLocalizations->LocalInit("km");
-    Localizations::HuggleLocalizations->LocalInit("kn");
-    Localizations::HuggleLocalizations->LocalInit("ko");
-    Localizations::HuggleLocalizations->LocalInit("ml");
-    Localizations::HuggleLocalizations->LocalInit("mr");
-    Localizations::HuggleLocalizations->LocalInit("nl");
-    Localizations::HuggleLocalizations->LocalInit("no");
-    Localizations::HuggleLocalizations->LocalInit("oc");
-    Localizations::HuggleLocalizations->LocalInit("or");
-    Localizations::HuggleLocalizations->LocalInit("pt");
-    Localizations::HuggleLocalizations->LocalInit("pt-BR");
-    Localizations::HuggleLocalizations->LocalInit("ru");
-    Localizations::HuggleLocalizations->LocalInit("sv");
-    Localizations::HuggleLocalizations->LocalInit("zh");
+    Localizations::HuggleLocalizations->LocalInit("en"); // English
+    Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
+    Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
+    Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
+    Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
+    Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
+    Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
+    Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
+    Localizations::HuggleLocalizations->LocalInit("fr"); // French
+    Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
+    Localizations::HuggleLocalizations->LocalInit("it"); // Italian
+    Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
+    Localizations::HuggleLocalizations->LocalInit("ka"); // ?
+    Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
+    Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
+    Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
+    Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanese
+    Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
+    Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
+    Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
+    Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
+    Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
+    Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
+    Localizations::HuggleLocalizations->LocalInit("or"); // Oriya
+    Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
+    Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
+    Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
+    Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
+    Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     HTML();
     return 0;
 }

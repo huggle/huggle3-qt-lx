@@ -8,10 +8,11 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "processlist.hpp"
 #include "exception.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
+#include "processlist.hpp"
 #include "ui_processlist.h"
 
 using namespace Huggle;
@@ -21,10 +22,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(4);
     QStringList header;
-    header << Huggle::Localizations::HuggleLocalizations->Localize("id")
-           << Huggle::Localizations::HuggleLocalizations->Localize("type")
-           << Huggle::Localizations::HuggleLocalizations->Localize("target")
-           << Huggle::Localizations::HuggleLocalizations->Localize("status");
+    header << _l("id") << _l("type") << _l("target") << _l("status");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -53,9 +51,9 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
 
 void ProcessList::InsertQuery(Query *query)
 {
-    if (query == NULL)
+    if (query == nullptr)
     {
-        throw new Exception("NULL query");
+        throw new Huggle::Exception("NULL query");
     }
     int size = this->ui->tableWidget->rowCount();
     this->ui->tableWidget->insertRow(size);

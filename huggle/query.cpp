@@ -15,21 +15,17 @@
 using namespace Huggle;
 
 unsigned int Query::LastID = 0;
-QNetworkAccessManager *Query::NetworkManager = NULL;
+QNetworkAccessManager *Query::NetworkManager = nullptr;
 
 Query::Query()
 {
-    this->Result = NULL;
     this->Type = QueryNull;
     this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
-    this->callback = NULL;
     this->HiddenQuery = false;
-    this->Dependency = NULL;
     this->Timeout = 60;
-    this->CallbackResult = NULL;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;
 }
@@ -37,11 +33,10 @@ Query::Query()
 Query::~Query()
 {
     delete this->Result;
-    if (this->CallbackResult != NULL)
+    if (this->CallbackResult != nullptr)
     {
-        throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
+        throw new Huggle::Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
     }
-    this->Result = NULL;
 }
 
 bool Query::IsProcessed()
@@ -61,10 +56,9 @@ bool Query::IsProcessed()
             return false;
         }
         // query is timed out
-        if (this->Result == NULL)
-        {
+        if (this->Result == nullptr)
             this->Result = new QueryResult();
-        }
+
         this->Kill();
         this->Result->Failed = true;
         this->Result->ErrorMessage = "Timed out";
@@ -92,17 +86,10 @@ QString Query::QueryTypeToString()
     return "Unknown";
 }
 
-QString Query::QueryTargetToString()
-{
-    return "Invalid target";
-}
-
 QString Query::QueryStatusToString()
 {
-    if (this->CustomStatus != "")
-    {
+    if (this->CustomStatus.size())
         return CustomStatus;
-    }
 
     switch (this->Status)
     {
@@ -113,13 +100,9 @@ QString Query::QueryStatusToString()
         case StatusProcessing:
             return "Processing";
         case StatusInError:
-            if (this->Result != NULL)
-            {
-                if (this->Result->Failed && this->Result->ErrorMessage != "")
-                {
-                    return "In error: " + this->Result->ErrorMessage;
-                }
-            }
+            if (this->Result != nullptr && this->Result->Failed && !this->Result->ErrorMessage.isEmpty())
+                return "In error: " + this->Result->ErrorMessage;
+
             return "InError";
     }
     return "Unknown";
@@ -127,30 +110,20 @@ QString Query::QueryStatusToString()
 
 void Query::ProcessCallback()
 {
-    if (this->callback != NULL)
+    if (this->callback != nullptr)
     {
         this->RegisterConsumer("delegate");
-        this->CallbackResult = this->callback(this);
+        this->callback(this);
     }
-}
-
-unsigned int Query::QueryID()
-{
-    return this->ID;
 }
 
 bool Query::IsFailed()
 {
-    if (this->Result != NULL)
-    {
-        if (this->Result->Failed)
-        {
-            return true;
-        }
-    }
-    if (this->Status == Huggle::StatusInError)
-    {
+    if (this->Result != nullptr && this->Result->Failed)
         return true;
-    }
+
+    if (this->Status == Huggle::StatusInError)
+        return true;
+
     return false;
 }

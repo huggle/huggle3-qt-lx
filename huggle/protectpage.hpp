@@ -40,7 +40,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit ProtectPage(QWidget *parent = 0);
+            explicit ProtectPage(QWidget *parent = nullptr);
             ~ProtectPage();
             /*!
              * \brief set a page that is supposed to be protected, this needs to be called by owner who created this form

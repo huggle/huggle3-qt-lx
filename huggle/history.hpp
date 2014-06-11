@@ -18,8 +18,13 @@
 #endif
 
 #include <QString>
+#include <QTimer>
 #include <QList>
 #include <QDockWidget>
+#include "apiquery.hpp"
+#include "editquery.hpp"
+#include "historyitem.hpp"
+#include "revertquery.hpp"
 
 namespace Ui
 {
@@ -28,37 +33,13 @@ namespace Ui
 
 namespace Huggle
 {
-    //! Types of history items
-    enum HistoryType
-    {
-        HistoryUnknown,
-        HistoryEdit,
-        HistoryRollback,
-        HistoryMessage
-    };
-
-    //! History consist of these items
-    class HistoryItem
-    {
-        public:
-            static QString TypeToString(HistoryType type);
-
-            HistoryItem();
-            HistoryItem(const HistoryItem &item);
-            HistoryItem(HistoryItem * item);
-            //! Unique ID of this item
-            int ID;
-            HistoryItem *UndoDependency;
-            QString UndoRevBaseTime;
-            QString Result;
-            QString Target;
-            //! Type of item
-            HistoryType Type;
-    };
+    class ApiQuery;
+    class EditQuery;
+    class HistoryItem;
+    class RevertQuery;
 
     /// \todo It should be possible to go back in history to review what you have you done
     /// currently nothing happens when you click on history items
-    /// \todo Function to revert your own changes
     /// \todo Option to remove the items / trim them etc so that operating memory is not cluttered by these
 
     //! History of actions done by user
@@ -72,12 +53,25 @@ namespace Huggle
             ~History();
             void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
-            void Prepend(HistoryItem item);
-            void Refresh();
-            QList<HistoryItem> Items;
-            static int Last;
+            void Prepend(HistoryItem *item);
+            QList<HistoryItem*> Items;
+
+        private slots:
+            void ContextMenu(const QPoint& position);
+            void Tick();
+            void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
+            void Fail();
+            QTimer *timerRetrievePageInformation;
+            HistoryItem *RevertingItem = nullptr;
+            //! This is a query we need to use to retrieve our own edit before we undo it
+            ApiQuery *qEdit = nullptr;
+            //! This is for welcome message that is used to replace a talk page
+            EditQuery *qTalk = nullptr;
+            //! Used to revert edits we made
+            RevertQuery *qSelf = nullptr;
+            int CurrentItem = -200;
             Ui::History *ui;
     };
 }

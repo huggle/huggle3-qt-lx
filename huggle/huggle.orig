@@ -123,7 +123,10 @@ SOURCES += main.cpp\
     querypool.cpp \
     wikiutil.cpp \
     reloginform.cpp \
-    loadingform.cpp
+    loadingform.cpp \
+    historyitem.cpp \
+    gc_thread.cpp \
+    huggleoption.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -198,7 +201,12 @@ HEADERS  += mainwindow.hpp \
     querypool.hpp \
     wikiutil.hpp \
     reloginform.hpp \
-    loadingform.hpp
+    loadingform.hpp \
+    historyitem.hpp \
+    gc_thread.hpp \
+    projectconfiguration.hpp \
+    userconfiguration.hpp \
+    huggleoption.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

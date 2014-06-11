@@ -24,6 +24,7 @@ namespace Ui
 
 namespace Huggle
 {
+    //! Relogin form used to login back to mediawiki when session is removed
     class ReloginForm : public QDialog
     {
             Q_OBJECT
@@ -33,7 +34,6 @@ namespace Huggle
 
         private slots:
             void on_pushButton_clicked();
-
             void on_pushButton_2_clicked();
 
         private:

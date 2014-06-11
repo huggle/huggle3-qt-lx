@@ -23,7 +23,6 @@
 #include "iextension.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
-#include "mainwindow.hpp"
 
 namespace Huggle
 {

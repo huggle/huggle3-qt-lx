@@ -8,8 +8,9 @@ Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other Wikimedi
 Building
 =========
 
-Libraries you need to have to build:
+Libraries and tools you need to have to build:
 * GCC (gcc g++ make)
+* [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
 * QT4 sdk (libqt4-dev libqt4-webkit libqt4-network qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
@@ -31,36 +32,31 @@ Note in case you don't have power shell you need to do these 2 steps before you 
 
 Linux
 -------------
-
 * checkout this repository
 * cd REPO/huggle, execute
 
 ```sh
-./configure
+./configure --qt4 #you can use --qt5 in case you have it
+cd huggle_release
 make
 sudo make install
 ```
 
-Fedora users may need to use ```./configure --skip-checks --qt4 --qmake /usr/bin/qmake-qt4``` if it can't find qmake by itself.
-
 MacOS
 ------------
-* Install homebrew at http://brew.sh/
-* Install Qt:
-```sh
-brew install qt
-```
-* Checkout this repository and execute
-```sh
-./configure --no-breakpad
-make
-open huggle.app
-```
+https://github.com/huggle/huggle3-qt-lx/wiki/Guide-to-Mac-Building
 
 Python
 ------------
 To enable python engine you need to:
 
+On linux / mac:
+run ./configure with --python option, for example
+```
+./configure --qt5 --python
+```
+
+On windows:
 * open huggle.pro and uncomment / add python library
 * open definitions.hpp and uncomment #define PYTHONENGINE
 

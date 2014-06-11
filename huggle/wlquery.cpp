@@ -12,6 +12,7 @@
 #include <QtNetwork>
 #include <QUrl>
 #include "configuration.hpp"
+#include "syslog.hpp"
 using namespace Huggle;
 
 WLQuery::WLQuery()

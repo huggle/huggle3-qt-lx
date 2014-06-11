@@ -54,12 +54,12 @@ namespace Huggle
             bool RetrievingEdit;
             Ui::HistoryForm *ui;
             WikiEdit* CurrentEdit;
-            ApiQuery *query;
+            ApiQuery *query = nullptr;
             int PreviouslySelectedRow;
             int SelectedRow;
             WikiEdit* RetrievedEdit;
             //! This timer is used to check a query status
-            QTimer *t1;
+            QTimer *t1 = nullptr;
     };
 }
 

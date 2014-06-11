@@ -29,60 +29,12 @@ HuggleQueueItemLabel::~HuggleQueueItemLabel()
 void HuggleQueueItemLabel::SetName(QString name)
 {
     this->ui->label_2->setText(name);
-    if (this->Page != NULL)
+    if (this->Page != nullptr)
     {
-        switch (this->Page->Page->GetNS())
-        {
-            case MediaWikiNS_Main:
-                break;
-            case MediaWikiNS_Talk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #82E682; }");
-                break;
-            case MediaWikiNS_Project:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #6699FF; }");
-                break;
-            case MediaWikiNS_ProjectTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #6600FF; }");
-                break;
-            case MediaWikiNS_User:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF99FF; }");
-                break;
-            case MediaWikiNS_UserTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #CC66FF; }");
-                break;
-            case MediaWikiNS_Help:
-            case MediaWikiNS_Mediawiki:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFFCC; }");
-                break;
-            case MediaWikiNS_HelpTalk:
-            case MediaWikiNS_MediawikiTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFCC66; }");
-                break;
-            case MediaWikiNS_Category:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6699; }");
-                break;
-            case MediaWikiNS_CategoryTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF0066; }");
-                break;
-            case MediaWikiNS_File:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
-                break;
-            case MediaWikiNS_FileTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF6600; }");
-                break;
-            case MediaWikiNS_Portal:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FFFF66; }");
-                break;
-            case MediaWikiNS_PortalTalk:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : #FF9900; }");
-                break;
-            case MediaWikiNS_Special:
-                this->ui->label_2->setStyleSheet("QLabel { background-color : red; }");
-                break;
-        }
-
+        int id = this->Page->Page->GetNS()->GetID();
+        if (id != 0)
+            this->ui->label_2->setStyleSheet("QLabel { background-color : #" + getColor(id) + "; }");
         // change the icon according to edit type (descending priority)
-
         if (this->Page->OwnEdit)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
@@ -167,6 +119,7 @@ void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
     if (this->ParentQueue->Items.contains(this))
     {
         this->ParentQueue->Items.removeAll(this);
+        this->ParentQueue->RedrawTitle();
     }
     this->ParentQueue->Delete(this, qi);
 }
@@ -177,4 +130,17 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     {
         this->Process();
     }
+}
+
+QString HuggleQueueItemLabel::getColor(int id)
+{
+    if (this->buffer.contains(id))
+        return this->buffer[id];
+
+    // let's create some hash color from the id
+    QString color = QString(QCryptographicHash::hash(QString::number(id).toUtf8(), QCryptographicHash::Md5).toHex());
+    if (color.length() > 6)
+        color = color.mid(0, 6);
+    this->buffer.insert(id, color);
+    return color;
 }

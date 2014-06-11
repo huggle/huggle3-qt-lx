@@ -16,12 +16,14 @@
   <string name="ok">OK</string>
   <string name="remove">Remover</string>
   <string name="rename">Renomear</string>
+  <string name="result">Resultado</string>
   <string name="restorewindow">Restaurar</string>
   <string name="save">Gravar</string>
   <string name="selectfile">Selecionar...</string>
   <string name="yes">Sim</string>
   <string name="agf">Reverter como edição de boa fé com motivo personalizado</string>
   <string name="import">Importar da configuração global</string>
+  <string name="status">Estado</string>
   <string name="about-contributors">Colaboradores:</string>
   <string name="block-title">Bloquear {0}</string>
   <string name="block-reason">Razão:</string>
@@ -118,13 +120,12 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-start">Entrar</string>
-  <string name="login-translate">Traduzir...</string>
+  <string name="login-translate" fuzzy="true">Traduzir...</string>
   <string name="login-captchatitle">Captcha necessário para entrar na conta</string>
-  <string name="login-progress-start">A entrar na conta...</string>
+  <string name="login-progress-start" fuzzy="true">A entrar na conta...</string>
   <string name="login-progress-language">A atualizar os ficheiros de mensagens...</string>
   <string name="login-progress-global">A verificar a configuração global...</string>
   <string name="login-progress-config">A verificar a configuração...</string>
-  <string name="login-progress-userlist">A verificar a lista de usuários...</string>
   <string name="login-progress-whitelist">A receber a lista branca de usuários...</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
   <string name="login-error-age">Para usar o Huggle no projeto que escolheu é necessário ter uma conta de usuário criada à pelo menos {0} dias.</string>
@@ -171,7 +172,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="main-queue-next">Ver próxima edição a rever na fila</string>
   <string name="main-queue-trim">Remover edições antigas da fila...</string>
   <string name="main-queue-clear">Remover todas as edições da fila atual</string>
-  <string name="main-queue-count">{0} itens</string>
+  <string name="main-queue-count" fuzzy="true">{0} itens</string>
   <string name="main-queue-query">A executar...</string>
   <string name="main-queue-reset">Reinicializar</string>
   <string name="main-queue-clearall">Remover edições de todas as filas</string>
@@ -193,18 +194,18 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="main-page-viewlatest">Ver a última edição</string>
   <string name="main-page-history">Carregar história</string>
   <string name="main-page-historypage">Mostrar página da história</string>
-  <string name="main-page-edit">Editar...</string>
+  <string name="main-page-edit" fuzzy="true">Editar...</string>
   <string name="main-page-tag">Marcar esta página com uma predefinição...</string>
-  <string name="main-page-reqdeletion">Propor para eliminar</string>
-  <string name="main-page-reqprotection">Pedir proteção</string>
+  <string name="main-page-reqdeletion" fuzzy="true">Propor para eliminar</string>
+  <string name="main-page-reqprotection" fuzzy="true">Pedir proteção</string>
   <string name="main-page-watch">Vigiar</string>
   <string name="main-page-unwatch">Deixar de vigiar</string>
   <string name="main-page-purge">Atualizar</string>
   <string name="main-page-patrol">Marcar como patrulhada</string>
   <string name="main-page-move">Mover...</string>
-  <string name="main-page-protect">Proteger...</string>
-  <string name="main-page-delete">Eliminar...</string>
-  <string name="main-page-restore">Restaurar esta versão</string>
+  <string name="main-page-protect" fuzzy="true">Proteger...</string>
+  <string name="main-page-delete" fuzzy="true">Eliminar...</string>
+  <string name="main-page-restore" fuzzy="true">Restaurar esta versão</string>
   <string name="main-user-info">Mostrar informações do usuário</string>
   <string name="main-user-ignore">Ignorar edições deste usuário</string>
   <string name="main-user-unignore">Deixar de ignorar edições deste usuário</string>
@@ -329,6 +330,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="report-duplicate">O usuário já foi reportado aos administradores</string>
   <string name="report-fail">Não foi possível reportar \'{0}\' aos administradores</string>
   <string name="report-progress">A reportar \'{0}\'...</string>
+  <string name="report-done">Reportado</string>
   <string name="revert-confirm-ignored">Reverter edição do usuário \'{0}\' da lista branca?</string>
   <string name="revert-confirm-multiple">Vai reverter várias edições do usuário \'{0}\'. Continuar?</string>
   <string name="revert-confirm-page">Reverter a edição na página ignorada \'{0}\'?</string>
@@ -382,6 +384,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="update-download">Atualizar</string>
   <string name="update-progress">A descarregar a nova versão...</string>
   <string name="update-error">Não foi possível descarregar a nova versão.</string>
+  <string name="userinfo-generic">Informação de utilizador</string>
   <string name="userinfo-title">Informações sobre o usuário \'{0}\'</string>
   <string name="userinfo-anonymous">Anónimo:</string>
   <string name="userinfo-ignored">Na lista branca:</string>
@@ -446,11 +449,11 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="reqprotection-duplicate">A proteção já foi requisitada</string>
   <string name="reqprotection-fail">Não foi possível pedir a proteção de \'{0}\'</string>
   <string name="reqprotection-progress">A fazer o pedido de proteção de \'{0}\'...</string>
-  <string name="speedy-fail">Não foi possível marcar \'{0}\' para eliminação rápida</string>
-  <string name="speedy-progress">A marcar \'{0}\' para eliminação rápida...</string>
-  <string name="warnlog-fail">Não foi possível receber o registo de avisos de \'{0}\'</string>
-  <string name="warnlog-none">\'{0}\' não tem avisos do Huggle na pág. de discussão</string>
-  <string name="warnlog-progress">A receber o registo de avisos de \'{0}\'...</string>
+  <string name="speedy-fail" fuzzy="true">Não foi possível marcar \'{0}\' para eliminação rápida</string>
+  <string name="speedy-progress" fuzzy="true">A marcar \'{0}\' para eliminação rápida...</string>
+  <string name="warnlog-fail" fuzzy="true">Não foi possível receber o registo de avisos de \'{0}\'</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' não tem avisos do Huggle na pág. de discussão</string>
+  <string name="warnlog-progress" fuzzy="true">A receber o registo de avisos de \'{0}\'...</string>
   <string name="usermessage-duplicate">Já existe uma mensagem sobre o mesmo assunto na página de discussão do usuário</string>
   <string name="usermessage-fail">Não foi possível enviar a mensagem a \'{0}\'</string>
   <string name="usermessage-progress">A enviar a mensagem a \'{0}\'...</string>
@@ -461,4 +464,5 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="warn-recent">O usuário já foi avisado à menos de {0} segundos atrás</string>
   <string name="warn-fail">Não foi possível avisar \'{0}\'</string>
   <string name="warn-progress">A avisar \'{0}\'...</string>
+  <string name="updating-wl">A actualizar a lista branca...</string>
 </resources>

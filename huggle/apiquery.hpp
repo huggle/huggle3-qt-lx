@@ -20,7 +20,7 @@
 
 #include <QString>
 #include <QObject>
-#include <QtNetwork/QtNetwork>
+#include <QtNetwork>
 #include <QThread>
 #include "query.hpp"
 #include "revertquery.hpp"
@@ -28,9 +28,6 @@
 namespace Huggle
 {
     class RevertQuery;
-    class Exception;
-    class Core;
-    class Configuration;
 
     enum Action
     {
@@ -44,6 +41,7 @@ namespace Huggle
         ActionUndelete,
         ActionBlock,
         ActionPatrol,
+        ActionReview, // FlaggedRevs
         ActionProtect,
         ActionEdit
     };
@@ -78,18 +76,18 @@ namespace Huggle
             //! Returns a type of query as a string
             QString QueryTypeToString();
             //! Whether the query will submit parameters using POST data
-            bool UsingPOST;
+            bool UsingPOST = false;
             //! This is a requested format in which the result should be written in
             Format RequestFormat;
             //! This is an url of api request, you probably don't want to change it unless
             //! you want to construct whole api request yourself
-            QString URL;
+            QString URL = "";
             //! Parameters for action, for example page title
-            QString Parameters;
+            QString Parameters = "";
             //! This is optional property which contains a label of target this query is for
-            QString Target;
+            QString Target = "none";
             //! You can change this to url of different wiki than a project
-            QString OverrideWiki;
+            QString OverrideWiki = "";
         private slots:
             void ReadData();
             void Finished();
@@ -105,6 +103,33 @@ namespace Huggle
             //! Reply from qnet
             QNetworkReply *reply;
     };
+
+    inline bool ApiQuery::FormatIsCurrentlySupported()
+    {
+        // other formats will be supported later
+        return (this->RequestFormat == XML);
+    }
+
+    inline void ApiQuery::SetAction(const QString action)
+    {
+        this->ActionPart = action;
+    }
+
+    inline void ApiQuery::Kill()
+    {
+        if (this->reply != NULL)
+            this->reply->abort();
+    }
+
+    inline QString ApiQuery::QueryTargetToString()
+    {
+        return this->Target;
+    }
+
+    inline QString ApiQuery::QueryTypeToString()
+    {
+        return "ApiQuery (" + this->ActionPart + ")";
+    }
 }
 
 #endif // APIQUERY_H

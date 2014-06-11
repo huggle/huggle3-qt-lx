@@ -9,11 +9,14 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.hpp"
+#include "configuration.hpp"
 #include "generic.hpp"
 #include "core.hpp"
 #include "collectable.hpp"
 #include "querypool.hpp"
+#include "syslog.hpp"
 #include "mediawiki.hpp"
+
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
 QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
@@ -21,7 +24,7 @@ QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
 WikiEdit::WikiEdit()
 {
     this->Bot = false;
-    this->User = NULL;
+    this->User = nullptr;
     this->Minor = false;
     this->NewPage = false;
     this->Size = 0;
@@ -35,10 +38,10 @@ WikiEdit::WikiEdit()
     this->TrustworthEdit = false;
     this->RollbackToken = "";
     this->PostProcessing = false;
-    this->qDifference = NULL;
-    this->qTalkpage = NULL;
-    this->qText = NULL;
-    this->qUser = NULL;
+    this->qDifference = nullptr;
+    this->qTalkpage = nullptr;
+    this->qText = nullptr;
+    this->qUser = nullptr;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
@@ -47,12 +50,12 @@ WikiEdit::WikiEdit()
     this->IsRevert = false;
     this->TPRevBaseTime = "";
     this->PatrolToken = "";
-    this->Previous = NULL;
+    this->Previous = nullptr;
     // this is a problem we can't do this if we don't know the datetime because then the older edits
     // become newer and preflight checks will slap us for no reason
     // this->Time = QDateTime::currentDateTime();
     this->Time = GetUnknownEditTime();
-    this->Next = NULL;
+    this->Next = nullptr;
     this->ProcessingByWorkerThread = false;
     this->ProcessedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
@@ -72,13 +75,13 @@ WikiEdit::~WikiEdit()
         this->Next->Previous = this->Previous;
     } else
     {
-        if (this->Previous != NULL)
+        if (this->Previous != nullptr)
         {
-            this->Previous->Next = NULL;
+            this->Previous->Next = nullptr;
         }
-        if (this->Next != NULL)
+        if (this->Next != nullptr)
         {
-            this->Next->Previous = NULL;
+            this->Next->Previous = nullptr;
         }
     }
     GC_DECNAMEDREF(this->qDifference, HUGGLECONSUMER_WIKIEDIT);
@@ -150,11 +153,11 @@ bool WikiEdit::FinalizePostProcessing()
                 this->User->Groups.append(gn);
                 x++;
             }
-            this->Score += (Configuration::HuggleConfiguration->ProjectConfig_ScoreFlag * this->User->Groups.count());
+            this->Score += (Configuration::HuggleConfiguration->ProjectConfig->ScoreFlag * this->User->Groups.count());
             if (this->User->Groups.contains("bot"))
             {
                 // if it's a flagged bot we likely don't need to watch them
-                this->Score += Configuration::HuggleConfiguration->ProjectConfig_BotScore;
+                this->Score += Configuration::HuggleConfiguration->ProjectConfig->BotScore;
             }
             // let's delete it now
             this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
@@ -331,20 +334,20 @@ void WikiEdit::ProcessWords()
     {
         text = this->Page->Contents.toLower();
     }
-    while (xx<Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.count())
     {
-        QString w = Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(xx).word;
         if (text.contains(w))
         {
-            this->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreParts.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
     }
     xx = 0;
-    while (xx<Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.count())
+    while (xx<Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.count())
     {
-        QString w = Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.at(xx).word;
+        QString w = Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(xx).word;
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
         {
@@ -384,7 +387,7 @@ void WikiEdit::ProcessWords()
         }
         if (found)
         {
-            this->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.at(xx).score;
+            this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(xx).score;
             ScoreWords.append(w);
         }
         xx++;
@@ -472,16 +475,6 @@ QString WikiEdit::GetFullUrl()
             "&diff=" + QString::number(this->RevID);
 }
 
-QDateTime WikiEdit::GetUnknownEditTime()
-{
-    return QDateTime::fromMSecsSinceEpoch(0);
-}
-
-bool WikiEdit::IsPostProcessed()
-{
-    return (this->Status == StatusPostProcessed);
-}
-
 QMutex ProcessorThread::EditLock(QMutex::Recursive);
 QList<WikiEdit*> ProcessorThread::PendingEdits;
 
@@ -520,22 +513,22 @@ void ProcessorThread::Process(WikiEdit *edit)
     // score
     if (edit->User->IsIP())
     {
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_IPScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->IPScore;
     }
     if (edit->Bot)
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_BotScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->BotScore;
     if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ForeignUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ForeignUser;
     else if (edit->Page->IsUserpage())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreUser;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreUser;
     if (edit->Page->IsTalk())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreTalk;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreTalk;
     if (edit->Size > 1200 || edit->Size < -1200)
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_ScoreChange;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreChange;
     if (edit->Page->IsUserpage())
         IgnoreWords = true;
     if (edit->User->IsWhitelisted())
-        edit->Score += Configuration::HuggleConfiguration->ProjectConfig_WhitelistScore;
+        edit->Score += Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore;
     edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
         edit->ProcessWords();

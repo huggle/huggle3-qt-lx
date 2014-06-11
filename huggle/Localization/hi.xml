@@ -117,13 +117,12 @@
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-start">लॉग इन</string>
-  <string name="login-translate">अनुवाद...</string>
+  <string name="login-translate" fuzzy="true">अनुवाद...</string>
   <string name="login-captchatitle">लॉग इन के लिए कैप्चा की आवश्यकता है</string>
-  <string name="login-progress-start">लॉग इन कर रहा है...</string>
+  <string name="login-progress-start" fuzzy="true">लॉग इन कर रहा है...</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
   <string name="login-progress-config">समाकृति पृष्ठों की जाँच कर रहा है...</string>
-  <string name="login-progress-userlist">प्रयोक्ता सूची की जाँच कर रहा है...</string>
   <string name="login-progress-whitelist">श्वेतसूची पुनः प्राप्त कर रहा है...</string>
   <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
   <string name="login-error-age">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम {0} दिन पुराना होना चाहिए।</string>
@@ -170,7 +169,7 @@
   <string name="main-queue-next">अगला</string>
   <string name="main-queue-trim">छँटाई</string>
   <string name="main-queue-clear">वर्तमान साफ करें</string>
-  <string name="main-queue-count">{0} वस्तुएँ</string>
+  <string name="main-queue-count" fuzzy="true">{0} वस्तुएँ</string>
   <string name="main-queue-query">जाँच शुरु...</string>
   <string name="main-queue-reset">फिर से स्थापित करें</string>
   <string name="main-queue-clearall">सब साफ करें</string>
@@ -192,18 +191,18 @@
   <string name="main-page-viewlatest">नवीनतम संशोधन देखें</string>
   <string name="main-page-history">पुन इतिहास प्राप्त करें</string>
   <string name="main-page-historypage">इतिहास पृष्ठ दिखाये</string>
-  <string name="main-page-edit">सम्पादन</string>
+  <string name="main-page-edit" fuzzy="true">सम्पादन</string>
   <string name="main-page-tag">टैग</string>
-  <string name="main-page-reqdeletion">हटाने के लिये बोले</string>
-  <string name="main-page-reqprotection">सुरक्षित करने के लिये कहें</string>
+  <string name="main-page-reqdeletion" fuzzy="true">हटाने के लिये बोले</string>
+  <string name="main-page-reqprotection" fuzzy="true">सुरक्षित करने के लिये कहें</string>
   <string name="main-page-watch">ध्यान दें</string>
   <string name="main-page-unwatch">निगरानी न रखें हुए</string>
   <string name="main-page-purge">पर्ज</string>
   <string name="main-page-patrol">पैट्रोल्ड मार्क करें</string>
   <string name="main-page-move">स्थानान्तरण...</string>
-  <string name="main-page-protect">सुरक्षित करें...</string>
-  <string name="main-page-delete">हटाएँ...</string>
-  <string name="main-page-restore">लेख के इस संस्करण को फिर से सहेजें</string>
+  <string name="main-page-protect" fuzzy="true">सुरक्षित करें...</string>
+  <string name="main-page-delete" fuzzy="true">हटाएँ...</string>
+  <string name="main-page-restore" fuzzy="true">लेख के इस संस्करण को फिर से सहेजें</string>
   <string name="main-user-info">सदस्य के बारे में सूचना देवें</string>
   <string name="main-user-ignore">उपेक्षित करें</string>
   <string name="main-user-unignore">अनुपेक्षित करें</string>
@@ -445,11 +444,11 @@
   <string name="reqprotection-duplicate">सुरक्षा पहले से ही अनुरोधित है</string>
   <string name="reqprotection-fail">\'{0}\' के लिए सुरक्षा अनुरोध नहीं किया</string>
   <string name="reqprotection-progress">\'{0}\' के लिए सुरक्षा अनुरोध कर रहा है...</string>
-  <string name="speedy-fail">\'{0}\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
-  <string name="speedy-progress">\'{0}\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
-  <string name="warnlog-fail">\'{0}\' के लिए चेतावनी लॉग पुनःप्राप्त करने में असफल</string>
-  <string name="warnlog-none">\'{0}\' को चेताया नहीं गया है</string>
-  <string name="warnlog-progress">\'{0}\' के लिए चेतावनी लॉग पुनःप्राप्त कर रहा है...</string>
+  <string name="speedy-fail" fuzzy="true">\'{0}\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
+  <string name="speedy-progress" fuzzy="true">\'{0}\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
+  <string name="warnlog-fail" fuzzy="true">\'{0}\' के लिए चेतावनी लॉग पुनःप्राप्त करने में असफल</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' को चेताया नहीं गया है</string>
+  <string name="warnlog-progress" fuzzy="true">\'{0}\' के लिए चेतावनी लॉग पुनःप्राप्त कर रहा है...</string>
   <string name="usermessage-duplicate">उसी बारे में सन्देश पहले से उपस्थित था</string>
   <string name="usermessage-fail">\'{0}\' को सन्देश नहीं भेजा</string>
   <string name="usermessage-progress">\'{0}\' को सन्देश भेज रहा है...</string>

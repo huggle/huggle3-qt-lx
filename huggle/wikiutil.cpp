@@ -18,12 +18,12 @@ using namespace Huggle;
 
 bool WikiUtil::IsRevert(QString Summary)
 {
-    if (Summary != "")
+    if (Summary.size() > 0)
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.at(xx)))
             {
                 return true;
             }
@@ -45,13 +45,13 @@ QString WikiUtil::MonthText(int n)
 
 RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
 {
-    if (_e == NULL)
-        throw new Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
-    if (_e->User == NULL)
-        throw new Exception("Object user was NULL in Core::Revert");
+    if (_e == nullptr)
+        throw new Huggle::Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
+    if (_e->User == nullptr)
+        throw new Huggle::Exception("Object user was NULL in Core::Revert");
     _e->RegisterConsumer("Core::RevertEdit");
-    if (_e->Page == NULL)
-        throw new Exception("Object page was NULL");
+    if (_e->Page == nullptr)
+        throw new Huggle::Exception("Object page was NULL");
 
     RevertQuery *query = new RevertQuery(_e);
     if (summary.length())
@@ -59,9 +59,9 @@ RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, boo
     query->MinorEdit = minor;
     QueryPool::HugglePool->AppendQuery(query);
     if (Configuration::HuggleConfiguration->EnforceManualSoftwareRollback)
-        query->UsingSR = true;
+        query->SetUsingSR(true);
     else
-        query->UsingSR = !rollback;
+        query->SetUsingSR(!rollback);
     if (keep)
         query->RegisterConsumer("keep");
     return query;
@@ -71,15 +71,16 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
                               Query *Dependency, bool NoSuffix, bool SectionKeep, bool autoremove,
                               QString BaseTimestamp, bool CreateOnly_, bool FreshOnly_)
 {
-    if (User == NULL)
+    if (User == nullptr)
     {
         Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
-        return NULL;
+        return nullptr;
     }
 
-    if (Title == "")
+    if (Title.isEmpty())
     {
         InsertSection = false;
+        SectionKeep = false;
     }
 
     Message *m = new Message(User, Text, Summary);
@@ -133,9 +134,9 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
     // retrieve a token
     EditQuery *eq = new EditQuery();
     eq->IncRef();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle))
+    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
     {
-        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
+        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     }
     eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
     eq->Page = page;
@@ -151,7 +152,7 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
 
 EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
 {
-    if (page == NULL)
+    if (page == nullptr)
     {
         throw Huggle::Exception("Invalid page (NULL)", "EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString"\
                                 " summary, bool minor, QString BaseTimestamp)");

@@ -13,8 +13,8 @@
 
 using namespace Huggle;
 
-HuggleFeed *HuggleFeed::PrimaryFeedProvider = NULL;
-HuggleFeed *HuggleFeed::SecondaryFeedProvider = NULL;
+HuggleFeed *HuggleFeed::PrimaryFeedProvider = nullptr;
+HuggleFeed *HuggleFeed::SecondaryFeedProvider = nullptr;
 
 HuggleFeed::HuggleFeed()
 {

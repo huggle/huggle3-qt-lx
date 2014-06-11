@@ -50,8 +50,17 @@ namespace Huggle
     class Exception
     {
         public:
+            /*!
+             * \brief ThrowSoftException Soft exceptions that crashes the application only in debugging mode
+             *This can be used in case you want to throw exception only when debugging the application because
+             *the exception itself is not critical enough to crash whole application to regular users
+             * \param Text
+             * \param Source
+             */
+            static void ThrowSoftException(QString Text, QString Source);
             static void InitBreakpad();
             static void ExitBreakpad();
+
             //! Error code
             int ErrorCode;
             //! Source

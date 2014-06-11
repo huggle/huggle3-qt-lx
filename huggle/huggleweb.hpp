@@ -35,13 +35,11 @@ namespace Huggle
     class WikiEdit;
     class WikiPage;
     class Resources;
-    class Exception;
 
     //! Web browser
     class HuggleWeb : public QFrame
     {
             Q_OBJECT
-
         public:
             explicit HuggleWeb(QWidget *parent = 0);
             ~HuggleWeb();

@@ -11,6 +11,7 @@
 #include "vandalnw.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "ui_vandalnw.h"
 #include "syslog.hpp"
 
@@ -58,11 +59,11 @@ void VandalNw::Connect()
     }
     if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
-        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("han-not"));
+        Huggle::Syslog::HuggleLogs->Log(_l("han-not"));
         return;
     } else
     {
-        this->Insert(Localizations::HuggleLocalizations->Localize("han-connecting"), HAN::MessageType_Info);
+        this->Insert(_l("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
         this->tm->start(200);
     }
@@ -217,7 +218,7 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
     this->Insert("<font color=orange>" + user + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username
                  + " (" + QString::number(edit->RevID) + ")" + "</font>", HAN::MessageType_User);
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() + 200);
-    if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+    if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
         // we need to delete older edits that we know and that is somewhere in queue
         if (Core::HuggleCore->Main != NULL)
@@ -413,9 +414,9 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text, HAN::MessageType type)
 {
-    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots)      ||
-        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser)     ||
-        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk))
+    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots)      ||
+        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser)     ||
+        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk))
           return;
     this->Text.prepend(text + "<br>");
     this->ui->textEdit->setHtml(this->Text);

@@ -92,6 +92,116 @@ namespace Huggle
             bool Ignore_UserSpace;
             bool IgnoreTalk;
     };
+
+    inline bool HuggleQueueFilter::getIgnoreMinor() const
+    {
+        return this->IgnoreMinor;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreMinor(bool value)
+    {
+        this->IgnoreMinor = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreUsers() const
+    {
+        return this->IgnoreUsers;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreUsers(bool value)
+    {
+        this->IgnoreUsers = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreWL() const
+    {
+        return this->IgnoreWL;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreWL(bool value)
+    {
+        this->IgnoreWL = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreIP() const
+    {
+        return this->IgnoreIP;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreIP(bool value)
+    {
+        this->IgnoreIP = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreBots() const
+    {
+        return this->IgnoreBots;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreBots(bool value)
+    {
+        this->IgnoreBots = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreNP() const
+    {
+        return this->IgnoreNP;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreNP(bool value)
+    {
+        this->IgnoreNP = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreFriends() const
+    {
+        return this->IgnoreFriends;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreReverts() const
+    {
+        return this->IgnoreReverts;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreReverts(bool value)
+    {
+        this->IgnoreReverts = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnore_UserSpace() const
+    {
+        return Ignore_UserSpace;
+    }
+
+    inline void HuggleQueueFilter::setIgnore_UserSpace(bool value)
+    {
+        Ignore_UserSpace = value;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreFriends(bool value)
+    {
+        this->IgnoreFriends = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreSelf() const
+    {
+        return this->IgnoreSelf;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreSelf(bool value)
+    {
+        this->IgnoreSelf = value;
+    }
+
+    inline bool HuggleQueueFilter::IsDefault() const
+    {
+        return this == HuggleQueueFilter::DefaultFilter;
+    }
+
+    inline bool HuggleQueueFilter::IsChangeable() const
+    {
+        return !this->IsDefault() && !this->ProjectSpecific;
+    }
 }
 
 #endif // HUGGLEQUEUEFILTER_H

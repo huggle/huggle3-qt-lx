@@ -55,6 +55,7 @@ HuggleTest::HuggleTest()
     Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     QFile f(":/test/wikipage/config.txt");
     f.open(QIODevice::ReadOnly);
+    Huggle::Configuration::HuggleConfiguration->Project = new Huggle::WikiSite("en", "en.wikipedia");
     Huggle::Configuration::HuggleConfiguration->Verbosity=10;
     Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
     f.close();
@@ -93,13 +94,13 @@ static void testTalkPageWarningParser(QString id, QDate date, int level)
 
 void HuggleTest::testCaseScores()
 {
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.clear();
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("suck", 60));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("ass", 60));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.clear();
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("suck", 60));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("ass", 60));
     Huggle::Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::GC::gc = new Huggle::GC();
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
@@ -181,6 +182,7 @@ void HuggleTest::testCaseScores()
 void HuggleTest::testCaseWikiUserCheckIP()
 {
     QVERIFY2(Huggle::WikiUser("10.0.0.1").IsIP(), "Invalid result for new WikiUser with username of 10.0.0.1, the result of IsIP() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("132.185.160.97").IsIP(), "Invalid result for new WikiUser with username of 132.185.160.97, the result of IsIP() was false, but should have been true");
     QVERIFY2(Huggle::WikiUser("150.30.0.56").IsIP(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsIP() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("355.2.0.1").IsIP() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsIP() was true, but should have been false");
     QVERIFY2((Huggle::WikiUser("Frank").IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");

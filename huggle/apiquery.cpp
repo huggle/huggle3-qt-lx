@@ -19,9 +19,9 @@ using namespace Huggle;
 
 void ApiQuery::ConstructUrl()
 {
-    if (!this->ActionPart.length())
-        throw new Exception("No action provided for api request");
-    if (!this->OverrideWiki.length())
+    if (this->ActionPart.isEmpty())
+        throw new Huggle::Exception("No action provided for api request");
+    if (this->OverrideWiki.isEmpty())
     {
         this->URL = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project)
                     + "api.php?action=" + this->ActionPart;
@@ -50,7 +50,7 @@ QString ApiQuery::ConstructParameterLessUrl()
     QString url;
     if (!this->ActionPart.length())
     {
-        throw new Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
+        throw new Huggle::Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
     }
     if (!this->OverrideWiki.size())
         url = Configuration::GetProjectScriptURL(Configuration::HuggleConfiguration->Project)
@@ -73,12 +73,6 @@ QString ApiQuery::ConstructParameterLessUrl()
     return url;
 }
 
-bool ApiQuery::FormatIsCurrentlySupported()
-{
-    // other formats will be supported later
-    return (this->RequestFormat == XML);
-}
-
 // TODO: move this function to RevertQuery
 void ApiQuery::FinishRollback()
 {
@@ -90,28 +84,14 @@ void ApiQuery::FinishRollback()
 ApiQuery::ApiQuery()
 {
     this->RequestFormat = XML;
-    this->URL = "";
     this->Type = QueryApi;
-    this->ActionPart = "";
-    this->Result = NULL;
-    this->Parameters = "";
-    this->UsingPOST = false;
-    this->Target = "none";
-    this->OverrideWiki = "";
 }
 
 ApiQuery::ApiQuery(Action a)
 {
     this->RequestFormat = XML;
-    this->URL = "";
     this->Type = QueryApi;
-    this->ActionPart = "";
-    this->Result = NULL;
-    this->Parameters = "";
-    this->UsingPOST = false;
     this->SetAction(a);
-    this->Target = "none";
-    this->OverrideWiki = "";
 }
 
 void ApiQuery::Finished()
@@ -123,7 +103,7 @@ void ApiQuery::Finished()
         this->Result->ErrorMessage = reply->errorString();
         this->Result->Failed = true;
         this->reply->deleteLater();
-        this->reply = NULL;
+        this->reply = nullptr;
         this->Status = StatusDone;
         return;
     }
@@ -132,7 +112,7 @@ void ApiQuery::Finished()
         FinishRollback();
     }
     this->reply->deleteLater();
-    this->reply = NULL;
+    this->reply = nullptr;
     if (!this->HiddenQuery)
         Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + this->URL, 6);
     this->Status = StatusDone;
@@ -221,26 +201,8 @@ void ApiQuery::SetAction(const Action action)
         case ActionPatrol:
             this->ActionPart = "patrol";
             return;
+        case ActionReview: // FlaggedRevs
+            this->ActionPart = "review";
+            return;
     }
-}
-
-void ApiQuery::SetAction(const QString action)
-{
-    this->ActionPart = action;
-}
-
-void ApiQuery::Kill()
-{
-    if (this->reply != NULL)
-        this->reply->abort();
-}
-
-QString ApiQuery::QueryTargetToString()
-{
-    return this->Target;
-}
-
-QString ApiQuery::QueryTypeToString()
-{
-    return "ApiQuery (" + this->ActionPart + ")";
 }

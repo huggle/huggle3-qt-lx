@@ -9,25 +9,65 @@
 //GNU General Public License for more details.
 
 #include "gc.hpp"
+#include "exception.hpp"
 
 using namespace Huggle;
 
-GC *GC::gc = NULL;
+GC *GC::gc = nullptr;
 
 Huggle::GC::GC()
 {
     this->Lock = new QMutex(QMutex::Recursive);
+#ifdef MTGC
+    this->gc_t = new GC_t();
+    // this is a background task
+    this->gc_t->start(QThread::LowestPriority);
+#else
+    this->gc_t = nullptr;
+#endif
 }
 
 Huggle::GC::~GC()
 {
     delete this->Lock;
+    delete this->gc_t;
 }
 
 void Huggle::GC::DeleteOld()
 {
     this->Lock->lock();
     int x=0;
+    if (this->list.count() > GC_LIMIT)
+    {
+        QList<Collectable*> copy(this->list);
+        this->Lock->unlock();
+        while(x < copy.count())
+        {
+            Collectable *q = copy.at(x);
+            q->Lock();
+            if (!q->IsManaged())
+            {
+                copy.removeAt(x);
+                // this is very unlikely to happen, so despite this
+                // is rather slow, it needs to be done
+                this->Lock->lock();
+                this->list.removeAll(q);
+                this->Lock->unlock();
+                delete q;
+                continue;
+            }
+            if (!q->SafeDelete())
+            {
+                q->Unlock();
+                x++;
+            } else
+            {
+                // we can remove it now because it's deleted
+                copy.removeAll(q);
+            }
+        }
+        return;
+    }
     while(x < this->list.count())
     {
         Collectable *q = this->list.at(x);
@@ -45,4 +85,44 @@ void Huggle::GC::DeleteOld()
         }
     }
     this->Lock->unlock();
+}
+
+void GC::Start()
+{
+#ifdef MTGC
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    if (this->gc_t->IsStopped())
+    {
+        delete this->gc_t;
+        this->gc_t = new GC_t();
+        this->gc_t->start(QThread::LowestPriority);
+    }
+#endif
+}
+
+void GC::Stop()
+{
+#ifdef MTGC
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    if (this->gc_t->IsRunning())
+    {
+        this->gc_t->Stop();
+    }
+#endif
+}
+
+bool GC::IsRunning()
+{
+#ifdef MTGC
+    if (this->gc_t == nullptr)
+        throw new Huggle::Exception("gc_t can't be NULL");
+
+    return (this->gc_t->IsRunning() || !this->gc_t->IsStopped());
+#else
+    return false;
+#endif
 }

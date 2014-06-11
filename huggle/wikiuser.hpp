@@ -18,15 +18,14 @@
 
 #include <QList>
 #include <QMutex>
+#include <QStringList>
+#include <QDateTime>
 #include <QString>
 #include <QRegExp>
-#include "huggleparser.hpp"
-#include "wikiedit.hpp"
+#include "wikisite.hpp"
 
 namespace Huggle
 {
-    class WikiEdit;
-
     //! User
     class WikiUser
     {
@@ -161,7 +160,28 @@ namespace Huggle
             QMutex *UserLock;
             bool Bot;
             bool IP;
+            WikiSite *Site;
     };
+
+    inline void WikiUser::Sanitize()
+    {
+        this->Username = this->Username.replace(" ", "_");
+    }
+
+    inline void WikiUser::ForceIP()
+    {
+        this->IP = true;
+    }
+
+    inline bool WikiUser::TalkPage_WasRetrieved()
+    {
+        return this->_talkPageWasRetrieved;
+    }
+
+    inline bool WikiUser::IsIP() const
+    {
+        return this->IP;
+    }
 }
 
 #endif // WIKIUSER_H

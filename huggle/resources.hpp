@@ -23,6 +23,7 @@
 
 namespace Huggle
 {
+    //! Embedded resource files
     class Resources
     {
         public:

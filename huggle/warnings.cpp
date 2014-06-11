@@ -13,6 +13,9 @@
 #include "mainwindow.hpp"
 #include "querypool.hpp"
 #include "generic.hpp"
+#include "localization.hpp"
+#include "hooks.hpp"
+#include "syslog.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;
@@ -29,32 +32,30 @@ PendingWarning::PendingWarning(Message *message, QString warning, WikiEdit *edit
     // we register a unique consumer here in case that multiple warnings pointer to same
     edit->RegisterConsumer("PendingWarning" + QString::number(gcid));
     this->Warning = message;
-    this->Query = NULL;
+    this->Query = nullptr;
 }
 
 PendingWarning::~PendingWarning()
 {
     this->RelatedEdit->UnregisterConsumer("PendingWarning" + QString::number(gcid));
-    if (this->Query != NULL)
-    {
+    if (this->Query != nullptr)
         this->Query->DecRef();
-    }
     this->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
 }
 
 PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report)
 {
     *Report = false;
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
-        throw new Huggle::Exception("WikiEdit *Edit must not be NULL",
+        throw new Huggle::Exception("WikiEdit *Edit must not be nullptr",
                                     "PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency, "\
                                     "WikiEdit *Edit, bool *Report)");
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {
         Generic::DeveloperError();
-        return NULL;
+        return nullptr;
     }
 
     // check if user wasn't changed and if was, let's update the info
@@ -62,38 +63,38 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     // get a template
     Edit->User->WarningLevel++;
 
-    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig_WarningLevel)
+    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig->WarningLevel)
     {
         // we should report this user instead
         if (Edit->User->IsReported)
         {
             // the user is already reported we don't need to do anything
-            return NULL;
+            return nullptr;
         }
 
-        if (!Configuration::HuggleConfiguration->ProjectConfig_AIV)
+        if (!Configuration::HuggleConfiguration->ProjectConfig->AIV)
         {
             // there is no AIV function for this wiki
             Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
                                            "supported on this wiki, you should block the user now");
-            return NULL;
+            return nullptr;
         }
 
         if (Generic::ReportPreFlightCheck())
         {
             *Report = true;
         }
-        return NULL;
+        return nullptr;
     }
 
     QString Template_ = WarningType + QString::number(Edit->User->WarningLevel);
     QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_);
 
-    if (MessageText_ == "")
+    if (!MessageText_.size())
     {
         // This is very rare error, no need to localize it
         Syslog::HuggleLogs->Log("There is no such warning template " + Template_);
-        return NULL;
+        return nullptr;
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
@@ -103,39 +104,39 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     switch (Edit->User->WarningLevel)
     {
         case 1:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
             break;
         case 2:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
             break;
         case 3:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
             break;
         case 4:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
             break;
     }
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsStandard)
+    if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsStandard)
     {
-        QDateTime d = QDateTime::currentDateTime();
+        QDateTime d = Configuration::HuggleConfiguration->ServerTime();
         HeadingText_ = WikiUtil::MonthText(d.date().month()) + " " + QString::number(d.date().year());
-    } else if (Configuration::HuggleConfiguration->ProjectConfig_Headings == HeadingsNone)
+    } else if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsNone)
     {
         HeadingText_ = "";
     }
 
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
     bool CreateOnly = false;
-    if (Edit->User->TalkPage_GetContents() == "")
+    if (Edit->User->TalkPage_GetContents().isEmpty())
     {
         CreateOnly = true;
     }
     PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
-                                                                  Configuration::HuggleConfiguration->UserConfig_SectionKeep, false,
+                                                                  Configuration::HuggleConfiguration->UserConfig->SectionKeep, false,
                                                                   Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
     return pw;
@@ -147,7 +148,7 @@ void Warnings::ResendWarnings()
     while (x < PendingWarning::PendingWarnings.count())
     {
         PendingWarning *warning = PendingWarning::PendingWarnings.at(x);
-        if (warning->Query != NULL)
+        if (warning->Query != nullptr)
         {
             // we are already getting talk page so we need to check if it finished here
             if (warning->Query->IsProcessed())
@@ -233,15 +234,12 @@ void Warnings::ResendWarnings()
                 // changed meanwhile again lol :D
                 warning->RelatedEdit->TPRevBaseTime = TPRevBaseTime;
                 bool Report_;
-                PendingWarning *ptr_warning_ = Warnings::WarnUser(warning->Template, NULL, warning->RelatedEdit, &Report_);
+                PendingWarning *ptr_warning_ = Warnings::WarnUser(warning->Template, nullptr, warning->RelatedEdit, &Report_);
                 if (Report_)
-                {
                     MainWindow::HuggleMain->DisplayReportUserWindow(warning->RelatedEdit->User);
-                }
-                if (ptr_warning_ != NULL)
-                {
+
+                if (ptr_warning_ != nullptr)
                     PendingWarning::PendingWarnings.append(ptr_warning_);
-                }
 
                 // we can delete this warning now because we created another one
                 PendingWarning::PendingWarnings.removeAt(x);
@@ -274,9 +272,9 @@ void Warnings::ResendWarnings()
             {
                 Syslog::HuggleLogs->DebugLog("Someone changed the content of " + warning->Warning->user->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
-                if (warning->Query != NULL)
+                if (warning->Query != nullptr)
                 {
-                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
+                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != nullptr");
                 }
                 warning->Query = new Huggle::ApiQuery();
                 warning->Query->SetAction(ActionQuery);
@@ -291,7 +289,7 @@ void Warnings::ResendWarnings()
             {
                 Syslog::HuggleLogs->DebugLog("Expired " + warning->Warning->user->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
-                if (warning->Query != NULL)
+                if (warning->Query != nullptr)
                 {
                     Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
                 }
@@ -324,15 +322,13 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         return;
     }
 
-    if (Edit == NULL)
-    {
+    if (Edit == nullptr)
         return;
-    }
 
     QString __template = "warning" + QString::number(Level);
     QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template);
 
-    if (MessageText_ == "")
+    if (!MessageText_.size())
     {
         // this is very rare error no need to translate it
         Syslog::HuggleLogs->Log("There is no such warning template " + __template);
@@ -340,45 +336,45 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
+    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
 
     switch (Level)
     {
         case 1:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
             break;
         case 2:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary2;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
             break;
         case 3:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary3;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
             break;
         case 4:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig_WarnSummary4;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
             break;
     }
 
     MessageTitle_ = MessageTitle_.replace("$1", Edit->Page->PageName);
     QString id = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->UserConfig_EnforceMonthsAsHeaders)
+    if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
-        QDateTime date_ = QDateTime::currentDateTime();
+        QDateTime date_ = Configuration::HuggleConfiguration->ServerTime();
         id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
-    WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, NULL, false,
-                              Configuration::HuggleConfiguration->UserConfig_SectionKeep,
+    WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, nullptr, false,
+                              Configuration::HuggleConfiguration->UserConfig->SectionKeep,
                               true, Edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type)
 {
     int x=0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.count())
     {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x)) == type)
         {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WarningTemplates.at(x));
+            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x));
         }
         x++;
     }
@@ -387,19 +383,13 @@ QString Warnings::RetrieveTemplateToWarn(QString type)
 
 QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text)
 {
-    if (!User->IsIP())
+    if (!User->IsIP() || Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate.isEmpty())
     {
         return Text;
     }
-
-    if (Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplate == "")
-    {
-        return Text;
-    }
-
     if (!User->TalkPage_ContainsSharedIPTemplate())
     {
-        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig_SharedIPTemplate + "\n";
+        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate + "\n";
     }
     return Text;
 }

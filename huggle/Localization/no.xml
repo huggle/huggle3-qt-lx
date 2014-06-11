@@ -100,13 +100,12 @@
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domene:</string>
   <string name="login-start">Logg på</string>
-  <string name="login-translate">Oversett...</string>
+  <string name="login-translate" fuzzy="true">Oversett...</string>
   <string name="login-captchatitle">Captcha påkrevd for innlogging</string>
-  <string name="login-progress-start">Logger på...</string>
+  <string name="login-progress-start" fuzzy="true">Logger på...</string>
   <string name="login-progress-language">Oppdaterer meldingsfiler...</string>
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
-  <string name="login-progress-userlist">Sjekker brukerliste...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
   <string name="login-error-age">Bruk av Huggle på dette prosjektet krever en konto som er minst {0} dager gammel.</string>
@@ -152,7 +151,7 @@
   <string name="main-queue-next">Neste</string>
   <string name="main-queue-trim">Trim</string>
   <string name="main-queue-clear">Tøm nåværende</string>
-  <string name="main-queue-count">{0} elementer</string>
+  <string name="main-queue-count" fuzzy="true">{0} elementer</string>
   <string name="main-queue-query">Kjører spørring...</string>
   <string name="main-queue-reset">Resett</string>
   <string name="main-queue-clearall">Tøm alle</string>
@@ -172,17 +171,17 @@
   <string name="main-page-viewlatest">Vis siste revisjon</string>
   <string name="main-page-history">Hent historikk</string>
   <string name="main-page-historypage">Vis historikkside</string>
-  <string name="main-page-edit">Rediger</string>
+  <string name="main-page-edit" fuzzy="true">Rediger</string>
   <string name="main-page-tag">Tagg</string>
-  <string name="main-page-reqdeletion">Be om sletting</string>
-  <string name="main-page-reqprotection">Be om beskyttelse</string>
+  <string name="main-page-reqdeletion" fuzzy="true">Be om sletting</string>
+  <string name="main-page-reqprotection" fuzzy="true">Be om beskyttelse</string>
   <string name="main-page-watch">Overvåk</string>
   <string name="main-page-unwatch">Avslutt overvåkning</string>
   <string name="main-page-purge">Tøm</string>
   <string name="main-page-patrol">Merk som patruljert</string>
   <string name="main-page-move">Flytt...</string>
-  <string name="main-page-protect">Beskytt...</string>
-  <string name="main-page-delete">Slett...</string>
+  <string name="main-page-protect" fuzzy="true">Beskytt...</string>
+  <string name="main-page-delete" fuzzy="true">Slett...</string>
   <string name="main-user-info">Vis brukerinformasjon</string>
   <string name="main-user-ignore">Ignorer</string>
   <string name="main-user-unignore">Avignorer</string>
@@ -423,11 +422,11 @@
   <string name="reqprotection-duplicate">Beskyttelses har allerede blitt forespurt</string>
   <string name="reqprotection-fail">Ba ikke om beskyttelse av \'{0}\'</string>
   <string name="reqprotection-progress">Ber om beskyttelse av \'{0}\'...</string>
-  <string name="speedy-fail">Tagget ikke \'{0}\' for hurtigsletting</string>
-  <string name="speedy-progress">Tagger \'{0}\' for hurtigsletting...</string>
-  <string name="warnlog-fail">Kunne ikke hente advarselsloggen for \'{0}\'</string>
-  <string name="warnlog-none">\'{0}\' har ikke blitt advart</string>
-  <string name="warnlog-progress">Henter advarselslogg for \'{0}\'...</string>
+  <string name="speedy-fail" fuzzy="true">Tagget ikke \'{0}\' for hurtigsletting</string>
+  <string name="speedy-progress" fuzzy="true">Tagger \'{0}\' for hurtigsletting...</string>
+  <string name="warnlog-fail" fuzzy="true">Kunne ikke hente advarselsloggen for \'{0}\'</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' har ikke blitt advart</string>
+  <string name="warnlog-progress" fuzzy="true">Henter advarselslogg for \'{0}\'...</string>
   <string name="usermessage-duplicate">En melding om samme emne er allerede på siden</string>
   <string name="usermessage-fail">Sendte ikke melding til \'{0}\'</string>
   <string name="usermessage-progress">Sender melding til \'{0}\'...</string>

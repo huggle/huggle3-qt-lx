@@ -25,10 +25,6 @@
 #endif
 
 #include <QDialog>
-#include "core.hpp"
-#if TRACING
-//#include <execinfo.h>
-#endif
 #include "exception.hpp"
 
 namespace Ui

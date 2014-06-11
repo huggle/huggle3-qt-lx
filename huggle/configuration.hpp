@@ -24,74 +24,21 @@
 #include <QString>
 #include "hugglequeuefilter.hpp"
 #include "wikipage.hpp"
+#include "huggleoption.hpp"
 #include "wikisite.hpp"
+#include "userconfiguration.hpp"
+#include "projectconfiguration.hpp"
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {
-    //! This enum defines what action should be done when revert etc
-    enum Configuration_OnNext
-    {
-        //! Display same edit
-        Configuration_OnNext_Stay,
-        //! Display next
-        Configuration_OnNext_Next,
-        //! Display revert
-        Configuration_OnNext_Revert
-    };
-
-    enum Headings
-    {
-        HeadingsStandard,
-        HeadingsPageName,
-        HeadingsNone
-    };
-
-    enum OptionType
-    {
-        OptionType_String,
-        OptionType_List,
-        OptionType_Dictionary
-    };
-
     class WikiSite;
     class HuggleQueueFilter;
     class HuggleQueue;
     class WikiPage;
     class Syslog;
     class HuggleQueueParser;
-    /*!
-     * \brief The ScoreWord class
-     *
-     * Every score word is represented by this class, a score word is a pattern
-     * that has some score and score of edit is incremented by sum of all scores
-     * of all score words matched in edit
-     */
-    class ScoreWord
-    {
-        public:
-            ScoreWord(QString Word, int Score);
-            ScoreWord(ScoreWord *word);
-            ScoreWord(const ScoreWord &word);
-            QString word;
-            int score;
-    };
-
-    /*!
-     * \brief The Option class is one option that is parsed from configuration no matter of its type
-     */
-    class Option
-    {
-        public:
-            Option();
-            Option(QString name, OptionType type);
-            Option(Option *option);
-            Option(const Option &option);
-            QString Name;
-            OptionType Type;
-        private:
-            QString ContainerString;
-    };
+    class HuggleOption;
 
     //! Run time configuration of huggle
 
@@ -147,7 +94,6 @@ namespace Huggle
             //! Returns full configuration path suffixed with slash
             static QString GetConfigurationPath();
             static QString ReplaceSpecialUserPage(QString PageName);
-            static QString Bool2ExcludeRequire(bool b);
             /*!
              * \brief Bool2String Convert a bool to string
              * \param b bool
@@ -160,13 +106,6 @@ namespace Huggle
             static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
-            /*!
-             * \brief InsertConfig
-             * \param key Configuration key
-             * \param value Value of key
-             * \param s Stream writer
-             */
-            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
             static bool SafeBool(QString value, bool defaultvalue = false);
             //! Parse a string from configuration which has format used by huggle 2x
             /*!
@@ -191,7 +130,18 @@ namespace Huggle
              * \param key
              * \return New instance of data or NULL in case there is no such an option
              */
-            Option *GetOption(QString key);
+            HuggleOption *GetOption(QString key);
+            /*!
+             * \brief SetOption lookup for a key in config file, if there is no such a key, insert a default one
+             * \param key_ Name of configuration key in user config file
+             * \param config_ Config file text
+             * \param default_ Value that is used in case there is no such a key
+             */
+            QVariant SetOption(QString key_, QString config_, QVariant default_);
+            QStringList SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS = false);
+            int GetSafeUserInt(QString key_, int default_value = 0);
+            bool GetSafeUserBool(QString key_, bool default_value = false);
+            QString GetSafeUserString(QString key_, QString default_value = "");
             void NormalizeConf();
             QString GenerateSuffix(QString text);
             //! Parse all information from global config on meta
@@ -199,6 +149,7 @@ namespace Huggle
             //! Parse all information from local config, this function is used in login
             bool ParseProjectConfig(QString config);
             bool ParseUserConfig(QString config);
+            QDateTime ServerTime();
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
@@ -208,7 +159,7 @@ namespace Huggle
             //! Version
             QString         HuggleVersion;
             //! currently selected project
-            WikiSite        *Project = NULL;
+            WikiSite        *Project = nullptr;
             //! List of projects
             QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
@@ -278,6 +229,7 @@ namespace Huggle
             bool            SystemConfig_LanguageSanity = false;
             bool            SystemConfig_RequestDelay = false;
             unsigned int    SystemConfig_DelayVal = 0;
+            unsigned int    SystemConfig_WikiRC = 200;
             //! This is a size of cache used by HAN to keep data about other user messages
 
             //! HAN need this so that changes that are first announced on there, but parsed from slower
@@ -294,37 +246,20 @@ namespace Huggle
             //! was removed from the list, we would have nonexistent wiki in list
             int             IndexOfLastWiki = 0;
             QString         TemporaryConfig_EditToken = "";
+            //! This is a number that can be used to get a current server time
+            qint64          ServerOffset = 0;
 
             //////////////////////////////////////////////
             // User
             //////////////////////////////////////////////
-            bool                    UserConfig_EnforceMonthsAsHeaders = true;
-            unsigned int            UserConfig_TalkPageFreshness = 20;
-            //! If history and user info should be automatically loaded for every edit
-            bool                    UserConfig_HistoryLoad = true;
-            //! Defines what should be done on next edit
-            Configuration_OnNext    UserConfig_GoNext = Configuration_OnNext_Next;
-            bool                    UserConfig_DeleteEditsAfterRevert = true;
-            //! Fetch only the last edit of page, that means if there is a newer edit
-            //! it get automatically loaded instead of cached version
-            bool                    UserConfig_LastEdit = false;
-            bool                    UserConfig_SectionKeep = true;
-            unsigned int            UserConfig_HistoryMax = 50;
-            bool                    UserConfig_TruncateEdits = false;
-            bool                    UserConfig_RevertNewBySame = true;
-            //! If this is set to false the warning will be selected by huggle when user decide to
-            //! use the "warn only" feature in huggle (W) for example, it doesn't affect reverting
-            bool                    UserConfig_ManualWarning = false;
-            //! Large title of every page in top of diff
-            bool                    UserConfig_DisplayTitle = false;
-            //! Result of "Stop feed, Remove old edits" in main form
-            bool                    UserConfig_RemoveOldQueueEdits = false;
-            bool                    UserConfig_CheckTP = false;
-            QString                 UserConfig_QueueID = "default";
-            //! Display messages from users in vandal window
-            bool                    UserConfig_HAN_DisplayUser = true;
-            bool                    UserConfig_HAN_DisplayBots = true;
-            bool                    UserConfig_HAN_DisplayUserTalk = true;
+            UserConfiguration *UserConfig = nullptr;
+
+            // Private key names
+            // these need to be stored in separate variables so that we can
+            // 1. Change them on 1 place
+            // 2. Track them (we need to be able to find where these options
+            //    are being used)
+            #define                 ProjectConfig_IPScore_Key "score-ip"
 
             //////////////////////////////////////////////
             // Global config
@@ -344,145 +279,7 @@ namespace Huggle
             // Local config
             //////////////////////////////////////////////
 
-            //! Minimal version of huggle required to use it
-            QString         ProjectConfig_MinimalVersion = HUGGLE_VERSION;
-            bool            ProjectConfig_UseIrc = false;
-            //! If admin rights are required to use huggle
-            bool            ProjectConfig_RequireAdmin = false;
-            //! If autoconfirmed is required to use huggle
-            bool            ProjectConfig_RequireAutoconfirmed = false;
-            bool            ProjectConfig_RequireConfig = false;
-            //! Amount of edits required to use huggle
-            int             ProjectConfig_RequireEdits = 0;
-            //! If rollback right is required to use huggle
-            bool            ProjectConfig_RequireRollback = false;
-            bool            ProjectConfig_EnableAll = false;
-            byte_ht         ProjectConfig_WarningLevel = 4;
-            bool            ProjectConfig_AIV = false;
-            bool            ProjectConfig_AIVExtend = true;
-            bool            ProjectConfig_RFPP = false;
-            unsigned int    ProjectConfig_RFPP_Section;
-            QString         ProjectConfig_RFPP_Template = "";
-            QString         ProjectConfig_RFPP_TemplateUser = "";
-            QString         ProjectConfig_RFPP_Summary = "Sending request to protect a page";
-            bool            ProjectConfig_RFPP_PlaceTop = false;
-            QString         ProjectConfig_RFPP_Regex = "";
-            QString         ProjectConfig_RFPP_Page = "";
-            QString         ProjectConfig_ReportAIV = "";
-            //! Section of report page to append template to
-            int             ProjectConfig_ReportSt = 0;
-            //! IP vandals
-            QString         ProjectConfig_IPVTemplateReport = "User $1: $2$3 ~~~~";
-            //! Regular users
-            QString         ProjectConfig_RUTemplateReport = "User $1: $2$3 ~~~~";
-            QString         ProjectConfig_ReportDefaultReason = "vandalism";
-            QString         ProjectConfig_WelcomeSummary = "Welcoming user";
-            QString         ProjectConfig_NSTalk;
-            QString         ProjectConfig_NSUserTalk;
-            QString         ProjectConfig_NSProject;
-            QString         ProjectConfig_NSUser;
-            QString         ProjectConfig_NSProjectTalk;
-            QString         ProjectConfig_NSFile;
-            QString         ProjectConfig_NSFileTalk;
-            QString         ProjectConfig_NSMediaWiki;
-            QString         ProjectConfig_NSMediaWikiTalk;
-            QString         ProjectConfig_NSTemplate;
-            QString         ProjectConfig_NSTemplateTalk;
-            QString         ProjectConfig_NSHelp;
-            QString         ProjectConfig_NSHelpTalk;
-            QString         ProjectConfig_NSCategory;
-            QString         ProjectConfig_NSCategoryTalk;
-            QString         ProjectConfig_NSPortal;
-            QString         ProjectConfig_NSPortalTalk;
-            Headings        ProjectConfig_Headings;
-            int             ProjectConfig_TemplateAge = -30;
-            bool            ProjectConfig_ConfirmTalk = true;
-            bool            ProjectConfig_ConfirmWL = true;
-            bool            ProjectConfig_ConfirmOnSelfRevs = true;
-            bool            ProjectConfig_ConfirmMultipleEdits = false;
-            bool            ProjectConfig_ConfirmRange = false;
-            bool            ProjectConfig_ConfirmPage = false;
-            bool            ProjectConfig_ConfirmSame = false;
-            bool            ProjectConfig_ConfirmWarned = false;
-            bool            ProjectConfig_Patrolling = false;
-
-            // Reverting
-            QString         ProjectConfig_MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
-            QStringList     ProjectConfig_RevertSummaries;
-            QString         ProjectConfig_SoftwareRevertDefaultSummary;
-            QString         ProjectConfig_RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-            QString         ProjectConfig_RollbackSummaryUnknownTarget = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-            QString         ProjectConfig_DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
-            QString         ProjectConfig_SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-            QString         ProjectConfig_UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
-            QString         ProjectConfig_ClearTalkPageTemp = "{{Huggle/Cleared}}";
-            QString         ProjectConfig_WelcomeAnon = "{{subst:Welcome-anon}} ~~~~";
-            QString         ProjectConfig_WelcomeTitle = "Welcome";
-
-            // Deleting
-            QString         ProjectConfig_DeletionTitle;
-            QStringList     ProjectConfig_DeletionSummaries;
-            QString         ProjectConfig_AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
-
-            // Warnings
-            QString         ProjectConfig_AgfRevert = "Reverted good faith edits";
-            QString         ProjectConfig_WarnSummary = "Warning (level 1)";
-            QString         ProjectConfig_WarnSummary2 = "Warning (level 2)";
-            QString         ProjectConfig_WarnSummary3 = "Warning (level 3)";
-            QString         ProjectConfig_WarnSummary4 = "Warning (level 4)";
-            QStringList     ProjectConfig_WarningTemplates;
-            QStringList     ProjectConfig_WarningDefs;
-            QString         ProjectConfig_ReportSummary;
-            QString         ProjectConfig_RestoreSummary = "Restored revision $1 made by $2";
-            bool            ProjectConfig_WelcomeGood = true;
-
-            // Blocking users
-            QStringList     ProjectConfig_BlockExpiryOptions;
-            QString         ProjectConfig_BlockTime = "indefinite";
-            QString         ProjectConfig_BlockTimeAnon = "31 hours";
-            QString         ProjectConfig_BlockMessage = "{{subst:huggle/block|1=$1|2=$2}}";
-            QString         ProjectConfig_BlockMessageIndef = "{{subst:huggle/block-indef|1=$1}}";
-            QString         ProjectConfig_BlockReason = "[[WP:VAND|Vandalism]]";
-            QString         ProjectConfig_BlockSummary = "Notification: Blocked";
-
-            // Protecting pages
-            QString         ProjectConfig_ProtectReason;
-
-            // Templates
-            QString         ProjectConfig_SharedIPTemplateTags = "";
-            QString         ProjectConfig_SharedIPTemplate = "";
-
-            // Definitions
-            QList<ScoreWord> ProjectConfig_ScoreParts;
-            QList<ScoreWord> ProjectConfig_ScoreWords;
-            int              ProjectConfig_ScoreFlag = -60;
-            int              ProjectConfig_ForeignUser = 800;
-            int              ProjectConfig_ScoreTalk = -200;
-            //! Score that is added for every edit that has really big size
-            int              ProjectConfig_ScoreChange = 100;
-            int              ProjectConfig_ScoreUser = -600;
-            QStringList      ProjectConfig_Ignores;
-            QStringList      ProjectConfig_RevertPatterns;
-            QStringList      ProjectConfig_Assisted;
-            QStringList      ProjectConfig_Templates;
-            QStringList      ProjectConfig_IgnorePatterns;
-            int              ProjectConfig_TalkPageWarningScore = -800;
-            bool             ProjectConfig_GlobalRequired = true;
-            // This is internal only do not prefix it!!
-            QList<QRegExp>   RevertPatterns;
-            int              ProjectConfig_BotScore = -200;
-            int              ProjectConfig_IPScore = 800;
-            int              ProjectConfig_WarningScore = 2000;
-            QStringList      ProjectConfig_WarningTypes;
-            QString          ProjectConfig_SpeedyEditSummary = "Tagging page for deletion";
-            QString          ProjectConfig_SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
-            QStringList      ProjectConfig_SpeedyTemplates;
-            QStringList      ProjectConfig_WelcomeTypes;
-            long             ProjectConfig_WhitelistScore = -800;
-            // UAA
-            QString          ProjectConfig_UAAPath = "Project:Usernames for administrator attention";
-            bool             ProjectConfig_UAAavailable = false;
-            QString          ProjectConfig_UAATemplate = "* {{user-uaa|1=$1}} $2 ~~~~";
+            ProjectConfiguration *ProjectConfig = nullptr;
 
             //////////////////////////////////////////////
             // Login
@@ -518,16 +315,6 @@ namespace Huggle
             //! Port
             int     IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut = 2;
-
-            //////////////////////////////////////////////
-            // Friends
-            //////////////////////////////////////////////
-
-            //! Suffix used by huggle
-            QString     ProjectConfig_EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
-            //! Regexes that other tools can be identified with
-            QStringList ProjectConfig_EditRegexOfTools;
-
             //////////////////////////////////////////////
             // Reverting
             //////////////////////////////////////////////
@@ -543,13 +330,22 @@ namespace Huggle
             QString     VandalNw_Ident;
             bool        VandalNw_Login = true;
             //! Pointer to AIV page
-            WikiPage    *AIVP = NULL;
+            WikiPage    *AIVP = nullptr;
             //! Pointer to UAA page
-            WikiPage    *UAAP = NULL;
+            WikiPage    *UAAP = nullptr;
             //! Operating system that is sent to update server
             QString     Platform;
         private:
-            QHash       <QString, Option> Options;
+            /*!
+             * \brief InsertConfig
+             * \param key Configuration key
+             * \param value Value of key
+             * \param s Stream writer
+             */
+            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+            static QString Bool2ExcludeRequire(bool b);
+            // USER
+
     };
 }
 

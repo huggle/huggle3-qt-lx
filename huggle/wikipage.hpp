@@ -21,27 +21,8 @@
 
 namespace Huggle
 {
-    //! Namespaces
-    enum MediaWikiNS
-    {
-        MediaWikiNS_Main,
-        MediaWikiNS_Talk,
-        MediaWikiNS_Project,
-        MediaWikiNS_ProjectTalk,
-        MediaWikiNS_User,
-        MediaWikiNS_UserTalk,
-        MediaWikiNS_Help,
-        MediaWikiNS_HelpTalk,
-        MediaWikiNS_Category,
-        MediaWikiNS_CategoryTalk,
-        MediaWikiNS_Mediawiki,
-        MediaWikiNS_MediawikiTalk,
-        MediaWikiNS_File,
-        MediaWikiNS_FileTalk,
-        MediaWikiNS_Portal,
-        MediaWikiNS_PortalTalk,
-        MediaWikiNS_Special
-    };
+    class WikiPageNS;
+    class WikiSite;
 
     //! Mediawiki page
     class WikiPage
@@ -53,18 +34,22 @@ namespace Huggle
             WikiPage(WikiPage *page);
             WikiPage(const WikiPage& page);
             QString SanitizedName();
-            //! Retrieve a namespace ID for current page
-            MediaWikiNS GetNS();
+            //! Retrieve a namespace object for current page
+            WikiPageNS *GetNS();
             //! Return true in case this is a talk page
             bool IsTalk();
             WikiPage *RetrieveTalk();
             QString RootName();
             bool IsUserpage();
+            //! Writes a wikipage name that is encoded using percent encoding
+            QString EncodedName();
             QString Contents;
             //! Name of page
             QString PageName;
             //! Site this page is on
             WikiSite *Site;
+        private:
+            WikiPageNS *NS;
     };
 }
 

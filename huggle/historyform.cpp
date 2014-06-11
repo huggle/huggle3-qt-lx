@@ -10,10 +10,12 @@
 
 #include "historyform.hpp"
 #include "querypool.hpp"
-#include "resources.hpp"
+#include "configuration.hpp"
 #include "exception.hpp"
 #include "mainwindow.hpp"
 #include "localization.hpp"
+#include "resources.hpp"
+#include "syslog.hpp"
 #include "wikiutil.hpp"
 #include "ui_historyform.h"
 
@@ -21,21 +23,21 @@ using namespace Huggle;
 
 HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::HistoryForm)
 {
-    this->RetrievedEdit = NULL;
+    this->RetrievedEdit = nullptr;
     this->RetrievingEdit = false;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("historyform-title"));
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-no-info"));
+    this->setWindowTitle(_l("historyform-title"));
+    this->ui->pushButton->setText(_l("historyform-no-info"));
     this->ui->tableWidget->setColumnCount(6);
     this->SelectedRow = -1;
     this->PreviouslySelectedRow = 2;
     QStringList header;
-    header << "" << Huggle::Localizations::HuggleLocalizations->Localize("user")
-                 << Huggle::Localizations::HuggleLocalizations->Localize("size")
-                 << Huggle::Localizations::HuggleLocalizations->Localize("summary")
-                 << Huggle::Localizations::HuggleLocalizations->Localize("id")
-                 << Huggle::Localizations::HuggleLocalizations->Localize("date");
+    header << "" << _l("user")
+                 << _l("size")
+                 << _l("summary")
+                 << _l("id")
+                 << _l("date");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -59,9 +61,7 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
         this->ui->tableWidget->setColumnWidth(4, 60);
     }
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-    this->query = NULL;
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    this->t1 = NULL;
 }
 
 HistoryForm::~HistoryForm()
@@ -74,16 +74,16 @@ HistoryForm::~HistoryForm()
 
 void HistoryForm::Read()
 {
-    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieving-history"));
+    //this->ui->pushButton->setText(Localizations::HuggleLocalizations->nullptrze("historyform-retrieving-history"));
     this->ui->pushButton->hide();
     this->query = new ApiQuery();
     this->query->SetAction(ActionQuery);
     this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
-            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig_HistoryMax) +
+            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig->HistoryMax) +
             "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
     this->query->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->query->Process();
-    if (this->t1 != NULL)
+    if (this->t1 != nullptr)
     {
         delete this->t1;
     }
@@ -95,51 +95,49 @@ void HistoryForm::Read()
 
 void HistoryForm::Update(WikiEdit *edit)
 {
-    if (edit == NULL)
-    {
-        throw new Exception("WikiEdit edit must not be NULL", "void HistoryForm::Update(WikiEdit *edit)");
-    }
+    if (edit == nullptr)
+        throw new Huggle::Exception("WikiEdit edit must not be nullptr", "void HistoryForm::Update(WikiEdit *edit)");
     this->CurrentEdit = edit;
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize("historyform-retrieve-history"));
+    this->ui->pushButton->setText(_l("historyform-retrieve-history"));
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->Clear();
-    if (this->RetrievedEdit != NULL)
+    if (this->RetrievedEdit != nullptr)
     {
         this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-        this->RetrievedEdit = NULL;
+        this->RetrievedEdit = nullptr;
     }
     this->RetrievingEdit = false;
-    if (this->t1 != NULL)
+    if (this->t1 != nullptr)
     {
         this->t1->stop();
         delete this->t1;
-        this->t1 = NULL;
+        this->t1 = nullptr;
     }
-    if (this->query != NULL)
+    if (this->query != nullptr)
     {
         this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-        this->query = NULL;
+        this->query = nullptr;
     }
 }
 
 void HistoryForm::onTick01()
 {
-    if (this->RetrievingEdit && this->RetrievedEdit != NULL)
+    if (this->RetrievingEdit && this->RetrievedEdit != nullptr)
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
             MainWindow::HuggleMain->ProcessEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
             this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-            this->RetrievedEdit = NULL;
+            this->RetrievedEdit = nullptr;
             this->t1->stop();
             this->MakeSelectedRowBold();
         }
         return;
     }
 
-    if (this->query == NULL || !this->query->IsProcessed())
+    if (this->query == nullptr || !this->query->IsProcessed())
         return;
 
     if (this->query->Result->Failed)
@@ -147,7 +145,7 @@ void HistoryForm::onTick01()
         this->ui->pushButton->setEnabled(true);
         Huggle::Syslog::HuggleLogs->ErrorLog("Unable to retrieve history");
         this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-        this->query = NULL;
+        this->query = nullptr;
         this->t1->stop();
         return;
     }
@@ -210,7 +208,7 @@ void HistoryForm::onTick01()
         else if (Configuration::HuggleConfiguration->WhiteList.contains(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
         WikiUser *wu = WikiUser::RetrieveUser(user);
-        if (wu != NULL)
+        if (wu != nullptr)
         {
             if (wu->IsReported)
             {
@@ -234,7 +232,6 @@ void HistoryForm::onTick01()
                 }
             }
         }
-
         if (this->CurrentEdit->RevID == RevID.toInt())
         {
             if (x == 0)
@@ -292,11 +289,11 @@ void HistoryForm::onTick01()
     }
     this->query->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     this->ui->tableWidget->resizeRowsToContents();
-    this->query = NULL;
+    this->query = nullptr;
     this->t1->stop();
     if (!this->CurrentEdit->NewPage && !Configuration::HuggleConfiguration->ForcedNoEditJump && !IsLatest)
     {
-        if (Configuration::HuggleConfiguration->UserConfig_LastEdit)
+        if (Configuration::HuggleConfiguration->UserConfig->LastEdit)
         {
             this->Display(0, Resources::Html_StopFire, true);
         } else
@@ -309,7 +306,7 @@ void HistoryForm::onTick01()
             {
                 pntr.setX(this->pos().x() + 100);
             }
-            QToolTip::showText(pntr, "<b><big>" +Localizations::HuggleLocalizations->Localize("historyform-not-latest-tip")
+            QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip")
                                + "</big></b>", this);
         }
     }
@@ -322,7 +319,7 @@ void HistoryForm::on_pushButton_clicked()
 
 void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
 {
-    this->Display(index.row(), Huggle::Localizations::HuggleLocalizations->Localize("wait"));
+    this->Display(index.row(), _l("wait"));
 }
 
 void HistoryForm::Clear()
@@ -341,14 +338,9 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         // there is nothing to do because we want to display exactly that row which was already selected
         return;
     }
-    if (this->query != NULL || this->RetrievingEdit)
+    if (this->query != nullptr || this->RetrievingEdit || this->ui->tableWidget->rowCount() == 0 || this->CurrentEdit == nullptr)
     {
         // we must not retrieve edit until previous operation did finish
-        return;
-    }
-
-    if (this->ui->tableWidget->rowCount() == 0 || this->CurrentEdit == NULL)
-    {
         return;
     }
 
@@ -384,12 +376,12 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
     w->RegisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
-    if (this->RetrievedEdit != NULL)
+    if (this->RetrievedEdit != nullptr)
     {
         this->RetrievedEdit->UnregisterConsumer(HUGGLECONSUMER_HISTORYWIDGET);
     }
     QueryPool::HugglePool->PostProcessEdit(w);
-    if (this->t1 != NULL)
+    if (this->t1 != nullptr)
     {
         delete this->t1;
     }

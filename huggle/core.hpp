@@ -18,26 +18,15 @@
 #endif
 
 #include <QApplication>
-#include <QNetworkAccessManager>
 #include <QList>
 #include <QPluginLoader>
 #include <QFile>
-#include <QMap>
-#include "query.hpp"
 #include "login.hpp"
-#include "wikiedit.hpp"
 #include "mainwindow.hpp"
-#include "exceptionwindow.hpp"
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
-#include "editquery.hpp"
 #include "resources.hpp"
-#include "history.hpp"
-#include "apiquery.hpp"
 #include "querypool.hpp"
-#include "sleeper.hpp"
-#include "revertquery.hpp"
-#include "huggleparser.hpp"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.hpp"
@@ -52,27 +41,14 @@ namespace Huggle
         class PythonEngine;
     }
 #endif
-    class Sleeper;
     class Login;
-    class Query;
-    class ApiQuery;
     class MainWindow;
     class HuggleFeed;
-    class EditQuery;
     class ProcessorThread;
-    class Collectable;
     class HuggleQueueFilter;
-    class WikiSite;
-    class WikiPage;
-    class OAuthLoginQuery;
-    class WikiUser;
-    class WikiEdit;
-    class RevertQuery;
     class Syslog;
     class QueryPool;
     class iExtension;
-    class Configuration;
-    class Localizations;
 
     //! Override of qapplication so that we can reimplement notify
     class HgApplication : public QApplication
@@ -140,7 +116,6 @@ namespace Huggle
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
-            Localizations *HuggleLocalizations;
             //! Garbage collector
             GC *gc;
 #ifdef PYTHONENGINE

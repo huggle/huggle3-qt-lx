@@ -13,6 +13,7 @@
 #include "exception.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
@@ -22,12 +23,14 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
-    this->query = NULL;
+    this->query = nullptr;
+    this->ui->pushButton->setText(_l("main-page-load"));
+    this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
-    this->ui->label->setText(Localizations::HuggleLocalizations->Localize("User"));
-    this->ui->label_2->setText(Localizations::HuggleLocalizations->Localize("Page"));
+    this->ui->label->setText(_l("User"));
+    this->ui->label_2->setText(_l("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->edit = NULL;
+    this->edit = nullptr;
 }
 
 HuggleTool::~HuggleTool()
@@ -55,10 +58,9 @@ void HuggleTool::SetUser(QString user)
 
 void HuggleTool::SetPage(WikiPage *page)
 {
-    if (page == NULL)
-    {
-        throw new Exception("HuggleTool::SetPage(WikiPage* page) page must not be null");
-    }
+    if (page == nullptr)
+        throw new Huggle::Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
+
     this->ui->lineEdit_3->setText(page->PageName);
     this->tick->stop();
     GC_DECREF(this->query);
@@ -108,7 +110,7 @@ void HuggleTool::onTick()
 
 void HuggleTool::FinishPage()
 {
-    if (this->query == NULL || !this->query->IsProcessed())
+    if (this->query == nullptr || !this->query->IsProcessed())
         return;
     QDomDocument d;
     d.setContent(this->query->Result->Data);
@@ -148,9 +150,9 @@ void HuggleTool::FinishPage()
                 // there is no such a page
                 GC_DECREF(this->query);
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
-                Huggle::Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("missing-page", ui->lineEdit_3->text()));
+                Huggle::Syslog::HuggleLogs->WarningLog(_l("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
-                this->edit = NULL;
+                this->edit = nullptr;
                 return;
             }
             if (e.attributes().contains("user"))
@@ -162,7 +164,7 @@ void HuggleTool::FinishPage()
                 this->edit->RevID = e.attribute("revid").toInt();
             }
         }
-        if (this->edit->User == NULL)
+        if (this->edit->User == nullptr)
         {
             this->edit->User = new WikiUser();
         }
@@ -173,7 +175,7 @@ void HuggleTool::FinishPage()
 
 void HuggleTool::FinishEdit()
 {
-    if (this->edit == NULL || !this->edit->IsPostProcessed())
+    if (this->edit == nullptr || !this->edit->IsPostProcessed())
         return;
     this->tick->stop();
     this->ui->pushButton->setEnabled(true);

@@ -20,8 +20,10 @@
   <string name="save">Сохранить</string>
   <string name="selectfile">Открыть...</string>
   <string name="yes">Да</string>
-  <string name="agf">Revert as good faith edit with custom reason</string>
+  <string name="agf">Вернуть по обоснованным причинам как добросовестного редактора</string>
   <string name="import">Импорт с глобальной конфигурации</string>
+  <string name="successful">Успех</string>
+  <string name="summary">Итог</string>
   <string name="about-contributors">Авторы:</string>
   <string name="block-title">Блокировка {0}</string>
   <string name="block-reason">Причина:</string>
@@ -118,13 +120,12 @@
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
   <string name="login-start">Войти</string>
-  <string name="login-translate">Перевести...</string>
+  <string name="login-translate" fuzzy="true">Перевести...</string>
   <string name="login-captchatitle">Введите слово с картинки, чтобы войти</string>
-  <string name="login-progress-start">Вхожу...</string>
+  <string name="login-progress-start" fuzzy="true">Вхожу...</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>
   <string name="login-progress-global">Проверяю глобальные настройки...</string>
   <string name="login-progress-config">Проверяю файлы конфигурации...</string>
-  <string name="login-progress-userlist">Проверяю список пользователей...</string>
   <string name="login-progress-whitelist">Обновляю белый список пользователей...</string>
   <string name="login-error-admin">Использование Huggle в этом проекте требует учётной записи администратора.</string>
   <string name="login-error-age">Использование Huggle в этом проекте требует, по крайней мере, {0} дней участия.</string>
@@ -171,7 +172,7 @@
   <string name="main-queue-next">Следующий</string>
   <string name="main-queue-trim">Очистить от старых</string>
   <string name="main-queue-clear">Очистить текущую очередь</string>
-  <string name="main-queue-count">{0} штук</string>
+  <string name="main-queue-count" fuzzy="true">{0} штук</string>
   <string name="main-queue-query">Делаю запрос...</string>
   <string name="main-queue-reset">Сброс очереди</string>
   <string name="main-queue-clearall">Очистить все очереди</string>
@@ -193,18 +194,18 @@
   <string name="main-page-viewlatest">Просмотр последней правки</string>
   <string name="main-page-history">Получить историю правок</string>
   <string name="main-page-historypage">Показать страницу истории</string>
-  <string name="main-page-edit">Редактировать</string>
+  <string name="main-page-edit" fuzzy="true">Редактировать</string>
   <string name="main-page-tag">Поставить шаблон</string>
-  <string name="main-page-reqdeletion">К удалению</string>
-  <string name="main-page-reqprotection">Запрос защиты</string>
+  <string name="main-page-reqdeletion" fuzzy="true">К удалению</string>
+  <string name="main-page-reqprotection" fuzzy="true">Запрос защиты</string>
   <string name="main-page-watch">Следить</string>
   <string name="main-page-unwatch">Не следить</string>
   <string name="main-page-purge">Обновить шаблоны</string>
   <string name="main-page-patrol">Патрулировать</string>
   <string name="main-page-move">Переименовать...</string>
-  <string name="main-page-protect">Защитить...</string>
-  <string name="main-page-delete">Удалить...</string>
-  <string name="main-page-restore">Восстановить эту версию статьи</string>
+  <string name="main-page-protect" fuzzy="true">Защитить...</string>
+  <string name="main-page-delete" fuzzy="true">Удалить...</string>
+  <string name="main-page-restore" fuzzy="true">Восстановить эту версию статьи</string>
   <string name="main-user-info">Показать информацию об участнике</string>
   <string name="main-user-ignore">Добавить в белый список</string>
   <string name="main-user-unignore">Удалить из белого списка</string>
@@ -360,7 +361,7 @@
   <string name="stats-reverts">Откаты</string>
   <string name="stats-warnings">Предупреждения</string>
   <string name="stats-reports">Отчёты</string>
-  <string name="stats-tags">Метки</string>
+  <string name="stats-tags">Теги</string>
   <string name="stats-notifications">Уведомления</string>
   <string name="stats-blocks">Блокировки</string>
   <string name="stats-deletes">Удаления</string>
@@ -446,11 +447,11 @@
   <string name="reqprotection-duplicate">Защита этой страницы уже была запрошена</string>
   <string name="reqprotection-fail">Запрос на защиту страницы \'{0}\' не отправлен</string>
   <string name="reqprotection-progress">Запрашивается защита страницы \'{0}\'...</string>
-  <string name="speedy-fail">\'{0}\' не помечена к быстрому удалению</string>
-  <string name="speedy-progress">Помечается \'{0}\' к быстрому удалению...</string>
-  <string name="warnlog-fail">Не удалось открыть журнал предупреждений \'{0}\'</string>
-  <string name="warnlog-none">\'{0}\' не был предупреждён</string>
-  <string name="warnlog-progress">Открывается журнал предупреждений \'{0}\'...</string>
+  <string name="speedy-fail" fuzzy="true">\'{0}\' не помечена к быстрому удалению</string>
+  <string name="speedy-progress" fuzzy="true">Помечается \'{0}\' к быстрому удалению...</string>
+  <string name="warnlog-fail" fuzzy="true">Не удалось открыть журнал предупреждений \'{0}\'</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' не был предупреждён</string>
+  <string name="warnlog-progress" fuzzy="true">Открывается журнал предупреждений \'{0}\'...</string>
   <string name="usermessage-duplicate">Сообщение участнику \'{0}\' по этому поводу уже передано</string>
   <string name="usermessage-fail">Сообщение участнику \'{0}\' не передано</string>
   <string name="usermessage-progress">Передаётся сообщение участнику \'{0}\'...</string>
@@ -461,4 +462,7 @@
   <string name="warn-recent">Этот участник был предупреждён менее {0} секунд назад</string>
   <string name="warn-fail">Участник \'{0}\' не предупреждён</string>
   <string name="warn-progress">Предупреждается \'{0}\'...</string>
+  <string name="provider-failure">Отказ основного канала провайдера, попытка восстановить</string>
+  <string name="updating-wl">Начать с чистого листа...</string>
+  <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
 </resources>

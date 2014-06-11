@@ -40,7 +40,6 @@ namespace Huggle
     class HuggleTool : public QDockWidget
     {
             Q_OBJECT
-
         public:
             explicit HuggleTool(QWidget *parent = 0);
             ~HuggleTool();

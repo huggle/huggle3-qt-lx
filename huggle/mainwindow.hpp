@@ -29,7 +29,6 @@
 #include "blockuser.hpp"
 #include "deleteform.hpp"
 #include "editquery.hpp"
-#include "hooks.hpp"
 #include "history.hpp"
 #include "hugglefeedproviderwiki.hpp"
 #include "hugglefeedproviderirc.hpp"
@@ -126,7 +125,7 @@ namespace Huggle
 
             explicit MainWindow(QWidget *parent = 0);
             ~MainWindow();
-            void DisplayReportUserWindow(WikiUser *User = NULL);
+            void DisplayReportUserWindow(WikiUser *User = nullptr);
             /*!
              * \brief ProcessEdit Will display an edit in huggle window
              * \param e Edit
@@ -153,10 +152,10 @@ namespace Huggle
              */
             bool CheckEditableBrowserPage();
             void SuspiciousEdit();
-            void PatrolThis(WikiEdit *e = NULL);
+            void PatrolThis(WikiEdit *e = nullptr);
             void Localize();
             void _BlockUser();
-            void DisplayNext(Query *q = NULL);
+            void DisplayNext(Query *q = nullptr);
             void DeletePage();
             void DisplayTalk();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
@@ -167,7 +166,7 @@ namespace Huggle
             HuggleLog *SystemLog;
             //! Pointer to queue
             HuggleQueue *Queue1;
-            QList<ApiQuery*> PatroledEdits;
+            QList<ApiQuery*> PatrolledEdits;
             //! Pointer to browser
             HuggleWeb *Browser;
             HistoryForm *wHistory;
@@ -188,7 +187,7 @@ namespace Huggle
             //! Pointer to history
             History *_History;
             //! Pointer to menu of revert warn button
-            QMenu *RevertWarn;
+            QMenu *RevertWarn = nullptr;
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
@@ -197,9 +196,9 @@ namespace Huggle
             //! This query is used to refresh white list
             WLQuery *wq = nullptr;
             //! Warning menu
-            QMenu *WarnMenu;
+            QMenu *WarnMenu = nullptr;
             //! Revert menu
-            QMenu *RevertSummaries;
+            QMenu *RevertSummaries = nullptr;
             ScoreWordsDbForm *fScoreWord = nullptr;
             Ui::MainWindow *ui;
             bool ShuttingDown;
@@ -305,6 +304,10 @@ namespace Huggle
             void on_actionRelog_triggered();
             void on_actionAbort_2_triggered();
             void on_actionUser_contributions_triggered();
+            void on_actionDisplay_this_page_triggered();
+            void on_actionResume_provider_triggered();
+            void on_actionStop_provider_triggered();
+
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -330,6 +333,8 @@ namespace Huggle
             void DecreaseBS();
             void IncreaseBS();
             void ProcessReverts();
+            QString WikiScriptURL();
+            QString ProjectURL();
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
             QDateTime EditLoad;

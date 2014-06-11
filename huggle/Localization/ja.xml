@@ -47,7 +47,7 @@
   <string name="config-title">オプション</string>
   <string name="config-rememberme">ログイン・ユーザー名を記憶する</string>
   <string name="config-autowhitelist">自動で利用者をホワイトリストに入れる</string>
-  <string name="config-openinbrowser">ブラウザリンクを新しいウィンドウで開く</string>
+  <string name="config-openinbrowser">ブラウザーリンクを新しいウィンドウで開く</string>
   <string name="config-shownewedits">ページで新しい編集が行われたら、自動で表示を切り替える</string>
   <string name="config-ircmode">最近の更新をIRCフィードから取得する</string>
   <string name="config-ircport">IRCポート</string>
@@ -112,31 +112,30 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-start">ログイン</string>
-  <string name="login-translate">翻訳</string>
+  <string name="login-translate" fuzzy="true">翻訳</string>
   <string name="login-captchatitle">ログインにキャプチャが必要です</string>
-  <string name="login-progress-start">ログインしています...</string>
+  <string name="login-progress-start" fuzzy="true">ログインしています...</string>
   <string name="login-progress-language">メッセージ・ファイルを更新中...</string>
   <string name="login-progress-global">グローバル設定をチェック中...</string>
   <string name="login-progress-config">設定ページをチェック中...</string>
-  <string name="login-progress-userlist">ユーザーリストをチェック中...</string>
   <string name="login-progress-whitelist">ユーザーホワイトリストを取得中...</string>
   <string name="login-error-admin">このプロジェクトでハグルを使用するには管理者権限が必要です。</string>
   <string name="login-error-age">このプロジェクトでハグルを使用するにはアカウント作成後 {0} 日以上が経過している必要があります。</string>
   <string name="login-error-alldisabled">現在すべてのプロジェクトでハグルの使用ができません。</string>
   <string name="login-error-approval">このプロジェクトでハグルを使用するには承認が必要です。</string>
   <string name="login-error-autoconfirmed">このプロジェクトでハグルを使用するには自動承認アカウントである必要があります。</string>
-  <string name="login-error-cancelled">キャンセルしました.</string>
+  <string name="login-error-cancelled">キャンセルしました。</string>
   <string name="login-error-captcha">パスワードまたは確認コードが正しくありません。</string>
   <string name="login-error-config">設定ページのロードに失敗しました。</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が {0} 回以上ある必要があります。</string>
   <string name="login-error-disabled">あなたのアカウントはハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
   <string name="login-error-global">グローバル設定ページのロードに失敗しました。</string>
-  <string name="login-error-invalid">利用者名が不正です</string>
+  <string name="login-error-invalid">利用者名が無効です</string>
   <string name="login-error-language">メッセージ・ファイルのロードに失敗しました。</string>
   <string name="login-error-nocaptcha">キャプチャに解答できませんでした。</string>
   <string name="login-error-noconfig">このプロジェクトにはハグルの設定ページがありません。</string>
   <string name="login-error-nouser">その名前のアカウントは存在しません。</string>
-  <string name="login-error-password">パスワードが不正です</string>
+  <string name="login-error-password">パスワードが無効です</string>
   <string name="login-error-projdisabled">現在このプロジェクトでハグルは使用できません。</string>
   <string name="login-error-rollback">このプロジェクトでハグルを使用するにはロールバック権限が必要です。</string>
   <string name="login-error-unknown">ログインできません。</string>
@@ -165,7 +164,7 @@
   <string name="main-queue-next">次</string>
   <string name="main-queue-trim">削る</string>
   <string name="main-queue-clear">現在のキューをクリア</string>
-  <string name="main-queue-count">{0} アイテム</string>
+  <string name="main-queue-count" fuzzy="true">{0} アイテム</string>
   <string name="main-queue-query">クエリを実行...</string>
   <string name="main-queue-reset">リセット</string>
   <string name="main-queue-clearall">すべてクリア</string>
@@ -185,17 +184,17 @@
   <string name="main-page-viewlatest">最新の版を表示</string>
   <string name="main-page-history">履歴を取得</string>
   <string name="main-page-historypage">履歴ページを表示</string>
-  <string name="main-page-edit">編集</string>
+  <string name="main-page-edit" fuzzy="true">編集</string>
   <string name="main-page-tag">タグ</string>
-  <string name="main-page-reqdeletion">削除依頼</string>
-  <string name="main-page-reqprotection">保護依頼</string>
+  <string name="main-page-reqdeletion" fuzzy="true">削除依頼</string>
+  <string name="main-page-reqprotection" fuzzy="true">保護依頼</string>
   <string name="main-page-watch">ウォッチ</string>
   <string name="main-page-unwatch">ウォッチリストからはずす</string>
   <string name="main-page-purge">パージ</string>
   <string name="main-page-patrol">パトロール済みにマーク</string>
   <string name="main-page-move">移動...</string>
-  <string name="main-page-protect">保護...</string>
-  <string name="main-page-delete">削除...</string>
+  <string name="main-page-protect" fuzzy="true">保護...</string>
+  <string name="main-page-delete" fuzzy="true">削除...</string>
   <string name="main-user-info">利用者情報を表示</string>
   <string name="main-user-ignore">無視</string>
   <string name="main-user-unignore">無視を取り消し</string>
@@ -205,13 +204,13 @@
   <string name="main-user-warn">警告...</string>
   <string name="main-user-report">報告</string>
   <string name="main-user-block">ブロック...</string>
-  <string name="main-browser">ブラウザ</string>
+  <string name="main-browser">ブラウザー</string>
   <string name="main-browser-newtab">新しいタブ</string>
   <string name="main-browser-closetab">タブを閉じる</string>
   <string name="main-browser-closeothers">他のタブを閉じる</string>
   <string name="main-browser-back">戻る</string>
   <string name="main-browser-forward">進む</string>
-  <string name="main-browser-open">外部ブラウザで表示</string>
+  <string name="main-browser-open">外部ブラウザーで表示</string>
   <string name="main-browser-newedits">ページの新しい編集を表示</string>
   <string name="main-browser-newcontribs">利用者の新しい編集を表示</string>
   <string name="main-help">ヘルプ</string>
@@ -232,7 +231,7 @@
   <string name="main-tip-undo">最近の操作を取り消す</string>
   <string name="main-tip-browserback">戻る</string>
   <string name="main-tip-browserforward">進む</string>
-  <string name="main-tip-browseropen">外部ブラウザで表示</string>
+  <string name="main-tip-browseropen">外部ブラウザーで表示</string>
   <string name="main-tip-browsernewtab">新しいタブ</string>
   <string name="main-tip-browserclosetab">タブを閉じる</string>
   <string name="main-tip-history">履歴を取得</string>
@@ -436,11 +435,11 @@
   <string name="reqprotection-duplicate">すでに保護依頼されています</string>
   <string name="reqprotection-fail">\'{0}\' の保護依頼に失敗しました</string>
   <string name="reqprotection-progress">\'{0}\' を保護依頼しています...</string>
-  <string name="speedy-fail">\'{0}\' への即時削除タグ貼り付けに失敗しました</string>
-  <string name="speedy-progress">\'{0}\' に即時削除タグを貼り付けています...</string>
-  <string name="warnlog-fail">\'{0}\' の警告履歴が取得できませんでした</string>
-  <string name="warnlog-none">\'{0}\' は警告を受けていません</string>
-  <string name="warnlog-progress">\'{0}\' の警告履歴を取得しています...</string>
+  <string name="speedy-fail" fuzzy="true">\'{0}\' への即時削除タグ貼り付けに失敗しました</string>
+  <string name="speedy-progress" fuzzy="true">\'{0}\' に即時削除タグを貼り付けています...</string>
+  <string name="warnlog-fail" fuzzy="true">\'{0}\' の警告履歴が取得できませんでした</string>
+  <string name="warnlog-none" fuzzy="true">\'{0}\' は警告を受けていません</string>
+  <string name="warnlog-progress" fuzzy="true">\'{0}\' の警告履歴を取得しています...</string>
   <string name="usermessage-duplicate">同じ内容のメッセージがすでに存在しています</string>
   <string name="usermessage-fail">\'{0}\' へのメッセージに失敗しました</string>
   <string name="usermessage-progress">\'{0}\' にメッセージしています...</string>

@@ -18,6 +18,9 @@
 #include <Python.h>
 #endif
 
+// localization tool
+#define _l Huggle::Localizations::HuggleLocalizations->Localize
+
 #include <QStringList>
 #include <QString>
 #include <QList>
@@ -50,11 +53,13 @@ namespace Huggle
     class Localizations
     {
         public:
+            static unsigned int EnglishID;
             static Localizations *HuggleLocalizations;
             //! "qqx"-Language for outputting the used keys
             static const QString LANG_QQX;
 
             Localizations();
+            ~Localizations();
             /*!
              * \brief Initializes a localization with given name
              *

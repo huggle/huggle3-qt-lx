@@ -62,7 +62,7 @@ namespace Huggle
         public:
             explicit Login(QWidget *parent = 0);
             ~Login();
-            /// \todo DOCUMENT ME
+            //! This function will reload all localizations for login form, called when user change a language
             void Localize();
             //! Updates the info message down on login form as well as on LoadingForm
             void Update(QString ms);
@@ -83,6 +83,9 @@ namespace Huggle
             void on_lineEdit_password_textChanged(const QString &arg1);
 
         private:
+            //! String that is used to test against the login failed text
+            static QString Test;
+
             //! Reset the interface to default
             void Reset();
             //! Enable parts of interface
@@ -90,6 +93,8 @@ namespace Huggle
             void Reload();
             void DB();
             void Disable();
+            //! Remove all references to all queries that are used
+            void DeleteQr();
             void PressOK();
             void PerformLogin();
             void PerformLoginPart2();
@@ -111,6 +116,9 @@ namespace Huggle
             UpdateForm *Updater = nullptr;
             Ui::Login *ui;
             QTimer *timer;
+            bool processedWlQuery;
+            bool processedSiteinfo;
+            bool processedLogin;
             //! This query is used to get a wl
             WLQuery *wq = nullptr;
             ApiQuery *LoginQuery = nullptr;
@@ -120,8 +128,6 @@ namespace Huggle
             ApiQuery *qCfg = nullptr;
             //! The token obtained from login
             QString Token;
-            //! String that is used to test against the login failed text
-            static QString Test;
             //! for RetrievePrivateConfig, if we should try to load from
             bool LoadedOldConfig;
     };

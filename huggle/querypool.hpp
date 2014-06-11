@@ -33,11 +33,13 @@ namespace Huggle
     class WikiEdit;
     class Query;
 
+    //! Pool of all queries that are monitored by huggle itself
     class QueryPool
     {
         public:
             static QueryPool *HugglePool;
             QueryPool();
+            ~QueryPool();
 
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched

@@ -11,14 +11,15 @@
 #include "core.hpp"
 #include <QtXml>
 #include <QMessageBox>
-#include "syslog.hpp"
+#include "exceptionwindow.hpp"
 #include "localization.hpp"
+#include "syslog.hpp"
 #include "configuration.hpp"
 
 using namespace Huggle;
 
 // definitions
-Core    *Core::HuggleCore = NULL;
+Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
 {
@@ -86,18 +87,17 @@ void Core::Init()
 Core::Core()
 {
 #ifdef PYTHONENGINE
-    this->Python = NULL;
+    this->Python = nullptr;
 #endif
-    this->Main = NULL;
-    this->fLogin = NULL;
-    this->SecondaryFeedProvider = NULL;
-    this->PrimaryFeedProvider = NULL;
-    this->HuggleLocalizations = NULL;
-    this->Processor = NULL;
-    this->HuggleSyslog = NULL;
+    this->Main = nullptr;
+    this->fLogin = nullptr;
+    this->SecondaryFeedProvider = nullptr;
+    this->PrimaryFeedProvider = nullptr;
+    this->Processor = nullptr;
+    this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
-    this->gc = NULL;
+    this->gc = nullptr;
 }
 
 Core::~Core()
@@ -113,7 +113,7 @@ Core::~Core()
 void Core::LoadDB()
 {
     Configuration::HuggleConfiguration->ProjectList.clear();
-    if (Configuration::HuggleConfiguration->Project != NULL)
+    if (Configuration::HuggleConfiguration->Project != nullptr)
     {
         Configuration::HuggleConfiguration->ProjectList << Configuration::HuggleConfiguration->Project;
     }
@@ -130,7 +130,7 @@ void Core::LoadDB()
         db.close();
     }
 
-    if (!text.length())
+    if (text.isEmpty())
     {
         QFile vf(":/huggle/resources/Resources/Definitions.xml");
         vf.open(QIODevice::ReadOnly);
@@ -167,6 +167,8 @@ void Core::LoadDB()
             site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
         if (e.attributes().contains("channel"))
             site->IRCChannel = e.attribute("channel");
+        if (e.attributes().contains("rtl"))
+            site->IsRightToLeft = Configuration::SafeBool(e.attribute("rtl"));
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }
@@ -346,8 +348,12 @@ void Core::Shutdown()
 {
     this->Running = false;
     // grace time for subthreads to finish
-    if (this->Main != NULL)
+    if (this->Main != nullptr)
     {
+        if (this->PrimaryFeedProvider && this->PrimaryFeedProvider->IsWorking())
+        {
+            this->PrimaryFeedProvider->Stop();
+        }
         this->Main->hide();
     }
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
@@ -365,13 +371,31 @@ void Core::Shutdown()
         delete this->Python;
     }
 #endif
-    QueryPool::HugglePool = NULL;
-    delete Configuration::HuggleConfiguration;
-    delete Localizations::HuggleLocalizations;
+    QueryPool::HugglePool = nullptr;
+    if (this->fLogin != nullptr)
+    {
+        delete this->fLogin;
+        this->fLogin = nullptr;
+    }
+    if (this->Main != nullptr)
+    {
+        delete this->Main;
+        this->Main = nullptr;
+    }
+    // now stop the garbage collector and wait for it to finish
+    GC::gc->Stop();
+    Syslog::HuggleLogs->Log("SHUTDOWN: waiting for garbage collector to finish");
+    while(GC::gc->IsRunning())
+        Sleeper::usleep(200);
+    // last garbage removal
+    GC::gc->DeleteOld();
+    Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
     delete this->HGQP;
-    GC::gc = NULL;
-    this->gc = NULL;
+    GC::gc = nullptr;
+    this->gc = nullptr;
+    delete Configuration::HuggleConfiguration;
+    delete Localizations::HuggleLocalizations;
     QApplication::quit();
 }
 
@@ -379,7 +403,7 @@ void Core::TestLanguages()
 {
     if (Configuration::HuggleConfiguration->SystemConfig_LanguageSanity)
     {
-        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(0);
+        Language *english = Localizations::HuggleLocalizations->LocalizationData.at(Localizations::EnglishID);
         QList<QString> keys = english->Messages.keys();
         int language = 1;
         while (language < Localizations::HuggleLocalizations->LocalizationData.count())
@@ -413,39 +437,42 @@ void Core::ExceptionHandler(Exception *exception)
 void Core::LoadLocalizations()
 {
     Localizations::HuggleLocalizations = new Localizations();
-    this->HuggleLocalizations = Localizations::HuggleLocalizations;
-    Localizations::HuggleLocalizations->LocalInit("en");
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
+        Localizations::HuggleLocalizations->LocalInit("en"); // English, when in safe mode
         Huggle::Syslog::HuggleLogs->Log("Skipping load of other languages, because of safe mode");
         return;
     }
-    Localizations::HuggleLocalizations->LocalInit("ar");
-    Localizations::HuggleLocalizations->LocalInit("bg");
-    Localizations::HuggleLocalizations->LocalInit("bn");
-    Localizations::HuggleLocalizations->LocalInit("cz");
-    Localizations::HuggleLocalizations->LocalInit("es");
-    Localizations::HuggleLocalizations->LocalInit("de");
-    Localizations::HuggleLocalizations->LocalInit("fa");
-    Localizations::HuggleLocalizations->LocalInit("fr");
-    Localizations::HuggleLocalizations->LocalInit("hi");
-    Localizations::HuggleLocalizations->LocalInit("it");
-    Localizations::HuggleLocalizations->LocalInit("ja");
-    Localizations::HuggleLocalizations->LocalInit("ka");
-    Localizations::HuggleLocalizations->LocalInit("km");
-    Localizations::HuggleLocalizations->LocalInit("kn");
-    Localizations::HuggleLocalizations->LocalInit("ko");
-    Localizations::HuggleLocalizations->LocalInit("ml");
-    Localizations::HuggleLocalizations->LocalInit("mr");
-    Localizations::HuggleLocalizations->LocalInit("nl");
-    Localizations::HuggleLocalizations->LocalInit("no");
-    Localizations::HuggleLocalizations->LocalInit("oc");
-    Localizations::HuggleLocalizations->LocalInit("or");
-    Localizations::HuggleLocalizations->LocalInit("pt");
-    Localizations::HuggleLocalizations->LocalInit("pt-BR");
-    Localizations::HuggleLocalizations->LocalInit("ru");
-    Localizations::HuggleLocalizations->LocalInit("sv");
-    Localizations::HuggleLocalizations->LocalInit("zh");
+    Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
+    Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
+    //Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
+    Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
+    Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
+    Localizations::HuggleLocalizations->LocalInit("en"); // English
+    Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
+    Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
+    Localizations::HuggleLocalizations->LocalInit("fr"); // French
+    Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
+    Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
+    //Localizations::HuggleLocalizations->LocalInit("it"); // Italian
+    Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
+    Localizations::HuggleLocalizations->LocalInit("ka"); // ?
+    //Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
+    Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
+    Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
+    Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
+    Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
+    Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
+    Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
+    Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
+    Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
+    Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
+    Localizations::HuggleLocalizations->LocalInit("or"); // Oriya
+    Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
+    Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
+    Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
+    Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
+    Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     this->TestLanguages();
 }
 

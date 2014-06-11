@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "networkirc.hpp"
+#include "configuration.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle::IRC;
 
@@ -20,8 +23,8 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Server = server;
     this->UserName = "Huggle client";
     this->Timer = new QTimer(this);
-    this->NetworkSocket = NULL;
-    this->NetworkThread = NULL;
+    this->NetworkSocket = nullptr;
+    this->NetworkThread = nullptr;
     this->MessagesLock = new QMutex(QMutex::Recursive);
     this->ChannelsLock = new QMutex(QMutex::Recursive);
 }
@@ -38,7 +41,7 @@ NetworkIrc::~NetworkIrc()
 
 bool NetworkIrc::Connect()
 {
-    if (this->NetworkThread != NULL)
+    if (this->NetworkThread != nullptr)
     {
         if (this->NetworkThread->__IsConnecting)
         {
@@ -49,11 +52,11 @@ bool NetworkIrc::Connect()
             throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected");
         }
     }
-    if (this->NetworkThread != NULL)
+    if (this->NetworkThread != nullptr)
         delete this->NetworkThread;
     this->NetworkThread = new NetworkIrc_th();
     this->NetworkThread->root = this;
-    if (this->NetworkSocket != NULL)
+    if (this->NetworkSocket != nullptr)
         delete this->NetworkSocket;
     this->NetworkSocket = new QTcpSocket();
     connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
@@ -76,7 +79,7 @@ bool NetworkIrc::Connect()
 
 bool NetworkIrc::IsConnected()
 {
-    if (this->NetworkThread == NULL)
+    if (this->NetworkThread == nullptr)
     {
         return false;
     }
@@ -85,7 +88,7 @@ bool NetworkIrc::IsConnected()
 
 bool NetworkIrc::IsConnecting()
 {
-    if (this->NetworkThread == NULL)
+    if (this->NetworkThread == nullptr)
     {
         return false;
     }
@@ -105,7 +108,7 @@ void NetworkIrc::Disconnect()
     this->NetworkThread->__IsConnecting = false;
     this->NetworkThread->__Connected = false;
     this->ClearList();
-    if (this->NetworkThread != NULL)
+    if (this->NetworkThread != nullptr)
     {
         // we have to request the network thread to stop
         this->NetworkThread->Running = false;
@@ -124,7 +127,7 @@ void NetworkIrc::Part(QString name)
 
 void NetworkIrc::Data(QString text)
 {
-    if (this->NetworkThread == NULL || this->NetworkSocket == NULL)
+    if (this->NetworkThread == nullptr || this->NetworkSocket == nullptr)
     {
         throw new Exception("You can't send data to network which you never connected to", "void NetworkIrc::Data(QString text)");
     }
@@ -143,7 +146,7 @@ Message* NetworkIrc::GetMessage()
     if (this->Messages.count() == 0)
     {
         this->MessagesLock->unlock();
-        return NULL;
+        return nullptr;
     } else
     {
         message = new Message(Messages.at(0));
@@ -157,7 +160,7 @@ void NetworkIrc::OnReceive()
 {
     QString data(this->NetworkSocket->readLine());
     this->NetworkThread->lIOBuffers->lock();
-    while (data != "")
+    while (!data.isEmpty())
     {
         this->NetworkThread->IncomingBuffer.append(data);
         data = QString(this->NetworkSocket->readLine());
@@ -272,11 +275,11 @@ void User::SanitizeNick()
 
 NetworkIrc_th::NetworkIrc_th()
 {
-    this->s = NULL;
+    this->s = nullptr;
     this->__Connected = false;
     this->__IsConnecting = false;
     this->lIOBuffers = new QMutex(QMutex::Recursive);
-    this->root = NULL;
+    this->root = nullptr;
     this->Running = true;
 }
 
@@ -350,7 +353,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "JOIN")
     {
-        if (Parameters_ == "" && Message_ == "")
+        if (Parameters_.isEmpty() && Message_.isEmpty())
         {
             Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
             return;
@@ -379,7 +382,7 @@ void NetworkIrc_th::Line(QString line)
 
     if (Command == "PART")
     {
-        if (Parameters_.length() < 1)
+        if (Parameters_.isEmpty())
         {
             Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
             return;
@@ -420,7 +423,7 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
         // parameter, this is case of wikimedia irc server
         channel = message;
     }
-    if (channel.length() < 1)
+    if (channel.isEmpty())
     {
         throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessJoin"\
                                     "(QString source, QString channel, QString message)");
@@ -462,7 +465,7 @@ void NetworkIrc_th::ProcessChannel(QString channel, QString data)
     // first check if there is any instance for this channel
     channel = channel.toLower();
     this->root->ChannelsLock->lock();
-    Channel *channel_ = NULL;
+    Channel *channel_ = nullptr;
     if (this->root->Channels.contains(channel))
     {
         channel_ = this->root->Channels[channel];
@@ -520,7 +523,7 @@ void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
-    if (channel == "")
+    if (channel.isEmpty())
     {
         throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessPart("\
                                     "QString source, QString channel, QString message)");

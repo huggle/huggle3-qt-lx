@@ -18,9 +18,11 @@
 #include <Python.h>
 #endif
 
-#include <QList>
+#include <QThread>
 #include <QMutex>
+#include <QList>
 #include "collectable.hpp"
+#include "gc_thread.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
 #define HUGGLECONSUMER_QUEUE                    1
@@ -42,12 +44,14 @@
 #define HUGGLECONSUMER_CORE                     800
 
 // some macros so that people hate us
-#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=NULL
-#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=NULL
+#define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=nullptr
+#define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=nullptr
+#define GC_LIMIT 60
 
 namespace Huggle
 {
     class Collectable;
+    class GC_t;
 
     //! Garbage collector that can be used to collect some objects
 
@@ -68,6 +72,9 @@ namespace Huggle
             ~GC();
             //! Function that walks through the list and delete these that can be deleted
             void DeleteOld();
+            void Start();
+            void Stop();
+            bool IsRunning();
             //! List of all managed queries that qgc keeps track of
             QList<Collectable*> list;
             //! QMutex that is used to lock the GC::list object
@@ -75,6 +82,8 @@ namespace Huggle
             //! This lock needs to be aquired every time when you need to access this list
             //! from any thread during runtime
             QMutex * Lock;
+        private:
+            GC_t *gc_t;
     };
 }
 
