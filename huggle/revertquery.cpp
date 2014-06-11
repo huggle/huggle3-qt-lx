@@ -47,11 +47,8 @@ RevertQuery::~RevertQuery()
     GC_DECNAMEDREF(this->qSR_PageToken, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qPreflight, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
-    if (this->timer != nullptr && this->timer->isActive())
-    {
-        throw new Huggle::Exception("Timer must not be running before its deletion", "dtor::RevertQuery()");
-    }
-    delete this->timer;
+    if (this->timer != nullptr)
+        Huggle::Exception::ThrowSoftException("Timer leaked", "dtor::RevertQuery()");
     GC_DECREF(this->qHistoryInfo);
     GC_DECREF(this->HI);
 }
@@ -176,6 +173,8 @@ void RevertQuery::OnTick()
         if (this->timer != nullptr)
         {
             this->timer->stop();
+            delete this->timer;
+            this->timer = nullptr;
         }
         this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
     }
