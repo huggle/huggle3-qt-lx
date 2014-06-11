@@ -1,4 +1,4 @@
-# See http://about.travis-ci.org/docs/user/build-configuration/
+# See http://docs.travis-ci.com/user/build-configuration/
 # See ./travis/* for the actual scripts that get run
 
 language: cpp
