@@ -95,5 +95,5 @@ if (!(Test-Path "definitions.hpp"))
 #    }
 #}
 
-echo "It's all done, you can build huggle now from withing Qt creator!"
+echo "It's all done, you can build huggle now from within Qt creator!"
 Read-Host -Prompt "Press Enter to continue"
