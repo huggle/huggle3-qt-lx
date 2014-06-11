@@ -242,7 +242,7 @@ void History::Tick()
                     edit->DecRef();
                     return;
                 }
-                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
+                this->qTalk = WikiUtil::EditPage("User_talk:" + edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
                 edit->DecRef();
                 return;
             } else
