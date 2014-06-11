@@ -1218,6 +1218,11 @@ void MainWindow::Exit()
     delete layout;
     if (Configuration::HuggleConfiguration->Restricted)
     {
+        this->tCheck->stop();
+        this->GeneralTimer->stop();
+        Core::HuggleCore->Main = nullptr;
+        this->deleteLater();
+        this->close();
         Core::HuggleCore->Shutdown();
         return;
     }
