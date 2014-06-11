@@ -715,9 +715,8 @@ void RevertQuery::Rollback()
     {
         token = QUrl::toPercentEncoding(token);
     }
-    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName)
-                + "&token=" + token
-                + "&user=" + QUrl::toPercentEncoding(edit->User->Username)
+    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token=" 
+                + token + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
@@ -759,15 +758,7 @@ void RevertQuery::Exit()
         delete this->timer;
         this->timer = nullptr;
     }
-    if (this->eqSoftwareRollback != nullptr)
-    {
-        this->eqSoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->eqSoftwareRollback = nullptr;
-    }
+    GC_DECNAMEDREF(this->eqSoftwareRollback,HUGGLECONSUMER_REVERTQUERY);
+    GC_DECNAMEDREF(this->qRevert, HUGGLECONSUMER_REVERTQUERY);
     this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
-    if (this->qRevert != nullptr)
-    {
-        this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qRevert = nullptr;
-    }
 }
