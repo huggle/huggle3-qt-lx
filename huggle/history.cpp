@@ -210,8 +210,14 @@ void History::Tick()
         }
         WikiEdit *edit = new WikiEdit();
         edit->IncRef();
-        edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target);
-        edit->User = new WikiUser(user);
+        if (this->RevertingItem->Type == HistoryMessage)
+        {
+            edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target);
+        } else
+        {
+            edit->Page = new WikiPage(this->RevertingItem->Target);
+        }
+        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username);
         edit->Page->Contents = result;
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
