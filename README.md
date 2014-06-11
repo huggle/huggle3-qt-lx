@@ -60,7 +60,7 @@ On windows:
 * open huggle.pro and uncomment / add python library
 * open definitions.hpp and uncomment #define PYTHONENGINE
 
-Now rebuild Huggle and hopefor the best!
+Now rebuild Huggle and hope for the best!
 
 If you manage to compile it, you can insert your .py extensions to HUGGLEROOT/extensions, for more
 information ask for help on our irc channel.
