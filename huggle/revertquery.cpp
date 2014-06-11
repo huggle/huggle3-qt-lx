@@ -48,7 +48,7 @@ RevertQuery::~RevertQuery()
     GC_DECNAMEDREF(this->qPreflight, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
     if (this->timer != nullptr)
-        Huggle::Exception::ThrowSoftException("Timer leaked", "dtor::RevertQuery()");
+        this->timer->deleteLater();
     GC_DECREF(this->qHistoryInfo);
     GC_DECREF(this->HI);
 }
