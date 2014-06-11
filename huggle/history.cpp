@@ -210,7 +210,7 @@ void History::Tick()
         }
         WikiEdit *edit = new WikiEdit();
         edit->IncRef();
-        edit->Page = new WikiPage(this->RevertingItem->Target);
+        edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target);
         edit->User = new WikiUser(user);
         edit->Page->Contents = result;
         edit->RevID = revid;
@@ -242,7 +242,7 @@ void History::Tick()
                     edit->DecRef();
                     return;
                 }
-                this->qTalk = WikiUtil::EditPage("User_talk:" + edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
+                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
                 edit->DecRef();
                 return;
             } else
