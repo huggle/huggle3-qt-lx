@@ -80,6 +80,7 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
     if (Title.isEmpty())
     {
         InsertSection = false;
+        SectionKeep = false;
     }
 
     Message *m = new Message(User, Text, Summary);

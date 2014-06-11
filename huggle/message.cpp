@@ -468,6 +468,11 @@ void Message::ProcessTalk()
 
 QString Message::Append(QString text, QString OriginalText, QString Label)
 {
+    if (Label.isEmpty())
+    {
+        // there is nothing to insert this to
+        return OriginalText += "\n\n" + text + "\n\n";
+    }
     QRegExp regex("\\s*==\\s*" + QRegExp::escape(Label) + "\\s*==");
     if (!OriginalText.contains(regex))
     {
