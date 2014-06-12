@@ -633,7 +633,7 @@ bool RevertQuery::ProcessRevert()
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
         if ((this->SR_Depth >= 1 && this->OneEditOnly) || e.attribute("user") != this->edit->User->Username)
         {
-            if (Configuration::HuggleConfiguration->Verbosity > 1)
+            if (Configuration::HuggleConfiguration->Verbosity > 1 && e.attribute("user") != this->edit->User->Username)
             {
                 Syslog::HuggleLogs->DebugLog("found match for revert (depth " + QString::number(this->SR_Depth) + ") user "
                                              + e.attribute("user") + " != " + this->edit->User->Username, 2);
