@@ -56,7 +56,7 @@ WarningList::~WarningList()
 void WarningList::on_pushButton_clicked()
 {
     QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText());
-    if (wt.size() < 1)
+    if (wt.isEmpty())
     {
         QMessageBox mb;
         mb.setWindowTitle("No warning");
@@ -77,10 +77,7 @@ void WarningList::on_pushButton_clicked()
         }
     }
     if (ptr_Warning_ != nullptr)
-    {
         PendingWarning::PendingWarnings.append(ptr_Warning_);
-        return;
-    }
     this->wikiEdit->UnregisterConsumer("WarningList");
     this->wikiEdit = nullptr;
     this->hide();
