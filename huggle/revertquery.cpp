@@ -124,20 +124,16 @@ void RevertQuery::Kill()
 
 bool RevertQuery::IsProcessed()
 {
-    if (this->Status == StatusInError)
+    if (this->Status == StatusDone || this->Status == StatusInError)
         return true;
     if (!this->PreflightFinished)
         return false;
-    if (this->Status != StatusDone)
+    if (this->CheckRevert())
     {
-        if (this->CheckRevert())
-        {
-            this->Status = StatusDone;
-            return true;
-        }
-        return false;
+        this->Status = StatusDone;
+        return true;
     }
-    return true;
+    return false;
 }
 
 void RevertQuery::SetUsingSR(bool software_rollback)
@@ -488,7 +484,7 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         this->SR_EditToken = element.attribute("edittoken");
-        if (this->SR_EditToken.size() == 0)
+        if (this->SR_EditToken.isEmpty())
         {
             // invalid token
             this->DisplayError("Invalid token");
@@ -557,7 +553,7 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         content = element.text();
-        if (summary.size() == 0)
+        if (summary.isEmpty())
             summary = Configuration::HuggleConfiguration->ProjectConfig->SoftwareRevertDefaultSummary;
         summary = summary.replace("$1", this->edit->User->Username)
                 .replace("$2", this->SR_Target)
@@ -565,7 +561,7 @@ bool RevertQuery::ProcessRevert()
                 .replace("$4", QString::number(this->SR_RevID));
         // we need to make sure there is edit suffix in revert summary for huggle
         summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
-        if (content == "")
+        if (content.isEmpty())
         {
             /// \todo LOCALIZE ME
             this->DisplayError("Cowardly refusing to blank \"" + this->edit->Page->PageName +
@@ -637,6 +633,11 @@ bool RevertQuery::ProcessRevert()
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
         if ((this->SR_Depth >= 1 && this->OneEditOnly) || e.attribute("user") != this->edit->User->Username)
         {
+            if (Configuration::HuggleConfiguration->Verbosity > 1)
+            {
+                Syslog::HuggleLogs->DebugLog("found match for revert (depth " + QString::number(this->SR_Depth) + ") user "
+                                             + e.attribute("user") + " != " + this->edit->User->Username, 2);
+            }
             // we got it, this is the revision we want to revert to
             this->SR_RevID = e.attribute("revid").toInt();
             this->SR_Target = e.attribute("user");

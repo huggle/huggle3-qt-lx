@@ -117,7 +117,7 @@ void History::Undo(HistoryItem *hist)
                 hist->ReferencedBy = nullptr;
             }
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents("User talk:" + hist->Target);
+            this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
             this->qEdit->IncRef();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
@@ -233,8 +233,7 @@ void History::Tick()
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
-                    this->RevertingItem = nullptr;
-                    this->timerRetrievePageInformation->stop();
+                    this->Fail();
                     edit->DecRef();
                     return;
                 }
@@ -243,8 +242,7 @@ void History::Tick()
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
-                    this->RevertingItem = nullptr;
-                    this->timerRetrievePageInformation->stop();
+                    this->Fail();
                     edit->DecRef();
                     return;
                 }
