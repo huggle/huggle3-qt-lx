@@ -626,7 +626,7 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig->DefaultSummary = ConfigurationParse("default-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
     this->ProjectConfig->AgfRevert = ConfigurationParse("agf", config, "Reverted good faith edits by [[Special:Contributions/$2|$2]]"\
-                                                       " [[User talk:$2|talk]]");
+                                                       " [[User talk:$2|talk]]: $1");
     this->ProjectConfig->EditSuffixOfHuggle = ConfigurationParse("summary", config, "[[Project:Huggle|HG]]");
     this->ProjectConfig->WarnSummary3 = ConfigurationParse("warn-summary-3", config);
     this->ProjectConfig->WarnSummary4 = ConfigurationParse("warn-summary-4", config);
