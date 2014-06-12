@@ -651,12 +651,12 @@ bool RevertQuery::ProcessRevert()
     {
         // something is wrong
         this->DisplayError(_l("revert-fail", this->edit->Page->PageName, "because it was edited meanwhile"));
+        Syslog::HuggleLogs->DebugLog("revert failed because of 0 depth");
         return true;
     }
     if (this->SR_RevID == WIKI_UNKNOWN_REVID)
     {
-        this->DisplayError(_l("revert-fail", this->edit->Page->PageName,
-                                                                        "because no previous version could be retrieved"));
+        this->DisplayError(_l("revert-fail", this->edit->Page->PageName, "because no previous version could be retrieved"));
         return true;
     }
     this->CustomStatus = "Retrieving content of previous version";
