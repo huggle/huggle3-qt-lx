@@ -24,7 +24,7 @@ typedef char byte_ht;
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #define QT_NO_TRANSLATION
 
-//#define MTGC true
+#define MTGC true
 
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
