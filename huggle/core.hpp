@@ -78,9 +78,14 @@ namespace Huggle
              * This function may be called also from terminal parser
              */
             static void VersionRead();
-            //! Pointer to core, there should be only 1 core for whole application and this is that one
-            //! if you are running extension you need to update this pointer with that one you receive
-            //! using iExtension::HuggleCore
+            //! Pointer to core
+            //! When we compile an extension that links against the huggle core, it loads into a different stack,
+            //! which is pretty much like a separate application domain, so I will call it so in this
+            //! documentation. Because we want to have only 1 core, we create a dynamic instance here and let
+            //! modules that are loaded by huggle read a pointer to it, so that they can access the correct one
+            //! instead of creating own instance in different block of memory. There should be only 1 core for
+            //! whole application and this is that one. If you are running extension you need to update this pointer
+            //! with that one you receive using iExtension::HuggleCore()
             static Core *HuggleCore;
 
             Core();
