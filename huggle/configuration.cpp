@@ -456,7 +456,7 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->VandalNw_Login = Configuration::SafeBool(option.attribute("text"));
             continue;
         }
-        if (key == "UserName")
+        if (key == "UserName" && Configuration::HuggleConfiguration->SystemConfig_Username.isEmpty())
         {
             Configuration::HuggleConfiguration->SystemConfig_Username = option.attribute("text");
             continue;

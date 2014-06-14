@@ -286,7 +286,7 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! User name
-            QString     SystemConfig_Username = "User";
+            QString     SystemConfig_Username = "";
             //! If SSL is being used
             bool        SystemConfig_UsingSSL = true;
             //! Consumer key

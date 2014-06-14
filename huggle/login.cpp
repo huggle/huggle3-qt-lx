@@ -79,7 +79,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         this->Updater = new UpdateForm();
         this->Updater->Check();
     }
-    if (Configuration::HuggleConfiguration->SystemConfig_Username != "User")
+    if (!Configuration::HuggleConfiguration->SystemConfig_Username.isEmpty())
     {
         this->ui->lineEdit_username->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->ui->lineEdit_password->setFocus();
