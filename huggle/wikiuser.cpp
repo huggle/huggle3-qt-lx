@@ -195,7 +195,7 @@ WikiUser::WikiUser(QString user)
 {
     this->UserLock = new QMutex(QMutex::Recursive);
     this->IP = false;
-    if (user.length() != 0)
+    if (!user.isEmpty())
     {
         if (WikiUser::IPv6Regex.exactMatch(user))
         {
@@ -213,6 +213,10 @@ WikiUser::WikiUser(QString user)
     int c=0;
     this->ContentsOfTalkPage = "";
     this->Site = Configuration::HuggleConfiguration->Project;
+    this->EditCount = -1;
+    this->Bot = false;
+    this->RegistrationDate = "";
+    this->WhitelistInfo = 0;
     WikiUser::ProblematicUserListLock.lock();
     while (c<ProblematicUsers.count())
     {
@@ -229,11 +233,7 @@ WikiUser::WikiUser(QString user)
     WikiUser::ProblematicUserListLock.unlock();
     this->BadnessScore = 0;
     this->WarningLevel = 0;
-    this->Bot = false;
     this->IsReported = false;
-    this->WhitelistInfo = 0;
-    this->EditCount = -1;
-    this->RegistrationDate = "";
 }
 
 WikiUser::~WikiUser()
