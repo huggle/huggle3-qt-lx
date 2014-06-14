@@ -824,7 +824,7 @@ void MainWindow::OnMainTimerTick()
     this->ProcessReverts();
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;
-#ifndef MTGC
+#ifndef HUGGLE_USE_MT_GC
     if (Core::HuggleCore->gc)
     {
         Core::HuggleCore->gc->DeleteOld();

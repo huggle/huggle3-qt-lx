@@ -18,7 +18,7 @@ GC *GC::gc = nullptr;
 Huggle::GC::GC()
 {
     this->Lock = new QMutex(QMutex::Recursive);
-#ifdef MTGC
+#ifdef HUGGLE_USE_MT_GC
     this->gc_t = new GC_t();
     // this is a background task
     this->gc_t->start(QThread::LowestPriority);
@@ -89,7 +89,7 @@ void Huggle::GC::DeleteOld()
 
 void GC::Start()
 {
-#ifdef MTGC
+#ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
         throw new Huggle::Exception("gc_t can't be NULL");
 
@@ -104,7 +104,7 @@ void GC::Start()
 
 void GC::Stop()
 {
-#ifdef MTGC
+#ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
         throw new Huggle::Exception("gc_t can't be NULL");
 
@@ -117,7 +117,7 @@ void GC::Stop()
 
 bool GC::IsRunning()
 {
-#ifdef MTGC
+#ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
         throw new Huggle::Exception("gc_t can't be NULL");
 
