@@ -118,6 +118,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig->DisplayTitle);
     this->ui->checkBox_29->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
+    this->ui->checkBox_30->setChecked(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
     this->on_checkBox_27_clicked();
 }
 
@@ -214,6 +215,16 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
     Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = this->ui->checkBox_29->isChecked();
+    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
+    {
+        Configuration::HuggleConfiguration->UserConfig->WelcomeGood = this->ui->checkBox_30->isChecked();
+        // now we need to update the option as well just to ensure that user config will be updated as well
+        // this option needs to be written only if it was explicitly changed by user to a value that
+        // is different from a project config file
+        HuggleOption *o_ = Configuration::HuggleConfiguration->GetOption("welcome-good");
+        if (o_)
+            o_->SetVariant(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
+    }
     if (this->ui->radioButton_5->isChecked())
     {
         Configuration::HuggleConfiguration->UserConfig->GoNext = Configuration_OnNext_Stay;

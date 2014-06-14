@@ -1518,6 +1518,18 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
+void MainWindow::WelcomeGood()
+{
+    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
+        return;
+    Hooks::OnGood(this->CurrentEdit);
+    this->PatrolThis();
+    this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
+    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents() == "")
+        this->Welcome();
+    this->DisplayNext();
+}
+
 void MainWindow::LockPage()
 {
     this->EditablePage = false;
@@ -1634,15 +1646,7 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 
 void MainWindow::on_actionGood_edit_triggered()
 {
-    if (this->CurrentEdit != nullptr)
-    {
-        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
-        Hooks::OnGood(this->CurrentEdit);
-        this->PatrolThis();
-        if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
-            this->Welcome();
-    }
-    this->DisplayNext();
+    this->WelcomeGood();
 }
 
 void MainWindow::on_actionUser_contributions_triggered()
@@ -1661,17 +1665,7 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-        return;
-    if (this->CurrentEdit != nullptr)
-    {
-        Hooks::OnGood(this->CurrentEdit);
-        this->PatrolThis();
-        this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
-        if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents() == "")
-            this->Welcome();
-    }
-    this->DisplayNext();
+    this->WelcomeGood();
 }
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()

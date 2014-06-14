@@ -831,6 +831,7 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig->QueueID = ConfigurationParse("QueueID", config);
     this->UserConfig->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->UserConfig->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
+    this->UserConfig->WelcomeGood = this->SetOption("welcome-good", config, this->ProjectConfig->WelcomeGood).toBool();
     this->NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;

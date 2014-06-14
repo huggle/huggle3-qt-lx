@@ -70,6 +70,8 @@ namespace Huggle
             bool                    HAN_DisplayUser = true;
             bool                    HAN_DisplayBots = true;
             bool                    HAN_DisplayUserTalk = true;
+            //! Welcome new users on a good edit
+            bool                    WelcomeGood = true;
     };
 }
 
