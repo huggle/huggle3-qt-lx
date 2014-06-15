@@ -493,6 +493,11 @@
     <string name="update-title">New version available</string>
     <string name="update-progress">Downloading new version...</string>
     <string name="update-error">Failed to download new version</string>
+    <string name="updater-title">New version of huggle is available</string>
+    <string name="updater-update">Update</string>
+    <string name="updater-open-manualdownloadpage">Open download page</string>
+    <string name="updater-close">Close</string>
+    <string name="updater-disable-notify">Disable updates</string>
     <string name="userinfo-generic">User info</string>
     <string name="userinfo-title">User information for $1</string>
     <string name="userinfo-anonymous">Anonymous:</string>

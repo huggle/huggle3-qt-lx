@@ -22,6 +22,11 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
     this->ui->setupUi(this);
     this->qData = NULL;
     this->timer = new QTimer(this);
+
+    this->setWindowTitle(_l("updater-title"));
+    this->ui->pushButton->setText(_l("updater-update"));
+    this->ui->pushButton_2->setText(_l("updater-close"));
+    this->ui->checkBox->setText(_l("updater-disable-notify"));
 }
 
 UpdateForm::~UpdateForm()
@@ -105,7 +110,7 @@ void UpdateForm::OnTick()
             if(l.count() > 0)
             {
                 this->manualDownloadpage = new QUrl(l.at(0).toElement().text());
-                this->ui->pushButton->setText("open download page");
+                this->ui->pushButton->setText(_l("updater-open-manualdownloadpage"));
                 this->ui->pushButton->setEnabled(true);
             }
             this->show();
