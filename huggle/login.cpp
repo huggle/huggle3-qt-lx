@@ -109,6 +109,7 @@ void Login::Localize()
     this->ui->ButtonOK->setText(_l("login-start"));
     this->ui->checkBox->setText(_l("login-ssl"));
     this->ui->labelOauthUsername->setText(_l("login-username"));
+    this->ui->pushButton->setToolTip(_l("login-reload-tool-tip"));
     this->ui->pushButton->setText(_l("reload"));
     this->ui->tabWidget->setTabText(0, _l("login-tab-oauth"));
     this->ui->tabWidget->setTabText(1, _l("login-tab-login"));

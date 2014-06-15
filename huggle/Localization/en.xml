@@ -163,6 +163,7 @@
     <string name="login-intro">Please pick a project and enter your username and password.</string>
     <string name="login-tab-oauth">OAuth</string>
     <string name="login-tab-login">Login</string>
+    <string name="login-reload-tool-tip">Reload a list of available projects that can be used in huggle, this can be useful in case you want to use huggle on a project where huggle was recently enabled on</string>
     <string name="login-language">Language:</string>
     <string name="login-project">Project:</string>
     <string name="login-username">Username:</string>
@@ -321,6 +322,7 @@
     <string name="main-browser-open">View this in external browser</string>
     <string name="main-browser-newedits">Show new edits to page</string>
     <string name="main-browser-newcontribs">Show new contributions by user</string>
+    <string name="main-revert-manual">No rollback token, fallback to manual revert of $1</string>
     <string name="main-han">HAN</string>
     <string name="main-han-disconnect">Disconnect</string>
     <string name="main-han-connect">Connect</string>
