@@ -129,6 +129,8 @@
     <string name="config-logbrowsetitle">Log file location</string>
     <string name="config-shortcutconflict">Shortcut '$1' conflicts with the existing shortcut for '$1'.</string>
     <string name="config-no-colon">You can't use : in name of queue</string>
+    <string name="config-notify-update">Check for updates</string>
+    <string name="config-notify-beta">Check for beta versions if available</string>
     <string name="delete-title">Delete $1</string>
     <string name="delete-reason">Reason:</string>
     <string name="delete-deletionlog">Deletion log:</string>

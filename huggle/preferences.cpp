@@ -24,7 +24,6 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     // headers
     this->ui->tableWidget->setColumnCount(5);
     this->setWindowTitle(_l("config-title"));
-    this->ui->checkBox_12->setText(_l("config-ircmode"));
     QStringList header;
     header << _l("general-name") << _l("author") << _l("description") << _l("status") << _l("version");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
@@ -89,12 +88,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->Disable();
     // options
     this->ui->checkBox_26->setChecked(Configuration::HuggleConfiguration->SystemConfig_RequestDelay);
-    this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
-    this->ui->lineEdit_2->setEnabled(this->ui->checkBox_26->isChecked());
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts);
+    this->ui->checkBox_12->setText(_l("config-ircmode"));
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
     this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig->HistoryLoad);
     this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs);
@@ -118,8 +116,12 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
+    this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
     this->ui->checkBox_notifyUpdate->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
+    this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
     this->ui->checkBox_notifyBeta->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
+
+    this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
 }
 
