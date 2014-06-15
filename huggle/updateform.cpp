@@ -86,7 +86,7 @@ void UpdateForm::OnTick()
 
     QDomDocument r;
     r.setContent(this->qData->Result->Data);
-    QDomNodeList l = r.elementsByTagName("newversion");
+    QDomNodeList l = r.elementsByTagName("obsolete");
     if (l.count() == 0)
     {
         // there is no new version of huggle
