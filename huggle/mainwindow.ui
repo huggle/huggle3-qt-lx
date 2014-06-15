@@ -102,6 +102,7 @@
      <addaction name="actionHtml_dump"/>
      <addaction name="actionEnforce_sysop_rights"/>
      <addaction name="actionRelog"/>
+     <addaction name="actionDryMode"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -939,6 +940,14 @@
    </property>
    <property name="visible">
     <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionDryMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>DryMode</string>
    </property>
   </action>
  </widget>

@@ -143,6 +143,15 @@ void ApiQuery::Process()
     QNetworkRequest request(url);
     if (this->UsingPOST)
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    if (Configuration::HuggleConfiguration->SystemConfig_DryMode && this->EditingQuery)
+    {
+        this->Result = new QueryResult();
+        this->Result->Data = "DM";
+        this->Status = StatusDone;
+        Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Configuration::Bool2String(this->UsingPOST) +
+                                ") " + this->URL + "\ndata: " + this->Parameters);
+        return;
+    }
     if (this->UsingPOST)
     {
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
@@ -182,27 +191,35 @@ void ApiQuery::SetAction(const Action action)
             return;
         case ActionRollback:
             this->ActionPart = "rollback";
+            this->EditingQuery = true;
             return;
         case ActionDelete:
             this->ActionPart = "delete";
+            this->EditingQuery = true;
             return;
         case ActionUndelete:
             this->ActionPart = "undelete";
+            this->EditingQuery = true;
             return;
         case ActionBlock:
             this->ActionPart = "block";
+            this->EditingQuery = true;
             return;
         case ActionProtect:
             this->ActionPart = "protect";
+            this->EditingQuery = true;
             return;
         case ActionEdit:
             this->ActionPart = "edit";
+            this->EditingQuery = true;
             return;
         case ActionPatrol:
             this->ActionPart = "patrol";
+            this->EditingQuery = true;
             return;
         case ActionReview: // FlaggedRevs
             this->ActionPart = "review";
+            this->EditingQuery = true;
             return;
     }
 }

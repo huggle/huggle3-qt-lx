@@ -2218,3 +2218,8 @@ void Huggle::MainWindow::on_actionStop_provider_triggered()
     this->ui->actionResume_provider->setVisible(true);
     this->ui->actionStop_provider->setVisible(false);
 }
+
+void Huggle::MainWindow::on_actionDryMode_triggered()
+{
+    Configuration::HuggleConfiguration->SystemConfig_DryMode = this->ui->actionDryMode->isChecked();
+}
