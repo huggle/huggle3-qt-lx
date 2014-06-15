@@ -652,9 +652,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_29">
+        <widget class="QCheckBox" name="checkBox_notifyUpdate">
          <property name="text">
           <string>Check for updates</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_notifyBeta">
+         <property name="text">
+          <string>Check for beta versions</string>
          </property>
         </widget>
        </item>

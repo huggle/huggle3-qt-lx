@@ -270,7 +270,7 @@ void Login::PressOK()
     }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
-    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     if (this->ui->lineEdit_username->text() == "Developer Mode")
     {
         this->DeveloperMode();

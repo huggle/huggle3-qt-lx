@@ -73,7 +73,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string notr="true">Skip</string>
+        <string notr="true">Close</string>
        </property>
       </widget>
      </item>

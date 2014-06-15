@@ -129,6 +129,8 @@
     <string name="config-logbrowsetitle">Log file location</string>
     <string name="config-shortcutconflict">Shortcut '$1' conflicts with the existing shortcut for '$1'.</string>
     <string name="config-no-colon">You can't use : in name of queue</string>
+    <string name="config-notify-update">Check for updates</string>
+    <string name="config-notify-beta">Check for beta versions if available</string>
     <string name="delete-title">Delete $1</string>
     <string name="delete-reason">Reason:</string>
     <string name="delete-deletionlog">Deletion log:</string>
@@ -173,9 +175,9 @@
     <string name="login-proxyaddress">Address:</string>
     <string name="login-proxyport">Port:</string>
     <string name="login-proxydomain">Domain:</string>
+    <string name="login-retrieving-user-conf">Retrieving user config</string>
     <string name="login-fail-css">Login failed unable to retrieve user config, did you create huggle3.css in your userspace? (Special:MyPage/huggle3.css is missing)</string>
     <string name="login-fail-enable-true">Login failed because you don't have enable:true in your personal config</string>
-    <string name="login-retrieving-user-conf">Retrieving user config</string>
     <string name="login-fail-no-info">Login failed unable to retrieve user info: $1</string>
     <string name="login-fail-parse-config">Login failed unable to parse the user config, see debug log for more details</string>
     <string name="login-fail-user-data">Login failed unable to retrieve user info, the api query returned no data</string>
@@ -491,6 +493,11 @@
     <string name="update-title">New version available</string>
     <string name="update-progress">Downloading new version...</string>
     <string name="update-error">Failed to download new version</string>
+    <string name="updater-title">New version of huggle is available</string>
+    <string name="updater-update">Update</string>
+    <string name="updater-open-manualdownloadpage">Open download page</string>
+    <string name="updater-close">Close</string>
+    <string name="updater-disable-notify">Disable updates</string>
     <string name="userinfo-generic">User info</string>
     <string name="userinfo-title">User information for $1</string>
     <string name="userinfo-anonymous">Anonymous:</string>
