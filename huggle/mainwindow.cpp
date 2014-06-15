@@ -2197,6 +2197,11 @@ void Huggle::MainWindow::on_actionAbort_2_triggered()
     revert_query->DecRef();
 }
 
+void Huggle::MainWindow::on_actionDryMode_triggered()
+{
+    Configuration::HuggleConfiguration->SystemConfig_DryMode = this->ui->actionDryMode->isChecked();
+}
+
 void Huggle::MainWindow::on_actionDisplay_this_page_triggered()
 {
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
@@ -2217,9 +2222,4 @@ void Huggle::MainWindow::on_actionStop_provider_triggered()
     Core::HuggleCore->PrimaryFeedProvider->Pause();
     this->ui->actionResume_provider->setVisible(true);
     this->ui->actionStop_provider->setVisible(false);
-}
-
-void Huggle::MainWindow::on_actionDryMode_triggered()
-{
-    Configuration::HuggleConfiguration->SystemConfig_DryMode = this->ui->actionDryMode->isChecked();
 }
