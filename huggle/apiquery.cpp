@@ -146,10 +146,10 @@ void ApiQuery::Process()
     if (Configuration::HuggleConfiguration->SystemConfig_DryMode && this->EditingQuery)
     {
         this->Result = new QueryResult();
-        this->Result->Data = "DM";
+        this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Configuration::Bool2String(this->UsingPOST) +
-                                ") " + this->URL + "\ndata: " + this->Parameters);
+                                ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
     if (this->UsingPOST)
