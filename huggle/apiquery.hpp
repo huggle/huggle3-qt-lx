@@ -75,6 +75,8 @@ namespace Huggle
             QString QueryTargetToString();
             //! Returns a type of query as a string
             QString QueryTypeToString();
+            //! Whether the query is going to edit any data in wiki
+            bool EditingQuery = false;
             //! Whether the query will submit parameters using POST data
             bool UsingPOST = false;
             //! This is a requested format in which the result should be written in

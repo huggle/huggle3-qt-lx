@@ -308,7 +308,7 @@ namespace Huggle
             void on_actionDisplay_this_page_triggered();
             void on_actionResume_provider_triggered();
             void on_actionStop_provider_triggered();
-
+            void on_actionDryMode_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
