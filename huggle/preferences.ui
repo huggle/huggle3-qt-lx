@@ -98,6 +98,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="checkBox_30">
+           <property name="text">
+            <string>Send welcome messages to users with empty talk page on good edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="checkBox">
            <property name="text">
             <string>Automatically resolve conflicts with other users who revert or change the page</string>
@@ -393,7 +400,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>On change of page, revert etc</string>
+          <string>When you revert or change a displayed edit</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>

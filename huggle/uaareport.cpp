@@ -60,7 +60,7 @@ void UAAReport::getPageContents()
 {
     if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
-    this->qUAApage = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig.UAAPath);
+    this->qUAApage = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->UAAPath);
     this->qUAApage->Target = _l("uaa-g1");
     this->qUAApage->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qUAApage);
@@ -95,7 +95,7 @@ void UAAReport::onTick()
     /// \todo Check if user isn't already reported
     Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
     /// \todo Insert this to project config so that each project can have their own system here
-    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
+    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     this->whatToReport();
     this->insertUsername();
     WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true)->DecRef();
@@ -105,7 +105,7 @@ void UAAReport::onTick()
 }
 void UAAReport::insertUsername()
 {
-    this->ta = Configuration::HuggleConfiguration->ProjectConfig.UAATemplate;
+    this->ta = Configuration::HuggleConfiguration->ProjectConfig->UAATemplate;
     this->ta.replace("$1", this->User->Username);
     this->ta.replace("$2", this->UAAReportReason + this->OptionalReason);
     this->ContentsOfUAA = this->ta;
@@ -176,7 +176,7 @@ void UAAReport::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
     this->qCheckUAAUser = new ApiQuery(ActionQuery);
-    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig.UAAPath);
+    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->UAAPath);
     this->qCheckUAAUser->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
     this->qCheckUAAUser->Process();
@@ -203,7 +203,7 @@ void UAAReport::onStartOfSearch()
     {
         mb.setWindowTitle("Cannot retrieve page");
         mb.setIcon(QMessageBox::Critical);
-        mb.setText("Retrieving the page " + Configuration::HuggleConfiguration->ProjectConfig.UAAPath + " failed.");
+        mb.setText("Retrieving the page " + Configuration::HuggleConfiguration->ProjectConfig->UAAPath + " failed.");
         mb.exec();
         return;
     }

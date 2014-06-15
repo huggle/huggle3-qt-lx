@@ -24,12 +24,8 @@ RevertQuery::RevertQuery()
 {
     this->Type = QueryRevert;
     this->edit = nullptr;
-    this->Token = "";
-    this->Summary = "";
-    this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
-    this->SR_EditToken = "";
 }
 
 RevertQuery::RevertQuery(WikiEdit *Edit)
@@ -37,12 +33,8 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     Edit->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->Type = QueryRevert;
     this->edit = Edit;
-    this->Token = "";
-    this->Summary = "";
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
-    this->SR_Target = "";
     this->SR_RevID = WIKI_UNKNOWN_REVID;
-    this->SR_EditToken = "";
 }
 
 RevertQuery::~RevertQuery()
@@ -55,11 +47,8 @@ RevertQuery::~RevertQuery()
     GC_DECNAMEDREF(this->qSR_PageToken, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qPreflight, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
-    if (this->timer != nullptr && this->timer->isActive())
-    {
-        throw new Huggle::Exception("Timer must not be running before its deletion", "dtor::RevertQuery()");
-    }
-    delete this->timer;
+    if (this->timer != nullptr)
+        this->timer->deleteLater();
     GC_DECREF(this->qHistoryInfo);
     GC_DECREF(this->HI);
 }
@@ -135,20 +124,16 @@ void RevertQuery::Kill()
 
 bool RevertQuery::IsProcessed()
 {
-    if (this->Status == StatusInError)
+    if (this->Status == StatusDone || this->Status == StatusInError)
         return true;
     if (!this->PreflightFinished)
         return false;
-    if (this->Status != StatusDone)
+    if (this->CheckRevert())
     {
-        if (this->CheckRevert())
-        {
-            this->Status = StatusDone;
-            return true;
-        }
-        return false;
+        this->Status = StatusDone;
+        return true;
     }
-    return true;
+    return false;
 }
 
 void RevertQuery::SetUsingSR(bool software_rollback)
@@ -184,6 +169,8 @@ void RevertQuery::OnTick()
         if (this->timer != nullptr)
         {
             this->timer->stop();
+            delete this->timer;
+            this->timer = nullptr;
         }
         this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
     }
@@ -242,7 +229,7 @@ void RevertQuery::Preflight()
     {
         if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts)
         {
-            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig.RevertNewBySame)
+            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
             {
                 this->IgnorePreflightCheck = true;
                 // Conflict resolved: revert all edits including new edits made by same users
@@ -349,7 +336,7 @@ void RevertQuery::CheckPreflight()
         }
         x++;
     }
-    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig.ConfirmMultipleEdits)
+    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits)
     {
         passed = false;
     }
@@ -381,7 +368,7 @@ void RevertQuery::CheckPreflight()
                 Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
             } else
             {
-                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig.RevertNewBySame)
+                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("cr-resolved-same-user", this->edit->Page->PageName));
                 } else
@@ -497,7 +484,7 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         this->SR_EditToken = element.attribute("edittoken");
-        if (this->SR_EditToken.size() == 0)
+        if (this->SR_EditToken.isEmpty())
         {
             // invalid token
             this->DisplayError("Invalid token");
@@ -566,15 +553,15 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         content = element.text();
-        if (summary.size() == 0)
-            summary = Configuration::HuggleConfiguration->ProjectConfig.SoftwareRevertDefaultSummary;
+        if (summary.isEmpty())
+            summary = Configuration::HuggleConfiguration->ProjectConfig->SoftwareRevertDefaultSummary;
         summary = summary.replace("$1", this->edit->User->Username)
                 .replace("$2", this->SR_Target)
                 .replace("$3", QString::number(this->SR_Depth))
                 .replace("$4", QString::number(this->SR_RevID));
         // we need to make sure there is edit suffix in revert summary for huggle
         summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
-        if (content == "")
+        if (content.isEmpty())
         {
             /// \todo LOCALIZE ME
             this->DisplayError("Cowardly refusing to blank \"" + this->edit->Page->PageName +
@@ -646,6 +633,11 @@ bool RevertQuery::ProcessRevert()
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
         if ((this->SR_Depth >= 1 && this->OneEditOnly) || e.attribute("user") != this->edit->User->Username)
         {
+            if (Configuration::HuggleConfiguration->Verbosity > 1 && e.attribute("user") != this->edit->User->Username)
+            {
+                Syslog::HuggleLogs->DebugLog("found match for revert (depth " + QString::number(this->SR_Depth) + ") user "
+                                             + e.attribute("user") + " != " + this->edit->User->Username, 2);
+            }
             // we got it, this is the revision we want to revert to
             this->SR_RevID = e.attribute("revid").toInt();
             this->SR_Target = e.attribute("user");
@@ -659,12 +651,12 @@ bool RevertQuery::ProcessRevert()
     {
         // something is wrong
         this->DisplayError(_l("revert-fail", this->edit->Page->PageName, "because it was edited meanwhile"));
+        Syslog::HuggleLogs->DebugLog("revert failed because of 0 depth");
         return true;
     }
     if (this->SR_RevID == WIKI_UNKNOWN_REVID)
     {
-        this->DisplayError(_l("revert-fail", this->edit->Page->PageName,
-                                                                        "because no previous version could be retrieved"));
+        this->DisplayError(_l("revert-fail", this->edit->Page->PageName, "because no previous version could be retrieved"));
         return true;
     }
     this->CustomStatus = "Retrieving content of previous version";
@@ -685,8 +677,8 @@ void RevertQuery::Rollback()
         return;
     }
     this->RollingBack = true;
-    if (!this->Summary.length())
-        this->Summary = Configuration::HuggleConfiguration->ProjectConfig.RollbackSummaryUnknownTarget;
+    if (this->Summary.isEmpty())
+        this->Summary = Configuration::HuggleConfiguration->ProjectConfig->RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     // we need to make sure there is edit suffix in revert summary for huggle
@@ -705,7 +697,7 @@ void RevertQuery::Rollback()
         this->Revert();
         return;
     }
-    if (!this->Token.size())
+    if (this->Token.isEmpty())
         this->Token = this->edit->RollbackToken;
     if (!this->Token.size())
     {
@@ -724,9 +716,8 @@ void RevertQuery::Rollback()
     {
         token = QUrl::toPercentEncoding(token);
     }
-    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName)
-                + "&token=" + token
-                + "&user=" + QUrl::toPercentEncoding(edit->User->Username)
+    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token=" 
+                + token + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
@@ -735,8 +726,7 @@ void RevertQuery::Rollback()
     {
         QueryPool::HugglePool->AppendQuery(this->qRevert);
     }
-    /// \todo LOCALIZE ME
-    this->CustomStatus = "Rolling back " + edit->Page->PageName;
+    this->CustomStatus = _l("rollback", edit->Page->PageName);
     Huggle::Syslog::HuggleLogs->DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();
 }
@@ -769,15 +759,7 @@ void RevertQuery::Exit()
         delete this->timer;
         this->timer = nullptr;
     }
-    if (this->eqSoftwareRollback != nullptr)
-    {
-        this->eqSoftwareRollback->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->eqSoftwareRollback = nullptr;
-    }
+    GC_DECNAMEDREF(this->eqSoftwareRollback,HUGGLECONSUMER_REVERTQUERY);
+    GC_DECNAMEDREF(this->qRevert, HUGGLECONSUMER_REVERTQUERY);
     this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
-    if (this->qRevert != nullptr)
-    {
-        this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qRevert = nullptr;
-    }
 }

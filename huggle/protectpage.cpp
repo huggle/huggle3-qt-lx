@@ -30,7 +30,7 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ui->comboBox_3->setCurrentIndex(2);
     this->ProtectToken = "";
     this->tt = nullptr;
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig.ProtectReason);
+    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason);
 }
 
 ProtectPage::~ProtectPage()
@@ -87,8 +87,7 @@ void ProtectPage::checkTokenToProtect()
         return;
     if (this->qToken->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Failed("ERROR: Token cannot be retrieved. The reason was: " + this->qToken->Result->ErrorMessage);
+        this->Failed(_l("protect-token", this->qToken->Result->ErrorMessage));
         return;
     }
     QDomDocument r;
@@ -97,8 +96,7 @@ void ProtectPage::checkTokenToProtect()
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
-        /// \todo LOCALIZE ME
-        this->Failed("No page info was available (are you an admin?)");
+        this->Failed(_l("protect-fail-no-info"));
         return;
     }
     QDomElement element = l.at(0).toElement();
@@ -125,7 +123,7 @@ void ProtectPage::checkTokenToProtect()
             break;
     }
     this->qProtection->Parameters = "title=" + QUrl::toPercentEncoding(this->PageToProtect->PageName)
-            + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig.ProtectReason)
+            + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason)
             + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
             + "&protections=" + QUrl::toPercentEncoding(protection)
             + "&token=" + QUrl::toPercentEncoding(this->ProtectToken);
@@ -149,8 +147,7 @@ void ProtectPage::on_pushButton_2_clicked()
 void ProtectPage::Failed(QString reason)
 {
     QMessageBox *_pmb = new QMessageBox();
-    /// \todo LOCALIZE ME
-    _pmb->setWindowTitle("Unable to protect page");
+    _pmb->setWindowTitle(_l("protect-message-title-fail"));
     /// \todo LOCALIZE ME
     _pmb->setText("Unable to protect the page because " + reason);
     _pmb->exec();

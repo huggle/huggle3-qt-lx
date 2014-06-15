@@ -295,8 +295,7 @@ bool Message::FinishToken()
     }
     if (this->qToken->Result->Failed)
     {
-        /// \todo LOCALIZE ME
-        this->Fail("unable to retrieve the edit token");
+        this->Fail(_l("message-fail-token-1"));
         return false;
     }
     QDomDocument dToken_;
@@ -304,8 +303,7 @@ bool Message::FinishToken()
     QDomNodeList l = dToken_.elementsByTagName("page");
     if (l.count() == 0)
     {
-        /// \todo LOCALIZE ME
-        this->Fail("no token was returned by request");
+        this->Fail(_l("message-fail-token-2"));
         Huggle::Syslog::HuggleLogs->DebugLog("No page");
         return false;
     }
@@ -351,10 +349,10 @@ void Message::PreflightCheck()
 void Message::ProcessSend()
 {
     this->_Status = MessageStatus_SendingMessage;
-    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness != 0)
+    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
         if (!this->CreateOnly && (this->user->TalkPage_RetrievalTime().addSecs(
-                                  Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness
+                                  Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness
                                       ) < QDateTime::currentDateTime()))
         {
             this->Error = Huggle::MessageError_Expired;
@@ -364,7 +362,7 @@ void Message::ProcessSend()
         {
             Syslog::HuggleLogs->DebugLog("Message to " + this->user->Username + " old " +
                                          QString::number(this->user->TalkPage_RetrievalTime()
-                                         .addSecs(Configuration::HuggleConfiguration->UserConfig.TalkPageFreshness)
+                                         .addSecs(Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness)
                                          .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
@@ -398,7 +396,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
+        s += " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     }
     if (this->SectionKeep || !this->CreateInNewSection)
     {
@@ -470,6 +468,11 @@ void Message::ProcessTalk()
 
 QString Message::Append(QString text, QString OriginalText, QString Label)
 {
+    if (Label.isEmpty())
+    {
+        // there is nothing to insert this to
+        return OriginalText += "\n\n" + text + "\n\n";
+    }
     QRegExp regex("\\s*==\\s*" + QRegExp::escape(Label) + "\\s*==");
     if (!OriginalText.contains(regex))
     {

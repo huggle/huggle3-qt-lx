@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "wikisite.hpp"
+#include "configuration.hpp"
 #include "syslog.hpp"
 using namespace Huggle;
 
@@ -74,6 +75,23 @@ WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
     if (!dns_)
         return WikiSite::Unknown;
     return dns_;
+}
+
+ProjectConfiguration *WikiSite::GetProjectConfig()
+{
+    if (this->Project == nullptr)
+        return Configuration::HuggleConfiguration->ProjectConfig;
+
+    return this->Project;
+}
+
+UserConfiguration *WikiSite::GetUserConfig()
+{
+    if (this->User != nullptr)
+    {
+        return this->User;
+    }
+    return Configuration::HuggleConfiguration->UserConfig;
 }
 
 void WikiSite::InsertNS(WikiPageNS *Ns)

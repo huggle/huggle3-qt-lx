@@ -158,6 +158,7 @@ namespace Huggle
             void DisplayNext(Query *q = nullptr);
             void DeletePage();
             void DisplayTalk();
+            void WelcomeGood();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();
             //! List of edits that are being saved
@@ -307,7 +308,7 @@ namespace Huggle
             void on_actionDisplay_this_page_triggered();
             void on_actionResume_provider_triggered();
             void on_actionStop_provider_triggered();
-
+            void on_actionDryMode_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger

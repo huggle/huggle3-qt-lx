@@ -16,12 +16,18 @@
 
 typedef char byte_ht;
 
-#define HUGGLE_VERSION                  "3.0.2"
+#define HUGGLE_VERSION                  "3.0.3"
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3
 #define HUGGLE_BYTE_VERSION_MINOR       0x0
-#define HUGGLE_BYTE_VERSION_RELEASE     0x2
+#define HUGGLE_BYTE_VERSION_RELEASE     0x3
 
-//#define MTGC true
+// we are using translatewiki and if this is not defined there is a huge overhead of Qt code
+#define QT_NO_TRANSLATION
+
+// comment this out to disable multithreaded garbage collector
+// this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
+// is crashing with it only, it means your code suck and need a fix in destructor :))
+#define HUGGLE_USE_MT_GC               "mt"
 
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE

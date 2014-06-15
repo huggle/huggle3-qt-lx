@@ -21,9 +21,9 @@ bool WikiUtil::IsRevert(QString Summary)
     if (Summary.size() > 0)
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->ProjectConfig._RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig._RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.at(xx)))
             {
                 return true;
             }
@@ -80,6 +80,7 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
     if (Title.isEmpty())
     {
         InsertSection = false;
+        SectionKeep = false;
     }
 
     Message *m = new Message(User, Text, Summary);
@@ -133,9 +134,9 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
     // retrieve a token
     EditQuery *eq = new EditQuery();
     eq->IncRef();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle))
+    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
     {
-        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
+        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     }
     eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
     eq->Page = page;

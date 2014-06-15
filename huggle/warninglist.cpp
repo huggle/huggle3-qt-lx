@@ -23,15 +23,21 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
 {
     this->ui->setupUi(this);
     this->wikiEdit = edit;
+    if (edit->User == nullptr)
+    {
+        // unlikely to happen
+        throw new Huggle::Exception("null user", "WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(new Ui::WarningList)");
+    }
     this->wikiEdit->RegisterConsumer("WarningList");
+    this->setWindowTitle(_l("warning-title", edit->User->Username));
     this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
     // insert all possible warnings now
-    if (Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.count() > 0)
+    if (Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count() > 0)
     {
         int r=0;
-        while (r<Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.count())
+        while (r<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
         {
-            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig.WarningTypes.at(r)));
+            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)));
             r++;
         }
         this->ui->comboBox->setCurrentIndex(0);
@@ -50,7 +56,7 @@ WarningList::~WarningList()
 void WarningList::on_pushButton_clicked()
 {
     QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText());
-    if (wt.size() < 1)
+    if (wt.isEmpty())
     {
         QMessageBox mb;
         mb.setWindowTitle("No warning");
@@ -71,10 +77,7 @@ void WarningList::on_pushButton_clicked()
         }
     }
     if (ptr_Warning_ != nullptr)
-    {
         PendingWarning::PendingWarnings.append(ptr_Warning_);
-        return;
-    }
     this->wikiEdit->UnregisterConsumer("WarningList");
     this->wikiEdit = nullptr;
     this->hide();

@@ -63,7 +63,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     // get a template
     Edit->User->WarningLevel++;
 
-    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig.WarningLevel)
+    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig->WarningLevel)
     {
         // we should report this user instead
         if (Edit->User->IsReported)
@@ -72,7 +72,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
             return nullptr;
         }
 
-        if (!Configuration::HuggleConfiguration->ProjectConfig.AIV)
+        if (!Configuration::HuggleConfiguration->ProjectConfig->AIV)
         {
             // there is no AIV function for this wiki
             Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
@@ -104,27 +104,27 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     switch (Edit->User->WarningLevel)
     {
         case 1:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
             break;
         case 2:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary2;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
             break;
         case 3:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary3;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
             break;
         case 4:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary4;
+            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
             break;
     }
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->ProjectConfig.MessageHeadings == HeadingsStandard)
+    if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsStandard)
     {
         QDateTime d = Configuration::HuggleConfiguration->ServerTime();
         HeadingText_ = WikiUtil::MonthText(d.date().month()) + " " + QString::number(d.date().year());
-    } else if (Configuration::HuggleConfiguration->ProjectConfig.MessageHeadings == HeadingsNone)
+    } else if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsNone)
     {
         HeadingText_ = "";
     }
@@ -136,7 +136,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         CreateOnly = true;
     }
     PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
-                                                                  Configuration::HuggleConfiguration->UserConfig.SectionKeep, false,
+                                                                  Configuration::HuggleConfiguration->UserConfig->SectionKeep, false,
                                                                   Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
     Hooks::OnWarning(Edit->User);
     return pw;
@@ -336,45 +336,45 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig.EditSuffixOfHuggle;
+    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
 
     switch (Level)
     {
         case 1:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
             break;
         case 2:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary2;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
             break;
         case 3:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary3;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
             break;
         case 4:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig.WarnSummary4;
+            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
             break;
     }
 
     MessageTitle_ = MessageTitle_.replace("$1", Edit->Page->PageName);
     QString id = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->UserConfig.EnforceMonthsAsHeaders)
+    if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
         QDateTime date_ = Configuration::HuggleConfiguration->ServerTime();
         id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
     WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, nullptr, false,
-                              Configuration::HuggleConfiguration->UserConfig.SectionKeep,
+                              Configuration::HuggleConfiguration->UserConfig->SectionKeep,
                               true, Edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type)
 {
     int x=0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig.WarningTemplates.count())
+    while (x < Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.count())
     {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig.WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x)) == type)
         {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig.WarningTemplates.at(x));
+            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x));
         }
         x++;
     }
@@ -383,13 +383,13 @@ QString Warnings::RetrieveTemplateToWarn(QString type)
 
 QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text)
 {
-    if (!User->IsIP() || Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplate.isEmpty())
+    if (!User->IsIP() || Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate.isEmpty())
     {
         return Text;
     }
     if (!User->TalkPage_ContainsSharedIPTemplate())
     {
-        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplate + "\n";
+        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate + "\n";
     }
     return Text;
 }

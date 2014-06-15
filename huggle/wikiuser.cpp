@@ -117,7 +117,7 @@ bool WikiUser::IsIPv6(QString user)
 void WikiUser::UpdateWl(WikiUser *us, long score)
 {
     if (!us->IsIP() &&
-        score <= Configuration::HuggleConfiguration->ProjectConfig.WhitelistScore &&
+        score <= Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore &&
         !us->IsWhitelisted())
     {
         if (Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
@@ -195,7 +195,7 @@ WikiUser::WikiUser(QString user)
 {
     this->UserLock = new QMutex(QMutex::Recursive);
     this->IP = false;
-    if (user.length() != 0)
+    if (!user.isEmpty())
     {
         if (WikiUser::IPv6Regex.exactMatch(user))
         {
@@ -213,6 +213,10 @@ WikiUser::WikiUser(QString user)
     int c=0;
     this->ContentsOfTalkPage = "";
     this->Site = Configuration::HuggleConfiguration->Project;
+    this->EditCount = -1;
+    this->Bot = false;
+    this->RegistrationDate = "";
+    this->WhitelistInfo = 0;
     WikiUser::ProblematicUserListLock.lock();
     while (c<ProblematicUsers.count())
     {
@@ -229,11 +233,7 @@ WikiUser::WikiUser(QString user)
     WikiUser::ProblematicUserListLock.unlock();
     this->BadnessScore = 0;
     this->WarningLevel = 0;
-    this->Bot = false;
     this->IsReported = false;
-    this->WhitelistInfo = 0;
-    this->EditCount = -1;
-    this->RegistrationDate = "";
 }
 
 WikiUser::~WikiUser()
@@ -328,11 +328,11 @@ QString WikiUser::GetTalk()
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
-    if (Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplateTags.length() < 1)
+    if (Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplateTags.length() < 1)
         return false;
     if (this->TalkPage_WasRetrieved())
     {
-        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig.SharedIPTemplateTags);
+        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplateTags);
     }
     return false;
 }

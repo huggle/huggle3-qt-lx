@@ -66,8 +66,6 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         l++;
     }
     this->setWindowTitle(title);
-    // show somewhere the simple huggle version
-    this->ui->labelHeader->setText("Huggle " + QString(HUGGLE_VERSION));
     this->ui->Language->setCurrentIndex(p);
     this->Reload();
     if (!QSslSocket::supportsSsl())
@@ -81,7 +79,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         this->Updater = new UpdateForm();
         this->Updater->Check();
     }
-    if (Configuration::HuggleConfiguration->SystemConfig_Username != "User")
+    if (!Configuration::HuggleConfiguration->SystemConfig_Username.isEmpty())
     {
         this->ui->lineEdit_username->setText(Configuration::HuggleConfiguration->SystemConfig_Username);
         this->ui->lineEdit_password->setFocus();
@@ -111,6 +109,7 @@ void Login::Localize()
     this->ui->ButtonOK->setText(_l("login-start"));
     this->ui->checkBox->setText(_l("login-ssl"));
     this->ui->labelOauthUsername->setText(_l("login-username"));
+    this->ui->pushButton->setToolTip(_l("login-reload-tool-tip"));
     this->ui->pushButton->setText(_l("reload"));
     this->ui->tabWidget->setTabText(0, _l("login-tab-oauth"));
     this->ui->tabWidget->setTabText(1, _l("login-tab-login"));
@@ -475,7 +474,7 @@ void Login::RetrieveProjectConfig()
             QDomElement data = l.at(0).toElement();
             if (Configuration::HuggleConfiguration->ParseProjectConfig(data.text()))
             {
-                if (!Configuration::HuggleConfiguration->ProjectConfig.EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig->EnableAll)
                 {
                     this->Kill();
                     this->Update(_l("login-error-projdisabled"));
@@ -534,7 +533,7 @@ void Login::RetrieveUserConfig()
                     this->LoginQuery->Process();
                     return;
                 }
-                if (!Configuration::HuggleConfiguration->ProjectConfig.RequireConfig)
+                if (!Configuration::HuggleConfiguration->ProjectConfig->RequireConfig)
                 {
                     // we don't care if user config is missing or not
                     this->LoginQuery->DecRef();
@@ -558,7 +557,7 @@ void Login::RetrieveUserConfig()
                     // piece of code really works
                     Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config (huggle.css) :)");
                 }
-                if (!Configuration::HuggleConfiguration->ProjectConfig.EnableAll)
+                if (!Configuration::HuggleConfiguration->ProjectConfig->EnableAll)
                 {
                     this->Kill();
                     this->Update(_l("login-fail-enable-true"));
@@ -615,14 +614,14 @@ void Login::RetrieveUserInfo()
                 Configuration::HuggleConfiguration->Rights.append(lRights_.at(c).toElement().text());
                 c++;
             }
-            if (Configuration::HuggleConfiguration->ProjectConfig.RequireRollback &&
+            if (Configuration::HuggleConfiguration->ProjectConfig->RequireRollback &&
                 !Configuration::HuggleConfiguration->Rights.contains("rollback"))
             {
                 this->Update(_l("login-fail-rollback-rights"));
                 this->Kill();
                 return;
             }
-            if (Configuration::HuggleConfiguration->ProjectConfig.RequireAutoconfirmed &&
+            if (Configuration::HuggleConfiguration->ProjectConfig->RequireAutoconfirmed &&
                 !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
@@ -635,7 +634,7 @@ void Login::RetrieveUserInfo()
             this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
-            if (Configuration::HuggleConfiguration->ProjectConfig.RequireEdits > editcount)
+            if (Configuration::HuggleConfiguration->ProjectConfig->RequireEdits > editcount)
             {
                 this->Update(_l("login-failed-edit"));
                 this->Kill();

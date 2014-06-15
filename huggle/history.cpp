@@ -117,7 +117,7 @@ void History::Undo(HistoryItem *hist)
                 hist->ReferencedBy = nullptr;
             }
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents("User talk:" + hist->Target);
+            this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
             this->qEdit->IncRef();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
@@ -210,8 +210,14 @@ void History::Tick()
         }
         WikiEdit *edit = new WikiEdit();
         edit->IncRef();
-        edit->Page = new WikiPage(this->RevertingItem->Target);
-        edit->User = new WikiUser(user);
+        if (this->RevertingItem->Type == HistoryMessage)
+        {
+            edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target);
+        } else
+        {
+            edit->Page = new WikiPage(this->RevertingItem->Target);
+        }
+        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username);
         edit->Page->Contents = result;
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
@@ -223,26 +229,24 @@ void History::Tick()
             mb.setDefaultButton(QMessageBox::Yes);
             if (mb.exec() == QMessageBox::Yes)
             {
-                if (Configuration::HuggleConfiguration->ProjectConfig.WelcomeTypes.count() == 0)
+                if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.count() == 0)
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
-                    this->RevertingItem = nullptr;
-                    this->timerRetrievePageInformation->stop();
+                    this->Fail();
                     edit->DecRef();
                     return;
                 }
-                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig.WelcomeTypes.at(0));
+                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.at(0));
                 if (!message.size())
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->ErrorLog("Invalid welcome template, ignored message");
-                    this->RevertingItem = nullptr;
-                    this->timerRetrievePageInformation->stop();
+                    this->Fail();
                     edit->DecRef();
                     return;
                 }
-                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig.WelcomeSummary, true);
+                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
                 edit->DecRef();
                 return;
             } else
