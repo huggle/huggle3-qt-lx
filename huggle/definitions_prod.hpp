@@ -81,6 +81,7 @@ typedef char byte_ht;
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
 #elif _WIN32
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows"
 #else
