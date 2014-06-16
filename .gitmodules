@@ -1,0 +1,3 @@
+[submodule "huggle/extension_list/mass-delivery"]
+	path = huggle/extension_list/mass-delivery
+	url = https://github.com/huggle/mass-delivery

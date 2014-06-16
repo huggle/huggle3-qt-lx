@@ -292,6 +292,7 @@ void Core::ExtensionLoad()
                             {
                                 interface->HuggleCore = Core::HuggleCore;
                             }
+                            interface->Localization = Localizations::HuggleLocalizations;
                             if (interface->Register())
                             {
                                 Core::Extensions.append(interface);

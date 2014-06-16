@@ -80,6 +80,7 @@ namespace Huggle
             void *HuggleCore;
             //! Pointer to global system configuration
             void *Configuration;
+            void *Localization;
             QNetworkAccessManager *Networking;
     };
 }
