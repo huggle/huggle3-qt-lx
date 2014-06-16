@@ -29,6 +29,7 @@
 #  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 SKIPCHECKS=0
+modules=0
 RED=$(tput setaf 1)
 WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
@@ -57,6 +58,10 @@ do
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
+    fi
+    if [ "$var" = "--extension" ];then
+        modules=1
+        continue
     fi
     if [ "$_BUILD" = "1" ];then
 	BUILD="$var"
@@ -223,6 +228,9 @@ if [ ! -f version.txt ];then
 	exit 1
 fi
 ok
+if [ $modules -gt 0 ];then
+    ./build/extensions_init.sh || exit 1
+fi
 if [ -d "$BUILD" ];then
   echo $WARN"WARNING: build directory already exist make sure it's clean"$NORMAL
 else
