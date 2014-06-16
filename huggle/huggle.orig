@@ -106,8 +106,6 @@ SOURCES += main.cpp\
     uaareport.cpp \
     collectable.cpp \
     gc.cpp \
-    hugglemassrollback.cpp \
-    hugglenuke.cpp \
     requestprotect.cpp \
     sessionform.cpp \
     whitelistform.cpp \
@@ -183,8 +181,6 @@ HEADERS  += mainwindow.hpp \
     uaareport.hpp \
     collectable.hpp \
     gc.hpp \
-    hugglemassrollback.hpp \
-    hugglenuke.hpp \
     requestprotect.hpp \
     sessionform.hpp \
     whitelistform.hpp \
@@ -235,8 +231,6 @@ FORMS    += mainwindow.ui \
     vandalnw.ui \
     updateform.ui \
     uaareport.ui \
-    hugglemassrollback.ui \
-    hugglenuke.ui \
     requestprotect.ui \
     sessionform.ui \
     whitelistform.ui \
