@@ -40,6 +40,8 @@ Linux
 cd huggle_release
 make
 sudo make install
+# extensions (optional)
+./build/extensions.sh
 ```
 
 MacOS
