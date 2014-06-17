@@ -28,7 +28,6 @@
   <string name="selectfile">{{Identical|Browse}}</string>
   <string name="yes">{{Identical|Yes}}</string>
   <string name="agf">Option in menu to revert the edit assuming a good faith (that allows user to provide own reason and doesn\'t affect badness scores)</string>
-  <string name="import">This is used to import configuration from global configuration</string>
   <string name="successful">generic</string>
   <string name="summary">{{Identical|Summary}}</string>
   <string name="id">{{Identical|ID}}</string>
@@ -71,13 +70,20 @@
   <string name="block-blockloglabel">Log of blocks</string>
   <string name="block-warnloglabel">List of warnings</string>
   <string name="block-sharedipwarning">Information that $1 is tagged as a shared or dynamic IP address.</string>
-  <string name="block-sensitivewarning">This is shown when user decide to revert edit by sensitive ip</string>
   <string name="block-rangeblockwarning">Shown when user start a block of user who is already blocked by another block</string>
   <string name="block-token-1">Shown in a logs or progress bar</string>
+  <string name="block-fail">Message that is displayed when it fails to block a user, $1 contains a reason</string>
+  <string name="block-token-e1">Displayed when it fails to get a token while blocking a user, $1 is error message</string>
+  <string name="block-error-no-info">Shown when mediawiki returns no user info, which happens when user isn\'t a sysop during block of user</string>
+  <string name="block-type">shown in report box as column header which type the block-logentry was of.</string>
   <string name="block-admin">Person who blocked a user in report user form</string>
   <string name="blocking">Shown in log / title of block window</string>
+  <string name="block-none">Shown when there is no user to block</string>
+  <string name="closing-whitelist">Note: currently not used in HG3</string>
+  <string name="closing-config">Note: currently not used in HG3</string>
   <string name="config-title">{{Identical|Options}}</string>
   <string name="config-rememberme">Option to remember username for login</string>
+  <string name="config-ircmode">preference option.</string>
   <string name="config-ircport">Label used next to the IRC Port options in the configuration settings</string>
   <string name="config-difffontsize">Label used next to the font size option for diffs in the configuration settings</string>
   <string name="config-trayicon">Label used next to the show tray icon option in the configuration settings</string>
@@ -89,12 +95,19 @@
   <string name="delete-reason">{{Identical|Reason}}</string>
   <string name="delete-deletionlog">{{Identical|Deletion log}}</string>
   <string name="historyform-title">{{Identical|History}}</string>
+  <string name="login-tab-oauth">name of tab at login window for OAuth-login.</string>
+  <string name="login-tab-login">name of tab at login window for normal username and password login.</string>
   <string name="login-language">{{Identical|Language}}</string>
   <string name="login-project">{{Identical|Project}}</string>
   <string name="login-username">{{Identical|Username}}</string>
   <string name="login-password">{{Identical|Password}}</string>
   <string name="login-proxyaddress">{{Identical|Address}}</string>
   <string name="login-start">{{Identical|Log in}}</string>
+  <string name="login-oauth-notsupported">OAuth-notice on login-window.</string>
+  <string name="login-translate">Used as link text for the link pointing to [[m:Huggle/Localization]].</string>
+  <string name="login-progress-start">Parameters:
+* $1 - project name</string>
+  <string name="login-ssl">Used as label for the checkbox.</string>
   <string name="login-error-invalid">{{Identical|Invalid username}}</string>
   <string name="main-page">{{Identical|Page}}</string>
   <string name="main-user">{{Identical|User}}</string>
@@ -103,25 +116,53 @@
   <string name="main-system-messages">Menu</string>
   <string name="main-system-reconnectirc">Menu item (in system menu)</string>
   <string name="main-system-logout">{{Identical|Log out}}</string>
+  <string name="main-system-abort">Menu entry to cancel current operation</string>
+  <string name="main-system-change-provider">Menu entry to change recent changes provider (wiki/api-feed or irc)</string>
+  <string name="main-system-change-provider-irc">IRC (Internet Relay Chat).
+{{Identical|IRC}}</string>
+  <string name="main-system-change-provider-wiki">{{Identical|Wiki}}</string>
   <string name="main-system-exit">{{Identical|Exit}}</string>
+  <string name="main-queue-count">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
   <string name="main-goto-mycontribs">{{Identical|Contribution}}</string>
   <string name="main-revision">{{Identical|Revision}}</string>
   <string name="main-revision-revert">{{Identical|Revert}}</string>
   <string name="main-revision-previous">{{Identical|Previous}}</string>
-  <string name="main-page-edit">{{Identical|Edit}}</string>
+  <string name="main-page-next">{{Identical|Next}}
+Menu entry to process to next edit in queue.</string>
+  <string name="main-page-edit">Used as label for the button.</string>
+  <string name="main-page-reqdeletion">Used as label for the button.
+
+See also:
+* {{msg-huggle|Main-page-delete}}</string>
+  <string name="main-page-reqprotection">Used as label for the button.</string>
+  <string name="main-page-patrol">Unused at this time.
+{{Identical|Mark as patrolled}}</string>
+  <string name="main-page-protect">Used as label for the button.
+{{Identical|Protect}}</string>
+  <string name="main-page-delete">Used as label for the button.
+
+See also:
+* {{msg-huggle|Main-page-reqdeletion}}
+{{Identical|Delete}}</string>
+  <string name="main-page-load">{{Identical|Load}}</string>
+  <string name="main-page-restore">Used as label for the button.</string>
   <string name="main-user-ignore">{{Identical|Ignore}}</string>
-  <string name="main-browser">{{Identical|Browser}}</string>
   <string name="main-browser-back">{{Identical|Back}}</string>
   <string name="main-help">{{Identical|Help}}</string>
   <string name="main-help-documentation">{{Identical|Documentation}}</string>
   <string name="main-help-feedback">{{Identical|Feedback}}</string>
   <string name="main-addqueue">{{Identical|Add}}</string>
+  <string name="main-display-session-data">Used as label for the button.</string>
   <string name="main-tip-browserback">{{Identical|Back}}</string>
-  <string name="main-tip-pagewatch">{{Identical|Watch this page}}</string>
   <string name="main-tip-pagedelete">{{Identical|Delete this page}}</string>
   <string name="message-subject">{{Identical|Subject}}</string>
   <string name="message-message">{{Identical|Message}}</string>
   <string name="message-summary">{{Identical|Summary}}</string>
+  <string name="message-done">Used as success message. Parameters:
+* $1 - username</string>
   <string name="protect-reason">{{Identical|Reason}}</string>
   <string name="queue-listselector">{{Identical|List}}</string>
   <string name="queue-filternewpage">{{Identical|New page}}</string>
@@ -129,6 +170,7 @@
   <string name="queue-filterreverts">{{Identical|Revert}}</string>
   <string name="queue-filternotifications">{{Identical|Notification}}</string>
   <string name="queue-filterwarnings">{{Identical|Warning}}</string>
+  <string name="queue-filtertags">{{Identical|Tag}}</string>
   <string name="report-reason">{{Identical|Reason}}</string>
   <string name="report-message">{{Identical|Message}}</string>
   <string name="speedy-reason">{{Identical|Reason}}</string>
@@ -138,9 +180,54 @@
   <string name="stats-blocks">{{Identical|Block}}</string>
   <string name="stats-allusers">{{Identical|All users}}</string>
   <string name="tag-summary">{{Identical|Summary}}</string>
-  <string name="update-download">{{Identical|Update}}</string>
   <string name="userinfo-anonymous">{{Identical|Anonymous}}</string>
   <string name="userinfo-blocklog">{{Identical|Block}}</string>
   <string name="userinfo-warnlog">{{Identical|Warning}}</string>
   <string name="error-unknown">{{Identical|Unknown error}}</string>
+  <string name="speedy-fail">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
+  <string name="speedy-progress">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
+  <string name="warnlog-fail">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
+  <string name="warnlog-none">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
+  <string name="warnlog-progress">Unused at this time.
+
+Parameters:
+* $1 - ...</string>
+  <string name="editquery-success">Used as log entry. Parameters:
+* $1 - page name</string>
+  <string name="report-no-user">Used as error log entry.</string>
+  <string name="cr-newer-edits">Parameters:
+* $1 - page name
+See also:
+* {{msg-huggle|Cr-stop-new-edit}}</string>
+  <string name="cr-stop-new-edit">Parameters:
+* $1 - page name
+See also:
+* {{msg-huggle|Cr-newer-edits}}</string>
+  <string name="cr-message-same">Parameters:
+* $1 - page name
+See also:
+* {{msg-huggle|Cr-message-new}}
+* {{msg-huggle|Cr-message-not-same}}</string>
+  <string name="cr-message-new">Parameters:
+* $1 - page name
+See also:
+* {{msg-huggle|Cr-message-same}}
+* {{msg-huggle|Cr-message-not-same}}</string>
+  <string name="cr-message-not-same">Parameters:
+* $1 - page name
+See also:
+* {{msg-huggle|Cr-message-same}}
+* {{msg-huggle|Cr-message-new}}</string>
 </resources>

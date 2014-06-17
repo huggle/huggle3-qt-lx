@@ -24,7 +24,6 @@
   <string name="selectfile">Bläddra...</string>
   <string name="yes">Ja</string>
   <string name="agf">Rulla tillbaka i god tro med en specifik anledning</string>
-  <string name="import">Importera från global konfigurering</string>
   <string name="successful">Framgångsrik</string>
   <string name="summary">Sammanfattning</string>
   <string name="id">ID</string>
@@ -67,22 +66,19 @@
   <string name="block-blockloglabel">Blockeringslogg:</string>
   <string name="block-warnloglabel">Varningar:</string>
   <string name="block-sharedipwarning">Note: $1 is tagged as a shared or  dynamic IP address.</string>
-  <string name="block-sensitivewarning">This IP address is  listed as \'sensitive\' for the following reason:
-
-   $1
-
-Continue  anyway?</string>
   <string name="block-rangeblockwarning">$1 is already affected by a rangeblock on {1}.
 This block will  override the effect of the rangeblock. Continue?</string>
   <string name="block-token-1">Få token att blockera $1</string>
   <string name="block-fail">Det gick inte att blockera användaren, $1</string>
   <string name="block-token-e1">Token kan inte hämtas: $1</string>
+  <string name="block-error-no-info">Ingen användarinformation var närvarande i frågan (är du sysop?)</string>
   <string name="block-type">Blockera / avblockera</string>
   <string name="block-admin">Blockerande administratör</string>
   <string name="blocking">Blockerar $1</string>
   <string name="block-none">Det finns ingen användare att blockera.</string>
   <string name="closing-whitelist">Uppdaterar användarvitlista...</string>
   <string name="closing-config">Uppdaterar konfigureringsundersida...</string>
+  <string name="config-summ">Anpassade återstälnings-sammanfattningar för mallar</string>
   <string name="config-title">Inställningar</string>
   <string name="config-rememberme">Kom i håg mitt användarnamn</string>
   <string name="config-autowhitelist">Vitlista automatiskt användare</string>
@@ -115,7 +111,6 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="config-autoadvance">After reverting, move to next edit  in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
-  <string name="config-clearsummaries">Summaries entered manually are remembered across sessions; click to  clear these</string>
   <string name="config-extendreports">Extend reports after  additional vandalism</string>
   <string name="config-autoreport">When asked to warn a user with a final warning</string>
   <string name="config-reportnone">Gör inget</string>
@@ -139,6 +134,9 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="delete-deletionlog">Deletion log:</string>
   <string name="delete-rem-talk">Radera tillhörande diskussionssida</string>
   <string name="delete-notify">Meddela skaparen</string>
+  <string name="delete-error-token">Fel: Misslyckades att hämta radera-token. Anledningen som angavs var: $1</string>
+  <string name="delete-token01">Hämtar token för att radera $1</string>
+  <string name="delete-token02">Det fanns ingen token som returnerades i frågan</string>
   <string name="delete-e1">Sidan kan inte tas raderas: $1</string>
   <string name="delete-e2">Det går inte att ta bort sida</string>
   <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
@@ -147,12 +145,17 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="historyform-title">Historik</string>
   <string name="historyform-retrieve-history">Hämta historia</string>
   <string name="historyform-retrieving-history">Hämtar historia</string>
+  <string name="historyform-not-latest-tip">Detta är inte en senaste versionen av denna sida - se till att du granskat de nya versionerna också. Kom också ihåg att tillbakarullning eventuellt inte är möjlit längre.</string>
+  <string name="history-error-message-title">Det går inte att ångra</string>
   <string name="userhistory-title">Historik över dina ändringar</string>
   <string name="irc-connected">Connected to IRC recent changes feed</string>
   <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a  few moments...</string>
   <string name="irc-disconnected">Connection to IRC recent changes  feed lost; reconnecting...</string>
   <string name="irc-nochannel">IRC-kanalen för $1 kunde inte hittas, använder långsammare API-köer istället</string>
   <string name="irc-error">Unable to connect to IRC recent changes feed. Using slower API  queries instead</string>
+  <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord.</string>
+  <string name="login-tab-oauth">OAuth</string>
+  <string name="login-tab-login">Logga in</string>
   <string name="login-language">Language:</string>
   <string name="login-project">Project:</string>
   <string name="login-username">Username:</string>
@@ -162,14 +165,25 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="login-proxyaddress">Address:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
+  <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
+  <string name="login-fail-no-info">Inloggningen misslyckades inte hämta användarinformation från: $1</string>
+  <string name="login-fail-parse-config">Inloggningen misslyckades att tolka användarinställningar, se felsökningsloggen för mer information</string>
+  <string name="login-fail-user-data">Inloggningen misslyckades inte hämta användarinformation, api-frågan returnerade ingen data</string>
+  <string name="login-fail-rollback-rights">Inloggningen misslyckades eftersom du inte har tillbakarullnings behörigheter på detta projekt</string>
+  <string name="login-failed-autoconfirm-rights">Inloggningen misslyckades eftersom du inte är en autobekräftad användare på detta projekt</string>
+  <string name="login-failed-edit">Inloggningen misslyckades eftersom du inte har tillräckligt redigeringar på detta projekt</string>
+  <string name="login-retrieving-info">Hämtar användarinformation</string>
+  <string name="login-password-empty">Lösenordet du angav var tomt</string>
+  <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
   <string name="login-start">Login</string>
-  <string name="login-translate" fuzzy="true">Translate...</string>
+  <string name="login-translate" fuzzy="true">Översätt huggle</string>
   <string name="login-captchatitle">Captcha required to log in</string>
-  <string name="login-progress-start" fuzzy="true">Logging in...</string>
+  <string name="login-progress-start">Loggar in på $1</string>
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
   <string name="login-progress-config">Checking configuration  pages...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-ssl">Använd HTTPS (kräver OpenSSL)</string>
   <string name="login-fail">Inloggningen misslyckades</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age">Use of Huggle on this project requires an account at least {0} days old.</string>
@@ -194,6 +208,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="login-error-userlist">Failed to load user list.</string>
   <string name="login-error-version">Version is out of date.  Update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user  whitelist.</string>
+  <string name="main-restoring-slap">Jag återställer för närvarande en annan redigering, var god vänta</string>
   <string name="main-page">Page</string>
   <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
@@ -211,12 +226,15 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-system-showtwoqueues">Show two queues</string>
   <string name="main-system-options">Options...</string>
   <string name="main-system-logout">Log out</string>
+  <string name="main-system-abort">Avbryt</string>
+  <string name="main-system-change-provider-irc">IRC</string>
+  <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Exit</string>
   <string name="main-queue">Queue</string>
   <string name="main-queue-next">Next</string>
   <string name="main-queue-trim">Trim</string>
   <string name="main-queue-clear">Clear current</string>
-  <string name="main-queue-count" fuzzy="true">{0} items</string>
+  <string name="main-queue-count">{0} objekt</string>
   <string name="main-queue-query">Running query...</string>
   <string name="main-queue-reset">Reset</string>
   <string name="main-queue-clearall">Clear all</string>
@@ -226,50 +244,54 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-goto-mycontribs">My contributions</string>
   <string name="main-revision">Revision</string>
   <string name="main-revision-view">View</string>
-  <string name="main-revision-revert">Revert</string>
+  <string name="main-revision-revert" fuzzy="true">Revert</string>
   <string name="main-revision-previous">Previous</string>
   <string name="main-revision-next">Next</string>
   <string name="main-revision-latest">Latest</string>
   <string name="main-tools">Verktyg</string>
   <string name="main-tools-wl">Visa vitlistan</string>
+  <string name="main-page-next">Nästa</string>
   <string name="main-page-switchtotalk">Switch to talk page</string>
   <string name="main-page-switchtosubject">Switch to subject page</string>
   <string name="main-page-switchtoarticle">Switch to article</string>
   <string name="main-page-viewlatest">View latest revision</string>
   <string name="main-page-history">Retrieve history</string>
   <string name="main-page-historypage">Show history page</string>
-  <string name="main-page-edit" fuzzy="true">Redigera</string>
+  <string name="main-page-edit">Redigera i webbläsare</string>
   <string name="main-page-tag">Tag</string>
   <string name="main-page-reqdeletion" fuzzy="true">Request deletion</string>
-  <string name="main-page-reqprotection" fuzzy="true">Request protection</string>
+  <string name="main-page-reqprotection">Begära skydd av sida</string>
   <string name="main-page-watch">Bevaka</string>
   <string name="main-page-unwatch">Obevaka</string>
   <string name="main-page-purge">Purge</string>
   <string name="main-page-patrol">Mark patrolled</string>
   <string name="main-page-move">Move...</string>
-  <string name="main-page-protect" fuzzy="true">Protect...</string>
-  <string name="main-page-delete" fuzzy="true">Delete...</string>
+  <string name="main-page-flag-good-edit">Flagga som en bra redigering (denna åtgärd ger -200 poäng till användaren)</string>
+  <string name="main-page-protect">Skydda</string>
+  <string name="main-page-delete">Radera</string>
+  <string name="main-page-load">Läs in</string>
+  <string name="main-page-restore">Återställ denna version</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
   <string name="main-user-unignore">Unignore</string>
+  <string name="main-user-contribs" fuzzy="true">Retrieve contributions</string>
   <string name="main-user-clear-talk">Töm användarens diskussionssida</string>
-  <string name="main-user-contribs">Retrieve contributions</string>
   <string name="main-user-talk">View talk page</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warn...</string>
   <string name="main-user-report">Report</string>
   <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
   <string name="main-user-block">Block...</string>
-  <string name="main-browser">Browser</string>
-  <string name="main-browser-newtab">New tab</string>
-  <string name="main-browser-closetab">Close tab</string>
-  <string name="main-browser-closeothers">Close other tabs</string>
   <string name="main-browser-back">Back</string>
   <string name="main-browser-forward">Forward</string>
   <string name="main-browser-open">View this in external browser</string>
   <string name="main-browser-newedits">Show new edits to page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
+  <string name="main-han-disconnect">Koppla från</string>
+  <string name="main-han-connect">Anslut</string>
   <string name="main-help">Help</string>
+  <string name="main-han-display-user-messages">Visa användarmeddelanden</string>
+  <string name="main-han-display-user-data">Visa användardata</string>
   <string name="main-help-documentation">Documentation</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">About Huggle...</string>
@@ -278,37 +300,16 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-usermessageother">Other message...</string>
   <string name="main-advanced">Advanced...</string>
   <string name="main-stats">{0} edits per minute, {1} reverts  per minute</string>
+  <string name="main-display-whitelist">Visa vitlista</string>
   <string name="main-tip-revertwarn">Revert this revision, and issue a user warning</string>
   <string name="main-tip-nextdiff">Show the next revision in the queue</string>
   <string name="main-tip-revert">Revert this revision</string>
-  <string name="main-tip-template">Send template message  to user</string>
   <string name="main-tip-warn">Varna användare</string>
-  <string name="main-tip-cancel">Cancel all pending actions</string>
-  <string name="main-tip-undo">Undo recent actions</string>
   <string name="main-tip-browserback">Back</string>
   <string name="main-tip-browserforward">Forward</string>
   <string name="main-tip-browseropen">View this in external browser</string>
-  <string name="main-tip-browsernewtab">New tab</string>
-  <string name="main-tip-browserclosetab">Close tab</string>
-  <string name="main-tip-history">Retrieve page history</string>
-  <string name="main-tip-historyprev">Show previous revision  to this page</string>
-  <string name="main-tip-historynext">Show next revision to this page</string>
-  <string name="main-tip-historylast">Show latest revision to this page</string>
-  <string name="main-tip-historydifftocur">Show diff between this  revision and the latest revision to this page</string>
-  <string name="main-tip-contribs">Retrieve user contributions</string>
-  <string name="main-tip-contribsprev">Show previous revision  by this user</string>
-  <string name="main-tip-contribsnext">Show next revision by this user</string>
-  <string name="main-tip-contribslast">Show latest revision  by this user</string>
-  <string name="main-tip-pageview">View this revision</string>
-  <string name="main-tip-pageedit">Edit this page</string>
-  <string name="main-tip-pagewatch">Watch this page</string>
-  <string name="main-tip-pagetag">Tag this page</string>
   <string name="main-tip-pagetagdelete">Tag this page for  deletion</string>
   <string name="main-tip-pagedelete">Delete this page</string>
-  <string name="main-tip-userinfo">Show user information</string>
-  <string name="main-tip-usertalk">Show user talk page</string>
-  <string name="main-tip-usermessage">Message this user</string>
-  <string name="main-tip-userignore">Ignore all contributions by this user</string>
   <string name="main-tip-userreport">Report this user</string>
   <string name="main-tip-userblock">Block this user</string>
   <string name="message-title">Message {0}</string>
@@ -338,18 +339,12 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="queue-sortorder">Sort order:</string>
   <string name="queue-removeviewed">Remove edits when viewed</string>
   <string name="queue-removeold">Remove old edits to  the same page</string>
-  <string name="queue-removeafter">Remove edits after</string>
-  <string name="queue-preload">Enable preloading of revisions when  this queue is selected</string>
   <string name="queue-ignorepages">Ignore edits to  pages on the ignored pages list</string>
   <string name="queue-traynotification">Show tray  notification when a revision is added to this queue</string>
   <string name="queue-diffsgroup">Diffs</string>
-  <string name="queue-nodiffs">Load diffs only when the revision is viewed</string>
-  <string name="queue-preloaddiffs">Preload diffs when queue is active</string>
-  <string name="queue-alldiffs">Load diffs for every revision in the queue</string>
   <string name="queue-pagefiltersgroup">Page title filters</string>
   <string name="queue-pageregex">Title matches  regular expression:</string>
   <string name="queue-namespaces">Namespaces:</string>
-  <string name="queue-applylabel">Click Apply to apply these filters to the existing page list.</string>
   <string name="queue-editfiltersgroup">Edit filters</string>
   <string name="queue-userregex">Username matches regular  expression:</string>
   <string name="queue-summaryregex">Summary matches regular expression:</string>
@@ -370,6 +365,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="queue-examplelabel3">Don\'t check this attribute</string>
   <string name="queue-usergroup">Show only edits  from these users</string>
   <string name="report-title">Report {0}</string>
+  <string name="report-tu">Rapportera användare</string>
   <string name="report-reason">Reason:</string>
   <string name="report-message">Message:</string>
   <string name="report-log">Warnings for this user:</string>
@@ -380,12 +376,10 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="report-done">Rapporterade</string>
   <string name="report-user">Rapportera</string>
   <string name="uaa-not-supported">UAA är inte tillgänglig</string>
-  <string name="revert-confirm-ignored">Revert edit by whitelisted user \'{0}\'?</string>
+  <string name="uaa-reported">Rapporterad</string>
   <string name="revert-confirm-multiple">This  will revert multiple edits by \'{0}\'. Continue?</string>
-  <string name="revert-confirm-page">Revert edit to ignored page \'{0}\'?</string>
   <string name="revert-confirm-range">The  author of the target revision, {1}, is in the same range as the author  of the current revision, {0}, and may be the same person; ensure the  target revision is correct before proceeding. Continue?</string>
   <string name="revert-confirm-same">This  will revert to another revision by the user that is being reverted,  {0}. Continue?</string>
-  <string name="revert-confirm-self">This will revert your own edit. Continue?</string>
   <string name="revert-confirm-warned">This  will revert to a revision by {0}; this user has previously been warned.  Continue?</string>
   <string name="revert-error-first">Edit is the first edit to the page; unable  to revert.</string>
   <string name="revert-only">Edit is the only edit to the page.</string>
@@ -396,8 +390,6 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="revert-conflict">The page was edited by ignored user \'{0}\'</string>
   <string name="revert-fail">Did not revert \'{0}\'</string>
   <string name="revert-nochange">The content of the  target revision is identical to that of the current revision</string>
-  <string name="revert-nootheruser">No other user has edited the page</string>
-  <string name="revert-progress">Reverting \'{0}\'...</string>
   <string name="speedy-title">Speedy tag {0}</string>
   <string name="speedy-reason">Reason:</string>
   <string name="speedy-parameters">Parameters:</string>
@@ -428,9 +420,6 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="tag-summary">Summary:</string>
   <string name="tag-insertatend">Insert at the end of the page</string>
   <string name="update-title">New version available</string>
-  <string name="update-notification">This version of  Huggle is out of date.</string>
-  <string name="update-prompt">Download and run the latest version now?</string>
-  <string name="update-download">Update</string>
   <string name="update-progress">Downloading new version...</string>
   <string name="update-error">Failed to download new version</string>
   <string name="userinfo-generic">Användarinformation</string>

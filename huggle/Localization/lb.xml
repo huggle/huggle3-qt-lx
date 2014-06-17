@@ -42,6 +42,7 @@
   <string name="flags">Markéierungen</string>
   <string name="browser-none">Elo gëtt keng Säit gewisen</string>
   <string name="browser-miss-summ">Et gouf kee Resumé uginn</string>
+  <string name="browser-diff">Ënnerscheed vun der Säit: $1 (Score: $2)</string>
   <string name="about-contributors">Entwéckler:</string>
   <string name="block-title">$1 spären</string>
   <string name="block-reason">Grond:</string>
@@ -60,12 +61,14 @@
   <string name="config-rememberme">Mäi Benotzernumm verhalen</string>
   <string name="config-logfile">Lobuch-Fichier</string>
   <string name="config-shortcutaction">Aktioun</string>
+  <string name="config-noshortcut">Keng</string>
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
   <string name="config-reportnone">Näischt maachen</string>
   <string name="config-templatetext">Text weisen</string>
   <string name="config-template">Schabloun</string>
+  <string name="config-blocktime">Standard-Dauer vun der Spär fir</string>
   <string name="config-blocktimeanon">Anonym Benotzer</string>
   <string name="config-blocktimereg">registréiert Benotzer</string>
   <string name="config-summaryprompt">Resumé aginn</string>
@@ -77,15 +80,24 @@
   <string name="delete-edsc">Säit konnt net geläscht gi well $1</string>
   <string name="historyform-title">Versiounen</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
+  <string name="login-intro">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an.</string>
+  <string name="login-tab-oauth">OAuth</string>
+  <string name="login-tab-login">Aloggen</string>
   <string name="login-language">Sprooch:</string>
   <string name="login-project">Projet:</string>
   <string name="login-username">Benotzernumm:</string>
   <string name="login-password">Passwuert:</string>
   <string name="login-proxygroup">Proxy-Astellungen</string>
+  <string name="login-proxy">E Proxy-Server benotzen</string>
   <string name="login-proxyaddress">Adress:</string>
+  <string name="login-password-empty">D\'Passwuert dat Dir aginn hutt war eidel</string>
   <string name="login-start">Aloggen</string>
-  <string name="login-translate" fuzzy="true">Iwwersetzen...</string>
+  <string name="login-oauth-notsupported">Dës Method gëtt elo net ënnerstëtzt</string>
+  <string name="login-translate" fuzzy="true">Huggle iwwersetzen</string>
   <string name="login-captchatitle">Captcha obligatoresch fir sech anzeloggen</string>
+  <string name="login-progress-start">Bäi $1 aloggen</string>
+  <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
+  <string name="login-ssl">HTTPS benotzen (brauch OpenSSL)</string>
   <string name="login-error-alldisabled">Huggle ass elo an alle Projeten ausgeschalt.</string>
   <string name="login-error-cancelled">Ofgebrach.</string>
   <string name="login-error-invalid">Ongëltege Benotzernumm</string>
@@ -95,6 +107,8 @@
   <string name="login-error-projdisabled">Huggle ass elo op dësem Projet ausgeschalt.</string>
   <string name="login-error-userlist">D\'Lëscht vun de Benotzer konnt net geluede ginn.</string>
   <string name="login-error-version">D\'Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
+  <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
+  <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g..</string>
   <string name="main-page">Säit</string>
   <string name="main-user">Benotzer</string>
   <string name="main-history">Versiounen</string>
@@ -107,32 +121,43 @@
   <string name="main-system-showlog">Logbuch weisen</string>
   <string name="main-system-options">Astellungen...</string>
   <string name="main-system-logout">Ausloggen</string>
+  <string name="main-system-abort">Ofbriechen</string>
+  <string name="main-system-change-provider">Provider wiesselen</string>
+  <string name="main-system-change-provider-irc">IRC</string>
+  <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Erausgoen</string>
   <string name="main-queue-trim">Ofschneiden</string>
-  <string name="main-queue-count" fuzzy="true">{0} Elementer</string>
+  <string name="main-queue-count">$1 Elementer</string>
   <string name="main-queue-reset">Zrécksetzen</string>
   <string name="main-goto-mytalk">Meng Diskussiounssäit</string>
   <string name="main-goto-mycontribs">Meng Kontributiounen</string>
   <string name="main-revision-decline">Versioun refuséieren</string>
   <string name="main-revision">Versioun</string>
   <string name="main-revision-view">Weisen</string>
-  <string name="main-revision-revert">Zrécksetzen</string>
+  <string name="main-revision-revert" fuzzy="true">Zrécksetzen</string>
   <string name="main-revision-previous">Vireg</string>
   <string name="main-revision-next">Nächst</string>
   <string name="main-revision-latest">Lescht</string>
   <string name="main-tools">Geschirkëscht</string>
+  <string name="main-page-next">Nächst</string>
+  <string name="main-page-switchtotalk">Op d\'Diskussiounssäit wiesselen</string>
   <string name="main-page-switchtoarticle">Op den Artikel wiesselen</string>
   <string name="main-page-viewlatest">Lescht Versioun weisen</string>
-  <string name="main-page-edit" fuzzy="true">Änneren</string>
-  <string name="main-page-reqdeletion" fuzzy="true">Läschen ufroen</string>
-  <string name="main-page-reqprotection" fuzzy="true">Spär ufroen</string>
+  <string name="main-page-edit">Säit am Browser äneren</string>
+  <string name="main-page-reqdeletion">Séiert Läschen ufroen</string>
+  <string name="main-page-reqprotection">Spär vun der Säit ufroen</string>
   <string name="main-page-watch">Iwwerwaachen</string>
   <string name="main-page-unwatch">Net méi iwwerwaachen</string>
   <string name="main-page-purge">Botzen (vum Cache)</string>
+  <string name="main-page-curr-disp">Elo gewisen</string>
+  <string name="main-page-patrol">Als nogekuckt markéieren</string>
   <string name="main-page-move">Réckelen...</string>
-  <string name="main-page-protect" fuzzy="true">Spären...</string>
-  <string name="main-page-delete" fuzzy="true">Läschen...</string>
-  <string name="main-page-restore" fuzzy="true">Dës Versioun vum Artikel restauréieren</string>
+  <string name="main-page-flag-suspicious-edit">Als verdächteg Ännerung markéieren (dës Aktioun ännert de Score vum Benotzer ëm +1)</string>
+  <string name="main-page-flag-good-edit">Als gutt Ännerung markéiert (dës Aktioun ännert dem Benotzer säi Score ëm -200)</string>
+  <string name="main-page-protect">Spären</string>
+  <string name="main-page-delete">Läschen</string>
+  <string name="main-page-load">Lueden</string>
+  <string name="main-page-restore">Dës Versioun restauréieren</string>
   <string name="main-user-info">Informatioun vum Benotzer weisen</string>
   <string name="main-user-ignore">Ignoréieren</string>
   <string name="main-user-clear-talk">Diskussiounssäit vum Benotzer eidelmaachen</string>
@@ -141,12 +166,14 @@
   <string name="main-user-warn">Warnen...</string>
   <string name="main-user-clear-tp">Diskussiounssäit vum Benotzer eidelmaachen</string>
   <string name="main-user-block">Spären...</string>
-  <string name="main-browser">Browser</string>
-  <string name="main-browser-newtab">Neien Tab</string>
-  <string name="main-browser-closetab">Tab zoumaachen</string>
   <string name="main-browser-back">Zréck</string>
   <string name="main-browser-newedits">Nei Ännerungen vun der Säit weisen</string>
+  <string name="main-browser-newcontribs">Nei KOntributioune pro Benotzer weisen</string>
+  <string name="main-han">HAN</string>
+  <string name="main-han-connect">Verbannen</string>
   <string name="main-help">Hëllef</string>
+  <string name="main-han-display-user-messages">Benotzermessage weisen</string>
+  <string name="main-han-display-user-data">Benotzerdate weisen</string>
   <string name="main-help-documentation">Dokumentatioun</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">Iwwer Huggle...</string>
@@ -158,22 +185,8 @@
   <string name="main-tip-revert">Dës Versioun zrécksetzen</string>
   <string name="main-tip-warn">Benutzer warnen</string>
   <string name="main-tip-browserback">Zréck</string>
-  <string name="main-tip-browsernewtab">Neien Tab</string>
-  <string name="main-tip-historyprev">Vireg Versioun vun dëser Säit weisen</string>
-  <string name="main-tip-historynext">Nächst Versioun vun dëser Säit weisen</string>
-  <string name="main-tip-historylast">Déi lescht Versioun vun dëser Säit weisen</string>
-  <string name="main-tip-contribsprev">Vireg Versioun vun dësem Benotzer weisen</string>
-  <string name="main-tip-contribslast">Lescht Versioun vun dësem Benotzer weisen</string>
-  <string name="main-tip-pageview">Dës Versioun weisen</string>
-  <string name="main-tip-pageedit">Dës Säit änneren</string>
-  <string name="main-tip-pagewatch">Dës Säit iwwerwaachen</string>
-  <string name="main-tip-pagetag">Dës Säit markéieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
-  <string name="main-tip-userinfo">Benotzerinformatioun weisen</string>
-  <string name="main-tip-usertalk">Diskussiounssäit vum Benotzer weisen</string>
-  <string name="main-tip-usermessage">Dësem Benotzer e Message schécken</string>
-  <string name="main-tip-userignore">All Kontributioune vun dësem Benotzer ignoréieren</string>
   <string name="main-tip-userreport">Dëse Benotzer mellen</string>
   <string name="main-tip-userblock">Dëse Benotzer spären</string>
   <string name="message-title">Message $1</string>
@@ -191,7 +204,6 @@
   <string name="protect-moveprotection">Spär fir ze réckelen</string>
   <string name="queue-listselector">Lëscht:</string>
   <string name="queue-removeold">Al Ännerunge vun därselwechter Säit erofhuelen</string>
-  <string name="queue-removeafter">Ännerungen ewechhuelen no</string>
   <string name="queue-diffsgroup">Ënnerscheeder</string>
   <string name="queue-pagefiltersgroup">Filtere vu Säitentitelen</string>
   <string name="queue-namespaces">Nummraim:</string>
@@ -202,26 +214,26 @@
   <string name="queue-filterreverts">Zrécksetzen</string>
   <string name="queue-filternotifications">Notifikatioun</string>
   <string name="queue-filterwarnings">Warnung</string>
+  <string name="queue-filtertags">Markéierung</string>
   <string name="queue-filterbot">Botännerung</string>
   <string name="queue-filterhuggle">Huggle-Ännerung</string>
   <string name="queue-filterme">Meng Ännerung</string>
   <string name="queue-usergroup">Nëmmen Ännerunge vun dëse Benotzer weisen</string>
   <string name="report-title">$1 mellen</string>
+  <string name="report-tu">Benotzer mellen</string>
   <string name="report-reason">Grond:</string>
   <string name="report-intro">Dir sidd am Gaang de Benotzer $1 ze mellen</string>
   <string name="report-message">Message:</string>
   <string name="report-log">Warnunge fir dëse Benotzer:</string>
   <string name="report-duplicate">De Benotzer gouf scho gemellt</string>
   <string name="uaa-not-supported">UAA net disponibel</string>
+  <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>
   <string name="revert-confirm-range">Den Auteur vun der Ziversioun $2 ass am selwechte Beräich wéi den Auteur vun der aktueller Versioun $1 a kéint déi selwecht Persoun sinn. Vergewëssert Iech datt d\'Zilversioun korrekt ass ier Dir weidermaacht. Virufueren?</string>
-  <string name="revert-confirm-self">Dëst setzt Är eegen Ännerung zréck. Virufueren?</string>
   <string name="revert-error-first">D\'Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn</string>
   <string name="revert-only">Dës Ännerung ass déi Eenzeg vun dëser Säit.</string>
   <string name="revert-creator">Déi lescht Ännerung gouf vun deem gemaach deen d\'Säit ugeluecht huet, $1.</string>
   <string name="revert-delete-instead">An där Plaz d\'Säit läschen?</string>
-  <string name="revert-nootheruser">Keen anere Benotzer huet d\'Säit geännert</string>
-  <string name="revert-progress">\'$1\' gëtt zréckgesat</string>
   <string name="speedy-reason">Grond:</string>
   <string name="speedy-parameters">Parameteren:</string>
   <string name="speedy-notifycreator">Auteur informéieren deen d\'Säit ugeluecht huet</string>
@@ -230,6 +242,7 @@
   <string name="stats-huggle">Huggle-Ännerungen</string>
   <string name="stats-reverts">Zrécksetzungen</string>
   <string name="stats-warnings">Warnungen</string>
+  <string name="stats-tags">Markéierungen</string>
   <string name="stats-notifications">Notifikatiounen</string>
   <string name="stats-blocks">Spären</string>
   <string name="stats-protections">Spären</string>
@@ -240,18 +253,18 @@
   <string name="stats-bots">Botten</string>
   <string name="stats-other">Anerer</string>
   <string name="tag-title">Markéierung $1</string>
+  <string name="tag-tagselector">Markéierung derbäsetzen</string>
   <string name="tag-summary">Resumé:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
   <string name="update-title">Nei Versioun disponibel</string>
-  <string name="update-notification">Dës Versioun vun Huggle ass vereelst.</string>
-  <string name="update-prompt">Déi lescht Versioun elo eroflueden a benotzen?</string>
-  <string name="update-download">Aktualiséieren</string>
   <string name="update-progress">Nei Versioun gëtt erofgelueden...</string>
+  <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-title">Benotzerinformatioun fir $1</string>
   <string name="userinfo-anonymous">Anonym:</string>
   <string name="userinfo-edits">Zuel vun den Ännerungen:</string>
   <string name="userinfo-sessionedits">Ännerungen an dëser Sessioun:</string>
+  <string name="userinfo-sharedip">Gemeinsam genotzt/dynamesch IP:</string>
   <string name="userinfo-blocklog">Spären:</string>
   <string name="userinfo-warnlog">Warnungen:</string>
   <string name="warning-title">$1 warnen</string>
@@ -280,7 +293,9 @@
   <string name="move-progress">$1 gëtt op $2 geréckelt...</string>
   <string name="saveuserconfig-done">Aktualiséiert Säit vun de Benotzerastellungen</string>
   <string name="saveuserconfig-progress">Aktualisatioun vun der säit vun de Benotzerastellungen...</string>
-  <string name="warnlog-none" fuzzy="true">\'{0}\' gouf net gewarnt</string>
+  <string name="reqprotection-badformat">Format vun der Säit mat der Ufro onbekannt</string>
+  <string name="reqprotection-duplicate">D\'Spär gouf schonn ugefrot</string>
+  <string name="warnlog-none">\'$1\' gouf net gewarnt</string>
   <string name="usermessage-duplicate">E Message iwwer déi selwecht Saach gouf et schonn</string>
   <string name="usermessage-fail">\'$1\' gouf net infroméiert</string>
   <string name="warn-alreadyfinal">De Benotzer krut schonn eng lescht Warnung.</string>
@@ -290,11 +305,15 @@
   <string name="warn-recent">De Benotzer gouf viru manner wéi $1 Sekonne gewarnt</string>
   <string name="warn-fail">\'$1\' gouf net gewarnt</string>
   <string name="warn-progress">Warnung vum \'$1\'...</string>
+  <string name="editquery-success">$1 gouf geännert</string>
   <string name="wait">Waart w.e.g. ...</string>
   <string name="function-miss">Funktioun ass elo net disponibel</string>
   <string name="missing-aiv">Dëse Projet benotzt AIV net</string>
   <string name="merging">Zesummeleeën</string>
   <string name="missing-page">Et gëtt keng Säit $1 op dëser Wiki</string>
   <string name="feature-nfru">Dës Funktioun ass nëmme fir anonym (IP) Benotzer</string>
+  <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht w.e.g. d\'éischt e Benotzer eraus</string>
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
+  <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
+  <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
 </resources>

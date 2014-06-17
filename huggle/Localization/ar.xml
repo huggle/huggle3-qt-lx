@@ -21,7 +21,6 @@
   <string name="selectfile">اختر ملفا</string>
   <string name="yes">نعم</string>
   <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
-  <string name="import">استورد من اعدادات موحدة</string>
   <string name="about-contributors">المطورون:</string>
   <string name="block-title">منع {0} ء</string>
   <string name="block-reason">السبب:</string>
@@ -36,11 +35,6 @@
   <string name="block-blockloglabel">سجل المنع:</string>
   <string name="block-warnloglabel">إنذارات:</string>
   <string name="block-sharedipwarning">ملاحظة:{0} تم وسمه كعنوان اي بي مشترك.</string>
-  <string name="block-sensitivewarning">عنوان الأي بي هذا يعتبر \"حساسا\" للسبب التالي:
-
-   {0}
-
-المتابعة رغم ذلك?</string>
   <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟
  .تأثر {0} بالفعل من نطاق المنع على {1} ء</string>
   <string name="block-fail">لم يتم المنع \'{0}\'ء</string>
@@ -79,7 +73,6 @@
   <string name="config-autoadvance">بعد الرجوع، اذهب إلى الصفحة التالية في الطابور</string>
   <string name="config-userollback">استعمل خاصية الاسترجاع إن أمكن</string>
   <string name="config-revertsummaries">الرجوع عن ملخصات موجودة في القائمة</string>
-  <string name="config-clearsummaries">إن الملخصات المدخلة يدويا يتم تذكرها عبر الجلسات؛ انقر لمحوها</string>
   <string name="config-extendreports">مدد الإخطار بعد تخريب إضافي</string>
   <string name="config-autoreport">حين إنذار المستخدم إنذارا نهائيا</string>
   <string name="config-reportnone">لا تفعل شيئا</string>
@@ -177,7 +170,7 @@
   <string name="main-goto-mycontribs">مساهماتي</string>
   <string name="main-revision">مراجعة</string>
   <string name="main-revision-view">معاينة</string>
-  <string name="main-revision-revert">استرجاع</string>
+  <string name="main-revision-revert" fuzzy="true">استرجاع</string>
   <string name="main-revision-previous">سابق</string>
   <string name="main-revision-next">تالي</string>
   <string name="main-revision-latest">الأخير</string>
@@ -201,16 +194,12 @@
   <string name="main-user-info">أظهر معلومات المستخدم</string>
   <string name="main-user-ignore">تجاهل</string>
   <string name="main-user-unignore">لا تتجاهل</string>
-  <string name="main-user-contribs">استرد المساهمات</string>
+  <string name="main-user-contribs" fuzzy="true">استرد المساهمات</string>
   <string name="main-user-talk">معاينة نقاش المستخدم</string>
   <string name="main-user-message">رسالة...</string>
   <string name="main-user-warn">نبه...</string>
   <string name="main-user-report">أبلغ</string>
   <string name="main-user-block">امنع...</string>
-  <string name="main-browser">متصفح</string>
-  <string name="main-browser-newtab">صفحة تبويب جديدة</string>
-  <string name="main-browser-closetab">اغلق صفحة التبويب</string>
-  <string name="main-browser-closeothers">اغلق صفحات التبويب الأخرى</string>
   <string name="main-browser-back">خلف</string>
   <string name="main-browser-forward">أمام</string>
   <string name="main-browser-open">عرض هذا في متصفح خارجي</string>
@@ -228,34 +217,12 @@
   <string name="main-tip-revertwarn">استرجع هذه النسخة ونبه المستخدم</string>
   <string name="main-tip-nextdiff">اظهر النسخة التالية في الصف</string>
   <string name="main-tip-revert">اجلب هذه النسخة</string>
-  <string name="main-tip-template">أرسل رسالة قالب الى المستخدم</string>
   <string name="main-tip-warn">نبه المستخدم</string>
-  <string name="main-tip-cancel">إلغ جميع إجراءات النسخ المعلقة</string>
-  <string name="main-tip-undo">تراجع عن الإجراءات الأخيرة</string>
   <string name="main-tip-browserback">خلف</string>
   <string name="main-tip-browserforward">أمام</string>
   <string name="main-tip-browseropen">اعرض هذا في متصفح خارجي</string>
-  <string name="main-tip-browsernewtab">افتح صفحة تبويب جديدة</string>
-  <string name="main-tip-browserclosetab">اغلق صفحة التبويب</string>
-  <string name="main-tip-history">اجلب تاريخ الصفحة</string>
-  <string name="main-tip-historyprev">اعرض النسخة السابقة لهذه الصفحة</string>
-  <string name="main-tip-historynext">اعرض النسخة التالية لهذه الصفحة</string>
-  <string name="main-tip-historylast">اعرض اخر نسخة لهذه الصفحة</string>
-  <string name="main-tip-historydifftocur">اظهر الاختلاف بين هذه النسخة واخر نسخة</string>
-  <string name="main-tip-contribs">اجلب مساهمات المستخدم</string>
-  <string name="main-tip-contribsprev">اظهر النسخة السابقة بواسطة هذا المستخدم</string>
-  <string name="main-tip-contribsnext">اظهر النسخة التالية بواسطة هذا المستخدم</string>
-  <string name="main-tip-contribslast">اظهر اخر نسخة بواسطة هذا المستخدم</string>
-  <string name="main-tip-pageview">عاين هذه النسخة</string>
-  <string name="main-tip-pageedit">عدل هذه الصفحة</string>
-  <string name="main-tip-pagewatch">راقب هذه الصفحة</string>
-  <string name="main-tip-pagetag">اوسم هذه الصغحة</string>
   <string name="main-tip-pagetagdelete">وسم هذه الصفحة للشطب</string>
   <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
-  <string name="main-tip-userinfo">أظهر معلومات عن المستخدم</string>
-  <string name="main-tip-usertalk">أظهر صفحة نقاش المستخدم</string>
-  <string name="main-tip-usermessage">راسل هذا المستخدم</string>
-  <string name="main-tip-userignore">تجاهل كافة مساهمات هذا المستخدم</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
   <string name="main-tip-userblock">امنع هذا المستخدم</string>
   <string name="message-title">رسالة {0}ء</string>
@@ -283,18 +250,12 @@
   <string name="queue-sortorder">نظام الفرز:</string>
   <string name="queue-removeviewed">أزل التعديلات عند مشاهدتها</string>
   <string name="queue-removeold">أزل التعديلات القديمة لنفس الصفحة</string>
-  <string name="queue-removeafter">أزل التعديلات بعد</string>
-  <string name="queue-preload">فعل التحميل المسبق للمراجعات عند اختيار هذا الطابور</string>
   <string name="queue-ignorepages">تجاهل تعديلات الصفحات الموجودة في قائمة الصفحات المتجاهلة</string>
   <string name="queue-traynotification">أظهر إعلاما في لوحة النظام عند إضافة مراجعة لهذا الطابور</string>
   <string name="queue-diffsgroup">فرق</string>
-  <string name="queue-nodiffs">حمل الفروق فقط عند معاينة المراجعة</string>
-  <string name="queue-preloaddiffs">حمل الفروق مسبقاً عندما يكون الطابور نشطاً</string>
-  <string name="queue-alldiffs">حمل الفروق لكل مراجعة في الطابور</string>
   <string name="queue-pagefiltersgroup">مرشحات عنوان الصفحة</string>
   <string name="queue-pageregex">المصطلح الدائم لنتيجة البحث عن العناوين</string>
   <string name="queue-namespaces">اسماء النطاق:</string>
-  <string name="queue-applylabel">انقر على تطبيق لاضافة هذه المرشحات إلى قائمة صفحة موجودة.</string>
   <string name="queue-editfiltersgroup">عدل المرشحات</string>
   <string name="queue-userregex">المصطلح الدائم لنتيجة البحث عن اسم مستخدم:</string>
   <string name="queue-summaryregex">المصطلح الدائم لنتيجة البحث عن ملخص:</string>
@@ -321,12 +282,9 @@
   <string name="report-duplicate">تم الاخطار عن هذا المستخدم</string>
   <string name="report-fail">لم يتم الاخطار عن \'{0}\'ء</string>
   <string name="report-progress">قيد اخطار اداري عن \'{0}\'...ء</string>
-  <string name="revert-confirm-ignored">استرجع التعديل بواسطة مستخدم في القائمة البيضاء \'{0}\'؟</string>
   <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'{0}\'. استمر؟</string>
-  <string name="revert-confirm-page">استرجع التعديل لتجاهل الصفحة \'{0}\'؟</string>
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, {1}, في نفس نطاق مؤلف النسخة الحالية, {0}, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
   <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , {0} . استمر؟</string>
-  <string name="revert-confirm-self">هذا سيسترجع تعديلك, استمر؟</string>
   <string name="revert-confirm-warned">هذا سيسترجع الى نسخه بواسطة {0} , هذا المستخدم تلقى تحذير مؤخراً, استمر؟</string>
   <string name="revert-error-first">هذا اول تحرير للصفحة, لايمكن الاسترجاع</string>
   <string name="revert-only">هذا التعديل الوحيد للصفحة</string>
@@ -337,8 +295,6 @@
   <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'{0}\'ء</string>
   <string name="revert-fail">لم يتم استرجاع \'{0}\'ء</string>
   <string name="revert-nochange">محتوى النسخة المستهدفة مطابق لمحتوى النسخة الحالية</string>
-  <string name="revert-nootheruser">لايوجد مستخدم اخر قام بتعديل الصفحة</string>
-  <string name="revert-progress">قيد الاسترجاع \'{0}\'...ء</string>
   <string name="speedy-title">{0} شطب</string>
   <string name="speedy-reason">السبب:</string>
   <string name="speedy-parameters">المعلمة:</string>
@@ -369,9 +325,6 @@
   <string name="tag-summary">تعديل:</string>
   <string name="tag-insertatend">أضف في نهاية الصفحة</string>
   <string name="update-title">يوجد إصدار جديد</string>
-  <string name="update-notification">هذا الاصدار من Huggle يحتاج الى تحديث</string>
-  <string name="update-prompt">تنزيل وتشغيل اخر اصدار؟</string>
-  <string name="update-download">تحديث</string>
   <string name="update-progress">جاري تنزيل الاصدار الجديد. . .</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
   <string name="userinfo-title">معلومات المستخدم \'{0}\'ء</string>

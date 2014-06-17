@@ -21,7 +21,6 @@
   <string name="selectfile">सञ्चिका चुनें</string>
   <string name="yes">हाँ</string>
   <string name="agf">रुचिगत कारण देकर अच्छी भावना से किए गए सम्पादन के रूप में पूर्ववत करें</string>
-  <string name="import">वैश्विक कॉनफ़िग से आयात करें</string>
   <string name="about-contributors">विकासकर्ता:</string>
   <string name="block-title">{0} को अवरोधित करें</string>
   <string name="block-reason">कारण:</string>
@@ -36,11 +35,6 @@
   <string name="block-blockloglabel">अवरोधन लॉग:</string>
   <string name="block-warnloglabel">चेतावनी:</string>
   <string name="block-sharedipwarning">अवधान: {0} साझाकृत या गत्यात्मक आईपी पते के रूप में अंकित है।</string>
-  <string name="block-sensitivewarning">यह आईपी पता निम्नलिखित कारण से \'संवेदनशील\' सूचीबद्ध है:
-
-   {0}
-
-खैर जारी रखें?</string>
   <string name="block-rangeblockwarning">{0} पहले से ही {1} पर श्रृंखला अवरोधन के कारण प्रभावित है।
 यह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
   <string name="block-fail">\'{0}\' को अवरोधित नहीं किया</string>
@@ -79,7 +73,6 @@
   <string name="config-autoadvance">संपादन पूर्ववत करने के बाद, पंक्ति में अगले संपादन पर जायें</string>
   <string name="config-userollback">रोलबैक प्रयोग करें अगर उपलब्ध है तों</string>
   <string name="config-revertsummaries">मैन्यु में उपलब्ध सारांश को पूर्ववत करें</string>
-  <string name="config-clearsummaries">विभिन्न सेशन्स में व्यक्तिगत रुप से भरा गया सारांश याद रखा जाता है, इसे मिटाने हेतु क्लीक करें।</string>
   <string name="config-extendreports">अतिरिक्त उत्पात के पश्चात रिपोर्टें विस्तारित करें</string>
   <string name="config-autoreport">सदस्य को अंतिम चेतावनी देने के लिये कब पूछें</string>
   <string name="config-reportnone">कुछ ना करें</string>
@@ -180,8 +173,8 @@
   <string name="main-revision-decline">संशोधन अस्वीकार करें</string>
   <string name="main-revision">संशोधन</string>
   <string name="main-revision-view">देखें</string>
-  <string name="main-revision-revert">पूर्ववत करें</string>
-  <string name="main-revision-faith">ऐजीएफ पूर्ववत करें</string>
+  <string name="main-revision-revert" fuzzy="true">पूर्ववत करें</string>
+  <string name="main-revision-faith" fuzzy="true">ऐजीएफ पूर्ववत करें</string>
   <string name="main-revision-previous">पिछला</string>
   <string name="main-revision-next">अगला</string>
   <string name="main-revision-latest">नवीनतम</string>
@@ -206,16 +199,12 @@
   <string name="main-user-info">सदस्य के बारे में सूचना देवें</string>
   <string name="main-user-ignore">उपेक्षित करें</string>
   <string name="main-user-unignore">अनुपेक्षित करें</string>
-  <string name="main-user-contribs">पुनर्प्राप्त योगदान</string>
+  <string name="main-user-contribs" fuzzy="true">पुनर्प्राप्त योगदान</string>
   <string name="main-user-talk">वार्ता पृष्ठ देखें</string>
   <string name="main-user-message">सन्देश...</string>
   <string name="main-user-warn">चेतावनी दें...</string>
   <string name="main-user-report">विवरण</string>
   <string name="main-user-block">अवरोधन...</string>
-  <string name="main-browser">ब्राउज़र</string>
-  <string name="main-browser-newtab">नती टैब</string>
-  <string name="main-browser-closetab">टैब बंद करें</string>
-  <string name="main-browser-closeothers">अन्य टैब बंद करें</string>
   <string name="main-browser-back">पीछे</string>
   <string name="main-browser-forward">आगे</string>
   <string name="main-browser-open">बाहरी ब्राउजर में दिखायें</string>
@@ -233,34 +222,12 @@
   <string name="main-tip-revertwarn">इस संशोधन को पूर्ववत कर सदस्य को चेतावनी दें</string>
   <string name="main-tip-nextdiff">पंक्ति में अगला संशोधन दर्शायें</string>
   <string name="main-tip-revert">इस संशोधन को पूर्ववत करें</string>
-  <string name="main-tip-template">सदस्य को साँचे में संदेश भेजें</string>
   <string name="main-tip-warn">प्रयोक्ता को चतावनी दें</string>
-  <string name="main-tip-cancel">सभी लम्बित कार्यवाही रद्द करें</string>
-  <string name="main-tip-undo">हाल ही की कार्यवाही पूर्ववत करें</string>
   <string name="main-tip-browserback">पीछे</string>
   <string name="main-tip-browserforward">आगे</string>
   <string name="main-tip-browseropen">इसे बाहरी ब्राउजर में दिखायें</string>
-  <string name="main-tip-browsernewtab">नया टैब</string>
-  <string name="main-tip-browserclosetab">टैब बन्द करें</string>
-  <string name="main-tip-history">पुनर्प्राप्त पृष्ठ इतिहास</string>
-  <string name="main-tip-historyprev">इस पृष्ठ पर किये गये पिछले संशोधन दर्शायें</string>
-  <string name="main-tip-historynext">अगला संशोधन दर्शायें</string>
-  <string name="main-tip-historylast">इस पृष्ठ पर नवीनतम संशोधन दर्शायें</string>
-  <string name="main-tip-historydifftocur">इस पृष्ठ की नवीनतम संशोधन एवं वर्तमान संशोधन में अंतर दर्शायें</string>
-  <string name="main-tip-contribs">पुनर्प्राप्त उपयोगकर्ता योगदान</string>
-  <string name="main-tip-contribsprev">इस सदस्य द्वारा किये गये पिछ्ले संशोधन दर्शाये</string>
-  <string name="main-tip-contribsnext">सदस्य द्वारा किया गया अगला संशोधन दर्शाये</string>
-  <string name="main-tip-contribslast">सदस्य द्वारा किया गया नवीनतम संशोधन दर्शायें</string>
-  <string name="main-tip-pageview">यह संशोधन देखें</string>
-  <string name="main-tip-pageedit">यह पृष्ठ संशोधित करें</string>
-  <string name="main-tip-pagewatch">इस पृष्ठ को ध्यान सूची में डालें</string>
-  <string name="main-tip-pagetag">इस पृष्ठ को टैग करे</string>
   <string name="main-tip-pagetagdelete">इस पृष्ठ को हटाने हेतु टैग करे</string>
   <string name="main-tip-pagedelete">यह पृष्ठ हटाये</string>
-  <string name="main-tip-userinfo">सदस्य सूचना दिखाये</string>
-  <string name="main-tip-usertalk">सदस्य वार्ता पृष्ठ दिखाये</string>
-  <string name="main-tip-usermessage">सदस्य को संदेश दें</string>
-  <string name="main-tip-userignore">इस सदस्य द्वारा किये गये सभी संपादन अनदेखें करें</string>
   <string name="main-tip-userreport">इस सदस्य को सूचना दें</string>
   <string name="main-tip-userblock">सदस्य अवरोधित करें</string>
   <string name="main-revision-acceptpend">यह लम्बित संपादन स्वीकार करें</string>
@@ -289,18 +256,12 @@
   <string name="queue-sortorder">सॉर्ट क्रम:</string>
   <string name="queue-removeviewed">संपादनो को देखने के बाद हटाए</string>
   <string name="queue-removeold">पुराने संपादनो को समान पृष्ठ पर हटाए</string>
-  <string name="queue-removeafter">संपादन को के बाद हटाए</string>
-  <string name="queue-preload">जब यह पंक्ति चुनी जाती है तो संशोधनो की प्रीलोडिंग सक्षम करें</string>
   <string name="queue-ignorepages">अनदेखे किये हुए पृष्ठों पर किये गये संपादन भी अनदेखें करे</string>
   <string name="queue-traynotification">जब एक संशोधन पंक्ति में जोडा़ गया हो तो एक अधिसूचना दिखाये</string>
   <string name="queue-diffsgroup">अन्तर</string>
-  <string name="queue-nodiffs">जब संशोधन दिखायी दें तभी अन्तर लोड करे</string>
-  <string name="queue-preloaddiffs">जब पंक्ति सक्रिय है तभी अन्तर लोड करें</string>
-  <string name="queue-alldiffs">इस पंक्ति में प्रत्य्रेक संशोधन के लिये अन्तर लोड करे</string>
   <string name="queue-pagefiltersgroup">पृष्ठ शीर्षक छनित फिल्टर</string>
   <string name="queue-pageregex">शीर्षक नियमित एक्सप्रेशनस से मिलता है:</string>
   <string name="queue-namespaces">नामस्थान:</string>
-  <string name="queue-applylabel">इस पृष्ठ पर पडे़ समस्त पृष्ठों को इस फिल्टर को सक्षम करने के लिये सेव करे.</string>
   <string name="queue-editfiltersgroup">दुरुपयोग छनक</string>
   <string name="queue-userregex">यह सदस्य नाम नियमित एक्सप्रेशनस से मिलता है:</string>
   <string name="queue-summaryregex">यह सारांश नियमित एक्सप्रेशनस से मिलता है:</string>
@@ -327,12 +288,9 @@
   <string name="report-duplicate">ये सदस्य को पहले से रिपोर्ट कर दिया गया है</string>
   <string name="report-fail">\'{0}\' को रिपोर्ट नहीं किया</string>
   <string name="report-progress">\'{0}\' को रिपोर्ट कर रहे है...</string>
-  <string name="revert-confirm-ignored">श्वेतसूची सदस्य \'{0}\' द्वारा संपादन को वापस करे?</string>
   <string name="revert-confirm-multiple">ये \'{0}\' द्वारा एकाधिक संपादन को वापस ले लेगा। जारी रखें?</string>
-  <string name="revert-confirm-page">ध्यान नहीं दिया पृष्ठ \'{0}\' को संपादन वापस ले?</string>
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, {1}, वर्तमान संशोधन के लेखक के समान सीमा में है, {0}, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, {0}, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
-  <string name="revert-confirm-self">ये आपके संपादन को वापस ले लेगा। जारी रखे?</string>
   <string name="revert-confirm-warned">ये {0} द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?</string>
   <string name="revert-error-first">संपादन पृष्ठ का पहला संपादन है; वापस नहीं लिया जा सकता।</string>
   <string name="revert-only">संपादन पृष्ठ का एकलोता संपादन है।</string>
@@ -343,8 +301,6 @@
   <string name="revert-conflict">उपेक्षित सदस्य \'{0}\' द्वारा पृष्ठ पर सम्पादन किया गया था</string>
   <string name="revert-fail">\'{0}\' को पूर्ववत नहीं किया</string>
   <string name="revert-nochange">लक्ष्य संशोधन की सामग्री वर्तमान संशोधन के समान है</string>
-  <string name="revert-nootheruser">अन्य किसी प्रयोक्ता ने पृष्ठ सम्पादित नहीं किया है</string>
-  <string name="revert-progress">\'{0}\' को पूर्ववत कर रहा है...</string>
   <string name="speedy-title">त्वरित टैग {0}</string>
   <string name="speedy-reason">कारण:</string>
   <string name="speedy-parameters">पैरामीटर:</string>
@@ -375,9 +331,6 @@
   <string name="tag-summary">सारांश:</string>
   <string name="tag-insertatend">पृष्ठ के अंत में सम्मिलित करे</string>
   <string name="update-title">नवीन संस्करण उपलब्ध</string>
-  <string name="update-notification">हूगल का यह संस्करण अप्रचलित है।</string>
-  <string name="update-prompt">नवीनतम संस्करण डाउनलोड करें और चलाएँ?</string>
-  <string name="update-download">अद्यतित करें</string>
   <string name="update-progress">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
   <string name="userinfo-title">\'{0}\' के लिए प्रयोक्ता जानकारी</string>

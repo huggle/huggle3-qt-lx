@@ -24,7 +24,6 @@
   <string name="selectfile">مرور...</string>
   <string name="yes">بله</string>
   <string name="agf">واگردانی با فرض حسن نیت و دلیل مشهود</string>
-  <string name="import">واردسازی از تنظیمات سراسری</string>
   <string name="successful">موفق</string>
   <string name="summary">خلاصه</string>
   <string name="id">شناسه</string>
@@ -67,11 +66,6 @@
   <string name="block-blockloglabel">سیاههٔ بستن:</string>
   <string name="block-warnloglabel">اخطارها:</string>
   <string name="block-sharedipwarning">توجه: $1 به عنوان آی‌پی مشترک یا پویا برچسب خورده است.</string>
-  <string name="block-sensitivewarning">این نشانی آی‌پی به دلیل زیر به عنوان «حساس» فهرست شده است:
-
-$1
-
-آیا خواهان ادامه هستید؟</string>
   <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $1 قرار دارد.
 این بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
   <string name="block-token-1">گرفتن توکن برای بستن $1</string>
@@ -141,7 +135,9 @@ $1
   <string name="historyform-retrieving-history">در حال گرفتن تاریخچه</string>
   <string name="userhistory-title">تاریخچه ویرایش‌های شما</string>
   <string name="irc-switch-rc">تعویض به خوراک تغییرات اخیر ویکی</string>
-  <string name="login-intro" fuzzy="true">لطفاً نام کاربری ویکی‌پدیا و پروژه را انتخاب کنید.</string>
+  <string name="login-intro">لطفاً نام کاربری ویکی‌پدیا را را وارد کنید و یک پروژه را انتخاب کنید.</string>
+  <string name="login-tab-oauth">OAuth</string>
+  <string name="login-tab-login">ورود</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">پروژه:</string>
   <string name="login-username">نام کاربری:</string>
@@ -151,15 +147,16 @@ $1
   <string name="login-proxyaddress">نشانی:</string>
   <string name="login-proxyport">درگاه:</string>
   <string name="login-proxydomain">دامنه:</string>
+  <string name="login-retrieving-user-conf">واگردانی تنظیمات کاربر</string>
   <string name="login-start">ورود</string>
-  <string name="login-translate" fuzzy="true">ترجمه...</string>
+  <string name="login-translate" fuzzy="true">ترجمه هاگل</string>
   <string name="login-captchatitle">برای ورود به سامانه کپچا مورد نیاز است</string>
-  <string name="login-progress-start" fuzzy="true">در حال وارد شدن به سامانه ...</string>
+  <string name="login-progress-start">ورود به $1</string>
   <string name="login-progress-language">به روزرسانی فایل‌های پیام...</string>
   <string name="login-progress-global">چک کردن تنظیمات کلی...</string>
   <string name="login-progress-config">چک کردن صفحه تنظیمات...</string>
   <string name="login-progress-whitelist">بازیابی کاربر فهرست سفید...</string>
-  <string name="login-ssl" fuzzy="true">اجرای اس‌اس‌ال (openssl نیاز دارد)</string>
+  <string name="login-ssl">اجرای اچ‌تی‌تی‌پی‌اس (openssl نیاز دارد)</string>
   <string name="login-fail">قادر به ورود نیستم</string>
   <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند دسترسی مدیریت است.</string>
   <string name="login-error-age">استفاده از هاگل در این پروژه نیازمند حسابی با قدمت حداقل $1 روز است.</string>
@@ -200,12 +197,15 @@ $1
   <string name="main-system-showtwoqueues">نمایش دو صف</string>
   <string name="main-system-options">گزینه‌ها...</string>
   <string name="main-system-logout">خروج از سامانه</string>
+  <string name="main-system-abort">رها کردن</string>
+  <string name="main-system-change-provider-irc">آی‌آر‌سی</string>
+  <string name="main-system-change-provider-wiki">ویکی</string>
   <string name="main-system-exit">خروج</string>
   <string name="main-queue">صف</string>
   <string name="main-queue-next">بعدی</string>
   <string name="main-queue-trim">برش</string>
   <string name="main-queue-clear">پاک کردن فعلی</string>
-  <string name="main-queue-count" fuzzy="true">موارد {0}</string>
+  <string name="main-queue-count">$1 مورد</string>
   <string name="main-queue-query">اجرای کوئری...</string>
   <string name="main-queue-reset">از نو</string>
   <string name="main-queue-clearall">پاک کردن همه</string>
@@ -216,8 +216,8 @@ $1
   <string name="main-revision-decline">رد نسخه</string>
   <string name="main-revision">نسخه</string>
   <string name="main-revision-view">نمایش</string>
-  <string name="main-revision-revert">واگردانی</string>
-  <string name="main-revision-faith">برگرداندن AGF</string>
+  <string name="main-revision-revert" fuzzy="true">واگردانی</string>
+  <string name="main-revision-faith" fuzzy="true">برگرداندن AGF</string>
   <string name="main-revision-previous">قبلی</string>
   <string name="main-revision-next">بعدی</string>
   <string name="main-revision-latest">آخرین</string>
@@ -225,29 +225,32 @@ $1
   <string name="main-tools-sess">نمایش اطلاعات بخش</string>
   <string name="main-tools-wl">نمایش فهرست سفید</string>
   <string name="main-tools-il">نمایش فهرست چشم‌پوشی این ویکی</string>
+  <string name="main-page-next">بعدی</string>
   <string name="main-page-switchtotalk">گزیدن صفحه بحث</string>
   <string name="main-page-switchtosubject">گزیدن صفحه موضوع</string>
   <string name="main-page-switchtoarticle">گزیدن مقاله</string>
   <string name="main-page-viewlatest">نمایش آخرین نسخه</string>
   <string name="main-page-history">بازیابی تاریخچه</string>
   <string name="main-page-historypage">نمایش تاریخچە صفحە</string>
-  <string name="main-page-edit" fuzzy="true">ویرایش</string>
+  <string name="main-page-edit">ویرایش صفحه در مرورگر</string>
   <string name="main-page-tag">برچسب</string>
-  <string name="main-page-reqdeletion" fuzzy="true">درخواست حذف</string>
-  <string name="main-page-reqprotection" fuzzy="true">درخواست محافظت</string>
+  <string name="main-page-reqdeletion">درخواست حذف سریع</string>
+  <string name="main-page-reqprotection">درخواست محافظت صفحه</string>
   <string name="main-page-watch">پی‌گیری</string>
   <string name="main-page-unwatch">توقف پی‌گیری</string>
   <string name="main-page-purge">پاک‌سازی میانگیر</string>
+  <string name="main-page-curr-disp">در حال حاضر نمایش داده شده</string>
   <string name="main-page-patrol">برچسب گشت بزن</string>
   <string name="main-page-move">انتقال...</string>
-  <string name="main-page-protect" fuzzy="true">محافظت...</string>
-  <string name="main-page-delete" fuzzy="true">حذف...</string>
-  <string name="main-page-restore" fuzzy="true">برگرداندن این نسخه از مقاله</string>
+  <string name="main-page-protect">محافظت</string>
+  <string name="main-page-delete">حذف</string>
+  <string name="main-page-load">بارگیری</string>
+  <string name="main-page-restore">برگرداندن این نسخه</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
   <string name="main-user-ignore">نادیده گرفتن</string>
   <string name="main-user-unignore">عدم نادیده‌گرفتن</string>
+  <string name="main-user-contribs" fuzzy="true">بازیابی مشارکت‌ها</string>
   <string name="main-user-clear-talk">پاک کردن صفحه بحث کاربر</string>
-  <string name="main-user-contribs">بازیابی مشارکت‌ها</string>
   <string name="main-user-talk">مشاهده صفحه بحث</string>
   <string name="main-user-message">پیام...</string>
   <string name="main-user-warn">هشدار...</string>
@@ -256,16 +259,18 @@ $1
   <string name="main-user-ib">بالابردن امتیاز بدی</string>
   <string name="main-user-clear-tp">خالی کردن صفحه بحث کاربر</string>
   <string name="main-user-block">بستن...</string>
-  <string name="main-browser">مرورگر</string>
-  <string name="main-browser-newtab">زبانه جدید</string>
-  <string name="main-browser-closetab">بستن زبانه</string>
-  <string name="main-browser-closeothers">بستن سایر زبانه‌ها</string>
   <string name="main-browser-back">بازگشت</string>
   <string name="main-browser-forward">جلو</string>
   <string name="main-browser-open">نمایش در مرورگر خارجی</string>
   <string name="main-browser-newedits">نمایش ویرایش‌های جدید صفحه</string>
   <string name="main-browser-newcontribs">نمایش مشارکت‌های جدید کاربر</string>
+  <string name="main-han">هان</string>
+  <string name="main-han-disconnect">قطع اتصال</string>
+  <string name="main-han-connect">اتصال</string>
   <string name="main-help">راهنما</string>
+  <string name="main-han-display-bot-data">نمایش داده‌های ربات</string>
+  <string name="main-han-display-user-messages">نمایش پیام‌های کاربر</string>
+  <string name="main-han-display-user-data">نمایش داده‌های کاربر</string>
   <string name="main-help-documentation">مستندات</string>
   <string name="main-help-feedback">بازخورد</string>
   <string name="main-help-about">درباره هاگل...</string>
@@ -275,39 +280,18 @@ $1
   <string name="main-advanced">پیشرفته...</string>
   <string name="main-stats">$1 ویرایش در دقیقه، $2 واگردانی در دقیقه</string>
   <string name="main-display-session-data">نمایش اطلاعات نشست</string>
+  <string name="main-display-whitelist">نمایش فهرست سفید</string>
   <string name="main-revert-custom-reson">لطفاً دلیل خود را برای واگردانی این ویرایش به نسخه قبلی بیان نمایید.</string>
   <string name="main-log1">واگردانی نسخه انتخاب شده $1</string>
   <string name="main-tip-revertwarn">واگردانی این نسخه و فرستادن هشدار به کاربر</string>
   <string name="main-tip-nextdiff">نمایش رسیدگی‌های بعدی موجود در صف</string>
   <string name="main-tip-revert">واگردانی این نسخه</string>
-  <string name="main-tip-template">فرستادن پیام الگو به کاربر</string>
   <string name="main-tip-warn">هشدار به کاربر</string>
-  <string name="main-tip-cancel">تمام اعمال در انتظار لغو شوند</string>
-  <string name="main-tip-undo">تمام اعمال جدید واگردانی شوند</string>
   <string name="main-tip-browserback">بازگشت</string>
   <string name="main-tip-browserforward">جلو</string>
   <string name="main-tip-browseropen">نمایش در مرورگر خارجی</string>
-  <string name="main-tip-browsernewtab">زبانه جدید</string>
-  <string name="main-tip-browserclosetab">بستن زبانه</string>
-  <string name="main-tip-history">بازیابی تاریخچه</string>
-  <string name="main-tip-historyprev">نسخه قدیمی این صفحه نمایش داده شود</string>
-  <string name="main-tip-historynext">نسخه جدید این صفحه نمایش داده شود</string>
-  <string name="main-tip-historylast">جدیدترین نسخه صفحه نمایش داده شود</string>
-  <string name="main-tip-historydifftocur">نمایش تفاوت میان این نسخه و آخرین اصلاح صفحه</string>
-  <string name="main-tip-contribs">مشارکت‌های کاربر نمایش داده شود</string>
-  <string name="main-tip-contribsprev">نمایش اصلاح قبلی به وسیله این کاربر</string>
-  <string name="main-tip-contribsnext">نمایش اصلاح بعدی به وسیله این کاربر</string>
-  <string name="main-tip-contribslast">نمایش آخرین اصلاح به وسیله این کاربر</string>
-  <string name="main-tip-pageview">نمایش این نسخه</string>
-  <string name="main-tip-pageedit">ویرایش این صفحه</string>
-  <string name="main-tip-pagewatch">پی‌گیری این صفحه</string>
-  <string name="main-tip-pagetag">برچسب زدن به این صفحه</string>
   <string name="main-tip-pagetagdelete">این صفحه را نامزد حذف کنید</string>
   <string name="main-tip-pagedelete">حذف کردن این صفحه</string>
-  <string name="main-tip-userinfo">نمایش اطلاعات کاربر</string>
-  <string name="main-tip-usertalk">نمایش صفحه بحث کاربر</string>
-  <string name="main-tip-usermessage">فرستادن پیام به این کاربر</string>
-  <string name="main-tip-userignore">چشم‌پوشی از کلیه مشارکتهای این کاربر</string>
   <string name="main-tip-userreport">گزارش این کاربر</string>
   <string name="main-tip-userblock">بستن این کاربر</string>
   <string name="main-revision-acceptpend">پذیرفتن این نسخه در انتظار</string>
@@ -341,7 +325,6 @@ $1
   <string name="queue-sortorder">ترتیب مرتب‌سازی:</string>
   <string name="queue-removeviewed">حذف ویرایش‌ها در هنگام دیدن</string>
   <string name="queue-removeold">حذف ویرایش‌های قدیمی همان صفحه</string>
-  <string name="queue-removeafter">حذف ویرایش‌های بعد</string>
   <string name="queue-diffsgroup">تفاوت‌ها</string>
   <string name="queue-pagefiltersgroup">پالایه‌های عنوان صفحه</string>
   <string name="queue-pageregex">عنوان با عبارت باقاعده همخوانی دارد:</string>
@@ -364,6 +347,7 @@ $1
   <string name="queue-examplelabel3">این ویژگی را بررسی نکن</string>
   <string name="queue-usergroup">فقط ویرایش‌های این کاربران را نشان بده</string>
   <string name="report-title">گزارش {0}</string>
+  <string name="report-tu">گزارش کاربر</string>
   <string name="report-reason">دلیل:</string>
   <string name="report-intro">شما در حال گزارش کاربر $1 هستید</string>
   <string name="report-message">پیام:</string>
@@ -377,19 +361,17 @@ $1
   <string name="report-user">گزارش</string>
   <string name="uaa-not-supported">وپ:تامنام موجود نیست</string>
   <string name="uaa-not-supported-text">وپ:تامنام در ویکی شما موجود نیست</string>
-  <string name="revert-confirm-ignored">واگردانی ویرایش کاربر فهرست سفید $1؟</string>
+  <string name="uaa-reported">گزارش شد</string>
   <string name="revert-confirm-multiple">این عمل، چند ویرایش $1 را واگردانی می‌کند، ادامه می‌دهید؟</string>
-  <string name="revert-confirm-page">واگردانی ویرایش صفحهٔ نادیده گرفته‌شده  $1 ؟</string>
-  <string name="revert-confirm-self">این عمل باعث می‌گردد ویرایش خودتان واگردانی شود. ادامه می‌دهید؟</string>
   <string name="revert-error-first">این ویرایش، نخستین ویرایش صفحه است؛ ناتوان در واگردانی.</string>
   <string name="revert-only">ویرایش تنها ویرایش این صفحه</string>
   <string name="revert-creator">آخرین ویرایش به وسیله سازنده صفحه اش، $1 ، انجام شده است.</string>
+  <string name="revert-preflightcheck">بررسی پیش‌ از جدال</string>
   <string name="revert-delete-instead">به جای آن حذف صفحه؟</string>
   <string name="revert-speedy-instead">برچسب زدن برای حذف سریع؟</string>
   <string name="revert-conflict">صفحه به وسیله کاربر فهرست سفید، «$1» ویرایش شده‌است.</string>
   <string name="revert-fail">$1 واگردانی نشد:</string>
-  <string name="revert-nootheruser">هیچ کاربر دیگری این صفحه را ویرایش نکرده است.</string>
-  <string name="revert-progress">در حال واگردانی $1 ...</string>
+  <string name="revert-fail-pre-flight">چک پیش از جدال شکست خورد:$1</string>
   <string name="speedy-title">برچسب سریع $1</string>
   <string name="speedy-reason">دلیل:</string>
   <string name="speedy-parameters">پارامترها:</string>
@@ -420,9 +402,6 @@ $1
   <string name="tag-summary">خلاصه:</string>
   <string name="tag-insertatend">درج در انتهای صفحه</string>
   <string name="update-title">نسخهٔ جدید در دسترس است</string>
-  <string name="update-notification">این نسخه از هاگل، تاریخ‌گذشته است.</string>
-  <string name="update-prompt">آیا مایل هستید که آخرین نسخه را بارگیری و اجرا نمایید؟</string>
-  <string name="update-download">به‌روزرسانی</string>
   <string name="update-progress">دانلود نسخه جدید...</string>
   <string name="update-error">موفق به دانلود نسخه جدید نشد</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
@@ -444,7 +423,7 @@ $1
   <string name="warning-warntype">نوع هشدار:</string>
   <string name="warning-warnlog">هشدار برای این کاربر:</string>
   <string name="warning-submit">ارسال</string>
-  <string name="han-connecting">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
+  <string name="han-connecting" fuzzy="true">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
   <string name="error-loggedout">از حساب کاربری خارج شده است، در حال ورود دوباره به سامانه...</string>
   <string name="error-noresponse">عدم پاسخ</string>
   <string name="error-pagemissing">این صفحه وجود ندارد</string>
@@ -457,6 +436,7 @@ $1
   <string name="blocklog-fail">ناتوان از گرفتن سیاهه بسته‌شدن‌های $1</string>
   <string name="blocklog-none">سیاهه بسته‌شدنی برای $1 وجود ندارد.</string>
   <string name="blocklog-progress">در حال گرفتن سیاهه بسته شدن‌های $1...</string>
+  <string name="blocknotify-fail">$1 بلوک اطلاع داده نشد</string>
   <string name="blocknotify-progress">اعلام بندایش به $1</string>
   <string name="delete-done">$1 حذف شد</string>
   <string name="delete-fail">$1 حذف نشد</string>
@@ -473,6 +453,7 @@ $1
   <string name="move-done">$1 به $2 منتقل شد</string>
   <string name="move-fail">$1 به $2 منتقل نشد</string>
   <string name="move-progress">در حال انتقال $1 به $2 ...</string>
+  <string name="notify-fail">سازنده $1 مطلع نشد</string>
   <string name="notify-unknowncreator">سازنده صفحه پیدا نشد</string>
   <string name="protect-done">وضعیت محافظت  $1 تغییر کرد</string>
   <string name="protect-fail">وضعیت محافظت  $1 تغییر نکرد</string>
@@ -485,10 +466,10 @@ $1
   <string name="loadglobalconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="reqprotection-progress">در حال درخواست محافظت برای $1</string>
   <string name="reqprotection-title">درخواست محافظت صفحه $1</string>
-  <string name="speedy-fail" fuzzy="true">به \'{0}\' برچسب حذف سریع زده نشد</string>
-  <string name="speedy-progress" fuzzy="true">زدن برچسب حذف سریع بر \'{0}\'</string>
-  <string name="warnlog-none" fuzzy="true">به \'{0}\' هشدار داده نشده است</string>
-  <string name="warnlog-progress" fuzzy="true">گرفتن سیاهه هشدار برای \'{0}\'...</string>
+  <string name="speedy-fail" fuzzy="true">به \'$1\' برچسب حذف سریع زده نشد</string>
+  <string name="speedy-progress">زدن برچسب حذف سریع بر \'$1\'</string>
+  <string name="warnlog-none">به \'$1\' هشدار داده نشده است</string>
+  <string name="warnlog-progress">گرفتن سیاهه هشدار برای \'$1\'...</string>
   <string name="usermessage-duplicate">یک پیام در همین مورد از قبل وجود دارد</string>
   <string name="usermessage-fail">به \'$1\' پیامی فرستاده نشد</string>
   <string name="usermessage-progress">پیام \' $1 \'...</string>
@@ -516,8 +497,8 @@ $1
   <string name="report-no-user">هیچ کاربر برای گزارش انتخاب نشده است، لطفا نخست برخی از کاربران را انتخاب نمایید.</string>
   <string name="welcome-tp-empty-fail">این کاربر، صفحه بحثی خالی دارد، آیا شما مطمئن هستید که می‌خواهید به وی پیامی بفرستید؟</string>
   <string name="welcome-page-miss-fail">هاگل نتوانست محتوای صفحه بحث کاربری را بازیابی کند، آیا مطمئن هستید که می‌خواهید پیام خوشامدگویی برایشان بفرستید؟</string>
-  <string name="cr-newer-edits" fuzzy="true">درگیری حل و فصل شد: همه ویرایش‌های از جمله ویرایش‌های جدید را واگردانی کن. ویرایش‌ها توسط همان کاربر: هستند.</string>
+  <string name="cr-newer-edits">درگیری حل و فصل شد: همه ویرایش‌های از جمله ویرایش‌های جدید را  واگردانی کن. ویرایش‌ها توسط همان کاربر: هستند.</string>
   <string name="cr-message-same">چند ویرایش به وسیله همان کاربر در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
-  <string name="cr-message-new" fuzzy="true">ویرایش‌های تازه‌ای در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
-  <string name="cr-message-not-same" fuzzy="true">ویرایش‌های تازه‌ای در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
+  <string name="cr-message-new">ویرایش‌های تازه‌ای  در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
+  <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
 </resources>

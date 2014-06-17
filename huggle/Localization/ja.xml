@@ -20,6 +20,9 @@
   <string name="save">保存</string>
   <string name="selectfile">参照...</string>
   <string name="yes">はい</string>
+  <string name="user">利用者</string>
+  <string name="general-name">名前</string>
+  <string name="link">リンク</string>
   <string name="about-contributors">開発者:</string>
   <string name="block-title">{0} をブロック</string>
   <string name="block-reason">理由:</string>
@@ -34,11 +37,6 @@
   <string name="block-blockloglabel">ブロック・ログ:</string>
   <string name="block-warnloglabel">警告:</string>
   <string name="block-sharedipwarning">注意: {0} は共有/可変IP とタグ付けされています</string>
-  <string name="block-sensitivewarning">このIPアドレスは以下の理由で \'センシティブ\' リストに入れられています:
-
-   {0}
-
-それでも続けますか？</string>
   <string name="block-rangeblockwarning">{0} はすでにレンジブロック {1} の影響を受けています。
 ブロックするとレンジ・ブロックに重ねて二重で影響を与えます。実行しますか？</string>
   <string name="block-fail">\'{0}\' をブロックしませんでした</string>
@@ -76,7 +74,6 @@
   <string name="config-autoadvance">リバートした後、キュー内の次の編集に移動する</string>
   <string name="config-userollback">もし可能な場合、ロールバック機能を使用する</string>
   <string name="config-revertsummaries">メニュー内で利用可能な要約</string>
-  <string name="config-clearsummaries">手入力された要約はセッションを越えて記憶されます; クリアするには右のボタンを押してください</string>
   <string name="config-extendreports">報告後に荒らし編集が行われたら報告内容を追加する</string>
   <string name="config-autoreport">利用者に最終警告を行うか聞かれた時</string>
   <string name="config-reportnone">何もしない</string>
@@ -112,13 +109,14 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-start">ログイン</string>
-  <string name="login-translate" fuzzy="true">翻訳</string>
+  <string name="login-translate" fuzzy="true">ハグルを翻訳</string>
   <string name="login-captchatitle">ログインにキャプチャが必要です</string>
   <string name="login-progress-start" fuzzy="true">ログインしています...</string>
   <string name="login-progress-language">メッセージ・ファイルを更新中...</string>
   <string name="login-progress-global">グローバル設定をチェック中...</string>
   <string name="login-progress-config">設定ページをチェック中...</string>
   <string name="login-progress-whitelist">ユーザーホワイトリストを取得中...</string>
+  <string name="login-ssl">HTTP を使用 (OpenSSL が必要)</string>
   <string name="login-error-admin">このプロジェクトでハグルを使用するには管理者権限が必要です。</string>
   <string name="login-error-age">このプロジェクトでハグルを使用するにはアカウント作成後 {0} 日以上が経過している必要があります。</string>
   <string name="login-error-alldisabled">現在すべてのプロジェクトでハグルの使用ができません。</string>
@@ -159,12 +157,13 @@
   <string name="main-system-showtwoqueues">二つのキューを表示</string>
   <string name="main-system-options">オプション...</string>
   <string name="main-system-logout">ログアウト</string>
+  <string name="main-system-change-provider-wiki">ウィキ</string>
   <string name="main-system-exit">終了</string>
   <string name="main-queue">キュー</string>
   <string name="main-queue-next">次</string>
   <string name="main-queue-trim">削る</string>
   <string name="main-queue-clear">現在のキューをクリア</string>
-  <string name="main-queue-count" fuzzy="true">{0} アイテム</string>
+  <string name="main-queue-count">$1 アイテム</string>
   <string name="main-queue-query">クエリを実行...</string>
   <string name="main-queue-reset">リセット</string>
   <string name="main-queue-clearall">すべてクリア</string>
@@ -174,7 +173,7 @@
   <string name="main-goto-mycontribs">自分の投稿記録</string>
   <string name="main-revision">版</string>
   <string name="main-revision-view">表示</string>
-  <string name="main-revision-revert">リバート</string>
+  <string name="main-revision-revert" fuzzy="true">リバート</string>
   <string name="main-revision-previous">前</string>
   <string name="main-revision-next">次</string>
   <string name="main-revision-latest">最新</string>
@@ -184,30 +183,27 @@
   <string name="main-page-viewlatest">最新の版を表示</string>
   <string name="main-page-history">履歴を取得</string>
   <string name="main-page-historypage">履歴ページを表示</string>
-  <string name="main-page-edit" fuzzy="true">編集</string>
+  <string name="main-page-edit">ブラウザー内でページを編集</string>
   <string name="main-page-tag">タグ</string>
-  <string name="main-page-reqdeletion" fuzzy="true">削除依頼</string>
-  <string name="main-page-reqprotection" fuzzy="true">保護依頼</string>
+  <string name="main-page-reqdeletion">即時削除依頼</string>
+  <string name="main-page-reqprotection">ページの保護依頼</string>
   <string name="main-page-watch">ウォッチ</string>
   <string name="main-page-unwatch">ウォッチリストからはずす</string>
   <string name="main-page-purge">パージ</string>
-  <string name="main-page-patrol">パトロール済みにマーク</string>
+  <string name="main-page-patrol">巡回済みにする</string>
   <string name="main-page-move">移動...</string>
-  <string name="main-page-protect" fuzzy="true">保護...</string>
-  <string name="main-page-delete" fuzzy="true">削除...</string>
+  <string name="main-page-protect">保護</string>
+  <string name="main-page-delete">削除</string>
+  <string name="main-page-restore">この版を復元</string>
   <string name="main-user-info">利用者情報を表示</string>
   <string name="main-user-ignore">無視</string>
   <string name="main-user-unignore">無視を取り消し</string>
-  <string name="main-user-contribs">投稿記録を取得</string>
+  <string name="main-user-contribs" fuzzy="true">投稿記録を取得</string>
   <string name="main-user-talk">ノートを表示</string>
   <string name="main-user-message">メッセージ...</string>
   <string name="main-user-warn">警告...</string>
   <string name="main-user-report">報告</string>
   <string name="main-user-block">ブロック...</string>
-  <string name="main-browser">ブラウザー</string>
-  <string name="main-browser-newtab">新しいタブ</string>
-  <string name="main-browser-closetab">タブを閉じる</string>
-  <string name="main-browser-closeothers">他のタブを閉じる</string>
   <string name="main-browser-back">戻る</string>
   <string name="main-browser-forward">進む</string>
   <string name="main-browser-open">外部ブラウザーで表示</string>
@@ -222,37 +218,16 @@
   <string name="main-usermessageother">その他のメッセージ...</string>
   <string name="main-advanced">その他...</string>
   <string name="main-stats">1分あたり {0} 編集、 1分あたり {1} リバート</string>
+  <string name="main-display-session-data">セッション データを表示</string>
   <string name="main-tip-revertwarn">この版をリバートして投稿者に警告を送る</string>
   <string name="main-tip-nextdiff">キュー内の次の編集を表示</string>
   <string name="main-tip-revert">この版をリバート</string>
-  <string name="main-tip-template">利用者にテンプレートメッセージを送る</string>
   <string name="main-tip-warn">利用者に警告</string>
-  <string name="main-tip-cancel">保留中の操作をすべてキャンセル</string>
-  <string name="main-tip-undo">最近の操作を取り消す</string>
   <string name="main-tip-browserback">戻る</string>
   <string name="main-tip-browserforward">進む</string>
   <string name="main-tip-browseropen">外部ブラウザーで表示</string>
-  <string name="main-tip-browsernewtab">新しいタブ</string>
-  <string name="main-tip-browserclosetab">タブを閉じる</string>
-  <string name="main-tip-history">履歴を取得</string>
-  <string name="main-tip-historyprev">このページのひとつ前の差分を表示</string>
-  <string name="main-tip-historynext">このページのひとつ次の差分を表示</string>
-  <string name="main-tip-historylast">このページの現在の最新版を表示</string>
-  <string name="main-tip-historydifftocur">このページと現在の最新版の差分を表示</string>
-  <string name="main-tip-contribs">利用者の投稿記録を取得</string>
-  <string name="main-tip-contribsprev">この利用者のひとつ前の投稿を表示</string>
-  <string name="main-tip-contribsnext">この利用者のひとつ次の投稿を表示</string>
-  <string name="main-tip-contribslast">この利用者の最新の投稿を表示</string>
-  <string name="main-tip-pageview">この版を表示</string>
-  <string name="main-tip-pageedit">このページを編集</string>
-  <string name="main-tip-pagewatch">このページをウォッチ</string>
-  <string name="main-tip-pagetag">このページにタグ貼り付け</string>
   <string name="main-tip-pagetagdelete">このページに削除依頼タグを貼り付け</string>
   <string name="main-tip-pagedelete">このページを削除</string>
-  <string name="main-tip-userinfo">利用者情報を表示</string>
-  <string name="main-tip-usertalk">利用者-会話ページを表示</string>
-  <string name="main-tip-usermessage">この利用者にメッセージを送る</string>
-  <string name="main-tip-userignore">この利用者の投稿をすべて無視</string>
   <string name="main-tip-userreport">この利用者を報告</string>
   <string name="main-tip-userblock">この利用者をブロック</string>
   <string name="message-title">{0} にメッセージ</string>
@@ -280,18 +255,12 @@
   <string name="queue-sortorder">順序:</string>
   <string name="queue-removeviewed">確認した編集は除去する</string>
   <string name="queue-removeold">同じページの古い編集は除去する</string>
-  <string name="queue-removeafter">古い編集は除去</string>
-  <string name="queue-preload">このキューが選択されているとき版をプリロードする</string>
   <string name="queue-ignorepages">無視ページリストにあるページの編集は無視する</string>
   <string name="queue-traynotification">キューに版が追加されたらトレイ通知を表示</string>
   <string name="queue-diffsgroup">差分</string>
-  <string name="queue-nodiffs">版を表示したときに差分をロードする</string>
-  <string name="queue-preloaddiffs">キューがアクティブな時に差分を事前ロードする</string>
-  <string name="queue-alldiffs">キュー内のすべての差分をロードする</string>
   <string name="queue-pagefiltersgroup">ページ名フィルター</string>
   <string name="queue-pageregex">ページ名が正規表現に一致:</string>
   <string name="queue-namespaces">名前空間:</string>
-  <string name="queue-applylabel">既存のページリストにこのフィルターを適用する場合は、適用を押してください。</string>
   <string name="queue-editfiltersgroup">編集フィルター</string>
   <string name="queue-userregex">利用者名が正規表現に一致:</string>
   <string name="queue-summaryregex">要約が正規表現に一致:</string>
@@ -318,12 +287,9 @@
   <string name="report-duplicate">この利用者はすでに報告されています</string>
   <string name="report-fail">\'{0}\' の報告に失敗しました</string>
   <string name="report-progress">\'{0}\' を報告しています...</string>
-  <string name="revert-confirm-ignored">ホワイトリスト・ユーザー \'{0}\' の編集をリバートしますか？</string>
   <string name="revert-confirm-multiple">\'{0}\' による複数の編集をリバートします。 実行しますか？</string>
-  <string name="revert-confirm-page">無視されたページ \'{0}\' を差し戻しますか？</string>
   <string name="revert-confirm-range">対象の版 {1} の投稿者は、現在の版 {0} の投稿者と同一レンジです。中の人は同一人物の可能性があります。差し戻し前に版の内容を確認することを推奨します。続けますか？</string>
   <string name="revert-confirm-same">このリバートは同じ利用者のすでにリバートされた版 {0} に差し戻すことになります。実行しますか？</string>
-  <string name="revert-confirm-self">自分で行った編集を差し戻すことになります。実行しますか？</string>
   <string name="revert-confirm-warned">このリバートは {0} が編集した版に戻すことになります; この利用者は過去に警告を受けています。実行しますか？</string>
   <string name="revert-error-first">この編集はページの最初の版です。リバートはできません。</string>
   <string name="revert-only">この編集はこのページの唯一の編集です。</string>
@@ -334,8 +300,6 @@
   <string name="revert-conflict">ページが無視利用者 \'{0}\' によって編集されました</string>
   <string name="revert-fail">\'{0}\' をリバートできませんでした</string>
   <string name="revert-nochange">戻し先の版の内容が、最新版の内容と同じです</string>
-  <string name="revert-nootheruser">他の利用者はこのページを編集していません</string>
-  <string name="revert-progress">\'{0}\' をリバートしています...</string>
   <string name="speedy-title">{0} に即時削除タグ</string>
   <string name="speedy-reason">理由:</string>
   <string name="speedy-parameters">パラメータ:</string>
@@ -366,9 +330,6 @@
   <string name="tag-summary">要約:</string>
   <string name="tag-insertatend">ページの最後尾に追加する</string>
   <string name="update-title">新しいバージョンが利用できます</string>
-  <string name="update-notification">このバージョンのハグルはすでに古くなっています</string>
-  <string name="update-prompt">新しいバージョンをダウンロードしますか?</string>
-  <string name="update-download">アップデート</string>
   <string name="update-progress">新しいバージョンをダウンロードしています...</string>
   <string name="update-error">新しいバージョンのダウンロードに失敗しました</string>
   <string name="userinfo-title">\'{0}\' の利用者情報</string>
@@ -435,11 +396,11 @@
   <string name="reqprotection-duplicate">すでに保護依頼されています</string>
   <string name="reqprotection-fail">\'{0}\' の保護依頼に失敗しました</string>
   <string name="reqprotection-progress">\'{0}\' を保護依頼しています...</string>
-  <string name="speedy-fail" fuzzy="true">\'{0}\' への即時削除タグ貼り付けに失敗しました</string>
-  <string name="speedy-progress" fuzzy="true">\'{0}\' に即時削除タグを貼り付けています...</string>
-  <string name="warnlog-fail" fuzzy="true">\'{0}\' の警告履歴が取得できませんでした</string>
-  <string name="warnlog-none" fuzzy="true">\'{0}\' は警告を受けていません</string>
-  <string name="warnlog-progress" fuzzy="true">\'{0}\' の警告履歴を取得しています...</string>
+  <string name="speedy-fail" fuzzy="true">\'$1\' への即時削除タグ貼り付けに失敗しました</string>
+  <string name="speedy-progress">\'$1\' に即時削除タグを貼り付けています...</string>
+  <string name="warnlog-fail">\'$1\' の警告履歴を取得できませんでした</string>
+  <string name="warnlog-none">\'$1\' は警告を受けていません</string>
+  <string name="warnlog-progress">\'$1\' の警告履歴を取得しています...</string>
   <string name="usermessage-duplicate">同じ内容のメッセージがすでに存在しています</string>
   <string name="usermessage-fail">\'{0}\' へのメッセージに失敗しました</string>
   <string name="usermessage-progress">\'{0}\' にメッセージしています...</string>
@@ -450,4 +411,8 @@
   <string name="warn-recent">この利用者は {0} 秒以内に警告を受けています</string>
   <string name="warn-fail">\'{0}\' への警告に失敗しました</string>
   <string name="warn-progress">\'{0}\' に警告を行っています...</string>
+  <string name="editquery-success">$1 を編集しました</string>
+  <string name="welcome-tp-empty-fail">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
+  <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
+  <string name="cr-message-new">$1 には新しい編集がありますが、それらを本当に差し戻しますか?</string>
 </resources>
