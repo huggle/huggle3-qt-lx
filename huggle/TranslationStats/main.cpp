@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
+    Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish?
     Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     HTML();
     return 0;
