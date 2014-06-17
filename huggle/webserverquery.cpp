@@ -28,9 +28,8 @@ void WebserverQuery::Process()
 {
     if (this->URL == "")
     {
-        this->Result = new QueryResult();
-        this->Result->Failed = true;
-        this->Result->ErrorMessage = "You provided invalid url";
+        this->Result = new QueryResult(true);
+        this->Result->SetError("You provided invalid url");
         this->Status = StatusInError;
         return;
     }
@@ -72,8 +71,7 @@ void WebserverQuery::Finished()
     // now we need to check if request was successful or not
     if (this->reply->error())
     {
-        this->Result->ErrorMessage = reply->errorString();
-        this->Result->Failed = true;
+        this->Result->SetError(reply->errorString());
         this->reply->deleteLater();
         this->reply = NULL;
         this->Status = StatusDone;

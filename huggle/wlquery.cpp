@@ -49,8 +49,7 @@ void WLQuery::Process()
         // there is no whitelist in config for this wiki
         Syslog::HuggleLogs->ErrorLog("Unable to process WL request, there is no whitelist server defined");
         this->Result = new QueryResult();
-        this->Result->ErrorMessage = "Invalid URL";
-        this->Result->Failed = true;
+        this->Result->SetError("Invalid URL");
         this->Status = Huggle::StatusInError;
         return;
     }
@@ -130,11 +129,10 @@ void WLQuery::Finished()
     // now we need to check if request was successful or not
     if (this->r->error())
     {
-        this->Result->ErrorMessage = r->errorString();
-        this->Result->Failed = true;
+        this->Result->SetError(r->errorString());
     }
     this->r->deleteLater();
-    this->r = NULL;
+    this->r = nullptr;
     this->Status = StatusDone;
 }
 

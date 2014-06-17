@@ -60,8 +60,7 @@ bool Query::IsProcessed()
             this->Result = new QueryResult();
 
         this->Kill();
-        this->Result->Failed = true;
-        this->Result->ErrorMessage = "Timed out";
+        this->Result->SetError("Timed out");
         this->Status = StatusInError;
         return true;
     }
@@ -100,7 +99,7 @@ QString Query::QueryStatusToString()
         case StatusProcessing:
             return "Processing";
         case StatusInError:
-            if (this->Result != nullptr && this->Result->Failed && !this->Result->ErrorMessage.isEmpty())
+            if (this->Result != nullptr && this->Result->IsFailed() && !this->Result->ErrorMessage.isEmpty())
                 return "In error: " + this->Result->ErrorMessage;
 
             return "InError";
@@ -119,7 +118,7 @@ void Query::ProcessCallback()
 
 bool Query::IsFailed()
 {
-    if (this->Result != nullptr && this->Result->Failed)
+    if (this->Result != nullptr && this->Result->IsFailed())
         return true;
 
     if (this->Status == Huggle::StatusInError)

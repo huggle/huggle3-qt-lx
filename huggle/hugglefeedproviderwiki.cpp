@@ -84,7 +84,7 @@ void HuggleFeedProviderWiki::Refresh()
         // the query is still in progress now
         if (!this->qReload->IsProcessed())
             return;
-        if (this->qReload->Result->Failed)
+        if (this->qReload->Result->IsFailed())
         {
             // failed to obtain the data
             Huggle::Syslog::HuggleLogs->Log(_l("rc-error", this->qReload->Result->ErrorMessage));

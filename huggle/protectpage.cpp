@@ -85,7 +85,7 @@ void ProtectPage::checkTokenToProtect()
 {
     if (this->qToken == nullptr || !this->qToken->IsProcessed())
         return;
-    if (this->qToken->Result->Failed)
+    if (this->qToken->Result->IsFailed())
     {
         this->Failed(_l("protect-token", this->qToken->Result->ErrorMessage));
         return;
@@ -165,7 +165,7 @@ void ProtectPage::Protect()
     {
         return;
     }
-    if (this->qProtection->Result->Failed)
+    if (this->qProtection->Result->IsFailed())
     {
         Failed("The API query failed. Reason supplied was: " + qProtection->Result->ErrorMessage);
         return;

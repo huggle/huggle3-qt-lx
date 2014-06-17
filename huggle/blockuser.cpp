@@ -108,7 +108,7 @@ void BlockUser::CheckToken()
 {
     if (this->qTokenApi == nullptr || !this->qTokenApi->IsProcessed())
         return;
-    if (this->qTokenApi->Result->Failed)
+    if (this->qTokenApi->Result->IsFailed())
     {
         this->Failed(_l("block-token-e1", this->qTokenApi->Result->ErrorMessage));
         return;
@@ -167,7 +167,7 @@ void BlockUser::Block()
 {
     if (this->qUser == nullptr || !this->qUser->IsProcessed())
         return;
-    if (this->qUser->Result->Failed)
+    if (this->qUser->Result->IsFailed())
     {
         this->Failed(_l("block-fail", this->qUser->Result->ErrorMessage));
         return;
@@ -188,8 +188,7 @@ void BlockUser::Block()
         mb.setText(_l("block-fail", reason));
         mb.exec();
         this->ui->pushButton->setText("Block");
-        this->qUser->Result->Failed = true;
-        this->qUser->Result->ErrorMessage = "Unable to block: " + reason;
+        this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser->DecRef();
         this->qUser = nullptr;
         this->ui->pushButton->setEnabled(true);

@@ -68,11 +68,10 @@ bool EditQuery::IsProcessed()
         if (!this->qToken->IsProcessed())
             return false;
 
-        if (this->qToken->Result->Failed)
+        if (this->qToken->Result->IsFailed())
         {
             this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = _l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage;
+            this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
             return true;
@@ -83,8 +82,7 @@ bool EditQuery::IsProcessed()
         if (l.count() == 0)
         {
             this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = _l("editquery-token-error");
+            this->Result->SetError(_l("editquery-token-error"));
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
@@ -94,8 +92,7 @@ bool EditQuery::IsProcessed()
         if (!element.attributes().contains("edittoken"))
         {
             this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = _l("editquery-token-error");
+            this->Result->SetError(_l("editquery-token-error"));
             Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;

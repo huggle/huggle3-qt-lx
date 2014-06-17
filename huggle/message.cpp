@@ -190,7 +190,7 @@ void Message::Finish()
         {
             return;
         }
-        if (this->query->Result->Failed)
+        if (this->query->Result->IsFailed())
         {
             this->Fail(_l("message-fail-retrieve-talk"));
             return;
@@ -293,7 +293,7 @@ bool Message::FinishToken()
     {
         return false;
     }
-    if (this->qToken->Result->Failed)
+    if (this->qToken->Result->IsFailed())
     {
         this->Fail(_l("message-fail-token-1"));
         return false;

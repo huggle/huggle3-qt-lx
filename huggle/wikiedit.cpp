@@ -173,7 +173,7 @@ bool WikiEdit::FinalizePostProcessing()
             return false;
         }
 
-        if (this->qTalkpage->Result->Failed)
+        if (this->qTalkpage->Result->IsFailed())
         {
             /// \todo LOCALIZE ME
             Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
@@ -237,7 +237,7 @@ bool WikiEdit::FinalizePostProcessing()
             return false;
         }
 
-        if (this->qDifference->Result->Failed)
+        if (this->qDifference->Result->IsFailed())
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "

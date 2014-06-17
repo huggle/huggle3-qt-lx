@@ -317,7 +317,7 @@ void Login::PerformLoginPart2()
     {
         return;
     }
-    if (this->LoginQuery->Result->Failed)
+    if (this->LoginQuery->Result->IsFailed())
     {
         this->Update(_l("[[login-fail]]") + ": " + this->LoginQuery->Result->ErrorMessage);
         this->Kill();
@@ -343,7 +343,7 @@ void Login::RetrieveGlobalConfig()
     {
         if (this->LoginQuery->IsProcessed())
         {
-            if (this->LoginQuery->Result->Failed)
+            if (this->LoginQuery->Result->IsFailed())
             {
                 this->Update(_l("[[login-error-global]]") + ": " + this->LoginQuery->Result->ErrorMessage);
                 this->Kill();
@@ -400,7 +400,7 @@ void Login::FinishLogin()
     if (!this->LoginQuery || !this->LoginQuery->IsProcessed())
         return;
 
-    if (this->LoginQuery->Result->Failed)
+    if (this->LoginQuery->Result->IsFailed())
     {
         this->Update("Login failed: " + this->LoginQuery->Result->ErrorMessage);
         this->_Status = LoginFailed;
@@ -423,7 +423,7 @@ void Login::RetrieveWhitelist()
     {
         if (this->wq->IsProcessed())
         {
-            if (this->wq->Result->Failed)
+            if (this->wq->Result->IsFailed())
             {
                 Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled = true;
             } else
@@ -453,7 +453,7 @@ void Login::RetrieveProjectConfig()
     {
         if (this->LoginQuery->IsProcessed())
         {
-            if (this->LoginQuery->Result->Failed)
+            if (this->LoginQuery->Result->IsFailed())
             {
                 this->Update(_l("login-error-config", this->LoginQuery->Result->ErrorMessage));
                 this->LoginQuery->DecRef();
@@ -504,7 +504,7 @@ void Login::RetrieveUserConfig()
     {
         if (this->LoginQuery->IsProcessed())
         {
-            if (this->LoginQuery->Result->Failed)
+            if (this->LoginQuery->Result->IsFailed())
             {
                 this->Kill();
                 this->Update("Login failed unable to retrieve user config: " + this->LoginQuery->Result->ErrorMessage);
@@ -591,7 +591,7 @@ void Login::RetrieveUserInfo()
     {
         if (this->LoginQuery->IsProcessed())
         {
-            if (this->LoginQuery->Result->Failed)
+            if (this->LoginQuery->Result->IsFailed())
             {
                 this->Update(_l("login-fail-no-info", this->LoginQuery->Result->ErrorMessage));
                 this->Kill();

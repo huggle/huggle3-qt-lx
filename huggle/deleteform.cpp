@@ -110,7 +110,7 @@ void DeleteForm::CheckDeleteToken()
     {
         return;
     }
-    if (this->qToken->Result->Failed)
+    if (this->qToken->Result->IsFailed())
     {
         this->Failed(_l("delete-error-token", this->qToken->Result->ErrorMessage));
         return;
@@ -122,7 +122,7 @@ void DeleteForm::CheckDeleteToken()
         if (this->qTokenOfTalkPage == nullptr || !this->qTokenOfTalkPage->IsProcessed())
             return;
 
-        if (this->qTokenOfTalkPage->Result->Failed)
+        if (this->qTokenOfTalkPage->Result->IsFailed())
         {
             this->Failed(_l("delete-error-token", this->qToken->Result->ErrorMessage));
             return;
@@ -193,7 +193,7 @@ void DeleteForm::Delete()
 {
     if (this->qDelete == nullptr || !this->qDelete->IsProcessed())
         return;
-    if (this->qDelete->Result->Failed)
+    if (this->qDelete->Result->IsFailed())
     {
         this->Failed(_l("delete-e1", this->qDelete->Result->ErrorMessage));
         return;

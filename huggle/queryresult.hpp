@@ -20,6 +20,9 @@
 
 #include <QString>
 
+#define HUGGLE_EUNKNOWN 1
+#define HUGGLE_ENOTLOGGEDIN 2
+
 namespace Huggle
 {
     //! Result of query
@@ -28,10 +31,16 @@ namespace Huggle
         public:
             //! Creates a new instance of query result
             QueryResult();
+            QueryResult(bool failed);
             //! Data retrieved by query
             QString Data;
+            void SetError();
+            void SetError(QString error);
+            void SetError(int error, QString details = "");
+            bool IsFailed() { return Failed; }
             //! If query is in error the reason for error is stored here
             QString ErrorMessage;
+            int ErrorCode = 0;
             bool Failed;
     };
 }

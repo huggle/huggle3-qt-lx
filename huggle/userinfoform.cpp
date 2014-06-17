@@ -127,7 +127,7 @@ void UserinfoForm::OnTick()
     }
     if (this->qContributions->IsProcessed())
     {
-        if (this->qContributions->Result->Failed)
+        if (this->qContributions->Result->IsFailed())
         {
             this->qContributions->DecRef();
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);

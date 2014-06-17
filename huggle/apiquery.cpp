@@ -78,7 +78,7 @@ void ApiQuery::FinishRollback()
 {
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result->Data);
     if (this->CustomStatus != "Reverted")
-        this->Result->Failed = true;
+        this->Result->SetError();
 }
 
 ApiQuery::ApiQuery()
@@ -100,8 +100,7 @@ void ApiQuery::Finished()
     // now we need to check if request was successful or not
     if (this->reply->error())
     {
-        this->Result->ErrorMessage = reply->errorString();
-        this->Result->Failed = true;
+        this->Result->SetError(HUGGLE_EUNKNOWN, reply->errorString());
         this->reply->deleteLater();
         this->reply = nullptr;
         this->Status = StatusDone;

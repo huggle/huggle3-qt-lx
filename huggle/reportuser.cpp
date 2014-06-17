@@ -256,8 +256,7 @@ void ReportUser::Tick()
             QDomNodeList results = d.elementsByTagName("rev");
             if (results.count() == 0)
             {
-                this->ui->pushButton->setText(_l("report-fail2",
-                                            Configuration::HuggleConfiguration->ProjectConfig->ReportAIV));
+                this->ui->pushButton->setText(_l("report-fail2", Configuration::HuggleConfiguration->ProjectConfig->ReportAIV));
                 this->qHistory->DecRef();
                 this->qHistory = nullptr;
                 return;
@@ -346,7 +345,7 @@ void ReportUser::Tick()
         }
         this->ui->tableWidget->resizeRowsToContents();
         this->qHistory->DecRef();
-        this->qHistory = NULL;
+        this->qHistory = nullptr;
         this->ui->pushButton->setEnabled(true);
         this->ui->pushButton->setText("Report");
     }
@@ -354,15 +353,10 @@ void ReportUser::Tick()
 
 void ReportUser::On_DiffTick()
 {
-    if (this->qDiff == NULL)
-    {
+    if (this->qDiff == nullptr || !this->qDiff->IsProcessed())
         return;
-    }
-    if (!this->qDiff->IsProcessed())
-    {
-        return;
-    }
-    if (this->qDiff->Result->Failed)
+
+    if (this->qDiff->Result->IsFailed())
     {
         ui->webView->setHtml(_l("browser-fail", this->qDiff->Result->ErrorMessage));
         this->tPageDiff->stop();
@@ -414,13 +408,13 @@ void ReportUser::On_DiffTick()
 
 void ReportUser::Test()
 {
-    if (this->qReport == NULL && this->qCheckIfBlocked == NULL)
+    if (this->qReport == nullptr && this->qCheckIfBlocked == nullptr)
     {
         this->tReportPageCheck->stop();
         return;
     }
 
-    if (this->qCheckIfBlocked != NULL && this->qCheckIfBlocked)
+    if (this->qCheckIfBlocked != nullptr && this->qCheckIfBlocked)
     {
         QDomDocument d;
         d.setContent(this->qCheckIfBlocked->Result->Data);
@@ -438,11 +432,11 @@ void ReportUser::Test()
         }
         mb.exec();
         this->qCheckIfBlocked->DecRef();
-        this->qCheckIfBlocked = NULL;
+        this->qCheckIfBlocked = nullptr;
         this->ui->pushButton_7->setEnabled(true);
     }
     // check if user was reported is here
-    if (this->qReport != NULL && this->qReport->IsProcessed())
+    if (this->qReport != nullptr && this->qReport->IsProcessed())
     {
         QDomDocument d;
         d.setContent(this->qReport->Result->Data);
@@ -514,7 +508,7 @@ void ReportUser::on_pushButton_clicked()
     // obtain current page
     this->Loading = true;
     this->ui->pushButton->setText(_l("report-retrieving"));
-    if (this->qHistory != NULL)
+    if (this->qHistory != nullptr)
         this->qHistory->DecRef();
     this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
     this->qHistory->IncRef();
@@ -535,7 +529,7 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
     this->ui->webView->setHtml(_l("wait"));
     this->tPageDiff->stop();
-    if (this->qDiff != NULL)
+    if (this->qDiff != nullptr)
     {
         this->qDiff->Kill();
         this->qDiff->DecRef();
@@ -600,15 +594,15 @@ void ReportUser::InsertUser()
 
 void ReportUser::Kill()
 {
-    if (this->qHistory != NULL)
+    if (this->qHistory != nullptr)
     {
         this->qHistory->DecRef();
-        this->qHistory = NULL;
+        this->qHistory = nullptr;
     }
-    if (this->qEdit != NULL)
+    if (this->qEdit != nullptr)
     {
         this->qEdit->DecRef();
-        this->qEdit = NULL;
+        this->qEdit = nullptr;
     }
     this->tReportUser->stop();
 }
@@ -621,13 +615,13 @@ void ReportUser::failCheck(QString reason)
     mb.exec();
     this->tReportUser->stop();
     this->qReport->DecRef();
-    this->qReport = NULL;
+    this->qReport = nullptr;
 }
 
 void ReportUser::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    if (this->qReport != NULL)
+    if (this->qReport != nullptr)
     {
         this->qReport->DecRef();
     }
@@ -639,7 +633,7 @@ void ReportUser::on_pushButton_3_clicked()
 
 void Huggle::ReportUser::on_pushButton_4_clicked()
 {
-    if (this->BlockForm != NULL)
+    if (this->BlockForm != nullptr)
     {
         delete this->BlockForm;
     }
@@ -651,7 +645,7 @@ void Huggle::ReportUser::on_pushButton_4_clicked()
 void Huggle::ReportUser::on_pushButton_7_clicked()
 {
     this->ui->pushButton_7->setEnabled(false);
-    if (this->qCheckIfBlocked != NULL)
+    if (this->qCheckIfBlocked != nullptr)
     {
         this->qCheckIfBlocked->DecRef();
     }
