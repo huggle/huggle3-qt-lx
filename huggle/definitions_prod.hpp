@@ -27,7 +27,17 @@ typedef char byte_ht;
 // comment this out to disable multithreaded garbage collector
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
 // is crashing with it only, it means your code suck and need a fix in destructor :))
+#ifdef __APPLE__
+    #include "TargetConditionals.h"
+    #ifdef TARGET_OS_MAC
+        #define HUGGLE_NO_MT_GC
+    #endif
+#endif
+// this is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
+// it has problems there (need to be fixed though)
+#ifndef HUGGLE_NO_MT_GC
 #define HUGGLE_USE_MT_GC               "mt"
+#endif
 
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
