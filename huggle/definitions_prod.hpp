@@ -22,7 +22,9 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_RELEASE     0x3
 
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
-#define QT_NO_TRANSLATION
+#ifndef QT_NO_TRANSLATION
+    #define QT_NO_TRANSLATION
+#endif
 
 // comment this out to disable multithreaded garbage collector
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
