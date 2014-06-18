@@ -134,7 +134,7 @@ void QueryPool::CheckQueries()
         {
             this->RunningQueries.removeAt(curr);
             // this is pretty spamy :o
-            Huggle::Syslog::HuggleLogs->DebugLog("Query finished with: " + q->Result->Data, 8);
+            HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
             if (this->Processes != nullptr)
             {
                 this->Processes->UpdateQuery(q);

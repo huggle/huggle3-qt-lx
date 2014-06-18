@@ -99,7 +99,7 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
         m->RegisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
     }
     m->Send();
-    Huggle::Syslog::HuggleLogs->DebugLog("Sending message to user " + User->Username);
+    HUGGLE_DEBUG("Sending message to user " + User->Username, 1);
     return m;
 }
 

@@ -355,7 +355,7 @@ void NetworkIrc_th::Line(QString line)
     {
         if (Parameters_.isEmpty() && Message_.isEmpty())
         {
-            Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
+            HUGGLE_DEBUG("Invalid channel name: " + line, 1);
             return;
         }
         this->ProcessJoin(Source_, Parameters_, Message_);
@@ -384,7 +384,7 @@ void NetworkIrc_th::Line(QString line)
     {
         if (Parameters_.isEmpty())
         {
-            Syslog::HuggleLogs->DebugLog("Invalid channel name: " + line);
+            HUGGLE_DEBUG("Invalid channel name: " + line, 1);
             return;
         }
         this->ProcessPart(Source_, Parameters_, Message_);
@@ -413,7 +413,7 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
 {
     if (!source.contains("!"))
     {
-        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        HUGGLE_DEBUG("IRC: Ignoring invalid user record " + source, 1);
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
@@ -449,7 +449,7 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
             channel_ptr_->InsertUser(user);
         } else
         {
-            Syslog::HuggleLogs->DebugLog("Ignoring JOIN event for unknown channel, user " + user.Nick + " channel " + channel);
+            HUGGLE_DEBUG("Ignoring JOIN event for unknown channel, user " + user.Nick + " channel " + channel, 1);
         }
     }
     this->root->ChannelsLock->unlock();
@@ -491,14 +491,14 @@ void NetworkIrc_th::ProcessChannel(QString channel, QString data)
 void NetworkIrc_th::ProcessKick(QString source, QString parameters, QString message)
 {
     /// \todo This needs to be finished :P
-    Syslog::HuggleLogs->DebugLog("IRC kick " + source + parameters + message);
+    HUGGLE_DEBUG("IRC kick " + source + parameters + message, 1);
 }
 
 void NetworkIrc_th::ProcessQuit(QString source, QString message)
 {
     if (!source.contains("!"))
     {
-        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        HUGGLE_DEBUG("IRC: Ignoring invalid user record " + source, 1);
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
@@ -511,7 +511,7 @@ void NetworkIrc_th::ProcessQuit(QString source, QString message)
         channel_->RemoveUser(user.Nick);
         list.removeAt(0);
     }
-    Syslog::HuggleLogs->DebugLog("IRC User " + user.Nick + " quit: " + message, 5);
+    HUGGLE_DEBUG("IRC User " + user.Nick + " quit: " + message, 5);
     this->root->ChannelsLock->unlock();
 }
 
@@ -519,7 +519,7 @@ void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message
 {
     if (!source.contains("!"))
     {
-        Syslog::HuggleLogs->DebugLog("IRC: Ignoring invalid user record " + source);
+        HUGGLE_DEBUG("IRC: Ignoring invalid user record " + source, 1);
         return;
     }
     User user(source.mid(0, source.indexOf("!")));
@@ -545,8 +545,8 @@ void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message
         }
     } else
     {
-        Syslog::HuggleLogs->DebugLog("Ignoring PART event for unknown channel, user " + user.Nick + " channel " + channel
-                                     + " reason " + message);
+        HUGGLE_DEBUG("Ignoring PART event for unknown channel, user " + user.Nick + " channel " + channel
+                         + " reason " + message, 1);
     }
     this->root->ChannelsLock->unlock();
 }
@@ -569,7 +569,7 @@ void NetworkIrc_th::run()
             QString data = buffer.at(0);
             buffer.removeAt(0);
             this->Line(data);
-            Syslog::HuggleLogs->DebugLog("Processing IRC input from " + this->root->Server + ": " + data, 10);
+            HUGGLE_DEBUG("Processing IRC input from " + this->root->Server + ": " + data, 10);
         }
         ping++;
         if (ping > 2000)

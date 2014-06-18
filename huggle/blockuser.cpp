@@ -118,7 +118,7 @@ void BlockUser::CheckToken()
     QDomNodeList l = d.elementsByTagName("page");
     if (l.count() == 0)
     {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->qTokenApi->Result->Data);
+        HUGGLE_DEBUG(this->qTokenApi->Result->Data, 1);
         this->Failed(_l("block-error-no-info"));
         return;
     }
@@ -132,7 +132,7 @@ void BlockUser::CheckToken()
     this->QueryPhase++;
     this->qTokenApi->DecRef();
     this->qTokenApi = nullptr;
-    Huggle::Syslog::HuggleLogs->DebugLog("Block token for " + this->user->Username + ": " + this->BlockToken);
+    HUGGLE_DEBUG("Block token for " + this->user->Username + ": " + this->BlockToken, 1);
 
     // let's block them
     this->qUser = new ApiQuery();
@@ -196,9 +196,8 @@ void BlockUser::Block()
         return;
     }
     // let's assume the user was blocked
-    Huggle::Syslog::HuggleLogs->DebugLog(this->qUser->Result->Data);
     this->ui->pushButton->setText("Blocked");
-    Huggle::Syslog::HuggleLogs->DebugLog("block result: " + this->qUser->Result->Data, 2);
+    HUGGLE_DEBUG("block result: " + this->qUser->Result->Data, 2);
     this->qUser->DecRef();
     this->qUser = nullptr;
     this->t0->stop();

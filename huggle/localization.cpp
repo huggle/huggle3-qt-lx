@@ -94,7 +94,7 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
         i++;
         if (!item.attributes().contains("name"))
         {
-            Syslog::HuggleLogs->DebugLog("Language " + name + " contains key with no name");
+            HUGGLE_DEBUG("Language " + name + " contains key with no name", 1);
             continue;
         }
         QString n_ = item.attribute("name");

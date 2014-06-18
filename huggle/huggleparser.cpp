@@ -269,7 +269,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (time.length() < 2)
             {
                 // what the fuck
-                Syslog::HuggleLogs->DebugLog("Negative position: " + time);
+                HUGGLE_DEBUG("Negative position: " + time, 1);
                 CurrentIndex++;
                 continue;
             }
@@ -282,7 +282,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             if (parts_time.count() < 3)
             {
                 // this is invalid string
-                Syslog::HuggleLogs->DebugLog("Unable to split month: " + time, 12);
+                HUGGLE_DEBUG("Unable to split month: " + time, 12);
                 CurrentIndex++;
                 continue;
             }
@@ -305,7 +305,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
             QDate date = QDate::fromString(time, "d M yyyy");
             if (!date.isValid())
             {
-                Syslog::HuggleLogs->DebugLog("Invalid date: " + time);
+                HUGGLE_DEBUG("Invalid date: " + time, 1);
                 CurrentIndex++;
                 continue;
             } else

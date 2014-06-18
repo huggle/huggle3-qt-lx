@@ -19,6 +19,13 @@
 #include <QStringList>
 #include <QMutex>
 
+// This macro should be used for all debug messages which are frequently called, so that we don't call DebugLog(QString, uint)
+// when we aren't in debug mode, this saves some CPU resources as these calls are very expensive sometimes (lot of conversions
+// of numbers and text)
+//! Sends a debug to system (text of a log, verbosity)
+#define HUGGLE_DEBUG(debug, verbosity) if (Huggle::Configuration::HuggleConfiguration->Verbosity >= verbosity) \
+                                           Syslog::HuggleLogs->DebugLog(debug, verbosity)
+
 namespace Huggle
 {
     enum HuggleLogType

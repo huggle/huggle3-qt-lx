@@ -222,7 +222,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     /// \todo LOCALIZE ME
                     Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
-                    Huggle::Syslog::HuggleLogs->DebugLog(this->qTalkpage->Result->Data);
+                    HUGGLE_DEBUG(this->qTalkpage->Result->Data, 1);
                 }
             }
         }

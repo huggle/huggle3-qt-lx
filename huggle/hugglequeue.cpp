@@ -75,7 +75,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
             if (edit->Page->PageName != page->Page->PageName)
                 continue;
             // we found it
-            Huggle::Syslog::HuggleLogs->DebugLog("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone");
+            HUGGLE_DEBUG("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone", 1);
             WikiEdit::Lock_EditList->unlock();
             page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
             return;
@@ -142,7 +142,7 @@ void HuggleQueue::Next()
     if (i == this->ui->verticalSpacer)
     {
         // this should never happen
-        Syslog::HuggleLogs->DebugLog("Reached spacer");
+        HUGGLE_DEBUG("Reached spacer", 1);
         return;
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
@@ -229,7 +229,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         }
         if (position == this->ui->itemList->count() - 1)
         {
-            Syslog::HuggleLogs->DebugLog("Unable to sort the queue because item wasn't present");
+            HUGGLE_DEBUG("Unable to sort the queue because item wasn't present", 1);
             return;
         }
     }
@@ -427,7 +427,7 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         {
             if (edit->Page->PageName == _e->Page->PageName)
             {
-                Huggle::Syslog::HuggleLogs->DebugLog("Deleting old edit to page " + _e->Page->PageName);
+                HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 1);
                 // remove it
                 if (this->DeleteByRevID(_e->RevID))
                 {
@@ -451,7 +451,7 @@ void HuggleQueue::Clear()
         {
             // we failed to remove the item, break or we end up
             // looping here
-            Huggle::Syslog::HuggleLogs->DebugLog("Failed to clear the queue");
+            HUGGLE_DEBUG("Failed to clear the queue", 1);
             return;
         }
     }

@@ -113,7 +113,7 @@ void ApiQuery::Finished()
     this->reply->deleteLater();
     this->reply = nullptr;
     if (!this->HiddenQuery)
-        Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + this->URL, 6);
+        HUGGLE_DEBUG("Finished request " + this->URL, 6);
     this->Status = StatusDone;
     this->ProcessCallback();
 }
@@ -159,7 +159,7 @@ void ApiQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
-        Huggle::Syslog::HuggleLogs->DebugLog("Processing api request " + this->URL, 6);
+        HUGGLE_DEBUG("Processing api request " + this->URL, 6);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }

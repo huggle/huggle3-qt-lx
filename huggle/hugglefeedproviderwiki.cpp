@@ -247,12 +247,12 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
             QDomElement blockinfo = item.elementsByTagName("block").at(0).toElement(); // nested element "block"
             //QString flags = blockinfo.attribute("flags");
             QString duration = blockinfo.attribute("duration");
-            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin +
-                                                 " for the duration \"" + duration + "\": " + reason);
+            HUGGLE_DEBUG("RC Feed: ProcessLog: " + blockeduser + " was blocked by " + admin +
+                          " for the duration \"" + duration + "\": " + reason, 1);
         }
         else if (logaction == "unblock")
         {
-            Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: " + blockeduser + " was unblocked by " + admin + ": " + reason);
+            HUGGLE_DEBUG("RC Feed: ProcessLog: " + blockeduser + " was unblocked by " + admin + ": " + reason, 1);
         }
         // TODO: process it further to the user so edits get displayed as blob-blocked.png or not any longer
     }
@@ -261,7 +261,7 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
         QString page = item.attribute("title");
         QString admin = item.attribute("user");
         QString reason = item.attribute("comment");
-        Huggle::Syslog::HuggleLogs->DebugLog("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason);
+        HUGGLE_DEBUG("RC Feed: ProcessLog: page \"" + page + "\" was deleted by " + admin + ": " + reason, 1);
         // TODO: process page deletes further (e.g. remove page from queue)
     }
 }

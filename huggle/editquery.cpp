@@ -83,7 +83,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
-            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
+            HUGGLE_DEBUG("Debug message for edit: " + this->qToken->Result->Data, 1);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
             return true;

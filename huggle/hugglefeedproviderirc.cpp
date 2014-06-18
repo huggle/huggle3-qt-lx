@@ -139,13 +139,13 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     }
     if (!line.contains(QString(QChar(003)) + "07"))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no07):" + line);
+        HUGGLE_DEBUG("Invalid line (no07):" + line, 1);
         return;
     }
     line = line.mid(line.indexOf(QString(QChar(003)) + "07") + 3);
     if (!line.contains(QString(QChar(003)) + "14"))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no14):" + line);
+        HUGGLE_DEBUG("Invalid line (no14):" + line, 1);
         return;
     }
     WikiEdit *edit = new WikiEdit();
@@ -153,7 +153,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     edit->IncRef();
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no:x4:" + line);
+        HUGGLE_DEBUG("Invalid line (no:x4:" + line, 1);
         edit->DecRef();
         return;
     }
@@ -184,7 +184,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     {
         if (!line.contains("?diff="))
         {
-            Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (flags: " + flags + ") (no diff):" + line);
+            HUGGLE_DEBUG("Invalid line (flags: " + flags + ") (no diff):" + line, 1);
             edit->DecRef();
             return;
         }
@@ -193,7 +193,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
         if (!line.contains("&"))
         {
-            Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no &):" + line);
+            HUGGLE_DEBUG("Invalid line (no &):" + line, 1);
             edit->DecRef();
             return;
         }
@@ -202,28 +202,28 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     }
     if (!line.contains("oldid="))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no oldid?):" + line);
+        HUGGLE_DEBUG("Invalid line (no oldid?):" + line, 1);
         edit->DecRef();
         return;
     }
     line = line.mid(line.indexOf("oldid=") + 6);
     if (!line.contains(QString(QChar(003))))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
+        HUGGLE_DEBUG("Invalid line (no termin):" + line, 1);
         edit->DecRef();
         return;
     }
     edit->OldID = line.mid(0, line.indexOf(QString(QChar(003)))).toInt();
     if (!line.contains(QString(QChar(003)) + "03"))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line, no user: " + line);
+        HUGGLE_DEBUG("Invalid line, no user: " + line, 1);
         edit->DecRef();
         return;
     }
     line = line.mid(line.indexOf(QString(QChar(003)) + "03") + 3);
     if (!line.contains(QString(QChar(3))))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Invalid line (no termin):" + line);
+        HUGGLE_DEBUG("Invalid line (no termin):" + line, 1);
         edit->DecRef();
         return;
     }
@@ -254,15 +254,15 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
                 edit->Size = size;
             } else
             {
-                Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
+                HUGGLE_DEBUG("No size information for " + edit->Page->PageName, 1);
             }
         }else
         {
-            Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
+            HUGGLE_DEBUG("No size information for " + edit->Page->PageName, 1);
         }
     } else
     {
-        Syslog::HuggleLogs->DebugLog("No size information for " + edit->Page->PageName);
+        HUGGLE_DEBUG("No size information for " + edit->Page->PageName, 1);
     }
     if (line.contains(QString(QChar(3)) + "10"))
     {
