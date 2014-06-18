@@ -59,11 +59,11 @@ void Core::Init()
     {
         Configuration::LoadSystemConfig(QCoreApplication::applicationDirPath() + HUGGLE_CONF);
     }
-    Syslog::HuggleLogs->DebugLog("Loading defs");
+    HUGGLE_DEBUG1("Loading defs");
     this->LoadDefs();
-    Syslog::HuggleLogs->DebugLog("Loading wikis");
+    HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();
-    Syslog::HuggleLogs->DebugLog("Loading queue");
+    HUGGLE_DEBUG1("Loading queue");
     // These are separators that we use to parse words, less we have, faster huggle will be,
     // despite it will fail more to detect vandals. Keep it low but precise enough!!
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
@@ -254,7 +254,7 @@ void Core::LoadDefs()
             i++;
         }
     }
-    Syslog::HuggleLogs->DebugLog("Loaded " + QString::number(WikiUser::ProblematicUsers.count()) + " records from last session");
+    HUGGLE_DEBUG1("Loaded " + QString::number(WikiUser::ProblematicUsers.count()) + " records from last session");
     defs.close();
 }
 

@@ -378,12 +378,12 @@ void Configuration::LoadSystemConfig(QString fn)
     QFile file(fn);
     if (!QFile().exists(fn))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("No config file at " + fn);
+        HUGGLE_DEBUG1("No config file at " + fn);
         return;
     }
     if(!file.open(QIODevice::ReadOnly))
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Unable to read config file");
+        HUGGLE_DEBUG1("Unable to read config file");
         return;
     }
     QDomDocument conf;

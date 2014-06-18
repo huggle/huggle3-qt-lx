@@ -167,7 +167,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QFile *layout;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
-        Syslog::HuggleLogs->DebugLog("Loading state");
+        HUGGLE_DEBUG1("Loading state");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
         {
@@ -176,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         {
             if (!this->restoreState(layout->readAll()))
             {
-                Syslog::HuggleLogs->DebugLog("Failed to restore state");
+                HUGGLE_DEBUG1("Failed to restore state");
             }
         }
         layout->close();
@@ -184,7 +184,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_geometry"))
     {
-        Syslog::HuggleLogs->DebugLog("Loading geometry");
+        HUGGLE_DEBUG1("Loading geometry");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
         if (!layout->open(QIODevice::ReadOnly))
         {
@@ -193,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         {
             if (!this->restoreGeometry(layout->readAll()))
             {
-                Syslog::HuggleLogs->DebugLog("Failed to restore layout");
+                HUGGLE_DEBUG1("Failed to restore layout");
             }
         }
         layout->close();
@@ -476,7 +476,7 @@ void MainWindow::FinishPatrols()
                 }
             }
             // this edit is fucked up
-            Syslog::HuggleLogs->DebugLog("Unable to retrieve token for " + edit->Page->PageName);
+            HUGGLE_DEBUG1("Unable to retrieve token for " + edit->Page->PageName);
             // get rid of it
             this->PatrolledEdits.removeAt(x);
             edit->UnregisterConsumer("patrol");
@@ -775,7 +775,7 @@ void MainWindow::FinishRestore()
         WikiUtil::EditPage(this->RestoreEdit->Page, text, sm)->DecRef();
     } else
     {
-        Syslog::HuggleLogs->DebugLog(this->RestoreQuery->Result->Data);
+        HUGGLE_DEBUG1(this->RestoreQuery->Result->Data);
         Syslog::HuggleLogs->ErrorLog("Unable to restore the revision because wiki provided no data for selected version");
     }
     this->RestoreQuery->DecRef();
@@ -1370,7 +1370,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
         query->Parameters += "&flag_accuracy=1";
 
     QueryPool::HugglePool->AppendQuery(query);
-    Syslog::HuggleLogs->DebugLog("Patrolling " + e->Page->PageName);
+    HUGGLE_DEBUG1("Patrolling " + e->Page->PageName);
     query->Process();
 }
 

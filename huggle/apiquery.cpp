@@ -122,7 +122,7 @@ void ApiQuery::Process()
 {
     if (this->Status != Huggle::StatusNull)
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
+        HUGGLE_DEBUG1("Cowardly refusing to double process the query");
         return;
     }
     this->StartTime = QDateTime::currentDateTime();

@@ -42,7 +42,7 @@ bool HuggleFeedProviderIRC::Start()
 {
     if (this->Connected)
     {
-        Huggle::Syslog::HuggleLogs->DebugLog("Attempted to start connection which was already started");
+        HUGGLE_DEBUG1("Attempted to start connection which was already started");
         return false;
     }
     if (this->Network != nullptr)
