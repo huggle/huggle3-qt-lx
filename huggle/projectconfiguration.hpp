@@ -54,6 +54,9 @@ namespace Huggle
     class ProjectConfiguration
     {
         public:
+            //! Set to false when you are logged out for some reason
+            bool            IsLogged = false;
+            bool            RequestingLogin = false;
             //! Minimal version of huggle required to use it
             QString         MinimalVersion = HUGGLE_VERSION;
             bool            UseIrc = false;

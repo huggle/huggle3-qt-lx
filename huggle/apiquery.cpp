@@ -43,6 +43,7 @@ void ApiQuery::ConstructUrl()
         case Default:
             break;
     }
+    this->URL += this->GetAssertPartSuffix();
 }
 
 QString ApiQuery::ConstructParameterLessUrl()
@@ -70,7 +71,17 @@ QString ApiQuery::ConstructParameterLessUrl()
         case Default:
             break;
     }
-    return url;
+    return url + this->GetAssertPartSuffix();
+}
+
+QString ApiQuery::GetAssertPartSuffix()
+{
+    if (this->EnforceLogin && !Configuration::HuggleConfiguration->Restricted)
+    {
+        // we need to use this so that mediawiki will fail if we aren't logged in
+        return "&assert=user";
+    }
+    return "";
 }
 
 // TODO: move this function to RevertQuery
@@ -175,9 +186,11 @@ void ApiQuery::SetAction(const Action action)
     {
         case ActionQuery:
             this->ActionPart = "query";
+            this->EnforceLogin = false;
             return;
         case ActionLogin:
             this->ActionPart = "login";
+            this->EnforceLogin = false;
             return;
         case ActionLogout:
             this->ActionPart = "logout";

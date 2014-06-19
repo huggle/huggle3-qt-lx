@@ -75,6 +75,7 @@ namespace Huggle
             QString QueryTargetToString();
             //! Returns a type of query as a string
             QString QueryTypeToString();
+            bool EnforceLogin = true;
             //! Whether the query is going to edit any data in wiki
             bool EditingQuery = false;
             //! Whether the query will submit parameters using POST data
@@ -97,6 +98,7 @@ namespace Huggle
             //! Generate api url
             void ConstructUrl();
             QString ConstructParameterLessUrl();
+            QString GetAssertPartSuffix();
             //! Check if return format is supported by huggle
             bool FormatIsCurrentlySupported();
             //! This is only needed when you are using rollback
