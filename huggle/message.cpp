@@ -385,7 +385,7 @@ void Message::ProcessSend()
         parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
         Syslog::HuggleLogs->DebugLog("Using base timestamp for edit of " + user->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
-    if (this->StartTimestamp != "")
+    if (!this->StartTimestamp.isEmpty())
     {
         parameters += "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
         Syslog::HuggleLogs->DebugLog("Using start timestamp for edit of " + user->GetTalk() + ": " + this->StartTimestamp, 2);
