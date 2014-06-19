@@ -108,8 +108,8 @@ namespace Huggle
             void ProcessSiteInfo();
             void DisplayError(QString message);
             void Finish();
-            void reject();
             void VerifyLogin();
+            void reject();
             //! This function make sure that login result is done
             bool ProcessOutput();
             QString GetToken();

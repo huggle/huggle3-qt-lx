@@ -753,7 +753,13 @@ void Login::Finish()
 void Login::reject()
 {
     if (this->_Status != LoginDone)
-        QApplication::quit();
+    {
+        Core::HuggleCore->Shutdown();
+    }
+    else
+    {
+        QDialog::reject();
+    }
 }
 
 bool Login::ProcessOutput()
