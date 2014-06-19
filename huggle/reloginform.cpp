@@ -30,7 +30,7 @@ ReloginForm::~ReloginForm()
     delete this->little_cute_timer;
     delete this->ui;
     GC_DECREF(this->qReloginTokenReq);
-    GC_DECREF(this->qRelogin);
+    GC_DECREF(this->qReloginPw);
 }
 
 void Huggle::ReloginForm::on_pushButton_clicked()
@@ -160,7 +160,7 @@ void ReloginForm::Fail(QString why)
 {
     this->little_cute_timer->stop();
     GC_DECREF(this->qReloginTokenReq);
-    GC_DECREF(this->qRelogin);
+    GC_DECREF(this->qReloginPw);
     QMessageBox mb;
     mb.setWindowTitle("Fail");
     mb.setText("Unable to login to wiki: " + why);
