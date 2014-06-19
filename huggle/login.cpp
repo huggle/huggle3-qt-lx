@@ -738,17 +738,18 @@ void Login::Finish()
     Configuration::HuggleConfiguration->TemporaryConfig_Password = pw;
     this->ui->lineEdit_password->setText(pw);
     this->Update("Loading main huggle window");
+    Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
     this->timer->stop();
+    this->hide();
+    MainWindow::HuggleMain = new MainWindow();
+    Core::HuggleCore->Main = MainWindow::HuggleMain;
+    Core::HuggleCore->Main->show();
     if (this->loadingForm != nullptr)
     {
         this->loadingForm->close();
         delete this->loadingForm;
         this->loadingForm = nullptr;
     }
-    this->hide();
-    MainWindow::HuggleMain = new MainWindow();
-    Core::HuggleCore->Main = MainWindow::HuggleMain;
-    Core::HuggleCore->Main->show();
 }
 
 void Login::reject()
