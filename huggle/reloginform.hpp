@@ -16,6 +16,9 @@
 #include <Python.h>
 #endif
 #include <QDialog>
+#include <QTimer>
+#include <QString>
+#include "apiquery.hpp"
 
 namespace Ui
 {
@@ -35,8 +38,15 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
+            void LittleTick();
 
         private:
+            void Fail(QString why);
+            void reject();
+            //! This is just a timer, it's called little and cute because I was bored when writing this piece of code
+            QTimer *little_cute_timer;
+            ApiQuery *qReloginTokenReq = nullptr;
+            ApiQuery *qReloginPw = nullptr;
             Ui::ReloginForm *ui;
     };
 }
