@@ -66,6 +66,7 @@ namespace Huggle
         Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
                              Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
                              bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
+        QString SanitizeUser(QString username);
         void FinalizeMessages();
         /*!
          * \brief EditPage Run a new EditQuery that will edit the page

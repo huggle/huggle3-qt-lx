@@ -16,6 +16,7 @@
 #include "syslog.hpp"
 #include "mediawiki.hpp"
 #include "localization.hpp"
+#include "wikiutil.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "ui_login.h"
@@ -276,7 +277,7 @@ void Login::PressOK()
         this->DeveloperMode();
         return;
     }
-    Configuration::HuggleConfiguration->SystemConfig_Username = ui->lineEdit_username->text();
+    Configuration::HuggleConfiguration->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
     Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_password->text();
     if (this->loadingForm != nullptr)
     {

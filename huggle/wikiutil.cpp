@@ -159,3 +159,14 @@ EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString summary, boo
     }
     return EditPage(page->PageName, text, summary, minor, BaseTimestamp);
 }
+
+
+QString WikiUtil::SanitizeUser(QString username)
+{
+    // ensure we don't modify the original string
+    if (username.contains(" "))
+    {
+        return QString(username).replace(" ", "_");
+    }
+    return username;
+}

@@ -319,7 +319,7 @@ void RevertQuery::CheckPreflight()
         }
         if (e.attributes().contains("user"))
         {
-            QString user = e.attribute("user");
+            QString user = WikiUtil::SanitizeUser(e.attribute("user"));
             if (PreviousEditsMadeBySameUser && this->edit->RevID != WIKI_UNKNOWN_REVID && RevID > this->edit->RevID)
             {
                 if (user != this->edit->User->Username)
@@ -633,7 +633,7 @@ bool RevertQuery::ProcessRevert()
             }
             // we got it, this is the revision we want to revert to
             this->SR_RevID = e.attribute("revid").toInt();
-            this->SR_Target = e.attribute("user");
+            this->SR_Target = WikiUtil::SanitizeUser(e.attribute("user"));
             break;
         }
         this->SR_Depth++;
