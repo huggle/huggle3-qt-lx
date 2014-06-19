@@ -516,7 +516,7 @@ void Login::RetrieveUserConfig()
             QDomNodeList revisions = d.elementsByTagName("rev");
             if (revisions.count() == 0) // page is missing
             {
-                if(this->LoadedOldConfig == false && Configuration::HuggleConfiguration->GlobalConfig_UserConf_old != "")
+                if(this->LoadedOldConfig == false && !Configuration::HuggleConfiguration->GlobalConfig_UserConf_old.isEmpty())
                 {
                     // try first with old location of config, we don't need to switch the login step here we just
                     // replace the old query with new query that retrieves the old config and call this function

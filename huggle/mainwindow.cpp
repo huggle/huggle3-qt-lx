@@ -239,6 +239,7 @@ MainWindow::~MainWindow()
     delete this->VandalDock;
     delete this->_History;
     delete this->RevertWarn;
+    delete this->fRelogin;
     delete this->WarnMenu;
     delete this->fProtectForm;
     delete this->RevertSummaries;
@@ -821,6 +822,15 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
+    if (!Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn && !Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin)
+    {
+        delete this->fRelogin;
+        // we need to flag it here so that we don't reload the form next tick
+        Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = true;
+        this->fRelogin = new ReloginForm(this);
+        // exec to freeze
+        this->fRelogin->exec();
+    }
     this->ProcessReverts();
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;

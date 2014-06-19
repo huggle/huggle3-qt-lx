@@ -112,7 +112,32 @@ bool EditQuery::IsProcessed()
         QDomDocument dEdit_;
         dEdit_.setContent(this->qEdit->Result->Data);
         QDomNodeList edits_ = dEdit_.elementsByTagName("edit");
+        QDomNodeList error_ = dEdit_.elementsByTagName("error");
         bool failed = true;
+        if (error_.count() > 0)
+        {
+            QDomElement element = edits_.at(0).toElement();
+            if (element.attributes().contains("code"))
+            {
+                QString ec = element.attribute("code");
+                int hec = HUGGLE_EUNKNOWN;
+                QString reason = ec;
+                if (ec == "assertuserfailed")
+                {
+                    reason = "Not logged in";
+                    hec = HUGGLE_ENOTLOGGEDIN;
+                    // this is some fine hacking here :)
+                    // we use this later in main form
+                    HUGGLE_DEBUG("Session expired requesting a new login", 3);
+                    Configuration::HuggleConfiguration->ProjectConfig->RequestLogin();
+                }
+                this->Result = new QueryResult(true);
+                this->Result->SetError(hec, reason);
+                this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+                this->qEdit = nullptr;
+                return true;
+            }
+        }
         if (edits_.count() > 0)
         {
             QDomElement element = edits_.at(0).toElement();

@@ -41,14 +41,15 @@
 #include "preferences.hpp"
 #include "processlist.hpp"
 #include "protectpage.hpp"
+#include "reloginform.hpp"
+#include "reportuser.hpp"
+#include "revertquery.hpp"
+#include "requestprotect.hpp"
 #include "wikiuser.hpp"
 #include "ignorelist.hpp"
 #include "speedyform.hpp"
 #include "userinfoform.hpp"
 #include "vandalnw.hpp"
-#include "reportuser.hpp"
-#include "revertquery.hpp"
-#include "requestprotect.hpp"
 #include "whitelistform.hpp"
 #include "sessionform.hpp"
 #include "historyform.hpp"
@@ -91,6 +92,7 @@ namespace Huggle
     class VandalNw;
     class Syslog;
     class WikiUser;
+    class ReloginForm;
     class ReportUser;
     class RequestProtect;
     class DeleteForm;
@@ -340,6 +342,7 @@ namespace Huggle
             QTimer *GeneralTimer;
             QDateTime EditLoad;
             QString RestoreEdit_RevertReason;
+            ReloginForm *fRelogin = nullptr;
             QTimer *wlt = nullptr;
             //! Status bar
             QLabel *Status;

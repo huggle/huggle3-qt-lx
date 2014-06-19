@@ -8,19 +8,29 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include <QMessageBox>
+#include <QtXml>
 #include "reloginform.hpp"
 #include "core.hpp"
+#include "configuration.hpp"
+#include "syslog.hpp"
+#include "localization.hpp"
 #include "ui_reloginform.h"
 
 using namespace Huggle;
 ReloginForm::ReloginForm(QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
     this->ui->setupUi(this);
+    this->little_cute_timer = new QTimer();
+    connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
 }
 
 ReloginForm::~ReloginForm()
 {
+    delete this->little_cute_timer;
     delete this->ui;
+    GC_DECREF(this->qReloginTokenReq);
+    GC_DECREF(this->qRelogin);
 }
 
 void Huggle::ReloginForm::on_pushButton_clicked()
@@ -30,5 +40,135 @@ void Huggle::ReloginForm::on_pushButton_clicked()
 
 void Huggle::ReloginForm::on_pushButton_2_clicked()
 {
+    this->ui->pushButton_2->setEnabled(false);
+    this->qReloginTokenReq = new ApiQuery(ActionLogin);
+    this->little_cute_timer->start(800);
+    this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
+    this->qReloginTokenReq->HiddenQuery = true;
+    this->qReloginTokenReq->IncRef();
+    this->qReloginTokenReq->UsingPOST = true;
+    this->qReloginTokenReq->Process();
+}
 
+void ReloginForm::LittleTick()
+{
+    if (this->qReloginPw)
+    {
+        if (!this->qReloginPw->IsProcessed())
+        {
+            return;
+        }
+
+        if (this->qReloginPw->IsFailed())
+        {
+            this->Fail(this->qReloginPw->Result->ErrorMessage);
+            return;
+        }
+        QDomDocument result;
+        result.setContent(this->qReloginTokenReq->Result->Data);
+        QDomNodeList login = result.elementsByTagName("login");
+        if (login.count() < 1)
+        {
+            this->Fail("No data returned by login query");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        QDomElement element = login.at(0).toElement();
+        if (!element.attributes().contains("result"))
+        {
+            this->Fail("No result was provided by login query");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        QString Result = element.attribute("result");
+        if (Result == "Success")
+        {
+            // we are logged back in
+            Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
+            Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = false;
+            this->close();
+            return;
+        }
+        if (Result == "EmptyPass")
+        {
+            this->Fail(_l("login-password-empty"));
+            return;
+        }
+        if (Result == "WrongPass")
+        {
+            this->Fail(_l("login-error-password"));
+            return;
+        }
+        if (Result == "NoName")
+        {
+            this->Fail(_l("login-fail-wrong-name"));
+            return;
+        }
+        this->Fail(_l("login-api", Result));
+        return;
+    }
+    if (this->qReloginTokenReq && this->qReloginTokenReq->IsProcessed())
+    {
+        if (this->qReloginTokenReq->IsFailed())
+        {
+            this->Fail(this->qReloginTokenReq->Result->ErrorMessage);
+            return;
+        }
+        QDomDocument result;
+        result.setContent(this->qReloginTokenReq->Result->Data);
+        QDomNodeList login = result.elementsByTagName("login");
+        if (login.count() < 1)
+        {
+            this->Fail("No data returned by login query");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        QDomElement element = login.at(0).toElement();
+        if (!element.attributes().contains("result"))
+        {
+            this->Fail("No result was provided by login query");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        QString reslt_ = element.attribute("result");
+        if (reslt_ != "NeedToken")
+        {
+            this->Fail("Result returned " + reslt_ + " NeedToken expected");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        if (!element.attributes().contains("token"))
+        {
+            this->Fail("No token");
+            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            return;
+        }
+        QString t = QUrl::toPercentEncoding(element.attribute("token"));
+        GC_DECREF(this->qReloginTokenReq);
+        this->qReloginPw = new ApiQuery(ActionLogin);
+        this->qReloginPw->HiddenQuery = true;
+        this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
+                + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + t;
+        this->qReloginPw->UsingPOST = true;
+        this->qReloginPw->IncRef();
+        this->qReloginPw->Process();
+        return;
+    }
+}
+
+void ReloginForm::Fail(QString why)
+{
+    this->little_cute_timer->stop();
+    GC_DECREF(this->qReloginTokenReq);
+    GC_DECREF(this->qRelogin);
+    QMessageBox mb;
+    mb.setWindowTitle("Fail");
+    mb.setText("Unable to login to wiki: " + why);
+    mb.exec();
+    this->ui->pushButton_2->setEnabled(true);
+}
+
+void ReloginForm::reject()
+{
+    Core::HuggleCore->Shutdown();
 }
