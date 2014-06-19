@@ -41,7 +41,7 @@ RequestProtect::~RequestProtect()
 
 void RequestProtect::Tick()
 {
-    if (this->qRFPPage != NULL && this->qRFPPage->IsProcessed())
+    if (this->qRFPPage != nullptr && this->qRFPPage->IsProcessed())
     {
         // we are reading the request page let's see if we got it
         if (this->qRFPPage->IsFailed())
@@ -90,7 +90,7 @@ void RequestProtect::Tick()
             PageText = report + "\n\n" + PageText;
         // we no longer need the query we used
         this->qRFPPage->DecRef();
-        this->qRFPPage = NULL;
+        this->qRFPPage = nullptr;
         QString summary_ = Configuration::HuggleConfiguration->ProjectConfig->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
         summary_.replace("$2", this->page->PageName);
@@ -109,7 +109,7 @@ void RequestProtect::Tick()
         return;
     }
 
-    if (this->qEditRFP != NULL && this->qEditRFP->IsProcessed())
+    if (this->qEditRFP != nullptr && this->qEditRFP->IsProcessed())
     {
         if (this->qEditRFP->IsFailed())
         {

@@ -38,12 +38,57 @@ WikiSite::WikiSite(const WikiSite &w)
     this->WhiteList = w.WhiteList;
 }
 
+WikiSite::WikiSite(WikiSite *w)
+{
+    this->LongPath = w->LongPath;
+    this->IRCChannel = w->IRCChannel;
+    this->Name = w->Name;
+    this->OAuthURL = w->OAuthURL;
+    this->WhiteList = w->WhiteList;
+    this->URL = w->URL;
+    this->SupportOAuth = w->SupportOAuth;
+    this->SupportHttps = w->SupportHttps;
+    this->ScriptPath = w->ScriptPath;
+}
+
+WikiSite::WikiSite(QString name, QString url)
+{
+    this->LongPath = "wiki/";
+    this->Name = name;
+    this->URL = url;
+    this->ScriptPath = "w/";
+    this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
+    this->SupportHttps = true;
+    this->SupportOAuth = true;
+    this->IRCChannel = "#test.wikipedia";
+    this->WhiteList = "test.wikipedia";
+}
+
+WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl)
+{
+    this->IRCChannel = channel;
+    this->LongPath = path;
+    this->Name = name;
+    this->SupportHttps = https;
+    this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
+    this->ScriptPath = script;
+    this->URL = url;
+    this->IsRightToLeft = isrtl;
+    this->SupportOAuth = oauth;
+    this->WhiteList = wl;
+}
+
+WikiSite::~WikiSite()
+{
+    this->ClearNS();
+}
+
 WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
 {
     WikiPageNS *dns_ = nullptr;
     foreach(WikiPageNS *ns_, this->NamespaceList)
     {
-        if (!ns_->GetName().size())
+        if (ns_->GetName().isEmpty())
             dns_ = ns_;
         else if (title.startsWith(ns_->GetName() + ":"))
             return ns_;
@@ -51,7 +96,7 @@ WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
     // let's try canonical names
     foreach(WikiPageNS *ns_, this->NamespaceList)
     {
-        if (!ns_->GetName().size())
+        if (ns_->GetName().isEmpty())
             continue;
         else if (title.startsWith(ns_->GetCanonicalName() + ":"))
             return ns_;
@@ -67,7 +112,7 @@ WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
     // let's try canonical names
     foreach(WikiPageNS *ns_, this->NamespaceList)
     {
-        if (!ns_->GetName().size())
+        if (ns_->GetName().isEmpty())
             dns_ = ns_;
         else if (CanonicalName == ns_->GetCanonicalName())
             return ns_;
@@ -112,51 +157,6 @@ void WikiSite::RemoveNS(int ns)
         this->NamespaceList.remove(ns);
         delete n;
     }
-}
-
-WikiSite::WikiSite(WikiSite *w)
-{
-    this->LongPath = w->LongPath;
-    this->IRCChannel = w->IRCChannel;
-    this->Name = w->Name;
-    this->OAuthURL = w->OAuthURL;
-    this->WhiteList = w->WhiteList;
-    this->URL = w->URL;
-    this->SupportOAuth = w->SupportOAuth;
-    this->SupportHttps = w->SupportHttps;
-    this->ScriptPath = w->ScriptPath;
-}
-
-WikiSite::WikiSite(QString name, QString url)
-{
-    this->LongPath = "wiki/";
-    this->Name = name;
-    this->URL = url;
-    this->ScriptPath = "w/";
-    this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
-    this->SupportHttps = true;
-    this->SupportOAuth = true;
-    this->IRCChannel = "#test.wikipedia";
-    this->WhiteList = "test.wikipedia";
-}
-
-WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl)
-{
-    this->IRCChannel = channel;
-    this->LongPath = path;
-    this->Name = name;
-    this->SupportHttps = https;
-    this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
-    this->ScriptPath = script;
-    this->URL = url;
-    this->IsRightToLeft = isrtl;
-    this->SupportOAuth = oauth;
-    this->WhiteList = wl;
-}
-
-WikiSite::~WikiSite()
-{
-    this->ClearNS();
 }
 
 void WikiSite::ClearNS()

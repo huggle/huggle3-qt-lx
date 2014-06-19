@@ -182,6 +182,27 @@ namespace Huggle
     {
         return this->IP;
     }
+
+    inline QDateTime WikiUser::TalkPage_RetrievalTime()
+    {
+        return this->DateOfTalkPage;
+    }
+
+    inline long WikiUser::GetBadnessScore(bool _resync)
+    {
+        if (_resync)
+        {
+            this->Resync();
+        }
+        return this->BadnessScore;
+    }
+
+    inline void WikiUser::SetBadnessScore(long value)
+    {
+        this->Resync();
+        this->BadnessScore = value;
+        this->Update(true);
+    }
 }
 
 #endif // WIKIUSER_H

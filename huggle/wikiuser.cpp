@@ -357,27 +357,6 @@ bool WikiUser::IsWhitelisted()
     }
 }
 
-QDateTime WikiUser::TalkPage_RetrievalTime()
-{
-    return this->DateOfTalkPage;
-}
-
-long WikiUser::GetBadnessScore(bool _resync)
-{
-    if (_resync)
-    {
-        this->Resync();
-    }
-    return this->BadnessScore;
-}
-
-void WikiUser::SetBadnessScore(long value)
-{
-    this->Resync();
-    this->BadnessScore = value;
-    this->Update(true);
-}
-
 QString WikiUser::Flags()
 {
     QString pflags = "";
@@ -420,6 +399,7 @@ QString WikiUser::Flags()
     }
     return flags;
 }
+
 bool WikiUser::GetBot() const
 {
     return this->Bot;

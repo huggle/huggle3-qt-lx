@@ -69,7 +69,7 @@ WikiEdit::~WikiEdit()
     WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.removeAll(this);
     WikiEdit::Lock_EditList->unlock();
-    if (this->Previous != NULL && this->Next != NULL)
+    if (this->Previous != nullptr && this->Next != nullptr)
     {
         this->Previous->Next = this->Next;
         this->Next->Previous = this->Previous;
@@ -104,7 +104,7 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
     }
 
-    if (this->qUser != NULL && this->qUser->IsProcessed())
+    if (this->qUser != nullptr && this->qUser->IsProcessed())
     {
         if (this->qUser->IsFailed())
         {
@@ -113,7 +113,7 @@ bool WikiEdit::FinalizePostProcessing()
                                          this->qUser->Result->ErrorMessage);
             // we can remove this query now
             this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-            this->qUser = NULL;
+            this->qUser = nullptr;
 
         } else
         {
@@ -161,7 +161,7 @@ bool WikiEdit::FinalizePostProcessing()
             }
             // let's delete it now
             this->qUser->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-            this->qUser = NULL;
+            this->qUser = nullptr;
         }
     }
 
@@ -241,9 +241,9 @@ bool WikiEdit::FinalizePostProcessing()
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
-                                                 + this->qDifference->Result->Data);
+                                                   + this->qDifference->Result->Data);
             this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-            this->qDifference = NULL;
+            this->qDifference = nullptr;
             this->PostProcessing = false;
             return true;
         }
@@ -291,12 +291,12 @@ bool WikiEdit::FinalizePostProcessing()
                                                  + this->qDifference->Result->Data);
         }
         this->qDifference->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-        this->qDifference = NULL;
+        this->qDifference = nullptr;
         // we are done processing the diff
         this->ProcessingDiff = false;
     }
 
-    if (this->qText != NULL && this->qText->IsProcessed())
+    if (this->qText != nullptr && this->qText->IsProcessed())
     {
         bool failed = false;
         QString result = Generic::EvaluateWikiPageContents(this->qText, &failed);
@@ -317,7 +317,7 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
 
     this->qTalkpage->UnregisterConsumer(HUGGLECONSUMER_WIKIEDIT);
-    this->qTalkpage = NULL;
+    this->qTalkpage = nullptr;
     this->ProcessingByWorkerThread = true;
     ProcessorThread::EditLock.lock();
     this->RegisterConsumer(HUGGLECONSUMER_PROCESSOR);
@@ -396,34 +396,33 @@ void WikiEdit::ProcessWords()
 
 void WikiEdit::RemoveFromHistoryChain()
 {
-    if (this->Previous != NULL && this->Next != NULL)
+    if (this->Previous != nullptr && this->Next != nullptr)
     {
         this->Previous->Next = this->Next;
         this->Next->Previous = this->Previous;
-        this->Previous = NULL;
-        this->Next = NULL;
+        this->Previous = nullptr;
+        this->Next = nullptr;
         return;
     }
 
-    if (this->Previous != NULL)
+    if (this->Previous != nullptr)
     {
-        this->Previous->Next = NULL;
-        this->Previous = NULL;
+        this->Previous->Next = nullptr;
+        this->Previous = nullptr;
     }
 
-    if (this->Next != NULL)
+    if (this->Next != nullptr)
     {
-        this->Next->Previous = NULL;
-        this->Next = NULL;
+        this->Next->Previous = nullptr;
+        this->Next = nullptr;
     }
 }
 
 void WikiEdit::PostProcess()
 {
     if (this->PostProcessing)
-    {
         return;
-    }
+
     this->PostProcessing = true;
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk());
     this->qTalkpage->RegisterConsumer(HUGGLECONSUMER_WIKIEDIT);
@@ -433,7 +432,7 @@ void WikiEdit::PostProcess()
     if (!this->NewPage)
     {
         this->qDifference = new ApiQuery(ActionQuery);
-        if (this->RevID != -1)
+        if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
             this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +

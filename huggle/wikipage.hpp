@@ -51,6 +51,26 @@ namespace Huggle
         private:
             WikiPageNS *NS;
     };
+
+    inline bool WikiPage::IsUserpage()
+    {
+        return this->GetNS()->GetCanonicalName() == "User";
+    }
+
+    inline QString WikiPage::SanitizedName()
+    {
+        return this->PageName.replace(" ", "_");
+    }
+
+    inline WikiPageNS *WikiPage::GetNS()
+    {
+        return this->NS;
+    }
+
+    inline bool WikiPage::IsTalk()
+    {
+        return this->NS->IsTalkPage();
+    }
 }
 
 #endif // WIKIPAGE_H

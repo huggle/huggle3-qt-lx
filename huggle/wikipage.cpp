@@ -50,21 +50,6 @@ WikiPage::WikiPage(const WikiPage &page)
     this->NS = page.NS;
 }
 
-QString WikiPage::SanitizedName()
-{
-    return this->PageName.replace(" ", "_");
-}
-
-WikiPageNS *WikiPage::GetNS()
-{
-    return this->NS;
-}
-
-bool WikiPage::IsTalk()
-{
-    return this->NS->IsTalkPage();
-}
-
 WikiPage *WikiPage::RetrieveTalk()
 {
     if (this->IsTalk())
@@ -73,7 +58,7 @@ WikiPage *WikiPage::RetrieveTalk()
     }
     // now we need to get a talk namespace for this ns
     QString prefix = "Talk";
-    if (this->NS->GetName().size() > 0)
+    if (!this->NS->GetName().isEmpty())
     {
         prefix = this->Site->RetrieveNSByCanonicalName(this->NS->GetCanonicalName() + " talk")->GetName();
         if (!prefix.size())
@@ -88,7 +73,7 @@ WikiPage *WikiPage::RetrieveTalk()
 QString WikiPage::RootName()
 {
     QString sanitized = this->PageName;
-    if (this->GetNS()->GetName().size())
+    if (!this->GetNS()->GetName().isEmpty())
     {
         // first we need to get a colon
         if (this->PageName.contains(":"))
@@ -101,11 +86,6 @@ QString WikiPage::RootName()
         sanitized = sanitized.mid(0, sanitized.indexOf("/"));
     }
     return sanitized;
-}
-
-bool WikiPage::IsUserpage()
-{
-    return this->GetNS()->GetCanonicalName() == "User";
 }
 
 QString WikiPage::EncodedName()

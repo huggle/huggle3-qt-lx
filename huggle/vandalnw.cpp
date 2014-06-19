@@ -80,7 +80,7 @@ void VandalNw::Disconnect()
 
 void VandalNw::Good(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
     }
@@ -89,7 +89,7 @@ void VandalNw::Good(WikiEdit *Edit)
 
 void VandalNw::Rollback(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
@@ -98,7 +98,7 @@ void VandalNw::Rollback(WikiEdit *Edit)
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
         throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
     }
@@ -107,7 +107,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 
 void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
 {
-    if (user == NULL)
+    if (user == nullptr)
     {
         throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
     }
@@ -165,7 +165,7 @@ void VandalNw::Rescore(WikiEdit *edit)
         return;
     }
     int item = 0;
-    HAN::RescoreItem *score = NULL;
+    HAN::RescoreItem *score = nullptr;
     while (item < this->UnparsedScores.count())
     {
         if (this->UnparsedScores.at(item).RevID == edit->RevID)
@@ -176,7 +176,7 @@ void VandalNw::Rescore(WikiEdit *edit)
         }
         item++;
     }
-    if (score != NULL)
+    if (score != nullptr)
     {
         bool bot_ = score->User.toLower().contains("bot");
         QString message = "<font color=green>" + score->User + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" +
@@ -221,9 +221,9 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
     if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
         // we need to delete older edits that we know and that is somewhere in queue
-        if (Core::HuggleCore->Main != NULL)
+        if (Core::HuggleCore->Main != nullptr)
         {
-            if (Core::HuggleCore->Main->Queue1 != NULL)
+            if (Core::HuggleCore->Main->Queue1 != nullptr)
             {
                 Core::HuggleCore->Main->Queue1->DeleteOlder(edit);
             }
@@ -307,7 +307,7 @@ void VandalNw::onTick()
         this->Irc->Join(this->Channel);
     }
     Huggle::IRC::Message *m = this->Irc->GetMessage();
-    if (m != NULL)
+    if (m != nullptr)
     {
         HAN::MessageType mt;
         if (!m->user.Nick.toLower().contains("bot"))
@@ -334,7 +334,7 @@ void VandalNw::onTick()
                 {
                     int RevID = revid.toInt();
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    if (edit != nullptr)
                     {
                         this->ProcessGood(edit, m->user.Nick);
                     } else
@@ -350,7 +350,7 @@ void VandalNw::onTick()
                 {
                     int RevID = revid.toInt();
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    if (edit != nullptr)
                     {
                         this->ProcessRollback(edit, m->user.Nick);
                     } else
@@ -366,7 +366,7 @@ void VandalNw::onTick()
                 {
                     int RevID = revid.toInt();
                     WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    if (edit != nullptr)
                     {
                         this->ProcessSusp(edit, m->user.Nick);
                     } else
@@ -385,7 +385,7 @@ void VandalNw::onTick()
                     if (Score != 0)
                     {
                         WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                        if (edit != NULL)
+                        if (edit != nullptr)
                         {
                             this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" +
                                          edit->Page->PageName + "</b> by <b>" + edit->User->Username +

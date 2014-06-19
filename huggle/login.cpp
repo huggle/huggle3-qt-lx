@@ -676,12 +676,14 @@ void Login::ProcessSiteInfo()
         QDomNodeList l = d.elementsByTagName("general");
         if( l.count() < 1 )
         {
-            //! \todo throw some exception
+            this->Update("No site info was returned for this wiki");
+            this->Kill();
+            return;
         }
         QDomElement item = l.at(0).toElement();
         if (item.attributes().contains("rtl"))
         {
-            //! \todo set a value and use this to determine project RTL status
+            Configuration::HuggleConfiguration->Project->IsRightToLeft = true;
         }
         if (item.attributes().contains("time"))
         {
@@ -703,9 +705,7 @@ void Login::ProcessSiteInfo()
                 index++;
                 if (!e.attributes().contains("id") || !e.attributes().contains("canonical"))
                     continue;
-                Configuration::HuggleConfiguration->Project->InsertNS(new WikiPageNS(e.attribute("id").toInt(),
-                                                                                     e.text(),
-                                                                                     e.attribute("canonical")));
+                Configuration::HuggleConfiguration->Project->InsertNS(new WikiPageNS(e.attribute("id").toInt(), e.text(), e.attribute("canonical")));
             }
         }
         this->processedSiteinfo = true;

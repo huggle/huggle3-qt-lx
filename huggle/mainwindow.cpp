@@ -933,7 +933,7 @@ void MainWindow::OnMainTimerTick()
     }
     Syslog::HuggleLogs->lUnwrittenLogs.unlock();
     this->Queries->RemoveExpired();
-    if (this->OnNext_EvPage != nullptr && this->qNext != NULL && this->qNext->IsProcessed())
+    if (this->OnNext_EvPage != nullptr && this->qNext != nullptr && this->qNext->IsProcessed())
     {
         this->tb->SetPage(this->OnNext_EvPage);
         this->tb->RenderEdit();
@@ -1413,12 +1413,9 @@ void MainWindow::Localize()
     this->ui->actionDelete->setText(_l("main-page-delete"));
     // button action depends on adminrights
     if (Configuration::HuggleConfiguration->Rights.contains("delete"))
-    {
         this->ui->actionDelete_page->setText(_l("main-page-delete"));
-    } else
-    {
+    else
         this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
-    }
     this->ui->actionRequest_protection->setText(_l("main-page-reqprotection"));
     this->ui->actionProtect->setText(_l("main-page-protect"));
     this->ui->actionRestore_this_revision->setText(_l("main-page-restore"));
@@ -1535,7 +1532,8 @@ void MainWindow::WelcomeGood()
     Hooks::OnGood(this->CurrentEdit);
     this->PatrolThis();
     this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
-    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents() == "")
+    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood &&
+            this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
         this->Welcome();
     this->DisplayNext();
 }
@@ -1663,8 +1661,8 @@ void MainWindow::on_actionUser_contributions_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + "Special:Contributions/"
-                                          + QUrl::toPercentEncoding(this->CurrentEdit->User->Username)).toUtf8()));
+        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + "Special:Contributions/" +
+                                  QUrl::toPercentEncoding(this->CurrentEdit->User->Username)).toUtf8()));
     }
 }
 
@@ -1683,9 +1681,11 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Diff > 0)
-            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->WikiScriptURL() + "index.php?diff=" + QString::number(this->CurrentEdit->Diff)).toUtf8()));
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->WikiScriptURL() +
+              "index.php?diff=" + QString::number(this->CurrentEdit->Diff)).toUtf8()));
         else
-            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName()).toUtf8()));
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() +
+                              this->CurrentEdit->Page->EncodedName()).toUtf8()));
     }
 }
 
