@@ -52,6 +52,36 @@ Configuration::Configuration()
     this->MakeShortcut("main-forward", "Go to edit you loaded in past but walked back from", "]");
     this->MakeShortcut("main-warn", "Send a warning to user, without reverting edit", "W");
     this->MakeShortcut("main-revert", "Revert edit", "R");
+    this->MakeShortcut("main-revert-and-warn-0", "Trigger 0th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-1", "Trigger 1th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-2", "Trigger 2th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-3", "Trigger 3th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-4", "Trigger 4th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-5", "Trigger 5th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-6", "Trigger 6th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-7", "Trigger 7th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-8", "Trigger 8th item in revert and warn menu");
+    this->MakeShortcut("main-revert-and-warn-9", "Trigger 9th item in revert and warn menu");
+    this->MakeShortcut("main-warn-0", "Trigger 0th item in warn menu");
+    this->MakeShortcut("main-warn-1", "Trigger 1th item in warn menu");
+    this->MakeShortcut("main-warn-2", "Trigger 2th item in warn menu");
+    this->MakeShortcut("main-warn-3", "Trigger 3th item in warn menu");
+    this->MakeShortcut("main-warn-4", "Trigger 4th item in warn menu");
+    this->MakeShortcut("main-warn-5", "Trigger 5th item in warn menu");
+    this->MakeShortcut("main-warn-6", "Trigger 6th item in warn menu");
+    this->MakeShortcut("main-warn-7", "Trigger 7th item in warn menu");
+    this->MakeShortcut("main-warn-8", "Trigger 8th item in warn menu");
+    this->MakeShortcut("main-warn-9", "Trigger 9th item in warn menu");
+    this->MakeShortcut("main-warn-0", "Trigger 0th item in revert menu");
+    this->MakeShortcut("main-warn-1", "Trigger 1th item in revert menu");
+    this->MakeShortcut("main-warn-2", "Trigger 2th item in revert menu");
+    this->MakeShortcut("main-warn-3", "Trigger 3th item in revert menu");
+    this->MakeShortcut("main-warn-4", "Trigger 4th item in revert menu");
+    this->MakeShortcut("main-warn-5", "Trigger 5th item in revert menu");
+    this->MakeShortcut("main-warn-6", "Trigger 6th item in revert menu");
+    this->MakeShortcut("main-warn-7", "Trigger 7th item in revert menu");
+    this->MakeShortcut("main-warn-8", "Trigger 8th item in revert menu");
+    this->MakeShortcut("main-warn-9", "Trigger 9th item in revert menu");
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -1001,6 +1031,73 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_NEXT;
     else if (name == "main-back")
         this->ID = HUGGLE_ACCEL_MAIN_BACK;
+    else if (name.startsWith("main-revert-and-warn-"))
+    {
+        if (name == "main-revert-and-warn-0")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0;
+        else if (name == "main-revert-and-warn-1")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1;
+        else if (name == "main-revert-and-warn-2")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2;
+        else if (name == "main-revert-and-warn-3")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3;
+        else if (name == "main-revert-and-warn-4")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4;
+        else if (name == "main-revert-and-warn-5")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5;
+        else if (name == "main-revert-and-warn-6")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6;
+        else if (name == "main-revert-and-warn-7")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7;
+        else if (name == "main-revert-and-warn-8")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8;
+        else if (name == "main-revert-and-warn-9")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9;
+    } else if (name.startsWith("main-revert-"))
+    {
+        if (name == "main-revert-0")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_0;
+        else if (name == "main-revert-1")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_1;
+        else if (name == "main-revert-2")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_2;
+        else if (name == "main-revert-3")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_3;
+        else if (name == "main-revert-4")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_4;
+        else if (name == "main-revert-5")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_5;
+        else if (name == "main-revert-6")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_6;
+        else if (name == "main-revert-7")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_7;
+        else if (name == "main-revert-8")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_8;
+        else if (name == "main-revert-9")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_9;
+    } else if (name.startsWith("main-warn-"))
+    {
+        if (name == "main-warn-0")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN0;
+        else if (name == "main-warn-1")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN1;
+        else if (name == "main-warn-2")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN2;
+        else if (name == "main-warn-3")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN3;
+        else if (name == "main-warn-4")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN4;
+        else if (name == "main-warn-5")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN5;
+        else if (name == "main-warn-6")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN6;
+        else if (name == "main-warn-7")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN7;
+        else if (name == "main-warn-8")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN8;
+        else if (name == "main-warn-9")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN9;
+    }
 }
 
 Shortcut::Shortcut(const Shortcut &copy)

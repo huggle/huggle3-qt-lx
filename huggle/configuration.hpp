@@ -38,6 +38,37 @@
 #define HUGGLE_ACCEL_SUSPICIOUS_EDIT            5
 #define HUGGLE_ACCEL_MAIN_FORWARD               6
 #define HUGGLE_ACCEL_MAIN_BACK                  7
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0      8
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1      9
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2      10
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3      11
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4      12
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5      13
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6      14
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7      15
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8      16
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9      17
+#define HUGGLE_ACCEL_MAIN_WARN0                 18
+#define HUGGLE_ACCEL_MAIN_WARN1                 19
+#define HUGGLE_ACCEL_MAIN_WARN2                 20
+#define HUGGLE_ACCEL_MAIN_WARN3                 21
+#define HUGGLE_ACCEL_MAIN_WARN4                 22
+#define HUGGLE_ACCEL_MAIN_WARN5                 23
+#define HUGGLE_ACCEL_MAIN_WARN6                 24
+#define HUGGLE_ACCEL_MAIN_WARN7                 25
+#define HUGGLE_ACCEL_MAIN_WARN8                 26
+#define HUGGLE_ACCEL_MAIN_WARN9                 27
+#define HUGGLE_ACCEL_MAIN_REVERT_0              28
+#define HUGGLE_ACCEL_MAIN_REVERT_1              29
+#define HUGGLE_ACCEL_MAIN_REVERT_2              30
+#define HUGGLE_ACCEL_MAIN_REVERT_3              31
+#define HUGGLE_ACCEL_MAIN_REVERT_4              32
+#define HUGGLE_ACCEL_MAIN_REVERT_5              33
+#define HUGGLE_ACCEL_MAIN_REVERT_6              34
+#define HUGGLE_ACCEL_MAIN_REVERT_7              35
+#define HUGGLE_ACCEL_MAIN_REVERT_8              36
+#define HUGGLE_ACCEL_MAIN_REVERT_9              37
+
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
