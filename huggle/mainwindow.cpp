@@ -127,9 +127,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             QAction *action = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
             QAction *actiona = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
             QAction *actionb = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
-            this->RevertAndWarnItems.append(action);
+            this->RevertAndWarnItems.append(actiona);
             this->WarnItems.append(actionb);
-            this->RevertItems.append(actiona);
+            this->RevertItems.append(action);
             this->RevertWarn->addAction(actiona);
             this->WarnMenu->addAction(actionb);
             this->RevertSummaries->addAction(action);
