@@ -439,6 +439,7 @@ QString Configuration::MakeLocalUserConfig()
             configuration_ += "        filter-me:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
             configuration_ += "        filter-users:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
             configuration_ += "        nsfilter-user:" + Configuration::Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\n";
+            configuration_ += "        filter-talk:" + Configuration::Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\n";
             configuration_ += "\n";
         }
     }

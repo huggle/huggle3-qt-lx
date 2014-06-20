@@ -71,6 +71,8 @@ namespace Huggle
             void setIgnoreSelf(bool value);
             bool IsDefault() const;
             bool IsChangeable() const;
+            void setIgnoreTalk(bool value);
+            bool getIgnoreTalk() const;
             bool getIgnoreReverts() const;
             void setIgnoreReverts(bool value);
             //! Name of this queue, must be unique
@@ -186,6 +188,16 @@ namespace Huggle
     inline bool HuggleQueueFilter::getIgnoreSelf() const
     {
         return this->IgnoreSelf;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreTalk(bool value)
+    {
+        this->IgnoreTalk = value;
+    }
+
+    inline bool HuggleQueueFilter::getIgnoreTalk() const
+    {
+        return this->IgnoreTalk;
     }
 
     inline void HuggleQueueFilter::setIgnoreSelf(bool value)

@@ -568,6 +568,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="checkBox_29">
+           <property name="text">
+            <string>Talk pages (every space)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_6">
            <property name="orientation">
             <enum>Qt::Vertical</enum>

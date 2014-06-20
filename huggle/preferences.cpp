@@ -159,6 +159,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->checkBox_8->setChecked(f->getIgnoreNP());
     this->ui->checkBox_9->setChecked(f->getIgnoreWL());
     this->ui->checkBox_28->setChecked(f->getIgnore_UserSpace());
+    this->ui->checkBox_29->setChecked(f->getIgnoreTalk());
     this->ui->checkBox_10->setChecked(f->getIgnoreFriends());
     this->ui->checkBox_18->setChecked(f->getIgnoreReverts());
     this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
@@ -179,12 +180,14 @@ void Preferences::Disable()
     this->ui->pushButton_6->setEnabled(false);
     this->ui->checkBox_13->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
+    this->ui->checkBox_29->setEnabled(false);
 }
 
 void Preferences::EnableQueues()
 {
     this->ui->lineEdit->setEnabled(true);
     this->ui->checkBox_6->setEnabled(true);
+    this->ui->checkBox_29->setEnabled(true);
     this->ui->checkBox_7->setEnabled(true);
     this->ui->checkBox_8->setEnabled(true);
     this->ui->checkBox_9->setEnabled(true);
@@ -293,6 +296,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->setIgnoreWL(this->ui->checkBox_9->isChecked());
     filter->setIgnoreSelf(this->ui->checkBox_6->isChecked());
     filter->setIgnoreReverts(this->ui->checkBox_18->isChecked());
+    filter->setIgnoreTalk(this->ui->checkBox_29->isChecked());
     filter->setIgnoreFriends(this->ui->checkBox_10->isChecked());
     filter->setIgnore_UserSpace(this->ui->checkBox_28->isChecked());
     filter->QueueName = this->ui->lineEdit->text();

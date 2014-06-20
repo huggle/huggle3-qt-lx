@@ -556,6 +556,11 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->setIgnoreFriends(F2B(val));
                     continue;
                 }
+                if (key == "filter-talk")
+                {
+                    filter->setIgnoreTalk(F2B(val));
+                    continue;
+                }
                 if (key == "filter-ip")
                 {
                     filter->setIgnoreIP(F2B(val));
