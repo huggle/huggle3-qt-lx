@@ -407,6 +407,7 @@ void Preferences::RecordKeys(int row, int column)
         if (key.isEmpty())
         {
             // let's revert this
+            Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
             goto revert;
         }
         // check if there isn't another shortcut which uses this
@@ -415,8 +416,11 @@ void Preferences::RecordKeys(int row, int column)
         {
             if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key)
             {
-                Syslog::HuggleLogs->ErrorLog("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
-                                             " is already using the same keys");
+                QMessageBox m;
+                m.setWindowTitle("Fail");
+                m.setText("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
+                          " is already using the same keys");
+                m.exec();
                 goto revert;
             }
         }
@@ -431,7 +435,6 @@ void Preferences::RecordKeys(int row, int column)
     return;
 
     revert:
-        Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
         this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
         return;
 }
