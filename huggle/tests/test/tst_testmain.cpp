@@ -174,6 +174,9 @@ void HuggleTest::testCaseScores()
     delete vf;
     QVERIFY2(edit->Score == 10, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
+    Huggle::GC::gc->Stop();
+    while (Huggle::GC::gc->IsRunning())
+        Huggle::Sleeper::usleep(2);
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
 }
