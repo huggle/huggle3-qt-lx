@@ -68,6 +68,9 @@
 #define HUGGLE_ACCEL_MAIN_REVERT_7              35
 #define HUGGLE_ACCEL_MAIN_REVERT_8              36
 #define HUGGLE_ACCEL_MAIN_REVERT_9              37
+#define HUGGLE_ACCEL_MAIN_TALK                  38
+#define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40
+#define HUGGLE_ACCEL_MAIN_GOOD                  41
 
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects

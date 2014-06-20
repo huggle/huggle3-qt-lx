@@ -696,6 +696,15 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_WARN:
             q = this->ui->actionWarn_the_user;
             break;
+        case HUGGLE_ACCEL_MAIN_GOOD:
+            q = this->ui->actionFlag_as_a_good_edit;
+            break;
+        case HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER:
+            q = this->ui->actionOpen_page_in_browser;
+            break;
+        case HUGGLE_ACCEL_MAIN_TALK:
+            q = this->ui->actionTalk_page;
+            break;
         case HUGGLE_ACCEL_MAIN_FORWARD:
             q = this->ui->actionForward;
             break;

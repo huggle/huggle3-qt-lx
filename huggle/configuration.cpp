@@ -82,6 +82,8 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-7", "shortcut-x-revert");
     this->MakeShortcut("main-revert-8", "shortcut-x-revert");
     this->MakeShortcut("main-revert-9", "shortcut-x-revert");
+    this->MakeShortcut("main-talk", "shortcut-talk", "T");
+    this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -1033,6 +1035,10 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_NEXT;
     else if (name == "main-back")
         this->ID = HUGGLE_ACCEL_MAIN_BACK;
+    else if (name == "main-open-in-browser")
+        this->ID = HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER;
+    else if (name == "main-talk")
+        this->ID = HUGGLE_ACCEL_MAIN_TALK;
     else if (name.startsWith("main-revert-and-warn-"))
     {
         if (name == "main-revert-and-warn-0")
