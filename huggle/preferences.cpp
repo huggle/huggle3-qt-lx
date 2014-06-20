@@ -399,20 +399,18 @@ void Preferences::RecordKeys(int row, int column)
 
     // let's get the shortcut id
     QString id = this->ui->tableWidget_2->item(row, 0)->text();
+    QString key = "";
 
-    if (this->ui->tableWidget_2->item(row, column)->text().isEmpty())
+    if (!this->ui->tableWidget_2->item(row, column)->text().isEmpty())
     {
-        // user wants to remove the shortcut
-        return;
-    }
-
-    QString key = QKeySequence(this->ui->tableWidget_2->item(row, column)->text()).toString();
-    if (key.isEmpty())
-    {
-        // let's revert this
-        Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
-        this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
-        return;
+        key = QKeySequence(this->ui->tableWidget_2->item(row, column)->text()).toString();
+        if (key.isEmpty())
+        {
+            // let's revert this
+            Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
+            this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
+            return;
+        }
     }
 
     this->ModifiedForm = true;
