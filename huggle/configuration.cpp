@@ -1036,7 +1036,7 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_NEXT;
     else if (name == "main-back")
         this->ID = HUGGLE_ACCEL_MAIN_BACK;
-    else if (name = "main-good")
+    else if (name == "main-good")
         this->ID = HUGGLE_ACCEL_MAIN_GOOD;
     else if (name == "main-open-in-browser")
         this->ID = HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER;
