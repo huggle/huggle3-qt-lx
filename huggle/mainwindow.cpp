@@ -591,14 +591,17 @@ void MainWindow::ReloadShort(QString id)
         throw new Huggle::Exception("Invalid shortcut name");
     Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
     QAction *q = nullptr;
+    QAction *tip = nullptr;
     // now this horrid switch
     switch (s.ID)
     {
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN:
+            tip = this->ui->actionRevert_and_warn;
             q = this->ui->actionRevert_currently_displayed_edit_and_warn_the_user;
             break;
         case HUGGLE_ACCEL_MAIN_REVERT:
             q = this->ui->actionRevert_currently_displayed_edit;
+            tip = this->ui->actionRevert;
             break;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0:
             ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 0, s);
@@ -695,6 +698,7 @@ void MainWindow::ReloadShort(QString id)
             break;
         case HUGGLE_ACCEL_MAIN_WARN:
             q = this->ui->actionWarn_the_user;
+            tip = this->ui->actionWarn;
             break;
         case HUGGLE_ACCEL_MAIN_GOOD:
             q = this->ui->actionFlag_as_a_good_edit;
@@ -713,6 +717,7 @@ void MainWindow::ReloadShort(QString id)
             break;
         case HUGGLE_ACCEL_NEXT:
             q = this->ui->actionNext_2;
+            tip = this->ui->actionNext;
             break;
         case HUGGLE_ACCEL_MAIN_EXIT:
             q = this->ui->actionExit;
@@ -724,6 +729,8 @@ void MainWindow::ReloadShort(QString id)
         q->setShortcut(QKeySequence(s.QAccel));
         q->setToolTip(_l(s.Description));
     }
+    if (tip != nullptr)
+        tip->setToolTip(_l(s.Description) + " [" + s.QAccel + "]");
 }
 
 void MainWindow::ProcessReverts()
