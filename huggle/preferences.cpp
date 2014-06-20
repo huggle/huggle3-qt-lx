@@ -363,6 +363,7 @@ void Preferences::Reload2()
 {
     QStringList list = Configuration::HuggleConfiguration->Shortcuts.keys();
     this->ui->tableWidget_2->clearContents();
+    list.sort();
     int row = 0;
     foreach (QString key, list)
     {
