@@ -564,6 +564,49 @@ void MainWindow::IncreaseBS()
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
 }
 
+void MainWindow::ReloadSc()
+{
+    Configuration::HuggleConfiguration->ReloadOfMainformNeeded = false;
+    QStringList shorts = Configuration::HuggleConfiguration->Shortcuts.keys();
+    foreach (QString sh, shorts)
+    {
+        this->ReloadShort(sh);
+    }
+}
+
+void MainWindow::ReloadShort(QString id)
+{
+    if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
+        throw new Huggle::Exception("Invalid shortcut name");
+    Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
+    QAction *q = nullptr;
+    // now this horrid switch
+    switch (s.ID)
+    {
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN:
+            q = this->ui->actionRevert_currently_displayed_edit_and_warn_the_user;
+            break;
+        case HUGGLE_ACCEL_MAIN_REVERT:
+            q = this->ui->actionRevert_currently_displayed_edit;
+            break;
+        case HUGGLE_ACCEL_SUSPICIOUS_EDIT:
+            q = this->ui->actionFlag_as_suspicious_edit;
+            break;
+        case HUGGLE_ACCEL_MAIN_WARN:
+            q = this->ui->actionWarn_the_user;
+            break;
+        case HUGGLE_ACCEL_NEXT:
+            q = this->ui->actionNext_2;
+            break;
+        case HUGGLE_ACCEL_MAIN_EXIT:
+            q = this->ui->actionExit;
+            break;
+    }
+
+    if (q != nullptr)
+        q->setShortcut(QKeySequence(s.QAccel));
+}
+
 void MainWindow::ProcessReverts()
 {
     if (this->RevertStack.count())
@@ -845,6 +888,8 @@ void MainWindow::OnMainTimerTick()
         // exec to freeze
         this->fRelogin->exec();
     }
+    if (Configuration::HuggleConfiguration->ReloadOfMainformNeeded)
+        this->ReloadSc();
     this->ProcessReverts();
     WikiUtil::FinalizeMessages();
     bool RetrieveEdit = true;

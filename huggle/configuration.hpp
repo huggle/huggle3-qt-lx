@@ -29,6 +29,14 @@
 #include "userconfiguration.hpp"
 #include "projectconfiguration.hpp"
 
+#define HUGGLE_ACCEL_NONE ""
+#define HUGGLE_ACCEL_MAIN_EXIT                  0
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN       1
+#define HUGGLE_ACCEL_MAIN_REVERT                2
+#define HUGGLE_ACCEL_MAIN_WARN                  3
+#define HUGGLE_ACCEL_NEXT                       4
+#define HUGGLE_ACCEL_SUSPICIOUS_EDIT            5
+
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {
@@ -39,6 +47,19 @@ namespace Huggle
     class Syslog;
     class HuggleQueueParser;
     class HuggleOption;
+
+    class Shortcut
+    {
+        public:
+            Shortcut();
+            Shortcut(QString name, QString description);
+            Shortcut(const Shortcut &copy);
+            QString Name;
+            QString Description;
+            QString QAccel;
+            int ID;
+            bool Modified = false;
+    };
 
     //! Run time configuration of huggle
 
@@ -154,6 +175,9 @@ namespace Huggle
             // System
             ////////////////////////////////////////////
 
+            QHash<QString, Shortcut> Shortcuts;
+            //! If it's needed to reload config of main form
+            bool                     ReloadOfMainformNeeded = true;
             //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
             unsigned int    Verbosity = 0;
             //! Version
@@ -346,8 +370,8 @@ namespace Huggle
              */
             static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
             static QString Bool2ExcludeRequire(bool b);
-            // USER
 
+            void MakeShortcut(QString name, QString description, QString default_accel = HUGGLE_ACCEL_NONE);
     };
 }
 

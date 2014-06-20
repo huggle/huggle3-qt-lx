@@ -124,7 +124,8 @@ SOURCES += main.cpp\
     loadingform.cpp \
     historyitem.cpp \
     gc_thread.cpp \
-    huggleoption.cpp
+    huggleoption.cpp \
+    projectconfiguration.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \

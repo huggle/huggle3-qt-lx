@@ -346,6 +346,8 @@ namespace Huggle
             bool EditingChecks();
             void DecreaseBS();
             void IncreaseBS();
+            void ReloadSc();
+            void ReloadShort(QString id);
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();

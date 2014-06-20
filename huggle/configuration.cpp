@@ -11,6 +11,7 @@
 #include "configuration.hpp"
 #include <QDir>
 #include <QtXml>
+#include <QKeySequence>
 #include <QDesktopServices>
 #include "syslog.hpp"
 #include "exception.hpp"
@@ -42,6 +43,13 @@ Configuration::Configuration()
     this->ProjectConfig->DeletionSummaries << "Deleted page using Huggle";
     this->ProjectConfig->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
+
+    this->MakeShortcut("main-revert-and-warn", "Revert edit and warn a user", "Q");
+    this->MakeShortcut("main-exit", "Terminate huggle in a usual way");
+    this->MakeShortcut("main-next", "Go to next edit", "Space");
+    this->MakeShortcut("main-suspicious-edit", "Mark edit as suspicious", "S");
+    this->MakeShortcut("main-warn", "Send a warning to user, without reverting edit", "W");
+    this->MakeShortcut("main-revert", "Revert edit", "R");
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -238,6 +246,13 @@ QString Configuration::Bool2ExcludeRequire(bool b)
     return "require";
 }
 
+void Configuration::MakeShortcut(QString name, QString description, QString default_accel)
+{
+    Shortcut shortcut = Shortcut(name, description);
+    shortcut.QAccel = default_accel;
+    this->Shortcuts.insert(name, shortcut);
+}
+
 QString Configuration::Bool2String(bool b)
 {
     if (b)
@@ -314,6 +329,27 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "HAN_DisplayBots:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayUser) + "\n";
     configuration_ += "QueueID:" + HuggleConfiguration->UserConfig->QueueID + "\n";
+    // shortcuts
+    QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
+    int modified_ = 0;
+    QString si = "";
+    foreach (QString key, shortcuts)
+    {
+        Shortcut s_ = Configuration::HuggleConfiguration->Shortcuts[key];
+        if (s_.Modified)
+        {
+            si += "  " + s_.Name + ";" + s_.QAccel + ",\n";
+            modified_++;
+        }
+    }
+    if (si.endsWith(",\n"))
+    {
+        // remove the extra comma on end
+        si = si.mid(0, si.length() - 2);
+        si += "\n";
+    }
+    if (modified_)
+        configuration_ += "ShortcutList:\n" + si + "\n";
     QStringList kl = HuggleConfiguration->UserConfig->UserOptions.keys();
     foreach (QString item, kl)
     {
@@ -838,6 +874,24 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->UserConfig->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     this->UserConfig->WelcomeGood = this->SetOption("welcome-good", config, this->ProjectConfig->WelcomeGood).toBool();
+    QStringList shortcuts = HuggleParser::ConfigurationParse_QL("ShortcutList", config, true);
+    foreach (QString line, shortcuts)
+    {
+        if (!line.contains(";"))
+        {
+            Syslog::HuggleLogs->WarningLog("Invalid line in user configuration (shortcuts): " + line);
+            continue;
+        }
+        QStringList parts = line.split(';');
+        QString id = parts[0];
+        if (!this->Shortcuts.contains(id))
+        {
+            Syslog::HuggleLogs->WarningLog("Invalid shortcut in user configuration (missing id): " + line);
+            continue;
+        }
+        this->Shortcuts[id].Modified = true;
+        this->Shortcuts[id].QAccel = QKeySequence(parts[1]).toString();
+    }
     this->NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;
@@ -914,21 +968,40 @@ void Configuration::InsertConfig(QString key, QString value, QXmlStreamWriter *s
     s->writeEndElement();
 }
 
-ScoreWord::ScoreWord(QString Word, int Score)
+Shortcut::Shortcut()
 {
-    this->score = Score;
-    this->word = Word;
+    this->ID = -1;
+    this->Description = "";
+    this->Name = "";
+    this->QAccel = "";
 }
 
-ScoreWord::ScoreWord(ScoreWord *word)
+Shortcut::Shortcut(QString name, QString description)
 {
-    this->score = word->score;
-    this->word = word->word;
+    this->Name = name;
+    this->Description = description;
+    this->QAccel = "";
+    this->ID = -1;
+    // resolve ID from name
+    if (name == "main-exit")
+        this->ID = HUGGLE_ACCEL_MAIN_EXIT;
+    else if (name == "main-revert-and-warn")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN;
+    else if (name == "main-revert")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT;
+    else if (name == "main-warn")
+        this->ID = HUGGLE_ACCEL_MAIN_WARN;
+    else if (name == "main-suspicious-edit")
+        this->ID = HUGGLE_ACCEL_SUSPICIOUS_EDIT;
+    else if (name == "main-next")
+        this->ID = HUGGLE_ACCEL_NEXT;
 }
 
-ScoreWord::ScoreWord(const ScoreWord &word)
+Shortcut::Shortcut(const Shortcut &copy)
 {
-    this->score = word.score;
-    this->word = word.word;
+    this->Name = copy.Name;
+    this->Modified = copy.Modified;
+    this->QAccel = copy.QAccel;
+    this->ID = copy.ID;
+    this->Description = copy.Description;
 }
-
