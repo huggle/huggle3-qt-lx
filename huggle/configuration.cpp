@@ -11,6 +11,7 @@
 #include "configuration.hpp"
 #include <QDir>
 #include <QtXml>
+#include <QKeySequence>
 #include <QDesktopServices>
 #include "syslog.hpp"
 #include "exception.hpp"
@@ -42,6 +43,48 @@ Configuration::Configuration()
     this->ProjectConfig->DeletionSummaries << "Deleted page using Huggle";
     this->ProjectConfig->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
+
+    this->MakeShortcut("main-revert-and-warn", "shortcut-raw", "Q");
+    this->MakeShortcut("main-exit", "shortcut-exit");
+    this->MakeShortcut("main-next", "shortcut-next", "Space");
+    this->MakeShortcut("main-suspicious-edit", "shortcut-suspicious", "S");
+    this->MakeShortcut("main-back", "shortcut-back", "[");
+    this->MakeShortcut("main-forward", "shortcut-forward", "]");
+    this->MakeShortcut("main-warn", "shortcut-warn", "W");
+    this->MakeShortcut("main-revert", "shortcut-revert", "R");
+    this->MakeShortcut("main-revert-and-warn-0", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-1", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-2", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-3", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-4", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-5", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-6", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-7", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-8", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-9", "shortcut-x-raw");
+    this->MakeShortcut("main-warn-0", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-1", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-2", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-3", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-4", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-5", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-6", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-7", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-8", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-9", "shortcut-x-warn");
+    this->MakeShortcut("main-revert-0", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-1", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-2", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-3", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-4", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-5", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-6", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-7", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-8", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-9", "shortcut-x-revert");
+    this->MakeShortcut("main-talk", "shortcut-talk", "T");
+    this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
+    this->MakeShortcut("main-good", "shortcut-good", "G");
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -238,6 +281,13 @@ QString Configuration::Bool2ExcludeRequire(bool b)
     return "require";
 }
 
+void Configuration::MakeShortcut(QString name, QString description, QString default_accel)
+{
+    Shortcut shortcut = Shortcut(name, description);
+    shortcut.QAccel = default_accel;
+    this->Shortcuts.insert(name, shortcut);
+}
+
 QString Configuration::Bool2String(bool b)
 {
     if (b)
@@ -314,6 +364,29 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "HAN_DisplayBots:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayUser) + "\n";
     configuration_ += "QueueID:" + HuggleConfiguration->UserConfig->QueueID + "\n";
+    // shortcuts
+    QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
+    // we need to do this otherwise huggle may sort the items differently every time and spam wiki
+    shortcuts.sort();
+    int modified_ = 0;
+    QString si = "";
+    foreach (QString key, shortcuts)
+    {
+        Shortcut s_ = Configuration::HuggleConfiguration->Shortcuts[key];
+        if (s_.Modified)
+        {
+            si += "  " + s_.Name + ";" + s_.QAccel + ",\n";
+            modified_++;
+        }
+    }
+    if (si.endsWith(",\n"))
+    {
+        // remove the extra comma on end
+        si = si.mid(0, si.length() - 2);
+        si += "\n";
+    }
+    if (modified_)
+        configuration_ += "ShortcutList:\n" + si + "\n";
     QStringList kl = HuggleConfiguration->UserConfig->UserOptions.keys();
     foreach (QString item, kl)
     {
@@ -838,6 +911,24 @@ bool Configuration::ParseUserConfig(QString config)
     this->UserConfig->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->UserConfig->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     this->UserConfig->WelcomeGood = this->SetOption("welcome-good", config, this->ProjectConfig->WelcomeGood).toBool();
+    QStringList shortcuts = HuggleParser::ConfigurationParse_QL("ShortcutList", config, true);
+    foreach (QString line, shortcuts)
+    {
+        if (!line.contains(";"))
+        {
+            Syslog::HuggleLogs->WarningLog("Invalid line in user configuration (shortcuts): " + line);
+            continue;
+        }
+        QStringList parts = line.split(';');
+        QString id = parts[0];
+        if (!this->Shortcuts.contains(id))
+        {
+            Syslog::HuggleLogs->WarningLog("Invalid shortcut in user configuration (missing id): " + line);
+            continue;
+        }
+        this->Shortcuts[id].Modified = true;
+        this->Shortcuts[id].QAccel = QKeySequence(parts[1]).toString();
+    }
     this->NormalizeConf();
     /// \todo Lot of configuration options are missing
     return true;
@@ -914,21 +1005,117 @@ void Configuration::InsertConfig(QString key, QString value, QXmlStreamWriter *s
     s->writeEndElement();
 }
 
-ScoreWord::ScoreWord(QString Word, int Score)
+Shortcut::Shortcut()
 {
-    this->score = Score;
-    this->word = Word;
+    this->ID = -1;
+    this->Description = "";
+    this->Name = "";
+    this->QAccel = "";
 }
 
-ScoreWord::ScoreWord(ScoreWord *word)
+Shortcut::Shortcut(QString name, QString description)
 {
-    this->score = word->score;
-    this->word = word->word;
+    this->Name = name;
+    this->Description = description;
+    this->QAccel = "";
+    this->ID = -1;
+    // resolve ID from name
+    if (name == "main-exit")
+        this->ID = HUGGLE_ACCEL_MAIN_EXIT;
+    else if (name == "main-revert-and-warn")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN;
+    else if (name == "main-revert")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT;
+    else if (name == "main-warn")
+        this->ID = HUGGLE_ACCEL_MAIN_WARN;
+    else if (name == "main-suspicious-edit")
+        this->ID = HUGGLE_ACCEL_SUSPICIOUS_EDIT;
+    else if (name == "main-forward")
+        this->ID = HUGGLE_ACCEL_MAIN_FORWARD;
+    else if (name == "main-next")
+        this->ID = HUGGLE_ACCEL_NEXT;
+    else if (name == "main-back")
+        this->ID = HUGGLE_ACCEL_MAIN_BACK;
+    else if (name == "main-good")
+        this->ID = HUGGLE_ACCEL_MAIN_GOOD;
+    else if (name == "main-open-in-browser")
+        this->ID = HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER;
+    else if (name == "main-talk")
+        this->ID = HUGGLE_ACCEL_MAIN_TALK;
+    else if (name.startsWith("main-revert-and-warn-"))
+    {
+        if (name == "main-revert-and-warn-0")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0;
+        else if (name == "main-revert-and-warn-1")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1;
+        else if (name == "main-revert-and-warn-2")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2;
+        else if (name == "main-revert-and-warn-3")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3;
+        else if (name == "main-revert-and-warn-4")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4;
+        else if (name == "main-revert-and-warn-5")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5;
+        else if (name == "main-revert-and-warn-6")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6;
+        else if (name == "main-revert-and-warn-7")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7;
+        else if (name == "main-revert-and-warn-8")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8;
+        else if (name == "main-revert-and-warn-9")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9;
+    } else if (name.startsWith("main-revert-"))
+    {
+        if (name == "main-revert-0")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_0;
+        else if (name == "main-revert-1")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_1;
+        else if (name == "main-revert-2")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_2;
+        else if (name == "main-revert-3")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_3;
+        else if (name == "main-revert-4")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_4;
+        else if (name == "main-revert-5")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_5;
+        else if (name == "main-revert-6")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_6;
+        else if (name == "main-revert-7")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_7;
+        else if (name == "main-revert-8")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_8;
+        else if (name == "main-revert-9")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_9;
+    } else if (name.startsWith("main-warn-"))
+    {
+        if (name == "main-warn-0")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN0;
+        else if (name == "main-warn-1")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN1;
+        else if (name == "main-warn-2")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN2;
+        else if (name == "main-warn-3")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN3;
+        else if (name == "main-warn-4")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN4;
+        else if (name == "main-warn-5")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN5;
+        else if (name == "main-warn-6")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN6;
+        else if (name == "main-warn-7")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN7;
+        else if (name == "main-warn-8")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN8;
+        else if (name == "main-warn-9")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN9;
+    }
 }
 
-ScoreWord::ScoreWord(const ScoreWord &word)
+Shortcut::Shortcut(const Shortcut &copy)
 {
-    this->score = word.score;
-    this->word = word.word;
+    this->Name = copy.Name;
+    this->Modified = copy.Modified;
+    this->QAccel = copy.QAccel;
+    this->ID = copy.ID;
+    this->Description = copy.Description;
 }
-

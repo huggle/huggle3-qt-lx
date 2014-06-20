@@ -346,9 +346,14 @@ namespace Huggle
             bool EditingChecks();
             void DecreaseBS();
             void IncreaseBS();
+            void ReloadSc();
+            void ReloadShort(QString id);
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();
+            QList<QAction*> RevertAndWarnItems;
+            QList<QAction*> RevertItems;
+            QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
             QDateTime EditLoad;

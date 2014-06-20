@@ -21,6 +21,15 @@ using namespace Huggle;
 Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
 {
     this->ui->setupUi(this);
+    this->ui->tableWidget_2->setColumnCount(3);
+    QStringList headers;
+    headers << "Function" << "Description" << "Shortcut";
+    this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
+    this->ui->tableWidget_2->verticalHeader()->setVisible(false);
+    this->ui->tableWidget_2->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->Reload2();
+    this->ui->tableWidget_2->setShowGrid(false);
+    this->ui->tableWidget_2->resizeRowsToContents();
     // headers
     this->ui->tableWidget->setColumnCount(5);
     this->setWindowTitle(_l("config-title"));
@@ -30,6 +39,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(this->ui->tableWidget_2, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
 #if QT_VERSION >= 0x050000
 // Qt5 code
     this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -242,6 +252,11 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     {
         Configuration::HuggleConfiguration->UserConfig->GoNext = Configuration_OnNext_Next;
     }
+    if (this->ModifiedForm)
+    {
+        // we need to reload the shortcuts in main form
+        Configuration::HuggleConfiguration->ReloadOfMainformNeeded = true;
+    }
     Configuration::SaveSystemConfig();
     this->hide();
 }
@@ -337,6 +352,29 @@ void Preferences::Reload()
     }
 }
 
+void Preferences::Reload2()
+{
+    QStringList list = Configuration::HuggleConfiguration->Shortcuts.keys();
+    this->ui->tableWidget_2->clearContents();
+    list.sort();
+    int row = 0;
+    foreach (QString key, list)
+    {
+        this->ui->tableWidget_2->insertRow(row);
+        Shortcut shortcut = Shortcut(Configuration::HuggleConfiguration->Shortcuts[key]);
+        QTableWidgetItem *w = new QTableWidgetItem(shortcut.Name);
+        w->setFlags(w->flags() ^Qt::ItemIsEditable);
+        this->ui->tableWidget_2->setItem(row, 0, w);
+        w = new QTableWidgetItem(_l(Configuration::HuggleConfiguration->Shortcuts[key].Description));
+        w->setFlags(w->flags() ^Qt::ItemIsEditable);
+        this->ui->tableWidget_2->setItem(row, 1, w);
+        this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[key].QAccel));
+        row++;
+    }
+    this->ui->tableWidget_2->resizeColumnsToContents();
+    this->ui->tableWidget_2->resizeRowsToContents();
+}
+
 void Huggle::Preferences::on_checkBox_26_clicked()
 {
     this->ui->label_2->setEnabled(this->ui->checkBox_26->isChecked());
@@ -347,4 +385,56 @@ void Huggle::Preferences::on_checkBox_27_clicked()
 {
     this->ui->label_3->setEnabled(!this->ui->checkBox_27->isChecked());
     this->ui->lineEdit_3->setEnabled(!this->ui->checkBox_27->isChecked());
+}
+
+void Preferences::RecordKeys(int row, int column)
+{
+    if (this->RewritingForm)
+        return;
+    if (column != 2)
+    {
+        Exception::ThrowSoftException("Invalid column", "Preferences::RecordKeys");
+        return;
+    }
+
+    // let's get the shortcut id
+    QString id = this->ui->tableWidget_2->item(row, 0)->text();
+    QString key = "";
+
+    if (!this->ui->tableWidget_2->item(row, column)->text().isEmpty())
+    {
+        key = QKeySequence(this->ui->tableWidget_2->item(row, column)->text()).toString();
+        if (key.isEmpty())
+        {
+            // let's revert this
+            Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
+            goto revert;
+        }
+        // check if there isn't another shortcut which uses this
+        QStringList keys = Configuration::HuggleConfiguration->Shortcuts.keys();
+        foreach (QString s, keys)
+        {
+            if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key)
+            {
+                QMessageBox m;
+                m.setWindowTitle("Fail");
+                m.setText("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
+                          " is already using the same keys");
+                m.exec();
+                goto revert;
+            }
+        }
+    }
+
+    this->ModifiedForm = true;
+    this->RewritingForm = true;
+    Configuration::HuggleConfiguration->Shortcuts[id].Modified = true;
+    Configuration::HuggleConfiguration->Shortcuts[id].QAccel = key;
+    this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(key));
+    this->RewritingForm = false;
+    return;
+
+    revert:
+        this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
+        return;
 }
