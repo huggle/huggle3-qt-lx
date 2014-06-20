@@ -137,7 +137,15 @@ namespace Huggle
              * \param ForceJump
              */
             void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false, bool ForceJump = false);
-            RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true);
+            /*!
+             * \brief Revert perform a revert of an edit
+             * \param summary Summary that you want to use for this revert
+             * \param nd
+             * \param next
+             * \param single_rv If you want to revert only one revision
+             * \return
+             */
+            RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true, bool single_rv = false);
             //! Warn a current user
             bool Warn(QString WarningType, RevertQuery *dependency);
             QString GetSummaryKey(QString item);
@@ -311,6 +319,7 @@ namespace Huggle
             void on_actionResume_provider_triggered();
             void on_actionStop_provider_triggered();
             void on_actionDryMode_triggered();
+            void on_actionRevert_only_this_revision_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -333,6 +342,8 @@ namespace Huggle
             void closeEvent(QCloseEvent *event);
             void FinishPatrols();
             void UpdateStatusBarData();
+            //! Perform all common tests that are needed before a page can be edited and return false if they fail
+            bool EditingChecks();
             void DecreaseBS();
             void IncreaseBS();
             void ProcessReverts();

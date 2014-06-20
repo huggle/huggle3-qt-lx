@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -121,6 +121,7 @@
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
     <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
     <addaction name="actionRevert_AGF"/>
+    <addaction name="actionRevert_only_this_revision"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
@@ -948,6 +949,11 @@
    </property>
    <property name="text">
     <string>DryMode</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision">
+   <property name="text">
+    <string>Revert only this revision</string>
    </property>
   </action>
  </widget>

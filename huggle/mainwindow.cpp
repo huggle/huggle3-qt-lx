@@ -539,6 +539,19 @@ void MainWindow::UpdateStatusBarData()
     this->Status->setText(_l("main-status-bar", params));
 }
 
+bool MainWindow::EditingChecks()
+{
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+        return false;
+
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Generic::DeveloperError();
+        return false;
+    }
+    return true;
+}
+
 void MainWindow::DecreaseBS()
 {
     if (this->CurrentEdit != nullptr)
@@ -585,7 +598,7 @@ QString MainWindow::WikiScriptURL()
     }
 }
 
-RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
+RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next, bool single_rv)
 {
     bool rollback = true;
     if (this->CurrentEdit == nullptr)
@@ -619,6 +632,7 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next)
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
         RevertQuery *q = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
+        if (single_rv) { q->SetLast(); }
         if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
         {
             q->Process();
@@ -1037,15 +1051,8 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
-        return;
-
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
-    this->Revert();
+    if (this->EditingChecks())
+        this->Revert();
 }
 
 void MainWindow::on_actionWarn_the_user_triggered()
@@ -1055,13 +1062,8 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     RevertQuery *result = this->Revert("", true, false);
     if (result != nullptr)
     {
@@ -1096,13 +1098,9 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
 void MainWindow::on_actionRevert_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
+
     this->Revert();
 }
 
@@ -1130,13 +1128,8 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
@@ -1146,13 +1139,8 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
@@ -1170,11 +1158,8 @@ void MainWindow::CustomRevertWarn()
 
 void MainWindow::CustomWarn()
 {
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
+    if (!this->EditingChecks())
         return;
-    }
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     this->Warn(k, nullptr);
@@ -1567,13 +1552,8 @@ bool MainWindow::CheckExit()
 
 void MainWindow::Welcome()
 {
-    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     this->CurrentEdit->User->Resync();
     bool create_only = true;
     if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
@@ -1717,13 +1697,8 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == nullptr)
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     if (!this->CurrentEdit->User->IsIP())
     {
         Syslog::HuggleLogs->Log(_l("feature-nfru"));
@@ -1750,13 +1725,8 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     RevertQuery *result = this->Revert("", false, false);
     if (result != nullptr)
     {
@@ -1766,13 +1736,8 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     this->Revert("", true, false);
 }
 
@@ -2232,4 +2197,10 @@ void Huggle::MainWindow::on_actionStop_provider_triggered()
     Core::HuggleCore->PrimaryFeedProvider->Pause();
     this->ui->actionResume_provider->setVisible(true);
     this->ui->actionStop_provider->setVisible(false);
+}
+
+void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
+{
+    if (this->EditingChecks())
+        this->Revert("", false, true, true);
 }
