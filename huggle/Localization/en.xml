@@ -518,6 +518,7 @@
     <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
     <string name="shortcut-x-revert">Trigger N th item in revert menu</string>
     <string name="shortcut-x-warn">Trigger N th item in warn menu</string>
+    <string name="shortcut-good">Flag the currently displayed edit as good</string>
     <string name="shortcut-open-in-browser">Open currently displayed edit in a browser</string>
     <string name="shortcut-talk">Display a talk page of user who did this change</string>
     <string name="warning-title">Warn $1</string>

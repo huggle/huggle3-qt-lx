@@ -720,7 +720,10 @@ void MainWindow::ReloadShort(QString id)
     }
 
     if (q != nullptr)
+    {
         q->setShortcut(QKeySequence(s.QAccel));
+        q->setToolTip(_l(s.Description));
+    }
 }
 
 void MainWindow::ProcessReverts()
