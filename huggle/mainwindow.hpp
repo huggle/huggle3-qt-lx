@@ -351,6 +351,9 @@ namespace Huggle
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();
+            QList<QAction*> RevertAndWarnItems;
+            QList<QAction*> RevertItems;
+            QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
             QDateTime EditLoad;
