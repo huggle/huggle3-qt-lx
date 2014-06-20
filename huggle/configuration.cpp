@@ -363,6 +363,8 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "QueueID:" + HuggleConfiguration->UserConfig->QueueID + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
+    // we need to do this otherwise huggle may sort the items differently every time and spam wiki
+    shortcuts.sort();
     int modified_ = 0;
     QString si = "";
     foreach (QString key, shortcuts)
