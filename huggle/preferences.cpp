@@ -27,13 +27,6 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_2->verticalHeader()->setVisible(false);
     this->ui->tableWidget_2->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-#if QT_VERSION >= 0x050000
-// Qt5 code
-    this->ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     this->Reload2();
     this->ui->tableWidget_2->setShowGrid(false);
     this->ui->tableWidget_2->resizeRowsToContents();
@@ -378,6 +371,8 @@ void Preferences::Reload2()
         this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[key].QAccel));
         row++;
     }
+    this->ui->tableWidget_2->resizeColumnsToContents();
+    this->ui->tableWidget_2->resizeRowsToContents();
 }
 
 void Huggle::Preferences::on_checkBox_26_clicked()
