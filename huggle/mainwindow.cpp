@@ -595,6 +595,12 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_WARN:
             q = this->ui->actionWarn_the_user;
             break;
+        case HUGGLE_ACCEL_MAIN_FORWARD:
+            q = this->ui->actionForward;
+            break;
+        case HUGGLE_ACCEL_MAIN_BACK:
+            q = this->ui->actionBack;
+            break;
         case HUGGLE_ACCEL_NEXT:
             q = this->ui->actionNext_2;
             break;

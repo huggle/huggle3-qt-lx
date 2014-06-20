@@ -36,6 +36,8 @@
 #define HUGGLE_ACCEL_MAIN_WARN                  3
 #define HUGGLE_ACCEL_NEXT                       4
 #define HUGGLE_ACCEL_SUSPICIOUS_EDIT            5
+#define HUGGLE_ACCEL_MAIN_FORWARD               6
+#define HUGGLE_ACCEL_MAIN_BACK                  7
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle

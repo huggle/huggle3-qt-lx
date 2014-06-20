@@ -48,6 +48,8 @@ Configuration::Configuration()
     this->MakeShortcut("main-exit", "Terminate huggle in a usual way");
     this->MakeShortcut("main-next", "Go to next edit", "Space");
     this->MakeShortcut("main-suspicious-edit", "Mark edit as suspicious", "S");
+    this->MakeShortcut("main-back", "Go to previously displayed edit", "[");
+    this->MakeShortcut("main-forward", "Go to edit you loaded in past but walked back from", "]");
     this->MakeShortcut("main-warn", "Send a warning to user, without reverting edit", "W");
     this->MakeShortcut("main-revert", "Revert edit", "R");
 
@@ -993,8 +995,12 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_WARN;
     else if (name == "main-suspicious-edit")
         this->ID = HUGGLE_ACCEL_SUSPICIOUS_EDIT;
+    else if (name == "main-forward")
+        this->ID = HUGGLE_ACCEL_MAIN_FORWARD;
     else if (name == "main-next")
         this->ID = HUGGLE_ACCEL_NEXT;
+    else if (name == "main-back")
+        this->ID = HUGGLE_ACCEL_MAIN_BACK;
 }
 
 Shortcut::Shortcut(const Shortcut &copy)
