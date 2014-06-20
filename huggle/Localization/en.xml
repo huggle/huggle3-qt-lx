@@ -507,6 +507,17 @@
     <string name="userinfo-sharedip">Shared/dynamic IP:</string>
     <string name="userinfo-blocklog">Blocks:</string>
     <string name="userinfo-warnlog">Warnings:</string>
+    <string name="shortcut-raw">Revert edit and warn a user</string>
+    <string name="shortcut-exit">Terminate huggle in a usual way</string>
+    <string name="shortcut-next">Go to next edit</string>
+    <string name="shortcut-suspicious">Mark edit as suspicious</string>
+    <string name="shortcut-back">Go to previously displayed edit</string>
+    <string name="shortcut-forward">Go to edit you loaded in past but walked back from</string>
+    <string name="shortcut-warn">Send a warning to user, without reverting edit</string>
+    <string name="shortcut-revert">Revert edit</string>
+    <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
+    <string name="shortcut-x-revert">Trigger N th item in revert menu</string>
+    <string name="shortcut-x-warn">Trigger N th item in warn menu</string>
     <string name="warning-title">Warn $1</string>
     <string name="warning-levelgroup">Warning level</string>
     <string name="warning-levelauto">Automatic</string>

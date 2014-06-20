@@ -371,7 +371,7 @@ void Preferences::Reload2()
         QTableWidgetItem *w = new QTableWidgetItem(shortcut.Name);
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
         this->ui->tableWidget_2->setItem(row, 0, w);
-        w = new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[key].Description);
+        w = new QTableWidgetItem(_l(Configuration::HuggleConfiguration->Shortcuts[key].Description));
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
         this->ui->tableWidget_2->setItem(row, 1, w);
         this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[key].QAccel));
