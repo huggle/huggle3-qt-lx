@@ -72,16 +72,16 @@ Configuration::Configuration()
     this->MakeShortcut("main-warn-7", "Trigger 7th item in warn menu");
     this->MakeShortcut("main-warn-8", "Trigger 8th item in warn menu");
     this->MakeShortcut("main-warn-9", "Trigger 9th item in warn menu");
-    this->MakeShortcut("main-warn-0", "Trigger 0th item in revert menu");
-    this->MakeShortcut("main-warn-1", "Trigger 1th item in revert menu");
-    this->MakeShortcut("main-warn-2", "Trigger 2th item in revert menu");
-    this->MakeShortcut("main-warn-3", "Trigger 3th item in revert menu");
-    this->MakeShortcut("main-warn-4", "Trigger 4th item in revert menu");
-    this->MakeShortcut("main-warn-5", "Trigger 5th item in revert menu");
-    this->MakeShortcut("main-warn-6", "Trigger 6th item in revert menu");
-    this->MakeShortcut("main-warn-7", "Trigger 7th item in revert menu");
-    this->MakeShortcut("main-warn-8", "Trigger 8th item in revert menu");
-    this->MakeShortcut("main-warn-9", "Trigger 9th item in revert menu");
+    this->MakeShortcut("main-revert-0", "Trigger 0th item in revert menu");
+    this->MakeShortcut("main-revert-1", "Trigger 1th item in revert menu");
+    this->MakeShortcut("main-revert-2", "Trigger 2th item in revert menu");
+    this->MakeShortcut("main-revert-3", "Trigger 3th item in revert menu");
+    this->MakeShortcut("main-revert-4", "Trigger 4th item in revert menu");
+    this->MakeShortcut("main-revert-5", "Trigger 5th item in revert menu");
+    this->MakeShortcut("main-revert-6", "Trigger 6th item in revert menu");
+    this->MakeShortcut("main-revert-7", "Trigger 7th item in revert menu");
+    this->MakeShortcut("main-revert-8", "Trigger 8th item in revert menu");
+    this->MakeShortcut("main-revert-9", "Trigger 9th item in revert menu");
 
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
