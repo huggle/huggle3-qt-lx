@@ -414,7 +414,7 @@ void ReportUser::Test()
         return;
     }
 
-    if (this->qCheckIfBlocked != nullptr && this->qCheckIfBlocked)
+    if (this->qCheckIfBlocked != nullptr && this->qCheckIfBlocked->IsProcessed())
     {
         QDomDocument d;
         d.setContent(this->qCheckIfBlocked->Result->Data);
