@@ -611,7 +611,6 @@
     <string name="wait">Please wait...</string>
     <string name="function-miss">Function is not available now</string>
     <string name="missing-aiv">This project does not use AIV</string>
-    <string name="merging">Merging</string>
     <string name="missing-page">There is no page $1 on this wiki</string>
     <string name="updating-wl">Updating whitelist...</string>
     <string name="updating-uc">Updating the user configuration page at huggle3.css on wiki</string>
