@@ -43,7 +43,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit SpeedyForm(QWidget *parent = 0);
+            explicit SpeedyForm(QWidget *parent = nullptr);
             ~SpeedyForm();
             void Init(WikiEdit *edit_);
             QString Text;

@@ -42,7 +42,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit DeleteForm(QWidget *parent = 0);
+            explicit DeleteForm(QWidget *parent = nullptr);
             ~DeleteForm();
             void SetPage(WikiPage *Page, WikiUser *User);
         private slots:

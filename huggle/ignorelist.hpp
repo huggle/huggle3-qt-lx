@@ -33,7 +33,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit IgnoreList(QWidget *parent = 0);
+            explicit IgnoreList(QWidget *parent = nullptr);
             ~IgnoreList();
 
         private slots:

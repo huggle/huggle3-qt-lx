@@ -41,7 +41,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit HuggleTool(QWidget *parent = 0);
+            explicit HuggleTool(QWidget *parent = nullptr);
             ~HuggleTool();
             void SetTitle(QString title);
             void SetInfo(QString info);

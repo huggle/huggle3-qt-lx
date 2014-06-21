@@ -31,7 +31,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit WaitingForm(QWidget *parent = 0);
+            explicit WaitingForm(QWidget *parent = nullptr);
             ~WaitingForm();
             void Status(int progress);
             void Status(int progress, QString text);

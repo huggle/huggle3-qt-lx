@@ -45,7 +45,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit ReportUser(QWidget *parent = 0);
+            explicit ReportUser(QWidget *parent = nullptr);
             //! Set a user
             bool SetUser(WikiUser *user);
             ~ReportUser();

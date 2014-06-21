@@ -33,7 +33,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit ScoreWordsDbForm(QWidget *parent = 0);
+            explicit ScoreWordsDbForm(QWidget *parent = nullptr);
             ~ScoreWordsDbForm();
 
         private:

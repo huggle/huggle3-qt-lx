@@ -38,7 +38,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit BlockUser(QWidget *parent = 0);
+            explicit BlockUser(QWidget *parent = nullptr);
             ~BlockUser();
             void SetWikiUser(WikiUser *User);
             void CheckToken();

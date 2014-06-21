@@ -42,7 +42,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit UserinfoForm(QWidget *parent = 0);
+            explicit UserinfoForm(QWidget *parent = nullptr);
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
             void Read();

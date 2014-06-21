@@ -31,7 +31,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit Proxy(QWidget *parent = 0);
+            explicit Proxy(QWidget *parent = nullptr);
             ~Proxy();
 
         private:

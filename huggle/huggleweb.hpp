@@ -41,7 +41,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit HuggleWeb(QWidget *parent = 0);
+            explicit HuggleWeb(QWidget *parent = nullptr);
             ~HuggleWeb();
             QString CurrentPageName();
             /*!

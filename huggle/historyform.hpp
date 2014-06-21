@@ -36,7 +36,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit HistoryForm(QWidget *parent = 0);
+            explicit HistoryForm(QWidget *parent = nullptr);
             ~HistoryForm();
             void Read();
             void Update(WikiEdit *edit);

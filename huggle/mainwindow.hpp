@@ -125,7 +125,7 @@ namespace Huggle
         public:
             static MainWindow *HuggleMain;
 
-            explicit MainWindow(QWidget *parent = 0);
+            explicit MainWindow(QWidget *parent = nullptr);
             ~MainWindow();
             void DisplayReportUserWindow(WikiUser *User = nullptr);
             /*!

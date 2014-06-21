@@ -39,7 +39,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit UAAReport(QWidget *parent = 0);
+            explicit UAAReport(QWidget *parent = nullptr);
             ~UAAReport();
             //! I don't have much of a clue why this is here lol, but I know the dialog can't be initialised from mainwindow without this
             void setUserForUAA(WikiUser *user);

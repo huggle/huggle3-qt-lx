@@ -32,7 +32,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit WarningList(WikiEdit *edit, QWidget *parent = 0);
+            explicit WarningList(WikiEdit *edit, QWidget *parent = nullptr);
             ~WarningList();
 
         private slots:

@@ -33,7 +33,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit SessionForm(QWidget *parent = 0);
+            explicit SessionForm(QWidget *parent = nullptr);
             ~SessionForm();
 
         private slots:

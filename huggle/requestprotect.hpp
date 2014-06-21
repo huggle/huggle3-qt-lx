@@ -41,7 +41,7 @@ namespace Huggle
         Q_OBJECT
 
         public:
-            explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = 0);
+            explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = nullptr);
             ~RequestProtect();
         private slots:
             void Tick();

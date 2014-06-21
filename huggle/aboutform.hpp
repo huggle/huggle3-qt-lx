@@ -32,7 +32,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit AboutForm(QWidget *parent = 0);
+            explicit AboutForm(QWidget *parent = nullptr);
             ~AboutForm();
         private slots:
             void on_pushButton_clicked();

@@ -32,7 +32,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit ReloginForm(QWidget *parent = 0);
+            explicit ReloginForm(QWidget *parent = nullptr);
             ~ReloginForm();
 
         private slots:
