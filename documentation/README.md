@@ -2,7 +2,7 @@ Huggle documentation
 ====================
 
 Huggle 3 is an antivandalism software for use on Wikipedia and other Wikimedia projects.
-It is 98.5% written in C++ (QT framework).
+It is written in C++ (QT framework).
 Huggle can be used on Windows, Linux, Ubuntu, MacOS, etc.
 
 
