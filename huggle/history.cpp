@@ -61,7 +61,7 @@ History::~History()
     }
     GC_DECREF(this->qSelf);
     GC_DECREF(this->qTalk);
-    GC_DECREF(this->qEdit);
+    //GC_DECREF(this->qEdit);
     delete this->ui;
     delete this->timerRetrievePageInformation;
 }
@@ -118,9 +118,8 @@ void History::Undo(HistoryItem *hist)
             }
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
-            this->qEdit->IncRef();
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit);
+            QueryPool::HugglePool->AppendQuery(this->qEdit.GetPtr());
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryRollback:
@@ -128,9 +127,8 @@ void History::Undo(HistoryItem *hist)
             // we need to revert both warning of user as well as page we rolled back
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents(hist->Target);
-            this->qEdit->IncRef();
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit);
+            QueryPool::HugglePool->AppendQuery(this->qEdit.GetPtr());
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryUnknown:
@@ -194,13 +192,13 @@ void History::Tick()
         return;
     }
     // we check the status of edit
-    if (this->qEdit && this->qEdit->IsProcessed())
+    if (this->qEdit.GetPtr() && this->qEdit->IsProcessed())
     {
         bool failed = false;
         QString user, title;
         int revid;
-        QString result = Generic::EvaluateWikiPageContents(this->qEdit, &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
-        GC_DECREF(this->qEdit);
+        QString result = Generic::EvaluateWikiPageContents(this->qEdit.GetPtr(), &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
+        //GC_DECREF(this->qEdit);
         if (failed)
         {
             Syslog::HuggleLogs->ErrorLog("Unable to retrieve content of page we wanted to undo own edit for, error was: " + result);

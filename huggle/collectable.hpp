@@ -47,6 +47,9 @@ namespace Huggle
              * \return pointer to last cid
              */
             static unsigned long *GetLastCIDPtr();
+#ifdef HUGGLE_PROFILING
+            static unsigned long LockCt;
+#endif
 
             Collectable();
             virtual ~Collectable();

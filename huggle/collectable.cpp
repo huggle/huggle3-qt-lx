@@ -14,6 +14,10 @@
 
 using namespace Huggle;
 
+#ifdef HUGGLE_PROFILING
+unsigned long Collectable::LockCt = 0;
+#endif
+
 unsigned long Collectable::LastCID = 0;
 QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
 
@@ -213,6 +217,9 @@ QString Collectable::DebugHgc()
 
 void Collectable::Lock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     // this is actually pretty lame check but better than nothing
     if (!this->_collectableLocked)
     {
@@ -223,6 +230,9 @@ void Collectable::Lock()
 
 void Collectable::Unlock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     if (this->_collectableLocked)
     {
         this->_collectableQL->unlock();

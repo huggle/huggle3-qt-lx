@@ -415,6 +415,9 @@ void Core::Shutdown()
         Sleeper::usleep(200);
     // last garbage removal
     GC::gc->DeleteOld();
+#ifdef HUGGLE_PROFILING
+    Syslog::HuggleLogs->Log("Profiler info: locks " + QString::number(Collectable::LockCt));
+#endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
     delete this->HGQP;

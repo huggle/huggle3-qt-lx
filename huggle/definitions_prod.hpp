@@ -41,6 +41,8 @@ typedef char byte_ht;
 #define HUGGLE_USE_MT_GC               "mt"
 #endif
 
+// #define HUGGLE_PROFILING
+
 // uncomment this if you want to enable python support
 //#define PYTHONENGINE
 

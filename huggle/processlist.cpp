@@ -49,9 +49,9 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->Removed = new QList<ProcessListRemovedItem*> ();
 }
 
-void ProcessList::InsertQuery(Query *query)
+void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
 {
-    if (query == nullptr)
+    if (query.GetPtr() == nullptr)
     {
         throw new Huggle::Exception("NULL query");
     }

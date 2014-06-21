@@ -22,6 +22,7 @@
 #include <QList>
 #include <QDockWidget>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "historyitem.hpp"
 #include "revertquery.hpp"
@@ -66,7 +67,7 @@ namespace Huggle
             QTimer *timerRetrievePageInformation;
             HistoryItem *RevertingItem = nullptr;
             //! This is a query we need to use to retrieve our own edit before we undo it
-            ApiQuery *qEdit = nullptr;
+            Collectable_SmartPtr<ApiQuery> qEdit;
             //! This is for welcome message that is used to replace a talk page
             EditQuery *qTalk = nullptr;
             //! Used to revert edits we made
