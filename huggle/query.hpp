@@ -97,9 +97,6 @@ namespace Huggle
             //! typical example would be a page that is affected by ApiQuery
             virtual QString QueryTargetToString();
             virtual QString QueryStatusToString();
-            //! If you inherit query you should allways call this from a signal that
-            //! you receive when the query finish
-            void ProcessCallback();
             //! Every query has own unique ID which can be used to work with them
             //! this function returns that
             unsigned int QueryID();
@@ -121,10 +118,11 @@ namespace Huggle
             //! Callback
 
             //! If this is not a NULL this function will be called by query
-            //! once it's finished, a consumer called "delegate" will be created and you
+            //! once it's finished, a consumer HUGGLECONSUMER_CALLBACK will be created and you
             //! will have to either replace it or remove in your function
             //! otherwise you create a leak in huggle
             Callback callback = nullptr;
+            Callback FailureCallback = nullptr;
             //! This is a pointer to object returned by your callback function
             void* CallbackResult = nullptr;
             bool RetryOnTimeoutFailure;
@@ -142,7 +140,11 @@ namespace Huggle
             //! until the dependency is processed as well, for most types
             //! of queries they will not even start before that
             Query *Dependency = nullptr;
-
+        protected:
+            //! If you inherit query you should allways call this from a signal that
+            //! you receive when the query finish
+            void ProcessCallback();
+            void ProcessFailure();
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;

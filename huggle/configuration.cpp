@@ -748,6 +748,22 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig->TemplateAge = ConfigurationParse("template-age", config, QString::number(this->ProjectConfig->TemplateAge)).toInt();
     // UAA
     this->ProjectConfig->UAAPath = ConfigurationParse("uaa", config);
+    this->ProjectConfig->TaggingSummary = ConfigurationParse("tag-summary", config, "Tagging page");
+    this->ProjectConfig->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
+    QStringList t2 = HuggleParser::ConfigurationParse_QL("tags-detailed", config, true);
+    foreach (QString item, t2)
+    {
+        // we need to copy the tags from this other list
+        // to keep h2 work with old ones
+        if (item.contains(";"))
+        {
+            // extract name
+            QString name = item.mid(0, item.indexOf(";"));
+            if (this->ProjectConfig->Tags.contains(name))
+                this->ProjectConfig->Tags.removeOne(name);
+        }
+        this->ProjectConfig->Tags.append(item);
+    }
     // Blocking
     this->ProjectConfig->WhitelistScore = ConfigurationParse("score-wl", config, "-800").toInt();
     this->ProjectConfig->BlockMessage = ConfigurationParse("block-message", config);

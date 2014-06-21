@@ -41,6 +41,7 @@
 #define HUGGLECONSUMER_MAINFORM_HISTORICAL      13
 #define HUGGLECONSUMER_QP_MODS                  14
 #define HUGGLECONSUMER_REVERTQUERYTMR           16
+#define HUGGLECONSUMER_CALLBACK                 20
 #define HUGGLECONSUMER_CORE                     800
 
 // some macros so that people hate us

@@ -61,6 +61,7 @@ void RevertQuery::DisplayError(QString error, QString reason)
     this->Status = StatusDone;
     this->Result = new QueryResult();
     this->Result->SetError();
+    this->ProcessFailure();
 }
 
 void RevertQuery::Process()
@@ -289,6 +290,7 @@ void RevertQuery::CheckPreflight()
         this->Result = new QueryResult();
         this->Status = StatusDone;
         this->Result->SetError();
+        this->ProcessFailure();
         return;
     }
     QDomDocument d;
@@ -389,6 +391,7 @@ void RevertQuery::CheckPreflight()
             this->Result->SetError("User requested to abort this");
             this->Status = StatusDone;
             this->PreflightFinished = true;
+            this->ProcessFailure();
             return;
         }
     }
@@ -410,6 +413,7 @@ bool RevertQuery::CheckRevert()
         this->qRevert->Result->SetError(CustomStatus);
         this->Result = new QueryResult(true);
         this->Result->SetError(CustomStatus);
+        this->ProcessFailure();
     } else
     {
         HistoryItem *item = new HistoryItem();
@@ -436,6 +440,7 @@ void RevertQuery::Cancel()
     this->Result->SetError("User requested to abort this");
     this->Status = StatusDone;
     this->PreflightFinished = true;
+    this->ProcessFailure();
 }
 
 bool RevertQuery::ProcessRevert()
@@ -456,6 +461,7 @@ bool RevertQuery::ProcessRevert()
             Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "edit failed"));
             this->Result->SetError(this->eqSoftwareRollback->Result->ErrorMessage);
             this->Kill();
+            this->ProcessFailure();
             this->Status = StatusDone;
         }
         Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->edit->Page->PageName);

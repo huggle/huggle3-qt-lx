@@ -62,6 +62,7 @@ bool Query::IsProcessed()
         this->Kill();
         this->Result->SetError("Timed out");
         this->Status = StatusInError;
+        this->ProcessFailure();
         return true;
     }
     return false;
@@ -111,8 +112,17 @@ void Query::ProcessCallback()
 {
     if (this->callback != nullptr)
     {
-        this->RegisterConsumer("delegate");
+        this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
         this->callback(this);
+    }
+}
+
+void Query::ProcessFailure()
+{
+    if (this->FailureCallback != nullptr)
+    {
+        this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
+        this->FailureCallback(this);
     }
 }
 

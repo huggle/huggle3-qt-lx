@@ -58,6 +58,7 @@
 #include "warninglist.hpp"
 #include "waitingform.hpp"
 #include "wlquery.hpp"
+#include "wikipagetagsform.hpp"
 #include "uaareport.hpp"
 
 namespace Ui
@@ -100,6 +101,7 @@ namespace Huggle
     class ProtectPage;
     class WarningList;
     class WLQuery;
+    class WikiPageTagsForm;
     class UAAReport;
     class ScoreWordsDbForm;
 
@@ -320,6 +322,7 @@ namespace Huggle
             void on_actionStop_provider_triggered();
             void on_actionDryMode_triggered();
             void on_actionRevert_only_this_revision_triggered();
+            void on_actionTag_2_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -364,6 +367,7 @@ namespace Huggle
             QLabel *Status;
             bool EditablePage;
             WarningList *fWarningList = nullptr;
+            WikiPageTagsForm *fWikiPageTags = nullptr;
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
             //! List of all edits that are kept in history, so that we can track them and delete them

@@ -89,7 +89,10 @@ void ApiQuery::FinishRollback()
 {
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result->Data);
     if (this->CustomStatus != "Reverted")
+    {
         this->Result->SetError();
+        this->ProcessFailure();
+    }
 }
 
 ApiQuery::ApiQuery()
@@ -115,6 +118,7 @@ void ApiQuery::Finished()
         this->reply->deleteLater();
         this->reply = nullptr;
         this->Status = StatusDone;
+        this->ProcessFailure();
         return;
     }
     if (this->ActionPart == "rollback")
@@ -158,6 +162,7 @@ void ApiQuery::Process()
         this->Result = new QueryResult();
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
+        this->ProcessCallback();
         Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Configuration::Bool2String(this->UsingPOST) +
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;

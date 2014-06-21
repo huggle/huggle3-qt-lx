@@ -164,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
-    this->ui->actionTag_2->setVisible(false);
+    //this->ui->actionTag_2->setVisible(false);
     connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
     this->GeneralTimer->start(200);
     QFile *layout;
@@ -233,6 +233,7 @@ MainWindow::~MainWindow()
         this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
         this->PatrolledEdits.removeAt(0);
     }
+    delete this->fWikiPageTags;
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
     delete this->wUserInfo;
@@ -1460,6 +1461,9 @@ bool MainWindow::CheckEditableBrowserPage()
             return false;
         }
     }
+    if (this->CurrentEdit->Page == nullptr)
+        throw Huggle::Exception("this->CurrentEdit->Page == nullptr");
+
     return true;
 }
 
@@ -2375,4 +2379,16 @@ void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
 {
     if (this->EditingChecks())
         this->Revert("", false, true, true);
+}
+
+void Huggle::MainWindow::on_actionTag_2_triggered()
+{
+    if (!this->CheckEditableBrowserPage())
+        return;
+
+    if (this->fWikiPageTags)
+        delete this->fWikiPageTags;
+    this->fWikiPageTags = new WikiPageTagsForm(this);
+    this->fWikiPageTags->show();
+    this->fWikiPageTags->ChangePage(this->CurrentEdit->Page);
 }

@@ -74,6 +74,7 @@ bool EditQuery::IsProcessed()
             this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
+            this->ProcessFailure();
             return true;
         }
         QDomDocument dToken_;
@@ -86,6 +87,7 @@ bool EditQuery::IsProcessed()
             HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
+            this->ProcessFailure();
             return true;
         }
         QDomElement element = l.at(0).toElement();
@@ -96,6 +98,7 @@ bool EditQuery::IsProcessed()
             HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
             this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
             this->qToken = nullptr;
+            this->ProcessFailure();
             return true;
         }
         Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
@@ -135,6 +138,7 @@ bool EditQuery::IsProcessed()
                 this->Result->SetError(hec, reason);
                 this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
                 this->qEdit = nullptr;
+                this->ProcessFailure();
                 return true;
             }
         }
@@ -166,6 +170,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result->Failed = true;
             this->Result->ErrorMessage = this->qEdit->Result->Data;
+            this->ProcessFailure();
         }
         this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qEdit = nullptr;

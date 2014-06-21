@@ -125,7 +125,8 @@ SOURCES += main.cpp\
     historyitem.cpp \
     gc_thread.cpp \
     huggleoption.cpp \
-    projectconfiguration.cpp
+    projectconfiguration.cpp \
+    wikipagetagsform.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -203,7 +204,8 @@ HEADERS  += mainwindow.hpp \
     gc_thread.hpp \
     projectconfiguration.hpp \
     userconfiguration.hpp \
-    huggleoption.hpp
+    huggleoption.hpp \
+    wikipagetagsform.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -237,7 +239,8 @@ FORMS    += mainwindow.ui \
     whitelistform.ui \
     warninglist.ui \
     reloginform.ui \
-    loadingform.ui
+    loadingform.ui \
+    wikipagetagsform.ui
 
 RESOURCES += \
     pictures.qrc \

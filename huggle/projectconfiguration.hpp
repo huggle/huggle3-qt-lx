@@ -166,6 +166,9 @@ namespace Huggle
             QStringList             IgnorePatterns;
             int                     TalkPageWarningScore = -800;
             bool                    GlobalRequired = true;
+            // Tagging
+            QString                 TaggingSummary;
+            QStringList             Tags;
             // This is internal only do not prefix it!!
             QList<QRegExp>          _RevertPatterns;
             int                     BotScore = -200;

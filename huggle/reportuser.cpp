@@ -286,7 +286,7 @@ void ReportUser::Tick()
             summary = summary.replace("$1",this->ReportedUser->Username);
             if (this->qEdit != nullptr)
             {
-                Syslog::HuggleLogs->DebugLog("this->qEdit != NULL @reportuser.cpp:Tick() memory leak");
+                HUGGLE_DEBUG1("this->qEdit != NULL @reportuser.cpp:Tick() memory leak");
             }
             this->qEdit = WikiUtil::EditPage(Configuration::HuggleConfiguration->AIVP, this->ReportContent, summary,
                                              false, this->ReportTs);

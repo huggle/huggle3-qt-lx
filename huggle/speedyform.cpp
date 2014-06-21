@@ -85,7 +85,7 @@ void Finalize(Query *result)
 {
     SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
     result->CallbackResult = nullptr;
-    result->UnregisterConsumer("delegate");
+    result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     form->close();
 }
 
