@@ -44,7 +44,6 @@ RevertQuery::~RevertQuery()
         this->edit->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
         this->edit->UnregisterConsumer("Core::RevertEdit");
     }
-    GC_DECNAMEDREF(this->qSR_PageToken, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qPreflight, HUGGLECONSUMER_REVERTQUERY);
     GC_DECNAMEDREF(this->qRetrieve, HUGGLECONSUMER_REVERTQUERY);
     if (this->timer != nullptr)
@@ -441,53 +440,6 @@ void RevertQuery::Cancel()
 
 bool RevertQuery::ProcessRevert()
 {
-    if (!this->SR_EditToken.size() && this->qSR_PageToken == nullptr)
-    {
-        // we need to obtain edit token on beginning so that we prevent edit conflict resolution
-        this->qSR_PageToken = new ApiQuery();
-        this->qSR_PageToken->SetAction(ActionQuery);
-        this->qSR_PageToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
-        this->qSR_PageToken->Target = _l("editquery-token", this->edit->Page->PageName);
-        this->qSR_PageToken->RegisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->CustomStatus = "Retrieving token";
-        QueryPool::HugglePool->AppendQuery(this->qSR_PageToken);
-        this->qSR_PageToken->Process();
-        return false;
-    }
-    if (this->qSR_PageToken != nullptr)
-    {
-        if (!this->qSR_PageToken->IsProcessed())
-            return false;
-
-        if (this->qSR_PageToken->IsFailed())
-        {
-            this->DisplayError("Unable to fetch the token - query failed");
-            return true;
-        }
-        QDomDocument d;
-        d.setContent(this->qSR_PageToken->Result->Data);
-        QDomNodeList l = d.elementsByTagName("page");
-        if (l.count() == 0)
-        {
-            this->DisplayError("Unable to fetch the token no page info returned by wiki");
-            return true;
-        }
-        QDomElement element = l.at(0).toElement();
-        if (!element.attributes().contains("edittoken"))
-        {
-            this->DisplayError("Unable to get a token there was no token returned by wiki");
-            return true;
-        }
-        this->SR_EditToken = element.attribute("edittoken");
-        if (this->SR_EditToken.isEmpty())
-        {
-            // invalid token
-            this->DisplayError("Invalid token");
-            return true;
-        }
-        this->qSR_PageToken->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-        this->qSR_PageToken = nullptr;
-    }
     if (this->eqSoftwareRollback != nullptr)
     {
         // we already reverted the page so check if we were successful in that

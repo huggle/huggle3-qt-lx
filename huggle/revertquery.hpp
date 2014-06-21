@@ -36,7 +36,6 @@ namespace Huggle
     class RevertQuery : public QObject, public Query
     {
             Q_OBJECT
-
         public:
             static QString GetCustomRevertStatus(QString RevertData);
 
@@ -72,12 +71,10 @@ namespace Huggle
             void Exit();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR = false;
-            QString SR_EditToken = "";
             ApiQuery *qPreflight = nullptr;
             ApiQuery *qRevert = nullptr;
             ApiQuery *qHistoryInfo = nullptr;
             ApiQuery *qRetrieve = nullptr;
-            ApiQuery *qSR_PageToken = nullptr;
             EditQuery *eqSoftwareRollback = nullptr;
             WikiEdit *edit;
             QTimer *timer = nullptr;
