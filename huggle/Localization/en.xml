@@ -270,10 +270,10 @@
     <string name="main-revision-decline">Reject revision</string>
     <string name="main-revision">Revision</string>
     <string name="main-revision-view">View</string>
-    <string name="main-revision-revert">Revert currently displayed edit</string>
-    <string name="main-revision-rv-stay">Revert this edit and stay on a page</string>
-    <string name="main-revision-revert-warn">Revert currently displayed edit and warn user</string>
-    <string name="main-revision-rws">Revert currently displayed edit and warn user and stay on a page</string>
+    <string name="main-revision-revert">Revert the currently displayed edit</string>
+    <string name="main-revision-rv-stay">Revert this edit and stay on the page</string>
+    <string name="main-revision-revert-warn">Revert the currently displayed edit and warn the user</string>
+    <string name="main-revision-rws">Revert the currently displayed edit, warn the user and stay on the page</string>
     <string name="main-revision-faith">Revert assuming good faith</string>
     <string name="main-revision-previous">Previous</string>
     <string name="main-revision-next">Next</string>
