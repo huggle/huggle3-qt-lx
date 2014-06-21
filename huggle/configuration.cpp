@@ -334,11 +334,13 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "patrol-speedy:true\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     configuration_ += "confirm-multiple:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits) + "\n";
-    configuration_ += "confirm-page:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmPage) + "\n";
-    configuration_ += "confirm-same:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmSame) + "\n";
+    configuration_ += "confirm-talk:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmTalk) + "\n";
+    // configuration_ += "confirm-page:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmPage) + "\n";
+    // configuration_ += "confirm-same:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmSame) + "\n";
     configuration_ += "confirm-self-revert:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs) + "\n";
-    configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
-    configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
+    configuration_ += "confirm-whitelist:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWL) + "\n";
+    //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
+    // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
     configuration_ += "default-summary:" + HuggleConfiguration->ProjectConfig->DefaultSummary + "\n";
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
@@ -725,11 +727,14 @@ bool Configuration::ParseProjectConfig(QString config)
     this->ProjectConfig->WarningLevel = (byte_ht)ConfigurationParse("warning-mode", config, "4").toInt();
     this->ProjectConfig->WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
     // Reverting
-    this->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config));
-    this->ProjectConfig->ConfirmRange = SafeBool(ConfigurationParse("confirm-range", config));
-    this->ProjectConfig->ConfirmPage = SafeBool(ConfigurationParse("confirm-page", config));
-    this->ProjectConfig->ConfirmSame = SafeBool(ConfigurationParse("confirm-same", config));
-    this->ProjectConfig->ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config));
+    this->ProjectConfig->ConfirmWL = SafeBool(ConfigurationParse("confirm-ignored", config, "true"));
+    this->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config, ""));
+    this->ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config, "true"));
+    // this->ProjectConfig->ConfirmRange = SafeBool(ConfigurationParse("confirm-range", config, "true"));
+    // this->ProjectConfig->ConfirmPage = SafeBool(ConfigurationParse("confirm-page", config, "true"));
+    // this->ProjectConfig->ConfirmSame = SafeBool(ConfigurationParse("confirm-same", config, "true"));
+    this->ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config, "true"));
+    // this->ProjectConfig->ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config, "true"));
     this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
     // Welcoming
     this->WelcomeMP = ConfigurationParse("startup-message-location", config, "Project:Huggle/Message");
@@ -897,6 +902,10 @@ bool Configuration::ParseUserConfig(QString config)
     this->ProjectConfig->WarningDefs = this->SetUserOptionList("warning-template-tags", config, this->ProjectConfig->WarningDefs);
     this->ProjectConfig->BotScore = this->SetOption("score-bot", config, this->ProjectConfig->BotScore).toInt();
     HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
+    this->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config), this->ProjectConfig->ConfirmMultipleEdits);
+    this->ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config), this->ProjectConfig->ConfirmTalk);
+    this->ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config), this->ProjectConfig->ConfirmOnSelfRevs);
+    this->ProjectConfig->ConfirmWL = SafeBool(ConfigurationParse("confirm-whitelist", config), this->ProjectConfig->ConfirmWL);
     this->UserConfig->TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->UserConfig->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->UserConfig->LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
