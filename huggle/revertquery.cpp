@@ -524,7 +524,7 @@ bool RevertQuery::ProcessRevert()
     }
     if (this->qHistoryInfo == nullptr || !this->qHistoryInfo->IsProcessed())
         return false;
-    if (this->qHistoryInfo->Result->IsFailed())
+    if (this->qHistoryInfo->IsFailed())
     {
         this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->Result->ErrorMessage);
         return true;
@@ -544,6 +544,7 @@ bool RevertQuery::ProcessRevert()
     // if the latest revid doesn't match our revid it means that someone made an edit
     bool passed = true;
     this->SR_Depth = 0;
+    bool new_edits_resv = false;
     int x = 0;
     while (x < l.count())
     {
@@ -551,10 +552,30 @@ bool RevertQuery::ProcessRevert()
         x++;
         if (e.attributes().contains("revid"))
         {
-            if (edit->RevID == e.attribute("revid").toInt())
+            if (this->edit->RevID == e.attribute("revid").toInt())
                 continue;
-            if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > edit->RevID)
-                passed = false;
+            if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > this->edit->RevID)
+            {
+                HUGGLE_DEBUG("RevID " + QString::number(e.attribute("revid").toInt()) + " > " + QString::number(this->edit->RevID), 2);
+                if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts &&
+                    Configuration::HuggleConfiguration->UserConfig->RevertNewBySame &&
+                    e.attributes().contains("user") &&
+                    e.attribute("user") == this->edit->User->Username)
+                {
+                    // we want to automatically revert new edits that are made by same user
+                    if (!new_edits_resv)
+                    {
+                        Huggle::Syslog::HuggleLogs->Log(_l("cr-newer-edits", this->edit->Page->PageName));
+                        // we don't want to bother users with this message for every resolved edit
+                        // so we send it only once to logs
+                        new_edits_resv = true;
+                    }
+                } else
+                {
+                    HUGGLE_DEBUG1("Newer edits found but no auto conflict resolution rule could be used");
+                    passed = false;
+                }
+            }
         }
     }
     if (!passed)
