@@ -168,7 +168,7 @@ QStringList Configuration::SetUserOptionList(QString key_, QString config_, QStr
     {
         // we must not add 2 same
         throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
-                                    "void Configuration::SetOption(QString key, QVariant data)");
+                                    "void Configuration::SetUserOptionList(QString key, QVariant data)");
     }
     QStringList value = HuggleParser::ConfigurationParse_QL(key_, config_, default_, CS);
     HuggleOption *h = new HuggleOption(key_, value, value == default_);
