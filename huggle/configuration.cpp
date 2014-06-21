@@ -343,8 +343,6 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts) + "\n";
-    configuration_ += "confirm-page:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmPage) + "\n";
-    configuration_ += "confirm-same:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmSame) + "\n";
     configuration_ += "software-rollback:" + Bool2String(HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     configuration_ += "diff-font-size:" + QString::number(HuggleConfiguration->SystemConfig_FontSize) + "\n";
     configuration_ += "RevertOnMultipleEdits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
@@ -729,6 +727,7 @@ bool Configuration::ParseProjectConfig(QString config)
     // Reverting
     this->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config));
     this->ProjectConfig->ConfirmRange = SafeBool(ConfigurationParse("confirm-range", config));
+    this->ProjectConfig->ConfirmPage = SafeBool(ConfigurationParse("confirm-page", config));
     this->ProjectConfig->ConfirmSame = SafeBool(ConfigurationParse("confirm-same", config));
     this->ProjectConfig->ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config));
     this->UserConfig_AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
