@@ -560,7 +560,7 @@ bool RevertQuery::ProcessRevert()
                 if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts &&
                     Configuration::HuggleConfiguration->UserConfig->RevertNewBySame &&
                     e.attributes().contains("user") &&
-                    e.attribute("user") == this->edit->User->Username)
+                    WikiUtil::SanitizeUser(e.attribute("user")) == this->edit->User->Username)
                 {
                     // we want to automatically revert new edits that are made by same user
                     if (!new_edits_resv)
@@ -596,17 +596,18 @@ bool RevertQuery::ProcessRevert()
             Huggle::Syslog::HuggleLogs->DebugLog("Nonsense: " + this->qHistoryInfo->Result->Data);
             return true;
         }
+        QString sanitized = WikiUtil::SanitizeUser(e.attribute("user"));
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
-        if ((this->SR_Depth >= 1 && this->OneEditOnly) || e.attribute("user") != this->edit->User->Username)
+        if ((this->SR_Depth >= 1 && this->OneEditOnly) || sanitized != this->edit->User->Username)
         {
-            if (Configuration::HuggleConfiguration->Verbosity > 1 && e.attribute("user") != this->edit->User->Username)
+            if (Configuration::HuggleConfiguration->Verbosity > 1 && sanitized != this->edit->User->Username)
             {
                 Syslog::HuggleLogs->DebugLog("found match for revert (depth " + QString::number(this->SR_Depth) + ") user "
-                                             + e.attribute("user") + " != " + this->edit->User->Username, 2);
+                                             + sanitized + " != " + this->edit->User->Username, 2);
             }
             // we got it, this is the revision we want to revert to
             this->SR_RevID = e.attribute("revid").toInt();
-            this->SR_Target = WikiUtil::SanitizeUser(e.attribute("user"));
+            this->SR_Target = sanitized;
             break;
         }
         this->SR_Depth++;
