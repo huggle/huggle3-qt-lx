@@ -23,7 +23,7 @@
     <string name="save">Save</string>
     <string name="selectfile">Browse...</string>
     <string name="yes">Yes</string>
-    <string name="agf">Revert as a good faith edit with custom reason</string>
+    <string name="agf">Revert as a good faith edit with a custom reason</string>
     <string name="successful">Successful</string>
     <string name="summary">Summary</string>
     <string name="id">ID</string>
