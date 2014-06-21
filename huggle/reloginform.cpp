@@ -65,19 +65,19 @@ void ReloginForm::LittleTick()
             return;
         }
         QDomDocument result;
-        result.setContent(this->qReloginTokenReq->Result->Data);
+        result.setContent(this->qReloginPw->Result->Data);
         QDomNodeList login = result.elementsByTagName("login");
         if (login.count() < 1)
         {
             this->Fail("No data returned by login query");
-            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
         QDomElement element = login.at(0).toElement();
         if (!element.attributes().contains("result"))
         {
             this->Fail("No result was provided by login query");
-            HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
+            HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
         QString Result = element.attribute("result");
