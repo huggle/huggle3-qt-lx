@@ -624,6 +624,6 @@
     <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
     <string name="cr-stop-multiple-same">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
     <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
-    <string name="cr-message-new">There are newer edits to $1 are you sure you really want to revert them?</string>
-    <string name="cr-message-not-same">There are newer edits made to $1 by a different user, are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
+    <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
+    <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
 </resource>
