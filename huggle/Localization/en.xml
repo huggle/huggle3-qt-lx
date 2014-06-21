@@ -436,7 +436,7 @@
     <string name="report-done">Reported</string>
     <string name="report-user">Report</string>
     <string name="uaa-not-supported">UAA not available</string>
-    <string name="uaa-not-supported-text">The usernames for administrator attention noticeboard are not available on your wiki.</string>
+    <string name="uaa-not-supported-text">The "Usernames for administrator attention" noticeboard is not available on your wiki.</string>
     <string name="uaa-reporting">Reporting $1 to UAA</string>
     <string name="uaa-reported">Reported</string>
     <string name="uaa-no-reason-warn">You didn't specify a reason as to why the username is a policy violation. Please specify a reason.</string>
