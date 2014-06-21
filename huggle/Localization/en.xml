@@ -365,7 +365,7 @@
     <string name="message-summary">Summary:</string>
     <string name="message-autosign">Automatically append signature</string>
     <string name="message-retrieve-new-token">Retrieving token to edit $1</string>
-    <string name="message-fail-re-user-tp">Unable to retrieve $1 stopping message delivery to that user</string>
+    <string name="message-fail-re-user-tp">Unable to retrieve $1. Stopping message delivery to that user</string>
     <string name="message-er">Unable to deliver the message to $1: $2</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
     <string name="message-done">Successfully delivered message to: $1</string>
@@ -436,7 +436,7 @@
     <string name="report-done">Reported</string>
     <string name="report-user">Report</string>
     <string name="uaa-not-supported">UAA not available</string>
-    <string name="uaa-not-supported-text">The usernames for administrator attention noticeboard are not available on your wiki.</string>
+    <string name="uaa-not-supported-text">The "Usernames for administrator attention" noticeboard is not available on your wiki.</string>
     <string name="uaa-reporting">Reporting $1 to UAA</string>
     <string name="uaa-reported">Reported</string>
     <string name="uaa-no-reason-warn">You didn't specify a reason as to why the username is a policy violation. Please specify a reason.</string>
