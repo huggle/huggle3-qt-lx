@@ -41,6 +41,7 @@ namespace Huggle
             QString LanguageName;
             //! Long identifier of language that is seen by user
             QString LanguageID;
+            bool IsRTL = false;
             QMap<QString, QString> Messages;
     };
 

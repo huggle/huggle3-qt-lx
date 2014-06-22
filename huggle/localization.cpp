@@ -98,6 +98,8 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
             continue;
         }
         QString n_ = item.attribute("name");
+        if (n_ == "__isrtl__")
+            l->IsRTL = Configuration::SafeBool(item.text());
         if (l->Messages.contains(n_))
         {
             Syslog::HuggleLogs->WarningLog("Language " + name + " contains more than 1 definition for " + n_);
