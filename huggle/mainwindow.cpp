@@ -1197,9 +1197,8 @@ void MainWindow::OnTimerTick0()
     } else
     {
         // we need to check if config was written
-        if (!this->eq->IsProcessed())
+        if (this->eq != nullptr && !this->eq->IsProcessed())
             return;
-        this->eq->DecRef();
         this->eq = nullptr;
         this->wlt->stop();
         this->GeneralTimer->stop();

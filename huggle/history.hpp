@@ -65,13 +65,13 @@ namespace Huggle
         private:
             void Fail();
             QTimer *timerRetrievePageInformation;
-            HistoryItem *RevertingItem = nullptr;
+            Collectable_SmartPtr<HistoryItem> RevertingItem;
             //! This is a query we need to use to retrieve our own edit before we undo it
             Collectable_SmartPtr<ApiQuery> qEdit;
             //! This is for welcome message that is used to replace a talk page
-            EditQuery *qTalk = nullptr;
+            Collectable_SmartPtr<EditQuery> qTalk;
             //! Used to revert edits we made
-            RevertQuery *qSelf = nullptr;
+            Collectable_SmartPtr<RevertQuery> qSelf;
             int CurrentItem = -200;
             Ui::History *ui;
     };

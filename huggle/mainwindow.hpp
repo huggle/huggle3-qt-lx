@@ -27,6 +27,7 @@
 #include <QDockWidget>
 #include "aboutform.hpp"
 #include "blockuser.hpp"
+#include "collectable_smartptr.hpp"
 #include "deleteform.hpp"
 #include "editquery.hpp"
 #include "history.hpp"
@@ -205,7 +206,7 @@ namespace Huggle
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
             //! Pointer to query that is used to store user config on exit of huggle
-            EditQuery *eq = nullptr;
+            Collectable_SmartPtr<EditQuery> eq;
             //! This query is used to refresh white list
             WLQuery *wq = nullptr;
             //! Warning menu

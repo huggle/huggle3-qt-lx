@@ -39,12 +39,13 @@ namespace Huggle
             {
                 this->SetPtr(_ptr);
             }
-            Collectable_SmartPtr& operator=(const Collectable_SmartPtr &smart_ptr)
+            void operator=(const Collectable_SmartPtr &smart_ptr)
             {
-                if (smart_ptr.ptr != nullptr)
-                    smart_ptr.ptr->IncRef();
-                this->ptr = smart_ptr.ptr;
-                return *this;
+                this->SetPtr(smart_ptr.GetPtr());
+            }
+            void operator=(std::nullptr_t &null)
+            {
+                this->SetPtr(null);
             }
             operator void* () const;
             operator T* () const;
