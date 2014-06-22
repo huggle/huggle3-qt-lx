@@ -187,12 +187,13 @@ void History::Tick()
         return;
     }
     // we check the status of edit
-    if (this->qEdit.GetPtr() && this->qEdit->IsProcessed())
+    if (this->qEdit != nullptr && this->qEdit->IsProcessed())
     {
         bool failed = false;
         QString user, title;
         int revid;
         QString result = Generic::EvaluateWikiPageContents(this->qEdit.GetPtr(), &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
+        this->qEdit.Delete();
         if (failed)
         {
             Syslog::HuggleLogs->ErrorLog("Unable to retrieve content of page we wanted to undo own edit for, error was: " + result);
