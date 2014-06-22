@@ -417,6 +417,11 @@ void Core::Shutdown()
     GC::gc->DeleteOld();
 #ifdef HUGGLE_PROFILING
     Syslog::HuggleLogs->Log("Profiler info: locks " + QString::number(Collectable::LockCt));
+    foreach (Collectable *q, GC::gc->list)
+    {
+        // retrieve GC info
+        Syslog::HuggleLogs->Log(q->DebugHgc());
+    }
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
