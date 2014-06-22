@@ -8,9 +8,9 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "reloginform.hpp"
 #include <QMessageBox>
 #include <QtXml>
-#include "reloginform.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "syslog.hpp"

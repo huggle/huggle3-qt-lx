@@ -15,6 +15,10 @@
 #ifndef GC_THREAD_HPP
 #define GC_THREAD_HPP
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
 #include <QThread>
 
 namespace Huggle

@@ -8,8 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include <QMessageBox>
 #include "wikipagetagsform.hpp"
+#include <QMessageBox>
 #include "apiquery.hpp"
 #include "configuration.hpp"
 #include "syslog.hpp"

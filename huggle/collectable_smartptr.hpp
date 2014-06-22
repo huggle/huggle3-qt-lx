@@ -15,6 +15,11 @@
 #ifndef COLLECTABLE_SMARTPTR_HPP
 #define COLLECTABLE_SMARTPTR_HPP
 
+#include "definitions.hpp"
+#ifdef PYTHONENGINE
+#include <Python.h>
+#endif
+
 namespace Huggle
 {
     class Collectable;
