@@ -97,7 +97,7 @@ void UpdateForm::OnTick()
     {
         QString version = l.at(0).toElement().text();
         /// \todo LOCALIZE ME
-        QString info = "New version of huggle is available: version " + version;
+        QString info = "A newer version of Huggle is available: version " + version;
         l = r.elementsByTagName("info");
         if (l.count() > 0)
         {
