@@ -20,6 +20,12 @@ namespace Huggle
     class Collectable;
     template <class T>
     //! This smart pointer can be used for any work with all kinds of collectable functions
+
+    //! Unlike std smart pointers that are implemented in c++11 these are compatible with out GC
+    //! which gives us bigger flexibility and higher performance.
+
+    //! These ptrs don't need to allocate new manager for every single object that is maintained
+    //! by any smart ptr like std ones do, but utilize the single instance GC we use
     class Collectable_SmartPtr
     {
         public:
