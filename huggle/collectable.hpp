@@ -120,13 +120,13 @@ namespace Huggle
              * \return
              */
             unsigned long CollectableID();
+            bool HasSomeConsumers();
         private:
             static QString ConsumerIdToString(const int id);
             static QMutex *WideLock;
             static unsigned long LastCID;
 
             void SetManaged();
-            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;

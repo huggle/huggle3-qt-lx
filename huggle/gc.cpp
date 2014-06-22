@@ -48,6 +48,12 @@ void Huggle::GC::DeleteOld()
         while(x < copy.count())
         {
             Collectable *q = copy.at(x);
+            if (q->HasSomeConsumers())
+            {
+                // there is no need to work with this collectable item
+                x++;
+                continue;
+            }
             q->Lock();
             if (!q->IsManaged())
             {
@@ -75,6 +81,12 @@ void Huggle::GC::DeleteOld()
     while(x < this->list.count())
     {
         Collectable *q = this->list.at(x);
+        if (q->HasSomeConsumers())
+        {
+            // there is no need to work with this collectable item
+            x++;
+            continue;
+        }
         q->Lock();
         if (!q->IsManaged())
         {
