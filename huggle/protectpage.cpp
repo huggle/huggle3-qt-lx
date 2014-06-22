@@ -21,9 +21,7 @@ using namespace Huggle;
 ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectPage)
 {
     this->ui->setupUi(this);
-    this->qToken = nullptr;
     this->PageToProtect = nullptr;
-    this->qProtection = nullptr;
     this->ui->comboBox_3->addItem(_l("protect-none"));
     this->ui->comboBox_3->addItem(_l("protect-semiprotection"));
     this->ui->comboBox_3->addItem(_l("protect-fullprotection"));
@@ -35,7 +33,6 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
 
 ProtectPage::~ProtectPage()
 {
-    this->DelRefs();
     delete this->ui;
     delete this->PageToProtect;
     delete this->tt;
@@ -52,19 +49,12 @@ void ProtectPage::getTokenToProtect()
     this->qToken->SetAction(ActionQuery);
     this->qToken->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
     this->qToken->Target = _l("protection-ft");
-    this->qToken->IncRef();
     QueryPool::HugglePool->AppendQuery(qToken);
     this->qToken->Process();
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
     this->PtQueryPhase = 0;
     this->tt->start(200);
-}
-
-void ProtectPage::DelRefs()
-{
-    GC_DECREF(this->qToken);
-    GC_DECREF(this->qProtection);
 }
 
 void ProtectPage::onTick()
@@ -107,8 +97,7 @@ void ProtectPage::checkTokenToProtect()
     }
     this->ProtectToken = element.attribute("protecttoken");
     this->PtQueryPhase++;
-    this->qToken->DecRef();
-    this->qToken = nullptr;
+    this->qToken.Delete();
     Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);
     this->qProtection = new ApiQuery();
     this->qProtection->SetAction(ActionProtect);
@@ -128,7 +117,6 @@ void ProtectPage::checkTokenToProtect()
             + "&protections=" + QUrl::toPercentEncoding(protection)
             + "&token=" + QUrl::toPercentEncoding(this->ProtectToken);
     this->qProtection->Target = "Protecting " + this->PageToProtect->PageName;
-    this->qProtection->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qProtection);
     this->qProtection->Process();
 }
@@ -154,8 +142,9 @@ void ProtectPage::Failed(QString reason)
     delete _pmb;
     this->tt->stop();
     delete this->tt;
-    this->DelRefs();
+    this->qProtection.Delete();
     this->tt = nullptr;
+    this->qToken.Delete();
     ui->pushButton->setEnabled(true);
 }
 

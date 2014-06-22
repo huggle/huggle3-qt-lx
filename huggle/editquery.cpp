@@ -21,10 +21,8 @@ using namespace Huggle;
 EditQuery::EditQuery()
 {
     this->Summary = "";
-    this->qEdit = nullptr;
     this->Minor = false;
     this->Page = "";
-    this->qToken = nullptr;
     this->Section = 0;
     this->BaseTimestamp = "";
     this->StartTimestamp = "";
@@ -34,10 +32,7 @@ EditQuery::EditQuery()
 
 EditQuery::~EditQuery()
 {
-    if (this->qToken != nullptr)
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-
-    GC_DECREF(this->HI);
+    this->HI.Delete();
 }
 
 void EditQuery::Process()
@@ -50,7 +45,7 @@ void EditQuery::Process()
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page);
         this->qToken->Target = _l("editquery-token", this->Page);
         this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        QueryPool::HugglePool->AppendQuery(this->qToken);
+        QueryPool::HugglePool->AppendQuery(this->qToken.GetPtr());
         this->qToken->Process();
     } else
     {
@@ -136,7 +131,6 @@ bool EditQuery::IsProcessed()
                 }
                 this->Result = new QueryResult(true);
                 this->Result->SetError(hec, reason);
-                this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
                 this->qEdit = nullptr;
                 this->ProcessFailure();
                 return true;
@@ -156,7 +150,6 @@ bool EditQuery::IsProcessed()
                         item->Result = _l("successful");
                         item->Type = HistoryEdit;
                         item->Target = this->Page;
-                        item->IncRef();
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
@@ -172,7 +165,6 @@ bool EditQuery::IsProcessed()
             this->Result->ErrorMessage = this->qEdit->Result->Data;
             this->ProcessFailure();
         }
-        this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
         this->qEdit = nullptr;
     }
     return true;
@@ -183,7 +175,6 @@ void EditQuery::EditPage()
     this->qEdit = new ApiQuery();
     this->qEdit->Target = "Writing " + this->Page;
     this->qEdit->UsingPOST = true;
-    this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
     this->qEdit->SetAction(ActionEdit);
     QString base = "";
     QString start_ = "";

@@ -43,17 +43,16 @@ QString WikiUtil::MonthText(int n)
     return Configuration::HuggleConfiguration->Months.at(n);
 }
 
-RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep)
+Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)
 {
     if (_e == nullptr)
         throw new Huggle::Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
     if (_e->User == nullptr)
         throw new Huggle::Exception("Object user was NULL in Core::Revert");
-    _e->RegisterConsumer("Core::RevertEdit");
     if (_e->Page == nullptr)
         throw new Huggle::Exception("Object page was NULL");
 
-    RevertQuery *query = new RevertQuery(_e);
+    Collectable_SmartPtr<RevertQuery> query = new RevertQuery(_e);
     if (summary.length())
         query->Summary = summary;
     query->MinorEdit = minor;
@@ -62,8 +61,6 @@ RevertQuery *WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, boo
         query->SetUsingSR(true);
     else
         query->SetUsingSR(!rollback);
-    if (keep)
-        query->RegisterConsumer("keep");
     return query;
 }
 
@@ -129,11 +126,10 @@ void WikiUtil::FinalizeMessages()
     }
 }
 
-EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
 {
     // retrieve a token
-    EditQuery *eq = new EditQuery();
-    eq->IncRef();
+    Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
     {
         summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
@@ -150,7 +146,7 @@ EditQuery *WikiUtil::EditPage(QString page, QString text, QString summary, bool 
     return eq;
 }
 
-EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
 {
     if (page == nullptr)
     {

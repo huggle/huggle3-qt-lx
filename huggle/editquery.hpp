@@ -19,6 +19,7 @@
 #include <QString>
 #include <QUrl>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Huggle
 {
@@ -53,9 +54,9 @@ namespace Huggle
             bool Minor;
         private:
             void EditPage();
-            ApiQuery *qToken;
+            Collectable_SmartPtr<ApiQuery> qToken;
             //! Api query to edit page
-            ApiQuery *qEdit;
+            Collectable_SmartPtr<ApiQuery> qEdit;
     };
 }
 

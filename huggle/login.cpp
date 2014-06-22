@@ -98,7 +98,6 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 Login::~Login()
 {
     delete this->Updater;
-    this->DeleteQr();
     delete this->ui;
     delete this->loadingForm;
     delete this->timer;
@@ -137,7 +136,6 @@ void Login::Update(QString ms)
 
 void Login::Kill()
 {
-    this->DeleteQr();
     this->_Status = LoginFailed;
     this->timer->stop();
     if (this->loadingForm != nullptr)
@@ -167,14 +165,6 @@ void Login::CancelLogin()
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(_l("login-start"));
-}
-
-void Login::DeleteQr()
-{
-    GC_DECREF(this->wq);
-    GC_DECREF(this->LoginQuery);
-    GC_DECREF(this->qSiteInfo);
-    GC_DECREF(this->qCfg);
 }
 
 void Login::Enable()
@@ -280,9 +270,8 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
     Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_password->text();
     if (this->loadingForm != nullptr)
-    {
         delete this->loadingForm;
-    }
+
     this->loadingForm = new LoadingForm(this);
     this->_Status = LoggingIn;
     this->Disable();
@@ -301,12 +290,10 @@ void Login::PressOK()
 void Login::PerformLogin()
 {
     this->Update(_l("[[login-progress-start]]", Configuration::HuggleConfiguration->Project->Name));
-    GC_DECREF(this->LoginQuery);
     // we create an api request to login
     this->LoginQuery = new ApiQuery(ActionLogin);
     this->LoginQuery->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
     this->LoginQuery->HiddenQuery = true;
-    this->LoginQuery->IncRef();
     this->LoginQuery->UsingPOST = true;
     this->LoginQuery->Process();
     this->_Status = WaitingForLoginQuery;
@@ -314,7 +301,7 @@ void Login::PerformLogin()
 
 void Login::PerformLoginPart2()
 {
-    if (!this->LoginQuery || !this->LoginQuery->IsProcessed())
+    if (this->LoginQuery == nullptr || !this->LoginQuery->IsProcessed())
     {
         return;
     }
@@ -326,7 +313,6 @@ void Login::PerformLoginPart2()
     }
     this->Token = this->LoginQuery->Result->Data;
     this->_Status = WaitingForToken;
-    this->LoginQuery->DecRef();
     this->Token = this->GetToken();
     this->LoginQuery = new ApiQuery(ActionLogin);
     this->LoginQuery->HiddenQuery = true;
@@ -334,7 +320,6 @@ void Login::PerformLoginPart2()
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_Password)
             + "&lgtoken=" + Token;
     this->LoginQuery->UsingPOST = true;
-    this->LoginQuery->IncRef();
     this->LoginQuery->Process();
 }
 
@@ -353,7 +338,6 @@ void Login::RetrieveGlobalConfig()
             QDomDocument d;
             d.setContent(this->LoginQuery->Result->Data);
             QDomNodeList l = d.elementsByTagName("rev");
-            this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             if (l.count() == 0)
             {
@@ -385,27 +369,24 @@ void Login::RetrieveGlobalConfig()
     this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Loading);
     this->Update(_l("[[login-progress-global]]"));
     this->LoginQuery = new ApiQuery(ActionQuery);
-    this->LoginQuery->IncRef();
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->LoginQuery->Process();
     this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO, LoadingForm_Icon_Loading);
     this->qSiteInfo = new ApiQuery(ActionQuery);
-    this->qSiteInfo->IncRef();
     this->qSiteInfo->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
     this->qSiteInfo->Process();
 }
 
 void Login::FinishLogin()
 {
-    if (!this->LoginQuery || !this->LoginQuery->IsProcessed())
+    if (this->LoginQuery == nullptr || !this->LoginQuery->IsProcessed())
         return;
 
     if (this->LoginQuery->Result->IsFailed())
     {
         this->Update("Login failed: " + this->LoginQuery->Result->ErrorMessage);
         this->_Status = LoginFailed;
-        this->LoginQuery->DecRef();
         this->LoginQuery = nullptr;
         return;
     }
@@ -414,8 +395,7 @@ void Login::FinishLogin()
     if (this->ProcessOutput())
         this->_Status = RetrievingGlobalConfig;
 
-    // that's all
-    GC_DECREF(this->LoginQuery);
+    this->LoginQuery = nullptr;
 }
 
 void Login::RetrieveWhitelist()
@@ -436,7 +416,6 @@ void Login::RetrieveWhitelist()
             }
             this->processedWlQuery = true;
             this->loadingForm->ModifyIcon(LOGINFORM_WHITELIST, LoadingForm_Icon_Success);
-            this->wq->DecRef();
             this->wq = nullptr;
         }
         return;
@@ -445,7 +424,6 @@ void Login::RetrieveWhitelist()
     this->wq = new WLQuery();
     this->wq->RetryOnTimeoutFailure = false;
     this->wq->Process();
-    this->wq->IncRef();
 }
 
 void Login::RetrieveProjectConfig()
@@ -457,7 +435,6 @@ void Login::RetrieveProjectConfig()
             if (this->LoginQuery->Result->IsFailed())
             {
                 this->Update(_l("login-error-config", this->LoginQuery->Result->ErrorMessage));
-                this->LoginQuery->DecRef();
                 this->Kill();
                 return;
             }
@@ -470,7 +447,6 @@ void Login::RetrieveProjectConfig()
                 this->Update(_l("login-error-config", "the api query returned no data"));
                 return;
             }
-            this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             QDomElement data = l.at(0).toElement();
             if (Configuration::HuggleConfiguration->ParseProjectConfig(data.text()))
@@ -496,7 +472,6 @@ void Login::RetrieveProjectConfig()
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
     this->LoginQuery->Process();
-    this->LoginQuery->IncRef();
 }
 
 void Login::RetrieveUserConfig()
@@ -523,21 +498,18 @@ void Login::RetrieveUserConfig()
                     // once more, trying to parse the old config
                     this->LoadedOldConfig = true;
                     Syslog::HuggleLogs->DebugLog("couldn't find user config at new location, trying old one");
-                    this->LoginQuery->DecRef();
                     this->Update(_l("login-old"));
                     this->LoginQuery = new ApiQuery(ActionQuery);
                     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf_old;
                     page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
                     this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
                             QUrl::toPercentEncoding(page);
-                    this->LoginQuery->IncRef();
                     this->LoginQuery->Process();
                     return;
                 }
                 if (!Configuration::HuggleConfiguration->ProjectConfig->RequireConfig)
                 {
                     // we don't care if user config is missing or not
-                    this->LoginQuery->DecRef();
                     this->LoginQuery = nullptr;
                     this->_Status = RetrievingUser;
                     return;
@@ -547,7 +519,6 @@ void Login::RetrieveUserConfig()
                 this->Kill();
                 return;
             }
-            this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             QDomElement data = revisions.at(0).toElement();
             if (Configuration::HuggleConfiguration->ParseUserConfig(data.text()))
@@ -580,7 +551,6 @@ void Login::RetrieveUserConfig()
     this->LoginQuery = new ApiQuery(ActionQuery);
     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
     page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
-    this->LoginQuery->IncRef();
     this->LoginQuery->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" +
             QUrl::toPercentEncoding(page);
     this->LoginQuery->Process();
@@ -632,7 +602,6 @@ void Login::RetrieveUserInfo()
             }
 
             QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
-            this->LoginQuery->DecRef();
             this->LoginQuery = nullptr;
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (Configuration::HuggleConfiguration->ProjectConfig->RequireEdits > editcount)
@@ -653,7 +622,6 @@ void Login::RetrieveUserInfo()
     this->loadingForm->ModifyIcon(LOGINFORM_USERINFO, LoadingForm_Icon_Loading);
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->LoginQuery->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
-    this->LoginQuery->IncRef();
     this->LoginQuery->Process();
 }
 
@@ -709,7 +677,6 @@ void Login::ProcessSiteInfo()
             }
         }
         this->processedSiteinfo = true;
-        this->qSiteInfo->DecRef();
         this->qSiteInfo = nullptr;
         this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO,LoadingForm_Icon_Success);
     }
@@ -905,12 +872,7 @@ void Login::OnTimerTick()
 void Login::on_pushButton_clicked()
 {
     this->Disable();
-    if(this->LoginQuery != nullptr)
-    {
-        this->LoginQuery->DecRef();
-    }
     this->LoginQuery = new ApiQuery(ActionQuery);
-    this->LoginQuery->IncRef();
     this->_Status = Refreshing;
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     this->timer->start(200);

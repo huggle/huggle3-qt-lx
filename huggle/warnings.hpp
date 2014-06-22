@@ -20,6 +20,7 @@
 #include <QList>
 #include "apiquery.hpp"
 #include "message.hpp"
+#include "collectable_smartptr.hpp"
 #include "reportuser.hpp"
 #include "revertquery.hpp"
 #include "wikiedit.hpp"
@@ -54,11 +55,11 @@ namespace Huggle
             //! The message of this warning
             Message *Warning;
             //! The edit because of which this warning was sent
-            WikiEdit *RelatedEdit;
+            Collectable_SmartPtr<WikiEdit> RelatedEdit;
             //! Template used in this warning so that we can use the same template for new attempt if any is needed
             QString Template;
             int gcid;
-            ApiQuery *Query;
+            Collectable_SmartPtr<ApiQuery> Query;
     };
 
     //! This NS contains functions that generate warnings to users

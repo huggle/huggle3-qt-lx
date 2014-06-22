@@ -20,6 +20,7 @@
 #include <QDialog>
 #include <QThread>
 #include <QTimer>
+#include "collectable_smartptr.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
 #include "updateform.hpp"
@@ -58,7 +59,6 @@ namespace Huggle
     class Login : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit Login(QWidget *parent = 0);
             ~Login();
@@ -93,8 +93,6 @@ namespace Huggle
             void Reload();
             void DB();
             void Disable();
-            //! Remove all references to all queries that are used
-            void DeleteQr();
             void PressOK();
             void PerformLogin();
             void PerformLoginPart2();
@@ -120,12 +118,12 @@ namespace Huggle
             bool processedSiteinfo;
             bool processedLogin;
             //! This query is used to get a wl
-            WLQuery *wq = nullptr;
-            ApiQuery *LoginQuery = nullptr;
+            Collectable_SmartPtr<WLQuery> wq;
+            Collectable_SmartPtr<ApiQuery> LoginQuery;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
-            ApiQuery *qSiteInfo = nullptr;
-            ApiQuery *qCfg = nullptr;
+            Collectable_SmartPtr<ApiQuery> qSiteInfo;
+            Collectable_SmartPtr<ApiQuery> qCfg;
             //! The token obtained from login
             QString Token;
             //! for RetrievePrivateConfig, if we should try to load from

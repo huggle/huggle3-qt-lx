@@ -23,21 +23,18 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
-    this->query = nullptr;
     this->ui->pushButton->setText(_l("main-page-load"));
     this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
     this->ui->label->setText(_l("User"));
     this->ui->label_2->setText(_l("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->edit = nullptr;
 }
 
 HuggleTool::~HuggleTool()
 {
     delete this->tick;
     delete this->ui;
-    GC_DECREF(this->query);
 }
 
 void HuggleTool::SetTitle(QString title)
@@ -63,7 +60,6 @@ void HuggleTool::SetPage(WikiPage *page)
 
     this->ui->lineEdit_3->setText(page->PageName);
     this->tick->stop();
-    GC_DECREF(this->query);
     this->ui->pushButton->setEnabled(true);
     // change color to default
     this->ui->lineEdit_2->setStyleSheet("color: black;");
@@ -77,10 +73,8 @@ void HuggleTool::RenderEdit()
     this->ui->pushButton->setEnabled(false);
     this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
-    GC_DECREF(this->query);
     this->QueryPhase = 1;
     this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text());
-    this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
 }
@@ -116,7 +110,6 @@ void HuggleTool::FinishPage()
     d.setContent(this->query->Result->Data);
     if (this->QueryPhase == 3)
     {
-        GC_DECREF(this->query);
         QDomNodeList l = d.elementsByTagName("item");
         if (l.count() == 0)
         {
@@ -148,7 +141,6 @@ void HuggleTool::FinishPage()
             if (e.attributes().contains("missing"))
             {
                 // there is no such a page
-                GC_DECREF(this->query);
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
                 Huggle::Syslog::HuggleLogs->WarningLog(_l("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
@@ -196,12 +188,10 @@ void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
     this->ui->pushButton->setEnabled(false);
     this->ui->lineEdit_2->setStyleSheet("color: green;");
     // retrieve information about the user
-    GC_DECREF(this->query);
     this->query = new ApiQuery(ActionQuery);
     this->QueryPhase = 3;
     this->query->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->ui->lineEdit_2->text()) +
                               "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
-    this->query->IncRef();
     this->query->Process();
     this->tick->start(200);
 }

@@ -23,6 +23,7 @@
 #include <QNetworkAccessManager>
 #include "historyitem.hpp"
 #include "queryresult.hpp"
+#include "collectable_smartptr.hpp"
 #include "collectable.hpp"
 
 namespace Huggle
@@ -132,7 +133,7 @@ namespace Huggle
             //! when you are working with passwords in parameters
             bool HiddenQuery;
             //! History item
-            HistoryItem *HI = nullptr;
+            Collectable_SmartPtr<HistoryItem> HI;
             //! Dependency for query
 
             //! If you put anything in here, it either must be NULL or query

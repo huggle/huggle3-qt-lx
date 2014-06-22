@@ -1,13 +1,16 @@
+// IMPORTANT: this file has a different license than rest of huggle
+
 //This program is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
+//it under the terms of the GNU Lesser General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
 
 //This program is distributed in the hope that it will be useful,
 //but WITHOUT ANY WARRANTY; without even the implied warranty of
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//GNU Lesser General Public License for more details.
 
+// Copyright (c) Petr Bena 2014
 
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H
@@ -47,6 +50,9 @@ namespace Huggle
              * \return pointer to last cid
              */
             static unsigned long *GetLastCIDPtr();
+#ifdef HUGGLE_PROFILING
+            static unsigned long LockCt;
+#endif
 
             Collectable();
             virtual ~Collectable();
@@ -114,13 +120,13 @@ namespace Huggle
              * \return
              */
             unsigned long CollectableID();
+            bool HasSomeConsumers();
         private:
             static QString ConsumerIdToString(const int id);
             static QMutex *WideLock;
             static unsigned long LastCID;
 
             void SetManaged();
-            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;

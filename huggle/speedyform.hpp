@@ -19,6 +19,7 @@
 
 #include <QTimer>
 #include <QDialog>
+#include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
 #include "editquery.hpp"
@@ -54,13 +55,12 @@ namespace Huggle
             void on_pushButton_clicked();
 
         private:
-            void Remove();
             void Fail(QString reason);
             void processTags();
-            EditQuery *Template;
-            ApiQuery *qObtainText;
+            Collectable_SmartPtr<EditQuery> Template;
+            Collectable_SmartPtr<ApiQuery> qObtainText;
             QString base;
-            WikiEdit *edit;
+            Collectable_SmartPtr<WikiEdit> edit;
             QString warning;
             QTimer *timer;
             Ui::SpeedyForm *ui;

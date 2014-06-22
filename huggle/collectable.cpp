@@ -1,18 +1,26 @@
+// IMPORTANT: this file has a different license than rest of huggle
+
 //This program is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
+//it under the terms of the GNU Lesser General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
 
 //This program is distributed in the hope that it will be useful,
 //but WITHOUT ANY WARRANTY; without even the implied warranty of
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//GNU Lesser General Public License for more details.
+
+// Copyright (c) Petr Bena 2014
 
 #include "collectable.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
+
+#ifdef HUGGLE_PROFILING
+unsigned long Collectable::LockCt = 0;
+#endif
 
 unsigned long Collectable::LastCID = 0;
 QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
@@ -213,6 +221,9 @@ QString Collectable::DebugHgc()
 
 void Collectable::Lock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     // this is actually pretty lame check but better than nothing
     if (!this->_collectableLocked)
     {
@@ -223,6 +234,9 @@ void Collectable::Lock()
 
 void Collectable::Unlock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     if (this->_collectableLocked)
     {
         this->_collectableQL->unlock();

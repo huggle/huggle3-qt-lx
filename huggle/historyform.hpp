@@ -21,6 +21,7 @@
 #include <QDockWidget>
 #include "apiquery.hpp"
 #include "wikiedit.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {
@@ -53,11 +54,11 @@ namespace Huggle
             void MakeSelectedRowBold();
             bool RetrievingEdit;
             Ui::HistoryForm *ui;
-            WikiEdit* CurrentEdit;
-            ApiQuery *query = nullptr;
+            Collectable_SmartPtr<WikiEdit> CurrentEdit;
+            Collectable_SmartPtr<ApiQuery> query;
             int PreviouslySelectedRow;
             int SelectedRow;
-            WikiEdit* RetrievedEdit;
+            Collectable_SmartPtr<WikiEdit> RetrievedEdit;
             //! This timer is used to check a query status
             QTimer *t1 = nullptr;
     };

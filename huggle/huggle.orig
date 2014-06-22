@@ -126,7 +126,8 @@ SOURCES += main.cpp\
     gc_thread.cpp \
     huggleoption.cpp \
     projectconfiguration.cpp \
-    wikipagetagsform.cpp
+    wikipagetagsform.cpp \
+    collectable_smartptr.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -205,7 +206,8 @@ HEADERS  += mainwindow.hpp \
     projectconfiguration.hpp \
     userconfiguration.hpp \
     huggleoption.hpp \
-    wikipagetagsform.hpp
+    wikipagetagsform.hpp \
+    collectable_smartptr.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

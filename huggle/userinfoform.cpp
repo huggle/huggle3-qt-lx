@@ -22,8 +22,6 @@ using namespace Huggle;
 UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::UserinfoForm)
 {
     this->timer = new QTimer(this);
-    this->qContributions = nullptr;
-    this->edit = nullptr;
     this->User = nullptr;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
@@ -55,7 +53,6 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
 
 UserinfoForm::~UserinfoForm()
 {
-    GC_DECREF(this->edit);
     delete this->User;
     delete this->timer;
     delete this->ui;
@@ -66,16 +63,15 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     if (user == nullptr)
         throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
     if (this->User != nullptr)
-    {
         delete this->User;
-    }
+
     // we create a copy of this wiki user so that we ensure it doesn't get deleted meanwhile
     this->User = new WikiUser(user);
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Retrieve info");
-    GC_DECREF(this->edit);
-    GC_DECREF(this->qContributions);
+    this->edit = nullptr;
+    this->qContributions = nullptr;
     while (this->ui->tableWidget->rowCount() > 0)
     {
         this->ui->tableWidget->removeRow(0);
@@ -97,7 +93,6 @@ void UserinfoForm::Read()
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
                                        "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     QueryPool::HugglePool->AppendQuery(this->qContributions);
-    this->qContributions->IncRef();
     ui->pushButton->hide();
     this->qContributions->Process();
     this->timer->start(600);
@@ -115,7 +110,6 @@ void UserinfoForm::OnTick()
         if (this->edit->IsPostProcessed())
         {
             MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
-            this->edit->DecRef();
             this->edit = nullptr;
         }
         return;
@@ -129,7 +123,6 @@ void UserinfoForm::OnTick()
     {
         if (this->qContributions->Result->IsFailed())
         {
-            this->qContributions->DecRef();
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
             this->qContributions = nullptr;
             this->timer->stop();
@@ -196,7 +189,6 @@ void UserinfoForm::OnTick()
         } else
             Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
         this->ui->tableWidget->resizeRowsToContents();
-        this->qContributions->DecRef();
         this->qContributions = nullptr;
     }
     this->timer->stop();
@@ -235,7 +227,6 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->User = new WikiUser(this->User->Username);
     this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
     this->edit->RevID = revid;
-    this->edit->IncRef();
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(800);

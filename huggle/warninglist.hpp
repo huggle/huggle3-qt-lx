@@ -17,6 +17,7 @@
 #endif
 
 #include <QDialog>
+#include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui
@@ -39,7 +40,7 @@ namespace Huggle
             void on_pushButton_clicked();
 
         private:
-            WikiEdit *wikiEdit;
+            Collectable_SmartPtr<WikiEdit> wikiEdit;
             Ui::WarningList *ui;
     };
 }

@@ -21,6 +21,7 @@
 #include <QString>
 #include <QTimer>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui
@@ -58,8 +59,8 @@ namespace Huggle
             QTimer *t0;
             WikiUser *user;
             //! Query to exec api to block user
-            ApiQuery *qUser;
-            ApiQuery *qTokenApi;
+            Collectable_SmartPtr<ApiQuery> qUser;
+            Collectable_SmartPtr<ApiQuery> qTokenApi;
             QString BlockToken;
             int QueryPhase;
     };

@@ -20,6 +20,7 @@
 #include <QHash>
 #include <QMouseEvent>
 #include <QFrame>
+#include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
 #include "hugglequeue.hpp"
 
@@ -38,14 +39,14 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit HuggleQueueItemLabel(QWidget *parent = 0);
+            explicit HuggleQueueItemLabel(QWidget *parent = nullptr);
             ~HuggleQueueItemLabel();
             void SetName(QString name);
             QString GetName();
-            void Process(QLayoutItem *qi = NULL);
-            void Remove(QLayoutItem *qi = NULL);
+            void Process(QLayoutItem *qi = nullptr);
+            void Remove(QLayoutItem *qi = nullptr);
             HuggleQueue *ParentQueue;
-            WikiEdit *Page;
+            Collectable_SmartPtr<WikiEdit> Page;
 
         protected:
             void mousePressEvent(QMouseEvent *event);

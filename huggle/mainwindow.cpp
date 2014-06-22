@@ -314,7 +314,6 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (this->qNext != nullptr)
     {
         // we need to delete this because it's related to an old edit
-        this->qNext->DecRef();
         this->qNext = nullptr;
     }
     if (e->Page == nullptr || e->User == nullptr)
@@ -350,7 +349,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
             {
                 e->RemoveFromHistoryChain();
                 // now we need to get to last edit in chain
-                WikiEdit *latest = CurrentEdit;
+                WikiEdit *latest = this->CurrentEdit;
                 while (latest->Next != nullptr)
                     latest = latest->Next;
                 latest->Next = e;
@@ -768,13 +767,14 @@ QString MainWindow::WikiScriptURL()
     }
 }
 
-RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next, bool single_rv)
+Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next, bool single_rv)
 {
     bool rollback = true;
+    Collectable_SmartPtr<RevertQuery> ptr_;
     if (this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(_l("main-revert-null"));
-        return nullptr;
+        return ptr_;
     }
     if (this->CurrentEdit->NewPage)
     {
@@ -782,14 +782,14 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next, bool single
         mb.setWindowTitle("Can't revert this");
         mb.setText("This is a new page, so it can't be reverted, you can either tag it, or delete it.");
         mb.exec();
-        return nullptr;
+        return ptr_;
     }
     if (!this->CurrentEdit->IsPostProcessed())
     {
         // This shouldn't ever happen, there is no need to translate this message
         // becase it's nearly impossible to be ever displayed
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
-        return nullptr;
+        return ptr_;
     }
     if (this->CurrentEdit->RollbackToken.isEmpty())
     {
@@ -801,22 +801,21 @@ RevertQuery *MainWindow::Revert(QString summary, bool nd, bool next, bool single
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
-        RevertQuery *q = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback, nd);
-        if (single_rv) { q->SetLast(); }
+        ptr_ = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback);
+        if (single_rv) { ptr_->SetLast(); }
         if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
         {
-            q->Process();
+            ptr_->Process();
         } else
         {
-            q->Date = QDateTime::currentDateTime();
-            q->IncRef();
-            this->RevertStack.append(q);
+            ptr_->Date = QDateTime::currentDateTime();
+            ptr_->IncRef();
+            this->RevertStack.append(ptr_);
         }
         if (next)
-            this->DisplayNext(q);
-        return q;
+            this->DisplayNext(ptr_);
     }
-    return nullptr;
+    return ptr_;
 }
 
 bool MainWindow::PreflightCheck(WikiEdit *_e)
@@ -920,7 +919,7 @@ void MainWindow::DisplayWelcomeMessage()
 
 void MainWindow::FinishRestore()
 {
-    if (this->RestoreEdit == nullptr || this->RestoreQuery == NULL || !this->RestoreQuery->IsProcessed())
+    if (this->RestoreEdit == nullptr || this->RestoreQuery == nullptr || !this->RestoreQuery->IsProcessed())
         return;
     QDomDocument d;
     d.setContent(this->RestoreQuery->Result->Data);
@@ -931,11 +930,9 @@ void MainWindow::FinishRestore()
         QDomElement e = code.at(0).toElement();
         if (e.attributes().contains("missing"))
         {
-            this->RestoreQuery->DecRef();
-            this->RestoreQuery = nullptr;
+            this->RestoreQuery.Delete();
+            this->RestoreEdit.Delete();
             Huggle::Syslog::HuggleLogs->ErrorLog("Unable to restore the revision, because there is no text available for it");
-            this->RestoreEdit->DecRef();
-            this->RestoreEdit = nullptr;
             return;
         }
     }
@@ -946,27 +943,23 @@ void MainWindow::FinishRestore()
         QString text = e.text();
         if (text.isEmpty())
         {
-            this->RestoreQuery->DecRef();
-            this->RestoreQuery = nullptr;
+            this->RestoreQuery.Delete();
             Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
-            this->RestoreEdit->DecRef();
-            this->RestoreEdit = nullptr;
+            this->RestoreEdit.Delete();
             return;
         }
         QString sm = this->RestoreEdit->Page->Site->GetProjectConfig()->RestoreSummary;
         sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
         sm = sm.replace("$3", this->RestoreEdit_RevertReason);
-        WikiUtil::EditPage(this->RestoreEdit->Page, text, sm)->DecRef();
+        WikiUtil::EditPage(this->RestoreEdit->Page, text, sm);
     } else
     {
         HUGGLE_DEBUG1(this->RestoreQuery->Result->Data);
         Syslog::HuggleLogs->ErrorLog("Unable to restore the revision because wiki provided no data for selected version");
     }
-    this->RestoreQuery->DecRef();
-    this->RestoreQuery = nullptr;
-    this->RestoreEdit->DecRef();
-    this->RestoreEdit = nullptr;
+    this->RestoreEdit.Delete();
+    this->RestoreQuery.Delete();
 }
 
 void MainWindow::TriggerWarn()
@@ -1124,7 +1117,6 @@ void MainWindow::OnMainTimerTick()
     {
         this->tb->SetPage(this->OnNext_EvPage);
         this->tb->RenderEdit();
-        this->qNext->DecRef();
         delete this->OnNext_EvPage;
         this->OnNext_EvPage = nullptr;
         this->qNext = nullptr;
@@ -1170,7 +1162,6 @@ void MainWindow::OnTimerTick0()
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->fWaiting->Status(60, _l("updating-wl"));
             this->wq = new WLQuery();
-            this->wq->IncRef();
             this->wq->Type = WLQueryType_WriteWL;
             this->wq->Process();
             return;
@@ -1183,7 +1174,6 @@ void MainWindow::OnTimerTick0()
                 return;
             }
             // we finished writing the wl
-            this->wq->DecRef();
             this->fWaiting->Status(90, _l("updating-uc"));
             this->wq = nullptr;
             this->Shutdown = ShutdownOpUpdatingConf;
@@ -1197,9 +1187,8 @@ void MainWindow::OnTimerTick0()
     } else
     {
         // we need to check if config was written
-        if (!this->eq->IsProcessed())
+        if (this->eq != nullptr && !this->eq->IsProcessed())
             return;
-        this->eq->DecRef();
         this->eq = nullptr;
         this->wlt->stop();
         this->GeneralTimer->stop();
@@ -1237,7 +1226,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 {
     if (!this->EditingChecks())
         return;
-    RevertQuery *result = this->Revert("", true, false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
     {
         this->Warn("warning", result);
@@ -1258,7 +1247,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
         Generic::DeveloperError();
         return;
     }
-    RevertQuery *result = this->Revert("", true, false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
     {
         this->Warn("warning", result);
@@ -1318,7 +1307,7 @@ void MainWindow::CustomRevertWarn()
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
     QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
     rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
-    RevertQuery *result = this->Revert(rs, true, false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert(rs, false);
     if (result != nullptr)
     {
         this->Warn(k, result);
@@ -1651,11 +1640,8 @@ void MainWindow::DisplayNext(Query *q)
             }
             if (this->OnNext_EvPage != nullptr)
                 delete this->OnNext_EvPage;
-            if (this->qNext != nullptr)
-                this->qNext->DecRef();
             this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
             this->qNext = q;
-            this->qNext->IncRef();
             return;
     }
 }
@@ -1884,7 +1870,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig->ClearTalkPageTemp
                        + "\n" + Configuration::HuggleConfiguration->ProjectConfig->WelcomeAnon + " ~~~~",
-                       "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle)->DecRef();
+                       "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle);
     delete page;
 }
 
@@ -1903,18 +1889,16 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 {
     if (!this->EditingChecks())
         return;
-    RevertQuery *result = this->Revert("", false, false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
-    {
         this->Warn("warning", result);
-    }
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
     if (!this->EditingChecks())
         return;
-    this->Revert("", true, false);
+    this->Revert("", false);
 }
 
 void MainWindow::on_actionWelcome_user_2_triggered()
@@ -2149,13 +2133,11 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     if (!ok)
         return;
     this->RestoreQuery = new ApiQuery();
-    this->RestoreQuery->IncRef();
     this->RestoreQuery->Parameters = "prop=revisions&revids=" +
             QString::number(this->CurrentEdit->RevID) + "&rvprop=" +
             QUrl::toPercentEncoding("ids|content");
     this->RestoreQuery->SetAction(ActionQuery);
     this->RestoreQuery->Process();
-    this->CurrentEdit->IncRef();
     this->RestoreEdit = this->CurrentEdit;
     this->RestoreEdit_RevertReason = reason;
     Syslog::HuggleLogs->Log(_l("main-log1", this->CurrentEdit->Page->PageName));
@@ -2201,7 +2183,6 @@ void MainWindow::TimerCheckTPOnTick()
         this->qTalkPage = new ApiQuery();
         this->qTalkPage->SetAction(ActionQuery);
         this->qTalkPage->Parameters = "meta=userinfo&uiprop=hasmsg";
-        this->qTalkPage->IncRef();
         this->qTalkPage->Process();
         return;
     } else
@@ -2225,7 +2206,6 @@ void MainWindow::TimerCheckTPOnTick()
                 Configuration::HuggleConfiguration->NewMessage = false;
             }
         }
-        this->qTalkPage->DecRef();
         this->qTalkPage = nullptr;
     }
 }
@@ -2378,7 +2358,7 @@ void Huggle::MainWindow::on_actionStop_provider_triggered()
 void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
 {
     if (this->EditingChecks())
-        this->Revert("", false, true, true);
+        this->Revert("", true, true);
 }
 
 void Huggle::MainWindow::on_actionTag_2_triggered()

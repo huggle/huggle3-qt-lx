@@ -24,7 +24,6 @@ HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
     this->Buffer = new QList<WikiEdit*>();
     this->Refreshing = false;
-    this->qReload = nullptr;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
     this->LatestTime = QDateTime::currentDateTime().addDays(-1);
     this->LastRefresh = QDateTime::currentDateTime().addDays(-1);
@@ -38,10 +37,6 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
         this->Buffer->removeAt(0);
     }
     delete this->Buffer;
-    if (this->qReload != nullptr)
-    {
-        this->qReload->DecRef();
-    }
 }
 
 bool HuggleFeedProviderWiki::Start()
@@ -88,13 +83,11 @@ void HuggleFeedProviderWiki::Refresh()
         {
             // failed to obtain the data
             Huggle::Syslog::HuggleLogs->Log(_l("rc-error", this->qReload->Result->ErrorMessage));
-            this->qReload->DecRef();
             this->qReload = nullptr;
             this->Refreshing = false;
             return;
         }
         this->Process(qReload->Result->Data);
-        this->qReload->DecRef();
         this->qReload = nullptr;
         this->Refreshing = false;
         return;
@@ -104,7 +97,6 @@ void HuggleFeedProviderWiki::Refresh()
     this->qReload->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
                                 "&rclimit=" + QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC);
     this->qReload->Target = "Recent changes refresh";
-    this->qReload->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qReload);
     this->qReload->Process();
 }
