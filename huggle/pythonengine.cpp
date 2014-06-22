@@ -260,6 +260,8 @@ PyObject *PythonScript::Hook(QString function)
         ptr_python_ = PyObject_GetAttrString(this->object, function.toUtf8().data());
         if (ptr_python_ != NULL && !PyCallable_Check(ptr_python_))
         {
+            if (Configuration::HuggleConfiguration->Verbosity > 0)
+                PyErr_Print();
             // we loaded the symbol but it's not callable function
             // so we remove it
             Py_DECREF(ptr_python_);
@@ -269,6 +271,8 @@ PyObject *PythonScript::Hook(QString function)
         } else if (ptr_python_ == NULL)
         {
             Syslog::HuggleLogs->DebugLog("There is no override for " + function);
+            if (Configuration::HuggleConfiguration->Verbosity > 0)
+                PyErr_Print();
         }
     }
     return ptr_python_;
@@ -288,10 +292,14 @@ QString PythonScript::CallInternal(QString function)
             Py_DECREF(ptr_python_);
             Syslog::HuggleLogs->WarningLog("Function " + function + "@" + this->Name
                                            + " isn't callable, unable to retrieve");
+            if (Configuration::HuggleConfiguration->Verbosity > 0)
+                PyErr_Print();
             ptr_python_ = NULL;
         } else if (ptr_python_ == NULL)
         {
             Syslog::HuggleLogs->DebugLog("There is no override for " + function);
+            if (Configuration::HuggleConfiguration->Verbosity > 0)
+                PyErr_Print();
         }
     }
     if (ptr_python_ == NULL)
@@ -303,6 +311,8 @@ QString PythonScript::CallInternal(QString function)
     Py_DECREF(value);
     if (text_ == NULL || !PyBytes_Check(text_))
     {
+        if (Configuration::HuggleConfiguration->Verbosity > 0)
+            PyErr_Print();
         Syslog::HuggleLogs->DebugLog("Python::$" + function + "@" + this->Name + ": return value must be of a string type");
         return "<unknown>";
     } else
@@ -356,6 +366,7 @@ bool PythonScript::Init()
         this->SourceCode = QString(file->readAll());
         file->close();
         delete file;
+        HUGGLE_DEBUG("Importing module " + this->ModuleID, 4);
         PyObject *name = PyUnicode_FromString(this->ModuleID.toUtf8().data());
         if (name == NULL)
         {
@@ -367,6 +378,7 @@ bool PythonScript::Init()
         Py_DECREF(name);
         if (this->object == NULL)
         {
+            HUGGLE_DEBUG("Failed to load module " + this->ModuleID, 2);
             PyErr_Print();
             return false;
         }
