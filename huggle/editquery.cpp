@@ -32,7 +32,7 @@ EditQuery::EditQuery()
 
 EditQuery::~EditQuery()
 {
-    GC_DECREF(this->HI);
+    this->HI.Delete();
 }
 
 void EditQuery::Process()
@@ -150,7 +150,6 @@ bool EditQuery::IsProcessed()
                         item->Result = _l("successful");
                         item->Type = HistoryEdit;
                         item->Target = this->Page;
-                        item->IncRef();
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }

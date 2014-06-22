@@ -18,6 +18,7 @@
 
 #include <QString>
 #include "history.hpp"
+#include "collectable_smartptr.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"
 
@@ -61,7 +62,7 @@ namespace Huggle
             bool IsFailed();
             MessageStatus _Status;
             //! If this dependency is not a NULL then a message is sent after it is Processed (see Query::Processed())
-            Query *Dependency;
+            Collectable_SmartPtr<Query> Dependency;
             //! Title
             QString Title;
             //! If edit will be created in new section
@@ -110,8 +111,8 @@ namespace Huggle
             void ProcessSend();
             void ProcessTalk();
             QString Append(QString text, QString OriginalText, QString Label);
-            ApiQuery *qToken;
-            ApiQuery *query;
+            Collectable_SmartPtr<ApiQuery> qToken;
+            Collectable_SmartPtr<ApiQuery> query;
             //! This is a text of talk page that was present before we change it
             QString Page;
             bool PreviousTalkPageRetrieved;

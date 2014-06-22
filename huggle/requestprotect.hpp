@@ -8,7 +8,6 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-
 #ifndef REQUESTPROTECT_H
 #define REQUESTPROTECT_H
 
@@ -24,6 +23,7 @@
 #include "wikipage.hpp"
 #include "apiquery.hpp"
 #include "editquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {
@@ -50,13 +50,12 @@ namespace Huggle
         private:
             QString ProtectionType();
             void Fail(QString message);
-            void DelRef();
             QString Timestamp;
             WikiPage *page;
             QTimer *tm;
             Ui::RequestProtect *ui;
-            ApiQuery *qRFPPage;
-            EditQuery *qEditRFP;
+            Collectable_SmartPtr<ApiQuery> qRFPPage;
+            Collectable_SmartPtr<EditQuery> qEditRFP;
     };
 }
 

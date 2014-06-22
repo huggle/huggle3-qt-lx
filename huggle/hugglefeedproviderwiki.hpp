@@ -22,6 +22,7 @@
 #include <QStringList>
 #include <QString>
 #include <QDateTime>
+#include "collectable_smartptr.hpp"
 #include "hugglefeed.hpp"
 #include "apiquery.hpp"
 #include "wikiedit.hpp"
@@ -56,7 +57,7 @@ namespace Huggle
             bool Paused = false;
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
-            ApiQuery *qReload;
+            Collectable_SmartPtr<ApiQuery> qReload;
             QDateTime LastRefresh;
             QDateTime LatestTime;
     };

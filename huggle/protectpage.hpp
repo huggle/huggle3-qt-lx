@@ -19,6 +19,7 @@
 #include <QDialog>
 #include <QString>
 #include <QtXml>
+#include "collectable_smartptr.hpp"
 #include <QTimer>
 #include "apiquery.hpp"
 #include "wikipage.hpp"
@@ -55,13 +56,12 @@ namespace Huggle
             void Failed(QString reason);
             void Protect();
             void getTokenToProtect();
-            void DelRefs();
             void checkTokenToProtect();
             QString ProtectToken;
             //! Pointer to get first token
-            ApiQuery *qToken;
+            Collectable_SmartPtr<ApiQuery> qToken;
             //! Pointer for	protection
-            ApiQuery *qProtection;
+            Collectable_SmartPtr<ApiQuery> qProtection;
             Ui::ProtectPage *ui;
             //! Page that is about to be protected in this form
             WikiPage *PageToProtect;

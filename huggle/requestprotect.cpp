@@ -22,8 +22,6 @@ using namespace Huggle;
 
 RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : QDialog(parent), ui(new Ui::RequestProtect)
 {
-    this->qEditRFP = nullptr;
-    this->qRFPPage = nullptr;
     this->page = new Huggle::WikiPage(wikiPage);
     this->ui->setupUi(this);
     this->setWindowTitle(_l("reqprotection-title", this->page->PageName));
@@ -35,7 +33,6 @@ RequestProtect::~RequestProtect()
 {
     delete this->tm;
     delete this->page;
-    this->DelRef();
     delete this->ui;
 }
 
@@ -89,7 +86,6 @@ void RequestProtect::Tick()
         else
             PageText = report + "\n\n" + PageText;
         // we no longer need the query we used
-        this->qRFPPage->DecRef();
         this->qRFPPage = nullptr;
         QString summary_ = Configuration::HuggleConfiguration->ProjectConfig->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
@@ -123,9 +119,7 @@ void RequestProtect::Tick()
 
 void Huggle::RequestProtect::on_pushButton_clicked()
 {
-    this->DelRef();
     this->qRFPPage = new ApiQuery(ActionQuery);
-    this->qRFPPage->IncRef();
     // if this wiki has the requests in separate section, get it, if not, we get a whole page
     if (Configuration::HuggleConfiguration->ProjectConfig->RFPP_Section == 0)
     {
@@ -160,16 +154,11 @@ void RequestProtect::Fail(QString message)
     mb.setText(message);
     mb.exec();
     // delete the queries and stop
-    this->DelRef();
+    this->qEditRFP.Delete();
+    this->qRFPPage.Delete();
     this->tm->stop();
     this->ui->pushButton->setEnabled(true);
     this->ui->pushButton->setText("Request");
-}
-
-void RequestProtect::DelRef()
-{
-    GC_DECREF(this->qEditRFP);
-    GC_DECREF(this->qRFPPage);
 }
 
 void Huggle::RequestProtect::on_pushButton_2_clicked()

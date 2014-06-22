@@ -43,10 +43,9 @@ namespace Huggle
          * \param summary Summary to use if this is empty the default revert summary is used
          * \param minor If revert should be considered as minor edit
          * \param rollback If rollback feature should be used
-         * \param keep Whether the query produced by this function should not be automatically deleted
          * \return Pointer to api query that executes this revert
          */
-        RevertQuery *RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true, bool keep = false);
+        Collectable_SmartPtr<RevertQuery> RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
         /*!
          * \brief MessageUser Message user
          *
@@ -81,10 +80,10 @@ namespace Huggle
          * \param section
          * \return New instance of edit query
          */
-        EditQuery *EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                            QString BaseTimestamp = "", unsigned int section = 0);
-        EditQuery *EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle",
-                            bool minor = false, QString BaseTimestamp = "");
+        Collectable_SmartPtr<EditQuery> EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
+                                                 QString BaseTimestamp = "", unsigned int section = 0);
+        Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle",
+                                                 bool minor = false, QString BaseTimestamp = "");
     }
 }
 

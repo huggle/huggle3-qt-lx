@@ -24,6 +24,7 @@
 #include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 #include "wikiuser.hpp"
 #include "wikipage.hpp"
 
@@ -153,11 +154,11 @@ namespace Huggle
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
-            ApiQuery* qTalkpage;
+            Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
-            ApiQuery* qUser;
-            ApiQuery* qDifference;
-            ApiQuery* qText;
+            Collectable_SmartPtr<ApiQuery> qUser;
+            Collectable_SmartPtr<ApiQuery> qDifference;
+            Collectable_SmartPtr<ApiQuery> qText;
     };
 
     inline QDateTime WikiEdit::GetUnknownEditTime()

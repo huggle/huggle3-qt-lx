@@ -79,6 +79,8 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 static void Finish(Query *result)
 {
     ((WikiPageTagsForm*)result->CallbackResult)->close();
+
+    result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -88,6 +90,7 @@ static void Fail(Query *result)
     mb.setWindowTitle("Failed to tag page");
     mb.setText("Unable to tag the page, error was: " + result->Result->ErrorMessage);
     mb.exec();
+    result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -126,12 +129,15 @@ static void FinishRead(Query *result)
         }
         xx++;
     }
-    EditQuery *e = WikiUtil::EditPage(&form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
+    Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(&form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
                                         (Configuration::HuggleConfiguration->ProjectConfig->TaggingSummary),
                                       true, t_);
     e->FailureCallback = (Callback)Fail;
     e->callback = (Callback)Finish;
     e->CallbackResult = (void*)form;
+    // this is just making sure that this edit will not get deleted by GC, it's removed in callback function
+    // it probably isn't needed
+    e->IncRef();
     QueryPool::HugglePool->AppendQuery(e);
 }
 

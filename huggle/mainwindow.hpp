@@ -143,12 +143,11 @@ namespace Huggle
             /*!
              * \brief Revert perform a revert of an edit
              * \param summary Summary that you want to use for this revert
-             * \param nd
              * \param next
              * \param single_rv If you want to revert only one revision
              * \return
              */
-            RevertQuery *Revert(QString summary = "", bool nd = false, bool next = true, bool single_rv = false);
+            Collectable_SmartPtr<RevertQuery> Revert(QString summary = "", bool next = true, bool single_rv = false);
             //! Warn a current user
             bool Warn(QString WarningType, RevertQuery *dependency);
             QString GetSummaryKey(QString item);
@@ -194,7 +193,7 @@ namespace Huggle
             //! Pointer to about dialog (see aboutform.h)
             AboutForm *aboutForm = nullptr;
             //! Pointer to current edit, if it's NULL there is no edit being displayed
-            WikiEdit *CurrentEdit = nullptr;
+            Collectable_SmartPtr<WikiEdit> CurrentEdit;
             SpeedyForm* fSpeedyDelete = nullptr;
             //! Pointer to processes
             ProcessList *Queries;
@@ -208,7 +207,7 @@ namespace Huggle
             //! Pointer to query that is used to store user config on exit of huggle
             Collectable_SmartPtr<EditQuery> eq;
             //! This query is used to refresh white list
-            WLQuery *wq = nullptr;
+            Collectable_SmartPtr<WLQuery> wq;
             //! Warning menu
             QMenu *WarnMenu = nullptr;
             //! Revert menu
@@ -231,11 +230,11 @@ namespace Huggle
             int LastTPRevID;
             //! This is a query for rollback of current edit which we need to keep in case
             //! that user wants to display their own revert instead of next page
-            Query *qNext = nullptr;
+            Collectable_SmartPtr<Query> qNext;
             //! Timer that is used to check if there are new messages on talk page
             QTimer *tCheck;
             //! Query that is used to check if talk page contains new messages
-            ApiQuery *qTalkPage = nullptr;
+            Collectable_SmartPtr<ApiQuery> qTalkPage;
         private slots:
             void on_actionExit_triggered();
             void on_actionPreferences_triggered();
@@ -373,8 +372,8 @@ namespace Huggle
             RequestProtect *fRFProtection = nullptr;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
-            ApiQuery *RestoreQuery = nullptr;
-            WikiEdit *RestoreEdit = nullptr;
+            Collectable_SmartPtr<ApiQuery> RestoreQuery;
+            Collectable_SmartPtr<WikiEdit> RestoreEdit;
             QList<RevertQuery*> RevertStack;
             //! This is a page that is going to be displayed if users request their latest action to be
             //! reviewed when it's done (for example when they rollback an edit and they want to

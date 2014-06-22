@@ -19,8 +19,9 @@
 
 #include <QDockWidget>
 #include <QString>
-#include "wikiedit.hpp"
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
+#include "wikiedit.hpp"
 #include "wikiuser.hpp"
 
 namespace Ui
@@ -55,9 +56,10 @@ namespace Huggle
         private:
             Ui::UserinfoForm *ui;
             WikiUser *User;
-            ApiQuery *qContributions;
+            Collectable_SmartPtr<WikiEdit> edit;
+            Collectable_SmartPtr<ApiQuery> qContributions;
             QTimer *timer;
-            WikiEdit *edit;
+
     };
 }
 

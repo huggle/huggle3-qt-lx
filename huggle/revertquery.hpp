@@ -20,6 +20,7 @@
 #include <QString>
 #include <QDateTime>
 #include <QTimer>
+#include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
@@ -71,12 +72,12 @@ namespace Huggle
             void Exit();
             //! Whether software rollback should be used instead of regular rollback
             bool UsingSR = false;
-            ApiQuery *qPreflight = nullptr;
-            ApiQuery *qRevert = nullptr;
-            ApiQuery *qHistoryInfo = nullptr;
-            ApiQuery *qRetrieve = nullptr;
-            EditQuery *eqSoftwareRollback = nullptr;
-            WikiEdit *edit;
+            Collectable_SmartPtr<ApiQuery> qPreflight;
+            Collectable_SmartPtr<ApiQuery> qRevert;
+            Collectable_SmartPtr<ApiQuery> qHistoryInfo;
+            Collectable_SmartPtr<ApiQuery> qRetrieve;
+            Collectable_SmartPtr<EditQuery> eqSoftwareRollback;
+            Collectable_SmartPtr<WikiEdit> edit;
             QTimer *timer = nullptr;
             //! Revert only and only last edit
             bool OneEditOnly = false;

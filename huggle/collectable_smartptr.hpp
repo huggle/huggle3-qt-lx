@@ -34,7 +34,10 @@ namespace Huggle
             Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
             Collectable_SmartPtr<T>(T *pt);
             virtual ~Collectable_SmartPtr();
+            //! Change a bare pointer to other pointer
             virtual void SetPtr(T *pt);
+            //! Remove a bare pointer if there is some
+            void Delete();
             void operator=(T* _ptr)
             {
                 this->SetPtr(_ptr);
@@ -56,6 +59,12 @@ namespace Huggle
             void FreeAcqRsrPtr();
             T *ptr;
     };
+
+    template <class H>
+    inline void Collectable_SmartPtr<H>::Delete()
+    {
+        this->FreeAcqRsrPtr();
+    }
 
     template <class H>
     bool operator==(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)

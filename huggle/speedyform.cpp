@@ -23,9 +23,6 @@ using namespace Huggle;
 
 SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm)
 {
-    this->edit = nullptr;
-    this->Template = nullptr;
-    this->qObtainText = nullptr;
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
@@ -49,7 +46,6 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
 SpeedyForm::~SpeedyForm()
 {
     delete this->ui;
-    this->Remove();
 }
 
 void SpeedyForm::on_pushButton_clicked()
@@ -77,7 +73,6 @@ void SpeedyForm::on_pushButton_clicked()
     // first we need to retrieve the content of page if we don't have it already
     this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page->PageName);
     this->timer->start(200);
-    this->qObtainText->IncRef();
     this->qObtainText->Process();
 }
 
@@ -89,19 +84,12 @@ void Finalize(Query *result)
     form->close();
 }
 
-void SpeedyForm::Remove()
-{
-    GC_DECREF(this->qObtainText);
-    GC_DECREF(this->Template);
-}
-
 void SpeedyForm::Fail(QString reason)
 {
     QMessageBox mb;
     mb.setWindowTitle("Error");
     mb.setText(reason);
     mb.exec();
-    this->Remove();
     this->timer->stop();
 }
 
@@ -161,7 +149,6 @@ void SpeedyForm::OnTick()
             this->Fail(this->Text);
             return;
         }
-        this->qObtainText->DecRef();
         this->qObtainText = nullptr;
         this->processTags();
         return;
@@ -175,8 +162,7 @@ void SpeedyForm::OnTick()
                 this->Fail(_l("speedy-fail", this->Template->Result->ErrorMessage));
                 return;
             }
-            this->Template->DecRef();
-            this->Template = NULL;
+            this->Template = nullptr;
             if (this->ui->checkBox->isChecked())
             {
                 QString summary = Configuration::HuggleConfiguration->ProjectConfig->SpeedyWarningSummary;
