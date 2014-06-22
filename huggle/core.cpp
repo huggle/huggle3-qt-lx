@@ -408,6 +408,9 @@ void Core::Shutdown()
         delete this->Main;
         this->Main = nullptr;
     }
+    delete this->HGQP;
+    this->HGQP = nullptr;
+    QueryPool::HugglePool = nullptr;
     // now stop the garbage collector and wait for it to finish
     GC::gc->Stop();
     Syslog::HuggleLogs->Log("SHUTDOWN: waiting for garbage collector to finish");
@@ -425,7 +428,6 @@ void Core::Shutdown()
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
-    delete this->HGQP;
     GC::gc = nullptr;
     this->gc = nullptr;
     delete Configuration::HuggleConfiguration;
