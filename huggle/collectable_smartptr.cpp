@@ -29,18 +29,16 @@ Collectable_SmartPtr<T>::Collectable_SmartPtr()
 }
 
 template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr(Collectable_SmartPtr<T> *smart_ptr)
+Collectable_SmartPtr<T>::Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr)
 {
-    if (!smart_ptr)
-        return;
+    // we must not just copy the bare pointer but also increment the reference count
     if (smart_ptr->ptr)
         smart_ptr->ptr->IncRef();
-
     this->ptr = smart_ptr->ptr;
 }
 
 template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr(const Collectable_SmartPtr<T> &sp_)
+Collectable_SmartPtr<T>::Collectable_SmartPtr(const Collectable_SmartPtr &sp_)
 {
     if (sp_.ptr)
         sp_.ptr->IncRef();
@@ -51,8 +49,10 @@ template <class T>
 Collectable_SmartPtr<T>::Collectable_SmartPtr(T *pt)
 {
     if (!pt)
+    {
+        this->ptr = nullptr;
         return;
-
+    }
     this->ptr = pt;
     this->ptr->IncRef();
 }
@@ -74,30 +74,6 @@ void Collectable_SmartPtr<T>::SetPtr(T *pt)
     }
 }
 
-template <class H>
-bool operator==(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)
-{
-    return smart_ptr.GetPtr() == smart_ptx.GetPtr();
-}
-
-template <class H>
-bool operator!=(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)
-{
-    return smart_ptr.GetPtr() != smart_ptx.GetPtr();
-}
-
-template <class T>
-Collectable_SmartPtr<T> Collectable_SmartPtr<T>::operator=(T *smart_ptr)
-{
-    return Collectable_SmartPtr(smart_ptr);
-}
-
-template <class T>
-Collectable_SmartPtr<T> Collectable_SmartPtr<T>::operator=(const Collectable_SmartPtr<T> &smart_ptr)
-{
-    return Collectable_SmartPtr<T>(smart_ptr);
-}
-
 template <class T>
 T *Collectable_SmartPtr<T>::operator->()
 {
@@ -117,7 +93,7 @@ Huggle::Collectable_SmartPtr<T>::operator void *() const
 }
 
 template <class T>
-Huggle::Collectable_SmartPtr<T>::operator T *() const
+Huggle::Collectable_SmartPtr<T>::operator T*() const
 {
     return this->ptr;
 }

@@ -24,21 +24,22 @@ namespace Huggle
     {
         public:
             Collectable_SmartPtr();
-            Collectable_SmartPtr(Collectable_SmartPtr<T> *smart_ptr);
-            Collectable_SmartPtr(const Collectable_SmartPtr<T> &sp_);
-            Collectable_SmartPtr(T *pt);
+            Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
+            Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
+            Collectable_SmartPtr<T>(T *pt);
             virtual ~Collectable_SmartPtr();
             virtual void SetPtr(T *pt);
-            template <class H>
-            friend bool operator==(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx);
-            template <class H>
-            friend bool operator!=(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx);
-            Collectable_SmartPtr<T> operator=(T *smart_ptr);
-            Collectable_SmartPtr<T> operator=(const Collectable_SmartPtr<T> &smart_ptr);
-            template <class H>
-            friend bool operator!=(Collectable_SmartPtr<H> &smart_ptr, std::nullptr_t ptr);
-            template <class H>
-            friend bool operator==(Collectable_SmartPtr<H> &smart_ptr, std::nullptr_t ptr);
+            void operator=(T* _ptr)
+            {
+                this->SetPtr(_ptr);
+            }
+            Collectable_SmartPtr& operator=(const Collectable_SmartPtr &smart_ptr)
+            {
+                if (smart_ptr.ptr != nullptr)
+                    smart_ptr.ptr->IncRef();
+                this->ptr = smart_ptr.ptr;
+                return *this;
+            }
             operator void* () const;
             operator T* () const;
             T* operator->();
@@ -50,15 +51,27 @@ namespace Huggle
     };
 
     template <class H>
+    bool operator==(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)
+    {
+        return smart_ptr.GetPtr() == smart_ptx.GetPtr();
+    }
+
+    template <class H>
+    bool operator!=(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)
+    {
+        return smart_ptr.GetPtr() != smart_ptx.GetPtr();
+    }
+
+    template <class H>
     bool operator==(Collectable_SmartPtr<H> &smart_ptr, std::nullptr_t ptr)
     {
-        return ((void*)smart_ptr.GetPtr() == ptr);
+        return smart_ptr.GetPtr() == ptr;
     }
 
     template <class H>
     bool operator!=(Collectable_SmartPtr<H> &smart_ptr, std::nullptr_t ptr)
     {
-        return ((void*)smart_ptr.GetPtr() != ptr);
+        return smart_ptr.GetPtr() != ptr;
     }
 }
 
