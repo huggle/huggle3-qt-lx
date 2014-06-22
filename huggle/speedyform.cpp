@@ -86,7 +86,9 @@ void Finalize(Query *result)
 
 void SpeedyForm::Fail(QString reason)
 {
+    this->qObtainText.Delete();
     QMessageBox mb;
+    this->Template.Delete();
     mb.setWindowTitle("Error");
     mb.setText(reason);
     mb.exec();

@@ -144,6 +144,9 @@ void Login::Kill()
         delete this->loadingForm;
         this->loadingForm = nullptr;
     }
+    this->qCfg.Delete();
+    this->qSiteInfo.Delete();
+    this->LoginQuery.Delete();
 }
 
 void Login::Reset()

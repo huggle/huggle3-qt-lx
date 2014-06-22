@@ -203,6 +203,10 @@ void DeleteForm::Failed(QString Reason)
     this->tDelete->stop();
     delete this->tDelete;
     this->tDelete = nullptr;
+    this->qDelete.Delete();
+    this->qTalk.Delete();
+    this->qToken.Delete();
+    this->qTokenOfTalkPage.Delete();
     this->ui->pushButton->setEnabled(true);
 }
 

@@ -62,6 +62,7 @@ void HuggleTool::SetPage(WikiPage *page)
     this->tick->stop();
     this->ui->pushButton->setEnabled(true);
     // change color to default
+    this->query.Delete();
     this->ui->lineEdit_2->setStyleSheet("color: black;");
     this->ui->lineEdit_3->setStyleSheet("color: black;");
 }
@@ -144,7 +145,8 @@ void HuggleTool::FinishPage()
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
                 Huggle::Syslog::HuggleLogs->WarningLog(_l("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
-                this->edit = nullptr;
+                this->edit.Delete();
+                this->query.Delete();
                 return;
             }
             if (e.attributes().contains("user"))

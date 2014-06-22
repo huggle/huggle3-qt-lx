@@ -172,6 +172,10 @@ void History::Tick()
         Syslog::HuggleLogs->Log("Successfully undone edit to " + this->RevertingItem->Target);
         int position = this->ui->tableWidget->rowCount() - this->RevertingItem->ID;
         this->ui->tableWidget->setItem(position, 3, new QTableWidgetItem("Undone"));
+        // we need to delete all queries now
+        this->qSelf.Delete();
+        // if we don't delete this it will stop working
+        this->qTalk.Delete();
         // let's see if there is any dep and if so, let's undo it as well
         if (this->RevertingItem->UndoDependency)
         {
@@ -279,6 +283,8 @@ void Huggle::History::on_tableWidget_clicked(const QModelIndex &index)
 
 void History::Fail()
 {
+    this->qTalk.Delete();
+    this->qSelf.Delete();
     this->RevertingItem = nullptr;
     this->timerRetrievePageInformation->stop();
 }

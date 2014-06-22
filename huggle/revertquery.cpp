@@ -705,5 +705,10 @@ void RevertQuery::Exit()
         delete this->timer;
         this->timer = nullptr;
     }
+    this->eqSoftwareRollback.Delete();
     this->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
+    this->qHistoryInfo.Delete();
+    this->qRevert.Delete();
+    this->qPreflight.Delete();
+    this->qRetrieve.Delete();
 }

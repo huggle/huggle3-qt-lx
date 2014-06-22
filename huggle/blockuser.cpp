@@ -205,6 +205,9 @@ void BlockUser::Failed(QString reason)
     delete this->t0;
     this->t0 = nullptr;
     this->ui->pushButton->setEnabled(true);
+    // remove the pointers
+    this->qTokenApi.Delete();
+    this->qUser.Delete();
 }
 
 void BlockUser::on_pushButton_clicked()

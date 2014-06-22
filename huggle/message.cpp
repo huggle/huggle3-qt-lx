@@ -257,6 +257,7 @@ void Message::Finish()
             Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + this->user->Username + " please check logs");
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
+        this->Dependency.Delete();
         this->_Status = Huggle::MessageStatus_Done;
         this->query = nullptr;
     }
