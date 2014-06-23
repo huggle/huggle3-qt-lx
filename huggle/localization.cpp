@@ -98,7 +98,7 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
             continue;
         }
         QString n_ = item.attribute("name");
-        if (n_ == "__isrtl__")
+        if (n_ == "isrtl")
         {
             l->IsRTL = Configuration::SafeBool(item.text());
             continue;
