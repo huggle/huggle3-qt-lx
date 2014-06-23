@@ -77,6 +77,7 @@ namespace Huggle
                 bool LoadScript(QString path);
                 void Hook_MainWindowIsLoaded();
                 QList<PythonScript*> ScriptsList();
+                unsigned int Count();
             private:
                 QList<PythonScript*> Scripts;
         };

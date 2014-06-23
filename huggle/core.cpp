@@ -353,7 +353,11 @@ void Core::ExtensionLoad()
     {
         Huggle::Syslog::HuggleLogs->Log("There is no extensions folder, skipping load");
     }
+#ifndef PYTHONENGINE
     Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Extensions.count()));
+#else
+    Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Python->Count() + Core::Extensions.count()));
+#endif
 }
 
 void Core::VersionRead()

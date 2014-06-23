@@ -181,9 +181,10 @@ namespace Huggle
 
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
-    Py_Initialize();
     // define hooks
     PyImport_AppendInittab("huggle", &PyInit_emb);
+    // load it
+    Py_Initialize();
     PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
 }
 
@@ -202,6 +203,20 @@ bool PythonEngine::LoadScript(QString path)
 QList<PythonScript *> PythonEngine::ScriptsList()
 {
     return QList<PythonScript*>(this->Scripts);
+}
+
+unsigned int PythonEngine::Count()
+{
+    unsigned int s = 0;
+    foreach (PythonScript *x, this->Scripts)
+    {
+        // we only want to know how many enabled scripts we have
+        if (x->IsEnabled())
+        {
+            s++;
+        }
+    }
+    return s;
 }
 
 void PythonEngine::Hook_MainWindowIsLoaded()
