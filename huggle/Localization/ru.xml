@@ -159,24 +159,24 @@
   <string name="login-error-config">Ошибка при загрузке страницы настроек.</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, {0} правок.</string>
   <string name="login-error-disabled">Huggle не включен для вашего аккаунта, проверьте пользовательские настройки.</string>
-  <string name="login-error-global">Ошибка при загрузке страницы глобальных настроек.</string>
+  <string name="login-error-global" fuzzy="true">Ошибка при загрузке страницы глобальных настроек.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
   <string name="login-error-language">Ошибка при загрузке файла сообщений.</string>
   <string name="login-error-nocaptcha">Captcha не доступна.</string>
   <string name="login-error-noconfig">В этом проекте отсутствует страница конфигурации Huggle.</string>
-  <string name="login-error-nouser">Пользователя не существует.</string>
+  <string name="login-error-nouser" fuzzy="true">Пользователя не существует.</string>
   <string name="login-error-password">Неправильный пароль.</string>
   <string name="login-error-projdisabled">Возможность использовать Huggle отключена в этом проекте.</string>
   <string name="login-error-rollback">Использование Huggle в этом проекте требует флага «откатывающего».</string>
   <string name="login-error-unknown">Невозможно войти.</string>
   <string name="login-error-userlist">Не удалось загрузить список пользователей.</string>
-  <string name="login-error-version">Вы используете устаревшую версию программы. Пожалуйста, обновите её до последней версии.</string>
+  <string name="login-error-version" fuzzy="true">Вы используете устаревшую версию программы. Пожалуйста, обновите её до последней версии.</string>
   <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей.</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>
   <string name="main-contribs">Вклад</string>
   <string name="main-history">История</string>
-  <string name="main-new-messages">У вас новые сообщения; выберите &lt;code&gt;Система -&gt; Показать новые сообщения&lt;/code&gt; или нажмите M для просмотра.</string>
+  <string name="main-new-messages" fuzzy="true">У вас новые сообщения; выберите &lt;code&gt;Система -&gt; Показать новые сообщения&lt;/code&gt; или нажмите M для просмотра.</string>
   <string name="main-system">Система</string>
   <string name="main-system-messages">Показать новые сообщения</string>
   <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
@@ -331,7 +331,7 @@
   <string name="revert-confirm-range">Автор целевой версии {1} из того же CIDR-диапазона, что и автор текущей версии {0}; пожалуйста, проверьте целевую версию перед продолжением. Продолжить?</string>
   <string name="revert-confirm-same">Это действие откатит правку участника {0} к его же версии. Продолжить?</string>
   <string name="revert-confirm-warned">Откатить правки к версии {0}; этот участник уже предупреждался. Продолжить?</string>
-  <string name="revert-error-first">Правка является единственной после создания страницы; её невозможно откатить.</string>
+  <string name="revert-error-first" fuzzy="true">Правка является единственной после создания страницы; её невозможно откатить.</string>
   <string name="revert-only">Эта правка является единственной правкой страницы.</string>
   <string name="revert-creator">Последняя правка была сделана автором страницы, {0}.</string>
   <string name="revert-delete-instead">Удалить страницу вместо этого?</string>

@@ -129,6 +129,7 @@
   <string name="config-logbrowsetitle">Günlük dosyası konumu</string>
   <string name="config-shortcutconflict">Kısayol \'$1\', varolan \'$1\' kısayolu ile çakışıyor.</string>
   <string name="config-no-colon">Kullanamazsınız: sıra adında</string>
+  <string name="config-notify-update">Güncelleştirmeleri Denetle</string>
   <string name="delete-title">Sil $1</string>
   <string name="delete-reason">Neden:</string>
   <string name="delete-deletionlog">Silme günlüğü:</string>
@@ -156,7 +157,7 @@
   <string name="irc-error">IRC son değişiklikler beslemesine($1) erişim başarısız. Daha yavaş API sorgulaması kullanılıyor</string>
   <string name="irc-stop">Durmak için birincil besleme sağlayıcısı bekleniyor</string>
   <string name="irc-not">Besleme: IRC proje yapılandırma tarafından devre dışı bırakıldı</string>
-  <string name="irc-failure">Birincil besleme sağlayıcısı başarısız, Viki sağlayıcısına dön</string>
+  <string name="irc-failure" fuzzy="true">Birincil besleme sağlayıcısı başarısız, Viki sağlayıcısına dön</string>
   <string name="irc-wait">Durmak için IRC besleme sağlayıcısı bekleniyor</string>
   <string name="irc-switch-rc">Viki SD beslemesine geçiliyor</string>
   <string name="login-old">Kullanıcı yapılandırması eski konumdan alınıyor</string>
@@ -173,14 +174,18 @@
   <string name="login-proxyport">Bağlantı noktası:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Kullanıcı yapılandırması alınıyor</string>
-  <string name="login-fail-css">Oturum açma başarısız, kullanıcı yapılandırması alınamadı. Kullanıcı alanınızda huggle3.css sayfasını oluşturdunuz mu? (Special:MyPage/huggle3.css yok)</string>
-  <string name="login-fail-enable-true">Kişisel yapılandırma sayfasında \"enable:true\" parametresi olmadığı için oturum açma başarısız oldu</string>
-  <string name="login-fail-no-info">Giriş başarısız, kullanıcı bilgisi alınamadı:$1</string>
+  <string name="login-fail-css" fuzzy="true">Oturum açma başarısız, kullanıcı yapılandırması alınamadı. Kullanıcı alanınızda huggle3.css sayfasını oluşturdunuz mu? (Special:MyPage/huggle3.css yok)</string>
+  <string name="login-fail-enable-true" fuzzy="true">Kişisel yapılandırma sayfasında \"enable:true\" parametresi olmadığı için oturum açma başarısız oldu</string>
+  <string name="login-fail-no-info" fuzzy="true">Giriş başarısız, kullanıcı bilgisi alınamadı:$1</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">Bu proje üzerinde geri alma yetkiniz olmadığı için oturum açma başarısız oldu</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">Bu projede \"otomatik onaylanmış kullanıcı\" olmadığınız için oturum açma başarısız oldu</string>
+  <string name="login-failed-edit" fuzzy="true">Bu proje üzerinde yeterli düzenleme sayısına sahip olmadığınız için oturum açma başarısız oldu</string>
   <string name="login-retrieving-info">Kullanıcı yapılandırması alınıyor</string>
   <string name="login-password-empty">Girdiğiniz parola boş</string>
+  <string name="login-fail-wrong-name">Oturum açmak için doğru bir kullanıcı adı sağlanmadı</string>
   <string name="login-start">Giriş</string>
   <string name="login-oauth-notsupported">Bu yöntem şu anda desteklenmiyor</string>
-  <string name="login-translate" fuzzy="true">Huggle\'ı tercüme et</string>
+  <string name="login-translate">Huggle\'ı tercüme et</string>
   <string name="login-captchatitle">Giriş yapmak için Captcha gereklidir.</string>
   <string name="login-progress-start">$1\'e giriş yapılıyor</string>
   <string name="login-progress-retrieve-mw">$1 için MediaWiki hakkında bilgi alınıyor</string>
@@ -203,24 +208,27 @@
   <string name="login-error-config">Giriş başarısız, yerel yapılandırma bilgisi alınamadı:$1</string>
   <string name="login-error-count">Bu projede Huggle kullanımı en az $1 değişiklik gerektirir.</string>
   <string name="login-error-disabled">Huggle kullanımı hesabınız için uygun değil, kullanıcı yapılandırma sayfasını kontrol edin.</string>
-  <string name="login-error-global">Giriş başarısız, küresel yapılandırma ayrıştırılamıyor. Ayrıntılı bilgi için hata ayıklama günlüğüne bakınız.</string>
+  <string name="login-error-global" fuzzy="true">Giriş başarısız, küresel yapılandırma ayrıştırılamıyor. Ayrıntılı bilgi için hata ayıklama günlüğüne bakınız.</string>
   <string name="login-error-invalid">Geçersiz kullanıcı adı</string>
   <string name="login-error-language">Mesaj dosyaları yüklenemedi</string>
   <string name="login-error-nocaptcha">Captcha çözülemedi</string>
   <string name="login-error-noconfig">Bu proje Huggle yapılandırma sayfasına sahip değil</string>
-  <string name="login-error-nouser">Kullanıcı mevcut değil</string>
+  <string name="login-error-nouser" fuzzy="true">Kullanıcı mevcut değil</string>
   <string name="login-error-password">Yanlış parola</string>
   <string name="login-error-projdisabled">Huggle bu proje için şu anda devre dışı.</string>
   <string name="login-error-rollback">Bu projede Huggle kullanımı geri alma yetkisi gerektirir.</string>
   <string name="login-error-unknown">Oturum açma başarısız</string>
   <string name="login-error-userlist">Kullanıcı listesi yüklenemedi.</string>
-  <string name="login-error-version">Mevcut sürüm güncel değil. En son sürüme güncelleştirin.</string>
+  <string name="login-error-version" fuzzy="true">Mevcut sürüm güncel değil. En son sürüme güncelleştirin.</string>
   <string name="login-error-whitelist">Kullanıcı beyaz listesi yüklenemedi.</string>
+  <string name="main-menu-provider-stop">Sağlayıcı durdur</string>
+  <string name="main-menu-provider-resume">Sağlayıcıyı devam ettir</string>
+  <string name="main-no-reason">Kullanıcı tarafından özet belirtilmedi</string>
   <string name="main-page">Sayfa</string>
   <string name="main-user">Kullanıcı</string>
   <string name="main-contribs">Katkılar</string>
   <string name="main-history">Geçmiş</string>
-  <string name="main-new-messages">Yeni bir mesajınız var; görüntülemek için \"Sistem-&gt; Yeni mesajları göster\" veya M tuşuna basın.</string>
+  <string name="main-new-messages" fuzzy="true">Yeni bir mesajınız var; görüntülemek için \"Sistem-&gt; Yeni mesajları göster\" veya M tuşuna basın.</string>
   <string name="main-system">Sistem</string>
   <string name="main-system-messages">Yeni iletileri göster</string>
   <string name="main-system-reconnectirc">IRC beslemesine yeniden bağlan.</string>
@@ -238,6 +246,7 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Viki</string>
   <string name="main-system-exit">Çıkış</string>
+  <string name="main-tools-scoreword-list">Scorewords listesini göster</string>
   <string name="main-queue">Sıra</string>
   <string name="main-queue-next">Sonraki</string>
   <string name="main-queue-trim">Boşlukları temizle</string>
@@ -277,6 +286,7 @@
   <string name="main-page-unwatch">İzlemeyi durdur</string>
   <string name="main-page-purge">Temizle</string>
   <string name="main-page-curr-disp">Şu anda görüntülenen</string>
+  <string name="main-page-display">Bu sayfayı görüntüle</string>
   <string name="main-page-patrol">Kontrol edilmiş olarak işaretle</string>
   <string name="main-page-move">Taşı...</string>
   <string name="main-page-flag-suspicious-edit">Şüpheli değişiklik olarak işaretle(Kullanıcıya +1 puan verir)</string>
@@ -288,7 +298,7 @@
   <string name="main-user-info">Kullanıcı bilgisini göster</string>
   <string name="main-user-ignore">Yoksay</string>
   <string name="main-user-unignore">\"Görmezden gel\"den çıkar</string>
-  <string name="main-user-contribs" fuzzy="true">Katkıları al</string>
+  <string name="main-user-contribs">Kullanıcı katkıları bir tarayıcıda göster</string>
   <string name="main-user-clear-talk">Kullanıcının mesaj sayfasını temizle</string>
   <string name="main-user-talk">Mesaj sayfasını görüntüle</string>
   <string name="main-user-message">Mesaj...</string>
@@ -408,13 +418,13 @@
   <string name="report-done">Rapor edilmiş</string>
   <string name="report-user">Raporla</string>
   <string name="uaa-not-supported">UAA mevcut değil</string>
-  <string name="uaa-not-supported-text">Kullanıcı adları için yönetici uyarı bildirim tahtası Viki\'nizde kullanılamaz.</string>
+  <string name="uaa-not-supported-text" fuzzy="true">Kullanıcı adları için yönetici uyarı bildirim tahtası Viki\'nizde kullanılamaz.</string>
   <string name="uaa-reported">Rapor edildi.</string>
   <string name="revert-confirm-multiple">Bu $1 tarafından yapılan değişiklikleri çoklu olarak geri alacak. Devam edilsin mi?</string>
   <string name="revert-confirm-range">Hedef revizyonun yazarı ,$2, şuanki revizyonun yazarı ,$1, ile aynı aralıkta. Belki de aynı kişi. Devam etmeden önce hedef revizyonun doğruluğundan emin olun.</string>
   <string name="revert-confirm-same">Bu geri alma, geri alınmış kullanıcının ,$1, önceki sürümüne yöneliktir. Devam edilsin mi?</string>
   <string name="revert-confirm-warned">Bu $1 tarafından yapılan değişikliğe geri alınacaktır. Bu kullanıcı daha önce uyarılmış. Devam edilsin mi?</string>
-  <string name="revert-error-first">Değişiklik bu sayfada yapılan ilk değişikliktir. Geri alma geçersiz.</string>
+  <string name="revert-error-first" fuzzy="true">Değişiklik bu sayfada yapılan ilk değişikliktir. Geri alma geçersiz.</string>
   <string name="revert-only">Değişiklik sayfadaki tek değişikliktir.</string>
   <string name="revert-creator">Son değişiklik sayfayı oluşturan kullanıcı ,$1, tarafından yapılmış.</string>
   <string name="revert-preflightcheck">Ön kontrol denetimi</string>
@@ -429,6 +439,7 @@
   <string name="speedy-reason">Neden:</string>
   <string name="speedy-parameters">Parametreler:</string>
   <string name="speedy-notifycreator">Sayfayı oluşturan kullanıcıyı bildirim gönder</string>
+  <string name="rollback">$1 geri alınıyor</string>
   <string name="stats-title">İstatistikler</string>
   <string name="stats-actions">Bu oturumdaki eylemler:</string>
   <string name="stats-session">Oturum süresi: $1</string>
@@ -457,6 +468,9 @@
   <string name="update-title">Yeni sürüm mevcut</string>
   <string name="update-progress">Yeni sürümü karşıdan yükleniyor...</string>
   <string name="update-error">Yeni sürümü indirme başarısız</string>
+  <string name="updater-open-manualdownloadpage">İndirme sayfasını aç</string>
+  <string name="updater-close">Kapat</string>
+  <string name="updater-disable-notify">Güncelleştirmeleri devre dışı bırak</string>
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
   <string name="userinfo-title">$1 için kullanıcı bilgileri</string>
   <string name="userinfo-anonymous">Anonim:</string>
@@ -477,7 +491,7 @@
   <string name="warning-warnlog">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="warning-submit">Gönder</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
-  <string name="han-connecting" fuzzy="true">Huggle vandalizm ağına bağlanılıyor</string>
+  <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
   <string name="error-noresponse">Yanıt yok</string>
   <string name="error-pagemissing">Bu sayfa mevcut değil</string>
@@ -528,6 +542,7 @@
   <string name="reqprotection-title">$1 için koruma talep et</string>
   <string name="speedy-fail" fuzzy="true">\'$1\' hızlı silme için etiketlenmedi</string>
   <string name="speedy-progress">\'$1\' hızlı silme için etiketleniyor...</string>
+  <string name="speedy-finished">Tamamlandı</string>
   <string name="warnlog-fail">$1 için uyarı kayıtlarına erişilemiyor</string>
   <string name="warnlog-none">\'$1\' uyarılmadı</string>
   <string name="warnlog-progress">\'$1\' için uyarı günlüğü alınıyor...</string>
@@ -553,7 +568,6 @@
   <string name="wait">Lütfen bekleyin...</string>
   <string name="function-miss">İşlev kullanılabilir değil</string>
   <string name="missing-aiv">Bu proje AIV kullanmaz</string>
-  <string name="merging">Birleştirme</string>
   <string name="missing-page">Viki üzerinde $1 sayfası mevcut değil</string>
   <string name="updating-wl">Beyaz liste güncelleniyor...</string>
   <string name="updating-uc">Wiki\'deki huggle3.css\'den kullanıcı yapılandırması güncelleniyor</string>

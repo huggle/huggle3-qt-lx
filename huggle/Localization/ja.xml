@@ -16,6 +16,7 @@
   <string name="ok">OK</string>
   <string name="remove">除去</string>
   <string name="rename">改名</string>
+  <string name="reload">再読み込み</string>
   <string name="restorewindow">復元</string>
   <string name="save">保存</string>
   <string name="selectfile">参照...</string>
@@ -91,6 +92,8 @@
   <string name="config-defaultsprompt">デフォルト設定に戻しますか？</string>
   <string name="config-logbrowsetitle">ログ・ファイルの場所</string>
   <string name="config-shortcutconflict">ショートカット \'{0}\' は、既存のショートカット \'{1}\' とかぶっています。</string>
+  <string name="config-notify-update">更新を確認</string>
+  <string name="config-notify-beta">利用できる場合はベータ版を確認</string>
   <string name="delete-title">{0} を削除</string>
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
@@ -109,7 +112,7 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-start">ログイン</string>
-  <string name="login-translate" fuzzy="true">ハグルを翻訳</string>
+  <string name="login-translate">ハグルを翻訳</string>
   <string name="login-captchatitle">ログインにキャプチャが必要です</string>
   <string name="login-progress-start" fuzzy="true">ログインしています...</string>
   <string name="login-progress-language">メッセージ・ファイルを更新中...</string>
@@ -127,24 +130,24 @@
   <string name="login-error-config">設定ページのロードに失敗しました。</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が {0} 回以上ある必要があります。</string>
   <string name="login-error-disabled">あなたのアカウントはハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
-  <string name="login-error-global">グローバル設定ページのロードに失敗しました。</string>
+  <string name="login-error-global" fuzzy="true">グローバル設定ページのロードに失敗しました。</string>
   <string name="login-error-invalid">利用者名が無効です</string>
   <string name="login-error-language">メッセージ・ファイルのロードに失敗しました。</string>
   <string name="login-error-nocaptcha">キャプチャに解答できませんでした。</string>
   <string name="login-error-noconfig">このプロジェクトにはハグルの設定ページがありません。</string>
-  <string name="login-error-nouser">その名前のアカウントは存在しません。</string>
+  <string name="login-error-nouser" fuzzy="true">その名前のアカウントは存在しません。</string>
   <string name="login-error-password">パスワードが無効です</string>
   <string name="login-error-projdisabled">現在このプロジェクトでハグルは使用できません。</string>
   <string name="login-error-rollback">このプロジェクトでハグルを使用するにはロールバック権限が必要です。</string>
   <string name="login-error-unknown">ログインできません。</string>
   <string name="login-error-userlist">利用者リストのロードに失敗しました。</string>
-  <string name="login-error-version">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
+  <string name="login-error-version" fuzzy="true">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
   <string name="login-error-whitelist">利用者ホワイトリストのロードに失敗しました。</string>
   <string name="main-page">ページ</string>
   <string name="main-user">利用者</string>
   <string name="main-contribs">投稿記録</string>
   <string name="main-history">履歴</string>
-  <string name="main-new-messages">会話ページに新しいメッセージがきています; 新着メッセージを見るには 「システム」から「新着メッセージを表示」を選択するか、キーボードの M を押してください。</string>
+  <string name="main-new-messages" fuzzy="true">会話ページに新しいメッセージがきています; 新着メッセージを見るには 「システム」から「新着メッセージを表示」を選択するか、キーボードの M を押してください。</string>
   <string name="main-system">システム</string>
   <string name="main-system-messages">新着メッセージを表示</string>
   <string name="main-system-reconnectirc">IRCに再接続</string>
@@ -190,6 +193,7 @@
   <string name="main-page-watch">ウォッチ</string>
   <string name="main-page-unwatch">ウォッチリストからはずす</string>
   <string name="main-page-purge">パージ</string>
+  <string name="main-page-display">このページを表示</string>
   <string name="main-page-patrol">巡回済みにする</string>
   <string name="main-page-move">移動...</string>
   <string name="main-page-protect">保護</string>
@@ -236,6 +240,7 @@
   <string name="message-message">内容:</string>
   <string name="message-summary">要約欄:</string>
   <string name="message-autosign">署名を自動で付記</string>
+  <string name="message-fail-token-1">編集トークンを取得できません</string>
   <string name="protect-title">{0} を保護</string>
   <string name="protect-request-title">{0} の保護依頼</string>
   <string name="protect-reason">理由:</string>
@@ -244,8 +249,11 @@
   <string name="protect-currentlevel">現在の保護レベル:</string>
   <string name="protect-type">保護のタイプ:</string>
   <string name="protect-none">なし</string>
+  <string name="protect-token">トークンを取得できません。理由: $1</string>
   <string name="protect-semiprotection">半保護</string>
+  <string name="protect-fail-no-info">ページの情報を利用できませんでした (あなたは管理者ですか?)</string>
   <string name="protect-fullprotection">全保護</string>
+  <string name="protect-message-title-fail">保護できません</string>
   <string name="protect-moveprotection">移動保護</string>
   <string name="queue-title">キュー</string>
   <string name="queue-queues">キュー:</string>
@@ -291,7 +299,7 @@
   <string name="revert-confirm-range">対象の版 {1} の投稿者は、現在の版 {0} の投稿者と同一レンジです。中の人は同一人物の可能性があります。差し戻し前に版の内容を確認することを推奨します。続けますか？</string>
   <string name="revert-confirm-same">このリバートは同じ利用者のすでにリバートされた版 {0} に差し戻すことになります。実行しますか？</string>
   <string name="revert-confirm-warned">このリバートは {0} が編集した版に戻すことになります; この利用者は過去に警告を受けています。実行しますか？</string>
-  <string name="revert-error-first">この編集はページの最初の版です。リバートはできません。</string>
+  <string name="revert-error-first" fuzzy="true">この編集はページの最初の版です。リバートはできません。</string>
   <string name="revert-only">この編集はこのページの唯一の編集です。</string>
   <string name="revert-creator">最終編集はページ作成者 {0} による編集でした</string>
   <string name="revert-delete-instead">代わりに記事を削除しますか？</string>
@@ -332,6 +340,11 @@
   <string name="update-title">新しいバージョンが利用できます</string>
   <string name="update-progress">新しいバージョンをダウンロードしています...</string>
   <string name="update-error">新しいバージョンのダウンロードに失敗しました</string>
+  <string name="updater-title">新しいバージョンのハグルを利用できます</string>
+  <string name="updater-update">更新</string>
+  <string name="updater-open-manualdownloadpage">ダウンロード ページを開く</string>
+  <string name="updater-close">閉じる</string>
+  <string name="updater-disable-notify">更新を無効にする</string>
   <string name="userinfo-title">\'{0}\' の利用者情報</string>
   <string name="userinfo-anonymous">IP利用者:</string>
   <string name="userinfo-ignored">ホワイトリスト:</string>
@@ -366,6 +379,7 @@
   <string name="delete-done">\'{0}\' を削除しました</string>
   <string name="delete-fail">\'{0}\' の削除に失敗しました</string>
   <string name="delete-progress">\'{0}\' を削除しています...</string>
+  <string name="delete-user">このページは利用者名前空間にあります。本当に削除しますか?</string>
   <string name="deletelog-fail">\'{0}\' の削除ログの取得に失敗しました</string>
   <string name="deletelog-none">\'{0}\' に削除ログはありません</string>
   <string name="deletelog-progress">\'{0}\' の削除ログを取得しています...</string>
@@ -398,6 +412,7 @@
   <string name="reqprotection-progress">\'{0}\' を保護依頼しています...</string>
   <string name="speedy-fail" fuzzy="true">\'$1\' への即時削除タグ貼り付けに失敗しました</string>
   <string name="speedy-progress">\'$1\' に即時削除タグを貼り付けています...</string>
+  <string name="speedy-finished">完了</string>
   <string name="warnlog-fail">\'$1\' の警告履歴を取得できませんでした</string>
   <string name="warnlog-none">\'$1\' は警告を受けていません</string>
   <string name="warnlog-progress">\'$1\' の警告履歴を取得しています...</string>

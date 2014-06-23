@@ -130,6 +130,8 @@
   <string name="config-logbrowsetitle">日志文件位置</string>
   <string name="config-shortcutconflict">快捷方式“$1”与已有的“$1”冲突。</string>
   <string name="config-no-colon">您不能在队列名中使用“:”</string>
+  <string name="config-notify-update">检查更新</string>
+  <string name="config-notify-beta">如果可用，检查测试版本</string>
   <string name="delete-title">删除$1</string>
   <string name="delete-reason">原因:</string>
   <string name="delete-deletionlog">删除日志:</string>
@@ -171,12 +173,13 @@
   <string name="login-proxyport">端口:</string>
   <string name="login-proxydomain">域:</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>
+  <string name="login-fail-no-info" fuzzy="true">登录失败无法检索用户信息：$1</string>
   <string name="login-retrieving-info">获取用户信息</string>
   <string name="login-password-empty">您输入了空的密码</string>
-  <string name="login-api">错误：api.php回应了未知结果：$1</string>
+  <string name="login-api" fuzzy="true">错误：api.php回应了未知结果：$1</string>
   <string name="login-start">登入</string>
   <string name="login-oauth-notsupported">此方法当前不支持</string>
-  <string name="login-translate" fuzzy="true">翻译huggle</string>
+  <string name="login-translate">翻译Huggle</string>
   <string name="login-captchatitle">需要输入验证码</string>
   <string name="login-progress-start">登入到$1</string>
   <string name="login-progress-retrieve-mw">检索关于MediaWiki $1的信息</string>
@@ -199,27 +202,30 @@
   <string name="login-error-config">载入设置页面失败</string>
   <string name="login-error-count">这个计划要求你至少有$1次编辑</string>
   <string name="login-error-disabled">未对你的账户启用，检查用户设置页</string>
-  <string name="login-error-global">无法载入全域设置页</string>
+  <string name="login-error-global" fuzzy="true">无法载入全域设置页</string>
   <string name="login-error-invalid">无效的用户名</string>
   <string name="login-error-language">载入消息文件失败</string>
   <string name="login-error-nocaptcha">验证码未解开</string>
   <string name="login-error-noconfig">这个计划没有Huggle设置页</string>
-  <string name="login-error-nouser">用户不存在</string>
+  <string name="login-error-nouser" fuzzy="true">用户不存在</string>
   <string name="login-error-password">密码错误</string>
   <string name="login-error-projdisabled">Huggle在这个计划被禁用。</string>
   <string name="login-error-rollback">这个计划使用Huggle需要回退权限。</string>
   <string name="login-error-unknown">无法登录。</string>
   <string name="login-error-userlist">无法载入用户列表。</string>
-  <string name="login-error-version">版本过期，请更新至最新版本。</string>
+  <string name="login-error-version" fuzzy="true">版本过期，请更新至最新版本。</string>
   <string name="login-error-whitelist">无法载入白名单。</string>
+  <string name="main-menu-provider-stop">停止提供</string>
+  <string name="main-menu-provider-resume">摘要提供</string>
   <string name="main-no-reason">没有用户提供理由</string>
-  <string name="main-restoring-slap">我正在恢复另一编辑，请等待</string>
+  <string name="main-restoring-slap" fuzzy="true">我正在恢复另一编辑，请等待</string>
   <string name="main-page">页面</string>
   <string name="main-user">用户</string>
   <string name="main-contribs">贡献</string>
   <string name="main-history">历史</string>
-  <string name="main-new-messages">你有新消息；选择系统 -&gt; 显示新消息或者按M查看。</string>
+  <string name="main-new-messages" fuzzy="true">你有新消息；选择系统 -&gt; 显示新消息或者按M查看。</string>
   <string name="main-system">系统</string>
+  <string name="main-status-bar">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; 统计：$5</string>
   <string name="main-shutting-down">Huggle已关闭，忽略</string>
   <string name="main-system-messages">显示新消息</string>
   <string name="main-system-reconnectirc">重新连接IRC</string>
@@ -237,6 +243,7 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">wiki</string>
   <string name="main-system-exit">退出</string>
+  <string name="main-tools-scoreword-list">显示scorewords的列表</string>
   <string name="main-queue">队列</string>
   <string name="main-queue-next">下一个</string>
   <string name="main-queue-trim">削减</string>
@@ -252,8 +259,10 @@
   <string name="main-revision-decline">否决版本</string>
   <string name="main-revision">版本</string>
   <string name="main-revision-view">查看</string>
-  <string name="main-revision-revert" fuzzy="true">回退</string>
-  <string name="main-revision-faith" fuzzy="true">善意推定回退</string>
+  <string name="main-revision-revert">回退当前显示的编辑</string>
+  <string name="main-revision-rv-stay">回退此编辑并留在页面</string>
+  <string name="main-revision-revert-warn">回退当前显示的编辑并警告用户</string>
+  <string name="main-revision-faith">善意推定回退</string>
   <string name="main-revision-previous">先前</string>
   <string name="main-revision-next">之后</string>
   <string name="main-revision-latest">最新</string>
@@ -276,6 +285,7 @@
   <string name="main-page-unwatch">取消监视</string>
   <string name="main-page-purge">清理</string>
   <string name="main-page-curr-disp">当前显示</string>
+  <string name="main-page-display">显示此页</string>
   <string name="main-page-patrol">标记巡查</string>
   <string name="main-page-move">移动...</string>
   <string name="main-page-flag-suspicious-edit">标记为可疑编辑（这将给用户+1分）</string>
@@ -287,7 +297,7 @@
   <string name="main-user-info">查看用户信息</string>
   <string name="main-user-ignore">无视</string>
   <string name="main-user-unignore">取消无视</string>
-  <string name="main-user-contribs" fuzzy="true">收取贡献</string>
+  <string name="main-user-contribs">浏览器中显示用户贡献</string>
   <string name="main-user-clear-talk">清空用户讨论页</string>
   <string name="main-user-talk">查看对话页</string>
   <string name="main-user-message">消息...</string>
@@ -302,7 +312,7 @@
   <string name="main-browser-open">用外部浏览器查看</string>
   <string name="main-browser-newedits">查看新编辑</string>
   <string name="main-browser-newcontribs">查看指定用户的新贡献</string>
-  <string name="main-revert-manual" fuzzy="true">用于编辑$1的替代令牌无法检索，改为手动编辑</string>
+  <string name="main-revert-manual">没有回退令牌，改为手动回退$1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">断开连接</string>
   <string name="main-han-connect">连接</string>
@@ -344,7 +354,9 @@
   <string name="message-er">无法递送信息至$1：$2</string>
   <string name="message-fail-retrieve-talk">无法检索用户讨论页</string>
   <string name="message-done">成功递送信息至$1</string>
+  <string name="message-fail-token-1">无法检索编辑令牌</string>
   <string name="protect-title">保护$1</string>
+  <string name="message-fail-token-2">请求未返回令牌</string>
   <string name="protect-request-title">请求保护$1</string>
   <string name="protect-reason">原因：</string>
   <string name="protect-expiry">到期：</string>
@@ -352,8 +364,11 @@
   <string name="protect-currentlevel">当前保护级别：</string>
   <string name="protect-type">保护类型：</string>
   <string name="protect-none">无</string>
+  <string name="protect-token">令牌不能检索。原因：$1</string>
   <string name="protect-semiprotection">半保护</string>
+  <string name="protect-fail-no-info">页面内容不可用（您是管理员么？）</string>
   <string name="protect-fullprotection">全保护</string>
+  <string name="protect-message-title-fail">无法保护</string>
   <string name="protect-moveprotection">移动保护</string>
   <string name="protect-ft">获取令牌以保护$1</string>
   <string name="queue-title">队列</string>
@@ -404,16 +419,18 @@
   <string name="report-done">已报告</string>
   <string name="report-user">报告</string>
   <string name="uaa-not-supported">UAA不可用</string>
-  <string name="uaa-not-supported-text">管理员布告板的用户名在您的wiki不可用。</string>
+  <string name="uaa-not-supported-text" fuzzy="true">管理员布告板的用户名在您的wiki不可用。</string>
   <string name="uaa-reporting">报告$1至UAA</string>
   <string name="uaa-reported">已报告</string>
   <string name="uaa-nr">未提供原因</string>
   <string name="uaa-g1">获取UAA内容</string>
+  <string name="uaa-e1">对页面内容的查询未返回任何数据。</string>
+  <string name="uaa-e2">页面内容不可用。</string>
   <string name="revert-confirm-multiple">这将回退$1的多笔编辑。确定继续？</string>
   <string name="revert-confirm-range">目标修订的作者$2，是和当前修订作者$1同一范围的，这可能是同一人（傀儡？！）；请确认目标版本是正确的。确定继续？</string>
   <string name="revert-confirm-same">将会回退到该用户的另一个版本$1。确定继续？</string>
   <string name="revert-confirm-warned">这将回退$1做出的版本；他/她已经被警告。确定继续？</string>
-  <string name="revert-error-first">此编辑是该页面的首次编辑；故无法回退。</string>
+  <string name="revert-error-first" fuzzy="true">此编辑是该页面的首次编辑；故无法回退。</string>
   <string name="revert-only">此编辑是该页面的唯一一次编辑。</string>
   <string name="revert-creator">最后一次编辑由页面创建者$1做出。</string>
   <string name="revert-preflightcheck">预先检查</string>
@@ -428,6 +445,8 @@
   <string name="speedy-reason">理由：</string>
   <string name="speedy-parameters">参数：</string>
   <string name="speedy-notifycreator">告知创建者</string>
+  <string name="rollback">回退$1</string>
+  <string name="software-rollback" fuzzy="true">您没有回退权，改为软件回退</string>
   <string name="stats-title">统计</string>
   <string name="stats-actions">此次会话的动作：</string>
   <string name="stats-session">时间：$1</string>
@@ -456,6 +475,11 @@
   <string name="update-title">有新版本</string>
   <string name="update-progress">下载新版本...</string>
   <string name="update-error">下载失败</string>
+  <string name="updater-title">Huggle新版本可用</string>
+  <string name="updater-update">更新</string>
+  <string name="updater-open-manualdownloadpage">打开下载页</string>
+  <string name="updater-close">关闭</string>
+  <string name="updater-disable-notify">停用更新</string>
   <string name="userinfo-generic">用户信息</string>
   <string name="userinfo-title">$1的用户信息</string>
   <string name="userinfo-anonymous">匿名：</string>
@@ -476,7 +500,7 @@
   <string name="warning-warnlog">该用户的警告：</string>
   <string name="warning-submit">发送</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
-  <string name="han-connecting" fuzzy="true">连接huggle反破坏网络</string>
+  <string name="han-connecting">连接Huggle反破坏网络</string>
   <string name="error-loggedout">已被登出，重新登入...</string>
   <string name="error-noresponse">无反应</string>
   <string name="error-pagemissing">页面不存在</string>
@@ -494,6 +518,7 @@
   <string name="delete-done">已删除$1</string>
   <string name="delete-fail">未删除$1</string>
   <string name="delete-progress">删除$1中...</string>
+  <string name="delete-user">此页面为用户页，您确信要删除它？</string>
   <string name="deletelog-fail">无法获得$1的删除日志</string>
   <string name="deletelog-none">没有删除$1的日志</string>
   <string name="deletelog-progress">获取$1的删除日志</string>
@@ -525,8 +550,9 @@
   <string name="reqprotection-fail">未为“$1”请求保护</string>
   <string name="reqprotection-progress">请求保护“$1”…</string>
   <string name="reqprotection-title">申请保护页面$1</string>
-  <string name="speedy-fail" fuzzy="true">未标记“$1”为速删</string>
+  <string name="speedy-fail">无法对页面标记速删：$1</string>
   <string name="speedy-progress">标记“$1”为速删…</string>
+  <string name="speedy-finished">结束</string>
   <string name="warnlog-fail">无法获得“$1”的警告日志</string>
   <string name="warnlog-none">“$1”未被警告</string>
   <string name="warnlog-progress">获得“$1”警告日志…</string>
@@ -550,7 +576,6 @@
   <string name="wait">请稍候…</string>
   <string name="function-miss">函数目前不可用</string>
   <string name="missing-aiv">此项目不适用AIV</string>
-  <string name="merging">合并中</string>
   <string name="missing-page">此wiki没有页面$1</string>
   <string name="updating-wl">正在更新白名单…</string>
   <string name="updating-uc">在wiki上的huggle3.css更新用户配置页</string>

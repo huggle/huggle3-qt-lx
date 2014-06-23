@@ -125,24 +125,24 @@
   <string name="login-error-config">فشل تحميل صفحات الخيارات.</string>
   <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج {0} تعديلات على الأقل.</string>
   <string name="login-error-disabled">Huggle غير مفعلة في حسابك، راجع صفحة خيارات المستخدم.</string>
-  <string name="login-error-global">تعذر تحميل صفحة الخيارات العمومية.</string>
+  <string name="login-error-global" fuzzy="true">تعذر تحميل صفحة الخيارات العمومية.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
   <string name="login-error-language">تعذر تحميل ملفات الرسائل.</string>
   <string name="login-error-nocaptcha">الكابتشا لم تحل.</string>
   <string name="login-error-noconfig">ليس لهذا المشروع صفحة خيارات لبرمجية Huggle.</string>
-  <string name="login-error-nouser">مستخدم غير موجود.</string>
+  <string name="login-error-nouser" fuzzy="true">مستخدم غير موجود.</string>
   <string name="login-error-password">كلمة سر خاطئة.</string>
   <string name="login-error-projdisabled">Huggle معطل حاليا في هذا المشروع.</string>
   <string name="login-error-rollback">استخدام Huggle في هذا المشروع يتطلب الاسترجاع</string>
   <string name="login-error-unknown">تعذر الولوج.</string>
   <string name="login-error-userlist">تعذر تحميل قائمة المستخدمين.</string>
-  <string name="login-error-version">هذا الإصدار قديم، يرجى تحديث البرمجية.</string>
+  <string name="login-error-version" fuzzy="true">هذا الإصدار قديم، يرجى تحديث البرمجية.</string>
   <string name="login-error-whitelist">تعذر تحميل قائمة المستخدمون البيضاء</string>
   <string name="main-page">الصفحة</string>
   <string name="main-user">مستخدم</string>
   <string name="main-contribs">مساهمات</string>
   <string name="main-history">تاريخ</string>
-  <string name="main-new-messages">لديك رسائل جديدة؛ اختر النظام -&gt; اعرض الرسائل الجديدة أو اضغط (م) لعرضهم</string>
+  <string name="main-new-messages" fuzzy="true">لديك رسائل جديدة؛ اختر النظام -&gt; اعرض الرسائل الجديدة أو اضغط (م) لعرضهم</string>
   <string name="main-system">النظام</string>
   <string name="main-system-messages">اعرض الرسائل الجديدة</string>
   <string name="main-system-reconnectirc">عاود الاتصال بتلقيم آي آر سي</string>
@@ -286,7 +286,7 @@
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, {1}, في نفس نطاق مؤلف النسخة الحالية, {0}, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
   <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , {0} . استمر؟</string>
   <string name="revert-confirm-warned">هذا سيسترجع الى نسخه بواسطة {0} , هذا المستخدم تلقى تحذير مؤخراً, استمر؟</string>
-  <string name="revert-error-first">هذا اول تحرير للصفحة, لايمكن الاسترجاع</string>
+  <string name="revert-error-first" fuzzy="true">هذا اول تحرير للصفحة, لايمكن الاسترجاع</string>
   <string name="revert-only">هذا التعديل الوحيد للصفحة</string>
   <string name="revert-creator">اخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة,{0} .ء</string>
   <string name="revert-delete-instead">احذف الصفحة بدلاً عن ذلك؟</string>
