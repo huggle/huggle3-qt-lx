@@ -38,13 +38,15 @@ typedef char byte_ht;
 // this is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
 // it has problems there (need to be fixed though)
 #ifndef HUGGLE_NO_MT_GC
-#define HUGGLE_USE_MT_GC               "mt"
+    #define HUGGLE_USE_MT_GC               "mt"
 #endif
 
 // #define HUGGLE_PROFILING
 
 // uncomment this if you want to enable python support
-//#define PYTHONENGINE
+#ifndef PYTHONENGINE
+//    #define PYTHONENGINE
+#endif
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
 // linking or building its libraries
