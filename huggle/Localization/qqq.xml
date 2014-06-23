@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">This is a name of the language as shown on the login form (it is meant to be localized to target language so that user can easily find it).</string>
-  <string name="__isrtl__">This is a magic key that huggle uses to determine if localization is right to left or not, write \"true\" here if it is, otherwise put false or nothing there</string>
+  <string name="isrtl">This is a magic key that huggle uses to determine if localization is right to left or not, write \"true\" here if it is, otherwise put false or nothing there</string>
   <string name="add">{{Identical|Add}}</string>
   <string name="apply">{{Identical|Apply}}</string>
   <string name="cancel">{{Identical|Cancel}}</string>
