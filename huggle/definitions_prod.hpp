@@ -52,6 +52,15 @@ typedef char byte_ht;
 // linking or building its libraries
 #define DISABLE_BREAKPAD
 
+// this is a nasty workaround that exist because python is written by noobs
+#ifdef PYTHONENGINE
+  #ifdef _WIN32
+  // workaround for http://bugs.python.org/issue11566
+  // remove at least 8 months after the bug is fixed
+  #include <cmath>
+  #endif
+#endif
+
 #define PRODUCTION_BUILD                0
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""
 #define MEDIAWIKI_DEFAULT_NS_TALK               "Talk:"
