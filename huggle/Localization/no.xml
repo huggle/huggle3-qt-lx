@@ -116,23 +116,23 @@
   <string name="login-error-config">Kunne ikke laste konfigurasjonssider.</string>
   <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst {0} redigeringer.</string>
   <string name="login-error-disabled">Huggle er ikke skrudd på for din konto, sjekk innstillinger siden.</string>
-  <string name="login-error-global">Kunne ikke laste global konfigurasjonsside.</string>
+  <string name="login-error-global" fuzzy="true">Kunne ikke laste global konfigurasjonsside.</string>
   <string name="login-error-invalid">Ugyldig brukernavn.</string>
   <string name="login-error-language">Kunne ikke laste meldingsfiler.</string>
   <string name="login-error-nocaptcha">Captcha ikke løst riktig.</string>
   <string name="login-error-noconfig">Dette prosjektet har ikke en Huggle konfigurasjonsside.</string>
-  <string name="login-error-nouser">Brukeren eksisterer ikke.</string>
+  <string name="login-error-nouser" fuzzy="true">Brukeren eksisterer ikke.</string>
   <string name="login-error-password">Feil passord.</string>
   <string name="login-error-projdisabled">Huggle er for øyeblikket skrudd av på dette prosjektet.</string>
   <string name="login-error-rollback">Bruk av Huggle på dette prosjektet krever tilbakestillingsrettigheter.</string>
   <string name="login-error-unknown">Kunne ikke logge inn.</string>
   <string name="login-error-userlist">Kunne ikke lese brukerliste.</string>
-  <string name="login-error-version">Utdatert versjon. Vennligst oppdater til nyeste versjon.</string>
+  <string name="login-error-version" fuzzy="true">Utdatert versjon. Vennligst oppdater til nyeste versjon.</string>
   <string name="main-page">Side</string>
   <string name="main-user">Bruker</string>
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historikk</string>
-  <string name="main-new-messages">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
+  <string name="main-new-messages" fuzzy="true">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Vis nye meldinger</string>
   <string name="main-system-reconnectirc">Koble til IRC-strøm på nytt</string>
@@ -276,7 +276,7 @@
   <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, {0}, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
   <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, {0}. Fortsett?</string>
   <string name="revert-confirm-warned">Dette vil tilbakestille til en revisjon av {0}, som har blitt gitt advarsler. Forsett?</string>
-  <string name="revert-error-first">Redigeringen er den første som ble gjort på siden, kan ikke tilbakestille.</string>
+  <string name="revert-error-first" fuzzy="true">Redigeringen er den første som ble gjort på siden, kan ikke tilbakestille.</string>
   <string name="revert-only">Redigeringen er den eneste som er gjort på siden.</string>
   <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, {0}.</string>
   <string name="revert-delete-instead">Slett siden istedet?</string>

@@ -127,24 +127,24 @@
   <string name="login-error-config">समाकृति पृष्ठों को लोड करने में असफल रहा!</string>
   <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम {0} सम्पादन होने चाहिए।</string>
   <string name="login-error-disabled">आपके खाते के लिए हूगल सक्षम नहीं किया हुआ है, प्रयोक्ता समाकृति पृष्ठ देखें।</string>
-  <string name="login-error-global">वैश्विक समाकृति पृष्ठ लोड करने में असफल रहा।</string>
+  <string name="login-error-global" fuzzy="true">वैश्विक समाकृति पृष्ठ लोड करने में असफल रहा।</string>
   <string name="login-error-invalid">अमान्य प्रयोक्तानाम।</string>
   <string name="login-error-language">सन्देश सञ्चिकाएँ लोड करने में असफल रहा।</string>
   <string name="login-error-nocaptcha">कैप्चा नहीं सुलझा।</string>
   <string name="login-error-noconfig">इस परियोजना का हूगल समाकृति पृष्ठ नहीं है।</string>
-  <string name="login-error-nouser">प्रयोक्ता अस्तित्वहीन।</string>
+  <string name="login-error-nouser" fuzzy="true">प्रयोक्ता अस्तित्वहीन।</string>
   <string name="login-error-password">गलत पारशब्द।</string>
   <string name="login-error-projdisabled">अभी इस परियोजना पर हूगल अक्षम किया हुआ है।</string>
   <string name="login-error-rollback">इस परियोजना पर हूगल उपयोग के लिए रोलबैक की आवश्यकता है।</string>
   <string name="login-error-unknown">लॉग इन करने में असमर्थ।</string>
   <string name="login-error-userlist">प्रयोक्ता सूची लोड करने में असफल।</string>
-  <string name="login-error-version">संस्करण अप्रचलित है। नवीनतम संस्करण प्राप्त करें।</string>
+  <string name="login-error-version" fuzzy="true">संस्करण अप्रचलित है। नवीनतम संस्करण प्राप्त करें।</string>
   <string name="login-error-whitelist">प्रयोक्ता श्वेतसूची लोड करने में असफल।</string>
   <string name="main-page">पृष्ठ</string>
   <string name="main-user">प्रयोक्ता</string>
   <string name="main-contribs">योगदान</string>
   <string name="main-history">इतिहास</string>
-  <string name="main-new-messages">आपके लिये नये संदेश ; व्यवस्था चुने -&gt; नये संदेश दिखाये या  उन्हे देखने के लिये M दबायें।</string>
+  <string name="main-new-messages" fuzzy="true">आपके लिये नये संदेश ; व्यवस्था चुने -&gt; नये संदेश दिखाये या  उन्हे देखने के लिये M दबायें।</string>
   <string name="main-system">प्रणाली</string>
   <string name="main-system-messages">नए सन्देश दिखाएँ</string>
   <string name="main-system-reconnectirc">आई आर सी फीड पर फीर से जुडे़</string>
@@ -292,7 +292,7 @@
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, {1}, वर्तमान संशोधन के लेखक के समान सीमा में है, {0}, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, {0}, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
   <string name="revert-confirm-warned">ये {0} द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?</string>
-  <string name="revert-error-first">संपादन पृष्ठ का पहला संपादन है; वापस नहीं लिया जा सकता।</string>
+  <string name="revert-error-first" fuzzy="true">संपादन पृष्ठ का पहला संपादन है; वापस नहीं लिया जा सकता।</string>
   <string name="revert-only">संपादन पृष्ठ का एकलोता संपादन है।</string>
   <string name="revert-creator">आखरी संपादन पृष्ठ निर्माता, {0}, द्वारा बनाया गया था</string>
   <string name="revert-delete-instead">पृष्ठ को हटा दे?</string>

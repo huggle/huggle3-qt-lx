@@ -130,6 +130,8 @@
   <string name="config-logbrowsetitle">기록 파일 위치</string>
   <string name="config-shortcutconflict">\'$1\' 바로가기는 \'$1\'에 대한 기존 바로가기와 충돌합니다.</string>
   <string name="config-no-colon">대기열의 이름에서 : 사용할 수 없습니다</string>
+  <string name="config-notify-update">업데이트 확인</string>
+  <string name="config-notify-beta">사용할 수 있으면 베타 버전 확인</string>
   <string name="delete-title">$1 삭제</string>
   <string name="delete-reason">이유:</string>
   <string name="delete-deletionlog">삭제 기록:</string>
@@ -157,7 +159,7 @@
   <string name="irc-error">IRC 최근 바뀜 피드에 연결할 수 없습니다 ($1). 대신 느린 API 쿼리를 사용하세요</string>
   <string name="irc-stop">멈추기 위해 1차 피드 제공자를 기다리는 중</string>
   <string name="irc-not">피드: IRC는 프로젝트 설정에 따라 비활성화되어있습니다</string>
-  <string name="irc-failure">1차 피드 제공자가 실패하여, 위키 제공자로 대체합니다</string>
+  <string name="irc-failure" fuzzy="true">1차 피드 제공자가 실패하여, 위키 제공자로 대체합니다</string>
   <string name="irc-wait">멈추기 위해 IRC 피드 제공자를 기다리는 중</string>
   <string name="irc-switch-rc">위키 최근바뀜 피드로 전환</string>
   <string name="login-old">오래된 위치에서 사용자 설정을 얻는 중</string>
@@ -174,18 +176,18 @@
   <string name="login-proxyport">포트:</string>
   <string name="login-proxydomain">도메인:</string>
   <string name="login-retrieving-user-conf">사용자 설정을 얻는 중</string>
-  <string name="login-fail-css">사용자 설정을 얻을 수 없어 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
-  <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 로그인에 실패했습니다</string>
-  <string name="login-fail-no-info">사용자 정보를 얻을 수 없어 로그인에 실패했습니다: $1</string>
-  <string name="login-fail-parse-config">사용자 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
-  <string name="login-fail-user-data">사용자 정보를 얻을 수 없어 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
-  <string name="login-fail-rollback-rights">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 로그인에 실패했습니다</string>
-  <string name="login-failed-autoconfirm-rights">당신은 이 프로젝트에 자동 인증되지 않았기 때문에 로그인에 실패했습니다</string>
-  <string name="login-failed-edit">당신은 이 프로젝트에 충분이 편집하지 않았기 때문에 로그인에 실패했습니다</string>
+  <string name="login-fail-css" fuzzy="true">사용자 설정을 얻을 수 없어 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
+  <string name="login-fail-enable-true" fuzzy="true">당신의 개인 설정에 enable:true가 없기 때문에 로그인에 실패했습니다</string>
+  <string name="login-fail-no-info" fuzzy="true">사용자 정보를 얻을 수 없어 로그인에 실패했습니다: $1</string>
+  <string name="login-fail-parse-config" fuzzy="true">사용자 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
+  <string name="login-fail-user-data" fuzzy="true">사용자 정보를 얻을 수 없어 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 로그인에 실패했습니다</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">당신은 이 프로젝트에 자동 인증되지 않았기 때문에 로그인에 실패했습니다</string>
+  <string name="login-failed-edit" fuzzy="true">당신은 이 프로젝트에 충분이 편집하지 않았기 때문에 로그인에 실패했습니다</string>
   <string name="login-retrieving-info">사용자 정보를 얻는 중</string>
   <string name="login-password-empty">입력한 비밀번호가 비어 있습니다</string>
   <string name="login-fail-wrong-name">로그인에 제공한 사용자 이름이 올바르지 않습니다</string>
-  <string name="login-api">오류: api.php가 알 수 없는 결과로 응답했습니다: $1</string>
+  <string name="login-api" fuzzy="true">오류: api.php가 알 수 없는 결과로 응답했습니다: $1</string>
   <string name="login-start">로그인</string>
   <string name="login-oauth-notsupported">이 메서드는 이 순간에 지원하지 않습니다.</string>
   <string name="login-translate" fuzzy="true">허글 번역하기</string>
@@ -211,26 +213,28 @@
   <string name="login-error-config">로컬 설정을 얻을 수 없어 로그인에 실패했습니다: $1</string>
   <string name="login-error-count">이 프로젝트에서 허글을 사용하려면 적어도 $1번 편집이 필요합니다.</string>
   <string name="login-error-disabled">허글이 당신의 계정에서 활성화되어 있지 않습니다, 사용자 설정 문서를 확인하세요.</string>
-  <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
+  <string name="login-error-global" fuzzy="true">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
   <string name="login-error-invalid">잘못된 사용자 이름</string>
   <string name="login-error-language">메시지 파일을 불러오는 데 실패함</string>
   <string name="login-error-nocaptcha">캡차를 해결하지 않았습니다</string>
   <string name="login-error-noconfig">이 프로젝트는 허글 설정 문서가 없습니다.</string>
-  <string name="login-error-nouser">사용자가 존재하지 않습니다</string>
+  <string name="login-error-nouser" fuzzy="true">사용자가 존재하지 않습니다</string>
   <string name="login-error-password">비밀번호가 잘못되었습니다</string>
   <string name="login-error-projdisabled">허글이 이 프로젝트에서 비활성화되어 있습니다.</string>
   <string name="login-error-rollback">이 프로젝트에서 허글을 사용하려면 되돌리기 권한이 필요합니다.</string>
   <string name="login-error-unknown">로그인할 수 없습니다.</string>
   <string name="login-error-userlist">사용자 목록을 불러오는 데 실패했습니다.</string>
-  <string name="login-error-version">버전이 오래되었습니다. 최신 버전으로 업데이트하세요.</string>
+  <string name="login-error-version" fuzzy="true">버전이 오래되었습니다. 최신 버전으로 업데이트하세요.</string>
   <string name="login-error-whitelist">사용자 허용 목록을 불러오는 데 실패했습니다.</string>
+  <string name="main-menu-provider-stop">제공자 멈춤</string>
+  <string name="main-menu-provider-resume">제공자 다시 시작</string>
   <string name="main-no-reason">사용자가 제공한 이유가 없습니다</string>
-  <string name="main-restoring-slap">제가 다른 편집을 되살리고 있으니, 기다려주세요</string>
+  <string name="main-restoring-slap" fuzzy="true">제가 다른 편집을 되살리고 있으니, 기다려주세요</string>
   <string name="main-page">문서</string>
   <string name="main-user">사용자</string>
   <string name="main-contribs">기여</string>
   <string name="main-history">역사</string>
-  <string name="main-new-messages">새 메시지가 있습니다; 그들을 보려면 시스템 -&gt; 새 메시지 보이기를 선택하거나 M을 누르세요.</string>
+  <string name="main-new-messages" fuzzy="true">새 메시지가 있습니다; 그들을 보려면 시스템 -&gt; 새 메시지 보이기를 선택하거나 M을 누르세요.</string>
   <string name="main-system">시스템</string>
   <string name="main-status-bar">편집&lt;b&gt;$1&lt;/b&gt;번과 쿼리&lt;b&gt;$2&lt;/b&gt;개를 진행하고 있습니다. 목록에서 허용된 사용자: &lt;b&gt;$3&lt;/b&gt; 대기열 크키: &lt;b&gt;$4&lt;/b&gt; 통계: $5</string>
   <string name="main-shutting-down">허글이 종료되고, 무시됩니다</string>
@@ -355,7 +359,7 @@
   <string name="message-summary">요약:</string>
   <string name="message-autosign">서명은 자동으로 추가됩니다</string>
   <string name="message-retrieve-new-token">$1(을)를 편집할 토큰을 얻는 중</string>
-  <string name="message-fail-re-user-tp">$1 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다</string>
+  <string name="message-fail-re-user-tp" fuzzy="true">$1 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다</string>
   <string name="message-er">$1님에게 메시지를 배달할 수 없습니다: $2</string>
   <string name="message-fail-retrieve-talk">사용자 토론 문서를 얻을 수 없습니다</string>
   <string name="message-done">$1님에게: 메시지를 성공적으로 배달했습니다</string>
@@ -420,7 +424,7 @@
   <string name="report-done">보고됨</string>
   <string name="report-user">보고</string>
   <string name="uaa-not-supported">사용자 관리 신청 사용할 수 없음</string>
-  <string name="uaa-not-supported-text">이 위키에는 관리자의 관심이 필요한 사용자명 알림판이 존재하지 않습니다.</string>
+  <string name="uaa-not-supported-text" fuzzy="true">이 위키에는 관리자의 관심이 필요한 사용자명 알림판이 존재하지 않습니다.</string>
   <string name="uaa-reported">보고됨</string>
   <string name="uaa-nr">제공된 이유가 없습니다</string>
   <string name="uaa-e1">문서 내용에 대한 쿼리는 반환한 데이터가 없습니다 .</string>
@@ -433,7 +437,7 @@
   <string name="speedy-title">삭제 신청 $1</string>
   <string name="speedy-reason">이유:</string>
   <string name="speedy-parameters">변수:</string>
-  <string name="speedy-notifycreator">문서 생성자에게 알림</string>
+  <string name="speedy-notifycreator">문서 만든이에게 알림</string>
   <string name="stats-title">통계</string>
   <string name="stats-actions">이 세션 행동:</string>
   <string name="stats-session">세션 시간: $1</string>
@@ -517,11 +521,10 @@
   <string name="editquery-token">$1 문서를 편집할 토큰을 얻는 중</string>
   <string name="editquery-token-error">편집 토큰을 얻을 수 없습니다</string>
   <string name="rc-error">위키 피드에서 데이터를 얻을 수 없습니다, 마지막 오류: $1</string>
-  <string name="whitelist-download">새 허용 목록 다운로드</string>
+  <string name="whitelist-download">새 허용 목록을 다운로드 중</string>
   <string name="queue-widget-name">대기열</string>
   <string name="logs-widget-name">시스템 기록</string>
   <string name="wait">기다려 주세요...</string>
-  <string name="merging">병합</string>
   <string name="missing-page">이 위키에 $1 문서가 없습니다</string>
   <string name="updating-wl">허용 목록을 업데이트 중...</string>
   <string name="updating-uc">위키에 있는 huggle3.css에서 사용자 설정 문서를 업데이트하는 중</string>

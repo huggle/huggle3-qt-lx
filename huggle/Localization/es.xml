@@ -128,6 +128,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-logbrowsetitle">Ubicación del archivo de registro</string>
   <string name="config-shortcutconflict">El atajo \'{0}\' coincide con el atajo existente para \'{1}\'.</string>
   <string name="config-no-colon">No puedes utilizar : en nombre de la cola</string>
+  <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="delete-title">Borrar {0}</string>
   <string name="delete-reason">Razón:</string>
   <string name="delete-deletionlog">Registro de borrados:</string>
@@ -164,7 +165,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-retrieving-info">Obteniendo la información del usuario</string>
   <string name="login-start">Ingresar</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
-  <string name="login-translate" fuzzy="true">Traducir Huggle</string>
+  <string name="login-translate">Traducir Huggle</string>
   <string name="login-captchatitle">Captcha necesario para iniciar sesión</string>
   <string name="login-progress-start">Accediendo a $1</string>
   <string name="login-progress-language">Actualizando archivos de mensaje...</string>
@@ -184,25 +185,25 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-error-config">No se pudo cargar las páginas de configuración.</string>
   <string name="login-error-count">Se necesita al menos {0} ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">No es posible iniciar Huggle con tu cuenta, revisa tu página de configuración.</string>
-  <string name="login-error-global">No se pudo cargar la página de configuración global.</string>
+  <string name="login-error-global" fuzzy="true">No se pudo cargar la página de configuración global.</string>
   <string name="login-error-invalid">Nombre de usuario no válido.</string>
   <string name="login-error-language">No se pudo cargar los archivos de mensaje.</string>
   <string name="login-error-nocaptcha">Código de Captcha no resuelto.</string>
   <string name="login-error-noconfig">Este proyecto no tiene una página de configuración Huggle</string>
-  <string name="login-error-nouser">El usuario no existe.</string>
+  <string name="login-error-nouser" fuzzy="true">El usuario no existe.</string>
   <string name="login-error-password">Contraseña incorrecta.</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
   <string name="login-error-rollback">Se necesita privilegios de Rollback para usar Huggle en este proyecto.</string>
   <string name="login-error-unknown">No se puede iniciar sesión.</string>
   <string name="login-error-userlist">No se pudo cargar la lista de usuarios.</string>
-  <string name="login-error-version">Esta versión de Huggle está desactualizada. Actualízala a la versión más reciente.</string>
+  <string name="login-error-version" fuzzy="true">Esta versión de Huggle está desactualizada. Actualízala a la versión más reciente.</string>
   <string name="login-error-whitelist">No se pudo cargar la lista blanca de usuarios.</string>
   <string name="main-no-reason">El usuario no proporcionó ningún motivo</string>
   <string name="main-page">Página</string>
   <string name="main-user">Usuario</string>
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
-  <string name="main-new-messages">Tienes mensajes nuevos; selecciona \"Sistema\" -&gt; \"Mostrar nuevos mensajes\" o presiona \"M\" para verlos.</string>
+  <string name="main-new-messages" fuzzy="true">Tienes mensajes nuevos; selecciona \"Sistema\" -&gt; \"Mostrar nuevos mensajes\" o presiona \"M\" para verlos.</string>
   <string name="main-system">Sistema</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
   <string name="main-system-reconnectirc">Reconectar al canal IRC</string>
@@ -384,7 +385,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="revert-confirm-range">El autor de la edición a la que quieres revertir, {1}, está en el mismo rango IP que el autor de la edición actual, {0}, y pueden ser la misma persona; asegúrate de que estés revirtiendo a la edición correcta antes de proceder. ¿Continuar?</string>
   <string name="revert-confirm-same">Esto revertirá a otra edición del mismo usuario al que estás revirtiendo, {0}. ¿Continuar?</string>
   <string name="revert-confirm-warned">Esto revertirá a una edición de {0}; este usuario ha sido advertido antes. ¿Continuar?</string>
-  <string name="revert-error-first">Esta edición es la primera de la página; no se puede revertir.</string>
+  <string name="revert-error-first" fuzzy="true">Esta edición es la primera de la página; no se puede revertir.</string>
   <string name="revert-only">Esta edición es la única de la página.</string>
   <string name="revert-creator">La última edición fue hecha por el creador de la página, {0}.</string>
   <string name="revert-delete-instead">¿Borrar página en vez de revertir?</string>
@@ -425,6 +426,10 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="update-title">Nueva versión disponible</string>
   <string name="update-progress">Descargando nueva versión...</string>
   <string name="update-error">No se ha podido descargar la versión nueva</string>
+  <string name="updater-title">Hay una versión más reciente de Huggle</string>
+  <string name="updater-update">Actualizar</string>
+  <string name="updater-close">Cerrar</string>
+  <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-title">Información de \'{0}\'</string>
   <string name="userinfo-anonymous">Anónimo:</string>
@@ -514,7 +519,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="wait">Espera un momento…</string>
   <string name="function-miss">La función no está disponible por ahora</string>
   <string name="missing-aiv">Este proyecto no utiliza AIV</string>
-  <string name="merging">Fusionando</string>
   <string name="missing-page">No existe la página $1 en este wiki</string>
   <string name="updating-wl">Actualizando lista blanca...</string>
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>

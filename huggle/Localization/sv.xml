@@ -129,6 +129,8 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="config-defaultsprompt">Restore defaults?</string>
   <string name="config-logbrowsetitle">Log file location</string>
   <string name="config-shortcutconflict">Shortcut \'$1\' conflicts with the existing shortcut for \'$1\'.</string>
+  <string name="config-notify-update">Sök efter uppdateringar</string>
+  <string name="config-notify-beta">Kontrollera om en beta-version finns tillgänglig</string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -166,17 +168,17 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
-  <string name="login-fail-no-info">Inloggningen misslyckades inte hämta användarinformation från: $1</string>
-  <string name="login-fail-parse-config">Inloggningen misslyckades att tolka användarinställningar, se felsökningsloggen för mer information</string>
-  <string name="login-fail-user-data">Inloggningen misslyckades inte hämta användarinformation, api-frågan returnerade ingen data</string>
-  <string name="login-fail-rollback-rights">Inloggningen misslyckades eftersom du inte har tillbakarullnings behörigheter på detta projekt</string>
-  <string name="login-failed-autoconfirm-rights">Inloggningen misslyckades eftersom du inte är en autobekräftad användare på detta projekt</string>
-  <string name="login-failed-edit">Inloggningen misslyckades eftersom du inte har tillräckligt redigeringar på detta projekt</string>
+  <string name="login-fail-no-info" fuzzy="true">Inloggningen misslyckades inte hämta användarinformation från: $1</string>
+  <string name="login-fail-parse-config" fuzzy="true">Inloggningen misslyckades att tolka användarinställningar, se felsökningsloggen för mer information</string>
+  <string name="login-fail-user-data" fuzzy="true">Inloggningen misslyckades inte hämta användarinformation, api-frågan returnerade ingen data</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">Inloggningen misslyckades eftersom du inte har tillbakarullnings behörigheter på detta projekt</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">Inloggningen misslyckades eftersom du inte är en autobekräftad användare på detta projekt</string>
+  <string name="login-failed-edit" fuzzy="true">Inloggningen misslyckades eftersom du inte har tillräckligt redigeringar på detta projekt</string>
   <string name="login-retrieving-info">Hämtar användarinformation</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
   <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
   <string name="login-start">Login</string>
-  <string name="login-translate" fuzzy="true">Översätt huggle</string>
+  <string name="login-translate">Översätt Huggle</string>
   <string name="login-captchatitle">Captcha required to log in</string>
   <string name="login-progress-start">Loggar in på $1</string>
   <string name="login-progress-language">Updating message files...</string>
@@ -195,25 +197,25 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="login-error-config">Failed to load configuration pages.</string>
   <string name="login-error-count">Use of Huggle on this project requires at least {0} edits.</string>
   <string name="login-error-disabled">Huggle is not enabled for your account, check user configuration page.</string>
-  <string name="login-error-global">Failed to load global configuration page.</string>
+  <string name="login-error-global" fuzzy="true">Failed to load global configuration page.</string>
   <string name="login-error-invalid">Invalid username.</string>
   <string name="login-error-language">Failed to load message files.</string>
   <string name="login-error-nocaptcha">Captcha not solved.</string>
   <string name="login-error-noconfig">This project does not  have a Huggle configuration page.</string>
-  <string name="login-error-nouser">User does not exist.</string>
+  <string name="login-error-nouser" fuzzy="true">User does not exist.</string>
   <string name="login-error-password">Incorrect password.</string>
   <string name="login-error-projdisabled">Huggle is currently  disabled on this project.</string>
   <string name="login-error-rollback">Use of Huggle on this  project requires rollback.</string>
   <string name="login-error-unknown">Unable to log in.</string>
   <string name="login-error-userlist">Failed to load user list.</string>
-  <string name="login-error-version">Version is out of date.  Update to the latest version.</string>
+  <string name="login-error-version" fuzzy="true">Version is out of date.  Update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user  whitelist.</string>
-  <string name="main-restoring-slap">Jag återställer för närvarande en annan redigering, var god vänta</string>
+  <string name="main-restoring-slap" fuzzy="true">Jag återställer för närvarande en annan redigering, var god vänta</string>
   <string name="main-page">Page</string>
   <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
   <string name="main-history">History</string>
-  <string name="main-new-messages">You have new messages; select System -&gt; Show new  messages or press M to view them.</string>
+  <string name="main-new-messages" fuzzy="true">You have new messages; select System -&gt; Show new  messages or press M to view them.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Show new messages</string>
   <string name="main-system-reconnectirc">Reconnect IRC feed</string>
@@ -225,7 +227,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-system-showqueue">Show queue</string>
   <string name="main-system-showtwoqueues">Show two queues</string>
   <string name="main-system-options">Options...</string>
-  <string name="main-system-logout">Log out</string>
+  <string name="main-system-logout">Logga ut</string>
   <string name="main-system-abort">Avbryt</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
@@ -287,9 +289,11 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-browser-open">View this in external browser</string>
   <string name="main-browser-newedits">Show new edits to page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
+  <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Koppla från</string>
   <string name="main-han-connect">Anslut</string>
   <string name="main-help">Help</string>
+  <string name="main-han-display-bot-data">Visa bot-data</string>
   <string name="main-han-display-user-messages">Visa användarmeddelanden</string>
   <string name="main-han-display-user-data">Visa användardata</string>
   <string name="main-help-documentation">Documentation</string>
@@ -300,6 +304,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="main-usermessageother">Other message...</string>
   <string name="main-advanced">Advanced...</string>
   <string name="main-stats">{0} edits per minute, {1} reverts  per minute</string>
+  <string name="main-display-session-data">Visa sessionsdata</string>
   <string name="main-display-whitelist">Visa vitlista</string>
   <string name="main-tip-revertwarn">Revert this revision, and issue a user warning</string>
   <string name="main-tip-nextdiff">Show the next revision in the queue</string>
@@ -381,7 +386,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="revert-confirm-range">The  author of the target revision, {1}, is in the same range as the author  of the current revision, {0}, and may be the same person; ensure the  target revision is correct before proceeding. Continue?</string>
   <string name="revert-confirm-same">This  will revert to another revision by the user that is being reverted,  {0}. Continue?</string>
   <string name="revert-confirm-warned">This  will revert to a revision by {0}; this user has previously been warned.  Continue?</string>
-  <string name="revert-error-first">Edit is the first edit to the page; unable  to revert.</string>
+  <string name="revert-error-first" fuzzy="true">Edit is the first edit to the page; unable  to revert.</string>
   <string name="revert-only">Edit is the only edit to the page.</string>
   <string name="revert-creator">Last edit was made by page creator, {0}.</string>
   <string name="revert-delete-instead">Delete page instead?</string>
@@ -422,6 +427,11 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="update-title">New version available</string>
   <string name="update-progress">Downloading new version...</string>
   <string name="update-error">Failed to download new version</string>
+  <string name="updater-title">En nyare version av Huggle är tillgänglig</string>
+  <string name="updater-update">Uppdatera</string>
+  <string name="updater-open-manualdownloadpage">Öppna nedladdningssidan</string>
+  <string name="updater-close">Stäng</string>
+  <string name="updater-disable-notify">Inaktivera uppdateringar</string>
   <string name="userinfo-generic">Användarinformation</string>
   <string name="userinfo-title">User information for \'{0}\'</string>
   <string name="userinfo-anonymous">Anonymous:</string>
@@ -489,7 +499,7 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="reqprotection-fail">Did  not request protection of \'{0}\'</string>
   <string name="reqprotection-progress">Requesting protection of \'{0}\'...</string>
   <string name="speedy-fail" fuzzy="true">Did not tag \'{0}\' for speedy deletion</string>
-  <string name="speedy-progress" fuzzy="true">Tagging \'{0}\' for speedy deletion...</string>
+  <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
   <string name="warnlog-fail" fuzzy="true">Failed to retrieve warning log for \'{0}\'</string>
   <string name="warnlog-none" fuzzy="true">\'{0}\' has not been warned</string>
   <string name="warnlog-progress" fuzzy="true">Retrieving warning  log for \'{0}\'...</string>
@@ -510,7 +520,6 @@ This block will  override the effect of the rangeblock. Continue?</string>
   <string name="wait">Var god vänta...</string>
   <string name="function-miss">Funktionen är inte tillgänglig nu</string>
   <string name="missing-aiv">Detta projekt använder inte AIV</string>
-  <string name="merging">Sammanslagning</string>
   <string name="missing-page">Det finns ingen sida som heter $1 på denna wiki</string>
   <string name="updating-wl">Uppdaterar vitlista...</string>
   <string name="updating-uc">Uppdaterar användarens konfigurationssida som heter huggle3.css</string>

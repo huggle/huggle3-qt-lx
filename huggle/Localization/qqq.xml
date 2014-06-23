@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">This is a name of the language as shown on the login form (it is meant to be localized to target language so that user can easily find it).</string>
-  <string name="__isrtl__">This is a magic key that huggle uses to determine if localization is right to left or not, write "true" here if it is, otherwise put false or nothing there</string>
+  <string name="__isrtl__">This is a magic key that huggle uses to determine if localization is right to left or not, write \"true\" here if it is, otherwise put false or nothing there</string>
   <string name="add">{{Identical|Add}}</string>
   <string name="apply">{{Identical|Apply}}</string>
   <string name="cancel">{{Identical|Cancel}}</string>
@@ -21,7 +21,11 @@
   <string name="ok">{{Identical|OK}}</string>
   <string name="remove">{{Identical|Remove}}</string>
   <string name="rename">{{Identical|Rename}}</string>
-  <string name="reload">generic reload</string>
+  <string name="reload">Used as label for button.
+
+Tooltip for the button is:
+* {{msg-huggle|Login-reload-tool-tip}}
+{{Identical|Reload}}</string>
   <string name="result">{{Identical|Result}}</string>
   <string name="restorewindow">{{Identical|Restore}}</string>
   <string name="save">{{Identical|Save}}</string>
@@ -92,16 +96,21 @@
   <string name="config-shortcutaction">{{Identical|Action}}</string>
   <string name="config-noshortcut">{{Identical|None}}</string>
   <string name="config-template">{{Identical|Template}}</string>
+  <string name="config-notify-update">Used as label for the checkbox.
+{{Identical|Check for update}}</string>
+  <string name="config-notify-beta">Used as label for the checkbox.</string>
   <string name="delete-reason">{{Identical|Reason}}</string>
   <string name="delete-deletionlog">{{Identical|Deletion log}}</string>
   <string name="historyform-title">{{Identical|History}}</string>
   <string name="login-tab-oauth">name of tab at login window for OAuth-login.</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.</string>
+  <string name="login-reload-tool-tip">Used as tooltip for the button which is labeled {{msg-huggle|Reload}}.</string>
   <string name="login-language">{{Identical|Language}}</string>
   <string name="login-project">{{Identical|Project}}</string>
   <string name="login-username">{{Identical|Username}}</string>
   <string name="login-password">{{Identical|Password}}</string>
   <string name="login-proxyaddress">{{Identical|Address}}</string>
+  <string name="login-fail-enable-true">Don\'t translate \"enable:true\".</string>
   <string name="login-start">{{Identical|Log in}}</string>
   <string name="login-oauth-notsupported">OAuth-notice on login-window.</string>
   <string name="login-translate">Used as link text for the link pointing to [[m:Huggle/Localization]].</string>
@@ -113,6 +122,8 @@
   <string name="main-user">{{Identical|User}}</string>
   <string name="main-contribs">{{Identical|Contribution}}</string>
   <string name="main-history">{{Identical|History}}</string>
+  <string name="main-new-messages">* \"System\" is {{Msg-huggle|Main-system}}
+* \"Show new messages\" is {{Msg-huggle|Main-system-messages}}.</string>
   <string name="main-system-messages">Menu</string>
   <string name="main-system-reconnectirc">Menu item (in system menu)</string>
   <string name="main-system-logout">{{Identical|Log out}}</string>
@@ -122,13 +133,14 @@
 {{Identical|IRC}}</string>
   <string name="main-system-change-provider-wiki">{{Identical|Wiki}}</string>
   <string name="main-system-exit">{{Identical|Exit}}</string>
+  <string name="main-tools-scoreword-list">\"Scorewords\" are words, that when they are present in a diff of an edit they increase the score of an edit by given value. A higher score could imply that the edit might be vandalism.</string>
   <string name="main-queue-count">Unused at this time.
 
 Parameters:
 * $1 - ...</string>
   <string name="main-goto-mycontribs">{{Identical|Contribution}}</string>
   <string name="main-revision">{{Identical|Revision}}</string>
-  <string name="main-revision-revert">{{Identical|Revert}}</string>
+  <string name="main-revision-revert">none</string>
   <string name="main-revision-previous">{{Identical|Previous}}</string>
   <string name="main-page-next">{{Identical|Next}}
 Menu entry to process to next edit in queue.</string>
@@ -138,6 +150,9 @@ Menu entry to process to next edit in queue.</string>
 See also:
 * {{msg-huggle|Main-page-delete}}</string>
   <string name="main-page-reqprotection">Used as label for the button.</string>
+  <string name="main-page-curr-disp">A label for a text box that describes the current screen.
+
+[[File:Huggle3 kde ubuntu.png|300px|Screenshot]]</string>
   <string name="main-page-patrol">Unused at this time.
 {{Identical|Mark as patrolled}}</string>
   <string name="main-page-protect">Used as label for the button.
@@ -151,6 +166,9 @@ See also:
   <string name="main-page-restore">Used as label for the button.</string>
   <string name="main-user-ignore">{{Identical|Ignore}}</string>
   <string name="main-browser-back">{{Identical|Back}}</string>
+  <string name="main-revert-manual">Parameters:
+* $1 - pagename</string>
+  <string name="main-han">Abbreviation for Huggle Antivandalism Network.</string>
   <string name="main-help">{{Identical|Help}}</string>
   <string name="main-help-documentation">{{Identical|Documentation}}</string>
   <string name="main-help-feedback">{{Identical|Feedback}}</string>
@@ -161,9 +179,18 @@ See also:
   <string name="message-subject">{{Identical|Subject}}</string>
   <string name="message-message">{{Identical|Message}}</string>
   <string name="message-summary">{{Identical|Summary}}</string>
+  <string name="message-fail-re-user-tp">$1 is the name of the user talk page.</string>
   <string name="message-done">Used as success message. Parameters:
 * $1 - username</string>
+  <string name="message-fail-token-1">Used as error message.</string>
+  <string name="message-fail-token-2">Used as failure message.</string>
   <string name="protect-reason">{{Identical|Reason}}</string>
+  <string name="protect-token">Used as failure message. Parameters:
+* $1 - error message (reason)</string>
+  <string name="protect-fail-no-info">Used as failure message.</string>
+  <string name="protect-message-title-fail">Used as window title when the process has failed.
+
+The windows has the message \"Unable to protect the page because \'\'reason\'\'\" (untranslatable).</string>
   <string name="queue-listselector">{{Identical|List}}</string>
   <string name="queue-filternewpage">{{Identical|New page}}</string>
   <string name="queue-filteranonymous">{{Identical|Anonymous user}}</string>
@@ -174,24 +201,37 @@ See also:
   <string name="report-reason">{{Identical|Reason}}</string>
   <string name="report-message">{{Identical|Message}}</string>
   <string name="speedy-reason">{{Identical|Reason}}</string>
+  <string name="rollback">Used as status that the page is being rolled back. Parameters:
+* $1 - pagename</string>
   <string name="stats-title">{{Identical|Statistics}}</string>
   <string name="stats-warnings">{{Identical|Warning}}</string>
   <string name="stats-notifications">{{Identical|Notification}}</string>
   <string name="stats-blocks">{{Identical|Block}}</string>
   <string name="stats-allusers">{{Identical|All users}}</string>
+  <string name="stats-bots">{{Identical|Bot}}</string>
   <string name="tag-summary">{{Identical|Summary}}</string>
+  <string name="updater-title">Used as window title.</string>
+  <string name="updater-update">Used as label for button.
+{{Identical|Update}}</string>
+  <string name="updater-open-manualdownloadpage">Used as label for button.</string>
+  <string name="updater-close">Used as label for the button.
+{{Identical|Close}}</string>
+  <string name="updater-disable-notify">Used as label for the checkbox.</string>
   <string name="userinfo-anonymous">{{Identical|Anonymous}}</string>
   <string name="userinfo-blocklog">{{Identical|Block}}</string>
   <string name="userinfo-warnlog">{{Identical|Warning}}</string>
   <string name="error-unknown">{{Identical|Unknown error}}</string>
-  <string name="speedy-fail">Unused at this time.
+  <string name="delete-user">Used in the confirmation message box.
 
-Parameters:
-* $1 - ...</string>
+\"userspace\" refers to \"User namespace\".</string>
+  <string name="speedy-fail">Parameters:
+* $1 - error message</string>
   <string name="speedy-progress">Unused at this time.
 
 Parameters:
 * $1 - ...</string>
+  <string name="speedy-finished">Used as label for the button to indicate the process has been finished successfully.
+{{Identical|Finished}}</string>
   <string name="warnlog-fail">Unused at this time.
 
 Parameters:

@@ -172,19 +172,19 @@
   <string name="login-error-language">قادر به بارگذاری فایل پیام‌ها نیستم.</string>
   <string name="login-error-nocaptcha">کپچا صحیح وارد نشده‌است.</string>
   <string name="login-error-noconfig">این پروژه صفحه پیکربندی هاگل ندارد</string>
-  <string name="login-error-nouser">این حساب کاربری وجود ندارد</string>
+  <string name="login-error-nouser" fuzzy="true">این حساب کاربری وجود ندارد</string>
   <string name="login-error-password">گذرواژه نادرست</string>
   <string name="login-error-projdisabled">هاگل اکنون در پروژه شما غیرفعال است.</string>
   <string name="login-error-rollback">برای استفاده از هاگل در این پروژه شما نیازمند دسترسی واگردان هستید.</string>
   <string name="login-error-unknown">قادر به ورود نیستم.</string>
   <string name="login-error-userlist">اشکال در بارگیری فهرست کاربری</string>
-  <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه به‌روزرسانی نمایید.</string>
+  <string name="login-error-version" fuzzy="true">این نسخه، قدیمی است. به آخرین نسخه به‌روزرسانی نمایید.</string>
   <string name="login-error-whitelist">اشکال در بارگیری فهرست سفید کاربران.</string>
   <string name="main-page">صفحه</string>
   <string name="main-user">کاربر</string>
   <string name="main-contribs">مشارکت‌ها</string>
   <string name="main-history">تاریخچه</string>
-  <string name="main-new-messages">شما پیام‌های جدیدی دارید؛ سامانه -&gt; نمایش پیام‌های جدید را انتخاب کنید یا M را فشار دهید تا ببینیدشان.</string>
+  <string name="main-new-messages" fuzzy="true">شما پیام‌های جدیدی دارید؛ سامانه -&gt; نمایش پیام‌های جدید را انتخاب کنید یا M را فشار دهید تا ببینیدشان.</string>
   <string name="main-system">سامانه</string>
   <string name="main-system-messages">نمایش پیام‌های جدید</string>
   <string name="main-system-reconnectirc">ارتباط دوباره با فید آی‌آرسی</string>
@@ -360,10 +360,10 @@
   <string name="report-done">گزارش شد.</string>
   <string name="report-user">گزارش</string>
   <string name="uaa-not-supported">وپ:تامنام موجود نیست</string>
-  <string name="uaa-not-supported-text">وپ:تامنام در ویکی شما موجود نیست</string>
+  <string name="uaa-not-supported-text" fuzzy="true">وپ:تامنام در ویکی شما موجود نیست</string>
   <string name="uaa-reported">گزارش شد</string>
   <string name="revert-confirm-multiple">این عمل، چند ویرایش $1 را واگردانی می‌کند، ادامه می‌دهید؟</string>
-  <string name="revert-error-first">این ویرایش، نخستین ویرایش صفحه است؛ ناتوان در واگردانی.</string>
+  <string name="revert-error-first" fuzzy="true">این ویرایش، نخستین ویرایش صفحه است؛ ناتوان در واگردانی.</string>
   <string name="revert-only">ویرایش تنها ویرایش این صفحه</string>
   <string name="revert-creator">آخرین ویرایش به وسیله سازنده صفحه اش، $1 ، انجام شده است.</string>
   <string name="revert-preflightcheck">بررسی پیش‌ از جدال</string>
@@ -489,7 +489,6 @@
   <string name="wait">لطفاً صبر کنید...</string>
   <string name="function-miss">تابع، اکنون در دسترس نمی‌باشد</string>
   <string name="missing-aiv">این پروژه از AIV بهره نمی‌گیرد</string>
-  <string name="merging">ادغام</string>
   <string name="missing-page">در این ویکی صفحه $1 وجود ندارد</string>
   <string name="updating-wl">به‌روزرسانی فهرست سفید...</string>
   <string name="updating-uc">به‌روزرسانی صفحه پیکربندی کاربری در huggle3.css در ویکی</string>

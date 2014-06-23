@@ -72,6 +72,8 @@
   <string name="config-blocktimeanon">Anonym Benotzer</string>
   <string name="config-blocktimereg">registréiert Benotzer</string>
   <string name="config-summaryprompt">Resumé aginn</string>
+  <string name="config-notify-update">No Aktualisatioune sichen</string>
+  <string name="config-notify-beta">Nokucken ob Beta-Versiounen disponibel sinn</string>
   <string name="delete-title">$1 läschen</string>
   <string name="delete-reason">Grond:</string>
   <string name="delete-deletionlog">Logbuch vum Läschen:</string>
@@ -93,7 +95,7 @@
   <string name="login-password-empty">D\'Passwuert dat Dir aginn hutt war eidel</string>
   <string name="login-start">Aloggen</string>
   <string name="login-oauth-notsupported">Dës Method gëtt elo net ënnerstëtzt</string>
-  <string name="login-translate" fuzzy="true">Huggle iwwersetzen</string>
+  <string name="login-translate">Huggle iwwersetzen</string>
   <string name="login-captchatitle">Captcha obligatoresch fir sech anzeloggen</string>
   <string name="login-progress-start">Bäi $1 aloggen</string>
   <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
@@ -102,13 +104,13 @@
   <string name="login-error-cancelled">Ofgebrach.</string>
   <string name="login-error-invalid">Ongëltege Benotzernumm</string>
   <string name="login-error-nocaptcha">Captcha net geléist</string>
-  <string name="login-error-nouser">Benotzer gëtt et net</string>
+  <string name="login-error-nouser" fuzzy="true">Benotzer gëtt et net</string>
   <string name="login-error-password">Falscht Passwuert</string>
   <string name="login-error-projdisabled">Huggle ass elo op dësem Projet ausgeschalt.</string>
   <string name="login-error-userlist">D\'Lëscht vun de Benotzer konnt net geluede ginn.</string>
-  <string name="login-error-version">D\'Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
+  <string name="login-error-version" fuzzy="true">D\'Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
-  <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g..</string>
+  <string name="main-restoring-slap" fuzzy="true">Ech restauréieren elo eng aner Ännerung, waart w.e.g..</string>
   <string name="main-page">Säit</string>
   <string name="main-user">Benotzer</string>
   <string name="main-history">Versiounen</string>
@@ -134,7 +136,8 @@
   <string name="main-revision-decline">Versioun refuséieren</string>
   <string name="main-revision">Versioun</string>
   <string name="main-revision-view">Weisen</string>
-  <string name="main-revision-revert" fuzzy="true">Zrécksetzen</string>
+  <string name="main-revision-revert">Déi Ännerung déi elo gewise gëtt zrécksetzen</string>
+  <string name="main-revision-rv-stay">Dës Ännerung zrécksetzen an op enger Säit bleiwen</string>
   <string name="main-revision-previous">Vireg</string>
   <string name="main-revision-next">Nächst</string>
   <string name="main-revision-latest">Lescht</string>
@@ -150,6 +153,7 @@
   <string name="main-page-unwatch">Net méi iwwerwaachen</string>
   <string name="main-page-purge">Botzen (vum Cache)</string>
   <string name="main-page-curr-disp">Elo gewisen</string>
+  <string name="main-page-display">Dës Säit weisen</string>
   <string name="main-page-patrol">Als nogekuckt markéieren</string>
   <string name="main-page-move">Réckelen...</string>
   <string name="main-page-flag-suspicious-edit">Als verdächteg Ännerung markéieren (dës Aktioun ännert de Score vum Benotzer ëm +1)</string>
@@ -230,13 +234,14 @@
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>
   <string name="revert-confirm-range">Den Auteur vun der Ziversioun $2 ass am selwechte Beräich wéi den Auteur vun der aktueller Versioun $1 a kéint déi selwecht Persoun sinn. Vergewëssert Iech datt d\'Zilversioun korrekt ass ier Dir weidermaacht. Virufueren?</string>
-  <string name="revert-error-first">D\'Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn</string>
+  <string name="revert-error-first" fuzzy="true">D\'Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn</string>
   <string name="revert-only">Dës Ännerung ass déi Eenzeg vun dëser Säit.</string>
   <string name="revert-creator">Déi lescht Ännerung gouf vun deem gemaach deen d\'Säit ugeluecht huet, $1.</string>
   <string name="revert-delete-instead">An där Plaz d\'Säit läschen?</string>
   <string name="speedy-reason">Grond:</string>
   <string name="speedy-parameters">Parameteren:</string>
   <string name="speedy-notifycreator">Auteur informéieren deen d\'Säit ugeluecht huet</string>
+  <string name="rollback">$1 zréchsetzen</string>
   <string name="stats-title">Statistiken</string>
   <string name="stats-edits">Ännerungen</string>
   <string name="stats-huggle">Huggle-Ännerungen</string>
@@ -259,6 +264,10 @@
   <string name="update-title">Nei Versioun disponibel</string>
   <string name="update-progress">Nei Versioun gëtt erofgelueden...</string>
   <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
+  <string name="updater-title">Eng nei Versioun vun Huggle ass disponibel</string>
+  <string name="updater-update">Aktualiséieren</string>
+  <string name="updater-close">Zoumaachen</string>
+  <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-title">Benotzerinformatioun fir $1</string>
   <string name="userinfo-anonymous">Anonym:</string>
@@ -295,6 +304,7 @@
   <string name="saveuserconfig-progress">Aktualisatioun vun der säit vun de Benotzerastellungen...</string>
   <string name="reqprotection-badformat">Format vun der Säit mat der Ufro onbekannt</string>
   <string name="reqprotection-duplicate">D\'Spär gouf schonn ugefrot</string>
+  <string name="speedy-finished">Fäerdeg</string>
   <string name="warnlog-none">\'$1\' gouf net gewarnt</string>
   <string name="usermessage-duplicate">E Message iwwer déi selwecht Saach gouf et schonn</string>
   <string name="usermessage-fail">\'$1\' gouf net infroméiert</string>
@@ -309,7 +319,6 @@
   <string name="wait">Waart w.e.g. ...</string>
   <string name="function-miss">Funktioun ass elo net disponibel</string>
   <string name="missing-aiv">Dëse Projet benotzt AIV net</string>
-  <string name="merging">Zesummeleeën</string>
   <string name="missing-page">Et gëtt keng Säit $1 op dëser Wiki</string>
   <string name="feature-nfru">Dës Funktioun ass nëmme fir anonym (IP) Benotzer</string>
   <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht w.e.g. d\'éischt e Benotzer eraus</string>
