@@ -154,6 +154,18 @@ namespace Huggle
             return result_;
         }
 
+        static PyObject *Configuration_GetWikiURL(PyObject *self, PyObject *args)
+        {
+            PyObject *result_ = PyUnicode_FromString(Configuration::HuggleConfiguration->GetProjectWikiURL().toUtf8().data());
+            return result_;
+        }
+
+        static PyObject *Configuration_GetScript(PyObject *self, PyObject *args)
+        {
+            PyObject *result_ = PyUnicode_FromString(Configuration::HuggleConfiguration->GetProjectScriptURL().toUtf8().data());
+            return result_;
+        }
+
         static PyObject *Log(PyObject *self, PyObject *args)
         {
             return Log_(HuggleLogType_Normal, self, args);
@@ -212,6 +224,8 @@ namespace Huggle
             {"error_log", ErrorLog, METH_VARARGS, "Write to error log using stderr to output"},
             {"wikipage_append", Wikipage_append, METH_VARARGS, "Append a text to a page"},
             {"configuration_get_user", Configuration_GetUser, METH_VARARGS, "Request a name of user who is currently used on selected wiki"},
+            {"configuration_get_project_script_url", Configuration_GetScript, METH_VARARGS, "Return a script url"},
+            {"configuration_get_project_wiki_url", Configuration_GetWikiURL, METH_VARARGS, "Return an URL of current project"},
             {nullptr, nullptr, 0, nullptr}
         };
 

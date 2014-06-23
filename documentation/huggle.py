@@ -15,6 +15,15 @@ def huggle_version():
     if the version (this works only if huggle was built from within a git repository)
     """
     return "unknown";
+
+def configuration_get_project_wiki_url():
+    """Returns a project /wiki url"""
+
+    return "http://en.wikipedia.org/wiki/";
+
+def configuration_get_project_script_url():
+    return "http://en.wikipedia.org/w/";
+
 def configuration_get_user():
     """Returns a username as stored in huggle configuration"""
     return "JimmyWales";
