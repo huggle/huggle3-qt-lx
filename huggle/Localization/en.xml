@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resource>
     <string name="name">English</string>
-    <string name="__isrtl__">false</string>
+    <string name="isrtl">false</string>
     <string name="add">Add</string>
     <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
