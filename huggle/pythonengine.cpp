@@ -45,7 +45,7 @@ namespace Huggle
             PyObject *py_verbosity_ = nullptr;
             PyObject *text_ = nullptr;
             PyObject *result_ = PyBool_FromLong(0);
-            if (PyArg_UnpackTuple(args, "debug_log", 1, 2, &text_, &py_verbosity_) && PyBytes_Check(text_))
+            if (PyArg_UnpackTuple(args, "debug_log", 1, 2, &text_, &py_verbosity_))
             {
                 Py_DECREF(result_);
                 result_ = PyBool_FromLong(1);
@@ -70,6 +70,10 @@ namespace Huggle
                     Syslog::HuggleLogs->DebugLog(qs_text_, verbosity);
                     Py_DECREF(uni_);
                 }
+            } else
+            {
+                HUGGLE_DEBUG("Failed to unpack tuple @DebugLog", 2);
+                PyErr_Print();
             }
             return result_;
         }
@@ -117,6 +121,10 @@ namespace Huggle
                             break;
                     }
                 }
+            } else
+            {
+                HUGGLE_DEBUG1("Failed to unpack tuple in Log_ fc");
+                PyErr_Print();
             }
             return result_;
         }
@@ -417,7 +425,8 @@ void PythonScript::Hook_Shutdown()
     if (this->ptr_Hook_Shutdown != nullptr)
     {
         HUGGLE_DEBUG("Calling hook Hook_Shutdown @" + this->Name, 2);
-        PyObject_CallObject(this->ptr_Hook_Shutdown, nullptr);
+        if (!PyObject_CallObject(this->ptr_Hook_Shutdown, nullptr))
+            PyErr_Print();
     }
 }
 
@@ -429,22 +438,31 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, bool successfull)
     {
         HUGGLE_DEBUG("Calling hook Hook_SpeedyFinished @" + this->Name, 2);
         // let's make a new list of params
-        PyObject *args = PyTuple_New(3);
         PyObject *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
+        if (!page_name)
+            goto error;
         PyObject *user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
+        if (!user_name)
+            goto error;
         PyObject *success;
         if (!successfull)
-            successfull = PyUnicode_FromString("fail");
+            success = PyUnicode_FromString("fail");
         else
-            successfull = PyUnicode_FromString("success");
-        if (PyTuple_SetItem(args, 0, page_name))
-            HUGGLE_DEBUG("Failed to pass page_name to tuple @hook_speedy_finished", 3);
-        if (PyTuple_SetItem(args, 1, user_name))
-            HUGGLE_DEBUG("Failed to pass user to tuple @hook_speedy_finished", 3);
-        if (PyTuple_SetItem(args, 2, success))
-            HUGGLE_DEBUG("Failed to pass success to tuple @hook_speedy_finished", 3);
-        PyObject_CallObject(this->ptr_Hook_SpeedyFinished, args);
+            success = PyUnicode_FromString("success");
+        if (!success)
+            goto error;
+        PyObject *args = PyTuple_Pack(3, page_name, user_name, success);
+        if (!args)
+            goto error;
+        if (!PyObject_CallObject(this->ptr_Hook_SpeedyFinished, args))
+            goto error;
     }
+    return;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        PyErr_Print();
+
 }
 
 void PythonScript::Hook_MainWindowIsLoaded()
@@ -452,7 +470,8 @@ void PythonScript::Hook_MainWindowIsLoaded()
     if (this->ptr_Hook_MainLoaded != nullptr)
     {
         Syslog::HuggleLogs->DebugLog("Calling hook Hook_MainWindowIsLoaded @" + this->Name, 2);
-        PyObject_CallObject(this->ptr_Hook_MainLoaded, nullptr);
+        if(!PyObject_CallObject(this->ptr_Hook_MainLoaded, nullptr))
+            PyErr_Print();
     }
 }
 
