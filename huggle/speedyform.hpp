@@ -47,6 +47,7 @@ namespace Huggle
             explicit SpeedyForm(QWidget *parent = nullptr);
             ~SpeedyForm();
             void Init(WikiEdit *edit_);
+            Collectable_SmartPtr<WikiEdit> edit;
             QString Text;
 
         private slots:
@@ -60,7 +61,6 @@ namespace Huggle
             Collectable_SmartPtr<EditQuery> Template;
             Collectable_SmartPtr<ApiQuery> qObtainText;
             QString base;
-            Collectable_SmartPtr<WikiEdit> edit;
             QString warning;
             QTimer *timer;
             Ui::SpeedyForm *ui;

@@ -10,6 +10,7 @@
 
 #include "query.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
 #include "gc.hpp"
 
 using namespace Huggle;
@@ -33,10 +34,6 @@ Query::Query()
 Query::~Query()
 {
     delete this->Result;
-    if (this->CallbackResult != nullptr)
-    {
-        throw new Huggle::Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
-    }
 }
 
 bool Query::IsProcessed()

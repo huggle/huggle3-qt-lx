@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QMessageBox>
 #include "exceptionwindow.hpp"
+#include "hooks.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "configuration.hpp"
@@ -376,6 +377,9 @@ void Core::VersionRead()
 
 void Core::Shutdown()
 {
+    // we need to disable all extensions first
+    Hooks::Shutdown();
+    // now we can shutdown whole huggle
     this->Running = false;
     // grace time for subthreads to finish
     if (this->Main != nullptr)

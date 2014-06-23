@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include "exception.hpp"
 #include "core.hpp"
+#include "hooks.hpp"
 #include "wikiutil.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
@@ -79,6 +80,7 @@ void SpeedyForm::on_pushButton_clicked()
 void Finalize(Query *result)
 {
     SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
+    Hooks::Speedy_Finished(form->edit, true);
     result->CallbackResult = nullptr;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     form->close();
@@ -91,6 +93,7 @@ void SpeedyForm::Fail(QString reason)
     this->Template.Delete();
     mb.setWindowTitle("Error");
     mb.setText(reason);
+    Hooks::Speedy_Finished(this->edit, false);
     mb.exec();
     this->timer->stop();
 }

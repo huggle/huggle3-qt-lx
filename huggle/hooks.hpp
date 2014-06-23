@@ -19,8 +19,6 @@
 #endif
 
 #include <QString>
-#include "wikipage.hpp"
-#include "iextension.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
 
@@ -28,7 +26,6 @@ namespace Huggle
 {
     class WikiUser;
     class WikiEdit;
-    class WikiPage;
     class Exception;
     class MainWindow;
 
@@ -72,11 +69,13 @@ namespace Huggle
              * \param Score New score of user
              */
             static void BadnessScore(WikiUser *User, int Score);
+            static void Speedy_Finished(Huggle::WikiEdit *edit, bool success);
             /*!
              * \brief Window is loaded
              * \param window
              */
             static void MainWindowIsLoaded(MainWindow *window);
+            static void Shutdown();
     };
 }
 

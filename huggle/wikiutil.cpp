@@ -126,9 +126,23 @@ void WikiUtil::FinalizeMessages()
     }
 }
 
+Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString text, QString summary, bool minor)
+{
+    Collectable_SmartPtr<EditQuery> eq = new EditQuery();
+    summary = Configuration::HuggleConfiguration->GenerateSuffix(summary);
+    eq->Page = page;
+    eq->text = text;
+    eq->Summary = summary;
+    eq->Minor = minor;
+    eq->Append = true;
+    eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
+    QueryPool::HugglePool->PendingMods.append(eq);
+    eq->Process();
+    return eq;
+}
+
 Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
 {
-    // retrieve a token
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
     {

@@ -172,6 +172,12 @@ bool EditQuery::IsProcessed()
 
 void EditQuery::EditPage()
 {
+    if (this->Append)
+    {
+        this->Result = new QueryResult(true);
+        this->Result->SetError("Not implemented");
+        return;
+    }
     this->qEdit = new ApiQuery();
     this->qEdit->Target = "Writing " + this->Page;
     this->qEdit->UsingPOST = true;

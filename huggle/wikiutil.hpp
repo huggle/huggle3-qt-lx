@@ -66,6 +66,7 @@ namespace Huggle
                              Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
                              bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
         QString SanitizeUser(QString username);
+        Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false);
         void FinalizeMessages();
         /*!
          * \brief EditPage Run a new EditQuery that will edit the page

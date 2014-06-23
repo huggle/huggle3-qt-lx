@@ -23,10 +23,10 @@
 #include <QThread>
 #include <QMutex>
 #include <QList>
+#include "wikiedit.hpp"
 
 namespace Huggle
 {
-    class Configuration;
     //! Python code goes here, this namespace doesn't exist when huggle isn't compiled in python mode so wrap in direct.
     namespace Python
     {
@@ -42,7 +42,9 @@ namespace Huggle
                 QString GetModule() const;
                 bool IsEnabled() const;
                 void SetEnabled(bool value);
+                void Hook_SpeedyFinished(WikiEdit *edit, bool successfull);
                 void Hook_MainWindowIsLoaded();
+                void Hook_Shutdown(); 
                 //! Initialize the script
                 bool Init();
                 QString RetrieveSourceCode() const;
@@ -60,7 +62,9 @@ namespace Huggle
                 QString ModuleID;
                 QString CallInternal(QString function);
                 bool Enabled;
+                PyObject *ptr_Hook_SpeedyFinished;
                 PyObject *ptr_Hook_MainLoaded;
+                PyObject *ptr_Hook_Shutdown;
                 QString SourceCode;
         };
 
@@ -75,7 +79,9 @@ namespace Huggle
             public:
                 PythonEngine(QString ExtensionsFolder_);
                 bool LoadScript(QString path);
+                void Hook_SpeedyFinished(WikiEdit *edit, bool successfull);
                 void Hook_MainWindowIsLoaded();
+                void Hook_HuggleShutdown();
                 QList<PythonScript*> ScriptsList();
                 unsigned int Count();
             private:
