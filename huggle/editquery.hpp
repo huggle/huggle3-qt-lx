@@ -55,7 +55,10 @@ namespace Huggle
             bool Minor;
         private:
             void EditPage();
+            QString OriginalText = "";
             Collectable_SmartPtr<ApiQuery> qToken;
+            Collectable_SmartPtr<ApiQuery> qRetrieve;
+            bool HasPreviousPageText = false;
             //! Api query to edit page
             Collectable_SmartPtr<ApiQuery> qEdit;
     };

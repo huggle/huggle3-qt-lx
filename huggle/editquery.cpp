@@ -13,6 +13,7 @@
 #include "historyitem.hpp"
 #include "localization.hpp"
 #include "mainwindow.hpp"
+#include "generic.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
 
@@ -44,7 +45,6 @@ void EditQuery::Process()
         this->qToken = new ApiQuery(ActionQuery);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page);
         this->qToken->Target = _l("editquery-token", this->Page);
-        this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
         QueryPool::HugglePool->AppendQuery(this->qToken.GetPtr());
         this->qToken->Process();
     } else
@@ -58,6 +58,32 @@ bool EditQuery::IsProcessed()
     if (this->Result != nullptr)
         return true;
 
+    if (this->qRetrieve != nullptr && this->qRetrieve->IsProcessed())
+    {
+        if (this->qRetrieve->IsFailed())
+        {
+            this->Result = new QueryResult(true);
+            this->Result->SetError("Unable to retrieve the previous content of page: " + this->qRetrieve->Result->ErrorMessage);
+            this->qRetrieve.Delete();
+            this->ProcessFailure();
+            return true;
+        }
+        bool failed = false;
+        QString ts;
+        this->OriginalText = Generic::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
+        this->qRetrieve.Delete();
+        if (failed)
+        {
+            this->Result = new QueryResult(true);
+            this->Result->SetError("Unable to retrieve the previous content of page: " + this->OriginalText);
+            this->ProcessFailure();
+            return true;
+        }
+        this->HasPreviousPageText = true;
+        this->BaseTimestamp = ts;
+        this->EditPage();
+        return false;
+    }
     if (this->qToken != nullptr)
     {
         if (!this->qToken->IsProcessed())
@@ -67,8 +93,7 @@ bool EditQuery::IsProcessed()
         {
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage);
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = nullptr;
+            this->qToken.Delete();
             this->ProcessFailure();
             return true;
         }
@@ -80,8 +105,7 @@ bool EditQuery::IsProcessed()
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
             HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = nullptr;
+            this->qToken.Delete();
             this->ProcessFailure();
             return true;
         }
@@ -91,14 +115,12 @@ bool EditQuery::IsProcessed()
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
             HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = nullptr;
+            this->qToken.Delete();
             this->ProcessFailure();
             return true;
         }
         Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qToken = nullptr;
+        this->qToken.Delete();
         this->EditPage();
         return false;
     }
@@ -167,21 +189,32 @@ bool EditQuery::IsProcessed()
         }
         this->qEdit = nullptr;
     }
-    return true;
+    return false;
 }
 
 void EditQuery::EditPage()
 {
-    if (this->Append)
+    if (this->Append && !this->HasPreviousPageText)
     {
-        this->Result = new QueryResult(true);
-        this->Result->SetError("Not implemented");
+        // we first need to get a text of current page
+        this->qRetrieve = Generic::RetrieveWikiPageContents(this->Page);
+        QueryPool::HugglePool->AppendQuery(this->qRetrieve);
+        this->qRetrieve->Process();
         return;
     }
-    this->qEdit = new ApiQuery();
+    this->qEdit = new ApiQuery(ActionEdit);
     this->qEdit->Target = "Writing " + this->Page;
     this->qEdit->UsingPOST = true;
-    this->qEdit->SetAction(ActionEdit);
+    QString t;
+    if (this->Append)
+    {
+        // we append new text now
+        this->Section = 0;
+        t = this->OriginalText + this->text;
+    } else
+    {
+        t = this->text;
+    }
     QString base = "";
     QString start_ = "";
     QString section = "";
@@ -192,11 +225,11 @@ void EditQuery::EditPage()
     {
         section = "&section=" + QString::number(this->Section);
     }
-    if (this->BaseTimestamp.length())
+    if (!this->BaseTimestamp.isEmpty())
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-    if (this->StartTimestamp.length())
+    if (!this->StartTimestamp.isEmpty())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
+    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
