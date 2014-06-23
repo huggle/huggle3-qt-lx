@@ -91,15 +91,15 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
     }
 }
 
-void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, bool success)
+void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool success)
 {
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
-            e->Hook_SpeedyFinished((void*)edit, success);
+            e->Hook_SpeedyFinished((void*)edit, tags, success);
     }
 #ifdef PYTHONENGINE
-    Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, success);
+    Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, tags, success);
 #endif
 }
 

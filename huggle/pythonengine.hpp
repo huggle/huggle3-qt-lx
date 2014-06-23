@@ -42,7 +42,7 @@ namespace Huggle
                 QString GetModule() const;
                 bool IsEnabled() const;
                 void SetEnabled(bool value);
-                void Hook_SpeedyFinished(WikiEdit *edit, bool successfull);
+                void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_Shutdown(); 
                 //! Initialize the script
@@ -79,7 +79,7 @@ namespace Huggle
             public:
                 PythonEngine(QString ExtensionsFolder_);
                 bool LoadScript(QString path);
-                void Hook_SpeedyFinished(WikiEdit *edit, bool successfull);
+                void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_HuggleShutdown();
                 QList<PythonScript*> ScriptsList();

@@ -56,7 +56,7 @@ namespace Huggle
              * \param edit is a pointer to edit in question
              */
             virtual void Hook_EditPreProcess(void *edit) {}
-            virtual void Hook_SpeedyFinished(void *edit, bool successfull) {}
+            virtual void Hook_SpeedyFinished(void *edit, QString tags, bool successfull) {}
             virtual void Hook_Shutdown() {}
             /*!
              * \brief Hook_EditScore is called after edit score is calculated

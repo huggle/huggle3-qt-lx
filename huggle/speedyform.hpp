@@ -49,6 +49,7 @@ namespace Huggle
             void Init(WikiEdit *edit_);
             Collectable_SmartPtr<WikiEdit> edit;
             QString Text;
+            QString Header;
 
         private slots:
             void OnTick();

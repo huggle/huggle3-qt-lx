@@ -71,6 +71,7 @@ void SpeedyForm::on_pushButton_clicked()
     this->ui->comboBox->setEnabled(false);
     this->ui->pushButton->setText("Updating");
     this->ui->pushButton->setEnabled(false);
+    this->Header = this->ui->comboBox->currentText();
     // first we need to retrieve the content of page if we don't have it already
     this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page->PageName);
     this->timer->start(200);
@@ -80,7 +81,7 @@ void SpeedyForm::on_pushButton_clicked()
 void Finalize(Query *result)
 {
     SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
-    Hooks::Speedy_Finished(form->edit, true);
+    Hooks::Speedy_Finished(form->edit, form->Header, true);
     result->CallbackResult = nullptr;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     form->close();
@@ -93,7 +94,7 @@ void SpeedyForm::Fail(QString reason)
     this->Template.Delete();
     mb.setWindowTitle("Error");
     mb.setText(reason);
-    Hooks::Speedy_Finished(this->edit, false);
+    Hooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
     mb.exec();
     this->timer->stop();
 }

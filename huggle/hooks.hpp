@@ -69,7 +69,7 @@ namespace Huggle
              * \param Score New score of user
              */
             static void BadnessScore(WikiUser *User, int Score);
-            static void Speedy_Finished(Huggle::WikiEdit *edit, bool success);
+            static void Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool success);
             /*!
              * \brief Window is loaded
              * \param window

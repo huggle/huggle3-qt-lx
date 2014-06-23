@@ -281,10 +281,10 @@ void PythonEngine::Hook_MainWindowIsLoaded()
         c->Hook_MainWindowIsLoaded();
 }
 
-void PythonEngine::Hook_SpeedyFinished(WikiEdit *edit, bool successfull)
+void PythonEngine::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
 {
     foreach (PythonScript *c, this->Scripts)
-        c->Hook_SpeedyFinished(edit, successfull);
+        c->Hook_SpeedyFinished(edit, tags, successfull);
 }
 
 PythonScript::PythonScript(QString name)
@@ -430,7 +430,7 @@ void PythonScript::Hook_Shutdown()
     }
 }
 
-void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, bool successfull)
+void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
 {
     if (edit == nullptr)
         return;
@@ -440,6 +440,9 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, bool successfull)
         // let's make a new list of params
         PyObject *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
         if (!page_name)
+            goto error;
+        PyObject *page_t_ = PyUnicode_FromString(tags.toUtf8().data());
+        if (!page_t_)
             goto error;
         PyObject *user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
         if (!user_name)
@@ -451,7 +454,7 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, bool successfull)
             success = PyUnicode_FromString("success");
         if (!success)
             goto error;
-        PyObject *args = PyTuple_Pack(3, page_name, user_name, success);
+        PyObject *args = PyTuple_Pack(4, page_name, user_name, page_t_, success);
         if (!args)
             goto error;
         if (!PyObject_CallObject(this->ptr_Hook_SpeedyFinished, args))
