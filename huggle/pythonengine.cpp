@@ -184,7 +184,7 @@ namespace Huggle
 
         static PyObject *Config_Set(PyObject *self, PyObject *args)
         {
-            PythonScript *script = Core::Python->PythonScriptObjFromPyObj(self);
+            PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
             if (script == nullptr)
                 return nullptr;
             PyObject *name, *vals;
@@ -212,7 +212,7 @@ namespace Huggle
 
         static PyObject *Config_Get(PyObject *self, PyObject *args)
         {
-            PythonScript *script = Core::Python->PythonScriptObjFromPyObj(self);
+            PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
             if (script == nullptr)
                 return nullptr;
             PyObject *name;
