@@ -11,3 +11,7 @@ td.diff-deletedline {
 	text-align: right;
 	direction: rtl;
 }
+
+body {
+	direction: rtl;
+}

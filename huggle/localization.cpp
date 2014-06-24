@@ -286,6 +286,22 @@ QString Localizations::Localize(QString key, QString parameter)
     return Localize(key, list);
 }
 
+bool Localizations::IsRTL()
+{
+    bool rtl = false;
+    int c = 0;
+    while (c<this->LocalizationData.count())
+    {
+        if (this->LocalizationData.at(c)->LanguageName == this->PreferredLanguage)
+        {
+            Language *l = this->LocalizationData.at(c);
+            rtl = l->IsRTL;
+        }
+        c++;
+    }
+    return rtl;
+}
+
 Language::Language(QString name)
 {
     this->LanguageName = name;
