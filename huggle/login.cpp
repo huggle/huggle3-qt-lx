@@ -122,6 +122,12 @@ void Login::Localize()
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
                                               " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>")
                                               .arg(_l("login-translate")));
+
+	if (Localizations::HuggleLocalizations->IsRTL()) {
+		QApplication::setLayoutDirection(Qt::RightToLeft);
+	} else {
+		QApplication::setLayoutDirection(Qt::LeftToRight);
+	}
 }
 
 void Login::Update(QString ms)
