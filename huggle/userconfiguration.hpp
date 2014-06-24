@@ -42,6 +42,7 @@ namespace Huggle
     class UserConfiguration
     {
         public:
+            ~UserConfiguration();
             QHash<QString, HuggleOption*> UserOptions;
             bool                    EnforceMonthsAsHeaders = true;
             unsigned int            TalkPageFreshness = 20;

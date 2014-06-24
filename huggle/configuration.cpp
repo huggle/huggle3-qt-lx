@@ -19,7 +19,6 @@
 #include "localization.hpp"
 
 using namespace Huggle;
-
 Configuration * Configuration::HuggleConfiguration = nullptr;
 
 Configuration::Configuration()
@@ -111,11 +110,11 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
-    QStringList ol = this->UserConfig->UserOptions.keys();
+    QStringList ol = this->ExtensionData.keys();
     while (ol.count())
     {
-        HuggleOption *option = this->UserConfig->UserOptions[ol[0]];
-        this->UserConfig->UserOptions.remove(ol[0]);
+        ExtensionConfig *option = this->ExtensionData[ol[0]];
+        this->ExtensionData.remove(ol[0]);
         delete option;
         ol.removeAt(0);
     }
@@ -197,6 +196,7 @@ QString Configuration::GetSafeUserString(QString key_, QString default_value)
     HuggleOption *option = this->GetOption(key_);
     if (option != nullptr)
         return option->GetVariant().toString();
+
     return default_value;
 }
 
@@ -464,6 +464,7 @@ void Configuration::LoadSystemConfig(QString fn)
     conf.setContent(file.readAll());
     file.close();
     QDomNodeList l = conf.elementsByTagName("local");
+    QDomNodeList e = conf.elementsByTagName("extern");
     int item = 0;
     while (item < l.count())
     {
@@ -606,6 +607,22 @@ void Configuration::LoadSystemConfig(QString fn)
             continue;
         }
     }
+    item = 0;
+    while (item < e.count())
+    {
+        QDomElement option = l.at(item).toElement();
+        item++;
+        if (!option.attributes().contains("extension") || !option.attributes().contains("name"))
+            continue;
+        QString ExtensionName = option.attribute("extension");
+        QString KeyName = option.attribute("name");
+        if (!Configuration::HuggleConfiguration->ExtensionData.contains(ExtensionName))
+        {
+            // we need to insert a new option list because this extension is not yet known
+            Configuration::HuggleConfiguration->ExtensionData.insert(ExtensionName, new ExtensionConfig());
+        }
+        Configuration::HuggleConfiguration->ExtensionData[ExtensionName]->SetOption(KeyName, option.attribute("value"));
+    }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
@@ -652,6 +669,20 @@ void Configuration::SaveSystemConfig()
     /////////////////////////////
     InsertConfig("VandalNw_Login", Configuration::Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), writer);
     InsertConfig("GlobalConfigWikiList", Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList, writer);
+    QStringList extensions = Configuration::HuggleConfiguration->ExtensionData.keys();
+    foreach (QString ex, extensions)
+    {
+        ExtensionConfig *ed = Configuration::HuggleConfiguration->ExtensionData[ex];
+        QStringList options = ed->Options.keys();
+        foreach (QString option, options)
+        {
+            writer->writeStartElement("extern");
+            writer->writeAttribute("extension", ex);
+            writer->writeAttribute("name", option);
+            writer->writeAttribute("value", ed->Options[option]);
+            writer->writeEndElement();
+        }
+    }
     writer->writeEndElement();
     writer->writeEndDocument();
     delete writer;
@@ -959,6 +990,13 @@ bool Configuration::ParseUserConfig(QString config)
     return true;
 }
 
+QString Configuration::GetExtensionConfig(QString extension, QString name, QString ms)
+{
+    if (!this->ExtensionData.contains(extension))
+        return ms;
+    return this->ExtensionData[extension]->GetOption(name, ms);
+}
+
 QDateTime Configuration::ServerTime()
 {
     return QDateTime::currentDateTime().addSecs(this->ServerOffset);
@@ -1143,4 +1181,24 @@ Shortcut::Shortcut(const Shortcut &copy)
     this->QAccel = copy.QAccel;
     this->ID = copy.ID;
     this->Description = copy.Description;
+}
+
+
+void ExtensionConfig::SetOption(QString name, QString value)
+{
+    if (this->Options.contains(name))
+    {
+        this->Options[name] = value;
+        return;
+    }
+    this->Options.insert(name, value);
+}
+
+QString ExtensionConfig::GetOption(QString name, QString md)
+{
+    // only return the value if we have it
+    if (!this->Options.contains(name))
+        return md;
+
+    return this->Options[name];
 }

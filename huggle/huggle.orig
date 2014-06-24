@@ -112,6 +112,7 @@ SOURCES += main.cpp\
     localization.cpp \
     syslog.cpp \
     huggleparser.cpp \
+    userconfiguration.cpp \
     sleeper.cpp \
     warnings.cpp \
     resources.cpp \

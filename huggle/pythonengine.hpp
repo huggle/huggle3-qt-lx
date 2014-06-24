@@ -45,6 +45,7 @@ namespace Huggle
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_Shutdown(); 
+                PyObject *PythonObject();
                 //! Initialize the script
                 bool Init();
                 QString RetrieveSourceCode() const;
@@ -82,11 +83,17 @@ namespace Huggle
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_HuggleShutdown();
+                PythonScript *PythonScriptObjFromPyObj(PyObject *object);
                 QList<PythonScript*> ScriptsList();
                 unsigned int Count();
             private:
                 QList<PythonScript*> Scripts;
         };
+
+        inline PyObject * PythonScript::PythonObject()
+        {
+            return this->object;
+        }
     }
 }
 

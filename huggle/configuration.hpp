@@ -97,6 +97,22 @@ namespace Huggle
             bool Modified = false;
     };
 
+    class ExtensionConfig
+    {
+        public:
+            void SetOption(QString name, QString value);
+            /*!
+             * \brief GetOption Retrieve an option from local config
+             * \param name Name of key
+             * \param md Value that is returned when key is missing
+             * \return Value that is associated with the key
+             */
+            QString GetOption(QString name, QString md = "");
+        private:
+            QHash<QString, QString> Options;
+            friend class Configuration;
+    };
+
     //! Run time configuration of huggle
 
     //! Some interesting information regarding configuration:
@@ -206,11 +222,13 @@ namespace Huggle
             //! Parse all information from local config, this function is used in login
             bool ParseProjectConfig(QString config);
             bool ParseUserConfig(QString config);
+            QString GetExtensionConfig(QString extension, QString name, QString ms);
             QDateTime ServerTime();
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
 
+            QHash<QString, ExtensionConfig*> ExtensionData;
             QHash<QString, Shortcut> Shortcuts;
             //! If it's needed to reload config of main form
             bool                     ReloadOfMainformNeeded = true;

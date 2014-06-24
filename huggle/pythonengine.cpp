@@ -13,6 +13,7 @@
 #ifdef PYTHONENGINE
 
 #include "pythonengine.hpp"
+#include "core.hpp"
 #include "configuration.hpp"
 #include "wikiutil.hpp"
 #include "exception.hpp"
@@ -38,6 +39,21 @@ namespace Huggle
         {
             PyObject *v = PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
             return v;
+        }
+
+        QString StringFromPyString(PyObject *text)
+        {
+            if (!text)
+                return "";
+            PyObject *tn = PyUnicode_AsASCIIString(text);
+            if (!tn)
+            {
+                PyErr_Print();
+                return "";
+            }
+            QString result = QString(PyBytes_AsString(tn));
+            Py_DECREF(tn);
+            return result;
         }
 
         static PyObject *DebugLog(PyObject *self, PyObject *args)
@@ -166,6 +182,53 @@ namespace Huggle
             return result_;
         }
 
+        static PyObject *Config_Set(PyObject *self, PyObject *args)
+        {
+            PythonScript *script = Core::Python->PythonScriptObjFromPyObj(self);
+            if (script == nullptr)
+                return nullptr;
+            PyObject *name, *vals;
+            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 2, &name, &vals))
+            {
+                HUGGLE_DEBUG1("Failed to run Config_Set - arguments could not be processed @" + script->GetName());
+                PyErr_Print();
+                return nullptr;
+            }
+            QString option = StringFromPyString(name);
+            QString data = StringFromPyString(vals);
+            // remove the temp objects we created
+            Py_DECREF(name);
+            Py_DECREF(vals);
+            if (!Configuration::HuggleConfiguration->ExtensionData.contains(script->GetName()))
+            {
+                // it seems this extension didn't store any data so far
+                // let's create a new storage
+                Configuration::HuggleConfiguration->ExtensionData.insert(script->GetName(), new ExtensionConfig());
+            }
+            Configuration::HuggleConfiguration->ExtensionData[script->GetName()]->SetOption(option, data);
+            PyObject *result_ = PyBool_FromLong(1);
+            return result_;
+        }
+
+        static PyObject *Config_Get(PyObject *self, PyObject *args)
+        {
+            PythonScript *script = Core::Python->PythonScriptObjFromPyObj(self);
+            if (script == nullptr)
+                return nullptr;
+            PyObject *name;
+            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 1, &name))
+            {
+                HUGGLE_DEBUG1("Failed to run Config_Get - arguments could not be processed @" + script->GetName());
+                PyErr_Print();
+                return nullptr;
+            }
+            QString option = StringFromPyString(name);
+            // remove the temp objects we created
+            Py_DECREF(name);
+            PyObject *result_ = PyUnicode_FromString(Configuration::HuggleConfiguration->GetExtensionConfig(script->GetName(), option, "").toUtf8().data());
+            return result_;
+        }
+
         static PyObject *Log(PyObject *self, PyObject *args)
         {
             return Log_(HuggleLogType_Normal, self, args);
@@ -194,6 +257,11 @@ namespace Huggle
             PyObject *tpage = PyUnicode_AsASCIIString(page);
             PyObject *tsuma = PyUnicode_AsASCIIString(summary);
             PyObject *ttext = PyUnicode_AsASCIIString(text);
+            if (!tpage || !tsuma || !ttext)
+            {
+                PyErr_Print();
+                return nullptr;
+            }
             QString page_name = QString(PyBytes_AsString(tpage));
             QString page_text = QString(PyBytes_AsString(ttext));
             QString page_su = QString(PyBytes_AsString(tsuma));
@@ -226,6 +294,8 @@ namespace Huggle
             {"configuration_get_user", Configuration_GetUser, METH_VARARGS, "Request a name of user who is currently used on selected wiki"},
             {"configuration_get_project_script_url", Configuration_GetScript, METH_VARARGS, "Return a script url"},
             {"configuration_get_project_wiki_url", Configuration_GetWikiURL, METH_VARARGS, "Return an URL of current project"},
+            {"configuration_get", Config_Get, METH_VARARGS, "Get a private configuration option"},
+            {"configuration_set", Config_Set, METH_VARARGS, "Set a private configuration option"},
             {nullptr, nullptr, 0, nullptr}
         };
 
@@ -287,6 +357,19 @@ void PythonEngine::Hook_HuggleShutdown()
 {
     foreach (PythonScript *c, this->Scripts)
         c->Hook_Shutdown();
+}
+
+PythonScript *PythonEngine::PythonScriptObjFromPyObj(PyObject *object)
+{
+    foreach (PythonScript *script, this->Scripts)
+    {
+        if (object == script->PythonObject())
+        {
+            return script;
+        }
+    }
+    HUGGLE_DEBUG("Unable to resolve script from script table, id: 0x" + QString::number(object), 4);
+    return nullptr;
 }
 
 void PythonEngine::Hook_MainWindowIsLoaded()
