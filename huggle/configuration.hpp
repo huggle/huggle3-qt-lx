@@ -22,12 +22,10 @@
 #include <QStringList>
 #include <QHash>
 #include <QString>
-#include "hugglequeuefilter.hpp"
-#include "wikipage.hpp"
 #include "huggleoption.hpp"
-#include "wikisite.hpp"
 #include "userconfiguration.hpp"
 #include "projectconfiguration.hpp"
+class QXmlStreamWriter;
 
 #define HUGGLE_ACCEL_NONE ""
 #define HUGGLE_ACCEL_MAIN_EXIT                  0
@@ -71,6 +69,8 @@
 #define HUGGLE_ACCEL_MAIN_TALK                  38
 #define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40
 #define HUGGLE_ACCEL_MAIN_GOOD                  41
+
+
 
 
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects

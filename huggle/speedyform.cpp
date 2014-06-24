@@ -10,15 +10,17 @@
 
 #include "speedyform.hpp"
 #include <QMessageBox>
-#include "exception.hpp"
-#include "core.hpp"
-#include "hooks.hpp"
-#include "wikiutil.hpp"
-#include "generic.hpp"
 #include "configuration.hpp"
+#include "core.hpp"
+#include "exception.hpp"
+#include "hooks.hpp"
+#include "mainwindow.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "ui_speedyform.h"
+#include "wikiuser.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 

@@ -10,10 +10,12 @@
 
 #include "updateform.hpp"
 #include <QDesktopServices>
+#include <QtXml>
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "ui_updateform.h"
+#include "webserverquery.hpp"
 
 using namespace Huggle;
 

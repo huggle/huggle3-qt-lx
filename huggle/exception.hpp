@@ -18,9 +18,7 @@
 #include <Python.h>
 #endif
 
-#include <iostream>
 #include <QString>
-#include <QDir>
 
 //////////////////////////////////////////////////////////////////////////
 // Breakpad init

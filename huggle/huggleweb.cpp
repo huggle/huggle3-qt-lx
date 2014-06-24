@@ -14,6 +14,9 @@
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "configuration.hpp"
+#include "wikipage.hpp"
+#include "wikiedit.hpp"
+#include "resources.hpp"
 #include "ui_huggleweb.h"
 
 using namespace Huggle;

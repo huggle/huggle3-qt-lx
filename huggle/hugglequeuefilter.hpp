@@ -19,7 +19,6 @@
 
 #include <QString>
 #include <QList>
-#include "wikiedit.hpp"
 
 namespace Huggle
 {

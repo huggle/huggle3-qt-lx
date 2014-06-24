@@ -9,12 +9,16 @@
 //GNU General Public License for more details.
 
 #include "huggletool.hpp"
+#include <QtXml>
 #include "core.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
+#include "wikipage.hpp"
+#include "mainwindow.hpp"
+#include "wikiuser.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
 

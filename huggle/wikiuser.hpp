@@ -17,15 +17,17 @@
 #endif
 
 #include <QList>
-#include <QMutex>
 #include <QStringList>
 #include <QDateTime>
 #include <QString>
 #include <QRegExp>
-#include "wikisite.hpp"
+
+class QMutex;
 
 namespace Huggle
 {
+    class WikiSite;
+
     //! User
     class WikiUser
     {

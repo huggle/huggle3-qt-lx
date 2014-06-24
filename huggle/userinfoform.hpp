@@ -22,7 +22,6 @@
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
-#include "wikiuser.hpp"
 
 namespace Ui
 {

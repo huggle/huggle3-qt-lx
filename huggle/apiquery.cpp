@@ -9,11 +9,13 @@
 //GNU General Public License for more details.
 
 #include "apiquery.hpp"
-#include <QtXml/QtXml>
+#include <QtXml>
 #include <QUrl>
 #include "syslog.hpp"
+#include "revertquery.hpp"
 #include "exception.hpp"
 #include "configuration.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 

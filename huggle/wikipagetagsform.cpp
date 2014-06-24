@@ -11,6 +11,7 @@
 #include "wikipagetagsform.hpp"
 #include <QMessageBox>
 #include "apiquery.hpp"
+#include "wikipage.hpp"
 #include "configuration.hpp"
 #include "syslog.hpp"
 #include "generic.hpp"
@@ -43,13 +44,14 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new U
 
 WikiPageTagsForm::~WikiPageTagsForm()
 {
-    delete ui;
+    delete this->page;
+    delete this->ui;
 }
 
 void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 {
-    this->page = WikiPage(wikipage);
-    this->setWindowTitle(_l("tag-title", page.PageName));
+    this->page = new WikiPage(wikipage);
+    this->setWindowTitle(_l("tag-title", page->PageName));
     // fill it up with tags
     QStringList keys = Configuration::HuggleConfiguration->ProjectConfig->Tags;
     int rx = 0;
@@ -64,7 +66,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
         }
         this->ui->tableWidget->insertRow(rx);
         QCheckBox *Item = new QCheckBox(this);
-        if (this->page.Contents.contains(key))
+        if (this->page->Contents.contains(key))
             Item->setChecked(true);
         this->CheckBoxes.append(Item);
         this->ui->tableWidget->setCellWidget(rx, 0, Item);
@@ -129,7 +131,7 @@ static void FinishRead(Query *result)
         }
         xx++;
     }
-    Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(&form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
+    Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
                                         (Configuration::HuggleConfiguration->ProjectConfig->TaggingSummary),
                                       true, t_);
     e->FailureCallback = (Callback)Fail;
@@ -145,7 +147,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
     // first get the contents of the page
-    ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page.PageName, false);
+    ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page->PageName, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
     retrieve->callback = (Callback)FinishRead;

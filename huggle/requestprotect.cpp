@@ -10,6 +10,7 @@
 
 #include "requestprotect.hpp"
 #include <QMessageBox>
+#include <QtXml>
 #include "querypool.hpp"
 #include "generic.hpp"
 #include "core.hpp"

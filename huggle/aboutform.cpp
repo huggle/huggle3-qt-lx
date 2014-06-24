@@ -10,6 +10,7 @@
 
 #include "aboutform.hpp"
 #include <QDesktopServices>
+#include <QUrl>
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "ui_aboutform.h"

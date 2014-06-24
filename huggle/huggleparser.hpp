@@ -19,6 +19,7 @@
 #endif
 
 #include <QString>
+#include <QDateTime>
 #include <QList>
 #include "hugglequeuefilter.hpp"
 

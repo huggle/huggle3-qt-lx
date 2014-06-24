@@ -16,8 +16,6 @@
 #include <Python.h>
 #endif
 
-#include <QTimer>
-#include <QToolTip>
 #include <QDockWidget>
 #include "apiquery.hpp"
 #include "wikiedit.hpp"
@@ -28,8 +26,12 @@ namespace Ui
     class HistoryForm;
 }
 
+class QTimer;
 namespace Huggle
 {
+    class ApiQuery;
+    class WikiEdit;
+
     //! This is a small gadget that is displayed on top of main window
 
     //! It can be used to retrieve a history of currently displayed page

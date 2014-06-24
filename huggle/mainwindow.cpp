@@ -12,19 +12,56 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QToolButton>
+#include <QInputDialog>
+#include <QMutex>
+#include <QThread>
+#include <QSplitter>
+#include "aboutform.hpp"
 #include "configuration.hpp"
 #include "reloginform.hpp"
 #include "generic.hpp"
 #include "gc.hpp"
 #include "querypool.hpp"
 #include "hooks.hpp"
+#include "history.hpp"
+#include "hugglefeedproviderwiki.hpp"
+#include "hugglefeedproviderirc.hpp"
+#include "hugglelog.hpp"
+#include "huggleparser.hpp"
+#include "hugglequeue.hpp"
+#include "huggletool.hpp"
+#include "huggleweb.hpp"
+#include "blockuser.hpp"
+#include "deleteform.hpp"
+#include "wikipage.hpp"
+#include "preferences.hpp"
+#include "processlist.hpp"
+#include "protectpage.hpp"
+#include "reloginform.hpp"
+#include "reportuser.hpp"
 #include "collectable.hpp"
 #include "core.hpp"
 #include "wikiutil.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
+#include "sleeper.hpp"
+#include "wikiuser.hpp"
+#include "ignorelist.hpp"
+#include "speedyform.hpp"
+#include "userinfoform.hpp"
+#include "vandalnw.hpp"
+#include "whitelistform.hpp"
+#include "sessionform.hpp"
+#include "historyform.hpp"
+#include "scorewordsdbform.hpp"
+#include "warnings.hpp"
+#include "warninglist.hpp"
+#include "waitingform.hpp"
+#include "wikipagetagsform.hpp"
+#include "uaareport.hpp"
 #include "ui_mainwindow.h"
+#include "requestprotect.hpp"
 
 using namespace Huggle;
 MainWindow *MainWindow::HuggleMain = nullptr;
@@ -1100,7 +1137,7 @@ void MainWindow::OnMainTimerTick()
     }
     QueryPool::HugglePool->CheckQueries();
     this->FinishPatrols();
-    Syslog::HuggleLogs->lUnwrittenLogs.lock();
+    Syslog::HuggleLogs->lUnwrittenLogs->lock();
     if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
     {
         int c = 0;
@@ -1111,7 +1148,7 @@ void MainWindow::OnMainTimerTick()
         }
         Syslog::HuggleLogs->UnwrittenLogs.clear();
     }
-    Syslog::HuggleLogs->lUnwrittenLogs.unlock();
+    Syslog::HuggleLogs->lUnwrittenLogs->unlock();
     this->Queries->RemoveExpired();
     if (this->OnNext_EvPage != nullptr && this->qNext != nullptr && this->qNext->IsProcessed())
     {

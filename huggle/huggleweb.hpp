@@ -21,9 +21,6 @@
 #include <QFrame>
 #include <QWebHistory>
 #include <QWebFrame>
-#include "wikipage.hpp"
-#include "wikiedit.hpp"
-#include "resources.hpp"
 
 namespace Ui
 {

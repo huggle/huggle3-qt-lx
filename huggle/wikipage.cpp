@@ -10,8 +10,8 @@
 
 #include "wikipage.hpp"
 #include <QUrl>
-#include "exception.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()

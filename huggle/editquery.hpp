@@ -17,9 +17,9 @@
 #endif
 
 #include <QString>
-#include <QUrl>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "query.hpp"
 
 namespace Huggle
 {

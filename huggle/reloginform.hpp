@@ -19,6 +19,7 @@
 #include <QTimer>
 #include <QString>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {
@@ -27,6 +28,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class ApiQuery;
     //! Relogin form used to login back to mediawiki when session is removed
     class ReloginForm : public QDialog
     {

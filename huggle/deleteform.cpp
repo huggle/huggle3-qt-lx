@@ -12,12 +12,15 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <QLineEdit>
+#include <QUrl>
 #include "exception.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "gc.hpp"
 #include "configuration.hpp"
+#include "wikipage.hpp"
+#include "wikiuser.hpp"
 #include "ui_deleteform.h"
 
 using namespace Huggle;

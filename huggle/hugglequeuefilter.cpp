@@ -11,6 +11,9 @@
 #include "configuration.hpp"
 #include "hugglequeuefilter.hpp"
 #include "exception.hpp"
+#include "wikiedit.hpp"
+#include "wikiuser.hpp"
+#include "wikipage.hpp"
 
 using namespace Huggle;
 

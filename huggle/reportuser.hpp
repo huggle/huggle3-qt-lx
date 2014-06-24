@@ -19,14 +19,11 @@
 
 #include <QDialog>
 #include <QTimer>
-#include <QMutex>
 #include <QCheckBox>
 #include <QList>
-#include "blockuser.hpp"
-#include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "apiquery.hpp"
-#include "wikiuser.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {

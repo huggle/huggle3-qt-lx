@@ -10,6 +10,7 @@
 
 #include "resources.hpp"
 #include "configuration.hpp"
+#include "wikisite.hpp"
 
 QString Huggle::Resources::DiffFooter;
 QString Huggle::Resources::DiffHeader;

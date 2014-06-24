@@ -13,6 +13,7 @@
 #include <QUrl>
 #include "configuration.hpp"
 #include "syslog.hpp"
+#include "wikisite.hpp"
 using namespace Huggle;
 
 WLQuery::WLQuery()

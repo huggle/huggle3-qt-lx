@@ -19,10 +19,11 @@
 #include <Python.h>
 #endif
 
+#include <QString>
+
 #include <QList>
 #include <QStringList>
 #include <QHash>
-#include <QString>
 #include "huggleoption.hpp"
 
 namespace Huggle

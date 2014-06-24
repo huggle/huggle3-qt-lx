@@ -19,12 +19,8 @@
 #include <QString>
 #include <QList>
 #include "apiquery.hpp"
-#include "message.hpp"
 #include "collectable_smartptr.hpp"
-#include "reportuser.hpp"
-#include "revertquery.hpp"
 #include "wikiedit.hpp"
-#include "wikiuser.hpp"
 
 namespace Huggle
 {

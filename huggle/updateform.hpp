@@ -19,7 +19,6 @@
 #include <QUrl>
 #include <QDialog>
 #include <QTimer>
-#include "webserverquery.hpp"
 
 namespace Ui
 {

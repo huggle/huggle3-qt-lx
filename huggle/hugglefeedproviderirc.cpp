@@ -14,7 +14,12 @@
 #include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
+#include "hugglequeue.hpp"
 #include "localization.hpp"
+#include "networkirc.hpp"
+#include "wikiedit.hpp"
+#include "wikipage.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 

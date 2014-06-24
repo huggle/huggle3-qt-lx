@@ -8,6 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+// This file contains source for login form and most of login operations
+
 #ifndef LOGIN_H
 #define LOGIN_H
 

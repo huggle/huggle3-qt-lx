@@ -9,9 +9,16 @@
 //GNU General Public License for more details.
 
 #include "warnings.hpp"
+#include <QtXml>
 #include "configuration.hpp"
+#include "exception.hpp"
+#include "huggleparser.hpp"
 #include "mainwindow.hpp"
 #include "querypool.hpp"
+#include "message.hpp"
+#include "reportuser.hpp"
+#include "revertquery.hpp"
+#include "wikiuser.hpp"
 #include "generic.hpp"
 #include "localization.hpp"
 #include "hooks.hpp"

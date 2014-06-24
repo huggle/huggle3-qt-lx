@@ -11,11 +11,23 @@
 #include "core.hpp"
 #include <QtXml>
 #include <QMessageBox>
+#include <QPluginLoader>
+#include "configuration.hpp"
+#include "exception.hpp"
 #include "exceptionwindow.hpp"
 #include "hooks.hpp"
+#include "hugglefeed.hpp"
+#include "hugglequeuefilter.hpp"
+#include "iextension.hpp"
 #include "localization.hpp"
+#include "login.hpp"
+#include "mainwindow.hpp"
+#include "sleeper.hpp"
+#include "resources.hpp"
+#include "querypool.hpp"
 #include "syslog.hpp"
-#include "configuration.hpp"
+#include "wikipage.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 
@@ -416,6 +428,7 @@ void Core::Shutdown()
         delete this->Main;
         this->Main = nullptr;
     }
+    MainWindow::HuggleMain = nullptr;
     delete this->HGQP;
     this->HGQP = nullptr;
     QueryPool::HugglePool = nullptr;

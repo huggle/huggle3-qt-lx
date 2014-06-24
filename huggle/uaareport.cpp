@@ -11,6 +11,9 @@
 #include "uaareport.hpp"
 #include <QtXml>
 #include <QMessageBox>
+#include <QUrl>
+#include "wikiuser.hpp"
+#include "wikipage.hpp"
 #include "wikiutil.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"

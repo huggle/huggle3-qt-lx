@@ -22,12 +22,11 @@
 #include <QList>
 #include <QMutex>
 #include <QTcpSocket>
-#include "networkirc.hpp"
 #include "hugglefeed.hpp"
-#include "wikiedit.hpp"
 
 namespace Huggle
 {
+    class WikiEdit;
     namespace IRC
     {
         class NetworkIrc;

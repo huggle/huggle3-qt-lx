@@ -23,7 +23,6 @@
 #include <QFont>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
-#include "wikipage.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui

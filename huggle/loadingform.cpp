@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "loadingform.hpp"
+#include "login.hpp"
 #include "exception.hpp"
 #include "core.hpp"
 #include "ui_loadingform.h"

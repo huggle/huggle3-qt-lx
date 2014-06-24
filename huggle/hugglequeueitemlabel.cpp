@@ -12,6 +12,8 @@
 #include "exception.hpp"
 #include "mainwindow.hpp"
 #include "ui_hugglequeueitemlabel.h"
+#include "wikipage.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 

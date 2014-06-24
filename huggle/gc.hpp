@@ -25,8 +25,6 @@
 #include <QThread>
 #include <QMutex>
 #include <QList>
-#include "collectable.hpp"
-#include "gc_thread.hpp"
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
 #define HUGGLECONSUMER_QUEUE                    1

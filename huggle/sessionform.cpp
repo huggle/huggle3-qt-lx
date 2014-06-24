@@ -11,6 +11,7 @@
 #include "sessionform.hpp"
 #include "configuration.hpp"
 #include "core.hpp"
+#include "hugglefeed.hpp"
 #include "ui_sessionform.h"
 
 using namespace Huggle;

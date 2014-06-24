@@ -15,8 +15,11 @@
 #include <QDesktopServices>
 #include "syslog.hpp"
 #include "exception.hpp"
+#include "hugglequeuefilter.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 Configuration * Configuration::HuggleConfiguration = nullptr;

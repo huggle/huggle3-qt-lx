@@ -17,12 +17,9 @@
 #endif
 
 #include <QString>
-#include <QCursor>
 #include <QList>
 #include <QDockWidget>
-#include <QMutex>
-#include <QDateTime>
-#include "huggleweb.hpp"
+class QMutex;
 
 namespace Ui
 {

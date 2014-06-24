@@ -18,13 +18,13 @@
 #endif
 
 #include <QString>
-#include <QTimer>
 #include <QList>
+#include <QModelIndex>
 #include <QDockWidget>
-#include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
-#include "editquery.hpp"
+#include "apiquery.hpp"
 #include "historyitem.hpp"
+#include "editquery.hpp"
 #include "revertquery.hpp"
 
 namespace Ui

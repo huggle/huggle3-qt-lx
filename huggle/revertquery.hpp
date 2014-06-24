@@ -20,10 +20,10 @@
 #include <QString>
 #include <QDateTime>
 #include <QTimer>
-#include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Huggle
 {

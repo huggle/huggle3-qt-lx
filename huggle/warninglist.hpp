@@ -27,6 +27,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class WikiEdit;
     //! Widget that allows user to pick a warning to send to user
     class WarningList : public QDialog
     {

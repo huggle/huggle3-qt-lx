@@ -10,16 +10,18 @@
 
 #include "hugglefeedproviderwiki.hpp"
 #include <QtXml>
-#include "mediawiki.hpp"
-#include "exception.hpp"
-#include "syslog.hpp"
-#include "mainwindow.hpp"
-#include "localization.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
+#include "localization.hpp"
+#include "mainwindow.hpp"
+#include "mediawiki.hpp"
+#include "hugglequeue.hpp"
 #include "querypool.hpp"
+#include "syslog.hpp"
+#include "wikipage.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
-
 HuggleFeedProviderWiki::HuggleFeedProviderWiki()
 {
     this->Buffer = new QList<WikiEdit*>();

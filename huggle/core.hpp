@@ -19,14 +19,7 @@
 
 #include <QApplication>
 #include <QList>
-#include <QPluginLoader>
 #include <QFile>
-#include "login.hpp"
-#include "mainwindow.hpp"
-#include "iextension.hpp"
-#include "hugglequeuefilter.hpp"
-#include "resources.hpp"
-#include "querypool.hpp"
 
 #ifdef PYTHONENGINE
 #include "pythonengine.hpp"
@@ -43,6 +36,7 @@ namespace Huggle
 #endif
     class Login;
     class MainWindow;
+    class Exception;
     class HuggleFeed;
     class ProcessorThread;
     class HuggleQueueFilter;

@@ -9,8 +9,12 @@
 //GNU General Public License for more details.
 
 #include "hugglelog.hpp"
+#include <QDateTime>
+#include <QCursor>
+#include <QMutex>
 #include "localization.hpp"
 #include "exception.hpp"
+#include "huggleweb.hpp"
 #include "syslog.hpp"
 #include "ui_hugglelog.h"
 

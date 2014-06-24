@@ -20,11 +20,8 @@
 #include <QDialog>
 #include <QTimer>
 #include <QString>
-#include <QUrl>
-#include "collectable_smartptr.hpp"
-#include "wikipage.hpp"
-#include "wikiuser.hpp"
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {

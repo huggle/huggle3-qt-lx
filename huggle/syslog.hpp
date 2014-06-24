@@ -17,7 +17,6 @@
 #endif
 
 #include <QStringList>
-#include <QMutex>
 
 // This macro should be used for all debug messages which are frequently called, so that we don't call DebugLog(QString, uint)
 // when we aren't in debug mode, this saves some CPU resources as these calls are very expensive sometimes (lot of conversions
@@ -27,6 +26,8 @@
                                            Syslog::HuggleLogs->DebugLog(debug, verbosity)
 #define HUGGLE_DEBUG1(debug) if (Huggle::Configuration::HuggleConfiguration->Verbosity >= 1) \
                                            Syslog::HuggleLogs->DebugLog(debug, 1)
+
+class QMutex;
 
 namespace Huggle
 {
@@ -80,7 +81,7 @@ namespace Huggle
             //! other threads as well, writing to syslog from other thread would crash huggle
             QList<HuggleLog_Line> UnwrittenLogs;
             //! Mutex we lock unwritten logs with so that only 1 thread can write to it
-            QMutex lUnwrittenLogs;
+            QMutex *lUnwrittenLogs;
         private:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;

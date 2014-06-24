@@ -11,9 +11,11 @@
 #include "generic.hpp"
 #include <QMessageBox>
 #include <QtXml>
+#include "apiquery.hpp"
 #include "configuration.hpp"
-#include "localization.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
+#include "wikiedit.hpp"
 
 using namespace Huggle;
 

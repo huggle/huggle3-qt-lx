@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "exception.hpp"
+#include <iostream>
+#include <QDir>
 #include "configuration.hpp"
 #include "syslog.hpp"
 

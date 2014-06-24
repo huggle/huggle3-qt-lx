@@ -10,6 +10,12 @@
 
 #include "querypool.hpp"
 #include "configuration.hpp"
+#include "query.hpp"
+#include "processlist.hpp"
+#include "message.hpp"
+#include "hugglefeed.hpp"
+#include "wikiedit.hpp"
+#include "editquery.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
 #include "wikiutil.hpp"

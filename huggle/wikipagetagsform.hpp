@@ -20,7 +20,6 @@
 #include <QCheckBox>
 #include <QStringList>
 #include <QString>
-#include "wikipage.hpp"
 
 namespace Ui
 {
@@ -29,6 +28,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class WikiPage;
     class WikiPageTagsForm : public QDialog
     {
             Q_OBJECT
@@ -36,7 +36,7 @@ namespace Huggle
             explicit WikiPageTagsForm(QWidget *parent = nullptr);
             ~WikiPageTagsForm();
             void ChangePage(WikiPage *wikipage);
-            WikiPage page;
+            WikiPage *page = nullptr;
             QList<QCheckBox*> CheckBoxes;
             Ui::WikiPageTagsForm *ui;
 

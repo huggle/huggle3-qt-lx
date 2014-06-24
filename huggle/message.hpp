@@ -17,7 +17,6 @@
 #endif
 
 #include <QString>
-#include "history.hpp"
 #include "collectable_smartptr.hpp"
 #include "apiquery.hpp"
 #include "wikiuser.hpp"

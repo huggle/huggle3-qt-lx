@@ -18,8 +18,6 @@
 #endif
 
 #include <QString>
-#include "wikiedit.hpp"
-#include "apiquery.hpp"
 
 #define EvaluatePageErrorReason_Missing 0
 #define EvaluatePageErrorReason_Unknown 1
@@ -29,8 +27,8 @@
 
 namespace Huggle
 {
-    class WikiEdit;
     class ApiQuery;
+    class WikiEdit;
 
     //! Generic requests that are frequently issued to wiki
     namespace Generic

@@ -13,6 +13,8 @@
 // Copyright (c) Petr Bena 2014
 
 #include "gc.hpp"
+#include "collectable.hpp"
+#include "gc_thread.hpp"
 #include "exception.hpp"
 
 using namespace Huggle;

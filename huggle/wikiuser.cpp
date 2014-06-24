@@ -9,10 +9,12 @@
 //GNU General Public License for more details.
 
 #include "wikiuser.hpp"
+#include <QMutex>
 #include "configuration.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
+#include "wikisite.hpp"
 using namespace Huggle;
 
 //QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");

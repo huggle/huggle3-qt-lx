@@ -21,10 +21,8 @@
 #include <QString>
 #include <QObject>
 #include <QtNetwork>
-#include <QThread>
 #include "collectable_smartptr.hpp"
 #include "query.hpp"
-#include "revertquery.hpp"
 
 namespace Huggle
 {

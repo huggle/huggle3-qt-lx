@@ -14,6 +14,7 @@
 #include <QDesktopServices>
 #include <QtXml>
 #include "syslog.hpp"
+#include "mainwindow.hpp"
 #include "mediawiki.hpp"
 #include "localization.hpp"
 #include "wikiutil.hpp"

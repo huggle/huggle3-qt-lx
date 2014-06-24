@@ -17,12 +17,6 @@
 #endif
 
 #include <QList>
-#include "query.hpp"
-#include "processlist.hpp"
-#include "message.hpp"
-#include "hugglefeed.hpp"
-#include "wikiedit.hpp"
-#include "editquery.hpp"
 
 namespace Huggle
 {

@@ -9,9 +9,12 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include <QUrl>
+#include <QtXml>
 #include "configuration.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
+#include "history.hpp"
 #include "mainwindow.hpp"
 #include "generic.hpp"
 #include "syslog.hpp"

@@ -19,11 +19,10 @@
 
 #include <QTimer>
 #include <QDialog>
-#include "collectable_smartptr.hpp"
-#include "wikiedit.hpp"
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 #include "editquery.hpp"
-#include "wikiuser.hpp"
+#include "wikiedit.hpp"
 
 namespace Ui
 {

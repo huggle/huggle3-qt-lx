@@ -19,9 +19,6 @@
 #include <QDialog>
 #include <QString>
 #include <QTimer>
-#include <QUrl>
-#include "wikiuser.hpp"
-#include "wikipage.hpp"
 #include "apiquery.hpp"
 
 namespace Ui

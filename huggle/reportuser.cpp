@@ -18,6 +18,9 @@
 #include "syslog.hpp"
 #include "localization.hpp"
 #include "configuration.hpp"
+#include "resources.hpp"
+#include "blockuser.hpp"
+#include "wikiuser.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 

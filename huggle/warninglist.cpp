@@ -12,10 +12,13 @@
 #include <QMessageBox>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
+#include "mainwindow.hpp"
 #include "localization.hpp"
 #include "warnings.hpp"
 #include "ui_warninglist.h"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 

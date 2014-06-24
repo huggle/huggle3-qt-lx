@@ -19,8 +19,6 @@
 #endif
 
 #include <QString>
-#include "wikiuser.hpp"
-#include "wikiedit.hpp"
 
 namespace Huggle
 {

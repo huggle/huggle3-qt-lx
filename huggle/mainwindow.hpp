@@ -18,49 +18,13 @@
 #endif
 
 #include <QMainWindow>
-#include <QTimer>
-#include <QInputDialog>
 #include <QLabel>
-#include <QMutex>
-#include <QThread>
-#include <QSplitter>
+#include <QTimer>
 #include <QDockWidget>
-#include "aboutform.hpp"
-#include "blockuser.hpp"
 #include "collectable_smartptr.hpp"
-#include "deleteform.hpp"
 #include "editquery.hpp"
-#include "history.hpp"
-#include "hugglefeedproviderwiki.hpp"
-#include "hugglefeedproviderirc.hpp"
-#include "hugglelog.hpp"
-#include "huggleparser.hpp"
-#include "hugglequeue.hpp"
-#include "huggletool.hpp"
-#include "huggleweb.hpp"
-#include "wikipage.hpp"
-#include "preferences.hpp"
-#include "processlist.hpp"
-#include "protectpage.hpp"
-#include "reloginform.hpp"
-#include "reportuser.hpp"
 #include "revertquery.hpp"
-#include "requestprotect.hpp"
-#include "wikiuser.hpp"
-#include "ignorelist.hpp"
-#include "speedyform.hpp"
-#include "userinfoform.hpp"
-#include "vandalnw.hpp"
-#include "whitelistform.hpp"
-#include "sessionform.hpp"
-#include "historyform.hpp"
-#include "scorewordsdbform.hpp"
-#include "warnings.hpp"
-#include "warninglist.hpp"
-#include "waitingform.hpp"
 #include "wlquery.hpp"
-#include "wikipagetagsform.hpp"
-#include "uaareport.hpp"
 
 namespace Ui
 {
@@ -73,6 +37,7 @@ namespace Huggle
     class History;
     class HistoryForm;
     class UserinfoForm;
+    class HuggleFeed;
     class HuggleQueue;
     class HuggleTool;
     class AboutForm;

@@ -11,7 +11,9 @@
 #include "message.hpp"
 #include <QtXml>
 #include "configuration.hpp"
-#include "core.hpp"
+#include "exception.hpp"
+#include "history.hpp"
+#include "mainwindow.hpp"
 #include "collectable.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
@@ -244,9 +246,9 @@ void Message::Finish()
                         this->Dependency->HI->UndoDependency = item;
                         item->ReferencedBy = this->Dependency->HI;
                     }
-                    if (Core::HuggleCore->Main != nullptr)
+                    if (MainWindow::HuggleMain != nullptr)
                     {
-                        Core::HuggleCore->Main->_History->Prepend(item);
+                        MainWindow::HuggleMain->_History->Prepend(item);
                     }
                 }
             }

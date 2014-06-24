@@ -19,15 +19,15 @@
 
 #include <QDialog>
 #include <QString>
-#include <QTimer>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
-#include "wikiuser.hpp"
 
 namespace Ui
 {
     class BlockUser;
 }
+
+class QTimer;
 
 namespace Huggle
 {

@@ -19,13 +19,14 @@
 #endif
 
 #include <QList>
+#include <QDomElement>
 #include <QStringList>
 #include <QString>
 #include <QDateTime>
 #include "collectable_smartptr.hpp"
-#include "hugglefeed.hpp"
 #include "apiquery.hpp"
 #include "wikiedit.hpp"
+#include "hugglefeed.hpp"
 
 namespace Huggle
 {

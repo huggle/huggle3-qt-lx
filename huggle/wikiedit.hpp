@@ -19,14 +19,11 @@
 
 #include <QString>
 #include <QThread>
-#include <QMutex>
 #include <QDateTime>
-#include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
+#include "collectable.hpp"
 #include "collectable_smartptr.hpp"
-#include "wikiuser.hpp"
-#include "wikipage.hpp"
 
 namespace Huggle
 {
@@ -46,6 +43,8 @@ namespace Huggle
         StatusPostProcessed
     };
 
+    class Query;
+    class ApiQuery;
     class WikiPage;
     class WikiEdit;
     class WikiUser;
@@ -61,9 +60,6 @@ namespace Huggle
         protected:
             void run();
     };
-
-    class Query;
-    class ApiQuery;
 
     //! Wiki edit
 

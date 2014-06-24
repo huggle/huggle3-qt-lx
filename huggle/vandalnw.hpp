@@ -20,8 +20,6 @@
 
 #include <QDockWidget>
 #include <QTimer>
-#include "networkirc.hpp"
-#include "wikiedit.hpp"
 
 namespace Ui
 {
@@ -30,11 +28,13 @@ namespace Ui
 
 namespace Huggle
 {
+    class WikiPage;
+    class WikiEdit;
+    class WikiUser;
     namespace IRC
     {
         class NetworkIrc;
     }
-
     //! This namespace contains HAN classes
 
     //! Huggle Antivandalism Network is a system that allows users of huggle and other tools
@@ -83,6 +83,8 @@ namespace Huggle
         };
 
     }
+
+    class WikiEdit;
 
     //! Vandalism network
 

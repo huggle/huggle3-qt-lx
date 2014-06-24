@@ -9,10 +9,13 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.hpp"
+#include <QtXml>
+#include <QMutex>
+#include "wikiuser.hpp"
+#include "wikipage.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
 #include "core.hpp"
-#include "collectable.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "mediawiki.hpp"

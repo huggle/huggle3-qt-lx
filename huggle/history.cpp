@@ -11,6 +11,8 @@
 #include "history.hpp"
 #include <QMenu>
 #include <QMessageBox>
+#include <QTimer>
+#include "revertquery.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
@@ -18,7 +20,6 @@
 #include "generic.hpp"
 #include "wikiutil.hpp"
 #include "querypool.hpp"
-#include "revertquery.hpp"
 #include "ui_history.h"
 #include "configuration.hpp"
 

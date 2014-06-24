@@ -12,7 +12,9 @@
 #include <QtXml>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QTimer>
 #include "exception.hpp"
+#include "wikiuser.hpp"
 #include "wikiutil.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"

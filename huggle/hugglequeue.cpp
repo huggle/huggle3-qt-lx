@@ -9,12 +9,14 @@
 //GNU General Public License for more details.
 
 #include "hugglequeue.hpp"
-#include "core.hpp"
+#include "mainwindow.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "vandalnw.hpp"
 #include "localization.hpp"
 #include "ui_hugglequeue.h"
 #include "syslog.hpp"
+#include "wikipage.hpp"
 
 using namespace Huggle;
 
@@ -38,17 +40,17 @@ void HuggleQueue::AddItem(WikiEdit *page)
         throw new Huggle::Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
 
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
-    if (Core::HuggleCore->Main != nullptr)
+    if (MainWindow::HuggleMain != nullptr)
     {
-        if (Core::HuggleCore->Main->VandalDock != nullptr)
+        if (MainWindow::HuggleMain->VandalDock != nullptr)
         {
-            if (Core::HuggleCore->Main->VandalDock->IsParsed(page))
+            if (MainWindow::HuggleMain->VandalDock->IsParsed(page))
             {
                 // we don't even need to insert this page to queue
                 page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
                 return;
             }
-            Core::HuggleCore->Main->VandalDock->Rescore(page);
+            MainWindow::HuggleMain->VandalDock->Rescore(page);
         }
     }
     // in case that we don't want to have this edit in queue, we can ignore this
@@ -172,7 +174,7 @@ bool HuggleQueue::DeleteByRevID(int RevID)
         HuggleQueueItemLabel *item = this->Items.at(c);
         if (item->Page->RevID == RevID)
         {
-            if (Core::HuggleCore->Main->CurrentEdit == item->Page)
+            if (MainWindow::HuggleMain->CurrentEdit == item->Page)
             {
                 // we can't delete item that is being reviewed now
                 return false;
@@ -343,7 +345,7 @@ int HuggleQueue::DeleteByScore(long Score)
         HuggleQueueItemLabel *item = this->Items.at(c);
         if (item->Page->Score < Score)
         {
-            if (Core::HuggleCore->Main->CurrentEdit == item->Page)
+            if (MainWindow::HuggleMain->CurrentEdit == item->Page)
             {
                 // we can't delete item that is being reviewed now
                 c++;

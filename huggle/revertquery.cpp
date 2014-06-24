@@ -13,8 +13,12 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "exception.hpp"
+#include "querypool.hpp"
+#include "history.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
+#include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "wikiutil.hpp"
 

@@ -9,12 +9,16 @@
 //GNU General Public License for more details.
 
 #include "userinfoform.hpp"
+#include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
+#include "huggleweb.hpp"
 #include "mainwindow.hpp"
 #include "syslog.hpp"
+#include "wikiuser.hpp"
+#include "wikipage.hpp"
 #include "ui_userinfoform.h"
 
 using namespace Huggle;
