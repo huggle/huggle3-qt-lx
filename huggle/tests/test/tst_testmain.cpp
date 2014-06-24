@@ -14,6 +14,7 @@
 #include "../../huggleparser.hpp"
 #include "../../configuration.hpp"
 #include "../../wikiedit.hpp"
+#include "../../wikipage.hpp"
 #include "../../sleeper.hpp"
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
