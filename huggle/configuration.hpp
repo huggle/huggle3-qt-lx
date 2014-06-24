@@ -236,6 +236,7 @@ namespace Huggle
             unsigned int    Verbosity = 0;
             //! Version
             QString         HuggleVersion;
+            QString         HANMask = "$feed.huggle";
             //! currently selected project
             WikiSite        *Project = nullptr;
             //! List of projects

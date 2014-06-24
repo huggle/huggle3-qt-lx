@@ -690,6 +690,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
     this->GlobalConfig_UserConf = ReplaceSpecialUserPage(ConfigurationParse("user-config-hg3", config));
     this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(ConfigurationParse("user-config", config));
+    this->HANMask = ConfigurationParse("han-mask", config, this->HANMask);
     this->GlobalConfig_Whitelist = ConfigurationParse("whitelist-server", config);
     this->GlobalConfigWasLoaded = true;
     return true;

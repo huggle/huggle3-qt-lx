@@ -35,6 +35,23 @@ namespace Huggle
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
+        static void TryCatch(PyObject *script)
+        {
+            if (script)
+            {
+                PythonScript *ptr = Core::HuggleCore->Python->PythonScriptObjFromPyObj(script);
+                if (ptr != nullptr)
+                {
+                    HUGGLE_DEBUG1("Exception in " + ptr->GetName());
+                }
+            }
+            if (PyErr_Occurred())
+            {
+                HUGGLE_DEBUG("Printing the exception to cout::stderr", 5);
+                PyErr_PrintEx(1);
+            }
+        }
+
         static PyObject *ApiVersion(PyObject *self, PyObject *args)
         {
             PyObject *v = PyUnicode_FromString(Configuration::HuggleConfiguration->HuggleVersion.toUtf8().data());
@@ -48,7 +65,7 @@ namespace Huggle
             PyObject *tn = PyUnicode_AsASCIIString(text);
             if (!tn)
             {
-                PyErr_Print();
+                TryCatch(nullptr);
                 return "";
             }
             QString result = QString(PyBytes_AsString(tn));
@@ -89,7 +106,7 @@ namespace Huggle
             } else
             {
                 HUGGLE_DEBUG("Failed to unpack tuple @DebugLog", 2);
-                PyErr_Print();
+                TryCatch(nullptr);
             }
             return result_;
         }
@@ -140,7 +157,7 @@ namespace Huggle
             } else
             {
                 HUGGLE_DEBUG1("Failed to unpack tuple in Log_ fc");
-                PyErr_Print();
+                TryCatch(nullptr);
             }
             return result_;
         }
@@ -191,7 +208,7 @@ namespace Huggle
             if (!PyArg_UnpackTuple(args, "Config_Set", 1, 2, &name, &vals))
             {
                 HUGGLE_DEBUG1("Failed to run Config_Set - arguments could not be processed @" + script->GetName());
-                PyErr_Print();
+                TryCatch(self);
                 return nullptr;
             }
             QString option = StringFromPyString(name);
@@ -219,7 +236,7 @@ namespace Huggle
             if (!PyArg_UnpackTuple(args, "Config_Set", 1, 1, &name))
             {
                 HUGGLE_DEBUG1("Failed to run Config_Get - arguments could not be processed @" + script->GetName());
-                PyErr_Print();
+                TryCatch(self);
                 return nullptr;
             }
             QString option = StringFromPyString(name);
@@ -259,7 +276,7 @@ namespace Huggle
             PyObject *ttext = PyUnicode_AsASCIIString(text);
             if (!tpage || !tsuma || !ttext)
             {
-                PyErr_Print();
+                TryCatch(self);
                 return nullptr;
             }
             QString page_name = QString(PyBytes_AsString(tpage));
@@ -310,13 +327,21 @@ namespace Huggle
     }
 }
 
+QString DoubleBack(QString path)
+{
+    QString result = QString(path);
+    return result.replace("\\", "\\\\");
+}
+
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
     // define hooks
     PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it
     Py_Initialize();
-    PyRun_SimpleString(QString("import sys; sys.path.append('" + ExtensionsFolder_ + "')").toUtf8().data());
+    Syslog::HuggleLogs->DebugLog("Inserting extensions folder to path: " + DoubleBack(ExtensionsFolder_));
+    if (PyRun_SimpleString(QString("import sys; sys.path.append('" + DoubleBack(ExtensionsFolder_) + "')").toUtf8().data()))
+        TryCatch(nullptr);
 #ifdef HUGGLE_GLOBAL_EXTENSION_PATH
     PyRun_SimpleString(QString(QString("sys.path.append('") + HUGGLE_GLOBAL_EXTENSION_PATH + "')").toUtf8().data());
 #endif
@@ -339,6 +364,19 @@ QList<PythonScript *> PythonEngine::ScriptsList()
     return QList<PythonScript*>(this->Scripts);
 }
 
+PythonScript *PythonEngine::PythonScriptObjFromPyObj(PyObject *object)
+{
+    foreach (PythonScript *script, this->Scripts)
+    {
+        if (object == script->PythonObject())
+        {
+            return script;
+        }
+    }
+    HUGGLE_DEBUG("Unable to resolve script from script table, id: 0x" + QString::number((int)object, 16), 4);
+    return nullptr;
+}
+
 unsigned int PythonEngine::Count()
 {
     unsigned int s = 0;
@@ -356,32 +394,34 @@ unsigned int PythonEngine::Count()
 void PythonEngine::Hook_HuggleShutdown()
 {
     foreach (PythonScript *c, this->Scripts)
-        c->Hook_Shutdown();
-}
-
-PythonScript *PythonEngine::PythonScriptObjFromPyObj(PyObject *object)
-{
-    foreach (PythonScript *script, this->Scripts)
     {
-        if (object == script->PythonObject())
+        if (c->IsEnabled())
         {
-            return script;
+            c->Hook_Shutdown();
         }
     }
-    HUGGLE_DEBUG("Unable to resolve script from script table, id: 0x" + QString::number((int)object, 16), 4);
-    return nullptr;
 }
 
 void PythonEngine::Hook_MainWindowIsLoaded()
 {
     foreach (PythonScript *c, this->Scripts)
-        c->Hook_MainWindowIsLoaded();
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_MainWindowIsLoaded();
+        }
+    }
 }
 
 void PythonEngine::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
 {
     foreach (PythonScript *c, this->Scripts)
-        c->Hook_SpeedyFinished(edit, tags, successfull);
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_SpeedyFinished(edit, tags, successfull);
+        }
+    }
 }
 
 PythonScript::PythonScript(QString name)
@@ -431,7 +471,7 @@ PyObject *PythonScript::Hook(QString function)
         if (ptr_python_ != nullptr && !PyCallable_Check(ptr_python_))
         {
             if (Configuration::HuggleConfiguration->Verbosity > 0)
-                PyErr_Print();
+                TryCatch(nullptr);
             // we loaded the symbol but it's not callable function
             // so we remove it
             Py_DECREF(ptr_python_);
@@ -442,7 +482,7 @@ PyObject *PythonScript::Hook(QString function)
         {
             Syslog::HuggleLogs->DebugLog("There is no override for " + function);
             if (Configuration::HuggleConfiguration->Verbosity > 0)
-                PyErr_Print();
+                TryCatch(nullptr);
         }
     }
     return ptr_python_;
@@ -462,14 +502,12 @@ QString PythonScript::CallInternal(QString function)
             Py_DECREF(ptr_python_);
             Syslog::HuggleLogs->WarningLog("Function " + function + "@" + this->Name
                                            + " isn't callable, unable to retrieve");
-            if (Configuration::HuggleConfiguration->Verbosity > 0)
-                PyErr_Print();
+            TryCatch(nullptr);
             ptr_python_ = nullptr;
         } else if (ptr_python_ == nullptr)
         {
             Syslog::HuggleLogs->DebugLog("There is no override for " + function);
-            if (Configuration::HuggleConfiguration->Verbosity > 0)
-                PyErr_Print();
+            TryCatch(nullptr);
         }
     }
     if (ptr_python_ == nullptr)
@@ -481,8 +519,7 @@ QString PythonScript::CallInternal(QString function)
     Py_DECREF(value);
     if (text_ == nullptr || !PyBytes_Check(text_))
     {
-        if (Configuration::HuggleConfiguration->Verbosity > 0)
-            PyErr_Print();
+        TryCatch(nullptr);
         Syslog::HuggleLogs->DebugLog("Python::$" + function + "@" + this->Name + ": return value must be of a string type");
         return "<unknown>";
     } else
@@ -523,7 +560,7 @@ void PythonScript::Hook_Shutdown()
     {
         HUGGLE_DEBUG("Calling hook Hook_Shutdown @" + this->Name, 2);
         if (!PyObject_CallObject(this->ptr_Hook_Shutdown, nullptr))
-            PyErr_Print();
+            TryCatch(nullptr);
     }
 }
 
@@ -561,7 +598,7 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
 
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
-        PyErr_Print();
+        TryCatch(nullptr);
 
 }
 
@@ -571,7 +608,7 @@ void PythonScript::Hook_MainWindowIsLoaded()
     {
         Syslog::HuggleLogs->DebugLog("Calling hook Hook_MainWindowIsLoaded @" + this->Name, 2);
         if(!PyObject_CallObject(this->ptr_Hook_MainLoaded, nullptr))
-            PyErr_Print();
+            TryCatch(nullptr);
     }
 }
 
@@ -593,7 +630,7 @@ bool PythonScript::Init()
         PyObject *name = PyUnicode_FromString(this->ModuleID.toUtf8().data());
         if (name == nullptr)
         {
-            PyErr_Print();
+            TryCatch(nullptr);
             return false;
         }
         this->object = PyImport_Import(name);
@@ -602,7 +639,7 @@ bool PythonScript::Init()
         if (this->object == nullptr)
         {
             HUGGLE_DEBUG("Failed to load module " + this->ModuleID, 2);
-            PyErr_Print();
+            TryCatch(nullptr);
             return false;
         }
         Syslog::HuggleLogs->DebugLog("Loading hook symbols for python " + this->Name);
