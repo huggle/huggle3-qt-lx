@@ -39,9 +39,6 @@ Configuration::Configuration()
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
     this->ProjectConfig = new ProjectConfiguration();
     this->UserConfig = new UserConfiguration();
-    this->ProjectConfig->DeletionSummaries << "Deleted page using Huggle";
-    this->ProjectConfig->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
-            " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 
     this->MakeShortcut("main-revert-and-warn", "shortcut-raw", "Q");
     this->MakeShortcut("main-exit", "shortcut-exit");
@@ -103,9 +100,6 @@ Configuration::Configuration()
                  << "October"
                  << "November"
                  << "December";
-
-    this->ProjectConfig->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
-    this->ProjectConfig->BlockExpiryOptions.append("indefinite");
 }
 
 Configuration::~Configuration()

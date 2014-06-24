@@ -164,6 +164,10 @@ void Login::CancelLogin()
         delete this->loadingForm;
         this->loadingForm = nullptr;
     }
+    delete Configuration::HuggleConfiguration->UserConfig;
+    delete Configuration::HuggleConfiguration->ProjectConfig;
+    Configuration::HuggleConfiguration->ProjectConfig = new ProjectConfiguration();
+    Configuration::HuggleConfiguration->UserConfig = new UserConfiguration();
     this->_Status = Nothing;
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->lineEdit_password->setText("");

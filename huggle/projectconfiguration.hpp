@@ -54,6 +54,7 @@ namespace Huggle
     class ProjectConfiguration
     {
         public:
+            ProjectConfiguration();
             void RequestLogin();
             //! Set to false when you are logged out for some reason
             bool            IsLoggedIn = false;

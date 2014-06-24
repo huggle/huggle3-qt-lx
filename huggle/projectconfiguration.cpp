@@ -12,6 +12,15 @@
 
 using namespace Huggle;
 
+ProjectConfiguration::ProjectConfiguration()
+{
+    this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
+    this->BlockExpiryOptions.append("indefinite");
+    this->DeletionSummaries << "Deleted page using Huggle";
+    this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
+            " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
+}
+
 ScoreWord::ScoreWord(QString Word, int Score)
 {
     this->score = Score;
