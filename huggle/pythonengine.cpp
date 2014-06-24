@@ -201,48 +201,52 @@ namespace Huggle
 
         static PyObject *Config_Set(PyObject *self, PyObject *args)
         {
-            PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
+            /*PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
             if (script == nullptr)
                 return nullptr;
-            PyObject *name, *vals;
-            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 2, &name, &vals))
+                */
+            PyObject *name, *vals, *extension;
+            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 3, &extension, &name, &vals))
             {
-                HUGGLE_DEBUG1("Failed to run Config_Set - arguments could not be processed @" + script->GetName());
+                //HUGGLE_DEBUG1("Failed to run Config_Set - arguments could not be processed @" + script->GetName());
                 TryCatch(self);
                 return nullptr;
             }
             QString option = StringFromPyString(name);
+            QString ex = StringFromPyString(extension);
             QString data = StringFromPyString(vals);
             // remove the temp objects we created
             Py_DECREF(name);
             Py_DECREF(vals);
-            if (!Configuration::HuggleConfiguration->ExtensionData.contains(script->GetName()))
+            if (!Configuration::HuggleConfiguration->ExtensionData.contains(ex))
             {
                 // it seems this extension didn't store any data so far
                 // let's create a new storage
-                Configuration::HuggleConfiguration->ExtensionData.insert(script->GetName(), new ExtensionConfig());
+                Configuration::HuggleConfiguration->ExtensionData.insert(ex, new ExtensionConfig());
             }
-            Configuration::HuggleConfiguration->ExtensionData[script->GetName()]->SetOption(option, data);
+            Configuration::HuggleConfiguration->ExtensionData[ex]->SetOption(option, data);
             PyObject *result_ = PyBool_FromLong(1);
             return result_;
         }
 
         static PyObject *Config_Get(PyObject *self, PyObject *args)
         {
-            PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
-            if (script == nullptr)
-                return nullptr;
-            PyObject *name;
-            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 1, &name))
+            //PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
+            //if (script == nullptr)
+            //    return nullptr;
+            PyObject *name, *extension;
+            if (!PyArg_UnpackTuple(args, "Config_Set", 1, 2, &extension, &name))
             {
-                HUGGLE_DEBUG1("Failed to run Config_Get - arguments could not be processed @" + script->GetName());
+                //HUGGLE_DEBUG1("Failed to run Config_Get - arguments could not be processed @" + script->GetName());
                 TryCatch(self);
                 return nullptr;
             }
             QString option = StringFromPyString(name);
+            QString module = StringFromPyString(extension);
             // remove the temp objects we created
             Py_DECREF(name);
-            PyObject *result_ = PyUnicode_FromString(Configuration::HuggleConfiguration->GetExtensionConfig(script->GetName(), option, "").toUtf8().data());
+            Py_DECREF(extension);
+            PyObject *result_ = PyUnicode_FromString(Configuration::HuggleConfiguration->GetExtensionConfig(module, option, "").toUtf8().data());
             return result_;
         }
 
