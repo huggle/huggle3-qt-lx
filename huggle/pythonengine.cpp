@@ -13,6 +13,7 @@
 #ifdef PYTHONENGINE
 
 #include "pythonengine.hpp"
+#include <cstdint>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "wikiutil.hpp"
@@ -377,7 +378,7 @@ PythonScript *PythonEngine::PythonScriptObjFromPyObj(PyObject *object)
             return script;
         }
     }
-    HUGGLE_DEBUG("Unable to resolve script from script table, id: 0x" + QString::number((int)object, 16), 4);
+    HUGGLE_DEBUG("Unable to resolve script from script table, id: 0x" + QString::number((intptr_t)object, 16), 4);
     return nullptr;
 }
 

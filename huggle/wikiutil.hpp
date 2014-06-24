@@ -12,9 +12,6 @@
 #define WIKIUTIL_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 #ifdef PYTHONENGINE
 #include <Python.h>
 #endif
@@ -59,12 +56,19 @@ namespace Huggle
          * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
          * the system will wait for it to finish before the message is sent
          * \param NoSuffix will not append huggle suffix if this is true, useful if you need to use custom summary
+         * \param SectionKeep will try to use the identical section, if there is not such a section it
+         *        make it
          *
          * \return NULL on error or instance of Huggle::Message in case it's success
          */
         Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
                              Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
                              bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
+        /*!
+         * \brief SanitizeUser removes all invalid or problematic characters from user name
+         * \param username Username that is to be fixed
+         * \return
+         */
         QString SanitizeUser(QString username);
         Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false);
         void FinalizeMessages();
