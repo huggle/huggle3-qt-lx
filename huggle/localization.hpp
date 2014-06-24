@@ -73,6 +73,9 @@ namespace Huggle
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameter);
             QString Localize(QString key, QString par1, QString par2);
+			
+			//! Check whether the preferred language is RightToLeft language.
+			bool IsRTL();
             //! Languages
             QList<Language*> LocalizationData;
             //! Language selected by user this is only a language of interface

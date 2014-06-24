@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Arabic</string>
+  <string name="isrtl">true</string>
   <string name="add">أضف</string>
   <string name="apply">طبِّق</string>
   <string name="cancel">ألغِ</string>

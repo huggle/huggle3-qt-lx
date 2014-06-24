@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Persian</string>
+  <string name="isrtl">true</string>
   <string name="add">افزودن</string>
   <string name="apply">اعمال‌کردن</string>
   <string name="cancel">لغو</string>
