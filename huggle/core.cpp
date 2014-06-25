@@ -46,7 +46,7 @@ void Core::Init()
 #ifdef HUGGLE_BREAKPAD
     Syslog::HuggleLogs->Log("Dumping enabled using google breakpad");
 #endif
-    this->gc = new GC();
+    this->gc = new Huggle::GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
     QueryPool::HugglePool = new QueryPool();
