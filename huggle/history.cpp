@@ -142,9 +142,10 @@ void History::ContextMenu(const QPoint &position)
 {
     QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
     QMenu menu;
-    menu.addAction("Undo");
+    QAction *undo = new QAction("Undo", &menu);
+    menu.addAction(undo);
     QAction *selection = menu.exec(g_);
-    if (selection)
+    if (selection == undo)
     {
         this->Undo(nullptr);
     }
