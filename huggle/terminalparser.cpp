@@ -21,6 +21,33 @@ TerminalParser::TerminalParser(QStringList argv)
     this->args = argv;
 }
 
+TerminalParser::TerminalParser(int argc, char *argv[])
+{
+    int i=0;
+    while (i<argc)
+    {
+        this->args.append(QString(argv[i]));
+        i++;
+    }
+}
+
+bool TerminalParser::Init()
+{
+    int x = 1;
+    while (x < this->args.count())
+    {
+        bool valid = false;
+        QString text = this->args.at(x);
+        x++;
+        if (text == "-h" || text == "--help")
+        {
+            DisplayHelp();
+            return true;
+        }
+    }
+    return false;
+}
+
 bool TerminalParser::Parse()
 {
     int x = 1;
@@ -28,11 +55,6 @@ bool TerminalParser::Parse()
     {
         bool valid = false;
         QString text = this->args.at(x);
-        if (text == "-h" || text == "--help")
-        {
-            DisplayHelp();
-            return true;
-        }
         if (!text.startsWith("--") && text.startsWith("-"))
         {
             text = text.mid(1);
@@ -149,12 +171,14 @@ bool TerminalParser::ParseChar(QChar x)
 {
     switch (x.toLatin1())
     {
+        case 'h':
+            //help
+            DisplayHelp();
+            //quit
+            return true;
         case 'v':
             Configuration::HuggleConfiguration->Verbosity++;
             return false;
-        case 'h':
-            this->DisplayHelp();
-            return true;
     }
     return false;
 }

@@ -30,7 +30,9 @@ namespace Huggle
     class TerminalParser
     {
         public:
+            TerminalParser(int argc, char *argv[]);
             TerminalParser(QStringList argv);
+            bool Init();
             bool Parse();
             bool ParseChar(QChar x);
             void DisplayHelp();

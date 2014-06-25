@@ -29,17 +29,8 @@
 #include "exception.hpp"
 
 //! This function just read the parameters and return true if we can continue or not
-bool TerminalParse(int argc, char *argv[])
+bool TerminalParse(Huggle::TerminalParser *p)
 {
-    QStringList args;
-    int i=0;
-    while (i<argc)
-    {
-        args.append(QString(argv[i]));
-        i++;
-    }
-    // we create a new terminal parser
-    Huggle::TerminalParser *p = new Huggle::TerminalParser(args);
     // if parser get an argument which requires app to exit (like --help or --version)
     // we can terminate it now
     if (p->Parse())
@@ -65,14 +56,24 @@ int main(int argc, char *argv[])
 {
     int ReturnCode = 0;
     Huggle::Exception::InitBreakpad();
-    Huggle::HgApplication a(argc, argv);
-    QApplication::setApplicationName("Huggle");
-    QApplication::setOrganizationName("Wikimedia");
-    Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
     try
     {
+        // we need to create terminal parser now and rest later
+        Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
+        if (parser->Init())
+        {
+            // we need to do this before we init the qapp because otherwise it would work on systems
+            // that don't have an X org
+            delete parser;
+            Huggle::Exception::ExitBreakpad();
+            return 0;
+        }
+        Huggle::HgApplication a(argc, argv);
+        QApplication::setApplicationName("Huggle");
+        QApplication::setOrganizationName("Wikimedia");
+        Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
         // check if arguments don't need to exit program
-        if (!TerminalParse(argc, argv))
+        if (!TerminalParse(parser))
         {
             Huggle::Exception::ExitBreakpad();
             delete Huggle::Configuration::HuggleConfiguration;
