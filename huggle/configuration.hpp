@@ -20,6 +20,7 @@
 
 #include <QList>
 #include <QStringList>
+#include <QByteArray>
 #include <QHash>
 #include <QString>
 #include "huggleoption.hpp"
@@ -237,7 +238,7 @@ namespace Huggle
             //! Version
             QString         HuggleVersion;
             QString         HANMask = "$feed.huggle";
-            QString         WebqueryAgent;
+            QByteArray      WebqueryAgent;
             //! currently selected project
             WikiSite        *Project = nullptr;
             //! List of projects

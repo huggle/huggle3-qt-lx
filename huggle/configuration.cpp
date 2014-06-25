@@ -695,8 +695,9 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(ConfigurationParse("user-config", config));
     this->HANMask = ConfigurationParse("han-mask", config, this->HANMask);
     this->GlobalConfig_Whitelist = ConfigurationParse("whitelist-server", config);
-    this->WebqueryAgent = ConfigurationParse("user-agent", config, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
-    this->WebqueryAgent.replace("$1", this->SystemConfig_Username);
+    QString Webquery_ = ConfigurationParse("user-agent", config, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
+    Webquery_.replace("$1", this->SystemConfig_Username);
+    this->WebqueryAgent = Webquery_.toUtf8();
     this->GlobalConfigWasLoaded = true;
     return true;
 }
