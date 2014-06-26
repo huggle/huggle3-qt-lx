@@ -136,13 +136,12 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     QString Summary;
     QString size;
     if (edit->Size > 0)
-    {
-        size = "+" + QString::number(edit->Size);
-    } else
-    {
-        size = QString::number(edit->Size);
-    }
-    if (!edit->Summary.size())
+        size = "<font color=green>+" + QString::number(edit->Size) + "</font>";
+    else
+        size = "<font color=\"red\">" + QString::number(edit->Size) + "</font>";
+
+
+    if (edit->Summary.isEmpty())
     {
         Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else

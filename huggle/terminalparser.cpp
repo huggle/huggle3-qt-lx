@@ -36,7 +36,7 @@ bool TerminalParser::Init()
     int x = 1;
     while (x < this->args.count())
     {
-        bool valid = false;
+        //bool valid = false;
         QString text = this->args.at(x);
         x++;
         if (text == "-h" || text == "--help")
