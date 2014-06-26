@@ -12,7 +12,6 @@
 #include <QMessageBox>
 #include <QtXml>
 #include "configuration.hpp"
-#include "core.hpp"
 #include "exception.hpp"
 #include "querypool.hpp"
 #include "history.hpp"
@@ -243,7 +242,7 @@ void RevertQuery::Preflight()
                 text = (_l("cr-message-not-same", this->edit->Page->PageName));
             }
             QMessageBox::StandardButton re;
-            re = QMessageBox::question(Core::HuggleCore->Main, _l("revert-preflightcheck"),
+            re = QMessageBox::question(MainWindow::HuggleMain, _l("revert-preflightcheck"),
                                        text, QMessageBox::Yes|QMessageBox::No);
             if (re == QMessageBox::No)
             {
@@ -370,7 +369,7 @@ void RevertQuery::CheckPreflight()
             }
         }
         QMessageBox::StandardButton re;
-        re = QMessageBox::question(Core::HuggleCore->Main, _l("revert-preflightcheck"), text, QMessageBox::Yes|QMessageBox::No);
+        re = QMessageBox::question(MainWindow::HuggleMain, _l("revert-preflightcheck"), text, QMessageBox::Yes|QMessageBox::No);
         if (re == QMessageBox::No)
         {
             // abort
@@ -412,8 +411,8 @@ bool RevertQuery::CheckRevert()
         item->Target = this->qRevert->Target;
         item->Type = HistoryRollback;
         item->Result = "Success";
-        if (Core::HuggleCore->Main != nullptr)
-            Core::HuggleCore->Main->_History->Prepend(item);
+        if (MainWindow::HuggleMain != nullptr)
+            MainWindow::HuggleMain->_History->Prepend(item);
     }
     this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->qRevert = nullptr;
