@@ -292,10 +292,6 @@ void Warnings::ResendWarnings()
             {
                 Syslog::HuggleLogs->DebugLog("Expired " + warning->Warning->user->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
-                if (warning->Query != nullptr)
-                {
-                    Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != NULL");
-                }
                 warning->Query = new Huggle::ApiQuery();
                 warning->Query->SetAction(ActionQuery);
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
