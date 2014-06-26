@@ -82,6 +82,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-8", "shortcut-x-revert");
     this->MakeShortcut("main-revert-9", "shortcut-x-revert");
     this->MakeShortcut("main-talk", "shortcut-talk", "T");
+    this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
     this->MakeShortcut("main-good", "shortcut-good", "G");
 
@@ -1104,6 +1105,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_GOOD;
     else if (name == "main-open-in-browser")
         this->ID = HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER;
+    else if (name == "main-mytalk")
+        this->ID = HUGGLE_ACCEL_MAIN_MYTALK_PAGE;
     else if (name == "main-talk")
         this->ID = HUGGLE_ACCEL_MAIN_TALK;
     else if (name.startsWith("main-revert-and-warn-"))

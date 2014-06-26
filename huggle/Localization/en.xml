@@ -54,6 +54,7 @@
     <string name="browser-diff">Diff of page: $1 (score: $2)</string>
     <string name="browser-fail">Unable to retrieve diff: $1</string>
     <string name="about-contributors">Developers:</string>
+    <string name="block-not">User is not blocked</string>
     <string name="block-title">Block $1</string>
     <string name="block-reason">Reason:</string>
     <string name="block-duration">Duration:</string>
@@ -368,6 +369,7 @@
     <string name="message-retrieve-new-token">Retrieving token to edit $1</string>
     <string name="message-fail-re-user-tp">Unable to retrieve $1. Stopping message delivery to that user</string>
     <string name="message-er">Unable to deliver the message to $1: $2</string>
+    <string name="message-error">Failed to deliver a message to $1! Please check logs!</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
     <string name="message-done">Successfully delivered message to: $1</string>
     <string name="message-fail-token-1">unable to retrieve the edit token</string>
@@ -499,9 +501,12 @@
     <string name="updater-open-manualdownloadpage">Open the download page</string>
     <string name="updater-close">Close</string>
     <string name="updater-disable-notify">Disable updates</string>
+    <string name="user-history-fail">unable to retrieve history for user: $1</string>
     <string name="userinfo-generic">User info</string>
     <string name="userinfo-title">User information for $1</string>
+    <string name="userinfo-retrieve">Retrieve info</string>
     <string name="userinfo-anonymous">Anonymous:</string>
+    <string name="shortcut-my-talk">My talk page</string>
     <string name="userinfo-ignored">Whitelisted:</string>
     <string name="userinfo-edits">Number of edits:</string>
     <string name="userinfo-sessionedits">Edits this session:</string>
@@ -532,6 +537,7 @@
     <string name="warning-warntype">Warning type:</string>
     <string name="warning-warnlog">Warnings for this user:</string>
     <string name="warning-submit">Send</string>
+    <string name="missing-warning">There is no such warning template $1</string>
     <string name="han-not">Vandalism network isn't allowed in options</string>
     <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
     <string name="error-loggedout">Account has been logged out, logging back in...</string>

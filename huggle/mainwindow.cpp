@@ -733,6 +733,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_SUSPICIOUS_EDIT:
             q = this->ui->actionFlag_as_suspicious_edit;
             break;
+        case HUGGLE_ACCEL_MAIN_MYTALK_PAGE:
+            q = this->ui->actionShow_talk;
+            break;
         case HUGGLE_ACCEL_MAIN_WARN:
             q = this->ui->actionWarn_the_user;
             tip = this->ui->actionWarn;

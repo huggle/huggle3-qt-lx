@@ -26,7 +26,7 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new U
 {
     ui->setupUi(this);
     QStringList header;
-    header << "" << _l("tag-tags") << "Description";
+    header << "" << _l("tag-tags") << _l("description");
     this->ui->tableWidget->setColumnCount(3);
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);

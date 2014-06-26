@@ -73,7 +73,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     this->User = new WikiUser(user);
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
-    this->ui->pushButton->setText("Retrieve info");
+    this->ui->pushButton->setText(_l("userinfo-retrieve"));
     this->edit = nullptr;
     this->qContributions = nullptr;
     while (this->ui->tableWidget->rowCount() > 0)
@@ -127,7 +127,7 @@ void UserinfoForm::OnTick()
     {
         if (this->qContributions->Result->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
+            Syslog::HuggleLogs->ErrorLog(_l("user-history-retr-fail", this->User->Username));
             this->qContributions = nullptr;
             this->timer->stop();
             return;
@@ -191,7 +191,7 @@ void UserinfoForm::OnTick()
                 xx++;
             }
         } else
-            Syslog::HuggleLogs->ErrorLog("unable to retrieve history for user: " + this->User->Username);
+            Syslog::HuggleLogs->ErrorLog(_l("user-history-retr-fail", this->User->Username));
         this->ui->tableWidget->resizeRowsToContents();
         this->qContributions = nullptr;
     }

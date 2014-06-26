@@ -70,6 +70,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_TALK                  38
 #define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40
 #define HUGGLE_ACCEL_MAIN_GOOD                  41
+#define HUGGLE_ACCEL_MAIN_MYTALK_PAGE           42
 
 
 

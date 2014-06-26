@@ -267,16 +267,16 @@ void BlockUser::Recheck()
         QDomDocument d;
         d.setContent(this->qUser->Result->Data);
         QMessageBox mb;
-        mb.setWindowTitle("Result");
+        mb.setWindowTitle(_l("result"));
         QDomNodeList l = d.elementsByTagName("block");
         if (l.count() > 0)
         {
-            mb.setText("User is already blocked");
+            mb.setText(_l("warn-alreadyblocked"));
             this->user->IsBanned = true;
             this->user->Update();
         } else
         {
-            mb.setText("User is not blocked");
+            mb.setText(_l("block-not"));
         }
         mb.exec();
         this->qUser = nullptr;

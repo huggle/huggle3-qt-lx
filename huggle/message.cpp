@@ -255,8 +255,7 @@ void Message::Finish()
         }
         if (!sent)
         {
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + this->user->Username + " please check logs");
+            Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->user->Username));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
         this->Dependency.Delete();
