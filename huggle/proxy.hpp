@@ -25,6 +25,7 @@ namespace Ui
 
 namespace Huggle
 {
+    //! \todo make it
     //! Proxy
     class Proxy : public QDialog
     {

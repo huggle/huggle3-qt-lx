@@ -1641,11 +1641,11 @@ void MainWindow::Localize()
     this->ui->actionOpen_in_a_browser->setText(_l("main-browser-open"));
     this->ui->actionDisplay_this_page->setText(_l("main-page-display"));
 
-	// arrows icons should be mirrored for RTL languages
-	if (Localizations::HuggleLocalizations->IsRTL()) {
-		this->ui->actionForward->setIcon(QIcon(":/huggle/pictures/Resources/browser-prev.png"));
-		this->ui->actionBack->setIcon(QIcon(":/huggle/pictures/Resources/browser-next.png"));
-	}
+    // arrows icons should be mirrored for RTL languages
+    if (Localizations::HuggleLocalizations->IsRTL()) {
+        this->ui->actionForward->setIcon(QIcon(":/huggle/pictures/Resources/browser-prev.png"));
+        this->ui->actionBack->setIcon(QIcon(":/huggle/pictures/Resources/browser-next.png"));
+    }
 }
 
 void MainWindow::_BlockUser()
