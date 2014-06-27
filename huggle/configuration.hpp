@@ -86,6 +86,7 @@ namespace Huggle
     class HuggleQueueParser;
     class HuggleOption;
 
+    //! This is used to handle the shortcuts for the main form
     class Shortcut
     {
         public:
@@ -99,6 +100,7 @@ namespace Huggle
             bool Modified = false;
     };
 
+    //! Used to store the configuration per extension so that each extension can create own private keys with options
     class ExtensionConfig
     {
         public:

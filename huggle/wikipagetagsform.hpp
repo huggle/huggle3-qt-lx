@@ -29,6 +29,8 @@ namespace Ui
 namespace Huggle
 {
     class WikiPage;
+
+    //! Form used to tag page
     class WikiPageTagsForm : public QDialog
     {
             Q_OBJECT

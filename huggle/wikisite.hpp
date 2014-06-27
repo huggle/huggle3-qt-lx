@@ -23,6 +23,7 @@
 
 namespace Huggle
 {
+    //! Namespace (mediawiki)
     class WikiPageNS
     {
         public:
