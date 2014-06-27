@@ -30,6 +30,7 @@ typedef char byte_ht;
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
 // is crashing with it only, it means your code suck and need a fix in destructor :))
 #ifdef __APPLE__
+    #include <cstddef>
     #include "TargetConditionals.h"
     #ifdef TARGET_OS_MAC
         #define HUGGLE_NO_MT_GC
