@@ -38,6 +38,7 @@ namespace Huggle
             WikiPageNS *GetNS();
             //! Return true in case this is a talk page
             bool IsTalk();
+            //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();
             QString RootName();
             bool IsUserpage();

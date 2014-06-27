@@ -108,7 +108,19 @@ namespace Huggle
              * \param consumer Unique string that unlock the object
              */
             void UnregisterConsumer(const QString consumer);
+            /*!
+             * \brief IncRef This function will add 1 to reference counter and change the collectable to managed in case it wasn't
+             *
+             * This function is thread safe, it's highly recommended to use Collectable_SmartPtr which
+             * will handle the reference counter for you!
+             */
             void IncRef();
+            /*!
+             * \brief DecRef Decrease reference counter
+             *
+             * If collectable isn't managed or reference counter is 0 it will throw exception, it's highly recommended to use
+             * Collectable_SmartPtr which will handle the reference counter for you
+             */
             void DecRef();
             /*!
              * \brief DebugHgc
