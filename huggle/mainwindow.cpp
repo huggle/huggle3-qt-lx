@@ -16,6 +16,7 @@
 #include <QMutex>
 #include <QThread>
 #include <QSplitter>
+#include <QDockWidget>
 #include "aboutform.hpp"
 #include "configuration.hpp"
 #include "reloginform.hpp"
@@ -351,7 +352,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     if (this->qNext != nullptr)
     {
         // we need to delete this because it's related to an old edit
-        this->qNext = nullptr;
+        this->qNext.Delete();
     }
     if (e->Page == nullptr || e->User == nullptr)
     {
@@ -480,7 +481,7 @@ void MainWindow::FinishPatrols()
     bool flaggedrevs = Configuration::HuggleConfiguration->ProjectConfig->PatrollingFlaggedRevs;
     while (x < this->PatrolledEdits.count())
     {
-        ApiQuery *query = this->PatrolledEdits.at(x);
+        Collectable_SmartPtr<ApiQuery> query = this->PatrolledEdits.at(x);
         // check if this query has actually some edit associated to it
         if (query->CallbackResult == nullptr)
         {

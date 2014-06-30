@@ -20,11 +20,13 @@
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
-#include <QNetworkAccessManager>
 #include "historyitem.hpp"
 #include "queryresult.hpp"
 #include "collectable_smartptr.hpp"
 #include "collectable.hpp"
+
+// we need to predefine this
+class QNetworkAccessManager;
 
 namespace Huggle
 {

@@ -96,7 +96,7 @@ static void Fail(Query *result)
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
-static void FinishRead(Query *result)
+void Huggle::WikiPageTagsForm_FinishRead(Query *result)
 {
     ApiQuery *retrieve = (ApiQuery*)result;
     bool success = false;
@@ -150,7 +150,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page->PageName, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
-    retrieve->callback = (Callback)FinishRead;
+    retrieve->callback = (Callback)Huggle::WikiPageTagsForm_FinishRead;
     QueryPool::HugglePool->AppendQuery(retrieve);
     retrieve->Process();
 }

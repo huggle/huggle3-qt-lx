@@ -12,16 +12,17 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QTimer>
+#include "configuration.hpp"
 #include "revertquery.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 #include "exception.hpp"
 #include "huggleparser.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "generic.hpp"
-#include "wikiutil.hpp"
 #include "querypool.hpp"
 #include "ui_history.h"
-#include "configuration.hpp"
+#include "wikiuser.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 

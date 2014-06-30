@@ -19,6 +19,7 @@
 #include "localization.hpp"
 #include "mainwindow.hpp"
 #include "syslog.hpp"
+#include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;

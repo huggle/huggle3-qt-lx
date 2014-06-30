@@ -101,26 +101,26 @@ void WLQuery::Process()
     QNetworkRequest request(url);
     if (this->Type == WLQueryType_ReadWL)
     {
-        this->r = Query::NetworkManager->get(request);
+        this->networkReply = Query::NetworkManager->get(request);
     } else
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        this->r = Query::NetworkManager->post(request, data);
+        this->networkReply = Query::NetworkManager->post(request, data);
     }
-    QObject::connect(this->r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
-    QObject::connect(this->r, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
-    QObject::connect(this->r, SIGNAL(finished()), this, SLOT(Finished()));
-    QObject::connect(this->r, SIGNAL(readyRead()), this, SLOT(ReadData()));
+    QObject::connect(this->networkReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
+    QObject::connect(this->networkReply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
+    QObject::connect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
+    QObject::connect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
 
 void WLQuery::ReadData()
 {
-    this->Result->Data += QString(this->r->readAll());
+    this->Result->Data += QString(this->networkReply->readAll());
 }
 
 void WLQuery::Finished()
 {
-    this->Result->Data += QString(this->r->readAll());
+    this->Result->Data += QString(this->networkReply->readAll());
     if (this->Type == WLQueryType_WriteWL)
     {
         Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
@@ -128,12 +128,12 @@ void WLQuery::Finished()
             Syslog::HuggleLogs->ErrorLog("Failed to store data to white list: " + this->Result->Data);
     }
     // now we need to check if request was successful or not
-    if (this->r->error())
+    if (this->networkReply->error())
     {
-        this->Result->SetError(r->errorString());
+        this->Result->SetError(networkReply->errorString());
     }
-    this->r->deleteLater();
-    this->r = nullptr;
+    this->networkReply->deleteLater();
+    this->networkReply = nullptr;
     this->Status = StatusDone;
 }
 

@@ -20,7 +20,6 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QTimer>
-#include <QDockWidget>
 #include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "revertquery.hpp"

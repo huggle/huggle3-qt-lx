@@ -16,9 +16,10 @@
 #include <cstdint>
 #include "core.hpp"
 #include "configuration.hpp"
-#include "wikiutil.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
+#include "wikiuser.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 using namespace Huggle::Python;

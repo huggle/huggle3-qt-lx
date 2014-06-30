@@ -18,6 +18,7 @@
 
 #include <QList>
 #include <QString>
+#include <QNetworkReply>
 #include <QObject>
 #include <QThread>
 #include "query.hpp"

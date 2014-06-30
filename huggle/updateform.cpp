@@ -11,6 +11,7 @@
 #include "updateform.hpp"
 #include <QDesktopServices>
 #include <QtXml>
+#include <QNetworkReply>
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"

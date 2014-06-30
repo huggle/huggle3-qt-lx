@@ -10,15 +10,16 @@
 
 #include "message.hpp"
 #include <QtXml>
+#include "collectable.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "history.hpp"
-#include "mainwindow.hpp"
-#include "collectable.hpp"
-#include "querypool.hpp"
 #include "localization.hpp"
-#include "syslog.hpp"
+#include "mainwindow.hpp"
 #include "generic.hpp"
+#include "querypool.hpp"
+#include "syslog.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 

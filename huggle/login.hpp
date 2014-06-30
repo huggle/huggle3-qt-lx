@@ -22,12 +22,10 @@
 #include <QDialog>
 #include <QThread>
 #include <QTimer>
+#include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
-#include "updateform.hpp"
-#include "loadingform.hpp"
-#include "apiquery.hpp"
 
 namespace Ui
 {
@@ -53,9 +51,10 @@ namespace Huggle
         LoginDone
     };
 
-    class WLQuery;
-    class UpdateForm;
     class ApiQuery;
+    class UpdateForm;
+    class WLQuery;
+    class LoadingForm;
 
     //! Window that is displayed as first when huggle is started
     class Login : public QDialog

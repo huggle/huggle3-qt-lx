@@ -19,11 +19,11 @@
 #include <QString>
 #include "collectable_smartptr.hpp"
 #include "apiquery.hpp"
-#include "wikiuser.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
+    class WikiUser;
     class Query;
 
     enum MessageStatus

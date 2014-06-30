@@ -28,6 +28,7 @@ namespace Ui
 
 namespace Huggle
 {
+    class Query;
     class WikiPage;
 
     //! Form used to tag page
@@ -38,13 +39,16 @@ namespace Huggle
             explicit WikiPageTagsForm(QWidget *parent = nullptr);
             ~WikiPageTagsForm();
             void ChangePage(WikiPage *wikipage);
+        private slots:
+            void on_pushButton_clicked();
+        private:
+            friend void Huggle::WikiPageTagsForm_FinishRead(Query *result);
             WikiPage *page = nullptr;
             QList<QCheckBox*> CheckBoxes;
             Ui::WikiPageTagsForm *ui;
-
-        private slots:
-            void on_pushButton_clicked();
     };
+
+    void WikiPageTagsForm_FinishRead(Query *result);
 }
 
 #endif // WIKIPAGETAGSFORM_HPP

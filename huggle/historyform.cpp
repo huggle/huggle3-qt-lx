@@ -12,7 +12,6 @@
 #include <QTimer>
 #include <QToolTip>
 #include <QtXml>
-#include "querypool.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "mainwindow.hpp"
@@ -20,8 +19,10 @@
 #include "resources.hpp"
 #include "huggleweb.hpp"
 #include "syslog.hpp"
-#include "wikiutil.hpp"
 #include "ui_historyform.h"
+#include "querypool.hpp"
+#include "wikiuser.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 

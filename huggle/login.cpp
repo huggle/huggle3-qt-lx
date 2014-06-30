@@ -13,14 +13,16 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QtXml>
+#include "core.hpp"
+#include "configuration.hpp"
 #include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "mediawiki.hpp"
 #include "localization.hpp"
+#include "loadingform.hpp"
 #include "wikiutil.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
 #include "ui_login.h"
+#include "updateform.hpp"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1

@@ -10,14 +10,15 @@
 
 #include "querypool.hpp"
 #include "configuration.hpp"
+#include "editquery.hpp"
+#include "exception.hpp"
+#include "hugglefeed.hpp"
 #include "query.hpp"
 #include "processlist.hpp"
 #include "message.hpp"
-#include "hugglefeed.hpp"
-#include "wikiedit.hpp"
-#include "editquery.hpp"
-#include "exception.hpp"
 #include "syslog.hpp"
+#include "wikiedit.hpp"
+#include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "query.hpp"
+#include <QNetworkAccessManager>
 #include "exception.hpp"
 #include "syslog.hpp"
 #include "gc.hpp"
