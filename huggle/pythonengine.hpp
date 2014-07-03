@@ -18,15 +18,20 @@
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H
 
+#define HUGGLE_EINVALIDQUERY 1
+
 #include <Python.h>
 #include <QString>
 #include <QThread>
+#include <QHash>
 #include <QMutex>
 #include <QList>
-#include "wikiedit.hpp"
 
 namespace Huggle
 {
+    class Query;
+    class WikiEdit;
+
     //! Python code goes here, this namespace doesn't exist when huggle isn't compiled in python mode so wrap in direct.
     namespace Python
     {
@@ -79,14 +84,26 @@ namespace Huggle
         {
             public:
                 PythonEngine(QString ExtensionsFolder_);
+                ~PythonEngine();
+                unsigned int Count();
                 bool LoadScript(QString path);
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_HuggleShutdown();
                 PythonScript *PythonScriptObjFromPyObj(PyObject *object);
                 QList<PythonScript*> ScriptsList();
-                unsigned int Count();
+                Query *GetQuery(unsigned long ID);
+                /*!
+                 * \brief InsertQuery put a query to list of all queries that are referenced by python objects
+                 * \param query
+                 * \return reference ID of a query managed by python
+                 */
+                unsigned long InsertQuery(Query *query);
+                unsigned long RemoveQuery(unsigned long ID);
             private:
+                QHash<unsigned long, Query*> Queries;
+                unsigned long LastQuery = 0;
+                friend class PythonScript;
                 QList<PythonScript*> Scripts;
         };
 

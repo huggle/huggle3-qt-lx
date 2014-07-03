@@ -72,9 +72,6 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_GOOD                  41
 #define HUGGLE_ACCEL_MAIN_MYTALK_PAGE           42
 
-
-
-
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {

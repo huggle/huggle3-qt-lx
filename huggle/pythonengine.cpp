@@ -17,7 +17,10 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
+#include "query.hpp"
+#include "wikiedit.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -98,6 +101,7 @@ namespace Huggle
                 Py_DECREF(text_);
                 if (uni_ == nullptr || !PyBytes_Check(uni_))
                 {
+                    TryCatch(self);
                     Syslog::HuggleLogs->DebugLog("Log@unkown: parameter text must be of a string type");
                 } else
                 {
@@ -108,7 +112,7 @@ namespace Huggle
             } else
             {
                 HUGGLE_DEBUG("Failed to unpack tuple @DebugLog", 2);
-                TryCatch(nullptr);
+                TryCatch(self);
             }
             return result_;
         }
@@ -201,16 +205,32 @@ namespace Huggle
             return result_;
         }
 
+        static PyObject *Localize(PyObject *self, PyObject *args)
+        {
+            PyObject *string;
+            if (!PyArg_UnpackTuple(args, "localize", 1, 1, &string))
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            if (!string)
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            PyObject *result_ = PyUnicode_FromString(_l(StringFromPyString(string)).toUtf8().data());
+            // remove the temp objects we created
+            Py_DECREF(string);
+
+            // localized text
+            return result_;
+        }
+
         static PyObject *Config_Set(PyObject *self, PyObject *args)
         {
-            /*PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
-            if (script == nullptr)
-                return nullptr;
-                */
             PyObject *name, *vals, *extension;
             if (!PyArg_UnpackTuple(args, "Config_Set", 1, 3, &extension, &name, &vals))
             {
-                //HUGGLE_DEBUG1("Failed to run Config_Set - arguments could not be processed @" + script->GetName());
                 TryCatch(self);
                 return nullptr;
             }
@@ -233,13 +253,9 @@ namespace Huggle
 
         static PyObject *Config_Get(PyObject *self, PyObject *args)
         {
-            //PythonScript *script = Core::HuggleCore->Python->PythonScriptObjFromPyObj(self);
-            //if (script == nullptr)
-            //    return nullptr;
             PyObject *name, *extension;
             if (!PyArg_UnpackTuple(args, "Config_Set", 1, 2, &extension, &name))
             {
-                //HUGGLE_DEBUG1("Failed to run Config_Get - arguments could not be processed @" + script->GetName());
                 TryCatch(self);
                 return nullptr;
             }
@@ -267,7 +283,7 @@ namespace Huggle
             return Log_(HuggleLogType_Error, self, args);
         }
 
-        static PyObject *Wikipage_append(PyObject *self, PyObject *args)
+        static PyObject *Wikipage_append2(PyObject *self, PyObject *args, bool reference)
         {
             HUGGLE_DEBUG("Running Wikipage_append", 4);
             PyObject *result;
@@ -293,7 +309,128 @@ namespace Huggle
             Py_DECREF(tsuma);
             Py_DECREF(tpage);
             // now we need to append the text to page
-            WikiUtil::AppendTextToPage(page_name, page_text, page_su);
+            Collectable_SmartPtr<EditQuery> ptr = WikiUtil::AppendTextToPage(page_name, page_text, page_su);
+            Py_DECREF(page);
+            Py_DECREF(summary);
+            Py_DECREF(text);
+            if (reference)
+            {
+                result = PyLong_FromUnsignedLong(Core::HuggleCore->Python->InsertQuery(ptr));
+                return result;
+            } else
+            {
+                result = PyBool_FromLong(1);
+                return result;
+            }
+        }
+
+        static PyObject *Wikipage_rappend(PyObject *self, PyObject *args)
+        {
+            return Wikipage_append2(self, args, true);
+        }
+
+        static PyObject *Wikipage_append(PyObject *self, PyObject *args)
+        {
+            return Wikipage_append2(self, args, false);
+        }
+
+        static PyObject *DeleteQuery(PyObject *self, PyObject *args)
+        {
+            PyObject *query;
+            PyObject *result;
+            if (!PyArg_UnpackTuple(args, "DeleteQuery", 1, 1, &query))
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            unsigned long id = PyLong_AsUnsignedLong(query);
+            Py_DecRef(query);
+            result = PyLong_FromUnsignedLong(Core::HuggleCore->Python->RemoveQuery(id));
+            return result;
+        }
+
+        static PyObject *Query_IsProcessed(PyObject *self, PyObject *args)
+        {
+            PyObject *query;
+            PyObject *result;
+            if (!PyArg_UnpackTuple(args, "DeleteQuery", 1, 1, &query))
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            unsigned long id = PyLong_AsUnsignedLong(query);
+            Py_DecRef(query);
+            Query *qr = Core::HuggleCore->Python->GetQuery(id);
+            if (!qr)
+            {
+                // there is no such a query
+                result = PyErr_NewException("EINVALIDQUERY", self, nullptr);
+                PyErr_SetString(result, "There is no such a query with this reference (did you delete it?)");
+            } else
+            {
+                if (qr->IsProcessed())
+                    result = PyBool_FromLong(1);
+                else
+                    result = PyBool_FromLong(0);
+            }
+            return result;
+        }
+
+        static PyObject *Query_IsFailed(PyObject *self, PyObject *args)
+        {
+            PyObject *query;
+            PyObject *result;
+            if (!PyArg_UnpackTuple(args, "DeleteQuery", 1, 1, &query))
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            unsigned long id = PyLong_AsUnsignedLong(query);
+            Py_DecRef(query);
+            Query *qr = Core::HuggleCore->Python->GetQuery(id);
+            if (!qr)
+            {
+                // there is no such a query
+                result = PyErr_NewException("EINVALIDQUERY", self, nullptr);
+                PyErr_SetString(result, "There is no such a query with this reference (did you delete it?)");
+            } else
+            {
+                if (qr->IsFailed())
+                    result = PyBool_FromLong(1);
+                else
+                    result = PyBool_FromLong(0);
+            }
+            return result;
+        }
+
+        static PyObject *Wikipage_edit(PyObject *self, PyObject *args)
+        {
+            HUGGLE_DEBUG("Running Wikipage_edit", 4);
+            PyObject *result;
+            PyObject *page, *text, *summary;
+            if (!PyArg_UnpackTuple(args, "Wikipage_edit", 1, 3, &page, &text, &summary))
+            {
+                TryCatch(self);
+                HUGGLE_DEBUG1("Failed to run Wikipage_edit - arguments could not be processed");
+                return nullptr;
+            }
+            PyObject *tpage = PyUnicode_AsASCIIString(page);
+            PyObject *tsuma = PyUnicode_AsASCIIString(summary);
+            PyObject *ttext = PyUnicode_AsASCIIString(text);
+            if (!tpage || !tsuma || !ttext)
+            {
+                TryCatch(self);
+                return nullptr;
+            }
+            QString page_name = QString(PyBytes_AsString(tpage));
+            QString page_text = QString(PyBytes_AsString(ttext));
+            QString page_su = QString(PyBytes_AsString(tsuma));
+            // remove the temp objects we created
+            Py_DECREF(ttext);
+            Py_DECREF(tsuma);
+            Py_DECREF(tpage);
+            // now we need to append the text to page
+            WikiUtil::EditPage(page_name, page_text, page_su);
             Py_DECREF(page);
             Py_DECREF(summary);
             Py_DECREF(text);
@@ -301,6 +438,7 @@ namespace Huggle
             result = PyBool_FromLong(1);
             return result;
         }
+
 #if _MSC_VER
 #pragma warning ( pop )
 #else
@@ -308,17 +446,23 @@ namespace Huggle
 #endif
 
         static PyMethodDef Methods[] = {
-            {"huggle_version", ApiVersion, METH_VARARGS, "Return a huggle version"},
-            {"warning_log", WarningLog, METH_VARARGS, "Write to warning log"},
-            {"log", Log, METH_VARARGS, "Write to a log"},
-            {"debug_log", DebugLog, METH_VARARGS, "Write to debug log"},
-            {"error_log", ErrorLog, METH_VARARGS, "Write to error log using stderr to output"},
-            {"wikipage_append", Wikipage_append, METH_VARARGS, "Append a text to a page"},
             {"configuration_get_user", Configuration_GetUser, METH_VARARGS, "Request a name of user who is currently used on selected wiki"},
             {"configuration_get_project_script_url", Configuration_GetScript, METH_VARARGS, "Return a script url"},
             {"configuration_get_project_wiki_url", Configuration_GetWikiURL, METH_VARARGS, "Return an URL of current project"},
             {"configuration_get", Config_Get, METH_VARARGS, "Get a private configuration option"},
             {"configuration_set", Config_Set, METH_VARARGS, "Set a private configuration option"},
+            {"delete_query", DeleteQuery, METH_VARARGS, ""},
+            {"localize", Localize, METH_VARARGS, ""},
+            {"huggle_version", ApiVersion, METH_VARARGS, "Return a huggle version"},
+            {"warning_log", WarningLog, METH_VARARGS, "Write to warning log"},
+            {"log", Log, METH_VARARGS, "Write to a log"},
+            {"debug_log", DebugLog, METH_VARARGS, "Write to debug log"},
+            {"error_log", ErrorLog, METH_VARARGS, "Write to error log using stderr to output"},
+            {"query_isfailed", Query_IsFailed, METH_VARARGS, "Return Query::IsFailed as a py_bool"},
+            {"query_isprocessed", Query_IsProcessed, METH_VARARGS, "Return Query::IsProcessed as a bool"},
+            {"wikipage_append", Wikipage_append, METH_VARARGS, "Append a text to a page"},
+            {"wikipage_rappend", Wikipage_rappend, METH_VARARGS, "Append a text to a page"},
+            {"wikipage_edit", Wikipage_edit, METH_VARARGS, "Edit a page"},
             {nullptr, nullptr, 0, nullptr}
         };
 
@@ -326,14 +470,22 @@ namespace Huggle
             PyModuleDef_HEAD_INIT, "huggle", nullptr, -1, Methods, nullptr, nullptr, nullptr, nullptr
         };
 
+        static PyObject *Huggle_ptr;
+
         static PyObject *PyInit_emb()
         {
-            return PyModule_Create(&Module);
+            Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
+            PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
+            PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
+            PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
+            PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
+            PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
+            return Huggle_ptr;
         }
     }
 }
 
-QString DoubleBack(QString path)
+static QString DoubleBack(QString path)
 {
     QString result = QString(path);
     return result.replace("\\", "\\\\");
@@ -349,8 +501,26 @@ PythonEngine::PythonEngine(QString ExtensionsFolder_)
     if (PyRun_SimpleString(QString("import sys; sys.path.append('" + DoubleBack(ExtensionsFolder_) + "')").toUtf8().data()))
         TryCatch(nullptr);
 #ifdef HUGGLE_GLOBAL_EXTENSION_PATH
-    PyRun_SimpleString(QString(QString("sys.path.append('") + HUGGLE_GLOBAL_EXTENSION_PATH + "')").toUtf8().data());
+    if (PyRun_SimpleString(QString(QString("sys.path.append('") + HUGGLE_GLOBAL_EXTENSION_PATH + "')").toUtf8().data()))
+    {
+        TryCatch(nullptr);
+    }
 #endif
+}
+
+PythonEngine::~PythonEngine()
+{
+    while (this->Scripts.count() > 0)
+    {
+        delete this->Scripts.at(0);
+        this->Scripts.removeAt(0);
+    }
+    QList<unsigned long> ks = this->Queries.keys();
+    foreach (unsigned long id, ks)
+    {
+        // fix all leaks caused by python
+        this->Queries[id]->UnregisterConsumer(HUGGLECONSUMER_PYTHON);
+    }
 }
 
 bool PythonEngine::LoadScript(QString path)
@@ -368,6 +538,37 @@ bool PythonEngine::LoadScript(QString path)
 QList<PythonScript *> PythonEngine::ScriptsList()
 {
     return QList<PythonScript*>(this->Scripts);
+}
+
+Query *PythonEngine::GetQuery(unsigned long ID)
+{
+    if (this->Queries.contains(ID))
+        return this->Queries[ID];
+
+    // when there is no such a query we return a null pointer
+    // that means there is no such a query
+    return nullptr;
+}
+
+unsigned long PythonEngine::InsertQuery(Query *query)
+{
+    unsigned long ID = this->LastQuery;
+    query->RegisterConsumer(HUGGLECONSUMER_PYTHON);
+    this->LastQuery++;
+    this->Queries.insert(ID, query);
+    return ID;
+}
+
+unsigned long PythonEngine::RemoveQuery(unsigned long ID)
+{
+    if (this->Queries.contains(ID))
+    {
+        // let's remove it
+        this->Queries[ID]->UnregisterConsumer(HUGGLECONSUMER_PYTHON);
+        this->Queries.remove(ID);
+        return HUGGLE_SUCCESS;
+    }
+    return HUGGLE_EINVALIDQUERY;
 }
 
 PythonScript *PythonEngine::PythonScriptObjFromPyObj(PyObject *object)
