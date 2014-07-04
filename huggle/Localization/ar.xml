@@ -23,7 +23,7 @@
   <string name="yes">نعم</string>
   <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
   <string name="about-contributors">المطورون:</string>
-  <string name="block-title">منع {0} ء</string>
+  <string name="block-title">منع $1 ء</string>
   <string name="block-reason">السبب:</string>
   <string name="block-duration">المدة:</string>
   <string name="block-message">رسالة نقاش المستخدم:</string>
@@ -35,10 +35,10 @@
   <string name="block-usercontribs">مساهمات</string>
   <string name="block-blockloglabel">سجل المنع:</string>
   <string name="block-warnloglabel">إنذارات:</string>
-  <string name="block-sharedipwarning">ملاحظة:{0} تم وسمه كعنوان اي بي مشترك.</string>
+  <string name="block-sharedipwarning">ملاحظة:$1 تم وسمه كعنوان اي بي مشترك.</string>
   <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟
- .تأثر {0} بالفعل من نطاق المنع على {1} ء</string>
-  <string name="block-fail">لم يتم المنع \'{0}\'ء</string>
+ .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
+  <string name="block-fail">لم يتم المنع \'$1\'ء</string>
   <string name="closing-whitelist">تحديث قائمة المستخدم البيضاء...</string>
   <string name="closing-config">تحديث الصفحة الفرعية للإعدادات...</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
@@ -58,7 +58,7 @@
   <string name="config-shortcutlist">مفاتيخ الاختصار</string>
   <string name="config-shortcutaction">إجراء</string>
   <string name="config-shortcut">مختصر</string>
-  <string name="config-changeshortcut">غير الاختصار لـ {0}ء</string>
+  <string name="config-changeshortcut">غير الاختصار لـ $1ء</string>
   <string name="config-noshortcut">لا شيء</string>
   <string name="config-defaults">مبدئيات</string>
   <string name="config-minor">طفيف</string>
@@ -90,14 +90,14 @@
   <string name="config-summaryprompt">أدخل ملخصا</string>
   <string name="config-defaultsprompt">استرجاع المبدئيات?</string>
   <string name="config-logbrowsetitle">موقع ملف السجل</string>
-  <string name="config-shortcutconflict">المختصر \'{0}\' يتعارض مع مختصر موجود لـ \'{1}\'.ء</string>
-  <string name="delete-title">احذف {0}ء</string>
+  <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$2\'.ء</string>
+  <string name="delete-title">احذف $1ء</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
   <string name="irc-connected">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
   <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
-  <string name="irc-nochannel">قناة آي آر سي ل{0} غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
+  <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="login-language">اللغة:</string>
   <string name="login-project">المشروع:</string>
@@ -117,14 +117,14 @@
   <string name="login-progress-config">صفحات الخيارات قيد الفحص...</string>
   <string name="login-progress-whitelist">قيد استرجاع القائمة البيضاء للمستخدم...</string>
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
-  <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره {0} يوما على الأقل.</string>
+  <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل Huggle حاليا في كل المشاريع.</string>
   <string name="login-error-approval">استخدام Huggle في هذا المشروع يحتاج تصديقا.</string>
   <string name="login-error-autoconfirmed">استخدام Huggle في هذا المشروع يستلزم ان يكون حسابك مستخدم مؤكد تلقائياً</string>
   <string name="login-error-cancelled">ملغى.</string>
   <string name="login-error-captcha">خطأ في كلمة السر أو كود التصديق</string>
   <string name="login-error-config">فشل تحميل صفحات الخيارات.</string>
-  <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج {0} تعديلات على الأقل.</string>
+  <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
   <string name="login-error-disabled">Huggle غير مفعلة في حسابك، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global" fuzzy="true">تعذر تحميل صفحة الخيارات العمومية.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
@@ -161,7 +161,7 @@
   <string name="main-queue-next">تالي</string>
   <string name="main-queue-trim">تقليم</string>
   <string name="main-queue-clear">امسح الحالي</string>
-  <string name="main-queue-count" fuzzy="true">{0} عناصر</string>
+  <string name="main-queue-count" fuzzy="true">$1 عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
   <string name="main-queue-reset">تصفير</string>
   <string name="main-queue-clearall">امسح الكل</string>
@@ -214,7 +214,7 @@
   <string name="main-savelogtitle">احفظ السجل</string>
   <string name="main-usermessageother">رسالة أخرى...</string>
   <string name="main-advanced">متقدّم...</string>
-  <string name="main-stats">{0} حرر في الدقيقة, {1} استرجع في الدقيقة</string>
+  <string name="main-stats">$1 حرر في الدقيقة, $2 استرجع في الدقيقة</string>
   <string name="main-tip-revertwarn">استرجع هذه النسخة ونبه المستخدم</string>
   <string name="main-tip-nextdiff">اظهر النسخة التالية في الصف</string>
   <string name="main-tip-revert">اجلب هذه النسخة</string>
@@ -226,14 +226,14 @@
   <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
   <string name="main-tip-userblock">امنع هذا المستخدم</string>
-  <string name="message-title">رسالة {0}ء</string>
+  <string name="message-title">رسالة $1ء</string>
   <string name="message-help">حدد العنوان أو الملخص او كلاهما. لدى انعدام الملخص سيتم استخدام العنوان؛ لدى انعدام العنوان لن تتم إضافة ترويسة</string>
   <string name="message-subject">العنوان:</string>
   <string name="message-message">الرسالة:</string>
   <string name="message-summary">الملخص:</string>
   <string name="message-autosign">ذيل التوقيع تلقائيا.</string>
-  <string name="protect-title">احمِ {0}ء</string>
-  <string name="protect-request-title">طلب حماية {0}ء</string>
+  <string name="protect-title">احمِ $1ء</string>
+  <string name="protect-request-title">طلب حماية $1ء</string>
   <string name="protect-reason">السبب:</string>
   <string name="protect-expiry">إنتهاء:</string>
   <string name="protect-log">سجل الحماية:</string>
@@ -276,33 +276,33 @@
   <string name="queue-examplelabel2">الغاء خاصية</string>
   <string name="queue-examplelabel3">لا تفحص هذه الخاصية</string>
   <string name="queue-usergroup">أظهر تعديلات هؤلاء المستخدمين فقط</string>
-  <string name="report-title">أخطر عن {0}ء</string>
+  <string name="report-title">أخطر عن $1ء</string>
   <string name="report-reason">السبب:</string>
   <string name="report-message">الرسالة:</string>
   <string name="report-log">التنبيهات لهذا المستخدم:</string>
   <string name="report-duplicate">تم الاخطار عن هذا المستخدم</string>
-  <string name="report-fail">لم يتم الاخطار عن \'{0}\'ء</string>
-  <string name="report-progress">قيد اخطار اداري عن \'{0}\'...ء</string>
-  <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'{0}\'. استمر؟</string>
-  <string name="revert-confirm-range">مؤلف النسخة المستهدفة, {1}, في نفس نطاق مؤلف النسخة الحالية, {0}, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
-  <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , {0} . استمر؟</string>
-  <string name="revert-confirm-warned">هذا سيسترجع الى نسخه بواسطة {0} , هذا المستخدم تلقى تحذير مؤخراً, استمر؟</string>
+  <string name="report-fail">لم يتم الاخطار عن \'$1\'ء</string>
+  <string name="report-progress">قيد اخطار اداري عن \'$1\'...ء</string>
+  <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'$1\'. استمر؟</string>
+  <string name="revert-confirm-range">مؤلف النسخة المستهدفة, $2, في نفس نطاق مؤلف النسخة الحالية, $1, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
+  <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , $1 . استمر؟</string>
+  <string name="revert-confirm-warned">هذا سيسترجع الى نسخه بواسطة $1 , هذا المستخدم تلقى تحذير مؤخراً, استمر؟</string>
   <string name="revert-error-first" fuzzy="true">هذا اول تحرير للصفحة, لايمكن الاسترجاع</string>
   <string name="revert-only">هذا التعديل الوحيد للصفحة</string>
-  <string name="revert-creator">اخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة,{0} .ء</string>
+  <string name="revert-creator">اخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة,$1 .ء</string>
   <string name="revert-delete-instead">احذف الصفحة بدلاً عن ذلك؟</string>
   <string name="revert-speedy-instead">وسم الصفحة للشطب السريع بدلاً عن ذلك؟</string>
   <string name="revert-cannotundo">لا يمكن التراجع بسبب وجود تعديلات متوسطة التناقض</string>
-  <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'{0}\'ء</string>
-  <string name="revert-fail">لم يتم استرجاع \'{0}\'ء</string>
+  <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'$1\'ء</string>
+  <string name="revert-fail">لم يتم استرجاع \'$1\'ء</string>
   <string name="revert-nochange">محتوى النسخة المستهدفة مطابق لمحتوى النسخة الحالية</string>
-  <string name="speedy-title">{0} شطب</string>
+  <string name="speedy-title">$1 شطب</string>
   <string name="speedy-reason">السبب:</string>
   <string name="speedy-parameters">المعلمة:</string>
   <string name="speedy-notifycreator">أعلم منشئ الصفحة</string>
   <string name="stats-title">إحصائيات</string>
   <string name="stats-actions">العمليات في الجلسة الحالية:</string>
-  <string name="stats-session">زمن الجلسة: {0}ء</string>
+  <string name="stats-session">زمن الجلسة: $1ء</string>
   <string name="stats-edits">تعديلات</string>
   <string name="stats-assisted">مساعدة التحرير</string>
   <string name="stats-huggle">Huggle تحرير</string>
@@ -320,7 +320,7 @@
   <string name="stats-anon">مجهولون</string>
   <string name="stats-bots">بوتات</string>
   <string name="stats-other">آخر</string>
-  <string name="tag-title">وسم {0}ء</string>
+  <string name="tag-title">وسم $1ء</string>
   <string name="tag-tagselector">أضف وسم:</string>
   <string name="tag-tags">عدة وسوم:</string>
   <string name="tag-summary">تعديل:</string>
@@ -328,7 +328,7 @@
   <string name="update-title">يوجد إصدار جديد</string>
   <string name="update-progress">جاري تنزيل الاصدار الجديد. . .</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
-  <string name="userinfo-title">معلومات المستخدم \'{0}\'ء</string>
+  <string name="userinfo-title">معلومات المستخدم \'$1\'ء</string>
   <string name="userinfo-anonymous">مجهولون:</string>
   <string name="userinfo-ignored">اللائحة البيضاء:</string>
   <string name="userinfo-edits">عدد التعديلات:</string>
@@ -336,7 +336,7 @@
   <string name="userinfo-sharedip">اي بي مشترك:</string>
   <string name="userinfo-blocklog">منع:</string>
   <string name="userinfo-warnlog">تحذيرات:</string>
-  <string name="warning-title">حذّر {0}ء</string>
+  <string name="warning-title">حذّر $1ء</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>
   <string name="warning-level1">المستوى 1</string>
@@ -352,36 +352,36 @@
   <string name="error-timeout">انتهى وقت الطلب</string>
   <string name="error-unknown">خطأ غير معروف</string>
   <string name="retrying">قيد إعادة المحاولة...</string>
-  <string name="block-done">تم المنع \'{0}\'ء</string>
-  <string name="block-progress">قيد المنع \'{0}\'...ءء</string>
-  <string name="blocklog-fail">تعذر جلب سجل المنع لـ \'{0}\'ء</string>
-  <string name="blocklog-none">لا يوجد سجل منع لـ \'{0}\'ء</string>
-  <string name="blocklog-progress">جلب سجل المنع لـ \'{0}\'...ء</string>
-  <string name="blocknotify-fail">لم يتم تبليغ \'{0}\' عن المنع</string>
-  <string name="blocknotify-progress">قيد تبليغ \'{0}\' عن المنع...</string>
-  <string name="delete-done">تم حذف \'{0}\'ء</string>
-  <string name="delete-fail">لم يتم حذف \'{0}\'ء</string>
-  <string name="delete-progress">قيد الحذف \'{0}\'...ء</string>
-  <string name="deletelog-fail">تعذر جلب سجل حذف \'{0}\'ء</string>
-  <string name="deletelog-none">لا يوجد سجل حذف لـ \'{0}ء</string>
-  <string name="deletelog-progress">يجلب سجل حذف \'{0}\'...ء</string>
+  <string name="block-done">تم المنع \'$1\'ء</string>
+  <string name="block-progress">قيد المنع \'$1\'...ءء</string>
+  <string name="blocklog-fail">تعذر جلب سجل المنع لـ \'$1\'ء</string>
+  <string name="blocklog-none">لا يوجد سجل منع لـ \'$1\'ء</string>
+  <string name="blocklog-progress">جلب سجل المنع لـ \'$1\'...ء</string>
+  <string name="blocknotify-fail">لم يتم تبليغ \'$1\' عن المنع</string>
+  <string name="blocknotify-progress">قيد تبليغ \'$1\' عن المنع...</string>
+  <string name="delete-done">تم حذف \'$1\'ء</string>
+  <string name="delete-fail">لم يتم حذف \'$1\'ء</string>
+  <string name="delete-progress">قيد الحذف \'$1\'...ء</string>
+  <string name="deletelog-fail">تعذر جلب سجل حذف \'$1\'ء</string>
+  <string name="deletelog-none">لا يوجد سجل حذف لـ \'$1ء</string>
+  <string name="deletelog-progress">يجلب سجل حذف \'$1\'...ء</string>
   <string name="diff-deleted">تم حذف هذه النسخة.</string>
-  <string name="diff-fail">تعذر جلب الفرق \'{0}\'ء</string>
-  <string name="edit-fail">لم تعدل  \'{0}\'ء</string>
-  <string name="edit-progress">قيد تعديل \'{0}\'...ء</string>
-  <string name="history-fail">فشل جلب تاريخ \'{0}\'ء</string>
-  <string name="history-progress">قيد جلب تاريخ \'{0}\'ء</string>
-  <string name="move-done">تم نقل \'{0}\' الى \'{1}\'</string>
-  <string name="move-fail">لم يتم نقل \'{0}\' الى \'{1}\'</string>
-  <string name="move-progress">قيد نقل \'{0}\' الى \'{1}\'...</string>
-  <string name="notify-fail">لم تشعر منشىء \'{0}\'ء</string>
+  <string name="diff-fail">تعذر جلب الفرق \'$1\'ء</string>
+  <string name="edit-fail">لم تعدل  \'$1\'ء</string>
+  <string name="edit-progress">قيد تعديل \'$1\'...ء</string>
+  <string name="history-fail">فشل جلب تاريخ \'$1\'ء</string>
+  <string name="history-progress">قيد جلب تاريخ \'$1\'ء</string>
+  <string name="move-done">تم نقل \'$1\' الى \'$2\'</string>
+  <string name="move-fail">لم يتم نقل \'$1\' الى \'$2\'</string>
+  <string name="move-progress">قيد نقل \'$1\' الى \'$2\'...</string>
+  <string name="notify-fail">لم تشعر منشىء \'$1\'ء</string>
   <string name="notify-unknowncreator">لا يمكن العثور على منشئ الصفحة</string>
-  <string name="protect-done">غير مستوى الحماية لـ \'{0}\'ء</string>
-  <string name="protect-fail">لم تغير مستوى الحماية لـ \'{0}\'ء</string>
-  <string name="protect-progress">قيد تغيير مستوى الحماية لـ \'{0}\'...ء</string>
-  <string name="protectlog-fail">فشل جلب سجل الحماية لـ \'{0}\'ء</string>
-  <string name="protectlog-none">لايوجد سجل حماية لـ \'{0}\'ء</string>
-  <string name="protectlog-progress">قيد جلب سجل الحماية لـ \'{0}\'...ء</string>
+  <string name="protect-done">غير مستوى الحماية لـ \'$1\'ء</string>
+  <string name="protect-fail">لم تغير مستوى الحماية لـ \'$1\'ء</string>
+  <string name="protect-progress">قيد تغيير مستوى الحماية لـ \'$1\'...ء</string>
+  <string name="protectlog-fail">فشل جلب سجل الحماية لـ \'$1\'ء</string>
+  <string name="protectlog-none">لايوجد سجل حماية لـ \'$1\'ء</string>
+  <string name="protectlog-progress">قيد جلب سجل الحماية لـ \'$1\'...ء</string>
   <string name="saveuserconfig-done">حدث صفحة اعدادات المستخدم</string>
   <string name="saveuserconfig-fail">لم تحدث صفحة اعدادات المستخدم</string>
   <string name="saveuserconfig-progress">يتم الان تحديث صفحة اعدادات المستخدم...</string>
@@ -390,21 +390,21 @@
   <string name="loaduserconfig-fail">فشل تحميل صفحة اعدادات المستخدم</string>
   <string name="reqprotection-badformat">صيغة الصفحة المطلوبة غير معروفة</string>
   <string name="reqprotection-duplicate">تم طلب الحماية بالفعل</string>
-  <string name="reqprotection-fail">لم يتم طلب الحماية لـ\'{0}\'ء</string>
-  <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'{0}\'...ء</string>
-  <string name="speedy-fail" fuzzy="true">لم يتم وسم \'{0}\' للحذف السريع</string>
-  <string name="speedy-progress" fuzzy="true">قيد وسم \'{0}\' للحذف السريع...</string>
-  <string name="warnlog-fail" fuzzy="true">فشل جلب سجل الانذار لـ \'{0}\'ء</string>
-  <string name="warnlog-none" fuzzy="true">\'{0}\' لم يسبق انذار</string>
-  <string name="warnlog-progress" fuzzy="true">قيد جلب سجل الانذار \'{0}\'...ء</string>
+  <string name="reqprotection-fail">لم يتم طلب الحماية لـ\'$1\'ء</string>
+  <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'$1\'...ء</string>
+  <string name="speedy-fail" fuzzy="true">لم يتم وسم \'$1\' للحذف السريع</string>
+  <string name="speedy-progress" fuzzy="true">قيد وسم \'$1\' للحذف السريع...</string>
+  <string name="warnlog-fail" fuzzy="true">فشل جلب سجل الانذار لـ \'$1\'ء</string>
+  <string name="warnlog-none" fuzzy="true">\'$1\' لم يسبق انذار</string>
+  <string name="warnlog-progress" fuzzy="true">قيد جلب سجل الانذار \'$1\'...ء</string>
   <string name="usermessage-duplicate">رسالة موجودة عن نفس الشيء</string>
-  <string name="usermessage-fail">لم يتم ارسال رسالة \'{0}\'ء</string>
-  <string name="usermessage-progress">قيد ارسال رسالة \'{0}\'...ء</string>
+  <string name="usermessage-fail">لم يتم ارسال رسالة \'$1\'ء</string>
+  <string name="usermessage-progress">قيد ارسال رسالة \'$1\'...ء</string>
   <string name="warn-alreadyfinal">المستخدم تلقى التحذير الاخير بالفعل</string>
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>
   <string name="warn-alreadyreported">تم الابلاغ عن المستخدم بالفعل</string>
   <string name="warn-oldedit">المستخدم لم يعدل منذ اخر انذار</string>
-  <string name="warn-recent">تم انذار المستخدم قبل اقل من {0} ثواني</string>
-  <string name="warn-fail">لم يتم انذار \'{0}\'ء</string>
-  <string name="warn-progress">انذار \'{0}\'...ء</string>
+  <string name="warn-recent">تم انذار المستخدم قبل اقل من $1 ثواني</string>
+  <string name="warn-fail">لم يتم انذار \'$1\'ء</string>
+  <string name="warn-progress">انذار \'$1\'...ء</string>
 </resources>

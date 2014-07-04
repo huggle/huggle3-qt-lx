@@ -21,7 +21,7 @@
   <string name="selectfile">Bla...</string>
   <string name="yes">Ja</string>
   <string name="about-contributors">bidragende:</string>
-  <string name="block-title">Blokker {0}</string>
+  <string name="block-title">Blokker $1</string>
   <string name="block-reason">Begrunnelse:</string>
   <string name="block-duration">Varighet:</string>
   <string name="block-message">Brukerdiskusjon melding:</string>
@@ -33,7 +33,7 @@
   <string name="block-usercontribs">Bidrag</string>
   <string name="block-blockloglabel">Blokkeringslogg:</string>
   <string name="block-warnloglabel">Advarsler:</string>
-  <string name="block-fail">Blokkerte ikke \'{0}\'</string>
+  <string name="block-fail">Blokkerte ikke \'$1\'</string>
   <string name="closing-config">Oppdaterer konfigurasjons-underside...</string>
   <string name="config-title">Alternativer</string>
   <string name="config-rememberme">Husk brukernavn</string>
@@ -48,7 +48,7 @@
   <string name="config-shortcutlist">Tastatursnarveier</string>
   <string name="config-shortcutaction">Handling</string>
   <string name="config-shortcut">Snarvei</string>
-  <string name="config-changeshortcut">Endre snarvei for {0}</string>
+  <string name="config-changeshortcut">Endre snarvei for $1</string>
   <string name="config-noshortcut">Ingen</string>
   <string name="config-defaults">Standard</string>
   <string name="config-minor">Merk som mindre endring</string>
@@ -80,14 +80,14 @@
   <string name="config-summaryprompt">Skriv sammendrag</string>
   <string name="config-defaultsprompt">Gjenopprett standarder?</string>
   <string name="config-logbrowsetitle">Loggfil plassering</string>
-  <string name="config-shortcutconflict">Snarvei \'{0}\' konflikterer med eksisterende snarvei for \'{1}\'.</string>
-  <string name="delete-title">Slett {0}</string>
+  <string name="config-shortcutconflict">Snarvei \'$1\' konflikterer med eksisterende snarvei for \'{1}\'.</string>
+  <string name="delete-title">Slett $1</string>
   <string name="delete-reason">Begrunnelse:</string>
   <string name="delete-deletionlog">Slettingslogg:</string>
   <string name="irc-connected">Koblet til siste endringer-strømmen på IRC</string>
   <string name="irc-connecting">Forsøker å koble til IRC for siste endringer; dette kan ta noen øyeblikk...</string>
   <string name="irc-disconnected">Tilkobling til IRC for siste endringer mistet; kobler til på nytt...</string>
-  <string name="irc-nochannel">IRC kanal for {0} ikke funnet, bruker tregere API-spørringer istedet</string>
+  <string name="irc-nochannel">IRC kanal for $1 ikke funnet, bruker tregere API-spørringer istedet</string>
   <string name="irc-error">Kunne ikke koble til siste endringer-strømmen på IRC. Bruker tregere API-spørringer istedet</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Prosjekt:</string>
@@ -107,14 +107,14 @@
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
-  <string name="login-error-age">Bruk av Huggle på dette prosjektet krever en konto som er minst {0} dager gammel.</string>
+  <string name="login-error-age">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
   <string name="login-error-alldisabled">Huggle er for øyeblikket utilgjengelig på alle prosjekter.</string>
   <string name="login-error-approval">Bruk av Huggle på dette prosjektet krever godkjenning.</string>
   <string name="login-error-autoconfirmed">Bruk av Huggle på dette prosjektet krever at din konto er autogodkjent.</string>
   <string name="login-error-cancelled">Avbrutt.</string>
   <string name="login-error-captcha">Feil passord eller Captcha-kode.</string>
   <string name="login-error-config">Kunne ikke laste konfigurasjonssider.</string>
-  <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst {0} redigeringer.</string>
+  <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst $1 redigeringer.</string>
   <string name="login-error-disabled">Huggle er ikke skrudd på for din konto, sjekk innstillinger siden.</string>
   <string name="login-error-global" fuzzy="true">Kunne ikke laste global konfigurasjonsside.</string>
   <string name="login-error-invalid">Ugyldig brukernavn.</string>
@@ -150,7 +150,7 @@
   <string name="main-queue-next">Neste</string>
   <string name="main-queue-trim">Trim</string>
   <string name="main-queue-clear">Tøm nåværende</string>
-  <string name="main-queue-count" fuzzy="true">{0} elementer</string>
+  <string name="main-queue-count" fuzzy="true">$1 elementer</string>
   <string name="main-queue-query">Kjører spørring...</string>
   <string name="main-queue-reset">Resett</string>
   <string name="main-queue-clearall">Tøm alle</string>
@@ -203,7 +203,7 @@
   <string name="main-savelogtitle">Lagre logg</string>
   <string name="main-usermessageother">Annen melding...</string>
   <string name="main-advanced">Avansert...</string>
-  <string name="main-stats">{0} redigeringer per minutt, {1} tilbakestillinger per minutt</string>
+  <string name="main-stats">$1 redigeringer per minutt, {1} tilbakestillinger per minutt</string>
   <string name="main-tip-revertwarn">Tilbakestill denne revisjonen, og send brukeren en advarsel</string>
   <string name="main-tip-nextdiff">Vis neste revisjon i køen</string>
   <string name="main-tip-revert">Tilbakestill denne revisjonen</string>
@@ -215,14 +215,14 @@
   <string name="main-tip-pagedelete">Slett denne siden</string>
   <string name="main-tip-userreport">Rapporter denne brukeren</string>
   <string name="main-tip-userblock">Blokker denne brukeren</string>
-  <string name="message-title">Melding til {0}</string>
+  <string name="message-title">Melding til $1</string>
   <string name="message-help">Spesifiser Emne eller Oppsummering, eller begge. Hvis ingen oppsummering blir gitt, vil intet meldingshode bli lagt til.</string>
   <string name="message-subject">Emne:</string>
   <string name="message-message">Melding:</string>
   <string name="message-summary">Oppsummering:</string>
   <string name="message-autosign">Signer automatisk</string>
-  <string name="protect-title">Beskytt {0}</string>
-  <string name="protect-request-title">Be om beskyttelse av {0}</string>
+  <string name="protect-title">Beskytt $1</string>
+  <string name="protect-request-title">Be om beskyttelse av $1</string>
   <string name="protect-reason">Begrunnelse:</string>
   <string name="protect-expiry">Utløper:</string>
   <string name="protect-log">Beskyttelseslogg:</string>
@@ -265,33 +265,33 @@
   <string name="queue-examplelabel2">Ekskluder denne attributten</string>
   <string name="queue-examplelabel3">Ikke sjekk denne attributten</string>
   <string name="queue-usergroup">Vis kun redigeringer av disse brukerene</string>
-  <string name="report-title">Rapporter {0}</string>
+  <string name="report-title">Rapporter $1</string>
   <string name="report-reason">Begrunnelse:</string>
   <string name="report-message">Melding:</string>
   <string name="report-log">Advarsler for denne brukeren:</string>
   <string name="report-duplicate">Brukeren har allerede blitt rapportert</string>
-  <string name="report-fail">Rapporterte ikke \'{0}\'</string>
-  <string name="report-progress">Rapporterer \'{0}\'...</string>
-  <string name="revert-confirm-multiple">Dette vil tilbakestille flere redigeringer av \'{0}\'. Fortsett?</string>
-  <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, {0}, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
-  <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, {0}. Fortsett?</string>
-  <string name="revert-confirm-warned">Dette vil tilbakestille til en revisjon av {0}, som har blitt gitt advarsler. Forsett?</string>
+  <string name="report-fail">Rapporterte ikke \'$1\'</string>
+  <string name="report-progress">Rapporterer \'$1\'...</string>
+  <string name="revert-confirm-multiple">Dette vil tilbakestille flere redigeringer av \'$1\'. Fortsett?</string>
+  <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, $1, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
+  <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, $1. Fortsett?</string>
+  <string name="revert-confirm-warned">Dette vil tilbakestille til en revisjon av $1, som har blitt gitt advarsler. Forsett?</string>
   <string name="revert-error-first" fuzzy="true">Redigeringen er den første som ble gjort på siden, kan ikke tilbakestille.</string>
   <string name="revert-only">Redigeringen er den eneste som er gjort på siden.</string>
-  <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, {0}.</string>
+  <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, $1.</string>
   <string name="revert-delete-instead">Slett siden istedet?</string>
   <string name="revert-speedy-instead">Tagg for hurtig sletting istedet?</string>
   <string name="revert-cannotundo">Kan ikke tilbakestille grunnet konflikterende mellomredigeringer</string>
-  <string name="revert-conflict">Siden ble redigert av ignorert bruker \'{0}\'</string>
-  <string name="revert-fail">Tilbakestilte ikke \'{0}\'</string>
+  <string name="revert-conflict">Siden ble redigert av ignorert bruker \'$1\'</string>
+  <string name="revert-fail">Tilbakestilte ikke \'$1\'</string>
   <string name="revert-nochange">Innholdet i målrevisjonen er identisk med nåværende revisjon</string>
-  <string name="speedy-title">Hurtig tagging {0}</string>
+  <string name="speedy-title">Hurtig tagging $1</string>
   <string name="speedy-reason">Begrunnelse:</string>
   <string name="speedy-parameters">Parametre:</string>
   <string name="speedy-notifycreator">Gi beskjed til forfatter av siden</string>
   <string name="stats-title">Statistikk</string>
   <string name="stats-actions">Handlinger denne sesjonen:</string>
-  <string name="stats-session">Sesjonstid: {0}</string>
+  <string name="stats-session">Sesjonstid: $1</string>
   <string name="stats-edits">Redigeringer</string>
   <string name="stats-assisted">Assisterte redigeringer</string>
   <string name="stats-huggle">Huggle redigeringer</string>
@@ -309,7 +309,7 @@
   <string name="stats-anon">Anonyme</string>
   <string name="stats-bots">Roboter</string>
   <string name="stats-other">Andre</string>
-  <string name="tag-title">Tagg {0}</string>
+  <string name="tag-title">Tagg $1</string>
   <string name="tag-tagselector">Legg til tagg:</string>
   <string name="tag-tags">Tagg(er):</string>
   <string name="tag-summary">Oppsummering:</string>
@@ -317,7 +317,7 @@
   <string name="update-title">Ny versjon tilgjengelig</string>
   <string name="update-progress">Laster ned ny versjon...</string>
   <string name="update-error">Kunne ikke laste ned ny versjon</string>
-  <string name="userinfo-title">Brukerinformasjon for \'{0}\'</string>
+  <string name="userinfo-title">Brukerinformasjon for \'$1\'</string>
   <string name="userinfo-anonymous">Anonym:</string>
   <string name="userinfo-ignored">Whitelisted:</string>
   <string name="userinfo-edits">Antall bidrag:</string>
@@ -325,7 +325,7 @@
   <string name="userinfo-sharedip">Delt/dynamisk IP:</string>
   <string name="userinfo-blocklog">Blokkeringer:</string>
   <string name="userinfo-warnlog">Advarsler:</string>
-  <string name="warning-title">Advar {0}</string>
+  <string name="warning-title">Advar $1</string>
   <string name="warning-levelgroup">Advarselsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
   <string name="warning-level1">Nivå 1</string>
@@ -341,36 +341,36 @@
   <string name="error-timeout">Forespørsel tok for lang tid</string>
   <string name="error-unknown">Ukjent feil</string>
   <string name="retrying">Prøver igjen...</string>
-  <string name="block-done">Blokkerte \'{0}\'</string>
-  <string name="block-progress">Blokkerer \'{0}\'...</string>
-  <string name="blocklog-fail">Kunne ikke hente blokkeringslogg for \'{0}\'</string>
-  <string name="blocklog-none">Ingen blokkeringslogg for \'{0}\'</string>
-  <string name="blocklog-progress">Henter blokkeringslogg for \'{0}\'...</string>
-  <string name="blocknotify-fail">Varslet ikke \'{0}\' om blokkeringen</string>
-  <string name="blocknotify-progress">Varsler \'{0}\' om blokkeringen...</string>
-  <string name="delete-done">Slettet \'{0}\'</string>
-  <string name="delete-fail">Slettet ikke \'{0}\'</string>
-  <string name="delete-progress">Sletter \'{0}\'...</string>
-  <string name="deletelog-fail">Kunne ikke hente slettingslogg for \'{0}\'</string>
-  <string name="deletelog-none">Ingen slettingslogg for \'{0}\'</string>
-  <string name="deletelog-progress">Henter slettingslogg for \'{0}\'...</string>
+  <string name="block-done">Blokkerte \'$1\'</string>
+  <string name="block-progress">Blokkerer \'$1\'...</string>
+  <string name="blocklog-fail">Kunne ikke hente blokkeringslogg for \'$1\'</string>
+  <string name="blocklog-none">Ingen blokkeringslogg for \'$1\'</string>
+  <string name="blocklog-progress">Henter blokkeringslogg for \'$1\'...</string>
+  <string name="blocknotify-fail">Varslet ikke \'$1\' om blokkeringen</string>
+  <string name="blocknotify-progress">Varsler \'$1\' om blokkeringen...</string>
+  <string name="delete-done">Slettet \'$1\'</string>
+  <string name="delete-fail">Slettet ikke \'$1\'</string>
+  <string name="delete-progress">Sletter \'$1\'...</string>
+  <string name="deletelog-fail">Kunne ikke hente slettingslogg for \'$1\'</string>
+  <string name="deletelog-none">Ingen slettingslogg for \'$1\'</string>
+  <string name="deletelog-progress">Henter slettingslogg for \'$1\'...</string>
   <string name="diff-deleted">Denne revisjonen har blitt slettet.</string>
-  <string name="diff-fail">Kunne ikke hente diff for \'{0}\'</string>
-  <string name="edit-fail">Redigerte ikke \'{0}\'</string>
-  <string name="edit-progress">Redigerer \'{0}\'...</string>
-  <string name="history-fail">Kunne ikke hente historikk for \'{0}\'</string>
-  <string name="history-progress">Henter historikk for \'{0}\' ({1})...</string>
-  <string name="move-done">Flyttet \'{0}\' til \'{1}\'</string>
-  <string name="move-fail">Flyttet ikke \'{0}\' til \'{1}\'</string>
-  <string name="move-progress">Flytter \'{0}\' til \'{1}\'...</string>
-  <string name="notify-fail">Varslet ikke den opprinnelige forfatteren av \'{0}\'</string>
+  <string name="diff-fail">Kunne ikke hente diff for \'$1\'</string>
+  <string name="edit-fail">Redigerte ikke \'$1\'</string>
+  <string name="edit-progress">Redigerer \'$1\'...</string>
+  <string name="history-fail">Kunne ikke hente historikk for \'$1\'</string>
+  <string name="history-progress">Henter historikk for \'$1\' ({1})...</string>
+  <string name="move-done">Flyttet \'$1\' til \'{1}\'</string>
+  <string name="move-fail">Flyttet ikke \'$1\' til \'{1}\'</string>
+  <string name="move-progress">Flytter \'$1\' til \'{1}\'...</string>
+  <string name="notify-fail">Varslet ikke den opprinnelige forfatteren av \'$1\'</string>
   <string name="notify-unknowncreator">Kan ikke finne sidens opprinnelige forfatter</string>
-  <string name="protect-done">Endret beskyttelsesnivået for \'{0}\'</string>
-  <string name="protect-fail">Endret ikke beskyttelsesnivået for \'{0}\'</string>
-  <string name="protect-progress">Endrer beskyttelsesnivå for \'{0}\'...</string>
-  <string name="protectlog-fail">Kunne ikke hente beskyttelsesloggen for \'{0}\'</string>
-  <string name="protectlog-none">Ingen beskyttelseslogg for \'{0}\'</string>
-  <string name="protectlog-progress">Henter beskyttelseslogg for \'{0}\'...</string>
+  <string name="protect-done">Endret beskyttelsesnivået for \'$1\'</string>
+  <string name="protect-fail">Endret ikke beskyttelsesnivået for \'$1\'</string>
+  <string name="protect-progress">Endrer beskyttelsesnivå for \'$1\'...</string>
+  <string name="protectlog-fail">Kunne ikke hente beskyttelsesloggen for \'$1\'</string>
+  <string name="protectlog-none">Ingen beskyttelseslogg for \'$1\'</string>
+  <string name="protectlog-progress">Henter beskyttelseslogg for \'$1\'...</string>
   <string name="saveuserconfig-done">Oppdaterte brukerkonfigurasjonssiden</string>
   <string name="saveuserconfig-fail">Kunne ikke oppdatere brukerkonfigurasjonssiden</string>
   <string name="saveuserconfig-progress">Oppdaterer brukerkonfigurasjonssiden...</string>
@@ -379,21 +379,21 @@
   <string name="loaduserconfig-fail">Kunne ikke laste bruker konfigurasjonsside</string>
   <string name="reqprotection-badformat">Formatet på forespørselssiden er ukjent</string>
   <string name="reqprotection-duplicate">Beskyttelses har allerede blitt forespurt</string>
-  <string name="reqprotection-fail">Ba ikke om beskyttelse av \'{0}\'</string>
-  <string name="reqprotection-progress">Ber om beskyttelse av \'{0}\'...</string>
-  <string name="speedy-fail" fuzzy="true">Tagget ikke \'{0}\' for hurtigsletting</string>
-  <string name="speedy-progress" fuzzy="true">Tagger \'{0}\' for hurtigsletting...</string>
-  <string name="warnlog-fail" fuzzy="true">Kunne ikke hente advarselsloggen for \'{0}\'</string>
-  <string name="warnlog-none" fuzzy="true">\'{0}\' har ikke blitt advart</string>
-  <string name="warnlog-progress" fuzzy="true">Henter advarselslogg for \'{0}\'...</string>
+  <string name="reqprotection-fail">Ba ikke om beskyttelse av \'$1\'</string>
+  <string name="reqprotection-progress">Ber om beskyttelse av \'$1\'...</string>
+  <string name="speedy-fail" fuzzy="true">Tagget ikke \'$1\' for hurtigsletting</string>
+  <string name="speedy-progress" fuzzy="true">Tagger \'$1\' for hurtigsletting...</string>
+  <string name="warnlog-fail" fuzzy="true">Kunne ikke hente advarselsloggen for \'$1\'</string>
+  <string name="warnlog-none" fuzzy="true">\'$1\' har ikke blitt advart</string>
+  <string name="warnlog-progress" fuzzy="true">Henter advarselslogg for \'$1\'...</string>
   <string name="usermessage-duplicate">En melding om samme emne er allerede på siden</string>
-  <string name="usermessage-fail">Sendte ikke melding til \'{0}\'</string>
-  <string name="usermessage-progress">Sender melding til \'{0}\'...</string>
+  <string name="usermessage-fail">Sendte ikke melding til \'$1\'</string>
+  <string name="usermessage-progress">Sender melding til \'$1\'...</string>
   <string name="warn-alreadyfinal">Brukeren har allerede fått siste advarsel</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
   <string name="warn-alreadyreported">Brukeren har allerede blitt rapportert</string>
   <string name="warn-oldedit">Brukeren har ikke redigert etter sin siste advarsel</string>
-  <string name="warn-recent">Brukeren ble advart for mindre enn {0} sekunder siden</string>
-  <string name="warn-fail">Advarte ikke \'{0}\'</string>
-  <string name="warn-progress">Advarer \'{0}\'...</string>
+  <string name="warn-recent">Brukeren ble advart for mindre enn $1 sekunder siden</string>
+  <string name="warn-fail">Advarte ikke \'$1\'</string>
+  <string name="warn-progress">Advarer \'$1\'...</string>
 </resources>

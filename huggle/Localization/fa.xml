@@ -54,7 +54,7 @@
   <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
   <string name="browser-fail">ناتوان در بازیابی تفاوت $1</string>
   <string name="about-contributors">مشارکت‌ها:</string>
-  <string name="block-title">بستن {0}</string>
+  <string name="block-title">بستن $1</string>
   <string name="block-reason">دلیل:</string>
   <string name="block-duration">مدت:</string>
   <string name="block-message">پیغام صفحه بحث:</string>
@@ -95,7 +95,7 @@
   <string name="config-shortcutlist">میانبرهای صفحه‌کلید</string>
   <string name="config-shortcutaction">عمل</string>
   <string name="config-shortcut">میانبر</string>
-  <string name="config-changeshortcut">تغییر میان‌بر برای {0}</string>
+  <string name="config-changeshortcut">تغییر میان‌بر برای $1</string>
   <string name="config-noshortcut">هیچ</string>
   <string name="config-defaults">پیش‌فرض‌ها</string>
   <string name="config-minor">نشانه‌گذاری به عنوان جزئی</string>
@@ -121,7 +121,7 @@
   <string name="config-logbrowsetitle">موقعیت سیاهه پرونده</string>
   <string name="config-shortcutconflict">میانبر \' $1 \'در تعارض با میانبر موجود برای\' $1 \' است.</string>
   <string name="config-no-colon">نمی توانید از : در نام صف استفاده کنید</string>
-  <string name="delete-title">حذف {0}</string>
+  <string name="delete-title">حذف $1</string>
   <string name="delete-reason">دلیل:</string>
   <string name="delete-deletionlog">سیاههٔ حذف:</string>
   <string name="delete-rem-talk">حذف کردن بحث مربوط به آن</string>
@@ -306,7 +306,7 @@
   <string name="message-er">ناتوان در تحویل پیام به $1 : $2</string>
   <string name="message-fail-retrieve-talk">ناتوان از گرفتن صفحه بحث کاربر</string>
   <string name="message-done">تحویل پیام به $1 با موفقیت انجام شد</string>
-  <string name="protect-title">محافظت {0}</string>
+  <string name="protect-title">محافظت $1</string>
   <string name="protect-request-title">درخواست حفاظت $1</string>
   <string name="protect-reason">دلیل:</string>
   <string name="protect-expiry">انقضا:</string>
@@ -347,7 +347,7 @@
   <string name="queue-examplelabel2">مستثنی کردن این ویژگی</string>
   <string name="queue-examplelabel3">این ویژگی را بررسی نکن</string>
   <string name="queue-usergroup">فقط ویرایش‌های این کاربران را نشان بده</string>
-  <string name="report-title">گزارش {0}</string>
+  <string name="report-title">گزارش $1</string>
   <string name="report-tu">گزارش کاربر</string>
   <string name="report-reason">دلیل:</string>
   <string name="report-intro">شما در حال گزارش کاربر $1 هستید</string>
