@@ -110,7 +110,7 @@ bool ReportUser::SetUser(WikiUser *user)
     this->qBlockHistory->Process();
     this->tReportUser = new QTimer(this);
     connect(this->tReportUser, SIGNAL(timeout()), this, SLOT(Tick()));
-    this->tReportUser->start(200);
+    this->tReportUser->start(HUGGLE_TIMER);
     return true;
 }
 
@@ -481,7 +481,7 @@ void ReportUser::on_pushButton_clicked()
     this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
     this->qHistory->Process();
     this->ReportText = reports;
-    this->tReportUser->start(800);
+    this->tReportUser->start(HUGGLE_TIMER);
     return;
 }
 
@@ -505,7 +505,7 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
                       "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
                       QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
     this->qDiff->Process();
-    this->tPageDiff->start(200);
+    this->tPageDiff->start(HUGGLE_TIMER);
 }
 
 void Huggle::ReportUser::on_pushButton_5_clicked()
@@ -578,7 +578,7 @@ void ReportUser::on_pushButton_3_clicked()
     this->ui->pushButton_3->setEnabled(false);
     this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
     this->qReport->Process();
-    this->tReportPageCheck->start(60);
+    this->tReportPageCheck->start(HUGGLE_TIMER);
 }
 
 void Huggle::ReportUser::on_pushButton_4_clicked()
@@ -606,5 +606,5 @@ void Huggle::ReportUser::on_pushButton_7_clicked()
         this->qCheckIfBlocked->Parameters += "bkip=" + QUrl::toPercentEncoding(this->ReportedUser->Username);
     }
     this->qCheckIfBlocked->Process();
-    this->tReportPageCheck->start(60);
+    this->tReportPageCheck->start(HUGGLE_TIMER);
 }

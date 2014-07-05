@@ -81,7 +81,7 @@ void HuggleTool::RenderEdit()
     this->QueryPhase = 1;
     this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text());
     this->query->Process();
-    this->tick->start(200);
+    this->tick->start(HUGGLE_TIMER);
 }
 
 void Huggle::HuggleTool::on_pushButton_clicked()
@@ -199,5 +199,5 @@ void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
     this->query->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->ui->lineEdit_2->text()) +
                               "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     this->query->Process();
-    this->tick->start(200);
+    this->tick->start(HUGGLE_TIMER);
 }

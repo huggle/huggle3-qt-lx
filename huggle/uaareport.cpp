@@ -183,7 +183,7 @@ void UAAReport::on_pushButton_3_clicked()
     this->qCheckUAAUser->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
     this->qCheckUAAUser->Process();
-    this->TimerCheck->start(100);
+    this->TimerCheck->start(HUGGLE_TIMER);
 }
 
 bool UAAReport::checkIfReported()

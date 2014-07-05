@@ -292,7 +292,7 @@ void Login::PressOK()
     this->Disable();
     this->loadingForm->show();
     // First of all, we need to login to the site
-    this->timer->start(200);
+    this->timer->start(HUGGLE_TIMER);
     this->loadingForm->Insert(LOGINFORM_LOGIN, _l("login-progress-start", Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Loading);
     this->loadingForm->Insert(LOGINFORM_SITEINFO, _l("login-progress-retrieve-mw", Configuration::HuggleConfiguration->Project->Name), LoadingForm_Icon_Waiting);
     this->loadingForm->Insert(LOGINFORM_GLOBALCONFIG, _l("login-progress-global"), LoadingForm_Icon_Waiting);
@@ -890,7 +890,7 @@ void Login::on_pushButton_clicked()
     this->LoginQuery = new ApiQuery(ActionQuery);
     this->_Status = Refreshing;
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
-    this->timer->start(200);
+    this->timer->start(HUGGLE_TIMER);
     this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
     this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles="

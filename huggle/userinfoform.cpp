@@ -99,7 +99,7 @@ void UserinfoForm::Read()
     QueryPool::HugglePool->AppendQuery(this->qContributions);
     ui->pushButton->hide();
     this->qContributions->Process();
-    this->timer->start(600);
+    this->timer->start(HUGGLE_TIMER);
 }
 
 void UserinfoForm::on_pushButton_clicked()
@@ -233,5 +233,5 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->RevID = revid;
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
-    this->timer->start(800);
+    this->timer->start(HUGGLE_TIMER);
 }

@@ -62,7 +62,7 @@ typedef char byte_ht;
   #endif
 #endif
 
-#define HUGGLE_SUCCESS                     0
+#define HUGGLE_SUCCESS                     1
 #define PRODUCTION_BUILD                   0
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""
 #define MEDIAWIKI_DEFAULT_NS_TALK               "Talk:"
@@ -105,6 +105,11 @@ typedef char byte_ht;
 #define HUGGLE_CONF                     "huggle3.xml"
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
+//! Value that is used by default for timers that are used on various places
+//! lower this is, more your CPU will work but faster the huggle will be
+#ifndef HUGGLE_TIMER
+    #define HUGGLE_TIMER                   200
+#endif
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"

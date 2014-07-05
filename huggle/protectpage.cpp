@@ -54,7 +54,7 @@ void ProtectPage::getTokenToProtect()
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
     this->PtQueryPhase = 0;
-    this->tt->start(200);
+    this->tt->start(HUGGLE_TIMER);
 }
 
 void ProtectPage::onTick()

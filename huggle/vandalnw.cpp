@@ -71,7 +71,7 @@ void VandalNw::Connect()
     {
         this->Insert(_l("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
-        this->tm->start(200);
+        this->tm->start(HUGGLE_TIMER);
     }
     this->UsersModified = true;
 }

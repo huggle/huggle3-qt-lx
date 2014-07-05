@@ -25,7 +25,7 @@ RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : QDialog(pa
 {
     this->page = new Huggle::WikiPage(wikiPage);
     this->ui->setupUi(this);
-    this->setWindowTitle(_l("reqprotection-title", this->page->PageName));
+    this->setWindowTitle(_l("protect-request-title", this->page->PageName));
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
 }
@@ -134,7 +134,7 @@ void Huggle::RequestProtect::on_pushButton_clicked()
     }
     QueryPool::HugglePool->AppendQuery(this->qRFPPage);
     this->qRFPPage->Process();
-    this->tm->start(800);
+    this->tm->start(HUGGLE_TIMER);
     this->ui->pushButton->setText("Retrieving");
     this->ui->pushButton->setEnabled(false);
 }

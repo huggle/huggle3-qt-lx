@@ -76,7 +76,7 @@ void BlockUser::GetToken()
     QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
     this->QueryPhase = 0;
-    this->t0->start(200);
+    this->t0->start(HUGGLE_TIMER);
 }
 
 void BlockUser::on_pushButton_2_clicked()

@@ -21,7 +21,7 @@ WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::Whit
     this->Whitelist += Configuration::HuggleConfiguration->WhiteList;
     this->timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(OnTick()));
-    this->timer->start(200);
+    this->timer->start(HUGGLE_TIMER);
 }
 
 WhitelistForm::~WhitelistForm()

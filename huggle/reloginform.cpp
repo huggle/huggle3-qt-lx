@@ -42,7 +42,7 @@ void Huggle::ReloginForm::on_pushButton_2_clicked()
 {
     this->ui->pushButton_2->setEnabled(false);
     this->qReloginTokenReq = new ApiQuery(ActionLogin);
-    this->little_cute_timer->start(800);
+    this->little_cute_timer->start(HUGGLE_TIMER);
     this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
     this->qReloginTokenReq->HiddenQuery = true;
     this->qReloginTokenReq->IncRef();
