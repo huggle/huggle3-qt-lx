@@ -605,9 +605,9 @@ byte_ht HuggleParser::GetIDOfMonth(QString month)
 {
     int i = 0;
     month = month.toLower();
-    while (i < Configuration::HuggleConfiguration->Months.count())
+    while (i < Configuration::HuggleConfiguration->ProjectConfig->Months.count())
     {
-        if (Configuration::HuggleConfiguration->Months.at(i).toLower() == month)
+        if (Configuration::HuggleConfiguration->ProjectConfig->Months.at(i).toLower() == month)
             return i+1;
         i++;
     }

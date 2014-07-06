@@ -91,9 +91,9 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 
 void UserinfoForm::Read()
 {
-    this->qContributions = new ApiQuery();
+    //! \todo Retrieve for a wiki this user is registered on
+    this->qContributions = new ApiQuery(ActionQuery);
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
-    this->qContributions->SetAction(ActionQuery);
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
                                        "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
     QueryPool::HugglePool->AppendQuery(this->qContributions);
@@ -127,7 +127,7 @@ void UserinfoForm::OnTick()
     {
         if (this->qContributions->Result->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog(_l("user-history-retr-fail", this->User->Username));
+            Syslog::HuggleLogs->ErrorLog(_l("user-history-fail", this->User->Username));
             this->qContributions = nullptr;
             this->timer->stop();
             return;

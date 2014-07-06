@@ -26,7 +26,7 @@ using namespace Huggle;
 Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 {
     // we copy the user here so that we can let the caller delete it
-    this->user = new WikiUser(target);
+    this->User = new WikiUser(target);
     this->Text = MessageText;
     this->Summary = MessageSummary;
     this->Suffix = true;
@@ -45,7 +45,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 
 Message::~Message()
 {
-    delete this->user;
+    delete this->User;
 }
 
 void Message::RetrieveToken()
@@ -53,8 +53,8 @@ void Message::RetrieveToken()
     this->_Status = Huggle::MessageStatus_RetrievingToken;
     this->qToken = new ApiQuery();
     this->qToken->SetAction(ActionQuery);
-    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->user->GetTalk());
-    this->qToken->Target = _l("message-retrieve-new-token", this->user->GetTalk());
+    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->User->GetTalk());
+    this->qToken->Target = _l("message-retrieve-new-token", this->User->GetTalk());
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
 }
@@ -73,7 +73,7 @@ void Message::Send()
 void Message::Fail(QString reason)
 {
     QStringList parameters;
-    parameters << this->user->Username << reason;
+    parameters << this->User->Username << reason;
     Huggle::Syslog::HuggleLogs->ErrorLog(_l("message-er", parameters));
     this->_Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
@@ -213,7 +213,7 @@ void Message::Finish()
                 {
                     // someone edit the page meanwhile which means that our token has expired
                     this->Fail("Edit conflict");
-                    Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->user->Username);
+                    Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->User->Username);
                     this->Error = MessageError_Obsolete;
                 } else if (ec == "articleexists")
                 {
@@ -235,13 +235,13 @@ void Message::Finish()
             {
                 if (element.attribute("result") == "Success")
                 {
-                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->user->Username));
+                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username));
                     sent = true;
                     HistoryItem *item = new HistoryItem();
                     item->Result = "Success";
                     item->NewPage = this->CreateOnly;
                     item->Type = HistoryMessage;
-                    item->Target = user->Username;
+                    item->Target = User->Username;
                     if (this->Dependency != nullptr && this->Dependency->HI != nullptr)
                     {
                         this->Dependency->HI->UndoDependency = item;
@@ -256,7 +256,7 @@ void Message::Finish()
         }
         if (!sent)
         {
-            Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->user->Username));
+            Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->User->Username));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
         this->Dependency.Delete();
@@ -309,11 +309,11 @@ void Message::PreflightCheck()
     {
         this->_Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
-        this->query = Generic::RetrieveWikiPageContents(this->user->GetTalk());
+        this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk());
         // inform user what is going on
         QueryPool::HugglePool->AppendQuery(this->query);
         /// \todo LOCALIZE ME
-        this->query->Target = "Reading TP of " + this->user->Username;
+        this->query->Target = "Reading TP of " + this->User->Username;
         this->query->Process();
     } else
     {
@@ -327,7 +327,7 @@ void Message::ProcessSend()
     this->_Status = MessageStatus_SendingMessage;
     if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
-        if (!this->CreateOnly && (this->user->TalkPage_RetrievalTime().addSecs(
+        if (!this->CreateOnly && (this->User->TalkPage_RetrievalTime().addSecs(
                                   Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness
                                       ) < QDateTime::currentDateTime()))
         {
@@ -336,17 +336,16 @@ void Message::ProcessSend()
             return;
         } else if (!this->CreateOnly && Configuration::HuggleConfiguration->Verbosity >= 2)
         {
-            Syslog::HuggleLogs->DebugLog("Message to " + this->user->Username + " old " +
-                                         QString::number(this->user->TalkPage_RetrievalTime()
-                                         .addSecs(Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness)
-                                         .secsTo(QDateTime::currentDateTime())), 2);
+            HUGGLE_DEBUG("Message to " + this->User->Username + " old " + QString::number(this->User->TalkPage_RetrievalTime()
+                           .addSecs(Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness)
+                           .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
     this->query = new ApiQuery();
     // prevent message from being sent twice
     this->query->RetryOnTimeoutFailure = false;
     this->query->Timeout = 600;
-    this->query->Target = "Writing " + this->user->GetTalk();
+    this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
     this->query->SetAction(ActionEdit);
     QString s = Summary;
@@ -354,12 +353,12 @@ void Message::ProcessSend()
     if (!this->BaseTimestamp.isEmpty())
     {
         parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-        Syslog::HuggleLogs->DebugLog("Using base timestamp for edit of " + user->GetTalk() + ": " + this->BaseTimestamp, 2);
+        HUGGLE_DEBUG("Using base timestamp for edit of " + User->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
     if (!this->StartTimestamp.isEmpty())
     {
         parameters += "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-        Syslog::HuggleLogs->DebugLog("Using start timestamp for edit of " + user->GetTalk() + ": " + this->StartTimestamp, 2);
+        HUGGLE_DEBUG("Using start timestamp for edit of " + User->GetTalk() + ": " + this->StartTimestamp, 2);
     }
     if (this->CreateOnly)
     {
@@ -380,17 +379,17 @@ void Message::ProcessSend()
             if (!this->Page.isEmpty())
                 this->Text = this->Page + "\n\n" + this->Text;
         }
-        this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
+        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
                 + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }else
     {
-        this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
+        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
                 + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
     }
-    Syslog::HuggleLogs->DebugLog(QString(" Message to %1 with parameters: %2").arg(this->user->Username, parameters), 2);
+    HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
     QueryPool::HugglePool->AppendQuery(query);
     this->query->Process();
 }
@@ -423,14 +422,14 @@ void Message::ProcessTalk()
         } else
         {
             // Unable to retrieve this->user->GetTalk() stopping message delivery to that user
-            this->Fail(_l("message-fail-re-user-tp", this->user->GetTalk()));
+            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
             return;
         }
     } else
     {
         if (!missing)
         {
-            this->Fail(_l("message-fail-re-user-tp", this->user->GetTalk()));
+            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
             return;
         }

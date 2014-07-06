@@ -101,6 +101,7 @@ namespace Huggle
             void Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
+            WikiSite *GetSite();
             bool TalkPage_WasRetrieved();
             bool TalkPage_ContainsSharedIPTemplate();
             //! Returns true if this user is wl
@@ -138,6 +139,7 @@ namespace Huggle
             QString RegistrationDate;
             //! Groups that this user is in, by default it's empty
             QStringList Groups;
+            WikiSite *Site = nullptr;
 
     private:
             //! Matches only IPv4
@@ -162,7 +164,6 @@ namespace Huggle
             QMutex *UserLock;
             bool Bot;
             bool IP;
-            WikiSite *Site;
     };
 
     inline void WikiUser::Sanitize()

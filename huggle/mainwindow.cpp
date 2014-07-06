@@ -14,6 +14,8 @@
 #include <QToolButton>
 #include <QInputDialog>
 #include <QMutex>
+#include <QLabel>
+#include <QTimer>
 #include <QThread>
 #include <QSplitter>
 #include <QDockWidget>
@@ -48,6 +50,7 @@
 #include "syslog.hpp"
 #include "sleeper.hpp"
 #include "wikiuser.hpp"
+#include "wikisite.hpp"
 #include "ignorelist.hpp"
 #include "speedyform.hpp"
 #include "userinfoform.hpp"
@@ -75,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
-    this->Localize();
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
     this->Status->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -154,52 +156,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ChangeProvider(new HuggleFeedProviderWiki());
         Core::HuggleCore->PrimaryFeedProvider->Start();
     }
-    if (Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count() > 0)
-    {
-        this->RevertSummaries = new QMenu(this);
-        this->WarnMenu = new QMenu(this);
-        this->RevertWarn = new QMenu(this);
-        int r=0;
-        while (r<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
-        {
-            QAction *action = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
-            QAction *actiona = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
-            QAction *actionb = new QAction(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)), this);
-            this->RevertAndWarnItems.append(actiona);
-            this->WarnItems.append(actionb);
-            this->RevertItems.append(action);
-            this->RevertWarn->addAction(actiona);
-            this->WarnMenu->addAction(actionb);
-            this->RevertSummaries->addAction(action);
-            r++;
-            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
-            connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
-            connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
-        }
-        this->ui->actionWarn->setMenu(this->WarnMenu);
-        this->ui->actionRevert->setMenu(this->RevertSummaries);
-        this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
-
-        // replace abstract QAction with QToolButton to be able to set PopupMode for nicer menu opening
-        QToolButton* aW = new QToolButton(this->ui->mainToolBar);
-        QToolButton* aR = new QToolButton(this->ui->mainToolBar);
-        QToolButton* aRaW = new QToolButton(this->ui->mainToolBar);
-        aW->setDefaultAction(this->ui->actionWarn);
-        aR->setDefaultAction(this->ui->actionRevert);
-        aRaW->setDefaultAction(this->ui->actionRevert_and_warn);
-
-        aW->setPopupMode(QToolButton::MenuButtonPopup);
-        aR->setPopupMode(QToolButton::MenuButtonPopup);
-        aRaW->setPopupMode(QToolButton::MenuButtonPopup);
-
-        // insert them before their counterparts and then delete the counterpart
-        this->ui->mainToolBar->insertWidget(this->ui->actionRevert_and_warn, aRaW);
-        this->ui->mainToolBar->removeAction(this->ui->actionRevert_and_warn);
-        this->ui->mainToolBar->insertWidget(this->ui->actionRevert, aR);
-        this->ui->mainToolBar->removeAction(this->ui->actionRevert);
-        this->ui->mainToolBar->insertWidget(this->ui->actionWarn, aW);
-        this->ui->mainToolBar->removeAction(this->ui->actionWarn);
-    }
+    this->ReloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
@@ -247,9 +204,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         QAction *debugm = this->ui->menuDebug_2->menuAction();
         this->ui->menuHelp->removeAction(debugm);
     }
-    Hooks::MainWindowIsLoaded(this);
+    this->Localize();
     this->VandalDock->Connect();
     this->tCheck = new QTimer(this);
+    Hooks::MainWindowIsLoaded(this);
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
     this->tCheck->start(20000);
 }
@@ -804,7 +762,7 @@ QString MainWindow::WikiScriptURL()
         return Configuration::GetProjectScriptURL();
     } else
     {
-        return Configuration::GetProjectScriptURL(this->CurrentEdit->Page->Site);
+        return Configuration::GetProjectScriptURL(this->CurrentEdit->GetSite());
     }
 }
 
@@ -989,7 +947,7 @@ void MainWindow::FinishRestore()
             this->RestoreEdit.Delete();
             return;
         }
-        QString sm = this->RestoreEdit->Page->Site->GetProjectConfig()->RestoreSummary;
+        QString sm = this->RestoreEdit->GetSite()->GetProjectConfig()->RestoreSummary;
         sm = sm.replace("$1", QString::number(this->RestoreEdit->RevID));
         sm = sm.replace("$2", this->RestoreEdit->User->Username);
         sm = sm.replace("$3", this->RestoreEdit_RevertReason);
@@ -1534,8 +1492,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
     {
         // register consumer so that gc doesn't delete this edit meanwhile
         e->RegisterConsumer("patrol");
-        query = new ApiQuery();
-        query->SetAction(ActionTokens);
+        query = new ApiQuery(ActionTokens, this->GetCurrentWikiSite());
         if (flaggedrevs)
         {
             query->Target = "Retrieving patrol token (FlaggedRevs) for " + e->Page->PageName;
@@ -1556,6 +1513,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
 
     // we can execute patrol now
     query = new ApiQuery();
+    query->Site = this->GetCurrentWikiSite();
     query->UsingPOST = true;
     if (flaggedrevs)
     {
@@ -1732,6 +1690,16 @@ void MainWindow::WelcomeGood()
     this->DisplayNext();
 }
 
+WikiSite *MainWindow::GetCurrentWikiSite()
+{
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
+    {
+        return Configuration::HuggleConfiguration->Project;
+    }
+
+    return this->CurrentEdit->GetSite();
+}
+
 void MainWindow::LockPage()
 {
     this->EditablePage = false;
@@ -1743,7 +1711,7 @@ QString MainWindow::ProjectURL()
     {
         return Configuration::GetProjectWikiURL();
     }
-    return Configuration::GetProjectWikiURL(this->CurrentEdit->Page->Site);
+    return Configuration::GetProjectWikiURL(this->CurrentEdit->GetSite());
 }
 
 bool MainWindow::CheckExit()
@@ -1816,6 +1784,67 @@ void MainWindow::ChangeProvider(HuggleFeed *provider)
         delete HuggleFeed::PrimaryFeedProvider;
     HuggleFeed::PrimaryFeedProvider = provider;
     Core::HuggleCore->PrimaryFeedProvider = provider;
+}
+
+void MainWindow::ReloadInterface()
+{
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    this->WarnItems.clear();
+    this->RevertAndWarnItems.clear();
+    this->RevertItems.clear();
+    delete this->RevertSummaries;
+    delete this->WarnMenu;
+    delete this->RevertWarn;
+    this->RevertSummaries = new QMenu(this);
+    this->WarnMenu = new QMenu(this);
+    this->RevertWarn = new QMenu(this);
+    if (conf->WarningTypes.count() > 0)
+    {
+        int r=0;
+        while (r< conf->WarningTypes.count())
+        {
+            QAction *action = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertSummaries);
+            QAction *actiona = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertWarn);
+            QAction *actionb = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->WarnMenu);
+            this->RevertAndWarnItems.append(actiona);
+            this->WarnItems.append(actionb);
+            this->RevertItems.append(action);
+            this->RevertWarn->addAction(actiona);
+            this->WarnMenu->addAction(actionb);
+            this->RevertSummaries->addAction(action);
+            r++;
+            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
+            connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
+            connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
+        }
+    }
+    this->ui->actionWarn->setMenu(this->WarnMenu);
+    this->ui->actionRevert->setMenu(this->RevertSummaries);
+    this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
+    bool fr = (this->warnToolButtonMenu == nullptr || this->rtToolButtonMenu == nullptr);
+    // replace abstract QAction with QToolButton to be able to set PopupMode for nicer menu opening
+    if (this->warnToolButtonMenu == nullptr)
+        this->warnToolButtonMenu = new QToolButton(this);
+    if (this->rtToolButtonMenu == nullptr)
+        this->rtToolButtonMenu = new QToolButton(this);
+    if (this->rwToolButtonMenu == nullptr)
+        this->rwToolButtonMenu = new QToolButton(this);
+    this->warnToolButtonMenu->setDefaultAction(this->ui->actionWarn);
+    this->rtToolButtonMenu->setDefaultAction(this->ui->actionRevert);
+    this->rwToolButtonMenu->setDefaultAction(this->ui->actionRevert_and_warn);
+    this->warnToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
+    this->rtToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
+    this->rwToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
+    if (fr)
+    {
+        // insert them before their counterparts and then delete the counterpart
+        this->ui->mainToolBar->insertWidget(this->ui->actionRevert_and_warn, rwToolButtonMenu);
+        this->ui->mainToolBar->removeAction(this->ui->actionRevert_and_warn);
+        this->ui->mainToolBar->insertWidget(this->ui->actionRevert, rtToolButtonMenu);
+        this->ui->mainToolBar->removeAction(this->ui->actionRevert);
+        this->ui->mainToolBar->insertWidget(this->ui->actionWarn, warnToolButtonMenu);
+        this->ui->mainToolBar->removeAction(this->ui->actionWarn);
+    }
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -2179,11 +2208,10 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
                                            _l("main-no-reason"), &ok);
     if (!ok)
         return;
-    this->RestoreQuery = new ApiQuery();
+    this->RestoreQuery = new ApiQuery(ActionQuery, this->GetCurrentWikiSite());
     this->RestoreQuery->Parameters = "prop=revisions&revids=" +
             QString::number(this->CurrentEdit->RevID) + "&rvprop=" +
             QUrl::toPercentEncoding("ids|content");
-    this->RestoreQuery->SetAction(ActionQuery);
     this->RestoreQuery->Process();
     this->RestoreEdit = this->CurrentEdit;
     this->RestoreEdit_RevertReason = reason;
@@ -2227,8 +2255,8 @@ void MainWindow::TimerCheckTPOnTick()
         return;
     if (this->qTalkPage == nullptr)
     {
-        this->qTalkPage = new ApiQuery();
-        this->qTalkPage->SetAction(ActionQuery);
+        //! \todo Check this for every site we are logged to
+        this->qTalkPage = new ApiQuery(ActionQuery, this->GetCurrentWikiSite());
         this->qTalkPage->Parameters = "meta=userinfo&uiprop=hasmsg";
         this->qTalkPage->Process();
         return;
@@ -2418,4 +2446,9 @@ void Huggle::MainWindow::on_actionTag_2_triggered()
     this->fWikiPageTags = new WikiPageTagsForm(this);
     this->fWikiPageTags->show();
     this->fWikiPageTags->ChangePage(this->CurrentEdit->Page);
+}
+
+void Huggle::MainWindow::on_actionReload_menus_triggered()
+{
+    this->ReloadInterface();
 }

@@ -267,7 +267,6 @@ void ReportUser::Tick()
             /// \todo LOCALIZE ME
             this->ui->pushButton->setText("Writing");
             this->qHistory.Delete();
-            return;
         }
         return;
     }

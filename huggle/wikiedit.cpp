@@ -17,6 +17,7 @@
 #include "generic.hpp"
 #include "core.hpp"
 #include "querypool.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 #include "mediawiki.hpp"
 
@@ -421,7 +422,7 @@ void WikiEdit::PostProcess()
     this->qTalkpage->Process();
     if (!this->NewPage)
     {
-        this->qDifference = new ApiQuery(ActionQuery);
+        this->qDifference = new ApiQuery(ActionQuery, this->GetSite());
         if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
@@ -449,15 +450,25 @@ void WikiEdit::PostProcess()
     this->ProcessingRevs = true;
     if (this->User->IsIP())
         return;
-    this->qUser = new ApiQuery(ActionQuery);
+    this->qUser = new ApiQuery(ActionQuery, this->GetSite());
     this->qUser->Parameters = "list=users&usprop=blockinfo%7Cgroups%7Ceditcount%7Cregistration&ususers="
                                 + QUrl::toPercentEncoding(this->User->Username);
     this->qUser->Process();
 }
 
+WikiSite *WikiEdit::GetSite()
+{
+    if (this->Page == nullptr)
+    {
+        // this must never happen
+        throw new Huggle::Exception("NULL site", "WikiSite *WikiEdit::GetSite()");
+    }
+    return this->Page->Site;
+}
+
 QString WikiEdit::GetFullUrl()
 {
-    return Configuration::GetProjectScriptURL() + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
+    return Configuration::GetProjectScriptURL(this->GetSite()) + "index.php?title=" + QUrl::toPercentEncoding(this->Page->PageName) +
             "&diff=" + QString::number(this->RevID);
 }
 

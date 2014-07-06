@@ -35,6 +35,11 @@ WikiSite::WikiSite(const WikiSite &w)
     this->SupportHttps = w.SupportHttps;
     this->SupportOAuth = w.SupportOAuth;
     this->URL = w.URL;
+    this->IsRightToLeft = w.IsRightToLeft;
+    this->NamespaceList = w.NamespaceList;
+    this->Unknown = w.Unknown;
+    this->User = w.User;
+    this->Project = w.Project;
     this->WhiteList = w.WhiteList;
 }
 
@@ -46,6 +51,11 @@ WikiSite::WikiSite(WikiSite *w)
     this->OAuthURL = w->OAuthURL;
     this->WhiteList = w->WhiteList;
     this->URL = w->URL;
+    this->Project = w->Project;
+    this->IsRightToLeft = w->IsRightToLeft;
+    this->NamespaceList = w->NamespaceList;
+    this->Unknown = w->Unknown;
+    this->User = w->User;
     this->SupportOAuth = w->SupportOAuth;
     this->SupportHttps = w->SupportHttps;
     this->ScriptPath = w->ScriptPath;

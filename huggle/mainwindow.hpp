@@ -18,12 +18,13 @@
 #endif
 
 #include <QMainWindow>
-#include <QLabel>
-#include <QTimer>
 #include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "revertquery.hpp"
 #include "wlquery.hpp"
+class QLabel;
+class QTimer;
+class QToolButton;
 
 namespace Ui
 {
@@ -32,6 +33,8 @@ namespace Ui
 
 namespace Huggle
 {
+    class DeleteForm;
+    class BlockUser;
     class HuggleLog;
     class History;
     class HistoryForm;
@@ -42,10 +45,7 @@ namespace Huggle
     class AboutForm;
     class HuggleWeb;
     class SpeedyForm;
-    class WikiEdit;
     class RevertQuery;
-    class WlQuery;
-    class WikiPage;
     class EditQuery;
     class ProcessList;
     class WhitelistForm;
@@ -54,22 +54,22 @@ namespace Huggle
     class Preferences;
     class SessionForm;
     class IgnoreList;
-    class WaitingForm;
     class VandalNw;
     class Syslog;
-    class WikiUser;
     class ReloginForm;
     class ReportUser;
     class RequestProtect;
-    class DeleteForm;
-    class BlockUser;
     class ProtectPage;
-    class WarningList;
-    class WLQuery;
-    class WikiPageTagsForm;
     class UAAReport;
     class ScoreWordsDbForm;
-
+    class WaitingForm;
+    class WarningList;
+    class WLQuery;
+    class WikiEdit;
+    class WikiPage;
+    class WikiPageTagsForm;
+    class WikiSite;
+    class WikiUser;
     /*!
      * \brief The ShutdownOp enum contains a various parts of shutdown so that we can keep the track of what is going on
      */
@@ -135,6 +135,7 @@ namespace Huggle
             void DeletePage();
             void DisplayTalk();
             void WelcomeGood();
+            WikiSite *GetCurrentWikiSite();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();
             //! List of edits that are being saved
@@ -287,6 +288,8 @@ namespace Huggle
             void on_actionDryMode_triggered();
             void on_actionRevert_only_this_revision_triggered();
             void on_actionTag_2_triggered();
+            void on_actionReload_menus_triggered();
+
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -300,6 +303,7 @@ namespace Huggle
             //! Welcome user
             void Welcome();
             void ChangeProvider(HuggleFeed *provider);
+            void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
             void Render();
             //! Request a page deletion csd or afd and so on
@@ -323,6 +327,9 @@ namespace Huggle
             QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QToolButton *warnToolButtonMenu = nullptr;
+            QToolButton *rtToolButtonMenu = nullptr;
+            QToolButton *rwToolButtonMenu = nullptr;
             QDateTime EditLoad;
             QString RestoreEdit_RevertReason;
             ReloginForm *fRelogin = nullptr;

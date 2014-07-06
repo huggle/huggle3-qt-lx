@@ -104,10 +104,13 @@ void Collectable_SmartPtr<T>::FreeAcqRsrPtr()
     GC_DECREF(this->ptr);
 }
 
-template class Collectable_SmartPtr<Query>;
-template class Collectable_SmartPtr<RevertQuery>;
-template class Collectable_SmartPtr<EditQuery>;
-template class Collectable_SmartPtr<WikiEdit>;
-template class Collectable_SmartPtr<HistoryItem>;
-template class Collectable_SmartPtr<WLQuery>;
-template class Collectable_SmartPtr<ApiQuery>;
+namespace Huggle
+{
+    template class Collectable_SmartPtr<Query>;
+    template class Collectable_SmartPtr<RevertQuery>;
+    template class Collectable_SmartPtr<EditQuery>;
+    template class Collectable_SmartPtr<WikiEdit>;
+    template class Collectable_SmartPtr<HistoryItem>;
+    template class Collectable_SmartPtr<WLQuery>;
+    template class Collectable_SmartPtr<ApiQuery>;
+}

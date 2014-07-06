@@ -14,6 +14,21 @@ using namespace Huggle;
 
 ProjectConfiguration::ProjectConfiguration()
 {
+    // these headers are parsed by project config so don't change them
+    // no matter if there is a nice function to retrieve them
+    this->Months << "January"
+                 << "February"
+                 << "March"
+                 << "April"
+                 << "May"
+                 << "June"
+                 << "July"
+                 << "August"
+                 << "September"
+                 << "October"
+                 << "November"
+                 << "December";
+    // defaults
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
     this->DeletionSummaries << "Deleted page using Huggle";

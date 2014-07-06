@@ -320,12 +320,20 @@ void WikiUser::ParseTP(QDate bt)
 QString WikiUser::GetTalk()
 {
     // get a usertalk prefix for this site
-    WikiPageNS *ns = this->Site->RetrieveNSByCanonicalName("User talk");
+    WikiPageNS *ns = this->GetSite()->RetrieveNSByCanonicalName("User talk");
     QString prefix = ns->GetName();
     if (!prefix.size())
         prefix = "User talk";
     prefix += ":";
     return prefix + this->Username;
+}
+
+WikiSite *WikiUser::GetSite()
+{
+    if (this->Site != nullptr)
+        return this->Site;
+
+    return Configuration::HuggleConfiguration->Project;
 }
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()

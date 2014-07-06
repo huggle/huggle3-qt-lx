@@ -139,22 +139,15 @@ void HuggleFeedProviderWiki::Process(QString data)
         CurrentNode--;
         // get a time of rc change
         QDomElement item = l.at(CurrentNode).toElement();
-        if (item.nodeName() != "rc")
-        {
-            CurrentNode--;
-            continue;
-        }
         if (!item.attributes().contains("timestamp"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
-            CurrentNode--;
             continue;
         }
         QDateTime time = MediaWiki::FromMWTimestamp(item.attribute("timestamp"));
         if (time < t)
         {
             // this record is older than latest parsed record, so we don't want to parse it
-            CurrentNode--;
             continue;
         } else
         {
@@ -164,13 +157,11 @@ void HuggleFeedProviderWiki::Process(QString data)
         if (!item.attributes().contains("type"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing type attribute: " + item.text());
-            CurrentNode--;
             continue;
         }
         if (!item.attributes().contains("title"))
         {
             Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing title attribute: " + item.text());
-            CurrentNode--;
             continue;
         }
         QString type = item.attribute("type");
@@ -182,7 +173,6 @@ void HuggleFeedProviderWiki::Process(QString data)
         {
             ProcessLog(item);
         }
-        CurrentNode--;
     }
     if (Changed)
     {
@@ -210,10 +200,9 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
     if (item.attributes().contains("revid"))
     {
         edit->RevID = QString(item.attribute("revid")).toInt();
-        if (edit->RevID == 0)
-        {
+        if (!edit->RevID)
             edit->RevID = WIKI_UNKNOWN_REVID;
-        }
+
     }
     if (item.attributes().contains("minor"))
         edit->Minor = true;

@@ -15,6 +15,7 @@
 #include "syslog.hpp"
 #include "configuration.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiedit.hpp"
 #include "resources.hpp"
 #include "ui_huggleweb.h"
@@ -44,7 +45,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
         throw new Huggle::Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
     }
     this->ui->webView->history()->clear();
-    this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
+    this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
     this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
@@ -101,7 +102,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->ui->webView->history()->clear();
     if (edit == nullptr)
-        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+        throw new Huggle::Exception("The edit was NULL in HuggleWeb::DisplayDiff(*edit)");
     if (edit->Page == nullptr)
         throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
     if (edit->NewPage && !edit->Page->Contents.size())
@@ -118,7 +119,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         this->ui->webView->setHtml(_l("browser-load"));
-        this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
+        this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
         return;
     }

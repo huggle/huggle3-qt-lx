@@ -45,11 +45,10 @@ void ProtectPage::setPageToProtect(WikiPage *Page)
 
 void ProtectPage::getTokenToProtect()
 {
-    this->qToken = new ApiQuery();
-    this->qToken->SetAction(ActionQuery);
+    this->qToken = new ApiQuery(ActionQuery, this->PageToProtect->Site);
     this->qToken->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
     this->qToken->Target = _l("protection-ft");
-    QueryPool::HugglePool->AppendQuery(qToken);
+    QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
     this->tt = new QTimer(this);
     connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
@@ -99,8 +98,7 @@ void ProtectPage::checkTokenToProtect()
     this->PtQueryPhase++;
     this->qToken.Delete();
     Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);
-    this->qProtection = new ApiQuery();
-    this->qProtection->SetAction(ActionProtect);
+    this->qProtection = new ApiQuery(ActionProtect, this->PageToProtect->Site);
     QString protection = "edit=sysop|move=sysop";
     switch (this->ui->comboBox_3->currentIndex())
     {

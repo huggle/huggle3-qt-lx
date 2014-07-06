@@ -85,25 +85,6 @@ Configuration::Configuration()
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
     this->MakeShortcut("main-good", "shortcut-good", "G");
-
-    // these headers are parsed by project config so don't change them
-    // no matter if there is a nice function to retrieve them
-
-    //! \todo move to project cf so that we can use per project only
-
-    // THIS MUST BE HARDCODED SO KEEP IT
-    this->Months << "January"
-                 << "February"
-                 << "March"
-                 << "April"
-                 << "May"
-                 << "June"
-                 << "July"
-                 << "August"
-                 << "September"
-                 << "October"
-                 << "November"
-                 << "December";
 }
 
 Configuration::~Configuration()
@@ -228,12 +209,13 @@ QString Configuration::GetLocalizationDataPath()
     return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization" + QDir::separator();
 }
 
-QString Configuration::GetURLProtocolPrefix()
+QString Configuration::GetURLProtocolPrefix(WikiSite *s)
 {
-    if (!Configuration::HuggleConfiguration->SystemConfig_UsingSSL)
-    {
+    if (s && !s->SupportHttps)
         return "http://";
-    }
+    if (!Configuration::HuggleConfiguration->SystemConfig_UsingSSL)
+        return "http://";
+
     return "https://";
 }
 
@@ -853,7 +835,7 @@ bool Configuration::ParseProjectConfig(QString config)
                                        " months, which is weird and I will not use them");
     } else
     {
-        this->Months.clear();
+        this->ProjectConfig->Months.clear();
         int i = 0;
         while (i < 12)
         {
@@ -866,7 +848,7 @@ bool Configuration::ParseProjectConfig(QString config)
             {
                 month_ = month_.mid(0, month_.length() - 1);
             }
-            this->Months.append(month_);
+            this->ProjectConfig->Months.append(month_);
             i++;
         }
     }

@@ -78,8 +78,7 @@ void HistoryForm::Read()
 {
     //this->ui->pushButton->setText(Localizations::HuggleLocalizations->nullptrze("historyform-retrieving-history"));
     this->ui->pushButton->hide();
-    this->query = new ApiQuery();
-    this->query->SetAction(ActionQuery);
+    this->query = new ApiQuery(ActionQuery, this->CurrentEdit->GetSite());
     this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
             QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig->HistoryMax) +
             "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
@@ -100,10 +99,7 @@ void HistoryForm::Update(WikiEdit *edit)
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
     this->Clear();
-    if (this->RetrievedEdit != nullptr)
-    {
-        this->RetrievedEdit = nullptr;
-    }
+    this->RetrievedEdit.Delete();
     this->RetrievingEdit = false;
     if (this->t1 != nullptr)
     {

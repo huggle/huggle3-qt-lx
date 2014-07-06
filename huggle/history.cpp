@@ -118,7 +118,7 @@ void History::Undo(HistoryItem *hist)
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit.GetPtr());
+            QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryRollback:
@@ -127,7 +127,7 @@ void History::Undo(HistoryItem *hist)
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents(hist->Target);
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit.GetPtr());
+            QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryUnknown:

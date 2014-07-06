@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -103,6 +103,7 @@
      <addaction name="actionEnforce_sysop_rights"/>
      <addaction name="actionRelog"/>
      <addaction name="actionDryMode"/>
+     <addaction name="actionReload_menus"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -954,6 +955,11 @@
   <action name="actionRevert_only_this_revision">
    <property name="text">
     <string>Revert only this revision</string>
+   </property>
+  </action>
+  <action name="actionReload_menus">
+   <property name="text">
+    <string>Reload menus</string>
    </property>
   </action>
  </widget>

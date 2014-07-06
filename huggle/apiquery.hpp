@@ -27,6 +27,7 @@
 namespace Huggle
 {
     class RevertQuery;
+    class WikiSite;
 
     enum Action
     {
@@ -61,7 +62,8 @@ namespace Huggle
         public:
             //! Creates a new instance of this class and set the defaults
             explicit ApiQuery();
-            explicit ApiQuery(Action a);
+            explicit ApiQuery(Action action);
+            explicit ApiQuery(Action action, WikiSite *site);
             //! Run
             void Process();
             //! Change the action type
@@ -70,6 +72,7 @@ namespace Huggle
             void SetAction(const QString action);
             //! Terminate the query
             void Kill();
+            WikiSite *GetSite();
             //! Get a query target as a string
             QString QueryTargetToString();
             //! Returns a type of query as a string
@@ -81,6 +84,7 @@ namespace Huggle
             bool UsingPOST = false;
             //! This is a requested format in which the result should be written in
             Format RequestFormat;
+            WikiSite *Site = nullptr;
             //! This is an url of api request, you probably don't want to change it unless
             //! you want to construct whole api request yourself
             QString URL = "";

@@ -45,9 +45,11 @@ namespace Huggle
 
     class Query;
     class ApiQuery;
+    class MainWindow;
     class WikiPage;
     class WikiEdit;
     class WikiUser;
+    class WikiSite;
 
     //! Edits are post processed in this thread
     class ProcessorThread :  public QThread
@@ -78,15 +80,13 @@ namespace Huggle
             //! Creates a new empty wiki edit
             WikiEdit();
             ~WikiEdit();
-            //! This function is called by core
-            bool FinalizePostProcessing();
             //! This function is called by internals of huggle
             void PostProcess();
+            WikiSite *GetSite();
             //! Return a full url to edit
             QString GetFullUrl();
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
-            void ProcessWords();
             void RemoveFromHistoryChain();
             //! Page that was changed by edit
             WikiPage *Page;
@@ -147,6 +147,11 @@ namespace Huggle
             //! This variable is used by worker thread and needs to be public so that it is working
             bool ProcessedByWorkerThread;
         private:
+            //! This function is called by core
+            bool FinalizePostProcessing();
+            friend class ProcessorThread;
+            friend class MainWindow;
+            void ProcessWords();
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;

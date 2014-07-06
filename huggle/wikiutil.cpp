@@ -41,7 +41,7 @@ QString WikiUtil::MonthText(int n)
         throw new Huggle::Exception("Month must be between 1 and 12");
     }
     n--;
-    return Configuration::HuggleConfiguration->Months.at(n);
+    return Configuration::HuggleConfiguration->ProjectConfig->Months.at(n);
 }
 
 Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)

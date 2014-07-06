@@ -17,14 +17,14 @@
 #endif
 
 #include <QString>
-#include "collectable_smartptr.hpp"
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
+#include "query.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
     class WikiUser;
-    class Query;
 
     enum MessageStatus
     {
@@ -69,7 +69,7 @@ namespace Huggle
             //! Set this to false to remove huggle suffix from summary
             bool Suffix;
             //! User to deliver a message to
-            WikiUser *user;
+            WikiUser *User;
             //! This is a time for base revision which is used to resolve edit conflicts of edit
             QString BaseTimestamp;
             //! Timestamp when you started editing the page

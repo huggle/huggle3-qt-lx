@@ -56,6 +56,7 @@ namespace Huggle
         public:
             ProjectConfiguration();
             void RequestLogin();
+            QStringList Months;
             //! Set to false when you are logged out for some reason
             bool            IsLoggedIn = false;
             bool            RequestingLogin = false;

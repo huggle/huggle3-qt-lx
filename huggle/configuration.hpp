@@ -164,7 +164,7 @@ namespace Huggle
             //! Extension path (typically HR/extensions) where .py and .so files are in
             static QString GetExtensionsRootPath();
             //! Return a prefix for url
-            static QString GetURLProtocolPrefix();
+            static QString GetURLProtocolPrefix(WikiSite *s = nullptr);
             //! Returns full configuration path suffixed with slash
             static QString GetConfigurationPath();
             static QString ReplaceSpecialUserPage(QString PageName);
@@ -404,7 +404,6 @@ namespace Huggle
 
             //! Warn you in case you want to revert a user page
             bool        WarnUserSpaceRoll = true;
-            QStringList Months;
             //! Send a message to user on good edit
             bool        WelcomeEmpty = true;
             //! This is changed to true in case that someone send a message to user
