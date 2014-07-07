@@ -18,6 +18,7 @@
 #include "localization.hpp"
 #include "warnings.hpp"
 #include "ui_warninglist.h"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;
@@ -54,7 +55,12 @@ WarningList::~WarningList()
 
 void WarningList::on_pushButton_clicked()
 {
-    QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText());
+    if (this->wikiEdit == nullptr)
+    {
+        // ERROR :'(
+        throw new Huggle::Exception("invalid null edit", "void WarningList::on_pushButton_clicked()");
+    }
+    QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText(), this->wikiEdit->GetSite()->GetProjectConfig());
     if (wt.isEmpty())
     {
         QMessageBox mb;

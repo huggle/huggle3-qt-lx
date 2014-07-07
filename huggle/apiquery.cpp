@@ -47,14 +47,6 @@ void ApiQuery::ConstructUrl()
     this->URL += this->GetAssertPartSuffix();
 }
 
-WikiSite *ApiQuery::GetSite()
-{
-    if (this->Site != nullptr)
-        return this->Site;
-
-    return Configuration::HuggleConfiguration->Project;
-}
-
 QString ApiQuery::ConstructParameterLessUrl()
 {
     QString url;

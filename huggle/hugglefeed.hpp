@@ -18,6 +18,8 @@
 #endif
 
 #include <QDateTime>
+#include <QList>
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
@@ -25,13 +27,14 @@ namespace Huggle
     class WikiEdit;
 
     //! Feed provider stub class every provider must be derived from this one
-    class HuggleFeed
+    class HuggleFeed : public MediaWikiObject
     {
         public:
             //! Pointer to primary feed provider
             static HuggleFeed *PrimaryFeedProvider;
             //! Pointer to secondary feed provider
             static HuggleFeed *SecondaryFeedProvider;
+            static QList<HuggleFeed*> Providers;
 
             HuggleFeed();
             virtual ~HuggleFeed();
@@ -50,6 +53,9 @@ namespace Huggle
             //! Check if feed is containing some edits in buffer
             virtual bool ContainsEdit() { return false; }
             virtual bool IsPaused() { return false; }
+            //! If provider is not to be automatically inserted to a list of providers
+            //! Builtin providers have hardcoded menus, so they are ignored.
+            virtual bool IsBuiltin() { return true; }
             //! Returns true in case that a provider is stopped and can be safely deleted
 
             //! This is useful in case we are running some background threads and we need to

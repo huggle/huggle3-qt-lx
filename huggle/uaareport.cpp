@@ -12,15 +12,17 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <QUrl>
-#include "wikiuser.hpp"
-#include "wikipage.hpp"
-#include "wikiutil.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "generic.hpp"
 #include "syslog.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "ui_uaareport.h"
+#include "wikiuser.hpp"
+#include "wikisite.hpp"
+#include "wikipage.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 
@@ -31,9 +33,7 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
     this->ContentsOfUAA = "";
     this->Timer = new QTimer(this);
     connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->qUAApage = nullptr;
     this->page = nullptr;
-    this->qCheckUAAUser = nullptr;
     this->TimerCheck = new QTimer(this);
     connect(this->TimerCheck, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
     this->dr = "";
@@ -49,8 +49,6 @@ UAAReport::~UAAReport()
     delete this->ui;
     delete this->Timer;
     delete this->page;
-    GC_DECREF(this->qCheckUAAUser);
-    GC_DECREF(this->qUAApage);
 }
 
 void UAAReport::setUserForUAA(WikiUser *user)
@@ -61,11 +59,13 @@ void UAAReport::setUserForUAA(WikiUser *user)
 
 void UAAReport::getPageContents()
 {
+    if (this->User == nullptr)
+        throw new Huggle::NullPointerException("this->User", "void UAAReport::getPageContents()");
     if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
-    this->qUAApage = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->UAAPath);
+    this->qUAApage = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath);
+    this->qUAApage->Site = this->User->GetSite();
     this->qUAApage->Target = _l("uaa-g1");
-    this->qUAApage->IncRef();
     QueryPool::HugglePool->AppendQuery(this->qUAApage);
     this->qUAApage->Process();
     this->Timer->start(200);
@@ -73,11 +73,15 @@ void UAAReport::getPageContents()
 
 void UAAReport::onTick()
 {
+    if (this->User == nullptr)
+    {
+        this->Timer->stop();
+        throw new Huggle::NullPointerException("this->User", "void UAAReport::onTick()");
+    }
     if (this->qUAApage == nullptr || !this->qUAApage->IsProcessed())
         return;
     QDomDocument r;
     r.setContent(this->qUAApage->Result->Data);
-    this->qUAApage->DecRef();
     this->qUAApage = nullptr;
     QDomNodeList l = r.elementsByTagName("rev");
     if (l.count() == 0)
@@ -98,17 +102,18 @@ void UAAReport::onTick()
     /// \todo Check if user isn't already reported
     Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
     /// \todo Insert this to project config so that each project can have their own system here
-    QString uaasum = "Reporting " + this->User->Username + " to UAA " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
+    QString uaasum = Configuration::HuggleConfiguration->GenerateSuffix(QString("Reporting ") + this->User->Username + " to UAA",
+                                                                        this->User->GetSite()->GetProjectConfig());
     this->whatToReport();
     this->insertUsername();
-    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, dr, uaasum, true);
+    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, this->dr, uaasum, true);
     Huggle::Syslog::HuggleLogs->Log(_l("uaa-reporting", this->User->Username));
     this->ui->pushButton->setText(_l("uaa-reported"));
 
 }
 void UAAReport::insertUsername()
 {
-    this->ta = Configuration::HuggleConfiguration->ProjectConfig->UAATemplate;
+    this->ta = this->User->GetSite()->GetProjectConfig()->UAATemplate;
     this->ta.replace("$1", this->User->Username);
     this->ta.replace("$2", this->UAAReportReason + this->OptionalReason);
     this->ContentsOfUAA = this->ta;
@@ -178,9 +183,8 @@ void UAAReport::on_pushButton_2_clicked()
 void UAAReport::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qCheckUAAUser = new ApiQuery(ActionQuery);
-    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->UAAPath);
-    this->qCheckUAAUser->IncRef();
+    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath);
+    this->qCheckUAAUser->Site = this->User->GetSite();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
     this->qCheckUAAUser->Process();
     this->TimerCheck->start(HUGGLE_TIMER);
@@ -188,7 +192,7 @@ void UAAReport::on_pushButton_3_clicked()
 
 bool UAAReport::checkIfReported()
 {
-    return !this->dr.contains(this->User->Username);
+    return (!this->dr.contains(this->User->Username));
 }
 
 void UAAReport::onStartOfSearch()
@@ -198,9 +202,8 @@ void UAAReport::onStartOfSearch()
     QDomDocument tj;
     tj.setContent(this->qCheckUAAUser->Result->Data);
     QDomNodeList chkusr = tj.elementsByTagName("rev");
+    this->qCheckUAAUser.Delete();
     this->TimerCheck->stop();
-    this->qCheckUAAUser->DecRef();
-    this->qCheckUAAUser = nullptr;
     QMessageBox mb;
     if (chkusr.count() == 0)
     {

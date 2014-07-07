@@ -12,6 +12,7 @@
 #include <QUrl>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "wikisite.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()
@@ -34,18 +35,16 @@ WikiPage::WikiPage(const QString &name)
     this->NS = this->Site->RetrieveNSFromTitle(this->PageName);
 }
 
-WikiPage::WikiPage(WikiPage *page)
+WikiPage::WikiPage(WikiPage *page) : MediaWikiObject(page)
 {
     this->PageName = page->PageName;
-    this->Site = page->Site;
     this->Contents = page->Contents;
     this->NS = page->NS;
 }
 
-WikiPage::WikiPage(const WikiPage &page)
+WikiPage::WikiPage(const WikiPage &page) : MediaWikiObject(page)
 {
     this->PageName = page.PageName;
-    this->Site = page.Site;
     this->Contents = page.Contents;
     this->NS = page.NS;
 }
@@ -92,3 +91,15 @@ QString WikiPage::EncodedName()
 {
     return QUrl::toPercentEncoding(this->PageName);
 }
+
+bool WikiPage::IsTalk()
+{
+    return this->NS->IsTalkPage();
+}
+
+bool WikiPage::IsUserpage()
+{
+    return this->GetNS()->GetCanonicalName() == "User";
+}
+
+

@@ -39,6 +39,15 @@ RevertQuery::RevertQuery(WikiEdit *Edit)
     this->SR_RevID = WIKI_UNKNOWN_REVID;
 }
 
+RevertQuery::RevertQuery(WikiEdit *Edit, WikiSite *site)
+{
+    this->Site = site;
+    this->Type = QueryRevert;
+    this->edit = Edit;
+    this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
+    this->SR_RevID = WIKI_UNKNOWN_REVID;
+}
+
 RevertQuery::~RevertQuery()
 {
     if (this->timer != nullptr)
@@ -256,8 +265,7 @@ void RevertQuery::Preflight()
         }
     }
     // now we need to retrieve the information about current status of page
-    this->qPreflight = new ApiQuery();
-    this->qPreflight->SetAction(ActionQuery);
+    this->qPreflight = new ApiQuery(ActionQuery, this->GetSite());
     this->qPreflight->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment")
                                  + "&rvlimit=20&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
     this->qPreflight->Process();
@@ -407,6 +415,7 @@ bool RevertQuery::CheckRevert()
     {
         HistoryItem *item = new HistoryItem();
         this->HI = item;
+        this->HI->Site = this->GetSite();
         this->Result = new QueryResult();
         this->Result->Data = this->qRevert->Result->Data;
         item->Target = this->qRevert->Target;
@@ -416,7 +425,7 @@ bool RevertQuery::CheckRevert()
             MainWindow::HuggleMain->_History->Prepend(item);
     }
     this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
-    this->qRevert = nullptr;
+    this->qRevert.Delete();
     return true;
 }
 
@@ -665,8 +674,7 @@ void RevertQuery::Rollback()
         this->ProcessFailure();
         return;
     }
-    this->qRevert = new ApiQuery();
-    this->qRevert->SetAction(ActionRollback);
+    this->qRevert = new ApiQuery(ActionRollback, this->GetSite());
     QString token = this->Token;
     if (token.endsWith("+\\"))
     {
@@ -694,8 +702,7 @@ QString RevertQuery::QueryTargetToString()
 void RevertQuery::Revert()
 {
     // Get a list of edits made to this page
-    this->qHistoryInfo = new ApiQuery();
-    this->qHistoryInfo->SetAction(ActionQuery);
+    this->qHistoryInfo = new ApiQuery(ActionQuery, this->GetSite());
     this->qHistoryInfo->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|content|size|sha1|comment")
                                     + "&rvlimit=20&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
     this->qHistoryInfo->Process();

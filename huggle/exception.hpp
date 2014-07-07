@@ -80,6 +80,12 @@ namespace Huggle
 #endif
             bool _IsRecoverable;
     };
+
+    class NullPointerException : public Exception
+    {
+        public:
+            NullPointerException(QString name, QString source);
+    };
 }
 
 #endif // EXCEPTION_H

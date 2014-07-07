@@ -20,6 +20,7 @@
 #include <QString>
 #include <QTimer>
 #include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
 
 namespace Ui
 {
@@ -71,13 +72,13 @@ namespace Huggle
             //! Pointer to WikiUser
             WikiPage *page;
             //! Pointer to get UAA contents (we don't want replace the page with our content, do we?)
-            ApiQuery *qUAApage;
+            Collectable_SmartPtr<ApiQuery> qUAApage;
             //! Timer pointer that allows us to do magical things
             QTimer *Timer;
             //! Timer that does other magical things
             QTimer *TimerCheck;
             //! Pointer that also gets UAA contents; this time it is used for checking if a user is reported or not
-            ApiQuery *qCheckUAAUser;
+            Collectable_SmartPtr<ApiQuery> qCheckUAAUser;
     };
 }
 

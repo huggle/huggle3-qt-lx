@@ -10,31 +10,32 @@
 
 #include "huggleparser.hpp"
 #include "configuration.hpp"
+#include "projectconfiguration.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
 
-QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key)
+QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
     int id=0;
-    while (id<Configuration::HuggleConfiguration->ProjectConfig->RevertSummaries.count())
+    while (id < project_conf->RevertSummaries.count())
     {
-        QString line = Configuration::HuggleConfiguration->ProjectConfig->RevertSummaries.at(id);
+        QString line = project_conf->RevertSummaries.at(id);
         if (line.startsWith(key + ";"))
         {
             return HuggleParser::GetValueFromKey(line);
         }
         id++;
     }
-    return Configuration::HuggleConfiguration->ProjectConfig->DefaultSummary;
+    return project_conf->DefaultSummary;
 }
 
-QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key)
+QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
     int id=0;
-    while (id<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
+    while (id<project_conf->WarningTypes.count())
     {
-        QString line = Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(id);
+        QString line = project_conf->WarningTypes.at(id);
         if (line.startsWith(key) + ";")
         {
             return HuggleParser::GetValueFromKey(line);
@@ -44,12 +45,12 @@ QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key)
     return key;
 }
 
-QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id)
+QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf)
 {
     int i=0;
-    while (i<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
+    while (i<project_conf->WarningTypes.count())
     {
-        QString line = Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(i);
+        QString line = project_conf->WarningTypes.at(i);
         if (line.endsWith(id) || line.endsWith(id + ","))
         {
             return HuggleParser::GetKeyFromValue(line);

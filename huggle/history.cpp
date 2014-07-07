@@ -117,6 +117,7 @@ void History::Undo(HistoryItem *hist)
             }
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
+            this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);
@@ -126,6 +127,7 @@ void History::Undo(HistoryItem *hist)
             // we need to revert both warning of user as well as page we rolled back
             this->RevertingItem = hist;
             this->qEdit = Generic::RetrieveWikiPageContents(hist->Target);
+            this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);

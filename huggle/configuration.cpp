@@ -179,11 +179,11 @@ QString Configuration::GetSafeUserString(QString key_, QString default_value)
     return default_value;
 }
 
-QString Configuration::GenerateSuffix(QString text)
+QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
 {
-    if (!text.endsWith(this->ProjectConfig->EditSuffixOfHuggle))
+    if (!text.endsWith(conf->EditSuffixOfHuggle))
     {
-        text = text + " " + this->ProjectConfig->EditSuffixOfHuggle;
+        text = text + " " + conf->EditSuffixOfHuggle;
     }
     return text;
 }
@@ -285,6 +285,11 @@ void Configuration::NormalizeConf()
         this->SystemConfig_QueueSize = 10;
     if (this->SystemConfig_HistorySize < 2)
         this->SystemConfig_HistorySize = 2;
+}
+
+QString Configuration::GenerateSuffix(QString text)
+{
+    return this->GenerateSuffix(text, this->ProjectConfig);
 }
 
 bool Configuration::SafeBool(QString value, bool defaultvalue)

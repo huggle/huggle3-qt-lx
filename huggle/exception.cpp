@@ -138,3 +138,10 @@ void Exception::ExitBreakpad()
     delete Exception::GoogleBP_handler;
 #endif
 }
+
+
+NullPointerException::NullPointerException(QString name, QString source) : Exception("", source)
+{
+    this->ErrorCode = 1;
+    this->Message = QString("Null pointer exception. The variable you referenced (") + name + ") had null value.";
+}

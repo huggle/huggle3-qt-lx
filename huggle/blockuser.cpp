@@ -43,6 +43,7 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 
 BlockUser::~BlockUser()
 {
+    delete this->user;
     delete this->t0;
     delete this->ui;
 }
@@ -53,7 +54,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
     {
         throw new Huggle::Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
     }
-    this->user = User;
+    this->user = new WikiUser(User);
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);

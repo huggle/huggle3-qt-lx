@@ -23,7 +23,7 @@ HistoryItem::HistoryItem()
     this->Result = "Unknown??";
 }
 
-HistoryItem::HistoryItem(const HistoryItem &item)
+HistoryItem::HistoryItem(const HistoryItem &item) : MediaWikiObject(item)
 {
     this->ID = item.ID;
     this->Target = item.Target;
@@ -35,7 +35,7 @@ HistoryItem::HistoryItem(const HistoryItem &item)
     this->IsRevertable = item.IsRevertable;
 }
 
-HistoryItem::HistoryItem(HistoryItem *item)
+HistoryItem::HistoryItem(HistoryItem *item) : MediaWikiObject(item)
 {
     if (item == nullptr)
     {

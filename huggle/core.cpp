@@ -27,6 +27,7 @@
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;

@@ -12,13 +12,14 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
-#include "ui_vandalnw.h"
 #include "hugglequeue.hpp"
 #include "mainwindow.hpp"
 #include "networkirc.hpp"
 #include "syslog.hpp"
+#include "ui_vandalnw.h"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;

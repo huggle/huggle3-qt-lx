@@ -13,6 +13,7 @@
 #include "mainwindow.hpp"
 #include "ui_hugglequeueitemlabel.h"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;

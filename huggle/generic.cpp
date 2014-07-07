@@ -16,6 +16,7 @@
 #include "exception.hpp"
 #include "localization.hpp"
 #include "wikiedit.hpp"
+#include "wikipage.hpp"
 
 using namespace Huggle;
 
@@ -32,9 +33,15 @@ bool Generic::ReportPreFlightCheck()
 
 ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
 {
-    ApiQuery *query = new ApiQuery(ActionQuery);
-    query->Target = "Retrieving contents of " + page;
-    query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options_ + "&titles=" + QUrl::toPercentEncoding(page);
+    WikiPage pt(page);
+    return RetrieveWikiPageContents(&pt, parse);
+}
+
+ApiQuery *Generic::RetrieveWikiPageContents(WikiPage *page, bool parse)
+{
+    ApiQuery *query = new ApiQuery(ActionQuery, page->Site);
+    query->Target = "Retrieving contents of " + page->PageName;
+    query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options_ + "&titles=" + QUrl::toPercentEncoding(page->PageName);
     if (parse)
         query->Parameters += "&rvparse";
     return query;

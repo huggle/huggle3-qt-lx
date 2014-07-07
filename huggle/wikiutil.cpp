@@ -53,7 +53,7 @@ Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString sum
     if (_e->Page == nullptr)
         throw new Huggle::Exception("Object page was NULL");
 
-    Collectable_SmartPtr<RevertQuery> query = new RevertQuery(_e);
+    Collectable_SmartPtr<RevertQuery> query = new RevertQuery(_e, _e->GetSite());
     if (summary.length())
         query->Summary = summary;
     query->MinorEdit = minor;
@@ -131,7 +131,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
 {
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     summary = Configuration::HuggleConfiguration->GenerateSuffix(summary);
-    eq->Page = page;
+    eq->Page = new WikiPage(page);
     eq->text = text;
     eq->Summary = summary;
     eq->Minor = minor;
@@ -144,13 +144,24 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
 
 Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
 {
+    WikiPage tp(page);
+    return EditPage(&tp, text, summary, minor, BaseTimestamp, section);
+}
+
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
+{
+    if (page == nullptr)
+    {
+        throw Huggle::Exception("Invalid page (NULL)", "EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString"\
+                                " summary, bool minor, QString BaseTimestamp)");
+    }
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
     {
         summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
     }
     eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
-    eq->Page = page;
+    eq->Page = new WikiPage(page);
     eq->BaseTimestamp = BaseTimestamp;
     QueryPool::HugglePool->PendingMods.append(eq);
     eq->text = text;
@@ -159,16 +170,6 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, Q
     eq->Minor = minor;
     eq->Process();
     return eq;
-}
-
-Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp)
-{
-    if (page == nullptr)
-    {
-        throw Huggle::Exception("Invalid page (NULL)", "EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString"\
-                                " summary, bool minor, QString BaseTimestamp)");
-    }
-    return EditPage(page->PageName, text, summary, minor, BaseTimestamp);
 }
 
 

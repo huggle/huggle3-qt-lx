@@ -132,8 +132,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         xx++;
     }
     Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
-                                        (Configuration::HuggleConfiguration->ProjectConfig->TaggingSummary),
-                                      true, t_);
+                                        (Configuration::HuggleConfiguration->ProjectConfig->TaggingSummary), true, t_);
     e->FailureCallback = (Callback)Fail;
     e->callback = (Callback)Finish;
     e->CallbackResult = (void*)form;
@@ -147,7 +146,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
     // first get the contents of the page
-    ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page->PageName, false);
+    ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
     retrieve->callback = (Callback)Huggle::WikiPageTagsForm_FinishRead;

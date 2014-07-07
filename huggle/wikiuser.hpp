@@ -21,6 +21,7 @@
 #include <QDateTime>
 #include <QString>
 #include <QRegExp>
+#include "mediawikiobject.hpp"
 
 class QMutex;
 
@@ -29,7 +30,7 @@ namespace Huggle
     class WikiSite;
 
     //! User
-    class WikiUser
+    class WikiUser : public MediaWikiObject
     {
         public:
             //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
@@ -101,7 +102,6 @@ namespace Huggle
             void Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
-            WikiSite *GetSite();
             bool TalkPage_WasRetrieved();
             bool TalkPage_ContainsSharedIPTemplate();
             //! Returns true if this user is wl
@@ -139,7 +139,6 @@ namespace Huggle
             QString RegistrationDate;
             //! Groups that this user is in, by default it's empty
             QStringList Groups;
-            WikiSite *Site = nullptr;
 
     private:
             //! Matches only IPv4

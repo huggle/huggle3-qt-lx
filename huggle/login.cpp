@@ -20,6 +20,7 @@
 #include "mediawiki.hpp"
 #include "localization.hpp"
 #include "loadingform.hpp"
+#include "wikisite.hpp"
 #include "wikiutil.hpp"
 #include "ui_login.h"
 #include "updateform.hpp"

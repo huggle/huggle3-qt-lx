@@ -18,6 +18,7 @@
 
 #include <QString>
 #include "collectable.hpp"
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
@@ -31,7 +32,7 @@ namespace Huggle
     };
 
     //! History consist of these items
-    class HistoryItem : public Collectable
+    class HistoryItem : public Collectable, public MediaWikiObject
     {
         public:
             static QString TypeToString(HistoryType type);

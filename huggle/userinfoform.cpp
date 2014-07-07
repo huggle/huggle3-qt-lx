@@ -65,10 +65,9 @@ UserinfoForm::~UserinfoForm()
 void UserinfoForm::ChangeUser(WikiUser *user)
 {
     if (user == nullptr)
-        throw new Exception("WikiUser *user can't be NULL in this fc", "void UserinfoForm::ChangeUser(WikiUser *user)");
+        throw new Huggle::NullPointerException("user", "void UserinfoForm::ChangeUser(WikiUser *user)");
     if (this->User != nullptr)
         delete this->User;
-
     // we create a copy of this wiki user so that we ensure it doesn't get deleted meanwhile
     this->User = new WikiUser(user);
     this->ui->pushButton->show();
@@ -91,8 +90,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 
 void UserinfoForm::Read()
 {
-    //! \todo Retrieve for a wiki this user is registered on
-    this->qContributions = new ApiQuery(ActionQuery);
+    this->qContributions = new ApiQuery(ActionQuery, this->User->GetSite());
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
                                        "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";
@@ -114,7 +112,7 @@ void UserinfoForm::OnTick()
         if (this->edit->IsPostProcessed())
         {
             MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
-            this->edit = nullptr;
+            this->edit.Delete();
         }
         return;
     }
@@ -128,8 +126,8 @@ void UserinfoForm::OnTick()
         if (this->qContributions->Result->IsFailed())
         {
             Syslog::HuggleLogs->ErrorLog(_l("user-history-fail", this->User->Username));
-            this->qContributions = nullptr;
             this->timer->stop();
+            this->qContributions.Delete();
             return;
         }
         QDomDocument d;
@@ -228,9 +226,10 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     this->edit = new WikiEdit();
-    this->edit->User = new WikiUser(this->User->Username);
+    this->edit->User = new WikiUser(this->User);
     this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
     this->edit->RevID = revid;
+    this->edit->Page->Site = this->User->GetSite();
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(HUGGLE_TIMER);

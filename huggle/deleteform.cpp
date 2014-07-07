@@ -67,14 +67,14 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
 
 void DeleteForm::GetToken()
 {
-    this->qToken = new ApiQuery(ActionQuery);
+    this->qToken = new ApiQuery(ActionQuery, this->page->Site);
     this->qToken->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->page->PageName);
     this->qToken->Target = _l("delete-token01", this->page->PageName);
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
     if (this->TalkPage != nullptr)
     {
-        this->qTokenOfTalkPage = new ApiQuery(ActionQuery);
+        this->qTokenOfTalkPage = new ApiQuery(ActionQuery, this->page->Site);
         this->qTokenOfTalkPage->Parameters = "action=query&prop=info&intoken=delete&titles=" + QUrl::toPercentEncoding(this->TalkPage->PageName);
         this->qTokenOfTalkPage->Target = _l("delete-token01", this->TalkPage->PageName);
         QueryPool::HugglePool->AppendQuery(this->qTokenOfTalkPage);
@@ -142,7 +142,7 @@ void DeleteForm::CheckDeleteToken()
         HUGGLE_DEBUG("Delete token for " + this->TalkPage->PageName + ": " + this->DeleteToken2, 1);
 
         // let's delete the page
-        this->qTalk = new ApiQuery(ActionDelete);
+        this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());
         this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
                 + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig->AssociatedDelete);
                 + "&token=" + QUrl::toPercentEncoding(this->DeleteToken2);
@@ -171,7 +171,7 @@ void DeleteForm::CheckDeleteToken()
     HUGGLE_DEBUG("Delete token for " + this->page->PageName + ": " + this->DeleteToken, 1);
 
     // let's delete the page
-    this->qDelete = new ApiQuery(ActionDelete);
+    this->qDelete = new ApiQuery(ActionDelete, this->page->GetSite());
     this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
             + "&reason=" + QUrl::toPercentEncoding(this->ui->comboBox->lineEdit()->text())
             + "&token=" + QUrl::toPercentEncoding(this->DeleteToken);

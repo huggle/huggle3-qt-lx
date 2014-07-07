@@ -75,7 +75,7 @@ void SpeedyForm::on_pushButton_clicked()
     this->ui->pushButton->setEnabled(false);
     this->Header = this->ui->comboBox->currentText();
     // first we need to retrieve the content of page if we don't have it already
-    this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page->PageName);
+    this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page);
     this->timer->start(200);
     this->qObtainText->Process();
 }

@@ -24,17 +24,19 @@
 #include "wikiedit.hpp"
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
     class EditQuery;
     class WikiEdit;
+    class WikiSite;
 
     /*!
      * \brief The RevertQuery class can be used to rollback any edit
      */
-    class RevertQuery : public QObject, public Query
+    class RevertQuery : public QObject, public Query, public MediaWikiObject
     {
             Q_OBJECT
         public:
@@ -42,6 +44,7 @@ namespace Huggle
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
+            RevertQuery(WikiEdit *Edit, WikiSite *site);
             ~RevertQuery();
             void Process();
             //! In case you want to revert only last edit, set this to true

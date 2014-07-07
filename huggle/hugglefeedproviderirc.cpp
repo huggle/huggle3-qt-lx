@@ -9,16 +9,17 @@
 //GNU General Public License for more details.
 
 #include "hugglefeedproviderirc.hpp"
-#include "querypool.hpp"
 #include "configuration.hpp"
 #include "mainwindow.hpp"
-#include "syslog.hpp"
 #include "exception.hpp"
 #include "hugglequeue.hpp"
 #include "localization.hpp"
 #include "networkirc.hpp"
+#include "querypool.hpp"
+#include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;

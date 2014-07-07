@@ -11,8 +11,6 @@
 #include "wikiedit.hpp"
 #include <QtXml>
 #include <QMutex>
-#include "wikiuser.hpp"
-#include "wikipage.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
 #include "core.hpp"
@@ -20,6 +18,9 @@
 #include "exception.hpp"
 #include "syslog.hpp"
 #include "mediawiki.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
@@ -442,7 +443,7 @@ void WikiEdit::PostProcess()
         this->ProcessingDiff = true;
     } else if (!this->Page->Contents.size())
     {
-        this->qText = Generic::RetrieveWikiPageContents(this->Page->PageName, true);
+        this->qText = Generic::RetrieveWikiPageContents(this->Page, true);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         QueryPool::HugglePool->AppendQuery(this->qText);
         this->qText->Process();

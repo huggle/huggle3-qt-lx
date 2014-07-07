@@ -14,6 +14,7 @@
 #include "querypool.hpp"
 #include "generic.hpp"
 #include "core.hpp"
+#include "wikisite.hpp"
 #include "wikiutil.hpp"
 #include "localization.hpp"
 #include "configuration.hpp"

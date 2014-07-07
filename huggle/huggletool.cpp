@@ -31,12 +31,14 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
     this->ui->label->setText(_l("User"));
+    this->page = nullptr;
     this->ui->label_2->setText(_l("Page"));
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
 }
 
 HuggleTool::~HuggleTool()
 {
+    delete this->page;
     delete this->tick;
     delete this->ui;
 }
@@ -63,6 +65,11 @@ void HuggleTool::SetPage(WikiPage *page)
         throw new Huggle::Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
 
     this->ui->lineEdit_3->setText(page->PageName);
+    if (this->page != nullptr)
+    {
+        delete this->page;
+    }
+    this->page = new WikiPage(page);
     this->tick->stop();
     this->ui->pushButton->setEnabled(true);
     // change color to default

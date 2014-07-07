@@ -51,8 +51,7 @@ Message::~Message()
 void Message::RetrieveToken()
 {
     this->_Status = Huggle::MessageStatus_RetrievingToken;
-    this->qToken = new ApiQuery();
-    this->qToken->SetAction(ActionQuery);
+    this->qToken = new ApiQuery(ActionQuery, this->User->GetSite());
     this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->User->GetTalk());
     this->qToken->Target = _l("message-retrieve-new-token", this->User->GetTalk());
     QueryPool::HugglePool->AppendQuery(this->qToken);
@@ -61,6 +60,9 @@ void Message::RetrieveToken()
 
 void Message::Send()
 {
+    if (!this->User)
+        throw new Huggle::Exception("nullptr Message->User", "void Message::Send()");
+
     if (this->HasValidEditToken())
     {
         this->PreflightCheck();
@@ -240,6 +242,7 @@ void Message::Finish()
                     HistoryItem *item = new HistoryItem();
                     item->Result = "Success";
                     item->NewPage = this->CreateOnly;
+                    item->Site = this->User->GetSite();
                     item->Type = HistoryMessage;
                     item->Target = User->Username;
                     if (this->Dependency != nullptr && this->Dependency->HI != nullptr)
@@ -341,13 +344,12 @@ void Message::ProcessSend()
                            .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
-    this->query = new ApiQuery();
+    this->query = new ApiQuery(ActionEdit, this->User->GetSite());
     // prevent message from being sent twice
     this->query->RetryOnTimeoutFailure = false;
     this->query->Timeout = 600;
     this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
-    this->query->SetAction(ActionEdit);
     QString s = Summary;
     QString parameters = "";
     if (!this->BaseTimestamp.isEmpty())

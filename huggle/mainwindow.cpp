@@ -100,7 +100,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
-    this->ui->actionRequest_protection->setEnabled(Configuration::HuggleConfiguration->ProjectConfig->RFPP);
     this->ui->actionDisplay_bot_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots);
     this->ui->actionDisplay_user_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser);
     this->ui->actionDisplay_user_messages->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk);
@@ -879,16 +878,18 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 
 QString MainWindow::GetSummaryKey(QString item)
 {
+    // first get the configuration for the project we are on
+    ProjectConfiguration *pr = this->GetCurrentWikiSite()->GetProjectConfig();
     if (item.contains(";"))
     {
         QString type = item.mid(0, item.indexOf(";"));
         int c=0;
-        while(c < Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
+        while(c < pr->WarningTypes.count())
         {
-            QString x = Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(c);
+            QString x = pr->WarningTypes.at(c);
             if (x.startsWith(type + ";"))
             {
-                x = Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(c);
+                x = pr->WarningTypes.at(c);
                 x = x.mid(x.indexOf(";") + 1);
                 if (x.endsWith(","))
                 {
@@ -1238,14 +1239,8 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
-
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
     {
@@ -1292,9 +1287,10 @@ void MainWindow::CustomRevert()
     if (!this->EditingChecks())
         return;
     QAction *revert = (QAction*) QObject::sender();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
-    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
-    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k, conf);
+    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs, conf);
     this->Revert(rs);
 }
 
@@ -1303,9 +1299,10 @@ void MainWindow::CustomRevertWarn()
     if (!this->EditingChecks())
         return;
     QAction *revert = (QAction*) QObject::sender();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
-    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k);
-    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs);
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k, conf);
+    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs, conf);
     Collectable_SmartPtr<RevertQuery> result = this->Revert(rs, false);
     if (result != nullptr)
     {
@@ -1321,19 +1318,21 @@ void MainWindow::CustomWarn()
 {
     if (!this->EditingChecks())
         return;
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QAction *revert = (QAction*) QObject::sender();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text());
+    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
     this->Warn(k, nullptr);
 }
 
 QString MainWindow::GetSummaryText(QString text)
 {
     int id=0;
-    while (id<Configuration::HuggleConfiguration->ProjectConfig->RevertSummaries.count())
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    while (id <conf->RevertSummaries.count())
     {
-        if (text == this->GetSummaryKey(Configuration::HuggleConfiguration->ProjectConfig->RevertSummaries.at(id)))
+        if (text == this->GetSummaryKey(conf->RevertSummaries.at(id)))
         {
-            QString data = Configuration::HuggleConfiguration->ProjectConfig->RevertSummaries.at(id);
+            QString data = conf->RevertSummaries.at(id);
             if (data.contains(";"))
             {
                 data = data.mid(data.indexOf(";") + 1);
@@ -1342,7 +1341,7 @@ QString MainWindow::GetSummaryText(QString text)
         }
         id++;
     }
-    return Configuration::HuggleConfiguration->ProjectConfig->DefaultSummary;
+    return conf->DefaultSummary;
 }
 
 void MainWindow::ForceWarn(int level)
@@ -1465,7 +1464,7 @@ void MainWindow::SuspiciousEdit()
         WLQuery *wq_ = new WLQuery();
         wq_->Type = WLQueryType_SuspWL;
         wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
-                          + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Project->WhiteList) + "&user="
+                          + QUrl::toPercentEncoding(this->GetCurrentWikiSite()->WhiteList) + "&user="
                           + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username) + "&score="
                           + QString::number(this->CurrentEdit->Score) + "&revid="
                           + QString::number(this->CurrentEdit->RevID) + "&summary="
@@ -1479,12 +1478,13 @@ void MainWindow::SuspiciousEdit()
 
 void MainWindow::PatrolThis(WikiEdit *e)
 {
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     if (e == nullptr)
         e = this->CurrentEdit;
-    if (e == nullptr || !Configuration::HuggleConfiguration->ProjectConfig->Patrolling)
+    if (e == nullptr || !conf->Patrolling)
         return;
     ApiQuery *query = nullptr;
-    bool flaggedrevs = Configuration::HuggleConfiguration->ProjectConfig->PatrollingFlaggedRevs;
+    bool flaggedrevs = conf->PatrollingFlaggedRevs;
 
     // if this edit doesn't have the patrol token we need to get one
     // if we're using flaggedrevs this will actually be an edit token, but we pretend it's a patrol one
@@ -1601,7 +1601,8 @@ void MainWindow::Localize()
     this->ui->actionDisplay_this_page->setText(_l("main-page-display"));
 
     // arrows icons should be mirrored for RTL languages
-    if (Localizations::HuggleLocalizations->IsRTL()) {
+    if (Localizations::HuggleLocalizations->IsRTL())
+    {
         this->ui->actionForward->setIcon(QIcon(":/huggle/pictures/Resources/browser-prev.png"));
         this->ui->actionBack->setIcon(QIcon(":/huggle/pictures/Resources/browser-next.png"));
     }
@@ -1731,6 +1732,7 @@ void MainWindow::Welcome()
 {
     if (!this->EditingChecks())
         return;
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     this->CurrentEdit->User->Resync();
     bool create_only = true;
     if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
@@ -1750,21 +1752,19 @@ void MainWindow::Welcome()
         if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
         {
             // write something to talk page so that we don't welcome this user twice
-            this->CurrentEdit->User->TalkPage_SetContents(Configuration::HuggleConfiguration->ProjectConfig->WelcomeAnon);
+            this->CurrentEdit->User->TalkPage_SetContents(conf->WelcomeAnon);
         }
-        WikiUtil::MessageUser(this->CurrentEdit->User, Configuration::HuggleConfiguration->ProjectConfig->WelcomeAnon + " ~~~~",
-                              Configuration::HuggleConfiguration->ProjectConfig->WelcomeTitle,
-                              Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary,
+        WikiUtil::MessageUser(this->CurrentEdit->User, conf->WelcomeAnon + " ~~~~", conf->WelcomeTitle, conf->WelcomeSummary,
                               false, nullptr, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
-    if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.count() == 0)
+    if (conf->WelcomeTypes.count() == 0)
     {
         // This error should never happen so we don't need to localize this
-        Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
+        Syslog::HuggleLogs->ErrorLog("There are no welcome messages defined for this project");
         return;
     }
-    QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.at(0));
+    QString message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
     if (message.isEmpty())
     {
         // This error should never happen so we don't need to localize this
@@ -1773,8 +1773,7 @@ void MainWindow::Welcome()
     }
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
-    WikiUtil::MessageUser(this->CurrentEdit->User, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeTitle,
-                          Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, false, nullptr,
+    WikiUtil::MessageUser(this->CurrentEdit->User, message, conf->WelcomeTitle, conf->WelcomeSummary, false, nullptr,
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
@@ -1795,6 +1794,7 @@ void MainWindow::ReloadInterface()
     delete this->RevertSummaries;
     delete this->WarnMenu;
     delete this->RevertWarn;
+    this->ui->actionRequest_protection->setEnabled(conf->RFPP);
     this->RevertSummaries = new QMenu(this);
     this->WarnMenu = new QMenu(this);
     this->RevertWarn = new QMenu(this);
@@ -2056,7 +2056,7 @@ void Huggle::MainWindow::on_actionIRC_triggered()
 
 void Huggle::MainWindow::on_actionWiki_triggered()
 {
-    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (!this->CheckExit())
         return;
     Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
     Core::HuggleCore->PrimaryFeedProvider->Stop();

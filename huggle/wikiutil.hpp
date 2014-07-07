@@ -87,8 +87,8 @@ namespace Huggle
          */
         Collectable_SmartPtr<EditQuery> EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
                                                  QString BaseTimestamp = "", unsigned int section = 0);
-        Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle",
-                                                 bool minor = false, QString BaseTimestamp = "");
+        Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
+                                                 QString BaseTimestamp = "", unsigned int section = 0);
     }
 }
 

@@ -87,7 +87,7 @@ void HistoryForm::Read()
     this->t1 = new QTimer(this);
     this->Clear();
     connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
-    this->t1->start(200);
+    this->t1->start(HUGGLE_TIMER);
 }
 
 void HistoryForm::Update(WikiEdit *edit)
@@ -362,6 +362,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
     w->User = new WikiUser(this->ui->tableWidget->item(row, 1)->text());
+    w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
     QueryPool::HugglePool->PostProcessEdit(w);
@@ -376,7 +377,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
     if (!turtlemode)
     {
-        this->t1->start(200);
+        this->t1->start(HUGGLE_TIMER);
         return;
     }
     this->t1->start(2000);

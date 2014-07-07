@@ -59,6 +59,7 @@ namespace Huggle
             void FinishPage();
             void FinishEdit();
             Ui::HuggleTool *ui;
+            WikiPage *page;
             Collectable_SmartPtr<ApiQuery> query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
             QTimer *tick;

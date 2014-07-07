@@ -12,7 +12,6 @@
 #include <QMessageBox>
 #include <QtXml>
 #include <QWebView>
-#include "wikiutil.hpp"
 #include "generic.hpp"
 #include "huggleweb.hpp"
 #include "syslog.hpp"
@@ -20,7 +19,9 @@
 #include "configuration.hpp"
 #include "resources.hpp"
 #include "blockuser.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include "wikiutil.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 
@@ -96,7 +97,7 @@ bool ReportUser::SetUser(WikiUser *user)
 {
     this->ReportedUser = user;
     this->ui->label->setText(_l("report-intro", user->Username));
-    this->qHistory = new ApiQuery(ActionQuery);
+    this->qHistory = new ApiQuery(ActionQuery, this->ReportedUser->Site);
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->Process();
@@ -104,7 +105,7 @@ bool ReportUser::SetUser(WikiUser *user)
     {
         this->ui->pushButton_4->setEnabled(false);
     }
-    this->qBlockHistory = new ApiQuery(ActionQuery);
+    this->qBlockHistory = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qBlockHistory->Parameters = "list=logevents&leprop=ids%7Ctitle%7Ctype%7Cuser%7Ctimestamp%7Ccomment%7Cdetails%7Ctags&letype"\
                                       "=block&ledir=newer&letitle=User:" + QUrl::toPercentEncoding(this->ReportedUser->Username);
     this->qBlockHistory->Process();
@@ -477,7 +478,9 @@ void ReportUser::on_pushButton_clicked()
     // obtain current page
     this->Loading = true;
     this->ui->pushButton->setText(_l("report-retrieving"));
-    this->qHistory = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
+    WikiSite *site = this->ReportedUser->GetSite();
+    this->qHistory = Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ReportAIV);
+    this->qHistory->Site = this->ReportedUser->GetSite();
     this->qHistory->Process();
     this->ReportText = reports;
     this->tReportUser->start(HUGGLE_TIMER);
@@ -498,7 +501,7 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     if (this->qDiff != nullptr)
         this->qDiff->Kill();
 
-    this->qDiff = new ApiQuery(ActionQuery);
+    this->qDiff = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
                       "&rvlimit=1&rvtoken=rollback&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
                       "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +

@@ -23,6 +23,7 @@
 #include <QtNetwork>
 #include "collectable_smartptr.hpp"
 #include "query.hpp"
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
@@ -56,7 +57,7 @@ namespace Huggle
     };
 
     //! This class can be used to execute any kind of api query on any wiki
-    class ApiQuery : public QObject, public Query
+    class ApiQuery : public QObject, public Query, public MediaWikiObject
     {
             Q_OBJECT
         public:
@@ -72,7 +73,6 @@ namespace Huggle
             void SetAction(const QString action);
             //! Terminate the query
             void Kill();
-            WikiSite *GetSite();
             //! Get a query target as a string
             QString QueryTargetToString();
             //! Returns a type of query as a string
@@ -84,7 +84,6 @@ namespace Huggle
             bool UsingPOST = false;
             //! This is a requested format in which the result should be written in
             Format RequestFormat;
-            WikiSite *Site = nullptr;
             //! This is an url of api request, you probably don't want to change it unless
             //! you want to construct whole api request yourself
             QString URL = "";

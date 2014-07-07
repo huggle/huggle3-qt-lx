@@ -38,7 +38,7 @@ DEFINES *= QT_USE_QSTRINGBUILDER
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################
 #QMAKE_CXXFLAGS += -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
-#INCLUDEPATH += "/usr/include/python3.2mu"
+#INCLUDEPATH += "/usr/include/python3.4m"
 #LIBS += -lpython3.2mu
 # -L/usr/lib/python3.2/config-3.2mu -lpthread -ldl -lutil -lm -lpython3.2mu -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions
 ##################################################################################################################################################
@@ -128,7 +128,8 @@ SOURCES += main.cpp\
     huggleoption.cpp \
     projectconfiguration.cpp \
     wikipagetagsform.cpp \
-    collectable_smartptr.cpp
+    collectable_smartptr.cpp \
+    mediawikiobject.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -208,7 +209,8 @@ HEADERS  += mainwindow.hpp \
     userconfiguration.hpp \
     huggleoption.hpp \
     wikipagetagsform.hpp \
-    collectable_smartptr.hpp
+    collectable_smartptr.hpp \
+    mediawikiobject.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

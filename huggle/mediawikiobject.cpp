@@ -8,32 +8,34 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "mediawikiobject.hpp"
 #include "configuration.hpp"
-#include "hugglefeed.hpp"
-#include "exception.hpp"
 #include "wikisite.hpp"
-
 using namespace Huggle;
 
-HuggleFeed *HuggleFeed::PrimaryFeedProvider = nullptr;
-HuggleFeed *HuggleFeed::SecondaryFeedProvider = nullptr;
-QList<HuggleFeed*> HuggleFeed::Providers;
-
-HuggleFeed::HuggleFeed()
+MediaWikiObject::MediaWikiObject()
 {
-    this->EditCounter = 0;
-    this->RvCounter = 0;
-    this->UptimeDate = QDateTime::currentDateTime();
-    Providers.append(this);
+    this->Site = nullptr;
 }
 
-HuggleFeed::~HuggleFeed()
+MediaWikiObject::MediaWikiObject(MediaWikiObject *m)
 {
-    if (Providers.contains(this))
-        Providers.removeOne(this);
+    this->Site = m->Site;
 }
 
-double HuggleFeed::GetUptime()
+MediaWikiObject::MediaWikiObject(const MediaWikiObject &m)
 {
-    return (double)this->UptimeDate.secsTo(QDateTime::currentDateTime());
+    this->Site = m.Site;
+}
+
+MediaWikiObject::~MediaWikiObject()
+{
+
+}
+
+WikiSite *MediaWikiObject::GetSite()
+{
+    if (this->Site == nullptr)
+        return Configuration::HuggleConfiguration->Project;
+    return this->Site;
 }

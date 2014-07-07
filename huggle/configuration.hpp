@@ -218,6 +218,7 @@ namespace Huggle
             QString GetSafeUserString(QString key_, QString default_value = "");
             void NormalizeConf();
             QString GenerateSuffix(QString text);
+            QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
             //! Parse all information from local config, this function is used in login

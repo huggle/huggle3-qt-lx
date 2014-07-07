@@ -26,17 +26,18 @@
 namespace Huggle
 {
     class Configuration;
+    class ProjectConfiguration;
     class HuggleQueueFilter;
 
     //! This namespace contains functions to parse various text, such as configuration keys
     namespace HuggleParser
     {
         //! \todo This function needs a unit test
-        QString GetSummaryOfWarningTypeFromWarningKey(QString key);
+        QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
-        QString GetNameOfWarningTypeFromWarningKey(QString key);
+        QString GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
-        QString GetKeyOfWarningTypeFromWarningName(QString id);
+        QString GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key

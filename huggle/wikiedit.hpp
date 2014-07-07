@@ -87,6 +87,8 @@ namespace Huggle
             QString GetFullUrl();
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
+            //! Processes all score words in text
+            void ProcessWords();
             void RemoveFromHistoryChain();
             //! Page that was changed by edit
             WikiPage *Page;
@@ -151,7 +153,6 @@ namespace Huggle
             bool FinalizePostProcessing();
             friend class ProcessorThread;
             friend class MainWindow;
-            void ProcessWords();
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
