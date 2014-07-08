@@ -186,7 +186,7 @@ void BlockUser::Block()
         mb.setWindowTitle(_l("error"));
         mb.setText(_l("block-fail", reason));
         mb.exec();
-        this->ui->pushButton->setText("block-title", this->user->Username);
+        this->ui->pushButton->setText(_l("block-title", this->user->Username));
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
         this->ui->pushButton->setEnabled(true);
