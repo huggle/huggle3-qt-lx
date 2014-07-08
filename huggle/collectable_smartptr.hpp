@@ -26,7 +26,7 @@ namespace Huggle
     template <class T>
     //! This smart pointer can be used for any work with all kinds of collectable functions
 
-    //! Unlike std smart pointers that are implemented in c++11 these are compatible with out GC
+    //! Unlike std smart pointers that are implemented in c++11 these are compatible with our GC
     //! which gives us bigger flexibility and higher performance.
 
     //! These ptrs don't need to allocate new manager for every single object that is maintained
@@ -91,6 +91,18 @@ namespace Huggle
 
     template <class H>
     bool operator!=(Collectable_SmartPtr<H> &smart_ptr, std::nullptr_t ptr)
+    {
+        return smart_ptr.GetPtr() != ptr;
+    }
+
+    template <class H>
+    bool operator==(Collectable_SmartPtr<H> &smart_ptr, H* ptr)
+    {
+        return smart_ptr.GetPtr() == ptr;
+    }
+
+    template <class H>
+    bool operator!=(Collectable_SmartPtr<H> &smart_ptr, H* ptr)
     {
         return smart_ptr.GetPtr() != ptr;
     }
