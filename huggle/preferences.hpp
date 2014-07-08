@@ -43,13 +43,11 @@ namespace Huggle
     class Preferences : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit Preferences(QWidget *parent = 0);
             ~Preferences();
             void EnableQueues();
             void Disable();
-
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
@@ -62,7 +60,6 @@ namespace Huggle
             void on_checkBox_26_clicked();
             void on_checkBox_27_clicked();
             void RecordKeys(int row, int column);
-
         private:
             void Reload();
             //! Used to reload shortcuts only

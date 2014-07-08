@@ -153,7 +153,7 @@ void RevertQuery::OnTick()
     {
         if (!this->PreflightFinished)
         {
-            CheckPreflight();
+            this->CheckPreflight();
             return;
         }
         if (!this->RollingBack)
@@ -183,8 +183,7 @@ QString RevertQuery::GetCustomRevertStatus(QString RevertData)
     {
         if (l.at(0).toElement().attributes().contains("code"))
         {
-            QString Error = "";
-            Error = l.at(0).toElement().attribute("code");
+            QString Error = l.at(0).toElement().attribute("code");
             if (Error == "alreadyrolled")
                 return "Edit was reverted by someone else - skipping";
             if (Error == "onlyauthor")
@@ -229,8 +228,8 @@ void RevertQuery::Preflight()
         {
             if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
             {
-                this->IgnorePreflightCheck = true;
                 // Conflict resolved: revert all edits including new edits made by same users
+                this->IgnorePreflightCheck = true;
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-newer-edits", this->edit->Page->PageName));
             } else
             {
@@ -303,17 +302,16 @@ void RevertQuery::CheckPreflight()
     {
         QDomElement e = l.at(x).toElement();
         int RevID = WIKI_UNKNOWN_REVID;
+        x++;
         if (e.attributes().contains("revid"))
         {
             RevID = e.attribute("revid").toInt();
             if (edit->RevID == RevID)
             {
-                x++;
                 continue;
             }
         } else
         {
-            x++;
             continue;
         }
         if (e.attributes().contains("user"))
@@ -332,7 +330,6 @@ void RevertQuery::CheckPreflight()
         {
             passed = false;
         }
-        x++;
     }
     if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits)
     {
@@ -399,9 +396,7 @@ void RevertQuery::CheckPreflight()
 bool RevertQuery::CheckRevert()
 {
     if (this->UsingSR)
-    {
         return ProcessRevert();
-    }
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result->Data);

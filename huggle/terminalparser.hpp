@@ -26,7 +26,7 @@
 
 namespace Huggle
 {
-    //! Parses the data provided by user
+    //! Parses the data provided by user in parameters to executable
     class TerminalParser
     {
         public:
