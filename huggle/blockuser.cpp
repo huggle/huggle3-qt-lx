@@ -69,8 +69,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
 void BlockUser::GetToken()
 {
     // Let's get a token before anything
-    this->qTokenApi = new ApiQuery();
-    this->qTokenApi->SetAction(ActionQuery);
+    this->qTokenApi = new ApiQuery(ActionQuery, this->user->GetSite());
     this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
             QUrl::toPercentEncoding(this->user->Username);
     this->qTokenApi->Target = _l("block-token-1", this->user->Username);
@@ -131,7 +130,7 @@ void BlockUser::CheckToken()
     this->qTokenApi = nullptr;
     HUGGLE_DEBUG("Block token for " + this->user->Username + ": " + this->BlockToken, 1);
     // let's block them
-    this->qUser = new ApiQuery();
+    this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     QString nocreate = "";
     if (this->ui->checkBox_4->isChecked())
         nocreate = "&nocreate=";
@@ -147,7 +146,6 @@ void BlockUser::CheckToken()
     QString allowusertalk = "";
     if (!this->ui->checkBox->isChecked())
         allowusertalk = "&allowusertalk=";
-    this->qUser->SetAction(ActionQuery);
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
@@ -244,7 +242,7 @@ void Huggle::BlockUser::on_pushButton_3_clicked()
         return;
     this->ui->pushButton_3->setEnabled(false);
     this->ui->pushButton->setEnabled(false);
-    this->qUser = new ApiQuery(ActionQuery);
+    this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     this->qUser->Target = "user";
     this->qUser->Parameters = "list=blocks&";
     if (!this->user->IsIP())

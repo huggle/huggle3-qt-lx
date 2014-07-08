@@ -88,6 +88,8 @@ namespace Huggle
             QString         Feedback = "";
             //! Section of report page to append template to
             int             ReportSt = 0;
+            //! User flags on current project, this may be empty if you fail to login
+            QStringList     Rights;
             //! IP vandals
             QString         IPVTemplateReport = "User $1: $2$3 ~~~~";
             //! Regular users

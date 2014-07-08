@@ -49,7 +49,7 @@ void EditQuery::Process()
         this->qToken = new ApiQuery(ActionQuery, this->Page->Site);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
         this->qToken->Target = _l("editquery-token", this->Page->PageName);
-        QueryPool::HugglePool->AppendQuery(this->qToken.GetPtr());
+        QueryPool::HugglePool->AppendQuery(this->qToken);
         this->qToken->Process();
     } else
     {

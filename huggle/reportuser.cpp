@@ -101,7 +101,7 @@ bool ReportUser::SetUser(WikiUser *user)
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->Process();
-    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
+    if (!Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("block"))
     {
         this->ui->pushButton_4->setEnabled(false);
     }
@@ -597,7 +597,7 @@ void Huggle::ReportUser::on_pushButton_4_clicked()
 void Huggle::ReportUser::on_pushButton_7_clicked()
 {
     this->ui->pushButton_7->setEnabled(false);
-    this->qCheckIfBlocked = new ApiQuery(ActionQuery);
+    this->qCheckIfBlocked = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qCheckIfBlocked->Target = "user";
     this->qCheckIfBlocked->Parameters = "list=blocks&";
     if (!this->ReportedUser->IsIP())

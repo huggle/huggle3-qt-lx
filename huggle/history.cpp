@@ -201,7 +201,7 @@ void History::Tick()
         bool failed = false;
         QString user, title;
         int revid;
-        QString result = Generic::EvaluateWikiPageContents(this->qEdit.GetPtr(), &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
+        QString result = Generic::EvaluateWikiPageContents(this->qEdit, &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
         this->qEdit.Delete();
         if (failed)
         {

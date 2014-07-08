@@ -19,6 +19,7 @@
 #include "localization.hpp"
 #include "mainwindow.hpp"
 #include "syslog.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -501,13 +502,13 @@ bool RevertQuery::ProcessRevert()
         }
         content = element.text();
         if (summary.isEmpty())
-            summary = Configuration::HuggleConfiguration->ProjectConfig->SoftwareRevertDefaultSummary;
+            summary = this->GetSite()->GetProjectConfig()->SoftwareRevertDefaultSummary;
         summary = summary.replace("$1", this->edit->User->Username)
                 .replace("$2", this->SR_Target)
                 .replace("$3", QString::number(this->SR_Depth))
                 .replace("$4", QString::number(this->SR_RevID));
         // we need to make sure there is edit suffix in revert summary for huggle
-        summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary);
+        summary = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(summary, this->GetSite()->GetProjectConfig());
         if (content.isEmpty())
         {
             /// \todo LOCALIZE ME
@@ -643,7 +644,7 @@ void RevertQuery::Rollback()
     }
     this->RollingBack = true;
     if (this->Summary.isEmpty())
-        this->Summary = Configuration::HuggleConfiguration->ProjectConfig->RollbackSummaryUnknownTarget;
+        this->Summary = this->GetSite()->GetProjectConfig()->RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     // we need to make sure there is edit suffix in revert summary for huggle
@@ -655,7 +656,7 @@ void RevertQuery::Rollback()
         this->Revert();
         return;
     }
-    if (!Configuration::HuggleConfiguration->Rights.contains("rollback"))
+    if (!this->GetSite()->GetProjectConfig()->Rights.contains("rollback"))
     {
         Huggle::Syslog::HuggleLogs->Log(_l("software-rollback"));
         this->UsingSR = true;

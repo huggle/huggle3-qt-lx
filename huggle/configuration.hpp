@@ -277,8 +277,6 @@ namespace Huggle
             bool            AskUserBeforeReport = true;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
             bool            TrimOldWarnings = true;
-            //! User flags on current project, this may be empty if you fail to login
-            QStringList     Rights;
             //! Whether new edits go to top or bottom (if true, they go to up)
             bool            SystemConfig_QueueNewEditsUp = false;
             //! If this is true some functionalities will be disabled

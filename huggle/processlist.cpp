@@ -51,7 +51,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
 
 void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
 {
-    if (query.GetPtr() == nullptr)
+    if (query == nullptr)
     {
         throw new Huggle::Exception("NULL query");
     }

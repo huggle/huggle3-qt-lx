@@ -279,8 +279,7 @@ void Warnings::ResendWarnings()
                 {
                     Syslog::HuggleLogs->DebugLog("Possible memory leak in MainWindow::ResendWarning: warning->Query != nullptr");
                 }
-                warning->Query = new Huggle::ApiQuery();
-                warning->Query->SetAction(ActionQuery);
+                warning->Query = new Huggle::ApiQuery(ActionQuery, warning->RelatedEdit->GetSite());
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->User->GetTalk());
                 QueryPool::HugglePool->AppendQuery(warning->Query);
@@ -291,8 +290,7 @@ void Warnings::ResendWarnings()
             {
                 Syslog::HuggleLogs->DebugLog("Expired " + warning->Warning->User->Username + " reparsing it now");
                 // we need to fetch the talk page again and later we need to issue new warning
-                warning->Query = new Huggle::ApiQuery();
-                warning->Query->SetAction(ActionQuery);
+                warning->Query = new Huggle::ApiQuery(ActionQuery, warning->RelatedEdit->GetSite());
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->User->GetTalk());
                 QueryPool::HugglePool->AppendQuery(warning->Query);

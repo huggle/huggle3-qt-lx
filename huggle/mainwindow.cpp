@@ -104,12 +104,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionDisplay_user_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser);
     this->ui->actionDisplay_user_messages->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk);
     // we store the value in bool so that we don't need to call expensive string function twice
-    bool PermissionBlock = Configuration::HuggleConfiguration->Rights.contains("block");
+    bool PermissionBlock = Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("block");
     this->ui->actionBlock_user->setEnabled(PermissionBlock);
     this->ui->actionBlock_user_2->setEnabled(PermissionBlock);
-    bool PermissionDelete = Configuration::HuggleConfiguration->Rights.contains("delete");
+    bool PermissionDelete = Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("delete");
     this->ui->actionDelete->setEnabled(PermissionDelete);
-    this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->Rights.contains("protect"));
+    this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
     if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
@@ -280,7 +280,9 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         Syslog::HuggleLogs->ErrorLog(_l("report-duplicate"));
         return;
     }
-    if (!Configuration::HuggleConfiguration->ProjectConfig->AIV)
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    // only use this if current projects support it
+    if (!conf->AIV)
     {
         QMessageBox mb;
         mb.setText(_l("missing-aiv"));
@@ -1560,11 +1562,6 @@ void MainWindow::Localize()
     this->ui->actionFlag_as_a_good_edit->setText(_l("main-page-flag-good-edit"));
     this->ui->actionRequest_speedy_deletion->setText(_l("main-page-reqdeletion"));
     this->ui->actionDelete->setText(_l("main-page-delete"));
-    // button action depends on adminrights
-    if (Configuration::HuggleConfiguration->Rights.contains("delete"))
-        this->ui->actionDelete_page->setText(_l("main-page-delete"));
-    else
-        this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
     this->ui->actionRequest_protection->setText(_l("main-page-reqprotection"));
     this->ui->actionProtect->setText(_l("main-page-protect"));
     this->ui->actionRestore_this_revision->setText(_l("main-page-restore"));
@@ -1845,6 +1842,11 @@ void MainWindow::ReloadInterface()
         this->ui->mainToolBar->insertWidget(this->ui->actionWarn, warnToolButtonMenu);
         this->ui->mainToolBar->removeAction(this->ui->actionWarn);
     }
+    // button action depends on adminrights
+    if (conf->Rights.contains("delete"))
+        this->ui->actionDelete_page->setText(_l("main-page-delete"));
+    else
+        this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -2161,7 +2163,7 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
                                            "No reason was provided / custom revert", &ok);
     if (!ok)
         return;
-    QString summary = Configuration::HuggleConfiguration->ProjectConfig->AgfRevert.replace("$2", this->CurrentEdit->User->Username);
+    QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert.replace("$2", this->CurrentEdit->User->Username);
     summary = summary.replace("$1", reason);
     this->Revert(summary);
 }
@@ -2225,7 +2227,7 @@ void Huggle::MainWindow::on_actionClear_triggered()
 
 void Huggle::MainWindow::on_actionDelete_page_triggered()
 {
-    if (Configuration::HuggleConfiguration->Rights.contains("delete"))
+    if (this->GetCurrentWikiSite()->GetProjectConfig()->Rights.contains("delete"))
     {
         this->DeletePage();
     } else
@@ -2308,12 +2310,13 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
 
 void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
 {
-    if (!Configuration::HuggleConfiguration->Rights.contains("delete"))
-        Configuration::HuggleConfiguration->Rights.append("delete");
-    if (!Configuration::HuggleConfiguration->Rights.contains("protect"))
-        Configuration::HuggleConfiguration->Rights.append("protect");
-    if (!Configuration::HuggleConfiguration->Rights.contains("block"))
-        Configuration::HuggleConfiguration->Rights.append("block");
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    if (!conf->Rights.contains("delete"))
+        conf->Rights.append("delete");
+    if (!conf->Rights.contains("protect"))
+        conf->Rights.append("protect");
+    if (!conf->Rights.contains("block"))
+        conf->Rights.append("block");
     this->ui->actionBlock_user->setEnabled(true);
     this->ui->actionBlock_user_2->setEnabled(true);
     this->ui->actionDelete_page->setEnabled(true);
@@ -2352,12 +2355,12 @@ void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
 
 void Huggle::MainWindow::on_actionRequest_protection_triggered()
 {
-    if (!this->CheckExit() || !Configuration::HuggleConfiguration->ProjectConfig->RFPP || this->CurrentEdit == nullptr)
+    if (!this->EditingChecks())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (!this->GetCurrentWikiSite()->GetProjectConfig()->RFPP)
     {
-        Generic::DeveloperError();
-        return;
+        //! \todo Localize
+        Syslog::HuggleLogs->ErrorLog("This project doesn't support requests for protection");
     }
     if (this->fRFProtection != nullptr)
         delete this->fRFProtection;
@@ -2369,7 +2372,7 @@ void Huggle::MainWindow::on_actionRemove_edits_made_by_whitelisted_users_trigger
 {
     // the number must be higher that the real score so that we match even the edits
     // which have the same score (-800 + 1) > (-800)
-    this->Queue1->DeleteByScore(Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore + 1);
+    this->Queue1->DeleteByScore(this->GetCurrentWikiSite()->GetProjectConfig()->WhitelistScore + 1);
 }
 
 void Huggle::MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_triggered()
