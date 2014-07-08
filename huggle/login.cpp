@@ -60,7 +60,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         }
         l++;
     }
-    QString title = "Huggle 3 QT";
+    QString title = "Huggle 3 QT-LX";
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
         // add debug lang "qqx" last
@@ -598,18 +598,18 @@ void Login::RetrieveUserInfo()
             int c=0;
             while(c<lRights_.count())
             {
-                Configuration::HuggleConfiguration->Rights.append(lRights_.at(c).toElement().text());
+                Configuration::HuggleConfiguration->ProjectConfig->Rights.append(lRights_.at(c).toElement().text());
                 c++;
             }
             if (Configuration::HuggleConfiguration->ProjectConfig->RequireRollback &&
-                !Configuration::HuggleConfiguration->Rights.contains("rollback"))
+                !Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("rollback"))
             {
                 this->Update(_l("login-fail-rollback-rights"));
                 this->Kill();
                 return;
             }
             if (Configuration::HuggleConfiguration->ProjectConfig->RequireAutoconfirmed &&
-                !Configuration::HuggleConfiguration->Rights.contains("autoconfirmed"))
+                !Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
                 this->Update(_l("login-failed-autoconfirm-rights"));
