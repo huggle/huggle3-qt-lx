@@ -33,6 +33,7 @@ typedef char byte_ht;
     #include <cstddef>
     #include "TargetConditionals.h"
     #ifdef TARGET_OS_MAC
+        #define HUGGLE_MACX true
         #define HUGGLE_NO_MT_GC
     #endif
 #endif
@@ -116,6 +117,8 @@ typedef char byte_ht;
     #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
 #elif _WIN32
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows"
+#elif defined HUGGLE_MACX
+    #define HUGGLE_UPDATER_PLATFORM_TYPE            "mac"
 #else
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
 #endif
