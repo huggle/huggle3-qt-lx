@@ -59,7 +59,10 @@
    <item>
     <widget class="QCheckBox" name="checkBox_3">
      <property name="text">
-      <string>Disable autoblock</string>
+      <string>use autoblock</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

@@ -104,14 +104,12 @@ void History::Undo(HistoryItem *hist)
             if (hist->ReferencedBy)
             {
                 QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(this, "You really want to undo just message?",
-                                              "This was a message that is referenced by a rollback, are you sure you want to undo only "\
-                                              "template and not even your edit to page? (you need to undo the rollback in case you "\
-                                              "want to revert both of these)", QMessageBox::Yes|QMessageBox::No);
+                // let's ask user if they really want to undo just message because that is weird to do
+                reply = QMessageBox::question(this, _l("history-message-revert-title"), _l("history-message-revert-body"),
+                                              QMessageBox::Yes|QMessageBox::No);
                 if (reply == QMessageBox::No)
-                {
                     return;
-                }
+
                 hist->ReferencedBy->UndoDependency = nullptr;
                 hist->ReferencedBy = nullptr;
             }
@@ -160,15 +158,13 @@ void History::Tick()
     {
         if (this->qSelf != nullptr && this->qSelf->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog("Unable to undo your edit to " + this->RevertingItem->Target
-                                         + " error during revert: " + this->qSelf->Result->ErrorMessage);
+            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qSelf->Result->ErrorMessage));
             this->Fail();
             return;
         }
         if (this->qTalk != nullptr && this->qTalk->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog("Unable to undo your edit to " + this->RevertingItem->Target
-                                         + " error during revert: " + this->qTalk->Result->ErrorMessage);
+            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qTalk->Result->ErrorMessage));
             this->Fail();
             return;
         }

@@ -1176,13 +1176,13 @@ void MainWindow::OnTimerTick0()
                 return;
             }
             // we finished writing the wl
-            this->fWaiting->Status(90, _l("updating-uc"));
+            this->fWaiting->Status(90, _l("saveuserconfig-progress"));
             this->wq = nullptr;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
             WikiPage *uc = new WikiPage(page);
-            this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), "Writing user config", true);
+            this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), _l("saveuserconfig-progress"), true);
             delete uc;
             return;
         }

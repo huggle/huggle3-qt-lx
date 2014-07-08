@@ -29,6 +29,8 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
+    this->ui->checkBox->setText(_l("speedy-notifycreator"));
+    this->ui->label->setText(_l("speedy-reason"));
     int i=0;
     while (i < Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates.count())
     {
@@ -71,7 +73,7 @@ void SpeedyForm::on_pushButton_clicked()
     }
     this->ui->checkBox->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
-    this->ui->pushButton->setText("Updating");
+    this->ui->pushButton->setText(_l("speedy-progress", this->edit->Page->PageName));
     this->ui->pushButton->setEnabled(false);
     this->Header = this->ui->comboBox->currentText();
     // first we need to retrieve the content of page if we don't have it already

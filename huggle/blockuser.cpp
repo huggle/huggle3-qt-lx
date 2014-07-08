@@ -30,6 +30,11 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     // we should initialise every variable
     this->BlockToken = "";
     this->user = nullptr;
+    this->ui->checkBox_5->setText(_l("block-anononly"));
+    this->ui->checkBox_3->setText(_l("block-autoblock"));
+    this->ui->checkBox_4->setText(_l("block-creation"));
+    this->ui->checkBox_2->setText(_l("block-email"));
+    this->ui->label_2->setText(_l("block-duration"));
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->BlockReason);
@@ -55,6 +60,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
         throw new Huggle::Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
     }
     this->user = new WikiUser(User);
+    this->setWindowTitle(_l("block-title", this->user->Username));
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
@@ -141,7 +147,7 @@ void BlockUser::CheckToken()
     if (this->ui->checkBox_2->isChecked())
         noemail = "&noemail=";
     QString autoblock = "";
-    if (!this->ui->checkBox_3->isChecked())
+    if (this->ui->checkBox_3->isChecked())
         autoblock = "&autoblock=";
     QString allowusertalk = "";
     if (!this->ui->checkBox->isChecked())
@@ -150,7 +156,7 @@ void BlockUser::CheckToken()
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
             + noemail + autoblock + allowusertalk + "&token=" + QUrl::toPercentEncoding(BlockToken);
-    this->qUser->Target = _l("blocking", this->user->Username);
+    this->qUser->Target = _l("block-progress", this->user->Username);
     this->qUser->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qUser);
     this->qUser->Process();
@@ -180,7 +186,7 @@ void BlockUser::Block()
         mb.setWindowTitle(_l("error"));
         mb.setText(_l("block-fail", reason));
         mb.exec();
-        this->ui->pushButton->setText("Block");
+        this->ui->pushButton->setText("block-title", this->user->Username);
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
         this->ui->pushButton->setEnabled(true);
@@ -188,7 +194,7 @@ void BlockUser::Block()
         return;
     }
     // let's assume the user was blocked
-    this->ui->pushButton->setText("Blocked");
+    this->ui->pushButton->setText(_l("block-done", this->user->Username));
     HUGGLE_DEBUG("block result: " + this->qUser->Result->Data, 2);
     this->qUser = nullptr;
     this->t0->stop();

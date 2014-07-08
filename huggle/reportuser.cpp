@@ -12,11 +12,12 @@
 #include <QMessageBox>
 #include <QtXml>
 #include <QWebView>
+#include "configuration.hpp"
+#include "exception.hpp"
 #include "generic.hpp"
 #include "huggleweb.hpp"
 #include "syslog.hpp"
 #include "localization.hpp"
-#include "configuration.hpp"
 #include "resources.hpp"
 #include "blockuser.hpp"
 #include "wikisite.hpp"
@@ -95,7 +96,11 @@ ReportUser::~ReportUser()
 
 bool ReportUser::SetUser(WikiUser *user)
 {
+    if (!user)
+        throw new Huggle::NullPointerException("user", "bool ReportUser::SetUser(WikiUser *user)");
+
     this->ReportedUser = user;
+    this->setWindowTitle("report-title", this->ReportedUser->Username);
     this->ui->label->setText(_l("report-intro", user->Username));
     this->qHistory = new ApiQuery(ActionQuery, this->ReportedUser->Site);
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +

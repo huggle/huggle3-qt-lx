@@ -580,7 +580,7 @@ bool RevertQuery::ProcessRevert()
     }
     if (!passed)
     {
-        this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because it was edited meanwhile");
+        this->DisplayError(_l("revert-cannotundo", this->edit->Page->PageName));
         return true;
     }
     // now we need to find the first revision that was done by some different user

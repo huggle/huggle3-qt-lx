@@ -3,7 +3,6 @@
     <string name="name">English</string>
     <string name="isrtl">false</string>
     <string name="add">Add</string>
-    <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
     <string name="clear">Clear</string>
     <string name="close">Close</string>
@@ -13,7 +12,6 @@
     <string name="deleted">Deleted</string>
     <string name="error">Error</string>
     <string name="exit">Exit</string>
-    <string name="minimizewindow">Minimize</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="remove">Remove</string>
@@ -73,10 +71,7 @@
     <string name="block-error-no-info">No user info was present in the query (are you sysop?)</string>
     <string name="block-type">Block / unblock</string>
     <string name="block-admin">Blocking sysop</string>
-    <string name="blocking">Blocking $1</string>
     <string name="block-none">There is no user to block.</string>
-    <string name="closing-whitelist">Updating user whitelist...</string>
-    <string name="closing-config">Updating configuration subpage...</string>
     <string name="config-summ">Custom revert summaries for templates</string>
     <string name="config-title">Options</string>
     <string name="config-rememberme">Remember my username</string>
@@ -191,7 +186,6 @@
     <string name="login-start">Login</string>
     <string name="login-oauth-notsupported">This method is not supported at this moment</string>
     <string name="login-translate">Translate Huggle</string>
-    <string name="login-captchatitle">Captcha required to log in</string>
     <string name="login-progress-start">Logging in to $1</string>
     <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
     <string name="login-progress-language">Updating message files...</string>
@@ -207,21 +201,16 @@
     <string name="login-error-age">Use of Huggle on this project requires an account at least $1 days old.</string>
     <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
     <string name="login-error-approval">Use of Huggle on this project requires approval.</string>
-    <string name="login-error-autoconfirmed">Use of Huggle on this project requires that your account is autoconfirmed.</string>
     <string name="login-error-cancelled">Cancelled.</string>
-    <string name="login-error-captcha">Incorrect password or confirmation code.</string>
     <string name="login-error-config">Login failed unable to retrieve local config: $1</string>
     <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
     <string name="login-error-disabled">Huggle is not enabled for your account. Check user configuration page.</string>
     <string name="login-error-global">Login failed: Unable to parse the global configuration. See debug log for more details.</string>
     <string name="login-error-invalid">Invalid username</string>
-    <string name="login-error-language">Failed to load message files</string>
-    <string name="login-error-nocaptcha">Captcha not solved</string>
     <string name="login-error-noconfig">This project does not have a Huggle configuration page</string>
     <string name="login-error-nouser">The user does not exist</string>
     <string name="login-error-password">Incorrect password</string>
     <string name="login-error-projdisabled">Huggle is currently disabled on this project.</string>
-    <string name="login-error-rollback">Use of Huggle on this project requires rollback.</string>
     <string name="login-error-unknown">Unable to log in.</string>
     <string name="login-error-userlist">Failed to load user list.</string>
     <string name="login-error-version">This version is out of date. Update to the latest version.</string>
@@ -241,12 +230,8 @@
     <string name="main-system-messages">Show new messages</string>
     <string name="main-system-reconnectirc">Reconnect IRC feed</string>
     <string name="main-system-savelog">Save log...</string>
-    <string name="main-system-lists">List Builder...</string>
-    <string name="main-system-requests">Requests...</string>
     <string name="main-system-statistics">Statistics...</string>
-    <string name="main-system-showlog">Show log</string>
     <string name="main-system-showqueue">Show queue</string>
-    <string name="main-system-showtwoqueues">Show two queues</string>
     <string name="main-system-options">Options...</string>
     <string name="main-system-logout">Log out</string>
     <string name="main-system-abort">Abort</string>
@@ -257,7 +242,6 @@
     <string name="main-tools-scoreword-list">Show a list of scorewords</string>
     <string name="main-queue">Queue</string>
     <string name="main-queue-next">Next</string>
-    <string name="main-queue-trim">Trim</string>
     <string name="main-queue-clear">Clear current</string>
     <string name="main-queue-count">$1 items</string>
     <string name="main-queue-query">Running query...</string>
@@ -280,7 +264,6 @@
     <string name="main-revision-latest">Latest</string>
     <string name="main-tools">Tools</string>
     <string name="main-tools-sess">Display session info</string>
-    <string name="main-tools-wl">Display whitelist</string>
     <string name="main-tools-il">Show ignore list of current wiki</string>
     <string name="main-page-next">Next</string>
     <string name="main-page-switchtotalk">Switch to talk page</string>
@@ -527,7 +510,6 @@
     <string name="error-reloginfail">Failed to log back in, try restarting Huggle</string>
     <string name="error-timeout">Request timed out</string>
     <string name="error-unknown">Unknown error</string>
-    <string name="retrying">Retrying...</string>
     <string name="block-done">Blocked $1</string>
     <string name="block-progress">Blocking $1...</string>
     <string name="blocklog-fail">Failed to retrieve block log for $1</string>
@@ -542,12 +524,13 @@
     <string name="deletelog-fail">Failed to retrieve deletion log for $1</string>
     <string name="deletelog-none">No deletion log for $1</string>
     <string name="deletelog-progress">Retrieving deletion log for $1...</string>
-    <string name="diff-deleted">This revision has been deleted.</string>
-    <string name="diff-fail">Failed to retrieve diff of $1</string>
     <string name="edit-fail">Did not edit $1</string>
     <string name="edit-progress">Editing $1...</string>
     <string name="history-fail">Failed to retrieve history of $1</string>
     <string name="history-progress">Retrieving history of $1 ($2)...</string>
+    <string name="history-message-revert-title">You really want to undo just message?</string>
+    <string name="history-message-revert-body">This was a message that is referenced by a rollback, are you sure you want to undo only template and not even your edit to page? (you need to undo the rollback in case you want to revert both of these)</string>
+    <string name="history-revert-fail">Unable to undo your edit to $1 error during revert: $2</string>
     <string name="notify-fail">Did not notify the creator of $1</string>
     <string name="notify-unknowncreator">Cannot find page creator</string>
     <string name="protect-done">Changed protection level for $1</string>
@@ -556,8 +539,6 @@
     <string name="protectlog-fail">Failed to retrieve protection log for $1</string>
     <string name="protectlog-none">No protection log for $1</string>
     <string name="protectlog-progress">Retrieving protection log for $1...</string>
-    <string name="saveuserconfig-done">Updated the user configuration page</string>
-    <string name="saveuserconfig-fail">Did not update the user configuration page</string>
     <string name="saveuserconfig-progress">Updating the user configuration page...</string>
     <string name="loadglobalconfig-fail">Failed to load the global configuration page</string>
     <string name="loadprojectconfig-fail">Failed to load the project configuration page</string>
@@ -586,7 +567,6 @@
     <string name="missing-aiv">This project does not use AIV</string>
     <string name="missing-page">There is no page $1 on this wiki</string>
     <string name="updating-wl">Updating whitelist...</string>
-    <string name="updating-uc">Updating the user configuration page at huggle3.css on wiki</string>
     <string name="feature-nfru">This feature is for IP users only</string>
     <string name="report-no-user">No user has been selected to report, please select a user first</string>
     <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
