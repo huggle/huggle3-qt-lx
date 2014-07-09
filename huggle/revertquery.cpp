@@ -35,6 +35,7 @@ RevertQuery::RevertQuery()
 RevertQuery::RevertQuery(WikiEdit *Edit)
 {
     this->Type = QueryRevert;
+    this->Site = Edit->GetSite();
     this->edit = Edit;
     this->Timeout = Configuration::HuggleConfiguration->SystemConfig_WriteTimeout;
     this->SR_RevID = WIKI_UNKNOWN_REVID;

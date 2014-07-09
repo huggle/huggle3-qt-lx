@@ -54,6 +54,7 @@ namespace Huggle
             bool IsProcessed();
             void SetUsingSR(bool software_rollback);
             bool IsUsingSR();
+            WikiSite *GetSite();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
             QString Summary = "";
@@ -90,6 +91,17 @@ namespace Huggle
             int SR_Depth;
             QString SR_Target = "";
     };
+
+    inline WikiSite *RevertQuery::GetSite()
+    {
+        if (this->Site == nullptr)
+            return (this->edit->GetSite());
+
+        // we know the site and despite it may be inconsistent we return it because that is what
+        // programmer wanted (by inconsistent I mean the query could have different site
+        // than the edit now had) :o
+        return this->Site;
+    }
 }
 
 #endif // REVERTQUERY_H

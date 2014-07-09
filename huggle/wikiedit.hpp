@@ -65,7 +65,15 @@ namespace Huggle
 
     //! Wiki edit
 
-    //! Basically all changes to pages can be represented by this class
+    //! Basically all changes to pages can be represented by this class.
+    //! Edits are representing an edit made to a page on a wiki, they
+    //! have a 3 basic statuses:
+    //! None - edit was just created and is not suitable for use
+    //! Processed - edit was pre processed, the basic information were properly set. This
+    //!             is a very quick serial operation that is handled by Core::Process
+    //! Postprocessed - edit was processed by processor thread and the detailed information
+    //!                 were downloaded using separate queries, in this phase the edit
+    //!                 structure contains all possible needed information we want.
     //! \image html ../documentation/providers.png
     class WikiEdit : public Collectable
     {

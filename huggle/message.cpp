@@ -61,7 +61,7 @@ void Message::RetrieveToken()
 void Message::Send()
 {
     if (!this->User)
-        throw new Huggle::Exception("nullptr Message->User", "void Message::Send()");
+        throw new Huggle::NullPointerException("User", "void Message::Send()");
 
     if (this->HasValidEditToken())
     {
@@ -350,17 +350,17 @@ void Message::ProcessSend()
     this->query->Timeout = 600;
     this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
-    QString s = Summary;
+    QString s = this->Summary;
     QString parameters = "";
     if (!this->BaseTimestamp.isEmpty())
     {
         parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-        HUGGLE_DEBUG("Using base timestamp for edit of " + User->GetTalk() + ": " + this->BaseTimestamp, 2);
+        HUGGLE_DEBUG("Using base timestamp for edit of " + this->User->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
     if (!this->StartTimestamp.isEmpty())
     {
         parameters += "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-        HUGGLE_DEBUG("Using start timestamp for edit of " + User->GetTalk() + ": " + this->StartTimestamp, 2);
+        HUGGLE_DEBUG("Using start timestamp for edit of " + this->User->GetTalk() + ": " + this->StartTimestamp, 2);
     }
     if (this->CreateOnly)
     {

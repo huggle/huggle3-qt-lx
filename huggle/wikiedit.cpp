@@ -416,8 +416,13 @@ void WikiEdit::PostProcess()
     if (this->PostProcessing)
         return;
 
+    if (this->Status != Huggle::StatusProcessed)
+        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
+    if (this->Page == nullptr)
+        throw new Huggle::NullPointerException("Page", "void WikiEdit::PostProcess()");
     this->PostProcessing = true;
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk());
+    this->qTalkpage->Site = this->GetSite();
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
@@ -441,7 +446,7 @@ void WikiEdit::PostProcess()
         QueryPool::HugglePool->AppendQuery(this->qDifference);
         this->qDifference->Process();
         this->ProcessingDiff = true;
-    } else if (!this->Page->Contents.size())
+    } else if (this->Page->Contents.isEmpty())
     {
         this->qText = Generic::RetrieveWikiPageContents(this->Page, true);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
