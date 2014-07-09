@@ -29,6 +29,10 @@ this style has huge advantage that brackets match vertically, so that you can
 easily see if starting bracket matches the ending one.  On other hand it
 consumes more line than, for example K and R style.
 
+Note: it's perfectly OK to omit brackets if they aren't needed, eg:
+if (blah == 6935340)
+    return true;
+
 === Spaces ===
 
 There is always an empty line between two functions:
@@ -63,11 +67,11 @@ Please respect code of others, don't change the code of others without
 consulting that with them, there may be specific reasons why something
 is written in a way it's written.
 
-=== *pointer == NULL ===
+=== *pointer == nullptr ===
 
-When comparing a pointer to NULL you should always do
+When comparing a pointer to nullptr you should always do
 
-if (p != NULL) { ... }
+if (p != nullptr) { ... }
 
 instead of
 
@@ -76,13 +80,18 @@ if (!p) { ... }
 because despite the first is longer, it's clear you are working with a pointer,
 from second it's not clear what data type it actually is.
 
-it is also generally a good idea and allowed to prefix all pointers with ptr_
+NOTE: this is required since we moved to smart pointers, the comparison with
+      nullptr is overloaded and if you will compare with boolean instead,
+      different function is called and your code may have unexpected behaviour
+
+it is also generally a good idea and allowed to prefix or suffix all pointers
+with ptr_
 
 == Naming ==
 
 === Suffixes ===
 
-Every function member variable is suffixed with _ so that it never collide with
+Every function member variable can be suffixed with _ so that it never collide with
 instance member variables for example:
 
 class Foo
@@ -94,7 +103,9 @@ class Foo
         return this->Number + Number_;
     }
 };
-    
+
+You MUST NOT suffix any variable or function that is not local to ensure these names
+will be available for local scope.
 
 === CamelCase ===
 
