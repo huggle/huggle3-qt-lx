@@ -521,6 +521,7 @@ PythonEngine::~PythonEngine()
         // fix all leaks caused by python
         this->Queries[id]->UnregisterConsumer(HUGGLECONSUMER_PYTHON);
     }
+    Py_Finalize();
 }
 
 bool PythonEngine::LoadScript(QString path)
