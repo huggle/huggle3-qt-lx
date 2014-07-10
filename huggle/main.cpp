@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
         Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
         if (parser->Init())
         {
-            // we need to do this before we init the qapp because otherwise it would work on systems
+            // we need to do this before we init the qapp because otherwise it would not work on systems
             // that don't have an X org
             delete parser;
             Huggle::Exception::ExitBreakpad();

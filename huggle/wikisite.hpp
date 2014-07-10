@@ -28,6 +28,9 @@ namespace Huggle
     {
         public:
             WikiPageNS(int id, QString name, QString canonical_name);
+            WikiPageNS(const WikiPageNS &k);
+            WikiPageNS(WikiPageNS *k);
+            ~WikiPageNS();
             //~WikiPageNS();
             QString GetName();
             QString GetCanonicalName();

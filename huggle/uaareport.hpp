@@ -40,6 +40,7 @@ namespace Huggle
             explicit UAAReport(QWidget *parent = nullptr);
             ~UAAReport();
             //! I don't have much of a clue why this is here lol, but I know the dialog can't be initialised from mainwindow without this
+            // Who are you? It's there because we must somehow set user to this class I guess --Petrb
             void setUserForUAA(WikiUser *user);
         private slots:
             void on_pushButton_clicked();

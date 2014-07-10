@@ -113,6 +113,7 @@ void SpeedyForm::processTags()
         this->Fail("Invalid CSD tag, there is no message and wiki tag to use");
         return;
     }
+    //! \todo make this cross wiki instead of checking random tag
     if (this->Text.contains("{{db"))
     {
         this->Fail("There is already a CSD tag on the page.");

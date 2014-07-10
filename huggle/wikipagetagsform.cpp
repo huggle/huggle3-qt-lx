@@ -11,13 +11,14 @@
 #include "wikipagetagsform.hpp"
 #include <QMessageBox>
 #include "apiquery.hpp"
-#include "wikipage.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
 #include "wikiedit.hpp"
+#include "wikipage.hpp"
 #include "wikiutil.hpp"
 #include "ui_wikipagetagsform.h"
 
@@ -50,6 +51,10 @@ WikiPageTagsForm::~WikiPageTagsForm()
 
 void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 {
+    if (wikipage == nullptr)
+        throw new Huggle::NullPointerException("wikipage", "void WikiPageTagsForm::ChangePage(WikiPage *wikipage)");
+
+    // we copy the page now
     this->page = new WikiPage(wikipage);
     this->setWindowTitle(_l("tag-title", page->PageName));
     // fill it up with tags

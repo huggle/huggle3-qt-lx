@@ -12,6 +12,7 @@
 #include <QUrl>
 #include <QtXml>
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
 #include "history.hpp"
@@ -42,6 +43,11 @@ EditQuery::~EditQuery()
 
 void EditQuery::Process()
 {
+    if (this->Page == nullptr)
+    {
+        throw new Huggle::NullPointerException("EditQuery::Page", "void EditQuery::Process()");
+    }
+
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
     if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.isEmpty())
