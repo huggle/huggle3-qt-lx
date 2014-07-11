@@ -145,9 +145,9 @@ namespace Huggle
     {
         public:
             //! Return a full url like http://en.wikipedia.org/wiki/
-            static QString GetProjectWikiURL(WikiSite Project);
+            static QString GetProjectWikiURL(WikiSite *Project);
             //! Return a script url like http://en.wikipedia.org/w/
-            static QString GetProjectScriptURL(WikiSite Project);
+            static QString GetProjectScriptURL(WikiSite *Project);
             //! Return a base url of current project
             static QString GetProjectURL();
             //! Return a full url like http://en.wikipedia.org/wiki/
@@ -159,7 +159,7 @@ namespace Huggle
              * \param Project Site
              * \return String with url
              */
-            static QString GetProjectURL(WikiSite Project);
+            static QString GetProjectURL(WikiSite *Project);
             static QString GetLocalizationDataPath();
             //! Extension path (typically HR/extensions) where .py and .so files are in
             static QString GetExtensionsRootPath();
@@ -189,12 +189,6 @@ namespace Huggle
              * \return Value of key, in case there is no such a key content of missing is returned
              */
             static QString ConfigurationParse(QString key, QString content, QString missing = "");
-            /*!
-             * \brief GetDefaultRevertSummary Retrieve default summary
-             * \param source User who should be replaced instead of $1
-             * \return Default revert summary
-             */
-            static QString GetDefaultRevertSummary(QString source);
             static Configuration *HuggleConfiguration;
 
             Configuration();

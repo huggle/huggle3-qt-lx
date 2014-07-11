@@ -245,13 +245,6 @@ QString Configuration::ReplaceSpecialUserPage(QString PageName)
     return result;
 }
 
-QString Configuration::GetDefaultRevertSummary(QString source)
-{
-    QString summary = Configuration::HuggleConfiguration->ProjectConfig->DefaultSummary;
-    summary = summary.replace("$1", source) + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
-    return summary;
-}
-
 QString Configuration::Bool2ExcludeRequire(bool b)
 {
     if (b)
@@ -991,19 +984,19 @@ QDateTime Configuration::ServerTime()
     return QDateTime::currentDateTime().addSecs(this->ServerOffset);
 }
 
-QString Configuration::GetProjectURL(WikiSite Project)
+QString Configuration::GetProjectURL(WikiSite *Project)
 {
-    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project.URL;
+    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project->URL;
 }
 
-QString Configuration::GetProjectWikiURL(WikiSite Project)
+QString Configuration::GetProjectWikiURL(WikiSite *Project)
 {
-    return Configuration::GetProjectURL(Project) + Project.LongPath;
+    return Configuration::GetProjectURL(Project) + Project->LongPath;
 }
 
-QString Configuration::GetProjectScriptURL(WikiSite Project)
+QString Configuration::GetProjectScriptURL(WikiSite *Project)
 {
-    return Configuration::GetProjectURL(Project) + Project.ScriptPath;
+    return Configuration::GetProjectURL(Project) + Project->ScriptPath;
 }
 
 QString Configuration::GetProjectURL()
