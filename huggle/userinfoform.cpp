@@ -230,6 +230,7 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
     this->edit->RevID = revid;
     this->edit->Page->Site = this->User->GetSite();
+    QueryPool::HugglePool->PreProcessEdit(this->edit);
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(HUGGLE_TIMER);

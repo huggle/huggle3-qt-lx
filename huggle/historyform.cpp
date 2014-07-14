@@ -365,6 +365,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
+    QueryPool::HugglePool->PreProcessEdit(w);
     QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != nullptr)
     {
