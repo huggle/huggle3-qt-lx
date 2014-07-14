@@ -76,7 +76,13 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(script->GetModule()));
         this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(script->GetAuthor()));
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
-        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        if (script->IsEnabled())
+        {
+            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        } else
+        {
+            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Killed"));
+        }
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
     }
 #endif
