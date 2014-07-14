@@ -173,6 +173,7 @@ void HuggleTool::FinishPage()
         {
             this->edit->User = new WikiUser();
         }
+        QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
         this->QueryPhase = 2;
     }
