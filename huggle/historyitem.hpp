@@ -47,6 +47,7 @@ namespace Huggle
             //! Change this to false in case that item can't be reverted
             bool IsRevertable = true;
             bool NewPage = false;
+            long RevID = WIKI_UNKNOWN_REVID;
             //! Type of item
             HistoryType Type;
             bool Undone = false;

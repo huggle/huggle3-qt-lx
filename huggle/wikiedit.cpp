@@ -465,6 +465,11 @@ void WikiEdit::PostProcess()
 Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid)
 {
     Collectable_SmartPtr<WikiEdit> e;
+    if (revid == WIKI_UNKNOWN_REVID)
+    {
+        // there is no such an edit
+        return e;
+    }
     WikiEdit::Lock_EditList->lock();
     int x = 0;
     while (x < WikiEdit::EditList.count())

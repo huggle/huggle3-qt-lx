@@ -22,6 +22,7 @@
 #include "historyitem.hpp"
 #include "editquery.hpp"
 #include "revertquery.hpp"
+#include "wikiedit.hpp"
 
 namespace Ui
 {
@@ -56,18 +57,21 @@ namespace Huggle
         private slots:
             void ContextMenu(const QPoint& position);
             void Tick();
+            void Display();
             void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
             void Fail();
             QTimer *timerRetrievePageInformation;
             Collectable_SmartPtr<HistoryItem> RevertingItem;
+            QTimer *timerDisplayEditFromHistLs;
             //! This is a query we need to use to retrieve our own edit before we undo it
             Collectable_SmartPtr<ApiQuery> qEdit;
             //! This is for welcome message that is used to replace a talk page
             Collectable_SmartPtr<EditQuery> qTalk;
             //! Used to revert edits we made
             Collectable_SmartPtr<RevertQuery> qSelf;
+            Collectable_SmartPtr<WikiEdit> DisplayedEdit;
             int CurrentItem = -200;
             Ui::History *ui;
     };
