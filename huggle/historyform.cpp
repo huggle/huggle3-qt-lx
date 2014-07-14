@@ -337,27 +337,22 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     this->SelectedRow = row;
     this->RetrievingEdit = true;
     // check if we don't have this edit in a buffer
-    int x = 0;
     int revid = this->ui->tableWidget->item(row, 4)->text().toInt();
     if (revid == 0)
     {
         this->RetrievingEdit = false;
         return;
     }
-    WikiEdit::Lock_EditList->lock();
-    while (x < WikiEdit::EditList.count())
+
+    Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid);
+    if (edit != nullptr)
     {
-        WikiEdit *edit = WikiEdit::EditList.at(x);
-        x++;
-        if (edit->RevID == revid)
-        {
-            MainWindow::HuggleMain->ProcessEdit(edit, false, true);
-            this->RetrievingEdit = false;
-            WikiEdit::Lock_EditList->unlock();
-            this->MakeSelectedRowBold();
-            return;
-        }
+        MainWindow::HuggleMain->ProcessEdit(edit, false, true);
+        this->RetrievingEdit = false;
+        this->MakeSelectedRowBold();
+        return;
     }
+
     WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();

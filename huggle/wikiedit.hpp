@@ -77,6 +77,7 @@ namespace Huggle
             //! This function will return a constant (which needs to be generated runtime)
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
+            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(int revid);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;
@@ -114,7 +115,7 @@ namespace Huggle
             int OldID;
             bool IsRevert;
             //! Revision ID
-            int RevID;
+            long RevID;
             //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level

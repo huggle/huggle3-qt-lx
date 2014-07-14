@@ -462,6 +462,26 @@ void WikiEdit::PostProcess()
     this->qUser->Process();
 }
 
+Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid)
+{
+    Collectable_SmartPtr<WikiEdit> e;
+    WikiEdit::Lock_EditList->lock();
+    int x = 0;
+    while (x < WikiEdit::EditList.count())
+    {
+        WikiEdit *edit = WikiEdit::EditList.at(x);
+        x++;
+        if (edit->RevID == revid)
+        {
+            e = edit;
+            // let's return it
+            break;
+        }
+    }
+    WikiEdit::Lock_EditList->unlock();
+    return e;
+}
+
 WikiSite *WikiEdit::GetSite()
 {
     if (this->Page == nullptr)
