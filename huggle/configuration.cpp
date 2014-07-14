@@ -26,7 +26,7 @@ Configuration * Configuration::HuggleConfiguration = nullptr;
 
 Configuration::Configuration()
 {
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     this->PythonEngine = true;
 #else
     this->PythonEngine = false;

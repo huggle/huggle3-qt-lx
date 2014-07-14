@@ -46,8 +46,12 @@ typedef char byte_ht;
 // #define HUGGLE_PROFILING
 
 // uncomment this if you want to enable python support
-#ifndef PYTHONENGINE
-//    #define PYTHONENGINE
+#ifndef HUGGLE_PYTHON
+//    #define HUGGLE_PYTHON
+#endif
+
+#ifdef HUGGLE_PYTHON
+    #include <Python.h>
 #endif
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
@@ -55,7 +59,7 @@ typedef char byte_ht;
 #define DISABLE_BREAKPAD
 
 // this is a nasty workaround that exist because python is written by noobs
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
   #ifdef _WIN32
   // workaround for http://bugs.python.org/issue11566
   // remove at least 8 months after the bug is fixed

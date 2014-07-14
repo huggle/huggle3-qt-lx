@@ -10,7 +10,7 @@
 
 #include "configuration.hpp"
 
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
 
 #include "pythonengine.hpp"
 #include <cstdint>

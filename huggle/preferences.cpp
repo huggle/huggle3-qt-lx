@@ -65,7 +65,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     c = 0;
     QList<Python::PythonScript*> scripts(Core::HuggleCore->Python->ScriptsList());
     while (c < scripts.count())

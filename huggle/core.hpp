@@ -12,24 +12,17 @@
 #define CORE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QApplication>
 #include <QList>
 #include <QDateTime>
 #include <QFile>
-
-#ifdef PYTHONENGINE
 #include "pythonengine.hpp"
-#endif
 
 namespace Huggle
 {
     // Predeclaring some types
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     namespace Python
     {
         class PythonEngine;
@@ -119,7 +112,7 @@ namespace Huggle
             bool Running;
             //! Garbage collector
             Huggle::GC *gc;
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
             Python::PythonEngine *Python;
 #endif
         private:

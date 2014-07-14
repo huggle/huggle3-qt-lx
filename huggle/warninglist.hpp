@@ -12,9 +12,6 @@
 #define WARNINGLIST_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDialog>
 #include "collectable_smartptr.hpp"

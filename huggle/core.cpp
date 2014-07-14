@@ -85,7 +85,7 @@ void Core::Init()
     HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
         Syslog::HuggleLogs->Log("Loading python engine");
         this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
 #endif
@@ -104,7 +104,7 @@ void Core::Init()
 
 Core::Core()
 {
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     this->Python = nullptr;
 #endif
     this->Main = nullptr;
@@ -350,7 +350,7 @@ void Core::ExtensionLoad()
                 }
             } else if (name.endsWith(".py"))
             {
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
                 name = extensions.at(xx);
                 if (Core::Python->LoadScript(name))
                 {
@@ -367,7 +367,7 @@ void Core::ExtensionLoad()
     {
         Huggle::Syslog::HuggleLogs->Log("There is no extensions folder, skipping load");
     }
-#ifndef PYTHONENGINE
+#ifndef HUGGLE_PYTHON
     Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Extensions.count()));
 #else
     Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Python->Count() + Core::Extensions.count()));
@@ -411,7 +411,7 @@ void Core::Shutdown()
     }
     Core::SaveDefs();
     Configuration::SaveSystemConfig();
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         Huggle::Syslog::HuggleLogs->Log("Unloading python");

@@ -12,10 +12,6 @@
 #define NETWORKIRC_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QHash>
 #include <QString>

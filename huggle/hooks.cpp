@@ -101,7 +101,7 @@ void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool s
         if (e->IsWorking())
             e->Hook_SpeedyFinished((void*)edit, tags, success);
     }
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, tags, success);
 #endif
 }
@@ -113,7 +113,7 @@ void Huggle::Hooks::MainWindowIsLoaded(Huggle::MainWindow *window)
         if (e->IsWorking())
             e->Hook_MainWindowOnLoad((void*)window);
     }
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_MainWindowIsLoaded();
 #endif
 }
@@ -125,7 +125,7 @@ void Huggle::Hooks::Shutdown()
         if ( e->IsWorking() )
            e->Hook_Shutdown();
     }
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_HuggleShutdown();
 #endif
 }

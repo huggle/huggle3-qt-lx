@@ -12,9 +12,6 @@
 #define WIKIUTIL_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include "editquery.hpp"

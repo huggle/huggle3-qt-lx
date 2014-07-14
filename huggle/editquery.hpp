@@ -12,9 +12,6 @@
 #define EDITQUERY_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include "apiquery.hpp"

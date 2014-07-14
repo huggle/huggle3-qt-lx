@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
 
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H

@@ -12,12 +12,7 @@
 // see http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
-// we can finally include the normal, unbroken headers now
+
 #include <QApplication>
 #include <QStringList>
 #include <QString>

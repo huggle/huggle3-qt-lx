@@ -13,14 +13,8 @@
 
 // Include file with all global defines
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
-
 #include <QList>
 #include <QStringList>
 #include <QHash>

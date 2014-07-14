@@ -12,9 +12,6 @@
 #define HISTORYFORM_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDockWidget>
 #include "apiquery.hpp"
