@@ -188,7 +188,7 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
     if (type == "new")
         edit->NewPage = true;
     if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
-        edit->Size = item.attribute("newlen").toInt() - item.attribute("oldlen").toInt();
+        edit->SetSize(item.attribute("newlen").toLong() - item.attribute("oldlen").toLong());
     if (item.attributes().contains("user"))
         edit->User = new WikiUser(item.attribute("user"));
     if (item.attributes().contains("comment"))

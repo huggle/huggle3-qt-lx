@@ -105,8 +105,9 @@ namespace Huggle
             bool Bot;
             //! Edit is a new page
             bool NewPage;
-            //! Size of change of edit
-            int Size;
+            bool SizeIsKnown = false;
+            void SetSize(long size);
+            long GetSize();
             //! Diff id
             int Diff;
             //! Priority in queue
@@ -166,6 +167,8 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qUser;
             Collectable_SmartPtr<ApiQuery> qDifference;
             Collectable_SmartPtr<ApiQuery> qText;
+            //! Size of change of edit
+            long Size;
     };
 
     inline QDateTime WikiEdit::GetUnknownEditTime()
@@ -176,6 +179,17 @@ namespace Huggle
     inline bool WikiEdit::IsPostProcessed()
     {
         return (this->Status == StatusPostProcessed);
+    }
+
+    inline long WikiEdit::GetSize()
+    {
+        return this->Size;
+    }
+
+    inline void WikiEdit::SetSize(long size)
+    {
+        this->SizeIsKnown = true;
+        this->Size = size;
     }
 }
 

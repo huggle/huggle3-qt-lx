@@ -136,10 +136,18 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
     QString Summary;
     QString size;
-    if (edit->Size > 0)
-        size = "<font color=green>+" + QString::number(edit->Size) + "</font>";
-    else
-        size = "<font color=\"red\">" + QString::number(edit->Size) + "</font>";
+    if (edit->SizeIsKnown)
+    {
+        if (edit->GetSize() > 0)
+            size = "<font color=green>+" + QString::number(edit->GetSize()) + "</font>";
+        else if (edit->GetSize() == 0)
+            size = "<font color=blue>" + QString::number(edit->GetSize()) + "</font>";
+        else
+            size = "<font color=\"red\">" + QString::number(edit->GetSize()) + "</font>";
+    } else
+    {
+        size = "<font color=red>Unknown</font>";
+    }
 
 
     if (edit->Summary.isEmpty())
