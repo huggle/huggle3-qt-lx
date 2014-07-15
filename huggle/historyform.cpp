@@ -353,7 +353,6 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         return;
     }
 
-    WikiEdit::Lock_EditList->unlock();
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
     w->User = new WikiUser(this->ui->tableWidget->item(row, 1)->text());
