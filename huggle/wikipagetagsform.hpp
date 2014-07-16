@@ -25,10 +25,11 @@ namespace Ui
 
 namespace Huggle
 {
-    //! This is a callback for query we use to read the page
-    void WikiPageTagsForm_FinishRead(Query *result);
+    // fwdecl
     class Query;
     class WikiPage;
+    //! This is a callback for query we use to read the page
+    void WikiPageTagsForm_FinishRead(Query *result);
 
     //! Form used to tag page
     class WikiPageTagsForm : public QDialog
