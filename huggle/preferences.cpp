@@ -78,6 +78,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
         if (script->IsEnabled())
         {
+            //! \todo LOCALIZE ME
             this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
         } else
         {

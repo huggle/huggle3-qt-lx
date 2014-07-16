@@ -95,7 +95,6 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
     if (!MessageText_.size())
     {
-        // This is very rare error, no need to localize it
         Syslog::HuggleLogs->Log(_l("missing-warning",Template_));
         return nullptr;
     }
