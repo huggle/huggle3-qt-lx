@@ -48,7 +48,7 @@ ApiQuery *Generic::RetrieveWikiPageContents(WikiPage *page, bool parse)
 }
 
 QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user,
-                                          int *revid, int *reason, QString *title)
+                                          long *revid, int *reason, QString *title)
 {
     if (!failed)
     {
@@ -110,9 +110,12 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
     {
         *ts = e.attribute("timestamp");
     }
-    if (revid && e.attributes().contains("revid"))
+    if (revid)
     {
-        *revid = e.attribute("revid").toInt();
+        if (e.attributes().contains("revid"))
+            *revid = e.attribute("revid").toInt();
+        else
+            *revid = WIKI_UNKNOWN_REVID;
     }
     *failed = false;
     return e.text();

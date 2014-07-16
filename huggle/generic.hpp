@@ -48,9 +48,9 @@ namespace Huggle
          * \return Text of wiki page or error message
          */
         QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
-                                         QString *user = nullptr, int *revid = nullptr, int *reason = nullptr,
+                                         QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
                                          QString *title = nullptr);
-        //! \obsolete Use
+        //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         ApiQuery *RetrieveWikiPageContents(QString page, bool parse = false);
         ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         QString ShrinkText(QString text, int size, bool html = true);
