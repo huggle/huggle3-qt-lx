@@ -27,11 +27,25 @@ namespace Huggle
     class WikiEdit;
     class WikiPage;
 
+    enum MessageBoxStyle
+    {
+        MessageBoxStyleNormal,
+        MessageBoxStyleQuestion,
+        MessageBoxStyleWarning,
+        MessageBoxStyleError
+    };
+
     //! Generic requests that are frequently issued to wiki
     namespace Generic
     {
         //! Display a user message before reporting a user based on user preferences
         bool ReportPreFlightCheck();
+        /*!
+         * \brief MessageBox Display a message box
+         * \param title Title of message box
+         * \param text What is displayed in a message
+         */
+        int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal);
         //! Display a message box telling user that function is not allowed during developer mode
         void DeveloperError();
         /*!

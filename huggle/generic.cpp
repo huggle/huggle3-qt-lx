@@ -123,11 +123,8 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
 
 void Generic::DeveloperError()
 {
-    QMessageBox *mb = new QMessageBox();
-    mb->setWindowTitle("Function is restricted now");
-    mb->setText("You can't perform this action in developer mode, because you aren't logged into the wiki");
-    mb->exec();
-    delete mb;
+    MessageBox("Function is restricted now", "You can't perform this action in"\
+               " developer mode, because you aren't logged into the wiki");
 }
 
 QString Generic::ShrinkText(QString text, int size, bool html)
@@ -153,4 +150,24 @@ QString Generic::ShrinkText(QString text, int size, bool html)
         text_.replace(" ", "&nbsp;");
     }
     return text_;
+}
+
+
+int Generic::MessageBox(QString title, QString text, MessageBoxStyle st)
+{
+    QMessageBox mb;
+    mb.setWindowTitle(title);
+    mb.setText(text);
+    switch (st)
+    {
+        case MessageBoxStyleQuestion:
+            mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            mb.setDefaultButton(QMessageBox::Yes);
+            break;
+        case MessageBoxStyleNormal:
+        case MessageBoxStyleError:
+        case MessageBoxStyleWarning:
+            break;
+    }
+    return mb.exec();
 }

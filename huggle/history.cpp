@@ -276,12 +276,9 @@ void History::Tick()
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
         {
-            QMessageBox mb;
-            mb.setWindowTitle("Send welcome message instead?");
-            mb.setText("You created this talk page, so it can't be undone, do you want to replace it with a welcome template?");
-            mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-            mb.setDefaultButton(QMessageBox::Yes);
-            if (mb.exec() == QMessageBox::Yes)
+            int message = Generic::MessageBox("Send welcome message instead?", "You created this talk page, so it can't be undone"\
+                                              ", do you want to replace it with a welcome template?", MessageBoxStyleQuestion);
+            if (message == QMessageBox::Yes)
             {
                 if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.count() == 0)
                 {
