@@ -25,6 +25,8 @@ namespace Ui
 
 namespace Huggle
 {
+    //! This is a callback for query we use to read the page
+    void WikiPageTagsForm_FinishRead(Query *result);
     class Query;
     class WikiPage;
 
@@ -44,8 +46,6 @@ namespace Huggle
             QList<QCheckBox*> CheckBoxes;
             Ui::WikiPageTagsForm *ui;
     };
-
-    void WikiPageTagsForm_FinishRead(Query *result);
 }
 
 #endif // WIKIPAGETAGSFORM_HPP
