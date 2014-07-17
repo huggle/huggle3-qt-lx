@@ -93,6 +93,7 @@ namespace Huggle
             /// \todo Share a version of your huggle with others in sane way
             /// \todo Hook to VERSION
         public:
+            static QString SafeHtml(QString text);
             explicit VandalNw(QWidget *parent = 0);
             ~VandalNw();
             /*!

@@ -25,6 +25,52 @@
 
 using namespace Huggle;
 
+QString VandalNw::SafeHtml(QString text)
+{
+    QString result;
+    QStringList AllowedTags;
+    AllowedTags << "b" << "big" << "font" << "i" << "u";
+    // we split the text by starting element
+    QStringList Part = text.split('<');
+    bool FirstPart = true;
+    foreach (QString part, Part)
+    {
+        if (!FirstPart)
+            part = "<" + part;
+        else
+            FirstPart = false;
+        // if there is no closing we don't want to render this tag
+        if (!part.contains(">"))
+        {
+            result += HuggleWeb::Encode(part);
+            continue;
+        }
+        // now we need to find what tag it is
+        QString tag = part.mid(1, part.indexOf(">") - 1);
+        if (tag.startsWith("/"))
+            tag = tag.mid(1);
+        if (tag.contains(" "))
+        {
+            // this is some composite tag
+            tag = tag.mid(0, tag.indexOf(" "));
+        }
+        bool OK = false;
+        foreach (QString ok, AllowedTags)
+        {
+            if (tag == ok)
+            {
+                OK = true;
+                break;
+            }
+        }
+        if (!OK)
+            part = HuggleWeb::Encode(part);
+        result += part;
+    }
+
+    return result;
+}
+
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server,
@@ -212,8 +258,8 @@ void VandalNw::Message()
         this->Irc->Send(this->Channel, this->ui->lineEdit->text());
         QString text = ui->lineEdit->text();
         if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
-            text = HuggleWeb::Encode(text);
-        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + ui->lineEdit->text(),
+            text = SafeHtml(text);
+        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + text,
                      HAN::MessageType_UserTalk);
     }
     this->ui->lineEdit->setText("");
@@ -421,7 +467,7 @@ void VandalNw::onTick()
         {
             QString message_ = m->Text;
             if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
-                message_ = HuggleWeb::Encode(message_);
+                message_ = SafeHtml(message_);
             this->Insert(m->user.Nick + ": " + message_, HAN::MessageType_UserTalk);
         }
         delete m;
