@@ -36,10 +36,6 @@ namespace Huggle
     class HistoryItem;
     class RevertQuery;
 
-    /// \todo It should be possible to go back in history to review what you have you done
-    /// currently nothing happens when you click on history items
-    /// \todo Option to remove the items / trim them etc so that operating memory is not cluttered by these
-
     //! History of actions done by user
 
     //! This is a widget that displays the user history
@@ -61,6 +57,7 @@ namespace Huggle
             void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
+            void DeleteItems();
             void Fail();
             QTimer *timerRetrievePageInformation;
             Collectable_SmartPtr<HistoryItem> RevertingItem;

@@ -58,12 +58,7 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
 
 History::~History()
 {
-    while (this->Items.count() > 0)
-    {
-        HistoryItem *hi = this->Items.at(0);
-        this->Items.removeAt(0);
-        hi->DecRef();
-    }
+    this->DeleteItems();
     delete this->ui;
     delete this->timerDisplayEditFromHistLs;
     delete this->timerRetrievePageInformation;
@@ -152,10 +147,12 @@ void History::ContextMenu(const QPoint &position)
     QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
     QMenu menu;
     //! \todo LOCALIZE ME
+    QAction *clean = new QAction("Clear", &menu);
     QAction *show = new QAction("Show", &menu);
     QAction *undo = new QAction("Undo", &menu);
     menu.addAction(show);
     menu.addAction(undo);
+    menu.addAction(clean);
     QAction *selection = menu.exec(g_);
     if (selection == undo)
     {
@@ -211,6 +208,9 @@ void History::ContextMenu(const QPoint &position)
             // let's display it
             MainWindow::HuggleMain->ProcessEdit(edit);
         }
+    } else if (selection == clean)
+    {
+        this->DeleteItems();
     }
 }
 
@@ -352,6 +352,17 @@ void History::Prepend(HistoryItem *item)
 void Huggle::History::on_tableWidget_clicked(const QModelIndex &index)
 {
     this->CurrentItem = index.row();
+}
+
+void History::DeleteItems()
+{
+    while (this->Items.count() > 0)
+    {
+        this->ui->tableWidget->removeRow(0);
+        HistoryItem *hi = this->Items.at(0);
+        this->Items.removeAt(0);
+        hi->DecRef();
+    }
 }
 
 void History::Fail()
