@@ -268,7 +268,7 @@ void ReportUser::Tick()
             // everything is ok we report user
             QString summary = Configuration::HuggleConfiguration->ProjectConfig->ReportSummary;
             summary = summary.replace("$1",this->ReportedUser->Username);
-            this->qEdit = WikiUtil::EditPage(Configuration::HuggleConfiguration->AIVP, this->ReportContent, summary,
+            this->qEdit = WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->AIVP, this->ReportContent, summary,
                                              false, this->ReportTs);
             /// \todo LOCALIZE ME
             this->ui->pushButton->setText("Writing");

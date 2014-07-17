@@ -9,7 +9,12 @@
 //GNU General Public License for more details.
 
 #include "projectconfiguration.hpp"
+#include "generic.hpp"
+#include "huggleparser.hpp"
+#include "syslog.hpp"
+#include "wikipage.hpp"
 
+using namespace Huggle::Generic;
 using namespace Huggle;
 
 ProjectConfiguration::ProjectConfiguration()
@@ -35,6 +40,237 @@ ProjectConfiguration::ProjectConfiguration()
     this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 }
+
+ProjectConfiguration::~ProjectConfiguration()
+{
+    delete this->AIVP;
+    delete this->UAAP;
+}
+
+bool ProjectConfiguration::Parse(QString config)
+{
+    //AIV
+    this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
+    this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
+    this->ReportAIV = HuggleParser::ConfigurationParse("aiv", config);
+    this->ReportSt = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
+    this->IPVTemplateReport = HuggleParser::ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
+    this->RUTemplateReport = HuggleParser::ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
+    this->ReportDefaultReason = HuggleParser::ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\
+                                                                 "unconstructive edits found with [[WP:HG|Huggle 3]].");
+    // Restrictions
+    this->EnableAll = SafeBool(HuggleParser::ConfigurationParse("enable-all", config));
+    this->RequireAdmin = SafeBool(HuggleParser::ConfigurationParse("require-admin", config));
+    this->RequireAutoconfirmed = SafeBool(HuggleParser::ConfigurationParse("require-autoconfirmed", config, "false"));
+    this->RequireConfig = SafeBool(HuggleParser::ConfigurationParse("require-config", config, "false"));
+    this->RequireEdits = HuggleParser::ConfigurationParse("require-edits", config, "0").toInt();
+    this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
+    // IRC
+    this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
+    // Ignoring
+    this->Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, true);
+    this->IgnorePatterns = HuggleParser::ConfigurationParse_QL("ignore-patterns", config, true);
+    // Scoring
+    this->IPScore = HuggleParser::ConfigurationParse(ProjectConfig_IPScore_Key, config, "800").toInt();
+    this->ScoreFlag = HuggleParser::ConfigurationParse("score-flag", config).toInt();
+    this->ForeignUser = HuggleParser::ConfigurationParse("score-foreign-user", config, "200").toInt();
+    this->BotScore = HuggleParser::ConfigurationParse("score-bot", config, "-200000").toInt();
+    this->ScoreUser = HuggleParser::ConfigurationParse("score-user", config, "-200").toInt();
+    this->ScoreTalk = HuggleParser::ConfigurationParse("score-talk", config, "-800").toInt();
+    // Summaries
+    this->WarnSummary = HuggleParser::ConfigurationParse("warn-summary", config);
+    this->WarnSummary2 = HuggleParser::ConfigurationParse("warn-summary-2", config);
+    this->DefaultSummary = HuggleParser::ConfigurationParse("default-summary", config,
+              "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    this->AgfRevert = HuggleParser::ConfigurationParse("agf", config, "Reverted good faith edits by [[Special:Contributions/$2|$2]]"\
+                                                       " [[User talk:$2|talk]]: $1");
+    this->EditSuffixOfHuggle = HuggleParser::ConfigurationParse("summary", config, "[[Project:Huggle|HG]]");
+    this->WarnSummary3 = HuggleParser::ConfigurationParse("warn-summary-3", config);
+    this->WarnSummary4 = HuggleParser::ConfigurationParse("warn-summary-4", config);
+    this->RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
+    this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config,
+              "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    this->SingleRevert = HuggleParser::ConfigurationParse("single-revert-summary", config,
+              "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    this->UndoSummary = HuggleParser::ConfigurationParse("undo-summary", config);
+    this->SoftwareRevertDefaultSummary = HuggleParser::ConfigurationParse("manual-revert-summary", config,
+              "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2");
+    this->MultipleRevertSummary = HuggleParser::ConfigurationParse("multiple-revert-summary-parts", config,
+              "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
+    this->RollbackSummaryUnknownTarget = HuggleParser::ConfigurationParse("rollback-summary-unknown",
+              config, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    // Warning types
+    this->WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config);
+    this->WarningLevel = (byte_ht)HuggleParser::ConfigurationParse("warning-mode", config, "4").toInt();
+    this->WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
+    // Reverting
+    this->ConfirmWL = SafeBool(HuggleParser::ConfigurationParse("confirm-ignored", config, "true"));
+    this->ConfirmMultipleEdits = SafeBool(HuggleParser::ConfigurationParse("confirm-multiple", config, ""));
+    this->ConfirmTalk = SafeBool(HuggleParser::ConfigurationParse("confirm-talk", config, "true"));
+    // this->ConfirmRange = SafeBool(HuggleParser::ConfigurationParse("confirm-range", config, "true"));
+    // this->ConfirmPage = SafeBool(HuggleParser::ConfigurationParse("confirm-page", config, "true"));
+    // this->ConfirmSame = SafeBool(HuggleParser::ConfigurationParse("confirm-same", config, "true"));
+    this->ConfirmOnSelfRevs = SafeBool(HuggleParser::ConfigurationParse("confirm-self-revert", config, "true"));
+    // this->ProjectConfig->ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config, "true"));
+    this->AutomaticallyResolveConflicts = SafeBool(HuggleParser::ConfigurationParse("automatically-resolve-conflicts", config), false);
+    // Welcoming
+    this->WelcomeMP = HuggleParser::ConfigurationParse("startup-message-location", config, "Project:Huggle/Message");
+    this->WelcomeGood = SafeBool(HuggleParser::ConfigurationParse("welcome-on-good-edit", config, "true"));
+    this->WelcomeAnon = HuggleParser::ConfigurationParse("welcome-anon", config, "{{subst:welcome-anon}}");
+    this->WelcomeTypes = HuggleParser::ConfigurationParse_QL("welcome-messages", config);
+    // Reporting
+    this->SpeedyEditSummary = HuggleParser::ConfigurationParse("speedy-summary", config, "Tagging page for deletion");
+    this->SpeedyWarningSummary = HuggleParser::ConfigurationParse("speedy-message-summary", config, "Notification: [[$1]] has been listed for deletion");
+    this->Patrolling = SafeBool(HuggleParser::ConfigurationParse("patrolling-enabled", config));
+    this->PatrollingFlaggedRevs = SafeBool(HuggleParser::ConfigurationParse("patrolling-flaggedrevs", config, "false"));
+    this->ReportSummary = HuggleParser::ConfigurationParse("report-summary", config);
+    this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
+    // Parsing
+    this->TemplateAge = HuggleParser::ConfigurationParse("template-age", config, QString::number(this->TemplateAge)).toInt();
+    // UAA
+    this->UAAPath = HuggleParser::ConfigurationParse("uaa", config);
+    this->TaggingSummary = HuggleParser::ConfigurationParse("tag-summary", config, "Tagging page");
+    this->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
+    QStringList t2 = HuggleParser::ConfigurationParse_QL("tags-detailed", config, true);
+    foreach (QString item, t2)
+    {
+        // we need to copy the tags from this other list
+        // to keep h2 work with old ones
+        if (item.contains(";"))
+        {
+            // extract name
+            QString name = item.mid(0, item.indexOf(";"));
+            if (this->Tags.contains(name))
+                this->Tags.removeOne(name);
+        }
+        this->Tags.append(item);
+    }
+    // Blocking
+    this->WhitelistScore = HuggleParser::ConfigurationParse("score-wl", config, "-800").toInt();
+    this->BlockMessage = HuggleParser::ConfigurationParse("block-message", config);
+    this->BlockReason = HuggleParser::ConfigurationParse("block-reason", config);
+    this->BlockExpiryOptions.clear();
+    // Feedback
+    this->Feedback = HuggleParser::ConfigurationParse("feedback", config);
+    // Templates
+    this->MessageHeadings = HeadingsStandard;
+    QString headings = HuggleParser::ConfigurationParse("headings", config, "standard");
+    if (headings == "page")
+    {
+        this->MessageHeadings = HeadingsPageName;
+        //this->UserConfig->EnforceMonthsAsHeaders = false;
+    } else if(headings == "none")
+    {
+        this->MessageHeadings = HeadingsNone;
+        //this->UserConfig->EnforceMonthsAsHeaders = false;
+    }
+    QString Options = HuggleParser::ConfigurationParse("block-expiry-options", config);
+    QStringList list = Options.split(",");
+    while (list.count() > 0)
+    {
+        QString item = list.at(0);
+        item = item.trimmed();
+        this->BlockExpiryOptions.append(item);
+        list.removeAt(0);
+    }
+    this->DeletionSummaries = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
+    this->BlockSummary = HuggleParser::ConfigurationParse("block-summary", config, "Notification: Blocked");
+    this->BlockTime = HuggleParser::ConfigurationParse("blocktime", config, "indef");
+    this->ClearTalkPageTemp = HuggleParser::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
+    this->Assisted = HuggleParser::ConfigurationParse_QL("assisted-summaries", config, true);
+    this->SharedIPTemplateTags = HuggleParser::ConfigurationParse("shared-ip-template-tag", config, "");
+    this->SharedIPTemplate = HuggleParser::ConfigurationParse("shared-ip-template", config, "");
+    this->ProtectReason =  HuggleParser::ConfigurationParse("protection-reason", config, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    this->RevertPatterns = HuggleParser::ConfigurationParse_QL("revert-patterns", config, true);
+    this->RFPP_PlaceTop = SafeBool(HuggleParser::ConfigurationParse("protection-request-top", config));
+    this->RFPP_Regex = HuggleParser::ConfigurationParse("rfpp-verify", config);
+    this->RFPP_Section = (unsigned int)HuggleParser::ConfigurationParse("rfpp-section", config, "0").toInt();
+    this->RFPP_Page = HuggleParser::ConfigurationParse("protection-request-page", config);
+    this->RFPP_Template = HuggleParser::ConfigurationParse("rfpp-template", config);
+    this->RFPP_Summary = HuggleParser::ConfigurationParse("protection-request-summary", config, "Request to protect page");
+    this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());
+    this->RFPP_TemplateUser = HuggleParser::ConfigurationParse("rfpp-template-user", config);
+    QStringList MonthsHeaders_ = HuggleParser::ConfigurationParse_QL("months", config);
+    if (MonthsHeaders_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for this project contains " + QString::number(MonthsHeaders_.count()) +
+                                       " months, which is weird and I will not use them");
+    } else
+    {
+        this->Months.clear();
+        int i = 0;
+        while (i < 12)
+        {
+            QString month_ = MonthsHeaders_.at(i);
+            if (month_.contains(";"))
+            {
+                month_ = month_.mid(month_.indexOf(";") + 1);
+            }
+            if (month_.endsWith(','))
+            {
+                month_ = month_.mid(0, month_.length() - 1);
+            }
+            this->Months.append(month_);
+            i++;
+        }
+    }
+    this->AlternativeMonths.clear();
+    QStringList AMH_ = HuggleParser::ConfigurationParse_QL("alternative-months", config);
+    int month_ = 1;
+    foreach (QString months, AMH_)
+    {
+        if (months.endsWith(","))
+            months = months.mid(0, months.size() - 1);
+        this->AlternativeMonths.insert(month_, months.split(';'));
+        month_++;
+    }
+    while (month_ < 13)
+    {
+        Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        this->AlternativeMonths.insert(month_, QStringList());
+        month_++;
+    }
+    this->_revertPatterns.clear();
+    int xx = 0;
+    while (xx < this->RevertPatterns.count())
+    {
+        this->_revertPatterns.append(QRegExp(this->RevertPatterns.at(xx)));
+        xx++;
+    }
+    HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
+    if (this->AIVP != nullptr)
+        delete this->AIVP;
+    this->AIVP = new WikiPage(this->ReportAIV);
+    HuggleParser::ParsePats(config);
+    HuggleParser::ParseWords(config);
+    if (this->UAAP != nullptr)
+        delete this->UAAP;
+    this->UAAP = new WikiPage(this->UAAPath);
+    // templates
+    int CurrentTemplate=0;
+    while (CurrentTemplate<this->WarningTypes.count())
+    {
+        QString type = HuggleParser::GetKeyFromValue(this->WarningTypes.at(CurrentTemplate));
+        int CurrentWarning = 1;
+        while (CurrentWarning <= 4)
+        {
+            QString xx = HuggleParser::ConfigurationParse(type + QString::number(CurrentWarning), config);
+            if (xx != "")
+            {
+                this->WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
+            }
+            CurrentWarning++;
+        }
+        CurrentTemplate++;
+    }
+    // sanitize
+    if (this->ReportAIV.size() == 0)
+        this->AIV = false;
+    // Do the same for UAA as well
+    this->UAAavailable = this->UAAPath.size() > 0;
+    return true;
+}
+
 
 ScoreWord::ScoreWord(QString Word, int Score)
 {

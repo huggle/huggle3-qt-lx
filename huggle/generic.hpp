@@ -38,6 +38,13 @@ namespace Huggle
     //! Generic requests that are frequently issued to wiki
     namespace Generic
     {
+        /*!
+         * \brief Bool2String Convert a bool to string
+         * \param b bool
+         * \return string
+         */
+        QString Bool2String(bool b);
+        bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
         bool ReportPreFlightCheck();
         /*!

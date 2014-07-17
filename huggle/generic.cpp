@@ -18,10 +18,33 @@
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
 
+#ifdef MessageBox
+    // fix GCC for windows headers port
+    #undef MessageBox
+#endif
+
 using namespace Huggle;
 
 // we need to preload this thing so that we don't need to create this string so frequently and toast teh PC
 static QString options_ = QUrl::toPercentEncoding("timestamp|user|comment|content");
+
+QString Generic::Bool2String(bool b)
+{
+    if (b)
+    {
+        return "true";
+    }
+    return "false";
+}
+
+bool Generic::SafeBool(QString value, bool defaultvalue)
+{
+    if (value.toLower() == "true")
+    {
+        return true;
+    }
+    return defaultvalue;
+}
 
 bool Generic::ReportPreFlightCheck()
 {
@@ -123,8 +146,8 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
 
 void Generic::DeveloperError()
 {
-    MessageBox("Function is restricted now", "You can't perform this action in"\
-               " developer mode, because you aren't logged into the wiki");
+    Generic::MessageBox("Function is restricted now", "You can't perform this action in"\
+                        " developer mode, because you aren't logged into the wiki");
 }
 
 QString Generic::ShrinkText(QString text, int size, bool html)
@@ -151,7 +174,6 @@ QString Generic::ShrinkText(QString text, int size, bool html)
     }
     return text_;
 }
-
 
 int Generic::MessageBox(QString title, QString text, MessageBoxStyle st)
 {

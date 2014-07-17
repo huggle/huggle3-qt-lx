@@ -465,7 +465,7 @@ void Login::RetrieveProjectConfig()
             }
             this->LoginQuery = nullptr;
             QDomElement data = l.at(0).toElement();
-            if (Configuration::HuggleConfiguration->ParseProjectConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ProjectConfig->Parse(data.text()))
             {
                 if (!Configuration::HuggleConfiguration->ProjectConfig->EnableAll)
                 {

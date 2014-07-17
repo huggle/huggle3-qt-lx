@@ -11,10 +11,11 @@
 #include "apiquery.hpp"
 #include <QtXml>
 #include <QUrl>
+#include "configuration.hpp"
 #include "syslog.hpp"
 #include "revertquery.hpp"
 #include "exception.hpp"
-#include "configuration.hpp"
+#include "generic.hpp"
 #include "wikisite.hpp"
 
 using namespace Huggle;
@@ -173,7 +174,7 @@ void ApiQuery::Process()
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         this->ProcessCallback();
-        Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Configuration::Bool2String(this->UsingPOST) +
+        Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Generic::Bool2String(this->UsingPOST) +
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }

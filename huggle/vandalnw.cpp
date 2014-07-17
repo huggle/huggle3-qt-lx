@@ -12,6 +12,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include "huggleweb.hpp"
 #include "hugglequeue.hpp"
 #include "mainwindow.hpp"
 #include "networkirc.hpp"
@@ -209,6 +210,9 @@ void VandalNw::Message()
     if (this->Irc->IsConnected())
     {
         this->Irc->Send(this->Channel, this->ui->lineEdit->text());
+        QString text = ui->lineEdit->text();
+        if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
+            text = HuggleWeb::Encode(text);
         this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + ui->lineEdit->text(),
                      HAN::MessageType_UserTalk);
     }
@@ -415,7 +419,10 @@ void VandalNw::onTick()
             }
         } else
         {
-            this->Insert(m->user.Nick + ": " + m->Text, HAN::MessageType_UserTalk);
+            QString message_ = m->Text;
+            if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
+                message_ = HuggleWeb::Encode(message_);
+            this->Insert(m->user.Nick + ": " + message_, HAN::MessageType_UserTalk);
         }
         delete m;
     }

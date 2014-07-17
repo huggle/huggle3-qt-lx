@@ -19,8 +19,17 @@
 #include <QHash>
 #include <QString>
 
+// Private key names
+// these need to be stored in separate variables so that we can
+// 1. Change them on 1 place
+// 2. Track them (we need to be able to find where these options
+//    are being used)
+#define                 ProjectConfig_IPScore_Key "score-ip"
+
 namespace Huggle
 {
+    class WikiPage;
+
     enum Headings
     {
         HeadingsStandard,
@@ -50,8 +59,18 @@ namespace Huggle
     {
         public:
             ProjectConfiguration();
+            ~ProjectConfiguration();
+            //! Parse all information from local config, this function is used in login
+            bool Parse(QString config);
             void RequestLogin();
+            //! \todo This needs to be later used as a default value for user config, however it's not being ensured
+            //!       this value is loaded before the user config right now
+            bool AutomaticallyResolveConflicts = false;
             QStringList Months;
+            //! Pointer to AIV page
+            WikiPage    *AIVP = nullptr;
+            //! Pointer to UAA page
+            WikiPage    *UAAP = nullptr;
             //! Set to false when you are logged out for some reason
             bool            IsLoggedIn = false;
             bool            RequestingLogin = false;
@@ -171,8 +190,10 @@ namespace Huggle
             // Tagging
             QString                 TaggingSummary;
             QStringList             Tags;
+            //! Where the welcome message is stored
+            QString                 WelcomeMP = "Project:Huggle/Message";
             // This is internal only do not prefix it!!
-            QList<QRegExp>          _RevertPatterns;
+            QList<QRegExp>          _revertPatterns;
             int                     BotScore = -200;
             int                     WarningScore = 2000;
             QStringList             WarningTypes;

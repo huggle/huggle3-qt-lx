@@ -225,7 +225,7 @@ void RevertQuery::Preflight()
     }
     if (failed)
     {
-        if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts)
+        if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts)
         {
             if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
             {
@@ -351,7 +351,7 @@ void RevertQuery::CheckPreflight()
         {
             text = (_l("cr-message-not-same", this->edit->Page->PageName));
         }
-        if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts)
+        if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts)
         {
             if (MultipleEdits && !Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
@@ -553,7 +553,7 @@ bool RevertQuery::ProcessRevert()
             if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > this->edit->RevID)
             {
                 HUGGLE_DEBUG("RevID " + QString::number(e.attribute("revid").toInt()) + " > " + QString::number(this->edit->RevID), 2);
-                if (Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts &&
+                if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts &&
                     Configuration::HuggleConfiguration->UserConfig->RevertNewBySame &&
                     e.attributes().contains("user") &&
                     WikiUtil::SanitizeUser(e.attribute("user")) == this->edit->User->Username)

@@ -22,9 +22,9 @@ bool WikiUtil::IsRevert(QString Summary)
     if (Summary.size() > 0)
     {
         int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.count())
+        while (xx < Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_RevertPatterns.at(xx)))
+            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.at(xx)))
             {
                 return true;
             }

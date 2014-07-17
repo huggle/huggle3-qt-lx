@@ -15,6 +15,7 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionwindow.hpp"
+#include "generic.hpp"
 #include "hooks.hpp"
 #include "hugglefeed.hpp"
 #include "hugglequeuefilter.hpp"
@@ -180,13 +181,13 @@ void Core::LoadDB()
         if (e.attributes().contains("script"))
             site->ScriptPath = e.attribute("script");
         if (e.attributes().contains("https"))
-            site->SupportHttps = Configuration::SafeBool(e.attribute("https"));
+            site->SupportHttps = Generic::SafeBool(e.attribute("https"));
         if (e.attributes().contains("oauth"))
-            site->SupportOAuth = Configuration::SafeBool(e.attribute("oauth"));
+            site->SupportOAuth = Generic::SafeBool(e.attribute("oauth"));
         if (e.attributes().contains("channel"))
             site->IRCChannel = e.attribute("channel");
         if (e.attributes().contains("rtl"))
-            site->IsRightToLeft = Configuration::SafeBool(e.attribute("rtl"));
+            site->IsRightToLeft = Generic::SafeBool(e.attribute("rtl"));
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }

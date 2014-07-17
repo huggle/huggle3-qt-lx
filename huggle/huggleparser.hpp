@@ -27,6 +27,14 @@ namespace Huggle
     //! This namespace contains functions to parse various text, such as configuration keys
     namespace HuggleParser
     {
+        //! Parse a string from configuration which has format used by huggle 2x
+        /*!
+         * \param key Key
+         * \param content Text to parse from
+         * \param missing Default value in case this key is missing in text
+         * \return Value of key, in case there is no such a key content of missing is returned
+         */
+        QString ConfigurationParse(QString key, QString content, QString missing = "");
         //! \todo This function needs a unit test
         QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test

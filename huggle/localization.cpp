@@ -13,6 +13,7 @@
 #include <QFile>
 #include "exception.hpp"
 #include "configuration.hpp"
+#include "generic.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
@@ -100,7 +101,7 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
         QString n_ = item.attribute("name");
         if (n_ == "isrtl")
         {
-            l->IsRTL = Configuration::SafeBool(item.text());
+            l->IsRTL = Generic::SafeBool(item.text());
             continue;
         }
         if (l->Messages.contains(n_))

@@ -912,7 +912,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::DisplayWelcomeMessage()
 {
-    WikiPage *welcome = new WikiPage(Configuration::HuggleConfiguration->WelcomeMP);
+    WikiPage *welcome = new WikiPage(Configuration::HuggleConfiguration->ProjectConfig->WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
     this->LockPage();
     delete welcome;

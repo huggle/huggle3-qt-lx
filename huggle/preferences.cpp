@@ -111,7 +111,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
-    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts);
+    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setText(_l("config-ircmode"));
     this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
     this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig->HistoryLoad);
@@ -136,6 +136,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
+    this->ui->checkBox_31->setChecked(Configuration::HuggleConfiguration->HtmlAllowedInIrc);
     this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
     this->ui->checkBox_notifyUpdate->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
@@ -217,7 +218,7 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    Configuration::HuggleConfiguration->UserConfig_AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
     Configuration::HuggleConfiguration->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
     Configuration::HuggleConfiguration->UsingIRC = this->ui->checkBox_12->isChecked();
     Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
@@ -242,6 +243,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
     Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
+    Configuration::HuggleConfiguration->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
 
     if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
     {

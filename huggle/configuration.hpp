@@ -73,7 +73,6 @@ namespace Huggle
     class WikiSite;
     class HuggleQueueFilter;
     class HuggleQueue;
-    class WikiPage;
     class Syslog;
     class HuggleQueueParser;
     class HuggleOption;
@@ -163,27 +162,13 @@ namespace Huggle
             //! Returns full configuration path suffixed with slash
             static QString GetConfigurationPath();
             static QString ReplaceSpecialUserPage(QString PageName);
-            /*!
-             * \brief Bool2String Convert a bool to string
-             * \param b bool
-             * \return string
-             */
-            static QString Bool2String(bool b);
+
             //! Save the local configuration to file
             static void SaveSystemConfig();
             //! Load the local configuration from disk
             static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig();
-            static bool SafeBool(QString value, bool defaultvalue = false);
-            //! Parse a string from configuration which has format used by huggle 2x
-            /*!
-             * \param key Key
-             * \param content Text to parse from
-             * \param missing Default value in case this key is missing in text
-             * \return Value of key, in case there is no such a key content of missing is returned
-             */
-            static QString ConfigurationParse(QString key, QString content, QString missing = "");
             static Configuration *HuggleConfiguration;
 
             Configuration();
@@ -210,8 +195,6 @@ namespace Huggle
             QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
-            //! Parse all information from local config, this function is used in login
-            bool ParseProjectConfig(QString config);
             bool ParseUserConfig(QString config);
             QString GetExtensionConfig(QString extension, QString name, QString ms);
             QDateTime ServerTime();
@@ -235,8 +218,6 @@ namespace Huggle
             QList<WikiSite *> ProjectList;
             //! When this is true most of functions will not work
             bool            Restricted = false;
-            //! Where the welcome message is stored
-            QString         WelcomeMP = "Project:Huggle/Message";
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information
             bool            Login = false;
@@ -245,6 +226,7 @@ namespace Huggle
             int             SystemConfig_QueueSize = 200;
             //! Whether python is available
             bool            PythonEngine;
+            bool            HtmlAllowedInIrc = false;
             //! Size of feed
             int             SystemConfig_ProviderCache = 200;
             //! Maximum size of ringlog
@@ -270,8 +252,6 @@ namespace Huggle
             bool            SystemConfig_QueueNewEditsUp = false;
             //! If this is true some functionalities will be disabled
             bool            SystemConfig_SafeMode = false;
-            //! Resolve edit conflict without asking user
-            bool            UserConfig_AutomaticallyResolveConflicts = false;
             /// \todo This option needs to be implemented to browser so that font size is different when this is changed by user
             //! Size of fonts in diff
             int             SystemConfig_FontSize = 10;
@@ -324,13 +304,6 @@ namespace Huggle
             // User
             //////////////////////////////////////////////
             UserConfiguration *UserConfig = nullptr;
-
-            // Private key names
-            // these need to be stored in separate variables so that we can
-            // 1. Change them on 1 place
-            // 2. Track them (we need to be able to find where these options
-            //    are being used)
-            #define                 ProjectConfig_IPScore_Key "score-ip"
 
             //////////////////////////////////////////////
             // Global config
@@ -399,10 +372,6 @@ namespace Huggle
             QString     VandalNw_Server = "irc.tm-irc.org";
             QString     VandalNw_Ident;
             bool        VandalNw_Login = true;
-            //! Pointer to AIV page
-            WikiPage    *AIVP = nullptr;
-            //! Pointer to UAA page
-            WikiPage    *UAAP = nullptr;
             //! Operating system that is sent to update server
             QString     Platform;
         private:

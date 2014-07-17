@@ -692,6 +692,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_31">
+         <property name="text">
+          <string>HAN can render HTML messages (dangerous)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

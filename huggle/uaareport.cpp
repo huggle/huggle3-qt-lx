@@ -106,7 +106,7 @@ void UAAReport::onTick()
                                                                         this->User->GetSite()->GetProjectConfig());
     this->whatToReport();
     this->insertUsername();
-    WikiUtil::EditPage(Configuration::HuggleConfiguration->UAAP, this->dr, uaasum, true);
+    WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->UAAP, this->dr, uaasum, true);
     Huggle::Syslog::HuggleLogs->Log(_l("uaa-reporting", this->User->Username));
     this->ui->pushButton->setText(_l("uaa-reported"));
 

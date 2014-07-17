@@ -15,6 +15,34 @@
 
 using namespace Huggle;
 
+QString HuggleParser::ConfigurationParse(QString key, QString content, QString missing)
+{
+    /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
+    /// \todo maybe move it to Huggle::HuggleParser like ConfigurationParse_QL
+    // if first line in config
+    if (content.startsWith(key + ":"))
+    {
+        QString value = content.mid(key.length() + 1);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+
+    // make sure it's not inside of some string
+    if (content.contains("\n" + key + ":"))
+    {
+        QString value = content.mid(content.indexOf("\n" + key + ":") + key.length() + 2);
+        if (value.contains("\n"))
+        {
+            value = value.mid(0, value.indexOf("\n"));
+        }
+        return value;
+    }
+    return missing;
+}
+
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
     int id=0;

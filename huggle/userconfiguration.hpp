@@ -39,8 +39,10 @@ namespace Huggle
         public:
             ~UserConfiguration();
             QHash<QString, HuggleOption*> UserOptions;
-            bool                    EnforceMonthsAsHeaders = true;
-            unsigned int            TalkPageFreshness = 20;
+            //! Resolve edit conflict without asking user
+            bool            AutomaticallyResolveConflicts = false;
+            bool            EnforceMonthsAsHeaders = true;
+            unsigned int    TalkPageFreshness = 20;
             //! If history and user info should be automatically loaded for every edit
             bool                    HistoryLoad = true;
             //! Defines what should be done on next edit
