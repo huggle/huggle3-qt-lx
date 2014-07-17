@@ -270,6 +270,11 @@ void Configuration::NormalizeConf()
         this->SystemConfig_QueueSize = 10;
     if (this->SystemConfig_HistorySize < 2)
         this->SystemConfig_HistorySize = 2;
+
+    if (this->ProjectConfig->MessageHeadings == HeadingsPageName || this->ProjectConfig->MessageHeadings == HeadingsNone)
+    {
+        this->UserConfig->EnforceMonthsAsHeaders = false;
+    }
 }
 
 QString Configuration::GenerateSuffix(QString text)
