@@ -60,7 +60,7 @@ HuggleTest::HuggleTest()
     f.open(QIODevice::ReadOnly);
     Huggle::Configuration::HuggleConfiguration->Project = new Huggle::WikiSite("en", "en.wikipedia");
     Huggle::Configuration::HuggleConfiguration->Verbosity=10;
-    Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->Parse(f.readAll());
     f.close();
 }
 
