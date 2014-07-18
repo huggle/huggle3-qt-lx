@@ -364,13 +364,8 @@ void ReportUser::On_DiffTick()
     if (l.count() > 0)
     {
         QDomElement e = l.at(0).toElement();
-        if (e.nodeName() == "rev")
-        {
-            if (e.attributes().contains("comment"))
-            {
+        if (e.nodeName() == "rev" && e.attributes().contains("comment"))
                 Summary = e.attribute("comment");
-            }
-        }
     }
 
     if (!Summary.size())

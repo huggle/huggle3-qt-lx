@@ -207,11 +207,13 @@ namespace Huggle
             //! If it's needed to reload config of main form
             bool                     ReloadOfMainformNeeded = true;
             //! Verbosity for debugging to terminal etc, can be switched with parameter --verbosity
-            unsigned int    Verbosity = 0;
+            unsigned int      Verbosity = 0;
             //! Version
-            QString         HuggleVersion;
-            QString         HANMask = "$feed.huggle";
-            QByteArray      WebqueryAgent;
+            QString           HuggleVersion;
+            QString           HANMask = "$feed.huggle";
+            QByteArray        WebqueryAgent;
+            bool              Multiple = false;
+            QList<WikiSite *> Projects;
             //! currently selected project
             WikiSite        *Project = nullptr;
             //! List of projects

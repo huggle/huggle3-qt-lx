@@ -17,11 +17,13 @@
 
 #include <QDialog>
 #include <QThread>
+#include <QHash>
 #include <QTimer>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
+class QCheckBox;
 
 namespace Ui
 {
@@ -51,6 +53,7 @@ namespace Huggle
     class UpdateForm;
     class WLQuery;
     class LoadingForm;
+    class WikiSite;
 
     //! Window that is displayed as first when huggle is started
     class Login : public QDialog
@@ -79,12 +82,16 @@ namespace Huggle
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
 
+            void on_pushButton_2_clicked();
+
         private:
             //! String that is used to test against the login failed text
             static QString Test;
 
+            QList <QCheckBox*> Project_CheckBoxens;
             //! Reset the interface to default
             void Reset();
+            void RemoveQueries();
             //! Enable parts of interface
             void Enable();
             void Reload();
@@ -117,6 +124,7 @@ namespace Huggle
             //! This query is used to get a wl
             Collectable_SmartPtr<WLQuery> wq;
             Collectable_SmartPtr<ApiQuery> LoginQuery;
+            QHash<WikiSite*,ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
             Collectable_SmartPtr<ApiQuery> qSiteInfo;

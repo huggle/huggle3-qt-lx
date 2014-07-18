@@ -157,7 +157,7 @@
     <string name="irc-wait">Waiting for the IRC feed provider to stop</string>
     <string name="irc-switch-rc">Switching to the wiki RC feed</string>
     <string name="login-old">Retrieving user config from old location</string>
-    <string name="login-intro">Please pick a project and enter your username and password.</string>
+    <string name="login-intro">Please pick a project and enter your username and password. You can login to multiple projects by clicking on "Projects" button too.</string>
     <string name="login-tab-oauth">OAuth</string>
     <string name="login-tab-login">Login</string>
     <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which Huggle was recently enabled.</string>

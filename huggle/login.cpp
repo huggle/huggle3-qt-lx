@@ -10,11 +10,13 @@
 
 #include "login.hpp"
 #include <QMessageBox>
+#include <QCheckBox>
 #include <QUrl>
 #include <QDesktopServices>
 #include <QtXml>
 #include "core.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "mediawiki.hpp"
@@ -43,11 +45,21 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
     this->ui->setupUi(this);
     this->_Status = Nothing;
     this->LoadedOldConfig = false;
+    this->ui->tableWidget->setVisible(false);
+    if (Configuration::HuggleConfiguration->Multiple)
+        this->on_pushButton_2_clicked();
+    this->ui->tableWidget->setColumnCount(2);
+    this->ui->tableWidget->horizontalHeader()->setVisible(false);
+    this->ui->tableWidget->verticalHeader()->setVisible(false);
+    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
     this->Reset();
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->SystemConfig_UsingSSL);
-
     // set the language to dummy english
     int l=0;
     int p=0;
@@ -101,6 +113,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 
 Login::~Login()
 {
+    this->RemoveQueries();
     delete this->Updater;
     delete this->ui;
     delete this->loadingForm;
@@ -155,12 +168,22 @@ void Login::Kill()
     }
     this->qCfg.Delete();
     this->qSiteInfo.Delete();
+    // remove all login queries
     this->LoginQuery.Delete();
+    this->RemoveQueries();
 }
 
 void Login::Reset()
 {
     this->ui->labelIntro->setText(_l("[[login-intro]]"));
+}
+
+void Login::RemoveQueries()
+{
+    QList<WikiSite*> Sites = this->LoginQueries.keys();
+    foreach (WikiSite* st, Sites)
+        this->LoginQueries[st]->DecRef();
+    this->LoginQueries.clear();
 }
 
 void Login::CancelLogin()
@@ -191,20 +214,47 @@ void Login::Enable()
     this->ui->checkBox->setEnabled(QSslSocket::supportsSsl());
     this->ui->lineEdit_username->setEnabled(true);
     this->ui->ButtonExit->setEnabled(true);
+    this->ui->pushButton_2->setEnabled(true);
+    this->ui->tableWidget->setEnabled(true);
     this->ui->lineEdit_password->setEnabled(true);
     this->ui->pushButton->setEnabled(true);
     this->ui->ButtonOK->setEnabled(true);
+}
+
+void Login::Disable()
+{
+    this->ui->lineEdit_oauth_username->setDisabled(true);
+    this->ui->Language->setDisabled(true);
+    this->ui->Project->setDisabled(true);
+    this->ui->checkBox->setDisabled(true);
+    this->ui->ButtonOK->setEnabled(false);
+    this->ui->ButtonExit->setDisabled(true);
+    this->ui->pushButton_2->setDisabled(true);
+    this->ui->tableWidget->setDisabled(true);
+    this->ui->lineEdit_username->setDisabled(true);
+    this->ui->lineEdit_password->setDisabled(true);
+    this->ui->pushButton->setDisabled(true);
 }
 
 void Login::Reload()
 {
     int current = 0;
     this->ui->Project->clear();
+    this->ui->tableWidget->clear();
+    this->Project_CheckBoxens.clear();
     while (current < Configuration::HuggleConfiguration->ProjectList.size())
     {
-        this->ui->Project->addItem(Configuration::HuggleConfiguration->ProjectList.at(current)->Name);
+        QString project_ = Configuration::HuggleConfiguration->ProjectList.at(current)->Name;
+        this->ui->Project->addItem(project_);
+        this->ui->tableWidget->insertRow(current);
+        this->ui->tableWidget->setItem(current, 0, new QTableWidgetItem(project_));
+        QCheckBox *Item = new QCheckBox();
+        this->Project_CheckBoxens.append(Item);
+        this->ui->tableWidget->setCellWidget(current, 1, Item);
         current++;
     }
+    this->ui->tableWidget->resizeColumnsToContents();
+    this->ui->tableWidget->resizeRowsToContents();
     if (Huggle::Configuration::HuggleConfiguration->IndexOfLastWiki < current)
         this->ui->Project->setCurrentIndex(Huggle::Configuration::HuggleConfiguration->IndexOfLastWiki);
     else
@@ -240,19 +290,6 @@ void Login::DB()
     this->Localize();
 }
 
-void Login::Disable()
-{
-    this->ui->lineEdit_oauth_username->setDisabled(true);
-    this->ui->Language->setDisabled(true);
-    this->ui->Project->setDisabled(true);
-    this->ui->checkBox->setDisabled(true);
-    this->ui->ButtonOK->setEnabled(false);
-    this->ui->ButtonExit->setDisabled(true);
-    this->ui->lineEdit_username->setDisabled(true);
-    this->ui->lineEdit_password->setDisabled(true);
-    this->ui->pushButton->setDisabled(true);
-}
-
 void Login::PressOK()
 {
     this->processedSiteinfo = false;
@@ -277,7 +314,20 @@ void Login::PressOK()
     }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
     Configuration::HuggleConfiguration->Project = Configuration::HuggleConfiguration->ProjectList.at(this->ui->Project->currentIndex());
+    // we need to clear a list of projects we are logged to and insert at least this one
+    Configuration::HuggleConfiguration->Projects.clear();
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
+    Configuration::HuggleConfiguration->Projects << Configuration::HuggleConfiguration->Project;
+    int project_id = 0;
+    foreach (QCheckBox* cb, this->Project_CheckBoxens)
+    {
+        if (project_id >= Configuration::HuggleConfiguration->ProjectList.count())
+            throw new Huggle::Exception("Inconsistent number of projects and check boxes in memory");
+        WikiSite *project = Configuration::HuggleConfiguration->ProjectList.at(project_id);
+        if (cb->isChecked() && !Configuration::HuggleConfiguration->Projects.contains(project))
+            Configuration::HuggleConfiguration->Projects << project;
+        project_id++;
+    }
     if (this->ui->lineEdit_username->text() == "Developer Mode")
     {
         this->DeveloperMode();
@@ -950,3 +1000,18 @@ void Login::VerifyLogin()
         this->ui->ButtonOK->setEnabled( true );
 }
 
+
+void Huggle::Login::on_pushButton_2_clicked()
+{
+    if (this->ui->tableWidget->isVisible())
+    {
+        this->ui->pushButton_2->setText("Projects >>");
+        this->ui->tableWidget->setVisible(false);
+        Configuration::HuggleConfiguration->Multiple = false;
+    } else
+    {
+        Configuration::HuggleConfiguration->Multiple = true;
+        this->ui->pushButton_2->setText("Projects <<");
+        this->ui->tableWidget->setVisible(true);
+    }
+}
