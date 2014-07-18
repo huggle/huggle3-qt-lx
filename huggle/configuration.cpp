@@ -16,6 +16,7 @@
 #include "syslog.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
+#include "huggleoption.hpp"
 #include "hugglequeuefilter.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
@@ -103,81 +104,6 @@ Configuration::~Configuration()
     delete this->Project;
     delete this->ProjectConfig;
     delete this->UserConfig;
-}
-
-HuggleOption *Configuration::GetOption(QString key)
-{
-    if (this->UserConfig->UserOptions.contains(key))
-    {
-        return this->UserConfig->UserOptions[key];
-    }
-    return nullptr;
-}
-
-QVariant Configuration::SetOption(QString key_, QString config_, QVariant default_)
-{
-    if (this->UserConfig->UserOptions.contains(key_))
-    {
-        // we must not add 2 same
-        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
-                                    "void Configuration::SetOption(QString key, QVariant data)");
-    }
-    QString d_ = default_.toString();
-    QString value = ConfigurationParse(key_, config_, d_);
-    HuggleOption *h;
-    switch (default_.type())
-    {
-        case QVariant::Int:
-            h = new HuggleOption(key_, value.toInt(), value == d_);
-            break;
-        case QVariant::Bool:
-            h = new HuggleOption(key_, SafeBool(value), value == d_);
-            break;
-        default:
-            h = new HuggleOption(key_, value, value == d_);
-            break;
-    }
-    this->UserConfig->UserOptions.insert(key_, h);
-    return h->GetVariant();
-}
-
-QStringList Configuration::SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS)
-{
-    if (this->UserConfig->UserOptions.contains(key_))
-    {
-        // we must not add 2 same
-        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
-                                    "void Configuration::SetUserOptionList(QString key, QVariant data)");
-    }
-    QStringList value = HuggleParser::ConfigurationParse_QL(key_, config_, default_, CS);
-    HuggleOption *h = new HuggleOption(key_, value, value == default_);
-    this->UserConfig->UserOptions.insert(key_, h);
-    return value;
-}
-
-int Configuration::GetSafeUserInt(QString key_, int default_value)
-{
-    HuggleOption *option = this->GetOption(key_);
-    if (option != nullptr)
-        return option->GetVariant().toInt();
-    return default_value;
-}
-
-bool Configuration::GetSafeUserBool(QString key_, bool default_value)
-{
-    HuggleOption *option = this->GetOption(key_);
-    if (option != nullptr)
-        return option->GetVariant().toBool();
-    return default_value;
-}
-
-QString Configuration::GetSafeUserString(QString key_, QString default_value)
-{
-    HuggleOption *option = this->GetOption(key_);
-    if (option != nullptr)
-        return option->GetVariant().toString();
-
-    return default_value;
 }
 
 QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
@@ -355,7 +281,7 @@ QString Configuration::MakeLocalUserConfig()
     QStringList kl = HuggleConfiguration->UserConfig->UserOptions.keys();
     foreach (QString item, kl)
     {
-        HuggleOption *option = HuggleConfiguration->GetOption(item);
+        HuggleOption *option = HuggleConfiguration->UserConfig->GetOption(item);
         if (option == nullptr)
         {
             // this must never happen
@@ -674,34 +600,34 @@ bool Configuration::ParseUserConfig(WikiSite *site, QString config)
 {
     this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
     site->ProjectConfig->EnableAll = SafeBool(ConfigurationParse("enable", config));
-    site->ProjectConfig->Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, this->ProjectConfig->Ignores);
+    site->ProjectConfig->Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, site->ProjectConfig->Ignores);
     // this is a hack so that we can access this value more directly, it can't be changed in huggle
     // so there is no point in using a hash for it
-    site->ProjectConfig->IPScore = this->SetOption(ProjectConfig_IPScore_Key, config, this->ProjectConfig->IPScore).toInt();
-    site->ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, this->ProjectConfig->ScoreFlag).toInt();
-    site->ProjectConfig->WarnSummary = this->SetOption("warn-summary", config, this->ProjectConfig->WarnSummary).toString();
+    site->ProjectConfig->IPScore = site->GetUserConfig()->SetOption(ProjectConfig_IPScore_Key, config, site->ProjectConfig->IPScore).toInt();
+    site->ProjectConfig->ScoreFlag = site->GetUserConfig()->SetOption("score-flag", config, site->ProjectConfig->ScoreFlag).toInt();
+    site->ProjectConfig->WarnSummary = site->GetUserConfig()->SetOption("warn-summary", config, site->ProjectConfig->WarnSummary).toString();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
-    site->ProjectConfig->WarnSummary2 = this->SetOption("warn-summary-2", config, this->ProjectConfig->WarnSummary2).toString();
-    site->ProjectConfig->WarnSummary3 = this->SetOption("warn-summary-3", config, this->ProjectConfig->WarnSummary3).toString();
-    site->ProjectConfig->WarnSummary4 = this->SetOption("warn-summary-4", config, this->ProjectConfig->WarnSummary4).toString();
+    site->ProjectConfig->WarnSummary2 = site->GetUserConfig()->SetOption("warn-summary-2", config, site->ProjectConfig->WarnSummary2).toString();
+    site->ProjectConfig->WarnSummary3 = site->GetUserConfig()->SetOption("warn-summary-3", config, site->ProjectConfig->WarnSummary3).toString();
+    site->ProjectConfig->WarnSummary4 = site->GetUserConfig()->SetOption("warn-summary-4", config, site->ProjectConfig->WarnSummary4).toString();
     site->UserConfig->AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
-    site->ProjectConfig->TemplateAge = this->SetOption("template-age", config, this->ProjectConfig->TemplateAge).toInt();
-    site->ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, this->ProjectConfig->RevertSummaries);
-    site->ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, this->ProjectConfig->WarningTypes);
-    site->ProjectConfig->ScoreChange = this->SetOption("score-change", config, this->ProjectConfig->ScoreChange).toInt();
-    site->ProjectConfig->ScoreUser = this->SetOption("score-user", config, this->ProjectConfig->ScoreUser).toInt();
-    site->ProjectConfig->ScoreTalk = this->SetOption("score-talk", config, this->ProjectConfig->ScoreTalk).toInt();
-    site->ProjectConfig->WarningDefs = this->SetUserOptionList("warning-template-tags", config, this->ProjectConfig->WarningDefs);
-    site->ProjectConfig->BotScore = this->SetOption("score-bot", config, this->ProjectConfig->BotScore).toInt();
+    site->ProjectConfig->TemplateAge = site->GetUserConfig()->SetOption("template-age", config, site->ProjectConfig->TemplateAge).toInt();
+    site->ProjectConfig->RevertSummaries = site->GetUserConfig()->SetUserOptionList("template-summ", config, site->ProjectConfig->RevertSummaries);
+    site->ProjectConfig->WarningTypes = site->GetUserConfig()->SetUserOptionList("warning-types", config, site->ProjectConfig->WarningTypes);
+    site->ProjectConfig->ScoreChange = site->GetUserConfig()->SetOption("score-change", config, site->ProjectConfig->ScoreChange).toInt();
+    site->ProjectConfig->ScoreUser = site->GetUserConfig()->SetOption("score-user", config, site->ProjectConfig->ScoreUser).toInt();
+    site->ProjectConfig->ScoreTalk = site->GetUserConfig()->SetOption("score-talk", config, site->ProjectConfig->ScoreTalk).toInt();
+    site->ProjectConfig->WarningDefs = site->GetUserConfig()->SetUserOptionList("warning-template-tags", config, site->ProjectConfig->WarningDefs);
+    site->ProjectConfig->BotScore = site->GetUserConfig()->SetOption("score-bot", config, site->ProjectConfig->BotScore).toInt();
     if (this->Project == site)
     {
         // we do this only for home wiki
         HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
     }
-    site->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config), this->ProjectConfig->ConfirmMultipleEdits);
-    site->ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config), this->ProjectConfig->ConfirmTalk);
-    site->ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config), this->ProjectConfig->ConfirmOnSelfRevs);
-    site->ProjectConfig->ConfirmWL = SafeBool(ConfigurationParse("confirm-whitelist", config), this->ProjectConfig->ConfirmWL);
+    site->ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config), site->ProjectConfig->ConfirmMultipleEdits);
+    site->ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config), site->ProjectConfig->ConfirmTalk);
+    site->ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config), site->ProjectConfig->ConfirmOnSelfRevs);
+    site->ProjectConfig->ConfirmWL = SafeBool(ConfigurationParse("confirm-whitelist", config), site->ProjectConfig->ConfirmWL);
     site->UserConfig->DisplayTitle = SafeBool(ConfigurationParse("DisplayTitle", config, "false"));
     site->UserConfig->TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     site->UserConfig->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
@@ -712,12 +638,12 @@ bool Configuration::ParseUserConfig(WikiSite *site, QString config)
     site->UserConfig->ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
     site->UserConfig->HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->HtmlAllowedInIrc = SafeBool(ConfigurationParse("HAN_Html", config, "false"));
-    site->UserConfig->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->UserConfig->TalkPageFreshness)).toInt();
+    site->UserConfig->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(site->UserConfig->TalkPageFreshness)).toInt();
     site->UserConfig->RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
     site->UserConfig->QueueID = ConfigurationParse("QueueID", config);
     site->UserConfig->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     site->UserConfig->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
-    site->UserConfig->WelcomeGood = this->SetOption("welcome-good", config, this->ProjectConfig->WelcomeGood).toBool();
+    site->UserConfig->WelcomeGood = site->GetUserConfig()->SetOption("welcome-good", config, site->ProjectConfig->WelcomeGood).toBool();
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (this->Project == site)
     {

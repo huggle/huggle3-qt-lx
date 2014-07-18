@@ -153,20 +153,6 @@ void Login::Update(QString ms)
     this->ui->labelIntro->setText(ms);
 }
 
-void Login::Kill()
-{
-    this->Processing = false;
-    this->timer->stop();
-    if (this->loadingForm != nullptr)
-    {
-        this->loadingForm->close();
-        delete this->loadingForm;
-        this->loadingForm = nullptr;
-    }
-    // remove all login queries
-    this->RemoveQueries();
-}
-
 void Login::Reset()
 {
     this->ui->labelIntro->setText(_l("[[login-intro]]"));
@@ -202,6 +188,7 @@ void Login::CancelLogin()
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(_l("login-start"));
+    this->RemoveQueries();
 }
 
 int Login::GetRowIDForSite(WikiSite *site, int row)
@@ -336,6 +323,7 @@ void Login::PressOK()
             Configuration::HuggleConfiguration->Projects << project;
         project_id++;
     }
+    Configuration::HuggleConfiguration->Multiple = Configuration::HuggleConfiguration->Projects.count() > 1;
     if (this->ui->lineEdit_username->text() == "Developer Mode")
     {
         this->DeveloperMode();
@@ -380,7 +368,7 @@ void Login::PressOK()
         this->LoadingFormRows.insert(wiki, QHash<int,int>());
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_LOGIN), _l("login-progress-start", wiki->Name), LoadingForm_Icon_Loading);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_SITEINFO), _l("login-progress-retrieve-mw", wiki->Name), LoadingForm_Icon_Waiting);
-        this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_WHITELIST), _l("login-progress-whitelist"), LoadingForm_Icon_Waiting);
+        this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_WHITELIST), _l("login-progress-whitelist", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_LOCALCONFIG), _l("login-progress-local", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERCONFIG), _l("login-progress-user", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERINFO), _l("login-progress-user-info", wiki->Name), LoadingForm_Icon_Waiting);
@@ -415,8 +403,8 @@ void Login::PerformLoginPart2(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     if (query->Result->IsFailed())
     {
-        this->Update(_l("[[login-fail]]") + ": " + query->Result->ErrorMessage);
-        this->Kill();
+        this->CancelLogin();
+        this->Update(_l("login-fail", site->Name) + ": " + query->Result->ErrorMessage);
         return;
     }
     QString token = this->GetToken(query->Result->Data);
@@ -443,8 +431,7 @@ void Login::RetrieveGlobalConfig()
         {
             if (this->qConfig->Result->IsFailed())
             {
-                this->Update(_l("[[login-error-global]]") + ": " + this->qConfig->Result->ErrorMessage);
-                this->Kill();
+                this->DisplayError(_l("[[login-error-global]]") + ": " + this->qConfig->Result->ErrorMessage);
                 return;
             }
             QDomDocument d;
@@ -453,8 +440,7 @@ void Login::RetrieveGlobalConfig()
             this->qConfig.Delete();
             if (l.count() == 0)
             {
-                this->Update("Login failed unable to retrieve global config, the api query returned no data");
-                this->Kill();
+                this->DisplayError("Login failed unable to retrieve global config, the api query returned no data");
                 return;
             }
             QDomElement data = l.at(0).toElement();
@@ -462,17 +448,15 @@ void Login::RetrieveGlobalConfig()
             {
                 if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
-                    this->Update(_l("login-error-alldisabled"));
-                    this->Kill();
+                    this->DisplayError(_l("login-error-alldisabled"));
                     return;
                 }
                 this->GlobalConfig = true;
                 this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Success);
                 return;
             }
-            this->Update(_l("login-error-global"));
             Syslog::HuggleLogs->DebugLog(data.text());
-            this->Kill();
+            this->DisplayError(_l("login-error-global"));
         }
         return;
     }
@@ -493,9 +477,8 @@ void Login::FinishLogin(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     if (query->Result->IsFailed())
     {
-        this->Update("Login failed (on " + site->Name + "): " + query->Result->ErrorMessage);
+        this->DisplayError("Login failed (on " + site->Name + "): " + query->Result->ErrorMessage);
         this->Statuses[site] = LoginFailed;
-        this->Kill();
         return;
     }
 
@@ -557,8 +540,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         {
             if (query->Result->IsFailed())
             {
-                this->Update(_l("login-error-config", query->Result->ErrorMessage));
-                this->Kill();
+                this->DisplayError(_l("login-error-config", query->Result->ErrorMessage));
                 return;
             }
             QDomDocument d;
@@ -566,8 +548,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                this->Kill();
-                this->Update(_l("login-error-config", "the api query returned no data"));
+                this->DisplayError(_l("login-error-config", "the api query returned no data"));
                 return;
             }
             this->LoginQueries.remove(site);
@@ -579,17 +560,16 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             {
                 if (!site->ProjectConfig->EnableAll)
                 {
-                    this->Kill();
-                    this->Update(_l("login-error-projdisabled"));
+                    this->DisplayError(_l("login-error-projdisabled"));
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
                 this->Statuses[site] = RetrievingUserConfig;
                 return;
             }
-            this->Update(_l("login-error-config"));
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Statuses[site] = LoginFailed;
+            this->DisplayError(_l("login-error-config"));
         }
         return;
     }
@@ -611,8 +591,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
         {
             if (q->Result->IsFailed())
             {
-                this->Kill();
-                this->Update("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
+                this->DisplayError("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
                 return;
             }
             QDomDocument d;
@@ -648,8 +627,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     return;
                 }
                 Syslog::HuggleLogs->DebugLog(q->Result->Data);
-                this->Update(_l("login-fail-css"));
-                this->Kill();
+                this->DisplayError(_l("login-fail-css", site->Name));
                 return;
             }
 
@@ -667,8 +645,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 }
                 if (!Configuration::HuggleConfiguration->ProjectConfig->EnableAll)
                 {
-                    this->Kill();
-                    this->Update(_l("login-fail-enable-true"));
+                    this->DisplayError(_l("login-fail-enable-true", site->Name));
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Success);
@@ -676,9 +653,8 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 return;
             }
             // failed unable to parse the user config
-            this->Update(_l("login-fail-parse-config"));
             Syslog::HuggleLogs->DebugLog(data.text());
-            this->Kill();
+            this->DisplayError(_l("login-fail-parse-config", site->Name));
         }
         return;
     }
@@ -702,8 +678,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
         {
             if (query->Result->IsFailed())
             {
-                this->Update(_l("login-fail-no-info", query->Result->ErrorMessage));
-                this->Kill();
+                this->DisplayError(_l("login-fail-no-info", site->Name, query->Result->ErrorMessage));
                 return;
             }
             QDomDocument dLoginResult;
@@ -712,9 +687,8 @@ void Login::RetrieveUserInfo(WikiSite *site)
             if (lRights_.count() == 0)
             {
                 Syslog::HuggleLogs->DebugLog(query->Result->Data);
-                this->Kill();
                 // Login failed unable to retrieve user info since the api query returned no data
-                this->Update(_l("login-fail-user-data"));
+                this->DisplayError(_l("login-fail-user-data", site->Name));
                 return;
             }
             int c=0;
@@ -725,15 +699,13 @@ void Login::RetrieveUserInfo(WikiSite *site)
             }
             if (site->GetProjectConfig()->RequireRollback && !site->GetProjectConfig()->Rights.contains("rollback"))
             {
-                this->Update(_l("login-fail-rollback-rights"));
-                this->Kill();
+                this->DisplayError(_l("login-fail-rollback-rights", site->Name));
                 return;
             }
             if (site->GetProjectConfig()->RequireAutoconfirmed && !site->GetProjectConfig()->Rights.contains("autoconfirmed"))
                 //sometimes there is something like manually "confirmed", thats currently not included here
             {
-                this->Update(_l("login-failed-autoconfirm-rights"));
-                this->Kill();
+                this->DisplayError(_l("login-failed-autoconfirm-rights", site->Name));
                 return;
             }
             // remove the query
@@ -743,8 +715,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
             int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (site->GetProjectConfig()->RequireEdits > editcount)
             {
-                this->Update(_l("login-failed-edit"));
-                this->Kill();
+                this->DisplayError(_l("login-failed-edit", site->Name));
                 return;
             }
 
@@ -784,8 +755,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
         QDomNodeList l = d.elementsByTagName("general");
         if( l.count() < 1 )
         {
-            this->Update("No site info was returned for this wiki");
-            this->Kill();
+            this->DisplayError("No site info was returned for this wiki");
             return;
         }
         QDomElement item = l.at(0).toElement();
@@ -1042,7 +1012,6 @@ void Login::OnTimerTick()
         {
             this->Enable();
             this->timer->stop();
-            this->Kill();
             this->ui->ButtonOK->setText("Login");
         }
     }

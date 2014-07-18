@@ -64,7 +64,6 @@ namespace Huggle
             void Localize();
             //! Updates the info message down on login form as well as on LoadingForm
             void Update(QString ms);
-            void Kill();
             //! Cancel currently running login jobs
             void CancelLogin();
             int GetRowIDForSite(WikiSite *site, int row);

@@ -118,7 +118,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             site->GetProjectConfig()->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
     }
     QueryPool::HugglePool->Processes = this->Queries;
-    this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
+    QString projects = Configuration::HuggleConfiguration->Project->Name;
+    if (Configuration::HuggleConfiguration->Multiple)
+    {
+        projects = "multiple projects (";
+        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+            projects += site->Name + ", ";
+        projects = projects.mid(0, projects.length() - 2);
+        projects += ")";
+    }
+    this->setWindowTitle("Huggle 3 QT-LX on " + projects);
     this->ui->verticalLayout->addWidget(this->Browser);
     this->DisplayWelcomeMessage();
     if (Configuration::HuggleConfiguration->UserConfig->RemoveOldQueueEdits)
@@ -1156,7 +1165,7 @@ void MainWindow::TruncateReverts()
 
 void MainWindow::OnTimerTick0()
 {
-    /*if (this->Shutdown != ShutdownOpUpdatingConf)
+    if (this->Shutdown != ShutdownOpUpdatingConf)
     {
         // we can clear the queue meanwhile
         this->Queue1->Clear();
@@ -1164,7 +1173,7 @@ void MainWindow::OnTimerTick0()
         {
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->fWaiting->Status(60, _l("updating-wl"));
-            this->wq = new WLQuery();
+            this->wq = new WLQuery(this->GetCurrentWikiSite());
             this->wq->Type = WLQueryType_WriteWL;
             this->wq->Process();
             return;
@@ -1194,9 +1203,9 @@ void MainWindow::OnTimerTick0()
             return;
         this->eq = nullptr;
         this->wlt->stop();
-        this->GeneralTimer->stop();*/
+        this->GeneralTimer->stop();
         Core::HuggleCore->Shutdown();
-    //}
+    }
 }
 
 void MainWindow::on_actionNext_triggered()

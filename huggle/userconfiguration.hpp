@@ -18,7 +18,6 @@
 #include <QList>
 #include <QStringList>
 #include <QHash>
-#include "huggleoption.hpp"
 
 namespace Huggle
 {
@@ -33,11 +32,31 @@ namespace Huggle
         Configuration_OnNext_Revert
     };
 
+    class HuggleOption;
+
     //! User configuration, for a user per project
     class UserConfiguration
     {
         public:
+            UserConfiguration();
             ~UserConfiguration();
+            /*!
+             * \brief Returns a data for given key
+             * \param key
+             * \return New instance of data or NULL in case there is no such an option
+             */
+            HuggleOption *GetOption(QString key);
+            /*!
+             * \brief SetOption lookup for a key in config file, if there is no such a key, insert a default one
+             * \param key_ Name of configuration key in user config file
+             * \param config_ Config file text
+             * \param default_ Value that is used in case there is no such a key
+             */
+            QVariant SetOption(QString key_, QString config_, QVariant default_);
+            QStringList SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS = false);
+            int GetSafeUserInt(QString key_, int default_value = 0);
+            bool GetSafeUserBool(QString key_, bool default_value = false);
+            QString GetSafeUserString(QString key_, QString default_value = "");
             QHash<QString, HuggleOption*> UserOptions;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = false;
