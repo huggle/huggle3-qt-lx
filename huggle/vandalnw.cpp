@@ -35,10 +35,10 @@ QString VandalNw::SafeHtml(QString text)
     bool FirstPart = true;
     foreach (QString part, Part)
     {
-        if (!FirstPart)
-            part = "<" + part;
-        else
+        if (FirstPart)
             FirstPart = false;
+        else
+            part = "<" + part;
         // if there is no closing we don't want to render this tag
         if (!part.contains(">"))
         {
@@ -54,16 +54,7 @@ QString VandalNw::SafeHtml(QString text)
             // this is some composite tag
             tag = tag.mid(0, tag.indexOf(" "));
         }
-        bool OK = false;
-        foreach (QString ok, AllowedTags)
-        {
-            if (tag == ok)
-            {
-                OK = true;
-                break;
-            }
-        }
-        if (!OK)
+        if (!AllowedTags.contains(tag))
             part = HuggleWeb::Encode(part);
         result += part;
     }
