@@ -16,10 +16,10 @@
 
 typedef char byte_ht;
 
-#define HUGGLE_VERSION                  "3.0.5"
+#define HUGGLE_VERSION                  "3.0.6"
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3
 #define HUGGLE_BYTE_VERSION_MINOR       0x0
-#define HUGGLE_BYTE_VERSION_RELEASE     0x5
+#define HUGGLE_BYTE_VERSION_RELEASE     0x6
 
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
@@ -35,14 +35,6 @@ typedef char byte_ht;
     #ifdef TARGET_OS_MAC
         #define HUGGLE_MACX true
         #define HUGGLE_NO_MT_GC
-        // this is a simple fix to problem with missing declaration in clang headers
-        namespace std
-        {
-            // this define is here so that we can somehow detect if we already have this thing defined or not
-            // since there is no other way to check if type was defined or not
-            #define HUGGLE_NULLPTR_T
-            typedef decltype(nullptr) nullptr_t;
-        }
     #endif
 #endif
 // this is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
@@ -58,10 +50,6 @@ typedef char byte_ht;
 //    #define HUGGLE_PYTHON
 #endif
 
-#ifdef HUGGLE_PYTHON
-    #include <Python.h>
-#endif
-
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
 // linking or building its libraries
 #define DISABLE_BREAKPAD
@@ -73,6 +61,10 @@ typedef char byte_ht;
   // remove at least 8 months after the bug is fixed
   #include <cmath>
   #endif
+#endif
+
+#ifdef HUGGLE_PYTHON
+    #include <Python.h>
 #endif
 
 #define HUGGLE_SUCCESS                     1
