@@ -112,9 +112,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
+        if (!site->GetProjectConfig()->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
+            site->GetProjectConfig()->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
     }
     QueryPool::HugglePool->Processes = this->Queries;
     this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
@@ -496,7 +497,7 @@ void MainWindow::UpdateStatusBarData()
     QStringList params;
     params << Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3)
            << Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3)
-           << QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+           << QString::number(this->GetCurrentWikiSite()->GetProjectConfig()->WhiteList.size())
            << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
     QString statistics_;
     // calculate stats, but not if huggle uptime is lower than 50 seconds
@@ -1155,7 +1156,7 @@ void MainWindow::TruncateReverts()
 
 void MainWindow::OnTimerTick0()
 {
-    if (this->Shutdown != ShutdownOpUpdatingConf)
+    /*if (this->Shutdown != ShutdownOpUpdatingConf)
     {
         // we can clear the queue meanwhile
         this->Queue1->Clear();
@@ -1193,9 +1194,9 @@ void MainWindow::OnTimerTick0()
             return;
         this->eq = nullptr;
         this->wlt->stop();
-        this->GeneralTimer->stop();
+        this->GeneralTimer->stop();*/
         Core::HuggleCore->Shutdown();
-    }
+    //}
 }
 
 void MainWindow::on_actionNext_triggered()
@@ -1463,7 +1464,7 @@ void MainWindow::SuspiciousEdit()
     if (this->CurrentEdit != nullptr)
     {
         Hooks::Suspicious(this->CurrentEdit);
-        WLQuery *wq_ = new WLQuery();
+        WLQuery *wq_ = new WLQuery(this->GetCurrentWikiSite());
         wq_->Type = WLQueryType_SuspWL;
         wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
                           + QUrl::toPercentEncoding(this->GetCurrentWikiSite()->WhiteList) + "&user="

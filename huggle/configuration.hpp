@@ -190,12 +190,12 @@ namespace Huggle
             int GetSafeUserInt(QString key_, int default_value = 0);
             bool GetSafeUserBool(QString key_, bool default_value = false);
             QString GetSafeUserString(QString key_, QString default_value = "");
-            void NormalizeConf();
+            void NormalizeConf(WikiSite *site);
             QString GenerateSuffix(QString text);
             QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
-            bool ParseUserConfig(QString config);
+            bool ParseUserConfig(WikiSite *site, QString config);
             QString GetExtensionConfig(QString extension, QString name, QString ms);
             QDateTime ServerTime();
             ////////////////////////////////////////////
@@ -237,9 +237,6 @@ namespace Huggle
             QString         HomePath;
             //! Path to a file where information about wikis are stored
             QString         WikiDB = "";
-            //! Data of wl (list of users)
-            QStringList     WhiteList;
-            QStringList     NewWhitelist;
             //! URL of wiki that contains a global config
             QString         GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
             //! Number of seconds for which the processed queries remain in list of processes

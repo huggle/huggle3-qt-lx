@@ -151,6 +151,9 @@ namespace Huggle
             QString         WarnSummary4 = "Warning (level 4)";
             QStringList     WarningTemplates;
             QStringList     WarningDefs;
+            //! Data of wl (list of users)
+            QStringList     WhiteList;
+            QStringList     NewWhitelist;
             QString         ReportSummary;
             QString         RestoreSummary = "Restored revision $1 made by $2";
             bool            WelcomeGood = true;

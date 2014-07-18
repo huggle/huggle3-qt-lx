@@ -34,12 +34,10 @@ namespace Huggle
 {
     enum Status
     {
-        RetrievingGlobalConfig,
         RetrievingUserConfig,
         RetrievingProjectConfig,
         LoggingIn,
         WaitingForLoginQuery,
-        Refreshing,
         WaitingForToken,
         LoggedIn,
         Nothing,
@@ -69,7 +67,9 @@ namespace Huggle
             void Kill();
             //! Cancel currently running login jobs
             void CancelLogin();
+            int GetRowIDForSite(WikiSite *site, int row);
             //! Status we are in (loggin it, waiting for this and that etc)
+            QHash<WikiSite*,Status> Statuses;
             Status _Status;
 
         private slots:
@@ -81,7 +81,6 @@ namespace Huggle
             void on_labelTranslate_linkActivated(const QString &link);
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
-
             void on_pushButton_2_clicked();
 
         private:
@@ -98,41 +97,51 @@ namespace Huggle
             void DB();
             void Disable();
             void PressOK();
-            void PerformLogin();
-            void PerformLoginPart2();
-            void FinishLogin();
-            void RetrieveWhitelist();
-            void RetrieveProjectConfig();
+            void PerformLogin(WikiSite *site);
+            void PerformLoginPart2(WikiSite *site);
+            void FinishLogin(WikiSite *site);
+            void RetrieveWhitelist(WikiSite *site);
+            void RetrieveProjectConfig(WikiSite *site);
             void RetrieveGlobalConfig();
-            void RetrieveUserConfig();
-            void RetrieveUserInfo();
+            void RetrieveUserConfig(WikiSite *site);
+            void RetrieveUserInfo(WikiSite *site);
             void DeveloperMode();
             void ProcessSiteInfo();
             void DisplayError(QString message);
             void Finish();
             void VerifyLogin();
+            int RegisterLoadingFormRow(WikiSite *site, int row);
+            void ClearLoadingFormRows();
             void reject();
             //! This function make sure that login result is done
-            bool ProcessOutput();
-            QString GetToken();
+            bool ProcessOutput(WikiSite *site);
+            QString GetToken(QString source_code);
             UpdateForm *Updater = nullptr;
+            bool GlobalConfig = false;
             Ui::Login *ui;
             QTimer *timer;
-            bool processedWlQuery;
-            bool processedSiteinfo;
-            bool processedLogin;
+            QHash<WikiSite*, bool> processedWL;
+            bool Refreshing = false;
+            QHash<WikiSite*, bool> processedSiteinfos;
+            QHash<WikiSite*, bool> processedLogin;
             //! This query is used to get a wl
-            Collectable_SmartPtr<WLQuery> wq;
-            Collectable_SmartPtr<ApiQuery> LoginQuery;
+            QHash<WikiSite*, WLQuery*> WhitelistQueries;
             QHash<WikiSite*,ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
+            Collectable_SmartPtr<ApiQuery> qDatabase;
+            Collectable_SmartPtr<ApiQuery> qConfig;
             Collectable_SmartPtr<ApiQuery> qSiteInfo;
             Collectable_SmartPtr<ApiQuery> qCfg;
+            //! This is a list that identify every single row in loading form so that we know which row is which
+            //! every site has its own hash of rows, where every hash correspond to real position
+            QHash<WikiSite*,QHash<int,int>> LoadingFormRows;
+            //! Last row we used in loading form
+            int LastRow = 0;
             //! The token obtained from login
-            QString Token;
+            QHash<WikiSite*, QString> Tokens;
             //! for RetrievePrivateConfig, if we should try to load from
-            bool LoadedOldConfig;
+            QHash <WikiSite*,bool> LoadedOldConfigs;
     };
 }
 
