@@ -33,13 +33,6 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new U
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-#if QT_VERSION >= 0x050000
-// Qt5 code
-    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     this->ui->tableWidget->setShowGrid(false);
 }
 
