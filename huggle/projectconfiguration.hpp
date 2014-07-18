@@ -15,6 +15,7 @@
 #include "definitions.hpp"
 
 #include <QList>
+#include <QDateTime>
 #include <QStringList>
 #include <QHash>
 #include <QString>
@@ -60,6 +61,7 @@ namespace Huggle
         public:
             ProjectConfiguration();
             ~ProjectConfiguration();
+            QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
             bool Parse(QString config);
             void RequestLogin();
@@ -183,6 +185,8 @@ namespace Huggle
             //! Score that is added for every edit that has really big size
             int                     ScoreChange = 100;
             int                     ScoreUser = -600;
+            //! This is a number that can be used to get a current server time
+            qint64                  ServerOffset = 0;
             QStringList             Ignores;
             QStringList             RevertPatterns;
             QStringList             Assisted;

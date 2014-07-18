@@ -29,7 +29,6 @@
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1
-#define LOGINFORM_GLOBALCONFIG 2
 #define LOGINFORM_WHITELIST 3
 #define LOGINFORM_LOCALCONFIG 4
 #define LOGINFORM_USERCONFIG 5
@@ -43,7 +42,6 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 {
     this->Loading = true;
     this->ui->setupUi(this);
-    this->_Status = Nothing;
     this->ui->tableWidget->setVisible(false);
     if (Configuration::HuggleConfiguration->Multiple)
         this->on_pushButton_2_clicked();
@@ -157,7 +155,7 @@ void Login::Update(QString ms)
 
 void Login::Kill()
 {
-    this->_Status = LoginFailed;
+    this->Processing = false;
     this->timer->stop();
     if (this->loadingForm != nullptr)
     {
@@ -165,8 +163,6 @@ void Login::Kill()
         delete this->loadingForm;
         this->loadingForm = nullptr;
     }
-    this->qCfg.Delete();
-    this->qSiteInfo.Delete();
     // remove all login queries
     this->RemoveQueries();
 }
@@ -181,11 +177,20 @@ void Login::RemoveQueries()
     QList<WikiSite*> Sites = this->LoginQueries.keys();
     foreach (WikiSite* st, Sites)
         this->LoginQueries[st]->DecRef();
+    Sites = this->WhitelistQueries.keys();
+    foreach (WikiSite* st, Sites)
+        this->WhitelistQueries[st]->DecRef();
+    Sites = this->qSiteInfo.keys();
+    foreach (WikiSite* st, Sites)
+        this->qSiteInfo[st]->DecRef();
+    this->qSiteInfo.clear();
+    this->WhitelistQueries.clear();
     this->LoginQueries.clear();
 }
 
 void Login::CancelLogin()
 {
+    this->Processing = false;
     this->timer->stop();
     this->Enable();
     if (this->loadingForm != nullptr)
@@ -194,11 +199,6 @@ void Login::CancelLogin()
         delete this->loadingForm;
         this->loadingForm = nullptr;
     }
-    delete Configuration::HuggleConfiguration->UserConfig;
-    delete Configuration::HuggleConfiguration->ProjectConfig;
-    Configuration::HuggleConfiguration->ProjectConfig = new ProjectConfiguration();
-    Configuration::HuggleConfiguration->UserConfig = new UserConfiguration();
-    this->_Status = Nothing;
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(_l("login-start"));
@@ -297,7 +297,6 @@ void Login::DB()
     }
     this->timer->stop();
     this->Enable();
-    this->_Status = Nothing;
     this->Localize();
 }
 
@@ -356,14 +355,19 @@ void Login::PressOK()
     this->processedWL.clear();
     foreach (WikiSite *wiki, Configuration::HuggleConfiguration->Projects)
     {
+        delete wiki->UserConfig;
+        wiki->UserConfig = new UserConfiguration();
+        delete wiki->ProjectConfig;
+        wiki->ProjectConfig = new ProjectConfiguration();
         this->LoadedOldConfigs.insert(wiki, false);
         this->Statuses.insert(wiki, LoggingIn);
         this->processedLogin.insert(wiki, false);
         this->processedSiteinfos.insert(wiki, false);
         this->processedWL.insert(wiki, false);
     }
+    Configuration::HuggleConfiguration->UserConfig = Configuration::HuggleConfiguration->Project->GetUserConfig();
+    Configuration::HuggleConfiguration->ProjectConfig = Configuration::HuggleConfiguration->Project->GetProjectConfig();
 
-    this->_Status = LoggingIn;
     this->Disable();
     this->loadingForm->show();
     // this is pretty tricky here
@@ -381,6 +385,7 @@ void Login::PressOK()
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERCONFIG), _l("login-progress-user", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERINFO), _l("login-progress-user-info", wiki->Name), LoadingForm_Icon_Waiting);
     }
+    this->GlobalRow = this->LastRow;
     this->loadingForm->Insert(this->LastRow, _l("login-progress-global"), LoadingForm_Icon_Waiting);
     this->LastRow++;
     // First of all, we need to login to the site
@@ -422,6 +427,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     query = new ApiQuery(ActionLogin, site);
     this->LoginQueries.insert(site, query);
     query->HiddenQuery = true;
+    query->IncRef();
     query->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
             + "&lgpassword=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_Password)
             + "&lgtoken=" + token;
@@ -461,7 +467,7 @@ void Login::RetrieveGlobalConfig()
                     return;
                 }
                 this->GlobalConfig = true;
-                this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Success);
+                this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Success);
                 return;
             }
             this->Update(_l("login-error-global"));
@@ -471,16 +477,12 @@ void Login::RetrieveGlobalConfig()
         return;
     }
     //this->loadingForm->ModifyIcon(LOGINFORM_LOGIN, LoadingForm_Icon_Success);
-    this->loadingForm->ModifyIcon(LOGINFORM_GLOBALCONFIG, LoadingForm_Icon_Loading);
+    this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Loading);
     this->Update(_l("[[login-progress-global]]"));
     this->qConfig = new ApiQuery(ActionQuery);
     this->qConfig->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->qConfig->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->qConfig->Process();
-    this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO, LoadingForm_Icon_Loading);
-    this->qSiteInfo = new ApiQuery(ActionQuery);
-    this->qSiteInfo->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
-    this->qSiteInfo->Process();
 }
 
 void Login::FinishLogin(WikiSite *site)
@@ -499,10 +501,18 @@ void Login::FinishLogin(WikiSite *site)
 
     // Assume login was successful
     if (this->ProcessOutput(site))
+    {
+        this->LoginQueries.remove(site);
+        query->DecRef();
+        ApiQuery *qr = new ApiQuery(ActionQuery, site);
+        this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_SITEINFO), LoadingForm_Icon_Loading);
+        this->qSiteInfo.insert(site, qr);
+        qr->IncRef();
+        this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOGIN), LoadingForm_Icon_Success);
+        qr->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
+        qr->Process();
         this->Statuses[site] = RetrievingProjectConfig;
-
-    this->LoginQueries.remove(site);
-    query->DecRef();
+    }
 }
 
 void Login::RetrieveWhitelist(WikiSite *site)
@@ -574,7 +584,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
-                this->_Status = RetrievingUserConfig;
+                this->Statuses[site] = RetrievingUserConfig;
                 return;
             }
             this->Update(_l("login-error-config"));
@@ -586,6 +596,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Loading);
     this->Update(_l("login-progress-config"));
     ApiQuery *query = new ApiQuery(ActionQuery, site);
+    query->IncRef();
     query->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
     query->Process();
     this->LoginQueries.insert(site, query);
@@ -674,6 +685,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Loading);
     this->Update(_l("login-retrieving-user-conf"));
     ApiQuery *query = new ApiQuery(ActionQuery, site);
+    query->IncRef();
     this->LoginQueries.insert(site, query);
     QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
     page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
@@ -746,6 +758,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
     this->Update(_l("login-retrieving-info"));
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERINFO), LoadingForm_Icon_Loading);
     ApiQuery *temp = new ApiQuery(ActionQuery, site);
+    temp->IncRef();
     // now we can retrieve some information about user for this project
     temp->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
     temp->Process();
@@ -761,13 +774,13 @@ void Login::DeveloperMode()
     this->hide();
 }
 
-void Login::ProcessSiteInfo()
+void Login::ProcessSiteInfo(WikiSite *site)
 {
-    if (this->qSiteInfo->IsProcessed())
+    if (this->qSiteInfo.contains(site) && this->qSiteInfo[site]->IsProcessed())
     {
         //! \todo Check that request isnt failed
         QDomDocument d;
-        d.setContent(this->qSiteInfo->Result->Data);
+        d.setContent(this->qSiteInfo[site]->Result->Data);
         QDomNodeList l = d.elementsByTagName("general");
         if( l.count() < 1 )
         {
@@ -778,21 +791,21 @@ void Login::ProcessSiteInfo()
         QDomElement item = l.at(0).toElement();
         if (item.attributes().contains("rtl"))
         {
-            Configuration::HuggleConfiguration->Project->IsRightToLeft = true;
+            site->IsRightToLeft = true;
         }
         if (item.attributes().contains("time"))
         {
             QDateTime server_time = MediaWiki::FromMWTimestamp(item.attribute("time"));
-            Configuration::HuggleConfiguration->ServerOffset = QDateTime::currentDateTime().secsTo(server_time);
+            site->GetProjectConfig()->ServerOffset = QDateTime::currentDateTime().secsTo(server_time);
         }
         l = d.elementsByTagName("ns");
         if (l.count() < 1)
         {
-            Syslog::HuggleLogs->WarningLog("Mediawiki provided no information about namespaces");
+            Syslog::HuggleLogs->WarningLog(QString("Mediawiki of ") + site->Name + " provided no information about namespaces");
         } else
         {
             // let's prepare a NS list
-            Configuration::HuggleConfiguration->Project->ClearNS();
+            site->ClearNS();
             register int index = 0;
             while (index < l.count())
             {
@@ -800,18 +813,18 @@ void Login::ProcessSiteInfo()
                 index++;
                 if (!e.attributes().contains("id") || !e.attributes().contains("canonical"))
                     continue;
-                Configuration::HuggleConfiguration->Project->InsertNS(new WikiPageNS(e.attribute("id").toInt(), e.text(), e.attribute("canonical")));
+                site->InsertNS(new WikiPageNS(e.attribute("id").toInt(), e.text(), e.attribute("canonical")));
             }
         }
         this->processedSiteinfos[site] = true;
-        this->qSiteInfo = nullptr;
-        this->loadingForm->ModifyIcon(LOGINFORM_SITEINFO,LoadingForm_Icon_Success);
+        this->qSiteInfo[site]->DecRef();
+        this->qSiteInfo.remove(site);
+        this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_SITEINFO), LoadingForm_Icon_Success);
     }
 }
 
 void Login::DisplayError(QString message)
 {
-    this->Kill();
     this->CancelLogin();
     this->Update(message);
 }
@@ -819,11 +832,23 @@ void Login::DisplayError(QString message)
 void Login::Finish()
 {
     // let's check if all processes are finished
-    if (!this->processedWlQuery || !this->processedLogin || !this->processedSiteinfo || this->_Status != LoginDone)
+    foreach (WikiSite *xx, Configuration::HuggleConfiguration->Projects)
+    {
+        if (!this->processedWL[xx]) return;
+        if (!this->processedLogin[xx]) return;
+        if (this->Statuses[xx] != LoginDone) return;
+        if (!this->processedSiteinfos[xx]) return;
+    }
+    if (!this->GlobalConfig)
         return;
-    // we generate a random string of same size of current password
     QString pw = "";
-    this->_Status = Nothing;
+    this->Finished = true;
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+    {
+        site->GetProjectConfig()->IsLoggedIn = true;
+        this->Statuses[site] = Nothing;
+    }
+    // we generate a random string of same size of current password
     while (pw.length() < Configuration::HuggleConfiguration->TemporaryConfig_Password.length())
     {
         pw += "x";
@@ -832,7 +857,6 @@ void Login::Finish()
     Configuration::HuggleConfiguration->TemporaryConfig_Password = pw;
     this->ui->lineEdit_password->setText(pw);
     this->Update("Loading main huggle window");
-    Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
     this->timer->stop();
     this->hide();
     MainWindow::HuggleMain = new MainWindow();
@@ -848,7 +872,7 @@ void Login::Finish()
 
 void Login::reject()
 {
-    if (this->_Status != LoginDone)
+    if (this->Finished == false)
     {
         Core::HuggleCore->Shutdown();
     }
@@ -925,8 +949,9 @@ QString Login::GetToken(QString source_code)
 
 void Login::on_ButtonOK_clicked()
 {
-    if (this->_Status == Nothing)
+    if (!this->Processing)
     {
+        this->Processing = true;
         this->PressOK();
         return;
     }
@@ -945,16 +970,40 @@ void Login::on_ButtonExit_clicked()
 
 void Login::OnTimerTick()
 {
-    if (this->RefreshingDB)
+    if (this->Refreshing)
     {
         this->DB();
         return;
     }
+    if (!this->Processing)
+        return;
+    if (!this->GlobalConfig)
+        this->RetrieveGlobalConfig();
     // let's check status for every single project
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
         if (!this->Statuses.contains(site))
             throw new Huggle::Exception("There is no such a wiki in statuses list");
+        if (!this->GlobalConfig)
+        {
+            // we need to skip these unless it's login
+            switch(this->Statuses[site])
+            {
+                case LoggedIn:
+                case Nothing:
+                case Cancelling:
+                case LoginFailed:
+                case LoginDone:
+                case LoggingIn:
+                case WaitingForLoginQuery:
+                case WaitingForToken:
+                    break;
+                case RetrievingProjectConfig:
+                case RetrievingUserConfig:
+                case RetrievingUser:
+                    continue;
+            }
+        }
         switch(this->Statuses[site])
         {
             case LoggingIn:
@@ -982,41 +1031,37 @@ void Login::OnTimerTick()
             case LoginDone:
                 break;
         }
+        if (this->GlobalConfig)
+        {
+            if (!this->processedWL[site])
+                this->RetrieveWhitelist(site);
+            if (this->qSiteInfo.contains(site))
+                this->ProcessSiteInfo(site);
+        }
+        if (this->Statuses[site] == LoginFailed)
+        {
+            this->Enable();
+            this->timer->stop();
+            this->Kill();
+            this->ui->ButtonOK->setText("Login");
+        }
     }
-    if (!this->GlobalConfig)
-        this->RetrieveGlobalConfig();
 
-    if (this->wq != nullptr)
-        this->RetrieveWhitelist();
-    if (this->qSiteInfo != nullptr)
-        this->ProcessSiteInfo();
-
-    if (this->_Status == LoginFailed)
-    {
-        this->Enable();
-        this->timer->stop();
-        this->ui->ButtonOK->setText("Login");
-        this->_Status = Nothing;
-    }
-
-    if (this->processedLogin && this->processedSiteinfo && this->processedWlQuery)
-    {
-        this->Finish();
-    }
+    this->Finish();
 }
 
 void Login::on_pushButton_clicked()
 {
     this->Disable();
-    this->LoginQuery = new ApiQuery(ActionQuery);
-    this->_Status = Refreshing;
+    this->qDatabase = new ApiQuery(ActionQuery);
+    this->Refreshing = true;
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     this->timer->start(HUGGLE_TIMER);
-    this->LoginQuery->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
+    this->qDatabase->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
-    this->LoginQuery->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles="
+    this->qDatabase->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles="
                         + Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList;
-    this->LoginQuery->Process();
+    this->qDatabase->Process();
 }
 
 void Login::on_Language_currentIndexChanged(const QString &arg1)

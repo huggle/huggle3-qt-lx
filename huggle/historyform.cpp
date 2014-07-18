@@ -21,6 +21,7 @@
 #include "syslog.hpp"
 #include "ui_historyform.h"
 #include "querypool.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -195,7 +196,7 @@ void HistoryForm::onTick01()
             icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");
         else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-anon.png");
-        else if (Configuration::HuggleConfiguration->WhiteList.contains(user))
+        else if (this->CurrentEdit->GetSite()->GetProjectConfig()->WhiteList.contains(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
         WikiUser *wu = WikiUser::RetrieveUser(user);
         if (wu != nullptr)

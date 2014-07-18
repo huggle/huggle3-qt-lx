@@ -16,8 +16,9 @@
 #include "wikisite.hpp"
 using namespace Huggle;
 
-WLQuery::WLQuery(WikiSite *site) : MediaWikiObject(site)
+WLQuery::WLQuery(WikiSite *site)
 {
+    this->Site = site;
     this->Type = WLQueryType_ReadWL;
     this->Result = nullptr;
     this->Parameters = "";

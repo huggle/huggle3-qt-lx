@@ -70,7 +70,6 @@ namespace Huggle
             int GetRowIDForSite(WikiSite *site, int row);
             //! Status we are in (loggin it, waiting for this and that etc)
             QHash<WikiSite*,Status> Statuses;
-            Status _Status;
 
         private slots:
             void on_ButtonOK_clicked();
@@ -87,7 +86,6 @@ namespace Huggle
             //! String that is used to test against the login failed text
             static QString Test;
 
-            QList <QCheckBox*> Project_CheckBoxens;
             //! Reset the interface to default
             void Reset();
             void RemoveQueries();
@@ -106,7 +104,7 @@ namespace Huggle
             void RetrieveUserConfig(WikiSite *site);
             void RetrieveUserInfo(WikiSite *site);
             void DeveloperMode();
-            void ProcessSiteInfo();
+            void ProcessSiteInfo(WikiSite *site);
             void DisplayError(QString message);
             void Finish();
             void VerifyLogin();
@@ -119,6 +117,10 @@ namespace Huggle
             UpdateForm *Updater = nullptr;
             bool GlobalConfig = false;
             Ui::Login *ui;
+            bool Finished = false;
+            bool Processing = false;
+            int GlobalRow = 0;
+            QList <QCheckBox*> Project_CheckBoxens;
             QTimer *timer;
             QHash<WikiSite*, bool> processedWL;
             bool Refreshing = false;
@@ -126,13 +128,12 @@ namespace Huggle
             QHash<WikiSite*, bool> processedLogin;
             //! This query is used to get a wl
             QHash<WikiSite*, WLQuery*> WhitelistQueries;
+            QHash<WikiSite*, ApiQuery*> qSiteInfo;
             QHash<WikiSite*,ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
             Collectable_SmartPtr<ApiQuery> qDatabase;
             Collectable_SmartPtr<ApiQuery> qConfig;
-            Collectable_SmartPtr<ApiQuery> qSiteInfo;
-            Collectable_SmartPtr<ApiQuery> qCfg;
             //! This is a list that identify every single row in loading form so that we know which row is which
             //! every site has its own hash of rows, where every hash correspond to real position
             QHash<WikiSite*,QHash<int,int>> LoadingFormRows;

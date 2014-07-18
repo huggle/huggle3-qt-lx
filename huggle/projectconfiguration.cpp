@@ -271,6 +271,10 @@ bool ProjectConfiguration::Parse(QString config)
     return true;
 }
 
+QDateTime ProjectConfiguration::ServerTime()
+{
+    return QDateTime::currentDateTime().addSecs(this->ServerOffset);
+}
 
 ScoreWord::ScoreWord(QString Word, int Score)
 {

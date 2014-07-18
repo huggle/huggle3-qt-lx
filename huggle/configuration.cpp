@@ -752,11 +752,6 @@ QString Configuration::GetExtensionConfig(QString extension, QString name, QStri
     return this->ExtensionData[extension]->GetOption(name, ms);
 }
 
-QDateTime Configuration::ServerTime()
-{
-    return QDateTime::currentDateTime().addSecs(this->ServerOffset);
-}
-
 QString Configuration::GetProjectURL(WikiSite *Project)
 {
     return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project->URL;
