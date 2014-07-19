@@ -558,11 +558,15 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             name.replace(":", "");
             filter->QueueName = name;
             line++;
+            if (line >= Info.count())
+                goto exit;
             text = Info.at(line);
             while (text.startsWith("        ") && text.contains(":") && line < Info.count())
             {
                 // we need to parse the info
                 line++;
+                if (line >= Info.count())
+                    goto exit;
                 while (text.startsWith(" "))
                 {
                     text = text.mid(1);
@@ -627,6 +631,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             line++;
         }
     }
+  exit:
     return ReturnValue;
 }
 
