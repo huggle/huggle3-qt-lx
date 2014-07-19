@@ -34,16 +34,16 @@ QDateTime WikiUser::InvalidTime = QDateTime::fromMSecsSinceEpoch(2);
 
 WikiUser *WikiUser::RetrieveUser(WikiUser *user)
 {
-    return WikiUser::RetrieveUser(user->Username);
+    return WikiUser::RetrieveUser(user->Username, user->GetSite());
 }
 
-WikiUser *WikiUser::RetrieveUser(QString user)
+WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
 {
     WikiUser::ProblematicUserListLock.lock();
     int User = 0;
     while (User < WikiUser::ProblematicUsers.count())
     {
-        if (user == WikiUser::ProblematicUsers.at(User)->Username)
+        if (site == WikiUser::ProblematicUsers.at(User)->Site && user == WikiUser::ProblematicUsers.at(User)->Username)
         {
             WikiUser *u = WikiUser::ProblematicUsers.at(User);
             WikiUser::ProblematicUserListLock.unlock();

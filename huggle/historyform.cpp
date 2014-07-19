@@ -198,7 +198,7 @@ void HistoryForm::onTick01()
             icon = QIcon(":/huggle/pictures/Resources/blob-anon.png");
         else if (this->CurrentEdit->GetSite()->GetProjectConfig()->WhiteList.contains(user))
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
-        WikiUser *wu = WikiUser::RetrieveUser(user);
+        WikiUser *wu = WikiUser::RetrieveUser(user, this->CurrentEdit->GetSite());
         if (wu != nullptr)
         {
             if (wu->IsReported)
