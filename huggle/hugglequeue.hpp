@@ -53,14 +53,14 @@ namespace Huggle
              * \return number of records that matched the score
              */
             int DeleteByScore(long Score);
-            bool DeleteByRevID(int RevID);
+            bool DeleteByRevID(int RevID, WikiSite *site);
             //! Delete all edits to the page that are older than this edit
             void DeleteOlder(WikiEdit *edit);
             //! Reload filters
             void Filters();
             //! Switch and render next edit in queue
             void Next();
-            WikiEdit *GetWikiEditByRevID(int RevID);
+            WikiEdit *GetWikiEditByRevID(int RevID, WikiSite *site);
             void Sort();
             void SortItemByEdit(WikiEdit *e);
             void Trim(int i);

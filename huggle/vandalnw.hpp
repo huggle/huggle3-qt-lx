@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QDockWidget>
+#include <QHash>
 #include <QTimer>
 
 namespace Ui
@@ -26,6 +27,8 @@ namespace Huggle
     class WikiPage;
     class WikiEdit;
     class WikiUser;
+    class WikiSite;
+
     namespace IRC
     {
         class NetworkIrc;
@@ -51,12 +54,13 @@ namespace Huggle
         class GenericItem
         {
             public:
-                GenericItem();
-                GenericItem(int _revID, QString _user);
+                GenericItem(WikiSite *site);
+                GenericItem(WikiSite *site, int _revID, QString _user);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
                 //! User who changed the edit
                 QString User;
+                WikiSite *Site;
                 //! ID of edit
                 int RevID;
         };
@@ -71,15 +75,14 @@ namespace Huggle
         class RescoreItem : public GenericItem
         {
             public:
-                RescoreItem(int _revID, int _score, QString _user);
+                RescoreItem(WikiSite *site, int _revID, int _score, QString _user);
                 RescoreItem(const RescoreItem &item);
                 RescoreItem(RescoreItem *item);
+                WikiSite *Site;
                 int Score;
         };
 
     }
-
-    class WikiEdit;
 
     //! Vandalism network
 
@@ -109,11 +112,12 @@ namespace Huggle
             void Rollback(WikiEdit *Edit);
             void SuspiciousWikiEdit(WikiEdit *Edit);
             void WarningSent(WikiUser *user, byte_ht Level);
-            QString GetChannel();
+            void GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
             void Message();
-            QString Channel;
+            QHash<QString,WikiSite*> Ch2Site;
+            QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users
             QString Prefix;
             //! Timer that is used to connect to network
