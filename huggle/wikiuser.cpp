@@ -312,7 +312,7 @@ void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
     if (tp.length() > 0)
-        this->WarningLevel = HuggleParser::GetLevel(tp, bt);
+        this->WarningLevel = HuggleParser::GetLevel(tp, bt, this->GetSite());
 }
 
 QString WikiUser::GetTalk()
