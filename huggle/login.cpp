@@ -238,7 +238,8 @@ void Login::Reload()
 {
     int current = 0;
     this->ui->Project->clear();
-    this->ui->tableWidget->clear();
+    while (this->ui->tableWidget->rowCount() > 0)
+        this->ui->tableWidget->removeRow(0);
     this->Project_CheckBoxens.clear();
     while (current < Configuration::HuggleConfiguration->ProjectList.size())
     {
@@ -280,7 +281,7 @@ void Login::DB()
             wiki.close();
         }
         Core::HuggleCore->LoadDB();
-        Reload();
+        this->Reload();
     }
     this->timer->stop();
     this->Enable();
@@ -346,7 +347,7 @@ void Login::PressOK()
         delete wiki->UserConfig;
         wiki->UserConfig = new UserConfiguration();
         delete wiki->ProjectConfig;
-        wiki->ProjectConfig = new ProjectConfiguration();
+        wiki->ProjectConfig = new ProjectConfiguration(wiki->Name);
         this->LoadedOldConfigs.insert(wiki, false);
         this->Statuses.insert(wiki, LoggingIn);
         this->processedLogin.insert(wiki, false);
@@ -574,7 +575,6 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         return;
     }
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Loading);
-    this->Update(_l("login-progress-config"));
     ApiQuery *query = new ApiQuery(ActionQuery, site);
     query->IncRef();
     query->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
@@ -606,7 +606,6 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     // once more, trying to parse the old config
                     this->LoadedOldConfigs[site] = true;
                     Syslog::HuggleLogs->DebugLog("couldn't find user config for " + site->Name + " at new location, trying old one");
-                    this->Update(_l("login-old"));
                     q->DecRef();
                     // let's get an old configuration instead
                     q = new ApiQuery(ActionQuery, site);
@@ -659,7 +658,6 @@ void Login::RetrieveUserConfig(WikiSite *site)
         return;
     }
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Loading);
-    this->Update(_l("login-retrieving-user-conf"));
     ApiQuery *query = new ApiQuery(ActionQuery, site);
     query->IncRef();
     this->LoginQueries.insert(site, query);
@@ -726,7 +724,6 @@ void Login::RetrieveUserInfo(WikiSite *site)
         }
         return;
     }
-    this->Update(_l("login-retrieving-info"));
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERINFO), LoadingForm_Icon_Loading);
     ApiQuery *temp = new ApiQuery(ActionQuery, site);
     temp->IncRef();
@@ -796,6 +793,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
 void Login::DisplayError(QString message)
 {
     this->CancelLogin();
+    Syslog::HuggleLogs->ErrorLog(message);
     this->Update(message);
 }
 
@@ -860,7 +858,7 @@ bool Login::ProcessOutput(WikiSite *site)
     if (!Result.contains(("<login result")))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is down?), please check debug "\
+        this->DisplayError("The api.php responded with invalid text (webserver is down?), please check debug "\
                            "log for precise information");
         return false;
     }
@@ -869,7 +867,7 @@ bool Login::ProcessOutput(WikiSite *site)
     if (!Result.contains("\""))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("ERROR: The api.php responded with invalid text (webserver is broken), please check debug "\
+        this->DisplayError("The api.php responded with invalid text (webserver is broken), please check debug "\
                            "log for precise information");
         return false;
     }

@@ -18,7 +18,6 @@ using namespace Huggle;
 QString HuggleParser::ConfigurationParse(QString key, QString content, QString missing)
 {
     /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
-    /// \todo maybe move it to Huggle::HuggleParser like ConfigurationParse_QL
     // if first line in config
     if (content.startsWith(key + ":"))
     {
@@ -358,12 +357,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt)
         while (xx<Configuration::HuggleConfiguration->ProjectConfig->WarningDefs.count())
         {
             QString defs=Configuration::HuggleConfiguration->ProjectConfig->WarningDefs.at(xx);
-            if (HuggleParser::GetKeyFromValue(defs).toInt() == level)
+            if (HuggleParser::GetKeyFromValue(defs).toInt() == level && page.contains(HuggleParser::GetValueFromKey(defs)))
             {
-                if (page.contains(HuggleParser::GetValueFromKey(defs)))
-                {
-                    return level;
-                }
+                return level;
             }
             xx++;
         }

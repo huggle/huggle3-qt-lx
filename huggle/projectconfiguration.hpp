@@ -59,8 +59,9 @@ namespace Huggle
     class ProjectConfiguration
     {
         public:
-            ProjectConfiguration();
+            ProjectConfiguration(QString project_name);
             ~ProjectConfiguration();
+            QString ProjectName;
             QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
             bool Parse(QString config);

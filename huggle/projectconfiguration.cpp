@@ -17,7 +17,7 @@
 using namespace Huggle::Generic;
 using namespace Huggle;
 
-ProjectConfiguration::ProjectConfiguration()
+ProjectConfiguration::ProjectConfiguration(QString project_name)
 {
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -37,6 +37,7 @@ ProjectConfiguration::ProjectConfiguration()
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
     this->DeletionSummaries << "Deleted page using Huggle";
+    this->ProjectName = project_name;
     this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 }
@@ -226,7 +227,7 @@ bool ProjectConfiguration::Parse(QString config)
     }
     while (month_ < 13)
     {
-        Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        Syslog::HuggleLogs->WarningLog("Project config for " + this->ProjectName + " is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
         this->AlternativeMonths.insert(month_, QStringList());
         month_++;
     }

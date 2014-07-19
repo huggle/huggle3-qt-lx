@@ -44,7 +44,7 @@ Configuration::Configuration()
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
     this->Platform = HUGGLE_UPDATER_PLATFORM_TYPE;
-    this->ProjectConfig = new ProjectConfiguration();
+    this->ProjectConfig = nullptr;
     this->UserConfig = new UserConfiguration();
 
     this->MakeShortcut("main-revert-and-warn", "shortcut-raw", "Q");
