@@ -115,7 +115,7 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            void ReconnectIRC();
+            void ReconnectIRC(WikiSite *site);
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             /*!
@@ -130,6 +130,8 @@ namespace Huggle
             void DisplayNext(Query *q = nullptr);
             void DeletePage();
             void DisplayTalk();
+            void PauseQueue();
+            void ResumeQueue();
             void WelcomeGood();
             WikiSite *GetCurrentWikiSite();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
@@ -138,6 +140,7 @@ namespace Huggle
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
             HuggleLog *SystemLog;
+            bool QueueIsNowPaused = false;
             //! Pointer to queue
             HuggleQueue *Queue1;
             QList<ApiQuery*> PatrolledEdits;
@@ -298,7 +301,7 @@ namespace Huggle
             bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
             void Welcome();
-            void ChangeProvider(HuggleFeed *provider);
+            void ChangeProvider(WikiSite *site, HuggleFeed *provider);
             void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
             void Render();

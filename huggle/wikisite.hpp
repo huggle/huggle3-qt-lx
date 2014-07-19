@@ -20,6 +20,7 @@
 
 namespace Huggle
 {
+    class HuggleFeed;
     //! Namespace (mediawiki)
     class WikiPageNS
     {
@@ -95,6 +96,7 @@ namespace Huggle
             QString Name;
             //! URL of wiki, no http prefix must be present
             QString URL;
+            HuggleFeed *Provider = nullptr;
             //! long article path (wiki/ for example on english wp)
             QString LongPath;
             //! short path

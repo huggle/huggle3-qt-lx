@@ -93,6 +93,11 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+    while (this->ProjectList.count())
+    {
+        delete this->ProjectList.at(0);
+        this->ProjectList.removeAt(0);
+    }
     QStringList ol = this->ExtensionData.keys();
     while (ol.count())
     {
@@ -101,7 +106,6 @@ Configuration::~Configuration()
         delete option;
         ol.removeAt(0);
     }
-    delete this->Project;
     delete this->ProjectConfig;
     delete this->UserConfig;
 }
