@@ -171,7 +171,7 @@ namespace Huggle
             //! Pointer to query that is used to store user config on exit of huggle
             Collectable_SmartPtr<EditQuery> eq;
             //! This query is used to refresh white list
-            Collectable_SmartPtr<WLQuery> wq;
+            QHash<WikiSite*,WLQuery*> WhitelistQueries;
             //! Warning menu
             QMenu *WarnMenu = nullptr;
             //! Revert menu

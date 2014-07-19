@@ -548,7 +548,7 @@ void MainWindow::UpdateStatusBarData()
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
         statistics_ += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
-    params << statistics_;
+    params << statistics_ << this->GetCurrentWikiSite()->Name;
     this->Status->setText(_l("main-status-bar", params));
 }
 
@@ -1190,21 +1190,45 @@ void MainWindow::OnTimerTick0()
         {
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->fWaiting->Status(60, _l("updating-wl"));
-            this->wq = new WLQuery(this->GetCurrentWikiSite());
-            this->wq->Type = WLQueryType_WriteWL;
-            this->wq->Process();
+            foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
+            {
+                if (this->WhitelistQueries.contains(site))
+                {
+                    this->WhitelistQueries[site]->DecRef();
+                    this->WhitelistQueries.remove(site);
+                }
+                this->WhitelistQueries.insert(site, new WLQuery(site));
+                this->WhitelistQueries[site]->Type = WLQueryType_WriteWL;
+                this->WhitelistQueries[site]->IncRef();
+                this->WhitelistQueries[site]->Process();
+            }
             return;
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!this->wq->IsProcessed())
+            bool finished = true;
+            foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
             {
-                this->fWaiting->Status(60 + int((this->wq->Progress / 100) * 30));
+                if (this->WhitelistQueries.contains(site))
+                {
+                    if(!this->WhitelistQueries[site]->IsProcessed())
+                    {
+                        finished = false;
+                        break;
+                    } else
+                    {
+                        this->WhitelistQueries[site]->DecRef();
+                        this->WhitelistQueries.remove(site);
+                    }
+                }
+            }
+            if (!finished)
+            {
+                this->fWaiting->Status(60);
                 return;
             }
             // we finished writing the wl
             this->fWaiting->Status(90, _l("saveuserconfig-progress"));
-            this->wq = nullptr;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
