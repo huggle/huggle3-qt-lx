@@ -15,13 +15,14 @@
 
 #include <QString>
 #include <QList>
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
     class WikiEdit;
 
     //! Filter that can be applied to edit queue
-    class HuggleQueueFilter
+    class HuggleQueueFilter : public MediaWikiObject
     {
         public:
             static QList<HuggleQueueFilter*> Filters;

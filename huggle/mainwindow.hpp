@@ -168,8 +168,6 @@ namespace Huggle
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
-            //! Pointer to query that is used to store user config on exit of huggle
-            Collectable_SmartPtr<EditQuery> eq;
             //! This query is used to refresh white list
             QHash<WikiSite*,WLQuery*> WhitelistQueries;
             //! Warning menu
@@ -326,6 +324,7 @@ namespace Huggle
             QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QHash<WikiSite*, EditQuery*> StorageQueries;
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;
             QToolButton *rwToolButtonMenu = nullptr;

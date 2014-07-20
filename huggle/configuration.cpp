@@ -210,14 +210,13 @@ QString Configuration::GenerateSuffix(QString text)
     return this->GenerateSuffix(text, this->ProjectConfig);
 }
 
-QString Configuration::MakeLocalUserConfig()
+QString Configuration::MakeLocalUserConfig(WikiSite *site)
 {
-    /// \todo rewrite to save all SharedConfig only if different from project
     QString configuration_ = "<nowiki>\n";
     configuration_ += "enable:true\n";
     configuration_ += "version:" + HuggleConfiguration->HuggleVersion + "\n\n";
     configuration_ += "speedy-message-title:Speedy deleted\n";
-    configuration_ += "report-summary:" + HuggleConfiguration->ProjectConfig->ReportSummary + "\n";
+    configuration_ += "report-summary:" + site->ProjectConfig->ReportSummary + "\n";
     configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // huggle 2 options
@@ -227,38 +226,37 @@ QString Configuration::MakeLocalUserConfig()
     configuration_ += "admin:true\n";
     configuration_ += "patrol-speedy:true\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    configuration_ += "confirm-multiple:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits) + "\n";
-    configuration_ += "confirm-talk:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmTalk) + "\n";
+    configuration_ += "confirm-multiple:" + Bool2String(site->ProjectConfig->ConfirmMultipleEdits) + "\n";
+    configuration_ += "confirm-talk:" + Bool2String(site->ProjectConfig->ConfirmTalk) + "\n";
     // configuration_ += "confirm-page:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmPage) + "\n";
     // configuration_ += "confirm-same:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmSame) + "\n";
-    configuration_ += "confirm-self-revert:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs) + "\n";
-    configuration_ += "confirm-whitelist:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWL) + "\n";
+    configuration_ += "confirm-self-revert:" + Bool2String(site->ProjectConfig->ConfirmOnSelfRevs) + "\n";
+    configuration_ += "confirm-whitelist:" + Bool2String(site->ProjectConfig->ConfirmWL) + "\n";
     //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
     // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
-    configuration_ += "default-summary:" + HuggleConfiguration->ProjectConfig->DefaultSummary + "\n";
+    configuration_ += "default-summary:" + site->ProjectConfig->DefaultSummary + "\n";
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
-    configuration_ += "automatically-resolve-conflicts:" + Bool2String(HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts) + "\n";
+    configuration_ += "automatically-resolve-conflicts:" + Bool2String(site->UserConfig->AutomaticallyResolveConflicts) + "\n";
     configuration_ += "software-rollback:" + Bool2String(HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     configuration_ += "diff-font-size:" + QString::number(HuggleConfiguration->SystemConfig_FontSize) + "\n";
-    configuration_ += "RevertOnMultipleEdits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
-    configuration_ += "HistoryLoad:" + Bool2String(HuggleConfiguration->UserConfig->HistoryLoad) + "\n";
-    configuration_ += "OnNext:" + QString::number(static_cast<int>(HuggleConfiguration->UserConfig->GoNext)) + "\n";
-    configuration_ += "DeleteEditsAfterRevert:" + Bool2String(HuggleConfiguration->UserConfig->DeleteEditsAfterRevert) + "\n";
-    configuration_ += "SkipToLastEdit:" + Bool2String(HuggleConfiguration->UserConfig->LastEdit) + "\n";
-    configuration_ += "RemoveOldestQueueEdits:" + Bool2String(HuggleConfiguration->UserConfig->RemoveOldQueueEdits) + "\n";
-    configuration_ += "TruncateEdits:" + Bool2String(HuggleConfiguration->UserConfig->TruncateEdits) + "\n";
-    configuration_ += "TalkpageFreshness:" + QString::number(HuggleConfiguration->UserConfig->TalkPageFreshness) + "\n";
-    configuration_ += "DisplayTitle:" + Bool2String(HuggleConfiguration->UserConfig->DisplayTitle) + "\n";
+    configuration_ += "HistoryLoad:" + Bool2String(site->UserConfig->HistoryLoad) + "\n";
+    configuration_ += "OnNext:" + QString::number(static_cast<int>(site->UserConfig->GoNext)) + "\n";
+    configuration_ += "DeleteEditsAfterRevert:" + Bool2String(site->UserConfig->DeleteEditsAfterRevert) + "\n";
+    configuration_ += "SkipToLastEdit:" + Bool2String(site->UserConfig->LastEdit) + "\n";
+    configuration_ += "RemoveOldestQueueEdits:" + Bool2String(site->UserConfig->RemoveOldQueueEdits) + "\n";
+    configuration_ += "TruncateEdits:" + Bool2String(site->UserConfig->TruncateEdits) + "\n";
+    configuration_ += "TalkpageFreshness:" + QString::number(site->UserConfig->TalkPageFreshness) + "\n";
+    configuration_ += "DisplayTitle:" + Bool2String(site->UserConfig->DisplayTitle) + "\n";
     configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
-    configuration_ += "CheckTP:" + Bool2String(HuggleConfiguration->UserConfig->CheckTP) + "\n";
-    configuration_ += "ManualWarning:" + Bool2String(HuggleConfiguration->UserConfig->ManualWarning) + "\n";
+    configuration_ += "CheckTP:" + Bool2String(site->UserConfig->CheckTP) + "\n";
+    configuration_ += "ManualWarning:" + Bool2String(site->UserConfig->ManualWarning) + "\n";
     configuration_ += "// HAN\n";
     configuration_ += "HAN_Html:" + Bool2String(HuggleConfiguration->HtmlAllowedInIrc) + "\n";
-    configuration_ += "HAN_DisplayUserTalk:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayUserTalk) + "\n";
-    configuration_ += "HAN_DisplayBots:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayBots) + "\n";
-    configuration_ += "HAN_DisplayUser:" + Bool2String(HuggleConfiguration->UserConfig->HAN_DisplayUser) + "\n";
-    configuration_ += "QueueID:" + HuggleConfiguration->UserConfig->QueueID + "\n";
+    configuration_ += "HAN_DisplayUserTalk:" + Bool2String(site->UserConfig->HAN_DisplayUserTalk) + "\n";
+    configuration_ += "HAN_DisplayBots:" + Bool2String(site->UserConfig->HAN_DisplayBots) + "\n";
+    configuration_ += "HAN_DisplayUser:" + Bool2String(site->UserConfig->HAN_DisplayUser) + "\n";
+    configuration_ += "QueueID:" + site->UserConfig->QueueID + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -282,10 +280,10 @@ QString Configuration::MakeLocalUserConfig()
     }
     if (modified_)
         configuration_ += "ShortcutList:\n" + si + "\n";
-    QStringList kl = HuggleConfiguration->UserConfig->UserOptions.keys();
+    QStringList kl = site->UserConfig->UserOptions.keys();
     foreach (QString item, kl)
     {
-        HuggleOption *option = HuggleConfiguration->UserConfig->GetOption(item);
+        HuggleOption *option = site->UserConfig->GetOption(item);
         if (option == nullptr)
         {
             // this must never happen

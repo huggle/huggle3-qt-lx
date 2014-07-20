@@ -1232,17 +1232,34 @@ void MainWindow::OnTimerTick0()
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
-            WikiPage *uc = new WikiPage(page);
-            this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), _l("saveuserconfig-progress"), true);
-            delete uc;
+            foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
+            {
+                WikiPage *uc = new WikiPage(page);
+                uc->Site = site;
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site), _l("saveuserconfig-progress"), true);
+                temp->IncRef();
+                this->StorageQueries.insert(site, temp.GetPtr());
+                delete uc;
+            }
             return;
         }
     } else
     {
         // we need to check if config was written
-        if (this->eq != nullptr && !this->eq->IsProcessed())
-            return;
-        this->eq = nullptr;
+        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        {
+            if (this->StorageQueries.contains(site))
+            {
+                if (this->StorageQueries[site]->IsProcessed())
+                {
+                    this->StorageQueries[site]->DecRef();
+                    this->StorageQueries.remove(site);
+                } else
+                {
+                    return;
+                }
+            }
+        }
         this->wlt->stop();
         this->GeneralTimer->stop();
         Core::HuggleCore->Shutdown();

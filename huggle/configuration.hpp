@@ -167,7 +167,7 @@ namespace Huggle
             //! Load the local configuration from disk
             static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
-            static QString MakeLocalUserConfig();
+            static QString MakeLocalUserConfig(WikiSite *site);
             static Configuration *HuggleConfiguration;
 
             Configuration();
