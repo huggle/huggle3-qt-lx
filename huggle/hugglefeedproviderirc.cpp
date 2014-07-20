@@ -69,7 +69,7 @@ bool HuggleFeedProviderIRC::Start()
         return false;
     }
     this->Network->Join(this->GetSite()->IRCChannel);
-    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected"));
+    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
     if (this->thread != nullptr)
     {
         delete this->thread;
@@ -103,7 +103,7 @@ void HuggleFeedProviderIRC::Stop()
     this->Network->Disconnect();
     while (!IsStopped())
     {
-        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop"));
+        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop", this->GetSite()->Name));
         Sleeper::usleep(200000);
     }
     this->Connected = false;

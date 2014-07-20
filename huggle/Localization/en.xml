@@ -146,12 +146,12 @@
     <string name="history-error-message-title">Unable to undo</string>
     <string name="history-error">This item can't be undone. The page might have been changed or deleted meanwhile, and Huggle is unable to perform undo from this point. If you really want to undo it, you will need to do that by hand using the MediaWiki interface.</string>
     <string name="userhistory-title">History of your changes</string>
-    <string name="irc-connected">Connected to IRC recent changes feed</string>
-    <string name="irc-connecting">Attempting connection to IRC recent changes feed; this may take a few moments...</string>
-    <string name="irc-disconnected">Connection to IRC recent changes feed lost; reconnecting...</string>
+    <string name="irc-connected">$1: Connected to IRC recent changes feed</string>
+    <string name="irc-connecting">Attempting connection to IRC recent changes feed on $1, this may take a few moments...</string>
+    <string name="irc-disconnected">Connection to IRC recent changes feed lost on $1. Reconnecting...</string>
     <string name="irc-nochannel">IRC channel for $1 not found; using slower API queries instead</string>
     <string name="irc-error">Unable to connect to IRC recent changes feed ($1). Using slower API queries instead</string>
-    <string name="irc-stop">Waiting for the primary feed provider to stop</string>
+    <string name="irc-stop">Waiting for the primary feed provider to stop on $1</string>
     <string name="irc-not">Feed: IRC is disabled by project config</string>
     <string name="irc-failure">The primary feed provider has failed. Falling back to the wiki provider...</string>
     <string name="irc-wait">Waiting for the IRC feed provider to stop</string>
@@ -554,7 +554,7 @@
     <string name="usermessage-fail">Did not message '$1'</string>
     <string name="usermessage-progress">Messaging '$1'...</string>
     <string name="warn-alreadyblocked">The user has already been blocked</string>
-    <string name="editquery-success">Successfully edit $1</string>
+    <string name="editquery-success">Successfully edit $1 on $2</string>
     <string name="editquery-token">Retrieving token to edit $1</string>
     <string name="editquery-token-error">Unable to retrieve edit token</string>
     <string name="provider-failure">Failure of primary feed provider, trying to recover</string>

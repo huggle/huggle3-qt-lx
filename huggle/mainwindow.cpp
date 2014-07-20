@@ -1485,7 +1485,7 @@ void MainWindow::ReconnectIRC(WikiSite *site)
     site->Provider->Stop();
     while (!site->Provider->IsStopped())
     {
-        Syslog::HuggleLogs->Log(_l("irc-ws", site->Name));
+        Syslog::HuggleLogs->Log(_l("irc-stop", site->Name));
         Sleeper::usleep(200000);
     }
     this->ui->actionIRC->setChecked(true);

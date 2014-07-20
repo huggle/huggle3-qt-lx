@@ -13,14 +13,15 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "history.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
-#include "history.hpp"
-#include "wikipage.hpp"
 #include "mainwindow.hpp"
 #include "generic.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 
@@ -186,7 +187,7 @@ bool EditQuery::IsProcessed()
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
                     this->ProcessCallback();
-                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName));
+                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName, this->Page->GetSite()->Name));
                 }
             }
         }
