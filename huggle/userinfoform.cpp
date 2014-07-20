@@ -191,9 +191,9 @@ void UserinfoForm::OnTick()
         } else
             Syslog::HuggleLogs->ErrorLog(_l("user-history-retr-fail", this->User->Username));
         this->ui->tableWidget->resizeRowsToContents();
-        this->qContributions = nullptr;
+        this->qContributions.Delete();
+        this->timer->stop();
     }
-    this->timer->stop();
 }
 
 void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
