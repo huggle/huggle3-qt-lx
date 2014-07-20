@@ -14,6 +14,7 @@
 #include <QToolButton>
 #include <QInputDialog>
 #include <QMutex>
+#include <QMenu>
 #include <QLabel>
 #include <QTimer>
 #include <QThread>
@@ -78,6 +79,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
+    if (!Configuration::HuggleConfiguration->Multiple)
+    {
+        this->ProvidersMenu = nullptr;
+    }
+    else
+    {
+        this->ui->menuChange_provider->setVisible(false);
+        this->ui->actionStop_provider->setVisible(false);
+        this->ui->actionReconnect_IRC->setVisible(false);
+        this->ProvidersMenu = new QMenu("Change provider");
+    }
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
     this->Status->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -173,7 +185,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->GeneralTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
     connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
-    this->GeneralTimer->start(200);
+    this->GeneralTimer->start(HUGGLE_TIMER);
     QFile *layout;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
@@ -241,6 +253,7 @@ MainWindow::~MainWindow()
         this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
         this->PatrolledEdits.removeAt(0);
     }
+    delete this->ProvidersMenu;
     delete this->fWikiPageTags;
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
@@ -2159,20 +2172,19 @@ void Huggle::MainWindow::on_actionIRC_triggered()
 
 void Huggle::MainWindow::on_actionWiki_triggered()
 {
-    /*if (!this->CheckExit())
+    if (!this->CheckExit())
         return;
     Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
-    Core::HuggleCore->PrimaryFeedProvider->Stop();
+    this->GetCurrentWikiSite()->Provider->Stop();
     this->ui->actionIRC->setChecked(false);
     this->ui->actionWiki->setChecked(true);
-    while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
+    while (!this->GetCurrentWikiSite()->Provider->IsStopped())
     {
-        Syslog::HuggleLogs->Log(_l("irc-stop"));
+        Syslog::HuggleLogs->Log(_l("irc-stop", this->GetCurrentWikiSite()->Name));
         Sleeper::usleep(200000);
     }
-    this->ChangeProvider(new HuggleFeedProviderWiki());
-    Core::HuggleCore->PrimaryFeedProvider->Start();
-    */
+    this->ChangeProvider(this->GetCurrentWikiSite(), new HuggleFeedProviderWiki(this->GetCurrentWikiSite()));
+    this->GetCurrentWikiSite()->Provider->Start();
 }
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()

@@ -20,6 +20,7 @@
 #include "wlquery.hpp"
 class QLabel;
 class QTimer;
+class QMenu;
 class QToolButton;
 
 namespace Ui
@@ -324,6 +325,7 @@ namespace Huggle
             QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QMenu *ProvidersMenu;
             QHash<WikiSite*, EditQuery*> StorageQueries;
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;
