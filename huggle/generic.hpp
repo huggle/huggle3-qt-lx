@@ -72,7 +72,7 @@ namespace Huggle
                                          QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
                                          QString *title = nullptr);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        ApiQuery *RetrieveWikiPageContents(QString page, bool parse = false);
+        ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
         ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         QString ShrinkText(QString text, int size, bool html = true);
     }

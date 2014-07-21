@@ -17,6 +17,7 @@
     <string name="remove">Remove</string>
     <string name="rename">Rename</string>
     <string name="reload">Reload</string>
+    <string name="project">Project</string>
     <string name="result">Result</string>
     <string name="save">Save</string>
     <string name="yes">Yes</string>
@@ -225,7 +226,7 @@
     <string name="main-history">History</string>
     <string name="main-new-messages">You have new messages. Select System -&gt; Show new messages or press M to view them.</string>
     <string name="main-system">System</string>
-    <string name="main-status-bar">Processing &lt;b&gt;$1&lt;/b&gt;edits and &lt;b&gt;$2&lt;/b&gt;queries. Whitelisted users: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Statistics: $5</string>
+    <string name="main-status-bar">Processing &lt;b&gt;$1&lt;/b&gt;edits and &lt;b&gt;$2&lt;/b&gt;queries. I have whitelisted users: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Statistics for $6: $5</string>
     <string name="main-shutting-down">Huggle is shutting down, ignored</string>
     <string name="main-system-messages">Show new messages</string>
     <string name="main-system-reconnectirc">Reconnect IRC feed</string>

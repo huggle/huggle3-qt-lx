@@ -312,7 +312,7 @@ void Message::PreflightCheck()
     {
         this->_Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
-        this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk());
+        this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
         QueryPool::HugglePool->AppendQuery(this->query);
         /// \todo LOCALIZE ME

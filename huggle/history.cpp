@@ -22,6 +22,7 @@
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "ui_history.h"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -35,9 +36,9 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     connect(this->timerRetrievePageInformation, SIGNAL(timeout()), this, SLOT(Tick()));
     this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
-    this->ui->tableWidget->setColumnCount(4);
+    this->ui->tableWidget->setColumnCount(5);
     QStringList header;
-    header << _l("[[id]]") << _l("[[type]]") << _l("[[target]]") << _l("result");
+    header << _l("[[id]]") << _l("[[type]]") << _l("[[target]]") << _l("result") << _l("project");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
@@ -115,7 +116,7 @@ void History::Undo(HistoryItem *hist)
                 hist->ReferencedBy = nullptr;
             }
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target);
+            this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
@@ -125,7 +126,7 @@ void History::Undo(HistoryItem *hist)
         case HistoryEdit:
             // we need to revert both warning of user as well as page we rolled back
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents(hist->Target);
+            this->qEdit = Generic::RetrieveWikiPageContents(hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             QueryPool::HugglePool->AppendQuery(this->qEdit);
@@ -346,6 +347,7 @@ void History::Prepend(HistoryItem *item)
     this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(HistoryItem::TypeToString(item->Type)));
     this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(item->Target));
     this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(item->Result));
+    this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(item->GetSite()->Name));
     this->ui->tableWidget->resizeRowToContents(0);
 }
 

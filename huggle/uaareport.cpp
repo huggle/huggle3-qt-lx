@@ -63,7 +63,7 @@ void UAAReport::getPageContents()
         throw new Huggle::NullPointerException("this->User", "void UAAReport::getPageContents()");
     if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
-    this->qUAApage = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath);
+    this->qUAApage = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
     this->qUAApage->Site = this->User->GetSite();
     this->qUAApage->Target = _l("uaa-g1");
     QueryPool::HugglePool->AppendQuery(this->qUAApage);
@@ -183,7 +183,7 @@ void UAAReport::on_pushButton_2_clicked()
 void UAAReport::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath);
+    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
     this->qCheckUAAUser->Site = this->User->GetSite();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
     this->qCheckUAAUser->Process();

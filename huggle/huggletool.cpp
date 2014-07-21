@@ -18,6 +18,7 @@
 #include "querypool.hpp"
 #include "wikipage.hpp"
 #include "mainwindow.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
@@ -27,12 +28,23 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
+    if (Configuration::HuggleConfiguration->Multiple)
+    {
+        this->ui->label_4->setText(_l("project"));
+    } else
+    {
+        this->ui->comboBox->setVisible(false);
+        this->ui->label_4->setVisible(false);
+    }
     this->ui->pushButton->setText(_l("main-page-load"));
     this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
     this->ui->label->setText(_l("User"));
     this->page = nullptr;
     this->ui->label_2->setText(_l("Page"));
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        this->ui->comboBox->addItem(site->Name);
+    this->ui->comboBox->setCurrentIndex(0);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
 }
 
@@ -65,6 +77,14 @@ void HuggleTool::SetPage(WikiPage *page)
         throw new Huggle::Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
 
     this->ui->lineEdit_3->setText(page->PageName);
+    if (Configuration::HuggleConfiguration->Projects.contains(page->GetSite()) &&
+            this->ui->comboBox->count() <= Configuration::HuggleConfiguration->Projects.count())
+    {
+        this->ui->comboBox->setCurrentIndex(Configuration::HuggleConfiguration->Projects.indexOf(page->GetSite()));
+    } else
+    {
+        Syslog::HuggleLogs->WarningLog("Project not in a list: " + page->GetSite()->Name);
+    }
     if (this->page != nullptr)
     {
         delete this->page;
@@ -78,6 +98,17 @@ void HuggleTool::SetPage(WikiPage *page)
     this->ui->lineEdit_3->setStyleSheet("color: black;");
 }
 
+WikiSite *HuggleTool::GetSite()
+{
+    if (Configuration::HuggleConfiguration->Projects.count() != this->ui->comboBox->count())
+    {
+        // this should not happen ever
+        throw new Huggle::Exception("Wrong number of projects (Configuration::HuggleConfiguration->Projects.count() isn't same as comboBox->count())",
+                                    "WikiSite *HuggleTool::GetSite()");
+    }
+    return Configuration::HuggleConfiguration->Projects.at(this->ui->comboBox->currentIndex());
+}
+
 void HuggleTool::RenderEdit()
 {
     if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_3->text().length())
@@ -86,7 +117,7 @@ void HuggleTool::RenderEdit()
     this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
     this->QueryPhase = 1;
-    this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text());
+    this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text(), this->GetSite());
     this->query->Process();
     this->tick->start(HUGGLE_TIMER);
 }
