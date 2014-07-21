@@ -1960,6 +1960,7 @@ void MainWindow::ReloadInterface()
         this->ui->actionDelete_page->setText(_l("main-page-delete"));
     else
         this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
+    this->ReloadSc();
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
