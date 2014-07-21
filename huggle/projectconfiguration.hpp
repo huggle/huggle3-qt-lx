@@ -186,6 +186,8 @@ namespace Huggle
             int                     ScoreTalk = -200;
             //! Score that is added for every edit that has really big size
             int                     ScoreChange = 100;
+            int                     LargeRemoval = 400;
+            int                     ScoreRemoval = 800;
             int                     ScoreUser = -600;
             //! This is a number that can be used to get a current server time
             qint64                  ServerOffset = 0;

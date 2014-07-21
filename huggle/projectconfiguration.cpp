@@ -66,6 +66,7 @@ bool ProjectConfiguration::Parse(QString config)
     this->RequireConfig = SafeBool(HuggleParser::ConfigurationParse("require-config", config, "false"));
     this->RequireEdits = HuggleParser::ConfigurationParse("require-edits", config, "0").toInt();
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
+    this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
     this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
     // Ignoring
@@ -78,6 +79,7 @@ bool ProjectConfiguration::Parse(QString config)
     this->BotScore = HuggleParser::ConfigurationParse("score-bot", config, "-200000").toInt();
     this->ScoreUser = HuggleParser::ConfigurationParse("score-user", config, "-200").toInt();
     this->ScoreTalk = HuggleParser::ConfigurationParse("score-talk", config, "-800").toInt();
+    this->ScoreRemoval = HuggleParser::ConfigurationParse("score-remove", config, "800").toInt();
     // Summaries
     this->WarnSummary = HuggleParser::ConfigurationParse("warn-summary", config);
     this->WarnSummary2 = HuggleParser::ConfigurationParse("warn-summary-2", config);

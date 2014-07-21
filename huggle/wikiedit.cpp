@@ -559,6 +559,8 @@ void ProcessorThread::Process(WikiEdit *edit)
     edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
         edit->ProcessWords();
+    if (edit->SizeIsKnown && edit->Size < (-1*edit->GetSite()->GetProjectConfig()->LargeRemoval))
+        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreRemoval;
     edit->User->ParseTP(QDate::currentDate());
     if (edit->Summary.size() == 0)
         edit->Score += 10;
