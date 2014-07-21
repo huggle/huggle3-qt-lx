@@ -26,6 +26,7 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
     class WikiPage;
+    class WikiSite;
 
     enum MessageBoxStyle
     {
