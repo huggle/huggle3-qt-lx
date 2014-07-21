@@ -20,9 +20,9 @@ using namespace Huggle;
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
     this->ui->setupUi(this);
-    this->ui->tableWidget->setColumnCount(4);
+    this->ui->tableWidget->setColumnCount(5);
     QStringList header;
-    header << _l("id") << _l("type") << _l("target") << _l("status");
+    header << _l("id") << _l("type") << _l("target") << _l("status") << _l("project");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);

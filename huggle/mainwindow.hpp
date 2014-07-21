@@ -320,6 +320,7 @@ namespace Huggle
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();
+            WikiSite *PreviousSite = nullptr;
             QList<QAction*> RevertAndWarnItems;
             QList<QAction*> RevertItems;
             QList<QAction*> WarnItems;

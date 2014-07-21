@@ -403,6 +403,11 @@ void MainWindow::Render()
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
+        if (this->PreviousSite != this->GetCurrentWikiSite())
+        {
+            this->ReloadInterface();
+            this->PreviousSite = this->GetCurrentWikiSite();
+        }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);
         this->tb->SetUser(this->CurrentEdit->User->Username);
