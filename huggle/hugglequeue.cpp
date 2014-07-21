@@ -429,7 +429,7 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         {
             if (edit->Page->PageName == _e->Page->PageName)
             {
-                HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 1);
+                HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 3);
                 // remove it
                 if (this->DeleteByRevID(_e->RevID, _e->GetSite()))
                 {
