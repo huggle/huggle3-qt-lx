@@ -367,6 +367,11 @@ void Configuration::LoadSystemConfig(QString fn)
             continue;
         }
         QString key = option.attribute("key");
+        if (key == "Multiple")
+        {
+            Configuration::HuggleConfiguration->Multiple = SafeBool(option.attribute("text"));
+            continue;
+        }
         if (key == "Cache_InfoSize")
         {
             Configuration::HuggleConfiguration->SystemConfig_QueueSize = option.attribute("text").toInt();
@@ -497,6 +502,11 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->SystemConfig_InstantReverts = SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "Projects")
+        {
+            Configuration::HuggleConfiguration->ProjectString = option.attribute("text").split(",");
+            continue;
+        }
     }
     item = 0;
     while (item < e.count())
@@ -555,6 +565,13 @@ void Configuration::SaveSystemConfig()
     InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), writer);
+    InsertConfig("Multiple", Bool2String(Configuration::HuggleConfiguration->Multiple), writer);
+    QString projects;
+    foreach (QString wiki, Configuration::HuggleConfiguration->ProjectString)
+    {
+        projects += wiki + ",";
+    }
+    InsertConfig("Projects", projects, writer);
     /////////////////////////////
     // Vandal network
     /////////////////////////////

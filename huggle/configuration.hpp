@@ -196,9 +196,10 @@ namespace Huggle
             bool              Multiple = false;
             QList<WikiSite *> Projects;
             //! currently selected project
-            WikiSite        *Project = nullptr;
+            WikiSite         *Project = nullptr;
             //! List of projects
             QList<WikiSite *> ProjectList;
+            QStringList       ProjectString;
             //! When this is true most of functions will not work
             bool            Restricted = false;
             //! This is used in combination with --login option, so that huggle knows if it should

@@ -248,6 +248,10 @@ void Login::Reload()
         this->ui->tableWidget->insertRow(current);
         this->ui->tableWidget->setItem(current, 0, new QTableWidgetItem(project_));
         QCheckBox *Item = new QCheckBox();
+        if (Configuration::HuggleConfiguration->ProjectString.contains(project_))
+        {
+            Item->setChecked(true);
+        }
         this->Project_CheckBoxens.append(Item);
         this->ui->tableWidget->setCellWidget(current, 1, Item);
         current++;
@@ -339,12 +343,14 @@ void Login::PressOK()
     // set new status for all projects
     this->LoadedOldConfigs.clear();
     this->Statuses.clear();
+    Configuration::HuggleConfiguration->ProjectString.clear();
     this->processedLogin.clear();
     this->processedSiteinfos.clear();
     this->processedWL.clear();
     foreach (WikiSite *wiki, Configuration::HuggleConfiguration->Projects)
     {
         delete wiki->UserConfig;
+        Configuration::HuggleConfiguration->ProjectString.append(wiki->Name);
         wiki->UserConfig = new UserConfiguration();
         delete wiki->ProjectConfig;
         wiki->ProjectConfig = new ProjectConfiguration(wiki->Name);
