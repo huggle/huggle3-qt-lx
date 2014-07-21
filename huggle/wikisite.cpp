@@ -117,6 +117,8 @@ WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool
 WikiSite::~WikiSite()
 {
     this->ClearNS();
+    delete this->ProjectConfig;
+    delete this->UserConfig;
 }
 
 WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)

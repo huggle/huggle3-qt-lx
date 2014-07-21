@@ -79,16 +79,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
-    if (!Configuration::HuggleConfiguration->Multiple)
-    {
-        this->ProvidersMenu = nullptr;
-    }
-    else
+    if (Configuration::HuggleConfiguration->Multiple)
     {
         this->ui->menuChange_provider->setVisible(false);
         this->ui->actionStop_provider->setVisible(false);
         this->ui->actionReconnect_IRC->setVisible(false);
-        this->ProvidersMenu = new QMenu("Change provider");
     }
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
@@ -253,7 +248,6 @@ MainWindow::~MainWindow()
         this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
         this->PatrolledEdits.removeAt(0);
     }
-    delete this->ProvidersMenu;
     delete this->fWikiPageTags;
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
