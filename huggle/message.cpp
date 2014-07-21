@@ -19,6 +19,7 @@
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;
@@ -126,7 +127,7 @@ bool Message::IsFailed()
 
 bool Message::HasValidEditToken()
 {
-    return (!Configuration::HuggleConfiguration->TemporaryConfig_EditToken.isEmpty());
+    return (!this->User->GetSite()->GetProjectConfig()->EditToken.isEmpty());
 }
 
 bool Message::RetrievingToken()
@@ -300,7 +301,7 @@ bool Message::FinishToken()
         Huggle::Syslog::HuggleLogs->DebugLog("No token");
         return false;
     }
-    Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
+    this->User->GetSite()->GetProjectConfig()->EditToken = element.attribute("edittoken");
     this->qToken = nullptr;
     return true;
 }
@@ -383,13 +384,13 @@ void Message::ProcessSend()
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
-                + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
     }
     HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
     QueryPool::HugglePool->AppendQuery(query);

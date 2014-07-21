@@ -276,7 +276,6 @@ namespace Huggle
             //! We are storing index instead of wiki name, because in case it was a wiki that later
             //! was removed from the list, we would have nonexistent wiki in list
             int             IndexOfLastWiki = 0;
-            QString         TemporaryConfig_EditToken = "";
 
             //////////////////////////////////////////////
             // User
