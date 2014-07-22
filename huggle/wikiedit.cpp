@@ -416,6 +416,8 @@ void WikiEdit::PostProcess()
     if (this->PostProcessing)
         return;
 
+    if (this->Status == Huggle::StatusPostProcessed)
+        throw new Huggle::Exception("Unable to post process an edit that is already processed");
     if (this->Status != Huggle::StatusProcessed)
         throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
     if (this->Page == nullptr)
