@@ -130,7 +130,7 @@
    <item>
     <widget class="QLabel" name="label_12">
      <property name="text">
-      <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rich Smith&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Methecooldude&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Methecooldude&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rich Smith&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Rich_Smith&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Rich Smith&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
