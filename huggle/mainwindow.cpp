@@ -84,6 +84,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->menuChange_provider->setVisible(false);
         this->ui->actionStop_provider->setVisible(false);
         this->ui->actionReconnect_IRC->setVisible(false);
+        this->ui->actionIRC->setVisible(false);
+        this->ui->actionWiki->setVisible(false);
     }
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
@@ -155,10 +157,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
+        bool irc = false;
         if (Configuration::HuggleConfiguration->UsingIRC && site->ProjectConfig->UseIrc)
         {
             this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
             this->ui->actionIRC->setChecked(true);
+            irc = true;
             if (!site->Provider->Start())
             {
                 Syslog::HuggleLogs->ErrorLog(_l("irc-failure", site->Name));
@@ -166,6 +170,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
                 this->ui->actionWiki->setChecked(true);
                 this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
                 site->Provider->Start();
+                irc = false;
             }
         } else
         {
@@ -173,6 +178,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             this->ui->actionWiki->setChecked(true);
             this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
             site->Provider->Start();
+        }
+        if (Configuration::HuggleConfiguration->Multiple)
+        {
+            QMenu *menu = new QMenu(site->Name, this);
+            this->ui->menuChange_provider->addMenu(menu);
+            QAction *irc_a = new QAction("IRC", menu);
+            QAction *wik_a = new QAction("Wiki", menu);
+            wik_a->setCheckable(true);
+            irc_a->setCheckable(true);
+            menu->addAction(irc_a);
+            menu->addAction(wik_a);
+            if (irc)
+                irc_a->setChecked(true);
+            else
+                wik_a->setChecked(true);
         }
     }
     this->ReloadInterface();
@@ -2568,4 +2588,18 @@ void Huggle::MainWindow::on_actionTag_2_triggered()
 void Huggle::MainWindow::on_actionReload_menus_triggered()
 {
     this->ReloadInterface();
+}
+
+void MainWindow::SetProviderIRC()
+{
+    QAction *action = (QAction*)QObject::sender();
+    if (!this->ActionSites.contains(action))
+        throw new Huggle::Exception("There is no such a site in hash table",
+                                    "void MainWindow::SetProviderIRC()");
+    this->ReconnectIRC(this->ActionSites[action]);
+}
+
+void MainWindow::SetProviderWiki()
+{
+
 }

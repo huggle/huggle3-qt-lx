@@ -287,7 +287,8 @@ namespace Huggle
             void on_actionRevert_only_this_revision_triggered();
             void on_actionTag_2_triggered();
             void on_actionReload_menus_triggered();
-
+            void SetProviderIRC();
+            void SetProviderWiki();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -341,6 +342,7 @@ namespace Huggle
             WikiPageTagsForm *fWikiPageTags = nullptr;
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
+            QHash<QAction*, WikiSite*> ActionSites;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
             Collectable_SmartPtr<ApiQuery> RestoreQuery;
