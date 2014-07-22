@@ -1111,5 +1111,7 @@ void Huggle::Login::on_pushButton_2_clicked()
         Configuration::HuggleConfiguration->Multiple = true;
         this->ui->pushButton_2->setText("Projects <<");
         this->ui->tableWidget->setVisible(true);
+        if (this->height() < 460)
+            this->resize(this->width(), 480);
     }
 }

@@ -189,6 +189,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             this->lIRC.insert(site, irc_a);
             wik_a->setCheckable(true);
             irc_a->setCheckable(true);
+            connect(wik_a, SIGNAL(triggered()), this, SLOT(SetProviderWiki()));
+            connect(irc_a, SIGNAL(triggered()), this, SLOT(SetProviderIRC()));
             menu->addAction(irc_a);
             menu->addAction(wik_a);
             if (irc)
