@@ -329,11 +329,6 @@ void Login::PressOK()
         project_id++;
     }
     Configuration::HuggleConfiguration->Multiple = Configuration::HuggleConfiguration->Projects.count() > 1;
-    if (this->ui->lineEdit_username->text() == "Developer Mode")
-    {
-        this->DeveloperMode();
-        return;
-    }
     Configuration::HuggleConfiguration->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
     Configuration::HuggleConfiguration->TemporaryConfig_Password = ui->lineEdit_password->text();
     if (this->loadingForm != nullptr)
@@ -363,6 +358,11 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->UserConfig = Configuration::HuggleConfiguration->Project->GetUserConfig();
     Configuration::HuggleConfiguration->ProjectConfig = Configuration::HuggleConfiguration->Project->GetProjectConfig();
 
+    if (this->ui->lineEdit_username->text() == "Developer Mode")
+    {
+        this->DeveloperMode();
+        return;
+    }
     this->Disable();
     this->loadingForm->show();
     // this is pretty tricky here

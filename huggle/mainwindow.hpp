@@ -116,7 +116,7 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            void ReconnectIRC(WikiSite *site);
+            bool ReconnectIRC(WikiSite *site);
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             /*!
@@ -343,6 +343,8 @@ namespace Huggle
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
             QHash<QAction*, WikiSite*> ActionSites;
+            QHash<WikiSite*, QAction*> lIRC;
+            QHash<WikiSite*, QAction*> lWikis;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
             Collectable_SmartPtr<ApiQuery> RestoreQuery;
