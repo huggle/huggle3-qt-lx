@@ -14,6 +14,7 @@
 #include <QToolButton>
 #include <QInputDialog>
 #include <QMutex>
+#include <QMenu>
 #include <QLabel>
 #include <QTimer>
 #include <QThread>
@@ -78,6 +79,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
+    if (Configuration::HuggleConfiguration->Multiple)
+    {
+        this->ui->menuChange_provider->setVisible(false);
+        this->ui->actionStop_provider->setVisible(false);
+        this->ui->actionReconnect_IRC->setVisible(false);
+        this->ui->actionIRC->setVisible(false);
+        this->ui->actionWiki->setVisible(false);
+    }
     this->Status = new QLabel();
     this->Status->setWordWrap(true);
     this->Status->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -112,12 +121,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    if (!Configuration::HuggleConfiguration->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        Configuration::HuggleConfiguration->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
+        if (!site->GetProjectConfig()->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
+            site->GetProjectConfig()->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
     }
     QueryPool::HugglePool->Processes = this->Queries;
-    this->setWindowTitle("Huggle 3 QT-LX on " + Configuration::HuggleConfiguration->Project->Name);
+    QString projects = Configuration::HuggleConfiguration->Project->Name;
+    if (Configuration::HuggleConfiguration->Multiple)
+    {
+        projects = "multiple projects (";
+        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+            projects += site->Name + ", ";
+        projects = projects.mid(0, projects.length() - 2);
+        projects += ")";
+    }
+    this->setWindowTitle("Huggle 3 QT-LX on " + projects);
     this->ui->verticalLayout->addWidget(this->Browser);
     this->DisplayWelcomeMessage();
     if (Configuration::HuggleConfiguration->UserConfig->RemoveOldQueueEdits)
@@ -136,31 +155,56 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionReconnect_IRC->setEnabled(false);
         this->ui->actionIRC->setEnabled(false);
     }
-    if (Configuration::HuggleConfiguration->UsingIRC && Configuration::HuggleConfiguration->ProjectConfig->UseIrc)
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        this->ChangeProvider(new HuggleFeedProviderIRC());
-        this->ui->actionIRC->setChecked(true);
-        if (!Core::HuggleCore->PrimaryFeedProvider->Start())
+        bool irc = false;
+        if (Configuration::HuggleConfiguration->UsingIRC && site->ProjectConfig->UseIrc)
         {
-            Syslog::HuggleLogs->ErrorLog(_l("irc-failure"));
+            this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+            this->ui->actionIRC->setChecked(true);
+            irc = true;
+            if (!site->Provider->Start())
+            {
+                Syslog::HuggleLogs->ErrorLog(_l("irc-failure", site->Name));
+                this->ui->actionIRC->setChecked(false);
+                this->ui->actionWiki->setChecked(true);
+                this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+                site->Provider->Start();
+                irc = false;
+            }
+        } else
+        {
             this->ui->actionIRC->setChecked(false);
             this->ui->actionWiki->setChecked(true);
-            this->ChangeProvider(new HuggleFeedProviderWiki());
-            Core::HuggleCore->PrimaryFeedProvider->Start();
+            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+            site->Provider->Start();
         }
-    } else
-    {
-        this->ui->actionIRC->setChecked(false);
-        this->ui->actionWiki->setChecked(true);
-        this->ChangeProvider(new HuggleFeedProviderWiki());
-        Core::HuggleCore->PrimaryFeedProvider->Start();
+        if (Configuration::HuggleConfiguration->Multiple)
+        {
+            QMenu *menu = new QMenu(site->Name, this);
+            this->ui->menuChange_provider->addMenu(menu);
+            QAction *irc_a = new QAction("IRC", menu);
+            QAction *wik_a = new QAction("Wiki", menu);
+            this->lWikis.insert(site, wik_a);
+            this->lIRC.insert(site, irc_a);
+            wik_a->setCheckable(true);
+            irc_a->setCheckable(true);
+            connect(wik_a, SIGNAL(triggered()), this, SLOT(SetProviderWiki()));
+            connect(irc_a, SIGNAL(triggered()), this, SLOT(SetProviderIRC()));
+            menu->addAction(irc_a);
+            menu->addAction(wik_a);
+            if (irc)
+                irc_a->setChecked(true);
+            else
+                wik_a->setChecked(true);
+        }
     }
     this->ReloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
     connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
-    this->GeneralTimer->start(200);
+    this->GeneralTimer->start(HUGGLE_TIMER);
     QFile *layout;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
@@ -383,6 +427,11 @@ void MainWindow::Render()
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
+        if (this->PreviousSite != this->GetCurrentWikiSite())
+        {
+            this->ReloadInterface();
+            this->PreviousSite = this->GetCurrentWikiSite();
+        }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);
         this->tb->SetUser(this->CurrentEdit->User->Username);
@@ -496,11 +545,11 @@ void MainWindow::UpdateStatusBarData()
     QStringList params;
     params << Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3)
            << Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3)
-           << QString::number(Configuration::HuggleConfiguration->WhiteList.size())
+           << QString::number(this->GetCurrentWikiSite()->GetProjectConfig()->WhiteList.size())
            << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
     QString statistics_;
     // calculate stats, but not if huggle uptime is lower than 50 seconds
-    double Uptime = Core::HuggleCore->PrimaryFeedProvider->GetUptime();
+    double Uptime = this->GetCurrentWikiSite()->Provider->GetUptime();
     if (this->ShuttingDown)
     {
         statistics_ = "none";
@@ -511,10 +560,10 @@ void MainWindow::UpdateStatusBarData()
     {
         double EditsPerMinute = 0;
         double RevertsPerMinute = 0;
-        if (Core::HuggleCore->PrimaryFeedProvider->EditCounter > 0)
-            EditsPerMinute = Core::HuggleCore->PrimaryFeedProvider->EditCounter / (Uptime / 60);
-        if (Core::HuggleCore->PrimaryFeedProvider->RvCounter > 0)
-            RevertsPerMinute = Core::HuggleCore->PrimaryFeedProvider->RvCounter / (Uptime / 60);
+        if (this->GetCurrentWikiSite()->Provider->EditCounter > 0)
+            EditsPerMinute = this->GetCurrentWikiSite()->Provider->EditCounter / (Uptime / 60);
+        if (this->GetCurrentWikiSite()->Provider->RvCounter > 0)
+            RevertsPerMinute = this->GetCurrentWikiSite()->Provider->RvCounter / (Uptime / 60);
         double VandalismLevel = 0;
         if (EditsPerMinute > 0 && RevertsPerMinute > 0)
             VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;
@@ -535,7 +584,7 @@ void MainWindow::UpdateStatusBarData()
     }
     if (Configuration::HuggleConfiguration->Verbosity > 0)
         statistics_ += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
-    params << statistics_;
+    params << statistics_ << this->GetCurrentWikiSite()->Name;
     this->Status->setText(_l("main-status-bar", params));
 }
 
@@ -1023,13 +1072,14 @@ void MainWindow::OnMainTimerTick()
     }
 #endif
     // if there is no working feed, let's try to fix it
-    if (Core::HuggleCore->PrimaryFeedProvider->IsWorking() != true && this->ShuttingDown != true)
+    WikiSite *site = this->GetCurrentWikiSite();
+    if (site->Provider->IsWorking() != true && this->ShuttingDown != true)
     {
-        Syslog::HuggleLogs->Log(_l("provider-failure"));
-        if (!Core::HuggleCore->PrimaryFeedProvider->Restart())
+        Syslog::HuggleLogs->Log(_l("provider-failure", this->GetCurrentWikiSite()->Name));
+        if (!site->Provider->Restart())
         {
-            this->ChangeProvider(new HuggleFeedProviderWiki());
-            Core::HuggleCore->PrimaryFeedProvider->Start();
+            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+            site->Provider->Start();
         }
     }
     Warnings::ResendWarnings();
@@ -1038,29 +1088,42 @@ void MainWindow::OnMainTimerTick()
     {
         if (this->ui->actionStop_feed->isChecked())
         {
-            Core::HuggleCore->PrimaryFeedProvider->Pause();
+            this->PauseQueue();
             RetrieveEdit = false;
         } else
         {
-            if (Core::HuggleCore->PrimaryFeedProvider->IsPaused())
-                Core::HuggleCore->PrimaryFeedProvider->Resume();
+            this->ResumeQueue();
             this->Queue1->Trim();
         }
     } else
     {
-        if (this->ui->actionStop_feed->isChecked() && Core::HuggleCore->PrimaryFeedProvider->IsPaused())
-            Core::HuggleCore->PrimaryFeedProvider->Resume();
+        if (this->ui->actionStop_feed->isChecked() && this->QueueIsNowPaused)
+            this->ResumeQueue();
     }
-    if (RetrieveEdit && Core::HuggleCore->PrimaryFeedProvider->ContainsEdit())
+    if (RetrieveEdit)
     {
-        // we take the edit and start post processing it
-        WikiEdit *edit = Core::HuggleCore->PrimaryFeedProvider->RetrieveEdit();
-        if (edit != nullptr)
+        bool full = true;
+        while (full)
         {
-            QueryPool::HugglePool->PostProcessEdit(edit);
-            edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
-            edit->DecRef();
-            this->PendingEdits.append(edit);
+            full = false;
+            foreach (WikiSite *wiki, Configuration::HuggleConfiguration->Projects)
+            {
+                if (!wiki->Provider->ContainsEdit())
+                    continue;
+
+                // we take the edit and start post processing it
+                WikiEdit *edit = wiki->Provider->RetrieveEdit();
+                if (edit != nullptr)
+                {
+                    QueryPool::HugglePool->PostProcessEdit(edit);
+                    edit->RegisterConsumer(HUGGLECONSUMER_MAINPEND);
+                    edit->DecRef();
+                    this->PendingEdits.append(edit);
+                }
+
+                if (!full && wiki->Provider->ContainsEdit())
+                    full = true;
+            }
         }
     }
     if (this->PendingEdits.count() > 0)
@@ -1163,35 +1226,76 @@ void MainWindow::OnTimerTick0()
         {
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->fWaiting->Status(60, _l("updating-wl"));
-            this->wq = new WLQuery();
-            this->wq->Type = WLQueryType_WriteWL;
-            this->wq->Process();
+            foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
+            {
+                if (this->WhitelistQueries.contains(site))
+                {
+                    this->WhitelistQueries[site]->DecRef();
+                    this->WhitelistQueries.remove(site);
+                }
+                this->WhitelistQueries.insert(site, new WLQuery(site));
+                this->WhitelistQueries[site]->Type = WLQueryType_WriteWL;
+                this->WhitelistQueries[site]->IncRef();
+                this->WhitelistQueries[site]->Process();
+            }
             return;
         }
         if (this->Shutdown == ShutdownOpUpdatingWhitelist)
         {
-            if (!this->wq->IsProcessed())
+            bool finished = true;
+            foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
             {
-                this->fWaiting->Status(60 + int((this->wq->Progress / 100) * 30));
+                if (this->WhitelistQueries.contains(site))
+                {
+                    if(!this->WhitelistQueries[site]->IsProcessed())
+                    {
+                        finished = false;
+                        break;
+                    } else
+                    {
+                        this->WhitelistQueries[site]->DecRef();
+                        this->WhitelistQueries.remove(site);
+                    }
+                }
+            }
+            if (!finished)
+            {
+                this->fWaiting->Status(60);
                 return;
             }
             // we finished writing the wl
             this->fWaiting->Status(90, _l("saveuserconfig-progress"));
-            this->wq = nullptr;
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
-            WikiPage *uc = new WikiPage(page);
-            this->eq = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(), _l("saveuserconfig-progress"), true);
-            delete uc;
+            foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
+            {
+                WikiPage *uc = new WikiPage(page);
+                uc->Site = site;
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site), _l("saveuserconfig-progress"), true);
+                temp->IncRef();
+                this->StorageQueries.insert(site, temp.GetPtr());
+                delete uc;
+            }
             return;
         }
     } else
     {
         // we need to check if config was written
-        if (this->eq != nullptr && !this->eq->IsProcessed())
-            return;
-        this->eq = nullptr;
+        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        {
+            if (this->StorageQueries.contains(site))
+            {
+                if (this->StorageQueries[site]->IsProcessed())
+                {
+                    this->StorageQueries[site]->DecRef();
+                    this->StorageQueries.remove(site);
+                } else
+                {
+                    return;
+                }
+            }
+        }
         this->wlt->stop();
         this->GeneralTimer->stop();
         Core::HuggleCore->Shutdown();
@@ -1384,8 +1488,11 @@ void MainWindow::Exit()
         return;
     }
     this->Shutdown = ShutdownOpRetrievingWhitelist;
-    if (Core::HuggleCore->PrimaryFeedProvider != nullptr)
-        Core::HuggleCore->PrimaryFeedProvider->Stop();
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+    {
+        if (site->Provider != nullptr)
+            site->Provider->Stop();
+    }
     if (this->fWaiting != nullptr)
         delete this->fWaiting;
     this->fWaiting = new WaitingForm(this);
@@ -1396,33 +1503,40 @@ void MainWindow::Exit()
     this->wlt->start(800);
 }
 
-void MainWindow::ReconnectIRC()
+bool MainWindow::ReconnectIRC(WikiSite *site)
 {
     if (!this->CheckExit())
-        return;
+        return false;
     if (!Configuration::HuggleConfiguration->UsingIRC)
     {
         Syslog::HuggleLogs->Log(_l("irc-not"));
-        return;
+        return false;
     }
-    Syslog::HuggleLogs->Log(_l("irc-connecting"));
-    Core::HuggleCore->PrimaryFeedProvider->Stop();
-    while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
+    Syslog::HuggleLogs->Log(_l("irc-connecting", site->Name));
+    if (!site->Provider)
     {
-        Syslog::HuggleLogs->Log(_l("irc-ws"));
+        // this is problem
+        throw new Huggle::NullPointerException("site->Provider", "void MainWindow::ReconnectIRC(WikiSite *site)");
+    }
+    site->Provider->Stop();
+    while (!site->Provider->IsStopped())
+    {
+        Syslog::HuggleLogs->Log(_l("irc-stop", site->Name));
         Sleeper::usleep(200000);
     }
     this->ui->actionIRC->setChecked(true);
     this->ui->actionWiki->setChecked(false);
-    this->ChangeProvider(new HuggleFeedProviderIRC());
-    if (!Core::HuggleCore->PrimaryFeedProvider->Start())
+    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+    if (!site->Provider->Start())
     {
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(true);
-        Syslog::HuggleLogs->ErrorLog(_l("provider-primary-failure"));
-        this->ChangeProvider(new HuggleFeedProviderWiki());
-        Core::HuggleCore->PrimaryFeedProvider->Start();
+        Syslog::HuggleLogs->ErrorLog(_l("provider-primary-failure", site->Name));
+        this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+        site->Provider->Start();
+        return false;
     }
+    return true;
 }
 
 bool MainWindow::BrowserPageIsEditable()
@@ -1463,7 +1577,7 @@ void MainWindow::SuspiciousEdit()
     if (this->CurrentEdit != nullptr)
     {
         Hooks::Suspicious(this->CurrentEdit);
-        WLQuery *wq_ = new WLQuery();
+        WLQuery *wq_ = new WLQuery(this->GetCurrentWikiSite());
         wq_->Type = WLQueryType_SuspWL;
         wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
                           + QUrl::toPercentEncoding(this->GetCurrentWikiSite()->WhiteList) + "&user="
@@ -1675,6 +1789,31 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
+void MainWindow::PauseQueue()
+{
+    if (this->QueueIsNowPaused)
+        return;
+
+    this->QueueIsNowPaused = true;
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+    {
+        if (site->Provider->IsPaused())
+        {
+            site->Provider->Pause();
+        }
+    }
+}
+
+void MainWindow::ResumeQueue()
+{
+    if (!this->QueueIsNowPaused)
+        return;
+
+    this->QueueIsNowPaused = false;
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        site->Provider->Resume();
+}
+
 void MainWindow::WelcomeGood()
 {
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
@@ -1774,12 +1913,12 @@ void MainWindow::Welcome()
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
-void MainWindow::ChangeProvider(HuggleFeed *provider)
+void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 {
-    if (HuggleFeed::PrimaryFeedProvider != nullptr)
-        delete HuggleFeed::PrimaryFeedProvider;
-    HuggleFeed::PrimaryFeedProvider = provider;
-    Core::HuggleCore->PrimaryFeedProvider = provider;
+    if (site->Provider != nullptr)
+        delete site->Provider;
+
+    site->Provider = provider;
 }
 
 void MainWindow::ReloadInterface()
@@ -1847,6 +1986,7 @@ void MainWindow::ReloadInterface()
         this->ui->actionDelete_page->setText(_l("main-page-delete"));
     else
         this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
+    this->ReloadSc();
 }
 
 void MainWindow::on_actionWelcome_user_triggered()
@@ -2033,7 +2173,7 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
-    this->ReconnectIRC();
+    this->ReconnectIRC(this->GetCurrentWikiSite());
 }
 
 void MainWindow::on_actionRequest_speedy_deletion_triggered()
@@ -2053,7 +2193,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 
 void Huggle::MainWindow::on_actionIRC_triggered()
 {
-    this->ReconnectIRC();
+    this->ReconnectIRC(this->GetCurrentWikiSite());
 }
 
 void Huggle::MainWindow::on_actionWiki_triggered()
@@ -2061,16 +2201,16 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     if (!this->CheckExit())
         return;
     Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
-    Core::HuggleCore->PrimaryFeedProvider->Stop();
+    this->GetCurrentWikiSite()->Provider->Stop();
     this->ui->actionIRC->setChecked(false);
     this->ui->actionWiki->setChecked(true);
-    while (!Core::HuggleCore->PrimaryFeedProvider->IsStopped())
+    while (!this->GetCurrentWikiSite()->Provider->IsStopped())
     {
-        Syslog::HuggleLogs->Log(_l("irc-stop"));
+        Syslog::HuggleLogs->Log(_l("irc-stop", this->GetCurrentWikiSite()->Name));
         Sleeper::usleep(200000);
     }
-    this->ChangeProvider(new HuggleFeedProviderWiki());
-    Core::HuggleCore->PrimaryFeedProvider->Start();
+    this->ChangeProvider(this->GetCurrentWikiSite(), new HuggleFeedProviderWiki(this->GetCurrentWikiSite()));
+    this->GetCurrentWikiSite()->Provider->Start();
 }
 
 void Huggle::MainWindow::on_actionShow_talk_triggered()
@@ -2423,12 +2563,12 @@ void Huggle::MainWindow::on_actionResume_provider_triggered()
 {
     this->ui->actionResume_provider->setVisible(false);
     this->ui->actionStop_provider->setVisible(true);
-    Core::HuggleCore->PrimaryFeedProvider->Resume();
+    this->ResumeQueue();
 }
 
 void Huggle::MainWindow::on_actionStop_provider_triggered()
 {
-    Core::HuggleCore->PrimaryFeedProvider->Pause();
+    this->PauseQueue();
     this->ui->actionResume_provider->setVisible(true);
     this->ui->actionStop_provider->setVisible(false);
 }
@@ -2454,4 +2594,50 @@ void Huggle::MainWindow::on_actionTag_2_triggered()
 void Huggle::MainWindow::on_actionReload_menus_triggered()
 {
     this->ReloadInterface();
+}
+
+void MainWindow::SetProviderIRC()
+{
+    if (!this->CheckExit())
+        return;
+    QAction *action = (QAction*)QObject::sender();
+    if (!this->ActionSites.contains(action))
+        throw new Huggle::Exception("There is no such a site in hash table",
+                                    "void MainWindow::SetProviderIRC()");
+    WikiSite *wiki = this->ActionSites[action];
+    if (this->ReconnectIRC(wiki))
+    {
+        action->setChecked(true);
+        if (this->lWikis.contains(wiki))
+            this->lWikis[wiki]->setChecked(false);
+    } else
+    {
+        action->setChecked(false);
+        if (this->lWikis.contains(wiki))
+            this->lWikis[wiki]->setChecked(true);
+    }
+}
+
+void MainWindow::SetProviderWiki()
+{
+    if (!this->CheckExit())
+        return;
+    QAction *action = (QAction*)QObject::sender();
+    if (!this->ActionSites.contains(action))
+        throw new Huggle::Exception("There is no such a site in hash table",
+                                    "void MainWindow::SetProviderIRC()");
+    WikiSite *wiki = this->ActionSites[action];
+    Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
+    wiki->Provider->Stop();
+    this->ui->actionIRC->setChecked(false);
+    action->setChecked(true);
+    while (!wiki->Provider->IsStopped())
+    {
+        Syslog::HuggleLogs->Log(_l("irc-stop", wiki->Name));
+        Sleeper::usleep(200000);
+    }
+    this->ChangeProvider(wiki, new HuggleFeedProviderWiki(wiki));
+    wiki->Provider->Start();
+    if (this->lIRC.contains(wiki))
+        this->lIRC[wiki]->setChecked(false);
 }

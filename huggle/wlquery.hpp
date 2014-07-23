@@ -15,6 +15,7 @@
 
 #include <QString>
 #include "query.hpp"
+#include "mediawikiobject.hpp"
 class QNetworkReply;
 namespace Huggle
 {
@@ -24,13 +25,14 @@ namespace Huggle
         WLQueryType_ReadWL,
         WLQueryType_SuspWL
     };
- 
+    class WikiSite;
+
     //! Whitelist query :o
-    class WLQuery : public QObject, public Query
+    class WLQuery : public QObject, public MediaWikiObject, public Query
     {
             Q_OBJECT
         public:
-            WLQuery();
+            WLQuery(WikiSite *site);
             ~WLQuery();
             //! Get a query target as a string
             QString QueryTargetToString();

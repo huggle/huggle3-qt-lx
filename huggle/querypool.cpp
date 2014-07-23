@@ -18,6 +18,7 @@
 #include "message.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -94,10 +95,9 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     if (WikiUtil::IsRevert(edit->Summary))
     {
         edit->IsRevert = true;
-        if (HuggleFeed::PrimaryFeedProvider != nullptr)
-        {
-            HuggleFeed::PrimaryFeedProvider->RvCounter++;
-        }
+        if (edit->GetSite()->Provider != nullptr)
+            edit->GetSite()->Provider->RvCounter++;
+
         if (Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
         {
             edit->RegisterConsumer(HUGGLECONSUMER_QP_UNCHECKED);

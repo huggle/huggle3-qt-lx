@@ -13,6 +13,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "huggleoption.hpp"
 #include "hugglequeue.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
@@ -251,7 +252,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
         // now we need to update the option as well just to ensure that user config will be updated as well
         // this option needs to be written only if it was explicitly changed by user to a value that
         // is different from a project config file
-        HuggleOption *o_ = Configuration::HuggleConfiguration->GetOption("welcome-good");
+        HuggleOption *o_ = Configuration::HuggleConfiguration->UserConfig->GetOption("welcome-good");
         if (o_)
             o_->SetVariant(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
     }

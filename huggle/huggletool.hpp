@@ -31,6 +31,7 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
     class WikiPage;
+    class WikiSite;
 
     //! Toolbar on top of window
     class HuggleTool : public QDockWidget
@@ -43,6 +44,7 @@ namespace Huggle
             void SetInfo(QString info);
             void SetUser(QString user);
             void SetPage(WikiPage* page);
+            WikiSite *GetSite();
             void RenderEdit();
 
         private slots:

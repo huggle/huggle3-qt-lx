@@ -20,6 +20,7 @@
 #include "wlquery.hpp"
 class QLabel;
 class QTimer;
+class QMenu;
 class QToolButton;
 
 namespace Ui
@@ -115,7 +116,7 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            void ReconnectIRC();
+            bool ReconnectIRC(WikiSite *site);
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             /*!
@@ -130,6 +131,8 @@ namespace Huggle
             void DisplayNext(Query *q = nullptr);
             void DeletePage();
             void DisplayTalk();
+            void PauseQueue();
+            void ResumeQueue();
             void WelcomeGood();
             WikiSite *GetCurrentWikiSite();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
@@ -138,6 +141,7 @@ namespace Huggle
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
             HuggleLog *SystemLog;
+            bool QueueIsNowPaused = false;
             //! Pointer to queue
             HuggleQueue *Queue1;
             QList<ApiQuery*> PatrolledEdits;
@@ -165,10 +169,8 @@ namespace Huggle
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
-            //! Pointer to query that is used to store user config on exit of huggle
-            Collectable_SmartPtr<EditQuery> eq;
             //! This query is used to refresh white list
-            Collectable_SmartPtr<WLQuery> wq;
+            QHash<WikiSite*,WLQuery*> WhitelistQueries;
             //! Warning menu
             QMenu *WarnMenu = nullptr;
             //! Revert menu
@@ -285,7 +287,8 @@ namespace Huggle
             void on_actionRevert_only_this_revision_triggered();
             void on_actionTag_2_triggered();
             void on_actionReload_menus_triggered();
-
+            void SetProviderIRC();
+            void SetProviderWiki();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -298,7 +301,7 @@ namespace Huggle
             bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
             void Welcome();
-            void ChangeProvider(HuggleFeed *provider);
+            void ChangeProvider(WikiSite *site, HuggleFeed *provider);
             void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
             void Render();
@@ -318,11 +321,13 @@ namespace Huggle
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();
+            WikiSite *PreviousSite = nullptr;
             QList<QAction*> RevertAndWarnItems;
             QList<QAction*> RevertItems;
             QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QHash<WikiSite*, EditQuery*> StorageQueries;
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;
             QToolButton *rwToolButtonMenu = nullptr;
@@ -337,6 +342,9 @@ namespace Huggle
             WikiPageTagsForm *fWikiPageTags = nullptr;
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
+            QHash<QAction*, WikiSite*> ActionSites;
+            QHash<WikiSite*, QAction*> lIRC;
+            QHash<WikiSite*, QAction*> lWikis;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
             Collectable_SmartPtr<ApiQuery> RestoreQuery;

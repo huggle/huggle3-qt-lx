@@ -110,8 +110,6 @@ Core::Core()
 #endif
     this->Main = nullptr;
     this->fLogin = nullptr;
-    this->SecondaryFeedProvider = nullptr;
-    this->PrimaryFeedProvider = nullptr;
     this->Processor = nullptr;
     this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
@@ -123,8 +121,6 @@ Core::~Core()
 {
     delete this->Main;
     delete this->fLogin;
-    delete this->SecondaryFeedProvider;
-    delete this->PrimaryFeedProvider;
     delete this->gc;
     delete this->Processor;
 }
@@ -398,9 +394,10 @@ void Core::Shutdown()
     // grace time for subthreads to finish
     if (this->Main != nullptr)
     {
-        if (this->PrimaryFeedProvider && this->PrimaryFeedProvider->IsWorking())
+        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         {
-            this->PrimaryFeedProvider->Stop();
+            if (site->Provider && site->Provider->IsWorking())
+                site->Provider->Stop();
         }
         this->Main->hide();
     }

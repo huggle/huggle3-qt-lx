@@ -15,12 +15,11 @@
 
 using namespace Huggle;
 
-HuggleFeed *HuggleFeed::PrimaryFeedProvider = nullptr;
-HuggleFeed *HuggleFeed::SecondaryFeedProvider = nullptr;
 QList<HuggleFeed*> HuggleFeed::Providers;
 
-HuggleFeed::HuggleFeed()
+HuggleFeed::HuggleFeed(WikiSite *site)
 {
+    this->Site = site;
     this->EditCounter = 0;
     this->RvCounter = 0;
     this->UptimeDate = QDateTime::currentDateTime();

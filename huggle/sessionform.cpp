@@ -14,16 +14,16 @@
 #include "generic.hpp"
 #include "hugglefeed.hpp"
 #include "ui_sessionform.h"
+#include "wikisite.hpp"
 
 using namespace Huggle;
-
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
     this->ui->setupUi(this);
     /// \todo TRANSLATE ME
     this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
                                "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
-                               "RC feed: " + Core::HuggleCore->PrimaryFeedProvider->ToString());
+                               "RC feed: " + Configuration::HuggleConfiguration->Project->Provider->ToString());
     int xx=0;
     while (xx < Configuration::HuggleConfiguration->ProjectConfig->Rights.count())
     {

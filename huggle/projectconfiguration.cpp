@@ -17,7 +17,7 @@
 using namespace Huggle::Generic;
 using namespace Huggle;
 
-ProjectConfiguration::ProjectConfiguration()
+ProjectConfiguration::ProjectConfiguration(QString project_name)
 {
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -37,6 +37,7 @@ ProjectConfiguration::ProjectConfiguration()
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
     this->DeletionSummaries << "Deleted page using Huggle";
+    this->ProjectName = project_name;
     this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
 }
@@ -65,6 +66,7 @@ bool ProjectConfiguration::Parse(QString config)
     this->RequireConfig = SafeBool(HuggleParser::ConfigurationParse("require-config", config, "false"));
     this->RequireEdits = HuggleParser::ConfigurationParse("require-edits", config, "0").toInt();
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
+    this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
     this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
     // Ignoring
@@ -77,6 +79,7 @@ bool ProjectConfiguration::Parse(QString config)
     this->BotScore = HuggleParser::ConfigurationParse("score-bot", config, "-200000").toInt();
     this->ScoreUser = HuggleParser::ConfigurationParse("score-user", config, "-200").toInt();
     this->ScoreTalk = HuggleParser::ConfigurationParse("score-talk", config, "-800").toInt();
+    this->ScoreRemoval = HuggleParser::ConfigurationParse("score-remove", config, "800").toInt();
     // Summaries
     this->WarnSummary = HuggleParser::ConfigurationParse("warn-summary", config);
     this->WarnSummary2 = HuggleParser::ConfigurationParse("warn-summary-2", config);
@@ -226,7 +229,7 @@ bool ProjectConfiguration::Parse(QString config)
     }
     while (month_ < 13)
     {
-        Syslog::HuggleLogs->WarningLog("Project config is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        Syslog::HuggleLogs->WarningLog("Project config for " + this->ProjectName + " is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
         this->AlternativeMonths.insert(month_, QStringList());
         month_++;
     }
@@ -271,6 +274,10 @@ bool ProjectConfiguration::Parse(QString config)
     return true;
 }
 
+QDateTime ProjectConfiguration::ServerTime()
+{
+    return QDateTime::currentDateTime().addSecs(this->ServerOffset);
+}
 
 ScoreWord::ScoreWord(QString Word, int Score)
 {

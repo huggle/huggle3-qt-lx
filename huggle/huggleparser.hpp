@@ -23,6 +23,7 @@ namespace Huggle
     class Configuration;
     class ProjectConfiguration;
     class HuggleQueueFilter;
+    class WikiSite;
 
     //! This namespace contains functions to parse various text, such as configuration keys
     namespace HuggleParser
@@ -78,7 +79,7 @@ namespace Huggle
          * \param page The content of talk page
          * \return Level
          */
-        byte_ht GetLevel(QString page, QDate bt);
+        byte_ht GetLevel(QString page, QDate bt, Huggle::WikiSite *site = nullptr);
     }
 }
 

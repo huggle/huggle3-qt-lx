@@ -49,7 +49,7 @@ namespace Huggle
     class HuggleFeedProviderIRC : public HuggleFeed
     {
         public:
-            HuggleFeedProviderIRC();
+            HuggleFeedProviderIRC(WikiSite *site);
             ~HuggleFeedProviderIRC();
             Huggle::IRC::NetworkIrc *Network;
             bool Start();

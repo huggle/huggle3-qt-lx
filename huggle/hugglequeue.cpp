@@ -151,13 +151,13 @@ void HuggleQueue::Next()
     label->Process(i);
 }
 
-WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
+WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID, WikiSite *site)
 {
     int c = 0;
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->Page->RevID == RevID)
+        if (item->Page->RevID == RevID && item->Page->GetSite() == site)
         {
             return item->Page;
         }
@@ -166,13 +166,13 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID)
     return nullptr;
 }
 
-bool HuggleQueue::DeleteByRevID(int RevID)
+bool HuggleQueue::DeleteByRevID(int RevID, WikiSite *site)
 {
     int c = 0;
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->Page->RevID == RevID)
+        if (item->Page->RevID == RevID && item->Page->GetSite() == site)
         {
             if (MainWindow::HuggleMain->CurrentEdit == item->Page)
             {
@@ -429,9 +429,9 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         {
             if (edit->Page->PageName == _e->Page->PageName)
             {
-                HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 1);
+                HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 3);
                 // remove it
-                if (this->DeleteByRevID(_e->RevID))
+                if (this->DeleteByRevID(_e->RevID, _e->GetSite()))
                 {
                     // we can only continue if some edit was deleted
                     // otherwise we end up looping here

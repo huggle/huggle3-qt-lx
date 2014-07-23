@@ -34,16 +34,16 @@ QDateTime WikiUser::InvalidTime = QDateTime::fromMSecsSinceEpoch(2);
 
 WikiUser *WikiUser::RetrieveUser(WikiUser *user)
 {
-    return WikiUser::RetrieveUser(user->Username);
+    return WikiUser::RetrieveUser(user->Username, user->GetSite());
 }
 
-WikiUser *WikiUser::RetrieveUser(QString user)
+WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
 {
     WikiUser::ProblematicUserListLock.lock();
     int User = 0;
     while (User < WikiUser::ProblematicUsers.count())
     {
-        if (user == WikiUser::ProblematicUsers.at(User)->Username)
+        if (site == WikiUser::ProblematicUsers.at(User)->Site && user == WikiUser::ProblematicUsers.at(User)->Username)
         {
             WikiUser *u = WikiUser::ProblematicUsers.at(User);
             WikiUser::ProblematicUserListLock.unlock();
@@ -122,15 +122,15 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
         score <= Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore &&
         !us->IsWhitelisted())
     {
-        if (Configuration::HuggleConfiguration->WhiteList.contains(us->Username))
+        if (us->GetSite()->GetProjectConfig()->WhiteList.contains(us->Username))
         {
             us->WhitelistInfo = 1;
             us->Update();
             return;
         }
         Syslog::HuggleLogs->Log(_l("whitelisted", us->Username, QString::number(score)));
-        Configuration::HuggleConfiguration->NewWhitelist.append(us->Username);
-        Configuration::HuggleConfiguration->WhiteList.append(us->Username);
+        us->GetSite()->GetProjectConfig()->NewWhitelist.append(us->Username);
+        us->GetSite()->GetProjectConfig()->WhiteList.append(us->Username);
         us->WhitelistInfo = 1;
         us->Update();
     }
@@ -312,7 +312,7 @@ void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
     if (tp.length() > 0)
-        this->WarningLevel = HuggleParser::GetLevel(tp, bt);
+        this->WarningLevel = HuggleParser::GetLevel(tp, bt, this->GetSite());
 }
 
 QString WikiUser::GetTalk()
@@ -345,8 +345,10 @@ bool WikiUser::IsWhitelisted()
         return false;
     QString spaced = this->Username;
     spaced.replace("_", " ");
-    if (Configuration::HuggleConfiguration->WhiteList.contains(this->Username) ||
-            Configuration::HuggleConfiguration->WhiteList.contains(spaced))
+    if (this->GetSite()->GetProjectConfig()->NewWhitelist.contains(this->Username) ||
+            this->GetSite()->GetProjectConfig()->NewWhitelist.contains(spaced) ||
+            this->GetSite()->GetProjectConfig()->WhiteList.contains(this->Username) ||
+            this->GetSite()->GetProjectConfig()->WhiteList.contains(spaced))
     {
         this->WhitelistInfo = 1;
         return true;

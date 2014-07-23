@@ -22,9 +22,10 @@
 #include "wikiuser.hpp"
 
 using namespace Huggle;
-HuggleFeedProviderWiki::HuggleFeedProviderWiki()
+HuggleFeedProviderWiki::HuggleFeedProviderWiki(WikiSite *site) : HuggleFeed(site)
 {
     this->Buffer = new QList<WikiEdit*>();
+    this->Site = site;
     this->Refreshing = false;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
     this->LatestTime = QDateTime::currentDateTime().addDays(-1);
@@ -184,19 +185,23 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
 {
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(item.attribute("title"));
+    edit->Page->Site = this->GetSite();
     QString type = item.attribute("type");
     if (type == "new")
         edit->NewPage = true;
     if (item.attributes().contains("newlen") && item.attributes().contains("oldlen"))
         edit->SetSize(item.attribute("newlen").toLong() - item.attribute("oldlen").toLong());
     if (item.attributes().contains("user"))
+    {
         edit->User = new WikiUser(item.attribute("user"));
+        if (item.attributes().contains("anon"))
+            edit->User->ForceIP();
+        edit->User->Site = this->GetSite();
+    }
     if (item.attributes().contains("comment"))
         edit->Summary = item.attribute("comment");
     if (item.attributes().contains("bot"))
         edit->Bot = true;
-    if (item.attributes().contains("anon"))
-        edit->User->ForceIP();
     if (item.attributes().contains("revid"))
     {
         edit->RevID = QString(item.attribute("revid")).toInt();

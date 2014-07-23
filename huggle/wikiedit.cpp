@@ -424,11 +424,12 @@ void WikiEdit::PostProcess()
                                       " but wasn't processed yet", "void WikiEdit::PostProcess()");
         QueryPool::HugglePool->PreProcessEdit(this);
     }
+    if (this->Status == Huggle::StatusPostProcessed)
+        throw new Huggle::Exception("Unable to post process an edit that is already processed");
     if (this->Status != Huggle::StatusProcessed)
         throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
     this->PostProcessing = true;
-    this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk());
-    this->qTalkpage->Site = this->GetSite();
+    this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
@@ -566,6 +567,8 @@ void ProcessorThread::Process(WikiEdit *edit)
     edit->Score += edit->User->GetBadnessScore();
     if (!IgnoreWords)
         edit->ProcessWords();
+    if (edit->SizeIsKnown && edit->Size < (-1*edit->GetSite()->GetProjectConfig()->LargeRemoval))
+        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreRemoval;
     edit->User->ParseTP(QDate::currentDate());
     if (edit->Summary.size() == 0)
         edit->Score += 10;

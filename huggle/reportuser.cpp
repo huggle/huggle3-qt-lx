@@ -364,13 +364,8 @@ void ReportUser::On_DiffTick()
     if (l.count() > 0)
     {
         QDomElement e = l.at(0).toElement();
-        if (e.nodeName() == "rev")
-        {
-            if (e.attributes().contains("comment"))
-            {
+        if (e.nodeName() == "rev" && e.attributes().contains("comment"))
                 Summary = e.attribute("comment");
-            }
-        }
     }
 
     if (!Summary.size())
@@ -484,7 +479,7 @@ void ReportUser::on_pushButton_clicked()
     this->Loading = true;
     this->ui->pushButton->setText(_l("report-retrieving"));
     WikiSite *site = this->ReportedUser->GetSite();
-    this->qHistory = Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ReportAIV);
+    this->qHistory = Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ReportAIV, site);
     this->qHistory->Site = this->ReportedUser->GetSite();
     this->qHistory->Process();
     this->ReportText = reports;
@@ -583,7 +578,7 @@ void ReportUser::failCheck(QString reason)
 void ReportUser::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
+    this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV, this->ReportedUser->GetSite());
     this->qReport->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }

@@ -24,7 +24,7 @@
 
 using namespace Huggle;
 
-HuggleFeedProviderIRC::HuggleFeedProviderIRC()
+HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 {
     this->Paused = false;
     this->Connected = false;
@@ -68,8 +68,8 @@ bool HuggleFeedProviderIRC::Start()
         this->Network = nullptr;
         return false;
     }
-    this->Network->Join(Configuration::HuggleConfiguration->Project->IRCChannel);
-    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected"));
+    this->Network->Join(this->GetSite()->IRCChannel);
+    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
     if (this->thread != nullptr)
     {
         delete this->thread;
@@ -103,7 +103,7 @@ void HuggleFeedProviderIRC::Stop()
     this->Network->Disconnect();
     while (!IsStopped())
     {
-        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop"));
+        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop", this->GetSite()->Name));
         Sleeper::usleep(200000);
     }
     this->Connected = false;
@@ -156,6 +156,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     }
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
+    edit->Page->Site = this->GetSite();
     edit->IncRef();
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
@@ -240,6 +241,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
     edit->User = new WikiUser(name);
+    edit->User->Site = this->GetSite();
     if (line.contains(QString(QChar(3)) + " ("))
     {
         line = line.mid(line.indexOf(QString(QChar(3)) + " (") + 3);

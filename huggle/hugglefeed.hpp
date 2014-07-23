@@ -21,18 +21,15 @@ namespace Huggle
 {
     class HuggleQueueFilter;
     class WikiEdit;
+    class WikiSite;
 
     //! Feed provider stub class every provider must be derived from this one
     class HuggleFeed : public MediaWikiObject
     {
         public:
-            //! Pointer to primary feed provider
-            static HuggleFeed *PrimaryFeedProvider;
-            //! Pointer to secondary feed provider
-            static HuggleFeed *SecondaryFeedProvider;
             static QList<HuggleFeed*> Providers;
 
-            HuggleFeed();
+            HuggleFeed(WikiSite *site);
             virtual ~HuggleFeed();
             //! Return true if this feed is operational or not
             virtual bool IsWorking() { return false; }

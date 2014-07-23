@@ -12,18 +12,19 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "huggleparser.hpp"
 #include "mainwindow.hpp"
 #include "querypool.hpp"
 #include "message.hpp"
 #include "reportuser.hpp"
 #include "revertquery.hpp"
-#include "wikiuser.hpp"
-#include "generic.hpp"
 #include "localization.hpp"
 #include "hooks.hpp"
 #include "syslog.hpp"
+#include "wikisite.hpp"
 #include "wikiutil.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 
@@ -66,7 +67,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     // get a template
     Edit->User->WarningLevel++;
 
-    if (Edit->User->WarningLevel > Configuration::HuggleConfiguration->ProjectConfig->WarningLevel)
+    if (Edit->User->WarningLevel > Edit->GetSite()->GetProjectConfig()->WarningLevel)
     {
         // we should report this user instead
         if (Edit->User->IsReported)
@@ -75,7 +76,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
             return nullptr;
         }
 
-        if (!Configuration::HuggleConfiguration->ProjectConfig->AIV)
+        if (!Edit->GetSite()->GetProjectConfig()->AIV)
         {
             // there is no AIV function for this wiki
             Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
@@ -106,27 +107,27 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     switch (Edit->User->WarningLevel)
     {
         case 1:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
+            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary;
             break;
         case 2:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
+            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary2;
             break;
         case 3:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
+            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary3;
             break;
         case 4:
-            Summary_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
+            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary4;
             break;
     }
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
-    if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsStandard)
+    if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
-        QDateTime d = Configuration::HuggleConfiguration->ServerTime();
+        QDateTime d = Edit->GetSite()->GetProjectConfig()->ServerTime();
         HeadingText_ = WikiUtil::MonthText(d.date().month()) + " " + QString::number(d.date().year());
-    } else if (Configuration::HuggleConfiguration->ProjectConfig->MessageHeadings == HeadingsNone)
+    } else if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsNone)
     {
         HeadingText_ = "";
     }
@@ -335,16 +336,16 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     switch (Level)
     {
         case 1:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary;
+            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary;
             break;
         case 2:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary2;
+            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary2;
             break;
         case 3:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary3;
+            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary3;
             break;
         case 4:
-            MessageTitle_ = Configuration::HuggleConfiguration->ProjectConfig->WarnSummary4;
+            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary4;
             break;
     }
 
@@ -352,7 +353,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     QString id = "Your edits to " + Edit->Page->PageName;
     if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
-        QDateTime date_ = Configuration::HuggleConfiguration->ServerTime();
+        QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
         id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);

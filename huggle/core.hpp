@@ -31,7 +31,6 @@ namespace Huggle
     class Login;
     class MainWindow;
     class Exception;
-    class HuggleFeed;
     class GC;
     class ProcessorThread;
     class HuggleQueueFilter;
@@ -101,10 +100,6 @@ namespace Huggle
             //! Login form
             Login *fLogin;
             Syslog *HuggleSyslog;
-            //! Pointer to primary feed provider
-            HuggleFeed *PrimaryFeedProvider;
-            //! Pointer to secondary feed provider
-            HuggleFeed *SecondaryFeedProvider;
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
             QList<HuggleQueueFilter *> FilterDB;

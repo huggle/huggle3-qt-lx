@@ -16,10 +16,11 @@
 #include "wikisite.hpp"
 using namespace Huggle;
 
-WLQuery::WLQuery()
+WLQuery::WLQuery(WikiSite *site)
 {
+    this->Site = site;
     this->Type = WLQueryType_ReadWL;
-    this->Result = NULL;
+    this->Result = nullptr;
     this->Parameters = "";
     this->Progress = 0;
 }
@@ -27,7 +28,7 @@ WLQuery::WLQuery()
 WLQuery::~WLQuery()
 {
     delete Result;
-    this->Result = NULL;
+    this->Result = nullptr;
 }
 
 QString WLQuery::QueryTypeToString()
@@ -45,7 +46,7 @@ QString WLQuery::QueryTargetToString()
 
 void WLQuery::Process()
 {
-    if (!Configuration::HuggleConfiguration->GlobalConfig_Whitelist.size())
+    if (Configuration::HuggleConfiguration->GlobalConfig_Whitelist.isEmpty())
     {
         // there is no whitelist in config for this wiki
         Syslog::HuggleLogs->ErrorLog("Unable to process WL request, there is no whitelist server defined");
@@ -58,8 +59,7 @@ void WLQuery::Process()
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist
-             + "?action=read&wp="
-             + Configuration::HuggleConfiguration->Project->WhiteList);
+             + "?action=read&wp=" + this->GetSite()->WhiteList);
     switch (this->Type)
     {
         case WLQueryType_ReadWL:
@@ -71,7 +71,7 @@ void WLQuery::Process()
         case WLQueryType_WriteWL:
             url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist + "?action=save&user=" +
                       QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
-                      "&wp=" + Configuration::HuggleConfiguration->Project->WhiteList);
+                      "&wp=" + this->GetSite()->WhiteList);
             break;
     }
     QString params = "";
@@ -80,11 +80,11 @@ void WLQuery::Process()
     {
         QString whitelist = "";
         int p = 0;
-        while (p < Configuration::HuggleConfiguration->NewWhitelist.count())
+        while (p < this->GetSite()->GetProjectConfig()->NewWhitelist.count())
         {
-            if (Configuration::HuggleConfiguration->NewWhitelist.at(p) != "")
+            if (!this->GetSite()->GetProjectConfig()->NewWhitelist.at(p).isEmpty())
             {
-                whitelist += Configuration::HuggleConfiguration->NewWhitelist.at(p) + "|";
+                whitelist += this->GetSite()->GetProjectConfig()->NewWhitelist.at(p) + "|";
             }
             p++;
         }
@@ -96,7 +96,7 @@ void WLQuery::Process()
         params = "wl=" + QUrl::toPercentEncoding(whitelist);
         data = params.toUtf8();
         long size = (long)data.size();
-        Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte");
+        Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte to " + this->GetSite()->Name);
     }
     QNetworkRequest request(url);
     if (this->Type == WLQueryType_ReadWL)

@@ -17,11 +17,13 @@
 
 #include <QDialog>
 #include <QThread>
+#include <QHash>
 #include <QTimer>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "oauthloginquery.hpp"
 #include "wlquery.hpp"
+class QCheckBox;
 
 namespace Ui
 {
@@ -32,12 +34,10 @@ namespace Huggle
 {
     enum Status
     {
-        RetrievingGlobalConfig,
         RetrievingUserConfig,
         RetrievingProjectConfig,
         LoggingIn,
         WaitingForLoginQuery,
-        Refreshing,
         WaitingForToken,
         LoggedIn,
         Nothing,
@@ -51,6 +51,7 @@ namespace Huggle
     class UpdateForm;
     class WLQuery;
     class LoadingForm;
+    class WikiSite;
 
     //! Window that is displayed as first when huggle is started
     class Login : public QDialog
@@ -63,11 +64,11 @@ namespace Huggle
             void Localize();
             //! Updates the info message down on login form as well as on LoadingForm
             void Update(QString ms);
-            void Kill();
             //! Cancel currently running login jobs
             void CancelLogin();
+            int GetRowIDForSite(WikiSite *site, int row);
             //! Status we are in (loggin it, waiting for this and that etc)
-            Status _Status;
+            QHash<WikiSite*,Status> Statuses;
 
         private slots:
             void on_ButtonOK_clicked();
@@ -78,6 +79,7 @@ namespace Huggle
             void on_labelTranslate_linkActivated(const QString &link);
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
+            void on_pushButton_2_clicked();
 
         private:
             //! String that is used to test against the login failed text
@@ -85,46 +87,61 @@ namespace Huggle
 
             //! Reset the interface to default
             void Reset();
+            void RemoveQueries();
             //! Enable parts of interface
             void Enable();
             void Reload();
             void DB();
             void Disable();
             void PressOK();
-            void PerformLogin();
-            void PerformLoginPart2();
-            void FinishLogin();
-            void RetrieveWhitelist();
-            void RetrieveProjectConfig();
+            void PerformLogin(WikiSite *site);
+            void PerformLoginPart2(WikiSite *site);
+            void FinishLogin(WikiSite *site);
+            void RetrieveWhitelist(WikiSite *site);
+            void RetrieveProjectConfig(WikiSite *site);
             void RetrieveGlobalConfig();
-            void RetrieveUserConfig();
-            void RetrieveUserInfo();
+            void RetrieveUserConfig(WikiSite *site);
+            void RetrieveUserInfo(WikiSite *site);
             void DeveloperMode();
-            void ProcessSiteInfo();
+            void ProcessSiteInfo(WikiSite *site);
             void DisplayError(QString message);
             void Finish();
             void VerifyLogin();
+            int RegisterLoadingFormRow(WikiSite *site, int row);
+            void ClearLoadingFormRows();
             void reject();
             //! This function make sure that login result is done
-            bool ProcessOutput();
-            QString GetToken();
+            bool ProcessOutput(WikiSite *site);
+            QString GetToken(QString source_code);
             UpdateForm *Updater = nullptr;
+            bool GlobalConfig = false;
             Ui::Login *ui;
+            bool Finished = false;
+            bool Processing = false;
+            int GlobalRow = 0;
+            QList <QCheckBox*> Project_CheckBoxens;
             QTimer *timer;
-            bool processedWlQuery;
-            bool processedSiteinfo;
-            bool processedLogin;
+            QHash<WikiSite*, bool> processedWL;
+            bool Refreshing = false;
+            QHash<WikiSite*, bool> processedSiteinfos;
+            QHash<WikiSite*, bool> processedLogin;
             //! This query is used to get a wl
-            Collectable_SmartPtr<WLQuery> wq;
-            Collectable_SmartPtr<ApiQuery> LoginQuery;
+            QHash<WikiSite*, WLQuery*> WhitelistQueries;
+            QHash<WikiSite*, ApiQuery*> qSiteInfo;
+            QHash<WikiSite*,ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
-            Collectable_SmartPtr<ApiQuery> qSiteInfo;
-            Collectable_SmartPtr<ApiQuery> qCfg;
+            Collectable_SmartPtr<ApiQuery> qDatabase;
+            Collectable_SmartPtr<ApiQuery> qConfig;
+            //! This is a list that identify every single row in loading form so that we know which row is which
+            //! every site has its own hash of rows, where every hash correspond to real position
+            QHash<WikiSite*,QHash<int,int>> LoadingFormRows;
+            //! Last row we used in loading form
+            int LastRow = 0;
             //! The token obtained from login
-            QString Token;
+            QHash<WikiSite*, QString> Tokens;
             //! for RetrievePrivateConfig, if we should try to load from
-            bool LoadedOldConfig;
+            QHash <WikiSite*,bool> LoadedOldConfigs;
     };
 }
 

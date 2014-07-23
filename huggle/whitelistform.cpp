@@ -17,8 +17,8 @@ using namespace Huggle;
 WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::WhitelistForm)
 {
     this->ui->setupUi(this);
-    Configuration::HuggleConfiguration->WhiteList.sort();
-    this->Whitelist += Configuration::HuggleConfiguration->WhiteList;
+    Configuration::HuggleConfiguration->ProjectConfig->WhiteList.sort();
+    this->Whitelist += Configuration::HuggleConfiguration->ProjectConfig->WhiteList;
     this->timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->timer->start(HUGGLE_TIMER);

@@ -54,9 +54,10 @@ bool Generic::ReportPreFlightCheck()
     return (q != QMessageBox::No);
 }
 
-ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
+ApiQuery *Generic::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
 {
     WikiPage pt(page);
+    pt.Site = site;
     return RetrieveWikiPageContents(&pt, parse);
 }
 

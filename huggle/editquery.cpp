@@ -13,14 +13,15 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "history.hpp"
 #include "historyitem.hpp"
 #include "localization.hpp"
-#include "history.hpp"
-#include "wikipage.hpp"
 #include "mainwindow.hpp"
 #include "generic.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 
@@ -50,7 +51,7 @@ void EditQuery::Process()
 
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.isEmpty())
+    if (this->Page->GetSite()->GetProjectConfig()->EditToken.isEmpty())
     {
         this->qToken = new ApiQuery(ActionQuery, this->Page->Site);
         this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
@@ -129,7 +130,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
+        this->Page->GetSite()->GetProjectConfig()->EditToken = element.attribute("edittoken");
         this->qToken.Delete();
         this->EditPage();
         return false;
@@ -186,7 +187,7 @@ bool EditQuery::IsProcessed()
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
                     this->ProcessCallback();
-                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName));
+                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName, this->Page->GetSite()->Name));
                 }
             }
         }
@@ -241,7 +242,7 @@ void EditQuery::EditPage()
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                              QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                              QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->EditToken);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();
 }
