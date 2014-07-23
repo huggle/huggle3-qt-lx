@@ -416,10 +416,16 @@ void WikiEdit::PostProcess()
     if (this->PostProcessing)
         return;
 
-    if (this->Status != Huggle::StatusProcessed)
-        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
     if (this->Page == nullptr)
         throw new Huggle::NullPointerException("Page", "void WikiEdit::PostProcess()");
+    if (this->Status == Huggle::StatusNone)
+    {
+        Exception::ThrowSoftException("Processing edit to " + this->Page->PageName + "which was requested to be post processed,"\
+                                      " but wasn't processed yet", "void WikiEdit::PostProcess()");
+        QueryPool::HugglePool->PreProcessEdit(this);
+    }
+    if (this->Status != Huggle::StatusProcessed)
+        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
     this->PostProcessing = true;
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk());
     this->qTalkpage->Site = this->GetSite();

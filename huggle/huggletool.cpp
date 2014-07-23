@@ -140,6 +140,7 @@ void HuggleTool::FinishPage()
         this->edit->Page = new WikiPage(first_one.attribute("title"));
         this->edit->User = new WikiUser(first_one.attribute("user"));
         this->edit->RevID = first_one.attribute("revid").toInt();
+        QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
         this->QueryPhase = 4;
     } else
