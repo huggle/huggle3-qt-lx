@@ -16,10 +16,10 @@
 
 typedef char byte_ht;
 
-#define HUGGLE_VERSION                  "3.0.6"
+#define HUGGLE_VERSION                  "3.1.0"
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3
-#define HUGGLE_BYTE_VERSION_MINOR       0x0
-#define HUGGLE_BYTE_VERSION_RELEASE     0x6
+#define HUGGLE_BYTE_VERSION_MINOR       0x1
+#define HUGGLE_BYTE_VERSION_RELEASE     0x0
 
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
