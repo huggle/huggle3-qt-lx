@@ -98,6 +98,16 @@ void HuggleWeb::Click(const QUrl &page)
     QDesktopServices::openUrl(page);
 }
 
+QString HuggleWeb::GetShortcut()
+{
+    QString incoming = Resources::HtmlIncoming;
+    if (!Configuration::HuggleConfiguration->Shortcuts.contains("main-mytalk"))
+        throw new Huggle::Exception("key");
+    Shortcut sh = Configuration::HuggleConfiguration->Shortcuts["main-mytalk"];
+    incoming.replace("$shortcut", sh.QAccel);
+    return incoming;
+}
+
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->ui->webView->history()->clear();
@@ -127,7 +137,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
-        HTML += Resources::HtmlIncoming;
+        HTML += this->GetShortcut();
     }
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
@@ -172,7 +182,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
-        HTML += Resources::HtmlIncoming;
+        HTML += this->GetShortcut();
     }
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {

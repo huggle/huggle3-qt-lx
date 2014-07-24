@@ -66,6 +66,7 @@ namespace Huggle
             void Click(const QUrl &page);
 
         private:
+            QString GetShortcut();
             Ui::HuggleWeb *ui;
             QString CurrentPage;
     };
