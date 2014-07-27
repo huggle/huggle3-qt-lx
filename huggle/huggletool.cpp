@@ -113,6 +113,11 @@ void HuggleTool::RenderEdit()
 {
     if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_3->text().length())
         return;
+    if (this->ui->lineEdit_3->text().endsWith("_") || this->ui->lineEdit_3->text().endsWith(" "))
+    {
+        Generic::MessageBox(_l("error"), _l("main-space"), MessageBoxStyleError);
+        return;
+    }
     this->ui->pushButton->setEnabled(false);
     this->ui->lineEdit_3->setStyleSheet("color: green;");
     // retrieve information about the page
