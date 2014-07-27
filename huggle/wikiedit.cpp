@@ -441,12 +441,12 @@ void WikiEdit::PostProcess()
             // &rvprop=content can't be used because of fuck up of mediawiki
             this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
                                             "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-                                            QString::number(this->RevID) + "&rvdiffto=prev&titles=" +
+                                            QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         } else
         {
             this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=prev&titles=" +
+                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         }
         this->qDifference->Target = Page->PageName;
@@ -469,7 +469,7 @@ void WikiEdit::PostProcess()
     this->qUser->Process();
 }
 
-Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid)
+Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid, QString prev)
 {
     Collectable_SmartPtr<WikiEdit> e;
     if (revid == WIKI_UNKNOWN_REVID)
@@ -483,7 +483,7 @@ Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid)
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
         x++;
-        if (edit->RevID == revid)
+        if (edit->RevID == revid && edit->DiffTo == prev)
         {
             e = edit;
             // let's return it

@@ -77,7 +77,7 @@ namespace Huggle
             //! This function will return a constant (which needs to be generated runtime)
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
-            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(int revid);
+            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(int revid, QString prev = "prev");
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;
@@ -88,6 +88,8 @@ namespace Huggle
             //! This function is called by internals of huggle
             void PostProcess();
             WikiSite *GetSite();
+            void SetSize(long size);
+            long GetSize();
             //! Return a full url to edit
             QString GetFullUrl();
             //! Return true in case this edit was post processed already
@@ -106,8 +108,7 @@ namespace Huggle
             //! Edit is a new page
             bool NewPage;
             bool SizeIsKnown = false;
-            void SetSize(long size);
-            long GetSize();
+            QString DiffTo = "prev";
             //! Diff id
             int Diff;
             //! Priority in queue

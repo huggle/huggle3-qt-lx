@@ -307,11 +307,6 @@ void HistoryForm::on_pushButton_clicked()
     this->Read();
 }
 
-void HistoryForm::on_tableWidget_clicked(const QModelIndex &index)
-{
-    this->Display(index.row(), _l("wait"));
-}
-
 void HistoryForm::Clear()
 {
     while (this->ui->tableWidget->rowCount() > 0)
@@ -344,8 +339,12 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         this->RetrievingEdit = false;
         return;
     }
+    this->GetEdit(revid, "prev", row, html, turtlemode);
+}
 
-    Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid);
+void HistoryForm::GetEdit(int revid, QString prev, int row, QString html, bool turtlemode)
+{
+    Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid, prev);
     if (edit != nullptr)
     {
         MainWindow::HuggleMain->ProcessEdit(edit, false, true);
@@ -353,9 +352,9 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         this->MakeSelectedRowBold();
         return;
     }
-
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
+    w->DiffTo = prev;
     w->User = new WikiUser(this->ui->tableWidget->item(row, 1)->text());
     w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
@@ -399,5 +398,34 @@ void HistoryForm::MakeSelectedRowBold()
         this->ui->tableWidget->item(this->PreviouslySelectedRow, 3)->setFont(font);
         this->ui->tableWidget->item(this->PreviouslySelectedRow, 4)->setFont(font);
         this->ui->tableWidget->item(this->PreviouslySelectedRow, 5)->setFont(font);
+    }
+}
+
+void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
+{
+    // check if user selected a range
+    QItemSelection selection(this->ui->tableWidget->selectionModel()->selection());
+    QList<int> rows;
+    foreach(const QModelIndex & index, selection.indexes())
+       rows.append( index.row() );
+    int s = rows.count();
+    if (rows.count() == 1)
+    {
+        this->Display(rows[0], _l("wait"));
+    } else if (rows.count() > 1)
+    {
+        int max = this->ui->tableWidget->item(rows[0], 2)->text().toInt();
+        QString min = this->ui->tableWidget->item(rows[rows.count()-1], 2)->text();
+        if (!max)
+            return;
+
+        // display a range of edits
+        if (this->query != nullptr || this->RetrievingEdit || this->CurrentEdit == nullptr)
+        {
+            // we must not retrieve edit until previous operation did finish
+            return;
+        }
+        this->RetrievingEdit = true;
+        this->GetEdit(max, min, rows[0], _l("wait"));
     }
 }

@@ -44,11 +44,12 @@ namespace Huggle
         private slots:
             void onTick01();
             void on_pushButton_clicked();
-            void on_tableWidget_clicked(const QModelIndex &index);
+            void on_tableWidget_itemSelectionChanged();
 
         private:
             void Clear();
             void Display(int row, QString html, bool turtlemode = false);
+            void GetEdit(int revid, QString prev, int row, QString html, bool turtlemode = false);
             //! Make the selected row bold
             void MakeSelectedRowBold();
             bool RetrievingEdit;

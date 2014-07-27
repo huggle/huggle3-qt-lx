@@ -247,6 +247,7 @@ void History::Tick()
             deps->ReferencedBy = nullptr;
             this->RevertingItem = nullptr;
             this->Undo(deps);
+            HUGGLE_DEBUG("Removed a dependency of " + this->RevertingItem->Target, 2);
         } else
         {
             this->RevertingItem = nullptr;
