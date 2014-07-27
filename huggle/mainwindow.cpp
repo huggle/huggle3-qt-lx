@@ -2303,8 +2303,9 @@ void Huggle::MainWindow::on_actionRevert_AGF_triggered()
                                            "No reason was provided / custom revert", &ok);
     if (!ok)
         return;
-    QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert.replace("$2", this->CurrentEdit->User->Username);
-    summary = summary.replace("$1", reason);
+    QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert;
+    summary.replace("$2", this->CurrentEdit->User->Username);
+    summary.replace("$1", reason);
     this->Revert(summary);
 }
 
