@@ -318,15 +318,18 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->Projects.clear();
     Configuration::HuggleConfiguration->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     Configuration::HuggleConfiguration->Projects << Configuration::HuggleConfiguration->Project;
-    int project_id = 0;
-    foreach (QCheckBox* cb, this->Project_CheckBoxens)
+    if (Configuration::HuggleConfiguration->Multiple)
     {
-        if (project_id >= Configuration::HuggleConfiguration->ProjectList.count())
-            throw new Huggle::Exception("Inconsistent number of projects and check boxes in memory");
-        WikiSite *project = Configuration::HuggleConfiguration->ProjectList.at(project_id);
-        if (cb->isChecked() && !Configuration::HuggleConfiguration->Projects.contains(project))
-            Configuration::HuggleConfiguration->Projects << project;
-        project_id++;
+        int project_id = 0;
+        foreach (QCheckBox* cb, this->Project_CheckBoxens)
+        {
+            if (project_id >= Configuration::HuggleConfiguration->ProjectList.count())
+                throw new Huggle::Exception("Inconsistent number of projects and check boxes in memory");
+            WikiSite *project = Configuration::HuggleConfiguration->ProjectList.at(project_id);
+            if (cb->isChecked() && !Configuration::HuggleConfiguration->Projects.contains(project))
+                Configuration::HuggleConfiguration->Projects << project;
+            project_id++;
+        }
     }
     Configuration::HuggleConfiguration->Multiple = Configuration::HuggleConfiguration->Projects.count() > 1;
     Configuration::HuggleConfiguration->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
