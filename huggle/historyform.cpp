@@ -408,7 +408,6 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
     QList<int> rows;
     foreach(const QModelIndex & index, selection.indexes())
        rows.append( index.row() );
-    int s = rows.count();
     if (rows.count() == 1)
     {
         this->Display(rows[0], _l("wait"));

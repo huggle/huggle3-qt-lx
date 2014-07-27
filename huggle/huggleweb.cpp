@@ -129,8 +129,15 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
         this->ui->webView->setHtml(_l("browser-load"));
-        this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
+        if (edit->DiffTo != "prev")
+        {
+            this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
+                                        + QString::number(edit->Diff) + "&oldid=" + edit->DiffTo + "&action=render"));
+        } else
+        {
+            this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
+        }
         return;
     }
     QString HTML = Resources::GetHtmlHeader();
