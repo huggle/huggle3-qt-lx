@@ -123,17 +123,14 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
     }
     QDomElement e = page.at(0).toElement();
     if (user && e.attributes().contains("user"))
-    {
         *user = e.attribute("user");
-    }
+
     if (comment && e.attributes().contains("comment"))
-    {
         *comment = e.attribute("comment");
-    }
+
     if (ts && e.attributes().contains("timestamp"))
-    {
         *ts = e.attribute("timestamp");
-    }
+
     if (revid)
     {
         if (e.attributes().contains("revid"))
@@ -176,7 +173,7 @@ QString Generic::ShrinkText(QString text, int size, bool html)
     return text_;
 }
 
-int Generic::MessageBox(QString title, QString text, MessageBoxStyle st)
+int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop)
 {
     QMessageBox mb;
     mb.setWindowTitle(title);
@@ -186,11 +183,12 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st)
         case MessageBoxStyleQuestion:
             mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
             mb.setDefaultButton(QMessageBox::Yes);
-            break;
+            return mb.exec();
         case MessageBoxStyleNormal:
         case MessageBoxStyleError:
         case MessageBoxStyleWarning:
-            break;
+            mb.show();
+            return 0;
     }
-    return mb.exec();
+    return -1;
 }

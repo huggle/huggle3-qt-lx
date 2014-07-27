@@ -53,7 +53,7 @@ namespace Huggle
          * \param title Title of message box
          * \param text What is displayed in a message
          */
-        int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal);
+        int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
         //! Display a message box telling user that function is not allowed during developer mode
         void DeveloperError();
         /*!
