@@ -11,6 +11,7 @@
 #include "sessionform.hpp"
 #include "configuration.hpp"
 #include "core.hpp"
+#include "exception.hpp"
 #include "generic.hpp"
 #include "hugglefeed.hpp"
 #include "ui_sessionform.h"
@@ -20,16 +21,11 @@ using namespace Huggle;
 SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
 {
     this->ui->setupUi(this);
-    /// \todo TRANSLATE ME
-    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
-                               "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
-                               "RC feed: " + Configuration::HuggleConfiguration->Project->Provider->ToString());
-    int xx=0;
-    while (xx < Configuration::HuggleConfiguration->ProjectConfig->Rights.count())
-    {
-        this->ui->listWidget->addItem(Configuration::HuggleConfiguration->ProjectConfig->Rights.at(xx));
-        xx++;
-    }
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        this->ui->comboBox->addItem(site->Name);
+    this->ui->comboBox->setEnabled(Configuration::HuggleConfiguration->Multiple);
+    this->ui->comboBox->setCurrentIndex(0);
+    this->Reload(0);
 }
 
 SessionForm::~SessionForm()
@@ -40,4 +36,24 @@ SessionForm::~SessionForm()
 void Huggle::SessionForm::on_pushButton_clicked()
 {
     this->close();
+}
+
+void Huggle::SessionForm::on_comboBox_currentIndexChanged(int index)
+{
+    this->Reload(index);
+}
+
+void SessionForm::Reload(int x)
+{
+    /// \todo TRANSLATE ME
+    WikiSite *site = Configuration::HuggleConfiguration->Projects.at(x);
+    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
+                               "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
+                               "RC feed: " + site->Provider->ToString());
+    int xx=0;
+    while (xx < site->GetProjectConfig()->Rights.count())
+    {
+        this->ui->listWidget->addItem(site->GetProjectConfig()->Rights.at(xx));
+        xx++;
+    }
 }

@@ -35,8 +35,10 @@ namespace Huggle
 
         private slots:
             void on_pushButton_clicked();
+            void on_comboBox_currentIndexChanged(int index);
 
         private:
+            void Reload(int x);
             Ui::SessionForm *ui;
     };
 }

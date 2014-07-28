@@ -36,7 +36,9 @@ namespace Huggle
         private slots:
             void OnTick();
             void on_pushButton_clicked();
+            void on_comboBox_currentIndexChanged(int index);
         private:
+            void Reload(int pn);
             QStringList Whitelist;
             QTimer *timer;
             Ui::WhitelistForm *ui;
