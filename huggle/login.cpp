@@ -550,7 +550,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         {
             if (query->Result->IsFailed())
             {
-                this->DisplayError(_l("login-error-config", query->Result->ErrorMessage));
+                this->DisplayError(_l("login-error-config", query->Result->ErrorMessage, site->Name));
                 return;
             }
             QDomDocument d;
@@ -558,7 +558,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                this->DisplayError(_l("login-error-config", "the api query returned no data"));
+                this->DisplayError(_l("login-error-config", "the api query returned no data", site->Name));
                 return;
             }
             this->LoginQueries.remove(site);
@@ -570,7 +570,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             {
                 if (!site->ProjectConfig->EnableAll)
                 {
-                    this->DisplayError(_l("login-error-projdisabled"));
+                    this->DisplayError(_l("login-error-projdisabled", site->Name));
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
@@ -579,7 +579,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             }
             Syslog::HuggleLogs->DebugLog(data.text());
             this->Statuses[site] = LoginFailed;
-            this->DisplayError(_l("login-error-config"));
+            this->DisplayError(_l("login-error-config", site->Name));
         }
         return;
     }
