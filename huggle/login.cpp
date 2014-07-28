@@ -290,6 +290,7 @@ void Login::DB()
     this->timer->stop();
     this->Enable();
     this->Localize();
+    this->Refreshing = false;
 }
 
 void Login::PressOK()
