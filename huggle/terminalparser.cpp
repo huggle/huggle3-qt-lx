@@ -157,7 +157,7 @@ bool TerminalParser::Parse()
         if (text == "--fuzzy")
         {
             valid = true;
-            Configuration::Fuzzy = true;
+            Configuration::HuggleConfiguration->Fuzzy = true;
         }
         if (!valid)
         {
