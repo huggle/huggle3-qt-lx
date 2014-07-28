@@ -51,6 +51,7 @@ void SessionForm::Reload(int x)
                                "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
                                "RC feed: " + site->Provider->ToString());
     int xx=0;
+    this->ui->listWidget->clear();
     while (xx < site->GetProjectConfig()->Rights.count())
     {
         this->ui->listWidget->addItem(site->GetProjectConfig()->Rights.at(xx));

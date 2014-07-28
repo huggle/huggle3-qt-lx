@@ -69,6 +69,7 @@ void WhitelistForm::Reload(int pn)
 {
     WikiSite *site;
     this->ui->listWidget->clear();
+    this->Whitelist.clear();
     if (Configuration::HuggleConfiguration->Multiple)
     {
         if (Configuration::HuggleConfiguration->Projects.count() <= pn)
