@@ -187,7 +187,10 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
         case MessageBoxStyleNormal:
         case MessageBoxStyleError:
         case MessageBoxStyleWarning:
-            mb.show();
+            if (enforce_stop)
+                mb.exec();
+            else
+                mb.show();
             return 0;
     }
     return -1;
