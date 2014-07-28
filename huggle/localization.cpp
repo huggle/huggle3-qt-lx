@@ -109,6 +109,11 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
             Syslog::HuggleLogs->WarningLog("Language " + name + " contains more than 1 definition for " + n_);
             continue;
         }
+        if (!Configuration::HuggleConfiguration->Fuzzy && item.attributes().contains("fuzzy") && item.attribute("fuzzy") == "true")
+        {
+            HUGGLE_DEBUG("Fuzzy key ignored: " + name + " " + n_, 12);
+            continue;
+        }
         l->Messages.insert(item.attribute("name"), item.text());
     }
     if (l->Messages.contains("name"))

@@ -154,6 +154,11 @@ bool TerminalParser::Parse()
             valid = true;
             Configuration::HuggleConfiguration->Login = true;
         }
+        if (text == "--fuzzy")
+        {
+            valid = true;
+            Configuration::Fuzzy = true;
+        }
         if (!valid)
         {
             if (!this->Silent)
@@ -192,6 +197,8 @@ void TerminalParser::DisplayHelp()
     cout << "Huggle 3 QT-LX\n\n"\
             "You can use following arguments to change the runtime settings:\n"\
             "  -v:              Increases verbosity\n"\
+            "  --fuzzy:         Enable fuzzy localizations (these which were translated in past\n"\
+            "                   but which were not updated since the source text has changed).\n"\
             "  --safe:          Start huggle in special mode where lot of stuff is skipped\n"\
             "                   during load\n"\
             "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\

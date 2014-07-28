@@ -211,6 +211,7 @@ namespace Huggle
             //! Whether python is available
             bool            PythonEngine;
             bool            HtmlAllowedInIrc = false;
+            bool            Fuzzy = false;
             //! Size of feed
             int             SystemConfig_ProviderCache = 200;
             //! Maximum size of ringlog
