@@ -41,5 +41,6 @@
         <file>Resources/user-welcome.png</file>
         <file>Resources/done.png</file>
         <file>Resources/sc.png</file>
+        <file>Resources/huggle3_small.ico</file>
     </qresource>
 </RCC>
