@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QString>
+#include "apiquery.hpp"
 #include "editquery.hpp"
 #include "message.hpp"
 #include "revertquery.hpp"
@@ -86,6 +87,8 @@ namespace Huggle
                                                  QString BaseTimestamp = "", unsigned int section = 0);
         Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
                                                  QString BaseTimestamp = "", unsigned int section = 0);
+        ApiQuery *Unwatchlist(WikiPage *page);
+        ApiQuery *Watchlist(WikiPage *page);
     }
 }
 

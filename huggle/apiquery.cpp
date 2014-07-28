@@ -118,6 +118,11 @@ ApiQuery::ApiQuery(Action action, WikiSite *site)
     this->SetAction(action);
 }
 
+Action ApiQuery::GetAction()
+{
+    return this->_action;
+}
+
 void ApiQuery::Finished()
 {
     this->Result->Data += QString(this->reply->readAll());
@@ -198,6 +203,7 @@ void ApiQuery::ReadData()
 
 void ApiQuery::SetAction(const Action action)
 {
+    this->_action = action;
     switch (action)
     {
         case ActionQuery:
@@ -247,6 +253,11 @@ void ApiQuery::SetAction(const Action action)
             return;
         case ActionReview: // FlaggedRevs
             this->ActionPart = "review";
+            this->EditingQuery = true;
+            return;
+        case ActionUnwatch:
+        case ActionWatch:
+            this->ActionPart = "watch";
             this->EditingQuery = true;
             return;
     }

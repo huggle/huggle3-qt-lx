@@ -89,6 +89,8 @@ Configuration::Configuration()
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
     this->MakeShortcut("main-good", "shortcut-good", "G");
+    this->MakeShortcut("main-watch", "shortcut-watch", "Alt+X");
+    this->MakeShortcut("main-unwatch", "shortcut-unwatch", "Alt+C");
 }
 
 Configuration::~Configuration()
@@ -768,6 +770,10 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_GOOD;
     else if (name == "main-open-in-browser")
         this->ID = HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER;
+    else if (name == "main-watch")
+        this->ID = HUGGLE_ACCEL_MAIN_WATCH;
+    else if (name == "main-unwatch")
+        this->ID = HUGGLE_ACCEL_MAIN_UNWATCH;
     else if (name == "main-mytalk")
         this->ID = HUGGLE_ACCEL_MAIN_MYTALK_PAGE;
     else if (name == "main-talk")

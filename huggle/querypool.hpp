@@ -61,6 +61,7 @@ namespace Huggle
             //! whole list needs to be checked and probed everytime once a while
             QList<WikiEdit*> ProcessingEdits;
             QList<WikiEdit*> UncheckedReverts;
+            QList<ApiQuery*> PendingWatches;
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;
