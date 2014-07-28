@@ -186,7 +186,7 @@ QString WikiUtil::SanitizeUser(QString username)
 ApiQuery *WikiUtil::Unwatchlist(WikiPage *page)
 {
     ApiQuery *wt = new ApiQuery(ActionUnwatch, page->GetSite());
-    wt->RegisterConsumer(HUGGLECONSUMER_QP);
+    wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
     wt->UsingPOST = true;
     wt->Target = page->PageName;
     // first of all we need to check if current watchlist token is valid or not
@@ -213,7 +213,7 @@ ApiQuery *WikiUtil::Unwatchlist(WikiPage *page)
 ApiQuery *WikiUtil::Watchlist(WikiPage *page)
 {
     ApiQuery *wt = new ApiQuery(ActionWatch, page->GetSite());
-    wt->RegisterConsumer(HUGGLECONSUMER_QP);
+    wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
     wt->UsingPOST = true;
     wt->Target = page->PageName;
     // first of all we need to check if current watchlist token is valid or not

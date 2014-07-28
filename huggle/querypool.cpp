@@ -51,7 +51,7 @@ QueryPool::~QueryPool()
     }
     while (this->PendingWatches.count())
     {
-        this->PendingWatches.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP);
+        this->PendingWatches.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
         this->PendingWatches.removeAt(0);
     }
     while(this->RunningQueries.count() != 0)
@@ -196,7 +196,7 @@ void QueryPool::CheckQueries()
                 else
                     Syslog::HuggleLogs->Log("Successfuly watchlisted " + query->Target);
             }
-            query->UnregisterConsumer(HUGGLECONSUMER_QP);
+            query->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
             this->PendingWatches.removeAll(query);
         }
     }
