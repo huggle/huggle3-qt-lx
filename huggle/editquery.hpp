@@ -53,6 +53,7 @@ namespace Huggle
             bool Minor;
         private:
             void EditPage();
+            QString Token;
             QString OriginalText = "";
             Collectable_SmartPtr<ApiQuery> qToken;
             Collectable_SmartPtr<ApiQuery> qRetrieve;
