@@ -22,6 +22,7 @@
 #include "mediawiki.hpp"
 #include "localization.hpp"
 #include "loadingform.hpp"
+#include "huggleprofiler.hpp"
 #include "wikisite.hpp"
 #include "wikiutil.hpp"
 #include "ui_login.h"
@@ -40,6 +41,7 @@ QString Login::Test = "<login result=\"NeedToken\" token=\"";
 
 Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
 {
+    HUGGLE_PROFILER_RESET;
     this->Loading = true;
     this->ui->setupUi(this);
     this->ui->tableWidget->setVisible(false);
@@ -106,6 +108,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         // user wanted to login using a terminal
         this->PressOK();
     }
+    HUGGLE_PROFILER_PRINT_TIME("Login::Login(QWidget *parent)");
 }
 
 Login::~Login()

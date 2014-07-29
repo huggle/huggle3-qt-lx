@@ -32,6 +32,7 @@
 #include "hugglefeedproviderirc.hpp"
 #include "hugglelog.hpp"
 #include "huggleparser.hpp"
+#include "huggleprofiler.hpp"
 #include "hugglequeue.hpp"
 #include "huggletool.hpp"
 #include "huggleweb.hpp"
@@ -73,6 +74,7 @@ MainWindow *MainWindow::HuggleMain = nullptr;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    HUGGLE_PROFILER_RESET;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->EditLoad = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
@@ -138,7 +140,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     this->setWindowTitle("Huggle 3 QT-LX on " + projects);
     this->ui->verticalLayout->addWidget(this->Browser);
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
     if (Configuration::HuggleConfiguration->UserConfig->RemoveOldQueueEdits)
     {
         this->ui->actionRemove_old_edits->setChecked(true);
@@ -199,6 +203,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
                 wik_a->setChecked(true);
         }
     }
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->ReloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
@@ -241,6 +246,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         delete layout;
     }
     this->showMaximized();
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     // these controls are for debugging only
     if (Configuration::HuggleConfiguration->Verbosity == 0)
     {
@@ -249,8 +255,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     this->Localize();
     this->VandalDock->Connect();
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
     this->tCheck = new QTimer(this);
     Hooks::MainWindowIsLoaded(this);
+    HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
     this->tCheck->start(20000);
 }

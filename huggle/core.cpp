@@ -18,6 +18,7 @@
 #include "generic.hpp"
 #include "hooks.hpp"
 #include "hugglefeed.hpp"
+#include "huggleprofiler.hpp"
 #include "hugglequeuefilter.hpp"
 #include "iextension.hpp"
 #include "localization.hpp"
@@ -38,6 +39,7 @@ Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
 {
+    HUGGLE_PROFILER_RESET;
     this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Configuration::GetConfigurationPath() + "wikidb.xml";
@@ -101,6 +103,7 @@ void Core::Init()
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
     Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())) + "ms");
+    HUGGLE_PROFILER_PRINT_TIME("Core::Init()");
 }
 
 Core::Core()

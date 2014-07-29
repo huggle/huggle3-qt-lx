@@ -119,6 +119,7 @@ SOURCES += main.cpp\
     mediawiki.cpp \
     warninglist.cpp \
     generic.cpp \
+    huggleprofiler.cpp \
     querypool.cpp \
     wikiutil.cpp \
     reloginform.cpp \
@@ -147,6 +148,7 @@ HEADERS  += mainwindow.hpp \
     aboutform.hpp \
     hugglequeue.hpp \
     hugglelog.hpp \
+    huggleprofiler.hpp \
     huggletool.hpp \
     huggleweb.hpp \
     terminalparser.hpp \
