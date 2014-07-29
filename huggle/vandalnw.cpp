@@ -181,12 +181,13 @@ void VandalNw::GetChannel()
     this->Site2Channel.clear();
     foreach (WikiSite *ch, Configuration::HuggleConfiguration->Projects)
     {
+        QString name;
         if (!ch->HANChannel.isEmpty())
         {
             name = ch->HANChannel;
         } else
         {
-            QString name = Configuration::HuggleConfiguration->HANMask;
+            name = Configuration::HuggleConfiguration->HANMask;
             name.replace("$feed", ch->IRCChannel);
             name.replace("$wiki", ch->Name);
         }
