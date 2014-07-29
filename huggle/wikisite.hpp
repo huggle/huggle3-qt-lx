@@ -82,7 +82,7 @@ namespace Huggle
               \param channel irc
               \param wl whitelist
             */
-            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl = false);
+            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl = false);
             ~WikiSite();
             WikiPageNS *RetrieveNSFromTitle(QString title);
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
@@ -105,6 +105,7 @@ namespace Huggle
             QString OAuthURL;
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
+            QString HANChannel;
             ProjectConfiguration *ProjectConfig = nullptr;
             UserConfiguration    *UserConfig = nullptr;
             //! URL of whitelist, every site needs to have some, if your site doesn't have it

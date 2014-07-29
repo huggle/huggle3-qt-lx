@@ -181,9 +181,15 @@ void VandalNw::GetChannel()
     this->Site2Channel.clear();
     foreach (WikiSite *ch, Configuration::HuggleConfiguration->Projects)
     {
-        QString name = Configuration::HuggleConfiguration->HANMask;
-        name.replace("$feed", ch->IRCChannel);
-        name.replace("$wiki", ch->Name);
+        if (!ch->HANChannel.isEmpty())
+        {
+            name = ch->HANChannel;
+        } else
+        {
+            QString name = Configuration::HuggleConfiguration->HANMask;
+            name.replace("$feed", ch->IRCChannel);
+            name.replace("$wiki", ch->Name);
+        }
         // now we need to insert both site and channel to tables
         this->Ch2Site.insert(name, ch);
         this->Site2Channel.insert(ch, name);

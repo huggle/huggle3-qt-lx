@@ -60,6 +60,7 @@ WikiSite::WikiSite(const WikiSite &w)
     this->SupportHttps = w.SupportHttps;
     this->SupportOAuth = w.SupportOAuth;
     this->URL = w.URL;
+    this->HANChannel = w.HANChannel;
     this->IsRightToLeft = w.IsRightToLeft;
     this->Unknown = w.Unknown;
     this->UserConfig = w.UserConfig;
@@ -78,6 +79,7 @@ WikiSite::WikiSite(WikiSite *w)
     this->OAuthURL = w->OAuthURL;
     this->WhiteList = w->WhiteList;
     this->URL = w->URL;
+    this->HANChannel = w->HANChannel;
     this->ProjectConfig = w->ProjectConfig;
     this->IsRightToLeft = w->IsRightToLeft;
     this->Unknown = w->Unknown;
@@ -100,12 +102,13 @@ WikiSite::WikiSite(QString name, QString url)
     this->WhiteList = "test.wikipedia";
 }
 
-WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, bool isrtl)
+WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl)
 {
     this->IRCChannel = channel;
     this->LongPath = path;
     this->Name = name;
     this->SupportHttps = https;
+    this->HANChannel = han;
     this->OAuthURL = url + "w/index.php?title=Special:MWOAuth";
     this->ScriptPath = script;
     this->URL = url;
