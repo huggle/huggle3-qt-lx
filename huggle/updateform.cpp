@@ -30,6 +30,7 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
     this->ui->pushButton->setText(_l("updater-update"));
     this->ui->pushButton_2->setText(_l("updater-close"));
     this->ui->checkBox->setText(_l("updater-disable-notify"));
+    this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
 }
 
 UpdateForm::~UpdateForm()
@@ -67,6 +68,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
     {
         QDesktopServices::openUrl(*(this->manualDownloadpage));
     }
+    Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
     this->close();
 
 }
@@ -77,6 +79,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
         Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
+    Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
     this->close();
 }
 
@@ -171,4 +174,14 @@ void UpdateForm::OnTick()
 void Huggle::UpdateForm::on_label_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
+}
+
+void UpdateForm::reject()
+{
+    if (this->ui->checkBox->isChecked())
+    {
+        Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SaveSystemConfig();
+    }
+    Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
 }

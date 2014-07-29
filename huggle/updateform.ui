@@ -52,6 +52,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="text">
+      <string>Notify about beta versions</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="checkBox">
      <property name="text">
       <string>Disable updates</string>

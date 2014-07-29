@@ -47,6 +47,7 @@ namespace Huggle
             void on_label_linkActivated(const QString &link);
 
         private:
+            void reject();
             Ui::UpdateForm *ui;
             QStringList Instructions;
             QTimer *timer;
