@@ -39,7 +39,9 @@ namespace Huggle
         ActionPatrol,
         ActionReview, // FlaggedRevs
         ActionProtect,
-        ActionEdit
+        ActionEdit,
+        ActionUnwatch,
+        ActionWatch
     };
 
     //! Format in which the result will be returned
@@ -60,6 +62,7 @@ namespace Huggle
             explicit ApiQuery();
             explicit ApiQuery(Action action);
             explicit ApiQuery(Action action, WikiSite *site);
+            Action GetAction();
             //! Run
             void Process();
             //! Change the action type
@@ -92,6 +95,7 @@ namespace Huggle
             void ReadData();
             void Finished();
         private:
+            Action _action = ActionQuery;
             //! Generate api url
             void ConstructUrl();
             QString ConstructParameterLessUrl();

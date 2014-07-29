@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "querypool.hpp"
+#include <QtXml>
 #include "configuration.hpp"
 #include "editquery.hpp"
 #include "exception.hpp"
@@ -47,6 +48,11 @@ QueryPool::~QueryPool()
     {
         this->ProcessingEdits.at(0)->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
         this->ProcessingEdits.removeAt(0);
+    }
+    while (this->PendingWatches.count())
+    {
+        this->PendingWatches.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
+        this->PendingWatches.removeAt(0);
     }
     while(this->RunningQueries.count() != 0)
     {
@@ -120,6 +126,80 @@ void QueryPool::PostProcessEdit(WikiEdit *edit)
 
 void QueryPool::CheckQueries()
 {
+    foreach (ApiQuery *query, this->PendingWatches)
+    {
+        if (query->Dependency != nullptr)
+        {
+            // this watchlist query is waiting for token, let check if it finished
+            ApiQuery *qrtk = (ApiQuery*)query->Dependency;
+            QString error;
+            if (!qrtk->IsProcessed())
+                continue;
+            QDomDocument d;
+            QDomNodeList page_ls;
+            QDomElement result;
+            if (qrtk->IsFailed())
+            {
+                error = qrtk->Result->ErrorMessage;
+                goto watchlist_fail;
+            }
+            d.setContent(qrtk->Result->Data);
+            page_ls = d.elementsByTagName("page");
+            if (!page_ls.count())
+            {
+                error = "no pages returned";
+                goto watchlist_fail;
+            }
+            result = page_ls.at(0).toElement();
+            if (!result.attributes().contains("watchtoken"))
+            {
+                // uaargh
+                error = "text didn't contain a watchtoken";
+                goto watchlist_fail;
+            }
+            query->GetSite()->GetProjectConfig()->WatchlistToken = result.attribute("watchtoken");
+            if (query->GetAction() == ActionWatch)
+                query->Parameters = "titles=" + QUrl::toPercentEncoding(query->Target) + "&token=" +
+                                    QUrl::toPercentEncoding(query->GetSite()->GetProjectConfig()->WatchlistToken);
+            else
+                query->Parameters = "titles=" + QUrl::toPercentEncoding(query->Target) + "&unwatch=true&token=" +
+                                    QUrl::toPercentEncoding(query->GetSite()->GetProjectConfig()->WatchlistToken);
+            qrtk->DecRef();
+            query->Dependency = nullptr;
+            // we can finally fire it up
+            this->AppendQuery(query);
+            query->Process();
+            continue;
+            // yes I could create a huge structure of functions that will clutter the stack and use huge number
+            // of extra memory, or I could just use one simple goto... http://xkcd.com/292/ :)
+            watchlist_fail:
+                Syslog::HuggleLogs->ErrorLog("Unable to retrieve a watchlist token for " + query->Target + " on " + query->GetSite()->Name +
+                                             " error: " + error);
+                qrtk->DecRef();
+                query->Result = new QueryResult(true);
+                query->Result->SetError("Unable to retrieve a token");
+                query->Dependency = nullptr;
+                continue;
+        } else
+        {
+            if (!query->IsProcessed())
+                continue;
+            if (query->IsFailed())
+            {
+                Syslog::HuggleLogs->ErrorLog("Unable to (un)watchlist " + query->Target + " on " + query->GetSite()->Name +
+                                             " because of: " + query->Result->ErrorMessage);
+            } else
+            {
+                //! \todo The error checks should be implemented to make sure it really did this
+                if (query->GetAction() == ActionUnwatch)
+                    Syslog::HuggleLogs->Log("Successfuly unwatchlisted " + query->Target);
+                else
+                    Syslog::HuggleLogs->Log("Successfuly watchlisted " + query->Target);
+            }
+            query->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
+            this->PendingWatches.removeAll(query);
+        }
+    }
     int curr = 0;
     if (this->PendingMods.count() > 0)
     {

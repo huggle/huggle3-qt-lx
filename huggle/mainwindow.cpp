@@ -649,6 +649,12 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_MAIN_WATCH:
+            q = this->ui->actionInsert_page_to_a_watchlist;
+            break;
+        case HUGGLE_ACCEL_MAIN_UNWATCH:
+            q = this->ui->actionRemove_page_from_a_watchlist;
+            break;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0:
             ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 0, s);
             return;
@@ -2641,4 +2647,25 @@ void MainWindow::SetProviderWiki()
     wiki->Provider->Start();
     if (this->lIRC.contains(wiki))
         this->lIRC[wiki]->setChecked(false);
+}
+
+void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
+{
+    if (!this->CheckEditableBrowserPage())
+        return;
+
+    if (this->CurrentEdit->Page == nullptr)
+        throw new Huggle::NullPointerException("this->CurrentEdit->Page",
+                                               "void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()");
+    WikiUtil::Watchlist(this->CurrentEdit->Page);
+}
+
+void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
+{
+    if (!this->CheckEditableBrowserPage())
+        return;
+
+    if (this->CurrentEdit->Page == nullptr)
+        throw new Huggle::NullPointerException("this->CurrentEdit->Page", "void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()");
+    WikiUtil::Unwatchlist(this->CurrentEdit->Page);
 }

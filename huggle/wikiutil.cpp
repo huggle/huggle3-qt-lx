@@ -13,6 +13,7 @@
 #include "exception.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;
@@ -172,7 +173,6 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text,
     return eq;
 }
 
-
 QString WikiUtil::SanitizeUser(QString username)
 {
     // ensure we don't modify the original string
@@ -181,4 +181,58 @@ QString WikiUtil::SanitizeUser(QString username)
         return QString(username).replace(" ", "_");
     }
     return username;
+}
+
+ApiQuery *WikiUtil::Unwatchlist(WikiPage *page)
+{
+    ApiQuery *wt = new ApiQuery(ActionUnwatch, page->GetSite());
+    wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
+    wt->UsingPOST = true;
+    wt->Target = page->PageName;
+    // first of all we need to check if current watchlist token is valid or not
+    if (page->GetSite()->GetProjectConfig()->WatchlistToken.isEmpty())
+    {
+        // we need to append this query to watchlist queries that just wait for token
+        ApiQuery *token = new ApiQuery(ActionQuery, page->GetSite());
+        token->Parameters = "prop=info&intoken=watch&titles=" + page->EncodedName();
+        token->Target = "Watchlist token";
+        token->IncRef();
+        wt->Dependency = token;
+        QueryPool::HugglePool->PendingWatches.append(wt);
+        QueryPool::HugglePool->AppendQuery(token);
+        token->Process();
+        Syslog::HuggleLogs->Log("There is no watchlist token, retrieving some");
+        return wt;
+    }
+    wt->Parameters = "titles=" + page->EncodedName() + "&unwatch=1&token=" + QUrl::toPercentEncoding(page->GetSite()->GetProjectConfig()->WatchlistToken);
+    QueryPool::HugglePool->PendingWatches.append(wt);
+    wt->Process();
+    return wt;
+}
+
+ApiQuery *WikiUtil::Watchlist(WikiPage *page)
+{
+    ApiQuery *wt = new ApiQuery(ActionWatch, page->GetSite());
+    wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
+    wt->UsingPOST = true;
+    wt->Target = page->PageName;
+    // first of all we need to check if current watchlist token is valid or not
+    if (page->GetSite()->GetProjectConfig()->WatchlistToken.isEmpty())
+    {
+        // we need to append this query to watchlist queries that just wait for token
+        ApiQuery *token = new ApiQuery(ActionQuery, page->GetSite());
+        token->Parameters = "prop=info&intoken=watch&titles=" + page->EncodedName();
+        token->Target = "Watchlist token";
+        token->IncRef();
+        wt->Dependency = token;
+        QueryPool::HugglePool->PendingWatches.append(wt);
+        QueryPool::HugglePool->AppendQuery(token);
+        token->Process();
+        Syslog::HuggleLogs->Log("There is no watchlist token, retrieving some");
+        return wt;
+    }
+    wt->Parameters = "titles=" + page->EncodedName() + "&token=" + QUrl::toPercentEncoding(page->GetSite()->GetProjectConfig()->WatchlistToken);
+    QueryPool::HugglePool->PendingWatches.append(wt);
+    wt->Process();
+    return wt;
 }

@@ -214,6 +214,7 @@ namespace Huggle
             QStringList             SpeedyTemplates;
             QStringList             WelcomeTypes;
             long                    WhitelistScore = -800;
+            QString                 WatchlistToken = "";
             // UAA
             QString                 UAAPath = "Project:Usernames for administrator attention";
             bool                    UAAavailable = false;

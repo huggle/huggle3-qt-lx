@@ -142,6 +142,8 @@
     <addaction name="actionRequest_protection"/>
     <addaction name="actionRestore_this_revision"/>
     <addaction name="separator"/>
+    <addaction name="actionInsert_page_to_a_watchlist"/>
+    <addaction name="actionRemove_page_from_a_watchlist"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -960,6 +962,16 @@
   <action name="actionReload_menus">
    <property name="text">
     <string>Reload menus</string>
+   </property>
+  </action>
+  <action name="actionInsert_page_to_a_watchlist">
+   <property name="text">
+    <string>Insert page to a watchlist</string>
+   </property>
+  </action>
+  <action name="actionRemove_page_from_a_watchlist">
+   <property name="text">
+    <string>Remove page from a watchlist</string>
    </property>
   </action>
  </widget>
