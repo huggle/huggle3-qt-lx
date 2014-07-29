@@ -22,7 +22,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(5);
     QStringList header;
-    header << _l("id") << _l("type") << _l("target") << _l("status") << _l("project");
+    header << _l("id") << _l("type") << _l("target") << _l("status");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
