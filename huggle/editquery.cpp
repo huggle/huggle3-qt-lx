@@ -162,6 +162,14 @@ bool EditQuery::IsProcessed()
                     HUGGLE_DEBUG("Session expired requesting a new login", 3);
                     Configuration::HuggleConfiguration->ProjectConfig->RequestLogin();
                 }
+                if (ec == "badtoken")
+                {
+                    reason = "Bad token";
+                    hec = HUGGLE_ETOKEN;
+                    // we invalidate the token so that next time we get a fresh one
+                    this->Page->GetSite()->GetProjectConfig()->EditToken = "";
+                    Syslog::HuggleLogs->ErrorLog("Unable to edit " + this->Page->PageName + " because token I had in cache is no longer valid, please try to edit that page once more");
+                }
                 this->Result = new QueryResult(true);
                 this->Result->SetError(hec, reason);
                 this->qEdit = nullptr;
