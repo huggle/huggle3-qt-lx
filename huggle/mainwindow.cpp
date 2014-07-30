@@ -2234,7 +2234,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
     WikiPage *page = new WikiPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
-    page->Site = this->CurrentEdit->GetSite();
+    page->Site = this->GetCurrentWikiSite();
     //this->Browser->DisplayPreFormattedPage(this->WikiScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
     this->tb->SetPage(page);
     delete page;
