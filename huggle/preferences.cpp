@@ -431,7 +431,7 @@ void Preferences::RecordKeys(int row, int column)
         QStringList keys = Configuration::HuggleConfiguration->Shortcuts.keys();
         foreach (QString s, keys)
         {
-            if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key)
+            if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key && s != id)
             {
                 QMessageBox m;
                 m.setWindowTitle("Fail");
