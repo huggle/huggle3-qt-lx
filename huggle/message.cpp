@@ -238,7 +238,7 @@ void Message::Finish()
             {
                 if (element.attribute("result") == "Success")
                 {
-                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username));
+                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
                     HistoryItem *item = new HistoryItem();
                     item->Result = "Success";

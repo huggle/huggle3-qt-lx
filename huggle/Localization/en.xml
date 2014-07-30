@@ -346,7 +346,7 @@
     <string name="message-er">Unable to deliver the message to $1: $2</string>
     <string name="message-error">Failed to deliver a message to $1! Please check logs!</string>
     <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
-    <string name="message-done">Successfully delivered message to: $1</string>
+    <string name="message-done">Successfully delivered message on $2 to: $1</string>
     <string name="message-fail-token-1">unable to retrieve the edit token</string>
     <string name="message-fail-token-2">no token was returned by the request</string>
     <string name="protect-request-title">Request protection of $1</string>
