@@ -60,8 +60,8 @@ namespace Huggle
          * \return NULL on error or instance of Huggle::Message in case it's success
          */
         Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
-                             Query *Dependency = NULL, bool NoSuffix = false, bool SectionKeep = false,
-                             bool autoremove = false, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
+                             Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
+                             bool autoremove = true, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
         /*!
          * \brief SanitizeUser removes all invalid or problematic characters from user name
          * \param username Username that is to be fixed
