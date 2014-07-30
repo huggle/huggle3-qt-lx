@@ -427,24 +427,28 @@ void Preferences::RecordKeys(int row, int column)
             Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
             goto revert;
         }
-        // check if there isn't another shortcut which uses this
-        QStringList keys = Configuration::HuggleConfiguration->Shortcuts.keys();
-        foreach (QString s, keys)
+        if (!this->IgnoreConflicts)
         {
-            if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key && s != id)
+            // check if there isn't another shortcut which uses this
+            QStringList keys = Configuration::HuggleConfiguration->Shortcuts.keys();
+            foreach (QString s, keys)
             {
-                QMessageBox m;
-                m.setWindowTitle("Fail");
-                m.setText("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
-                          " is already using the same keys");
-                m.exec();
-                goto revert;
+                if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key && s != id)
+                {
+                    QMessageBox m;
+                    m.setWindowTitle("Fail");
+                    m.setText("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
+                              " is already using the same keys");
+                    m.exec();
+                    goto revert;
+                }
             }
         }
     }
 
     this->ModifiedForm = true;
     this->RewritingForm = true;
+    this->IgnoreConflicts = false;
     Configuration::HuggleConfiguration->Shortcuts[id].Modified = true;
     Configuration::HuggleConfiguration->Shortcuts[id].QAccel = key;
     this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(key));
@@ -452,6 +456,7 @@ void Preferences::RecordKeys(int row, int column)
     return;
 
     revert:
+        this->IgnoreConflicts = true;
         this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
         return;
 }

@@ -51,6 +51,7 @@ namespace Huggle
             void Reload();
             //! Used to reload shortcuts only
             void Reload2();
+            bool IgnoreConflicts = false;
             bool RewritingForm = false;
             bool ModifiedForm = false;
             Ui::Preferences *ui;
