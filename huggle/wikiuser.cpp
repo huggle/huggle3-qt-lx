@@ -128,7 +128,8 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
             us->Update();
             return;
         }
-        Syslog::HuggleLogs->Log(_l("whitelisted", us->Username, QString::number(score)));
+        QStringList pm = QStringList() << us->Username << QString::number(score) << us->GetSite()->Name;
+        Syslog::HuggleLogs->Log(_l("whitelisted", pm));
         us->GetSite()->GetProjectConfig()->NewWhitelist.append(us->Username);
         us->GetSite()->GetProjectConfig()->WhiteList.append(us->Username);
         us->WhitelistInfo = 1;

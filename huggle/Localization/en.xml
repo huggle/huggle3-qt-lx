@@ -40,7 +40,7 @@
     <string name="link">Link</string>
     <string name="reason">Reason</string>
     <string name="diffid">DiffID</string>
-    <string name="whitelisted">$1 with score $2 has been inserted to whitelist</string>
+    <string name="whitelisted">$1 with score $2 on $3 has been inserted to whitelist</string>
     <string name="expiry-time">Expiry time</string>
     <string name="duration">Duration</string>
     <string name="no-token">No token</string>
