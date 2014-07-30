@@ -76,8 +76,10 @@ void Core::Init()
     {
         Configuration::LoadSystemConfig(QCoreApplication::applicationDirPath() + HUGGLE_CONF);
     }
+    HUGGLE_PROFILER_PRINT_TIME("Core::Init()@conf");
     HUGGLE_DEBUG1("Loading defs");
     this->LoadDefs();
+    HUGGLE_PROFILER_PRINT_TIME("Core::Init()@defs");
     HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();
     HUGGLE_DEBUG1("Loading queue");
@@ -103,7 +105,7 @@ void Core::Init()
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
     Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())) + "ms");
-    HUGGLE_PROFILER_PRINT_TIME("Core::Init()");
+    HUGGLE_PROFILER_PRINT_TIME("Core::Init()@finalize");
 }
 
 Core::Core()

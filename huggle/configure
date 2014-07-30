@@ -49,6 +49,7 @@ do
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
         echo " --disable-dependency-tracking: skip all package checks"
+        echo " --extension: will build all extensions as well"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
         echo " --python: will build huggle with p engine"
