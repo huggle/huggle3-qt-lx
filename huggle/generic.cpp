@@ -205,6 +205,10 @@ bool Generic::CompareVersions(QString a, QString b)
     {
         if (vb.count() <= cv)
             break;
+        // if it's greater we have a newer version
+        if (va[cv] > vb[cv])
+            return true;
+        // if it's smaller we have older version
         if (vb[cv] > va[cv])
             return false;
         cv++;
