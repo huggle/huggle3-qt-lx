@@ -103,12 +103,13 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
     this->ui->lineEdit_password->setText(Configuration::HuggleConfiguration->TemporaryConfig_Password);
     this->Loading = false;
     this->Localize();
+    HUGGLE_PROFILER_PRINT_TIME("Login::Login(QWidget *parent)");
     if (Configuration::HuggleConfiguration->Login)
     {
         // user wanted to login using a terminal
+        this->Processing = true;
         this->PressOK();
     }
-    HUGGLE_PROFILER_PRINT_TIME("Login::Login(QWidget *parent)");
 }
 
 Login::~Login()
