@@ -555,7 +555,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         {
             if (query->Result->IsFailed())
             {
-                this->DisplayError(_l("login-error-config", query->Result->ErrorMessage, site->Name));
+                this->DisplayError(_l("login-error-config", site->Name, query->Result->ErrorMessage));
                 return;
             }
             QDomDocument d;
@@ -563,7 +563,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QDomNodeList l = d.elementsByTagName("rev");
             if (l.count() == 0)
             {
-                this->DisplayError(_l("login-error-config", "the api query returned no data", site->Name));
+                this->DisplayError(_l("login-error-config", site->Name, "the api query returned no data"));
                 return;
             }
             this->LoginQueries.remove(site);
@@ -584,12 +584,9 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                 return;
             } else
             {
-                this->DisplayError("Unable to parse configuration for " + site->Name + ": " + reason);
+                this->DisplayError(_l("login-error-config", site->Name, reason));
                 return;
             }
-            Syslog::HuggleLogs->DebugLog(data.text());
-            this->Statuses[site] = LoginFailed;
-            this->DisplayError(_l("login-error-config", site->Name));
         }
         return;
     }
