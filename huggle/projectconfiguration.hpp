@@ -64,11 +64,12 @@ namespace Huggle
             QString ProjectName;
             QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
-            bool Parse(QString config);
+            bool Parse(QString config, QString *reason);
             void RequestLogin();
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
+            bool IsSane = false;
             QString     EditToken = "";
             QStringList Months;
             //! Pointer to AIV page

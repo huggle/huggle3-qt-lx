@@ -571,7 +571,8 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QDomElement data = l.at(0).toElement();
             if (site->ProjectConfig == nullptr)
                 throw new Huggle::NullPointerException("site->Project", "void Login::RetrieveProjectConfig(WikiSite *site)");
-            if (site->ProjectConfig->Parse(data.text()))
+            QString reason;
+            if (site->ProjectConfig->Parse(data.text(), &reason))
             {
                 if (!site->ProjectConfig->EnableAll)
                 {
@@ -580,6 +581,10 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
                 this->Statuses[site] = RetrievingUserConfig;
+                return;
+            } else
+            {
+                this->DisplayError("Unable to parse configuration for " + site->Name + ": " + reason);
                 return;
             }
             Syslog::HuggleLogs->DebugLog(data.text());

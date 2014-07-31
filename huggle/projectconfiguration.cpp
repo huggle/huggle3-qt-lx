@@ -48,7 +48,7 @@ ProjectConfiguration::~ProjectConfiguration()
     delete this->UAAP;
 }
 
-bool ProjectConfiguration::Parse(QString config)
+bool ProjectConfiguration::Parse(QString config, QString *reason)
 {
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
@@ -91,6 +91,13 @@ bool ProjectConfiguration::Parse(QString config)
     this->WarnSummary3 = HuggleParser::ConfigurationParse("warn-summary-3", config);
     this->WarnSummary4 = HuggleParser::ConfigurationParse("warn-summary-4", config);
     this->RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
+    if (!this->RevertSummaries.count())
+    {
+        if (reason)
+            *reason = "template-summ contains no data (no revert summaries)";
+
+        return false;
+    }
     this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
     this->SingleRevert = HuggleParser::ConfigurationParse("single-revert-summary", config,
@@ -104,8 +111,17 @@ bool ProjectConfiguration::Parse(QString config)
               config, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     // Warning types
     this->WarningTypes = HuggleParser::ConfigurationParse_QL("warning-types", config);
+    if (!this->WarningTypes.count())
+    {
+        if (reason)
+            *reason = "warning-types contains no data (no revert summaries)";
+
+        return false;
+    }
     this->WarningLevel = (byte_ht)HuggleParser::ConfigurationParse("warning-mode", config, "4").toInt();
     this->WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
+    if (this->WarningDefs.count() == 0)
+        Syslog::HuggleLogs->WarningLog("There are no warning tags defined for " + this->ProjectName + " warning parser will not work");
     // Reverting
     this->ConfirmWL = SafeBool(HuggleParser::ConfigurationParse("confirm-ignored", config, "true"));
     this->ConfirmMultipleEdits = SafeBool(HuggleParser::ConfigurationParse("confirm-multiple", config, ""));
@@ -271,6 +287,7 @@ bool ProjectConfiguration::Parse(QString config)
         this->AIV = false;
     // Do the same for UAA as well
     this->UAAavailable = this->UAAPath.size() > 0;
+    this->IsSane = true;
     return true;
 }
 
