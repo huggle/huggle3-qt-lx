@@ -195,3 +195,19 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
     }
     return -1;
 }
+
+bool Generic::CompareVersions(QString a, QString b)
+{
+    QStringList va = a.split('.');
+    QStringList vb = b.split('.');
+    int cv = 0;
+    while (cv < va.count())
+    {
+        if (vb.count() <= cv)
+            break;
+        if (vb[cv] > va[cv])
+            return false;
+        cv++;
+    }
+    return true;
+}

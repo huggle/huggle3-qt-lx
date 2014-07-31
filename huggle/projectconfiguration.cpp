@@ -50,6 +50,13 @@ ProjectConfiguration::~ProjectConfiguration()
 
 bool ProjectConfiguration::Parse(QString config, QString *reason)
 {
+    QString version = HuggleParser::ConfigurationParse("min-version", config, "3.0.0");
+    if (!Generic::CompareVersions(HUGGLE_VERSION, version))
+    {
+        if (reason)
+            *reason = "your huggle is too old, " + this->ProjectName + " is supports only " + version + " or newer.";
+        return false;
+    }
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
     this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
