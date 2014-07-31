@@ -92,7 +92,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     QString Template_ = WarningType + QString::number(Edit->User->WarningLevel);
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_);
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_, Edit->GetSite());
 
     if (!MessageText_.size())
     {
@@ -132,7 +132,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         HeadingText_ = "";
     }
 
-    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
+    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
     bool CreateOnly = false;
     if (Edit->User->TalkPage_GetContents().isEmpty())
     {
@@ -321,7 +321,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         return;
 
     QString __template = "warning" + QString::number(Level);
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template);
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template, Edit->GetSite());
 
     if (!MessageText_.size())
     {
@@ -356,35 +356,35 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
         id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
     }
-    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_);
+    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
     WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, nullptr, false,
                               Configuration::HuggleConfiguration->UserConfig->SectionKeep,
                               true, Edit->TPRevBaseTime);
 }
 
-QString Warnings::RetrieveTemplateToWarn(QString type)
+QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site)
 {
     int x=0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.count())
+    while (x < site->GetProjectConfig()->WarningTemplates.count())
     {
-        if (HuggleParser::GetKeyFromValue(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromValue(site->GetProjectConfig()->WarningTemplates.at(x)) == type)
         {
-            return HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTemplates.at(x));
+            return HuggleParser::GetValueFromKey(site->GetProjectConfig()->WarningTemplates.at(x));
         }
         x++;
     }
     return "";
 }
 
-QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text)
+QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site)
 {
-    if (!User->IsIP() || Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate.isEmpty())
+    if (!User->IsIP() || site->GetProjectConfig()->SharedIPTemplate.isEmpty())
     {
         return Text;
     }
     if (!User->TalkPage_ContainsSharedIPTemplate())
     {
-        Text += "\n" + Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplate + "\n";
+        Text += "\n" + site->GetProjectConfig()->SharedIPTemplate + "\n";
     }
     return Text;
 }
