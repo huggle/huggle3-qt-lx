@@ -189,7 +189,7 @@ void UserinfoForm::OnTick()
                 xx++;
             }
         } else
-            Syslog::HuggleLogs->ErrorLog(_l("user-history-retr-fail", this->User->Username));
+            Syslog::HuggleLogs->ErrorLog(_l("user-history-fail", this->User->Username));
         this->ui->tableWidget->resizeRowsToContents();
         this->qContributions.Delete();
         this->timer->stop();
