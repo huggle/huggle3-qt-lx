@@ -54,7 +54,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
     if (!Generic::CompareVersions(HUGGLE_VERSION, version))
     {
         if (reason)
-            *reason = "your huggle is too old, " + this->ProjectName + " is supports only " + version + " or newer.";
+            *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version + " or newer.";
         return false;
     }
     //AIV
