@@ -1,23 +1,27 @@
 <db>
-  <wiki name="enwiki" url="en.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#en.wikipedia" wl="en.wikipedia.org"/>
-  <wiki name="arwiki" url="ar.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ar.wikipedia" wl="ar.wikipedia.org" rtl="true"/>
+  <wiki name="enwiki" url="en.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#en.wikipedia" wl="en"/>
+  <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt.wikipedia.org"/>
+  <wiki name="simplewiki" url="simple.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#simple.wikipedia" wl="simple"/>
   <wiki name="bgwiki" url="bg.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#bg.wikipedia" wl="bg.wikipedia.org"/>
   <wiki name="cawiki" url="ca.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ca.wikipedia" wl="ca.wikipedia.org"/>
   <wiki name="dewiki" url="de.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#de.wikipedia" wl="de.wikipedia.org"/>
+  <wiki name="en.wikiversity" url="en.wikiversity.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#en.wikiversity" wl="en.wikiversity.org"/>
+  <wiki name="en.wikibooks" url="en.wikibooks.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#en.wikibooks" wl="en.wikibooks.org"/>
   <wiki name="eswiki" url="es.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#es.wikipedia" wl="es.wikipedia.org"/>
-  <wiki name="fawiki" url="fa.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#fa.wikipedia" wl="fa.wikipedia.org" rtl="true"/>
+  <wiki name="elwiki" url="el.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#el.wikipedia" wl="el.wikipedia.org"/>
+  <wiki name="fawiki" url="fa.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#fa.wikipedia" rtl="true" wl="fa.wikipedia.org"/>
   <wiki name="frwiki" url="fr.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#fr.wikipedia" wl="fr.wikipedia.org"/>
-  <wiki name="hewiki" url="he.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#he.wikipedia" wl="he.wikipedia.org" rtl="true"/>
+  <wiki name="arwiki" url="ar.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ar.wikipedia" rtl="true" wl="ar.wikipedia.org"/>
+  <wiki name="hewiki" url="he.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#he.wikipedia" rtl="true" wl="he.wikipedia.org"/>
   <wiki name="hiwiki" url="hi.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#hi.wikipedia" wl="hi.wikipedia.org"/>
   <wiki name="jawiki" url="ja.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ja.wikipedia" wl="ja.wikipedia.org"/>
+  <wiki name="kowiki" url="ko.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ko.wikipedia" wl="ko.wikipedia.org"/>
   <wiki name="nlwiki" url="nl.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#nl.wikipedia" wl="nl.wikipedia.org"/>
   <wiki name="nowiki" url="no.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#no.wikipedia" wl="no.wikipedia.org"/>
   <wiki name="orwiki" url="or.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#or.wikipedia" wl="or.wikipedia.org"/>
-  <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#pt.wikipedia" wl="pt.wikipedia.org"/>
-  <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ru.wikipedia" wl="ru.wikipedia.org"/>
+  <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#ru.wikipedia" wl="ru"/>
   <wiki name="svwiki" url="sv.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#sv.wikipedia" wl="sv.wikipedia.org"/>
   <wiki name="trwiki" url="tr.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#tr.wikipedia" wl="tr.wikipedia.org"/>
-  <wiki name="simplewiki" url="simple.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#simple.wikipedia" wl="simple.wikipedia.org"/>
   <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#zh.wikipedia" wl="zh.wikipedia.org"/>
   <wiki name="es.wikivoyage" url="es.wikivoyage.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#es.wikivoyage" wl="es.wikivoyage.org"/>
   <wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" channel="#test.wikipedia" wl="test.wikipedia.org"/>
