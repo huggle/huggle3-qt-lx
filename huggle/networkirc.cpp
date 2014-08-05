@@ -143,7 +143,7 @@ Message* NetworkIrc::GetMessage()
 {
     Message *message;
     this->MessagesLock->lock();
-    if (this->Messages.count() == 0)
+    if (this->Messages.isEmpty())
     {
         this->MessagesLock->unlock();
         return nullptr;

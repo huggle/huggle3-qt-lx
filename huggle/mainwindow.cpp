@@ -1908,7 +1908,7 @@ void MainWindow::Welcome()
                               false, nullptr, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
         return;
     }
-    if (conf->WelcomeTypes.count() == 0)
+    if (conf->WelcomeTypes.isEmpty())
     {
         // This error should never happen so we don't need to localize this
         Syslog::HuggleLogs->ErrorLog("There are no welcome messages defined for this project");

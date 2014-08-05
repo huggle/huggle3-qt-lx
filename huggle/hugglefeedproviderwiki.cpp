@@ -61,7 +61,7 @@ void HuggleFeedProviderWiki::Stop()
 
 bool HuggleFeedProviderWiki::ContainsEdit()
 {
-    if (this->Buffer->size() == 0)
+    if (this->Buffer->isEmpty())
     {
         if (this->LastRefresh.addSecs(6) < QDateTime::currentDateTime())
         {

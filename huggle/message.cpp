@@ -287,7 +287,7 @@ bool Message::FinishToken()
     QDomDocument dToken_;
     dToken_.setContent(this->qToken->Result->Data);
     QDomNodeList l = dToken_.elementsByTagName("page");
-    if (l.count() == 0)
+    if (l.isEmpty())
     {
         this->Fail(_l("message-fail-token-2"));
         Huggle::Syslog::HuggleLogs->DebugLog("No page");
