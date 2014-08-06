@@ -77,16 +77,14 @@ void History::Undo(HistoryItem *hist)
         // we need to get a currently selected item
         if (this->CurrentItem < 0)
         {
-            //! \todo LOCALIZE ME
-            Syslog::HuggleLogs->ErrorLog("Nothing was found to undo");
+            Syslog::HuggleLogs->ErrorLog(_l("history-not-found"));
             return;
         }
         hist = this->Items.at(this->CurrentItem);
     }
     if (hist->Undone)
     {
-        //! \todo LOCALIZE ME
-        Syslog::HuggleLogs->ErrorLog("This was already undone");
+        Syslog::HuggleLogs->ErrorLog(_l("history-already-undone"));
         return;
     }
     if (!hist->IsRevertable)
@@ -139,18 +137,16 @@ void History::Undo(HistoryItem *hist)
             mb.exec();
             break;
     }
-    //! \todo LOCALIZE ME
-    Syslog::HuggleLogs->Log("Undoing own edit made to " + hist->Target);
+    Syslog::HuggleLogs->Log(_l("history-work", hist->Target));
 }
 
 void History::ContextMenu(const QPoint &position)
 {
     QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
     QMenu menu;
-    //! \todo LOCALIZE ME
-    QAction *clean = new QAction("Clear", &menu);
-    QAction *show = new QAction("Show", &menu);
-    QAction *undo = new QAction("Undo", &menu);
+    QAction *clean = new QAction(_l("clear"), &menu);
+    QAction *show = new QAction(_l("show"), &menu);
+    QAction *undo = new QAction(_l("undo"), &menu);
     menu.addAction(show);
     menu.addAction(undo);
     menu.addAction(clean);

@@ -20,6 +20,8 @@
     <string name="project">Project</string>
     <string name="result">Result</string>
     <string name="save">Save</string>
+    <string name="show">Show</string>
+    <string name="undo">Undo</string>
     <string name="yes">Yes</string>
     <string name="agf">Revert as a good faith edit with a custom reason</string>
     <string name="successful">Successful</string>
@@ -404,6 +406,9 @@
     <string name="report-message">Message:</string>
     <string name="report-log">Warnings for this user:</string>
     <string name="report-include">Include in report</string>
+    <string name="report-select">Please select a diff in list in order to open preview</string>
+    <string name="report-write">Writing</string>
+    <string name="reportuser-not">This user is not reported now</string>
     <string name="report-evidence-none-provid">No diffs were provided as evidence. This will make it very hard for administrators to figure out whether the user is a vandal or not. Are you sure you want to continue?</string>
     <string name="report-duplicate">The user has already been reported</string>
     <string name="report-fail">Did not report $1</string>
@@ -531,7 +536,10 @@
     <string name="edit-progress">Editing $1...</string>
     <string name="history-fail">Failed to retrieve history of $1</string>
     <string name="history-progress">Retrieving history of $1 ($2)...</string>
+    <string name="history-work">Undoing own edit made to $1</string>
     <string name="history-message-revert-title">You really want to undo just message?</string>
+    <string name="history-not-found">Nothing was found to undo</string>
+    <string name="history-already-done">This was already undone</string>
     <string name="history-message-revert-body">This was a message that is referenced by a rollback, are you sure you want to undo only template and not even your edit to page? (you need to undo the rollback in case you want to revert both of these)</string>
     <string name="history-revert-fail">Unable to undo your edit to $1 error during revert: $2</string>
     <string name="notify-fail">Did not notify the creator of $1</string>

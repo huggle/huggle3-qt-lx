@@ -83,8 +83,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 #endif
     this->ui->tableWidget_2->setShowGrid(false);
     this->tReportUser = nullptr;
-    /// \todo LOCALIZE ME
-    this->ui->webView->setHtml("Please select a diff in list in order to open preview");
+    this->ui->webView->setHtml(_l("report-select"));
 }
 
 ReportUser::~ReportUser()
@@ -270,8 +269,7 @@ void ReportUser::Tick()
             summary = summary.replace("$1",this->ReportedUser->Username);
             this->qEdit = WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->AIVP, this->ReportContent, summary,
                                              false, this->ReportTs);
-            /// \todo LOCALIZE ME
-            this->ui->pushButton->setText("Writing");
+            this->ui->pushButton->setText(_l("report-write"));
             this->qHistory.Delete();
         }
         return;
@@ -324,7 +322,7 @@ void ReportUser::Tick()
         this->ui->tableWidget->resizeRowsToContents();
         this->qHistory.Delete();
         this->ui->pushButton->setEnabled(true);
-        this->ui->pushButton->setText("Report");
+        this->ui->pushButton->setText(_l("report-tu"));
     }
 }
 
@@ -437,8 +435,7 @@ void ReportUser::Test()
         } else
         {
             QMessageBox mb;
-            /// \todo LOCALIZE ME
-            mb.setText("This user is not reported now");
+            mb.setText(_l("reportuser-not"));
             mb.exec();
             this->qReport = nullptr;
         }
@@ -516,9 +513,8 @@ void Huggle::ReportUser::on_pushButton_5_clicked()
     while (xx < this->ui->tableWidget->rowCount())
     {
         if (this->CheckBoxes.count() > xx)
-        {
             this->CheckBoxes.at(xx)->setChecked(true);
-        }
+
         xx++;
     }
 }
@@ -529,9 +525,8 @@ void Huggle::ReportUser::on_pushButton_6_clicked()
     while (xx < this->ui->tableWidget->rowCount())
     {
         if (this->CheckBoxes.count() > xx)
-        {
             this->CheckBoxes.at(xx)->setChecked(false);
-        }
+
         xx++;
     }
 }
