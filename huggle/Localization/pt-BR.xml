@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Português do Brasil</string>
   <string name="add">Adicionar</string>
-  <string name="apply">Aplicar</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Limpar</string>
   <string name="close">Fechar</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Eliminado</string>
   <string name="error">Erro</string>
   <string name="exit">Sair</string>
-  <string name="minimizewindow">Minimizar</string>
   <string name="no">Não</string>
   <string name="ok">OK</string>
   <string name="remove">Remover</string>
   <string name="rename">Renomear</string>
   <string name="reload">Recarregar</string>
   <string name="result">Resultado</string>
-  <string name="restorewindow">Restaurar</string>
   <string name="save">Salvar</string>
-  <string name="selectfile">Selecionar...</string>
   <string name="yes">Sim</string>
   <string name="agf">Reverter como edição de boa fé com motivo personalizado</string>
   <string name="successful">Bem sucedido!</string>
@@ -42,7 +38,7 @@
   <string name="link">Link</string>
   <string name="reason">Motivo</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1, com uma pontuação de $2, foi adicionado(a) à lista branca</string>
+  <string name="whitelisted" fuzzy="true">$1, com uma pontuação de $2, foi adicionado(a) à lista branca</string>
   <string name="expiry-time">Validade</string>
   <string name="duration">Duração</string>
   <string name="no-token">Sem token</string>
@@ -65,19 +61,16 @@
   <string name="block-usercontribs">Contribuições</string>
   <string name="block-blockloglabel">Registro de bloqueios:</string>
   <string name="block-warnloglabel">Avisos:</string>
-  <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um IP partilhado.</string>
+  <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um endereço IP compartilhado ou dinâmico.</string>
   <string name="block-rangeblockwarning">$1 já é afetado por um bloqueio de gama em $2.
 Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="block-token-1">A obter chave para bloquear $1</string>
-  <string name="block-fail">O bloqueio de $1 falhou</string>
+  <string name="block-fail">Impossivel de bloquear o usuário, $1</string>
   <string name="block-token-e1">A chave não pôde ser obtida: $1</string>
   <string name="block-error-no-info">Nenhuma informação do usuário estava presente na consulta (você é um administrador?)</string>
   <string name="block-type">Bloquear / desbloquear</string>
-  <string name="block-admin">A bloquear administrador</string>
-  <string name="blocking">A bloquear $1</string>
+  <string name="block-admin">O administrador que fez o bloqueio</string>
   <string name="block-none">Não há nenhum usuário para bloquear.</string>
-  <string name="closing-whitelist">Atualizando automaticamente a lista...</string>
-  <string name="closing-config">Atualizando automaticamente a configuração...</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-rememberme">Lembrar meu nome de usuário</string>
@@ -152,18 +145,18 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="history-error-message-title">Impossível desfazer</string>
   <string name="history-error">Este item não pode ser desfeito, a página deve ter sido alterada ou eliminada, e o huggle não pode desfazer neste ponto. Se realmente quer desfazer, você precisará fazê-lo manualmente usando a interface do MediaWiki.</string>
   <string name="userhistory-title">Histórico das suas alterações</string>
-  <string name="irc-connected">Conectado ao feed de IRC de mudanças recentes</string>
-  <string name="irc-connecting">Conectando-se ao feed IRC de mudanças recentes; aguarde um momento...</string>
-  <string name="irc-disconnected">Conexão perdida ao feed de IRC de mudanças recentes; conectando...</string>
+  <string name="irc-connected" fuzzy="true">Conectado ao feed de IRC de mudanças recentes</string>
+  <string name="irc-connecting" fuzzy="true">Conectando-se ao feed IRC de mudanças recentes; aguarde um momento...</string>
+  <string name="irc-disconnected" fuzzy="true">Conexão perdida ao feed de IRC de mudanças recentes; conectando...</string>
   <string name="irc-nochannel">Não foi encontrado o canal IRC para $1. A usar como alternativa os pedidos API apesar de serem lentos</string>
   <string name="irc-error">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API apesar de serem lentos</string>
-  <string name="irc-stop">Aguardando pela parada do principal provedor de feed</string>
+  <string name="irc-stop" fuzzy="true">Aguardando pela parada do principal provedor de feed</string>
   <string name="irc-not">Feed: O IRC está desativado por configuração do projeto</string>
-  <string name="irc-failure" fuzzy="true">Provedor primário do feed falhou, usando provedor wiki reserva</string>
+  <string name="irc-failure">O provedor primário do feed falhou. Retornando ao provedor wiki...</string>
   <string name="irc-wait">Aguardando pela parada do principal provedor de feed</string>
   <string name="irc-switch-rc">Trocando para o feed RC da wiki</string>
   <string name="login-old">Recuperando configuração do usuário de local antigo.</string>
-  <string name="login-intro">Por favor, escolha um projeto e digite o seu nome usuário e senha.</string>
+  <string name="login-intro" fuzzy="true">Por favor, escolha um projeto e digite o seu nome usuário e senha.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Entrar</string>
   <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle em um projeto onde foi recentemente ativado</string>
@@ -177,22 +170,22 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">Recuperando configuração do usuário</string>
-  <string name="login-fail-css" fuzzy="true">Falha de autenticação ao recuperar a configuração de usuário, você criou huggle3.css como subpágina de usuário? (Especial:MyPage/huggle3.css está faltando)</string>
-  <string name="login-fail-enable-true" fuzzy="true">Autenticação falhou porque você não tem \"enable:true\" na sua configuração pessoal</string>
-  <string name="login-fail-no-info" fuzzy="true">Autenticação falhou porque foi impossível recuperar informação do usuário: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Autenticação falhou porque foi impossível analisar a configuração do usuário, ver registro de depuração para mais detalhes</string>
-  <string name="login-fail-user-data" fuzzy="true">Autenticação falhou porque foi impossível recuperar informações do usuário, a consulta do API não retornou dados</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Autenticação falhou porque você não tem a permissão de rollback neste projeto</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Autenticação falhou porque você não é autoconfirmado neste projeto</string>
-  <string name="login-failed-edit" fuzzy="true">Autenticação falhou porque você não tem edições suficientes neste projeto.</string>
-  <string name="login-retrieving-info">Recuperando informação do usuário</string>
+  <string name="login-fail-css" fuzzy="true">Início de sessão falhou: Não é possível recuperar a configuração de usuário. 
+Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css no seu domínio de usuário?</string>
+  <string name="login-fail-enable-true" fuzzy="true">Início de sessão falhou: Não tem a linha de código enable:true na sua configuração pessoal.</string>
+  <string name="login-fail-no-info" fuzzy="true">Autenticação falhou: Impossível recuperar informação do usuário: $1</string>
+  <string name="login-fail-parse-config" fuzzy="true">Autenticação falhou: Impossível analisar a configuração do usuário, ver registro de depuração para mais detalhes.</string>
+  <string name="login-fail-user-data" fuzzy="true">Autenticação sem sucesso: Não foi possivel obter dados de usuário. O query do API não retornou dados.</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">Autenticação falhou: Você não tem a permissão de rollback neste projeto</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">Autenticação falhou: Você não é autoconfirmado neste projeto</string>
+  <string name="login-failed-edit" fuzzy="true">Autenticação falhou: Você não tem edições suficientes neste projeto.</string>
+  <string name="login-retrieving-info" fuzzy="true">Recuperando informação do usuário</string>
   <string name="login-password-empty">A senha que você digitou estava em branco</string>
   <string name="login-fail-wrong-name">Você não forneceu uma conta de usuário correta para autenticação</string>
-  <string name="login-api" fuzzy="true">ERROR: O api.php respondeu com um resultado desconhecido: $1</string>
+  <string name="login-api">ERRO: O api.php respondeu com um resultado desconhecido: $1</string>
   <string name="login-start">Entrar</string>
   <string name="login-oauth-notsupported">Este método não é suportado neste momento</string>
   <string name="login-translate">Traduzir Huggle</string>
-  <string name="login-captchatitle">Captcha necessário para entrar na conta</string>
   <string name="login-progress-start">Entrando na conta $1</string>
   <string name="login-progress-retrieve-mw">Recuperando informação sobre o MediaWiki para $1</string>
   <string name="login-progress-language">Atualizando os arquivos de mensagens...</string>
@@ -203,51 +196,41 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-progress-user-info">Verificando configuração de usuário para $1</string>
   <string name="login-progress-whitelist">Recebendo a lista branca de usuários...</string>
   <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
-  <string name="login-fail">Falha na identificação</string>
+  <string name="login-fail" fuzzy="true">Falha na identificação</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
   <string name="login-error-age">Para usar o Huggle no projeto que escolheu é necessário ter uma conta de usuário criada à pelo menos $1 dias.</string>
   <string name="login-error-alldisabled">O Huggle neste momento está bloqueado em todos os projetos. Provavelmente é uma medida temporária.</string>
-  <string name="login-error-approval">Para usar o Huggle no projeto que escolheu é necessária a aprovação prévia.</string>
-  <string name="login-error-autoconfirmed">Para usar o Huggle no projeto que escolheu é necessário que sua conta seja autoconfirmada.</string>
+  <string name="login-error-approval" fuzzy="true">Para usar o Huggle no projeto que escolheu é necessária a aprovação prévia.</string>
   <string name="login-error-cancelled">Cancelado.</string>
-  <string name="login-error-captcha">Senha ou código de confirmação Captcha incorretos.</string>
-  <string name="login-error-config">Autenticação falhou porque foi impossível recuperar informação do usuário: $1</string>
+  <string name="login-error-config" fuzzy="true">Autenticação falhou porque foi impossível recuperar informação do usuário: $1</string>
   <string name="login-error-count">Para usar o Huggle no projeto que escolheu são necessárias pelo menos $1 edições.</string>
-  <string name="login-error-disabled">O Huggle não está habilitado em sua conta de usuário. Verifique sua página de configuração pessoal.</string>
-  <string name="login-error-global" fuzzy="true">Falha ao carregar a página de configuração global, ver registro de depuração para mais detalhes</string>
+  <string name="login-error-disabled" fuzzy="true">O Huggle não está habilitado em sua conta de usuário. Verifique sua página de configuração pessoal.</string>
+  <string name="login-error-global">Autenticação sem sucesso: Não foi possivel analisar as configurações globais. Veja o registro de depuração para mais detalhas.</string>
   <string name="login-error-invalid">Nome de usuário inválido.</string>
-  <string name="login-error-language">Falha ao carregar arquivos de mensagens.</string>
-  <string name="login-error-nocaptcha">Código de confirmação Captcha errado.</string>
-  <string name="login-error-noconfig">Este projeto não tem uma página de configuração do Huggle.</string>
-  <string name="login-error-nouser" fuzzy="true">A conta de usuário não existe.</string>
+  <string name="login-error-noconfig" fuzzy="true">Este projeto não tem uma página de configuração do Huggle.</string>
+  <string name="login-error-nouser">O usuário não existe.</string>
   <string name="login-error-password">Senha errada.</string>
   <string name="login-error-projdisabled">Atualmente o Huggle está desabilitado neste projeto.</string>
-  <string name="login-error-rollback">O Huggle necessita de privilégio de rollback no projeto que escolheu.</string>
-  <string name="login-error-unknown">Não foi possível entrar na conta de usuário.</string>
-  <string name="login-error-userlist">O Huggle não conseguiu obter a lista de usuários aprovados que o podem utilizar.</string>
-  <string name="login-error-version" fuzzy="true">Esta versão foi descontinuada. Por favor faça uma atualização para a última versão do Huggle.</string>
-  <string name="login-error-whitelist">Falha ao carregar a lista branca de usuários.</string>
+  <string name="login-error-unknown" fuzzy="true">Não foi possível entrar na conta de usuário.</string>
+  <string name="login-error-version">Esta versão foi descontinuada. Atualize para a versão mais recente.</string>
+  <string name="login-error-whitelist" fuzzy="true">Falha ao carregar a lista branca de usuários.</string>
   <string name="main-menu-provider-stop">Interromper provedor</string>
   <string name="main-menu-provider-resume">Reiniciar provedor</string>
   <string name="main-no-reason">Nenhuma razão fornecida pelo usuário</string>
-  <string name="main-restoring-slap" fuzzy="true">No momento estou restaurando outra edição, por favor aguarde</string>
+  <string name="main-restoring-slap">Eestou restaurando outra edição, por favor aguarde...</string>
   <string name="main-page">Página</string>
   <string name="main-user">Usuário</string>
   <string name="main-contribs">Contribuições</string>
   <string name="main-history">Histórico</string>
-  <string name="main-new-messages" fuzzy="true">Você tem novas mensagens; selecione Sistema -&gt;Mostrar novas mensagens ou pressione a tecla M para vê-las</string>
+  <string name="main-new-messages">Você tem novas mensagens. Selecione Sistema &gt; Mostrar novas mensagens ou pressione a tecla M para vê-las.</string>
   <string name="main-system">Sistema</string>
-  <string name="main-status-bar">Processando edições &lt;b&gt;$1&lt;/b&gt; e consultas &lt;b&gt;$2&lt;/b&gt;. Usuários na lista branca: &lt;b&gt;$3&lt;/b&gt; Tamanho da fila: &lt;b&gt;$4&lt;/b&gt; Estatísticas: $5</string>
+  <string name="main-status-bar" fuzzy="true">Processando edições &lt;b&gt;$1&lt;/b&gt; e consultas &lt;b&gt;$2&lt;/b&gt;. Usuários na lista branca: &lt;b&gt;$3&lt;/b&gt; Tamanho da fila: &lt;b&gt;$4&lt;/b&gt; Estatísticas: $5</string>
   <string name="main-shutting-down">Huggle está sendo encerrado, ignorado</string>
   <string name="main-system-messages">Mostrar novas mensagens</string>
   <string name="main-system-reconnectirc">Reconectar-se ao feed de IRC</string>
   <string name="main-system-savelog">Salvar relatório de ações...</string>
-  <string name="main-system-lists">Construtor de listas...</string>
-  <string name="main-system-requests">Pedidos...</string>
   <string name="main-system-statistics">Estatísticas...</string>
-  <string name="main-system-showlog">Mostrar relatório</string>
   <string name="main-system-showqueue">Mostrar fila de edições a rever</string>
-  <string name="main-system-showtwoqueues">Mostrar duas filas de edições a rever</string>
   <string name="main-system-options">Opções...</string>
   <string name="main-system-logout">Sair da conta</string>
   <string name="main-system-abort">Abortar</string>
@@ -258,7 +241,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="main-tools-scoreword-list">Mostar a lista de palavras marcadas</string>
   <string name="main-queue">Fila de edições</string>
   <string name="main-queue-next">Proxima</string>
-  <string name="main-queue-trim">Remover edições antigas da fila...</string>
   <string name="main-queue-clear">Limpar fila atual</string>
   <string name="main-queue-count">$1 itens</string>
   <string name="main-queue-query">Executando...</string>
@@ -281,7 +263,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="main-revision-latest">Última</string>
   <string name="main-tools">Ferramentas</string>
   <string name="main-tools-sess">Exibir informações de sessão</string>
-  <string name="main-tools-wl">Exibir lista branca</string>
   <string name="main-tools-il">Mostrar lista de ignorados da wiki atual</string>
   <string name="main-page-next">Próximo</string>
   <string name="main-page-switchtotalk">Mudar para a página de discussão</string>
@@ -345,13 +326,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="main-display-whitelist">Exibir lista branca</string>
   <string name="main-revert-custom-reson">Por favor, forneça o motivo pelo qual deseja reverter esta edição para a anterior</string>
   <string name="main-log1">Restaurando revisão anterior de \"$1\"</string>
-  <string name="main-tip-revertwarn">Reverter esta edição e avisar o usuário</string>
-  <string name="main-tip-nextdiff">Mostrar a próxima edição a rever</string>
-  <string name="main-tip-revert">Reverter esta edição</string>
-  <string name="main-tip-warn">Avisar usuário</string>
-  <string name="main-tip-browserback">Anterior</string>
-  <string name="main-tip-browserforward">Seguinte</string>
-  <string name="main-tip-browseropen">Ver no navegador externo</string>
   <string name="main-tip-pagetagdelete">Etiquetar esta página para eliminação</string>
   <string name="main-tip-pagedelete">Eliminar esta página</string>
   <string name="main-tip-userreport">Reportar este usuário</string>
@@ -366,12 +340,11 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="message-summary">Sumário:</string>
   <string name="message-autosign">Adicionar automaticamente a assinatura no final da mensagem</string>
   <string name="message-retrieve-new-token">Recuperando chave para editar $1</string>
-  <string name="message-fail-re-user-tp" fuzzy="true">Impossível recuperar $1 parando a entrega da mensagem para aquele usuário</string>
+  <string name="message-fail-re-user-tp">Impossível recuperar $1. Parando a entrega da mensagem para aquele usuário</string>
   <string name="message-er">Impossível entregar a mensagem para $1: $2</string>
   <string name="message-fail-retrieve-talk">impossível recuperar a página de discussão do usuário</string>
   <string name="message-done">Mensagem entregada com sucesso para: $1</string>
   <string name="message-fail-token-1">Não foi possível recuperar chave para editar</string>
-  <string name="protect-title">Proteger $1</string>
   <string name="message-fail-token-2">Nenhum token foi retornado pela requisição</string>
   <string name="protect-request-title">Solicitar proteção de $1</string>
   <string name="protect-reason">Razão:</string>
@@ -437,7 +410,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="report-done">Reportado</string>
   <string name="report-user">Relatório</string>
   <string name="uaa-not-supported">UAA não disponível</string>
-  <string name="uaa-not-supported-text" fuzzy="true">Os usuários para o painel de atenção dos administradores não está disponível na sua wiki</string>
+  <string name="uaa-not-supported-text">O painel de notícias \"Nomes de usuários que precisam de atenção do administrador\" não está disponível em sua wiki.</string>
   <string name="uaa-reporting">Denunciando $1 para UAA</string>
   <string name="uaa-reported">Reportado</string>
   <string name="uaa-no-reason-warn">Você não especificou a razão pelo qual a conta de usuário é uma violação da política. Por favor especifique a razão.</string>
@@ -449,7 +422,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="revert-confirm-range">O autor da edição para qual vai reverter, $2, provavelmente é o mesmo autor da edição atual, $1, por ser um IP da mesma gama; certifique-se se quer mesmo reverter para esta edição. Continuar?</string>
   <string name="revert-confirm-same">Você vai reverter para uma edição anterior do mesmo usuário, $1. Continuar?</string>
   <string name="revert-confirm-warned">Você vai reverter para uma edição de $1; este usuário já foi avisado. Continuar?</string>
-  <string name="revert-error-first" fuzzy="true">Só existe uma edição nesta página por isso não é possível reverter.</string>
+  <string name="revert-error-first">Esta edição não pode ser revertida por ser a primeira feita nesta página.</string>
   <string name="revert-only">A edição é a única existente na página.</string>
   <string name="revert-creator">A última edição foi feita pelo criador da página, $1.</string>
   <string name="revert-preflightcheck">Verificação de comprovação</string>
@@ -460,7 +433,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="revert-fail">Não foi possível reverter \'$1\'</string>
   <string name="revert-nochange">O conteúdo da edição para a qual quer reverter é idêntico à última edição</string>
   <string name="revert-fail-pre-flight">Verificação de comprovação falhou: $1</string>
-  <string name="speedy-title">Marcar $1 para eliminação rápida</string>
   <string name="speedy-reason">Razão:</string>
   <string name="speedy-parameters">Parâmetros:</string>
   <string name="speedy-notifycreator">Notificar o criador da página</string>
@@ -500,14 +472,18 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="updater-close">Fechar</string>
   <string name="updater-disable-notify">Desativar atualizações</string>
   <string name="userinfo-generic">Informação de usuário</string>
-  <string name="userinfo-title">Informações sobre o usuário \'$1\'</string>
-  <string name="userinfo-anonymous">Anônimo:</string>
-  <string name="userinfo-ignored">Na lista branca:</string>
-  <string name="userinfo-edits">Número de edições:</string>
-  <string name="userinfo-sessionedits">Edições nesta sessão:</string>
-  <string name="userinfo-sharedip">IP partilhado/dinâm.:</string>
-  <string name="userinfo-blocklog">Bloqueios:</string>
-  <string name="userinfo-warnlog">Avisos:</string>
+  <string name="shortcut-raw">Reverter edição e avisar usuário</string>
+  <string name="shortcut-exit">Encerrar o Huggle normalmente</string>
+  <string name="shortcut-next">Ir para a próxima edição</string>
+  <string name="shortcut-suspicious">Marcar como edição suspeita</string>
+  <string name="shortcut-back">Vá para edição mostrada anteriormente</string>
+  <string name="shortcut-warn">Enviar um aviso ao usuário, sem reverter a edição</string>
+  <string name="shortcut-revert">Reverter edição</string>
+  <string name="shortcut-x-raw">Acione Nº item no menu de aviso e reverso</string>
+  <string name="shortcut-x-revert">Acione Nº item no menu de reverso</string>
+  <string name="shortcut-x-warn">Acione Nº item no menu de avisos</string>
+  <string name="shortcut-good">Marcar a edição atual exibida como boa</string>
+  <string name="shortcut-open">Abrir a edição atual exibida em um browser</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
@@ -526,7 +502,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="error-reloginfail">Não foi possível entrar novamente na conta, tente reiniciar o Huggle</string>
   <string name="error-timeout">Foi excedido o tempo de resposta do servidor.</string>
   <string name="error-unknown">Erro desconhecido</string>
-  <string name="retrying">Tentando novamente...</string>
   <string name="block-done">\'$1\' bloqueado</string>
   <string name="block-progress">Bloqueando \'$1\'...</string>
   <string name="blocklog-fail">Erro ao receber o registro de bloqueio para \'$1\'</string>
@@ -541,15 +516,10 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="deletelog-fail">Não foi possível receber o registro de eliminação para \'$1\'</string>
   <string name="deletelog-none">Não existem entradas no registro de eliminações para \'$1\'</string>
   <string name="deletelog-progress">Recebendo o registro de eliminações para \'$1\'...</string>
-  <string name="diff-deleted">Esta edição foi eliminada.</string>
-  <string name="diff-fail">Não foi possível receber o dif de \'$1\'</string>
   <string name="edit-fail">Não foi possível editar \'$1\'</string>
   <string name="edit-progress">Editando \'$1\'...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de \'$1\'</string>
   <string name="history-progress">A receber o histórico de \'$1\' ($2)...</string>
-  <string name="move-done">\'$1\' movida para \'$2\'</string>
-  <string name="move-fail">Não foi possível mover \'$1\' para \'$2\'</string>
-  <string name="move-progress">Movendo \'$1\' para \'$2\'...</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>
@@ -558,8 +528,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="protectlog-fail">Não foi possível receber o registro de proteção de páginas para \'$1\'</string>
   <string name="protectlog-none">Não existe uma entrada no registro de proteção de páginas para \'$1\'</string>
   <string name="protectlog-progress">Recebendo o registro de proteção de páginas para \'$1\'...</string>
-  <string name="saveuserconfig-done">A página de configuração de usuário foi atualizada</string>
-  <string name="saveuserconfig-fail">Não foi possível atualizar a página de configuração de usuário</string>
   <string name="saveuserconfig-progress">Atualizando a página de configuração de usuário</string>
   <string name="loadglobalconfig-fail">Não foi possível carregar a página de configuração global</string>
   <string name="loadprojectconfig-fail">Não foi possível carregar a página de configuração do projeto</string>
@@ -568,45 +536,32 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="reqprotection-duplicate">A proteção já foi requisitada</string>
   <string name="reqprotection-fail">Não foi possível pedir a proteção de \'$1\'</string>
   <string name="reqprotection-progress">Fazendo o pedido de proteção de \'$1\'...</string>
-  <string name="reqprotection-title">Solicitar proteção da página de $1</string>
   <string name="speedy-fail">Impossível marcar a página para eliminação rápida: $1</string>
   <string name="speedy-progress">Marcando \'$1\' para eliminação rápida...</string>
   <string name="speedy-wrong">A etiqueta requisitada não é válida, por favor escolha uma razão diferente para a eliminação</string>
   <string name="speedy-finished">Concluído</string>
-  <string name="warnlog-fail">Não foi possível receber o registro de avisos de \'$1\'</string>
-  <string name="warnlog-none">\'$1\' não tem avisos do Huggle na página de discussão</string>
-  <string name="warnlog-progress">Recebendo o registro de avisos de \'$1\'...</string>
-  <string name="usermessage-duplicate">Já existe uma mensagem sobre o mesmo assunto na página de discussão do usuário</string>
   <string name="usermessage-fail">Não foi possível enviar a mensagem a \'$1\'</string>
   <string name="usermessage-progress">Enviando a mensagem a \'$1\'...</string>
-  <string name="warn-alreadyfinal">O usuário já tem um aviso final</string>
   <string name="warn-alreadyblocked">O usuário já foi bloqueado</string>
-  <string name="warn-alreadyreported">O usuário já foi reportado aos administradores</string>
-  <string name="warn-oldedit">O usuário não fez mais edições após o último aviso</string>
-  <string name="warn-recent">O usuário já foi avisado à menos de $1 segundos atrás</string>
-  <string name="warn-fail">Não foi possível avisar \'$1\'</string>
-  <string name="warn-progress">Avisando \'$1\'...</string>
-  <string name="editquery-success">$1 editado com sucesso</string>
+  <string name="editquery-success" fuzzy="true">$1 editado com sucesso</string>
   <string name="editquery-token">Recuperando chave para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
   <string name="provider-failure">Falha do provedor de feed primário, tentando recuperar</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
   <string name="rc-error">Impossível recuperar dados do feed da wiki, último erro: $1</string>
   <string name="whitelist-download">Baixando a nova lista branca</string>
-  <string name="queue-widget-name">Na fila</string>
   <string name="logs-widget-name">Registro do sistema</string>
   <string name="wait">Por favor, aguarde...</string>
   <string name="function-miss">Função não está disponível no momento</string>
   <string name="missing-aiv">Este projeto não usa o AIV</string>
   <string name="missing-page">Não há a página $1 nesta wiki</string>
   <string name="updating-wl">Atualizando lista branca...</string>
-  <string name="updating-uc">Atualizando página de configuração do usuário em huggle3.css na wiki</string>
   <string name="feature-nfru">Esta característica é somente para IP</string>
   <string name="report-no-user">Nenhum usuário foi selecionado para ser reportado, por favor selecione um usuário primeiro</string>
   <string name="welcome-tp-empty-fail">Este usuário não tem uma página de discussão vazia, tem certeza que quer mandar uma mensagem para ele?</string>
   <string name="welcome-page-miss-fail">Huggle não conseguiu recuperar o conteúdo da página de discussão do usuário, tem certeza que quer mandar uma mensagem de boas vindas para ele?</string>
   <string name="cr-newer-edits">Conflito resolvido: todas as edições revertidas, incluindo novas edições. Edições foram feitas pelo mesmo usuário: $1.</string>
-  <string name="cr-resolved-same-user" fuzzy="true">Conflito resolvido: todas as edições revertidas, incluindo novas edições, feitas pelo mesmo usuário: $1</string>
+  <string name="cr-resolved-same-user">Conflito resolvido: todas as edições revertidas, incluindo novas edições, feitas pelo mesmo usuário: $1</string>
   <string name="cr-stop-new-edit">Conflito resolvido: nenhuma ação executada - havia edições novas para $1</string>
   <string name="cr-stop-multiple-same">Conflito resolvido: nenhuma ação tomada - existem diversas edições feitas pelo mesmo utilizador em $1.</string>
   <string name="cr-message-same">Existem múltiplas edições para $1 pelo mesmo usuário, tem certeza que quer revertê-las?</string>

@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Svenska</string>
   <string name="add">Lägg till</string>
-  <string name="apply">Verkställ</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Rensa</string>
   <string name="close">Stäng</string>
@@ -12,18 +11,15 @@
   <string name="deleted">Raderad</string>
   <string name="error">Fel</string>
   <string name="exit">Stäng</string>
-  <string name="minimizewindow">Minimera</string>
   <string name="no">Nej</string>
   <string name="ok">OK</string>
   <string name="remove">Ta bort</string>
   <string name="rename">Byt namn</string>
   <string name="reload">Uppdatera</string>
   <string name="result">Resultat</string>
-  <string name="restorewindow">Återställ</string>
   <string name="save">Spara</string>
-  <string name="selectfile">Bläddra...</string>
   <string name="yes">Ja</string>
-  <string name="agf">Rulla tillbaka i god tro med en specifik anledning</string>
+  <string name="agf">Rulla tillbaka med utgångspunkt att redigeringen gjorts i god tro och ange anledningen</string>
   <string name="successful">Framgångsrik</string>
   <string name="summary">Sammanfattning</string>
   <string name="id">ID</string>
@@ -42,13 +38,13 @@
   <string name="link">Länk</string>
   <string name="reason">Anledning</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 med poängen $2 har lagts till i vitlistan</string>
+  <string name="whitelisted" fuzzy="true">$1 med poängen $2 har lagts till i vitlistan</string>
   <string name="expiry-time">Förfallotid</string>
   <string name="duration">Längd</string>
   <string name="no-token">Ingen token</string>
   <string name="flags">Flaggor</string>
   <string name="browser-none">Ingen sida visas nu</string>
-  <string name="browser-load">Ladda ner diff hjälp av en \"webb-rendering fallback\", vänligen vänta...</string>
+  <string name="browser-load">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
   <string name="browser-diff">Skillnad på sida: $1 (poäng: $2)</string>
   <string name="browser-fail">Det gick inte att hämta skillnad:$1</string>
@@ -60,26 +56,32 @@
   <string name="block-anononly">Blockera endast oinloggade användare</string>
   <string name="block-creation">Blockera kontoskapande</string>
   <string name="block-autoblock">Aktivera autoblockeringar</string>
-  <string name="block-email">Blockera e-mail</string>
+  <string name="block-email">Blockera e-post</string>
   <string name="block-usertalk">Diskussion</string>
   <string name="block-usercontribs">Bidrag</string>
   <string name="block-blockloglabel">Blockeringslogg:</string>
   <string name="block-warnloglabel">Varningar:</string>
+  <string name="block-sharedipwarning">Obs: $1 är taggad som en delad eller dynamisk IP-adress.</string>
+  <string name="block-rangeblockwarning">$1 påverkas redan av en intervallblockering på $2.
+Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fortsätt?</string>
   <string name="block-token-1">Få token att blockera $1</string>
   <string name="block-fail">Det gick inte att blockera användaren, $1</string>
   <string name="block-token-e1">Token kan inte hämtas: $1</string>
   <string name="block-error-no-info">Ingen användarinformation var närvarande i frågan (är du sysop?)</string>
   <string name="block-type">Blockera / avblockera</string>
   <string name="block-admin">Blockerande administratör</string>
-  <string name="blocking">Blockerar $1</string>
   <string name="block-none">Det finns ingen användare att blockera.</string>
-  <string name="closing-whitelist">Uppdaterar användarvitlista...</string>
-  <string name="closing-config">Uppdaterar konfigureringsundersida...</string>
   <string name="config-summ">Anpassade återstälnings-sammanfattningar för mallar</string>
   <string name="config-title">Inställningar</string>
   <string name="config-rememberme">Kom i håg mitt användarnamn</string>
   <string name="config-autowhitelist">Vitlista automatiskt användare</string>
   <string name="config-openinbrowser">Öppna webbläsarlänkar i ett nytt fönster</string>
+  <string name="config-shownewedits">Visa nya ändringar till den valda sidan allt eftersom de görs</string>
+  <string name="config-ircmode">Om möjligt använd IRC-flödet för de senaste ändringarna</string>
+  <string name="config-ircport">IRC-port</string>
+  <string name="config-difffontsize">Olika teckenstorlekar</string>
+  <string name="config-logfile">Loggfil</string>
+  <string name="config-viewlocalconfig">Visa lokal konfigurationsmapp</string>
   <string name="config-startupmessage">Visa uppstartsmeddelande</string>
   <string name="config-shownewmessages">Visa fält för nya meddelanden</string>
   <string name="config-shortcutlist">Kortkommandon</string>
@@ -91,19 +93,28 @@
   <string name="config-minor">Markera som mindre ändring</string>
   <string name="config-watchlist">Lägg till i bevakningslistan</string>
   <string name="config-defaultsummary">Standardsammanfattning för manuella redigeringar</string>
+  <string name="config-undosummary">Sammanfattning när egna redigeringar ångras</string>
   <string name="config-reportnone">Gör inget</string>
+  <string name="config-templatetext">Visa text</string>
   <string name="config-template">Mall</string>
+  <string name="config-blockreason">Standardanledning för blockering</string>
+  <string name="config-blocktime">Standardblockeringslängd för</string>
   <string name="config-blocktimeanon">anonyma användare</string>
   <string name="config-blocktimereg">registrerade användare</string>
+  <string name="config-summaryprompt">Ange sammanfattning</string>
   <string name="config-history">Ladda ner hela historiken för alla artiklar</string>
+  <string name="config-no-colon">Du kan inte använda : i namn av kön</string>
   <string name="config-notify-update">Sök efter uppdateringar</string>
   <string name="config-notify-beta">Kontrollera om en beta-version finns tillgänglig</string>
+  <string name="delete-title">Radera $1</string>
+  <string name="delete-reason">Anledning:</string>
+  <string name="delete-deletionlog">Raderingslogg:</string>
   <string name="delete-rem-talk">Radera tillhörande diskussionssida</string>
   <string name="delete-notify">Meddela skaparen</string>
   <string name="delete-error-token">Fel: Misslyckades att hämta radera-token. Anledningen som angavs var: $1</string>
   <string name="delete-token01">Hämtar token för att radera $1</string>
   <string name="delete-token02">Det fanns ingen token som returnerades i frågan</string>
-  <string name="delete-e1">Sidan kan inte tas raderas: $1</string>
+  <string name="delete-e1">Sidan kan inte raderas: $1</string>
   <string name="delete-e2">Det går inte att ta bort sida</string>
   <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
   <string name="delete-failed-no-info">Ingen sidinfo fanns i frågan (är du sysop?)</string>
@@ -111,44 +122,81 @@
   <string name="historyform-title">Historik</string>
   <string name="historyform-retrieve-history">Hämta historia</string>
   <string name="historyform-retrieving-history">Hämtar historia</string>
-  <string name="historyform-not-latest-tip">Detta är inte en senaste versionen av denna sida - se till att du granskat de nya versionerna också. Kom också ihåg att tillbakarullning eventuellt inte är möjlit längre.</string>
-  <string name="history-error-message-title">Det går inte att ångra</string>
+  <string name="historyform-not-latest-tip">Detta är inte en senaste versionen av denna sida. Se till att du granskat de nya versionerna också. Kom också ihåg att tillbakarullning eventuellt inte är möjligt längre.</string>
+  <string name="history-error-message-title">Det gick inte att ångra</string>
+  <string name="history-error">Objektet kan inte ångras. Sidan kan ha ändrats eller tagits bort under tiden och Huggle är oförmögen att genomföra ångra från denna punkt. Om du verkligen vill ångra det, kommer att du behöva göra det för hand i MediaWiki-gränssnittet.</string>
   <string name="userhistory-title">Historik över dina ändringar</string>
   <string name="irc-nochannel">IRC-kanalen för $1 kunde inte hittas, använder långsammare API-köer istället</string>
-  <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord.</string>
+  <string name="irc-stop" fuzzy="true">Väntar på att den primära flödesleverantören stoppar</string>
+  <string name="irc-not">Flöde: IRC inaktiveras av projektinställningarna</string>
+  <string name="irc-failure">Den primära flödes-leverantören har misslyckats. Faller tillbaka till wiki-leverantören...</string>
+  <string name="irc-wait">Väntar på att flödesleverantör för IRC stoppar</string>
+  <string name="irc-switch-rc">Byter till wiki RC-flödet</string>
+  <string name="login-old">Hämta användarinställningar från tidigare plats</string>
+  <string name="login-intro" fuzzy="true">Var god välj ett projekt och ange ditt användarnamn och lösenord.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Logga in</string>
+  <string name="login-language">Språk:</string>
+  <string name="login-project">Projekt:</string>
+  <string name="login-username">Användarnamn:</string>
+  <string name="login-password">Lösenord:</string>
+  <string name="login-proxygroup">Proxyinställningar</string>
+  <string name="login-proxy">Använd en proxyserver</string>
+  <string name="login-proxyaddress">Adress:</string>
+  <string name="login-proxyport">Port:</string>
+  <string name="login-proxydomain">Domän:</string>
   <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
-  <string name="login-fail-no-info" fuzzy="true">Inloggningen misslyckades inte hämta användarinformation från: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Inloggningen misslyckades att tolka användarinställningar, se felsökningsloggen för mer information</string>
-  <string name="login-fail-user-data" fuzzy="true">Inloggningen misslyckades inte hämta användarinformation, api-frågan returnerade ingen data</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Inloggningen misslyckades eftersom du inte har tillbakarullnings behörigheter på detta projekt</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Inloggningen misslyckades eftersom du inte är en autobekräftad användare på detta projekt</string>
-  <string name="login-failed-edit" fuzzy="true">Inloggningen misslyckades eftersom du inte har tillräckligt redigeringar på detta projekt</string>
-  <string name="login-retrieving-info">Hämtar användarinformation</string>
+  <string name="login-fail-no-info" fuzzy="true">Inloggningen misslyckades: Kunde inte hämta användarinformation: $1</string>
+  <string name="login-fail-parse-config" fuzzy="true">Inloggningen misslyckades: Kunde inte tolka användarinställningar. Se felsökningsloggen för mer information</string>
+  <string name="login-fail-user-data" fuzzy="true">Inloggningen misslyckades: Kunde inte hämta användarinformation. API-frågan returnerade ingen data.</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">Inloggningen misslyckades: Du har inte tillbakarullningsbehörigheter på detta projekt.</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">Inloggningen misslyckades: Du är inte en autobekräftad användare på detta projekt.</string>
+  <string name="login-failed-edit" fuzzy="true">Inloggningen misslyckades: Du har inte tillräckligt med redigeringar på detta projekt.</string>
+  <string name="login-retrieving-info" fuzzy="true">Hämtar användarinformation</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
   <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
+  <string name="login-start">Logga in</string>
+  <string name="login-oauth-notsupported">Metoden stöds inte för närvarande</string>
   <string name="login-translate">Översätt Huggle</string>
   <string name="login-progress-start">Loggar in på $1</string>
+  <string name="login-progress-retrieve-mw">Hämtar information om MediaWiki för $1</string>
+  <string name="login-progress-language">Uppdaterar meddelandefiler...</string>
+  <string name="login-progress-global">Kontrollerar global konfiguration...</string>
+  <string name="login-progress-config">Kontrollerar konfigurationssidor...</string>
   <string name="login-ssl">Använd HTTPS (kräver OpenSSL)</string>
-  <string name="login-fail">Inloggningen misslyckades</string>
-  <string name="main-restoring-slap" fuzzy="true">Jag återställer för närvarande en annan redigering, var god vänta</string>
+  <string name="login-fail" fuzzy="true">Inloggningen misslyckades</string>
+  <string name="login-error-unknown" fuzzy="true">Kan inte logga in.</string>
+  <string name="login-error-version">Denna version är för gammal. Uppdatera till den senaste versionen.</string>
+  <string name="main-menu-provider-stop">Stoppa leverantör</string>
+  <string name="main-menu-provider-resume">Återuppta leverantör</string>
+  <string name="main-no-reason">Ingen anledning angavs av användaren</string>
+  <string name="main-restoring-slap">Jag återställer för närvarande en annan redigering, var god vänta...</string>
+  <string name="main-page">Sida</string>
+  <string name="main-user">Användare</string>
+  <string name="main-contribs">Bidrag</string>
+  <string name="main-history">Historik</string>
+  <string name="main-new-messages">Du har nya meddelanden. Välj System -&gt; Visa nya meddelanden eller tryck M för att visa dem.</string>
+  <string name="main-system">System</string>
+  <string name="main-system-messages">Visa nya meddelanden</string>
+  <string name="main-system-reconnectirc">Återanslut IRC-flödet</string>
+  <string name="main-system-savelog">Spara logg...</string>
   <string name="main-system-logout">Logga ut</string>
   <string name="main-system-abort">Avbryt</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
+  <string name="main-revision-revert">Återställ den redigering som just nu visas</string>
   <string name="main-tools">Verktyg</string>
-  <string name="main-tools-wl">Visa vitlistan</string>
   <string name="main-page-next">Nästa</string>
   <string name="main-page-edit">Redigera i webbläsare</string>
-  <string name="main-page-reqprotection">Begära skydd av sida</string>
+  <string name="main-page-reqprotection">Begär skydd av sida</string>
   <string name="main-page-watch">Bevaka</string>
-  <string name="main-page-unwatch">Obevaka</string>
+  <string name="main-page-unwatch">Avbevaka</string>
   <string name="main-page-flag-good-edit">Flagga som en bra redigering (denna åtgärd ger -200 poäng till användaren)</string>
   <string name="main-page-protect">Skydda</string>
   <string name="main-page-delete">Radera</string>
   <string name="main-page-load">Läs in</string>
   <string name="main-page-restore">Återställ denna version</string>
+  <string name="main-user-contribs">Visa användarbidrag i en webbläsare</string>
   <string name="main-user-clear-talk">Töm användarens diskussionssida</string>
   <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
   <string name="main-han">HAN</string>
@@ -159,7 +207,6 @@
   <string name="main-han-display-user-data">Visa användardata</string>
   <string name="main-display-session-data">Visa sessionsdata</string>
   <string name="main-display-whitelist">Visa vitlista</string>
-  <string name="main-tip-warn">Varna användare</string>
   <string name="message-er">Det gick inte att leverera meddelandet till $1: $2</string>
   <string name="message-done">Levererades framgångsrikt meddelandet till: $1</string>
   <string name="report-tu">Rapportera användare</string>
@@ -167,6 +214,7 @@
   <string name="report-done">Rapporterade</string>
   <string name="report-user">Rapportera</string>
   <string name="uaa-not-supported">UAA är inte tillgänglig</string>
+  <string name="revert-error-first">Denna redigering är den första redigeringen på sidan och kan inte återställas.</string>
   <string name="updater-title">En nyare version av Huggle är tillgänglig</string>
   <string name="updater-update">Uppdatera</string>
   <string name="updater-open-manualdownloadpage">Öppna nedladdningssidan</string>
@@ -174,19 +222,18 @@
   <string name="updater-disable-notify">Inaktivera uppdateringar</string>
   <string name="userinfo-generic">Användarinformation</string>
   <string name="warning-submit">Sänd</string>
+  <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
-  <string name="editquery-success">Framgångsrik redigering $1</string>
+  <string name="editquery-success" fuzzy="true">Framgångsrik redigering $1</string>
   <string name="whitelist-download">Ladda ner ny vitlista</string>
-  <string name="queue-widget-name">Kö</string>
   <string name="logs-widget-name">Systemlogg</string>
   <string name="wait">Var god vänta...</string>
   <string name="function-miss">Funktionen är inte tillgänglig nu</string>
   <string name="missing-aiv">Detta projekt använder inte AIV</string>
   <string name="missing-page">Det finns ingen sida som heter $1 på denna wiki</string>
   <string name="updating-wl">Uppdaterar vitlista...</string>
-  <string name="updating-uc">Uppdaterar användarens konfigurationssida som heter huggle3.css</string>
   <string name="feature-nfru">Den här funktionen är endast för IP-användare</string>
-  <string name="report-no-user">Ingen användare har valt att rapportera, vänligen välj en användare först</string>
+  <string name="report-no-user">Ingen användare har valts för att rapportera, vänligen välj en användare först</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
 </resources>

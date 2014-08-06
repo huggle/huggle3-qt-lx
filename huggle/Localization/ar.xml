@@ -3,25 +3,46 @@
   <string name="name">Arabic</string>
   <string name="isrtl">true</string>
   <string name="add">أضف</string>
-  <string name="apply">طبِّق</string>
   <string name="cancel">ألغِ</string>
   <string name="clear">امحُ</string>
   <string name="close">أغلق</string>
   <string name="continue">إستمر</string>
   <string name="copy">انسخ</string>
   <string name="delete">احذف</string>
+  <string name="deleted">محذوف</string>
   <string name="error">خطأ</string>
   <string name="exit">خروج</string>
-  <string name="minimizewindow">تصغير</string>
   <string name="no">لا</string>
   <string name="ok">موافق</string>
   <string name="remove">أزل</string>
   <string name="rename">غير الاسم</string>
-  <string name="restorewindow">استعد</string>
+  <string name="reload">إعادة تحميل</string>
+  <string name="result">النتيجة</string>
   <string name="save">احفظ</string>
-  <string name="selectfile">اختر ملفا</string>
   <string name="yes">نعم</string>
   <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
+  <string name="successful">ناجح</string>
+  <string name="summary">ملخص</string>
+  <string name="id">رقم</string>
+  <string name="type">نوع</string>
+  <string name="target">الهدف</string>
+  <string name="user">المستخدم</string>
+  <string name="size">الحجم</string>
+  <string name="date">التاريخ</string>
+  <string name="page">الصفحة</string>
+  <string name="time">الوقت</string>
+  <string name="version">النسخة</string>
+  <string name="general-name">الاسم</string>
+  <string name="author">المؤلف</string>
+  <string name="description">الوصف</string>
+  <string name="status">الحالة</string>
+  <string name="link">الوصلة</string>
+  <string name="reason">السبب</string>
+  <string name="diffid">رقم الفرق</string>
+  <string name="expiry-time">تاريخ الانتهاء</string>
+  <string name="duration">المدة</string>
+  <string name="no-token">لا يوجد رمز مميز</string>
+  <string name="flags">الأعلام</string>
   <string name="about-contributors">المطورون:</string>
   <string name="block-title">منع $1 ء</string>
   <string name="block-reason">السبب:</string>
@@ -39,8 +60,7 @@
   <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟
  .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
   <string name="block-fail">لم يتم المنع \'$1\'ء</string>
-  <string name="closing-whitelist">تحديث قائمة المستخدم البيضاء...</string>
-  <string name="closing-config">تحديث الصفحة الفرعية للإعدادات...</string>
+  <string name="block-admin">مدير النظام المانع</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
   <string name="config-rememberme">تذكر اسم المستخدم</string>
@@ -94,11 +114,18 @@
   <string name="delete-title">احذف $1ء</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
-  <string name="irc-connected">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
-  <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
-  <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
+  <string name="delete-notify">أخطر المنشئ</string>
+  <string name="historyform-no-info">لا معلومات تعديل</string>
+  <string name="historyform-title">التاريخ</string>
+  <string name="historyform-retrieve-history">اجلب التاريخ</string>
+  <string name="historyform-retrieving-history">يتم جلب التاريخ</string>
+  <string name="irc-connected" fuzzy="true">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
+  <string name="irc-connecting" fuzzy="true">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
+  <string name="irc-disconnected" fuzzy="true">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
+  <string name="login-tab-oauth">أو أوث</string>
+  <string name="login-tab-login">تسجيل الدخول</string>
   <string name="login-language">اللغة:</string>
   <string name="login-project">المشروع:</string>
   <string name="login-username">اسم المستخدم:</string>
@@ -109,9 +136,8 @@
   <string name="login-proxyport">منفذ:</string>
   <string name="login-proxydomain">نطاق:</string>
   <string name="login-start">ولوج</string>
-  <string name="login-translate" fuzzy="true">ترجم...</string>
-  <string name="login-captchatitle">يتطلب الولوج كابتشا</string>
-  <string name="login-progress-start" fuzzy="true">قيد الولوج...</string>
+  <string name="login-translate">ترجم هجل</string>
+  <string name="login-progress-start">تسجيل الدخول إلى $1</string>
   <string name="login-progress-language">ملفات الرسائل قيد التحديث...</string>
   <string name="login-progress-global">الخيارات العمومية قيد الفحص...</string>
   <string name="login-progress-config">صفحات الخيارات قيد الفحص...</string>
@@ -119,26 +145,20 @@
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل Huggle حاليا في كل المشاريع.</string>
-  <string name="login-error-approval">استخدام Huggle في هذا المشروع يحتاج تصديقا.</string>
-  <string name="login-error-autoconfirmed">استخدام Huggle في هذا المشروع يستلزم ان يكون حسابك مستخدم مؤكد تلقائياً</string>
+  <string name="login-error-approval" fuzzy="true">استخدام Huggle في هذا المشروع يحتاج تصديقا.</string>
   <string name="login-error-cancelled">ملغى.</string>
-  <string name="login-error-captcha">خطأ في كلمة السر أو كود التصديق</string>
-  <string name="login-error-config">فشل تحميل صفحات الخيارات.</string>
+  <string name="login-error-config" fuzzy="true">فشل تحميل صفحات الخيارات.</string>
   <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
-  <string name="login-error-disabled">Huggle غير مفعلة في حسابك، راجع صفحة خيارات المستخدم.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle غير مفعلة في حسابك، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global" fuzzy="true">تعذر تحميل صفحة الخيارات العمومية.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
-  <string name="login-error-language">تعذر تحميل ملفات الرسائل.</string>
-  <string name="login-error-nocaptcha">الكابتشا لم تحل.</string>
-  <string name="login-error-noconfig">ليس لهذا المشروع صفحة خيارات لبرمجية Huggle.</string>
+  <string name="login-error-noconfig" fuzzy="true">ليس لهذا المشروع صفحة خيارات لبرمجية Huggle.</string>
   <string name="login-error-nouser" fuzzy="true">مستخدم غير موجود.</string>
   <string name="login-error-password">كلمة سر خاطئة.</string>
   <string name="login-error-projdisabled">Huggle معطل حاليا في هذا المشروع.</string>
-  <string name="login-error-rollback">استخدام Huggle في هذا المشروع يتطلب الاسترجاع</string>
-  <string name="login-error-unknown">تعذر الولوج.</string>
-  <string name="login-error-userlist">تعذر تحميل قائمة المستخدمين.</string>
+  <string name="login-error-unknown" fuzzy="true">تعذر الولوج.</string>
   <string name="login-error-version" fuzzy="true">هذا الإصدار قديم، يرجى تحديث البرمجية.</string>
-  <string name="login-error-whitelist">تعذر تحميل قائمة المستخدمون البيضاء</string>
+  <string name="login-error-whitelist" fuzzy="true">تعذر تحميل قائمة المستخدمون البيضاء</string>
   <string name="main-page">الصفحة</string>
   <string name="main-user">مستخدم</string>
   <string name="main-contribs">مساهمات</string>
@@ -148,18 +168,14 @@
   <string name="main-system-messages">اعرض الرسائل الجديدة</string>
   <string name="main-system-reconnectirc">عاود الاتصال بتلقيم آي آر سي</string>
   <string name="main-system-savelog">احفظ السجل...</string>
-  <string name="main-system-lists">باني القوائن...</string>
-  <string name="main-system-requests">الطلبات...</string>
   <string name="main-system-statistics">إحصائيات...</string>
-  <string name="main-system-showlog">أظهر السجل</string>
   <string name="main-system-showqueue">أظهر الطابور</string>
-  <string name="main-system-showtwoqueues">أظهر طابورين</string>
   <string name="main-system-options">الخيارات...</string>
   <string name="main-system-logout">خروج</string>
+  <string name="main-system-change-provider-irc">آي آر سي</string>
   <string name="main-system-exit">خروج</string>
   <string name="main-queue">طابور</string>
   <string name="main-queue-next">تالي</string>
-  <string name="main-queue-trim">تقليم</string>
   <string name="main-queue-clear">امسح الحالي</string>
   <string name="main-queue-count" fuzzy="true">$1 عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
@@ -190,12 +206,12 @@
   <string name="main-page-purge">امسح اختزان الصفحة</string>
   <string name="main-page-patrol">علم كمراجعة</string>
   <string name="main-page-move">انقل...</string>
-  <string name="main-page-protect" fuzzy="true">احم...</string>
-  <string name="main-page-delete" fuzzy="true">احذف...</string>
+  <string name="main-page-protect">احم</string>
+  <string name="main-page-delete">احذف</string>
   <string name="main-user-info">أظهر معلومات المستخدم</string>
   <string name="main-user-ignore">تجاهل</string>
   <string name="main-user-unignore">لا تتجاهل</string>
-  <string name="main-user-contribs" fuzzy="true">استرد المساهمات</string>
+  <string name="main-user-contribs">اعرض مساهمات المستخدم في المتصفح</string>
   <string name="main-user-talk">معاينة نقاش المستخدم</string>
   <string name="main-user-message">رسالة...</string>
   <string name="main-user-warn">نبه...</string>
@@ -215,13 +231,6 @@
   <string name="main-usermessageother">رسالة أخرى...</string>
   <string name="main-advanced">متقدّم...</string>
   <string name="main-stats">$1 حرر في الدقيقة, $2 استرجع في الدقيقة</string>
-  <string name="main-tip-revertwarn">استرجع هذه النسخة ونبه المستخدم</string>
-  <string name="main-tip-nextdiff">اظهر النسخة التالية في الصف</string>
-  <string name="main-tip-revert">اجلب هذه النسخة</string>
-  <string name="main-tip-warn">نبه المستخدم</string>
-  <string name="main-tip-browserback">خلف</string>
-  <string name="main-tip-browserforward">أمام</string>
-  <string name="main-tip-browseropen">اعرض هذا في متصفح خارجي</string>
   <string name="main-tip-pagetagdelete">وسم هذه الصفحة للشطب</string>
   <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
@@ -232,7 +241,6 @@
   <string name="message-message">الرسالة:</string>
   <string name="message-summary">الملخص:</string>
   <string name="message-autosign">ذيل التوقيع تلقائيا.</string>
-  <string name="protect-title">احمِ $1ء</string>
   <string name="protect-request-title">طلب حماية $1ء</string>
   <string name="protect-reason">السبب:</string>
   <string name="protect-expiry">إنتهاء:</string>
@@ -296,7 +304,6 @@
   <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'$1\'ء</string>
   <string name="revert-fail">لم يتم استرجاع \'$1\'ء</string>
   <string name="revert-nochange">محتوى النسخة المستهدفة مطابق لمحتوى النسخة الحالية</string>
-  <string name="speedy-title">$1 شطب</string>
   <string name="speedy-reason">السبب:</string>
   <string name="speedy-parameters">المعلمة:</string>
   <string name="speedy-notifycreator">أعلم منشئ الصفحة</string>
@@ -328,14 +335,6 @@
   <string name="update-title">يوجد إصدار جديد</string>
   <string name="update-progress">جاري تنزيل الاصدار الجديد. . .</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
-  <string name="userinfo-title">معلومات المستخدم \'$1\'ء</string>
-  <string name="userinfo-anonymous">مجهولون:</string>
-  <string name="userinfo-ignored">اللائحة البيضاء:</string>
-  <string name="userinfo-edits">عدد التعديلات:</string>
-  <string name="userinfo-sessionedits">التعديلات خلال الجلسة:</string>
-  <string name="userinfo-sharedip">اي بي مشترك:</string>
-  <string name="userinfo-blocklog">منع:</string>
-  <string name="userinfo-warnlog">تحذيرات:</string>
   <string name="warning-title">حذّر $1ء</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>
@@ -351,7 +350,6 @@
   <string name="error-reloginfail">تعذر تسجيل الدخول، يرجى إعادة تشغيل البرنامج</string>
   <string name="error-timeout">انتهى وقت الطلب</string>
   <string name="error-unknown">خطأ غير معروف</string>
-  <string name="retrying">قيد إعادة المحاولة...</string>
   <string name="block-done">تم المنع \'$1\'ء</string>
   <string name="block-progress">قيد المنع \'$1\'...ءء</string>
   <string name="blocklog-fail">تعذر جلب سجل المنع لـ \'$1\'ء</string>
@@ -365,15 +363,10 @@
   <string name="deletelog-fail">تعذر جلب سجل حذف \'$1\'ء</string>
   <string name="deletelog-none">لا يوجد سجل حذف لـ \'$1ء</string>
   <string name="deletelog-progress">يجلب سجل حذف \'$1\'...ء</string>
-  <string name="diff-deleted">تم حذف هذه النسخة.</string>
-  <string name="diff-fail">تعذر جلب الفرق \'$1\'ء</string>
   <string name="edit-fail">لم تعدل  \'$1\'ء</string>
   <string name="edit-progress">قيد تعديل \'$1\'...ء</string>
   <string name="history-fail">فشل جلب تاريخ \'$1\'ء</string>
   <string name="history-progress">قيد جلب تاريخ \'$1\'ء</string>
-  <string name="move-done">تم نقل \'$1\' الى \'$2\'</string>
-  <string name="move-fail">لم يتم نقل \'$1\' الى \'$2\'</string>
-  <string name="move-progress">قيد نقل \'$1\' الى \'$2\'...</string>
   <string name="notify-fail">لم تشعر منشىء \'$1\'ء</string>
   <string name="notify-unknowncreator">لا يمكن العثور على منشئ الصفحة</string>
   <string name="protect-done">غير مستوى الحماية لـ \'$1\'ء</string>
@@ -382,8 +375,6 @@
   <string name="protectlog-fail">فشل جلب سجل الحماية لـ \'$1\'ء</string>
   <string name="protectlog-none">لايوجد سجل حماية لـ \'$1\'ء</string>
   <string name="protectlog-progress">قيد جلب سجل الحماية لـ \'$1\'...ء</string>
-  <string name="saveuserconfig-done">حدث صفحة اعدادات المستخدم</string>
-  <string name="saveuserconfig-fail">لم تحدث صفحة اعدادات المستخدم</string>
   <string name="saveuserconfig-progress">يتم الان تحديث صفحة اعدادات المستخدم...</string>
   <string name="loadglobalconfig-fail">فشل تحميل صفحة الاعدادات الموحدة</string>
   <string name="loadprojectconfig-fail">فشل تحميل صفحة اعدادات المشروع</string>
@@ -394,17 +385,7 @@
   <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'$1\'...ء</string>
   <string name="speedy-fail" fuzzy="true">لم يتم وسم \'$1\' للحذف السريع</string>
   <string name="speedy-progress" fuzzy="true">قيد وسم \'$1\' للحذف السريع...</string>
-  <string name="warnlog-fail" fuzzy="true">فشل جلب سجل الانذار لـ \'$1\'ء</string>
-  <string name="warnlog-none" fuzzy="true">\'$1\' لم يسبق انذار</string>
-  <string name="warnlog-progress" fuzzy="true">قيد جلب سجل الانذار \'$1\'...ء</string>
-  <string name="usermessage-duplicate">رسالة موجودة عن نفس الشيء</string>
   <string name="usermessage-fail">لم يتم ارسال رسالة \'$1\'ء</string>
   <string name="usermessage-progress">قيد ارسال رسالة \'$1\'...ء</string>
-  <string name="warn-alreadyfinal">المستخدم تلقى التحذير الاخير بالفعل</string>
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>
-  <string name="warn-alreadyreported">تم الابلاغ عن المستخدم بالفعل</string>
-  <string name="warn-oldedit">المستخدم لم يعدل منذ اخر انذار</string>
-  <string name="warn-recent">تم انذار المستخدم قبل اقل من $1 ثواني</string>
-  <string name="warn-fail">لم يتم انذار \'$1\'ء</string>
-  <string name="warn-progress">انذار \'$1\'...ء</string>
 </resources>

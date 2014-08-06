@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Lëtzebuergesch</string>
   <string name="add">Derbäisetzen</string>
-  <string name="apply">Uwenden</string>
   <string name="cancel">Ofbriechen</string>
   <string name="clear">Eidel maachen</string>
   <string name="close">Zoumaachen</string>
@@ -12,14 +11,12 @@
   <string name="deleted">Geläscht</string>
   <string name="error">Feeler</string>
   <string name="exit">Erausgoen</string>
-  <string name="minimizewindow">Minimiséieren</string>
   <string name="no">Neen</string>
   <string name="ok">OK</string>
   <string name="remove">Ewechhuelen</string>
   <string name="rename">Ëmbenennen</string>
   <string name="reload">Nei lueden</string>
   <string name="result">Resultat</string>
-  <string name="restorewindow">Restauréieren</string>
   <string name="save">Späicheren</string>
   <string name="yes">Jo</string>
   <string name="successful">Erfollegräich</string>
@@ -51,11 +48,11 @@
   <string name="block-anononly">Nëmmen anonym Benotzer spären</string>
   <string name="block-email">E-Mail spären</string>
   <string name="block-usertalk">Diskussioun</string>
+  <string name="block-usercontribs">Kontributiounen</string>
   <string name="block-warnloglabel">Warnungen:</string>
-  <string name="block-fail">De Beno0tzer $1 konnt net gespaart ginn</string>
+  <string name="block-fail">De Benotzer konnt net gespaart ginn. $1</string>
   <string name="block-type">Spären / Spär ophiewen</string>
   <string name="block-admin">Administrateur dee gespaart huet</string>
-  <string name="blocking">$1 spären</string>
   <string name="block-none">Et gëtt kee Benotzer fir ze spären.</string>
   <string name="config-title">Optiounen</string>
   <string name="config-rememberme">Mäi Benotzernumm verhalen</string>
@@ -64,7 +61,10 @@
   <string name="config-noshortcut">Keng</string>
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="config-defaultsummary">Standard-Resumé fir manuell Ännerungen</string>
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
+  <string name="config-confirmmultiple">Méi Zrécksetzunge vun enger Ännerung vum selweschte Benotzer confirméieren</string>
+  <string name="config-confirmpage">Zrécksetze vun ignoréierte Säite confirméieren</string>
   <string name="config-reportnone">Näischt maachen</string>
   <string name="config-templatetext">Text weisen</string>
   <string name="config-template">Schabloun</string>
@@ -72,6 +72,8 @@
   <string name="config-blocktimeanon">Anonym Benotzer</string>
   <string name="config-blocktimereg">registréiert Benotzer</string>
   <string name="config-summaryprompt">Resumé aginn</string>
+  <string name="config-defaultsprompt">Standardastellunge restauréieren?</string>
+  <string name="config-logbrowsetitle">Plaz vum Log-Fichier</string>
   <string name="config-notify-update">No Aktualisatioune sichen</string>
   <string name="config-notify-beta">Nokucken ob Beta-Versiounen disponibel sinn</string>
   <string name="delete-title">$1 läschen</string>
@@ -82,7 +84,7 @@
   <string name="delete-edsc">Säit konnt net geläscht gi well $1</string>
   <string name="historyform-title">Versiounen</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
-  <string name="login-intro">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an.</string>
+  <string name="login-intro" fuzzy="true">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Aloggen</string>
   <string name="login-language">Sprooch:</string>
@@ -92,35 +94,36 @@
   <string name="login-proxygroup">Proxy-Astellungen</string>
   <string name="login-proxy">E Proxy-Server benotzen</string>
   <string name="login-proxyaddress">Adress:</string>
+  <string name="login-retrieving-info" fuzzy="true">Benotzerimformatioun offroen</string>
   <string name="login-password-empty">D\'Passwuert dat Dir aginn hutt war eidel</string>
+  <string name="login-fail-wrong-name">Dir hutt kee korrekte Benotzernumm agi fir Iech anzeloggen</string>
   <string name="login-start">Aloggen</string>
   <string name="login-oauth-notsupported">Dës Method gëtt elo net ënnerstëtzt</string>
   <string name="login-translate">Huggle iwwersetzen</string>
-  <string name="login-captchatitle">Captcha obligatoresch fir sech anzeloggen</string>
   <string name="login-progress-start">Bäi $1 aloggen</string>
   <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
   <string name="login-ssl">HTTPS benotzen (brauch OpenSSL)</string>
+  <string name="login-error-admin">Fir Huggle op dësem Projet ze benotze musst Dir Administrateur sinn.</string>
+  <string name="login-error-age">Fir Huggle op dësem Projet ze benotze muss Äre Benotzerkont mindestens $1 Deeg al sinn.</string>
   <string name="login-error-alldisabled">Huggle ass elo an alle Projeten ausgeschalt.</string>
+  <string name="login-error-approval" fuzzy="true">Fir Huggle op dësem Projet ze benotze braucht Dir eng Autorisatioun.</string>
   <string name="login-error-cancelled">Ofgebrach.</string>
   <string name="login-error-invalid">Ongëltege Benotzernumm</string>
-  <string name="login-error-nocaptcha">Captcha net geléist</string>
-  <string name="login-error-nouser" fuzzy="true">Benotzer gëtt et net</string>
+  <string name="login-error-nouser">De Benotzer gëtt et net</string>
   <string name="login-error-password">Falscht Passwuert</string>
   <string name="login-error-projdisabled">Huggle ass elo op dësem Projet ausgeschalt.</string>
-  <string name="login-error-userlist">D\'Lëscht vun de Benotzer konnt net geluede ginn.</string>
-  <string name="login-error-version" fuzzy="true">D\'Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
+  <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
-  <string name="main-restoring-slap" fuzzy="true">Ech restauréieren elo eng aner Ännerung, waart w.e.g..</string>
+  <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g....</string>
   <string name="main-page">Säit</string>
   <string name="main-user">Benotzer</string>
+  <string name="main-contribs">Kontributiounen</string>
   <string name="main-history">Versiounen</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Nei Message weisen</string>
   <string name="main-system-reconnectirc">IRC-Feed nei verbannen</string>
   <string name="main-system-savelog">Logbuch späicheren...</string>
-  <string name="main-system-requests">Ufroen...</string>
   <string name="main-system-statistics">Statistiken..</string>
-  <string name="main-system-showlog">Logbuch weisen</string>
   <string name="main-system-options">Astellungen...</string>
   <string name="main-system-logout">Ausloggen</string>
   <string name="main-system-abort">Ofbriechen</string>
@@ -128,7 +131,6 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Erausgoen</string>
-  <string name="main-queue-trim">Ofschneiden</string>
   <string name="main-queue-count">$1 Elementer</string>
   <string name="main-queue-reset">Zrécksetzen</string>
   <string name="main-goto-mytalk">Meng Diskussiounssäit</string>
@@ -164,6 +166,7 @@
   <string name="main-page-restore">Dës Versioun restauréieren</string>
   <string name="main-user-info">Informatioun vum Benotzer weisen</string>
   <string name="main-user-ignore">Ignoréieren</string>
+  <string name="main-user-contribs">Benotzerkontributiounen an engem Browser weisen</string>
   <string name="main-user-clear-talk">Diskussiounssäit vum Benotzer eidelmaachen</string>
   <string name="main-user-talk">Diskussiounssäit weisen</string>
   <string name="main-user-message">Message...</string>
@@ -171,6 +174,7 @@
   <string name="main-user-clear-tp">Diskussiounssäit vum Benotzer eidelmaachen</string>
   <string name="main-user-block">Spären...</string>
   <string name="main-browser-back">Zréck</string>
+  <string name="main-browser-open">An engem externe Browser kucken</string>
   <string name="main-browser-newedits">Nei Ännerungen vun der Säit weisen</string>
   <string name="main-browser-newcontribs">Nei KOntributioune pro Benotzer weisen</string>
   <string name="main-han">HAN</string>
@@ -186,20 +190,19 @@
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
   <string name="main-stats">$1 Ännerunge pro Minutt, $1 Zrécksetzunge pro Minutt</string>
-  <string name="main-tip-revert">Dës Versioun zrécksetzen</string>
-  <string name="main-tip-warn">Benutzer warnen</string>
-  <string name="main-tip-browserback">Zréck</string>
+  <string name="main-revert-custom-reson">Gitt w.e.g. e Grond u firwat Dir dës Ännerung op déi vireg Versioun zrécksetze wëllt</string>
+  <string name="main-log1">Déi erausgesicht Versioun vu(n) $1 restauréieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
   <string name="main-tip-userreport">Dëse Benotzer mellen</string>
   <string name="main-tip-userblock">Dëse Benotzer spären</string>
+  <string name="main-revert-null">Kann net zréckgesat ginn:Ännerung ass \'null\'</string>
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
   <string name="message-summary">Resumé:</string>
   <string name="message-autosign">Ënnerschrëft automatesch drunhänken</string>
   <string name="message-done">Message iwwermëttelt un: $1</string>
-  <string name="protect-title">$1 spären</string>
   <string name="protect-request-title">Spär ufroe fir $1</string>
   <string name="protect-reason">Grond:</string>
   <string name="protect-type">Typ vun der Spär:</string>
@@ -234,7 +237,7 @@
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>
   <string name="revert-confirm-range">Den Auteur vun der Ziversioun $2 ass am selwechte Beräich wéi den Auteur vun der aktueller Versioun $1 a kéint déi selwecht Persoun sinn. Vergewëssert Iech datt d\'Zilversioun korrekt ass ier Dir weidermaacht. Virufueren?</string>
-  <string name="revert-error-first" fuzzy="true">D\'Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn</string>
+  <string name="revert-error-first">Dës Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn.</string>
   <string name="revert-only">Dës Ännerung ass déi Eenzeg vun dëser Säit.</string>
   <string name="revert-creator">Déi lescht Ännerung gouf vun deem gemaach deen d\'Säit ugeluecht huet, $1.</string>
   <string name="revert-delete-instead">An där Plaz d\'Säit läschen?</string>
@@ -266,16 +269,18 @@
   <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
   <string name="updater-title">Eng nei Versioun vun Huggle ass disponibel</string>
   <string name="updater-update">Aktualiséieren</string>
+  <string name="updater-open-manualdownloadpage">Download-Säit opmaachen</string>
   <string name="updater-close">Zoumaachen</string>
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
-  <string name="userinfo-title">Benotzerinformatioun fir $1</string>
-  <string name="userinfo-anonymous">Anonym:</string>
-  <string name="userinfo-edits">Zuel vun den Ännerungen:</string>
-  <string name="userinfo-sessionedits">Ännerungen an dëser Sessioun:</string>
-  <string name="userinfo-sharedip">Gemeinsam genotzt/dynamesch IP:</string>
-  <string name="userinfo-blocklog">Spären:</string>
-  <string name="userinfo-warnlog">Warnungen:</string>
+  <string name="shortcut-raw">Ännerung zrécksetzen an e Benotzer warnen</string>
+  <string name="shortcut-exit">Huggle normal zoumaachen</string>
+  <string name="shortcut-next">Op déi nächst Ännerung goen</string>
+  <string name="shortcut-suspicious">Ännerung als verdächteg markéieren</string>
+  <string name="shortcut-back">Op déi virdru gewisen Ännerung goen</string>
+  <string name="shortcut-warn">Dem Benotzer eng Warnung schécken ouni d\'Ännerung zréckzesetzen</string>
+  <string name="shortcut-revert">Ännerung zurécksetzen</string>
+  <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelauto">Automatesch</string>
   <string name="warning-level1">Niveau 1</string>
@@ -288,34 +293,23 @@
   <string name="error-noresponse">Keng Äntwert</string>
   <string name="error-pagemissing">D\'Säit gëtt et net</string>
   <string name="error-unknown">Onbekannte Feeler</string>
-  <string name="retrying">Nach eng Kéier probéieren...</string>
   <string name="block-done">$1 gespaart</string>
   <string name="block-progress">$1 spären...</string>
   <string name="blocknotify-progress">$1 vun der Spär informéieren...</string>
   <string name="delete-done">$1 gouf geläscht</string>
   <string name="delete-fail">$1 gouf net geläscht</string>
   <string name="delete-progress">$1 gëtt geläscht...</string>
-  <string name="diff-deleted">Dës Versioun gouf geläscht.</string>
+  <string name="delete-user">Dës Säit ass am Benotzer-Nummraum. Sidd Dir sécher datt Dir se läsche wëllt?</string>
   <string name="edit-fail">$1 gouf net geännert</string>
-  <string name="move-done">$1 gouf op $2 geréckelt</string>
-  <string name="move-fail">$1 gouf net op $2 geréckelt</string>
-  <string name="move-progress">$1 gëtt op $2 geréckelt...</string>
-  <string name="saveuserconfig-done">Aktualiséiert Säit vun de Benotzerastellungen</string>
+  <string name="edit-progress">Ännert $1...</string>
   <string name="saveuserconfig-progress">Aktualisatioun vun der säit vun de Benotzerastellungen...</string>
+  <string name="loadglobalconfig-fail">Déi global Configuratiounssäit konnt net geluede ginn</string>
   <string name="reqprotection-badformat">Format vun der Säit mat der Ufro onbekannt</string>
   <string name="reqprotection-duplicate">D\'Spär gouf schonn ugefrot</string>
   <string name="speedy-finished">Fäerdeg</string>
-  <string name="warnlog-none">\'$1\' gouf net gewarnt</string>
-  <string name="usermessage-duplicate">E Message iwwer déi selwecht Saach gouf et schonn</string>
   <string name="usermessage-fail">\'$1\' gouf net infroméiert</string>
-  <string name="warn-alreadyfinal">De Benotzer krut schonn eng lescht Warnung.</string>
   <string name="warn-alreadyblocked">De Benotzer gouf scho gespaart</string>
-  <string name="warn-alreadyreported">De Benotzer gouf scho gemellt</string>
-  <string name="warn-oldedit">Dëse Benotzer huet zanter der leschter Warnung keng Ännerung méi gemaach</string>
-  <string name="warn-recent">De Benotzer gouf viru manner wéi $1 Sekonne gewarnt</string>
-  <string name="warn-fail">\'$1\' gouf net gewarnt</string>
-  <string name="warn-progress">Warnung vum \'$1\'...</string>
-  <string name="editquery-success">$1 gouf geännert</string>
+  <string name="editquery-success" fuzzy="true">$1 gouf geännert</string>
   <string name="wait">Waart w.e.g. ...</string>
   <string name="function-miss">Funktioun ass elo net disponibel</string>
   <string name="missing-aiv">Dëse Projet benotzt AIV net</string>

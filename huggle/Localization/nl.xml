@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Nederlands (Dutch)</string>
   <string name="add">Toevoegen</string>
-  <string name="apply">Toepassen</string>
   <string name="cancel">Annuleren</string>
   <string name="clear">Leegmaken</string>
   <string name="close">Sluiten</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Verwijderd</string>
   <string name="error">Fout</string>
   <string name="exit">Afsluiten</string>
-  <string name="minimizewindow">Minimaliseren</string>
   <string name="no">Nee</string>
   <string name="ok">OK</string>
   <string name="remove">Verwijderen</string>
   <string name="rename">Hernoemen</string>
   <string name="reload">Herladen</string>
   <string name="result">Resultaat</string>
-  <string name="restorewindow">Herstellen</string>
   <string name="save">Opslaan</string>
-  <string name="selectfile">Verkennen...</string>
   <string name="yes">Ja</string>
   <string name="successful">Succesvol</string>
   <string name="summary">Samenvatting</string>
@@ -59,13 +55,10 @@
   <string name="block-warnloglabel">Waarschuwingen:</string>
   <string name="block-sharedipwarning">Note: $1 is een gedeelde of dynamisch IP-adres</string>
   <string name="block-rangeblockwarning">$1 wordt al getroffen door een rangeblock op $2.
-Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
+Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string>
   <string name="block-type">Blokkeren / deblokkeren</string>
   <string name="block-admin">Blokkerende moderator</string>
-  <string name="blocking">$1 blokkeren</string>
   <string name="block-none">Er is geen gebruiker te blokkeren.</string>
-  <string name="closing-whitelist">Gebruikers-whitelist updaten...</string>
-  <string name="closing-config">Configuratie-subpagina updaten...</string>
   <string name="config-summ">Gepersonaliseerde terugdraaisamenvattingen voor sjablonen</string>
   <string name="config-title">Opties</string>
   <string name="config-rememberme">Onthoud mijn gebruikersnaam</string>
@@ -113,7 +106,7 @@ Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
   <string name="historyform-title">Geschiedenis</string>
   <string name="historyform-retrieving-history">Geschiedenis opvragen</string>
   <string name="userhistory-title">Geschiedenis van uw wijzigingen</string>
-  <string name="irc-connected">Verbonden met IRC recentewijzigingen-feed</string>
+  <string name="irc-connected" fuzzy="true">Verbonden met IRC recentewijzigingen-feed</string>
   <string name="irc-nochannel">IRC-kanaal voor $1 niet gevonden; huggle gebruikt langzamere API-zoekopdrachten</string>
   <string name="irc-error">Het is niet mogelijk om te verbinden met de IRC recente wijzigingen-feed. Huggle gebruikt in plaats daarvan langzamere API-zoekopdrachten</string>
   <string name="login-tab-oauth">OAuth</string>
@@ -128,30 +121,25 @@ Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
   <string name="login-proxydomain">Domein:</string>
   <string name="login-start">Aanmelden</string>
   <string name="login-translate">Huggle vertalen</string>
-  <string name="login-captchatitle">Captcha vereist om aan te melden</string>
   <string name="login-progress-start">Aanmelden op $1</string>
   <string name="login-progress-retrieve-mw">Opvragen van informatie over MediaWiki van $1</string>
   <string name="login-ssl">Gebruik HTTPS (OpenSSL vereist)</string>
-  <string name="login-fail">Aanmelden mislukt</string>
+  <string name="login-fail" fuzzy="true">Aanmelden mislukt</string>
   <string name="login-error-cancelled">Geannuleerd.</string>
   <string name="login-error-invalid">Ongeldige gebruikersnaam</string>
-  <string name="login-error-nocaptcha">Captcha niet opgelost</string>
-  <string name="login-error-noconfig">Dit project heeft geen configuratiepagina voor Huggle</string>
+  <string name="login-error-noconfig" fuzzy="true">Dit project heeft geen configuratiepagina voor Huggle</string>
   <string name="login-error-nouser" fuzzy="true">Gebruiker bestaat niet</string>
   <string name="login-error-password">Onjuist wachtwoord</string>
   <string name="login-error-projdisabled">Huggle is momenteel uitgeschakeld op dit project.</string>
-  <string name="login-error-rollback">Het gebruik van Huggle op dit project vereist terugdraaien.</string>
-  <string name="login-error-unknown">Niet in staat om in te loggen.</string>
-  <string name="login-error-userlist">Fout bij het laden van de gebruikerslijst.</string>
+  <string name="login-error-unknown" fuzzy="true">Niet in staat om in te loggen.</string>
   <string name="login-error-version" fuzzy="true">Versie is verouderd. Werk bij naar de nieuwste versie.</string>
-  <string name="login-error-whitelist">Laden van de witte lijst is mislukt.</string>
+  <string name="login-error-whitelist" fuzzy="true">Laden van de witte lijst is mislukt.</string>
   <string name="main-page">Pagina</string>
   <string name="main-user">Gebruiker</string>
   <string name="main-contribs">Bijdragen</string>
   <string name="main-history">Geschiedenis</string>
   <string name="main-system">Systeem</string>
   <string name="main-system-messages">Nieuwe berichten weergeven</string>
-  <string name="main-system-requests">Aanvragen...</string>
   <string name="main-system-statistics">Statistieken...</string>
   <string name="main-system-options">Opties...</string>
   <string name="main-system-logout">Afmelden</string>
@@ -191,9 +179,6 @@ Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
   <string name="main-advanced">Geavanceerd...</string>
   <string name="main-stats">$1 bewerkingen per minuut; $2 terugdraaiingen per minuut</string>
   <string name="main-display-session-data">Sessiegegevens weergeven</string>
-  <string name="main-tip-warn">Gebruiker waarschuwen</string>
-  <string name="main-tip-browserback">Terug</string>
-  <string name="main-tip-browserforward">Verder</string>
   <string name="main-tip-pagedelete">Deze pagina verwijderen</string>
   <string name="main-tip-userreport">Gebruiker rapporteren</string>
   <string name="main-tip-userblock">Deze gebruiker blokkeren</string>
@@ -244,11 +229,6 @@ Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
   <string name="updater-open-manualdownloadpage">Downloadpagina openen</string>
   <string name="updater-disable-notify">Updates uitschakelen</string>
   <string name="userinfo-generic">Gebruikersinformatie</string>
-  <string name="userinfo-anonymous">Anoniem:</string>
-  <string name="userinfo-ignored">Witte lijst:</string>
-  <string name="userinfo-edits">Aantal bewerkingen:</string>
-  <string name="userinfo-blocklog">Blokkades:</string>
-  <string name="userinfo-warnlog">Waarschuwingen:</string>
   <string name="warning-title">$1 waarschuwen</string>
   <string name="warning-levelgroup">Waarschuwingsniveau</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -262,6 +242,5 @@ Deze blokkade zal het effect van de rangeblock overschrijven. Doorgaan?</string>
   <string name="error-noresponse">Geen antwoord</string>
   <string name="error-pagemissing">De pagina bestaat niet</string>
   <string name="error-unknown">Onbekende fout</string>
-  <string name="queue-widget-name">Wachtrij</string>
   <string name="logs-widget-name">Systeemlogboek</string>
 </resources>

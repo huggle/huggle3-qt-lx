@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Italiano</string>
   <string name="add">Aggiungi</string>
-  <string name="apply">Applica</string>
   <string name="cancel">Annulla</string>
   <string name="clear">Pulisci</string>
   <string name="close">Chiudi</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Cancellato</string>
   <string name="error">Errore</string>
   <string name="exit">Esci</string>
-  <string name="minimizewindow">Minimizza</string>
   <string name="no">No</string>
   <string name="ok">OK</string>
   <string name="remove">Rimuovi</string>
   <string name="rename">Rinomina</string>
   <string name="reload">Ricarica</string>
   <string name="result">Risultato</string>
-  <string name="restorewindow">Ripristina</string>
   <string name="save">Salva</string>
-  <string name="selectfile">Esplora...</string>
   <string name="yes">Sì</string>
   <string name="agf">Annulla questa modifica fatta in buona fede con un oggetto personalizzato</string>
   <string name="successful">Riuscito</string>
@@ -42,7 +38,7 @@
   <string name="link">Collegamento</string>
   <string name="reason">Motivo</string>
   <string name="diffid">ID diff</string>
-  <string name="whitelisted">$1 con punteggio $2 è stato inserito nella lista bianca</string>
+  <string name="whitelisted" fuzzy="true">$1 con punteggio $2 è stato inserito nella lista bianca</string>
   <string name="expiry-time">Tempo di scadenza</string>
   <string name="duration">Durata</string>
   <string name="no-token">Nessun token</string>
@@ -71,11 +67,8 @@
   <string name="block-token-e1">Il token non può essere recuperato: $1</string>
   <string name="block-error-no-info">Nessuna info utente era presente nella query (sei un admin?)</string>
   <string name="block-type">Blocca / sblocca</string>
-  <string name="block-admin">Blocco dell\'amministratore in corso</string>
-  <string name="blocking">Blocco $1</string>
-  <string name="block-none">Non non c\'è nessun utente da bloccare.</string>
-  <string name="closing-whitelist">Aggiornamento della whitelist...</string>
-  <string name="closing-config">Aggiornamento della  sottopagina di configurazione...</string>
+  <string name="block-admin">L\'amministratore che ha fatto il blocco</string>
+  <string name="block-none">Non c\'è nessun utente da bloccare.</string>
   <string name="config-summ">Campo oggetto personalizzato per il revert di template</string>
   <string name="config-title">Opzioni</string>
   <string name="config-rememberme">Ricorda il mio nome utente</string>
@@ -100,16 +93,22 @@
   <string name="config-defaultsummary">Sommario predefinito per le modifiche manuali</string>
   <string name="config-undosummary">Sommario per l\'annullamento delle proprie modifiche</string>
   <string name="config-confirmselfrevert">Conferma il revert delle proprie modifiche (tranne annulla)</string>
+  <string name="config-confirmwarned">Confermare il ritorno ad una modifica da parte di un utente ammonito</string>
+  <string name="config-confirmpage">Conferma il ripristino di pagine ignorate</string>
   <string name="config-userollback">Utilizza rollback, se disponibile</string>
   <string name="config-reportnone">Ignora</string>
   <string name="config-templates">Modello dei messaggi utente</string>
   <string name="config-templatetext">Mostra testo</string>
   <string name="config-template">Template</string>
   <string name="config-blockreason">Motivo di blocco predefinito</string>
+  <string name="config-blocktime">Durata predefinita del blocco per</string>
   <string name="config-blocktimeanon">utenti anonimi</string>
   <string name="config-blocktimereg">utenti registrati</string>
+  <string name="config-summaryprompt">Inserisci oggetto</string>
   <string name="config-history">Scarica tutta la cronologia di tutte le voci</string>
   <string name="config-defaultsprompt">Ripristina le impostazioni predefinite?</string>
+  <string name="config-logbrowsetitle">Percorso dei file di Log</string>
+  <string name="config-notify-update">Controlla aggiornamenti</string>
   <string name="delete-title">Cancella $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro delle cancellazioni:</string>
@@ -120,7 +119,7 @@
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
   <string name="historyform-retrieving-history">Recuperando la cronologia</string>
   <string name="history-error-message-title">Impossibile annullare</string>
-  <string name="login-intro">Per favore scegli un progetto e inserisci nome utente e password.</string>
+  <string name="login-intro" fuzzy="true">Per favore scegli un progetto e inserisci nome utente e password.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Accedi</string>
   <string name="login-language">Lingua:</string>
@@ -133,17 +132,17 @@
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Dominio:</string>
   <string name="login-retrieving-user-conf">Recupero della configurazione utente</string>
-  <string name="login-retrieving-info">Recupero delle informazioni utente</string>
+  <string name="login-retrieving-info" fuzzy="true">Recupero delle informazioni utente</string>
   <string name="login-start">Entra</string>
   <string name="login-translate">Traduci Huggle</string>
   <string name="login-progress-start">Accesso a $1</string>
   <string name="login-progress-global">Verifica della configurazione globale...</string>
   <string name="login-progress-config">Controllo pagine di configurazione...</string>
-  <string name="login-fail">Accesso non riuscito</string>
+  <string name="login-fail" fuzzy="true">Accesso non riuscito</string>
   <string name="login-error-age">Per usare Huggle in questo progetto devi essere iscritto da almeno $1 giorni</string>
   <string name="login-error-alldisabled">Huggle è attualmente disattivato in tutti i progetti.</string>
   <string name="login-error-invalid">Nome utente non valido</string>
-  <string name="login-error-nouser" fuzzy="true">L\'utente non esiste</string>
+  <string name="login-error-nouser">L\'utente non esiste</string>
   <string name="login-error-password">Password non corretta</string>
   <string name="login-error-projdisabled">Huggle è attualmente disabilitato su questo progetto.</string>
   <string name="main-no-reason">Nessun motivo è stato fornito dall\'utente</string>
@@ -154,9 +153,7 @@
   <string name="main-system">Sistema</string>
   <string name="main-system-messages">Mostra nuovi messaggi</string>
   <string name="main-system-statistics">Statistiche...</string>
-  <string name="main-system-showlog">Mostra il log</string>
   <string name="main-system-showqueue">Mostra coda</string>
-  <string name="main-system-showtwoqueues">Mostra due code</string>
   <string name="main-system-options">Opzioni...</string>
   <string name="main-system-change-provider">Il cambio del provider</string>
   <string name="main-system-change-provider-irc">IRC</string>
@@ -189,9 +186,6 @@
   <string name="main-usermessageother">Altro messaggio...</string>
   <string name="main-advanced">Avanzata...</string>
   <string name="main-revert-custom-reson">Fornisci una motivazione perché vuoi ripristinare questa modifica alla versione precedente</string>
-  <string name="main-tip-revertwarn">Ripristina questa revisione, ed emetti un avviso per l\'utente</string>
-  <string name="main-tip-browserback">Indietro</string>
-  <string name="main-tip-browserforward">Avanti</string>
   <string name="main-tip-pagetagdelete">Proponi questa pagina per la cancellazione</string>
   <string name="main-tip-pagedelete">Cancella questa pagina</string>
   <string name="main-tip-userreport">Segnala questo utente</string>
@@ -217,12 +211,6 @@
   <string name="stats-me">Me</string>
   <string name="update-title">Nuova versione disponibile</string>
   <string name="userinfo-generic">Informazioni utente</string>
-  <string name="userinfo-title">Informazioni utente per $1</string>
-  <string name="userinfo-edits">Numero di modifiche:</string>
-  <string name="userinfo-sessionedits">Modifiche in questa sessione:</string>
-  <string name="userinfo-sharedip">IP condiviso/dinamico:</string>
-  <string name="userinfo-blocklog">Blocchi:</string>
-  <string name="userinfo-warnlog">Avvisi:</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>
   <string name="warning-level1">Livello 1</string>
@@ -233,5 +221,5 @@
   <string name="warning-submit">Invia</string>
   <string name="error-pagemissing">La pagina non esiste</string>
   <string name="error-unknown">Errore sconosciuto</string>
-  <string name="editquery-success">$1 modificata con successo</string>
+  <string name="editquery-success" fuzzy="true">$1 modificata con successo</string>
 </resources>

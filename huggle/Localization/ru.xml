@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Русский</string>
   <string name="add">Добавить</string>
-  <string name="apply">Применить</string>
   <string name="cancel">Отмена</string>
   <string name="clear">Очистить</string>
   <string name="close">Закрыть</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Удалено</string>
   <string name="error">Ошибка</string>
   <string name="exit">Выход</string>
-  <string name="minimizewindow">Свернуть</string>
   <string name="no">Нет</string>
   <string name="ok">OK</string>
   <string name="remove">Убрать</string>
   <string name="rename">Переименовать</string>
   <string name="reload">Перезагрузить</string>
   <string name="result">Результат</string>
-  <string name="restorewindow">Восстановить</string>
   <string name="save">Сохранить</string>
-  <string name="selectfile">Открыть...</string>
   <string name="yes">Да</string>
   <string name="agf">Вернуть по обоснованным причинам как добросовестного редактора</string>
   <string name="successful">Успех</string>
@@ -41,6 +37,7 @@
   <string name="status">Статус</string>
   <string name="link">Ссылка</string>
   <string name="reason">Причина</string>
+  <string name="expiry-time">Время истечения</string>
   <string name="duration">Срок</string>
   <string name="flags">Флаги</string>
   <string name="about-contributors">Авторы:</string>
@@ -60,8 +57,6 @@
   <string name="block-rangeblockwarning">$1 уже заблокирован вместе с диапазоном $2.
 Эта блокировка будет применена только к данному IP. Продолжить?</string>
   <string name="block-fail">Невозможно заблокировать \'$1\'</string>
-  <string name="closing-whitelist">Обновление «белого списка» участника...</string>
-  <string name="closing-config">Обновление подстраницы настроек...</string>
   <string name="config-summ">Custom revert summaries for templates</string>
   <string name="config-title">Настройки</string>
   <string name="config-rememberme">Помнить мой логин</string>
@@ -113,22 +108,26 @@
   <string name="config-defaultsprompt">Восстановить умолчания?</string>
   <string name="config-logbrowsetitle">Расположение файла журнала</string>
   <string name="config-shortcutconflict">Комбинация \'$1\' конфликтует с другой комбинацией клавиш: \'$2\'.</string>
+  <string name="config-notify-update">Проверить на наличие обновлений</string>
   <string name="delete-title">Удалить $1</string>
   <string name="delete-reason">Причина:</string>
   <string name="delete-deletionlog">Журнал удалений:</string>
   <string name="delete-rem-talk">Delete associated talk</string>
   <string name="delete-notify">Уведомление автору</string>
+  <string name="delete-e2">Не удаётся удалить страницу</string>
+  <string name="delete-edsc">Не удаётся удалить страницу, потому что $1</string>
   <string name="historyform-title">История</string>
   <string name="historyform-retrieve-history">Получить историю</string>
   <string name="historyform-retrieving-history">Получение истории</string>
   <string name="history-error-message-title">Невозможно отменить</string>
   <string name="userhistory-title">История изменений</string>
-  <string name="irc-connected">Подключаюсь к IRC-каналу свежих правок</string>
-  <string name="irc-connecting">Попытка соединения с IRC-каналом свежих правок, это может занять несколько минут...</string>
-  <string name="irc-disconnected">Соединение с IRC-каналом было утеряно; повторное подключение...</string>
+  <string name="irc-connected" fuzzy="true">Подключаюсь к IRC-каналу свежих правок</string>
+  <string name="irc-connecting" fuzzy="true">Попытка соединения с IRC-каналом свежих правок, это может занять несколько минут...</string>
+  <string name="irc-disconnected" fuzzy="true">Соединение с IRC-каналом было утеряно; повторное подключение...</string>
   <string name="irc-nochannel">IRC-канал $1 не найден; будет использовано медленное соединение с применением API-запросов</string>
   <string name="irc-error">Невозможно подключиться к IRC-каналу свежих правок. Будет использовано медленное соединение с применением API-запросов</string>
   <string name="login-tab-oauth">OAuth</string>
+  <string name="login-tab-login">Войти</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Логин:</string>
@@ -139,62 +138,57 @@
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
   <string name="login-retrieving-user-conf">Получение пользовательской конфигурации</string>
-  <string name="login-retrieving-info">Получение пользовательской информации</string>
+  <string name="login-retrieving-info" fuzzy="true">Получение пользовательской информации</string>
   <string name="login-password-empty">Введённый вами пароль был пустым</string>
   <string name="login-start">Войти</string>
-  <string name="login-translate" fuzzy="true">Перевести Huggle</string>
-  <string name="login-captchatitle">Введите слово с картинки, чтобы войти</string>
+  <string name="login-translate">Перевести Huggle</string>
   <string name="login-progress-start">Вход в $1</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>
   <string name="login-progress-global">Проверяю глобальные настройки...</string>
   <string name="login-progress-config">Проверяю файлы конфигурации...</string>
+  <string name="login-progress-local">Проверка локальной конфигурации для $1</string>
+  <string name="login-progress-user">Проверка конфигурации участника для $1</string>
+  <string name="login-progress-user-info">Проверка информации об участнике $1</string>
   <string name="login-progress-whitelist">Обновляю белый список пользователей...</string>
+  <string name="login-ssl">Использовать HTTPS (требуется OpenSSL)</string>
+  <string name="login-fail" fuzzy="true">Ошибка входа в систему!</string>
   <string name="login-error-admin">Использование Huggle в этом проекте требует учётной записи администратора.</string>
   <string name="login-error-age">Использование Huggle в этом проекте требует, по крайней мере, $1 дней участия.</string>
   <string name="login-error-alldisabled">Huggle в данный момент отключен во всех проектах.</string>
-  <string name="login-error-approval">Использование Huggle в этом проекте требует одобрения заявки.</string>
-  <string name="login-error-autoconfirmed">Использование Huggle в этом проекте требует флага «автоподтверждённого».</string>
+  <string name="login-error-approval" fuzzy="true">Использование Huggle в этом проекте требует одобрения заявки.</string>
   <string name="login-error-cancelled">Отменено.</string>
-  <string name="login-error-captcha">Неправильный пароль или код подтверждения.</string>
-  <string name="login-error-config">Ошибка при загрузке страницы настроек.</string>
+  <string name="login-error-config" fuzzy="true">Ошибка при загрузке страницы настроек.</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
-  <string name="login-error-disabled">Huggle не включен для вашего аккаунта, проверьте пользовательские настройки.</string>
-  <string name="login-error-global" fuzzy="true">Ошибка при загрузке страницы глобальных настроек.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle не включен для вашего аккаунта, проверьте пользовательские настройки.</string>
+  <string name="login-error-global">Ошибка входа: не удается выполнить разбор глобальной конфигурации. Смотрите журнал отладки для получения более подробной информации.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
-  <string name="login-error-language">Ошибка при загрузке файла сообщений.</string>
-  <string name="login-error-nocaptcha">Captcha не доступна.</string>
-  <string name="login-error-noconfig">В этом проекте отсутствует страница конфигурации Huggle.</string>
-  <string name="login-error-nouser" fuzzy="true">Пользователя не существует.</string>
+  <string name="login-error-noconfig" fuzzy="true">В этом проекте отсутствует страница конфигурации Huggle.</string>
+  <string name="login-error-nouser">Пользователь не существует</string>
   <string name="login-error-password">Неправильный пароль.</string>
   <string name="login-error-projdisabled">Возможность использовать Huggle отключена в этом проекте.</string>
-  <string name="login-error-rollback">Использование Huggle в этом проекте требует флага «откатывающего».</string>
-  <string name="login-error-unknown">Невозможно войти.</string>
-  <string name="login-error-userlist">Не удалось загрузить список пользователей.</string>
-  <string name="login-error-version" fuzzy="true">Вы используете устаревшую версию программы. Пожалуйста, обновите её до последней версии.</string>
-  <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей.</string>
+  <string name="login-error-unknown" fuzzy="true">Невозможно войти.</string>
+  <string name="login-error-version">Эта версия устарела. Обновитесь до последней версии.</string>
+  <string name="login-error-whitelist" fuzzy="true">Ошибка при загрузке «белого списка» пользователей.</string>
+  <string name="main-no-reason">Причина не была предоставлена участником</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>
   <string name="main-contribs">Вклад</string>
   <string name="main-history">История</string>
-  <string name="main-new-messages" fuzzy="true">У вас новые сообщения; выберите &lt;code&gt;Система -&gt; Показать новые сообщения&lt;/code&gt; или нажмите M для просмотра.</string>
+  <string name="main-new-messages">У вас новые сообщения. Выберите Система -&gt; Показать новые сообщения или нажмите M для просмотра их.</string>
   <string name="main-system">Система</string>
   <string name="main-system-messages">Показать новые сообщения</string>
   <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
   <string name="main-system-savelog">Сохранить журнал...</string>
-  <string name="main-system-lists">Построитель списка...</string>
-  <string name="main-system-requests">Запросы...</string>
   <string name="main-system-statistics">Статистика...</string>
-  <string name="main-system-showlog">Показать журнал</string>
   <string name="main-system-showqueue">Показать очередь</string>
-  <string name="main-system-showtwoqueues">Показать 2 очереди</string>
   <string name="main-system-options">Настройки...</string>
   <string name="main-system-logout">Разлогиниться</string>
+  <string name="main-system-abort">Прервать</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Вики</string>
   <string name="main-system-exit">Закрыть</string>
   <string name="main-queue">Очередь</string>
   <string name="main-queue-next">Следующий</string>
-  <string name="main-queue-trim">Очистить от старых</string>
   <string name="main-queue-clear">Очистить текущую очередь</string>
   <string name="main-queue-count">$1 штук</string>
   <string name="main-queue-query">Делаю запрос...</string>
@@ -207,12 +201,13 @@
   <string name="main-revision-decline">Отклонить правку</string>
   <string name="main-revision">Правка</string>
   <string name="main-revision-view">Просмотр</string>
-  <string name="main-revision-revert" fuzzy="true">Отмена</string>
-  <string name="main-revision-faith" fuzzy="true">Отменить AGF</string>
+  <string name="main-revision-revert">Отменить отображаемую сейчас правку</string>
+  <string name="main-revision-faith">Вернуть, предполагая добрые намерения</string>
   <string name="main-revision-previous">Предыдущая</string>
   <string name="main-revision-next">Следующая</string>
   <string name="main-revision-latest">Последняя</string>
   <string name="main-tools">Инструменты</string>
+  <string name="main-tools-sess">Показать информацию о сессии</string>
   <string name="main-page-next">Далее</string>
   <string name="main-page-switchtotalk">Перейти к странице обсуждения</string>
   <string name="main-page-switchtosubject">Перейти к странице</string>
@@ -227,6 +222,7 @@
   <string name="main-page-watch">Следить</string>
   <string name="main-page-unwatch">Не следить</string>
   <string name="main-page-purge">Обновить шаблоны</string>
+  <string name="main-page-display">Показать эту страницу</string>
   <string name="main-page-patrol">Патрулировать</string>
   <string name="main-page-move">Переименовать...</string>
   <string name="main-page-protect">Защитить</string>
@@ -236,17 +232,21 @@
   <string name="main-user-info">Показать информацию об участнике</string>
   <string name="main-user-ignore">Добавить в белый список</string>
   <string name="main-user-unignore">Удалить из белого списка</string>
-  <string name="main-user-contribs" fuzzy="true">Обновить вклад</string>
+  <string name="main-user-contribs">Показать вклад пользователя в браузере</string>
+  <string name="main-user-clear-talk">Очистить страницу обсуждения участника</string>
   <string name="main-user-talk">Страница обсуждения</string>
   <string name="main-user-message">Сообщение...</string>
   <string name="main-user-warn">Предупредить...</string>
   <string name="main-user-report">Доложить</string>
+  <string name="main-user-clear-tp">Очистить страницу обсуждения участника</string>
   <string name="main-user-block">Блокировать...</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Вперёд</string>
   <string name="main-browser-open">Просмотр во внешнем браузере</string>
   <string name="main-browser-newedits">Показывать новые правки на странице</string>
   <string name="main-browser-newcontribs">Показывать новый вклад участника</string>
+  <string name="main-han-disconnect">Отключить</string>
+  <string name="main-han-connect">Подключить</string>
   <string name="main-help">Помощь</string>
   <string name="main-help-documentation">Документация</string>
   <string name="main-help-feedback">Отзыв</string>
@@ -257,13 +257,6 @@
   <string name="main-advanced">Другое...</string>
   <string name="main-stats">$1 правок в минуту, $2 отмен в минуту</string>
   <string name="main-display-whitelist">Показать белый список</string>
-  <string name="main-tip-revertwarn">Отменить эту правку и вынести участнику предупреждение</string>
-  <string name="main-tip-nextdiff">Показать следующую правку в очереди</string>
-  <string name="main-tip-revert">Отменить эту правку</string>
-  <string name="main-tip-warn">Предупредить участника</string>
-  <string name="main-tip-browserback">Назад</string>
-  <string name="main-tip-browserforward">Вперёд</string>
-  <string name="main-tip-browseropen">Просмотреть эту страницу во внешнем браузере</string>
   <string name="main-tip-pagetagdelete">Пометить страницу к удалению</string>
   <string name="main-tip-pagedelete">Удалить страницу</string>
   <string name="main-tip-userreport">Доложить об участнике</string>
@@ -275,7 +268,6 @@
   <string name="message-message">Текст:</string>
   <string name="message-summary">Описание изменений:</string>
   <string name="message-autosign">Автоматически добавлять подпись</string>
-  <string name="protect-title">Защита $1</string>
   <string name="protect-request-title">Запросы защиты для $1</string>
   <string name="protect-reason">Причина:</string>
   <string name="protect-expiry">Истекает:</string>
@@ -285,6 +277,7 @@
   <string name="protect-none">Нет</string>
   <string name="protect-semiprotection">Частичная защита</string>
   <string name="protect-fullprotection">Полная защита</string>
+  <string name="protect-message-title-fail">Не удаётся защитить</string>
   <string name="protect-moveprotection">Защита от переименования</string>
   <string name="queue-title">Очереди</string>
   <string name="queue-queues">Очереди:</string>
@@ -327,11 +320,12 @@
   <string name="report-duplicate">Об этом участнике уже сообщили</string>
   <string name="report-fail">Сообщение не отправлено \'$1\'</string>
   <string name="report-progress">Отправка сообщения \'$1\'...</string>
+  <string name="uaa-nr">Не была указана причина</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>
   <string name="revert-confirm-range">Автор целевой версии $2 из того же CIDR-диапазона, что и автор текущей версии $1; пожалуйста, проверьте целевую версию перед продолжением. Продолжить?</string>
   <string name="revert-confirm-same">Это действие откатит правку участника $1 к его же версии. Продолжить?</string>
   <string name="revert-confirm-warned">Откатить правки к версии $1; этот участник уже предупреждался. Продолжить?</string>
-  <string name="revert-error-first" fuzzy="true">Правка является единственной после создания страницы; её невозможно откатить.</string>
+  <string name="revert-error-first">Эта правка является первой правкой на странице, и она не может быть возвращена.</string>
   <string name="revert-only">Эта правка является единственной правкой страницы.</string>
   <string name="revert-creator">Последняя правка была сделана автором страницы, $1.</string>
   <string name="revert-delete-instead">Удалить страницу вместо этого?</string>
@@ -340,7 +334,6 @@
   <string name="revert-conflict">Страница была изменена игнорируемым участником \'$1\'</string>
   <string name="revert-fail">Невозможно отменить \'$1\'</string>
   <string name="revert-nochange">Содержимое текущей и целевой версий идентично</string>
-  <string name="speedy-title">Вынести $1 к быстрому удалению</string>
   <string name="speedy-reason">Причина:</string>
   <string name="speedy-parameters">Параметры:</string>
   <string name="speedy-notifycreator">Уведомить автора статьи</string>
@@ -372,15 +365,12 @@
   <string name="update-title">Доступна новая версия программы</string>
   <string name="update-progress">Загрузка новой версии...</string>
   <string name="update-error">Не удалось загрузить новую версию</string>
+  <string name="updater-title">Доступна новая версия Huggle</string>
+  <string name="updater-update">Обновить</string>
+  <string name="updater-close">Закрыть</string>
+  <string name="updater-disable-notify">Отключить обновления</string>
   <string name="userinfo-generic">Информация об участнике</string>
-  <string name="userinfo-title">Информация об участнике \'$1\'</string>
-  <string name="userinfo-anonymous">Аноним:</string>
-  <string name="userinfo-ignored">Белый список:</string>
-  <string name="userinfo-edits">Число правок:</string>
-  <string name="userinfo-sessionedits">Правки этого сеанса:</string>
-  <string name="userinfo-sharedip">Коллективный/динамический IP:</string>
-  <string name="userinfo-blocklog">Блокировки:</string>
-  <string name="userinfo-warnlog">Предупреждения:</string>
+  <string name="shortcut-revert">Отменить правку</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
@@ -397,7 +387,6 @@
   <string name="error-reloginfail">Не удалось войти, попробуйте перезапустить Huggle</string>
   <string name="error-timeout">Превышено время ожидания запроса</string>
   <string name="error-unknown">Неизвестная ошибка</string>
-  <string name="retrying">Повторная попытка...</string>
   <string name="block-done">Заблокирован \'$1\'</string>
   <string name="block-progress">Блокирую \'$1\'...</string>
   <string name="blocklog-fail">Не удалось открыть журнал блокировок \'$1\'</string>
@@ -411,15 +400,10 @@
   <string name="deletelog-fail">Не удалось открыть журнал удалений страницы \'$1\'</string>
   <string name="deletelog-none">Журнал удалений страницы \'$1\' пуст</string>
   <string name="deletelog-progress">Открывается журнал удалений страницы \'$1\'...</string>
-  <string name="diff-deleted">Эта версия страницы была удалена.</string>
-  <string name="diff-fail">Не удалось получить список изменений \'$1\'</string>
   <string name="edit-fail">Изменения страницы \'$1\' не сохранены</string>
   <string name="edit-progress">Редактирование \'$1\'...</string>
   <string name="history-fail">Не удалось получить историю правок \'$1\'</string>
   <string name="history-progress">Открывается история правок страницы \'$1\' ($2)...</string>
-  <string name="move-done">Переименовано \'$1\' в \'$2\'</string>
-  <string name="move-fail">Невозможно переименовать \'$1\' в \'$2\'</string>
-  <string name="move-progress">Переименовываю \'$1\' в \'$2\'...</string>
   <string name="notify-fail">Автор страницы \'$1\' не уведомлён</string>
   <string name="notify-unknowncreator">Автор страницы не известен</string>
   <string name="protect-done">Изменён уровень защиты для \'$1\'</string>
@@ -428,8 +412,6 @@
   <string name="protectlog-fail">Не удалось открыть журныл защиты страницы \'$1\'</string>
   <string name="protectlog-none">Журнал защиты страницы \'$1\' пуст</string>
   <string name="protectlog-progress">Открывается журнал защиты страницы \'$1\'...</string>
-  <string name="saveuserconfig-done">Пользовательские настройки обновлены</string>
-  <string name="saveuserconfig-fail">Невозможно обновить пользовательские настройки</string>
   <string name="saveuserconfig-progress">Обновление пользовательских настроек...</string>
   <string name="loadglobalconfig-fail">Ошибка при загрузке страницы глобальных настроек</string>
   <string name="loadprojectconfig-fail">Ошибка при загрузке страницы настроек проекта</string>
@@ -438,23 +420,12 @@
   <string name="reqprotection-duplicate">Защита этой страницы уже была запрошена</string>
   <string name="reqprotection-fail">Запрос на защиту страницы \'$1\' не отправлен</string>
   <string name="reqprotection-progress">Запрашивается защита страницы \'$1\'...</string>
-  <string name="speedy-fail" fuzzy="true">\'$1\' не помечена к быстрому удалению</string>
+  <string name="speedy-fail">Не удаётся пометить к быстрому удалению: $1</string>
   <string name="speedy-progress">Помечаем \'$1\' к быстрому удалению…</string>
-  <string name="warnlog-fail">Не удалось открыть журнал предупреждений для \'$1\'</string>
-  <string name="warnlog-none">\'$1\' не был предупреждён</string>
-  <string name="warnlog-progress">Открывается журнал предупреждений \'$1\'…</string>
-  <string name="usermessage-duplicate">Сообщение участнику \'$1\' по этому поводу уже передано</string>
   <string name="usermessage-fail">Сообщение участнику \'$1\' не передано</string>
   <string name="usermessage-progress">Передаётся сообщение участнику \'$1\'...</string>
-  <string name="warn-alreadyfinal">Этот участник уже получил последнее предупреждение</string>
   <string name="warn-alreadyblocked">Этот участник уже заблокирован</string>
-  <string name="warn-alreadyreported">Об этом участнике уже сообщили</string>
-  <string name="warn-oldedit">Этот участник не правил после предупреждения</string>
-  <string name="warn-recent">Этот участник был предупреждён менее $1 секунд назад</string>
-  <string name="warn-fail">Участник \'$1\' не предупреждён</string>
-  <string name="warn-progress">Предупреждается \'$1\'...</string>
   <string name="provider-failure">Отказ основного канала провайдера, попытка восстановить</string>
-  <string name="queue-widget-name">Очередь</string>
   <string name="logs-widget-name">Системные журналы</string>
   <string name="wait">Пожалуйста, подождите…</string>
   <string name="updating-wl">Начать с чистого листа...</string>

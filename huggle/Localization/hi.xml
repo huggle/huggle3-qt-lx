@@ -2,7 +2,6 @@
 <resources>
   <string name="name">हिन्दी</string>
   <string name="add">जोड़ें</string>
-  <string name="apply">लागू करें</string>
   <string name="cancel">रद्द करें</string>
   <string name="clear">साफ़ करें</string>
   <string name="close">बन्द करें</string>
@@ -11,14 +10,11 @@
   <string name="delete">मिटाएँ</string>
   <string name="error">त्रुटि</string>
   <string name="exit">निकास</string>
-  <string name="minimizewindow">विण्डो लघुतम करें</string>
   <string name="no">नहीं</string>
   <string name="ok">ठीक है</string>
   <string name="remove">हटाएँ</string>
   <string name="rename">पुनर्नामकरण</string>
-  <string name="restorewindow">विण्डो बहाल करें</string>
   <string name="save">सहेजें</string>
-  <string name="selectfile">सञ्चिका चुनें</string>
   <string name="yes">हाँ</string>
   <string name="agf">रुचिगत कारण देकर अच्छी भावना से किए गए सम्पादन के रूप में पूर्ववत करें</string>
   <string name="about-contributors">विकासकर्ता:</string>
@@ -38,8 +34,6 @@
   <string name="block-rangeblockwarning">$1 पहले से ही $2 पर श्रृंखला अवरोधन के कारण प्रभावित है।
 यह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
-  <string name="closing-whitelist">प्रयोक्ता श्वेतसूची को अद्यतित कर रहा है...</string>
-  <string name="closing-config">प्रयोक्ता समाकृति उपपृष्ठ को अद्यतित कर रहा है...</string>
   <string name="config-summ">साँचों के लिये सारांश को व्यक्तिगतरुप से वापस करे</string>
   <string name="config-title">विकल्प</string>
   <string name="config-rememberme">प्रयोक्तानाम स्मरण</string>
@@ -95,9 +89,9 @@
   <string name="delete-deletionlog">हटाए जाने का लॉग:</string>
   <string name="delete-rem-talk">सम्बन्धित वार्ता हटाएँ</string>
   <string name="delete-notify">निर्माता को सूचित करें</string>
-  <string name="irc-connected">आई आर सी हाल ही में परिवर्तन फीड से जुडे़</string>
-  <string name="irc-connecting">आई आर सी हाल ही में परिवर्तन फीड  से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लगेगा।</string>
-  <string name="irc-disconnected">आई आर सी हाल ही में परिवर्तन फीड से सम्पर्क टूटा; फिर से सम्पर्क किया जा रहा है...</string>
+  <string name="irc-connected" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड से जुडे़</string>
+  <string name="irc-connecting" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड  से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लगेगा।</string>
+  <string name="irc-disconnected" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड से सम्पर्क टूटा; फिर से सम्पर्क किया जा रहा है...</string>
   <string name="irc-nochannel">$1 के लिये आई आरसी चेनल नहीं मिला;</string>
   <string name="irc-error">आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग</string>
   <string name="login-language">भाषा:</string>
@@ -111,7 +105,6 @@
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-start">लॉग इन</string>
   <string name="login-translate" fuzzy="true">अनुवाद...</string>
-  <string name="login-captchatitle">लॉग इन के लिए कैप्चा की आवश्यकता है</string>
   <string name="login-progress-start" fuzzy="true">लॉग इन कर रहा है...</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
@@ -120,26 +113,20 @@
   <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
   <string name="login-error-age">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
   <string name="login-error-alldisabled">वर्तमान में हूगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।</string>
-  <string name="login-error-approval">इस परियोजना पर हूगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
-  <string name="login-error-autoconfirmed">इस परियोजना पर हूगल का उपयोग करने के लिए आपका खाता स्वतः पुष्टिकृत होना चाहिए।</string>
+  <string name="login-error-approval" fuzzy="true">इस परियोजना पर हूगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
   <string name="login-error-cancelled">रद्द किया गया।</string>
-  <string name="login-error-captcha">गलत पारशब्द या पुष्टिकरण कोड।</string>
-  <string name="login-error-config">समाकृति पृष्ठों को लोड करने में असफल रहा!</string>
+  <string name="login-error-config" fuzzy="true">समाकृति पृष्ठों को लोड करने में असफल रहा!</string>
   <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
-  <string name="login-error-disabled">आपके खाते के लिए हूगल सक्षम नहीं किया हुआ है, प्रयोक्ता समाकृति पृष्ठ देखें।</string>
+  <string name="login-error-disabled" fuzzy="true">आपके खाते के लिए हूगल सक्षम नहीं किया हुआ है, प्रयोक्ता समाकृति पृष्ठ देखें।</string>
   <string name="login-error-global" fuzzy="true">वैश्विक समाकृति पृष्ठ लोड करने में असफल रहा।</string>
   <string name="login-error-invalid">अमान्य प्रयोक्तानाम।</string>
-  <string name="login-error-language">सन्देश सञ्चिकाएँ लोड करने में असफल रहा।</string>
-  <string name="login-error-nocaptcha">कैप्चा नहीं सुलझा।</string>
-  <string name="login-error-noconfig">इस परियोजना का हूगल समाकृति पृष्ठ नहीं है।</string>
+  <string name="login-error-noconfig" fuzzy="true">इस परियोजना का हूगल समाकृति पृष्ठ नहीं है।</string>
   <string name="login-error-nouser" fuzzy="true">प्रयोक्ता अस्तित्वहीन।</string>
   <string name="login-error-password">गलत पारशब्द।</string>
   <string name="login-error-projdisabled">अभी इस परियोजना पर हूगल अक्षम किया हुआ है।</string>
-  <string name="login-error-rollback">इस परियोजना पर हूगल उपयोग के लिए रोलबैक की आवश्यकता है।</string>
-  <string name="login-error-unknown">लॉग इन करने में असमर्थ।</string>
-  <string name="login-error-userlist">प्रयोक्ता सूची लोड करने में असफल।</string>
+  <string name="login-error-unknown" fuzzy="true">लॉग इन करने में असमर्थ।</string>
   <string name="login-error-version" fuzzy="true">संस्करण अप्रचलित है। नवीनतम संस्करण प्राप्त करें।</string>
-  <string name="login-error-whitelist">प्रयोक्ता श्वेतसूची लोड करने में असफल।</string>
+  <string name="login-error-whitelist" fuzzy="true">प्रयोक्ता श्वेतसूची लोड करने में असफल।</string>
   <string name="main-page">पृष्ठ</string>
   <string name="main-user">प्रयोक्ता</string>
   <string name="main-contribs">योगदान</string>
@@ -149,18 +136,13 @@
   <string name="main-system-messages">नए सन्देश दिखाएँ</string>
   <string name="main-system-reconnectirc">आई आर सी फीड पर फीर से जुडे़</string>
   <string name="main-system-savelog">चिठ्ठा सहेजें</string>
-  <string name="main-system-lists">सूची बनाने वाला</string>
-  <string name="main-system-requests">आवेदन...</string>
   <string name="main-system-statistics">सांख्यिकी...</string>
-  <string name="main-system-showlog">चिठ्ठा दिखाये</string>
   <string name="main-system-showqueue">पंक्ति दिखाये</string>
-  <string name="main-system-showtwoqueues">दो पंक्तियाँ दिखाये</string>
   <string name="main-system-options">विकल्प...</string>
   <string name="main-system-logout">सत्रान्त</string>
   <string name="main-system-exit">निकास</string>
   <string name="main-queue">पंक्ति</string>
   <string name="main-queue-next">अगला</string>
-  <string name="main-queue-trim">छँटाई</string>
   <string name="main-queue-clear">वर्तमान साफ करें</string>
   <string name="main-queue-count" fuzzy="true">$1 वस्तुएँ</string>
   <string name="main-queue-query">जाँच शुरु...</string>
@@ -219,13 +201,6 @@
   <string name="main-usermessageother">अन्य सन्देश...</string>
   <string name="main-advanced">उन्नत...</string>
   <string name="main-stats">प्रति मिनट $1 सम्पादन, $2 reverts per minute</string>
-  <string name="main-tip-revertwarn">इस संशोधन को पूर्ववत कर सदस्य को चेतावनी दें</string>
-  <string name="main-tip-nextdiff">पंक्ति में अगला संशोधन दर्शायें</string>
-  <string name="main-tip-revert">इस संशोधन को पूर्ववत करें</string>
-  <string name="main-tip-warn">प्रयोक्ता को चतावनी दें</string>
-  <string name="main-tip-browserback">पीछे</string>
-  <string name="main-tip-browserforward">आगे</string>
-  <string name="main-tip-browseropen">इसे बाहरी ब्राउजर में दिखायें</string>
   <string name="main-tip-pagetagdelete">इस पृष्ठ को हटाने हेतु टैग करे</string>
   <string name="main-tip-pagedelete">यह पृष्ठ हटाये</string>
   <string name="main-tip-userreport">इस सदस्य को सूचना दें</string>
@@ -237,7 +212,6 @@
   <string name="message-message">सन्देश:</string>
   <string name="message-summary">सारान्श:</string>
   <string name="message-autosign">स्वचालित रूप से हस्ताक्षर जोड़ें</string>
-  <string name="protect-title">$1 को सुरक्षित करें</string>
   <string name="protect-request-title">$1 के लिए सुरक्षा अनुरोध करें</string>
   <string name="protect-reason">कारण:</string>
   <string name="protect-expiry">समाप्ति:</string>
@@ -301,7 +275,6 @@
   <string name="revert-conflict">उपेक्षित सदस्य \'$1\' द्वारा पृष्ठ पर सम्पादन किया गया था</string>
   <string name="revert-fail">\'$1\' को पूर्ववत नहीं किया</string>
   <string name="revert-nochange">लक्ष्य संशोधन की सामग्री वर्तमान संशोधन के समान है</string>
-  <string name="speedy-title">त्वरित टैग $1</string>
   <string name="speedy-reason">कारण:</string>
   <string name="speedy-parameters">पैरामीटर:</string>
   <string name="speedy-notifycreator">पृष्ठ निर्माता को सूचित करो</string>
@@ -333,14 +306,6 @@
   <string name="update-title">नवीन संस्करण उपलब्ध</string>
   <string name="update-progress">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
-  <string name="userinfo-title">\'$1\' के लिए प्रयोक्ता जानकारी</string>
-  <string name="userinfo-anonymous">नामरहित:</string>
-  <string name="userinfo-ignored">श्वेतसूचीकृत:</string>
-  <string name="userinfo-edits">सम्पादन संख्या:</string>
-  <string name="userinfo-sessionedits">इस सत्र के सम्पादन:</string>
-  <string name="userinfo-sharedip">साझाकृत/गतिशील आईपी:</string>
-  <string name="userinfo-blocklog">अवरोधन:</string>
-  <string name="userinfo-warnlog">चेतावनियाँ:</string>
   <string name="warning-title">$1 को चेतावनी दें</string>
   <string name="warning-levelgroup">चेतावनी स्तर</string>
   <string name="warning-levelauto">स्वतः</string>
@@ -356,7 +321,6 @@
   <string name="error-reloginfail">दोबारा लॉग इन करने में असफल, हूगल पुनः आरम्भ करने का प्रयास करें</string>
   <string name="error-timeout">अनुरोध का समय समाप्त हुआ</string>
   <string name="error-unknown">अज्ञात त्रुटि</string>
-  <string name="retrying">पुनः प्रयासरत...</string>
   <string name="block-done">\'$1\' अवरोधित</string>
   <string name="block-progress">\'$1\' को अवरोधित कर रहा है...</string>
   <string name="blocklog-fail">\'$1\' के लिए अवरोधन लॉग पुनःप्राप्त करने असफल</string>
@@ -370,15 +334,10 @@
   <string name="deletelog-fail">\'$1\' के लिए विलोपन लॉग पुनःप्राप्त करने में असफल</string>
   <string name="deletelog-none">\'$1\' के लिए विलोपन का कोई लॉग नहीं</string>
   <string name="deletelog-progress">\'$1\' के लिए विलोपन का लॉग पुनःप्राप्त कर रहा है...</string>
-  <string name="diff-deleted">यह पुनरावलोकन विलोपित कर दिया गया है।</string>
-  <string name="diff-fail">\'$1\' के लिए अन्तर पुनःप्राप्त करने में असफल</string>
   <string name="edit-fail">\'$1\' को संपादित नहीं किया</string>
   <string name="edit-progress">\'$1\' संपादित कर रहे है...</string>
   <string name="history-fail">\'$1\' के इतिहास को पुनः प्राप्त करने में असफल</string>
   <string name="history-progress">\'$1\' के इतिहास को पुनः प्राप्त कर रहे है {$2}...</string>
-  <string name="move-done">\'$1\' का \'$2\' की तरफ स्थानांतरण</string>
-  <string name="move-fail">\'$1\' का \'$2\' की तरफ स्थानांतरण नहीं किया</string>
-  <string name="move-progress">\'$1\' का \'$2\' की तरफ स्थानांतरण कर रहे है...</string>
   <string name="notify-fail">\'$1\' के निर्माता को सूचित नहीं किया</string>
   <string name="notify-unknowncreator">लेख निर्माता को खोज नहीं सकते</string>
   <string name="protect-done">\'$1\' के सुरक्षा स्तर बदला</string>
@@ -387,8 +346,6 @@
   <string name="protectlog-fail">\'$1\' के सुरक्षा लॉग को पुनः प्राप्त करने में असफल</string>
   <string name="protectlog-none">\'$1\' के सुरक्षा लॉग नहीं है</string>
   <string name="protectlog-progress">\'$1\' के सुरक्षा लॉग को पुनः प्राप्त कर रहे है...</string>
-  <string name="saveuserconfig-done">सदस्य विन्यास पृष्ठ को अद्यतन किया</string>
-  <string name="saveuserconfig-fail">सदस्य विन्यास पृष्ठ को अद्यतन नहीं किया</string>
   <string name="saveuserconfig-progress">सदस्य विन्यास पृष्ठ को अद्यतन कर रहे है...</string>
   <string name="loadglobalconfig-fail">वैश्विक विन्यास पृष्ठ को लोड करने में असफल</string>
   <string name="loadprojectconfig-fail">परियोजना विन्यास पृष्ठ को लोड करने में असफल</string>
@@ -399,17 +356,7 @@
   <string name="reqprotection-progress">\'$1\' के लिए सुरक्षा अनुरोध कर रहा है...</string>
   <string name="speedy-fail" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
   <string name="speedy-progress" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
-  <string name="warnlog-fail" fuzzy="true">\'$1\' के लिए चेतावनी लॉग पुनःप्राप्त करने में असफल</string>
-  <string name="warnlog-none" fuzzy="true">\'$1\' को चेताया नहीं गया है</string>
-  <string name="warnlog-progress" fuzzy="true">\'$1\' के लिए चेतावनी लॉग पुनःप्राप्त कर रहा है...</string>
-  <string name="usermessage-duplicate">उसी बारे में सन्देश पहले से उपस्थित था</string>
   <string name="usermessage-fail">\'$1\' को सन्देश नहीं भेजा</string>
   <string name="usermessage-progress">\'$1\' को सन्देश भेज रहा है...</string>
-  <string name="warn-alreadyfinal">इस प्रयोक्ता को पहले ही अन्तिम चेतावनी दी जा चुकी है</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
-  <string name="warn-alreadyreported">इस प्रयोक्ता की पहले ही रिपोर्ट की जा चुकी है</string>
-  <string name="warn-oldedit">नवीनतम चेतावनी के बाद से इस प्रयोक्ता ने कोई सम्पादन नहीं किया है</string>
-  <string name="warn-recent">इस प्रयोक्ता को $1 सेकण्ड पहले ही चेतावनी दी गई थी</string>
-  <string name="warn-fail">\'$1\' को चतावनी नहीं दी</string>
-  <string name="warn-progress">\'$1\' को चेतावनी दे रहा है...</string>
 </resources>

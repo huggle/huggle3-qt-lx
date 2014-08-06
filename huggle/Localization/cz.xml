@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Čeština</string>
   <string name="add">Přidat</string>
-  <string name="apply">Použít</string>
   <string name="cancel">Zrušit</string>
   <string name="clear">Smazat</string>
   <string name="close">Zavřít</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Smazáno</string>
   <string name="error">Chyba</string>
   <string name="exit">Ukončit</string>
-  <string name="minimizewindow">Minimalizovat</string>
   <string name="no">Ne</string>
   <string name="ok">OK</string>
   <string name="remove">Smazat</string>
   <string name="rename">Přejmenovat</string>
   <string name="reload">Obnovit</string>
   <string name="result">Výsledek</string>
-  <string name="restorewindow">Obnovit</string>
   <string name="save">Uložit</string>
-  <string name="selectfile">Vybrat soubor...</string>
   <string name="yes">Ano</string>
   <string name="agf">Vrátit edit v dobré víře (upravit s vlastním důvodem)</string>
   <string name="successful">Úspěšně</string>
@@ -42,7 +38,7 @@
   <string name="link">Odkaz</string>
   <string name="reason">Důvod</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 se skóre $2 byl vložen do wl</string>
+  <string name="whitelisted" fuzzy="true">$1 se skóre $2 byl vložen do wl</string>
   <string name="expiry-time">Datum vypršení</string>
   <string name="duration">Doba</string>
   <string name="no-token">Chybí token</string>
@@ -73,10 +69,7 @@
   <string name="block-error-no-info">Žádne informace o uzivateli nebyly v dotazu (jste sysop?)</string>
   <string name="block-type">Zablokovat / odblokovat</string>
   <string name="block-admin">Správce, který provedl tento blok</string>
-  <string name="blocking">Blokování $1</string>
   <string name="block-none">Neexistuje žádný uživatel ktereho lze zablokovat.</string>
-  <string name="closing-whitelist">Probíhá update white listu...</string>
-  <string name="closing-config">Aktualizace konfigurace...</string>
   <string name="config-summ">Vlastní shrnutí pro editace pomocí template</string>
   <string name="config-title">Nastavení</string>
   <string name="config-rememberme">Uložit mé uživatelské jméno</string>
@@ -151,18 +144,18 @@
   <string name="history-error-message-title">Nelze vrátit</string>
   <string name="history-error">Tuto položku nelze vrátit zpět, stránka byla změněna nebo odstraněna a huggle jí už nemůže obnovit z tohoto bodu. Pokud jí chcete opravdu vrátit, musíte to udělat ručně pomocí MediaWiki rozhraní.</string>
   <string name="userhistory-title">Historie vašich změn</string>
-  <string name="irc-connected">Připojen k serveru IRC</string>
-  <string name="irc-connecting">Pokouším se připojit k IRC serveru...</string>
-  <string name="irc-disconnected">Ztraceno připojení k IRC seznamu, připojuji se...</string>
+  <string name="irc-connected" fuzzy="true">Připojen k serveru IRC</string>
+  <string name="irc-connecting" fuzzy="true">Pokouším se připojit k IRC serveru...</string>
+  <string name="irc-disconnected" fuzzy="true">Ztraceno připojení k IRC seznamu, připojuji se...</string>
   <string name="irc-nochannel">IRC kanál $1 nenalezen; místo toho použiji pomalejší API dotazy</string>
   <string name="irc-error">Nepodařilo se připojit k IRC serveru, používám pomalejší API systém</string>
-  <string name="irc-stop">Čekání na zastavení primárního poskytovatele</string>
+  <string name="irc-stop" fuzzy="true">Čekání na zastavení primárního poskytovatele</string>
   <string name="irc-not">Zdroj: IRC je zakázán v projekt configu</string>
   <string name="irc-failure" fuzzy="true">Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh</string>
   <string name="irc-wait">Čekání na zastavení IRC poskytovatele</string>
   <string name="irc-switch-rc">Přepnutí na wiki</string>
   <string name="login-old">Načítání uživatelských nastavení ze starého umístění</string>
-  <string name="login-intro">Prosím zadejte své uživatelské jméno Wikipedie a vyberte projekt.</string>
+  <string name="login-intro" fuzzy="true">Prosím zadejte své uživatelské jméno Wikipedie a vyberte projekt.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Přihlásit</string>
   <string name="login-language">Jazyk:</string>
@@ -183,14 +176,13 @@
   <string name="login-fail-rollback-rights" fuzzy="true">Přihlášení se nezdařilo, protože nemáte oprávnění rollback na tomto projektu</string>
   <string name="login-failed-autoconfirm-rights" fuzzy="true">Přihlášení se nezdařilo, protože nejste autoconfirmed na tomto projektu</string>
   <string name="login-failed-edit" fuzzy="true">Přihlášení se nezdařilo, protože nemáte dostatek úprav na tomto projektu</string>
-  <string name="login-retrieving-info">Načítání uživatelských informací</string>
+  <string name="login-retrieving-info" fuzzy="true">Načítání uživatelských informací</string>
   <string name="login-password-empty">Zadané heslo je prázdné</string>
   <string name="login-fail-wrong-name">Nezadali jste správné uživatelské jméno pro přihlášení</string>
   <string name="login-api" fuzzy="true">Chyba: api.php, odpovědělo s neznámým výsledkem: $1</string>
   <string name="login-start">Přihlásit</string>
   <string name="login-oauth-notsupported">Tato metoda není v této chvíli podporována</string>
   <string name="login-translate">Přeložit Huggle</string>
-  <string name="login-captchatitle">CAPTCHA je potřeba k přihlášení</string>
   <string name="login-progress-start">Přihlašování na $1</string>
   <string name="login-progress-retrieve-mw">Načítání informací o MediaWiki pro $1</string>
   <string name="login-progress-language">Nahrávám lokalizace...</string>
@@ -201,30 +193,24 @@
   <string name="login-progress-user-info">Kontroluji informace o uživateli pro $1</string>
   <string name="login-progress-whitelist">Stahuji WL...</string>
   <string name="login-ssl">Použití protokolu HTTPS (vyžaduje OpenSSL)</string>
-  <string name="login-fail">Přihlášení selhalo</string>
+  <string name="login-fail" fuzzy="true">Přihlášení selhalo</string>
   <string name="login-error-admin">Použití Huggle na tomto projektu vyžaduje účet správce.</string>
   <string name="login-error-age">Použití Huggle na tomto projektu vyžaduje účet alespoň $1 dní starý.</string>
   <string name="login-error-alldisabled">Huggle je v současné době zakázána na všech projektech.</string>
-  <string name="login-error-approval">Použití Huggle na tento projekt vyžaduje schválení.</string>
-  <string name="login-error-autoconfirmed">Použití Huggle na tento projekt vyžaduje, aby váš účet \"confirmed\"</string>
+  <string name="login-error-approval" fuzzy="true">Použití Huggle na tento projekt vyžaduje schválení.</string>
   <string name="login-error-cancelled">Zrušeno.</string>
-  <string name="login-error-captcha">Nesprávné heslo nebo potvrzovací kód.</string>
-  <string name="login-error-config">Neúspěšné přihlášení nelze načíst místní config: $1</string>
+  <string name="login-error-config" fuzzy="true">Neúspěšné přihlášení nelze načíst místní config: $1</string>
   <string name="login-error-count">Použití Huggle na tomto projektu vyžaduje alespoň $1 úprav.</string>
-  <string name="login-error-disabled">Huggle není povolena pro váš účet, zkontrolujte stránku konfigurace uživatele.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle není povolena pro váš účet, zkontrolujte stránku konfigurace uživatele.</string>
   <string name="login-error-global" fuzzy="true">Přihlášení selhalo, nelze zpracovat globalní nastavení. Více informací je v debug logu.</string>
   <string name="login-error-invalid">Neplatné uživatelské jméno</string>
-  <string name="login-error-language">Nepodařilo se načíst soubory lokalizace</string>
-  <string name="login-error-nocaptcha">CAPTCHA není vyřešena</string>
-  <string name="login-error-noconfig">Tento projekt nemá žádnou konfigurační stránku Huggle</string>
+  <string name="login-error-noconfig" fuzzy="true">Tento projekt nemá žádnou konfigurační stránku Huggle</string>
   <string name="login-error-nouser" fuzzy="true">Uživatelské jméno neexistuje.</string>
   <string name="login-error-password">Chybné heslo</string>
   <string name="login-error-projdisabled">Huggle je v současné době zakázána na tomto projektu.</string>
-  <string name="login-error-rollback">Použití Huggle na tento projekt vyžaduje rollback flag.</string>
-  <string name="login-error-unknown">Nelze se přihlásit.</string>
-  <string name="login-error-userlist">Nepodařilo se načíst seznam uživatelů.</string>
+  <string name="login-error-unknown" fuzzy="true">Nelze se přihlásit.</string>
   <string name="login-error-version" fuzzy="true">Verze je zastaralá. Aktualizovat na nejnovější verzi.</string>
-  <string name="login-error-whitelist">Nepodařilo se načíst uživatelský whitelist.</string>
+  <string name="login-error-whitelist" fuzzy="true">Nepodařilo se načíst uživatelský whitelist.</string>
   <string name="main-menu-provider-stop">Zastavit poskytovatele</string>
   <string name="main-no-reason">Žádný důvod nebyl poskytnut</string>
   <string name="main-restoring-slap" fuzzy="true">V tuto chvíli obnovuji jiný edit, prosím počkejte.</string>
@@ -234,17 +220,13 @@
   <string name="main-history">Historie</string>
   <string name="main-new-messages" fuzzy="true">Máte nové zprávy; Vyberte systém-&gt; Ukázat nové zprávy nebo stisknutím M jejich zobrazení.</string>
   <string name="main-system">Systém</string>
-  <string name="main-status-bar">&lt;b&gt;$1&lt;/b&gt;editací a &lt;b&gt;$2&lt;/b&gt;dotazů. Ignoruji &lt;b&gt;$3&lt;/b&gt; uživatelů, velikost fronty: &lt;b&gt;$4&lt;/b&gt; Statistiky: $5</string>
+  <string name="main-status-bar" fuzzy="true">&lt;b&gt;$1&lt;/b&gt;editací a &lt;b&gt;$2&lt;/b&gt;dotazů. Ignoruji &lt;b&gt;$3&lt;/b&gt; uživatelů, velikost fronty: &lt;b&gt;$4&lt;/b&gt; Statistiky: $5</string>
   <string name="main-shutting-down">Huggle se vypíná, požadavek ignorován</string>
   <string name="main-system-messages">Zobrazit nové zprávy</string>
   <string name="main-system-reconnectirc">Připojit k IRC</string>
   <string name="main-system-savelog">Uložit log...</string>
-  <string name="main-system-lists">List Builder...</string>
-  <string name="main-system-requests">Požadavky...</string>
   <string name="main-system-statistics">Statistiky...</string>
-  <string name="main-system-showlog">Zobrazit log</string>
   <string name="main-system-showqueue">Zobrazit frontu</string>
-  <string name="main-system-showtwoqueues">Zobrazit dvě fronty</string>
   <string name="main-system-options">Nastavení...</string>
   <string name="main-system-logout">Odhlásit se</string>
   <string name="main-system-abort">Přerušit</string>
@@ -254,7 +236,6 @@
   <string name="main-system-exit">Ukončit</string>
   <string name="main-queue">Fronta</string>
   <string name="main-queue-next">Další</string>
-  <string name="main-queue-trim">Vymazat</string>
   <string name="main-queue-clear">Vymazat aktuální frontu</string>
   <string name="main-queue-count">$1 položek</string>
   <string name="main-queue-query">Probíhá dotaz...</string>
@@ -277,7 +258,6 @@
   <string name="main-revision-latest">Nejnovější</string>
   <string name="main-tools">Nástroje</string>
   <string name="main-tools-sess">Zobrazit informace o relaci</string>
-  <string name="main-tools-wl">Zobrazení whitelistu</string>
   <string name="main-tools-il">Ukázat ignore list této wiki</string>
   <string name="main-page-next">Další</string>
   <string name="main-page-switchtotalk">Přepnout do diskuse</string>
@@ -341,13 +321,6 @@
   <string name="main-display-whitelist">Zobrazení whitelistu</string>
   <string name="main-revert-custom-reson">Zadejte důvod proč chcete vrátit tyto úpravy na předchozí revizi</string>
   <string name="main-log1">Obnovení vybrané revize $1</string>
-  <string name="main-tip-revertwarn">Vrátit tuto revizi a upozornit uživatele</string>
-  <string name="main-tip-nextdiff">Zobrazit další revize ve frontě</string>
-  <string name="main-tip-revert">Revertovat tuto revizi</string>
-  <string name="main-tip-warn">Varovat uživatele</string>
-  <string name="main-tip-browserback">Zpět</string>
-  <string name="main-tip-browserforward">Vpřed</string>
-  <string name="main-tip-browseropen">Zobrazit toto v externím prohlížeči</string>
   <string name="main-tip-pagetagdelete">Tag tuto stránku na smazání</string>
   <string name="main-tip-pagedelete">Smazat stránku</string>
   <string name="main-tip-userreport">Nahlásit tohoto uživatele správci</string>
@@ -367,7 +340,6 @@
   <string name="message-fail-retrieve-talk">nelze načíst diskusní stránku tohoto uživatele</string>
   <string name="message-done">Úspěšně doručeny zprávy pro uživatele: $1</string>
   <string name="message-fail-token-1">nelze získat edit token</string>
-  <string name="protect-title">Zamknout $1</string>
   <string name="protect-request-title">Žádost o ochranu $1</string>
   <string name="protect-reason">Důvod:</string>
   <string name="protect-expiry">Čas vypršení:</string>
@@ -453,7 +425,6 @@
   <string name="revert-fail">Nelze vrátit $1: $2</string>
   <string name="revert-nochange">Obsah cílové revize je stejný jako aktuální revize</string>
   <string name="revert-fail-pre-flight">Předletová kontrola selhala: $1</string>
-  <string name="speedy-title">Označit pro rychlé smazání $1</string>
   <string name="speedy-reason">Důvod:</string>
   <string name="speedy-parameters">Parametry:</string>
   <string name="speedy-notifycreator">Oznámit tvůrci stránky</string>
@@ -492,14 +463,6 @@
   <string name="updater-close">Zavřít</string>
   <string name="updater-disable-notify">Zakázat aktualizace</string>
   <string name="userinfo-generic">Uživatelské info</string>
-  <string name="userinfo-title">Informace o uživateli $1</string>
-  <string name="userinfo-anonymous">Anonymní:</string>
-  <string name="userinfo-ignored">Whitelisted:</string>
-  <string name="userinfo-edits">Počet editací:</string>
-  <string name="userinfo-sessionedits">Úpravy této relace:</string>
-  <string name="userinfo-sharedip">Sdílená/dynamická IP:</string>
-  <string name="userinfo-blocklog">Bloky:</string>
-  <string name="userinfo-warnlog">Upozornění:</string>
   <string name="warning-title">Varovat $1</string>
   <string name="warning-levelgroup">Úroveň pro upozornění</string>
   <string name="warning-levelauto">Automatické</string>
@@ -518,7 +481,6 @@
   <string name="error-reloginfail">Nepodařilo se přihlásit zpět, zkuste restartovat Huggle</string>
   <string name="error-timeout">Vypršel časový limit žádosti</string>
   <string name="error-unknown">Neznámá chyba</string>
-  <string name="retrying">Opakuji...</string>
   <string name="block-done">$1 byl zablokován</string>
   <string name="block-progress">Blokování $1</string>
   <string name="blocklog-fail">Nepodařilo se získat seznam bloků pro $1</string>
@@ -533,15 +495,10 @@
   <string name="deletelog-fail">Nepodařilo se získat log výmazů pro $1</string>
   <string name="deletelog-none">Žádný seznam výmazů pro $1</string>
   <string name="deletelog-progress">Stahuji seznam výmazů pro $1</string>
-  <string name="diff-deleted">Tato revize byla odstraněna.</string>
-  <string name="diff-fail">Nepodařilo se načíst diff $1</string>
   <string name="edit-fail">Nepodařilo se editovat $1</string>
   <string name="edit-progress">Editování $1 ...</string>
   <string name="history-fail">Nepodařilo se načíst historii $1</string>
   <string name="history-progress">Načítání historie $1 ($2)...</string>
-  <string name="move-done">Stránka $1 byla přesunuta do $2</string>
-  <string name="move-fail">Nepodařilo se přesunout $1 do $2</string>
-  <string name="move-progress">Přesouvám $1 do $2...</string>
   <string name="notify-fail">Nepodařilo se notifikovat autora $1</string>
   <string name="notify-unknowncreator">Nelze najít autora stránky</string>
   <string name="protect-done">Zámek $1 byl upraven</string>
@@ -550,8 +507,6 @@
   <string name="protectlog-fail">Nepodařilo se stáhnout log uzamčení $1</string>
   <string name="protectlog-none">Žádný seznam zámků pro $1</string>
   <string name="protectlog-progress">Stahuji seznam uzamknutí pro $1</string>
-  <string name="saveuserconfig-done">Aktualizace stránky konfigurace uživatele dokončena</string>
-  <string name="saveuserconfig-fail">Nepodařilo se aktualizovat uživatelské nastavení</string>
   <string name="saveuserconfig-progress">Aktualizace stránky konfigurace uživatele...</string>
   <string name="loadglobalconfig-fail">Nepodařilo se načíst stránku globální konfigurace</string>
   <string name="loadprojectconfig-fail">Nepodařilo se načíst konfiguraci tohoto projektu</string>
@@ -560,39 +515,26 @@
   <string name="reqprotection-duplicate">Ochrana již byla požadována</string>
   <string name="reqprotection-fail">Nelze požádat o ochranu $1</string>
   <string name="reqprotection-progress">Požaduji ochranu \'$1\'...</string>
-  <string name="reqprotection-title">Požádat o ochranu \"$1\"</string>
   <string name="speedy-fail">Na straně \'$1\' nelze nastavit tag pro rychlé smazání</string>
   <string name="speedy-progress">Označuji \'$1\' na rychlé smazání...</string>
   <string name="speedy-wrong">Požadovaný tag není platný, zvolte prosím jiný důvod k odstranění strany</string>
   <string name="speedy-finished">Hotovo</string>
-  <string name="warnlog-fail">Nepodařilo se získat seznam varování pro $1</string>
-  <string name="warnlog-none">Uživatel \'$1\' nebyl upozornen</string>
-  <string name="warnlog-progress">Načítání seznamu varování pro \'$1\'...</string>
-  <string name="usermessage-duplicate">Stejná zpráva již byla zaslána</string>
   <string name="usermessage-fail">Nepodařilo se poslat zprávu uživateli \'$1\'</string>
   <string name="usermessage-progress">Posílám zprávu \'$1\'...</string>
-  <string name="warn-alreadyfinal">Tento uživatel již má poslední varování</string>
   <string name="warn-alreadyblocked">Tento uživatel je již zablokovaný</string>
-  <string name="warn-alreadyreported">Tento uživatel již byl nahlášen</string>
-  <string name="warn-oldedit">Tento uživatel neprovedl žádnou editaci od posledního varování</string>
-  <string name="warn-recent">Uživatel byl varován před méně než $1 vteřinami</string>
-  <string name="warn-fail">Nelze varovat uživatele \'$1\'!</string>
-  <string name="warn-progress">Varuji \'$1\'...</string>
-  <string name="editquery-success">Úspěsně upravena $1</string>
+  <string name="editquery-success" fuzzy="true">Úspěsně upravena $1</string>
   <string name="editquery-token">Získávání tokenu k úpravě stránky $1</string>
   <string name="editquery-token-error">Nelze získat edit token</string>
   <string name="provider-failure">Selhání primárního poskytovatele feedu, snažím se jej obnovit</string>
   <string name="provider-primary-failure">Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh</string>
   <string name="rc-error">Data nelze načíst z wiki feedu, poslední chyba: $1</string>
   <string name="whitelist-download">Stahuji whitelist</string>
-  <string name="queue-widget-name">Fronta</string>
   <string name="logs-widget-name">Logy</string>
   <string name="wait">Prosím čekejte...</string>
   <string name="function-miss">Funkce není nyní k dispozici</string>
   <string name="missing-aiv">Tento projekt nepoužívá AIV</string>
   <string name="missing-page">Neexistuje žádná stránka $1 na této wiki</string>
   <string name="updating-wl">Aktualizace seznamu povolených...</string>
-  <string name="updating-uc">Aktualizace stránky konfigurace uživatele na huggle3.css na wiki</string>
   <string name="feature-nfru">Tato funkce je pouze pro IP</string>
   <string name="report-no-user">Nebyl vybrán žádný uživatel k reportu, prosím nejprve vyberte uživatele</string>
   <string name="welcome-tp-empty-fail">Tento uživatel nemá prázdnou diskusní stránku, jste si jisti, že mu opravdu chcete odeslat uvítání?</string>

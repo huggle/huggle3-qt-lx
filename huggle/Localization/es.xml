@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Español</string>
   <string name="add">Añadir</string>
-  <string name="apply">Aplicar</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Borrar</string>
   <string name="close">Cerrar</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Borrado</string>
   <string name="error">Error</string>
   <string name="exit">Salir</string>
-  <string name="minimizewindow">Minimizar</string>
   <string name="no">No</string>
   <string name="ok">Aceptar</string>
   <string name="remove">Eliminar</string>
   <string name="rename">Renombrar</string>
   <string name="reload">Recargar</string>
   <string name="result">Resultado</string>
-  <string name="restorewindow">Restaurar</string>
   <string name="save">Guardar</string>
-  <string name="selectfile">Examinar...</string>
   <string name="yes">Sí</string>
   <string name="agf">Revertir como edición de buena fe con motivo personalizado</string>
   <string name="successful">¡Operación realizada con éxito!</string>
@@ -42,7 +38,7 @@
   <string name="link">Enlace</string>
   <string name="reason">Motivo</string>
   <string name="diffid">Id. de dif.</string>
-  <string name="whitelisted">$1con puntuación de  $2  ha sido introducida en la lista blanca</string>
+  <string name="whitelisted" fuzzy="true">$1con puntuación de  $2  ha sido introducida en la lista blanca</string>
   <string name="expiry-time">Tiempo de expiración</string>
   <string name="duration">Duración</string>
   <string name="no-token">Sin token</string>
@@ -59,7 +55,7 @@
   <string name="block-message">Mensaje en página de discusión:</string>
   <string name="block-anononly">Bloquear usuarios anónimos solamente.</string>
   <string name="block-creation">Impedir la creación de cuentas de usuario.</string>
-  <string name="block-autoblock">Bloquear automáticamente la dirección IP usada por este usuario.</string>
+  <string name="block-autoblock">Activar bloqueos automáticos</string>
   <string name="block-email">Impedir que el usuario envíe correo electrónico.</string>
   <string name="block-usertalk">discusión</string>
   <string name="block-usercontribs">contribuciones</string>
@@ -73,10 +69,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
   <string name="block-error-no-info">Ninguna información de usuario presente en la consulta (eres un sysop?)</string>
   <string name="block-type">Bloquear/desbloquear</string>
-  <string name="blocking">Bloqueando a $1</string>
   <string name="block-none">No hay ningún usuario a bloquear.</string>
-  <string name="closing-whitelist">Actualizando lista blanca...</string>
-  <string name="closing-config">Actualizando subpágina de configuración...</string>
   <string name="config-title">Opciones</string>
   <string name="config-rememberme">Recordar mi nombre de usuario</string>
   <string name="config-autowhitelist">Ignorar usuarios automáticamente</string>
@@ -129,12 +122,14 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-shortcutconflict">El atajo \'$1\' coincide con el atajo existente para \'{1}\'.</string>
   <string name="config-no-colon">No puedes utilizar : en nombre de la cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
+  <string name="config-notify-beta">Buscar versiones beta si las hay</string>
   <string name="delete-title">Borrar $1</string>
   <string name="delete-reason">Razón:</string>
   <string name="delete-deletionlog">Registro de borrados:</string>
   <string name="delete-rem-talk">Eliminar discusión asociada</string>
   <string name="delete-notify">Notificar al creador</string>
   <string name="delete-token01">Obteniendo ficha para borrar $1</string>
+  <string name="delete-token02">La consulta no devolvió ninguna señal</string>
   <string name="delete-e1">La página no se puede eliminar: $1</string>
   <string name="delete-e2">No se puede eliminar la página</string>
   <string name="delete-edsc">No se puede eliminar la página porque $1</string>
@@ -145,12 +140,12 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="historyform-retrieving-history">Recuperando historial</string>
   <string name="history-error-message-title">No se puede deshacer</string>
   <string name="userhistory-title">Historial de tus cambios</string>
-  <string name="irc-connected">Conectado al canal IRC de cambios recientes</string>
-  <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes; esto puede tomar un momento...</string>
-  <string name="irc-disconnected">Conexión al canal IRC de cambios recientes perdida; reconectando...</string>
+  <string name="irc-connected" fuzzy="true">Conectado al canal IRC de cambios recientes</string>
+  <string name="irc-connecting" fuzzy="true">Intentando conectar al canal IRC de cambios recientes; esto puede tomar un momento...</string>
+  <string name="irc-disconnected" fuzzy="true">Conexión al canal IRC de cambios recientes perdida; reconectando...</string>
   <string name="irc-nochannel">Canal IRC para $1 no encontrado; usando peticiones API más lentas en lugar de ello</string>
   <string name="irc-error">No se puede conectar al canal IRC de cambios recientes. Usando peticiones API más lentas en lugar de ello</string>
-  <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña.</string>
+  <string name="login-intro" fuzzy="true">Elige un proyecto y escribe tu nombre de usuario y tu contraseña.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Acceder</string>
   <string name="login-language">Idioma:</string>
@@ -162,11 +157,11 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-proxyaddress">Dirección:</string>
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
-  <string name="login-retrieving-info">Obteniendo la información del usuario</string>
+  <string name="login-retrieving-info" fuzzy="true">Obteniendo la información del usuario</string>
+  <string name="login-password-empty">No se proporcionó la contraseña</string>
   <string name="login-start">Ingresar</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
   <string name="login-translate">Traducir Huggle</string>
-  <string name="login-captchatitle">Captcha necesario para iniciar sesión</string>
   <string name="login-progress-start">Accediendo a $1</string>
   <string name="login-progress-language">Actualizando archivos de mensaje...</string>
   <string name="login-progress-global">Revisando configuración global...</string>
@@ -174,46 +169,36 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-progress-user-info">Comprobando la información del usuario en $1</string>
   <string name="login-progress-whitelist">Obteniendo lista blanca de usuarios...</string>
   <string name="login-ssl">Utilizar HTTPS (requiere OpenSSL)</string>
-  <string name="login-fail">Inicio de sesión fallido</string>
+  <string name="login-fail" fuzzy="true">Inicio de sesión fallido</string>
   <string name="login-error-admin">Se necesita cuenta de administrador para usar Huggle en este proyecto.</string>
   <string name="login-error-age">Se necesita una cuenta con al menos $1 días de antigüedad para usar Huggle en este proyecto.</string>
   <string name="login-error-alldisabled">Huggle está actualmente desactivado en todos los proyectos.</string>
-  <string name="login-error-approval">Se necesita aprobación para usar Huggle en este proyecto.</string>
-  <string name="login-error-autoconfirmed">Se necesita una cuenta autoconfirmada para usar Huggle en este proyecto.</string>
+  <string name="login-error-approval" fuzzy="true">Se necesita aprobación para usar Huggle en este proyecto.</string>
   <string name="login-error-cancelled">Cancelado.</string>
-  <string name="login-error-captcha">Contraseña o código de confirmación de Captcha incorrecto.</string>
-  <string name="login-error-config">No se pudo cargar las páginas de configuración.</string>
+  <string name="login-error-config" fuzzy="true">No se pudo cargar las páginas de configuración.</string>
   <string name="login-error-count">Se necesita al menos $1 ediciones para usar Huggle en este proyecto.</string>
-  <string name="login-error-disabled">No es posible iniciar Huggle con tu cuenta, revisa tu página de configuración.</string>
-  <string name="login-error-global" fuzzy="true">No se pudo cargar la página de configuración global.</string>
+  <string name="login-error-disabled" fuzzy="true">No es posible iniciar Huggle con tu cuenta, revisa tu página de configuración.</string>
+  <string name="login-error-global">Falló el acceso: no se puede analizar la configuración global. Consulta el registro de depuración para ver más detalles.</string>
   <string name="login-error-invalid">Nombre de usuario no válido.</string>
-  <string name="login-error-language">No se pudo cargar los archivos de mensaje.</string>
-  <string name="login-error-nocaptcha">Código de Captcha no resuelto.</string>
-  <string name="login-error-noconfig">Este proyecto no tiene una página de configuración Huggle</string>
-  <string name="login-error-nouser" fuzzy="true">El usuario no existe.</string>
+  <string name="login-error-noconfig" fuzzy="true">Este proyecto no tiene una página de configuración Huggle</string>
+  <string name="login-error-nouser">El usuario no existe</string>
   <string name="login-error-password">Contraseña incorrecta.</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
-  <string name="login-error-rollback">Se necesita privilegios de Rollback para usar Huggle en este proyecto.</string>
-  <string name="login-error-unknown">No se puede iniciar sesión.</string>
-  <string name="login-error-userlist">No se pudo cargar la lista de usuarios.</string>
-  <string name="login-error-version" fuzzy="true">Esta versión de Huggle está desactualizada. Actualízala a la versión más reciente.</string>
-  <string name="login-error-whitelist">No se pudo cargar la lista blanca de usuarios.</string>
+  <string name="login-error-unknown" fuzzy="true">No se puede iniciar sesión.</string>
+  <string name="login-error-version">Esta versión está desactualizada. Actualízala a la versión más reciente.</string>
+  <string name="login-error-whitelist" fuzzy="true">No se pudo cargar la lista blanca de usuarios.</string>
   <string name="main-no-reason">El usuario no proporcionó ningún motivo</string>
   <string name="main-page">Página</string>
   <string name="main-user">Usuario</string>
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
-  <string name="main-new-messages" fuzzy="true">Tienes mensajes nuevos; selecciona \"Sistema\" -&gt; \"Mostrar nuevos mensajes\" o presiona \"M\" para verlos.</string>
+  <string name="main-new-messages">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
   <string name="main-system">Sistema</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
   <string name="main-system-reconnectirc">Reconectar al canal IRC</string>
   <string name="main-system-savelog">Guardar registro...</string>
-  <string name="main-system-lists">Constructor de listas...</string>
-  <string name="main-system-requests">Pedidos...</string>
   <string name="main-system-statistics">Estadísticas...</string>
-  <string name="main-system-showlog">Mostrar registro</string>
   <string name="main-system-showqueue">Mostrar cola de ediciones</string>
-  <string name="main-system-showtwoqueues">Mostrar dos colas de ediciones</string>
   <string name="main-system-options">Opciones...</string>
   <string name="main-system-logout">Cerrar sesión</string>
   <string name="main-system-abort">Interrumpir</string>
@@ -222,7 +207,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-system-exit">Salir</string>
   <string name="main-queue">Cola de ediciones</string>
   <string name="main-queue-next">Siguiente</string>
-  <string name="main-queue-trim">Reducir</string>
   <string name="main-queue-clear">Limpiar actual</string>
   <string name="main-queue-count">$1 elementos</string>
   <string name="main-queue-query">Haciendo pedido...</string>
@@ -235,14 +219,13 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-revision-decline">Rechazar la revisión</string>
   <string name="main-revision">Edición</string>
   <string name="main-revision-view">Ver</string>
-  <string name="main-revision-revert" fuzzy="true">Revertir</string>
-  <string name="main-revision-faith" fuzzy="true">Revertir AGF</string>
+  <string name="main-revision-revert">Revertir la edición actual</string>
+  <string name="main-revision-faith">Revertir suponiendo buena fe</string>
   <string name="main-revision-previous">Previa</string>
   <string name="main-revision-next">Siguiente</string>
   <string name="main-revision-latest">Última</string>
   <string name="main-tools">Herramientas</string>
   <string name="main-tools-sess">Mostrar información de sesión</string>
-  <string name="main-tools-wl">Mostrar lista blanca</string>
   <string name="main-tools-il">Mostrar la lista de ignorados de la actual wiki</string>
   <string name="main-page-next">Siguiente</string>
   <string name="main-page-switchtotalk">Cambiar a la página de discusión</string>
@@ -267,7 +250,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-user-info">Mostrar información</string>
   <string name="main-user-ignore">Ignorar</string>
   <string name="main-user-unignore">Dejar de ignorar</string>
-  <string name="main-user-contribs" fuzzy="true">Obtener contribuciones</string>
+  <string name="main-user-contribs">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="main-user-clear-talk">Limpiar la página de discusión de usuario</string>
   <string name="main-user-talk">Ver página de discusión</string>
   <string name="main-user-message">Enviar mensaje...</string>
@@ -301,13 +284,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-display-whitelist">Mostrar lista blanca</string>
   <string name="main-revert-custom-reson">Por favor proporcione una razón por la que quieres revertir esta edición a la revisión anterior</string>
   <string name="main-log1">Restaurando la revisión seleccionada de $1</string>
-  <string name="main-tip-revertwarn">Revertir esta edición y advertir al usuario</string>
-  <string name="main-tip-nextdiff">Mostrar la siguiente edición en cola</string>
-  <string name="main-tip-revert">Revertir esta edición</string>
-  <string name="main-tip-warn">Advertir al usuario</string>
-  <string name="main-tip-browserback">Atrás</string>
-  <string name="main-tip-browserforward">Adelante</string>
-  <string name="main-tip-browseropen">Ver esto en un navegador externo</string>
   <string name="main-tip-pagetagdelete">Colocar plantilla de borrado a esta página</string>
   <string name="main-tip-pagedelete">Borrar esta página</string>
   <string name="main-tip-userreport">Reportar a este usuario</string>
@@ -324,7 +300,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="message-er">No se puede entregar el mensaje a $1: $2</string>
   <string name="message-fail-retrieve-talk">no se puede recuperar la página de discusión del usuario</string>
   <string name="message-done">Mensaje entregado correctamente a: $1</string>
-  <string name="protect-title">Proteger $1</string>
   <string name="protect-request-title">Pedir protección de $1</string>
   <string name="protect-reason">Razón:</string>
   <string name="protect-expiry">Caducidad:</string>
@@ -385,7 +360,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="revert-confirm-range">El autor de la edición a la que quieres revertir, {1}, está en el mismo rango IP que el autor de la edición actual, $1, y pueden ser la misma persona; asegúrate de que estés revirtiendo a la edición correcta antes de proceder. ¿Continuar?</string>
   <string name="revert-confirm-same">Esto revertirá a otra edición del mismo usuario al que estás revirtiendo, $1. ¿Continuar?</string>
   <string name="revert-confirm-warned">Esto revertirá a una edición de $1; este usuario ha sido advertido antes. ¿Continuar?</string>
-  <string name="revert-error-first" fuzzy="true">Esta edición es la primera de la página; no se puede revertir.</string>
+  <string name="revert-error-first">Esta edición es la primera de la página y no se puede revertir.</string>
   <string name="revert-only">Esta edición es la única de la página.</string>
   <string name="revert-creator">La última edición fue hecha por el creador de la página, $1.</string>
   <string name="revert-delete-instead">¿Borrar página en vez de revertir?</string>
@@ -394,7 +369,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="revert-conflict">Esta página fue editada por el usuario ignorado \'$1\'</string>
   <string name="revert-fail">No se pudo revertir \'$1\'</string>
   <string name="revert-nochange">El contenido de la edición a la que quieres revertir es idéntico al de la edición actual</string>
-  <string name="speedy-title">Colocar plantilla de borrado rápido a $1</string>
   <string name="speedy-reason">Motivo:</string>
   <string name="speedy-parameters">Parámetros:</string>
   <string name="speedy-notifycreator">Notificar al creador de la página</string>
@@ -428,17 +402,12 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="update-error">No se ha podido descargar la versión nueva</string>
   <string name="updater-title">Hay una versión más reciente de Huggle</string>
   <string name="updater-update">Actualizar</string>
+  <string name="updater-open-manualdownloadpage">Abrir la página de descarga</string>
   <string name="updater-close">Cerrar</string>
   <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
   <string name="userinfo-generic">Información del usuario</string>
-  <string name="userinfo-title">Información de \'$1\'</string>
-  <string name="userinfo-anonymous">Anónimo:</string>
-  <string name="userinfo-ignored">En la lista blanca:</string>
-  <string name="userinfo-edits">Número de ediciones:</string>
-  <string name="userinfo-sessionedits">Ediciones en esta sesión:</string>
-  <string name="userinfo-sharedip">IP compartida/dinámica:</string>
-  <string name="userinfo-blocklog">Bloqueos:</string>
-  <string name="userinfo-warnlog">Advertencias:</string>
+  <string name="shortcut-next">Ir a la próxima edición</string>
+  <string name="shortcut-revert">Revertir edición</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
   <string name="warning-levelauto">Automático</string>
@@ -449,14 +418,13 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="warning-warntype">Tipo de advertencia:</string>
   <string name="warning-warnlog">Advertencias a este usuario:</string>
   <string name="warning-submit">Enviar</string>
-  <string name="han-connecting" fuzzy="true">Conectando con la red antivandalismo de Huggle</string>
+  <string name="han-connecting">Conectando con la red antivandalismo de Huggle</string>
   <string name="error-loggedout">La cuenta se ha deslogueado, volviendo a iniciar sesión...</string>
   <string name="error-noresponse">Sin respuesta</string>
   <string name="error-pagemissing">La página no existe</string>
   <string name="error-reloginfail">No se pudo iniciar una nueva sesión, prueba reiniciando Huggle</string>
   <string name="error-timeout">El pedido excedió el tiempo de espera</string>
   <string name="error-unknown">Error desconocido</string>
-  <string name="retrying">Reintentando...</string>
   <string name="block-done">\'$1\' fue bloqueado</string>
   <string name="block-progress">Bloqueando a \'$1\'...</string>
   <string name="blocklog-fail">No se pudo obtener el registro de bloqueos para \'$1\'</string>
@@ -467,18 +435,14 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="delete-done">\'$1\' fue borrado</string>
   <string name="delete-fail">No se pudo borrar \'$1\'</string>
   <string name="delete-progress">Borrando \'$1\'...</string>
+  <string name="delete-user">Esta página está en el espacio del usuario. ¿Estás seguro de que quieres borrarla?</string>
   <string name="deletelog-fail">No se pudo obtener el registro de borrados para \'$1\'</string>
   <string name="deletelog-none">No hay registro de borrados para \'$1\'</string>
   <string name="deletelog-progress">Obteniendo registro de borrados para \'$1\'...</string>
-  <string name="diff-deleted">Esta edición ha sido borrada.</string>
-  <string name="diff-fail">No se pudo obtener el diff de \'$1\'</string>
   <string name="edit-fail">No se pudo editar \'$1\'</string>
   <string name="edit-progress">Editando \'$1\'...</string>
   <string name="history-fail">No se pudo obtener el historial de \'$1\'</string>
   <string name="history-progress">Obteniendo historial de \'$1\' ({1})...</string>
-  <string name="move-done">\'$1\' fue trasladado a \'{1}\'</string>
-  <string name="move-fail">No se pudo trasladar \'$1\' a \'{1}\'</string>
-  <string name="move-progress">Trasladando \'$1\' a \'{1}\'...</string>
   <string name="notify-fail">No se pudo avisar al creador de \'$1\'</string>
   <string name="notify-unknowncreator">No se puede encontrar al creador de la página</string>
   <string name="protect-done">Cambiado el nivel de protección para \'$1\'</string>
@@ -487,8 +451,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="protectlog-fail">No se pudo obtener el registro de protecciones para \'$1\'</string>
   <string name="protectlog-none">No hay registro de protecciones para \'$1\'</string>
   <string name="protectlog-progress">Obteniendo registro de protecciones para \'$1\'...</string>
-  <string name="saveuserconfig-done">Página de configuración actualizada</string>
-  <string name="saveuserconfig-fail">No se pudo actualizar la página de configuración de usuario</string>
   <string name="saveuserconfig-progress">Actualizando página de configuración...</string>
   <string name="loadglobalconfig-fail">No se pudo cargar la página de configuración global</string>
   <string name="loadprojectconfig-fail">No se pudo cargar la página de configuración del proyecto</string>
@@ -497,24 +459,14 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="reqprotection-duplicate">La protección ya ha sido pedida</string>
   <string name="reqprotection-fail">No se pudo pedir la protección de \'$1\'</string>
   <string name="reqprotection-progress">Solicitando la protección de «$1»…</string>
-  <string name="reqprotection-title">Solicitar protección de la página $1</string>
   <string name="speedy-fail" fuzzy="true">No se pudo marcar \'$1\' para borrado rápido</string>
   <string name="speedy-progress" fuzzy="true">Marcando \'$1\' para borrado rápido...</string>
-  <string name="warnlog-fail" fuzzy="true">No se pudo obtener el registro de advertencias para \'$1\'</string>
-  <string name="warnlog-none">«$1» no fue advertido</string>
-  <string name="warnlog-progress" fuzzy="true">Obteniendo registro de advertencias para \'$1\'...</string>
-  <string name="usermessage-duplicate">Ya había un mensaje acerca de lo mismo</string>
+  <string name="speedy-wrong">La etiqueta solicitada no es válida. Elige otro motivo de borrado</string>
+  <string name="speedy-finished">Finalizado</string>
   <string name="usermessage-fail">No se pudo enviar mensaje a \'$1\'</string>
   <string name="usermessage-progress">Enviando mensaje a «$1»…</string>
-  <string name="warn-alreadyfinal">El usuario ya tiene una advertencia final</string>
   <string name="warn-alreadyblocked">El usuario ya ha sido bloqueado</string>
-  <string name="warn-alreadyreported">El usuario ya ha sido reportado</string>
-  <string name="warn-oldedit">El usuario no ha editado desde la última advertencia</string>
-  <string name="warn-recent">El usuario fue advertido hace menos de $1 segundos</string>
-  <string name="warn-fail">No se pudo advertir a \'$1\'</string>
-  <string name="warn-progress">Advirtiendo a \'$1\'...</string>
   <string name="whitelist-download">Descargando nueva lista blanca</string>
-  <string name="queue-widget-name">Cola</string>
   <string name="logs-widget-name">Registros del sistema</string>
   <string name="wait">Espera un momento…</string>
   <string name="function-miss">La función no está disponible por ahora</string>

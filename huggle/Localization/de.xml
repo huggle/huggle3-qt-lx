@@ -2,7 +2,6 @@
 <resources>
   <string name="name">Deutsch</string>
   <string name="add">Hinzufügen</string>
-  <string name="apply">Übernehmen</string>
   <string name="cancel">Abbrechen</string>
   <string name="clear">Leeren</string>
   <string name="close">Schließen</string>
@@ -12,16 +11,13 @@
   <string name="deleted">Gelöscht</string>
   <string name="error">Fehler</string>
   <string name="exit">Beenden</string>
-  <string name="minimizewindow">Minimieren</string>
   <string name="no">Nein</string>
   <string name="ok">OK</string>
   <string name="remove">Entfernen</string>
   <string name="rename">Umbenennen</string>
   <string name="reload">Neu laden</string>
   <string name="result">Ergebnis</string>
-  <string name="restorewindow">Wiederherstellen</string>
   <string name="save">Speichern</string>
-  <string name="selectfile">Durchsuchen...</string>
   <string name="yes">Ja</string>
   <string name="agf">Als gutgläubige Bearbeitung mit benutzerdefiniertem Grund zurücksetzen</string>
   <string name="successful">Erfolgreich</string>
@@ -42,7 +38,7 @@
   <string name="link">Link</string>
   <string name="reason">Grund</string>
   <string name="diffid">Kennung des Unterschieds</string>
-  <string name="whitelisted">$1 mit dem Score $2 wurde der Whitelist hinzugefügt</string>
+  <string name="whitelisted" fuzzy="true">$1 mit dem Score $2 wurde der Whitelist hinzugefügt</string>
   <string name="expiry-time">Zeit des Ablaufs</string>
   <string name="duration">Dauer</string>
   <string name="no-token">Kein Token</string>
@@ -69,15 +65,12 @@
   <string name="block-rangeblockwarning">$1 ist bereits durch eine Bereichssperre auf $2 betroffen.
 Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="block-token-1">Erhalte Token zum Sperren von $1</string>
-  <string name="block-fail">Benutzer $1 konnte nicht gesperrt werden</string>
+  <string name="block-fail">Der Benutzer konnte nicht gesperrt werden. $1</string>
   <string name="block-token-e1">Token konnte nicht abgerufen werden: $1</string>
   <string name="block-error-no-info">Es sind keine Benutzerinformationen in der Abfrage vorhanden. Bist du ein Administrator?</string>
   <string name="block-type">Sperren / Freigeben</string>
   <string name="block-admin">Sperrender Administrator</string>
-  <string name="blocking">Sperre $1</string>
   <string name="block-none">Es gibt keinen Benutzer zum Sperren.</string>
-  <string name="closing-whitelist">Benutzer-Whitelist wird aktualisiert...</string>
-  <string name="closing-config">Konfigurationsunterseite wird aktualisiert...</string>
   <string name="config-summ">Benutzerdefinierte Zurücksetzungszusammenfassungen für Vorlagen</string>
   <string name="config-title">Einstellungen</string>
   <string name="config-rememberme">Benutzernamen merken</string>
@@ -152,18 +145,18 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="history-error-message-title">Rückgängigmachung fehlgeschlagen</string>
   <string name="history-error">Dieses Objekt kann nicht rückgängig gemacht werden. Die Seite könnte inzwischen geändert oder gelöscht worden sein. Huggle kann die Rückgängigmachung von diesem Punkt nicht ausführen. Wenn du die Rückgängigmachung wirklich ausführen willst, musst du dies manuell mithilfe der MediaWiki-Oberfläche machen.</string>
   <string name="userhistory-title">Verlauf deiner Änderungen</string>
-  <string name="irc-connected">Mit IRC-Feed verbunden</string>
-  <string name="irc-connecting">Versuche mit IRC-Feed zu verbinden; dies kann einen Augenblick dauern...</string>
-  <string name="irc-disconnected">Verbindung mit IRC-Feed unterbrochen; verbinde...</string>
+  <string name="irc-connected" fuzzy="true">Mit IRC-Feed verbunden</string>
+  <string name="irc-connecting" fuzzy="true">Versuche mit IRC-Feed zu verbinden; dies kann einen Augenblick dauern...</string>
+  <string name="irc-disconnected" fuzzy="true">Verbindung mit IRC-Feed unterbrochen; verbinde...</string>
   <string name="irc-nochannel">IRC-Kanal für $1 nicht gefunden; verwende stattdessen langsamere API-Abfragen</string>
   <string name="irc-error">Kann nicht mit IRC-Feed verbinden. Verwende stattdessen langsamere API Querys</string>
-  <string name="irc-stop">Warte auf den Stopp des primären Feed-Providers</string>
+  <string name="irc-stop" fuzzy="true">Warte auf den Stopp des primären Feed-Providers</string>
   <string name="irc-not">Feed: IRC ist durch Projektkonfiguration deaktiviert</string>
-  <string name="irc-failure" fuzzy="true">Primärer Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider.</string>
+  <string name="irc-failure">Der primäre Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider …</string>
   <string name="irc-wait">Warte auf den Stopp des IRC-Feed-Providers</string>
   <string name="irc-switch-rc">Wechsle auf den Wiki-RC-Feed</string>
   <string name="login-old">Rufe Benutzerkonfiguration vom alten Standort ab</string>
-  <string name="login-intro">Bitte wähle ein Projekt aus und gib deinen Benutzernamen und Passwort ein.</string>
+  <string name="login-intro" fuzzy="true">Bitte wähle ein Projekt aus und gib deinen Benutzernamen und Passwort ein.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Anmeldung</string>
   <string name="login-reload-tool-tip">Eine Liste mit verfügbaren Projekten neu laden, die in Huggle verwendet werden können. Dies kann hilfreich sein in einem Fall, bei dem du Huggle auf einem Projekt benutzen willst, auf dem Huggle kürzlich aktiviert wurde.</string>
@@ -177,22 +170,21 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Rufe Benutzerkonfiguration ab</string>
-  <string name="login-fail-css" fuzzy="true">Anmeldung fehlgeschlagen. Benutzerkonfiguration konnte nicht abgerufen werden. Hast du huggle3.css in deinem Benutzernamensraum erstellt? Special:MyPage/huggle3.css fehlt.</string>
-  <string name="login-fail-enable-true" fuzzy="true">Anmeldung fehlgeschlagen. In deiner persönlichen Konfiguration wurde nicht enable:true festgelegt.</string>
-  <string name="login-fail-no-info" fuzzy="true">Anmeldung fehlgeschlagen. Benutzerinformation konnte nicht abgerufen werden: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Anmeldung fehlgeschlagen. Die Benutzerkonfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
-  <string name="login-fail-user-data" fuzzy="true">Anmeldung fehlgeschlagen. Die Benutzerinformation konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Anmeldung fehlgeschlagen. Du hast keine Zurücksetzungsrechte auf diesem Projekt.</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Anmeldung fehlgeschlagen. Du bist auf diesem Projekt nicht automatisch bestätigt.</string>
-  <string name="login-failed-edit" fuzzy="true">Anmeldung fehlgeschlagen. Du hast auf diesem Projekt nicht genügend Bearbeitungen.</string>
-  <string name="login-retrieving-info">Rufe Benutzerinformation ab</string>
+  <string name="login-fail-css" fuzzy="true">Anmeldung fehlgeschlagen. Die Benutzerkonfiguration konnte nicht abgerufen werden. Special:MyPage/huggle3.css fehlt. Hast du in deinem Benutzernamensraum huggle3.css erstellt?</string>
+  <string name="login-fail-enable-true" fuzzy="true">Anmeldung fehlgeschlagen: In deiner persönlichen Konfiguration wurde nicht enable:true festgelegt.</string>
+  <string name="login-fail-no-info" fuzzy="true">Anmeldung fehlgeschlagen: Benutzerinformation konnte nicht abgerufen werden: $1</string>
+  <string name="login-fail-parse-config" fuzzy="true">Anmeldung fehlgeschlagen: Die Benutzerkonfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
+  <string name="login-fail-user-data" fuzzy="true">Anmeldung fehlgeschlagen: Die Benutzerinformation konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
+  <string name="login-fail-rollback-rights" fuzzy="true">Anmeldung fehlgeschlagen: Du hast keine Zurücksetzungsrechte auf diesem Projekt.</string>
+  <string name="login-failed-autoconfirm-rights" fuzzy="true">Anmeldung fehlgeschlagen: Du bist auf diesem Projekt nicht automatisch bestätigt.</string>
+  <string name="login-failed-edit" fuzzy="true">Anmeldung fehlgeschlagen: Du hast auf diesem Projekt nicht genügend Bearbeitungen.</string>
+  <string name="login-retrieving-info" fuzzy="true">Rufe Benutzerinformation ab</string>
   <string name="login-password-empty">Das eingegebene Passwort war leer</string>
   <string name="login-fail-wrong-name">Du hast keinen korrekten Benutzernamen zur Anmeldung angegeben</string>
-  <string name="login-api" fuzzy="true">FEHLER: Die api.php hat mit einem unbekannten Ergebnis geantwortet: $1</string>
+  <string name="login-api">FEHLER: api.php hat mit einem unbekannten Ergebnis geantwortet: $1</string>
   <string name="login-start">Einloggen</string>
   <string name="login-oauth-notsupported">Diese Methode wird derzeit nicht unterstützt.</string>
   <string name="login-translate">Huggle übersetzen</string>
-  <string name="login-captchatitle">CAPTCHA benötigt zum Login</string>
   <string name="login-progress-start">Logge bei $1 ein …</string>
   <string name="login-progress-retrieve-mw">Rufe Informationen über MediaWiki für $1 ab</string>
   <string name="login-progress-language">Aktualisiere Nachrichtendateien...</string>
@@ -203,51 +195,41 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-progress-user-info">Prüfe Benutzerinformation für $1</string>
   <string name="login-progress-whitelist">Lade Benutzer-Whitelist herunter...</string>
   <string name="login-ssl">HTTPS benutzen (erfordert OpenSSL)</string>
-  <string name="login-fail">Anmeldung fehlgeschlagen</string>
+  <string name="login-fail" fuzzy="true">Anmeldung fehlgeschlagen</string>
   <string name="login-error-admin">Die Verwendung von Huggle auf diesem Projekt erfordert Administrator-Status.</string>
   <string name="login-error-age">Die Verwendung von Huggle auf diesem Projekt erfordert ein Benutzerkonto, das mindestens $1 Tage alt ist.</string>
   <string name="login-error-alldisabled">Huggle ist im Moment auf allen Projekten deaktiviert.</string>
-  <string name="login-error-approval">Die Verwendung von Huggle auf diesem Projekt erfordert eine Erlaubnis.</string>
-  <string name="login-error-autoconfirmed">Die Verwendung von Huggle auf diesem Projekt erfordert \"(automatisch) bestätigter Benutzer\"-Status.</string>
+  <string name="login-error-approval" fuzzy="true">Die Verwendung von Huggle auf diesem Projekt erfordert eine Erlaubnis.</string>
   <string name="login-error-cancelled">Abgebrochen.</string>
-  <string name="login-error-captcha">Falsches Passwort oder Code.</string>
-  <string name="login-error-config">Konnte Konfigurationsseiten nicht laden.</string>
+  <string name="login-error-config" fuzzy="true">Konnte Konfigurationsseiten nicht laden.</string>
   <string name="login-error-count">Die Verwendung von Huggle auf diesem Projekt erfordert mindestens $1 Bearbeitungen.</string>
-  <string name="login-error-disabled">Huggle ist für diesen Account nicht aktiviert, überprüfe deine Benutzer-Konfigurationsseite.</string>
-  <string name="login-error-global" fuzzy="true">Konnte globale Konfigurations-Seite nicht laden.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle ist für diesen Account nicht aktiviert, überprüfe deine Benutzer-Konfigurationsseite.</string>
+  <string name="login-error-global">Anmeldung fehlgeschlagen: Die globale Konfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
   <string name="login-error-invalid">Ungültiger Benutzername.</string>
-  <string name="login-error-language">Konnte Nachrichten-Dateien nicht laden.</string>
-  <string name="login-error-nocaptcha">CAPTCHA wurde nicht richtig gelöst.</string>
-  <string name="login-error-noconfig">Dieses Projekt hat keine Huggle-Konfigurationsseite</string>
-  <string name="login-error-nouser" fuzzy="true">Benutzer existiert nicht.</string>
+  <string name="login-error-noconfig" fuzzy="true">Dieses Projekt hat keine Huggle-Konfigurationsseite</string>
+  <string name="login-error-nouser">Der Benutzer ist nicht vorhanden</string>
   <string name="login-error-password">Falsches Passwort.</string>
   <string name="login-error-projdisabled">Huggle ist auf diesem Projekt zur Zeit deaktiviert.</string>
-  <string name="login-error-rollback">Benutzung von Huggle auf diesem Projekt erfordert \"rollback\"-Rechte.</string>
-  <string name="login-error-unknown">Anmeldung fehlgeschlagen.</string>
-  <string name="login-error-userlist">Konnte Benutzer-Liste nicht laden.</string>
-  <string name="login-error-version" fuzzy="true">Version veraltet. Bitte neuere Version verwenden.</string>
-  <string name="login-error-whitelist">Konnte Benutzer-Whitelist nicht laden.</string>
+  <string name="login-error-unknown" fuzzy="true">Anmeldung fehlgeschlagen.</string>
+  <string name="login-error-version">Diese Version ist veraltet. Bitte neuere Version verwenden.</string>
+  <string name="login-error-whitelist" fuzzy="true">Konnte Benutzer-Whitelist nicht laden.</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
   <string name="main-no-reason">Vom Benutzer wurde keine Begründung angegeben</string>
-  <string name="main-restoring-slap" fuzzy="true">Ich stelle derzeit eine andere Bearbeitung wieder her. Bitte warten.</string>
+  <string name="main-restoring-slap">Ich stelle derzeit eine andere Bearbeitung wieder her. Bitte warten …</string>
   <string name="main-page">Seite</string>
   <string name="main-user">Benutzer</string>
   <string name="main-contribs">Beiträge</string>
   <string name="main-history">Versionen</string>
-  <string name="main-new-messages" fuzzy="true">Du hast neue Nachrichten, wähle System -&gt; Neue Nachrichten anzeigen oder drücke M, um sie anzusehen.</string>
+  <string name="main-new-messages">Du hast neue Nachrichten. Wähle System → Neue Nachrichten anzeigen oder drücke M, um sie anzusehen.</string>
   <string name="main-system">System</string>
-  <string name="main-status-bar">Verarbeite &lt;b&gt;$1&lt;/b&gt; Bearbeitungen und &lt;b&gt;$2&lt;/b&gt; Abfragen. Geweißlistete Benutzer: &lt;b&gt;$3&lt;/b&gt;. Größe der Warteschlange: &lt;b&gt;$4&lt;/b&gt;. Statistiken: $5</string>
+  <string name="main-status-bar" fuzzy="true">Verarbeite &lt;b&gt;$1&lt;/b&gt; Bearbeitungen und &lt;b&gt;$2&lt;/b&gt; Abfragen. Geweißlistete Benutzer: &lt;b&gt;$3&lt;/b&gt;. Größe der Warteschlange: &lt;b&gt;$4&lt;/b&gt;. Statistiken: $5</string>
   <string name="main-shutting-down">Huggle fährt herunter, ignoriert</string>
   <string name="main-system-messages">Neue Nachrichten anzeigen</string>
   <string name="main-system-reconnectirc">IRC-Feed neu verbinden</string>
   <string name="main-system-savelog">Log speichern...</string>
-  <string name="main-system-lists">Listen-Werkzeug...</string>
-  <string name="main-system-requests">Anfragen...</string>
   <string name="main-system-statistics">Statistiken...</string>
-  <string name="main-system-showlog">Log anzeigen</string>
   <string name="main-system-showqueue">Warteschlange anzeigen</string>
-  <string name="main-system-showtwoqueues">Zwei Warteschleifen anzeigen</string>
   <string name="main-system-options">Einstellungen...</string>
   <string name="main-system-logout">Abmelden</string>
   <string name="main-system-abort">Abbrechen</string>
@@ -258,7 +240,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-tools-scoreword-list">Eine Liste mit Scorewörtern anzeigen</string>
   <string name="main-queue">Warteschlange</string>
   <string name="main-queue-next">Weiter</string>
-  <string name="main-queue-trim">trimmen</string>
   <string name="main-queue-clear">Aktuelle leeren</string>
   <string name="main-queue-count">$1 Objekte</string>
   <string name="main-queue-query">Running query...</string>
@@ -281,7 +262,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-revision-latest">Aktuellste</string>
   <string name="main-tools">Werkzeuge</string>
   <string name="main-tools-sess">Sitzungsinformation anzeigen</string>
-  <string name="main-tools-wl">Whitelist anzeigen</string>
   <string name="main-tools-il">Ignorierungsliste des aktuellen Wikis anzeigen</string>
   <string name="main-page-next">Weiter</string>
   <string name="main-page-switchtotalk">Diskussionsseite anzeigen</string>
@@ -345,13 +325,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-display-whitelist">Whitelist anzeigen</string>
   <string name="main-revert-custom-reson">Bitte gib einen Grund an, warum du diese Bearbeitung auf eine frühere Version zurücksetzen willst.</string>
   <string name="main-log1">Ausgewählte Version von $1 wiederherstellen</string>
-  <string name="main-tip-revertwarn">Diese Änderung zurücksetzen und Benutzer warnen</string>
-  <string name="main-tip-nextdiff">Nächste Änderung in der Warteschlange zeigen</string>
-  <string name="main-tip-revert">Diese Version widerrufen</string>
-  <string name="main-tip-warn">Benutzer verwarnen</string>
-  <string name="main-tip-browserback">Zurück</string>
-  <string name="main-tip-browserforward">Vorwärts</string>
-  <string name="main-tip-browseropen">In externem Browser ansehen</string>
   <string name="main-tip-pagetagdelete">Seite zum Löschen markieren</string>
   <string name="main-tip-pagedelete">Seite löschen</string>
   <string name="main-tip-userreport">Benutzer melden</string>
@@ -366,12 +339,11 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="message-summary">Zusammenfassung:</string>
   <string name="message-autosign">Automatisch Signatur anhängen</string>
   <string name="message-retrieve-new-token">Rufe Token für die Bearbeitung von $1 ab</string>
-  <string name="message-fail-re-user-tp" fuzzy="true">Die Beendigungsnachricht „$1“ für diesen Benutzer konnte nicht abgerufen werden.</string>
+  <string name="message-fail-re-user-tp">$1 konnte nicht abgerufen werden. Stoppe Nachrichtenversand zu diesem Benutzer.</string>
   <string name="message-er">Die Nachricht an $1 konnte nicht übermittelt werden: $2</string>
   <string name="message-fail-retrieve-talk">Die Benutzerdiskussionsseite konnte nicht abgerufen werden</string>
   <string name="message-done">Nachricht erfolgreich an $1 übermittelt</string>
   <string name="message-fail-token-1">Der Bearbeitungstoken konnte nicht abgerufen werden</string>
-  <string name="protect-title">$1 schützen</string>
   <string name="message-fail-token-2">Von der Anfrage wurde kein Token zurückgegeben</string>
   <string name="protect-request-title">Schutz von $1 anfragen</string>
   <string name="protect-reason">Grund:</string>
@@ -437,7 +409,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="report-done">Berichtet</string>
   <string name="report-user">Berichten</string>
   <string name="uaa-not-supported">UAA nicht verfügbar</string>
-  <string name="uaa-not-supported-text" fuzzy="true">Die Benutzernamen für die Administrator-Pinnwand ist auf deinem Wiki nicht verfügbar.</string>
+  <string name="uaa-not-supported-text">Die Pinnwand „Benutzernamen für die Administratorbeachtung“ ist auf deinem Wiki nicht verfügbar.</string>
   <string name="uaa-reporting">Melde $1 an UAA</string>
   <string name="uaa-reported">Gemeldet</string>
   <string name="uaa-no-reason-warn">Du hast keine Begründung angegeben, warum der Benutzername ein Verstoß gegen eine Richtlinie ist. Bitte eine Begründung angeben.</string>
@@ -449,7 +421,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="revert-confirm-range">Der Autor der Zielversion $2 ist im gleichen Bereich als der Autor der aktuellen Version $1. Vielleicht ist es die gleiche Person. Stelle vor dem Fortfahren sicher, dass die Zielversion korrekt ist. Fortfahren?</string>
   <string name="revert-confirm-same">Dies wird auf eine andere Version des Benutzers $1 zurücksetzen, der zurückgesetzt wurde. Fortfahren?</string>
   <string name="revert-confirm-warned">Dies wird auf eine Version von $1 zurücksetzen. Dieser Benutzer wurde kürzlich gewarnt. Fortfahren?</string>
-  <string name="revert-error-first" fuzzy="true">Änderung ist die Erste an dieser Seite; Rückgängig machen nicht möglich.</string>
+  <string name="revert-error-first">Diese Bearbeitung ist die erste dieser Seite und kann nicht zurückgesetzt werden.</string>
   <string name="revert-only">Änderung ist die Einzige an dieser Seite.</string>
   <string name="revert-creator">Die letzte Bearbeitung wurde von dem Seitenersteller $1 durchgeführt.</string>
   <string name="revert-preflightcheck">Vorflugkontrolle</string>
@@ -460,12 +432,11 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="revert-fail">$1 nicht zurückgesetzt: $2</string>
   <string name="revert-nochange">Der Inhalt der Zielversion ist gleich dem der jetzigen Version</string>
   <string name="revert-fail-pre-flight">Vorflugkontrolle fehlgeschlagen: $1</string>
-  <string name="speedy-title">Schnelllöschungs-Markierung $1</string>
   <string name="speedy-reason">Grund:</string>
   <string name="speedy-parameters">Parameter:</string>
   <string name="speedy-notifycreator">Seitenersteller benachrichtigen?</string>
   <string name="rollback">Setze $1 zurück</string>
-  <string name="software-rollback" fuzzy="true">Du hast keine Zurücksetzungsrechte. Rückgriff auf Software-Zurücksetzung.</string>
+  <string name="software-rollback">Du hast keine Zurücksetzungsrechte. Rückgriff auf Software-Zurücksetzung.</string>
   <string name="stats-title">Statistiken</string>
   <string name="stats-actions">Diese Sitzung:</string>
   <string name="stats-session">Zeit der Sitzung: $1</string>
@@ -500,14 +471,20 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="updater-close">Schließen</string>
   <string name="updater-disable-notify">Aktualisierungen deaktivieren</string>
   <string name="userinfo-generic">Benutzerinformation</string>
-  <string name="userinfo-title">Benutzerinformation für $1</string>
-  <string name="userinfo-anonymous">Anonym:</string>
-  <string name="userinfo-ignored">Auf Whitelist:</string>
-  <string name="userinfo-edits">Zahl der Beiträge:</string>
-  <string name="userinfo-sessionedits">Beiträge in dieser Sitzung:</string>
-  <string name="userinfo-sharedip">Gemeinsam genutzte/dynamische IP:</string>
-  <string name="userinfo-blocklog">Sperrungen:</string>
-  <string name="userinfo-warnlog">Warnungen:</string>
+  <string name="shortcut-raw">Bearbeitung zurücksetzen und einen Benutzer warnen</string>
+  <string name="shortcut-exit">Huggle auf normale Weise beenden</string>
+  <string name="shortcut-next">Gehe zur nächsten Bearbeitung</string>
+  <string name="shortcut-suspicious">Bearbeitung als verdächtig markieren</string>
+  <string name="shortcut-back">Gehe zur zuletzt angezeigten Bearbeitung</string>
+  <string name="shortcut-forward">Gehe zu einer Bearbeitung, die du in der Vergangenheit geladen hast, aber von der du zurückgegangen bist.</string>
+  <string name="shortcut-warn">Sende eine Warnung an den Benutzer, ohne die Bearbeitung zurückzusetzen</string>
+  <string name="shortcut-revert">Bearbeitung zurücksetzen</string>
+  <string name="shortcut-x-raw">Objekt „N th“ im Zurücksetzungs- und Warnmenü auslösen</string>
+  <string name="shortcut-x-revert">Objekt „N th“ im Zurücksetzungsmenü auslösen</string>
+  <string name="shortcut-x-warn">Objekt „N th“ im Warnmenü auslösen</string>
+  <string name="shortcut-good">Die derzeit angezeigte Bearbeitung als gut markieren</string>
+  <string name="shortcut-open">Derzeit angezeigte Bearbeitung in einem Browser öffnen</string>
+  <string name="shortcut-talk">Eine Diskussionsseite des Benutzers anzeigen, der diese Änderung durchgeführt hat.</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -526,7 +503,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="error-reloginfail">Konnte nicht wieder einloggen, Huggle-Neustart empfohlen</string>
   <string name="error-timeout">Zeitüberschreitung bei Anforderung</string>
   <string name="error-unknown">Unbekannter Fehler</string>
-  <string name="retrying">Versuche erneut...</string>
   <string name="block-done">$1 gesperrt</string>
   <string name="block-progress">Sperre $1 …</string>
   <string name="blocklog-fail">Sperr-Logbuch für $1 konnte nicht abgerufen werden</string>
@@ -541,15 +517,10 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="deletelog-fail">Lösch-Logbuch für $1 konnte nicht abgerufen werden</string>
   <string name="deletelog-none">Kein Lösch-Logbuch für $1</string>
   <string name="deletelog-progress">Lösch-Logbuch für $1 abrufen …</string>
-  <string name="diff-deleted">Diese Version wurde gelöscht.</string>
-  <string name="diff-fail">Unterschied von $1 konnte nicht abgerufen werden</string>
   <string name="edit-fail">$1 wurde nicht bearbeitet</string>
   <string name="edit-progress">Bearbeite $1 …</string>
   <string name="history-fail">Versionsgeschichte von $1 konnte nicht abgerufen werden</string>
   <string name="history-progress">Rufe Versionsgeschichte von $1 ($2) ab …</string>
-  <string name="move-done">$1 nach $2 verschoben</string>
-  <string name="move-fail">$1 wurde nicht nach $2 verschoben</string>
-  <string name="move-progress">Verschiebe $1 nach $2 …</string>
   <string name="notify-fail">Der Ersteller von $1 wurde nicht benachrichtigt</string>
   <string name="notify-unknowncreator">Seiten-Ersteller unbekannt</string>
   <string name="protect-done">Schutzstatus für $1 geändert</string>
@@ -558,8 +529,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="protectlog-fail">Seitenschutz-Logbuch für $1 konnte nicht abgerufen werden</string>
   <string name="protectlog-none">Kein Seitenschutz-Logbuch für $1</string>
   <string name="protectlog-progress">Rufe Seitenschutz-Logbuch für $1 ab …</string>
-  <string name="saveuserconfig-done">Benutzer-Konfiguration aktualisiert</string>
-  <string name="saveuserconfig-fail">Benutzer-Konfiguation wurde nicht aktualisiert</string>
   <string name="saveuserconfig-progress">Aktualisiere Benutzer-Konfiguration...</string>
   <string name="loadglobalconfig-fail">Globale Konfiguration konnte nicht geladen werden</string>
   <string name="loadprojectconfig-fail">Projektbezogene Konfiguration konnte nicht geladen werden</string>
@@ -568,45 +537,32 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="reqprotection-duplicate">Seitensperrung bereits beantragt</string>
   <string name="reqprotection-fail">Schutz von $1 nicht angefragt</string>
   <string name="reqprotection-progress">Schutz von $1 anfragen …</string>
-  <string name="reqprotection-title">Seitenschutz von $1 anfragen</string>
   <string name="speedy-fail">Seite konnte nicht zur Schnelllöschung markiert werden: $1</string>
   <string name="speedy-progress">Markiere $1 zur Schnelllöschung …</string>
   <string name="speedy-wrong">Das angeforderte Tag ist nicht gültig. Bitte wähle eine andere Löschbegründung.</string>
   <string name="speedy-finished">Abgeschlossen</string>
-  <string name="warnlog-fail">Warn-Logbuch für $1 konnte nicht abgerufen werden</string>
-  <string name="warnlog-none">$1 wurde nicht gewarnt</string>
-  <string name="warnlog-progress">Rufe Warn-Logbuch für $1 ab …</string>
-  <string name="usermessage-duplicate">Eine Nachricht über diese Sache war bereits vorhanden</string>
   <string name="usermessage-fail">$1 wurde nicht benachrichtigt …</string>
   <string name="usermessage-progress">Benachrichtige $1 …</string>
-  <string name="warn-alreadyfinal">Der Benutzer hat bereits die letzte Warnung erhalten</string>
   <string name="warn-alreadyblocked">Der Benutzer wurde bereits gesperrt</string>
-  <string name="warn-alreadyreported">Der Benutzer wurde bereits gemeldet</string>
-  <string name="warn-oldedit">Der Benutzer hat seit der letzten Warnung keine Beiträge mehr gemacht</string>
-  <string name="warn-recent">Der Benutzer wurde vor weniger als $1 Sekunden gewarnt</string>
-  <string name="warn-fail">$1 wurde nicht gewarnt</string>
-  <string name="warn-progress">Warne $1 …</string>
-  <string name="editquery-success">$1 erfolgreich bearbeitet</string>
+  <string name="editquery-success" fuzzy="true">$1 erfolgreich bearbeitet</string>
   <string name="editquery-token">Rufe Token für die Bearbeitung von $1 ab</string>
   <string name="editquery-token-error">Bearbeitungs-Token konnte nicht abgerufen werden</string>
   <string name="provider-failure">Fehler beim primären Feedprovider. Versuche Wiederherstellung.</string>
   <string name="provider-primary-failure">Primärer Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider.</string>
   <string name="rc-error">Daten vom Wikifeed konnten nicht abgerufen werden. Letzter Fehler: $1</string>
   <string name="whitelist-download">Lade neue Whitelist herunter</string>
-  <string name="queue-widget-name">Warteschlange</string>
   <string name="logs-widget-name">System-Logbücher</string>
   <string name="wait">Bitte warten …</string>
   <string name="function-miss">Funktion ist jetzt nicht verfügbar</string>
   <string name="missing-aiv">Dieses Projekt verwendet kein AIV</string>
   <string name="missing-page">Es gibt keine Seite „$1“ auf diesem Wiki</string>
   <string name="updating-wl">Aktualisiere Whitelist …</string>
-  <string name="updating-uc">Aktualisiere Benutzerkonfigurationsseite bei huggle3.css auf dem Wiki</string>
   <string name="feature-nfru">Diese Funktion ist nur für IP-Benutzer</string>
   <string name="report-no-user">Es wurde kein Benutzer für den Bericht ausgewählt. Bitte zuerst einen auswählen.</string>
   <string name="welcome-tp-empty-fail">Dieser Benutzer hat keine leere Diskussionsseite. Bist du sicher, dass du eine Nachricht an ihn senden willst?</string>
   <string name="welcome-page-miss-fail">Huggle konnte die Inhalte der Benutzerdiskussionsseite nicht abrufen. Bist du sicher, dass du eine Willkommensnachricht senden willst?</string>
   <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom gleichen Benutzer: $1.</string>
-  <string name="cr-resolved-same-user" fuzzy="true">Konflikt gelöst: Setze alle Bearbeitungen inklusive neuer Bearbeitungen zurück, durchgeführt von den gleichen Benutzern. Bearbeitungen sind vom gleichen Benutzer $1.</string>
+  <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern. Bearbeitungen sind vom gleichen Benutzer $1.</string>
   <string name="cr-stop-new-edit">Konflikt gelöst: Keine Aktion ausgeführt – Es gibt neuere Bearbeitungen an $1</string>
   <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
