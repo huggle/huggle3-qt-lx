@@ -75,7 +75,7 @@ void Huggle::GC::DeleteOld()
             } else
             {
                 // we can remove it now because it's deleted
-                copy.removeAll(q);
+                copy.removeAt(x);
             }
         }
         return;
