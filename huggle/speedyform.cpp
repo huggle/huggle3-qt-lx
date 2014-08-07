@@ -121,7 +121,10 @@ void SpeedyForm::processTags()
         return;
     }
     // insert a tag to page
-    this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
+    if (this->ui->lineEdit->text().isEmpty())
+        this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
+    else
+        this->Text = "{{" + vals.at(2) + "|" + this->ui->lineEdit->text() + "}}\n" + this->Text;
     // store a message we later send to user (we need to check if edit is successful first)
     this->warning = vals.at(3);
     // let's modify the page now
