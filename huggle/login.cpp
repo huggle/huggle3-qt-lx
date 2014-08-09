@@ -23,6 +23,7 @@
 #include "localization.hpp"
 #include "loadingform.hpp"
 #include "huggleprofiler.hpp"
+#include "proxy.hpp"
 #include "wikisite.hpp"
 #include "wikiutil.hpp"
 #include "ui_login.h"
@@ -1124,4 +1125,11 @@ void Huggle::Login::on_pushButton_2_clicked()
         if (this->height() < 460)
             this->resize(this->width(), 480);
     }
+}
+
+void Huggle::Login::on_label_linkActivated(const QString &link)
+{
+    Q_UNUSED(link);
+    Proxy pr;
+    pr.exec();
 }

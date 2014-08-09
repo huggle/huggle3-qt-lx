@@ -80,6 +80,7 @@ namespace Huggle
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
             void on_pushButton_2_clicked();
+            void on_label_linkActivated(const QString &link);
 
         private:
             //! String that is used to test against the login failed text

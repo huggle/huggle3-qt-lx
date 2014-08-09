@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "proxy.hpp"
+#include <QNetworkProxy>
 #include "ui_proxy.h"
 
 using namespace Huggle;
@@ -16,9 +17,46 @@ using namespace Huggle;
 Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
 {
     this->ui->setupUi(this);
+    this->ui->comboBox->addItem("None");
+    this->ui->comboBox->addItem("Socks 5");
+    this->ui->comboBox->setCurrentIndex(0);
 }
 
 Proxy::~Proxy()
 {
     delete this->ui;
+}
+
+void Proxy::on_buttonBox_accepted()
+{
+    QNetworkProxy proxy;
+    switch (this->ui->comboBox->currentIndex())
+    {
+        case 0:
+            QNetworkProxy::setApplicationProxy(QNetworkProxy::NoProxy);
+            return;
+        case 1:
+            proxy.setType(QNetworkProxy::Socks5Proxy);
+            break;
+    }
+
+    proxy.setHostName(this->ui->lineEdit->text());
+    proxy.setPort(this->ui->lineEdit_2->text().toUInt());
+    proxy.setUser(this->ui->lineEdit_3->text());
+    proxy.setPassword(this->ui->lineEdit_4->text());
+    QNetworkProxy::setApplicationProxy(proxy);
+}
+
+void Proxy::on_buttonBox_rejected()
+{
+    this->close();
+}
+
+void Huggle::Proxy::on_comboBox_currentIndexChanged(int index)
+{
+    bool visible = index != 0;
+    this->ui->lineEdit->setEnabled(visible);
+    this->ui->lineEdit_2->setEnabled(visible);
+    this->ui->lineEdit_3->setEnabled(visible);
+    this->ui->lineEdit_4->setEnabled(visible);
 }
