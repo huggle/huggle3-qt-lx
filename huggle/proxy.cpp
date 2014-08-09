@@ -55,6 +55,10 @@ void Proxy::on_buttonBox_rejected()
 void Huggle::Proxy::on_comboBox_currentIndexChanged(int index)
 {
     bool visible = index != 0;
+    this->ui->label_5->setEnabled(visible);
+    this->ui->label->setEnabled(visible);
+    this->ui->label_4->setEnabled(visible);
+    this->ui->label_3->setEnabled(visible);
     this->ui->lineEdit->setEnabled(visible);
     this->ui->lineEdit_2->setEnabled(visible);
     this->ui->lineEdit_3->setEnabled(visible);

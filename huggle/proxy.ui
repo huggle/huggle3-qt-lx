@@ -78,7 +78,7 @@
    <item row="3" column="1">
     <widget class="QLineEdit" name="lineEdit_4">
      <property name="inputMethodHints">
-      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase</set>
+      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText</set>
      </property>
     </widget>
    </item>
