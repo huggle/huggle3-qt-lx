@@ -2736,5 +2736,5 @@ void MainWindow::Go()
 {
     QAction *action = (QAction*)QObject::sender();
     QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
-                              QUrl::toPercentEncoding(action->toolTip())));
+                              action->toolTip()));
 }
