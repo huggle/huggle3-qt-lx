@@ -550,6 +550,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             filter->setIgnoreIP(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreMinor(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreNP(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreTalk(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreReverts(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreSelf(HuggleQueueFilterMatchIgnore);
             filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
