@@ -85,8 +85,6 @@ typedef char byte_ht;
 #define MEDIAWIKI_DEFAULT_NS_HELPTALK           "Help talk:"
 #define MEDIAWIKI_DEFAULT_NS_CATEGORY           "Category:"
 #define MEDIAWIKI_DEFAULT_NS_CATEGORYTALK       "Category talk:"
-#define MEDIAWIKI_DEFAULT_NS_PORTAL             "Portal:"
-#define MEDIAWIKI_DEFAULT_NS_PORTALTALK         "Portal talk:"
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
 #define HUGGLE_CONF                     "huggle3.xml"
