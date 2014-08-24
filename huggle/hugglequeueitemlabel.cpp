@@ -96,6 +96,13 @@ void HuggleQueueItemLabel::SetName(QString name)
         if (this->Page->NewPage)
         {
             this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-new.png"));
+            return;
+        }
+
+        if (this->Page->User->IsWhitelisted())
+        {
+            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-ignored.png"));
+            return;
         }
 
         if (this->Page->User->IsIP())
