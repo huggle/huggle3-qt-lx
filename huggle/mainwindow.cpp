@@ -253,6 +253,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         QAction *debugm = this->ui->menuDebug_2->menuAction();
         this->ui->menuHelp->removeAction(debugm);
     }
+    if (hcfg->ProjectConfig->Goto.count() > 0)
+    {
+        this->ui->menuGo_to->addSeparator();
+        QList<QAction*> list;
+        foreach (QString item, hcfg->ProjectConfig->Goto)
+        {
+            if (!item.contains(";"))
+            {
+                Syslog::HuggleLogs->WarningLog("Invalid item for go menu: " + item);
+                continue;
+            }
+            QString url = item.mid(0, item.indexOf(";"));
+            QString name = item.mid(item.indexOf(";") + 1);
+            if (name.endsWith(","))
+                name = name.mid(0, name.length() - 1);
+            QAction *action = new QAction(name, this);
+            connect(action, SIGNAL(triggered()), this, SLOT(Go()));
+            action->setToolTip(url);
+            list.append(action);
+        }
+        this->ui->menuGo_to->addActions(list);
+    }
     this->Localize();
     this->VandalDock->Connect();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
@@ -1677,6 +1699,9 @@ void MainWindow::Localize()
     this->ui->menuHAN->setTitle(_l("main-han"));
     this->ui->actionAbout->setText(_l("main-help-about"));
     this->ui->actionBack->setText(_l("main-browser-back"));
+    this->ui->menuGo_to->setTitle(_l("main-goto"));
+    this->ui->actionMy_talk_page->setText(_l("main-goto-mytalk"));
+    this->ui->actionMy_Contributions->setText(_l("main-goto-mycontribs"));
     this->ui->actionBlock_user->setText(_l("main-user-block"));
     this->ui->actionClear_talk_page_of_user->setText(_l("main-user-clear-talk"));
     this->ui->actionDelete->setText(_l("main-page-delete"));
@@ -2704,5 +2729,12 @@ void Huggle::MainWindow::on_actionMy_Contributions_triggered()
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
                                            "Special:Contributions/" +
-                                           QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+                               QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+}
+
+void MainWindow::Go()
+{
+    QAction *action = (QAction*)QObject::sender();
+    QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
+                              QUrl::toPercentEncoding(action->toolTip())));
 }

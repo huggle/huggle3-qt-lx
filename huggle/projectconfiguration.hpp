@@ -133,6 +133,7 @@ namespace Huggle
             // Reverting
             QString         MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
             QStringList     RevertSummaries;
+            QStringList     Goto;
             QString         SoftwareRevertDefaultSummary;
             /// \todo use rollback summary at least at mw-rollback
             QString         RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";

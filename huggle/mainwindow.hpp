@@ -292,9 +292,8 @@ namespace Huggle
             void on_actionInsert_page_to_a_watchlist_triggered();
             void on_actionRemove_page_from_a_watchlist_triggered();
             void on_actionMy_talk_page_triggered();
-
             void on_actionMy_Contributions_triggered();
-
+            void Go();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
