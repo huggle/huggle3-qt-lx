@@ -69,6 +69,8 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_UNWATCH               46
 #define HUGGLE_ACCEL_MAIN_OPEN                  48
 
+#define hcfg Huggle::Configuration::HuggleConfiguration
+
 //! Huggle namespace contains all objects that belongs to huggle only so that they don't colide with other objects
 namespace Huggle
 {

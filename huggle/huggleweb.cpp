@@ -80,13 +80,9 @@ QString HuggleWeb::Encode(const QString &string)
     {
         QChar ch = string.at(i);
         if(ch.unicode() > 255)
-        {
             encoded += QString("&#%1;").arg((int)ch.unicode());
-        }
         else
-        {
             encoded += ch;
-        }
     }
     encoded = encoded.replace("<", "&lt;");
     encoded = encoded.replace(">", "&gt;");
@@ -165,8 +161,6 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         size = "<font color=red>Unknown</font>";
     }
-
-
     if (edit->Summary.isEmpty())
     {
         Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";

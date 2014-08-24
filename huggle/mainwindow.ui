@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -214,12 +214,20 @@
     <addaction name="actionDisplay_user_data"/>
     <addaction name="actionDisplay_bot_data"/>
    </widget>
+   <widget class="QMenu" name="menuGo_to">
+    <property name="title">
+     <string>Go to</string>
+    </property>
+    <addaction name="actionMy_talk_page"/>
+    <addaction name="actionMy_Contributions"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>
    <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
+   <addaction name="menuGo_to"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -972,6 +980,16 @@
   <action name="actionRemove_page_from_a_watchlist">
    <property name="text">
     <string>Remove page from a watchlist</string>
+   </property>
+  </action>
+  <action name="actionMy_talk_page">
+   <property name="text">
+    <string>My talk page</string>
+   </property>
+  </action>
+  <action name="actionMy_Contributions">
+   <property name="text">
+    <string>My Contributions</string>
    </property>
   </action>
  </widget>

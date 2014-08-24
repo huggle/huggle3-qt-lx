@@ -2685,3 +2685,23 @@ void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
         throw new Huggle::NullPointerException("this->CurrentEdit->Page", "void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()");
     WikiUtil::Unwatchlist(this->CurrentEdit->Page);
 }
+
+void Huggle::MainWindow::on_actionMy_talk_page_triggered()
+{
+    if (Configuration::HuggleConfiguration->Restricted)
+        return;
+    this->LockPage();
+    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
+                                           "User_talk:" +
+                                           QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+}
+
+void Huggle::MainWindow::on_actionMy_Contributions_triggered()
+{
+    if (Configuration::HuggleConfiguration->Restricted)
+        return;
+    this->LockPage();
+    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
+                                           "Special:Contributions/" +
+                                           QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+}
