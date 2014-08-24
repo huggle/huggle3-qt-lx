@@ -500,9 +500,13 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString cont
     return trimmed;
 }
 
-static bool F2B(QString result)
+static HuggleQueueFilterMatch F2B(QString result)
 {
-    return result == "exclude";
+    if (result == "exclude")
+        return HuggleQueueFilterMatchExclude;
+    if (result == "require")
+        return HuggleQueueFilterMatchRequire;
+    return HuggleQueueFilterMatchIgnore;
 }
 
 QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString content, bool locked)
@@ -541,16 +545,17 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             // this is a queue definition beginning, because it is intended with 4 spaces
             HuggleQueueFilter *filter = new HuggleQueueFilter();
             // we need to disable all filters because that's how is it expected in config for some reason
-            filter->setIgnoreBots(false);
-            filter->setIgnoreFriends(false);
-            filter->setIgnoreIP(false);
-            filter->setIgnoreMinor(false);
-            filter->setIgnoreNP(false);
-            filter->setIgnoreReverts(false);
-            filter->setIgnoreSelf(false);
-            filter->setIgnore_UserSpace(false);
-            filter->setIgnoreUsers(false);
-            filter->setIgnoreWL(false);
+            filter->setIgnoreBots(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreFriends(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreIP(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreMinor(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreNP(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreTalk(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreReverts(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreSelf(HuggleQueueFilterMatchIgnore);
+            filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreUsers(HuggleQueueFilterMatchIgnore);
+            filter->setIgnoreWL(HuggleQueueFilterMatchIgnore);
             ReturnValue.append(filter);
             filter->ProjectSpecific = locked;
             QString name = text.trimmed();
@@ -600,13 +605,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                 }
                 if (key == "filter-reverts")
                 {
-                    if (val == "exclude")
-                    {
-                        filter->setIgnoreReverts(true);
-                    } else
-                    {
-                        filter->setIgnoreReverts(false);
-                    }
+                    filter->setIgnoreReverts(F2B(val));
                     continue;
                 }
                 if (key == "filter-new-pages")

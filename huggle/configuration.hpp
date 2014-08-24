@@ -363,7 +363,6 @@ namespace Huggle
              * \param s Stream writer
              */
             static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
-            static QString Bool2ExcludeRequire(bool b);
 
             void MakeShortcut(QString name, QString description, QString default_accel = HUGGLE_ACCEL_NONE);
     };

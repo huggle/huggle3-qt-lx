@@ -497,86 +497,98 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Checked items will be filtered out of list</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_7">
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string notr="true">Bot edits (b)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_6">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Own edits</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_18">
-           <property name="text">
-            <string>Edits that are reverts</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_8">
-           <property name="text">
-            <string>Newly created pages (N)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_13">
-           <property name="text">
-            <string>Minor edits</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_9">
-           <property name="text">
-            <string>Whitelisted users</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_10">
-           <property name="text">
-            <string>Friends (edits made by tools like huggle)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_28">
-           <property name="text">
-            <string>Userspace edits</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_29">
-           <property name="text">
-            <string>Talk pages (every space)</string>
-           </property>
-          </widget>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Bot edits (b)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="cbqBots"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Reverts</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Own edits</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Minor</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>New page</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Whitelisted</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Friend</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Userspace</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="cbqOwn"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="cbqRevert"/>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="cbqNew"/>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="cbqMinor"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Talk page</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="cbqWl"/>
+           </item>
+           <item row="7" column="1">
+            <widget class="QComboBox" name="cbqFrd"/>
+           </item>
+           <item row="8" column="1">
+            <widget class="QComboBox" name="cbqUserspace"/>
+           </item>
+           <item row="9" column="1">
+            <widget class="QComboBox" name="cbqTp"/>
+           </item>
+          </layout>
          </item>
          <item>
           <spacer name="verticalSpacer_6">

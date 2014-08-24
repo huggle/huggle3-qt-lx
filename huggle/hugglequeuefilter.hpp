@@ -19,6 +19,16 @@
 
 namespace Huggle
 {
+    enum HuggleQueueFilterMatch
+    {
+        //! The attribute is required for item to be considered matching
+        HuggleQueueFilterMatchRequire,
+        //! The attribute is not relevant at all for item to be considered matching
+        HuggleQueueFilterMatchIgnore,
+        //! The attribute must not be contained for this item to match
+        HuggleQueueFilterMatchExclude
+    };
+
     class WikiEdit;
 
     //! Filter that can be applied to edit queue
@@ -34,171 +44,170 @@ namespace Huggle
             //! if this is false the edit should not be processed later
             bool Matches(WikiEdit *edit);
             //! Information if this filter is matching minor edits or not
-            bool getIgnoreMinor() const;
+            HuggleQueueFilterMatch getIgnoreMinor() const;
             //! Changes if this filter is matching minor edits or not
-            void setIgnoreMinor(bool value);
+            void setIgnoreMinor(HuggleQueueFilterMatch value);
             //! Information if this filter is matching registered user edits or not
-            bool getIgnoreUsers() const;
+            HuggleQueueFilterMatch getIgnoreUsers() const;
             //! Changes if this filter is matching registered users or not
-            void setIgnoreUsers(bool value);
+            void setIgnoreUsers(HuggleQueueFilterMatch value);
             //! Information if this filter is matching edits of wl users or not
-            bool getIgnoreWL() const;
+            HuggleQueueFilterMatch getIgnoreWL() const;
             //! Changes if this filter is matching edits of wl users or not
-            void setIgnoreWL(bool value);
+            void setIgnoreWL(HuggleQueueFilterMatch value);
             //! Information if this filter is matching IP edits or not
-            bool getIgnoreIP() const;
+            HuggleQueueFilterMatch getIgnoreIP() const;
             //! Changes if this filter is matching IP edits or not
-            void setIgnoreIP(bool value);
+            void setIgnoreIP(HuggleQueueFilterMatch value);
             //! Information if this filter is matching bots edits or not
-            bool getIgnoreBots() const;
+            HuggleQueueFilterMatch getIgnoreBots() const;
             //! Changes if this filter is matching bots edits or not
-            void setIgnoreBots(bool value);
+            void setIgnoreBots(HuggleQueueFilterMatch value);
             //! Information if this filter is matching new pages or not
-            bool getIgnoreNP() const;
+            HuggleQueueFilterMatch getIgnoreNP() const;
             //! Changes if this filter is matching new pages or not
-            void setIgnoreNP(bool value);
+            void setIgnoreNP(HuggleQueueFilterMatch value);
             //! Information if this filter is matching edits made by other tools (awb / twinkle) or not
-            bool getIgnoreFriends() const;
+            HuggleQueueFilterMatch getIgnoreFriends() const;
             //! Changes if this filter is matching edits made by other tools edits or not
-            void setIgnoreFriends(bool value);
+            void setIgnoreFriends(HuggleQueueFilterMatch value);
             //! Information if this filter is matching edits made by this user
-            bool getIgnoreSelf() const;
+            HuggleQueueFilterMatch getIgnoreSelf() const;
             //! Changes if this filter is matching edits made by current user
-            void setIgnoreSelf(bool value);
+            void setIgnoreSelf(HuggleQueueFilterMatch value);
             bool IsDefault() const;
             bool IsChangeable() const;
-            void setIgnoreTalk(bool value);
-            bool getIgnoreTalk() const;
-            bool getIgnoreReverts() const;
-            void setIgnoreReverts(bool value);
+            void setIgnoreTalk(HuggleQueueFilterMatch value);
+            HuggleQueueFilterMatch getIgnoreTalk() const;
+            HuggleQueueFilterMatch getIgnoreReverts() const;
+            void setIgnoreReverts(HuggleQueueFilterMatch value);
+            HuggleQueueFilterMatch getIgnore_UserSpace() const;
+            void setIgnore_UserSpace(HuggleQueueFilterMatch value);
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
-            bool getIgnore_UserSpace() const;
-            void setIgnore_UserSpace(bool value);
-
         private:
-            bool IgnoreMinor;
-            bool IgnoreUsers;
-            bool IgnoreWL;
-            bool IgnoreIP;
-            bool IgnoreReverts;
-            bool IgnoreBots;
-            bool IgnoreNP;
-            bool IgnoreFriends;
-            bool IgnoreSelf;
-            bool Ignore_UserSpace;
-            bool IgnoreTalk;
+            HuggleQueueFilterMatch Minor;
+            HuggleQueueFilterMatch Users;
+            HuggleQueueFilterMatch WL;
+            HuggleQueueFilterMatch IP;
+            HuggleQueueFilterMatch Reverts;
+            HuggleQueueFilterMatch Bots;
+            HuggleQueueFilterMatch NewPages;
+            HuggleQueueFilterMatch Friends;
+            HuggleQueueFilterMatch Self;
+            HuggleQueueFilterMatch UserSpace;
+            HuggleQueueFilterMatch TalkPage;
     };
 
-    inline bool HuggleQueueFilter::getIgnoreMinor() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreMinor() const
     {
-        return this->IgnoreMinor;
+        return this->Minor;
     }
 
-    inline void HuggleQueueFilter::setIgnoreMinor(bool value)
+    inline void HuggleQueueFilter::setIgnoreMinor(HuggleQueueFilterMatch value)
     {
-        this->IgnoreMinor = value;
+        this->Minor = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreUsers() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreUsers() const
     {
-        return this->IgnoreUsers;
+        return this->Users;
     }
 
-    inline void HuggleQueueFilter::setIgnoreUsers(bool value)
+    inline void HuggleQueueFilter::setIgnoreUsers(HuggleQueueFilterMatch value)
     {
-        this->IgnoreUsers = value;
+        this->Users = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreWL() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreWL() const
     {
-        return this->IgnoreWL;
+        return this->WL;
     }
 
-    inline void HuggleQueueFilter::setIgnoreWL(bool value)
+    inline void HuggleQueueFilter::setIgnoreWL(HuggleQueueFilterMatch value)
     {
-        this->IgnoreWL = value;
+        this->WL = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreIP() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreIP() const
     {
-        return this->IgnoreIP;
+        return this->IP;
     }
 
-    inline void HuggleQueueFilter::setIgnoreIP(bool value)
+    inline void HuggleQueueFilter::setIgnoreIP(HuggleQueueFilterMatch value)
     {
-        this->IgnoreIP = value;
+        this->IP = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreBots() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreBots() const
     {
-        return this->IgnoreBots;
+        return this->Bots;
     }
 
-    inline void HuggleQueueFilter::setIgnoreBots(bool value)
+    inline void HuggleQueueFilter::setIgnoreBots(HuggleQueueFilterMatch value)
     {
-        this->IgnoreBots = value;
+        this->Bots = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreNP() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreNP() const
     {
-        return this->IgnoreNP;
+        return this->NewPages;
     }
 
-    inline void HuggleQueueFilter::setIgnoreNP(bool value)
+    inline void HuggleQueueFilter::setIgnoreNP(HuggleQueueFilterMatch value)
     {
-        this->IgnoreNP = value;
+        this->NewPages = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreFriends() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreFriends() const
     {
-        return this->IgnoreFriends;
+        return this->Friends;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreReverts() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreReverts() const
     {
-        return this->IgnoreReverts;
+        return this->Reverts;
     }
 
-    inline void HuggleQueueFilter::setIgnoreReverts(bool value)
+    inline void HuggleQueueFilter::setIgnoreReverts(HuggleQueueFilterMatch value)
     {
-        this->IgnoreReverts = value;
+        this->Reverts = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnore_UserSpace() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnore_UserSpace() const
     {
-        return Ignore_UserSpace;
+        return this->UserSpace;
     }
 
-    inline void HuggleQueueFilter::setIgnore_UserSpace(bool value)
+    inline void HuggleQueueFilter::setIgnore_UserSpace(HuggleQueueFilterMatch value)
     {
-        Ignore_UserSpace = value;
+        this->UserSpace = value;
     }
 
-    inline void HuggleQueueFilter::setIgnoreFriends(bool value)
+    inline void HuggleQueueFilter::setIgnoreFriends(HuggleQueueFilterMatch value)
     {
-        this->IgnoreFriends = value;
+        this->Friends = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreSelf() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreSelf() const
     {
-        return this->IgnoreSelf;
+        return this->Self;
     }
 
-    inline void HuggleQueueFilter::setIgnoreTalk(bool value)
+    inline void HuggleQueueFilter::setIgnoreTalk(HuggleQueueFilterMatch value)
     {
-        this->IgnoreTalk = value;
+        this->TalkPage = value;
     }
 
-    inline bool HuggleQueueFilter::getIgnoreTalk() const
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreTalk() const
     {
-        return this->IgnoreTalk;
+        return this->TalkPage;
     }
 
-    inline void HuggleQueueFilter::setIgnoreSelf(bool value)
+    inline void HuggleQueueFilter::setIgnoreSelf(HuggleQueueFilterMatch value)
     {
-        this->IgnoreSelf = value;
+        this->Self = value;
     }
 
     inline bool HuggleQueueFilter::IsDefault() const
