@@ -22,11 +22,28 @@
 
 using namespace Huggle;
 
+static void SetDefaults(QComboBox *item)
+{
+    item->addItem("Ignore (doesn't matter)");
+    item->addItem("Exclude (must not be)");
+    item->addItem("Require (must be)");
+    item->setCurrentIndex(0);
+}
+
 Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
 {
     this->ui->setupUi(this);
     this->ui->tableWidget_2->setColumnCount(3);
     QStringList headers;
+    SetDefaults(this->ui->cbqBots);
+    SetDefaults(this->ui->cbqFrd);
+    SetDefaults(this->ui->cbqMinor);
+    SetDefaults(this->ui->cbqNew);
+    SetDefaults(this->ui->cbqOwn);
+    SetDefaults(this->ui->cbqRevert);
+    SetDefaults(this->ui->cbqTp);
+    SetDefaults(this->ui->cbqUserspace);
+    SetDefaults(this->ui->cbqWl);
     headers << "Function" << "Description" << "Shortcut";
     this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_2->verticalHeader()->setVisible(false);
@@ -152,6 +169,22 @@ Preferences::~Preferences()
     delete this->ui;
 }
 
+static void SetValue(HuggleQueueFilterMatch matching, QComboBox *item)
+{
+    switch (matching)
+    {
+        case HuggleQueueFilterMatchIgnore:
+            item->setCurrentIndex(0);
+            return;
+        case HuggleQueueFilterMatchRequire:
+            item->setCurrentIndex(2);
+            return;
+        case HuggleQueueFilterMatchExclude:
+            item->setCurrentIndex(1);
+            return;
+    }
+}
+
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
     int id = this->ui->listWidget->currentRow();
@@ -167,49 +200,49 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
         this->EnableQueues();
     }
     HuggleQueueFilter *f = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
-    this->ui->checkBox_7->setChecked(f->getIgnoreBots());
-    this->ui->checkBox_8->setChecked(f->getIgnoreNP());
-    this->ui->checkBox_9->setChecked(f->getIgnoreWL());
-    this->ui->checkBox_28->setChecked(f->getIgnore_UserSpace());
-    this->ui->checkBox_29->setChecked(f->getIgnoreTalk());
-    this->ui->checkBox_10->setChecked(f->getIgnoreFriends());
-    this->ui->checkBox_18->setChecked(f->getIgnoreReverts());
-    this->ui->checkBox_6->setChecked(f->getIgnoreSelf());
+    SetValue(f->getIgnoreBots(), this->ui->cbqBots);
+    SetValue(f->getIgnoreNP(), this->ui->cbqNew);
+    SetValue(f->getIgnoreWL(), this->ui->cbqWl);
+    SetValue(f->getIgnore_UserSpace(), this->ui->cbqUserspace);
+    SetValue(f->getIgnoreTalk(), this->ui->cbqTp);
+    SetValue(f->getIgnoreFriends(), this->ui->cbqFrd);
+    SetValue(f->getIgnoreReverts(), this->ui->cbqRevert);
+    SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
     this->ui->lineEdit->setText(f->QueueName);
 }
 
 void Preferences::Disable()
 {
-    this->ui->checkBox_6->setEnabled(false);
-    this->ui->checkBox_7->setEnabled(false);
-    this->ui->checkBox_8->setEnabled(false);
-    this->ui->checkBox_9->setEnabled(false);
-    this->ui->checkBox_10->setEnabled(false);
+    this->ui->cbqBots->setEnabled(false);
+    this->ui->cbqFrd->setEnabled(false);
+    this->ui->cbqMinor->setEnabled(false);
+    this->ui->cbqNew->setEnabled(false);
+    this->ui->cbqOwn->setEnabled(false);
     this->ui->pushButton_4->setEnabled(false);
-    this->ui->checkBox_18->setEnabled(false);
+    this->ui->cbqRevert->setEnabled(false);
     this->ui->pushButton_5->setEnabled(false);
-    this->ui->checkBox_28->setEnabled(false);
+    this->ui->cbqTp->setEnabled(false);
     this->ui->pushButton_6->setEnabled(false);
-    this->ui->checkBox_13->setEnabled(false);
+    this->ui->cbqUserspace->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
-    this->ui->checkBox_29->setEnabled(false);
+    this->ui->cbqWl->setEnabled(false);
 }
 
 void Preferences::EnableQueues()
 {
     this->ui->lineEdit->setEnabled(true);
-    this->ui->checkBox_6->setEnabled(true);
-    this->ui->checkBox_29->setEnabled(true);
-    this->ui->checkBox_7->setEnabled(true);
-    this->ui->checkBox_8->setEnabled(true);
-    this->ui->checkBox_9->setEnabled(true);
-    this->ui->checkBox_10->setEnabled(true);
+    this->ui->cbqBots->setEnabled(true);
+    this->ui->cbqFrd->setEnabled(true);
+    this->ui->cbqMinor->setEnabled(true);
+    this->ui->cbqNew->setEnabled(true);
+    this->ui->cbqOwn->setEnabled(true);
+    this->ui->cbqRevert->setEnabled(true);
     this->ui->pushButton_4->setEnabled(true);
-    this->ui->checkBox_18->setEnabled(true);
+    this->ui->cbqTp->setEnabled(true);
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
-    this->ui->checkBox_13->setEnabled(true);
-    this->ui->checkBox_28->setEnabled(true);
+    this->ui->cbqUserspace->setEnabled(true);
+    this->ui->cbqWl->setEnabled(true);
 }
 
 void Preferences::on_pushButton_clicked()
@@ -284,6 +317,18 @@ void Huggle::Preferences::on_checkBox_clicked()
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
 }
 
+static HuggleQueueFilterMatch Match(QComboBox *item)
+{
+    switch (item->currentIndex())
+    {
+        case 1:
+            return HuggleQueueFilterMatchExclude;
+        case 2:
+            return HuggleQueueFilterMatchRequire;
+    }
+    return HuggleQueueFilterMatchIgnore;
+}
+
 void Huggle::Preferences::on_pushButton_6_clicked()
 {
     int id = this->ui->listWidget->currentRow();
@@ -304,14 +349,14 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         mb.exec();
         return;
     }
-    filter->setIgnoreBots(this->ui->checkBox_7->isChecked());
-    filter->setIgnoreNP(this->ui->checkBox_8->isChecked());
-    filter->setIgnoreWL(this->ui->checkBox_9->isChecked());
-    filter->setIgnoreSelf(this->ui->checkBox_6->isChecked());
-    filter->setIgnoreReverts(this->ui->checkBox_18->isChecked());
-    filter->setIgnoreTalk(this->ui->checkBox_29->isChecked());
-    filter->setIgnoreFriends(this->ui->checkBox_10->isChecked());
-    filter->setIgnore_UserSpace(this->ui->checkBox_28->isChecked());
+    filter->setIgnoreBots(Match(this->ui->cbqBots));
+    filter->setIgnoreNP(Match(this->ui->cbqNew));
+    filter->setIgnoreWL(Match(this->ui->cbqWl));
+    filter->setIgnoreSelf(Match(this->ui->cbqOwn));
+    filter->setIgnoreReverts(Match(this->ui->cbqRevert));
+    filter->setIgnoreTalk(Match(this->ui->cbqTp));
+    filter->setIgnoreFriends(Match(this->ui->cbqFrd));
+    filter->setIgnore_UserSpace(Match(this->ui->cbqUserspace));
     filter->QueueName = this->ui->lineEdit->text();
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();

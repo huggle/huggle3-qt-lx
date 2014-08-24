@@ -24,53 +24,96 @@ QList<HuggleQueueFilter*> HuggleQueueFilter::Filters;
 HuggleQueueFilter::HuggleQueueFilter()
 {
     this->QueueName = "default";
-    this->IgnoreBots = true;
-    this->IgnoreWL = true;
+    this->Bots = HuggleQueueFilterMatchExclude;
+    this->WL = HuggleQueueFilterMatchExclude;
     this->ProjectSpecific = false;
-    this->IgnoreFriends = true;
-    this->IgnoreIP = false;
-    this->IgnoreMinor = false;
-    this->IgnoreNP = false;
-    this->IgnoreSelf = true;
-    this->IgnoreReverts = false;
-    this->IgnoreUsers = false;
-    this->IgnoreTalk = true;
-    this->Ignore_UserSpace = false;
+    this->Friends = HuggleQueueFilterMatchExclude;
+    this->IP = HuggleQueueFilterMatchIgnore;
+    this->Minor = HuggleQueueFilterMatchIgnore;
+    this->NewPages = HuggleQueueFilterMatchIgnore;
+    this->Self = HuggleQueueFilterMatchExclude;
+    this->Reverts = HuggleQueueFilterMatchIgnore;
+    this->Users = HuggleQueueFilterMatchIgnore;
+    this->TalkPage = HuggleQueueFilterMatchExclude;
+    this->UserSpace = HuggleQueueFilterMatchIgnore;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Huggle::Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
+        throw new Huggle::NullPointerException("WikiEdit *edit", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
 
-    if (this->Ignore_UserSpace && edit->Page->GetNS()->GetCanonicalName() == "User")
-        return false;
-    if (edit->Page->IsTalk() && this->IgnoreTalk)
-        return false;
+    if (this->UserSpace != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->UserSpace == HuggleQueueFilterMatchExclude && edit->Page->GetNS()->GetCanonicalName() == "User")
+            return false;
+        if (this->UserSpace == HuggleQueueFilterMatchRequire && edit->Page->GetNS()->GetCanonicalName() != "User")
+            return false;
+    }
+    if (this->TalkPage != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->TalkPage == HuggleQueueFilterMatchExclude && edit->Page->IsTalk())
+            return false;
+        if (this->TalkPage == HuggleQueueFilterMatchRequire && !edit->Page->IsTalk())
+            return false;
+    }
     int i = 0;
     while (i < Configuration::HuggleConfiguration->ProjectConfig->IgnorePatterns.count())
     {
         if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig->IgnorePatterns.at(i)))
-        {
             return false;
-        }
         i++;
     }
     if (Configuration::HuggleConfiguration->ProjectConfig->Ignores.contains(edit->Page->PageName))
         return false;
-    if (edit->User->IsWhitelisted() && this->IgnoreWL)
-        return false;
-    if (edit->TrustworthEdit && this->IgnoreFriends)
-        return false;
-    if (edit->Minor && this->IgnoreMinor)
-        return false;
-    if (edit->IsRevert && this->IgnoreReverts)
-        return false;
-    if (edit->NewPage && this->IgnoreNP)
-        return false;
-    if (edit->Bot && this->IgnoreBots)
-        return false;
-    if (this->IgnoreSelf && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
-        return false;
+    if (this->WL != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->WL == HuggleQueueFilterMatchRequire && !edit->User->IsWhitelisted())
+            return false;
+        if (this->WL == HuggleQueueFilterMatchExclude && edit->User->IsWhitelisted())
+            return false;
+    }
+    if (this->Friends != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Friends == HuggleQueueFilterMatchExclude && edit->TrustworthEdit)
+            return false;
+        if (this->Friends == HuggleQueueFilterMatchRequire && edit->TrustworthEdit != true)
+            return false;
+    }
+    if (this->Minor != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Minor == HuggleQueueFilterMatchExclude && edit->Minor)
+            return false;
+        if (this->Minor == HuggleQueueFilterMatchRequire && !edit->Minor)
+            return false;
+    }
+    if (this->Reverts != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Reverts == HuggleQueueFilterMatchExclude && edit->IsRevert)
+            return false;
+        if (this->Reverts == HuggleQueueFilterMatchRequire && !edit->IsRevert)
+            return false;
+    }
+    if (this->NewPages != HuggleQueueFilterMatchIgnore)
+    {
+        if (edit->NewPage && this->NewPages == HuggleQueueFilterMatchExclude)
+            return false;
+        if (this->NewPages == HuggleQueueFilterMatchRequire && !edit->NewPage)
+            return false;
+    }
+    if (this->Bots != HuggleQueueFilterMatchIgnore)
+    {
+        if (edit->Bot && this->Bots == HuggleQueueFilterMatchExclude)
+            return false;
+        if (this->Bots == HuggleQueueFilterMatchRequire && !edit->Bot)
+            return false;
+    }
+    if (this->Self != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Self == HuggleQueueFilterMatchExclude && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+            return false;
+        if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+            return false;
+    }
     return true;
 }
