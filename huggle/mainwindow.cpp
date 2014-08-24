@@ -772,6 +772,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_TALK:
             q = this->ui->actionTalk_page;
             break;
+        case HUGGLE_ACCEL_MAIN_OPEN:
+            q = this->ui->actionDisplay_this_page;
+            break;
         case HUGGLE_ACCEL_MAIN_FORWARD:
             q = this->ui->actionForward;
             break;
