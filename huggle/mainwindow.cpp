@@ -1067,12 +1067,12 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
-    if (!Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn && !Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin
-            && !Configuration::HuggleConfiguration->Restricted)
+    ProjectConfiguration *cfg = this->GetCurrentWikiSite()->GetProjectConfig();
+    if (!cfg->IsLoggedIn && !cfg->RequestingLogin && !hcfg->Restricted)
     {
         delete this->fRelogin;
         // we need to flag it here so that we don't reload the form next tick
-        Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = true;
+        cfg->RequestingLogin = true;
         this->fRelogin = new ReloginForm(this);
         // exec to freeze
         this->fRelogin->show();
@@ -1289,7 +1289,8 @@ void MainWindow::OnTimerTick0()
             {
                 WikiPage *uc = new WikiPage(page);
                 uc->Site = site;
-                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site), _l("saveuserconfig-progress"), true);
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site),
+                                                                          _l("saveuserconfig-progress"), true);
                 temp->IncRef();
                 this->StorageQueries.insert(site, temp.GetPtr());
                 delete uc;
@@ -1573,7 +1574,7 @@ bool MainWindow::CheckEditableBrowserPage()
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
     {
-        qint64 wt = QDateTime::currentDateTime().msecsTo(this->EditLoad.addSecs(Configuration::HuggleConfiguration->SystemConfig_DelayVal));
+        qint64 wt = QDateTime::currentDateTime().msecsTo(this->EditLoad.addSecs(hcfg->SystemConfig_DelayVal));
         if (wt > 0)
         {
             Syslog::HuggleLogs->WarningLog("Ignoring edit request because you are too fast, please wait " +
@@ -2691,7 +2692,7 @@ void Huggle::MainWindow::on_actionMy_talk_page_triggered()
     if (Configuration::HuggleConfiguration->Restricted)
         return;
     this->LockPage();
-    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
+    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
                                            "User_talk:" +
                                            QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
@@ -2701,7 +2702,7 @@ void Huggle::MainWindow::on_actionMy_Contributions_triggered()
     if (Configuration::HuggleConfiguration->Restricted)
         return;
     this->LockPage();
-    this->Browser->DisplayPreFormattedPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
+    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
                                            "Special:Contributions/" +
                                            QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
