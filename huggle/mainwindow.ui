@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -174,7 +174,6 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
-    <addaction name="actionClear_template_meta_data"/>
     <addaction name="actionUser_contributions"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
