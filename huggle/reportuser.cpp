@@ -260,6 +260,8 @@ void ReportUser::Tick()
             if (!this->CheckUser())
             {
                 this->ui->pushButton->setText(_l("report-duplicate"));
+                this->ReportedUser->IsReported = true;
+                WikiUser::UpdateUser(this->ReportedUser);
                 this->Kill();
                 return;
             }
@@ -430,6 +432,7 @@ void ReportUser::Test()
         if (!this->CheckUser())
         {
             this->failCheck(_l("report-duplicate"));
+            this->ReportedUser->IsReported = true;
             WikiUser::UpdateUser(this->ReportedUser);
             return;
         } else
