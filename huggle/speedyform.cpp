@@ -73,6 +73,8 @@ void SpeedyForm::on_pushButton_clicked()
     }
     this->ui->checkBox->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
+    this->ui->label_3->setEnabled(false);
+    this->ui->lineEdit->setEnabled(false);
     this->ui->pushButton->setText(_l("speedy-progress", this->edit->Page->PageName));
     this->ui->pushButton->setEnabled(false);
     this->Header = this->ui->comboBox->currentText();
