@@ -17,6 +17,7 @@
 #include <QHash>
 #include "projectconfiguration.hpp"
 #include "userconfiguration.hpp"
+#include "version.hpp"
 
 namespace Huggle
 {
@@ -106,6 +107,7 @@ namespace Huggle
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
             QString HANChannel;
+            Version MediawikiVersion;
             ProjectConfiguration *ProjectConfig = nullptr;
             UserConfiguration    *UserConfig = nullptr;
             //! URL of whitelist, every site needs to have some, if your site doesn't have it

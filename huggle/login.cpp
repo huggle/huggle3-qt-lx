@@ -777,6 +777,21 @@ void Login::ProcessSiteInfo(WikiSite *site)
         {
             site->IsRightToLeft = true;
         }
+        if (item.attributes().contains("generator"))
+        {
+            QString vr = item.attribute("generator");
+            if (!vr.contains(" "))
+            {
+                Syslog::HuggleLogs->WarningLog("Mediawiki of " + site->Name + " has some invalid version: " + vr);
+            } else
+            {
+                vr = vr.mid(vr.indexOf(" ") + 1);
+                site->MediawikiVersion = Version(vr);
+            }
+        } else
+        {
+            Syslog::HuggleLogs->WarningLog("MediaWiki of " + site->Name + " provides no version");
+        }
         if (item.attributes().contains("time"))
         {
             QDateTime server_time = MediaWiki::FromMWTimestamp(item.attribute("time"));

@@ -59,6 +59,7 @@ WikiSite::WikiSite(const WikiSite &w)
     this->ScriptPath = w.ScriptPath;
     this->SupportHttps = w.SupportHttps;
     this->SupportOAuth = w.SupportOAuth;
+    this->MediawikiVersion = w.MediawikiVersion;
     this->URL = w.URL;
     this->HANChannel = w.HANChannel;
     this->IsRightToLeft = w.IsRightToLeft;
@@ -78,6 +79,7 @@ WikiSite::WikiSite(WikiSite *w)
     this->Name = w->Name;
     this->OAuthURL = w->OAuthURL;
     this->WhiteList = w->WhiteList;
+    this->MediawikiVersion = w->MediawikiVersion;
     this->URL = w->URL;
     this->HANChannel = w->HANChannel;
     this->ProjectConfig = w->ProjectConfig;
