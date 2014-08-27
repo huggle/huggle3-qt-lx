@@ -500,6 +500,7 @@
     <string name="shortcut-open-in-huggle">Open currently displayed page</string>
     <string name="shortcut-open">Open currently displayed edit in a browser</string>
     <string name="shortcut-talk">Display a talk page of user who did this change</string>
+    <string name="shortcut-revert-agf-1">Revert last revision assuming good faith</string>
     <string name="warning-title">Warn $1</string>
     <string name="warning-levelgroup">Warning level</string>
     <string name="warning-levelauto">Automatic</string>
