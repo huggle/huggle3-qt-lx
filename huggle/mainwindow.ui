@@ -123,6 +123,7 @@
     <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
     <addaction name="actionRevert_AGF"/>
     <addaction name="actionRevert_only_this_revision"/>
+    <addaction name="actionRevert_only_this_revision_assuming_good_faith"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
@@ -989,6 +990,11 @@
   <action name="actionMy_Contributions">
    <property name="text">
     <string>My Contributions</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision_assuming_good_faith">
+   <property name="text">
+    <string>Revert only this revision assuming good faith</string>
    </property>
   </action>
  </widget>

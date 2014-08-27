@@ -92,6 +92,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-watch", "shortcut-watch", "Alt+X");
     this->MakeShortcut("main-unwatch", "shortcut-unwatch", "Alt+C");
     this->MakeShortcut("main-open", "shortcut-open-in-huggle", "Alt+O");
+    this->MakeShortcut("main-revert-agf-one-only", "shortcut-revert-agf-1");
 }
 
 Configuration::~Configuration()
@@ -784,6 +785,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_OPEN;
     else if (name == "main-mytalk")
         this->ID = HUGGLE_ACCEL_MAIN_MYTALK_PAGE;
+    else if (name == "main-revert-agf-one-only")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV;
     else if (name == "main-talk")
         this->ID = HUGGLE_ACCEL_MAIN_TALK;
     else if (name.startsWith("main-revert-and-warn-"))

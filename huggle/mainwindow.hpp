@@ -294,6 +294,7 @@ namespace Huggle
             void on_actionMy_talk_page_triggered();
             void on_actionMy_Contributions_triggered();
             void Go();
+            void on_actionRevert_only_this_revision_assuming_good_faith_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -312,6 +313,7 @@ namespace Huggle
             void Render();
             //! Request a page deletion csd or afd and so on
             void RequestPD();
+            void RevertAgf(bool only);
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
             void closeEvent(QCloseEvent *event);

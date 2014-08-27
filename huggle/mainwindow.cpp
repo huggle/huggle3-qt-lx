@@ -502,6 +502,26 @@ void MainWindow::RequestPD()
     this->fSpeedyDelete->show();
 }
 
+void MainWindow::RevertAgf(bool only)
+{
+    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
+        return;
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Generic::DeveloperError();
+        return;
+    }
+    bool ok;
+    QString reason = QInputDialog::getText(this, _l("reason"), _l("main-revert-custom-reson"), QLineEdit::Normal,
+                                           "No reason was provided / custom revert", &ok);
+    if (!ok)
+        return;
+    QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert;
+    summary.replace("$2", this->CurrentEdit->User->Username);
+    summary.replace("$1", reason);
+    this->Revert(summary, true, only);
+}
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (this->ShuttingDown)
@@ -784,6 +804,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_WARN:
             q = this->ui->actionWarn_the_user;
             tip = this->ui->actionWarn;
+            break;
+        case HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV:
+            q = this->ui->actionRevert_only_this_revision_assuming_good_faith;
             break;
         case HUGGLE_ACCEL_MAIN_GOOD:
             q = this->ui->actionFlag_as_a_good_edit;
@@ -2339,22 +2362,7 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
 
 void Huggle::MainWindow::on_actionRevert_AGF_triggered()
 {
-    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
-        return;
-    if (Configuration::HuggleConfiguration->Restricted)
-    {
-        Generic::DeveloperError();
-        return;
-    }
-    bool ok;
-    QString reason = QInputDialog::getText(this, _l("reason"), _l("main-revert-custom-reson"), QLineEdit::Normal,
-                                           "No reason was provided / custom revert", &ok);
-    if (!ok)
-        return;
-    QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert;
-    summary.replace("$2", this->CurrentEdit->User->Username);
-    summary.replace("$1", reason);
-    this->Revert(summary);
+    this->RevertAgf(false);
 }
 
 void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
@@ -2736,4 +2744,9 @@ void MainWindow::Go()
 {
     QAction *action = (QAction*)QObject::sender();
     QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + action->toolTip()));
+}
+
+void Huggle::MainWindow::on_actionRevert_only_this_revision_assuming_good_faith_triggered()
+{
+    this->RevertAgf(true);
 }
