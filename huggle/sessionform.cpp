@@ -49,7 +49,8 @@ void SessionForm::Reload(int x)
     WikiSite *site = Configuration::HuggleConfiguration->Projects.at(x);
     this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
                                "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
-                               "RC feed: " + site->Provider->ToString());
+                               "RC feed: " + site->Provider->ToString() + "\n" +
+                               "MediaWiki: " + site->MediawikiVersion.ToString());
     int xx=0;
     this->ui->listWidget->clear();
     while (xx < site->GetProjectConfig()->Rights.count())

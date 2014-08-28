@@ -1,4 +1,4 @@
-//This program is free software: you can redistribute it and/or modify
+﻿//This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
@@ -92,6 +92,34 @@ bool Version::IsEqual(Version *b)
         return true;
 }
 
+bool Version::IsLower(Version *b)
+{
+    if (!this->IsValid() || !b->IsValid())
+        return false;
+    if (this->GetMajor() < b->GetMajor())
+        return true;
+    if (this->GetMinor() < b->GetMinor())
+        return true;
+    if (this->GetRevision() < b->GetRevision())
+        return true;
+
+    return false;
+}
+
+bool Version::IsGreater(Version *b)
+{
+    if (!this->IsValid() || !b->IsValid())
+        return false;
+    if (this->GetMajor() > b->GetMajor())
+        return true;
+    if (this->GetMinor() > b->GetMinor())
+        return true;
+    if (this->GetRevision() > b->GetRevision())
+        return true;
+
+    return false;
+}
+
 QString Version::getSuffixed(QString number)
 {
     int index = IndexOfNonIntChar(number);
@@ -111,4 +139,24 @@ bool operator!=(Version &a, Version &b)
 bool operator==(Version &a, Version &b)
 {
     return a.IsEqual(&b);
+}
+
+bool operator >=(Version &a, Version &b)
+{
+    return a.IsEqual(&b) || a.IsGreater(&b);
+}
+
+bool operator >(Version &a, Version &b)
+{
+    return a.IsGreater(&b);
+}
+
+bool operator <(Version &a, Version &b)
+{
+    return a.IsLower(&b);
+}
+
+bool operator <=(Version &a, Version &b)
+{
+    return a.IsEqual(&b) || &a < &b;
 }

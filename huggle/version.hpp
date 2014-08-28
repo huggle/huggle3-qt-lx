@@ -35,8 +35,11 @@ namespace Huggle
             int GetMajor();
             int GetMinor();
             int GetRevision();
-            bool IsValid();
             bool IsEqual(Version *b);
+            bool IsLower(Version *b);
+            bool IsGreater(Version *b);
+            bool IsValid();
+            QString ToString();
         private:
             QString getSuffixed(QString number);
             int major = 0;
@@ -69,8 +72,17 @@ namespace Huggle
         return this->isValid;
     }
 
-    bool operator!=(Version &a, Version &b);
-    bool operator==(Version &a, Version &b);
+    inline QString Version::ToString()
+    {
+        return this->original_string;
+    }
+
+    bool operator !=(Version &a, Version &b);
+    bool operator ==(Version &a, Version &b);
+    bool operator <=(Version &a, Version &b);
+    bool operator >=(Version &a, Version &b);
+    bool operator >(Version &a, Version &b);
+    bool operator <(Version &a, Version &b);
 }
 
 #endif // VERSION_HPP
