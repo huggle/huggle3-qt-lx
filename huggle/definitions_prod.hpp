@@ -21,6 +21,9 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_MINOR       0x1
 #define HUGGLE_BYTE_VERSION_RELEASE     0x2
 
+// Version of mediawiki that we do support
+#define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.22"
+
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION

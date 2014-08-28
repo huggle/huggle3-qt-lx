@@ -13,6 +13,7 @@
 #include "exception.hpp"
 
 using namespace Huggle;
+Version Version::SupportedMediawiki = Version(HUGGLE_SUPPORTED_MEDIAWIKI_VERSION);
 
 bool Version::IsValid(QString version)
 {
@@ -131,32 +132,32 @@ QString Version::getSuffixed(QString number)
     return number;
 }
 
-bool operator!=(Version &a, Version &b)
+bool Huggle::operator!=(Version &a, Version &b)
 {
     return !a.IsEqual(&b);
 }
 
-bool operator==(Version &a, Version &b)
+bool Huggle::operator==(Version &a, Version &b)
 {
     return a.IsEqual(&b);
 }
 
-bool operator >=(Version &a, Version &b)
+bool Huggle::operator >=(Version &a, Version &b)
 {
     return a.IsEqual(&b) || a.IsGreater(&b);
 }
 
-bool operator >(Version &a, Version &b)
+bool Huggle::operator >(Version &a, Version &b)
 {
     return a.IsGreater(&b);
 }
 
-bool operator <(Version &a, Version &b)
+bool Huggle::operator <(Version &a, Version &b)
 {
     return a.IsLower(&b);
 }
 
-bool operator <=(Version &a, Version &b)
+bool Huggle::operator <=(Version &a, Version &b)
 {
     return a.IsEqual(&b) || &a < &b;
 }

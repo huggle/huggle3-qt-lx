@@ -774,9 +774,8 @@ void Login::ProcessSiteInfo(WikiSite *site)
         }
         QDomElement item = l.at(0).toElement();
         if (item.attributes().contains("rtl"))
-        {
             site->IsRightToLeft = true;
-        }
+
         if (item.attributes().contains("generator"))
         {
             QString vr = item.attribute("generator");
@@ -787,6 +786,9 @@ void Login::ProcessSiteInfo(WikiSite *site)
             {
                 vr = vr.mid(vr.indexOf(" ") + 1);
                 site->MediawikiVersion = Version(vr);
+                if (site->MediawikiVersion < Version::SupportedMediawiki)
+                    Syslog::HuggleLogs->WarningLog("Mediawiki of " + site->Name + " is using version " + site->MediawikiVersion.ToString() +
+                                                   " which isn't supported by huggle");
             }
         } else
         {

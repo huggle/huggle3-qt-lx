@@ -28,6 +28,7 @@ namespace Huggle
     {
         public:
             static bool IsValid(QString version);
+            static Version SupportedMediawiki;
 
             Version();
             Version(QString version);
