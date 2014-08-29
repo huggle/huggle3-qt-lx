@@ -482,6 +482,7 @@ namespace Huggle
 		        PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
 		        PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
 		        PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
+		        return Huggle_ptr;
 		    }
 		#else
 		    static void PyInit_emb()
