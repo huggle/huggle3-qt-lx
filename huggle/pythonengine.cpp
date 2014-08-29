@@ -467,34 +467,28 @@ namespace Huggle
         };
 
 
-		static PyObject *Huggle_ptr;
+        static PyObject *Huggle_ptr;
 
-		#if PY_MAJOR_VERSION >= 3
-		    static PyModuleDef Module = {
-		        PyModuleDef_HEAD_INIT, "huggle", nullptr, -1, Methods, nullptr, nullptr, nullptr, nullptr
-		    };
+        #if PY_MAJOR_VERSION >= 3
+            static PyModuleDef Module = {
+                PyModuleDef_HEAD_INIT, "huggle", nullptr, -1, Methods, nullptr, nullptr, nullptr, nullptr
+            };
 
-		    static PyObject *PyInit_emb()
-		    {
-		        Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
-		        PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
-		        PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
-		        PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
-		        PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
-		        PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
-		        return Huggle_ptr;
-		    }
-		#else
-		    static void PyInit_emb()
-		    {
-		        Huggle_ptr = Py_InitModule("huggle", Methods);
-		        PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
-		        PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
-		        PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
-		        PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
-		        PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
-		    }
-		#endif
+            static PyObject *PyInit_emb()
+        #else
+            static void PyInit_emb()
+                #endif
+            {
+                Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
+                PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
+                PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
+                PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
+                PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
+                PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
+        #if PY_MAJOR_VERSION >= 3
+                return Huggle_ptr;
+                #endif
+            }
     }
 }
 
@@ -507,11 +501,7 @@ static QString DoubleBack(QString path)
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
     // define hooks
-	#if PY_MAJOR_VERSION >= 3
-		PyImport_AppendInittab("huggle", &PyInit_emb);
-	#else
-		PyImport_AppendInittab("huggle", &PyInit_emb);
-	#endif
+    PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it
     Py_Initialize();
     Syslog::HuggleLogs->DebugLog("Inserting extensions folder to path: " + DoubleBack(ExtensionsFolder_));
