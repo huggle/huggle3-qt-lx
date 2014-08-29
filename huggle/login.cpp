@@ -616,6 +616,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
             QDomNodeList revisions = d.elementsByTagName("rev");
             if (revisions.count() == 0) // page is missing
             {
+                HUGGLE_DEBUG("User config is missing on " + site->Name, 2);
                 if (this->LoadedOldConfigs[site] == false && !Configuration::HuggleConfiguration->GlobalConfig_UserConf_old.isEmpty())
                 {
                     // try first with old location of config, we don't need to switch the login step here we just
@@ -659,7 +660,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     // piece of code really works
                     Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config for " + site->Name + " (huggle.css) :)");
                 }
-                if (!Configuration::HuggleConfiguration->ProjectConfig->EnableAll)
+                if (!site->ProjectConfig->EnableAll)
                 {
                     this->DisplayError(_l("login-fail-enable-true", site->Name));
                     return;
@@ -717,8 +718,8 @@ void Login::RetrieveUserInfo(WikiSite *site)
                 this->DisplayError(_l("login-fail-rollback-rights", site->Name));
                 return;
             }
-            if (site->GetProjectConfig()->RequireAutoconfirmed && !site->GetProjectConfig()->Rights.contains("autoconfirmed"))
-                //sometimes there is something like manually "confirmed", thats currently not included here
+            if (site->GetProjectConfig()->RequireAutoconfirmed && (!site->GetProjectConfig()->Rights.contains("autoconfirmed") &&
+                                                                   !site->GetProjectConfig()->Rights.contains("confirmed")))
             {
                 this->DisplayError(_l("login-failed-autoconfirm-rights", site->Name));
                 return;
