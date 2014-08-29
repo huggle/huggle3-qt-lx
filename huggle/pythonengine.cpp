@@ -466,22 +466,29 @@ namespace Huggle
             {nullptr, nullptr, 0, nullptr}
         };
 
-        static PyModuleDef Module = {
-            PyModuleDef_HEAD_INIT, "huggle", nullptr, -1, Methods, nullptr, nullptr, nullptr, nullptr
-        };
 
         static PyObject *Huggle_ptr;
 
-        static PyObject *PyInit_emb()
-        {
-            Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
-            PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
-            PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
-            PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
-            PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
-            PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
-            return Huggle_ptr;
-        }
+        #if PY_MAJOR_VERSION >= 3
+            static PyModuleDef Module = {
+                PyModuleDef_HEAD_INIT, "huggle", nullptr, -1, Methods, nullptr, nullptr, nullptr, nullptr
+            };
+
+            static PyObject *PyInit_emb()
+        #else
+            static void PyInit_emb()
+                #endif
+            {
+                Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
+                PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
+                PyModule_AddIntConstant(Huggle_ptr, "EINVALIDQUERY", HUGGLE_EINVALIDQUERY);
+                PyModule_AddIntConstant(Huggle_ptr, "ENOTLOGGEDIN", HUGGLE_ENOTLOGGEDIN);
+                PyModule_AddIntConstant(Huggle_ptr, "EUNKNOWN", HUGGLE_EUNKNOWN);
+                PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
+        #if PY_MAJOR_VERSION >= 3
+                return Huggle_ptr;
+                #endif
+            }
     }
 }
 
