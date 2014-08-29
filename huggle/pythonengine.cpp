@@ -477,7 +477,7 @@ namespace Huggle
             static PyObject *PyInit_emb()
         #else
             static void PyInit_emb()
-                #endif
+        #endif
             {
                 Huggle_ptr = PyModule_Create2(&Module, PYTHON_API_VERSION);
                 PyModule_AddIntConstant(Huggle_ptr, "SUCCESS", HUGGLE_SUCCESS);
@@ -487,7 +487,7 @@ namespace Huggle
                 PyModule_AddStringConstant(Huggle_ptr, "HUGGLE_VERSION", HUGGLE_VERSION);
         #if PY_MAJOR_VERSION >= 3
                 return Huggle_ptr;
-                #endif
+        #endif
             }
     }
 }
