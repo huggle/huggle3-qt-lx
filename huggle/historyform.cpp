@@ -169,27 +169,16 @@ void HistoryForm::onTick01()
         }
         QString user = "<Unknown>";
         if (e.attributes().contains("user"))
-        {
             user = e.attribute("user");
-        }
         QString size = "<Unknown>";
         if (e.attributes().contains("size"))
-        {
             size = e.attribute("size");
-        }
         QString date = "<Unknown>";
         if (e.attributes().contains("timestamp"))
-        {
             date = e.attribute("timestamp");
-        }
         QString summary = "No summary";
-        if (e.attributes().contains("comment"))
-        {
-            if (e.attribute("comment") != "")
-            {
+        if (e.attributes().contains("comment") && !e.attribute("comment").isEmpty())
                 summary = e.attribute("comment");
-            }
-        }
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
         if (WikiUtil::IsRevert(summary))

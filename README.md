@@ -57,6 +57,7 @@ run ./configure with --python option, for example
 ```
 ./configure --qt5 --python
 ```
+Note: you need to have cmake 3.0.0 or newer for this to work
 
 On windows:
 * open huggle.pro and uncomment / add python library
