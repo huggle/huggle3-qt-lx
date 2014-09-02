@@ -37,79 +37,8 @@ void HuggleQueueItemLabel::SetName(QString name)
         int id = this->Page->Page->GetNS()->GetID();
         if (id != 0)
             this->ui->label_2->setStyleSheet("QLabel { background-color : #" + getColor(id) + "; }");
-        // change the icon according to edit type (descending priority)
-        if (this->Page->OwnEdit)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-me.png"));
-            return;
-        }
-
-        if (this->Page->User->IsBanned)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-blocked.png"));
-            return;
-        }
-
-        if (this->Page->User->IsReported)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-reported.png"));
-            return;
-        }
-
-        if (this->Page->IsRevert)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-revert.png"));
-            return;
-        }
-
-        if (this->Page->Bot)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-bot.png"));
-            return;
-        }
-
-        switch (this->Page->CurrentUserWarningLevel)
-        {
-            case WarningLevelNone:
-                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-none.png"));
-                break;
-            case WarningLevel1:
-                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-1.png"));
-                return;
-            case WarningLevel2:
-                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-2.png"));
-                return;
-            case WarningLevel3:
-                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-3.png"));
-                return;
-            case WarningLevel4:
-                this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warn-4.png"));
-                return;
-        }
-
-        if (this->Page->Score > 1000)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-warning.png"));
-            return;
-        }
-
-        if (this->Page->NewPage)
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-new.png"));
-            return;
-        }
-
-        if (this->Page->User->IsWhitelisted())
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-ignored.png"));
-            return;
-        }
-
-        if (this->Page->User->IsIP())
-        {
-            this->ui->label->setPixmap(QPixmap(":/huggle/pictures/Resources/blob-anon.png"));
-            return;
-        }
+        // change the icon according to edit type
+        this->ui->label->setPixmap(QPixmap(this->Page->GetPixmap()));
     }
 }
 

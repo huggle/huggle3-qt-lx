@@ -90,6 +90,7 @@ namespace Huggle
             WikiSite *GetSite();
             void SetSize(long size);
             long GetSize();
+            QString GetPixmap();
             //! Return a full url to edit
             QString GetFullUrl();
             //! Return true in case this edit was post processed already

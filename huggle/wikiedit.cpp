@@ -319,6 +319,55 @@ bool WikiEdit::FinalizePostProcessing()
     return false;
 }
 
+QString WikiEdit::GetPixmap()
+{
+    if (this->User == nullptr)
+        throw new Huggle::NullPointerException("WikiEdit::User", "QString WikiEdit::GetPixmap()");
+
+    if (this->OwnEdit)
+        return ":/huggle/pictures/Resources/blob-me.png";
+
+    if (this->User->IsBanned)
+        return ":/huggle/pictures/Resources/blob-blocked.png";
+
+    if (this->User->IsReported)
+        return ":/huggle/pictures/Resources/blob-reported.png";
+
+    if (this->IsRevert)
+        return ":/huggle/pictures/Resources/blob-revert.png";
+
+    if (this->Bot)
+        return ":/huggle/pictures/Resources/blob-bot.png";
+
+    switch (this->CurrentUserWarningLevel)
+    {
+        case WarningLevelNone:
+            break;
+        case WarningLevel1:
+            return ":/huggle/pictures/Resources/blob-warn-1.png";
+        case WarningLevel2:
+            return ":/huggle/pictures/Resources/blob-warn-2.png";
+        case WarningLevel3:
+            return ":/huggle/pictures/Resources/blob-warn-3.png";
+        case WarningLevel4:
+            return ":/huggle/pictures/Resources/blob-warn-4.png";
+    }
+
+    if (this->Score > 1000)
+        return ":/huggle/pictures/Resources/blob-warning.png";
+
+    if (this->NewPage)
+        return ":/huggle/pictures/Resources/blob-new.png";
+
+    if (this->User->IsWhitelisted())
+        return ":/huggle/pictures/Resources/blob-ignored.png";
+
+    if (this->Page->User->IsIP())
+        return ":/huggle/pictures/Resources/blob-anon.png";
+
+    return ":/huggle/pictures/Resources/blob-none.png";
+}
+
 void WikiEdit::ProcessWords()
 {
     QString text = this->DiffText.toLower();
