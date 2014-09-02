@@ -362,7 +362,7 @@ QString WikiEdit::GetPixmap()
     if (this->User->IsWhitelisted())
         return ":/huggle/pictures/Resources/blob-ignored.png";
 
-    if (this->Page->User->IsIP())
+    if (this->User->IsIP())
         return ":/huggle/pictures/Resources/blob-anon.png";
 
     return ":/huggle/pictures/Resources/blob-none.png";

@@ -95,19 +95,16 @@ void HuggleParser::ParsePats(QString text)
     {
         text = text.mid(text.indexOf("score-parts(") + 12);
         if (!text.contains(")"))
-        {
             return;
-        }
+
         int score = text.mid(0, text.indexOf(")")).toInt();
         if (score == 0)
-        {
             continue;
-        }
+
         QStringList word;
         if (!text.contains(":"))
-        {
             return;
-        }
+
         text = text.mid(text.indexOf(":") + 1);
         QStringList lines = text.split("\n");
         int line = 1;
@@ -116,21 +113,16 @@ void HuggleParser::ParsePats(QString text)
             QString l = lines.at(line);
             QStringList items = l.split(",");
             int CurrentItem = 0;
-            while ( CurrentItem < items.count() )
+            while (CurrentItem < items.count())
             {
                 QString w = items.at(CurrentItem).trimmed();
-                if (w.length() == 0)
-                {
-                    CurrentItem++;
-                    continue;
-                }
-                word.append(w);
                 CurrentItem++;
+                if (w.length() == 0)
+                    continue;
+                word.append(w);
             }
             if (!l.endsWith(",") || l.trimmed().length() <= 0)
-            {
                 break;
-            }
             line++;
         }
         line = 0;
