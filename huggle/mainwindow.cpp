@@ -699,6 +699,12 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_REVERT_STAY:
+            q = this->ui->actionRevert_currently_displayed_edit_and_stay_on_page;
+            break;
+        case HUGGLE_ACCEL_REVW_STAY:
+            q = this->ui->actionRevert_currently_displayed_edit_warn_user_and_stay_on_page;
+            break;
         case HUGGLE_ACCEL_MAIN_WATCH:
             q = this->ui->actionInsert_page_to_a_watchlist;
             break;
