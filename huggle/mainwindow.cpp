@@ -18,6 +18,7 @@
 #include <QLabel>
 #include <QTimer>
 #include <QThread>
+#include <QVBoxLayout>
 #include <QSplitter>
 #include <QDockWidget>
 #include "aboutform.hpp"
@@ -102,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->wHistory = new HistoryForm(this);
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
+    this->Browsers.append(this->Browser);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
@@ -139,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         projects += ")";
     }
     this->setWindowTitle("Huggle 3 QT-LX on " + projects);
-    this->ui->verticalLayout->addWidget(this->Browser);
+    this->ui->verticalLayout_2->addWidget(this->Browser);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
@@ -216,15 +218,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         HUGGLE_DEBUG1("Loading state");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
-        {
             Syslog::HuggleLogs->ErrorLog("Unable to read state from a config file");
-        } else
-        {
-            if (!this->restoreState(layout->readAll()))
-            {
-                HUGGLE_DEBUG1("Failed to restore state");
-            }
-        }
+        else if (!this->restoreState(layout->readAll()))
+            HUGGLE_DEBUG1("Failed to restore state");
+
         layout->close();
         delete layout;
     }
@@ -233,15 +230,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         HUGGLE_DEBUG1("Loading geometry");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
         if (!layout->open(QIODevice::ReadOnly))
-        {
             Syslog::HuggleLogs->ErrorLog("Unable to read geometry from a config file");
-        } else
-        {
-            if (!this->restoreGeometry(layout->readAll()))
-            {
+        else if (!this->restoreGeometry(layout->readAll()))
                 HUGGLE_DEBUG1("Failed to restore layout");
-            }
-        }
         layout->close();
         delete layout;
     }
@@ -302,6 +293,11 @@ MainWindow::~MainWindow()
         this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
         this->PatrolledEdits.removeAt(0);
     }
+    while (this->Browsers.count())
+    {
+        delete this->Browsers.at(0);
+        this->Browsers.removeAt(0);
+    }
     delete this->fWikiPageTags;
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
@@ -326,7 +322,6 @@ MainWindow::~MainWindow()
     delete this->Queue1;
     delete this->SystemLog;
     delete this->Status;
-    delete this->Browser;
     delete this->fBlockForm;
     delete this->fWarningList;
     delete this->fDeleteForm;
@@ -2761,4 +2756,30 @@ void MainWindow::Go()
 void Huggle::MainWindow::on_actionRevert_only_this_revision_assuming_good_faith_triggered()
 {
     this->RevertAgf(true);
+}
+
+void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
+{
+    int in = this->ui->tabWidget->count() - 1;
+    if (index == in)
+    {
+        // we need to create a new browser window
+        QWidget *tab = new QWidget(this);
+        HuggleWeb *web = new HuggleWeb();
+        this->Browsers.append(web);
+        QVBoxLayout *lay = new QVBoxLayout(tab);
+        lay->setSizeConstraint(QLayout::SetNoConstraint);
+        tab->setLayout(lay);
+        lay->setSpacing(0);
+        lay->setContentsMargins(0, 0, 0, 0);
+        lay->addWidget(web);
+        this->ui->tabWidget->insertTab(in, tab, "New tab");
+        this->ui->tabWidget->setCurrentIndex(in);
+        this->Browser = web;
+    } else
+    {
+        this->Browser = (HuggleWeb*)this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget();
+        if (!this->Browser)
+            throw new Huggle::Exception("Invalid browser pointer");
+    }
 }

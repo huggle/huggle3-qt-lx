@@ -168,6 +168,7 @@ namespace Huggle
             History *_History;
             //! Pointer to menu of revert warn button
             QMenu *RevertWarn = nullptr;
+            QList<HuggleWeb*> Browsers;
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
@@ -297,6 +298,8 @@ namespace Huggle
             void on_actionMy_Contributions_triggered();
             void Go();
             void on_actionRevert_only_this_revision_assuming_good_faith_triggered();
+            void on_tabWidget_currentChanged(int index);
+
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
