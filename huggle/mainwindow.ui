@@ -157,6 +157,7 @@
     <addaction name="separator"/>
     <addaction name="actionInsert_page_to_a_watchlist"/>
     <addaction name="actionRemove_page_from_a_watchlist"/>
+    <addaction name="actionClose_current_tab"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -1007,6 +1008,14 @@
   <action name="actionRevert_only_this_revision_assuming_good_faith">
    <property name="text">
     <string>Revert only this revision assuming good faith</string>
+   </property>
+  </action>
+  <action name="actionClose_current_tab">
+   <property name="text">
+    <string>Close current tab</string>
+   </property>
+   <property name="toolTip">
+    <string>Close tab</string>
    </property>
   </action>
  </widget>

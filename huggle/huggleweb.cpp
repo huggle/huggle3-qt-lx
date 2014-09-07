@@ -106,6 +106,7 @@ QString HuggleWeb::GetShortcut()
 
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
+    this->CurrentEdit = edit;
     this->ui->webView->history()->clear();
     if (edit == nullptr)
         throw new Huggle::Exception("The edit was NULL in HuggleWeb::DisplayDiff(*edit)");
@@ -179,6 +180,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     if (!edit)
         throw new Exception("Edit must not be NULL");
 
+    this->CurrentEdit = edit;
     QString HTML = Resources::GetHtmlHeader();
     if (Configuration::HuggleConfiguration->NewMessage)
     {

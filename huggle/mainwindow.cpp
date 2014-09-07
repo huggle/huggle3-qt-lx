@@ -2785,10 +2785,45 @@ void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
     {
         // we need to create a new browser window
         this->CreateBrowserTab("New tab", in);
+        this->CurrentEdit = nullptr;
+        this->LockPage();
     } else
     {
         this->Browser = (HuggleWeb*)this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget();
         if (!this->Browser)
             throw new Huggle::Exception("Invalid browser pointer");
+
+        // we need to change edit to what we have in that tab including all other stuff
+        this->CurrentEdit = this->Browser->CurrentEdit;
+        this->Render();
     }
+}
+
+void Huggle::MainWindow::on_actionClose_current_tab_triggered()
+{
+    if (this->Browsers.count() < 2)
+    {
+        Syslog::HuggleLogs->ErrorLog("I can't close this tab because it's last one, you must have at least 1 tab open");
+        return;
+    }
+
+    // first kill the tab
+    HuggleWeb *br = this->Browser;
+    // we need to store the id of current tab because we must switch to index 0 before
+    // deleting it, otherwise it could jump on + tab which would immediatelly open
+    // new tab
+    int cu = this->ui->tabWidget->currentIndex();
+    this->ui->tabWidget->setCurrentIndex(0);
+    this->ui->tabWidget->removeTab(cu);
+    int index = 0;
+    while (index < this->Browsers.count())
+    {
+        if (this->Browsers.at(index) == br)
+        {
+            this->Browsers.removeAt(index);
+            break;
+        }
+        index++;
+    }
+    delete br;
 }

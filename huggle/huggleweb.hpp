@@ -16,6 +16,8 @@
 #include <QFrame>
 #include <QWebHistory>
 #include <QWebFrame>
+#include "collectable_smartptr.hpp"
+#include "wikiedit.hpp"
 
 namespace Ui
 {
@@ -61,6 +63,7 @@ namespace Huggle
             void DisplayNewPageEdit(WikiEdit *edit);
             QString RetrieveHtml();
             static QString Encode(const QString &string);
+            Collectable_SmartPtr<WikiEdit> CurrentEdit;
 
         private slots:
             void Click(const QUrl &page);
