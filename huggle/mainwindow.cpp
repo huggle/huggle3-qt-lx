@@ -97,13 +97,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
-    this->Browser = new HuggleWeb(this);
+    this->CreateBrowserTab("Welcome page", 0);
     this->Queue1 = new HuggleQueue(this);
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
     this->wUserInfo = new UserinfoForm(this);
     this->VandalDock = new VandalNw(this);
-    this->Browsers.append(this->Browser);
     this->addDockWidget(Qt::LeftDockWidgetArea, this->Queue1);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->SystemLog);
     this->addDockWidget(Qt::TopDockWidgetArea, this->tb);
@@ -141,7 +140,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         projects += ")";
     }
     this->setWindowTitle("Huggle 3 QT-LX on " + projects);
-    this->ui->verticalLayout_2->addWidget(this->Browser);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
@@ -452,6 +450,7 @@ void MainWindow::Render()
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
+        this->Title(this->CurrentEdit->Page->PageName);
         if (this->PreviousSite != this->GetCurrentWikiSite())
         {
             this->ReloadInterface();
@@ -1074,6 +1073,27 @@ void MainWindow::FinishRestore()
     }
     this->RestoreEdit.Delete();
     this->RestoreQuery.Delete();
+}
+
+void MainWindow::CreateBrowserTab(QString name, int index)
+{
+    QWidget *tab = new QWidget(this);
+    HuggleWeb *web = new HuggleWeb();
+    this->Browsers.append(web);
+    QVBoxLayout *lay = new QVBoxLayout(tab);
+    lay->setSizeConstraint(QLayout::SetNoConstraint);
+    tab->setLayout(lay);
+    lay->setSpacing(0);
+    lay->setContentsMargins(0, 0, 0, 0);
+    lay->addWidget(web);
+    this->ui->tabWidget->insertTab(index, tab, name);
+    this->ui->tabWidget->setCurrentIndex(index);
+    this->Browser = web;
+}
+
+void MainWindow::Title(QString name)
+{
+    this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), name);
 }
 
 void MainWindow::TriggerWarn()
@@ -2764,18 +2784,7 @@ void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
     if (index == in)
     {
         // we need to create a new browser window
-        QWidget *tab = new QWidget(this);
-        HuggleWeb *web = new HuggleWeb();
-        this->Browsers.append(web);
-        QVBoxLayout *lay = new QVBoxLayout(tab);
-        lay->setSizeConstraint(QLayout::SetNoConstraint);
-        tab->setLayout(lay);
-        lay->setSpacing(0);
-        lay->setContentsMargins(0, 0, 0, 0);
-        lay->addWidget(web);
-        this->ui->tabWidget->insertTab(in, tab, "New tab");
-        this->ui->tabWidget->setCurrentIndex(in);
-        this->Browser = web;
+        this->CreateBrowserTab("New tab", in);
     } else
     {
         this->Browser = (HuggleWeb*)this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget();

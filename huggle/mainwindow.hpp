@@ -306,6 +306,8 @@ namespace Huggle
             bool CheckExit();
             void DisplayWelcomeMessage();
             void FinishRestore();
+            void CreateBrowserTab(QString name, int index);
+            void Title(QString name);
             //! When any button to warn current user is pressed it call this function
             void TriggerWarn();
             //! Check if we can revert this edit
