@@ -424,31 +424,32 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     e->User->Resync();
     this->EditablePage = true;
     Configuration::HuggleConfiguration->ForcedNoEditJump = ForcedJump;
-    if (!KeepUser)
-    {
-        this->wUserInfo->ChangeUser(e->User);
-        if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
-            this->wUserInfo->Read();
-    }
-    if (!KeepHistory)
-    {
-        this->wHistory->Update(e);
-        if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
-            this->wHistory->Read();
-    }
     this->CurrentEdit = e;
     this->EditLoad = QDateTime::currentDateTime();
     this->Browser->DisplayDiff(e);
-    this->Render();
+    this->Render(KeepHistory, KeepUser);
     e->DecRef();
 }
 
-void MainWindow::Render()
+void MainWindow::Render(bool KeepHistory, bool KeepUser)
 {
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
+
+        if (!KeepUser)
+        {
+            this->wUserInfo->ChangeUser(this->CurrentEdit->User);
+            if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
+                this->wUserInfo->Read();
+        }
+        if (!KeepHistory)
+        {
+            this->wHistory->Update(this->CurrentEdit);
+            if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
+                this->wHistory->Read();
+        }
 
         this->Title(this->CurrentEdit->Page->PageName);
         if (this->PreviousSite != this->GetCurrentWikiSite())

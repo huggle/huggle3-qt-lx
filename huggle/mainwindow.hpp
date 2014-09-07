@@ -299,7 +299,6 @@ namespace Huggle
             void Go();
             void on_actionRevert_only_this_revision_assuming_good_faith_triggered();
             void on_tabWidget_currentChanged(int index);
-
             void on_actionClose_current_tab_triggered();
 
         private:
@@ -319,7 +318,7 @@ namespace Huggle
             void ChangeProvider(WikiSite *site, HuggleFeed *provider);
             void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
-            void Render();
+            void Render(bool KeepHistory = false, bool KeepUser = false);
             //! Request a page deletion csd or afd and so on
             void RequestPD();
             void RevertAgf(bool only);
