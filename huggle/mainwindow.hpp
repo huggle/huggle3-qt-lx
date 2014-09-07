@@ -134,6 +134,8 @@ namespace Huggle
             void PauseQueue();
             void ResumeQueue();
             void WelcomeGood();
+            //! Try to load a page
+            void RenderPage(QString Page);
             WikiSite *GetCurrentWikiSite();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();

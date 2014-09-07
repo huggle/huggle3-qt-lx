@@ -29,7 +29,7 @@ QString VandalNw::SafeHtml(QString text)
 {
     QString result;
     QStringList AllowedTags;
-    AllowedTags << "b" << "big" << "font" << "i" << "u";
+    AllowedTags << "b" << "big" << "font" << "i" << "s" << "u";
     // we split the text by starting element
     QStringList Part = text.split('<');
     bool FirstPart = true;

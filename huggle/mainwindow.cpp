@@ -699,6 +699,12 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_REVERT_STAY:
+            q = this->ui->actionRevert_currently_displayed_edit_and_stay_on_page;
+            break;
+        case HUGGLE_ACCEL_REVW_STAY:
+            q = this->ui->actionRevert_currently_displayed_edit_warn_user_and_stay_on_page;
+            break;
         case HUGGLE_ACCEL_MAIN_WATCH:
             q = this->ui->actionInsert_page_to_a_watchlist;
             break;
@@ -1893,6 +1899,15 @@ void MainWindow::WelcomeGood()
     this->DisplayNext();
 }
 
+void MainWindow::RenderPage(QString Page)
+{
+    WikiPage *page = new WikiPage(Page);
+    page->Site = this->GetCurrentWikiSite();
+    this->tb->SetPage(page);
+    delete page;
+    this->tb->RenderEdit();
+}
+
 WikiSite *MainWindow::GetCurrentWikiSite()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
@@ -2161,12 +2176,14 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
 void MainWindow::on_actionList_all_QGC_items_triggered()
 {
     int xx=0;
+    GC::gc->Lock->lock();
     while (xx<GC::gc->list.count())
     {
         Collectable *query = GC::gc->list.at(xx);
         Syslog::HuggleLogs->Log(query->DebugHgc());
         xx++;
     }
+    GC::gc->Lock->unlock();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
@@ -2285,12 +2302,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
     Configuration::HuggleConfiguration->NewMessage = false;
-    WikiPage *page = new WikiPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
-    page->Site = this->GetCurrentWikiSite();
-    //this->Browser->DisplayPreFormattedPage(this->WikiScriptURL() + "index.php?title=User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
-    this->tb->SetPage(page);
-    delete page;
-    this->tb->RenderEdit();
+    this->RenderPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
 }
 
 void MainWindow::on_actionProtect_triggered()
