@@ -514,6 +514,7 @@ void Huggle::Preferences::on_pushButton_7_clicked()
     this->ui->checkBox_17->setChecked(true);
     this->ui->checkBox_21->setChecked(true);
     this->ui->checkBox_19->setChecked(true);
+    this->ui->checkBox_23->setChecked(true);
     this->ui->radioButton_4->setChecked(true);
     this->ui->checkBox_14->setChecked(true);
 }

@@ -247,8 +247,8 @@ void History::Tick()
         } else
         {
             this->RevertingItem = nullptr;
+            this->timerRetrievePageInformation->stop();
         }
-        this->timerRetrievePageInformation->stop();
         return;
     }
     // we check the status of edit
