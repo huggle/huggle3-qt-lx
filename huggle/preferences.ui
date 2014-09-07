@@ -180,6 +180,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pushButton_7">
+              <property name="text">
+               <string>Change all huggle settings to behave more like huggle 2</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>

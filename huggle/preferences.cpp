@@ -505,3 +505,15 @@ void Preferences::RecordKeys(int row, int column)
         this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
         return;
 }
+
+void Huggle::Preferences::on_pushButton_7_clicked()
+{
+    this->ui->checkBox_30->setChecked(false);
+    this->ui->checkBox_15->setChecked(true);
+    this->ui->checkBox_16->setChecked(true);
+    this->ui->checkBox_17->setChecked(true);
+    this->ui->checkBox_21->setChecked(true);
+    this->ui->checkBox_19->setChecked(true);
+    this->ui->radioButton_4->setChecked(true);
+    this->ui->checkBox_14->setChecked(true);
+}

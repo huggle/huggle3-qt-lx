@@ -47,6 +47,8 @@ namespace Huggle
             void on_checkBox_26_clicked();
             void on_checkBox_27_clicked();
             void RecordKeys(int row, int column);
+            void on_pushButton_7_clicked();
+
         private:
             void Reload();
             //! Used to reload shortcuts only
