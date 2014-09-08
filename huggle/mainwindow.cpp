@@ -694,6 +694,9 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_CREATE_NEW_TAB:
+            q = this->ui->actionOpen_new_tab;
+            break;
         case HUGGLE_ACCEL_REVERT_STAY:
             q = this->ui->actionRevert_currently_displayed_edit_and_stay_on_page;
             break;
@@ -2830,4 +2833,11 @@ void Huggle::MainWindow::on_actionClose_current_tab_triggered()
         index++;
     }
     delete br;
+}
+
+void Huggle::MainWindow::on_actionOpen_new_tab_triggered()
+{
+    this->CreateBrowserTab("New tab", this->ui->tabWidget->count() - 1);
+    this->CurrentEdit = nullptr;
+    this->LockPage();
 }
