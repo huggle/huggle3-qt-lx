@@ -2101,7 +2101,12 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
     if (this->CurrentEdit != nullptr)
     {
-        QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName()).toUtf8()));
+        if (this->CurrentEdit->NewPage)
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName()).toUtf8()));
+        else
+            QDesktopServices::openUrl(QUrl::fromEncoded(QString(Configuration::GetProjectScriptURL(this->GetCurrentWikiSite()) +
+                                                                  "index.php?diff=" +
+                                                                  QString::number(this->CurrentEdit->Diff)).toUtf8()));
     }
 }
 
