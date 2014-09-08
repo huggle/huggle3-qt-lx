@@ -564,8 +564,6 @@
     <string name="speedy-progress">Tagging '$1' for speedy deletion...</string>
     <string name="speedy-wrong">The requested tag is not valid. Please choose a different deletion reason</string>
     <string name="speedy-finished">Finished</string>
-    <string name="usermessage-fail">Did not message '$1'</string>
-    <string name="usermessage-progress">Messaging '$1'...</string>
     <string name="warn-alreadyblocked">The user has already been blocked</string>
     <string name="editquery-success">Successfully edit $1 on $2</string>
     <string name="editquery-token">Retrieving token to edit $1</string>

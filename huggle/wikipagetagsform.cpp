@@ -30,6 +30,7 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new U
     header << "" << _l("tag-tags") << _l("description");
     this->ui->tableWidget->setColumnCount(3);
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
+    this->ui->checkBox->setText(_l("tag-insertatend"));
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -109,7 +110,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;
     }
-    // append all tags to top of page
+    // append all tags to top of page or bottom, depending on preference of user
     int xx = 0;
     WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
     while (xx < form->ui->tableWidget->rowCount())
@@ -120,7 +121,12 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
             if (form->CheckBoxes.at(xx)->isChecked())
             {
                 if (!text.contains(key))
-                    text = key + "\n" + text;
+                {
+                    if (!form->ui->checkBox->isChecked())
+                        text = key + "\n" + text;
+                    else
+                        text += "\n" + key;
+                }
             } else
             {
                 if (text.contains(key + "\n"))
@@ -143,6 +149,8 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
 void Huggle::WikiPageTagsForm::on_pushButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
+    this->ui->checkBox->setEnabled(false);
+    this->ui->tableWidget->setEnabled(false);
     // first get the contents of the page
     ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
