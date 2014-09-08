@@ -703,6 +703,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_WATCH:
             q = this->ui->actionInsert_page_to_a_watchlist;
             break;
+        case HUGGLE_ACCEL_CLOSE_TAB:
+            q = this->ui->actionClose_current_tab;
+            break;
         case HUGGLE_ACCEL_MAIN_UNWATCH:
             q = this->ui->actionRemove_page_from_a_watchlist;
             break;

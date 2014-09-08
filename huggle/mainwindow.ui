@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -157,7 +157,9 @@
     <addaction name="separator"/>
     <addaction name="actionInsert_page_to_a_watchlist"/>
     <addaction name="actionRemove_page_from_a_watchlist"/>
+    <addaction name="separator"/>
     <addaction name="actionClose_current_tab"/>
+    <addaction name="actionOpen_new_tab"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -1016,6 +1018,11 @@
    </property>
    <property name="toolTip">
     <string>Close tab</string>
+   </property>
+  </action>
+  <action name="actionOpen_new_tab">
+   <property name="text">
+    <string>Open new tab</string>
    </property>
   </action>
  </widget>

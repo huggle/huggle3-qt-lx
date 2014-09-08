@@ -95,6 +95,8 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-agf-one-only", "shortcut-revert-agf-1");
     this->MakeShortcut("main-revert-and-stay", "shortcut-revert-and-stay", "Shift+R");
     this->MakeShortcut("main-revert-warn-and-stay", "shortcut-rw-stay", "Shift+Q");
+    this->MakeShortcut("main-tab", "shortcut-tab", "Ctrl+T");
+    this->MakeShortcut("main-browser-close-tab", "shortcut-browser-close-tab", "Ctrl+W");
 }
 
 Configuration::~Configuration()
@@ -783,10 +785,14 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_WATCH;
     else if (name == "main-unwatch")
         this->ID = HUGGLE_ACCEL_MAIN_UNWATCH;
+    else if (name == "main-tab")
+        this->ID = HUGGLE_ACCEL_CREATE_NEW_TAB;
     else if (name == "main-open")
         this->ID = HUGGLE_ACCEL_MAIN_OPEN;
     else if (name == "main-mytalk")
         this->ID = HUGGLE_ACCEL_MAIN_MYTALK_PAGE;
+    else if (name == "main-browser-close-tab")
+        this->ID = HUGGLE_ACCEL_CLOSE_TAB;
     else if (name == "main-revert-agf-one-only")
         this->ID = HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV;
     else if (name == "main-revert-warn-and-stay")
