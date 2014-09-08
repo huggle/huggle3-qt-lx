@@ -1100,7 +1100,7 @@ void MainWindow::CreateBrowserTab(QString name, int index)
 
 void MainWindow::Title(QString name)
 {
-    this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), name);
+    this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), Generic::ShrinkText(name, 20, false, 3));
 }
 
 void MainWindow::TriggerWarn()

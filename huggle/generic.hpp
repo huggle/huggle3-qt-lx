@@ -82,7 +82,7 @@ namespace Huggle
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
         ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        QString ShrinkText(QString text, int size, bool html = true);
+        QString ShrinkText(QString text, int size, bool html = true, unsigned int minimum = 2);
     }
 }
 
