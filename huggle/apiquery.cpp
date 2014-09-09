@@ -206,6 +206,9 @@ void ApiQuery::SetAction(const Action action)
     this->_action = action;
     switch (action)
     {
+        case ActionClearHasMsg:
+            this->ActionPart = "clearhasmsg";
+            return;
         case ActionQuery:
             this->ActionPart = "query";
             this->EnforceLogin = false;

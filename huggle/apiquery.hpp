@@ -27,6 +27,7 @@ namespace Huggle
 
     enum Action
     {
+        ActionClearHasMsg,
         ActionQuery,
         ActionLogin,
         ActionLogout,

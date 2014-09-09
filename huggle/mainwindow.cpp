@@ -2328,7 +2328,16 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
     this->LockPage();
     // we switch this to false so that in case we have received a message,
     // before we display the talk page, it get marked as read
-    Configuration::HuggleConfiguration->NewMessage = false;
+    if (Configuration::HuggleConfiguration->NewMessage)
+    {
+        Configuration::HuggleConfiguration->NewMessage = false;
+        ApiQuery *query = new ApiQuery(ActionClearHasMsg, this->GetCurrentWikiSite());
+        query->IncRef();
+        query->Target = "Flagging new messages as read";
+        QueryPool::HugglePool->AppendQuery(query);
+        query->Process();
+        query->DecRef();
+    }
     this->RenderPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
 }
 
