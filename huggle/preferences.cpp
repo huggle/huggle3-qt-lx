@@ -96,7 +96,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
         if (script->IsEnabled())
         {
-            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok"))));
+            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok")));
         } else
         {
             this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-kl")));
