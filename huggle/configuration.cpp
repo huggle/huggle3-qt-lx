@@ -796,7 +796,7 @@ Shortcut::Shortcut(QString name, QString description)
     else if (name == "main-revert-agf-one-only")
         this->ID = HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV;
     else if (name == "main-revert-warn-and-stay")
-        this->ID == HUGGLE_ACCEL_REVW_STAY;
+        this->ID = HUGGLE_ACCEL_REVW_STAY;
     else if (name == "main-revert-and-stay")
         this->ID = HUGGLE_ACCEL_REVERT_STAY;
     else if (name == "main-talk")
