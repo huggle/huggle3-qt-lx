@@ -24,9 +24,9 @@ using namespace Huggle;
 
 static void SetDefaults(QComboBox *item)
 {
-    item->addItem("Ignore (doesn't matter)");
-    item->addItem("Exclude (must not be)");
-    item->addItem("Require (must be)");
+    item->addItem(_l("config-queue-filter-ignore"));
+    item->addItem(_l("config-queue-filter-exclude"));
+    item->addItem(_l("config-queue-filter-require"));
     item->setCurrentIndex(0);
 }
 
@@ -44,7 +44,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     SetDefaults(this->ui->cbqTp);
     SetDefaults(this->ui->cbqUserspace);
     SetDefaults(this->ui->cbqWl);
-    headers << "Function" << "Description" << "Shortcut";
+    headers << _l("config-function") << _l("config-description") << _l("config-shortcut");
     this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_2->verticalHeader()->setVisible(false);
     this->ui->tableWidget_2->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -79,7 +79,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
         this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
-        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok")));
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
@@ -96,11 +96,10 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
         if (script->IsEnabled())
         {
-            //! \todo LOCALIZE ME
-            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Loaded and running"));
+            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok"))));
         } else
         {
-            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem("Killed"));
+            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-kl")));
         }
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
     }
@@ -482,8 +481,7 @@ void Preferences::RecordKeys(int row, int column)
                 {
                     QMessageBox m;
                     m.setWindowTitle("Fail");
-                    m.setText("Shortcut for " + Configuration::HuggleConfiguration->Shortcuts[s].Name +
-                              " is already using the same keys");
+                    m.setText(_l("config-already-in-use", Configuration::HuggleConfiguration->Shortcuts[s].Name));
                     m.exec();
                     goto revert;
                 }

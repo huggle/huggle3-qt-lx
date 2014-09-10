@@ -10,6 +10,7 @@
 
 #include "scorewordsdbform.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
 #include "ui_scorewordsdbform.h"
 
 using namespace Huggle;
@@ -19,7 +20,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(3);
     QStringList header;
-    header << "Score" << "Word" << "Range";
+    header << _l("score-score") << _l("score-word") << _l("score-range");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -39,7 +40,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
-        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches only whole words"));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-only-whole-word")));
         x++;
     }
     x = 0;
@@ -49,7 +50,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
-        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem("Matches any word that contains this string"));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-any-word")));
         x++;
     }
     this->ui->tableWidget->resizeRowsToContents();
