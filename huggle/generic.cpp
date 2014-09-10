@@ -148,7 +148,7 @@ void Generic::DeveloperError()
                         " developer mode, because you aren't logged into the wiki");
 }
 
-QString Generic::ShrinkText(QString text, int size, bool html, unsigned int minimum)
+QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned int minimum)
 {
     if (size < minimum)
     {
