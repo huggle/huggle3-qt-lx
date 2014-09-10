@@ -18,7 +18,7 @@ using namespace Huggle;
 Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
 {
     this->ui->setupUi(this);
-    this->ui->label->setText(_("login-proxyaddress"));
+    this->ui->label->setText(_l("login-proxyaddress"));
     this->ui->label_3->setText(_l("login-proxyport"));
     this->ui->comboBox->addItem("None");
     this->ui->comboBox->addItem("Socks 5");
