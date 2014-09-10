@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "proxy.hpp"
+#include "localization.hpp"
 #include <QNetworkProxy>
 #include "ui_proxy.h"
 
@@ -17,6 +18,8 @@ using namespace Huggle;
 Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
 {
     this->ui->setupUi(this);
+    this->ui->label->setText(_("login-proxyaddress"));
+    this->ui->label_3->setText(_l("login-proxyport"));
     this->ui->comboBox->addItem("None");
     this->ui->comboBox->addItem("Socks 5");
     this->ui->comboBox->setCurrentIndex(0);
