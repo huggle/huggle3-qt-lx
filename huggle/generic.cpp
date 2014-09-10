@@ -167,7 +167,7 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
             text_ = text_ + ".";
             cd--;
         }
-    } else while (text_.length() < size)
+    } else while ((unsigned int)text_.length() < size)
     {
         text_ += " ";
     }
