@@ -8,9 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifdef HUGGLE_PYTHON
-
 #include "pythonengine.hpp"
+#ifdef HUGGLE_PYTHON
 #include <cstdint>
 #include "core.hpp"
 #include "configuration.hpp"

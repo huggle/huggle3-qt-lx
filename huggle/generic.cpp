@@ -157,7 +157,7 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
     // let's copy the text into new variable so that we don't break the original
     // who knows how these mutable strings are going to behave in qt :D
     QString text_ = text;
-    int length = text_.length();
+    unsigned int length = (unsigned int)text_.length();
     if (length > size)
     {
         text_ = text_.mid(0, size - minimum);
