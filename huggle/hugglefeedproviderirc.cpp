@@ -34,12 +34,12 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
+    this->Stop();
     while (this->Buffer.count() > 0)
     {
         this->Buffer.at(0)->DecRef();
         this->Buffer.removeAt(0);
     }
-    this->Stop();
     delete this->thread;
     delete this->Network;
 }
