@@ -267,7 +267,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
                 this->Buffer->at(0)->DecRef();
                 this->Buffer->removeAt(0);
             }
-            Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in wiki cache, increase ProviderCache size, otherwise you will be loosing edits");
+            Huggle::Syslog::HuggleLogs->Log("WARNING: insufficient space in wiki cache, increase ProviderCache size, otherwise you will be losing edits");
         }
         this->Buffer->append(edit);
     } else
