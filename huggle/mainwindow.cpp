@@ -1187,7 +1187,7 @@ void MainWindow::OnMainTimerTick()
         }
     } else
     {
-        if (this->ui->actionStop_feed->isChecked() && this->QueueIsNowPaused)
+        if (this->QueueIsNowPaused)
             this->ResumeQueue();
     }
     if (RetrieveEdit)
@@ -1890,12 +1890,7 @@ void MainWindow::PauseQueue()
 
     this->QueueIsNowPaused = true;
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
-    {
-        if (site->Provider->IsPaused())
-        {
-            site->Provider->Pause();
-        }
-    }
+        site->Provider->Pause();
 }
 
 void MainWindow::ResumeQueue()
