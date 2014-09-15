@@ -22,6 +22,9 @@ Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
     this->ui->label_3->setText(_l("login-proxyport"));
     this->ui->comboBox->addItem("None");
     this->ui->comboBox->addItem("Socks 5");
+    this->ui->comboBox->addItem("Http");
+    this->ui->comboBox->addItem("Http (caching proxy)");
+    this->ui->comboBox->addItem("Ftp");
     this->ui->comboBox->setCurrentIndex(0);
 }
 
@@ -40,6 +43,15 @@ void Proxy::on_buttonBox_accepted()
             return;
         case 1:
             proxy.setType(QNetworkProxy::Socks5Proxy);
+            break;
+        case 2:
+            proxy.setType(QNetworkProxy::HttpProxy);
+            break;
+        case 3:
+            proxy.setType(QNetworkProxy::HttpCachingProxy);
+            break;
+        case 4:
+            proxy.setType(QNetworkProxy::FtpCachingProxy);
             break;
     }
 
