@@ -103,7 +103,6 @@
     <string name="config-shownewmessages">Show new messages bar</string>
     <string name="config-shortcutlist">Keyboard shortcuts</string>
     <string name="config-shortcutaction">Action</string>
-    <string name="config-shortcut">Shortcut</string>
     <string name="config-changeshortcut">Change shortcut for $1</string>
     <string name="config-noshortcut">None</string>
     <string name="config-defaults">Defaults</string>
