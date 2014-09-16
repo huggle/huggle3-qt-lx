@@ -58,6 +58,9 @@
         <pointsize>8</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;w - is warned&lt;/p&gt;&lt;p&gt;r - is reported&lt;/p&gt;&lt;p&gt;T - has talkpage &lt;/p&gt;&lt;p&gt;R - is registered&lt;/p&gt;&lt;p&gt;E - exception&lt;/p&gt;&lt;p&gt;b - bot&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; there is a prefix (+ or -) which means that this use has this flag, or that they don't have it&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
