@@ -212,7 +212,7 @@ void TerminalParser::DisplayHelp()
             "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\
             "                   reads a different configuration file and uses different data.\n"\
             "  --syslog [file]: Will write a logs to a file\n"\
-            "  --version:       Display a version\n"\
+            "  --version | -V:  Display a version\n"\
             "  --login:         Can be used in combination of --login-file only, this will tell huggle\n"\
             "                   to start login process immediately without letting you to change any login\n"\
             "                   preferences on login form\n"\
