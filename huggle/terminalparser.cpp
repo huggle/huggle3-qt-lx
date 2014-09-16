@@ -48,6 +48,13 @@ bool TerminalParser::Init()
     return false;
 }
 
+static void DisplayVersion()
+{
+    // version is stored in built in resource which we need to extract using call to core here
+    Core::VersionRead();
+    cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
+}
+
 bool TerminalParser::Parse()
 {
     int x = 1;
@@ -85,9 +92,7 @@ bool TerminalParser::Parse()
         }
         if (text == "--version")
         {
-            // version is stored in built in resource which we need to extract using call to core here
-            Core::VersionRead();
-            cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
+            DisplayVersion();
             return true;
         }
         if (text == "--syslog")
@@ -184,6 +189,9 @@ bool TerminalParser::ParseChar(QChar x)
         case 'v':
             Configuration::HuggleConfiguration->Verbosity++;
             return false;
+        case 'V':
+            DisplayVersion();
+            return true;
     }
     return false;
 }
