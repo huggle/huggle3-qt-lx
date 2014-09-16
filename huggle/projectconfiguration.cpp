@@ -102,10 +102,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
     this->RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
     if (!this->RevertSummaries.count())
     {
-        if (reason)
-            *reason = "template-summ contains no data (no revert summaries)";
-
-        return false;
+        Syslog::HuggleLogs->WarningLog("RevertSummaries contain no data, default summary will be used for all of them, you need to fix project settings!!");
     }
     this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
