@@ -30,16 +30,17 @@ namespace Ui
 
 namespace Huggle
 {
-    class DeleteForm;
+    class AboutForm;
     class BlockUser;
+    class DeleteForm;
+    class EditBar;
     class HuggleLog;
     class History;
     class HistoryForm;
-    class UserinfoForm;
     class HuggleFeed;
     class HuggleQueue;
     class HuggleTool;
-    class AboutForm;
+    class UserinfoForm;
     class HuggleWeb;
     class SpeedyForm;
     class RevertQuery;
@@ -153,6 +154,7 @@ namespace Huggle
             UserinfoForm *wUserInfo;
             //! Pointer to toolbar
             HuggleTool *tb;
+            EditBar *wEditBar;
             //! Pointer to options
             Preferences *preferencesForm = nullptr;
             //! Pointer to ignore list (see ignorelist.h)

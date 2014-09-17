@@ -131,7 +131,9 @@ SOURCES += main.cpp\
     wikipagetagsform.cpp \
     collectable_smartptr.cpp \
     mediawikiobject.cpp \
-    version.cpp
+    version.cpp \
+    editbaritem.cpp \
+    editbar.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -214,7 +216,9 @@ HEADERS  += mainwindow.hpp \
     wikipagetagsform.hpp \
     collectable_smartptr.hpp \
     mediawikiobject.hpp \
-    version.hpp
+    version.hpp \
+    editbaritem.hpp \
+    editbar.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -249,7 +253,9 @@ FORMS    += mainwindow.ui \
     warninglist.ui \
     reloginform.ui \
     loadingform.ui \
-    wikipagetagsform.ui
+    wikipagetagsform.ui \
+    editbaritem.ui \
+    editbar.ui
 
 RESOURCES += \
     pictures.qrc \
