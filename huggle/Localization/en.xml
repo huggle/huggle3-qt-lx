@@ -535,7 +535,7 @@
     <string name="history-fail">Failed to retrieve history of $1</string>
     <string name="history-progress">Retrieving history of $1 ($2)...</string>
     <string name="history-work">Undoing own edit made to $1</string>
-    <string name="history-message-revert-title">You really want to undo just message?</string>
+    <string name="history-message-revert-title">Do you really want to undo just this message?</string>
     <string name="history-not-found">Nothing was found to undo</string>
     <string name="history-already-done">This was already undone</string>
     <string name="history-message-revert-body">This was a message that is referenced by a rollback, are you sure you want to undo only template and not even your edit to page? (you need to undo the rollback in case you want to revert both of these)</string>
