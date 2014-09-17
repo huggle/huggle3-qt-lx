@@ -36,6 +36,9 @@ typedef char byte_ht;
     #include <cstddef>
     #include "TargetConditionals.h"
     #ifdef TARGET_OS_MAC
+// fixme
+// this is needed on mac, who knows why, gets a cookie :o
+namespace std { typedef decltype(nullptr) nullptr_t; }
         #define HUGGLE_MACX true
         #define HUGGLE_NO_MT_GC
     #endif
