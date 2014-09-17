@@ -12,11 +12,13 @@
 #define EDITBAR_HPP
 
 #include "definitions.hpp"
+#include <QDockWidget>
+#include <QList>
+#include <QTimer>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
-#include <QDockWidget>
-#include <QList>
+
 
 namespace Ui
 {
@@ -37,13 +39,16 @@ namespace Huggle
             explicit EditBar(QWidget *parent = 0);
             ~EditBar();
             void SetEdit(WikiEdit *we);
-
+        private slots:
+            void OnTick();
         private:
             void RemoveAll();
+            void Read();
             Collectable_SmartPtr<WikiEdit> edit;
             Collectable_SmartPtr<ApiQuery> query;
             QList<EditBarItem*> Items;
             Ui::EditBar *ui;
+            QTimer *timer;
     };
 }
 

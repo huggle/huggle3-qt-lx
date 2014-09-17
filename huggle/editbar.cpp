@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "editbar.hpp"
+#include "configuration.hpp"
 #include "editbaritem.hpp"
 #include "exception.hpp"
 #include "wikipage.hpp"
@@ -21,10 +22,12 @@ using namespace Huggle;
 EditBar::EditBar(QWidget *parent) : QDockWidget(parent), ui(new Ui::EditBar)
 {
     this->ui->setupUi(this);
+    this->timer = nullptr;
 }
 
 EditBar::~EditBar()
 {
+    delete this->timer;
     delete this->ui;
 }
 
@@ -37,6 +40,13 @@ void EditBar::SetEdit(WikiEdit *we)
     // if this bar is not shown we don't need to do anything here
     if (!this->isVisible())
         return;
+
+    this->Read();
+}
+
+void EditBar::OnTick()
+{
+
 }
 
 void EditBar::RemoveAll()
@@ -46,4 +56,17 @@ void EditBar::RemoveAll()
         delete this->Items.at(0);
         this->Items.removeAt(0);
     }
+}
+
+void EditBar::Read()
+{
+    this->query = new ApiQuery(ActionQuery, this->edit->GetSite());
+    this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
+            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig->HistoryMax) +
+            "&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName);
+    this->query->Process();
+    delete this->timer;
+    this->timer = new QTimer(this);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->timer->start(HUGGLE_TIMER);
 }
