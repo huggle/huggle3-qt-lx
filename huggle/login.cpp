@@ -481,7 +481,7 @@ void Login::RetrieveGlobalConfig()
     this->Update(_l("[[login-progress-global]]"));
     this->qConfig = new ApiQuery(ActionQuery);
     this->qConfig->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
-    this->qConfig->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Huggle/Config";
+    this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->qConfig->Process();
 }
 
@@ -594,7 +594,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Loading);
     ApiQuery *query = new ApiQuery(ActionQuery, site);
     query->IncRef();
-    query->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
+    query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
     query->Process();
     this->LoginQueries.insert(site, query);
 }
@@ -746,7 +746,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
     ApiQuery *temp = new ApiQuery(ActionQuery, site);
     temp->IncRef();
     // now we can retrieve some information about user for this project
-    temp->Parameters = "meta=userinfo&format=xml&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
+    temp->Parameters = "meta=userinfo&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
     temp->Process();
     this->LoginQueries.insert(site, temp);
 }
@@ -1061,7 +1061,7 @@ void Login::on_pushButton_clicked()
     this->timer->start(HUGGLE_TIMER);
     this->qDatabase->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
-    this->qDatabase->Parameters = "prop=revisions&format=xml&rvprop=content&rvlimit=1&titles="
+    this->qDatabase->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles="
                         + Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList;
     this->qDatabase->Process();
 }
