@@ -53,7 +53,12 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
         }
         result->Nodes.append(node);
         if (node->Name == "error")
-            result->SetError(HUGGLE_EUNKNOWN, node->Value);
+        {
+            QString code = node->GetAttribute("code");
+            result->SetError(HUGGLE_EUNKNOWN, "code: " + code + " details: " + node->Value);
+            HUGGLE_DEBUG1("Query failed: " + code + " details: " + node->Value);
+            HUGGLE_DEBUG(result->Data, 8);
+        }
         if (element.childNodes().count())
             ProcessChildXMLNodes(result, element.childNodes());
     }

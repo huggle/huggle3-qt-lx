@@ -161,8 +161,8 @@ bool EditQuery::IsProcessed()
                     hec = HUGGLE_ENOTLOGGEDIN;
                     // this is some fine hacking here :)
                     // we use this later in main form
-                    HUGGLE_DEBUG("Session expired requesting a new login", 3);
-                    Configuration::HuggleConfiguration->ProjectConfig->RequestLogin();
+                    HUGGLE_DEBUG1("Session expired requesting a new login");
+                    this->Page->GetSite()->GetProjectConfig()->RequestLogin();
                 }
                 if (ec == "badtoken")
                 {
