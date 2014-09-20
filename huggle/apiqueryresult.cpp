@@ -9,9 +9,10 @@
 //GNU General Public License for more details.
 
 #include "apiqueryresult.hpp"
-#include <QtXml>
+#include "configuration.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
+#include <QtXml>
 
 using namespace Huggle;
 
@@ -40,7 +41,6 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
             continue;
         ApiQueryResultNode *node = new ApiQueryResultNode();
         node->Name = element.tagName();
-        node->Value = element.text();
         int attr = 0;
         while (attr < element.attributes().count())
         {
@@ -52,6 +52,10 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
                 Syslog::HuggleLogs->WarningLog("Invalid xml node (present multiple times) " + ca.name() + " in " + element.tagName());
         }
         result->Nodes.append(node);
+        if (element.childNodes().count())
+            ProcessChildXMLNodes(result, element.childNodes());
+
+        node->Value = element.text();
         if (node->Name == "error")
         {
             QString code = node->GetAttribute("code");
@@ -59,8 +63,6 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
             HUGGLE_DEBUG1("Query failed: " + code + " details: " + node->Value);
             HUGGLE_DEBUG(result->Data, 8);
         }
-        if (element.childNodes().count())
-            ProcessChildXMLNodes(result, element.childNodes());
     }
 }
 
