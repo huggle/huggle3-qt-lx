@@ -212,6 +212,7 @@ void Login::Enable()
 {
     this->ui->lineEdit_oauth_username->setEnabled(true);
     this->ui->Language->setEnabled(true);
+    this->ui->label->setEnabled(true);
     this->ui->Project->setEnabled(true);
     this->ui->checkBox->setEnabled(QSslSocket::supportsSsl());
     this->ui->lineEdit_username->setEnabled(true);
@@ -227,6 +228,7 @@ void Login::Disable()
 {
     this->ui->lineEdit_oauth_username->setDisabled(true);
     this->ui->Language->setDisabled(true);
+    this->ui->label->setDisabled(true);
     this->ui->Project->setDisabled(true);
     this->ui->checkBox->setDisabled(true);
     this->ui->ButtonOK->setEnabled(false);
