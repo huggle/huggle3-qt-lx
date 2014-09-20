@@ -22,6 +22,7 @@
 
 namespace Huggle
 {
+    class ApiQueryResult;
     class RevertQuery;
     class WikiSite;
 
@@ -64,6 +65,7 @@ namespace Huggle
             explicit ApiQuery(Action action);
             explicit ApiQuery(Action action, WikiSite *site);
             Action GetAction();
+            ApiQueryResult *GetApiQueryResult();
             //! Run
             void Process();
             //! Change the action type

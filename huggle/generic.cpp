@@ -10,8 +10,8 @@
 
 #include "generic.hpp"
 #include <QMessageBox>
-#include <QtXml>
 #include "apiquery.hpp"
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
@@ -97,49 +97,44 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
         *failed = true;
         return query->Result->ErrorMessage;
     }
-    QDomDocument d;
-    d.setContent(query->Result->Data);
-    QDomNodeList page = d.elementsByTagName("rev");
-    QDomNodeList code = d.elementsByTagName("page");
-    if (code.count() > 0)
+    ApiQueryResultNode *rev = query->GetApiQueryResult()->GetNode("rev");
+    ApiQueryResultNode *page = query->GetApiQueryResult()->GetNode("page");
+    if (page != nullptr)
     {
-        QDomElement e = code.at(0).toElement();
-        if (title && e.attributes().contains("title"))
-        {
-            *title = e.attribute("title");
-        }
-        if (e.attributes().contains("missing"))
+        if (title && page->Attributes.contains("title"))
+            *title = page->Attributes["title"];
+
+        if (page->Attributes.contains("missing"))
         {
             if (reason) { *reason = EvaluatePageErrorReason_Missing; }
             *failed = true;
             return "Page is missing";
         }
     }
-    if (page.count() == 0)
+    if (rev == nullptr)
     {
         if (reason) { *reason = EvaluatePageErrorReason_NoRevs; }
         *failed = true;
         return "No revisions were provided for this page";
     }
-    QDomElement e = page.at(0).toElement();
-    if (user && e.attributes().contains("user"))
-        *user = e.attribute("user");
+    if (user && rev->Attributes.contains("user"))
+        *user = rev->Attributes["user"];
 
-    if (comment && e.attributes().contains("comment"))
-        *comment = e.attribute("comment");
+    if (comment && rev->Attributes.contains("comment"))
+        *comment = rev->Attributes["comment"];
 
-    if (ts && e.attributes().contains("timestamp"))
-        *ts = e.attribute("timestamp");
+    if (ts && rev->Attributes.contains("timestamp"))
+        *ts = rev->Attributes["timestamp"];
 
     if (revid)
     {
-        if (e.attributes().contains("revid"))
-            *revid = e.attribute("revid").toInt();
+        if (rev->Attributes.contains("revid"))
+            *revid = rev->Attributes["revid"].toInt();
         else
             *revid = WIKI_UNKNOWN_REVID;
     }
     *failed = false;
-    return e.text();
+    return rev->Value;
 }
 
 void Generic::DeveloperError()

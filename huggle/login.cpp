@@ -14,6 +14,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QtXml>
+#include "apiqueryresult.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -199,13 +200,11 @@ void Login::CancelLogin()
 int Login::GetRowIDForSite(WikiSite *site, int row)
 {
     if (!this->LoadingFormRows.contains(site))
-    {
         throw new Huggle::Exception("There is no such a site in DB of rows", "int Login::GetRowIDForSite(WikiSite *site, int row)");
-    }
+
     if (!this->LoadingFormRows[site].contains(row))
-    {
         throw new Huggle::Exception("There is no such a row in DB of rows", "int Login::GetRowIDForSite(WikiSite *site, int row)");
-    }
+
     return this->LoadingFormRows[site][row];
 }
 
@@ -276,17 +275,15 @@ void Login::DB()
         return;
     }
     Syslog::HuggleLogs->DebugLog(this->qDatabase->Result->Data, 2);
-    QDomDocument d;
-    d.setContent(this->qDatabase->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
-    if (l.count() > 0)
+    ApiQueryResultNode *result = this->qDatabase->GetApiQueryResult()->GetNode("rev");
+    if (result != nullptr)
     {
         if (QFile().exists(Configuration::HuggleConfiguration->WikiDB))
             QFile().remove(Configuration::HuggleConfiguration->WikiDB);
         QFile wiki(Configuration::HuggleConfiguration->WikiDB);
         if (wiki.open(QIODevice::WriteOnly))
         {
-            wiki.write(l.at(0).toElement().text().toUtf8());
+            wiki.write(result->Value.toUtf8());
             wiki.close();
         }
         Core::HuggleCore->LoadDB();
@@ -450,17 +447,13 @@ void Login::RetrieveGlobalConfig()
                 this->DisplayError(_l("[[login-error-global]]") + ": " + this->qConfig->Result->ErrorMessage);
                 return;
             }
-            QDomDocument d;
-            d.setContent(this->qConfig->Result->Data);
-            QDomNodeList l = d.elementsByTagName("rev");
-            this->qConfig.Delete();
-            if (l.count() == 0)
+            ApiQueryResultNode *data = this->qConfig->GetApiQueryResult()->GetNode("rev");
+            if (data == nullptr)
             {
                 this->DisplayError("Login failed unable to retrieve global config, the api query returned no data");
                 return;
             }
-            QDomElement data = l.at(0).toElement();
-            if (Configuration::HuggleConfiguration->ParseGlobalConfig(data.text()))
+            if (Configuration::HuggleConfiguration->ParseGlobalConfig(data->Value))
             {
                 if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
@@ -471,7 +464,8 @@ void Login::RetrieveGlobalConfig()
                 this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Success);
                 return;
             }
-            Syslog::HuggleLogs->DebugLog(data.text());
+            Syslog::HuggleLogs->DebugLog(data->Value);
+            this->qConfig.Delete();
             this->DisplayError(_l("login-error-global"));
         }
         return;
@@ -559,21 +553,20 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                 this->DisplayError(_l("login-error-config", site->Name, query->Result->ErrorMessage));
                 return;
             }
-            QDomDocument d;
-            d.setContent(query->Result->Data);
-            QDomNodeList l = d.elementsByTagName("rev");
-            if (l.count() == 0)
+            ApiQueryResultNode *data = query->GetApiQueryResult()->GetNode("rev");
+            if (data == nullptr)
             {
                 this->DisplayError(_l("login-error-config", site->Name, "the api query returned no data"));
                 return;
             }
+            QString value = data->Value;
             this->LoginQueries.remove(site);
             query->DecRef();
-            QDomElement data = l.at(0).toElement();
+            // since now data may be deleted
             if (site->ProjectConfig == nullptr)
                 throw new Huggle::NullPointerException("site->Project", "void Login::RetrieveProjectConfig(WikiSite *site)");
             QString reason;
-            if (site->ProjectConfig->Parse(data.text(), &reason))
+            if (site->ProjectConfig->Parse(value, &reason))
             {
                 if (!site->ProjectConfig->EnableAll)
                 {
@@ -611,10 +604,8 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 this->DisplayError("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
                 return;
             }
-            QDomDocument d;
-            d.setContent(q->Result->Data);
-            QDomNodeList revisions = d.elementsByTagName("rev");
-            if (revisions.count() == 0) // page is missing
+            ApiQueryResultNode *data = q->GetApiQueryResult()->GetNode("rev");
+            if (data == nullptr) // page is missing
             {
                 HUGGLE_DEBUG("User config is missing on " + site->Name, 2);
                 if (this->LoadedOldConfigs[site] == false && !Configuration::HuggleConfiguration->GlobalConfig_UserConf_old.isEmpty())
@@ -647,12 +638,10 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 this->DisplayError(_l("login-fail-css", site->Name));
                 return;
             }
-
+            QString val_ = data->Value;
             this->LoginQueries.remove(site);
             q->DecRef();
-
-            QDomElement data = revisions.at(0).toElement();
-            if (Configuration::HuggleConfiguration->ParseUserConfig(site, data.text()))
+            if (Configuration::HuggleConfiguration->ParseUserConfig(site, val_))
             {
                 if (this->LoadedOldConfigs[site])
                 {
@@ -670,7 +659,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 return;
             }
             // failed unable to parse the user config
-            Syslog::HuggleLogs->DebugLog(data.text());
+            Syslog::HuggleLogs->DebugLog(val_);
             this->DisplayError(_l("login-fail-parse-config", site->Name));
         }
         return;
@@ -697,10 +686,8 @@ void Login::RetrieveUserInfo(WikiSite *site)
                 this->DisplayError(_l("login-fail-no-info", site->Name, query->Result->ErrorMessage));
                 return;
             }
-            QDomDocument dLoginResult;
-            dLoginResult.setContent(query->Result->Data);
-            QDomNodeList lRights_ = dLoginResult.elementsByTagName("r");
-            if (lRights_.count() == 0)
+            QList<ApiQueryResultNode*> node = query->GetApiQueryResult()->GetNodes("r");
+            if (node.count() == 0)
             {
                 Syslog::HuggleLogs->DebugLog(query->Result->Data);
                 // Login failed unable to retrieve user info since the api query returned no data
@@ -708,9 +695,9 @@ void Login::RetrieveUserInfo(WikiSite *site)
                 return;
             }
             int c=0;
-            while(c<lRights_.count())
+            while(c<node.count())
             {
-                site->GetProjectConfig()->Rights.append(lRights_.at(c).toElement().text());
+                site->GetProjectConfig()->Rights.append(node.at(c)->Value);
                 c++;
             }
             if (site->GetProjectConfig()->RequireRollback && !site->GetProjectConfig()->Rights.contains("rollback"))
@@ -726,9 +713,9 @@ void Login::RetrieveUserInfo(WikiSite *site)
             }
             // remove the query
             this->LoginQueries.remove(site);
-            QDomNodeList userinfos = dLoginResult.elementsByTagName("userinfo");
+            ApiQueryResultNode* ui = query->GetApiQueryResult()->GetNode("userinfo");
+            int editcount = ui->GetAttribute("editcount", "-1").toInt();
             query->DecRef();
-            int editcount = userinfos.at(0).toElement().attribute("editcount", "-1").toInt();
             if (site->GetProjectConfig()->RequireEdits > editcount)
             {
                 this->DisplayError(_l("login-failed-edit", site->Name));

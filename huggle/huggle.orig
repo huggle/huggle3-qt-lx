@@ -131,7 +131,8 @@ SOURCES += main.cpp\
     wikipagetagsform.cpp \
     collectable_smartptr.cpp \
     mediawikiobject.cpp \
-    version.cpp
+    version.cpp \
+    apiqueryresult.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -214,7 +215,8 @@ HEADERS  += mainwindow.hpp \
     wikipagetagsform.hpp \
     collectable_smartptr.hpp \
     mediawikiobject.hpp \
-    version.hpp
+    version.hpp \
+    apiqueryresult.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

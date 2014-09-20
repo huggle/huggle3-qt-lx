@@ -9,8 +9,8 @@
 //GNU General Public License for more details.
 
 #include "apiquery.hpp"
-#include <QtXml>
 #include <QUrl>
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "syslog.hpp"
 #include "revertquery.hpp"
@@ -51,16 +51,14 @@ void ApiQuery::ConstructUrl()
 QString ApiQuery::ConstructParameterLessUrl()
 {
     QString url;
-    if (!this->ActionPart.length())
+    if (this->ActionPart.isEmpty())
     {
         throw new Huggle::Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
     }
     if (!this->OverrideWiki.size())
-        url = Configuration::GetProjectScriptURL(this->GetSite())
-                + "api.php?action=" + this->ActionPart;
+        url = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;
     else
         url = Configuration::GetURLProtocolPrefix(this->GetSite()) + this->OverrideWiki + "api.php?action=" + this->ActionPart;
-
     switch (this->RequestFormat)
     {
         case XML:
@@ -123,9 +121,15 @@ Action ApiQuery::GetAction()
     return this->_action;
 }
 
+ApiQueryResult *ApiQuery::GetApiQueryResult()
+{
+    return (ApiQueryResult*)this->Result;
+}
+
 void ApiQuery::Finished()
 {
-    this->Result->Data += QString(this->reply->readAll());
+    ApiQueryResult *result = (ApiQueryResult*)this->Result;
+    result->Data += QString(this->reply->readAll());
     // now we need to check if request was successful or not
     if (this->reply->error())
     {
@@ -137,13 +141,13 @@ void ApiQuery::Finished()
         return;
     }
     if (this->ActionPart == "rollback")
-    {
         FinishRollback();
-    }
     this->reply->deleteLater();
     this->reply = nullptr;
     if (!this->HiddenQuery)
         HUGGLE_DEBUG("Finished request " + this->URL, 6);
+    if (!result->IsFailed() && this->RequestFormat == XML)
+        result->Process();
     this->Status = StatusDone;
     this->ProcessCallback();
 }
@@ -159,7 +163,7 @@ void ApiQuery::Process()
     if (!this->URL.size())
         this->ConstructUrl();
     this->Status = StatusProcessing;
-    this->Result = new QueryResult();
+    this->Result = new ApiQueryResult();
     QUrl url;
     if (this->UsingPOST)
     {
@@ -175,7 +179,6 @@ void ApiQuery::Process()
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     if (Configuration::HuggleConfiguration->SystemConfig_DryMode && this->EditingQuery)
     {
-        this->Result = new QueryResult();
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         this->ProcessCallback();
