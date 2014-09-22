@@ -443,6 +443,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
+        this->wEditBar->RemoveAll();
         if (!KeepUser)
         {
             this->wUserInfo->ChangeUser(this->CurrentEdit->User);

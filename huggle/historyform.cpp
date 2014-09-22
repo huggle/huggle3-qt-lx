@@ -13,6 +13,7 @@
 #include <QToolTip>
 #include <QtXml>
 #include "configuration.hpp"
+#include "editbar.hpp"
 #include "exception.hpp"
 #include "mainwindow.hpp"
 #include "localization.hpp"
@@ -116,6 +117,9 @@ void HistoryForm::Update(WikiEdit *edit)
 
 void HistoryForm::onTick01()
 {
+    if (this->CurrentEdit == nullptr)
+        throw new Huggle::NullPointerException("sp CurrentEdit", "void HistoryForm::onTick01()");
+
     if (this->RetrievingEdit && this->RetrievedEdit != nullptr)
     {
         if (this->RetrievedEdit->IsPostProcessed())
@@ -158,89 +162,99 @@ void HistoryForm::onTick01()
         }
         xt = !xt;
         QDomElement e = l.at(x).toElement();
-        QString RevID;
+        WikiPageHistoryItem item;
         if (e.attributes().contains("revid"))
         {
-            RevID = e.attribute("revid");
+            item.RevID = e.attribute("revid");
         } else
         {
             x++;
             continue;
         }
-        QString user = "<Unknown>";
+        item.Name = this->CurrentEdit->Page->PageName;
+        item.Site = this->CurrentEdit->GetSite();
         if (e.attributes().contains("user"))
-            user = e.attribute("user");
-        QString size = "<Unknown>";
+            item.User = e.attribute("user");
         if (e.attributes().contains("size"))
-            size = e.attribute("size");
-        QString date = "<Unknown>";
+            item.Size = e.attribute("size");
         if (e.attributes().contains("timestamp"))
-            date = e.attribute("timestamp");
-        QString summary = "No summary";
+            item.Date = e.attribute("timestamp");
         if (e.attributes().contains("comment") && !e.attribute("comment").isEmpty())
-                summary = e.attribute("comment");
+            item.Summary = e.attribute("comment");
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
-        if (WikiUtil::IsRevert(summary))
+        if (WikiUtil::IsRevert(item.Summary))
+        {
+            item.Type = EditType_Revert;
             icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");
-        else if (WikiUser::IsIPv6(user) || WikiUser::IsIPv4(user))
+        }
+        else if (WikiUser::IsIPv6(item.User) || WikiUser::IsIPv4(item.User))
+        {
+            item.Type = EditType_Anon;
             icon = QIcon(":/huggle/pictures/Resources/blob-anon.png");
-        else if (this->CurrentEdit->GetSite()->GetProjectConfig()->WhiteList.contains(user))
+        }
+        else if (this->CurrentEdit->GetSite()->GetProjectConfig()->WhiteList.contains(item.User))
+        {
+            item.Type = EditType_W;
             icon = QIcon(":/huggle/pictures/Resources/blob-ignored.png");
-        WikiUser *wu = WikiUser::RetrieveUser(user, this->CurrentEdit->GetSite());
+        }
+        WikiUser *wu = WikiUser::RetrieveUser(item.User, item.Site);
         if (wu != nullptr)
         {
             if (wu->IsReported)
             {
+                item.Type = EditType_Reported;
                 icon = QIcon(":/huggle/pictures/Resources/blob-reported.png");
             } else if (wu->WarningLevel > 0)
             {
                 switch(wu->WarningLevel)
                 {
                     case 1:
+                        item.Type = EditType_1;
                         icon = QIcon(":/huggle/pictures/Resources/blob-warn-1.png");
                         break;
                     case 2:
+                        item.Type = EditType_2;
                         icon = QIcon(":/huggle/pictures/Resources/blob-warn-2.png");
                         break;
                     case 3:
+                        item.Type = EditType_3;
                         icon = QIcon(":/huggle/pictures/Resources/blob-warn-3.png");
                         break;
                     case 4:
+                        item.Type = EditType_4;
                         icon = QIcon(":/huggle/pictures/Resources/blob-warn-4.png");
                         break;
                 }
             }
         }
-        if (this->CurrentEdit->RevID == RevID.toInt())
+        if (this->CurrentEdit->RevID == item.RevID.toInt())
         {
             if (x == 0)
-            {
                 IsLatest = true;
-            }
             this->SelectedRow = x;
             QFont font;
             font.setBold(true);
             QTableWidgetItem *i = new QTableWidgetItem(icon, "");
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 0, i);
-            i = new QTableWidgetItem(user);
+            i = new QTableWidgetItem(item.User);
             i->setFont(font);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 1, i);
-            i = new QTableWidgetItem(size);
+            i = new QTableWidgetItem(item.Size);
             i->setFont(font);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 2, i);
-            i = new QTableWidgetItem(summary);
+            i = new QTableWidgetItem(item.Summary);
             i->setFont(font);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 3, i);
-            i = new QTableWidgetItem(RevID);
+            i = new QTableWidgetItem(item.RevID);
             i->setFont(font);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 4, i);
-            i = new QTableWidgetItem(date);
+            i = new QTableWidgetItem(item.Date);
             i->setFont(font);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 5, i);
@@ -249,22 +263,23 @@ void HistoryForm::onTick01()
             QTableWidgetItem *i = new QTableWidgetItem(icon, "");
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 0, i);
-            i = new QTableWidgetItem(user);
+            i = new QTableWidgetItem(item.User);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 1, i);
-            i = new QTableWidgetItem(size);
+            i = new QTableWidgetItem(item.Size);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 2, i);
-            i = new QTableWidgetItem(summary);
+            i = new QTableWidgetItem(item.Summary);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 3, i);
-            i = new QTableWidgetItem(RevID);
+            i = new QTableWidgetItem(item.RevID);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 4, i);
-            i = new QTableWidgetItem(date);
+            i = new QTableWidgetItem(item.Date);
             i->setBackgroundColor(xb);
             this->ui->tableWidget->setItem(x, 5, i);
         }
+        this->Items.append(item);
         x++;
     }
     this->ui->tableWidget->resizeRowsToContents();
@@ -279,16 +294,15 @@ void HistoryForm::onTick01()
         {
             QPoint pntr(0, this->pos().y());
             if (this->pos().x() > 400)
-            {
                 pntr.setX(this->pos().x() - 200);
-            } else
-            {
+            else
                 pntr.setX(this->pos().x() + 100);
-            }
-            QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip")
-                               + "</big></b>", this);
+
+            // display a tip
+            QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip") + "</big></b>", this);
         }
     }
+    MainWindow::HuggleMain->wEditBar->RefreshPage();
 }
 
 void HistoryForm::on_pushButton_clicked()
@@ -298,6 +312,7 @@ void HistoryForm::on_pushButton_clicked()
 
 void HistoryForm::Clear()
 {
+    this->Items.clear();
     while (this->ui->tableWidget->rowCount() > 0)
     {
         this->ui->tableWidget->removeRow(0);

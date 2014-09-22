@@ -15,10 +15,7 @@
 #include <QDockWidget>
 #include <QList>
 #include <QTimer>
-#include "apiquery.hpp"
-#include "collectable_smartptr.hpp"
-#include "wikiedit.hpp"
-
+#include "edittype.hpp"
 
 namespace Ui
 {
@@ -29,6 +26,8 @@ namespace Huggle
 {
     class WikiEdit;
     class WikiPage;
+    class WikiPageHistoryItem;
+    class UserInfoFormHistoryItem;
     class WikiUser;
     class EditBarItem;
 
@@ -38,17 +37,28 @@ namespace Huggle
         public:
             explicit EditBar(QWidget *parent = 0);
             ~EditBar();
-            void SetEdit(WikiEdit *we);
-        private slots:
-            void OnTick();
-        private:
             void RemoveAll();
-            void Read();
-            Collectable_SmartPtr<WikiEdit> edit;
-            Collectable_SmartPtr<ApiQuery> query;
+            void Refresh();
+            void RefreshPage();
+            void RefreshUser();
+        private slots:
+            void on_pushButton_2_clicked();
+            void on_pushButton_clicked();
+            void on_pushButton_4_clicked();
+            void on_pushButton_3_clicked();
+            void OnReload();
+        private:
+            void InsertEdit(WikiPageHistoryItem *page);
+            void InsertUser(UserInfoFormHistoryItem *user);
+            void MovePage(int size);
+            void ClearUser();
+            void ClearPage();
+            void MoveUser(int size);
+            int PageSX;
+            int UserSX;
+            QTimer timer;
             QList<EditBarItem*> Items;
             Ui::EditBar *ui;
-            QTimer *timer;
     };
 }
 

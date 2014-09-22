@@ -13,7 +13,7 @@
 
 using namespace Huggle;
 
-EditBarItem::EditBarItem(QWidget *parent) : QDockWidget(parent), ui(new Ui::EditBarItem)
+EditBarItem::EditBarItem(QWidget *parent) : QFrame(parent), ui(new Ui::EditBarItem)
 {
     this->ui->setupUi(this);
 }
@@ -21,4 +21,14 @@ EditBarItem::EditBarItem(QWidget *parent) : QDockWidget(parent), ui(new Ui::Edit
 EditBarItem::~EditBarItem()
 {
     delete this->ui;
+}
+
+void EditBarItem::SetText(QString text)
+{
+    this->ui->label->setToolTip(text);
+}
+
+void EditBarItem::SetPixmap(QString path)
+{
+    this->ui->label->setPixmap(QPixmap(path));
 }

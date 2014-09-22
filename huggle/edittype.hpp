@@ -8,31 +8,28 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef EDITBARITEM_HPP
-#define EDITBARITEM_HPP
-
-#include <QFrame>
-
-namespace Ui
-{
-    class EditBarItem;
-}
+#ifndef EDITTYPE_HPP
+#define EDITTYPE_HPP
 
 namespace Huggle
 {
-    class EditBarItem : public QFrame
+    //! This is a "type" of an edit which we use to resolve the proper icon for the edit
+    enum EditType
     {
-            Q_OBJECT
-        public:
-            explicit EditBarItem(QWidget *parent = 0);
-            ~EditBarItem();
-            void SetText(QString text);
-            void SetPixmap(QString path);
-            QString RevID;
-
-        private:
-            Ui::EditBarItem *ui;
+        EditType_Normal,
+        EditType_Anon,
+        EditType_1,
+        EditType_2,
+        EditType_3,
+        EditType_4,
+        EditType_W,
+        EditType_Blocked,
+        EditType_Revert,
+        EditType_Reported,
+        EditType_Bot,
+        EditType_New,
+        EditType_Self
     };
 }
 
-#endif // EDITBARITEM_HPP
+#endif // EDITTYPE_HPP

@@ -15,8 +15,11 @@
 
 #include <QDockWidget>
 #include <QString>
+#include <QList>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "edittype.hpp"
+#include "mediawikiobject.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui
@@ -30,6 +33,17 @@ namespace Huggle
     class WikiEdit;
     class ApiQuery;
 
+    class UserInfoFormHistoryItem : public MediaWikiObject
+    {
+        public:
+            QString  Page;
+            QString  Date;
+            QString  Summary;
+            QString  RevID;
+            EditType Type = EditType_Normal;
+            bool     Top;
+    };
+
     /*!
      * \brief The UserinfoForm class is a widget that displays the information about user
      * including their history and some other information about the user
@@ -42,6 +56,7 @@ namespace Huggle
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
             void Read();
+            QList<UserInfoFormHistoryItem> Items;
 
         private slots:
             void OnTick();

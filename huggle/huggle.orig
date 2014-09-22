@@ -53,6 +53,7 @@ win32{
 SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
+    apiqueryresult.cpp \
     core.cpp \
     configuration.cpp \
     preferences.cpp \
@@ -134,10 +135,10 @@ SOURCES += main.cpp\
     version.cpp \
     editbaritem.cpp \
     editbar.cpp
-    apiqueryresult.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
+    apiqueryresult.hpp \
     core.hpp \
     configuration.hpp \
     preferences.hpp \
@@ -219,8 +220,8 @@ HEADERS  += mainwindow.hpp \
     mediawikiobject.hpp \
     version.hpp \
     editbaritem.hpp \
-    editbar.hpp
-    apiqueryresult.hpp
+    editbar.hpp \
+    edittype.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -256,8 +257,8 @@ FORMS    += mainwindow.ui \
     reloginform.ui \
     loadingform.ui \
     wikipagetagsform.ui \
-    editbaritem.ui \
-    editbar.ui
+    editbar.ui \
+    editbaritem.ui
 
 RESOURCES += \
     pictures.qrc \

@@ -20,6 +20,7 @@
 #include "apiquery.hpp"
 #include "collectable.hpp"
 #include "collectable_smartptr.hpp"
+#include "edittype.hpp"
 
 namespace Huggle
 {
@@ -78,6 +79,7 @@ namespace Huggle
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
             static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(int revid, QString prev = "prev");
+            static QString GetPixmapFromEditType(EditType edit_type);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;
