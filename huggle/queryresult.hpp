@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QHash>
 #include <QString>
 
 #define HUGGLE_EUNKNOWN            1
@@ -28,6 +29,7 @@ namespace Huggle
             //! Creates a new instance of query result
             QueryResult();
             QueryResult(bool failed);
+            virtual ~QueryResult() {}
             //! Data retrieved by query
             QString Data;
             void SetError();

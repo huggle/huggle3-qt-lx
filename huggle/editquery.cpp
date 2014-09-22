@@ -9,8 +9,7 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
-#include <QUrl>
-#include <QtXml>
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "history.hpp"
@@ -22,6 +21,7 @@
 #include "querypool.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 
@@ -109,10 +109,8 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        QDomDocument dToken_;
-        dToken_.setContent(this->qToken->Result->Data);
-        QDomNodeList l = dToken_.elementsByTagName("page");
-        if (l.count() == 0)
+        ApiQueryResultNode *page = this->qToken->GetApiQueryResult()->GetNode("page");
+        if (page == nullptr)
         {
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
@@ -121,8 +119,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        QDomElement element = l.at(0).toElement();
-        if (!element.attributes().contains("edittoken"))
+        if (!page->Attributes.contains("edittoken"))
         {
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
@@ -131,7 +128,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        this->Token = element.attribute("edittoken");
+        this->Token = page->GetAttribute("edittoken");
         this->Page->GetSite()->GetProjectConfig()->EditToken = this->Token;
         this->qToken.Delete();
         this->EditPage();
@@ -142,17 +139,14 @@ bool EditQuery::IsProcessed()
         if (!this->qEdit->IsProcessed())
             return false;
 
-        QDomDocument dEdit_;
-        dEdit_.setContent(this->qEdit->Result->Data);
-        QDomNodeList edits_ = dEdit_.elementsByTagName("edit");
-        QDomNodeList error_ = dEdit_.elementsByTagName("error");
+        ApiQueryResultNode *err = this->qEdit->GetApiQueryResult()->GetNode("error");
+        ApiQueryResultNode *edit = this->qEdit->GetApiQueryResult()->GetNode("edit");
         bool failed = true;
-        if (error_.count() > 0)
+        if (err != nullptr)
         {
-            QDomElement element = edits_.at(0).toElement();
-            if (element.attributes().contains("code"))
+            if (err->Attributes.contains("code"))
             {
-                QString ec = element.attribute("code");
+                QString ec = err->GetAttribute("code");
                 int hec = HUGGLE_EUNKNOWN;
                 QString reason = ec;
                 if (ec == "assertuserfailed")
@@ -161,8 +155,8 @@ bool EditQuery::IsProcessed()
                     hec = HUGGLE_ENOTLOGGEDIN;
                     // this is some fine hacking here :)
                     // we use this later in main form
-                    HUGGLE_DEBUG("Session expired requesting a new login", 3);
-                    Configuration::HuggleConfiguration->ProjectConfig->RequestLogin();
+                    HUGGLE_DEBUG1("Session expired requesting a new login");
+                    this->Page->GetSite()->GetProjectConfig()->RequestLogin();
                 }
                 if (ec == "badtoken")
                 {
@@ -179,12 +173,11 @@ bool EditQuery::IsProcessed()
                 return true;
             }
         }
-        if (edits_.count() > 0)
+        if (edit != nullptr)
         {
-            QDomElement element = edits_.at(0).toElement();
-            if (element.attributes().contains("result"))
+            if (edit->Attributes.contains("result"))
             {
-                if (element.attribute("result") == "Success")
+                if (edit->Attributes["result"] == "Success")
                 {
                     failed = false;
                     if (MainWindow::HuggleMain != nullptr)

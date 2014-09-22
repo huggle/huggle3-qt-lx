@@ -134,6 +134,7 @@ SOURCES += main.cpp\
     version.cpp \
     editbaritem.cpp \
     editbar.cpp
+    apiqueryresult.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -219,6 +220,7 @@ HEADERS  += mainwindow.hpp \
     version.hpp \
     editbaritem.hpp \
     editbar.hpp
+    apiqueryresult.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
