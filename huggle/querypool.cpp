@@ -102,7 +102,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     {
         edit->IsRevert = true;
         if (edit->GetSite()->Provider != nullptr)
-            edit->GetSite()->Provider->RvCounter++;
+            edit->GetSite()->Provider->IncrementReverts();
 
         if (Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
         {
