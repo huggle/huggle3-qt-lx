@@ -30,6 +30,13 @@ HuggleFeed::HuggleFeed(WikiSite *site)
 
 HuggleFeed::~HuggleFeed()
 {
+    this->mutex->lock();
+    while (this->StatisticsBlocks.count())
+    {
+        delete this->StatisticsBlocks.at(0);
+        this->StatisticsBlocks.removeAt(0);
+    }
+    this->mutex->unlock();
     if (Providers.contains(this))
         Providers.removeOne(this);
     delete this->mutex;
@@ -37,8 +44,10 @@ HuggleFeed::~HuggleFeed()
 
 double HuggleFeed::GetRevertsPerMinute()
 {
+    if (this->StatisticsBlocks.count() < 1)
+        throw new Huggle::Exception("Invalid number of statistics blocks");
     // first we need to get an uptime
-    double uptime = this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime()) / 60;
+    double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)
         return 0;
     // now we need to get a number of all reverts for latest blocks
@@ -53,10 +62,14 @@ double HuggleFeed::GetRevertsPerMinute()
 
 double HuggleFeed::GetEditsPerMinute()
 {
+    this->RotateStats();
+    if (this->StatisticsBlocks.count() < 1)
+        throw new Huggle::Exception("Invalid number of statistics blocks");
     // first we need to get an uptime
-    double uptime = this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime()) / 60;
+    double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)
         return 0;
+    this->mutex->lock();
     double edits = 0;
     foreach (StatisticsBlock *ptr, this->StatisticsBlocks)
         edits += ptr->Edits;
@@ -111,8 +124,8 @@ StatisticsBlock *HuggleFeed::GetLatestStatisticsBlock()
         this->StatisticsBlocks.append(new StatisticsBlock());
     if (this->StatisticsBlocks.last()->Uptime.secsTo(QDateTime::currentDateTime()) > HUGGLE_STATISTICS_BLOCK_SIZE)
         this->StatisticsBlocks.append(new StatisticsBlock());
-    return this->StatisticsBlocks.last();
     this->mutex->unlock();
+    return this->StatisticsBlocks.last();
 }
 
 StatisticsBlock::StatisticsBlock()
