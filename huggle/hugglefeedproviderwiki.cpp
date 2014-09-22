@@ -256,7 +256,7 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
 
 void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
-    this->EditCounter++;
+    this->IncrementEdits();
     QueryPool::HugglePool->PreProcessEdit(edit);
     if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
     {

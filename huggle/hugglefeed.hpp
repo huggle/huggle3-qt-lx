@@ -15,6 +15,7 @@
 
 #include <QDateTime>
 #include <QList>
+#include <QMutex>
 #include "mediawikiobject.hpp"
 
 namespace Huggle
@@ -22,6 +23,15 @@ namespace Huggle
     class HuggleQueueFilter;
     class WikiEdit;
     class WikiSite;
+
+    class StatisticsBlock
+    {
+        public:
+            StatisticsBlock();
+            QDateTime Uptime;
+            double Edits;
+            double Reverts;
+    };
 
     //! Feed provider stub class every provider must be derived from this one
     class HuggleFeed : public MediaWikiObject
@@ -54,17 +64,25 @@ namespace Huggle
             //! This is useful in case we are running some background threads and we need to
             //! wait for them to finish before we can delete the object
             virtual bool IsStopped() { return true; }
+            virtual double GetRevertsPerMinute();
+            virtual double GetEditsPerMinute();
             //! Return a last edit from cache or NULL
             virtual WikiEdit *RetrieveEdit() { return nullptr; }
             virtual QString ToString() = 0;
+            virtual void IncrementEdits();
+            virtual void IncrementReverts();
             double GetUptime();
             HuggleQueueFilter *Filter;
+        protected:
+            void RotateStats();
             //! Number of edits made since you logged in
             double EditCounter;
             //! Number of reverts made since you logged in
             double RvCounter;
-        protected:
+            QMutex *mutex;
+            StatisticsBlock *GetLatestStatisticsBlock();
             QDateTime UptimeDate;
+            QList<StatisticsBlock*> StatisticsBlocks;
     };
 }
 

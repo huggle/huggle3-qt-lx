@@ -603,12 +603,8 @@ void MainWindow::UpdateStatusBarData()
         statistics_ = "waiting for more edits";
     } else
     {
-        double EditsPerMinute = 0;
-        double RevertsPerMinute = 0;
-        if (this->GetCurrentWikiSite()->Provider->EditCounter > 0)
-            EditsPerMinute = this->GetCurrentWikiSite()->Provider->EditCounter / (Uptime / 60);
-        if (this->GetCurrentWikiSite()->Provider->RvCounter > 0)
-            RevertsPerMinute = this->GetCurrentWikiSite()->Provider->RvCounter / (Uptime / 60);
+        double EditsPerMinute = this->GetCurrentWikiSite()->Provider->GetEditsPerMinute();
+        double RevertsPerMinute = this->GetCurrentWikiSite()->Provider->GetRevertsPerMinute();
         double VandalismLevel = 0;
         if (EditsPerMinute > 0 && RevertsPerMinute > 0)
             VandalismLevel = (RevertsPerMinute / (EditsPerMinute / 2)) * 10;

@@ -115,7 +115,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
         throw new Huggle::NullPointerException("WikiEdit *edit", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
 
     // Increase the number of edits that were made since provider is up, this is used for statistics
-    this->EditCounter++;
+    this->IncrementEdits();
     // We need to pre process edit so that we have all its properties ready for queue filter
     QueryPool::HugglePool->PreProcessEdit(edit);
     // We only insert it to buffer in case that current filter matches the edit, this is probably not needed
