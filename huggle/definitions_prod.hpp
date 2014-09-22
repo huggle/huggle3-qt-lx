@@ -24,6 +24,10 @@ typedef char byte_ht;
 // Version of mediawiki that we do support
 #define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.22"
 
+// How often the statistics get purged in seconds (smaller, more precise they will be)
+#define HUGGLE_STATISTICS_LIFETIME     200
+#define HUGGLE_STATISTICS_BLOCK_SIZE   20
+
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION
