@@ -107,7 +107,7 @@ void EditBar::RefreshPage()
     }
     // we need to scroll to the edge of list
     this->PageSX = (history->Items.count() * 20);
-    this->timer.start(20);
+    this->timer.start(HUGGLE_TIMER);
 }
 
 void EditBar::RefreshUser()
