@@ -29,6 +29,8 @@ namespace Huggle
     };
 
     //! History consist of these items
+
+    //! This is a history of changes made by huggle, not of a wiki page
     class HistoryItem : public Collectable, public MediaWikiObject
     {
         public:

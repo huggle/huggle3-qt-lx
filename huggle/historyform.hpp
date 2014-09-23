@@ -15,6 +15,8 @@
 
 #include <QDockWidget>
 #include "apiquery.hpp"
+#include "edittype.hpp"
+#include "mediawikiobject.hpp"
 #include "wikiedit.hpp"
 #include "collectable_smartptr.hpp"
 
@@ -29,6 +31,25 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
 
+    //! This is a helper class that can be used to store history items
+
+    //! It contains some meta information about page history that can be shared with
+    //! other classes that needs to use it. It exists so that we don't need to
+    //! download a page history multiple times.
+    class WikiPageHistoryItem : public MediaWikiObject
+    {
+        public:
+            //! Name of a page that we have this history item for
+            QString Name;
+            QString RevID;
+            QString Summary = "No summary";
+            QString Date = "<Unknown>";
+            QString Size = "<Unknown>";
+            QString User = "<Unknown>";
+            bool IsCurrent = false;
+            EditType Type = EditType_Normal;
+    };
+
     //! This is a small gadget that is displayed on top of main window
 
     //! It can be used to retrieve a history of currently displayed page
@@ -38,8 +59,11 @@ namespace Huggle
         public:
             explicit HistoryForm(QWidget *parent = nullptr);
             ~HistoryForm();
+            void GetEdit(long revid, QString prev, int row, QString html, bool turtlemode = false);
+            void GetEdit(long revid, QString prev, QString user, QString html, bool turtlemode = false);
             void Read();
             void Update(WikiEdit *edit);
+            QList<WikiPageHistoryItem*> Items;
 
         private slots:
             void onTick01();
@@ -49,7 +73,6 @@ namespace Huggle
         private:
             void Clear();
             void Display(int row, QString html, bool turtlemode = false);
-            void GetEdit(int revid, QString prev, int row, QString html, bool turtlemode = false);
             //! Make the selected row bold
             void MakeSelectedRowBold();
             bool RetrievingEdit;

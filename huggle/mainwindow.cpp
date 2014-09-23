@@ -23,6 +23,7 @@
 #include <QDockWidget>
 #include "aboutform.hpp"
 #include "configuration.hpp"
+#include "editbar.hpp"
 #include "reloginform.hpp"
 #include "generic.hpp"
 #include "gc.hpp"
@@ -99,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SystemLog = new HuggleLog(this);
     this->CreateBrowserTab("Welcome page", 0);
     this->Queue1 = new HuggleQueue(this);
+    this->wEditBar = new EditBar(this);
     this->_History = new History(this);
     this->wHistory = new HistoryForm(this);
     this->wUserInfo = new UserinfoForm(this);
@@ -110,6 +112,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::RightDockWidgetArea, this->wHistory);
     this->addDockWidget(Qt::RightDockWidgetArea, this->wUserInfo);
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
+    this->addDockWidget(Qt::TopDockWidgetArea, this->wEditBar);
+    this->wEditBar->hide();
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
     this->ui->actionDisplay_bot_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots);
@@ -309,6 +313,7 @@ MainWindow::~MainWindow()
     delete this->fRelogin;
     delete this->WarnMenu;
     delete this->fProtectForm;
+    delete this->wEditBar;
     delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
@@ -438,6 +443,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
 
+        this->wEditBar->RemoveAll();
         if (!KeepUser)
         {
             this->wUserInfo->ChangeUser(this->CurrentEdit->User);

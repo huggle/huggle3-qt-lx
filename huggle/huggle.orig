@@ -53,6 +53,7 @@ win32{
 SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
+    apiqueryresult.cpp \
     core.cpp \
     configuration.cpp \
     preferences.cpp \
@@ -132,10 +133,12 @@ SOURCES += main.cpp\
     collectable_smartptr.cpp \
     mediawikiobject.cpp \
     version.cpp \
-    apiqueryresult.cpp
+    editbaritem.cpp \
+    editbar.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
+    apiqueryresult.hpp \
     core.hpp \
     configuration.hpp \
     preferences.hpp \
@@ -216,7 +219,9 @@ HEADERS  += mainwindow.hpp \
     collectable_smartptr.hpp \
     mediawikiobject.hpp \
     version.hpp \
-    apiqueryresult.hpp
+    editbaritem.hpp \
+    editbar.hpp \
+    edittype.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -251,7 +256,9 @@ FORMS    += mainwindow.ui \
     warninglist.ui \
     reloginform.ui \
     loadingform.ui \
-    wikipagetagsform.ui
+    wikipagetagsform.ui \
+    editbar.ui \
+    editbaritem.ui
 
 RESOURCES += \
     pictures.qrc \
