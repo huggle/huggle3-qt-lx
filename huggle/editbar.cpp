@@ -49,13 +49,16 @@ void EditBar::Refresh()
     this->RefreshUser();
 }
 
-void EditBar::InsertEdit(WikiPageHistoryItem *page)
+void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 {
     EditBarItem *item = new EditBarItem();
     this->Items.append(item);
     this->ui->horizontalLayout_page->insertWidget(1, item);
     item->RevID = page->RevID;
+    if (page->IsCurrent)
+        item->SetLineWidth(2);
     item->Username = page->User;
+    item->RowId = RowId;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(page->Type));
     item->SetText("User: " + page->User + "\n" +
                   "Size: " + page->Size + "\n" +
@@ -96,11 +99,15 @@ void EditBar::RefreshPage()
     // we need to fetch all data from history form
     HistoryForm *history = MainWindow::HuggleMain->wHistory;
     // now we need to insert the items upside down
-    foreach (WikiPageHistoryItem c, history->Items)
-        this->InsertEdit(&c);
+    int RowId = 0;
+    foreach (WikiPageHistoryItem *c, history->Items)
+    {
+        this->InsertEdit(c, RowId);
+        RowId++;
+    }
     // we need to scroll to the edge of list
     this->PageSX = (history->Items.count() * 20);
-    this->timer.start(1);
+    this->timer.start(20);
 }
 
 void EditBar::RefreshUser()

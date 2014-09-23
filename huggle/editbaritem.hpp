@@ -26,9 +26,11 @@ namespace Huggle
         public:
             explicit EditBarItem(QWidget *parent = 0);
             ~EditBarItem();
+            void SetLineWidth(int width);
             void SetText(QString text);
             void SetPixmap(QString path);
             QString RevID;
+            int RowId = -1;
             QString Username;
 
         private:

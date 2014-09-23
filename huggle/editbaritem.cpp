@@ -28,10 +28,20 @@ EditBarItem::~EditBarItem()
     delete this->ui;
 }
 
+void EditBarItem::SetLineWidth(int width)
+{
+    this->setLineWidth(width);
+}
+
 void EditBarItem::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
-        MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->Username, _l("wait"));
+    {
+        if (this->RowId < 0)
+            MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->Username, _l("wait"));
+        else
+            MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->RowId, _l("wait"));
+    }
 }
 
 void EditBarItem::SetText(QString text)

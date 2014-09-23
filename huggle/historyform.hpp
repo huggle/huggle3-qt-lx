@@ -46,6 +46,7 @@ namespace Huggle
             QString Date = "<Unknown>";
             QString Size = "<Unknown>";
             QString User = "<Unknown>";
+            bool IsCurrent = false;
             EditType Type = EditType_Normal;
     };
 
@@ -58,11 +59,11 @@ namespace Huggle
         public:
             explicit HistoryForm(QWidget *parent = nullptr);
             ~HistoryForm();
-            void GetEdit(int revid, QString prev, int row, QString html, bool turtlemode = false);
-            void GetEdit(int revid, QString prev, QString user, QString html, bool turtlemode = false);
+            void GetEdit(long revid, QString prev, int row, QString html, bool turtlemode = false);
+            void GetEdit(long revid, QString prev, QString user, QString html, bool turtlemode = false);
             void Read();
             void Update(WikiEdit *edit);
-            QList<WikiPageHistoryItem> Items;
+            QList<WikiPageHistoryItem*> Items;
 
         private slots:
             void onTick01();

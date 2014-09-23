@@ -48,7 +48,7 @@ namespace Huggle
             void on_pushButton_3_clicked();
             void OnReload();
         private:
-            void InsertEdit(WikiPageHistoryItem *page);
+            void InsertEdit(WikiPageHistoryItem *page, int RowId);
             void InsertUser(UserInfoFormHistoryItem *user);
             void MovePage(int size);
             void ClearUser();
