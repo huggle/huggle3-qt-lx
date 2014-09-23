@@ -1096,7 +1096,8 @@ void Huggle::Login::on_lineEdit_password_textChanged(const QString &arg1)
 void Login::VerifyLogin()
 {
     if((this->ui->lineEdit_username->text().size() == 0 || this->ui->lineEdit_password->text().size() == 0) &&
-            (this->ui->lineEdit_username->text() != "Developer Mode"))
+       (this->ui->lineEdit_username->text() != "Developer Mode" &&
+        this->ui->lineEdit_username->text() != "Developer_Mode"))
         this->ui->ButtonOK->setEnabled( false );
     else
         this->ui->ButtonOK->setEnabled( true );
