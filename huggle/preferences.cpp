@@ -127,7 +127,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_26->setChecked(Configuration::HuggleConfiguration->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
-    this->ui->checkBox_6->setChecked(hcfg->SystemConfig_SuppressWarnings);
+    this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setText(_l("config-ircmode"));
@@ -254,7 +254,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 {
     Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
     Configuration::HuggleConfiguration->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
-    hcfg->SystemConfig_SuppressWarnings = this->ui->checkBox_6->isChecked();
+    hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
     Configuration::HuggleConfiguration->UsingIRC = this->ui->checkBox_12->isChecked();
     Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
     Configuration::HuggleConfiguration->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
