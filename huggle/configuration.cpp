@@ -520,6 +520,11 @@ void Configuration::LoadSystemConfig(QString fn)
             Configuration::HuggleConfiguration->ProjectString = option.attribute("text").split(",");
             continue;
         }
+        if (key == "SuppressWarnings")
+        {
+            Configuration::HuggleConfiguration->SystemConfig_SuppressWarnings = SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     item = 0;
     while (item < e.count())
@@ -579,6 +584,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), writer);
     InsertConfig("Multiple", Bool2String(Configuration::HuggleConfiguration->Multiple), writer);
+    InsertConfig("SuppressWarnings", Bool2String(Configuration::HuggleConfiguration->SystemConfig_SuppressWarnings), writer);
     QString projects;
     foreach (QString wiki, Configuration::HuggleConfiguration->ProjectString)
     {

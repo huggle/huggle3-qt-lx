@@ -63,6 +63,19 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
             HUGGLE_DEBUG1("Query failed: " + code + " details: " + node->Value);
             HUGGLE_DEBUG(result->Data, 8);
         }
+        if (node->Name == "warnings" && !hcfg->SystemConfig_SuppressWarnings)
+        {
+            // there are some warnings which we need to find now
+            int cn = 0;
+            while (element.childNodes().count() > cn)
+            {
+                QDomElement warning = element.childNodes().at(cn).toElement();
+                Syslog::HuggleLogs->WarningLog("API query (" + warning.tagName() + "): " + warning.text());
+                // let's go next
+                cn++;
+            }
+            HUGGLE_DEBUG(result->Data, 5);
+        }
     }
 }
 

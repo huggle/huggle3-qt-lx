@@ -694,6 +694,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_6">
+         <property name="text">
+          <string>Display warnings for API queries</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="checkBox_23">
          <property name="text">
           <string>Page title in every diff (large text which show just a page title in top of every diff)</string>
