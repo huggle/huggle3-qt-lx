@@ -366,7 +366,8 @@ void Login::PressOK()
     Configuration::HuggleConfiguration->UserConfig = Configuration::HuggleConfiguration->Project->GetUserConfig();
     Configuration::HuggleConfiguration->ProjectConfig = Configuration::HuggleConfiguration->Project->GetProjectConfig();
 
-    if (this->ui->lineEdit_username->text() == "Developer Mode")
+    if (this->ui->lineEdit_username->text() == "Developer Mode" ||
+            this->ui->lineEdit_username->text() == "Developer_Mode")
     {
         this->DeveloperMode();
         return;
