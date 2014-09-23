@@ -514,7 +514,13 @@ void VandalNw::Insert(QString text, HAN::MessageType type)
         (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser)     ||
         (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk))
           return;
-    this->Text.prepend(text + "<br>");
+    if (type == HAN::MessageType_Info)
+    {
+        this->Text.prepend("<font color=gray>" + text + "</font><br>");
+    } else
+    {
+        this->Text.prepend(text + "<br>");
+    }
     this->ui->textEdit->setHtml(this->Text);
 }
 

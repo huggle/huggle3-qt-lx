@@ -17,6 +17,8 @@
 #include "localization.hpp"
 #include "ui_reloginform.h"
 
+//! \todo This thing is totally fucked up
+
 using namespace Huggle;
 ReloginForm::ReloginForm(QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
