@@ -11,6 +11,7 @@
 #ifndef EDITBARITEM_HPP
 #define EDITBARITEM_HPP
 
+#include "definitions.hpp"
 #include <QFrame>
 
 namespace Ui
