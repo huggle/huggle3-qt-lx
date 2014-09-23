@@ -29,9 +29,13 @@ namespace Huggle
             void SetText(QString text);
             void SetPixmap(QString path);
             QString RevID;
+            QString Username;
 
         private:
             Ui::EditBarItem *ui;
+
+        protected:
+            void mousePressEvent(QMouseEvent *event);
     };
 }
 

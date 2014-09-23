@@ -55,6 +55,7 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page)
     this->Items.append(item);
     this->ui->horizontalLayout_page->insertWidget(1, item);
     item->RevID = page->RevID;
+    item->Username = page->User;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(page->Type));
     item->SetText("User: " + page->User + "\n" +
                   "Size: " + page->Size + "\n" +
@@ -68,6 +69,7 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
     this->Items.append(item);
     this->ui->horizontalLayout_user->insertWidget(1, item);
     item->RevID = user->RevID;
+    item->Username = user->Name;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(user->Type));
     QString top;
     if (user->Top)

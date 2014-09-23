@@ -58,6 +58,8 @@ namespace Huggle
         public:
             explicit HistoryForm(QWidget *parent = nullptr);
             ~HistoryForm();
+            void GetEdit(int revid, QString prev, int row, QString html, bool turtlemode = false);
+            void GetEdit(int revid, QString prev, QString user, QString html, bool turtlemode = false);
             void Read();
             void Update(WikiEdit *edit);
             QList<WikiPageHistoryItem> Items;
@@ -70,7 +72,6 @@ namespace Huggle
         private:
             void Clear();
             void Display(int row, QString html, bool turtlemode = false);
-            void GetEdit(int revid, QString prev, int row, QString html, bool turtlemode = false);
             //! Make the selected row bold
             void MakeSelectedRowBold();
             bool RetrievingEdit;

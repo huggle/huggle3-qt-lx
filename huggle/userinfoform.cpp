@@ -147,6 +147,7 @@ void UserinfoForm::OnTick()
                     continue;
                 UserInfoFormHistoryItem item;
                 item.Top = edit.attributes().contains("top");
+                item.Name = this->User->Username;
                 if (item.Top)
                 {
                     // set a different color for edits that are top

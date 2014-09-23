@@ -37,6 +37,7 @@ namespace Huggle
     {
         public:
             QString  Page;
+            QString  Name;
             QString  Date;
             QString  Summary;
             QString  RevID;

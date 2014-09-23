@@ -129,6 +129,7 @@ void HistoryForm::onTick01()
             this->RetrievedEdit = nullptr;
             this->t1->stop();
             this->MakeSelectedRowBold();
+            MainWindow::HuggleMain->wEditBar->RefreshPage();
         }
         return;
     }
@@ -335,7 +336,6 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
 
     this->PreviouslySelectedRow = this->SelectedRow;
     this->SelectedRow = row;
-    this->RetrievingEdit = true;
     // check if we don't have this edit in a buffer
     int revid = this->ui->tableWidget->item(row, 4)->text().toInt();
     if (revid == 0)
@@ -348,6 +348,12 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
 
 void HistoryForm::GetEdit(int revid, QString prev, int row, QString html, bool turtlemode)
 {
+    this->GetEdit(revid, prev, this->ui->tableWidget->item(row, 1)->text(), html, turtlemode);
+}
+
+void HistoryForm::GetEdit(int revid, QString prev, QString user, QString html, bool turtlemode)
+{
+    this->RetrievingEdit = true;
     Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid, prev);
     if (edit != nullptr)
     {
@@ -359,7 +365,7 @@ void HistoryForm::GetEdit(int revid, QString prev, int row, QString html, bool t
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
     w->DiffTo = prev;
-    w->User = new WikiUser(this->ui->tableWidget->item(row, 1)->text());
+    w->User = new WikiUser(user);
     w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
     w->RevID = revid;
@@ -428,7 +434,6 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
             // we must not retrieve edit until previous operation did finish
             return;
         }
-        this->RetrievingEdit = true;
         this->GetEdit(max, min, rows[0], _l("wait"));
     }
 }

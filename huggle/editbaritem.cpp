@@ -9,7 +9,12 @@
 //GNU General Public License for more details.
 
 #include "editbaritem.hpp"
+#include "exception.hpp"
+#include "historyform.hpp"
+#include "mainwindow.hpp"
+#include "localization.hpp"
 #include "ui_editbaritem.h"
+#include <QMouseEvent>
 
 using namespace Huggle;
 
@@ -21,6 +26,12 @@ EditBarItem::EditBarItem(QWidget *parent) : QFrame(parent), ui(new Ui::EditBarIt
 EditBarItem::~EditBarItem()
 {
     delete this->ui;
+}
+
+void EditBarItem::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->Username, _l("wait"));
 }
 
 void EditBarItem::SetText(QString text)
