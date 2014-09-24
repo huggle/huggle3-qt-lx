@@ -116,6 +116,8 @@
      <addaction name="actionRelog"/>
      <addaction name="actionDryMode"/>
      <addaction name="actionReload_menus"/>
+     <addaction name="actionVerbosity"/>
+     <addaction name="actionVerbosity_2"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -1023,6 +1025,22 @@
   <action name="actionOpen_new_tab">
    <property name="text">
     <string>Open new tab</string>
+   </property>
+  </action>
+  <action name="actionVerbosity">
+   <property name="text">
+    <string>verbosity--</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionVerbosity_2">
+   <property name="text">
+    <string>verbosity++</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
    </property>
   </action>
  </widget>

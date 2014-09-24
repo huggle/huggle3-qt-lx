@@ -2853,3 +2853,13 @@ void Huggle::MainWindow::on_actionOpen_new_tab_triggered()
     this->CurrentEdit = nullptr;
     this->LockPage();
 }
+
+void Huggle::MainWindow::on_actionVerbosity_2_triggered()
+{
+    hcfg->Verbosity += 1;
+}
+
+void Huggle::MainWindow::on_actionVerbosity_triggered()
+{
+    hcfg->Verbosity -= 1;
+}

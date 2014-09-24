@@ -303,7 +303,8 @@ namespace Huggle
             void on_tabWidget_currentChanged(int index);
             void on_actionClose_current_tab_triggered();
             void on_actionOpen_new_tab_triggered();
-
+            void on_actionVerbosity_2_triggered();
+            void on_actionVerbosity_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
