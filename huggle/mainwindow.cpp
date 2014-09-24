@@ -310,6 +310,7 @@ MainWindow::~MainWindow()
     delete this->VandalDock;
     delete this->_History;
     delete this->RevertWarn;
+    delete this->tCheck;
     delete this->fRelogin;
     delete this->WarnMenu;
     delete this->fProtectForm;
