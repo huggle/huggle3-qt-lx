@@ -62,6 +62,7 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
     item->Username = page->User;
     item->RowId = RowId;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(page->Type));
+    //! \todo LOCALIZE ME
     item->SetText("User: " + page->User + "\n" +
                   "Size: " + page->Size + "\n" +
                   "Date: " + page->Date + "\n" +
@@ -77,6 +78,7 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
     item->Username = user->Name;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(user->Type));
     QString top;
+        //! \todo LOCALIZE ME
     if (user->Top)
         top = "\nThis edit is a top revision";
     item->SetText("Page: " + user->Page + "\n" +

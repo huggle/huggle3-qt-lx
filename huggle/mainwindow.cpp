@@ -622,6 +622,7 @@ void MainWindow::UpdateStatusBarData()
             color = "black";
         if (VandalismLevel > 1.8)
             color = "orange";
+        //! \todo LOCALIZE ME
         // make the numbers easier to read
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
