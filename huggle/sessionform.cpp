@@ -51,11 +51,7 @@ void SessionForm::Reload(int x)
                                "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
                                "RC feed: " + site->Provider->ToString() + "\n" +
                                "MediaWiki: " + site->MediawikiVersion.ToString());
-    int xx=0;
     this->ui->listWidget->clear();
-    while (xx < site->GetProjectConfig()->Rights.count())
-    {
-        this->ui->listWidget->addItem(site->GetProjectConfig()->Rights.at(xx));
-        xx++;
-    }
+    foreach (QString p, site->GetProjectConfig()->Rights)
+        this->ui->listWidget->addItem(p);
 }

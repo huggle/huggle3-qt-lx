@@ -537,7 +537,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::FinishPatrols()
 {
     int x = 0;
-    bool flaggedrevs = Configuration::HuggleConfiguration->ProjectConfig->PatrollingFlaggedRevs;
+    bool flaggedrevs = hcfg->ProjectConfig->PatrollingFlaggedRevs;
     while (x < this->PatrolledEdits.count())
     {
         Collectable_SmartPtr<ApiQuery> query = this->PatrolledEdits.at(x);
@@ -952,20 +952,19 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         throw new Huggle::Exception("nullptr edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
     bool Warn = false;
     QString type = "unknown";
-    if (Configuration::HuggleConfiguration->WarnUserSpaceRoll && _e->Page->IsUserpage())
+    if (hcfg->WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
         Warn = true;
         type = "in userspace";
-    } else if (Configuration::HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs
-               &&(_e->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower()))
+    } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_Username.toLower()))
     {
         type = "made by you";
         Warn = true;
-    } else if (Configuration::HuggleConfiguration->ProjectConfig->ConfirmTalk && _e->Page->IsTalk())
+    } else if (hcfg->ProjectConfig->ConfirmTalk && _e->Page->IsTalk())
     {
         type = "made on talk page";
         Warn = true;
-    } else if (Configuration::HuggleConfiguration->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
+    } else if (hcfg->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
     {
         type = "made by a user who is on white list";
         Warn = true;
@@ -1032,7 +1031,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::DisplayWelcomeMessage()
 {
-    WikiPage *welcome = new WikiPage(Configuration::HuggleConfiguration->ProjectConfig->WelcomeMP);
+    WikiPage *welcome = new WikiPage(hcfg->ProjectConfig->WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
     this->LockPage();
     delete welcome;
@@ -2191,9 +2190,9 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     }
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
     /// \todo LOCALIZE ME
-    WikiUtil::EditPage(page, Configuration::HuggleConfiguration->ProjectConfig->ClearTalkPageTemp
-                       + "\n" + Configuration::HuggleConfiguration->ProjectConfig->WelcomeAnon + " ~~~~",
-                       "Cleaned old templates from talk page " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle);
+    WikiUtil::EditPage(page, this->GetCurrentWikiSite()->ProjectConfig->ClearTalkPageTemp
+                       + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon + " ~~~~",
+                       "Cleaned old templates from talk page " + this->GetCurrentWikiSite()->ProjectConfig->EditSuffixOfHuggle);
     delete page;
 }
 
@@ -2377,7 +2376,7 @@ void MainWindow::on_actionReport_username_triggered()
     {
         return;
     }
-    if (!Configuration::HuggleConfiguration->ProjectConfig->UAAavailable)
+    if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
     {
         QMessageBox dd;
         dd.setIcon(dd.Information);
