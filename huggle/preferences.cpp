@@ -104,7 +104,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
     }
 #endif
-    switch(Configuration::HuggleConfiguration->UserConfig->GoNext)
+    switch(hcfg->UserConfig->GoNext)
     {
         case Configuration_OnNext_Stay:
             this->ui->radioButton_5->setChecked(true);
@@ -124,44 +124,45 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     }
     this->Disable();
     // options
-    this->ui->checkBox_26->setChecked(Configuration::HuggleConfiguration->SystemConfig_RequestDelay);
-    this->ui->checkBox_15->setChecked(Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert);
-    this->ui->checkBox_5->setChecked(Configuration::HuggleConfiguration->EnforceManualSoftwareRollback);
+    this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
+    this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
+    this->ui->checkBox_5->setChecked(hcfg->EnforceManualSoftwareRollback);
     this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
-    this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->WarnUserSpaceRoll);
-    this->ui->checkBox->setChecked(Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts);
+    this->ui->checkBox_2->setChecked(hcfg->WarnUserSpaceRoll);
+    this->ui->checkBox->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
     this->ui->checkBox_12->setText(_l("config-ircmode"));
-    this->ui->checkBox_12->setChecked(Configuration::HuggleConfiguration->UsingIRC);
-    this->ui->checkBox_14->setChecked(Configuration::HuggleConfiguration->UserConfig->HistoryLoad);
-    this->ui->checkBox_3->setChecked(Configuration::HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs);
-    this->ui->checkBox_4->setChecked(Configuration::HuggleConfiguration->ProjectConfig->ConfirmWL);
-    this->ui->checkBox_11->setChecked(Configuration::HuggleConfiguration->ProjectConfig->ConfirmTalk);
-    this->ui->checkBox_16->setChecked(Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders);
-    this->ui->checkBox_19->setChecked(Configuration::HuggleConfiguration->UserConfig->TruncateEdits);
-    this->ui->lineEdit_2->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal));
-    this->ui->radioButton->setChecked(!Configuration::HuggleConfiguration->RevertOnMultipleEdits);
-    this->ui->checkBox_21->setChecked(Configuration::HuggleConfiguration->UserConfig->LastEdit);
-    this->ui->checkBox_17->setChecked(Configuration::HuggleConfiguration->UserConfig->SectionKeep);
-    this->ui->radioButton_2->setChecked(Configuration::HuggleConfiguration->RevertOnMultipleEdits);
+    this->ui->checkBox_12->setChecked(hcfg->UsingIRC);
+    this->ui->checkBox_14->setChecked(hcfg->UserConfig->HistoryLoad);
+    this->ui->checkBox_3->setChecked(hcfg->ProjectConfig->ConfirmOnSelfRevs);
+    this->ui->checkBox_4->setChecked(hcfg->ProjectConfig->ConfirmWL);
+    this->ui->checkBox_11->setChecked(hcfg->ProjectConfig->ConfirmTalk);
+    this->ui->checkBox_16->setChecked(hcfg->UserConfig->EnforceMonthsAsHeaders);
+    this->ui->checkBox_19->setChecked(hcfg->UserConfig->TruncateEdits);
+    this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_DelayVal));
+    this->ui->radioButton->setChecked(!hcfg->RevertOnMultipleEdits);
+    this->ui->checkBox_21->setChecked(hcfg->UserConfig->LastEdit);
+    this->ui->checkBox_17->setChecked(hcfg->UserConfig->SectionKeep);
+    this->ui->radioButton_2->setChecked(hcfg->RevertOnMultipleEdits);
     this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->checkBox_20->setChecked(Configuration::HuggleConfiguration->UserConfig->RevertNewBySame);
+    this->ui->checkBox_20->setChecked(hcfg->UserConfig->RevertNewBySame);
     this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->lineEdit_3->setText(QString::number(Configuration::HuggleConfiguration->SystemConfig_RevertDelay));
-    this->ui->checkBox_24->setChecked(Configuration::HuggleConfiguration->UserConfig->ManualWarning);
-    this->ui->checkBox_25->setChecked(Configuration::HuggleConfiguration->UserConfig->CheckTP);
-    this->ui->checkBox_27->setChecked(Configuration::HuggleConfiguration->SystemConfig_InstantReverts);
-    this->ui->checkBox_22->setChecked(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList);
-    this->ui->checkBox_23->setChecked(Configuration::HuggleConfiguration->UserConfig->DisplayTitle);
-    this->ui->checkBox_30->setChecked(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
-    this->ui->checkBox_31->setChecked(Configuration::HuggleConfiguration->HtmlAllowedInIrc);
+    this->ui->lineEdit_3->setText(QString::number(hcfg->SystemConfig_RevertDelay));
+    this->ui->checkBox_24->setChecked(hcfg->UserConfig->ManualWarning);
+    this->ui->checkBox_25->setChecked(hcfg->UserConfig->CheckTP);
+    this->ui->checkBox_27->setChecked(hcfg->SystemConfig_InstantReverts);
+    this->ui->checkBox_22->setChecked(hcfg->SystemConfig_DynamicColsInList);
+    this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
+    this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
+    this->ui->checkBox_31->setChecked(hcfg->HtmlAllowedInIrc);
     this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
-    this->ui->checkBox_notifyUpdate->setChecked(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled);
+    this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
+    this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
-    this->ui->checkBox_notifyBeta->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
-
+    this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
     this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
+    this->ui->lineEdit_4->setText(QString::number(hcfg->SystemConfig_FontSize));
 }
 
 Preferences::~Preferences()
@@ -252,60 +253,66 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
-    Configuration::HuggleConfiguration->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
+    hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
+    hcfg->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
-    Configuration::HuggleConfiguration->UsingIRC = this->ui->checkBox_12->isChecked();
-    Configuration::HuggleConfiguration->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
-    Configuration::HuggleConfiguration->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
-    Configuration::HuggleConfiguration->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
-    Configuration::HuggleConfiguration->ProjectConfig->ConfirmWL = this->ui->checkBox_4->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->HistoryLoad = this->ui->checkBox_14->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->SectionKeep = this->ui->checkBox_17->isChecked();
-    Configuration::HuggleConfiguration->ProjectConfig->ConfirmTalk = this->ui->checkBox_11->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->LastEdit = this->ui->checkBox_21->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->TruncateEdits = this->ui->checkBox_19->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
-    Configuration::HuggleConfiguration->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
-    Configuration::HuggleConfiguration->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
-    Configuration::HuggleConfiguration->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
-    Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
-    Configuration::HuggleConfiguration->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    hcfg->UsingIRC = this->ui->checkBox_12->isChecked();
+    hcfg->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
+    hcfg->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
+    hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
+    hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_4->isChecked();
+    hcfg->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
+    hcfg->UserConfig->HistoryLoad = this->ui->checkBox_14->isChecked();
+    hcfg->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
+    hcfg->UserConfig->SectionKeep = this->ui->checkBox_17->isChecked();
+    hcfg->ProjectConfig->ConfirmTalk = this->ui->checkBox_11->isChecked();
+    hcfg->UserConfig->LastEdit = this->ui->checkBox_21->isChecked();
+    hcfg->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
+    hcfg->UserConfig->TruncateEdits = this->ui->checkBox_19->isChecked();
+    hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
+    hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
+    hcfg->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
+    hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
+    hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
+    hcfg->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
+    hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
+    hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
+    hcfg->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
+    hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
+    hcfg->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    hcfg->SystemConfig_FontSize = this->ui->lineEdit_4->text().toInt();
 
-    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
+    if (hcfg->SystemConfig_FontSize < 1)
+        hcfg->SystemConfig_FontSize = 10;
+
+    hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
+
+    if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
     {
-        Configuration::HuggleConfiguration->UserConfig->WelcomeGood = this->ui->checkBox_30->isChecked();
+        hcfg->UserConfig->WelcomeGood = this->ui->checkBox_30->isChecked();
         // now we need to update the option as well just to ensure that user config will be updated as well
         // this option needs to be written only if it was explicitly changed by user to a value that
         // is different from a project config file
-        HuggleOption *o_ = Configuration::HuggleConfiguration->UserConfig->GetOption("welcome-good");
+        HuggleOption *o_ = hcfg->UserConfig->GetOption("welcome-good");
         if (o_)
-            o_->SetVariant(Configuration::HuggleConfiguration->UserConfig->WelcomeGood);
+            o_->SetVariant(hcfg->UserConfig->WelcomeGood);
     }
     if (this->ui->radioButton_5->isChecked())
     {
-        Configuration::HuggleConfiguration->UserConfig->GoNext = Configuration_OnNext_Stay;
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Stay;
     }
     if (this->ui->radioButton_4->isChecked())
     {
-        Configuration::HuggleConfiguration->UserConfig->GoNext = Configuration_OnNext_Revert;
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Revert;
     }
     if (this->ui->radioButton_3->isChecked())
     {
-        Configuration::HuggleConfiguration->UserConfig->GoNext = Configuration_OnNext_Next;
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Next;
     }
     if (this->ModifiedForm)
     {
         // we need to reload the shortcuts in main form
-        Configuration::HuggleConfiguration->ReloadOfMainformNeeded = true;
+        hcfg->ReloadOfMainformNeeded = true;
     }
     Configuration::SaveSystemConfig();
     this->hide();
@@ -417,21 +424,21 @@ void Preferences::Reload()
 
 void Preferences::Reload2()
 {
-    QStringList list = Configuration::HuggleConfiguration->Shortcuts.keys();
+    QStringList list = hcfg->Shortcuts.keys();
     this->ui->tableWidget_2->clearContents();
     list.sort();
     int row = 0;
     foreach (QString key, list)
     {
         this->ui->tableWidget_2->insertRow(row);
-        Shortcut shortcut = Shortcut(Configuration::HuggleConfiguration->Shortcuts[key]);
+        Shortcut shortcut = Shortcut(hcfg->Shortcuts[key]);
         QTableWidgetItem *w = new QTableWidgetItem(shortcut.Name);
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
         this->ui->tableWidget_2->setItem(row, 0, w);
-        w = new QTableWidgetItem(_l(Configuration::HuggleConfiguration->Shortcuts[key].Description));
+        w = new QTableWidgetItem(_l(hcfg->Shortcuts[key].Description));
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
         this->ui->tableWidget_2->setItem(row, 1, w);
-        this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[key].QAccel));
+        this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(hcfg->Shortcuts[key].QAccel));
         row++;
     }
     this->ui->tableWidget_2->resizeColumnsToContents();
@@ -476,14 +483,14 @@ void Preferences::RecordKeys(int row, int column)
         if (!this->IgnoreConflicts)
         {
             // check if there isn't another shortcut which uses this
-            QStringList keys = Configuration::HuggleConfiguration->Shortcuts.keys();
+            QStringList keys = hcfg->Shortcuts.keys();
             foreach (QString s, keys)
             {
-                if (Configuration::HuggleConfiguration->Shortcuts[s].QAccel == key && s != id)
+                if (hcfg->Shortcuts[s].QAccel == key && s != id)
                 {
                     QMessageBox m;
                     m.setWindowTitle("Fail");
-                    m.setText(_l("config-already-in-use", Configuration::HuggleConfiguration->Shortcuts[s].Name));
+                    m.setText(_l("config-already-in-use", hcfg->Shortcuts[s].Name));
                     m.exec();
                     goto revert;
                 }
@@ -494,15 +501,15 @@ void Preferences::RecordKeys(int row, int column)
     this->ModifiedForm = true;
     this->RewritingForm = true;
     this->IgnoreConflicts = false;
-    Configuration::HuggleConfiguration->Shortcuts[id].Modified = true;
-    Configuration::HuggleConfiguration->Shortcuts[id].QAccel = key;
+    hcfg->Shortcuts[id].Modified = true;
+    hcfg->Shortcuts[id].QAccel = key;
     this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(key));
     this->RewritingForm = false;
     return;
 
     revert:
         this->IgnoreConflicts = true;
-        this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(Configuration::HuggleConfiguration->Shortcuts[id].QAccel));
+        this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(hcfg->Shortcuts[id].QAccel));
         return;
 }
 

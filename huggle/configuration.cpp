@@ -249,6 +249,7 @@ QString Configuration::MakeLocalUserConfig(WikiSite *site)
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(HuggleConfiguration->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(site->UserConfig->AutomaticallyResolveConflicts) + "\n";
+    configuration_ += "font:" + HuggleConfiguration->SystemConfig_Font + "\n";
     configuration_ += "software-rollback:" + Bool2String(HuggleConfiguration->EnforceManualSoftwareRollback) + "\n";
     configuration_ += "diff-font-size:" + QString::number(HuggleConfiguration->SystemConfig_FontSize) + "\n";
     configuration_ += "HistoryLoad:" + Bool2String(site->UserConfig->HistoryLoad) + "\n";
@@ -643,6 +644,8 @@ bool Configuration::ParseUserConfig(WikiSite *site, QString config)
     site->ProjectConfig->ScoreFlag = site->GetUserConfig()->SetOption("score-flag", config, site->ProjectConfig->ScoreFlag).toInt();
     site->ProjectConfig->WarnSummary = site->GetUserConfig()->SetOption("warn-summary", config, site->ProjectConfig->WarnSummary).toString();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
+    this->SystemConfig_FontSize = ConfigurationParse("diff-font-size", config, "16").toInt();
+    this->SystemConfig_Font = ConfigurationParse("font", config, this->SystemConfig_Font);
     site->ProjectConfig->WarnSummary2 = site->GetUserConfig()->SetOption("warn-summary-2", config, site->ProjectConfig->WarnSummary2).toString();
     site->ProjectConfig->WarnSummary3 = site->GetUserConfig()->SetOption("warn-summary-3", config, site->ProjectConfig->WarnSummary3).toString();
     site->ProjectConfig->WarnSummary4 = site->GetUserConfig()->SetOption("warn-summary-4", config, site->ProjectConfig->WarnSummary4).toString();

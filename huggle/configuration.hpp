@@ -246,7 +246,9 @@ namespace Huggle
             bool            SystemConfig_SafeMode = false;
             /// \todo This option needs to be implemented to browser so that font size is different when this is changed by user
             //! Size of fonts in diff
-            int             SystemConfig_FontSize = 10;
+            int             SystemConfig_FontSize = 16;
+            //! Font that we use to render diffs and similar pages
+            QString         SystemConfig_Font = "Helvetica, Arial, sans-serif";
             //! Timeout for queries
             int             SystemConfig_ReadTimeout = 60;
             //! Timeout for write / update queries
