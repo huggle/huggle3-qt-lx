@@ -131,4 +131,6 @@ StatisticsBlock *HuggleFeed::GetLatestStatisticsBlock()
 StatisticsBlock::StatisticsBlock()
 {
     this->Uptime = QDateTime::currentDateTime();
+    this->Edits = 0;
+    this->Reverts = 0;
 }
