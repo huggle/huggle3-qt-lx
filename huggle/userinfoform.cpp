@@ -148,6 +148,10 @@ void UserinfoForm::OnTick()
                 UserInfoFormHistoryItem item;
                 item.Top = edit.attributes().contains("top");
                 item.Name = this->User->Username;
+                if (this->User->IsIP())
+                {
+                    item.Type = EditType_Anon;
+                }
                 if (item.Top)
                 {
                     // set a different color for edits that are top

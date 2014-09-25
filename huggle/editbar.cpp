@@ -80,7 +80,10 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
     QString top;
         //! \todo LOCALIZE ME
     if (user->Top)
+    {
+        item->SetFrame(Qt::magenta);
         top = "\nThis edit is a top revision";
+    }
     item->SetText("Page: " + user->Page + "\n" +
                   "Date: " + user->Date + "\n" +
                   "Summary: " + user->Summary + top);

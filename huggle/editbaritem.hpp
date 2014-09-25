@@ -29,6 +29,7 @@ namespace Huggle
             ~EditBarItem();
             void SetLineWidth(int width);
             void SetText(QString text);
+            void SetFrame(Qt::GlobalColor colour);
             void SetPixmap(QString path);
             QString RevID;
             int RowId = -1;

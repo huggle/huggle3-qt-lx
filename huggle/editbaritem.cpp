@@ -49,6 +49,14 @@ void EditBarItem::SetText(QString text)
     this->ui->label->setToolTip(text);
 }
 
+void EditBarItem::SetFrame(Qt::GlobalColor colour)
+{
+    //this->setStyleSheet("QFrame { border-color: " + color + " }");
+    QPalette px;
+    px.setColor(QPalette::Foreground, colour);
+    this->setPalette(px);
+}
+
 void EditBarItem::SetPixmap(QString path)
 {
     this->ui->label->setPixmap(QPixmap(path));

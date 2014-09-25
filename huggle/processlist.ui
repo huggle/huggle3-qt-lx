@@ -52,6 +52,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
    </layout>
