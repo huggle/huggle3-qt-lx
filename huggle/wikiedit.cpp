@@ -327,7 +327,7 @@ QString WikiEdit::GetPixmap()
     if (this->OwnEdit)
         return ":/huggle/pictures/Resources/blob-me.png";
 
-    if (this->User->IsBanned)
+    if (this->User->IsBlocked)
         return ":/huggle/pictures/Resources/blob-blocked.png";
 
     if (this->User->IsReported)

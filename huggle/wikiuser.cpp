@@ -144,7 +144,7 @@ WikiUser::WikiUser()
     this->IP = true;
     this->BadnessScore = 0;
     this->WarningLevel = 0;
-    this->IsBanned = false;
+    this->IsBlocked = false;
     this->ContentsOfTalkPage = "";
     this->DateOfTalkPage = InvalidTime;
     this->IsReported = false;
@@ -164,7 +164,7 @@ WikiUser::WikiUser(WikiUser *u) : MediaWikiObject(u)
     this->WarningLevel = u->WarningLevel;
     this->BadnessScore = u->BadnessScore;
     this->DateOfTalkPage = u->DateOfTalkPage;
-    this->IsBanned = u->IsBanned;
+    this->IsBlocked = u->IsBlocked;
     this->ContentsOfTalkPage = u->ContentsOfTalkPage;
     this->IsReported = u->IsReported;
     this->_talkPageWasRetrieved = u->_talkPageWasRetrieved;
@@ -182,7 +182,7 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
     this->IP = u.IP;
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
-    this->IsBanned = u.IsBanned;
+    this->IsBlocked = u.IsBlocked;
     this->DateOfTalkPage = u.DateOfTalkPage;
     this->ContentsOfTalkPage = u.ContentsOfTalkPage;
     this->_talkPageWasRetrieved = u._talkPageWasRetrieved;
@@ -208,7 +208,7 @@ WikiUser::WikiUser(QString user)
     }
     this->Username = user;
     this->Sanitize();
-    this->IsBanned = false;
+    this->IsBlocked = false;
     this->_talkPageWasRetrieved = false;
     this->DateOfTalkPage = InvalidTime;
     int c=0;

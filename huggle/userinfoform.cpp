@@ -152,6 +152,10 @@ void UserinfoForm::OnTick()
                 {
                     item.Type = EditType_Anon;
                 }
+                if (this->User->IsReported)
+                    item.Type = EditType_Reported;
+                if (this->User->IsBlocked)
+                    item.Type = EditType_Blocked;
                 if (item.Top)
                 {
                     // set a different color for edits that are top

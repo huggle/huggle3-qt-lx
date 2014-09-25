@@ -126,7 +126,7 @@ namespace Huggle
             QString Username;
             //! Current warning level of user
             byte_ht WarningLevel;
-            bool IsBanned;
+            bool IsBlocked;
             //! Local cache that holds information if user is reported or not. This information
             //! may be wrong, don't relly on it
             bool IsReported;

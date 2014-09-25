@@ -396,7 +396,7 @@ void ReportUser::Test()
         if (l.count() > 0)
         {
             mb.setText("User is already blocked");
-            this->ReportedUser->IsBanned = true;
+            this->ReportedUser->IsBlocked = true;
             this->ReportedUser->Update();
         } else
         {

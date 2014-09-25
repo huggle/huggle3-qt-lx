@@ -277,7 +277,7 @@ void BlockUser::Recheck()
         if (l.count() > 0)
         {
             mb.setText(_l("warn-alreadyblocked"));
-            this->user->IsBanned = true;
+            this->user->IsBlocked = true;
             this->user->Update();
         } else
         {
