@@ -39,8 +39,6 @@ namespace Huggle
     class PendingWarning
     {
         public:
-            //! Unique garbage collector id used to lock the edit related to this warning
-            static int GCID;
             static QList<PendingWarning*> PendingWarnings;
 
             PendingWarning(Message *message, QString warning, WikiEdit *edit);
@@ -51,7 +49,6 @@ namespace Huggle
             Collectable_SmartPtr<WikiEdit> RelatedEdit;
             //! Template used in this warning so that we can use the same template for new attempt if any is needed
             QString Template;
-            int gcid;
             Collectable_SmartPtr<ApiQuery> Query;
     };
 

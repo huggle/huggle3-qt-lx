@@ -29,22 +29,19 @@
 using namespace Huggle;
 
 QList<PendingWarning*> PendingWarning::PendingWarnings;
-int PendingWarning::GCID = 0;
 
 PendingWarning::PendingWarning(Message *message, QString warning, WikiEdit *edit)
 {
-    this->gcid = GCID;
-    GCID++;
     this->Template = warning;
     this->RelatedEdit = edit;
-    // we register a unique consumer here in case that multiple warnings pointer to same
-    edit->RegisterConsumer("PendingWarning" + QString::number(gcid));
+    // we register a unique consumer here in case that multiple warnings pointers to same
+    edit->IncRef();
     this->Warning = message;
 }
 
 PendingWarning::~PendingWarning()
 {
-    this->RelatedEdit->UnregisterConsumer("PendingWarning" + QString::number(gcid));
+    this->RelatedEdit->DecRef();
     this->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
 }
 
