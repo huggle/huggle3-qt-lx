@@ -63,10 +63,10 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
     item->RowId = RowId;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(page->Type));
     //! \todo LOCALIZE ME
-    item->SetText("User: " + page->User + "\n" +
-                  "Size: " + page->Size + "\n" +
-                  "Date: " + page->Date + "\n" +
-                  "Summary: " + page->Summary);
+    item->SetText(_l("user") + ": " + page->User + "\n" +
+                  _l("size") + ": " + page->Size + "\n" +
+                  _l("date") + ": " + page->Date + "\n" +
+                  _l("summary") + ": " + page->Summary);
 }
 
 void EditBar::InsertUser(UserInfoFormHistoryItem *user)
@@ -84,9 +84,9 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
         item->SetFrame(Qt::magenta);
         top = "\nThis edit is a top revision";
     }
-    item->SetText("Page: " + user->Page + "\n" +
-                  "Date: " + user->Date + "\n" +
-                  "Summary: " + user->Summary + top);
+    item->SetText(_l("page") + ": " + user->Page + "\n" +
+                  _l("date") + ": " + user->Date + "\n" +
+                  _l("summary") + ": " + user->Summary + top);
 }
 
 void EditBar::RemoveAll()
