@@ -209,21 +209,19 @@ void UserinfoForm::OnTick()
     }
 }
 
-void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
+void UserinfoForm::Render(long revid, QString page)
 {
     // in case there are no edits we can safely quit here, there is also check because
     // we must not retrieve edit until previous operation did finish
     if (this->qContributions != nullptr || this->ui->tableWidget->rowCount() == 0)
         return;
 
+    // check if revid is useable for us
+    if (revid == 0)
+        return;
+
     // check if we don't have this edit in a buffer
     int x = 0;
-    int revid = this->ui->tableWidget->item(index.row(), 2)->text().toInt();
-    if (revid == 0)
-    {
-        // unable to read the revid
-        return;
-    }
     WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
@@ -240,11 +238,17 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
     // there is no such edit, let's get it
     this->edit = new WikiEdit();
     this->edit->User = new WikiUser(this->User);
-    this->edit->Page = new WikiPage(this->ui->tableWidget->item(index.row(), 0)->text());
+    this->edit->Page = new WikiPage(page);
     this->edit->RevID = revid;
     this->edit->Page->Site = this->User->GetSite();
     QueryPool::HugglePool->PreProcessEdit(this->edit);
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(HUGGLE_TIMER);
+}
+
+void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
+{
+    this->Render(this->ui->tableWidget->item(index.row(), 2)->text().toLong(),
+                 this->ui->tableWidget->item(index.row(), 0)->text());
 }

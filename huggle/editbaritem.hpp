@@ -31,6 +31,8 @@ namespace Huggle
             void SetText(QString text);
             void SetFrame(Qt::GlobalColor colour);
             void SetPixmap(QString path);
+            bool IsUser = true;
+            QString Page;
             QString RevID;
             int RowId = -1;
             QString Username;

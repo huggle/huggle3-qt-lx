@@ -57,6 +57,7 @@ namespace Huggle
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
             void Read();
+            void Render(long revid, QString page);
             QList<UserInfoFormHistoryItem> Items;
 
         private slots:

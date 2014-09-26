@@ -14,6 +14,7 @@
 #include "mainwindow.hpp"
 #include "localization.hpp"
 #include "ui_editbaritem.h"
+#include "userinfoform.hpp"
 #include <QMouseEvent>
 
 using namespace Huggle;
@@ -37,10 +38,16 @@ void EditBarItem::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
-        if (this->RowId < 0)
-            MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->Username, _l("wait"));
-        else
-            MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toInt(), QString("prev"), this->RowId, _l("wait"));
+        if (this->IsUser)
+        {
+            Huggle::MainWindow::HuggleMain->wUserInfo->Render(this->RevID.toLong(), this->Page);
+        } else
+        {
+            if (this->RowId < 0)
+                MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toLong(), QString("prev"), this->Username, _l("wait"));
+            else
+               MainWindow::HuggleMain->wHistory->GetEdit(this->RevID.toLong(), QString("prev"), this->RowId, _l("wait"));
+        }
     }
 }
 

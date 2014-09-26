@@ -76,6 +76,8 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
     this->ui->horizontalLayout_user->insertWidget(1, item);
     item->RevID = user->RevID;
     item->Username = user->Name;
+    item->IsUser = true;
+    item->Page = user->Page;
     item->SetPixmap(WikiEdit::GetPixmapFromEditType(user->Type));
     QString top;
         //! \todo LOCALIZE ME
