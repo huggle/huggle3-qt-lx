@@ -13,16 +13,18 @@
 #include "exception.hpp"
 #include "huggleoption.hpp"
 #include "huggleparser.hpp"
+#include "version.hpp"
 
 using namespace Huggle;
 using namespace Huggle::HuggleParser;
 Huggle::UserConfiguration::UserConfiguration()
 {
-
+    this->Previous_Version = new Version(HUGGLE_VERSION);
 }
 
 Huggle::UserConfiguration::~UserConfiguration()
 {
+    delete this->Previous_Version;
     QStringList ol = this->UserOptions.keys();
     while (ol.count())
     {

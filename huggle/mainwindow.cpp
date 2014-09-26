@@ -1361,8 +1361,18 @@ void MainWindow::OnTimerTick0()
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
+            Version huggle_version(HUGGLE_VERSION);
             foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
             {
+                if (*site->UserConfig->Previous_Version > huggle_version)
+                {
+                    if (Generic::MessageBox("Do you really want to store the configs",
+                                            "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older that version of huggle that you used last (" +
+                                            site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
+                                            "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
+                                            MessageBoxStyleQuestion, true) == QMessageBox::No)
+                        continue;
+                }
                 WikiPage *uc = new WikiPage(page);
                 uc->Site = site;
                 Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site),

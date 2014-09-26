@@ -33,6 +33,7 @@ namespace Huggle
     };
 
     class HuggleOption;
+    class Version;
 
     //! User configuration, for a user per project
     class UserConfiguration
@@ -89,6 +90,7 @@ namespace Huggle
             bool                    HAN_DisplayUserTalk = true;
             //! Welcome new users on a good edit
             bool                    WelcomeGood = true;
+            Version*                Previous_Version;
     };
 }
 

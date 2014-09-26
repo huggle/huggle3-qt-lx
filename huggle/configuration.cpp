@@ -19,6 +19,7 @@
 #include "huggleoption.hpp"
 #include "hugglequeuefilter.hpp"
 #include "huggleparser.hpp"
+#include "version.hpp"
 #include "localization.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
@@ -224,7 +225,9 @@ QString Configuration::GenerateSuffix(QString text)
 QString Configuration::MakeLocalUserConfig(WikiSite *site)
 {
     QString configuration_ = "<nowiki>\n";
+    configuration_ += "// This is a configuration of huggle, do not change it unless you know what you do.\n";
     configuration_ += "enable:true\n";
+    configuration_ += "// Last version of huggle that wrote into this configuration file (sanity check)\n";
     configuration_ += "version:" + HuggleConfiguration->HuggleVersion + "\n\n";
     configuration_ += "speedy-message-title:Speedy deleted\n";
     configuration_ += "report-summary:" + site->ProjectConfig->ReportSummary + "\n";
@@ -683,6 +686,8 @@ bool Configuration::ParseUserConfig(WikiSite *site, QString config)
     site->UserConfig->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     site->UserConfig->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     site->UserConfig->WelcomeGood = site->GetUserConfig()->SetOption("welcome-good", config, site->ProjectConfig->WelcomeGood).toBool();
+    delete site->UserConfig->Previous_Version;
+    site->UserConfig->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (this->Project == site)
     {
