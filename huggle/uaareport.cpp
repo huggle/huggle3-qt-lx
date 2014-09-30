@@ -102,7 +102,7 @@ void UAAReport::onTick()
     /// \todo Check if user isn't already reported
     Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
     /// \todo Insert this to project config so that each project can have their own system here
-    QString uaasum = Configuration::HuggleConfiguration->GenerateSuffix(QString("Reporting ") + this->User->Username + " to UAA",
+    QString uaasum = Configuration::GenerateSuffix(QString("Reporting ") + this->User->Username + " to UAA",
                                                                         this->User->GetSite()->GetProjectConfig());
     this->whatToReport();
     this->insertUsername();

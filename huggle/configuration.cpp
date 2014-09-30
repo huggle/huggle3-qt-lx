@@ -217,11 +217,6 @@ void Configuration::NormalizeConf(WikiSite *site)
         site->UserConfig->EnforceMonthsAsHeaders = false;
 }
 
-QString Configuration::GenerateSuffix(QString text)
-{
-    return this->GenerateSuffix(text, this->ProjectConfig);
-}
-
 QString Configuration::MakeLocalUserConfig(WikiSite *site)
 {
     QString configuration_ = "<nowiki>\n";

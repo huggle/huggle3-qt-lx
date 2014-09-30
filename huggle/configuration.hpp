@@ -178,13 +178,13 @@ namespace Huggle
             static void LoadSystemConfig(QString fn);
             //! This function creates a user configuration that is stored on wiki
             static QString MakeLocalUserConfig(WikiSite *site);
+            //! This function appends the huggle suffix to a edit summary
+            static QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             static Configuration *HuggleConfiguration;
 
             Configuration();
             ~Configuration();
             void NormalizeConf(WikiSite *site);
-            QString GenerateSuffix(QString text);
-            QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
             bool ParseUserConfig(WikiSite *site, QString config);

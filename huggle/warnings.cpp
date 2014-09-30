@@ -328,7 +328,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    QString MessageTitle_ = "Message re " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
+    QString MessageTitle_ = Configuration::GenerateSuffix("Message re", Edit->GetSite()->GetProjectConfig());
 
     switch (Level)
     {

@@ -130,10 +130,11 @@ void WikiUtil::FinalizeMessages()
 
 Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString text, QString summary, bool minor)
 {
+    ///! \todo assumes main project?
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
-    summary = Configuration::HuggleConfiguration->GenerateSuffix(summary);
     eq->Page = new WikiPage(page);
     eq->text = text;
+    summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
     eq->Minor = minor;
     eq->Append = true;
@@ -157,10 +158,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text,
                                 " summary, bool minor, QString BaseTimestamp)");
     }
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
-    if (!summary.endsWith(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle))
-    {
-        summary = summary + " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
-    }
+    summary = Configuration::GenerateSuffix(summary, page->GetSite()->GetProjectConfig());
     eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
     eq->Page = new WikiPage(page);
     eq->BaseTimestamp = BaseTimestamp;

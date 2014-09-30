@@ -17,6 +17,7 @@
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
+#include "wikisite.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
 #include "wikiutil.hpp"
@@ -135,8 +136,8 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         }
         xx++;
     }
-    Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix
-                                        (Configuration::HuggleConfiguration->ProjectConfig->TaggingSummary), true, t_);
+    Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix(
+                                                           form->page->GetSite()->GetProjectConfig()->TaggingSummary, form->page->GetSite()->GetProjectConfig()), true, t_);
     e->FailureCallback = (Callback)Fail;
     e->callback = (Callback)Finish;
     e->CallbackResult = (void*)form;

@@ -163,6 +163,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionReconnect_IRC->setEnabled(false);
         this->ui->actionIRC->setEnabled(false);
     }
+
+    // configure RC feed provider
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
         bool irc = false;
@@ -1498,10 +1500,10 @@ void MainWindow::CustomRevert()
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k, conf);
-    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs, conf);
-    this->Revert(rs);
+    QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf);
+    summary = Huggle::Configuration::GenerateSuffix(summary, conf);
+    this->Revert(summary);
 }
 
 void MainWindow::CustomRevertWarn()
@@ -1510,13 +1512,13 @@ void MainWindow::CustomRevertWarn()
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    QString rs = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(k, conf);
-    rs = Huggle::Configuration::HuggleConfiguration->GenerateSuffix(rs, conf);
-    Collectable_SmartPtr<RevertQuery> result = this->Revert(rs, false);
+    QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf);
+    summary = Huggle::Configuration::GenerateSuffix(summary, conf);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert(summary, false);
     if (result != nullptr)
     {
-        this->Warn(k, result);
+        this->Warn(key, result);
         this->DisplayNext(result);
     } else
     {
@@ -2210,7 +2212,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, this->GetCurrentWikiSite()->ProjectConfig->ClearTalkPageTemp
                        + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon + " ~~~~",
-                       "Cleaned old templates from talk page " + this->GetCurrentWikiSite()->ProjectConfig->EditSuffixOfHuggle);
+                       Configuration::GenerateSuffix("Cleaned old templates from talk page", this->GetCurrentWikiSite()->ProjectConfig));
     delete page;
 }
 

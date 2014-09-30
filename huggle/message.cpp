@@ -351,7 +351,7 @@ void Message::ProcessSend()
     this->query->Timeout = 600;
     this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
-    QString s = this->Summary;
+    QString summary = this->Summary;
     QString parameters = "";
     if (!this->BaseTimestamp.isEmpty())
     {
@@ -369,7 +369,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle;
+        summary = Configuration::GenerateSuffix(summary, this->User->Site->GetProjectConfig());
     }
     if (this->SectionKeep || !this->CreateInNewSection)
     {
@@ -382,13 +382,13 @@ void Message::ProcessSend()
             if (!this->Page.isEmpty())
                 this->Text = this->Page + "\n\n" + this->Text;
         }
-        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
+        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
                 + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
-                + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
+                + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
                 + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
     }
