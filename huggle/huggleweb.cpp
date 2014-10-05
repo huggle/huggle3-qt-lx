@@ -164,10 +164,10 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     }
     if (edit->Summary.isEmpty())
     {
-        Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
+        Summary = _l("browser-miss-summ");
     } else
     {
-        Summary = Encode(edit->Summary);
+        Summary = "<font color=red> " + Encode(edit->Summary) + "</font>";
     }
     Summary += "<b> Size change: " + size + "</b>";
     HTML += "<b>" + _l("summary") + ":</b> " + Summary +
