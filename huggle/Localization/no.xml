@@ -30,6 +30,7 @@
   <string name="block-blockloglabel">Blokkeringslogg:</string>
   <string name="block-warnloglabel">Advarsler:</string>
   <string name="block-fail">Blokkerte ikke \'$1\'</string>
+  <string name="config-shortcut">Snarvei</string>
   <string name="config-title">Alternativer</string>
   <string name="config-rememberme">Husk brukernavn</string>
   <string name="config-openinbrowser">Åpne lenker i nytt nettleser-vindu</string>
@@ -42,7 +43,6 @@
   <string name="config-shownewmessages">Vis nye meldinger</string>
   <string name="config-shortcutlist">Tastatursnarveier</string>
   <string name="config-shortcutaction">Handling</string>
-  <string name="config-shortcut">Snarvei</string>
   <string name="config-changeshortcut">Endre snarvei for $1</string>
   <string name="config-noshortcut">Ingen</string>
   <string name="config-defaults">Standard</string>
@@ -263,26 +263,6 @@
   <string name="speedy-reason">Begrunnelse:</string>
   <string name="speedy-parameters">Parametre:</string>
   <string name="speedy-notifycreator">Gi beskjed til forfatter av siden</string>
-  <string name="stats-title">Statistikk</string>
-  <string name="stats-actions">Handlinger denne sesjonen:</string>
-  <string name="stats-session">Sesjonstid: $1</string>
-  <string name="stats-edits">Redigeringer</string>
-  <string name="stats-assisted">Assisterte redigeringer</string>
-  <string name="stats-huggle">Huggle redigeringer</string>
-  <string name="stats-reverts">Tilbakestillinger</string>
-  <string name="stats-warnings">Advarsler</string>
-  <string name="stats-reports">Rapporteringer</string>
-  <string name="stats-tags">Tagger</string>
-  <string name="stats-notifications">Varslinger</string>
-  <string name="stats-blocks">Blokkeringer</string>
-  <string name="stats-deletes">Slettinger</string>
-  <string name="stats-protections">Beskyttelser</string>
-  <string name="stats-allusers">Alle brukere</string>
-  <string name="stats-me">Meg</string>
-  <string name="stats-ignored">Ignorert</string>
-  <string name="stats-anon">Anonyme</string>
-  <string name="stats-bots">Roboter</string>
-  <string name="stats-other">Andre</string>
   <string name="tag-title">Tagg $1</string>
   <string name="tag-tagselector">Legg til tagg:</string>
   <string name="tag-tags">Tagg(er):</string>
@@ -341,7 +321,5 @@
   <string name="reqprotection-progress">Ber om beskyttelse av \'$1\'...</string>
   <string name="speedy-fail" fuzzy="true">Tagget ikke \'$1\' for hurtigsletting</string>
   <string name="speedy-progress" fuzzy="true">Tagger \'$1\' for hurtigsletting...</string>
-  <string name="usermessage-fail">Sendte ikke melding til \'$1\'</string>
-  <string name="usermessage-progress">Sender melding til \'$1\'...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
 </resources>

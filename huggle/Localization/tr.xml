@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Türkçe</string>
+  <string name="isrtl">false</string>
   <string name="add">Ekle</string>
   <string name="cancel">İptal</string>
   <string name="clear">Temizle</string>
@@ -16,8 +17,11 @@
   <string name="remove">Kaldır</string>
   <string name="rename">Yeniden adlandır</string>
   <string name="reload">Yeniden yükle</string>
+  <string name="project">Proje</string>
   <string name="result">Sonuç</string>
   <string name="save">Kaydet</string>
+  <string name="show">Göster</string>
+  <string name="undo">Geri al</string>
   <string name="yes">Evet</string>
   <string name="agf">İyi niyetli değişikliği gerekçeyle geri çevir.</string>
   <string name="successful">Başarılı</string>
@@ -38,17 +42,22 @@
   <string name="link">Bağlantı</string>
   <string name="reason">Sebep</string>
   <string name="diffid">FarkID</string>
-  <string name="whitelisted" fuzzy="true">$1, $2 puanla beyaz listeye eklendi</string>
+  <string name="whitelisted">$1, $3 üzerinde $2 puanla beyaz listeye eklendi</string>
   <string name="expiry-time">Bitiş zamanı</string>
   <string name="duration">Süre</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
+  <string name="score-score">Derecelendirme</string>
+  <string name="score-word">Kelime</string>
+  <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
+  <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
   <string name="browser-load">Fark, web rendering geri dönüşü kullanılarak indiriliyor, lütfen bekleyin</string>
   <string name="browser-miss-summ">Özet girilmedi</string>
   <string name="browser-diff">Fark: $1 (puan: $2)</string>
   <string name="browser-fail">Fark: $1 getirilemiyor</string>
   <string name="about-contributors">Geliştiriciler:</string>
+  <string name="block-not">Kullanıcı engelli değil</string>
   <string name="block-title">Engellle: $1</string>
   <string name="block-reason">Sebep:</string>
   <string name="block-duration">Süre:</string>
@@ -70,10 +79,17 @@
   <string name="block-type">Engelle / Engeli kaldır</string>
   <string name="block-admin">Engelleyen hizmetli</string>
   <string name="block-none">Engellenecek kullanıcı yok</string>
+  <string name="config-function">İşlev</string>
+  <string name="config-description">Açıklama</string>
+  <string name="config-shortcut">Kısayol</string>
+  <string name="config-queue-filter-ignore">Görmezden gel (fark etmez)</string>
+  <string name="config-queue-filter-exclude">Hariç bırak</string>
+  <string name="config-queue-filter-require">Gerektirir (zorunlu)</string>
   <string name="config-summ">Şablonlar için kulanılan kişisel geri alma özetleri</string>
   <string name="config-title">Seçenekler</string>
   <string name="config-rememberme">Kullanıcı adımı hatırla</string>
   <string name="config-autowhitelist">Otomatik atanan beyazliste kullanıcıları</string>
+  <string name="config-already-in-use">Bu kısayol $1 tarafından zaten kullanılıyor, lütfen başka bir tane seçin</string>
   <string name="config-openinbrowser">Bağlantıları yeni tarayıcı penceresinde aç</string>
   <string name="config-shownewedits">Seçili sayfada yapılan değişiklikleri yapıldığı esnada göster</string>
   <string name="config-ircmode">Eğer mümkünse son değişiklikler için IRC beslemesini kullan</string>
@@ -86,7 +102,6 @@
   <string name="config-shownewmessages">Yeni mesaj çubuğunu göster</string>
   <string name="config-shortcutlist">Tuş takımı kısayolları</string>
   <string name="config-shortcutaction">Eylem</string>
-  <string name="config-shortcut">Kısayol</string>
   <string name="config-changeshortcut">$1 için kısayolu değiştir</string>
   <string name="config-noshortcut">Hiçbiri</string>
   <string name="config-defaults">Varsayılan</string>
@@ -136,6 +151,7 @@
   <string name="delete-e2">Sayfa silinemedi</string>
   <string name="delete-edsc">Sayfa silinemedi. Sebep $1</string>
   <string name="delete-failed-no-info">Sorguda hiç sayfa bilgisi görüntülenemedi (hizmetli misiniz?)</string>
+  <string name="extension-fine">Yüklendi ve yürütülüyor</string>
   <string name="historyform-no-info">Düzenleme bilgisi yok</string>
   <string name="historyform-title">Geçmiş</string>
   <string name="historyform-retrieve-history">Geçmişi getir</string>
@@ -144,18 +160,18 @@
   <string name="history-error-message-title">Geri alınamıyor</string>
   <string name="history-error">Bu öğe geri alınamaz. Sayfa bu esnada değiştirilmiş veya silinmiş olabilir, bu durumumda Huggle geri alma işlemini yapamıyor. Gerçekten geri almak isterseniz, MediaWiki arayüzünü kullanarak el ile yapmanız gerekir.</string>
   <string name="userhistory-title">Değişiklik geçmişiniz</string>
-  <string name="irc-connected" fuzzy="true">IRC son değişiklikler beslemesine bağlanıldı</string>
-  <string name="irc-connecting" fuzzy="true">IRC son değişiklikler beslemesine erişilmeye çalışılıyor; bu işlem biraz zaman alabilir...</string>
-  <string name="irc-disconnected" fuzzy="true">IRC son değişiklikler beslemesine bağlantı koptu; yeniden bağlanılıyor...</string>
+  <string name="irc-connected">$1: IRC son değişiklikler beslemesine bağlanıldı</string>
+  <string name="irc-connecting">$1 üzerinde IRC son değişiklikler beslemesine erişilmeye çalışılıyor; bu işlem biraz zaman alabilir...</string>
+  <string name="irc-disconnected">$1 üzerinde IRC son değişiklikler beslemesine bağlantı koptu. Yeniden bağlanılıyor...</string>
   <string name="irc-nochannel">$1 için IRC kanalı bulunamadı; yerine daha yavaş API sorgulamaları kullanılıyor</string>
   <string name="irc-error">IRC son değişiklikler beslemesine ($1) erişim başarısız. Daha yavaş API sorgulaması kullanılıyor</string>
-  <string name="irc-stop" fuzzy="true">Birincil besleme sağlayıcısının durması bekleniyor</string>
+  <string name="irc-stop">$1 üerinde birincil besleme sağlayıcısının durması bekleniyor</string>
   <string name="irc-not">Besleme: IRC proje yapılandırma tarafından devre dışı bırakıldı</string>
   <string name="irc-failure">Birincil besleme sağlayıcısı başarısız, Viki sağlayıcısına dönülüyor...</string>
   <string name="irc-wait">IRC besleme sağlayıcısının durması bekleniyor</string>
   <string name="irc-switch-rc">Viki SD beslemesine geçiliyor</string>
   <string name="login-old">Kullanıcı yapılandırması eski konumdan alınıyor</string>
-  <string name="login-intro" fuzzy="true">Bir proje seçiniz, kullanıcı adınızı ve parolanızı giriniz.</string>
+  <string name="login-intro">Lütfen bir proje seçiniz ve kullanıcı adınızı ve parolanızı giriniz. \"Projeler\" düğmesine basarak birden fazla projede de oturum açabilirsiniz.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Giriş</string>
   <string name="login-reload-tool-tip">Huggle\'da kullanılabilecek projelerin bir listesini yeniden yükleyin. Bu Huggle\'ın yakın zamanda aktifleştirildiği bir projede Huggle kullanmak istemeniz halinde faydalı olabilir.</string>
@@ -169,15 +185,15 @@
   <string name="login-proxyport">Bağlantı noktası:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Kullanıcı yapılandırması alınıyor</string>
-  <string name="login-fail-css" fuzzy="true">Oturum açma başarısız, kullanıcı yapılandırması alınamadı. Özel:KullanıcıAdı/huggle3.css eksik. Kullanıcı alanınızda huggle3.css sayfasını oluşturdunuz mu?</string>
-  <string name="login-fail-enable-true" fuzzy="true">Kişisel yapılandırma sayfasında \"enable:true\" parametresi olmadığı için oturum açma başarısız oldu.</string>
-  <string name="login-fail-no-info" fuzzy="true">Giriş başarısız, kullanıcı bilgisi alınamadı: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Oturum açma başarısız oldu: Kullanıcı yapılandırması ayrıştırılamadı. Ayrıntılı bilgi için hata ayıklama kayıtlarına bakınız.</string>
-  <string name="login-fail-user-data" fuzzy="true">Oturum açma başarısız oldu: Kullanıcı bilgisi alınamıyor. API sorgusunda veri elde edilemedi.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Bu proje üzerinde geri alma yetkiniz olmadığı için oturum açma başarısız oldu.</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Bu projede \"otomatik onaylanmış kullanıcı\" olmadığınız için oturum açma başarısız oldu.</string>
-  <string name="login-failed-edit" fuzzy="true">Bu proje üzerinde yeterli düzenleme sayısına sahip olmadığınız için oturum açma başarısız oldu.</string>
-  <string name="login-retrieving-info" fuzzy="true">Kullanıcı yapılandırması alınıyor</string>
+  <string name="login-fail-css">$1 üzerinde oturum açma başarısız: Kullanıcı yapılandırması alınamadı. Özel:KullanıcıSayfam/huggle3.css eksik. Kullanıcı alanınızda huggle3.css sayfasını oluşturdunuz mu?</string>
+  <string name="login-fail-enable-true">Kişisel yapılandırma sayfasında \"enable:true\" parametresi olmadığı için $1 üzerinde oturum açma başarısız oldu.</string>
+  <string name="login-fail-no-info">$1 üzerinde giriş başarısız: Kullanıcı bilgisi alınamadı: $2</string>
+  <string name="login-fail-parse-config">$1 üzerinde oturum açma başarısız oldu: Kullanıcı yapılandırması ayrıştırılamadı. Ayrıntılı bilgi için hata ayıklama kayıtlarına bakınız.</string>
+  <string name="login-fail-user-data">$1 üzerinde oturum açma başarısız oldu: Kullanıcı bilgisi alınamıyor. API sorgusunda veri elde edilemedi.</string>
+  <string name="login-fail-rollback-rights">$1 üzerinde geri alma yetkiniz olmadığı için oturum açma başarısız oldu.</string>
+  <string name="login-failed-autoconfirm-rights">$1 üzerinde \"otomatik onaylanmış kullanıcı\" olmadığınız için oturum açma başarısız oldu.</string>
+  <string name="login-failed-edit">$1 üzerinde üzerinde yeterli düzenleme sayısına sahip olmadığınız için oturum açma başarısız oldu.</string>
+  <string name="login-retrieving-info">$1 üzerinde kullanıcı yapılandırması alınıyor</string>
   <string name="login-password-empty">Girdiğiniz parola boş</string>
   <string name="login-fail-wrong-name">Oturum açmak için doğru bir kullanıcı adı girmediniz</string>
   <string name="login-api">HATA: api.php bilinmeyen bir cevap verdi: $1</string>
@@ -194,24 +210,24 @@
   <string name="login-progress-user-info">$1 için kullanıcı bilgisi denetleniyor</string>
   <string name="login-progress-whitelist">Beyaz liste kullanıcıları yükleniyor...</string>
   <string name="login-ssl">HTTPS kullan (OpenSSL gerektirir)</string>
-  <string name="login-fail" fuzzy="true">Oturum açma başarısız</string>
+  <string name="login-fail">$1 üzerinde oturum açma başarısız</string>
   <string name="login-error-admin">Bu projede Huggle kullanımı yönetici hesabı gerektirir.</string>
   <string name="login-error-age">Bu projede Huggle kullanımı en az $1 günlük hesap gerektirir.</string>
   <string name="login-error-alldisabled">Huggle şu anda tüm projelerde devre dışı.</string>
-  <string name="login-error-approval" fuzzy="true">Bu projede Huggle kullanımı onay gerektirir.</string>
+  <string name="login-error-approval">$1 üzerinde Huggle kullanımı onay gerektirir.</string>
   <string name="login-error-cancelled">İptal edildi.</string>
-  <string name="login-error-config" fuzzy="true">Giriş başarısız, yerel yapılandırma bilgisi alınamadı: $1</string>
+  <string name="login-error-config">Giriş başarısız, $1 için yerel yapılandırma bilgisi alınamadı: $1</string>
   <string name="login-error-count">Bu projede Huggle kullanımı en az $1 değişiklik gerektirir.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle kullanımı hesabınız için etkinleştirilmemiş. Kullanıcı yapılandırma sayfasını kontrol edin.</string>
+  <string name="login-error-disabled">$1 üzerinde Huggle kullanımı hesabınız için etkinleştirilmemiş. Kullanıcı yapılandırma sayfasını kontrol edin.</string>
   <string name="login-error-global">Oturum açma başarısız oldu: Küresel yapılandırma ayrıştırılamıyor. Ayrıntılı bilgi için hata ayıklama günlüğüne bakınız.</string>
   <string name="login-error-invalid">Geçersiz kullanıcı adı</string>
-  <string name="login-error-noconfig" fuzzy="true">Bu proje Huggle yapılandırma sayfasına sahip değil</string>
+  <string name="login-error-noconfig">$1 Huggle yapılandırma sayfasına sahip değil.</string>
   <string name="login-error-nouser">Kullanıcı mevcut değil</string>
   <string name="login-error-password">Yanlış parola</string>
   <string name="login-error-projdisabled">Huggle bu proje için şu anda devre dışı.</string>
-  <string name="login-error-unknown" fuzzy="true">Oturum açma başarısız</string>
+  <string name="login-error-unknown">$1 üzerinde oturum açma başarısız.</string>
   <string name="login-error-version">Mevcut sürüm güncel değil. En son sürüme güncelleştirin.</string>
-  <string name="login-error-whitelist" fuzzy="true">Kullanıcı beyaz listesi yüklenemedi.</string>
+  <string name="login-error-whitelist">$1 için kullanıcı beyaz listesi yüklenemedi.</string>
   <string name="main-menu-provider-stop">Sağlayıcıyı durdur</string>
   <string name="main-menu-provider-resume">Sağlayıcıyı devam ettir</string>
   <string name="main-no-reason">Kullanıcı tarafından sebep belirtilmedi</string>
@@ -221,8 +237,9 @@
   <string name="main-contribs">Katkılar</string>
   <string name="main-history">Geçmiş</string>
   <string name="main-new-messages">Yeni bir mesajınız var. Görüntülemek için \"Sistem-&gt; Yeni mesajları göster\" veya M tuşuna basın.</string>
+  <string name="main-space">Sayfa adı boşluk ile bitemez, lütfen sayfa adını düzeltiniz.</string>
   <string name="main-system">Sistem</string>
-  <string name="main-status-bar" fuzzy="true">&lt;b&gt;$1&lt;/b&gt; düzenleme ve &lt;b&gt;$2&lt;/b&gt; sorgu işleniyor. Beyaz liste kullanıcıları: &lt;b&gt;$3&lt;/b&gt; Sıra uzunluğu: &lt;b&gt;$4&lt;/b&gt; İstatistikler: $5</string>
+  <string name="main-status-bar" fuzzy="true">&lt;b&gt;$1&lt;/b&gt; düzenleme ve &lt;b&gt;$2&lt;/b&gt; sorgu işleniyor. Beyaz listedeki kullanıcılar: &lt;b&gt;$3&lt;/b&gt; Sıra uzunluğu: &lt;b&gt;$4&lt;/b&gt; $6 için istatistikler: $5</string>
   <string name="main-shutting-down">Huggle kapatılıyor, yoksayıldı.</string>
   <string name="main-system-messages">Yeni iletileri göster</string>
   <string name="main-system-reconnectirc">IRC beslemesine yeniden bağlan.</string>
@@ -340,6 +357,7 @@
   <string name="message-retrieve-new-token">$1 değişikliği için belirteç alınıyor</string>
   <string name="message-fail-re-user-tp">Şu sayfaya erişilemedi: $1. İlgili kullanıcıya mesaj iletimi durduruluyor.</string>
   <string name="message-er">$1\'e mesaj iletilemedi: $2</string>
+  <string name="message-error">$1 için mesaj iletilemedi! Lütfen hata kayıtlarına bakınız!</string>
   <string name="message-fail-retrieve-talk">kullanıcı mesaj sayfası getirilemiyor</string>
   <string name="message-done">Mesaj $1\'e başarıyla iletildi</string>
   <string name="message-fail-token-1">düzenleme belirteci (token) alınamadı</string>
@@ -399,6 +417,9 @@
   <string name="report-message">Mesaj:</string>
   <string name="report-log">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="report-include">Rapora dahil et</string>
+  <string name="report-select">Lütfen, önizlemeyi açmak için listeden bir diff seçiniz.</string>
+  <string name="report-write">Yazıyor</string>
+  <string name="reportuser-not">Bu kullanıcı rapor edilmedi</string>
   <string name="report-evidence-none-provid">Kanıt olarak herhangi bir değişiklik belirtilmedi. Kullanıcının vandal olup olmadığının anlaşılması bu şekilde çok zorlaşacaktır. Devam etmek istediğinize emin misiniz?</string>
   <string name="report-duplicate">Kullanıcı zaten rapor edilmiş</string>
   <string name="report-fail">$1 rapor edilmedi</string>
@@ -436,26 +457,6 @@
   <string name="speedy-notifycreator">Sayfayı oluşturan kullanıcıyı bilgilendir</string>
   <string name="rollback">$1 geri alınıyor</string>
   <string name="software-rollback">Rollback yapma yetkiniz yok, software rollback\'e dönülüyor.</string>
-  <string name="stats-title">İstatistikler</string>
-  <string name="stats-actions">Bu oturumdaki eylemler:</string>
-  <string name="stats-session">Oturum süresi: $1</string>
-  <string name="stats-edits">Değişiklikler</string>
-  <string name="stats-assisted">Yardımcı değişiklikler</string>
-  <string name="stats-huggle">Huggle düzenlemeleri</string>
-  <string name="stats-reverts">Geri almalar</string>
-  <string name="stats-warnings">Uyarılar</string>
-  <string name="stats-reports">Raporlar</string>
-  <string name="stats-tags">Etiketler</string>
-  <string name="stats-notifications">Bildirimler</string>
-  <string name="stats-blocks">Engellemeler</string>
-  <string name="stats-deletes">Silmeler</string>
-  <string name="stats-protections">Korumalar</string>
-  <string name="stats-allusers">Tüm kullanıcılar</string>
-  <string name="stats-me">Ben</string>
-  <string name="stats-ignored">Yoksayılan</string>
-  <string name="stats-anon">Anonim</string>
-  <string name="stats-bots">Botlar</string>
-  <string name="stats-other">Diğer</string>
   <string name="tag-title">Etiket $1</string>
   <string name="tag-tagselector">Etiket ekle:</string>
   <string name="tag-tags">Etiket(ler):</string>
@@ -469,7 +470,10 @@
   <string name="updater-open-manualdownloadpage">İndirme sayfasını aç</string>
   <string name="updater-close">Kapat</string>
   <string name="updater-disable-notify">Güncelleştirmeleri devre dışı bırak</string>
+  <string name="user-history-fail">$1 kullanıcısı için geçmiş getirilemedi</string>
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
+  <string name="userinfo-retrieve">Bilgiyi getir</string>
+  <string name="shortcut-my-talk">Mesaj sayfam</string>
   <string name="shortcut-raw">Değişikliği geri al ve kullanıcıyı uyar</string>
   <string name="shortcut-exit">Huggle\'ı normal bir şekilde sonlandır</string>
   <string name="shortcut-next">Sıradaki değişikliğe geç</string>
@@ -480,10 +484,14 @@
   <string name="shortcut-revert">Değişikliği geri al</string>
   <string name="shortcut-x-raw">Geri dönüş ve uyarı menüsündeki N inci öğeyi tetikle</string>
   <string name="shortcut-x-revert">Geri dönüş menüsündeki N inci öğeyi tetikle</string>
+  <string name="shortcut-watch">Gösterilen bir sayfayı izleme listesine ekler</string>
+  <string name="shortcut-unwatch">Gösterilen sayfayı izleme listesinden çıkartır</string>
   <string name="shortcut-x-warn">Uyarı menüsündeki N inci öğeyi tetikle</string>
   <string name="shortcut-good">Görüntülenen değişikliği uygun olarak işaretle</string>
   <string name="shortcut-open">Görüntülenen değişikliği tarayıcıda aç</string>
   <string name="shortcut-talk">Bu değişikliği gerçekleştiren kullanıcının mesaj sayfasını görüntüle</string>
+  <string name="shortcut-browser-close-tab">Tarayıcı sekmesini kapat</string>
+  <string name="shortcut-tab">Yeni bir sekme açar</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>
@@ -494,6 +502,7 @@
   <string name="warning-warntype">Uyarı türü:</string>
   <string name="warning-warnlog">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="warning-submit">Gönder</string>
+  <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
@@ -520,6 +529,12 @@
   <string name="edit-progress">$1 değiştiriliyor...</string>
   <string name="history-fail">$1\'in geçmişine erişilemedi</string>
   <string name="history-progress">$1\'in ($2) geçmişi alınıyor...</string>
+  <string name="history-work">$1 üzerinde yapılan değişiklik geri alınıyor</string>
+  <string name="history-message-revert-title" fuzzy="true">Sadece mesajı geri almak istediğinize emin misiniz?</string>
+  <string name="history-not-found">Geri alınacak işlem bulunamadı</string>
+  <string name="history-already-done">Bu işlem çoktan geri alındı</string>
+  <string name="history-message-revert-body">Bu bir geri döndürme tarafından referans gösterilen bir mesajdı, sadece şablonu geri almak istediğinize ve sayfa üzerindeki değişikliğinizi bile geri almak istemediğinize emin misiniz? (İkisini de geri almak istiyorsanız geri döndürmeyi geri almalısınız)</string>
+  <string name="history-revert-fail">$1 üzerinde değişikliğiniz geri alınamadı: $2</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>
   <string name="notify-unknowncreator">Sayfa yaratıcısı bulunamadı</string>
   <string name="protect-done">$1\'in korunma seviyesi değişti</string>
@@ -540,10 +555,8 @@
   <string name="speedy-progress">\'$1\' hızlı silme için etiketleniyor...</string>
   <string name="speedy-wrong">İstenen etiket geçerli değil. Lütfen farklı bir silinme sebebi seçiniz.</string>
   <string name="speedy-finished">Tamamlandı</string>
-  <string name="usermessage-fail">$1 mesaj gönderilmedi</string>
-  <string name="usermessage-progress">$1 mesaj atılıyor...</string>
   <string name="warn-alreadyblocked">Kullanıcı zaten engellenmiş</string>
-  <string name="editquery-success" fuzzy="true">Başarılı bir şekilde değiştirildi $1</string>
+  <string name="editquery-success">$2 üzerinde $1 başarılı bir şekilde değiştirildi.</string>
   <string name="editquery-token">$1 değiştirmek için belirteç alınıyor</string>
   <string name="editquery-token-error">Değişiklik için belirteç alınamadı</string>
   <string name="provider-failure">Birincil besleme sağlayıcı hatası, kurtarılmaya çalışılıyor</string>

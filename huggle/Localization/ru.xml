@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Русский</string>
+  <string name="isrtl">ложь</string>
   <string name="add">Добавить</string>
   <string name="cancel">Отмена</string>
   <string name="clear">Очистить</string>
@@ -16,8 +17,11 @@
   <string name="remove">Убрать</string>
   <string name="rename">Переименовать</string>
   <string name="reload">Перезагрузить</string>
+  <string name="project">Проект</string>
   <string name="result">Результат</string>
   <string name="save">Сохранить</string>
+  <string name="show">Показать</string>
+  <string name="undo">Отменить</string>
   <string name="yes">Да</string>
   <string name="agf">Вернуть по обоснованным причинам как добросовестного редактора</string>
   <string name="successful">Успех</string>
@@ -37,9 +41,15 @@
   <string name="status">Статус</string>
   <string name="link">Ссылка</string>
   <string name="reason">Причина</string>
+  <string name="diffid">DiffID</string>
   <string name="expiry-time">Время истечения</string>
   <string name="duration">Срок</string>
   <string name="flags">Флаги</string>
+  <string name="score-score">Счёт</string>
+  <string name="score-word">Слово</string>
+  <string name="score-range">Диапазон</string>
+  <string name="score-only-whole-word">Соответствует только целым словам</string>
+  <string name="score-take-any-word">Соответствует любому слову, содержащему эту строку</string>
   <string name="about-contributors">Авторы:</string>
   <string name="block-title">Блокировка $1</string>
   <string name="block-reason">Причина:</string>
@@ -57,10 +67,17 @@
   <string name="block-rangeblockwarning">$1 уже заблокирован вместе с диапазоном $2.
 Эта блокировка будет применена только к данному IP. Продолжить?</string>
   <string name="block-fail">Невозможно заблокировать \'$1\'</string>
+  <string name="config-function">Функция</string>
+  <string name="config-description">Описание</string>
+  <string name="config-shortcut">Комбинация клавиш</string>
+  <string name="config-queue-filter-ignore">Игнорировать (не имеет значения)</string>
+  <string name="config-queue-filter-exclude">Исключить (не должно быть)</string>
+  <string name="config-queue-filter-require">Требуется (должен быть)</string>
   <string name="config-summ">Custom revert summaries for templates</string>
   <string name="config-title">Настройки</string>
   <string name="config-rememberme">Помнить мой логин</string>
   <string name="config-autowhitelist">Автоматически обновлять белый список пользователей</string>
+  <string name="config-already-in-use">Это сочетание клавиш уже используется $1, пожалуйста, выберите другое</string>
   <string name="config-openinbrowser">Открывать ссылки в новом окне браузера</string>
   <string name="config-shownewedits">Показывать новые изменения на выбранной странице автоматически</string>
   <string name="config-ircmode">Использовать IRC-канал с свежими правками, если это возможно</string>
@@ -73,7 +90,6 @@
   <string name="config-shownewmessages">Показывать окно новых сообщений</string>
   <string name="config-shortcutlist">Клавиши быстрого доступа</string>
   <string name="config-shortcutaction">Действие</string>
-  <string name="config-shortcut">Комбинация клавиш</string>
   <string name="config-changeshortcut">Изменить комбинацию клавиш $1</string>
   <string name="config-noshortcut">Удалить</string>
   <string name="config-defaults">По умолчанию</string>
@@ -116,14 +132,16 @@
   <string name="delete-notify">Уведомление автору</string>
   <string name="delete-e2">Не удаётся удалить страницу</string>
   <string name="delete-edsc">Не удаётся удалить страницу, потому что $1</string>
+  <string name="extension-kl">Убито</string>
+  <string name="extension-fine">Загружен и запущен</string>
   <string name="historyform-title">История</string>
   <string name="historyform-retrieve-history">Получить историю</string>
   <string name="historyform-retrieving-history">Получение истории</string>
   <string name="history-error-message-title">Невозможно отменить</string>
   <string name="userhistory-title">История изменений</string>
-  <string name="irc-connected" fuzzy="true">Подключаюсь к IRC-каналу свежих правок</string>
-  <string name="irc-connecting" fuzzy="true">Попытка соединения с IRC-каналом свежих правок, это может занять несколько минут...</string>
-  <string name="irc-disconnected" fuzzy="true">Соединение с IRC-каналом было утеряно; повторное подключение...</string>
+  <string name="irc-connected">$1: Подключаюсь к IRC-каналу свежих правок</string>
+  <string name="irc-connecting">Попытка соединения с IRC-каналом свежих правок на $1, это может занять несколько минут…</string>
+  <string name="irc-disconnected">Соединение с IRC-каналом было утеряно на $1. Повторное подключение…</string>
   <string name="irc-nochannel">IRC-канал $1 не найден; будет использовано медленное соединение с применением API-запросов</string>
   <string name="irc-error">Невозможно подключиться к IRC-каналу свежих правок. Будет использовано медленное соединение с применением API-запросов</string>
   <string name="login-tab-oauth">OAuth</string>
@@ -138,7 +156,7 @@
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
   <string name="login-retrieving-user-conf">Получение пользовательской конфигурации</string>
-  <string name="login-retrieving-info" fuzzy="true">Получение пользовательской информации</string>
+  <string name="login-retrieving-info">Получение пользовательской информации на $1</string>
   <string name="login-password-empty">Введённый вами пароль был пустым</string>
   <string name="login-start">Войти</string>
   <string name="login-translate">Перевести Huggle</string>
@@ -151,24 +169,24 @@
   <string name="login-progress-user-info">Проверка информации об участнике $1</string>
   <string name="login-progress-whitelist">Обновляю белый список пользователей...</string>
   <string name="login-ssl">Использовать HTTPS (требуется OpenSSL)</string>
-  <string name="login-fail" fuzzy="true">Ошибка входа в систему!</string>
+  <string name="login-fail">Ошибка входа в систему на $1!</string>
   <string name="login-error-admin">Использование Huggle в этом проекте требует учётной записи администратора.</string>
   <string name="login-error-age">Использование Huggle в этом проекте требует, по крайней мере, $1 дней участия.</string>
   <string name="login-error-alldisabled">Huggle в данный момент отключен во всех проектах.</string>
-  <string name="login-error-approval" fuzzy="true">Использование Huggle в этом проекте требует одобрения заявки.</string>
+  <string name="login-error-approval">Использование Huggle в $1 требует одобрения заявки.</string>
   <string name="login-error-cancelled">Отменено.</string>
-  <string name="login-error-config" fuzzy="true">Ошибка при загрузке страницы настроек.</string>
+  <string name="login-error-config">Не удалось войти в систему, не в состоянии проанализировать локальной конфигурации для $1: $2</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle не включен для вашего аккаунта, проверьте пользовательские настройки.</string>
+  <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте страницу пользовательских настроек.</string>
   <string name="login-error-global">Ошибка входа: не удается выполнить разбор глобальной конфигурации. Смотрите журнал отладки для получения более подробной информации.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
-  <string name="login-error-noconfig" fuzzy="true">В этом проекте отсутствует страница конфигурации Huggle.</string>
+  <string name="login-error-noconfig">В $1 отсутствует страница конфигурации Huggle.</string>
   <string name="login-error-nouser">Пользователь не существует</string>
   <string name="login-error-password">Неправильный пароль.</string>
   <string name="login-error-projdisabled">Возможность использовать Huggle отключена в этом проекте.</string>
-  <string name="login-error-unknown" fuzzy="true">Невозможно войти.</string>
+  <string name="login-error-unknown">Невозможно войти в $1.</string>
   <string name="login-error-version">Эта версия устарела. Обновитесь до последней версии.</string>
-  <string name="login-error-whitelist" fuzzy="true">Ошибка при загрузке «белого списка» пользователей.</string>
+  <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей в $1.</string>
   <string name="main-no-reason">Причина не была предоставлена участником</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>
@@ -176,6 +194,7 @@
   <string name="main-history">История</string>
   <string name="main-new-messages">У вас новые сообщения. Выберите Система -&gt; Показать новые сообщения или нажмите M для просмотра их.</string>
   <string name="main-system">Система</string>
+  <string name="main-status-bar" fuzzy="true">Исполняется &lt;b&gt;$1&lt;/b&gt;правок и &lt;b&gt;$2&lt;/b&gt;запросов. Пользователей в белом списке: &lt;b&gt;$3&lt;/b&gt; Размер очереди: &lt;b&gt;$4&lt;/b&gt; Статистика для $6: $5</string>
   <string name="main-system-messages">Показать новые сообщения</string>
   <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
   <string name="main-system-savelog">Сохранить журнал...</string>
@@ -256,6 +275,7 @@
   <string name="main-usermessageother">Другое сообщение...</string>
   <string name="main-advanced">Другое...</string>
   <string name="main-stats">$1 правок в минуту, $2 отмен в минуту</string>
+  <string name="main-display-session-data">Показать данные сессии</string>
   <string name="main-display-whitelist">Показать белый список</string>
   <string name="main-tip-pagetagdelete">Пометить страницу к удалению</string>
   <string name="main-tip-pagedelete">Удалить страницу</string>
@@ -337,26 +357,6 @@
   <string name="speedy-reason">Причина:</string>
   <string name="speedy-parameters">Параметры:</string>
   <string name="speedy-notifycreator">Уведомить автора статьи</string>
-  <string name="stats-title">Статистика</string>
-  <string name="stats-actions">Действия этого сеанса:</string>
-  <string name="stats-session">Время сеанса: $1</string>
-  <string name="stats-edits">Правки</string>
-  <string name="stats-assisted">Вспомогательные правки</string>
-  <string name="stats-huggle">Правки через Huggle</string>
-  <string name="stats-reverts">Откаты</string>
-  <string name="stats-warnings">Предупреждения</string>
-  <string name="stats-reports">Отчёты</string>
-  <string name="stats-tags">Теги</string>
-  <string name="stats-notifications">Уведомления</string>
-  <string name="stats-blocks">Блокировки</string>
-  <string name="stats-deletes">Удаления</string>
-  <string name="stats-protections">Защиты</string>
-  <string name="stats-allusers">Все участники</string>
-  <string name="stats-me">Для меня</string>
-  <string name="stats-ignored">Проигнорированные</string>
-  <string name="stats-anon">Анонимы</string>
-  <string name="stats-bots">Боты</string>
-  <string name="stats-other">Другие</string>
   <string name="tag-title">Тег $1</string>
   <string name="tag-tagselector">Добавить тег:</string>
   <string name="tag-tags">Тег(и):</string>
@@ -370,7 +370,13 @@
   <string name="updater-close">Закрыть</string>
   <string name="updater-disable-notify">Отключить обновления</string>
   <string name="userinfo-generic">Информация об участнике</string>
+  <string name="userinfo-retrieve">Получить информацию</string>
+  <string name="shortcut-my-talk">Моя страница обсуждения</string>
   <string name="shortcut-revert">Отменить правку</string>
+  <string name="shortcut-revert-agf-1">Обратить последнюю проверку, предполагая добросовестность.</string>
+  <string name="shortcut-browser-close-tab">Закрыть вкладку браузера</string>
+  <string name="shortcut-tab">Открывает новую вкладку</string>
+  <string name="shortcut-rw-stay">Обратить текущую правку, оповестить пользователя и остаться на странице</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
@@ -422,12 +428,13 @@
   <string name="reqprotection-progress">Запрашивается защита страницы \'$1\'...</string>
   <string name="speedy-fail">Не удаётся пометить к быстрому удалению: $1</string>
   <string name="speedy-progress">Помечаем \'$1\' к быстрому удалению…</string>
-  <string name="usermessage-fail">Сообщение участнику \'$1\' не передано</string>
-  <string name="usermessage-progress">Передаётся сообщение участнику \'$1\'...</string>
+  <string name="speedy-finished">Завершено</string>
   <string name="warn-alreadyblocked">Этот участник уже заблокирован</string>
   <string name="provider-failure">Отказ основного канала провайдера, попытка восстановить</string>
   <string name="logs-widget-name">Системные журналы</string>
   <string name="wait">Пожалуйста, подождите…</string>
+  <string name="function-miss">Функция в настоящий момент недоступна</string>
+  <string name="missing-page">В этой вики нет страницы $1</string>
   <string name="updating-wl">Начать с чистого листа...</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
 </resources>

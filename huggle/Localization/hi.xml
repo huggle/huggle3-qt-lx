@@ -34,6 +34,7 @@
   <string name="block-rangeblockwarning">$1 पहले से ही $2 पर श्रृंखला अवरोधन के कारण प्रभावित है।
 यह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
+  <string name="config-shortcut">लघुपथ</string>
   <string name="config-summ">साँचों के लिये सारांश को व्यक्तिगतरुप से वापस करे</string>
   <string name="config-title">विकल्प</string>
   <string name="config-rememberme">प्रयोक्तानाम स्मरण</string>
@@ -50,7 +51,6 @@
   <string name="config-shownewmessages">नया संदेश बार दिखाये</string>
   <string name="config-shortcutlist">कुञ्जीपटल लघुपथ</string>
   <string name="config-shortcutaction">कार्यवाही</string>
-  <string name="config-shortcut">लघुपथ</string>
   <string name="config-changeshortcut">$1 के लिए लघुपथ बदलें</string>
   <string name="config-noshortcut">कुछ नहीं</string>
   <string name="config-defaults">डिफ़ाल्ट</string>
@@ -278,26 +278,6 @@
   <string name="speedy-reason">कारण:</string>
   <string name="speedy-parameters">पैरामीटर:</string>
   <string name="speedy-notifycreator">पृष्ठ निर्माता को सूचित करो</string>
-  <string name="stats-title">आंकड़े</string>
-  <string name="stats-actions">इस अधिवेशन में चाल-चलन:</string>
-  <string name="stats-session">सत्र समय: $1</string>
-  <string name="stats-edits">संपादन</string>
-  <string name="stats-assisted">सहायता संपादन</string>
-  <string name="stats-huggle">हघल संपादन</string>
-  <string name="stats-reverts">वापस</string>
-  <string name="stats-warnings">चेतावनी</string>
-  <string name="stats-reports">रिपोर्ट</string>
-  <string name="stats-tags">टैग</string>
-  <string name="stats-notifications">सूचनाएँ</string>
-  <string name="stats-blocks">ब्लॉक</string>
-  <string name="stats-deletes">नष्टकरण</string>
-  <string name="stats-protections">सुरक्षा</string>
-  <string name="stats-allusers">सभी उपयोगकर्ताओं</string>
-  <string name="stats-me">मैं</string>
-  <string name="stats-ignored">उपेक्षा</string>
-  <string name="stats-anon">गुमनाम</string>
-  <string name="stats-bots">बॉट</string>
-  <string name="stats-other">अन्य</string>
   <string name="tag-title">टैग \'$1\'</string>
   <string name="tag-tagselector">टैग जोड़ें:</string>
   <string name="tag-tags">टैग:</string>
@@ -356,7 +336,5 @@
   <string name="reqprotection-progress">\'$1\' के लिए सुरक्षा अनुरोध कर रहा है...</string>
   <string name="speedy-fail" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
   <string name="speedy-progress" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
-  <string name="usermessage-fail">\'$1\' को सन्देश नहीं भेजा</string>
-  <string name="usermessage-progress">\'$1\' को सन्देश भेज रहा है...</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
 </resources>

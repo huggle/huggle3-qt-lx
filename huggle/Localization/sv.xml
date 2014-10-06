@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Svenska</string>
+  <string name="isrtl">falskt</string>
   <string name="add">Lägg till</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Rensa</string>
@@ -16,8 +17,11 @@
   <string name="remove">Ta bort</string>
   <string name="rename">Byt namn</string>
   <string name="reload">Uppdatera</string>
+  <string name="project">Projekt</string>
   <string name="result">Resultat</string>
   <string name="save">Spara</string>
+  <string name="show">Visa</string>
+  <string name="undo">Ångra</string>
   <string name="yes">Ja</string>
   <string name="agf">Rulla tillbaka med utgångspunkt att redigeringen gjorts i god tro och ange anledningen</string>
   <string name="successful">Framgångsrik</string>
@@ -38,17 +42,20 @@
   <string name="link">Länk</string>
   <string name="reason">Anledning</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 med poängen $2 har lagts till i vitlistan</string>
+  <string name="whitelisted">$1 med poängen $2 på $3 har lagts till i vitlistan</string>
   <string name="expiry-time">Förfallotid</string>
   <string name="duration">Längd</string>
-  <string name="no-token">Ingen token</string>
+  <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
+  <string name="score-word">Ord</string>
+  <string name="score-range">Intervall</string>
   <string name="browser-none">Ingen sida visas nu</string>
   <string name="browser-load">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
   <string name="browser-diff">Skillnad på sida: $1 (poäng: $2)</string>
   <string name="browser-fail">Det gick inte att hämta skillnad:$1</string>
   <string name="about-contributors">Utvecklare:</string>
+  <string name="block-not">Användaren är inte blockerad</string>
   <string name="block-title">Blockera $1</string>
   <string name="block-reason">Anledning:</string>
   <string name="block-duration">Tidsperiod:</string>
@@ -64,13 +71,17 @@
   <string name="block-sharedipwarning">Obs: $1 är taggad som en delad eller dynamisk IP-adress.</string>
   <string name="block-rangeblockwarning">$1 påverkas redan av en intervallblockering på $2.
 Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fortsätt?</string>
-  <string name="block-token-1">Få token att blockera $1</string>
+  <string name="block-token-1">Hämtar nyckel för att blockera $1</string>
   <string name="block-fail">Det gick inte att blockera användaren, $1</string>
-  <string name="block-token-e1">Token kan inte hämtas: $1</string>
+  <string name="block-token-e1">Nyckeln kan inte hämtas: $1</string>
   <string name="block-error-no-info">Ingen användarinformation var närvarande i frågan (är du sysop?)</string>
   <string name="block-type">Blockera / avblockera</string>
   <string name="block-admin">Blockerande administratör</string>
   <string name="block-none">Det finns ingen användare att blockera.</string>
+  <string name="config-function">Funktion</string>
+  <string name="config-description">Beskrivning</string>
+  <string name="config-shortcut">Genväg</string>
+  <string name="config-queue-filter-ignore">Ignorera (spelar ingen roll)</string>
   <string name="config-summ">Anpassade återstälnings-sammanfattningar för mallar</string>
   <string name="config-title">Inställningar</string>
   <string name="config-rememberme">Kom i håg mitt användarnamn</string>
@@ -82,11 +93,11 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-difffontsize">Olika teckenstorlekar</string>
   <string name="config-logfile">Loggfil</string>
   <string name="config-viewlocalconfig">Visa lokal konfigurationsmapp</string>
+  <string name="config-trayicon">Visa ikonen i aktivitetsfältet</string>
   <string name="config-startupmessage">Visa uppstartsmeddelande</string>
   <string name="config-shownewmessages">Visa fält för nya meddelanden</string>
   <string name="config-shortcutlist">Kortkommandon</string>
   <string name="config-shortcutaction">Åtgärd</string>
-  <string name="config-shortcut">Genväg</string>
   <string name="config-changeshortcut">Ändra genväg för $1</string>
   <string name="config-noshortcut">Inget</string>
   <string name="config-defaults">Standard</string>
@@ -111,9 +122,9 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="delete-deletionlog">Raderingslogg:</string>
   <string name="delete-rem-talk">Radera tillhörande diskussionssida</string>
   <string name="delete-notify">Meddela skaparen</string>
-  <string name="delete-error-token">Fel: Misslyckades att hämta radera-token. Anledningen som angavs var: $1</string>
-  <string name="delete-token01">Hämtar token för att radera $1</string>
-  <string name="delete-token02">Det fanns ingen token som returnerades i frågan</string>
+  <string name="delete-error-token">Fel: Misslyckades att hämta radera-nyckel. Anledningen som angavs var: $1</string>
+  <string name="delete-token01">Hämtar nyckel för att radera $1</string>
+  <string name="delete-token02">Det fanns ingen nyckel som returnerades i frågan</string>
   <string name="delete-e1">Sidan kan inte raderas: $1</string>
   <string name="delete-e2">Det går inte att ta bort sida</string>
   <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
@@ -127,13 +138,13 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="history-error">Objektet kan inte ångras. Sidan kan ha ändrats eller tagits bort under tiden och Huggle är oförmögen att genomföra ångra från denna punkt. Om du verkligen vill ångra det, kommer att du behöva göra det för hand i MediaWiki-gränssnittet.</string>
   <string name="userhistory-title">Historik över dina ändringar</string>
   <string name="irc-nochannel">IRC-kanalen för $1 kunde inte hittas, använder långsammare API-köer istället</string>
-  <string name="irc-stop" fuzzy="true">Väntar på att den primära flödesleverantören stoppar</string>
+  <string name="irc-stop">Väntar på att den primära flödesleverantören stoppar på $1</string>
   <string name="irc-not">Flöde: IRC inaktiveras av projektinställningarna</string>
   <string name="irc-failure">Den primära flödes-leverantören har misslyckats. Faller tillbaka till wiki-leverantören...</string>
   <string name="irc-wait">Väntar på att flödesleverantör för IRC stoppar</string>
   <string name="irc-switch-rc">Byter till wiki RC-flödet</string>
   <string name="login-old">Hämta användarinställningar från tidigare plats</string>
-  <string name="login-intro" fuzzy="true">Var god välj ett projekt och ange ditt användarnamn och lösenord.</string>
+  <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord. Du kan logga in på flera projekt genom att även klicka på \"Projekt\"-knappen.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Logga in</string>
   <string name="login-language">Språk:</string>
@@ -146,13 +157,13 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domän:</string>
   <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
-  <string name="login-fail-no-info" fuzzy="true">Inloggningen misslyckades: Kunde inte hämta användarinformation: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Inloggningen misslyckades: Kunde inte tolka användarinställningar. Se felsökningsloggen för mer information</string>
-  <string name="login-fail-user-data" fuzzy="true">Inloggningen misslyckades: Kunde inte hämta användarinformation. API-frågan returnerade ingen data.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Inloggningen misslyckades: Du har inte tillbakarullningsbehörigheter på detta projekt.</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Inloggningen misslyckades: Du är inte en autobekräftad användare på detta projekt.</string>
-  <string name="login-failed-edit" fuzzy="true">Inloggningen misslyckades: Du har inte tillräckligt med redigeringar på detta projekt.</string>
-  <string name="login-retrieving-info" fuzzy="true">Hämtar användarinformation</string>
+  <string name="login-fail-no-info">Inloggningen misslyckades på $1: Kunde inte hämta användarinformation: $2</string>
+  <string name="login-fail-parse-config">Inloggningen misslyckades på $1: Kunde inte tolka användarinställningar. Se felsökningsloggen för mer information.</string>
+  <string name="login-fail-user-data">Inloggningen misslyckades på $1: Kunde inte hämta användarinformation. API-förfrågan returnerade ingen data.</string>
+  <string name="login-fail-rollback-rights">Inloggningen misslyckades på $1: Du har inte tillbakarullningsbehörigheter på detta projekt.</string>
+  <string name="login-failed-autoconfirm-rights">Inloggningen misslyckades på $1: Du är inte en autobekräftad användare på detta projekt.</string>
+  <string name="login-failed-edit">Inloggningen misslyckades på $1: Du har inte tillräckligt med redigeringar på detta projekt.</string>
+  <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
   <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
   <string name="login-start">Logga in</string>
@@ -164,8 +175,13 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="login-progress-global">Kontrollerar global konfiguration...</string>
   <string name="login-progress-config">Kontrollerar konfigurationssidor...</string>
   <string name="login-ssl">Använd HTTPS (kräver OpenSSL)</string>
-  <string name="login-fail" fuzzy="true">Inloggningen misslyckades</string>
-  <string name="login-error-unknown" fuzzy="true">Kan inte logga in.</string>
+  <string name="login-fail">Inloggningen misslyckades på $1</string>
+  <string name="login-error-cancelled">Avbruten.</string>
+  <string name="login-error-invalid">Ogiltigt användarnamn</string>
+  <string name="login-error-nouser">Användaren finns inte</string>
+  <string name="login-error-password">Felaktigt lösenord</string>
+  <string name="login-error-projdisabled">Huggle är för närvarande inaktiverad på $1.</string>
+  <string name="login-error-unknown">Kan inte logga in på $1.</string>
   <string name="login-error-version">Denna version är för gammal. Uppdatera till den senaste versionen.</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
@@ -180,11 +196,21 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="main-system-messages">Visa nya meddelanden</string>
   <string name="main-system-reconnectirc">Återanslut IRC-flödet</string>
   <string name="main-system-savelog">Spara logg...</string>
+  <string name="main-system-statistics">Statistik...</string>
+  <string name="main-system-showqueue">Visa kö</string>
+  <string name="main-system-options">Alternativ...</string>
   <string name="main-system-logout">Logga ut</string>
   <string name="main-system-abort">Avbryt</string>
+  <string name="main-system-change-provider">Ändra leverantör</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
+  <string name="main-system-exit">Avsluta</string>
+  <string name="main-queue">Kö</string>
+  <string name="main-queue-next">Nästa</string>
   <string name="main-revision-revert">Återställ den redigering som just nu visas</string>
+  <string name="main-revision-previous">Föregående</string>
+  <string name="main-revision-next">Nästa</string>
+  <string name="main-revision-latest">Senaste</string>
   <string name="main-tools">Verktyg</string>
   <string name="main-page-next">Nästa</string>
   <string name="main-page-edit">Redigera i webbläsare</string>
@@ -221,10 +247,15 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="updater-close">Stäng</string>
   <string name="updater-disable-notify">Inaktivera uppdateringar</string>
   <string name="userinfo-generic">Användarinformation</string>
+  <string name="userinfo-retrieve">Hämta information</string>
+  <string name="shortcut-my-talk">Min diskussionssida</string>
+  <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
+  <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="warning-submit">Sänd</string>
+  <string name="history-message-revert-title" fuzzy="true">Du vill verkligen bara ångra meddelandet?</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
-  <string name="editquery-success" fuzzy="true">Framgångsrik redigering $1</string>
+  <string name="editquery-success">Framgångsrik redigering $1 på $2</string>
   <string name="whitelist-download">Ladda ner ny vitlista</string>
   <string name="logs-widget-name">Systemlogg</string>
   <string name="wait">Var god vänta...</string>

@@ -17,8 +17,11 @@
   <string name="remove">حذف‌کردن</string>
   <string name="rename">تغییر نام</string>
   <string name="reload">بارگیری مجدد</string>
+  <string name="project">پروژه</string>
   <string name="result">نتیجه</string>
   <string name="save">ذخیره‌کردن</string>
+  <string name="show">نمایش</string>
+  <string name="undo">واگردانی</string>
   <string name="yes">بله</string>
   <string name="agf">واگردانی با فرض حسن نیت و دلیل مشهود</string>
   <string name="successful">موفق</string>
@@ -39,7 +42,7 @@
   <string name="link">پیوند</string>
   <string name="reason">دلیل</string>
   <string name="diffid">شناسه تفاوت</string>
-  <string name="whitelisted" fuzzy="true">$1 با شماره $2 به فهرست سفید افزوده شد</string>
+  <string name="whitelisted">$1 با شماره $2 بر $3 به فهرست سفید افزوده شد</string>
   <string name="expiry-time">زمان انقضاء</string>
   <string name="duration">مدت</string>
   <string name="no-token">بدون رمز</string>
@@ -50,6 +53,7 @@
   <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
   <string name="browser-fail">ناتوان در بازیابی تفاوت $1</string>
   <string name="about-contributors">مشارکت‌ها:</string>
+  <string name="block-not">کاربر مسدود نشده‌است</string>
   <string name="block-title">بستن $1</string>
   <string name="block-reason">دلیل:</string>
   <string name="block-duration">مدت:</string>
@@ -72,6 +76,7 @@
   <string name="block-type">بستن/بازکردن</string>
   <string name="block-admin">بستن مدیر</string>
   <string name="block-none">هیچ کاربری برای بستن نیست.</string>
+  <string name="config-shortcut">میانبر</string>
   <string name="config-summ">خلاصه ویرایش سفارشی برای الگوها</string>
   <string name="config-title">اختیارات</string>
   <string name="config-rememberme">یادآوری نام کاربری من</string>
@@ -88,7 +93,6 @@
   <string name="config-shownewmessages">نشان دادن نوار پیام‌های جدید</string>
   <string name="config-shortcutlist">میانبرهای صفحه‌کلید</string>
   <string name="config-shortcutaction">عمل</string>
-  <string name="config-shortcut">میانبر</string>
   <string name="config-changeshortcut">تغییر میان‌بر برای $1</string>
   <string name="config-noshortcut">هیچ</string>
   <string name="config-defaults">پیش‌فرض‌ها</string>
@@ -146,12 +150,12 @@
   <string name="history-error-message-title">غیرقابل بازگشت</string>
   <string name="history-error">این مورد را نمی‌توان واگردانی نمود. صفحه ممکن است در این میان تغییر کرده یا حذف شده باشد و هاگل نمی‌تواند از این نقطه واگردانی کند. اگر واقعاً می‌خواهید واگردانی کنید، لازم است این کار را دستی و از راه رابط مدیاویکی انجام دهید.</string>
   <string name="userhistory-title">تاریخچه ویرایش‌های شما</string>
-  <string name="irc-connected" fuzzy="true">به فید آی‌آرسی تغییرات اخیر متصل شد</string>
-  <string name="irc-connecting" fuzzy="true">در حال تلاش برای اتصال به خوراک تغییرات اخیر آی‌آرسی؛ این ممکن است چند لحظه‌ای طول بکشد...</string>
-  <string name="irc-disconnected" fuzzy="true">اتصال به خوراک تغیرات اخیر آی‌آرسی از دست رفت؛ اتصال دوباره...</string>
+  <string name="irc-connected">$1: به فید آی‌آرسی تغییرات اخیر متصل شد</string>
+  <string name="irc-connecting">در حال تلاش برای اتصال به خوراک تغییرات اخیر آی‌آرسیِ $1؛ این ممکن است چند لحظه‌ای طول بکشد...</string>
+  <string name="irc-disconnected">اتصال به خوراک تغیرات اخیر آی‌آرسی در $1 از دست رفت؛ اتصال دوباره...</string>
   <string name="irc-nochannel">کانال آی‌آرسی $1 یافت نشد؛ استفاده از درخواست‌های API به عنوان جایگزین</string>
   <string name="irc-error">امکان اتصال به خوراک تغییرات اخیر آی‌آرسی نبود ($1). در حال استفاده از درخواست‌های کندتر ای‌پی‌آی</string>
-  <string name="irc-stop" fuzzy="true">در انتظار توقف ارائه‌دهندهٔ خوراک اصلی</string>
+  <string name="irc-stop">در انتظار توقف ارائه‌دهندهٔ خوراک اصلیِ $1</string>
   <string name="irc-not">خوراک: آی‌آرسی توسط پیکربندی پروژه غیرفعال شده است</string>
   <string name="irc-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. عقب‌گرد به ارائه‌دهندهٔ ویکی...</string>
   <string name="irc-wait">در انتظار توقف ارائه‌دهندهٔ خوراک اصلی</string>
@@ -226,7 +230,7 @@
   <string name="main-system">سامانه</string>
   <string name="main-status-bar" fuzzy="true">در حال پردازش &lt;b&gt;$1&lt;/b&gt;ویرایش و &lt;b&gt;$2&lt;/b&gt; پرس‌وجو. کاربران فهرست سفید: &lt;b&gt;$3&lt;/b&gt; اندازه صف: &lt;b&gt;$4&lt;/b&gt; آمار: $5</string>
   <string name="main-shutting-down">هاگل در حال خاموش‌شدن است، نادیده گرفته شد</string>
-  <string name="main-system-messages">نمایش پیام‌های جدید</string>
+  <string name="main-system-messages">نمایش پیام‌های تازه</string>
   <string name="main-system-reconnectirc">ارتباط دوباره با فید آی‌آرسی</string>
   <string name="main-system-savelog">ذخیره سیاهه ...</string>
   <string name="main-system-statistics">آمارها...</string>
@@ -304,7 +308,7 @@
   <string name="main-browser-back">بازگشت</string>
   <string name="main-browser-forward">جلو</string>
   <string name="main-browser-open">نمایش در مرورگر خارجی</string>
-  <string name="main-browser-newedits">نمایش ویرایش‌های جدید صفحه</string>
+  <string name="main-browser-newedits">نمایش ویرایش‌های تازه صفحه</string>
   <string name="main-browser-newcontribs">نمایش مشارکت‌های جدید کاربر</string>
   <string name="main-revert-manual">هیچ واگردانی‌ای انجام نشد، عقب‌گرد به واگردانی دستی $1</string>
   <string name="main-han">هان</string>
@@ -401,6 +405,8 @@
   <string name="report-message">پیام:</string>
   <string name="report-log">هشدار برای این کاربر:</string>
   <string name="report-include">در گزارش</string>
+  <string name="report-select">خواهشمند است به منظور بازکردن پیش‌نمایش یک تفاوت در فهرست انتخاب کنید</string>
+  <string name="report-write">نوشتن</string>
   <string name="report-evidence-none-provid">هیچ تفاوتی به عنوان مدرک فراهم نشده. این باعث می‌شود مدیران خیلی سخت بتوانند خرابکار بودن یا نبودن کاربر را تشخیص دهند. مطمئنید که می‌خواهید ادامه دهید؟</string>
   <string name="report-duplicate">کاربر در حال حاضر گزارش شده‌است</string>
   <string name="report-fail">$1 را گزارش نکرد</string>
@@ -438,40 +444,22 @@
   <string name="speedy-notifycreator">اطلاع‌رسانی به ایجادکننده صفحه</string>
   <string name="rollback">واگردانی $1</string>
   <string name="software-rollback">شما دسترسی واگردانی ندارید، بازگشت به واگردانی نرم‌افزاری</string>
-  <string name="stats-title">آمارها</string>
-  <string name="stats-actions">فعالیت‌های این نشست:</string>
-  <string name="stats-session">زمان جلسه: $1</string>
-  <string name="stats-edits">ویرایش‌ها</string>
-  <string name="stats-assisted">ویرایش‌های کمکی</string>
-  <string name="stats-huggle">ویرایش‌های هاگل</string>
-  <string name="stats-reverts">واگردانی</string>
-  <string name="stats-warnings">هشدارها</string>
-  <string name="stats-reports">گزارش‌ها</string>
-  <string name="stats-tags">برچسب‌ها</string>
-  <string name="stats-notifications">آگاه‌سازی‌ها</string>
-  <string name="stats-blocks">بستن‌ها</string>
-  <string name="stats-deletes">حذف‌ها</string>
-  <string name="stats-protections">محافظت‌ها</string>
-  <string name="stats-allusers">همهٔ کاربران</string>
-  <string name="stats-me">من</string>
-  <string name="stats-ignored">نادیده گرفتن</string>
-  <string name="stats-anon">ناشناس</string>
-  <string name="stats-bots">ربات‌ها</string>
-  <string name="stats-other">سایر</string>
   <string name="tag-title">برچسب $1</string>
   <string name="tag-tagselector">افزودن برچسب:</string>
   <string name="tag-tags">برچسب(ها):</string>
   <string name="tag-summary">خلاصه:</string>
   <string name="tag-insertatend">درج در انتهای صفحه</string>
-  <string name="update-title">نسخهٔ جدید در دسترس است</string>
+  <string name="update-title">نسخهٔ تازه در دسترس است</string>
   <string name="update-progress">دانلود نسخه جدید...</string>
-  <string name="update-error">موفق به دانلود نسخه جدید نشد</string>
+  <string name="update-error">موفق به دانلود نسخه تازه نشد</string>
   <string name="updater-title">نسخه جدیدی از هاگل در دسترس است</string>
   <string name="updater-update">به‌روزرسانی</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
   <string name="updater-disable-notify">غیر فعال کردن به روز رسانی</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
+  <string name="userinfo-retrieve">بازیابی اطلاعات</string>
+  <string name="shortcut-my-talk">صفحهٔ بحث من</string>
   <string name="shortcut-raw">واگردانی ویرایش و هشدار به کاربر</string>
   <string name="shortcut-exit">بستن هاگل به صورت معمولی</string>
   <string name="shortcut-next">رفتن به ویرایش بعدی</string>
@@ -482,8 +470,11 @@
   <string name="shortcut-revert">واگردانی ویرایش</string>
   <string name="shortcut-x-raw">آتش‌کردن مورد اِن‌اُم در گزینگان واگردانی‌ها و هشدار</string>
   <string name="shortcut-x-revert">آتش‌کردن مورد اِن‌اُم در گزینگان واگردانی</string>
+  <string name="shortcut-watch">درج صفحهٔ نمایش به فهرست پیگیری‌ها</string>
+  <string name="shortcut-unwatch">حذف صفحهٔ نمایش از فهرست پیگیری‌ها</string>
   <string name="shortcut-x-warn">آتش‌کردن مورد اِن‌اُم در گزینگان هشدار</string>
   <string name="shortcut-good">این ویرایش را به عنوان خوب علامت بزن</string>
+  <string name="shortcut-open-in-huggle">بازکردن صفحه در حال حاضر نمایش داده‌شده</string>
   <string name="shortcut-open">این ویرایش را در یک مرورگر نمایش بده</string>
   <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده‌است</string>
   <string name="warning-title">هشدار $1</string>
@@ -522,6 +513,8 @@
   <string name="edit-progress">ویرایش  $1 ...</string>
   <string name="history-fail">ناتوان از گرفتن تاریخچه</string>
   <string name="history-progress">گرفتن تاریخچه $1 ($2)...</string>
+  <string name="history-work">در حال لغو ویرایش خود به $1</string>
+  <string name="history-revert-fail">ناتوان در بازگرداندن ویرایش‌تان در $1 خطا هنگام بازگرداندن: $2</string>
   <string name="notify-fail">سازنده $1 مطلع نشد</string>
   <string name="notify-unknowncreator">سازنده صفحه پیدا نشد</string>
   <string name="protect-done">وضعیت محافظت  $1 تغییر کرد</string>
@@ -542,16 +535,14 @@
   <string name="speedy-progress">زدن برچسب حذف سریع بر \'$1\'</string>
   <string name="speedy-wrong">برچسب درخواست شده معتبر نیست. لطفاً دلیل حذف دیگری انتخاب کنید</string>
   <string name="speedy-finished">تمام شد</string>
-  <string name="usermessage-fail">به \'$1\' پیامی فرستاده نشد</string>
-  <string name="usermessage-progress">پیام \' $1 \'...</string>
   <string name="warn-alreadyblocked">کاربر در حال حاضر بسته شده است</string>
-  <string name="editquery-success" fuzzy="true">ویرایش موفق $1</string>
+  <string name="editquery-success">ویرایش موفق $1 بر $2</string>
   <string name="editquery-token">در حال گرفتن توکن برای ویرایش $1</string>
   <string name="editquery-token-error">قادر به گرفتن توکن برای ویرایش نیستم.</string>
   <string name="provider-failure">ناکارائی ارائه‌دهندهٔ خوراک اصلی، در حال تلاش برای بازیابی</string>
   <string name="provider-primary-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. در حال عقب‌گرد به ارائه‌دهندهٔ ویکی</string>
   <string name="rc-error">ناتوان از گرفتن اطلاعات از فید ویکی، آخرین خطا: $1</string>
-  <string name="whitelist-download">در حال بارگیری فهرست سفید جدید</string>
+  <string name="whitelist-download">در حال بارگیری فهرست سفید تازه</string>
   <string name="logs-widget-name">سیاهه‌های سامانه</string>
   <string name="wait">لطفاً صبر کنید...</string>
   <string name="function-miss">تابع، اکنون در دسترس نمی‌باشد</string>

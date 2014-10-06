@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">Português do Brasil</string>
+  <string name="name">Inglês</string>
+  <string name="isrtl">falso</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Limpar</string>
@@ -16,8 +17,11 @@
   <string name="remove">Remover</string>
   <string name="rename">Renomear</string>
   <string name="reload">Recarregar</string>
+  <string name="project">Projeto</string>
   <string name="result">Resultado</string>
   <string name="save">Salvar</string>
+  <string name="show">Exibir</string>
+  <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
   <string name="agf">Reverter como edição de boa fé com motivo personalizado</string>
   <string name="successful">Bem sucedido!</string>
@@ -38,17 +42,21 @@
   <string name="link">Link</string>
   <string name="reason">Motivo</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1, com uma pontuação de $2, foi adicionado(a) à lista branca</string>
+  <string name="whitelisted">$1, com uma pontuação de $2 em $3, foi adicionado(a) à lista branca</string>
   <string name="expiry-time">Validade</string>
   <string name="duration">Duração</string>
   <string name="no-token">Sem token</string>
   <string name="flags">Sinalizações</string>
+  <string name="score-score">Pontuação</string>
+  <string name="score-word">Palavra:</string>
+  <string name="score-range">Gama</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
   <string name="browser-load">Baixando diff usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Nenhum sumário foi fornecido</string>
   <string name="browser-diff">Diff da página:$1 (pontuação: $2)</string>
   <string name="browser-fail">Não foi possível recuperar diff: $1</string>
   <string name="about-contributors">Colaboradores:</string>
+  <string name="block-not">O usuário não está bloqueado</string>
   <string name="block-title">Bloquear $1</string>
   <string name="block-reason">Razão:</string>
   <string name="block-duration">Duração:</string>
@@ -71,10 +79,16 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">O administrador que fez o bloqueio</string>
   <string name="block-none">Não há nenhum usuário para bloquear.</string>
+  <string name="config-function">Função</string>
+  <string name="config-description">Descrição</string>
+  <string name="config-shortcut">Atalho</string>
+  <string name="config-queue-filter-ignore">Ignorar (não importa)</string>
+  <string name="config-queue-filter-require">Exigir (deve ser)</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-rememberme">Lembrar meu nome de usuário</string>
   <string name="config-autowhitelist">Adicionar automaticamente usuários à lista branca</string>
+  <string name="config-already-in-use">Este atalho já está a ser usado por $1 , por favor, escolha um diferente</string>
   <string name="config-openinbrowser">Abrir hiperligações numa nova janela do navegador externo</string>
   <string name="config-shownewedits">Mostrar automaticamente novas edições na página caso elas ocorram</string>
   <string name="config-ircmode">Usar se possível o feed IRC para as mudanças recentes</string>
@@ -87,7 +101,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-shownewmessages">Mostrar barra de novas mensagens</string>
   <string name="config-shortcutlist">Teclas de atalhos</string>
   <string name="config-shortcutaction">Ação</string>
-  <string name="config-shortcut">Atalho</string>
   <string name="config-changeshortcut">Alterar atalho para $1</string>
   <string name="config-noshortcut">Nenhum</string>
   <string name="config-defaults">Restaurar</string>
@@ -104,7 +117,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-autoadvance">Após reverter, mostrar automaticamente a próxima edição a rever</string>
   <string name="config-userollback">Usar rollback caso esteja disponível</string>
   <string name="config-revertsummaries">Sumários de edição disponíveis no menu</string>
-  <string name="config-extendreports">Após vandalismo posterior acrescentar novas ligações na página de reportar vândalos</string>
+  <string name="config-extendreports">Estender relatórios após vandalismo adicional</string>
   <string name="config-autoreport">Quando me for perguntado se quero dar um aviso final a um usuário</string>
   <string name="config-reportnone">Não fazer nada</string>
   <string name="config-reportprompt">Perguntar se quero reportar o vândalo</string>
@@ -145,18 +158,18 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="history-error-message-title">Impossível desfazer</string>
   <string name="history-error">Este item não pode ser desfeito, a página deve ter sido alterada ou eliminada, e o huggle não pode desfazer neste ponto. Se realmente quer desfazer, você precisará fazê-lo manualmente usando a interface do MediaWiki.</string>
   <string name="userhistory-title">Histórico das suas alterações</string>
-  <string name="irc-connected" fuzzy="true">Conectado ao feed de IRC de mudanças recentes</string>
-  <string name="irc-connecting" fuzzy="true">Conectando-se ao feed IRC de mudanças recentes; aguarde um momento...</string>
-  <string name="irc-disconnected" fuzzy="true">Conexão perdida ao feed de IRC de mudanças recentes; conectando...</string>
+  <string name="irc-connected">Conectado ao feed  IRC de mudanças recentes</string>
+  <string name="irc-connecting">Conectando-se ao feed IRC de mudanças recentes em $1; isto pode demorar alguns momentos...</string>
+  <string name="irc-disconnected">Perdeu-se a ligação ao feed de IRC de mudanças recentes em $1; conectando novamente...</string>
   <string name="irc-nochannel">Não foi encontrado o canal IRC para $1. A usar como alternativa os pedidos API apesar de serem lentos</string>
   <string name="irc-error">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API apesar de serem lentos</string>
-  <string name="irc-stop" fuzzy="true">Aguardando pela parada do principal provedor de feed</string>
+  <string name="irc-stop">Aguardando pela parada do principal provedor de feed em $1</string>
   <string name="irc-not">Feed: O IRC está desativado por configuração do projeto</string>
   <string name="irc-failure">O provedor primário do feed falhou. Retornando ao provedor wiki...</string>
   <string name="irc-wait">Aguardando pela parada do principal provedor de feed</string>
   <string name="irc-switch-rc">Trocando para o feed RC da wiki</string>
   <string name="login-old">Recuperando configuração do usuário de local antigo.</string>
-  <string name="login-intro" fuzzy="true">Por favor, escolha um projeto e digite o seu nome usuário e senha.</string>
+  <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de usuario(a) e senha. Você pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Entrar</string>
   <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle em um projeto onde foi recentemente ativado</string>
@@ -170,16 +183,16 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">Recuperando configuração do usuário</string>
-  <string name="login-fail-css" fuzzy="true">Início de sessão falhou: Não é possível recuperar a configuração de usuário. 
-Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css no seu domínio de usuário?</string>
-  <string name="login-fail-enable-true" fuzzy="true">Início de sessão falhou: Não tem a linha de código enable:true na sua configuração pessoal.</string>
-  <string name="login-fail-no-info" fuzzy="true">Autenticação falhou: Impossível recuperar informação do usuário: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Autenticação falhou: Impossível analisar a configuração do usuário, ver registro de depuração para mais detalhes.</string>
-  <string name="login-fail-user-data" fuzzy="true">Autenticação sem sucesso: Não foi possivel obter dados de usuário. O query do API não retornou dados.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Autenticação falhou: Você não tem a permissão de rollback neste projeto</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Autenticação falhou: Você não é autoconfirmado neste projeto</string>
-  <string name="login-failed-edit" fuzzy="true">Autenticação falhou: Você não tem edições suficientes neste projeto.</string>
-  <string name="login-retrieving-info" fuzzy="true">Recuperando informação do usuário</string>
+  <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de usuário. 
+Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no seu espaço de usuário?</string>
+  <string name="login-fail-enable-true">Início de sessão em $1 falhou:Você não tem a linha de código enable:true na sua configuração pessoal.</string>
+  <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível recuperar à informação de usuário: $2</string>
+  <string name="login-fail-parse-config">Início de sessão em $1 falhou: Não foi possível analisar a configuração de usuário. Veja o registo de depuração para mais detalhes.</string>
+  <string name="login-fail-user-data">Início de sessão em $1 falhou: Não foi possível recuperar à informação de usuário, a consulta de API não retornou nenhum dado.</string>
+  <string name="login-fail-rollback-rights">Autenticação falhou em $1: Você não tem a permissão de reversor neste projeto</string>
+  <string name="login-failed-autoconfirm-rights">Autenticação falhou em $1: Você não é autoconfirmado neste projeto</string>
+  <string name="login-failed-edit">Autenticação em $1 falhou: Você não tem permissão de rollback neste projeto.</string>
+  <string name="login-retrieving-info">Recuperando informação do usuário em $1</string>
   <string name="login-password-empty">A senha que você digitou estava em branco</string>
   <string name="login-fail-wrong-name">Você não forneceu uma conta de usuário correta para autenticação</string>
   <string name="login-api">ERRO: O api.php respondeu com um resultado desconhecido: $1</string>
@@ -196,35 +209,36 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="login-progress-user-info">Verificando configuração de usuário para $1</string>
   <string name="login-progress-whitelist">Recebendo a lista branca de usuários...</string>
   <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
-  <string name="login-fail" fuzzy="true">Falha na identificação</string>
+  <string name="login-fail">Falha na identificação em $1</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
   <string name="login-error-age">Para usar o Huggle no projeto que escolheu é necessário ter uma conta de usuário criada à pelo menos $1 dias.</string>
   <string name="login-error-alldisabled">O Huggle neste momento está bloqueado em todos os projetos. Provavelmente é uma medida temporária.</string>
-  <string name="login-error-approval" fuzzy="true">Para usar o Huggle no projeto que escolheu é necessária a aprovação prévia.</string>
+  <string name="login-error-approval">Para usar o Huggle no projeto $1 é necessária a aprovação prévia.</string>
   <string name="login-error-cancelled">Cancelado.</string>
-  <string name="login-error-config" fuzzy="true">Autenticação falhou porque foi impossível recuperar informação do usuário: $1</string>
+  <string name="login-error-config">O início de sessão falhou, não foi possível carregar a página de configuração em $1: $2</string>
   <string name="login-error-count">Para usar o Huggle no projeto que escolheu são necessárias pelo menos $1 edições.</string>
-  <string name="login-error-disabled" fuzzy="true">O Huggle não está habilitado em sua conta de usuário. Verifique sua página de configuração pessoal.</string>
+  <string name="login-error-disabled">O Huggle não está ativo na sua conta de utilizador(a) em $1. Verifique a sua página de configuração pessoal.</string>
   <string name="login-error-global">Autenticação sem sucesso: Não foi possivel analisar as configurações globais. Veja o registro de depuração para mais detalhas.</string>
   <string name="login-error-invalid">Nome de usuário inválido.</string>
-  <string name="login-error-noconfig" fuzzy="true">Este projeto não tem uma página de configuração do Huggle.</string>
+  <string name="login-error-noconfig">$1 não tem uma página de configuração do Huggle</string>
   <string name="login-error-nouser">O usuário não existe.</string>
   <string name="login-error-password">Senha errada.</string>
   <string name="login-error-projdisabled">Atualmente o Huggle está desabilitado neste projeto.</string>
-  <string name="login-error-unknown" fuzzy="true">Não foi possível entrar na conta de usuário.</string>
+  <string name="login-error-unknown">Não foi possível iniciar sessão em $1.</string>
   <string name="login-error-version">Esta versão foi descontinuada. Atualize para a versão mais recente.</string>
-  <string name="login-error-whitelist" fuzzy="true">Falha ao carregar a lista branca de usuários.</string>
+  <string name="login-error-whitelist">Não foi possível carregar a lista branca de utilizadores em $1.</string>
   <string name="main-menu-provider-stop">Interromper provedor</string>
   <string name="main-menu-provider-resume">Reiniciar provedor</string>
   <string name="main-no-reason">Nenhuma razão fornecida pelo usuário</string>
-  <string name="main-restoring-slap">Eestou restaurando outra edição, por favor aguarde...</string>
+  <string name="main-restoring-slap">Eu estou restaurando outra edição, por favor aguarde...</string>
   <string name="main-page">Página</string>
   <string name="main-user">Usuário</string>
   <string name="main-contribs">Contribuições</string>
   <string name="main-history">Histórico</string>
-  <string name="main-new-messages">Você tem novas mensagens. Selecione Sistema &gt; Mostrar novas mensagens ou pressione a tecla M para vê-las.</string>
+  <string name="main-new-messages">Tem novas mensagens. Selecione Sistema -&gt; Mostrar novas mensagens ou pressione a tecla M para visualizá-las.</string>
+  <string name="main-space">O nome da página não pode acabar com um espaço, por favor, verifique o nome da página</string>
   <string name="main-system">Sistema</string>
-  <string name="main-status-bar" fuzzy="true">Processando edições &lt;b&gt;$1&lt;/b&gt; e consultas &lt;b&gt;$2&lt;/b&gt;. Usuários na lista branca: &lt;b&gt;$3&lt;/b&gt; Tamanho da fila: &lt;b&gt;$4&lt;/b&gt; Estatísticas: $5</string>
+  <string name="main-status-bar" fuzzy="true">A processar &lt;b&gt;$1&lt;/b&gt; edições e &lt;b&gt;$2&lt;/b&gt; consultas. Utilizadores na lista branca: &lt;b&gt;$3&lt;/b&gt; Tamanho da consulta: &lt;b&gt;$4&lt;/b&gt; Estatísticas para $6: &lt;b&gt;$5&lt;/b&gt;</string>
   <string name="main-shutting-down">Huggle está sendo encerrado, ignorado</string>
   <string name="main-system-messages">Mostrar novas mensagens</string>
   <string name="main-system-reconnectirc">Reconectar-se ao feed de IRC</string>
@@ -342,6 +356,7 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="message-retrieve-new-token">Recuperando chave para editar $1</string>
   <string name="message-fail-re-user-tp">Impossível recuperar $1. Parando a entrega da mensagem para aquele usuário</string>
   <string name="message-er">Impossível entregar a mensagem para $1: $2</string>
+  <string name="message-error">Falha ao entregar a mensagem a $1! Verifique os registos, por favor!</string>
   <string name="message-fail-retrieve-talk">impossível recuperar a página de discussão do usuário</string>
   <string name="message-done">Mensagem entregada com sucesso para: $1</string>
   <string name="message-fail-token-1">Não foi possível recuperar chave para editar</string>
@@ -401,6 +416,9 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="report-message">Mensagem:</string>
   <string name="report-log">Avisos para este usuário:</string>
   <string name="report-include">Incluir no relatório</string>
+  <string name="report-select">Por favor, selecione um dif na lista para abrir a visualização</string>
+  <string name="report-write">Escrevendo</string>
+  <string name="reportuser-not">Este utilizador não está denunciado no momento</string>
   <string name="report-evidence-none-provid">Nenhum diff foi fornecido como evidência, isto torna muito difícil para os administradores perceber se o editor é um vândalo ou não. Tem certeza que quer continuar?</string>
   <string name="report-duplicate">O usuário já foi reportado aos administradores</string>
   <string name="report-fail">Não foi possível reportar \'$1\' aos administradores</string>
@@ -437,27 +455,7 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="speedy-parameters">Parâmetros:</string>
   <string name="speedy-notifycreator">Notificar o criador da página</string>
   <string name="rollback">Revertendo $1</string>
-  <string name="software-rollback" fuzzy="true">Você não tem permissão de reversor, utilizando reversão por software</string>
-  <string name="stats-title">Estatísticas</string>
-  <string name="stats-actions">Eventos nesta sessão:</string>
-  <string name="stats-session">Tempo decorrido da sessão: $1</string>
-  <string name="stats-edits">Edições</string>
-  <string name="stats-assisted">Edições assistidas</string>
-  <string name="stats-huggle">Edições feitas com o Huggle</string>
-  <string name="stats-reverts">Reversões</string>
-  <string name="stats-warnings">Avisos</string>
-  <string name="stats-reports">Reportar a administradores</string>
-  <string name="stats-tags">Marcações</string>
-  <string name="stats-notifications">Notificações</string>
-  <string name="stats-blocks">Bloqueios</string>
-  <string name="stats-deletes">Eliminações</string>
-  <string name="stats-protections">Proteções</string>
-  <string name="stats-allusers">Todos os usuários</string>
-  <string name="stats-me">Eu</string>
-  <string name="stats-ignored">Ignorados</string>
-  <string name="stats-anon">Anônimos</string>
-  <string name="stats-bots">Robôs</string>
-  <string name="stats-other">Outros</string>
+  <string name="software-rollback">Você não tem permissão de reversor, utilizando reversão por software</string>
   <string name="tag-title">Marcar $1</string>
   <string name="tag-tagselector">Adicionar:</string>
   <string name="tag-tags">Marcações:</string>
@@ -471,19 +469,30 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="updater-open-manualdownloadpage">Abrir página para download</string>
   <string name="updater-close">Fechar</string>
   <string name="updater-disable-notify">Desativar atualizações</string>
+  <string name="user-history-fail">não é possível recuperar o histórico do utilizador: $1</string>
   <string name="userinfo-generic">Informação de usuário</string>
+  <string name="userinfo-retrieve">Recuperar informação</string>
+  <string name="shortcut-my-talk">Minha página de discussão</string>
   <string name="shortcut-raw">Reverter edição e avisar usuário</string>
   <string name="shortcut-exit">Encerrar o Huggle normalmente</string>
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar como edição suspeita</string>
   <string name="shortcut-back">Vá para edição mostrada anteriormente</string>
+  <string name="shortcut-forward">Vai para uma edição que você carregou no passado,mas retornou de</string>
   <string name="shortcut-warn">Enviar um aviso ao usuário, sem reverter a edição</string>
   <string name="shortcut-revert">Reverter edição</string>
   <string name="shortcut-x-raw">Acione Nº item no menu de aviso e reverso</string>
   <string name="shortcut-x-revert">Acione Nº item no menu de reverso</string>
+  <string name="shortcut-watch">Adiciona a página exibida à lista de vigiados</string>
+  <string name="shortcut-unwatch">Remove a página exibida da lista de vigiados</string>
   <string name="shortcut-x-warn">Acione Nº item no menu de avisos</string>
   <string name="shortcut-good">Marcar a edição atual exibida como boa</string>
+  <string name="shortcut-open-in-huggle">Abrir a página atualmente exibida</string>
   <string name="shortcut-open">Abrir a edição atual exibida em um browser</string>
+  <string name="shortcut-talk">Mostrar a página de discussão do usuário que fez esta alteração</string>
+  <string name="shortcut-revert-agf-1">Reverter última revisão assumindo boa fé</string>
+  <string name="shortcut-browser-close-tab">Fechar uma aba do navegador</string>
+  <string name="shortcut-tab">Abrir uma nova aba</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
@@ -494,6 +503,7 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="warning-warntype">Tipo de aviso:</string>
   <string name="warning-warnlog">Avisos a este usuário:</string>
   <string name="warning-submit">Enviar</string>
+  <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">Rede de vandalismo não está disponível nas opções</string>
   <string name="han-connecting">Contectando o huggle à rede de anti-vandalismo</string>
   <string name="error-loggedout">Você saiu de sua conta de usuário, entrando na conta...</string>
@@ -520,6 +530,12 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="edit-progress">Editando \'$1\'...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de \'$1\'</string>
   <string name="history-progress">A receber o histórico de \'$1\' ($2)...</string>
+  <string name="history-work">Desfazendo a própria edição feita em $1</string>
+  <string name="history-message-revert-title" fuzzy="true">Você realmente quer refazer somente a mensagem?</string>
+  <string name="history-not-found">Nada foi encontrado para desfazer</string>
+  <string name="history-already-done">isto já foi desfeito</string>
+  <string name="history-message-revert-body">Essa foi uma mensagem modificada por um rollback, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou?(você terá que reverter o rollback se você quiser reverter os dois)</string>
+  <string name="history-revert-fail">Impossivel de desfazer a sua ediçao em $1 erro durante a reversão: $2</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>
@@ -540,10 +556,8 @@ Especial:Minha página/huggle3.css está em falta. Criou a página huggle3.css n
   <string name="speedy-progress">Marcando \'$1\' para eliminação rápida...</string>
   <string name="speedy-wrong">A etiqueta requisitada não é válida, por favor escolha uma razão diferente para a eliminação</string>
   <string name="speedy-finished">Concluído</string>
-  <string name="usermessage-fail">Não foi possível enviar a mensagem a \'$1\'</string>
-  <string name="usermessage-progress">Enviando a mensagem a \'$1\'...</string>
   <string name="warn-alreadyblocked">O usuário já foi bloqueado</string>
-  <string name="editquery-success" fuzzy="true">$1 editado com sucesso</string>
+  <string name="editquery-success">$1 editado com sucesso em $2</string>
   <string name="editquery-token">Recuperando chave para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
   <string name="provider-failure">Falha do provedor de feed primário, tentando recuperar</string>

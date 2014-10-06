@@ -16,8 +16,11 @@
   <string name="remove">Rimuovi</string>
   <string name="rename">Rinomina</string>
   <string name="reload">Ricarica</string>
+  <string name="project">Progetto</string>
   <string name="result">Risultato</string>
   <string name="save">Salva</string>
+  <string name="show">Mostra</string>
+  <string name="undo">Annulla</string>
   <string name="yes">Sì</string>
   <string name="agf">Annulla questa modifica fatta in buona fede con un oggetto personalizzato</string>
   <string name="successful">Riuscito</string>
@@ -38,17 +41,23 @@
   <string name="link">Collegamento</string>
   <string name="reason">Motivo</string>
   <string name="diffid">ID diff</string>
-  <string name="whitelisted" fuzzy="true">$1 con punteggio $2 è stato inserito nella lista bianca</string>
+  <string name="whitelisted">$1 con punteggio $2 su $3 è stato inserito nella lista bianca</string>
   <string name="expiry-time">Tempo di scadenza</string>
   <string name="duration">Durata</string>
   <string name="no-token">Nessun token</string>
   <string name="flags">Flag</string>
+  <string name="score-score">Punteggio</string>
+  <string name="score-word">Parola</string>
+  <string name="score-range">Intervallo</string>
+  <string name="score-only-whole-word">Corrisponde solo a parole intere</string>
+  <string name="score-take-any-word">Corrisponde a qualsiasi parola che contiene questa stringa</string>
   <string name="browser-none">Non si sta visualizzando alcuna pagina</string>
   <string name="browser-load">Download in corso dei diff utilizzando un web rendering di fallback, attendere prego...</string>
   <string name="browser-miss-summ">Non è stato inserito alcun oggetto</string>
   <string name="browser-diff">Diff della pagina: $1 (score: $2)</string>
   <string name="browser-fail">Impossibile caricare il diff: $1</string>
   <string name="about-contributors">Sviluppatori:</string>
+  <string name="block-not">Utente non bloccato</string>
   <string name="block-title">Blocca $1</string>
   <string name="block-reason">Motivo:</string>
   <string name="block-duration">Durata:</string>
@@ -69,10 +78,17 @@
   <string name="block-type">Blocca / sblocca</string>
   <string name="block-admin">L\'amministratore che ha fatto il blocco</string>
   <string name="block-none">Non c\'è nessun utente da bloccare.</string>
+  <string name="config-function">Funzione</string>
+  <string name="config-description">Descrizione</string>
+  <string name="config-shortcut">Scelta rapida</string>
+  <string name="config-queue-filter-ignore">Ignora (non è importante)</string>
+  <string name="config-queue-filter-exclude">Escludi (non deve esserci)</string>
+  <string name="config-queue-filter-require">Richiedi (deve esserci)</string>
   <string name="config-summ">Campo oggetto personalizzato per il revert di template</string>
   <string name="config-title">Opzioni</string>
   <string name="config-rememberme">Ricorda il mio nome utente</string>
   <string name="config-autowhitelist">Aggiungi automaticamente gli utenti alla whitelist</string>
+  <string name="config-already-in-use">Questa scorciatoia è già utilizzata da $1, scegline una diversa</string>
   <string name="config-openinbrowser">Apri il collegamento in una nuova finestra</string>
   <string name="config-shownewedits">Visualizza le nuove modifiche della pagina selezionata appena salvate</string>
   <string name="config-ircmode">Usa le informazioni IRC per le modifiche recenti se possibile</string>
@@ -84,7 +100,6 @@
   <string name="config-shownewmessages">Visualizza la  barra dei nuovi messaggi</string>
   <string name="config-shortcutlist">Scorciatoie da tastiera</string>
   <string name="config-shortcutaction">Azione</string>
-  <string name="config-shortcut">Scelta rapida</string>
   <string name="config-changeshortcut">Cambia il tasto di scelta rapida per $1</string>
   <string name="config-noshortcut">Nessuno</string>
   <string name="config-defaults">Predefinito</string>
@@ -115,11 +130,13 @@
   <string name="delete-e1">La pagina non può essere cancellata: $1</string>
   <string name="delete-e2">Impossibile cancellare la pagina</string>
   <string name="delete-edsc">Impossibile cancellare la pagina poiché $1</string>
+  <string name="extension-kl">Ucciso</string>
+  <string name="extension-fine">Caricato e in esecuzione</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
   <string name="historyform-retrieving-history">Recuperando la cronologia</string>
   <string name="history-error-message-title">Impossibile annullare</string>
-  <string name="login-intro" fuzzy="true">Per favore scegli un progetto e inserisci nome utente e password.</string>
+  <string name="login-intro">Per favore scegli un progetto e inserisci nome utente e password. Puoi anche accedere a più progetti cliccando sul pulsante \"Progetti\".</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Accedi</string>
   <string name="login-language">Lingua:</string>
@@ -132,13 +149,13 @@
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Dominio:</string>
   <string name="login-retrieving-user-conf">Recupero della configurazione utente</string>
-  <string name="login-retrieving-info" fuzzy="true">Recupero delle informazioni utente</string>
+  <string name="login-retrieving-info">Recupero delle informazioni utente su $1</string>
   <string name="login-start">Entra</string>
   <string name="login-translate">Traduci Huggle</string>
   <string name="login-progress-start">Accesso a $1</string>
   <string name="login-progress-global">Verifica della configurazione globale...</string>
   <string name="login-progress-config">Controllo pagine di configurazione...</string>
-  <string name="login-fail" fuzzy="true">Accesso non riuscito</string>
+  <string name="login-fail">Accesso non riuscito su $1</string>
   <string name="login-error-age">Per usare Huggle in questo progetto devi essere iscritto da almeno $1 giorni</string>
   <string name="login-error-alldisabled">Huggle è attualmente disattivato in tutti i progetti.</string>
   <string name="login-error-invalid">Nome utente non valido</string>
@@ -198,19 +215,12 @@
   <string name="uaa-reported">Segnalato</string>
   <string name="uaa-nr">Non è stato fornito alcun motivo</string>
   <string name="speedy-parameters">Parametri:</string>
-  <string name="stats-title">Statistiche</string>
-  <string name="stats-actions">Azioni in questa sessione:</string>
-  <string name="stats-session">Tempo di sessione: $1</string>
-  <string name="stats-edits">Modifiche</string>
-  <string name="stats-assisted">Modifiche assistite</string>
-  <string name="stats-huggle">Modifiche huggle</string>
-  <string name="stats-warnings">Avvisi</string>
-  <string name="stats-notifications">Notifiche</string>
-  <string name="stats-blocks">Blocchi</string>
-  <string name="stats-allusers">Tutti gli utenti</string>
-  <string name="stats-me">Me</string>
   <string name="update-title">Nuova versione disponibile</string>
   <string name="userinfo-generic">Informazioni utente</string>
+  <string name="shortcut-revert-agf-1">Ripristina l\'ultima versione, presupponendo la buona fede</string>
+  <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
+  <string name="shortcut-tab">Apre una nuova scheda</string>
+  <string name="shortcut-rw-stay">Ripristina la modifica attuale, avverte un utente e rimane sulla pagina</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>
   <string name="warning-level1">Livello 1</string>
@@ -221,5 +231,5 @@
   <string name="warning-submit">Invia</string>
   <string name="error-pagemissing">La pagina non esiste</string>
   <string name="error-unknown">Errore sconosciuto</string>
-  <string name="editquery-success" fuzzy="true">$1 modificata con successo</string>
+  <string name="editquery-success">$1 modificata con successo su $2</string>
 </resources>

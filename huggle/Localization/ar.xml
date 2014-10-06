@@ -17,8 +17,11 @@
   <string name="remove">أزل</string>
   <string name="rename">غير الاسم</string>
   <string name="reload">إعادة تحميل</string>
+  <string name="project">المشروع</string>
   <string name="result">النتيجة</string>
   <string name="save">احفظ</string>
+  <string name="show">أظهر</string>
+  <string name="undo">تراجع</string>
   <string name="yes">نعم</string>
   <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
@@ -43,7 +46,10 @@
   <string name="duration">المدة</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
+  <string name="browser-none">ما من صفحات معروضة الآن</string>
+  <string name="browser-miss-summ">لم يعطى أي ملخص</string>
   <string name="about-contributors">المطورون:</string>
+  <string name="block-not">المستخدم ليس ممنوعاً من التحرير</string>
   <string name="block-title">منع $1 ء</string>
   <string name="block-reason">السبب:</string>
   <string name="block-duration">المدة:</string>
@@ -60,7 +66,11 @@
   <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟
  .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
   <string name="block-fail">لم يتم المنع \'$1\'ء</string>
+  <string name="block-error-no-info">ليست هناك معلومات عن المستخدم في الطلب (هل أنت إداري؟)</string>
+  <string name="block-type">امنع / ارفع المنع</string>
   <string name="block-admin">مدير النظام المانع</string>
+  <string name="block-none">ما من مستخدمٍ لمنعه.</string>
+  <string name="config-shortcut">مختصر</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
   <string name="config-rememberme">تذكر اسم المستخدم</string>
@@ -77,7 +87,6 @@
   <string name="config-shownewmessages">اعرض شريط الرسائل الجديدة</string>
   <string name="config-shortcutlist">مفاتيخ الاختصار</string>
   <string name="config-shortcutaction">إجراء</string>
-  <string name="config-shortcut">مختصر</string>
   <string name="config-changeshortcut">غير الاختصار لـ $1ء</string>
   <string name="config-noshortcut">لا شيء</string>
   <string name="config-defaults">مبدئيات</string>
@@ -108,20 +117,29 @@
   <string name="config-blocktimeanon">مستخدمون مجهولون</string>
   <string name="config-blocktimereg">مستخدمون مسجلون</string>
   <string name="config-summaryprompt">أدخل ملخصا</string>
+  <string name="config-history">حمّل تاريخ جميع المقالات.</string>
   <string name="config-defaultsprompt">استرجاع المبدئيات?</string>
   <string name="config-logbrowsetitle">موقع ملف السجل</string>
   <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$2\'.ء</string>
+  <string name="config-notify-update">اطلع على التحديثات</string>
+  <string name="config-notify-beta">اطلع على إصدارات البيتا إذا كانت متوافرة</string>
   <string name="delete-title">احذف $1ء</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
+  <string name="delete-rem-talk">احذف الكلام المتعلّق</string>
   <string name="delete-notify">أخطر المنشئ</string>
+  <string name="delete-e2">لا يمكن حذف الصفحة</string>
+  <string name="delete-edsc">لا يمكن حذف الصفحة بسبب $1</string>
+  <string name="delete-failed-no-info">ما من معلومات عن الصفحة في الطلب (هل أنت إداري؟)</string>
   <string name="historyform-no-info">لا معلومات تعديل</string>
   <string name="historyform-title">التاريخ</string>
   <string name="historyform-retrieve-history">اجلب التاريخ</string>
   <string name="historyform-retrieving-history">يتم جلب التاريخ</string>
-  <string name="irc-connected" fuzzy="true">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
-  <string name="irc-connecting" fuzzy="true">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
-  <string name="irc-disconnected" fuzzy="true">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
+  <string name="historyform-not-latest-tip">هذه ليست آخر نسخة من الصفحة. تأكَّد من أنك راجعت النسخ الأحدث أيضاً قبل الاسترجاع. انتبه أيضاً إلى أنَّه قد لا يمكنك استرجاع هذه النسخة وحدها.</string>
+  <string name="history-error-message-title">لا يمكن التراجع</string>
+  <string name="irc-connected">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
+  <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
+  <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="login-tab-oauth">أو أوث</string>
@@ -145,25 +163,25 @@
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل Huggle حاليا في كل المشاريع.</string>
-  <string name="login-error-approval" fuzzy="true">استخدام Huggle في هذا المشروع يحتاج تصديقا.</string>
+  <string name="login-error-approval">استخدام هغل في هذا المشروع يحتاج موافقة.</string>
   <string name="login-error-cancelled">ملغى.</string>
   <string name="login-error-config" fuzzy="true">فشل تحميل صفحات الخيارات.</string>
   <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle غير مفعلة في حسابك، راجع صفحة خيارات المستخدم.</string>
+  <string name="login-error-disabled">هغل غير مفعل في حسابك، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global" fuzzy="true">تعذر تحميل صفحة الخيارات العمومية.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
-  <string name="login-error-noconfig" fuzzy="true">ليس لهذا المشروع صفحة خيارات لبرمجية Huggle.</string>
-  <string name="login-error-nouser" fuzzy="true">مستخدم غير موجود.</string>
+  <string name="login-error-noconfig">ليس لهذا المشروع صفحة خيارات لبرمجية هغل.</string>
+  <string name="login-error-nouser">مستخدم غير موجود.</string>
   <string name="login-error-password">كلمة سر خاطئة.</string>
   <string name="login-error-projdisabled">Huggle معطل حاليا في هذا المشروع.</string>
-  <string name="login-error-unknown" fuzzy="true">تعذر الولوج.</string>
-  <string name="login-error-version" fuzzy="true">هذا الإصدار قديم، يرجى تحديث البرمجية.</string>
-  <string name="login-error-whitelist" fuzzy="true">تعذر تحميل قائمة المستخدمون البيضاء</string>
+  <string name="login-error-unknown">تعذر الولوج.</string>
+  <string name="login-error-version">هذا الإصدار قديم، يرجى التحديث لآخر إصدارة.</string>
+  <string name="login-error-whitelist">تعذر تحميل قائمة المستخدمين البيضاء</string>
   <string name="main-page">الصفحة</string>
   <string name="main-user">مستخدم</string>
   <string name="main-contribs">مساهمات</string>
   <string name="main-history">تاريخ</string>
-  <string name="main-new-messages" fuzzy="true">لديك رسائل جديدة؛ اختر النظام -&gt; اعرض الرسائل الجديدة أو اضغط (م) لعرضهم</string>
+  <string name="main-new-messages">لديك رسائل جديدة؛ اختر النظام -&gt; اعرض الرسائل الجديدة أو اضغط (M) لعرضها</string>
   <string name="main-system">النظام</string>
   <string name="main-system-messages">اعرض الرسائل الجديدة</string>
   <string name="main-system-reconnectirc">عاود الاتصال بتلقيم آي آر سي</string>
@@ -177,7 +195,7 @@
   <string name="main-queue">طابور</string>
   <string name="main-queue-next">تالي</string>
   <string name="main-queue-clear">امسح الحالي</string>
-  <string name="main-queue-count" fuzzy="true">$1 عناصر</string>
+  <string name="main-queue-count">$1 عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
   <string name="main-queue-reset">تصفير</string>
   <string name="main-queue-clearall">امسح الكل</string>
@@ -187,7 +205,7 @@
   <string name="main-goto-mycontribs">مساهماتي</string>
   <string name="main-revision">مراجعة</string>
   <string name="main-revision-view">معاينة</string>
-  <string name="main-revision-revert" fuzzy="true">استرجاع</string>
+  <string name="main-revision-revert">استرجع التعديل المعروض حالياً</string>
   <string name="main-revision-previous">سابق</string>
   <string name="main-revision-next">تالي</string>
   <string name="main-revision-latest">الأخير</string>
@@ -197,10 +215,10 @@
   <string name="main-page-viewlatest">شاهد المراجعة الأخيرة</string>
   <string name="main-page-history">اجلب التاريخ</string>
   <string name="main-page-historypage">أظهر صفحة التاريخ</string>
-  <string name="main-page-edit" fuzzy="true">عدل</string>
+  <string name="main-page-edit">عدل الصفحة في المتصفّح</string>
   <string name="main-page-tag">وسم</string>
-  <string name="main-page-reqdeletion" fuzzy="true">اطلب الحذف</string>
-  <string name="main-page-reqprotection" fuzzy="true">اطلب الحماية</string>
+  <string name="main-page-reqdeletion">اطلب حذفاً سريعاً</string>
+  <string name="main-page-reqprotection">اطلب الحماية</string>
   <string name="main-page-watch">راقب</string>
   <string name="main-page-unwatch">لا تراقب</string>
   <string name="main-page-purge">امسح اختزان الصفحة</string>
@@ -295,7 +313,7 @@
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, $2, في نفس نطاق مؤلف النسخة الحالية, $1, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
   <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , $1 . استمر؟</string>
   <string name="revert-confirm-warned">هذا سيسترجع الى نسخه بواسطة $1 , هذا المستخدم تلقى تحذير مؤخراً, استمر؟</string>
-  <string name="revert-error-first" fuzzy="true">هذا اول تحرير للصفحة, لايمكن الاسترجاع</string>
+  <string name="revert-error-first">هذا أول تحرير للصفحة، لا يمكن استرجاعه</string>
   <string name="revert-only">هذا التعديل الوحيد للصفحة</string>
   <string name="revert-creator">اخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة,$1 .ء</string>
   <string name="revert-delete-instead">احذف الصفحة بدلاً عن ذلك؟</string>
@@ -307,26 +325,6 @@
   <string name="speedy-reason">السبب:</string>
   <string name="speedy-parameters">المعلمة:</string>
   <string name="speedy-notifycreator">أعلم منشئ الصفحة</string>
-  <string name="stats-title">إحصائيات</string>
-  <string name="stats-actions">العمليات في الجلسة الحالية:</string>
-  <string name="stats-session">زمن الجلسة: $1ء</string>
-  <string name="stats-edits">تعديلات</string>
-  <string name="stats-assisted">مساعدة التحرير</string>
-  <string name="stats-huggle">Huggle تحرير</string>
-  <string name="stats-reverts">استرجاعات</string>
-  <string name="stats-warnings">تحذيرات</string>
-  <string name="stats-reports">تقارير</string>
-  <string name="stats-tags">وسوم</string>
-  <string name="stats-notifications">الإخطارات</string>
-  <string name="stats-blocks">عمليات منع</string>
-  <string name="stats-deletes">عمليات حذف</string>
-  <string name="stats-protections">عمليات حماية</string>
-  <string name="stats-allusers">جميع المستخدمين</string>
-  <string name="stats-me">أنا</string>
-  <string name="stats-ignored">متجاهلون</string>
-  <string name="stats-anon">مجهولون</string>
-  <string name="stats-bots">بوتات</string>
-  <string name="stats-other">آخر</string>
   <string name="tag-title">وسم $1ء</string>
   <string name="tag-tagselector">أضف وسم:</string>
   <string name="tag-tags">عدة وسوم:</string>
@@ -383,9 +381,7 @@
   <string name="reqprotection-duplicate">تم طلب الحماية بالفعل</string>
   <string name="reqprotection-fail">لم يتم طلب الحماية لـ\'$1\'ء</string>
   <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'$1\'...ء</string>
-  <string name="speedy-fail" fuzzy="true">لم يتم وسم \'$1\' للحذف السريع</string>
-  <string name="speedy-progress" fuzzy="true">قيد وسم \'$1\' للحذف السريع...</string>
-  <string name="usermessage-fail">لم يتم ارسال رسالة \'$1\'ء</string>
-  <string name="usermessage-progress">قيد ارسال رسالة \'$1\'...ء</string>
+  <string name="speedy-fail">لم يمكن وسم \'$1\' للحذف السريع</string>
+  <string name="speedy-progress">قيد وسم \'$1\' للحذف السريع...</string>
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>
 </resources>

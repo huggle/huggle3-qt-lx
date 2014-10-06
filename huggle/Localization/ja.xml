@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">日本語</string>
+  <string name="isrtl">false</string>
   <string name="add">追加</string>
   <string name="cancel">キャンセル</string>
   <string name="clear">クリア</string>
@@ -15,7 +16,10 @@
   <string name="remove">除去</string>
   <string name="rename">改名</string>
   <string name="reload">再読み込み</string>
+  <string name="project">プロジェクト</string>
   <string name="save">保存</string>
+  <string name="show">表示</string>
+  <string name="undo">取り消す</string>
   <string name="yes">はい</string>
   <string name="summary">要約</string>
   <string name="id">ID</string>
@@ -34,6 +38,7 @@
   <string name="duration">期間</string>
   <string name="flags">フラグ</string>
   <string name="about-contributors">開発者:</string>
+  <string name="block-not">利用者はブロックされていません</string>
   <string name="block-title">$1 をブロック</string>
   <string name="block-reason">理由:</string>
   <string name="block-duration">期間:</string>
@@ -51,6 +56,7 @@
 ブロックするとレンジ・ブロックに重ねて二重で影響を与えます。実行しますか？</string>
   <string name="block-fail">\'$1\' をブロックしませんでした</string>
   <string name="block-type">ブロック / ブロック解除</string>
+  <string name="config-shortcut">ショートカット</string>
   <string name="config-title">オプション</string>
   <string name="config-rememberme">利用者名を記憶する</string>
   <string name="config-autowhitelist">自動で利用者をホワイトリストに入れる</string>
@@ -66,7 +72,6 @@
   <string name="config-shownewmessages">新着メッセージ・バー</string>
   <string name="config-shortcutlist">キーボード・ショートカット</string>
   <string name="config-shortcutaction">アクション</string>
-  <string name="config-shortcut">ショートカット</string>
   <string name="config-changeshortcut">$1 のショートカットを変更する</string>
   <string name="config-noshortcut">なし</string>
   <string name="config-defaults">デフォルト</string>
@@ -98,7 +103,7 @@
   <string name="config-blocktimereg">登録利用者</string>
   <string name="config-summaryprompt">要約を入力</string>
   <string name="config-defaultsprompt">デフォルト設定に戻しますか？</string>
-  <string name="config-logbrowsetitle">ログ・ファイルの場所</string>
+  <string name="config-logbrowsetitle">ログファイルの場所</string>
   <string name="config-shortcutconflict">ショートカット \'$1\' は、既存のショートカット \'{1}\' とかぶっています。</string>
   <string name="config-notify-update">更新を確認</string>
   <string name="config-notify-beta">利用できる場合はベータ版を確認</string>
@@ -106,9 +111,9 @@
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
   <string name="history-error-message-title">取り消せません</string>
-  <string name="irc-connected" fuzzy="true">IRCの最近の更新フィードへ接続しました。</string>
-  <string name="irc-connecting" fuzzy="true">IRCの最近の更新フィードへ接続しています。しばらくお待ちください....</string>
-  <string name="irc-disconnected" fuzzy="true">IRCの最近の更新フィードから切断されました。再接続しています....</string>
+  <string name="irc-connected">$1: IRC の最近の更新フィードに接続しました</string>
+  <string name="irc-connecting">$1 の IRC の最近の更新フィードへ接続しています。しばらくお待ちください....</string>
+  <string name="irc-disconnected">$1 の IRC の最近の更新フィードから切断されました。再接続しています....</string>
   <string name="irc-nochannel">$1のIRCチャンネルが見つかりません。より低速なAPIクエリを代わりに使用します</string>
   <string name="irc-error">IRCの最近の更新フィードに接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
   <string name="login-intro" fuzzy="true">プロジェクトを選択して、利用者名とパスワードを入力してください。</string>
@@ -123,11 +128,11 @@
   <string name="login-proxyaddress">アドレス:</string>
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
-  <string name="login-fail-no-info" fuzzy="true">ログイン失敗: 利用者の情報を取得できません: $1</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">ログイン失敗: あなたにはこのプロジェクトでの巻き戻しの権限がありません。</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">ログイン失敗: あなたはこのプロジェクトで自動承認された利用者ではありません。</string>
-  <string name="login-failed-edit" fuzzy="true">ログイン失敗: このプロジェクトでの編集回数が不足しています。</string>
-  <string name="login-retrieving-info" fuzzy="true">利用者の情報を取得中</string>
+  <string name="login-fail-no-info">$1 へのログイン失敗: 利用者の情報を取得できません: $2</string>
+  <string name="login-fail-rollback-rights">$1 へのログイン失敗: あなたにはこのプロジェクトでの巻き戻しの権限がありません。</string>
+  <string name="login-failed-autoconfirm-rights">$1 へのログイン失敗: あなたはこのプロジェクトで自動承認された利用者ではありません。</string>
+  <string name="login-failed-edit">$1 へのログイン失敗: このプロジェクトでの編集回数が不足しています。</string>
+  <string name="login-retrieving-info">$1 の利用者の情報を取得中</string>
   <string name="login-api">エラー: api.php が不明な結果を返しました: $1</string>
   <string name="login-start">ログイン</string>
   <string name="login-oauth-notsupported">現在、この方法ではログインできません</string>
@@ -143,25 +148,26 @@
   <string name="login-error-admin">このプロジェクトでハグルを使用するには管理者権限が必要です。</string>
   <string name="login-error-age">このプロジェクトでハグルを使用するにはアカウント作成後 $1 日以上が経過している必要があります。</string>
   <string name="login-error-alldisabled">現在すべてのプロジェクトでハグルの使用ができません。</string>
-  <string name="login-error-approval" fuzzy="true">このプロジェクトでハグルを使用するには承認が必要です。</string>
+  <string name="login-error-approval">$1 でハグルを使用するには承認が必要です。</string>
   <string name="login-error-cancelled">キャンセルしました。</string>
-  <string name="login-error-config" fuzzy="true">設定ページのロードに失敗しました。</string>
+  <string name="login-error-config">$1 のローカル設定を構文解析できなかったため、ログインできませんでした: $2</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が $1 回以上ある必要があります。</string>
-  <string name="login-error-disabled" fuzzy="true">あなたのアカウントはハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
+  <string name="login-error-disabled">$1 上のあなたのアカウントではハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
   <string name="login-error-global" fuzzy="true">グローバル設定ページのロードに失敗しました。</string>
   <string name="login-error-invalid">利用者名が無効です</string>
-  <string name="login-error-noconfig" fuzzy="true">このプロジェクトにはハグルの設定ページがありません。</string>
+  <string name="login-error-noconfig">$1 にはハグルの設定ページがありません</string>
   <string name="login-error-nouser">利用者が存在しません</string>
   <string name="login-error-password">パスワードが無効です</string>
-  <string name="login-error-projdisabled">現在このプロジェクトでハグルは使用できません。</string>
-  <string name="login-error-unknown" fuzzy="true">ログインできません。</string>
+  <string name="login-error-projdisabled">現在 $1 ではハグルが無効になっています。</string>
+  <string name="login-error-unknown">$1 にログインできません。</string>
   <string name="login-error-version">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
-  <string name="login-error-whitelist" fuzzy="true">利用者ホワイトリストのロードに失敗しました。</string>
+  <string name="login-error-whitelist">$1 の利用者ホワイトリストを読み込めませんでした。</string>
   <string name="main-page">ページ</string>
   <string name="main-user">利用者</string>
   <string name="main-contribs">投稿記録</string>
   <string name="main-history">履歴</string>
   <string name="main-new-messages">新しいメッセージが来ています。新着メッセージを見るには 「システム」から「新着メッセージを表示」を選択するか、キーボードの M を押してください。</string>
+  <string name="main-space">ページ名の末尾は空白にはできません。ページ名を修正してください。</string>
   <string name="main-system">システム</string>
   <string name="main-system-messages">新着メッセージを表示</string>
   <string name="main-system-reconnectirc">IRCに再接続</string>
@@ -254,6 +260,7 @@
   <string name="message-summary">要約欄:</string>
   <string name="message-autosign">署名を自動で付記</string>
   <string name="message-fail-re-user-tp">$1 を取得できません。この利用者へのメッセージの配信を停止します</string>
+  <string name="message-error">$1 にメッセージを配信できませんでした! ログを確認してください!</string>
   <string name="message-fail-token-1">編集トークンを取得できません</string>
   <string name="protect-request-title">$1 の保護依頼</string>
   <string name="protect-reason">理由:</string>
@@ -305,6 +312,8 @@
   <string name="report-reason">理由:</string>
   <string name="report-message">メッセージ:</string>
   <string name="report-log">この利用者への警告:</string>
+  <string name="report-select">プレビューを開くには、一覧から差分を選択してください</string>
+  <string name="report-write">書き込み中</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
   <string name="report-fail">\'$1\' の報告に失敗しました</string>
   <string name="report-progress">\'$1\' を報告しています...</string>
@@ -326,26 +335,6 @@
   <string name="speedy-parameters">パラメータ:</string>
   <string name="speedy-notifycreator">ページ作成者に通知</string>
   <string name="software-rollback">あなたには巻き戻しの権限がないため、代わりにソフトウェアによる巻き戻しを使用します</string>
-  <string name="stats-title">統計</string>
-  <string name="stats-actions">このセッションでの編集:</string>
-  <string name="stats-session">セッション経過時間: $1</string>
-  <string name="stats-edits">編集</string>
-  <string name="stats-assisted">ツールによる編集</string>
-  <string name="stats-huggle">ハグルによる編集</string>
-  <string name="stats-reverts">リバート</string>
-  <string name="stats-warnings">警告</string>
-  <string name="stats-reports">報告</string>
-  <string name="stats-tags">タグ貼り</string>
-  <string name="stats-notifications">通知</string>
-  <string name="stats-blocks">ブロック</string>
-  <string name="stats-deletes">削除</string>
-  <string name="stats-protections">保護</string>
-  <string name="stats-allusers">全利用者</string>
-  <string name="stats-me">自分</string>
-  <string name="stats-ignored">無視</string>
-  <string name="stats-anon">IP</string>
-  <string name="stats-bots">ボット</string>
-  <string name="stats-other">その他</string>
   <string name="tag-title">$1 にタグを貼り付け</string>
   <string name="tag-tagselector">タグ:</string>
   <string name="tag-tags">テキスト:</string>
@@ -359,6 +348,8 @@
   <string name="updater-open-manualdownloadpage">ダウンロード ページを開く</string>
   <string name="updater-close">閉じる</string>
   <string name="updater-disable-notify">更新を無効にする</string>
+  <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
+  <string name="userinfo-retrieve">情報を取得</string>
   <string name="warning-title">$1 に警告</string>
   <string name="warning-levelgroup">警告レベル</string>
   <string name="warning-levelauto">自動</string>
@@ -368,6 +359,7 @@
   <string name="warning-level4">レベル 4 (最後通告)</string>
   <string name="warning-warntype">警告タイプ:</string>
   <string name="warning-warnlog">この利用者への警告:</string>
+  <string name="missing-warning">$1 という警告テンプレートはありません</string>
   <string name="error-loggedout">アカウントがログアウトしています。再ログインします...</string>
   <string name="error-noresponse">反応がありません</string>
   <string name="error-pagemissing">対象ページが存在しません</string>
@@ -392,6 +384,11 @@
   <string name="edit-progress">\'$1\' を編集中...</string>
   <string name="history-fail">\'$1\' の履歴取得に失敗しました</string>
   <string name="history-progress">\'$1\' ({1}) の履歴を取得しています...</string>
+  <string name="history-work">$1 での自身の編集を取り消し中</string>
+  <string name="history-message-revert-title" fuzzy="true">メッセージを本当に取り消しますか?</string>
+  <string name="history-not-found">取り消せるものが見つかりませんでした</string>
+  <string name="history-already-done">既に取り消されていました</string>
+  <string name="history-revert-fail">エラーが発生したため、$1 の編集を取り消せませんでした: $2</string>
   <string name="notify-fail">\'$1\' の作成者へ通知できませんでした</string>
   <string name="notify-unknowncreator">ページの作成者を同定できませんでした</string>
   <string name="protect-done">\'$1\' の保護レベルを変更しました</string>
@@ -411,10 +408,8 @@
   <string name="speedy-fail" fuzzy="true">\'$1\' への即時削除タグ貼り付けに失敗しました</string>
   <string name="speedy-progress">\'$1\' に即時削除タグを貼り付けています...</string>
   <string name="speedy-finished">完了</string>
-  <string name="usermessage-fail">\'$1\' へのメッセージに失敗しました</string>
-  <string name="usermessage-progress">\'$1\' にメッセージしています...</string>
   <string name="warn-alreadyblocked">この利用者はすでにブロックされています</string>
-  <string name="editquery-success" fuzzy="true">$1 を編集しました</string>
+  <string name="editquery-success">$2 の $1 を編集しました</string>
   <string name="whitelist-download">新しいホワイトリストをダウンロード中</string>
   <string name="logs-widget-name">システム ログ</string>
   <string name="wait">お待ちください...</string>

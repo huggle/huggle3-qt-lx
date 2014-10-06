@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Français</string>
+  <string name="isrtl">faux</string>
   <string name="add">Ajouter</string>
   <string name="cancel">Annuler</string>
   <string name="clear">Effacer</string>
@@ -16,8 +17,11 @@
   <string name="remove">Retirer</string>
   <string name="rename">Renommer</string>
   <string name="reload">Recharger</string>
+  <string name="project">Projet</string>
   <string name="result">Résultat</string>
   <string name="save">Enregistrer</string>
+  <string name="show">Afficher</string>
+  <string name="undo">Annuler</string>
   <string name="yes">Oui</string>
   <string name="agf">ramener comme modification de bonne foi avec un motif personnalisé</string>
   <string name="successful">Succès</string>
@@ -38,17 +42,23 @@
   <string name="link">Lien</string>
   <string name="reason">Motif</string>
   <string name="diffid">Identifiant de diff</string>
-  <string name="whitelisted" fuzzy="true">$1 qui possède un score de $2 a été inséré à la liste blanche</string>
+  <string name="whitelisted">$1 qui possède un score de $2 sur $3 a été inséré à la liste blanche</string>
   <string name="expiry-time">Délai d\'expiration</string>
   <string name="duration">Durée</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
+  <string name="score-score">Score</string>
+  <string name="score-word">Mot</string>
+  <string name="score-range">Plage</string>
+  <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
+  <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
   <string name="browser-load">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>
   <string name="browser-diff">Diff de la page : $1 (score : $2)</string>
   <string name="browser-fail">Impossible de récupérer le diff : $1</string>
   <string name="about-contributors">Développeurs :</string>
+  <string name="block-not">L’utilisateur n’est pas bloqué</string>
   <string name="block-title">Bloc $1</string>
   <string name="block-reason">Raison :</string>
   <string name="block-duration">Durée :</string>
@@ -71,10 +81,17 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="block-type">Bloquer / débloquer</string>
   <string name="block-admin">L’opérateur système qui a fait le blocage</string>
   <string name="block-none">Il n\'y a aucun utilisateur à bloquer.</string>
+  <string name="config-function">Fonction</string>
+  <string name="config-description">Description</string>
+  <string name="config-shortcut">Raccourci</string>
+  <string name="config-queue-filter-ignore">Ignorer (sans importance)</string>
+  <string name="config-queue-filter-exclude">Exclure (ne doit pas exister)</string>
+  <string name="config-queue-filter-require">Exiger (doit exister)</string>
   <string name="config-summ">Résumé de revert personnalisés pour les modèles</string>
   <string name="config-title">Options</string>
   <string name="config-rememberme">Se souvenir de mon nom d\'utilisateur</string>
   <string name="config-autowhitelist">Ajouter automatiquement les utilisateurs à la liste blanche</string>
+  <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
   <string name="config-openinbrowser">Ouvrir les liens du navigateur dans une nouvelle fenêtre</string>
   <string name="config-shownewedits">Afficher les nouvelles modifications à la page sélectionnée dès qu\'elles sont faits</string>
   <string name="config-ircmode">Utiliser si possible le flux IRC pour les changements récents</string>
@@ -87,7 +104,6 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-shownewmessages">Afficher la barre des nouveaux messages</string>
   <string name="config-shortcutlist">Raccourcis clavier</string>
   <string name="config-shortcutaction">Action</string>
-  <string name="config-shortcut">Raccourci</string>
   <string name="config-changeshortcut">Modifier le raccourci pour $1</string>
   <string name="config-noshortcut">Aucun</string>
   <string name="config-defaults">Défauts</string>
@@ -137,6 +153,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="delete-e2">Impossible de supprimer la page</string>
   <string name="delete-edsc">Impossible de supprimer la page parce que $1</string>
   <string name="delete-failed-no-info">Aucune information de page n’était présente dans la requête (êtes-vous opérateur système ?)</string>
+  <string name="extension-kl">Tué</string>
+  <string name="extension-fine">Chargé et en cours d’exécution</string>
   <string name="historyform-no-info">Aucune information sur la modification</string>
   <string name="historyform-title">Historique</string>
   <string name="historyform-retrieve-history">Récupérer l’historique</string>
@@ -145,18 +163,18 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="history-error-message-title">Impossible d’annuler</string>
   <string name="history-error">L’élément ne peut pas être annulé, la page peut avoir été modifiée ou supprimée entre temps, et Huggle est incapable d’effectuer l’annulation depuis ce point. Si vous voulez vraiment l’annuler, vous devrez le faire à la main en utilisant l’interface de Médiawiki.</string>
   <string name="userhistory-title">Historique de vos modifications</string>
-  <string name="irc-connected" fuzzy="true">Connecté au flux des évolutions récentes sur IRC</string>
-  <string name="irc-connecting" fuzzy="true">Tentative de connexion au flux des changements récents sur IRC ; ceci peut prendre quelques instants...</string>
-  <string name="irc-disconnected" fuzzy="true">Connexion perdue au flux des changements récents sur IRC ; reconnexion...</string>
+  <string name="irc-connected">$1 : Connecté au flux des évolutions récentes sur IRC</string>
+  <string name="irc-connecting">Tentative de connexion au flux IRC des changements récents sur $1, ceci peut prendre un peu de temps…</string>
+  <string name="irc-disconnected">Connexion perdue au flux IRC des changements récentssur $1. Reconnexion en cours…</string>
   <string name="irc-nochannel">Canal IRC introuvable pour $1 ; utilisation à la place des requêtes d’API plus lentes</string>
   <string name="irc-error">Impossible de se connecter au flux des changements récents sur IRC ($1). Utilise à la place des requêtes d’API plus lentes.</string>
-  <string name="irc-stop" fuzzy="true">En attente de l’arrêt du fournisseur principal de flux</string>
+  <string name="irc-stop">En attente de l’arrêt du fournisseur principal de flux sur $1</string>
   <string name="irc-not">Flux : IRC est désactivé par la configuration du projet</string>
   <string name="irc-failure">Le fournisseur de flux principal a échoué. Recours au fournisseur du wiki…</string>
   <string name="irc-wait">En attente de l’arrêt du fournisseur de flux IRC</string>
   <string name="irc-switch-rc">Bascule vers le fil IRC du wiki</string>
   <string name="login-old">Récupération de la configuration utilisateur depuis l’ancien emplacement</string>
-  <string name="login-intro" fuzzy="true">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe.</string>
+  <string name="login-intro">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe. Vous pouvez aussi vous connecter à plusieurs projets en cliquant sur le bouton « Projets ».</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Connexion</string>
   <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé</string>
@@ -170,15 +188,15 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-proxyport">Port :</string>
   <string name="login-proxydomain">Domaine :</string>
   <string name="login-retrieving-user-conf">Récupération de la configuration utilisateur</string>
-  <string name="login-fail-css" fuzzy="true">Échec de la connexion. Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
-  <string name="login-fail-enable-true" fuzzy="true">Échec de la connexion : Vous n’avez pas enable:true dans votre configuration personnelle.</string>
-  <string name="login-fail-no-info" fuzzy="true">Échec à la connexion : Impossible de récupérer l’information utilisateur : $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">Échec à la connexion : Impossible d’analyser la configuration utilisateur. Voyez la trace de débogage pour plus de détails.</string>
-  <string name="login-fail-user-data" fuzzy="true">Échec à la connexion : Impossible de récupérer l’information utilisateur. La requête à l’API n’a renvoyé aucune donnée.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">Échec à la connexion : Vous n’avez pas de droit de retour arrière sur ce projet.</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">Échec à la connexion : Vous n’êtes pas auto-confirmé sur ce projet.</string>
-  <string name="login-failed-edit" fuzzy="true">Échec à la connexion : Vous n’avez pas assez de modifications sur ce projet.</string>
-  <string name="login-retrieving-info" fuzzy="true">Récupération de l’information utilisateur</string>
+  <string name="login-fail-css">Échec de la connexion sur $1 : Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
+  <string name="login-fail-enable-true">Échec de la connexion sur $1 : Vous n’avez pas enable:true dans votre configuration personnelle.</string>
+  <string name="login-fail-no-info">Échec à la connexion sur $1 : Impossible de récupérer l’information utilisateur : $2</string>
+  <string name="login-fail-parse-config">Échec à la connexion sur $1 : Impossible d’analyser la configuration utilisateur. Voyez la trace de débogage pour plus de détails.</string>
+  <string name="login-fail-user-data">Échec à la connexion sur $1 : Impossible de récupérer l’information utilisateur. La requête à l’API n’a renvoyé aucune donnée.</string>
+  <string name="login-fail-rollback-rights">Échec à la connexion sur $1 : Vous n’avez pas de droit de retour arrière sur ce projet.</string>
+  <string name="login-failed-autoconfirm-rights">Échec à la connexion sur $1 : Vous n’êtes pas auto-confirmé sur ce projet.</string>
+  <string name="login-failed-edit">Échec à la connexion sur $1 : Vous n’avez pas assez de modifications sur ce projet.</string>
+  <string name="login-retrieving-info">Récupération de l’information utilisateur sur $1</string>
   <string name="login-password-empty">Le mot de passe que vous avez saisi était vide</string>
   <string name="login-fail-wrong-name">Vous n’avez pas fourni de nom d’utilisateur correct pour la connexion</string>
   <string name="login-api">ERREUR : api.php a répondu avec un résultat inconnu : $1</string>
@@ -195,24 +213,24 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-progress-user-info">Vérification de l’information utilisateur pour $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-ssl">Utiliser HTTPS (nécessite OpenSSL)</string>
-  <string name="login-fail" fuzzy="true">Échec de la connexion</string>
+  <string name="login-fail">Échec de la connexion sur $1</string>
   <string name="login-error-admin">Un compte d\'administrateur est nécessaire pour utiliser Huggle sur ce projet.</string>
   <plurals name="login-error-age"/>
   <string name="login-error-alldisabled">Huggle est actuellement désactivé sur tous les projets.</string>
-  <string name="login-error-approval" fuzzy="true">Une approbation est nécessaire pour utiliser Huggle sur ce projet.</string>
+  <string name="login-error-approval">L’utilisation de Huggle sur $1 nécessite une approbation.</string>
   <string name="login-error-cancelled">Annulé.</string>
-  <string name="login-error-config" fuzzy="true">Échec lors du chargement des pages de configuration.</string>
+  <string name="login-error-config">Échec à la connexion, impossible d’analyser la configuration locale pour $1 : $2</string>
   <plurals name="login-error-count"/>
-  <string name="login-error-disabled" fuzzy="true">Huggle n\'est pas activé pour votre compte, vérifiez la page de configuration d\'utilisateur.</string>
+  <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la page de configuration de l’utilisateur.</string>
   <string name="login-error-global">La connexion a échoué : la configuration globale n’a pas pu être lue. Reportez-vous au journal de débogage pour plus de détails.</string>
   <string name="login-error-invalid">Nom d\'utilisateur invalide.</string>
-  <string name="login-error-noconfig" fuzzy="true">Ce projet n\'a pas de page de configuration de Huggle.</string>
+  <string name="login-error-noconfig">$1 n’a pas de page de configuration de Huggle.</string>
   <string name="login-error-nouser">L’utilisateur n’existe pas.</string>
   <string name="login-error-password">Mot de passe incorrect.</string>
   <string name="login-error-projdisabled">Huggle est actuellement désactivé sur ce projet.</string>
-  <string name="login-error-unknown" fuzzy="true">Incapable de se connecter.</string>
+  <string name="login-error-unknown">Impossible de se connecter à $1.</string>
   <string name="login-error-version">Cette version est obsolète. Mettre à jour avec la dernière version.</string>
-  <string name="login-error-whitelist" fuzzy="true">Échec du chargement de la liste blanche de  l\'utilisateur.</string>
+  <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
   <string name="main-menu-provider-resume">Reprendre le fournisseur</string>
   <string name="main-no-reason">Aucun motif n’a été fourni par l’utilisateur</string>
@@ -222,8 +240,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-contribs">Contributions</string>
   <string name="main-history">Historique</string>
   <string name="main-new-messages">Vous avez de nouveaux messages. Sélectionnez Système -&gt; Afficher les nouveaux messages ou appuyez sur M pour les afficher.</string>
+  <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger.</string>
   <string name="main-system">Système</string>
-  <string name="main-status-bar" fuzzy="true">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt; Taille de la file : &lt;b&gt;$4&lt;/b&gt; Statistiques : $5</string>
+  <string name="main-status-bar" fuzzy="true">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt; Taille de la file : &lt;b&gt;$4&lt;/b&gt; Statistiques pour $6 : $5</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
   <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>
@@ -341,6 +360,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="message-retrieve-new-token">Récupération du jeton pour la modification $1</string>
   <string name="message-fail-re-user-tp">Impossible de récupérer $1. Arrêt de la remise du message à cet utilisateur</string>
   <string name="message-er">Impossible de remettre le message à $1 : $2</string>
+  <string name="message-error">Échec à la transmission d’un message à $1 ! Veuillez vérifier les traces !</string>
   <string name="message-fail-retrieve-talk">impossible de récupérer la page de discussion de l’utilisateur</string>
   <string name="message-done">Message bien remis à : $1</string>
   <string name="message-fail-token-1">impossible de récupérer le jeton de modification</string>
@@ -400,6 +420,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="report-message">Message :</string>
   <string name="report-log">Avertissements pour cet utilisateur :</string>
   <string name="report-include">Inclure dans le rapport</string>
+  <string name="report-select">Veuillez sélectionner une différence dans la liste afin d’ouvrir l’aperçu.</string>
+  <string name="report-write">Écriture</string>
+  <string name="reportuser-not">L’utilisateur n’est actuellement pas déclaré</string>
   <string name="report-evidence-none-provid">Aucune différence n’a été fournie comme preuve, cela rendra très difficile aux administrateurs de déterminer si cet utilisateur est ou non un vandale. Êtes-vous sûr de vouloir continuer ?</string>
   <string name="report-duplicate">L\'utilisateur a déjà été signalé</string>
   <string name="report-fail">Ne pas signaler $1</string>
@@ -437,26 +460,6 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="speedy-notifycreator">Aviser le créateur de la page</string>
   <string name="rollback">Retour à $1</string>
   <string name="software-rollback">Vous n’avez pas le droit de retour arrière, repli vers un retour arrière logiciel</string>
-  <string name="stats-title">Statistiques</string>
-  <string name="stats-actions">Actions dans cette session :</string>
-  <string name="stats-session">Durée de session : $1</string>
-  <string name="stats-edits">Modifications</string>
-  <string name="stats-assisted">Modifications assistées</string>
-  <string name="stats-huggle">Modifications avec Huggle</string>
-  <string name="stats-reverts">Révocations</string>
-  <string name="stats-warnings">Avertissements</string>
-  <string name="stats-reports">Signalements</string>
-  <string name="stats-tags">Identifications</string>
-  <string name="stats-notifications">Alertes</string>
-  <string name="stats-blocks">Blocages</string>
-  <string name="stats-deletes">Suppressions</string>
-  <string name="stats-protections">Protections</string>
-  <string name="stats-allusers">Tous les utilisateurs</string>
-  <string name="stats-me">Moi</string>
-  <string name="stats-ignored">Ignorés</string>
-  <string name="stats-anon">Anonymes</string>
-  <string name="stats-bots">Robots</string>
-  <string name="stats-other">Autre</string>
   <string name="tag-title">Balise $1</string>
   <string name="tag-tagselector">Ajouter l\'identification :</string>
   <string name="tag-tags">Identification(s) :</string>
@@ -470,7 +473,10 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="updater-open-manualdownloadpage">Ouvrir la page de téléchargement</string>
   <string name="updater-close">Fermer</string>
   <string name="updater-disable-notify">Désactiver les mises à jour</string>
+  <string name="user-history-fail">impossible de récupérer l’historique pour l’utilisateur : $1</string>
   <string name="userinfo-generic">Information utilisateur</string>
+  <string name="userinfo-retrieve">Récupérer l’information</string>
+  <string name="shortcut-my-talk">Ma page de discussion</string>
   <string name="shortcut-raw">Annuler la modification et avertir un utilisateur</string>
   <string name="shortcut-exit">Mettre fin à Huggle de la manière habituelle</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
@@ -481,10 +487,17 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-revert">Annuler la modification</string>
   <string name="shortcut-x-raw">Déclencher le Nème élément du menu d’annulation et avertissement</string>
   <string name="shortcut-x-revert">Déclencher le Nème élément du menu d’annulation</string>
+  <string name="shortcut-watch">Insère une page affichée dans une liste de suivi</string>
+  <string name="shortcut-unwatch">Supprime une page affichée d’une liste de suivi</string>
   <string name="shortcut-x-warn">Déclencher le Nème élément dans le menu d’avertissement</string>
   <string name="shortcut-good">Marquer la modification actuellement affichée comme bonne</string>
+  <string name="shortcut-open-in-huggle">Ouvrir la page actuellement affichée</string>
   <string name="shortcut-open">Ouvrir la modification actuelle affichée dans un navigateur</string>
   <string name="shortcut-talk">Afficher la page de discussion de l’utilisateur qui a effectué cette modification</string>
+  <string name="shortcut-revert-agf-1">Revenir à la dernière révision en supposant la bonne foi</string>
+  <string name="shortcut-browser-close-tab">Fermer un onglet du navigateur</string>
+  <string name="shortcut-tab">Ouvre un nouvel onglet</string>
+  <string name="shortcut-rw-stay">Revenir à la modification actuelle, avertir un utilisateur et rester sur la page</string>
   <string name="warning-title">Avertir $1</string>
   <string name="warning-levelgroup">Niveau d\'avertissement</string>
   <string name="warning-levelauto">Automatique</string>
@@ -495,6 +508,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="warning-warntype">Type d\'avertissement :</string>
   <string name="warning-warnlog">Avertissements pour cet utilisateur :</string>
   <string name="warning-submit">Envoyer</string>
+  <string name="missing-warning">Il n’y a pas un tel modèle d’avertissement $1</string>
   <string name="han-not">Un réseau de vandalisme n’est pas autorisé dans les options</string>
   <string name="han-connecting">Connexion à Huggle, un réseau anti-vandalisme</string>
   <string name="error-loggedout">Le compte a été déconnecté, reconnexion...</string>
@@ -521,6 +535,12 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="edit-progress">Modification de $1…</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
   <string name="history-progress">Récupération de l’historique de $1 ($2)…</string>
+  <string name="history-work">Annulation de sa propre modification effectuée sur $1</string>
+  <string name="history-message-revert-title" fuzzy="true">Voulez-vous vraiment annuler simplement le message ?</string>
+  <string name="history-not-found">Rien n’a été trouvé à annuler</string>
+  <string name="history-already-done">Ceci a déjà été annulé</string>
+  <string name="history-message-revert-body">C’était un message référencé par une annulation ; êtes-vous sûr de vouloir annuler uniquement le modèle et pas même votre modification sur la page (vous devrez annuler le retour arrière si vous voulez revenir sur les deux) ?</string>
+  <string name="history-revert-fail">Impossible d’annuler votre modification de $1 ; erreur lors du retour arrière : $2</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>
@@ -541,10 +561,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="speedy-progress">Marquage de \'$1\' pour une suppression rapide…</string>
   <string name="speedy-wrong">La balise demandée n’est pas valide, veuillez choisir un autre motif de suppression</string>
   <string name="speedy-finished">Terminé</string>
-  <string name="usermessage-fail">Ne pas informer \'$1\'</string>
-  <string name="usermessage-progress">Information de \'$1\'…</string>
   <string name="warn-alreadyblocked">L\'utilisateur a déjà été bloqué</string>
-  <string name="editquery-success" fuzzy="true">Modification réussie de $1</string>
+  <string name="editquery-success">Modification réussie de $1 le $2</string>
   <string name="editquery-token">Récupération du jeton pour modifier $1</string>
   <string name="editquery-token-error">Impossible de récupérer le jeton de modification</string>
   <string name="provider-failure">Échec du fournisseur de flux principal, tentative de récupération</string>
