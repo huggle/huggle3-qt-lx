@@ -205,7 +205,7 @@ void BlockUser::Failed(QString reason)
 {
     QMessageBox *_b = new QMessageBox();
     _b->setWindowTitle("Unable to block user");
-    _b->setText("Unable to block the user because " + reason);
+    _b->setText(_l("block-fail", reason));
     _b->exec();
     delete _b;
     this->t0->stop();
@@ -238,7 +238,7 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
         blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
     QString blocksum = Configuration::HuggleConfiguration->ProjectConfig->BlockSummary;
-    WikiUtil::MessageUser(user, blocknotice, "Blocked", blocksum, true, dependency, false, false);
+    WikiUtil::MessageUser(user, blocknotice, blocksum, blocksum, true, dependency, false, false);
 }
 
 

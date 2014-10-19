@@ -141,7 +141,7 @@ void HistoryForm::onTick01()
     if (this->query->Result->IsFailed())
     {
         this->ui->pushButton->setEnabled(true);
-        Huggle::Syslog::HuggleLogs->ErrorLog("Unable to retrieve history");
+        Huggle::Syslog::HuggleLogs->ErrorLog(_l("history-failure"));
         this->query = nullptr;
         this->t1->stop();
         return;

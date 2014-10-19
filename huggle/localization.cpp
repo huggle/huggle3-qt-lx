@@ -167,51 +167,7 @@ void Localizations::LocalInit(QString name, bool xml)
 
 QString Localizations::Localize(QString key)
 {
-    /// \todo almost duplicates Localize(QString key, QStringList parameters)
-    QString id = key;
-    if (id.endsWith("]]"))
-    {
-        id = key.mid(0, key.length() - 2);
-    }
-    if (id.startsWith("[["))
-    {
-        id = id.mid(2);
-    }
-    if (this->LocalizationData.count() > 0)
-    {
-        int c=0;
-        while (c<this->LocalizationData.count())
-        {
-            if (this->LocalizationData.at(c)->LanguageName == this->PreferredLanguage)
-            {
-                Language *l = this->LocalizationData.at(c);
-                if (l->Messages.contains(id))
-                {
-                    QString result = l->Messages[id];
-                    if (result == "@")
-                    {
-                        // reference to english
-                        break;
-                    }
-                    return result;
-                }
-                // performance tweak
-                break;
-            }
-            c++;
-        }
-
-        // performance wise check this last
-        if (this->PreferredLanguage == LANG_QQX)
-        {
-            return "("+key+")";
-        }
-        if (this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(id))
-        {
-            return this->LocalizationData.at(Localizations::EnglishID)->Messages[id];
-        }
-    }
-    return key;
+    return Localize(key, QStringList());
 }
 
 QString Localizations::Localize(QString key, QStringList parameters)
@@ -275,6 +231,8 @@ QString Localizations::Localize(QString key, QStringList parameters)
             return text;
         }
     }
+    if (hcfg->Verbosity > 0)
+        Syslog::HuggleLogs->WarningLog("There is no such a localization key: " + key);
     return key;
 }
 
