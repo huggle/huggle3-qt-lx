@@ -252,7 +252,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="warning-submit">Sänd</string>
-  <string name="history-message-revert-title" fuzzy="true">Du vill verkligen bara ångra meddelandet?</string>
+  <string name="history-message-revert-title">Vill du verkligen bara ångra detta meddelande?</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
   <string name="editquery-success">Framgångsrik redigering $1 på $2</string>

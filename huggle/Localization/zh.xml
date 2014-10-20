@@ -242,7 +242,7 @@
   <string name="main-new-messages">你有新消息。选择系统 -&gt; 显示新消息或者按M查看。</string>
   <string name="main-space">页面名不能以空格结尾，请修正页面名</string>
   <string name="main-system">系统</string>
-  <string name="main-status-bar" fuzzy="true">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; $6的统计：$5</string>
+  <string name="main-status-bar">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; $6的统计：$5</string>
   <string name="main-shutting-down">Huggle已关闭，忽略</string>
   <string name="main-system-messages">显示新消息</string>
   <string name="main-system-reconnectirc">重新连接IRC</string>
@@ -536,7 +536,7 @@
   <string name="history-fail">获取$1历史失败</string>
   <string name="history-progress">获取$1历史中（$2）…</string>
   <string name="history-work">撤销自己对$1的编辑</string>
-  <string name="history-message-revert-title" fuzzy="true">您真希望只撤销消息么？</string>
+  <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
   <string name="history-not-found">没有可以撤销的</string>
   <string name="history-already-done">这已经完成</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>

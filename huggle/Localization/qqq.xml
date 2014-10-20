@@ -176,7 +176,7 @@ Parameters:
   <string name="irc-switch-rc">Used as log entry.</string>
   <string name="login-intro">Used in Login window.
 
-The button in question is probably {{msg-huggle|login-project}}.</string>
+The button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
   <string name="login-tab-oauth">name of tab at login window for OAuth-login.
 {{Identical|OAuth}}</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.
@@ -410,6 +410,7 @@ The windows has the message \"Unable to protect the page because \'\'reason\'\'\
 * {{msg-huggle|Report-warn}}</string>
   <string name="report-reason">{{Identical|Reason}}</string>
   <string name="report-message">{{Identical|Message}}</string>
+  <string name="report-include">Used as checkbox label.</string>
   <string name="report-write">none
 {{Identical|Writing}}</string>
   <string name="report-progress">{{Identical|Reporting}}</string>
@@ -439,8 +440,10 @@ UAA is short for \"Usernames for administrator attention\".</string>
   <string name="rollback">Used as status that the page is being rolled back. Parameters:
 * $1 - pagename</string>
   <string name="tag-title">{{Identical|Tag}}</string>
-  <string name="tag-tags">{{Identical|Tag}}</string>
+  <string name="tag-tags">Used as column header.
+{{Identical|Tag}}</string>
   <string name="tag-summary">{{Identical|Summary}}</string>
+  <string name="tag-insertatend">Used as checkbox label.</string>
   <string name="updater-title">Used as window title.</string>
   <string name="updater-update">Used as label for button.
 {{Identical|Update}}</string>

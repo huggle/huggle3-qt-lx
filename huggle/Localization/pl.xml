@@ -47,6 +47,7 @@
   <string name="duration">Czas trwania</string>
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
+  <string name="score-score">Wynik</string>
   <string name="score-word">Słowo</string>
   <string name="score-range">Zakres</string>
   <string name="browser-none">Strona nie wyświetli się teraz</string>
@@ -82,6 +83,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-description">Opis</string>
   <string name="config-shortcut">Skrót</string>
   <string name="config-queue-filter-exclude">Wyłączyć (nie wymagane)</string>
+  <string name="config-queue-filter-require">Wymagane (musi być)</string>
   <string name="config-summ">Niestandardowo przywróć podsumowania dla szablonów</string>
   <string name="config-title">Opcje</string>
   <string name="config-rememberme">Zapamiętaj moją nazwę użytkownika</string>
@@ -185,6 +187,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="main-history">Historia</string>
   <string name="main-space">Nazwa strony nie może kończyć się spacją, proszę poprawić nazwę strony</string>
   <string name="main-system">System</string>
+  <string name="main-status-bar">Przetwarzanie &lt;b&gt;$1&lt;/b&gt; edycji i &lt;b&gt;$2&lt;/b&gt; zapytań. Użytkownicy w białej liście: &lt;b&gt;$3&lt;/b&gt; Rozmiar kolejki: &lt;b&gt;$4&lt;/b&gt; Statystyki dla $6: $5</string>
   <string name="main-system-options">Opcje...</string>
   <string name="main-system-logout">Wyloguj</string>
   <string name="main-system-change-provider-irc">IRC</string>
@@ -258,6 +261,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="shortcut-watch">Wstawia wyświetlaną stronę do listy obserwowanych</string>
   <string name="shortcut-unwatch">Usuwa wyświetlaną stronę z listy obserwowanych</string>
   <string name="shortcut-browser-close-tab">Zamknij kartę przeglądarki</string>
+  <string name="shortcut-tab">Otwiera nową kartę.</string>
   <string name="warning-level1">Poziom 1</string>
   <string name="warning-level2">Poziom 2</string>
   <string name="warning-level3">Poziom 3</string>
@@ -269,6 +273,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="error-unknown">Nieznany błąd</string>
   <string name="block-progress">Blokowanie $1...</string>
   <string name="delete-progress">Usuwanie $1...</string>
+  <string name="history-message-revert-title">Czy chcesz cofnąć tylko tą wiadomość?</string>
   <string name="history-already-done">To już zostało cofnięte</string>
   <string name="history-revert-fail">Nie można cofnąć twojej edycji na $1 błąd podczas przeglądania: $2</string>
   <string name="wait">Proszę czekać...</string>

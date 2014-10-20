@@ -318,6 +318,7 @@
   <string name="edit-progress">\'$1\' संपादित कर रहे है...</string>
   <string name="history-fail">\'$1\' के इतिहास को पुनः प्राप्त करने में असफल</string>
   <string name="history-progress">\'$1\' के इतिहास को पुनः प्राप्त कर रहे है {$2}...</string>
+  <string name="history-message-revert-title">क्या आप वास्तव में इस सन्देश को पूर्ववत करना चाहते हो?</string>
   <string name="notify-fail">\'$1\' के निर्माता को सूचित नहीं किया</string>
   <string name="notify-unknowncreator">लेख निर्माता को खोज नहीं सकते</string>
   <string name="protect-done">\'$1\' के सुरक्षा स्तर बदला</string>

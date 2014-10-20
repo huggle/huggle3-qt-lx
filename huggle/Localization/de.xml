@@ -242,7 +242,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-new-messages">Du hast neue Nachrichten. Wähle System → Neue Nachrichten anzeigen oder drücke M, um sie anzusehen.</string>
   <string name="main-space">Der Seitenname kann nicht mit einem Leerzeichen enden. Bitte Seitennamen korrigieren.</string>
   <string name="main-system">System</string>
-  <string name="main-status-bar" fuzzy="true">Verarbeite &lt;b&gt;$1&lt;/b&gt; Bearbeitungen und &lt;b&gt;$2&lt;/b&gt; Abfragen. Weißgelistete Benutzer: &lt;b&gt;$3&lt;/b&gt;. Größe der Warteschlange: &lt;b&gt;$4&lt;/b&gt;. Statistiken für $6: $5</string>
+  <string name="main-status-bar">Verarbeite &lt;b&gt;$1&lt;/b&gt; Bearbeitungen und &lt;b&gt;$2&lt;/b&gt; Abfragen. Weißgelistete Benutzer: &lt;b&gt;$3&lt;/b&gt;. Größe der Warteschlange: &lt;b&gt;$4&lt;/b&gt;. Statistiken für $6: $5</string>
   <string name="main-shutting-down">Huggle fährt herunter, ignoriert</string>
   <string name="main-system-messages">Neue Nachrichten anzeigen</string>
   <string name="main-system-reconnectirc">IRC-Feed neu verbinden</string>
@@ -536,7 +536,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="history-fail">Versionsgeschichte von $1 konnte nicht abgerufen werden</string>
   <string name="history-progress">Rufe Versionsgeschichte von $1 ($2) ab …</string>
   <string name="history-work">Mache eigene Bearbeitung auf $1 rückgängig</string>
-  <string name="history-message-revert-title" fuzzy="true">Möchtest du diese Nachricht wirklich rückgängig machen?</string>
+  <string name="history-message-revert-title">Möchtest du wirklich nur diese Nachricht rückgängig machen?</string>
   <string name="history-not-found">Nichts zum Rückgängigmachen gefunden</string>
   <string name="history-already-done">Dies wurde bereits rückgängig gemacht</string>
   <string name="history-message-revert-body">Dies war eine Nachricht, die sich auf eine Zurücksetzung bezieht. Bist du sicher, dass du nur die Vorlage und nicht deine Bearbeitung an der Seite rückgängig machen willst? Du musst die Zurücksetzung in dem Fall rückgängig machen, wo du beide zurücksetzen willst.</string>

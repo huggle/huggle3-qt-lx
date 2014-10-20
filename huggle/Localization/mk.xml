@@ -208,7 +208,7 @@
   <string name="login-progress-language">Ги обновувам податотеките на пораките...</string>
   <string name="login-progress-global">Ги проверувам глобалните поставки...</string>
   <string name="login-progress-config">Ги проверувам страниците со поставки...</string>
-  <string name="login-progress-local">Ги проверувам локалните поставки за $1</string>
+  <string name="login-progress-local">Ги проверувам месните поставки за $1</string>
   <string name="login-progress-user">Ги проверувам корисничките поставки за $1</string>
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
   <string name="login-progress-whitelist">Го вчитувам белиот список на корисници...</string>
@@ -242,7 +242,7 @@
   <string name="main-new-messages">Имате нови пораки. Одберете &lt;code&gt;Систем -&gt; Прикажи нови пораки&lt;/code&gt; или пак стиснете на M за да ги видите.</string>
   <string name="main-space">Името на страницата не може да завршува со празно место. Исправете го.</string>
   <string name="main-system">Систем</string>
-  <string name="main-status-bar" fuzzy="true">Обработувам &lt;b&gt;$1&lt;/b&gt;уредувања и &lt;b&gt;$2&lt;/b&gt;барања. Корисници ставени на белиот список: &lt;b&gt;$3&lt;/b&gt; Големина на редицата: &lt;b&gt;$4&lt;/b&gt; Статистики за $6: $5</string>
+  <string name="main-status-bar">Обработувам &lt;b&gt;$1&lt;/b&gt;уредувања и &lt;b&gt;$2&lt;/b&gt;барања. Корисници ставени на белиот список: &lt;b&gt;$3&lt;/b&gt; Големина на редицата: &lt;b&gt;$4&lt;/b&gt; Статистики за $6: $5</string>
   <string name="main-shutting-down">Huggle се затвора. Занемарено.</string>
   <string name="main-system-messages">Прикажи нови пораки</string>
   <string name="main-system-reconnectirc">Преповрзи се со IRC-каналот</string>
@@ -536,7 +536,7 @@
   <string name="history-fail">Не успеав да ја добијам историјата на $1</string>
   <string name="history-progress">Ја вчитувам историјата на $1 ($2)...</string>
   <string name="history-work">Откажување на сопствено уредување направено на $1</string>
-  <string name="history-message-revert-title" fuzzy="true">Навистина сакате да ја откажете само пораката?</string>
+  <string name="history-message-revert-title">Навистина сакате да ја откажете само оваа порака?</string>
   <string name="history-not-found">Не најдов ништо за откажување</string>
   <string name="history-already-done">Ова е веќе откажано</string>
   <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само шаблонот, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>

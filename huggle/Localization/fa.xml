@@ -47,6 +47,11 @@
   <string name="duration">مدت</string>
   <string name="no-token">بدون رمز</string>
   <string name="flags">پرچم‌ها</string>
+  <string name="score-score">امتیاز</string>
+  <string name="score-word">واژه</string>
+  <string name="score-range">بازه</string>
+  <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
+  <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
   <string name="browser-load">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
   <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده‌است</string>
@@ -76,11 +81,17 @@
   <string name="block-type">بستن/بازکردن</string>
   <string name="block-admin">بستن مدیر</string>
   <string name="block-none">هیچ کاربری برای بستن نیست.</string>
+  <string name="config-function">تابع</string>
+  <string name="config-description">توصیف</string>
   <string name="config-shortcut">میانبر</string>
+  <string name="config-queue-filter-ignore">چشم‌پوشی (مهم نیست)</string>
+  <string name="config-queue-filter-exclude">کنار گذاشتن (هرگز نباید باشد)</string>
+  <string name="config-queue-filter-require">لازم (باید باشد)</string>
   <string name="config-summ">خلاصه ویرایش سفارشی برای الگوها</string>
   <string name="config-title">اختیارات</string>
   <string name="config-rememberme">یادآوری نام کاربری من</string>
   <string name="config-autowhitelist">قرار دادن کاربران در فهرست سفید به صورت خودکار</string>
+  <string name="config-already-in-use">این میانبر هم‌اکنون توسط $1 استفاده می‌شود، لطفاً یکی دیگر برگزینید</string>
   <string name="config-openinbrowser">پیوندهای مرورگر باز در پنجره‌ای نو</string>
   <string name="config-shownewedits">ویرایش‌های جدید بر نوشتار انتخاب شده را نشان بده</string>
   <string name="config-ircmode">در صورت امکان از IRC برای تغییرات اخیر بهره بگیر</string>
@@ -142,6 +153,8 @@
   <string name="delete-e2">نمی‌توان صفحه را حذف کرد</string>
   <string name="delete-edsc">نمی‌توان صفحه را حذف به دلیل: $1</string>
   <string name="delete-failed-no-info">هیچ اطلاعات صفحه‌ای در این کوئری نیست (آیا مدیر هستید؟)</string>
+  <string name="extension-kl">کشته‌شد</string>
+  <string name="extension-fine">بارگیری‌شده و در حال اجرا</string>
   <string name="historyform-no-info">اطلاعات ویرایش وجود ندارد</string>
   <string name="historyform-title">تاریخچه</string>
   <string name="historyform-retrieve-history">گرفتن تاریخچه</string>
@@ -161,7 +174,7 @@
   <string name="irc-wait">در انتظار توقف ارائه‌دهندهٔ خوراک اصلی</string>
   <string name="irc-switch-rc">تعویض به خوراک تغییرات اخیر ویکی</string>
   <string name="login-old">بازیابی پیکربندی کاربر از محل قدیمی</string>
-  <string name="login-intro" fuzzy="true">لطفاً نام کاربری ویکی‌پدیا را را وارد کنید و یک پروژه را انتخاب کنید.</string>
+  <string name="login-intro">لطفاً یک پروژه را برگزینید و نام کاربری و گذرواژهٔ خود را وارد کنید. همچنین می‌توانید با کلیک‌کردن روی دکمهٔ «پروژه‌ها» در چند پروژه ثبت ورود نمایید.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">ورود</string>
   <string name="login-reload-tool-tip">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
@@ -175,15 +188,15 @@
   <string name="login-proxyport">درگاه:</string>
   <string name="login-proxydomain">دامنه:</string>
   <string name="login-retrieving-user-conf">واگردانی تنظیمات کاربر</string>
-  <string name="login-fail-css" fuzzy="true">ورود به سیستم انجام نشد. بازیابی پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css در دسترس نیست. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
-  <string name="login-fail-enable-true" fuzzy="true">ورود ناموفق: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
-  <string name="login-fail-no-info" fuzzy="true">ورود ناموفق: عدم امکان بازیابی اطلاعات کاربر: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">ورود ناموفق: قادر به تجزیهٔ تنظیمات کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
-  <string name="login-fail-user-data" fuzzy="true">ورود ناموفق: قادر به بازیابی اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">ورود ناموفق: شما در این پروژه دسترسی واگردانی ندارید.</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">ورود ناموفق: شما بر روی این پروژه تأیید خودکار نیستید.</string>
-  <string name="login-failed-edit" fuzzy="true">ورود ناموفق: ویرایش‌های شما در این پروژه کافی نیست.</string>
-  <string name="login-retrieving-info" fuzzy="true">بازیابی اطلاعات کاربر</string>
+  <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
+  <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
+  <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
+  <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
+  <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
+  <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
+  <string name="login-failed-autoconfirm-rights">ورود ناموفق در $1: شما روی این پروژه تأیید خودکار نیستید.</string>
+  <string name="login-failed-edit">ورود ناموفق در $1: ویرایش‌های شما در این پروژه کافی نیست.</string>
+  <string name="login-retrieving-info">دریافت اطلاعات کاربر روی $1</string>
   <string name="login-password-empty">پسوردی که وارد کرده‌اید خالی است.</string>
   <string name="login-fail-wrong-name">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید</string>
   <string name="login-api">خطا: api.php با نتیجه‌ای ناشناخته داد: $1</string>
@@ -200,24 +213,24 @@
   <string name="login-progress-user-info">بررسی اطلاعات کاربر برای $1</string>
   <string name="login-progress-whitelist">بازیابی کاربر فهرست سفید...</string>
   <string name="login-ssl">اجرای اچ‌تی‌تی‌پی‌اس (openssl نیاز دارد)</string>
-  <string name="login-fail" fuzzy="true">قادر به ورود نیستم</string>
+  <string name="login-fail">ثبت ورود در $1 نافرجام ماند</string>
   <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند دسترسی مدیریت است.</string>
   <string name="login-error-age">استفاده از هاگل در این پروژه نیازمند حسابی با قدمت حداقل $1 روز است.</string>
   <string name="login-error-alldisabled">هاگل اکنون در همه پروژه‌ها غیرفعال است.</string>
-  <string name="login-error-approval" fuzzy="true">استفاده از هاگل در این پروژه نیازمند تایید است.</string>
+  <string name="login-error-approval">استفاده از هاگل در $1 نیازمند تأیید است.</string>
   <string name="login-error-cancelled">لغو شد.</string>
-  <string name="login-error-config" fuzzy="true">ورود ناموفق قادر به گرفتن پیکربندی محلی نیستم: $1</string>
+  <string name="login-error-config">ثبت ورود نافرجام ماند، امکان تجزیهٔ پیکربندی برای $1 نبود: $2</string>
   <string name="login-error-count">استفاده از هاگل در این پروژه نیازمند حداقل $1 ویرایش است.</string>
-  <string name="login-error-disabled" fuzzy="true">هاگل برای حساب کاربری شما فعال نیست؛ صفحه پیکربندی حساب کاربری را بررسی کنید.</string>
+  <string name="login-error-disabled">هاگل برای حساب کاربری شما در $1 فعال نشده است؛ صفحه پیکربندی حساب کاربری را بررسی کنید.</string>
   <string name="login-error-global">ورود ناموفق: قادر به تجزیهٔ پیکربندی سراسری نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
   <string name="login-error-invalid">نام کاربری نادرست</string>
-  <string name="login-error-noconfig" fuzzy="true">این پروژه صفحه پیکربندی هاگل ندارد</string>
+  <string name="login-error-noconfig">$1 صفحهٔ پیکربندی هاگل ندارد</string>
   <string name="login-error-nouser">این حساب کاربری وجود ندارد</string>
   <string name="login-error-password">گذرواژه نادرست</string>
   <string name="login-error-projdisabled">هاگل اکنون در پروژه شما غیرفعال است.</string>
-  <string name="login-error-unknown" fuzzy="true">قادر به ورود نیستم.</string>
+  <string name="login-error-unknown">قادر به ثبت ورود در $1 نبود.</string>
   <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه به‌روزرسانی نمایید.</string>
-  <string name="login-error-whitelist" fuzzy="true">اشکال در بارگیری فهرست سفید کاربران.</string>
+  <string name="login-error-whitelist">بارگیری فهرست سفید کاربران برای $1 نافرجام ماند.</string>
   <string name="main-menu-provider-stop">توقف ارائه دهنده</string>
   <string name="main-menu-provider-resume">رزومه ارائه دهنده</string>
   <string name="main-no-reason">هیچ دلیلی توسط کاربر ارائه نشده‌است</string>
@@ -227,8 +240,9 @@
   <string name="main-contribs">مشارکت‌ها</string>
   <string name="main-history">تاریخچه</string>
   <string name="main-new-messages">شما پیام‌های جدیدی دارید؛ سامانه -&gt; نمایش پیام‌های جدید را انتخاب کنید یا M را فشار دهید تا ببینیدشان.</string>
+  <string name="main-space">نام صفحه نمی‌تواند با فاصله پایان یابد، لطفاُ نام صفحه را اصلاح کنید</string>
   <string name="main-system">سامانه</string>
-  <string name="main-status-bar" fuzzy="true">در حال پردازش &lt;b&gt;$1&lt;/b&gt;ویرایش و &lt;b&gt;$2&lt;/b&gt; پرس‌وجو. کاربران فهرست سفید: &lt;b&gt;$3&lt;/b&gt; اندازه صف: &lt;b&gt;$4&lt;/b&gt; آمار: $5</string>
+  <string name="main-status-bar">در حال پردازش &lt;b&gt;$1&lt;/b&gt;ویرایش و &lt;b&gt;$2&lt;/b&gt; پرس‌وجو. کاربران فهرست سفید: &lt;b&gt;$3&lt;/b&gt; اندازهٔ صف: &lt;b&gt;$4&lt;/b&gt; آمار برای$6: $5</string>
   <string name="main-shutting-down">هاگل در حال خاموش‌شدن است، نادیده گرفته شد</string>
   <string name="main-system-messages">نمایش پیام‌های تازه</string>
   <string name="main-system-reconnectirc">ارتباط دوباره با فید آی‌آرسی</string>
@@ -346,6 +360,7 @@
   <string name="message-retrieve-new-token">در حال گرفتن توکن برای ویرایش $1</string>
   <string name="message-fail-re-user-tp">قادر به به بازیابی $1 نبود. در حال توقف تحویل پیام به آن کاربر</string>
   <string name="message-er">ناتوان در تحویل پیام به $1 : $2</string>
+  <string name="message-error">امکان رساندن پیام به $1 نبود! لطفاً سیاهه‌ها را چک کنید!</string>
   <string name="message-fail-retrieve-talk">ناتوان از گرفتن صفحه بحث کاربر</string>
   <string name="message-done">تحویل پیام به $1 با موفقیت انجام شد</string>
   <string name="message-fail-token-1">امکان دریافت اصالت‌سنج ویرایش نبود</string>
@@ -407,6 +422,7 @@
   <string name="report-include">در گزارش</string>
   <string name="report-select">خواهشمند است به منظور بازکردن پیش‌نمایش یک تفاوت در فهرست انتخاب کنید</string>
   <string name="report-write">نوشتن</string>
+  <string name="reportuser-not">این کاربر هم‌اکنون گزارش نشده است</string>
   <string name="report-evidence-none-provid">هیچ تفاوتی به عنوان مدرک فراهم نشده. این باعث می‌شود مدیران خیلی سخت بتوانند خرابکار بودن یا نبودن کاربر را تشخیص دهند. مطمئنید که می‌خواهید ادامه دهید؟</string>
   <string name="report-duplicate">کاربر در حال حاضر گزارش شده‌است</string>
   <string name="report-fail">$1 را گزارش نکرد</string>
@@ -457,6 +473,7 @@
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
   <string name="updater-disable-notify">غیر فعال کردن به روز رسانی</string>
+  <string name="user-history-fail">امکان دریافت تاریخچه برای کاربر نبود: $1</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
   <string name="userinfo-retrieve">بازیابی اطلاعات</string>
   <string name="shortcut-my-talk">صفحهٔ بحث من</string>
@@ -477,6 +494,10 @@
   <string name="shortcut-open-in-huggle">بازکردن صفحه در حال حاضر نمایش داده‌شده</string>
   <string name="shortcut-open">این ویرایش را در یک مرورگر نمایش بده</string>
   <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده‌است</string>
+  <string name="shortcut-revert-agf-1">واگردانی آخرین نسخه با فرض حسن نیت</string>
+  <string name="shortcut-browser-close-tab">بستن یک سربرگ مرورگر</string>
+  <string name="shortcut-tab">بازکردن یک سربرگ تازه</string>
+  <string name="shortcut-rw-stay">واگردانی نسخهٔ کنونی، به یک کاربر هشدار می‌دهد و در همین صفحه می‌ماند</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -487,6 +508,7 @@
   <string name="warning-warntype">نوع هشدار:</string>
   <string name="warning-warnlog">هشدار برای این کاربر:</string>
   <string name="warning-submit">ارسال</string>
+  <string name="missing-warning">الگوی هشداری با نام $1 وجود ندارد</string>
   <string name="han-not">شبکه خرابکاری در گزینه‌ها نیست</string>
   <string name="han-connecting">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
   <string name="error-loggedout">از حساب کاربری خارج شده است، در حال ورود دوباره به سامانه...</string>
@@ -514,6 +536,10 @@
   <string name="history-fail">ناتوان از گرفتن تاریخچه</string>
   <string name="history-progress">گرفتن تاریخچه $1 ($2)...</string>
   <string name="history-work">در حال لغو ویرایش خود به $1</string>
+  <string name="history-message-revert-title">واقعاً می‌خواهید تنها همین پیام را واگردانی کنید؟</string>
+  <string name="history-not-found">چیزی برای واگردانی یافت نشد</string>
+  <string name="history-already-done">از پیش واگردانی شده بود</string>
+  <string name="history-message-revert-body">این پیام به یک واگردانی ارجاع داده شده است، آیا مطمئن هستید که می‌خواهید بدون واگردانی ویرایشتان روی صفحه تنها این پیام را واگردانی کنید؟ (اگر می‌خواهید هردو واگردانی شوند می‌باید واگردانی را نیز خنثی کنید)</string>
   <string name="history-revert-fail">ناتوان در بازگرداندن ویرایش‌تان در $1 خطا هنگام بازگرداندن: $2</string>
   <string name="notify-fail">سازنده $1 مطلع نشد</string>
   <string name="notify-unknowncreator">سازنده صفحه پیدا نشد</string>
@@ -522,7 +548,7 @@
   <string name="protect-progress">در حال تغییر دادن وضعیت محافظت  $1 ...</string>
   <string name="protectlog-fail">امکان دریافت سیاههٔ محافظت $1 نبود</string>
   <string name="protectlog-none">سیاهه حفاظتی برای $1 وجود ندارد</string>
-  <string name="protectlog-progress">در حال بازیابی سیاهه حفاظت $1 ...</string>
+  <string name="protectlog-progress">در حال بازیابی سیاههٔ حفاظت $1...</string>
   <string name="saveuserconfig-progress">در حال به روز رسانی صفحه پیکربندی کاربر...</string>
   <string name="loadglobalconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loadprojectconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>

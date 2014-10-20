@@ -17,6 +17,7 @@
   <string name="rename">改名</string>
   <string name="reload">再読み込み</string>
   <string name="project">プロジェクト</string>
+  <string name="result">結果</string>
   <string name="save">保存</string>
   <string name="show">表示</string>
   <string name="undo">取り消す</string>
@@ -116,7 +117,7 @@
   <string name="irc-disconnected">$1 の IRC の最近の更新フィードから切断されました。再接続しています....</string>
   <string name="irc-nochannel">$1のIRCチャンネルが見つかりません。より低速なAPIクエリを代わりに使用します</string>
   <string name="irc-error">IRCの最近の更新フィードに接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
-  <string name="login-intro" fuzzy="true">プロジェクトを選択して、利用者名とパスワードを入力してください。</string>
+  <string name="login-intro">プロジェクトを選択して、利用者名とパスワードを入力してください。「Projects」ボタンをクリックすることで、複数のプロジェクトにログインすることもできます。</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">ログイン</string>
   <string name="login-language">言語:</string>
@@ -145,6 +146,7 @@
   <string name="login-progress-user-info">$1 の利用者の情報を確認中...</string>
   <string name="login-progress-whitelist">利用者ホワイトリストを取得中...</string>
   <string name="login-ssl">HTTP を使用 (OpenSSL が必要)</string>
+  <string name="login-fail">$1 にログインできませんでした</string>
   <string name="login-error-admin">このプロジェクトでハグルを使用するには管理者権限が必要です。</string>
   <string name="login-error-age">このプロジェクトでハグルを使用するにはアカウント作成後 $1 日以上が経過している必要があります。</string>
   <string name="login-error-alldisabled">現在すべてのプロジェクトでハグルの使用ができません。</string>
@@ -162,6 +164,8 @@
   <string name="login-error-unknown">$1 にログインできません。</string>
   <string name="login-error-version">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
   <string name="login-error-whitelist">$1 の利用者ホワイトリストを読み込めませんでした。</string>
+  <string name="main-menu-provider-stop">提供元を停止</string>
+  <string name="main-menu-provider-resume">提供元を再開</string>
   <string name="main-page">ページ</string>
   <string name="main-user">利用者</string>
   <string name="main-contribs">投稿記録</string>
@@ -177,6 +181,8 @@
   <string name="main-system-options">オプション...</string>
   <string name="main-system-logout">ログアウト</string>
   <string name="main-system-abort">中止</string>
+  <string name="main-system-change-provider">提供元を変更</string>
+  <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">ウィキ</string>
   <string name="main-system-exit">終了</string>
   <string name="main-queue">キュー</string>
@@ -217,6 +223,7 @@
   <string name="main-page-move">移動...</string>
   <string name="main-page-protect">保護</string>
   <string name="main-page-delete">削除</string>
+  <string name="main-page-load">読み込み</string>
   <string name="main-page-restore">この版を復元</string>
   <string name="main-user-info">利用者情報を表示</string>
   <string name="main-user-ignore">無視</string>
@@ -248,6 +255,7 @@
   <string name="main-advanced">その他...</string>
   <string name="main-stats">1分あたり $1 編集、 1分あたり {1} リバート</string>
   <string name="main-display-session-data">セッション データを表示</string>
+  <string name="main-display-whitelist">ホワイトリストを表示</string>
   <string name="main-tip-pagetagdelete">このページに削除依頼タグを貼り付け</string>
   <string name="main-tip-pagedelete">このページを削除</string>
   <string name="main-tip-userreport">この利用者を報告</string>
@@ -309,9 +317,12 @@
   <string name="queue-examplelabel3">この属性をチェックしない</string>
   <string name="queue-usergroup">これらの利用者の編集のみ表示</string>
   <string name="report-title">$1 を報告</string>
+  <string name="report-tu">利用者を報告</string>
   <string name="report-reason">理由:</string>
+  <string name="report-intro">利用者 $1 を報告しようとしています</string>
   <string name="report-message">メッセージ:</string>
   <string name="report-log">この利用者への警告:</string>
+  <string name="report-include">報告に含める</string>
   <string name="report-select">プレビューを開くには、一覧から差分を選択してください</string>
   <string name="report-write">書き込み中</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
@@ -337,9 +348,9 @@
   <string name="software-rollback">あなたには巻き戻しの権限がないため、代わりにソフトウェアによる巻き戻しを使用します</string>
   <string name="tag-title">$1 にタグを貼り付け</string>
   <string name="tag-tagselector">タグ:</string>
-  <string name="tag-tags">テキスト:</string>
+  <string name="tag-tags">タグ:</string>
   <string name="tag-summary">要約:</string>
-  <string name="tag-insertatend">ページの最後尾に追加する</string>
+  <string name="tag-insertatend">ページの末尾に追加する</string>
   <string name="update-title">新しいバージョンが利用できます</string>
   <string name="update-progress">新しいバージョンをダウンロードしています...</string>
   <string name="update-error">新しいバージョンのダウンロードに失敗しました</string>
@@ -349,6 +360,7 @@
   <string name="updater-close">閉じる</string>
   <string name="updater-disable-notify">更新を無効にする</string>
   <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
+  <string name="userinfo-generic">利用者の情報</string>
   <string name="userinfo-retrieve">情報を取得</string>
   <string name="warning-title">$1 に警告</string>
   <string name="warning-levelgroup">警告レベル</string>
@@ -359,6 +371,7 @@
   <string name="warning-level4">レベル 4 (最後通告)</string>
   <string name="warning-warntype">警告タイプ:</string>
   <string name="warning-warnlog">この利用者への警告:</string>
+  <string name="warning-submit">送信</string>
   <string name="missing-warning">$1 という警告テンプレートはありません</string>
   <string name="error-loggedout">アカウントがログアウトしています。再ログインします...</string>
   <string name="error-noresponse">反応がありません</string>
@@ -385,7 +398,7 @@
   <string name="history-fail">\'$1\' の履歴取得に失敗しました</string>
   <string name="history-progress">\'$1\' ({1}) の履歴を取得しています...</string>
   <string name="history-work">$1 での自身の編集を取り消し中</string>
-  <string name="history-message-revert-title" fuzzy="true">メッセージを本当に取り消しますか?</string>
+  <string name="history-message-revert-title">このメッセージを本当に取り消しますか?</string>
   <string name="history-not-found">取り消せるものが見つかりませんでした</string>
   <string name="history-already-done">既に取り消されていました</string>
   <string name="history-revert-fail">エラーが発生したため、$1 の編集を取り消せませんでした: $2</string>
@@ -405,7 +418,7 @@
   <string name="reqprotection-duplicate">すでに保護依頼されています</string>
   <string name="reqprotection-fail">\'$1\' の保護依頼に失敗しました</string>
   <string name="reqprotection-progress">\'$1\' を保護依頼しています...</string>
-  <string name="speedy-fail" fuzzy="true">\'$1\' への即時削除タグ貼り付けに失敗しました</string>
+  <string name="speedy-fail">即時削除タグをページに貼り付けできませんでした: $1</string>
   <string name="speedy-progress">\'$1\' に即時削除タグを貼り付けています...</string>
   <string name="speedy-finished">完了</string>
   <string name="warn-alreadyblocked">この利用者はすでにブロックされています</string>
@@ -413,6 +426,7 @@
   <string name="whitelist-download">新しいホワイトリストをダウンロード中</string>
   <string name="logs-widget-name">システム ログ</string>
   <string name="wait">お待ちください...</string>
+  <string name="updating-wl">ホワイトリストを更新中...</string>
   <string name="welcome-tp-empty-fail">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
   <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>

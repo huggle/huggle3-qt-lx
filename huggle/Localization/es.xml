@@ -84,6 +84,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-shortcut">Acceso directo</string>
   <string name="config-queue-filter-ignore">Ignorar (no importa)</string>
   <string name="config-queue-filter-exclude">Excluir (no debe ser)</string>
+  <string name="config-queue-filter-require">Requieren (debe ser)</string>
   <string name="config-title">Opciones</string>
   <string name="config-rememberme">Recordar mi nombre de usuario</string>
   <string name="config-autowhitelist">Ignorar usuarios automáticamente</string>

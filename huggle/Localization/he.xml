@@ -242,7 +242,7 @@
   <string name="main-new-messages">יש לך הודעת חדשה. נא לבחור מערכת -&gt; הצגת ההודעת החדשות או ללחוץ M כדי להציג אותן.</string>
   <string name="main-space">שם הדף אינו יכול להסתמיים ברווח. נא לתקן את שם הדף</string>
   <string name="main-system">מערכת</string>
-  <string name="main-status-bar" fuzzy="true">עיבוד &lt;b&gt;$1&lt;/b&gt; עריכות ו־&lt;b&gt;$2&lt;/b&gt; שאילתות. משתמשים ברשימה הלבנה: &lt;b&gt;$3&lt;/b&gt; גודל התור: &lt;b&gt;$4&lt;/b&gt; סטטיסטיקה עבור $6: $5</string>
+  <string name="main-status-bar">עיבוד &lt;b&gt;$1&lt;/b&gt; עריכות ו־&lt;b&gt;$2&lt;/b&gt; שאילתות. משתמשים ברשימה הלבנה: &lt;b&gt;$3&lt;/b&gt; גודל התור: &lt;b&gt;$4&lt;/b&gt; סטטיסטיקה עבור $6: $5</string>
   <string name="main-shutting-down">מתבצעת יציאה מהאגל, הפעולה לא תתבצע</string>
   <string name="main-system-messages">הצגת ההודעת החדשות</string>
   <string name="main-system-reconnectirc">להתחבר מחדש להזנת IRC</string>
@@ -536,7 +536,7 @@
   <string name="history-fail">אחזור ההיסטוריה של $1 נכשל</string>
   <string name="history-progress">מתבצע אחזור ההיסטוריה של $1 ($2)...</string>
   <string name="history-work">ביטול עריכה של עצמך בדף $1</string>
-  <string name="history-message-revert-title" fuzzy="true">האם באמת לבטל רק את ההודעה?</string>
+  <string name="history-message-revert-title">האם באמת לבטל רק את ההודעה הזאת?</string>
   <string name="history-not-found">לא נמצא שום דבר לבטל</string>
   <string name="history-already-done">זה כבר בוטל</string>
   <string name="history-message-revert-body">זאת הייתה הודעה שיש אליה הפניה משחזור. האם ברצונך לבטל רק את התבנית ואפילו לא העריכה שלך לדף? (עליך לבטל את השחזור אם ברצונך לשחזר מה מאלה)</string>
