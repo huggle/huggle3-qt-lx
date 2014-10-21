@@ -123,6 +123,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
             break;
     }
     this->Disable();
+    this->ui->checkBox_2->setText(_l("config-confirm-user"));
+    this->ui->checkBox_3->setText(_l("config-confirmselfrevert"));
+    this->ui->checkBox_4->setText(_l("config-confirm-wl"));
     // options
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);

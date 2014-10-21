@@ -88,8 +88,6 @@
     <string name="config-queue-filter-require">Require (must be)</string>
     <string name="config-summ">Custom revert summaries for templates</string>
     <string name="config-title">Options</string>
-    <string name="config-rememberme">Remember my username</string>
-    <string name="config-autowhitelist">Automatically whitelist users</string>
     <string name="config-already-in-use">This shortcut is already being used by $1, please choose a different one</string>
     <string name="config-openinbrowser">Open browser links in a new browser window</string>
     <string name="config-shownewedits">Show new edits to the selected page as they are made</string>
@@ -110,6 +108,8 @@
     <string name="config-watchlist">Add to watchlist</string>
     <string name="config-defaultsummary">Default summary for manual edits</string>
     <string name="config-undosummary">Summary when undoing own edits</string>
+    <string name="config-confirm-us">Require confirmation for revert of edit that was made in user space</string>
+    <string name="config-confirm-wl">Require confirmation for revert of edit that was made by whitelisted user</string>
     <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
     <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
     <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>

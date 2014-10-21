@@ -314,9 +314,8 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             }
             QString day = parts_time.at(0);
             // e.g. dewiki's days end with dot
-            if(day.endsWith('.')){
+            if(day.endsWith('.'))
                 day = day.mid(0, day.length() - 1);
-            }
             month_name = parts_time.at(1);
             byte_ht month = HuggleParser::GetIDOfMonth(month_name);
 
