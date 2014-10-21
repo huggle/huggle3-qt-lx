@@ -296,8 +296,7 @@ bool Message::FinishToken()
     QDomElement element = l.at(0).toElement();
     if (!element.attributes().contains("edittoken"))
     {
-        /// \todo LOCALIZE ME
-        this->Fail("the result doesn't contain the token");
+        this->Fail(_l("message-fail-token-2"));
         Huggle::Syslog::HuggleLogs->DebugLog("No token");
         return false;
     }

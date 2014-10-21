@@ -134,8 +134,7 @@ void ProtectPage::Failed(QString reason)
 {
     QMessageBox *_pmb = new QMessageBox();
     _pmb->setWindowTitle(_l("protect-message-title-fail"));
-    /// \todo LOCALIZE ME
-    _pmb->setText("Unable to protect the page because " + reason);
+    _pmb->setText(_l("protect-error", reason));
     _pmb->exec();
     delete _pmb;
     this->tt->stop();

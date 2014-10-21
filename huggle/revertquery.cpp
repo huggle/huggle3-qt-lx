@@ -360,8 +360,8 @@ void RevertQuery::CheckPreflight()
                 return;
             } else if (MultipleEdits && Configuration::HuggleConfiguration->RevertOnMultipleEdits)
             {
-                /// \todo LOCALIZE ME
-                Huggle::Syslog::HuggleLogs->Log("Conflict resolved: revert all edits - there are multiple edits by same user to " + this->edit->Page->PageName);
+                // Conflict resolved: revert all edits - there are multiple edits by same user to
+                Huggle::Syslog::HuggleLogs->Log(_l("cr-revert-same-user", this->edit->Page->PageName));
             } else
             {
                 if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
@@ -369,8 +369,8 @@ void RevertQuery::CheckPreflight()
                     Huggle::Syslog::HuggleLogs->Log(_l("cr-resolved-same-user", this->edit->Page->PageName));
                 } else
                 {
-                    /// \todo LOCALIZE ME
-                    Huggle::Syslog::HuggleLogs->Log("Conflict resolved: do not perform any action - there are newer edits to " + this->edit->Page->PageName);
+                    // Conflict resolved: do not perform any action - there are newer edits to
+                    Huggle::Syslog::HuggleLogs->Log(_l("cr-stop-new-edit", this->edit->Page->PageName));
                     this->Cancel();
                     return;
                 }
@@ -514,8 +514,7 @@ bool RevertQuery::ProcessRevert()
             return true;
         }
         this->eqSoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MinorEdit);
-        /// \todo LOCALIZE ME
-        this->CustomStatus = "Editing page";
+        this->CustomStatus = _l("editing-page");
         return false;
     }
     if (this->qHistoryInfo == nullptr || !this->qHistoryInfo->IsProcessed())

@@ -23,6 +23,7 @@
     <string name="show">Show</string>
     <string name="undo">Undo</string>
     <string name="yes">Yes</string>
+    <string name="editing-page">Editing page</string>
     <string name="agf">Revert as a good faith edit with a custom reason</string>
     <string name="successful">Successful</string>
     <string name="summary">Summary</string>
@@ -374,6 +375,7 @@
     <string name="protect-none">None</string>
     <string name="protect-token">Token cannot be retrieved. The reason was: $1</string>
     <string name="protect-semiprotection">Semi-protection</string>
+    <string name="protect-error">Unable to protect the page because: $1</string>
     <string name="protect-fail-no-info">No page info was available (are you an admin?)</string>
     <string name="protect-fullprotection">Full protection</string>
     <string name="protect-message-title-fail">Unable to protect</string>
@@ -531,6 +533,7 @@
     <string name="deletelog-fail">Failed to retrieve deletion log for $1</string>
     <string name="deletelog-none">No deletion log for $1</string>
     <string name="deletelog-progress">Retrieving deletion log for $1...</string>
+    <string name="edit-bar-top">This edit is a top revision</string>
     <string name="edit-fail">Did not edit $1</string>
     <string name="edit-progress">Editing $1...</string>
     <string name="history-fail">Failed to retrieve history of $1</string>
@@ -583,6 +586,7 @@
     <string name="cr-resolved-same-user">Conflict resolved: reverted all edits including new edits, made by same users - edits are by same user: $1</string>
     <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
     <string name="cr-stop-multiple-same">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
+    <string name="cr-revert-same-user">Conflict resolved: revert all edits - there are multiple edits by same user to $1</string>
     <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
     <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
     <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
