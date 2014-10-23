@@ -729,6 +729,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_7">
+         <property name="text">
+          <string>Highlight summary when present instead of when it's missing</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
           <widget class="QLabel" name="label_13">

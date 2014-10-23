@@ -277,7 +277,7 @@ void VandalNw::Message()
     {
         this->Irc->Send(this->Site2Channel[Configuration::HuggleConfiguration->Project], this->ui->lineEdit->text());
         QString text = ui->lineEdit->text();
-        if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
+        if (!hcfg->UserConfig->HtmlAllowedInIrc)
             text = SafeHtml(text);
         this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + text,
                      HAN::MessageType_UserTalk);
@@ -493,9 +493,9 @@ void VandalNw::onTick()
         } else
         {
             QString message_ = m->Text;
-            if (!Configuration::HuggleConfiguration->HtmlAllowedInIrc)
+            if (!hcfg->UserConfig->HtmlAllowedInIrc)
                 message_ = SafeHtml(message_);
-            if (Configuration::HuggleConfiguration->Multiple)
+            if (hcfg->Multiple)
             {
                 this->Insert(m->user.Nick + " (" + site->Name + "): " + message_, HAN::MessageType_UserTalk);
             } else

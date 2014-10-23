@@ -353,12 +353,12 @@ void RevertQuery::CheckPreflight()
         }
         if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts)
         {
-            if (MultipleEdits && !Configuration::HuggleConfiguration->RevertOnMultipleEdits)
+            if (MultipleEdits && !hcfg->UserConfig->RevertOnMultipleEdits)
             {
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-stop-multiple-same", this->edit->Page->PageName));
                 this->Cancel();
                 return;
-            } else if (MultipleEdits && Configuration::HuggleConfiguration->RevertOnMultipleEdits)
+            } else if (MultipleEdits && hcfg->UserConfig->RevertOnMultipleEdits)
             {
                 // Conflict resolved: revert all edits - there are multiple edits by same user to
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-revert-same-user", this->edit->Page->PageName));

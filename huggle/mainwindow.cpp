@@ -1376,7 +1376,7 @@ void MainWindow::OnTimerTick0()
                 }
                 WikiPage *uc = new WikiPage(page);
                 uc->Site = site;
-                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, Configuration::MakeLocalUserConfig(site),
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()),
                                                                           _l("saveuserconfig-progress"), true);
                 temp->IncRef();
                 this->StorageQueries.insert(site, temp.GetPtr());

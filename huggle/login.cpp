@@ -644,7 +644,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
             QString val_ = data->Value;
             this->LoginQueries.remove(site);
             q->DecRef();
-            if (Configuration::HuggleConfiguration->ParseUserConfig(site, val_))
+            if (site->GetUserConfig()->ParseUserConfig(val_, site->GetProjectConfig(), site == hcfg->Project))
             {
                 if (this->LoadedOldConfigs[site])
                 {
@@ -657,6 +657,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     this->DisplayError(_l("login-fail-enable-true", site->Name));
                     return;
                 }
+                hcfg->NormalizeConf(site);
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Success);
                 this->Statuses[site] = RetrievingUser;
                 return;

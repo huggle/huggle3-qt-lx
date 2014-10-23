@@ -33,6 +33,7 @@ namespace Huggle
     };
 
     class HuggleOption;
+    class ProjectConfiguration;
     class Version;
 
     //! User configuration, for a user per project
@@ -41,6 +42,7 @@ namespace Huggle
         public:
             UserConfiguration();
             ~UserConfiguration();
+            bool ParseUserConfig(QString config, ProjectConfiguration *ProjectConfig, bool IsHome);
             /*!
              * \brief Returns a data for given key
              * \param key
@@ -58,11 +60,22 @@ namespace Huggle
             int GetSafeUserInt(QString key_, int default_value = 0);
             bool GetSafeUserBool(QString key_, bool default_value = false);
             QString GetSafeUserString(QString key_, QString default_value = "");
+            //! This function creates a user configuration that is stored on wiki
+            QString MakeLocalUserConfig(ProjectConfiguration *Project);
             QHash<QString, HuggleOption*> UserOptions;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = false;
+            //! If this is true huggle will always use software rollback even if user has the rollback privileges
+            bool            EnforceManualSoftwareRollback = false;
             bool            EnforceMonthsAsHeaders = true;
+            //! Size of fonts in diff
+            int             FontSize = 16;
+            //! Font that we use to render diffs and similar pages
+            QString         Font = "Helvetica, Arial, sans-serif";
             unsigned int    TalkPageFreshness = 20;
+            //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
+            bool            RevertOnMultipleEdits = false;
+            bool            HtmlAllowedInIrc = false;
             //! If history and user info should be automatically loaded for every edit
             bool                    HistoryLoad = true;
             //! Defines what should be done on next edit
@@ -74,6 +87,7 @@ namespace Huggle
             bool                    SectionKeep = true;
             unsigned int            HistoryMax = 50;
             bool                    TruncateEdits = false;
+            int                     SummaryMode = 0;
             bool                    RevertNewBySame = true;
             //! If this is set to false the warning will be selected by huggle when user decide to
             //! use the "warn only" feature in huggle (W) for example, it doesn't affect reverting

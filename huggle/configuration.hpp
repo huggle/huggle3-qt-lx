@@ -176,8 +176,6 @@ namespace Huggle
             static void SaveSystemConfig();
             //! Load the local configuration from disk
             static void LoadSystemConfig(QString fn);
-            //! This function creates a user configuration that is stored on wiki
-            static QString MakeLocalUserConfig(WikiSite *site);
             //! This function appends the huggle suffix to a edit summary
             static QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             static Configuration *HuggleConfiguration;
@@ -187,7 +185,6 @@ namespace Huggle
             void NormalizeConf(WikiSite *site);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
-            bool ParseUserConfig(WikiSite *site, QString config);
             QString GetExtensionConfig(QString extension, QString name, QString ms);
             ////////////////////////////////////////////
             // System
@@ -220,7 +217,6 @@ namespace Huggle
             int             SystemConfig_QueueSize = 200;
             //! Whether python is available
             bool            PythonEngine;
-            bool            HtmlAllowedInIrc = false;
             bool            Fuzzy = false;
             //! Size of feed
             int             SystemConfig_ProviderCache = 200;
@@ -244,25 +240,16 @@ namespace Huggle
             bool            SystemConfig_QueueNewEditsUp = false;
             //! If this is true some functionalities will be disabled
             bool            SystemConfig_SafeMode = false;
-            /// \todo This option needs to be implemented to browser so that font size is different when this is changed by user
-            //! Size of fonts in diff
-            int             SystemConfig_FontSize = 16;
-            //! Font that we use to render diffs and similar pages
-            QString         SystemConfig_Font = "Helvetica, Arial, sans-serif";
             //! Timeout for queries
             int             SystemConfig_ReadTimeout = 60;
             //! Timeout for write / update queries
             int             SystemConfig_WriteTimeout = 200;
             //! Whitelist is not useable
             bool            SystemConfig_WhitelistDisabled = false;
-            //! If this is true huggle will always use software rollback even if user has the rollback privileges
-            bool            EnforceManualSoftwareRollback = false;
             //! List of characters that separate words from each other, like dot, space etc, used by score words
             QStringList     SystemConfig_WordSeparators;
             //! This is affecting if columns are auto-sized or not
             bool            SystemConfig_DynamicColsInList = false;
-            //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
-            bool            RevertOnMultipleEdits = false;
             QString         SystemConfig_GlobalConfigWikiList = "Project:Huggle/List";
             //! Changing this to true will make the Syslog write all data to a file
             bool            SystemConfig_Log2File = false;

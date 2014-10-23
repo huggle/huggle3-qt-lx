@@ -129,7 +129,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     // options
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
-    this->ui->checkBox_5->setChecked(hcfg->EnforceManualSoftwareRollback);
+    this->ui->checkBox_5->setChecked(hcfg->UserConfig->EnforceManualSoftwareRollback);
     this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
     this->ui->checkBox_2->setChecked(hcfg->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
@@ -142,10 +142,10 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_16->setChecked(hcfg->UserConfig->EnforceMonthsAsHeaders);
     this->ui->checkBox_19->setChecked(hcfg->UserConfig->TruncateEdits);
     this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_DelayVal));
-    this->ui->radioButton->setChecked(!hcfg->RevertOnMultipleEdits);
+    this->ui->radioButton->setChecked(!hcfg->UserConfig->RevertOnMultipleEdits);
     this->ui->checkBox_21->setChecked(hcfg->UserConfig->LastEdit);
     this->ui->checkBox_17->setChecked(hcfg->UserConfig->SectionKeep);
-    this->ui->radioButton_2->setChecked(hcfg->RevertOnMultipleEdits);
+    this->ui->radioButton_2->setChecked(hcfg->UserConfig->RevertOnMultipleEdits);
     this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
     this->ui->checkBox_20->setChecked(hcfg->UserConfig->RevertNewBySame);
@@ -157,15 +157,15 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_22->setChecked(hcfg->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
-    this->ui->checkBox_31->setChecked(hcfg->HtmlAllowedInIrc);
+    this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
     this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
-    this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
+    this->ui->lineEdit_5->setText(hcfg->UserConfig->Font);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
     this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
-    this->ui->lineEdit_4->setText(QString::number(hcfg->SystemConfig_FontSize));
+    this->ui->lineEdit_4->setText(QString::number(hcfg->UserConfig->FontSize));
 }
 
 Preferences::~Preferences()
@@ -260,8 +260,8 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
     hcfg->UsingIRC = this->ui->checkBox_12->isChecked();
-    hcfg->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
-    hcfg->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
+    hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
+    hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
     hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
     hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_4->isChecked();
     hcfg->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
@@ -282,13 +282,17 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
     hcfg->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
     hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
-    hcfg->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
-    hcfg->SystemConfig_FontSize = this->ui->lineEdit_4->text().toInt();
+    hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    if (this->ui->checkBox_7->isChecked())
+        hcfg->UserConfig->SummaryMode = 1;
+    else
+        hcfg->UserConfig->SummaryMode = 0;
+    hcfg->UserConfig->FontSize = this->ui->lineEdit_4->text().toInt();
 
-    if (hcfg->SystemConfig_FontSize < 1)
-        hcfg->SystemConfig_FontSize = 10;
+    if (hcfg->UserConfig->FontSize < 1)
+        hcfg->UserConfig->FontSize = 10;
 
-    hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
+    hcfg->UserConfig->Font = this->ui->lineEdit_5->text();
 
     if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
     {
