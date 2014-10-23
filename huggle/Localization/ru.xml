@@ -75,8 +75,6 @@
   <string name="config-queue-filter-require">Требуется (должен быть)</string>
   <string name="config-summ">Custom revert summaries for templates</string>
   <string name="config-title">Настройки</string>
-  <string name="config-rememberme">Помнить мой логин</string>
-  <string name="config-autowhitelist">Автоматически обновлять белый список пользователей</string>
   <string name="config-already-in-use">Это сочетание клавиш уже используется $1, пожалуйста, выберите другое</string>
   <string name="config-openinbrowser">Открывать ссылки в новом окне браузера</string>
   <string name="config-shownewedits">Показывать новые изменения на выбранной странице автоматически</string>

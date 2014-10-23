@@ -23,6 +23,7 @@
   <string name="show">Anzeigen</string>
   <string name="undo">Rückgängig</string>
   <string name="yes">Ja</string>
+  <string name="editing-page">Bearbeite Seite</string>
   <string name="agf">Als gutgläubige Bearbeitung mit benutzerdefiniertem Grund zurücksetzen</string>
   <string name="successful">Erfolgreich</string>
   <string name="summary">Zusammenfassung</string>
@@ -89,8 +90,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-queue-filter-require">Erfordern (muss sein)</string>
   <string name="config-summ">Benutzerdefinierte Zurücksetzungszusammenfassungen für Vorlagen</string>
   <string name="config-title">Einstellungen</string>
-  <string name="config-rememberme">Benutzernamen merken</string>
-  <string name="config-autowhitelist">Automatisch Benutzer zur Whitelist hinzufügen</string>
   <string name="config-already-in-use">Dieses Kürzel wird bereits von $1 verwendet. Bitte wähle ein anderes.</string>
   <string name="config-openinbrowser">Browser-Links in neuem Fenster öffnen</string>
   <string name="config-shownewedits">Zeige neue Änderungen an der gerade ausgewählten Seite, sobald diese vorgenommen werden</string>
@@ -111,6 +110,8 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>
   <string name="config-undosummary">Zusammenfassung für das Widerrufen einer eigenen Änderung</string>
+  <string name="config-confirm-us">Bestätigung für das Zurücksetzen der Bearbeitung im Benutzernamensraum erforderlich</string>
+  <string name="config-confirm-wl">Bestätigung für das Zurücksetzen der Bearbeitung eines weißgelisteten Benutzers erforderlich</string>
   <string name="config-confirmmultiple">Verlange Bestätigung, wenn mehrere Änderungen eines Benutzers widerrufen werden sollen</string>
   <string name="config-confirmsame">Verlange Bestätigung, wenn die Änderung auf einer Version die dieser Benutzer bearbeitet hat, zurückgesetzt wird</string>
   <string name="config-confirmselfrevert">Verlange Bestätigung für das Widerrufen eigener Änderungen (außer Entfernen)</string>
@@ -162,6 +163,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="historyform-not-latest-tip">Dies ist keine aktuelle Version dieser Seite. Stelle sicher, dass du auch die neueren Versionen überprüft hast. Beachte bitte auch, dass es von diesem Punkt nicht möglich ist, Zurücksetzungen auszuführen.</string>
   <string name="history-error-message-title">Rückgängigmachung fehlgeschlagen</string>
   <string name="history-error">Dieses Objekt kann nicht rückgängig gemacht werden. Die Seite könnte inzwischen geändert oder gelöscht worden sein. Huggle kann die Rückgängigmachung von diesem Punkt nicht ausführen. Wenn du die Rückgängigmachung wirklich ausführen willst, musst du dies manuell mithilfe der MediaWiki-Oberfläche machen.</string>
+  <string name="history-failure">Versionsgeschichte konnte nicht abgerufen werden</string>
   <string name="userhistory-title">Verlauf deiner Änderungen</string>
   <string name="irc-connected">$1: Verbunden mit dem IRC-Letzte-Änderungen-Feed</string>
   <string name="irc-connecting">Versuche mit IRC-Feed auf $1 zu verbinden; dies kann einen Augenblick dauern …</string>
@@ -374,6 +376,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="protect-none">Keine</string>
   <string name="protect-token">Der Token konnte nicht abgerufen werden. Die Begründung lautete: $1</string>
   <string name="protect-semiprotection">Halb-Schutz</string>
+  <string name="protect-error">Die Seite konnte nicht geschützt werden: $1</string>
   <string name="protect-fail-no-info">Es ist keine Seiteninformation verfügbar. Bist du ein Administrator?</string>
   <string name="protect-fullprotection">Kompletter Schutz</string>
   <string name="protect-message-title-fail">Seitenschutz fehlgeschlagen</string>
@@ -531,6 +534,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="deletelog-fail">Lösch-Logbuch für $1 konnte nicht abgerufen werden</string>
   <string name="deletelog-none">Kein Lösch-Logbuch für $1</string>
   <string name="deletelog-progress">Lösch-Logbuch für $1 abrufen …</string>
+  <string name="edit-bar-top">Diese Bearbeitung ist eine aktuelle Version</string>
   <string name="edit-fail">$1 wurde nicht bearbeitet</string>
   <string name="edit-progress">Bearbeite $1 …</string>
   <string name="history-fail">Versionsgeschichte von $1 konnte nicht abgerufen werden</string>
@@ -583,6 +587,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern. Bearbeitungen sind vom gleichen Benutzer $1.</string>
   <string name="cr-stop-new-edit">Konflikt gelöst: Keine Aktion ausgeführt – Es gibt neuere Bearbeitungen an $1</string>
   <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
+  <string name="cr-revert-same-user">Konflikt gelöst: Alle Bearbeitungen zurückgesetzt. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>

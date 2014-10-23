@@ -84,8 +84,6 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-queue-filter-ignore">Ignorar (não importa)</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
-  <string name="config-rememberme">Lembrar o meu nome de utilizador(a)</string>
-  <string name="config-autowhitelist">Adicionar automaticamente utilizadores(as) à lista branca</string>
   <string name="config-already-in-use">Este atalho já está a ser utilizado por $1 , por favor, escolha um diferente</string>
   <string name="config-openinbrowser">Abrir hiperligações numa nova janela do navegador externo</string>
   <string name="config-shownewedits">Mostrar automaticamente novas edições na página caso elas ocorram</string>
@@ -155,6 +153,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="historyform-not-latest-tip">Esta não é uma revisão mais recente desta página - certifique-se de que analisou as versões mais recentes. Por favor, tenha também em mente que a reversão pode não ser possível a partir deste ponto.</string>
   <string name="history-error-message-title">Não foi possível reverter</string>
   <string name="history-error">Este item não pode ser desfeito, a página deve ter sido alterada ou eliminada, e o huggle não pode desfazer neste ponto. Se realmente quer desfazer, você precisará fazê-lo manualmente usando a interface do MediaWiki.</string>
+  <string name="history-failure">Não é possível recuperar o histórico</string>
   <string name="userhistory-title">Histórico das suas alterações</string>
   <string name="irc-connected">$1: Ligado ao feed de IRC de mudanças recentes</string>
   <string name="irc-connecting">A ligar ao feed IRC de mudanças recentes em $1; aguarde um momento...</string>

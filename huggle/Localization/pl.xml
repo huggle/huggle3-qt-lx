@@ -86,8 +86,6 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-queue-filter-require">Wymagane (musi być)</string>
   <string name="config-summ">Niestandardowo przywróć podsumowania dla szablonów</string>
   <string name="config-title">Opcje</string>
-  <string name="config-rememberme">Zapamiętaj moją nazwę użytkownika</string>
-  <string name="config-autowhitelist">Automatycznie dodawaj użytkowników do białej listy</string>
   <string name="config-openinbrowser">Otwieranie linków w nowym oknie przeglądarki</string>
   <string name="config-shownewedits">Pokaż nowe edycje do wybranej strony</string>
   <string name="config-ircmode">Użyj kanału IRC do pobierania ostatnich zmian, jeśli to możliwe</string>

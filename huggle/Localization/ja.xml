@@ -38,6 +38,7 @@
   <string name="expiry-time">有効期限</string>
   <string name="duration">期間</string>
   <string name="flags">フラグ</string>
+  <string name="browser-fail">差分を取得できません: $1</string>
   <string name="about-contributors">開発者:</string>
   <string name="block-not">利用者はブロックされていません</string>
   <string name="block-title">$1 をブロック</string>
@@ -59,8 +60,7 @@
   <string name="block-type">ブロック / ブロック解除</string>
   <string name="config-shortcut">ショートカット</string>
   <string name="config-title">オプション</string>
-  <string name="config-rememberme">利用者名を記憶する</string>
-  <string name="config-autowhitelist">自動で利用者をホワイトリストに入れる</string>
+  <string name="config-already-in-use">このショートカットは $1 で既に使用されています。別のショートカットを指定してください</string>
   <string name="config-openinbrowser">ブラウザーリンクを新しいウィンドウで開く</string>
   <string name="config-shownewedits">ページで新しい編集が行われたら、自動で表示を切り替える</string>
   <string name="config-ircmode">最近の更新をIRCフィードから取得する</string>
@@ -111,7 +111,12 @@
   <string name="delete-title">$1 を削除</string>
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
+  <string name="delete-token02">クエリがトークンを返しませんでした</string>
+  <string name="delete-e1">ページを削除できません: $1</string>
+  <string name="delete-e2">ページを削除できません</string>
+  <string name="delete-edsc">ページを削除できません。理由: $1</string>
   <string name="history-error-message-title">取り消せません</string>
+  <string name="history-failure">履歴を取得できません</string>
   <string name="irc-connected">$1: IRC の最近の更新フィードに接続しました</string>
   <string name="irc-connecting">$1 の IRC の最近の更新フィードへ接続しています。しばらくお待ちください....</string>
   <string name="irc-disconnected">$1 の IRC の最近の更新フィードから切断されました。再接続しています....</string>
@@ -423,6 +428,7 @@
   <string name="speedy-finished">完了</string>
   <string name="warn-alreadyblocked">この利用者はすでにブロックされています</string>
   <string name="editquery-success">$2 の $1 を編集しました</string>
+  <string name="editquery-token-error">編集トークンを取得できません</string>
   <string name="whitelist-download">新しいホワイトリストをダウンロード中</string>
   <string name="logs-widget-name">システム ログ</string>
   <string name="wait">お待ちください...</string>

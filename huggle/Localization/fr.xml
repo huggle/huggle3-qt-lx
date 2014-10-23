@@ -89,8 +89,6 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-queue-filter-require">Exiger (doit exister)</string>
   <string name="config-summ">Résumé de revert personnalisés pour les modèles</string>
   <string name="config-title">Options</string>
-  <string name="config-rememberme">Se souvenir de mon nom d\'utilisateur</string>
-  <string name="config-autowhitelist">Ajouter automatiquement les utilisateurs à la liste blanche</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
   <string name="config-openinbrowser">Ouvrir les liens du navigateur dans une nouvelle fenêtre</string>
   <string name="config-shownewedits">Afficher les nouvelles modifications à la page sélectionnée dès qu\'elles sont faits</string>
@@ -111,6 +109,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-watchlist">Ajouter à la liste de suivi</string>
   <string name="config-defaultsummary">Résumé par défaut pour les éditions manuelles</string>
   <string name="config-undosummary">Résumé pour l\'annulation de ses propres modifications</string>
+  <string name="config-confirm-us">Demander confirmation pour annuler une modification faite dans l’espace utilisateur</string>
+  <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
   <string name="config-confirmselfrevert">Confirmer la réversion de modifications propres (sauf annulation)</string>
@@ -162,6 +162,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="historyform-not-latest-tip">Ceci n’est pas la révision la plus récente de cette page — assurez-vous d’avoir également passé en revue les nouvelles versions. Veuillez également garder à l’esprit qu’une annulation de révision pourrait ne pas être possible depuis ce point.</string>
   <string name="history-error-message-title">Impossible d’annuler</string>
   <string name="history-error">L’élément ne peut pas être annulé, la page peut avoir été modifiée ou supprimée entre temps, et Huggle est incapable d’effectuer l’annulation depuis ce point. Si vous voulez vraiment l’annuler, vous devrez le faire à la main en utilisant l’interface de Médiawiki.</string>
+  <string name="history-failure">Impossible de récupérer l’historique</string>
   <string name="userhistory-title">Historique de vos modifications</string>
   <string name="irc-connected">$1 : Connecté au flux des évolutions récentes sur IRC</string>
   <string name="irc-connecting">Tentative de connexion au flux IRC des changements récents sur $1, ceci peut prendre un peu de temps…</string>
@@ -242,7 +243,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-new-messages">Vous avez de nouveaux messages. Sélectionnez Système -&gt; Afficher les nouveaux messages ou appuyez sur M pour les afficher.</string>
   <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger.</string>
   <string name="main-system">Système</string>
-  <string name="main-status-bar" fuzzy="true">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt; Taille de la file : &lt;b&gt;$4&lt;/b&gt; Statistiques pour $6 : $5</string>
+  <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt; Taille de la file : &lt;b&gt;$4&lt;/b&gt; Statistiques pour $6 : $5</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
   <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>
@@ -536,7 +537,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
   <string name="history-progress">Récupération de l’historique de $1 ($2)…</string>
   <string name="history-work">Annulation de sa propre modification effectuée sur $1</string>
-  <string name="history-message-revert-title" fuzzy="true">Voulez-vous vraiment annuler simplement le message ?</string>
+  <string name="history-message-revert-title">Voulez-vous vraiment annuler simplement ce message ?</string>
   <string name="history-not-found">Rien n’a été trouvé à annuler</string>
   <string name="history-already-done">Ceci a déjà été annulé</string>
   <string name="history-message-revert-body">C’était un message référencé par une annulation ; êtes-vous sûr de vouloir annuler uniquement le modèle et pas même votre modification sur la page (vous devrez annuler le retour arrière si vous voulez revenir sur les deux) ?</string>

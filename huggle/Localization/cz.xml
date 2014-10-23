@@ -78,8 +78,6 @@
   <string name="config-shortcut">Klávesové zkratky</string>
   <string name="config-summ">Vlastní shrnutí pro editace pomocí template</string>
   <string name="config-title">Nastavení</string>
-  <string name="config-rememberme">Uložit mé uživatelské jméno</string>
-  <string name="config-autowhitelist">Automaticky ukladat do seznamu povolených uživatelů</string>
   <string name="config-openinbrowser">Otevřít odkazy v novém okně prohlížeče</string>
   <string name="config-shownewedits">Zobrazit nové editace pro vybranou stránku ve chvíli kdy jsou provedeny</string>
   <string name="config-ircmode">Použit IRC kanál pro poslední změny pokud je k dispozici</string>

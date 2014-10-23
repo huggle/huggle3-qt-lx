@@ -67,7 +67,6 @@
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>
   <string name="config-title">Optiounen</string>
-  <string name="config-rememberme">Mäi Benotzernumm verhalen</string>
   <string name="config-logfile">Lobuch-Fichier</string>
   <string name="config-shortcutaction">Aktioun</string>
   <string name="config-noshortcut">Keng</string>

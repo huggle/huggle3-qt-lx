@@ -89,8 +89,6 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-queue-filter-require">Exigir (deve ser)</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
-  <string name="config-rememberme">Lembrar meu nome de usuário</string>
-  <string name="config-autowhitelist">Adicionar automaticamente usuários à lista branca</string>
   <string name="config-already-in-use">Este atalho já está a ser usado por $1 , por favor, escolha um diferente</string>
   <string name="config-openinbrowser">Abrir hiperligações numa nova janela do navegador externo</string>
   <string name="config-shownewedits">Mostrar automaticamente novas edições na página caso elas ocorram</string>

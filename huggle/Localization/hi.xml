@@ -37,8 +37,6 @@
   <string name="config-shortcut">लघुपथ</string>
   <string name="config-summ">साँचों के लिये सारांश को व्यक्तिगतरुप से वापस करे</string>
   <string name="config-title">विकल्प</string>
-  <string name="config-rememberme">प्रयोक्तानाम स्मरण</string>
-  <string name="config-autowhitelist">प्रयोक्ताओं को स्वतः श्वेतसूचीकृत करें</string>
   <string name="config-openinbrowser">ब्राउज़र कड़ियाँ नई ब्राउज़र विण्डो में खोलें</string>
   <string name="config-shownewedits">चुने गये पन्ने पर किये गये नये संपादन दिखायें जैसे ही वह चुने गये पन्ने बनते है।</string>
   <string name="config-ircmode">अगर संभव हो तो हाल ही में हुए परिवर्तनों के लिये आई आर सी फीड प्रयोग करें</string>

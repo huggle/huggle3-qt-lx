@@ -86,8 +86,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-queue-filter-exclude">Excluir (no debe ser)</string>
   <string name="config-queue-filter-require">Requieren (debe ser)</string>
   <string name="config-title">Opciones</string>
-  <string name="config-rememberme">Recordar mi nombre de usuario</string>
-  <string name="config-autowhitelist">Ignorar usuarios automáticamente</string>
   <string name="config-openinbrowser">Abrir enlaces en una ventana nueva del navegador</string>
   <string name="config-shownewedits">Mostrar ediciones nuevas en la página seleccionada a medida que se van haciendo</string>
   <string name="config-ircmode">Usar el IRC para acceder a los cambios recientes</string>

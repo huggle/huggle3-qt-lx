@@ -49,6 +49,7 @@
   <string name="flags">İşaretler</string>
   <string name="score-score">Derecelendirme</string>
   <string name="score-word">Kelime</string>
+  <string name="score-range">Aralık</string>
   <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
   <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
@@ -87,8 +88,6 @@
   <string name="config-queue-filter-require">Gerektirir (zorunlu)</string>
   <string name="config-summ">Şablonlar için kulanılan kişisel geri alma özetleri</string>
   <string name="config-title">Seçenekler</string>
-  <string name="config-rememberme">Kullanıcı adımı hatırla</string>
-  <string name="config-autowhitelist">Otomatik atanan beyazliste kullanıcıları</string>
   <string name="config-already-in-use">Bu kısayol $1 tarafından zaten kullanılıyor, lütfen başka bir tane seçin</string>
   <string name="config-openinbrowser">Bağlantıları yeni tarayıcı penceresinde aç</string>
   <string name="config-shownewedits">Seçili sayfada yapılan değişiklikleri yapıldığı esnada göster</string>
@@ -109,6 +108,8 @@
   <string name="config-watchlist">İzleme listesine ekle</string>
   <string name="config-defaultsummary">Elle yapılan değişiklikler için varsayılan özet</string>
   <string name="config-undosummary">Kendi değişikliklerinizi eski haline getirmek için özet</string>
+  <string name="config-confirm-us">Kullanıcı alanında yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
+  <string name="config-confirm-wl">Beyaz listedeki kullanıcı tarafından yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
   <string name="config-confirmmultiple">Aynı kullanıcı tarafından yapılan çoklu geri almayı onayla</string>
   <string name="config-confirmsame">Geri çevirilen kullanıcı tarafından yapılan değişikliği geri almayı onayla</string>
   <string name="config-confirmselfrevert">Kendi değişikliklerini (eski haline getirme hariç) geri almayı onayla</string>
@@ -151,6 +152,7 @@
   <string name="delete-e2">Sayfa silinemedi</string>
   <string name="delete-edsc">Sayfa silinemedi. Sebep $1</string>
   <string name="delete-failed-no-info">Sorguda hiç sayfa bilgisi görüntülenemedi (hizmetli misiniz?)</string>
+  <string name="extension-kl">Sonlandırıldı</string>
   <string name="extension-fine">Yüklendi ve yürütülüyor</string>
   <string name="historyform-no-info">Düzenleme bilgisi yok</string>
   <string name="historyform-title">Geçmiş</string>
@@ -159,6 +161,7 @@
   <string name="historyform-not-latest-tip">Bu sayfanın son sürümü değil. Bundan sonraki sürümleri de gözden geçirdiğinize emin olun. Unutmayın ki bu noktadan sonra \"rollback\" mümkün olmayabilir.</string>
   <string name="history-error-message-title">Geri alınamıyor</string>
   <string name="history-error">Bu öğe geri alınamaz. Sayfa bu esnada değiştirilmiş veya silinmiş olabilir, bu durumumda Huggle geri alma işlemini yapamıyor. Gerçekten geri almak isterseniz, MediaWiki arayüzünü kullanarak el ile yapmanız gerekir.</string>
+  <string name="history-failure">Geçmiş geri getirilemiyor</string>
   <string name="userhistory-title">Değişiklik geçmişiniz</string>
   <string name="irc-connected">$1: IRC son değişiklikler beslemesine bağlanıldı</string>
   <string name="irc-connecting">$1 üzerinde IRC son değişiklikler beslemesine erişilmeye çalışılıyor; bu işlem biraz zaman alabilir...</string>
@@ -239,7 +242,7 @@
   <string name="main-new-messages">Yeni bir mesajınız var. Görüntülemek için \"Sistem-&gt; Yeni mesajları göster\" veya M tuşuna basın.</string>
   <string name="main-space">Sayfa adı boşluk ile bitemez, lütfen sayfa adını düzeltiniz.</string>
   <string name="main-system">Sistem</string>
-  <string name="main-status-bar" fuzzy="true">&lt;b&gt;$1&lt;/b&gt; düzenleme ve &lt;b&gt;$2&lt;/b&gt; sorgu işleniyor. Beyaz listedeki kullanıcılar: &lt;b&gt;$3&lt;/b&gt; Sıra uzunluğu: &lt;b&gt;$4&lt;/b&gt; $6 için istatistikler: $5</string>
+  <string name="main-status-bar">&lt;b&gt;$1&lt;/b&gt; düzenleme ve &lt;b&gt;$2&lt;/b&gt; sorgu işleniyor. Beyaz listedeki kullanıcılar: &lt;b&gt;$3&lt;/b&gt; Sıra uzunluğu: &lt;b&gt;$4&lt;/b&gt; $6 için istatistikler: $5</string>
   <string name="main-shutting-down">Huggle kapatılıyor, yoksayıldı.</string>
   <string name="main-system-messages">Yeni iletileri göster</string>
   <string name="main-system-reconnectirc">IRC beslemesine yeniden bağlan.</string>
@@ -488,10 +491,13 @@
   <string name="shortcut-unwatch">Gösterilen sayfayı izleme listesinden çıkartır</string>
   <string name="shortcut-x-warn">Uyarı menüsündeki N inci öğeyi tetikle</string>
   <string name="shortcut-good">Görüntülenen değişikliği uygun olarak işaretle</string>
+  <string name="shortcut-open-in-huggle">Şu anda görüntülenen sayfayı aç</string>
   <string name="shortcut-open">Görüntülenen değişikliği tarayıcıda aç</string>
   <string name="shortcut-talk">Bu değişikliği gerçekleştiren kullanıcının mesaj sayfasını görüntüle</string>
+  <string name="shortcut-revert-agf-1">İyi niyetli olduğunu düşünerek son sürümü geri getir</string>
   <string name="shortcut-browser-close-tab">Tarayıcı sekmesini kapat</string>
   <string name="shortcut-tab">Yeni bir sekme açar</string>
+  <string name="shortcut-rw-stay">Mevcut değişikliği geri al, kullanıcıyı uyar ve sayfada kal</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>

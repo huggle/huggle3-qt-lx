@@ -73,8 +73,6 @@
   <string name="config-shortcut">مختصر</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
-  <string name="config-rememberme">تذكر اسم المستخدم</string>
-  <string name="config-autowhitelist">مستخدمون (القائمة البيضاء) تلقائيا</string>
   <string name="config-openinbrowser">افتح وصلات التصفح في صفحات متصفح جديدة</string>
   <string name="config-shownewedits">أظهر التحريرات الجديدة في الصفحة المحددة وقت حدوثها</string>
   <string name="config-ircmode">استخدم تلقيم الآي آر سي لأحدث التغييرات إن أمكن</string>

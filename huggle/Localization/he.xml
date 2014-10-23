@@ -89,8 +89,6 @@
   <string name="config-queue-filter-require">לדרוש (חייב להיות)</string>
   <string name="config-summ">תקצירי שחזור מותאמים אישית לתבניות</string>
   <string name="config-title">אפשרויות</string>
-  <string name="config-rememberme">לזכור את שם המשתמש שלי</string>
-  <string name="config-autowhitelist">להוסיף משתמשים לרשימה הלבנה אוטומטית</string>
   <string name="config-already-in-use">קיצור זה כבר נמצא בשימוש על־ידי $1, נא לבחור קיצור אחר</string>
   <string name="config-openinbrowser">לפתוח קישורי דפדפן בחלון דפדפן חדש</string>
   <string name="config-shownewedits">להציג עריכות חדשות לדף הנבחר בזמן שהן נעשות</string>

@@ -32,7 +32,6 @@
   <string name="block-fail">Blokkerte ikke \'$1\'</string>
   <string name="config-shortcut">Snarvei</string>
   <string name="config-title">Alternativer</string>
-  <string name="config-rememberme">Husk brukernavn</string>
   <string name="config-openinbrowser">Åpne lenker i nytt nettleser-vindu</string>
   <string name="config-shownewedits">Vis nye redigeringer på valgt side når de blir gjort</string>
   <string name="config-ircmode">Bruk IRC-strøm for siste endringer hvis mulig</string>

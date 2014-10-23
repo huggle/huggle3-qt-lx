@@ -84,8 +84,6 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-queue-filter-ignore">Ignorera (spelar ingen roll)</string>
   <string name="config-summ">Anpassade återstälnings-sammanfattningar för mallar</string>
   <string name="config-title">Inställningar</string>
-  <string name="config-rememberme">Kom i håg mitt användarnamn</string>
-  <string name="config-autowhitelist">Vitlista automatiskt användare</string>
   <string name="config-openinbrowser">Öppna webbläsarlänkar i ett nytt fönster</string>
   <string name="config-shownewedits">Visa nya ändringar till den valda sidan allt eftersom de görs</string>
   <string name="config-ircmode">Om möjligt använd IRC-flödet för de senaste ändringarna</string>

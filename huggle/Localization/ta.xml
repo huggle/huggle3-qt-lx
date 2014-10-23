@@ -65,7 +65,6 @@
   <string name="block-none">தடைசெய்ய ஒரு பயனரும் இல்லை</string>
   <string name="config-shortcut">குறுக்குவழி</string>
   <string name="config-title">விருப்பத்தேர்வுகள்</string>
-  <string name="config-rememberme">என் பயனர் பெயரை நினைவிற்கொள்</string>
   <string name="config-shortcutlist">விசைப்பலகை குறுக்குவழிகள்</string>
   <string name="config-shortcutaction">நடவடிக்கை</string>
   <string name="config-noshortcut">எதுவுமில்லை</string>

@@ -89,8 +89,6 @@
   <string name="config-queue-filter-require">필요 (이어야 합니다)</string>
   <string name="config-summ">사용자 지정 되돌리기 요약 틀</string>
   <string name="config-title">속성</string>
-  <string name="config-rememberme">내 사용자 이름을 기억</string>
-  <string name="config-autowhitelist">자동으로 사용자를 허용 목록에 넣기</string>
   <string name="config-already-in-use">이 바로 가기는 이미 $1에 의해 사용되고 있습니다, 다른 것을 선택하세요</string>
   <string name="config-openinbrowser">새 브라우저 창에 브라우저 링크 열기</string>
   <string name="config-shownewedits">그들이 새로 편집하면 선택된 문서에 보이기</string>

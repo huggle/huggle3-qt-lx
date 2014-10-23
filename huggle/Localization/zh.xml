@@ -89,8 +89,6 @@
   <string name="config-queue-filter-require">要求（必须）</string>
   <string name="config-summ">自定义模板回退原因</string>
   <string name="config-title">选项</string>
-  <string name="config-rememberme">记住我的用户名</string>
-  <string name="config-autowhitelist">自动添加用户至白名单</string>
   <string name="config-already-in-use">此快捷方式已被$1使用，请选择另一个不同的</string>
   <string name="config-openinbrowser">在新浏览器窗口打开链接</string>
   <string name="config-shownewedits">查看选定页面的新修改</string>

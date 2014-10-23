@@ -89,8 +89,6 @@
   <string name="config-queue-filter-require">لازم (باید باشد)</string>
   <string name="config-summ">خلاصه ویرایش سفارشی برای الگوها</string>
   <string name="config-title">اختیارات</string>
-  <string name="config-rememberme">یادآوری نام کاربری من</string>
-  <string name="config-autowhitelist">قرار دادن کاربران در فهرست سفید به صورت خودکار</string>
   <string name="config-already-in-use">این میانبر هم‌اکنون توسط $1 استفاده می‌شود، لطفاً یکی دیگر برگزینید</string>
   <string name="config-openinbrowser">پیوندهای مرورگر باز در پنجره‌ای نو</string>
   <string name="config-shownewedits">ویرایش‌های جدید بر نوشتار انتخاب شده را نشان بده</string>

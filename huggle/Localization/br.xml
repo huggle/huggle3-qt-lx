@@ -77,8 +77,6 @@
   <string name="config-description">Deskrivadur</string>
   <string name="config-shortcut">Berradenn</string>
   <string name="config-title">Dibarzhioù</string>
-  <string name="config-rememberme">Kaout soñj eus ma anv implijer</string>
-  <string name="config-autowhitelist">Ouzhpennañ an implijerien ent emgefreek d\'an listenn wenn</string>
   <string name="config-openinbrowser">Digeriñ liammoù ar merdeer en ur prenestr nevez</string>
   <string name="config-shownewedits">Diskwel ar c\'hemmoù nevez er bajenn dibabet kerkent ha ma vint graet.</string>
   <string name="config-ircmode">Implijout ar wazh IRC evit ar cheñchamañtoù nevez</string>

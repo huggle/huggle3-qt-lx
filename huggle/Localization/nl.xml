@@ -68,8 +68,6 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-shortcut">Snelkoppeling</string>
   <string name="config-summ">Gepersonaliseerde terugdraaisamenvattingen voor sjablonen</string>
   <string name="config-title">Opties</string>
-  <string name="config-rememberme">Onthoud mijn gebruikersnaam</string>
-  <string name="config-autowhitelist">Automatisch whitelist-gebruikers toevoegen</string>
   <string name="config-openinbrowser">Browserlinks in een nieuw venster openen</string>
   <string name="config-shownewedits">Toon nieuwe bewerkingen op de geselecteerde pagina gelijk als ze zijn gemaakt</string>
   <string name="config-ircmode">Gebruik IRC voor de recente wijzigingen, indien mogelijk</string>
