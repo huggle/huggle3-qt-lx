@@ -23,6 +23,7 @@
   <string name="show">显示</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
+  <string name="editing-page">编辑页面</string>
   <string name="agf">善意推定回退，并自定义理由</string>
   <string name="successful">成功</string>
   <string name="summary">摘要</string>
@@ -372,6 +373,7 @@
   <string name="protect-none">无</string>
   <string name="protect-token">令牌不能检索。原因：$1</string>
   <string name="protect-semiprotection">半保护</string>
+  <string name="protect-error">无法保护页面，原因：$1</string>
   <string name="protect-fail-no-info">页面内容不可用（您是管理员么？）</string>
   <string name="protect-fullprotection">全保护</string>
   <string name="protect-message-title-fail">无法保护</string>

@@ -22,6 +22,7 @@
   <string name="show">表示</string>
   <string name="undo">取り消す</string>
   <string name="yes">はい</string>
+  <string name="editing-page">ページを編集中</string>
   <string name="summary">要約</string>
   <string name="id">ID</string>
   <string name="user">利用者</string>
@@ -80,6 +81,8 @@
   <string name="config-watchlist">ウォッチリストに追加</string>
   <string name="config-defaultsummary">手動編集のデフォルト要約</string>
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
+  <string name="config-confirm-us">利用者空間における改編について承認を要求</string>
+  <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-confirmmultiple">同一利用者による複数の版を一気に差し戻す時は確認する</string>
   <string name="config-confirmsame">リバートを受けている利用者による版へ差し戻す時は確認する</string>
   <string name="config-confirmselfrevert">自分の編集を差し戻す時は確認する (アンドゥの場合をのぞく)</string>
@@ -284,6 +287,7 @@
   <string name="protect-none">なし</string>
   <string name="protect-token">トークンを取得できません。理由: $1</string>
   <string name="protect-semiprotection">半保護</string>
+  <string name="protect-error">このページは以下の理由で保護できません: $1</string>
   <string name="protect-fail-no-info">ページの情報を利用できませんでした (あなたは管理者ですか?)</string>
   <string name="protect-fullprotection">全保護</string>
   <string name="protect-message-title-fail">保護できません</string>
@@ -398,6 +402,7 @@
   <string name="deletelog-fail">\'$1\' の削除ログの取得に失敗しました</string>
   <string name="deletelog-none">\'$1\' に削除ログはありません</string>
   <string name="deletelog-progress">\'$1\' の削除ログを取得しています...</string>
+  <string name="edit-bar-top">この編集は最新の改訂です。</string>
   <string name="edit-fail">\'$1\' を編集できませんでした</string>
   <string name="edit-progress">\'$1\' を編集中...</string>
   <string name="history-fail">\'$1\' の履歴取得に失敗しました</string>
@@ -434,6 +439,7 @@
   <string name="wait">お待ちください...</string>
   <string name="updating-wl">ホワイトリストを更新中...</string>
   <string name="welcome-tp-empty-fail">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
+  <string name="cr-revert-same-user">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
   <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
 </resources>

@@ -47,6 +47,10 @@
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
   <string name="score-score">Poentoù</string>
+  <string name="score-word">Ger</string>
+  <string name="score-range">Lijorenn</string>
+  <string name="score-only-whole-word">A glot gant ar gerioù klok hepken</string>
+  <string name="score-take-any-word">A glot gant n\'eus forzh peseurt ger a zo ar chadenn-mañ ennañ</string>
   <string name="browser-none">N\'eus diskwelet pajenn ebet bremañ</string>
   <string name="browser-load">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
@@ -76,7 +80,11 @@
   <string name="config-function">Arc\'hwel</string>
   <string name="config-description">Deskrivadur</string>
   <string name="config-shortcut">Berradenn</string>
+  <string name="config-queue-filter-ignore">Dianavezout (n\'eo ket pouezus)</string>
+  <string name="config-queue-filter-exclude">Ezlakaat (Ne zle ket bezañ anezhañ)</string>
+  <string name="config-queue-filter-require">Goulenn groñs (a zle bezañ anezhañ)</string>
   <string name="config-title">Dibarzhioù</string>
+  <string name="config-already-in-use">Implijet eo ar verradenn-mañ gant $1 dija, dibabit unan all, mar plij.</string>
   <string name="config-openinbrowser">Digeriñ liammoù ar merdeer en ur prenestr nevez</string>
   <string name="config-shownewedits">Diskwel ar c\'hemmoù nevez er bajenn dibabet kerkent ha ma vint graet.</string>
   <string name="config-ircmode">Implijout ar wazh IRC evit ar cheñchamañtoù nevez</string>
@@ -93,8 +101,11 @@
   <string name="config-noshortcut">Hini ebet</string>
   <string name="config-defaults">Dre ziouer</string>
   <string name="config-watchlist">Ouzhpennañ d\'ar roll evezhiañ</string>
+  <string name="config-confirm-us">Goulenn kadarnaat evit nullañ ur c\'hemm en takad implijer.</string>
+  <string name="config-confirm-wl">Goulenn kadarnaat evit nullañ ur c\'hemm graet gant un implijer el listenn wenn.</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
+  <string name="config-confirmpage">Kadarnaat nulladur ar pajennoù dianavezet</string>
   <string name="config-userollback">Implijout ar souzañ m\'eo hegerz</string>
   <string name="config-reportnone">Ober netra</string>
   <string name="config-templates">Patrom kemennadoù implijer</string>

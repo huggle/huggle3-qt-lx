@@ -23,6 +23,7 @@
   <string name="show">הצגה</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
+  <string name="editing-page">עריכת דף</string>
   <string name="agf">שחזור בתור עריכה שנעשתה בכוונה טובה עם סיבה אישית</string>
   <string name="successful">זה עבד</string>
   <string name="summary">תקציר</string>
@@ -109,6 +110,8 @@
   <string name="config-watchlist">הוספה לרשימת המעקב</string>
   <string name="config-defaultsummary">תקציר בררת מחדל לעריכות ידניות</string>
   <string name="config-undosummary">תקציר בעת ביטול עריכות עצמיות</string>
+  <string name="config-confirm-us">לדרוש אישור על שחזור של עריכה שנעשתה במרחב משתמש</string>
+  <string name="config-confirm-wl">לדרוש אישור על שחזור של עריכה שעשה משתמש ברשימה הלבנה</string>
   <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
   <string name="config-confirmsame">לבקש אישר על שחזור לעריכה של המשתמש שעריכתו משוחזרת</string>
   <string name="config-confirmselfrevert">לבקש אישור לעריכות עצמיות (למעט ביטול)</string>
@@ -160,6 +163,7 @@
   <string name="historyform-not-latest-tip">זוהי לא הגרסה האחונה של הדף הזה. נא לוודא שסקרת גם את הגרסאות החדשות יותר. נא לשים לב גם לכך ששחזור אולי לא יהיה אפשרי מהנקודה הזאת והלאה.</string>
   <string name="history-error-message-title">אין אפשרות לבטל</string>
   <string name="history-error">לא ניתן לבטל פריט זה, ייתכן שהדף השתנה או נמחק בינתיים, ולהאגל אין אפשרות לבצע ביטול מנקודה זו. אם ברצונך באמת לבטל את זה, יהיה עליך לעשות את זה ידנית באמצעות ממשק מדיה־ויקי.</string>
+  <string name="history-failure">לא ניתן לאחזר היסטוריה</string>
   <string name="userhistory-title">היסטוריה של השינויים שלך</string>
   <string name="irc-connected">$1: מחובר להזנת שינויים אחרונים ב־IRC</string>
   <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת מספר רגעים...</string>
@@ -372,6 +376,7 @@
   <string name="protect-none">ללא</string>
   <string name="protect-token">לא ניתן לאחזר את האסימון. הסיבה הייתה: $1</string>
   <string name="protect-semiprotection">הגנה חלקית</string>
+  <string name="protect-error">לא ניתן להגן על הדף מהסיבה הבאה: $1</string>
   <string name="protect-fail-no-info">מידע על הדף אינו זמין (האם יש לך הרשאת מפעיל?)</string>
   <string name="protect-fullprotection">הגנה מלאה</string>
   <string name="protect-message-title-fail">לא ניתן להגן</string>
@@ -529,6 +534,7 @@
   <string name="deletelog-fail">אחזור יומן המחיקה של $1 לא הצליח</string>
   <string name="deletelog-none">אין יומן מחיקה עבור $1</string>
   <string name="deletelog-progress">אחזור יומן המחיקה עבור $1...</string>
+  <string name="edit-bar-top">העריכה הזאת היא הגרסה הנוכחית</string>
   <string name="edit-fail">הדף $1 לא נערך</string>
   <string name="edit-progress">עריכת $1...</string>
   <string name="history-fail">אחזור ההיסטוריה של $1 נכשל</string>
@@ -581,6 +587,7 @@
   <string name="cr-resolved-same-user">ההתנגשות נפתרה: כל העריכות שוחזרו, כולל עריכות חדשות שנעשו על־ידי אותם המשתמשים - העריכות היו מאת אותו המשתמש: $1</string>
   <string name="cr-stop-new-edit">ההתנגשות נפתרה: לא נעשתה שום פעולה. יש עריכות חדשות יותר לדף $1.</string>
   <string name="cr-stop-multiple-same">הקונפליקט נפתר: אין לבצע שום פעולה – יש פעולות עריכה מרובות של אותו המשתמש לדף $1</string>
+  <string name="cr-revert-same-user">ההתנגשות נפתרה: לשחזר את כל העריכות – יש עריכות מרובות מאת אותו המשתמש לדף $1</string>
   <string name="cr-message-same">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
   <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>

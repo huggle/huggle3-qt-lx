@@ -23,6 +23,7 @@
   <string name="show">Weisen</string>
   <string name="undo">Réckgängeg maachen</string>
   <string name="yes">Jo</string>
+  <string name="editing-page">Säit änneren</string>
   <string name="successful">Erfollegräich</string>
   <string name="summary">Resumé</string>
   <string name="id">Nummer (ID)</string>
@@ -331,10 +332,11 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="delete-fail">$1 gouf net geläscht</string>
   <string name="delete-progress">$1 gëtt geläscht...</string>
   <string name="delete-user">Dës Säit ass am Benotzer-Nummraum. Sidd Dir sécher datt Dir se läsche wëllt?</string>
+  <string name="edit-bar-top">Dës Ännerung ass eng aktuell Versioun</string>
   <string name="edit-fail">$1 gouf net geännert</string>
   <string name="edit-progress">Ännert $1...</string>
   <string name="history-work">Eegen Ännerung déi op $1 gemaach gouf réckgängegmaachen</string>
-  <string name="history-message-revert-title" fuzzy="true">Wëllt Dir wierklech just dëse Message réckgängeg maachen?</string>
+  <string name="history-message-revert-title">Wëllt Dir wierklech just dëse Message réckgängeg maachen?</string>
   <string name="history-not-found">Et gouf näischt fonnt fir réckgängeg ze maachen</string>
   <string name="history-already-done">Dëst gouf scho réckgängeg gemaach</string>
   <string name="history-revert-fail">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well e Feeler beim zrécksetze geschitt ass: $2</string>

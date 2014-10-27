@@ -23,6 +23,7 @@
   <string name="show">Прикажи</string>
   <string name="undo">Врати</string>
   <string name="yes">Да</string>
+  <string name="editing-page">Уредување на страница</string>
   <string name="agf">Отповикај како добронамерно уредување со кориснички-укажано образложение</string>
   <string name="successful">Успешно</string>
   <string name="summary">Опис</string>
@@ -375,6 +376,7 @@
   <string name="protect-none">Никаква</string>
   <string name="protect-token">Шифрата не може да се добие. Причината гласи: $1</string>
   <string name="protect-semiprotection">Полузаштита</string>
+  <string name="protect-error">Не можам да ја заштитам страницата поради: $1</string>
   <string name="protect-fail-no-info">Нема информации за страницата (дали сте администратор?)</string>
   <string name="protect-fullprotection">Целосна заштита</string>
   <string name="protect-message-title-fail">Не може да се заштити</string>
@@ -532,6 +534,7 @@
   <string name="deletelog-fail">Не успеав да го добијам записникот на бришења за $1</string>
   <string name="deletelog-none">Нема записник на бришења за $1</string>
   <string name="deletelog-progress">Го вчитувам записникот на бришења за $1...</string>
+  <string name="edit-bar-top">Ова уредување е тековна преработка</string>
   <string name="edit-fail">Уредувањата на $1 не се зачувани</string>
   <string name="edit-progress">Уредување на $1...</string>
   <string name="history-fail">Не успеав да ја добијам историјата на $1</string>
@@ -584,6 +587,7 @@
   <string name="cr-resolved-same-user">Спротиставеноста е решена: отповикани сите уредувања (вклучувајќи ги новите) направени од исти корисници —  уредувањата се од ист корисник: $1</string>
   <string name="cr-stop-new-edit">Спротиставеноста е решена: не направив ништо — има понови уредувања за $1</string>
   <string name="cr-stop-multiple-same">Спротиставеноста е решена: не правете ништо — $1 има повеќе уредувања од ист корисник</string>
+  <string name="cr-revert-same-user">Спротиставеноста е решена: отповикајте ги сите уредувања — истиот корисник има направено повеќе уредувања на $1</string>
   <string name="cr-message-same">$1 има повеќе уредувања од еден ист корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>

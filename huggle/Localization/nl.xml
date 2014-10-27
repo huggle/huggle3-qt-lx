@@ -223,7 +223,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="queue-filternotifications">Notificatie</string>
   <string name="queue-filterwarnings">Waarschuwing</string>
   <string name="queue-filtertags">Tag</string>
-  <string name="queue-filterbot">Botbewerking</string>
+  <string name="queue-filterbot">Robotbewerking</string>
   <string name="queue-filterhuggle">Huggle-bewerking</string>
   <string name="queue-filterme">Mijn bewerking</string>
   <string name="report-reason">Reden:</string>

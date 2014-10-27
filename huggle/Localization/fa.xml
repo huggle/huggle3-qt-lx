@@ -23,6 +23,7 @@
   <string name="show">نمایش</string>
   <string name="undo">واگردانی</string>
   <string name="yes">بله</string>
+  <string name="editing-page">ویرایش صفحه</string>
   <string name="agf">واگردانی با فرض حسن نیت و دلیل مشهود</string>
   <string name="successful">موفق</string>
   <string name="summary">خلاصه</string>
@@ -109,6 +110,8 @@
   <string name="config-watchlist">افزودن به پی‌گیری‌ها</string>
   <string name="config-defaultsummary">خلاصه ویرایش پیش‌فرض برای ویرایش‌های دستی</string>
   <string name="config-undosummary">خلاصه ویرایش برای واگردانی ویرایش‌های خودتان</string>
+  <string name="config-confirm-us">نیاز به تایید برای واگردانی ویرایشی که در فضای کاربری است</string>
+  <string name="config-confirm-wl">نیاز به تایید برای واگردانی ویرایشی کهتوسط کاربر فهرست سفید انجام شده‌است</string>
   <string name="config-confirmmultiple">واگردانی‌های متعدد یک ویرایش توسط همان کاربر را تائید کن</string>
   <string name="config-confirmsame">تائید واگردانی ویرایش کاربر واگردانی شده</string>
   <string name="config-confirmselfrevert">تائید واگردانی ویرایش خودم (به جز خنثی‌سازی)</string>
@@ -160,6 +163,7 @@
   <string name="historyform-not-latest-tip">این جدیدترین نسخه صفحه نیست. مطمئن شوید که نسخه‌های جدیدتر را نیز بررسی کرده‌اید. توجه کنید که واگردانی ممکن است از این نسخه ممکن نباشد.</string>
   <string name="history-error-message-title">غیرقابل بازگشت</string>
   <string name="history-error">این مورد را نمی‌توان واگردانی نمود. صفحه ممکن است در این میان تغییر کرده یا حذف شده باشد و هاگل نمی‌تواند از این نقطه واگردانی کند. اگر واقعاً می‌خواهید واگردانی کنید، لازم است این کار را دستی و از راه رابط مدیاویکی انجام دهید.</string>
+  <string name="history-failure">ناتوان در بازیابی تاریخچه</string>
   <string name="userhistory-title">تاریخچه ویرایش‌های شما</string>
   <string name="irc-connected">$1: به فید آی‌آرسی تغییرات اخیر متصل شد</string>
   <string name="irc-connecting">در حال تلاش برای اتصال به خوراک تغییرات اخیر آی‌آرسیِ $1؛ این ممکن است چند لحظه‌ای طول بکشد...</string>
@@ -372,6 +376,7 @@
   <string name="protect-none">هیچ</string>
   <string name="protect-token">اصالت‌سنج را نمی‌توان بازیابی کرد. دلیل چنین بود: $1</string>
   <string name="protect-semiprotection">نیمه-محافظت‌شده</string>
+  <string name="protect-error">ناتوان در محافظت صفحه به دلیل: $1</string>
   <string name="protect-fail-no-info">هیچ اطلاعات صفحه‌ای در دسترس بود (شما یک مدیر هستید؟)</string>
   <string name="protect-fullprotection">حفاظت کامل</string>
   <string name="protect-message-title-fail">قادرنبودن در محافظت</string>
@@ -529,6 +534,7 @@
   <string name="deletelog-fail">ناموفق در بازیابی سیاهه حذف $1</string>
   <string name="deletelog-none">سیاهه حذفی برای $1 وجود ندارد</string>
   <string name="deletelog-progress">در حال بازیابی سیاهه حذف $1 ...</string>
+  <string name="edit-bar-top">این ویرایش آخرین نسخه است</string>
   <string name="edit-fail">ویرایش $1 انجام نشد</string>
   <string name="edit-progress">ویرایش  $1 ...</string>
   <string name="history-fail">ناتوان از گرفتن تاریخچه</string>
@@ -581,6 +587,7 @@
   <string name="cr-resolved-same-user">تعارض رفع شد: همهٔ ویرایش‌ها از جمله ویرایش‌های جدید کاربران یکسان واگردانی شدند - ویرایش‌ها متعلق به کاربران یکسانی هستند: $1</string>
   <string name="cr-stop-new-edit">تعارض رفع شد: هیچ عملی انجام نشد - ویرایش‌های تازه‌تری در $1 انجام شده است</string>
   <string name="cr-stop-multiple-same">تعارض رفع شد: هیچ عملی انجام ندهید - چندین ویرایش توسط کاربری یکسان در $1 انجام شده است</string>
+  <string name="cr-revert-same-user">تعارض رفع شد: واگردانی همه ویرایش‌ها- چندین ویرایش توسط یک کاربر در $1 هست</string>
   <string name="cr-message-same">چند ویرایش به وسیله همان کاربر در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-new">ویرایش‌های تازه‌ای  در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>

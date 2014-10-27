@@ -23,6 +23,7 @@
   <string name="show">Afficher</string>
   <string name="undo">Annuler</string>
   <string name="yes">Oui</string>
+  <string name="editing-page">Modification de la page</string>
   <string name="agf">ramener comme modification de bonne foi avec un motif personnalisé</string>
   <string name="successful">Succès</string>
   <string name="summary">Résumé</string>
@@ -375,6 +376,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="protect-none">Aucune</string>
   <string name="protect-token">Le jeton n’a pas pu être récupéré. Le motif est : $1</string>
   <string name="protect-semiprotection">Semi-protection</string>
+  <string name="protect-error">Impossible de protéger la page en raison de : $1</string>
   <string name="protect-fail-no-info">Aucune information sur la page n’est disponible (êtes-vous un administrateur ?)</string>
   <string name="protect-fullprotection">Protection complète</string>
   <string name="protect-message-title-fail">Impossible de protéger</string>
@@ -532,6 +534,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="deletelog-fail">Échec à la récupération du journal de suppression pour $1</string>
   <string name="deletelog-none">Aucun journal de suppression pour $1</string>
   <string name="deletelog-progress">Récupération du journal de suppression pour $1…</string>
+  <string name="edit-bar-top">Cette modification est une révision principale</string>
   <string name="edit-fail">Ne pas modifier $1</string>
   <string name="edit-progress">Modification de $1…</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
@@ -584,6 +587,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="cr-resolved-same-user">Conflit résolu : annulation de toutes les modifications y compris les nouvelles, faites par les mêmes utilisateurs — les modifications sont du même utilisateur : $1</string>
   <string name="cr-stop-new-edit">Conflit résolu : aucune action effectuée — il y a des modifications plus récentes sur $1</string>
   <string name="cr-stop-multiple-same">Conflit  résolu : aucune action effectuée — il y a plusieurs modifications du même utilisateur sur $1</string>
+  <string name="cr-revert-same-user">Conflit résolu : annuler toutes les modifications — il y a plusieurs modifications du même utilisateur sur $1</string>
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>

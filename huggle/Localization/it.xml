@@ -23,6 +23,7 @@
   <string name="show">Mostra</string>
   <string name="undo">Annulla</string>
   <string name="yes">Sì</string>
+  <string name="editing-page">Modifica della pagina</string>
   <string name="agf">Annulla come modifica fatta in buona fede con una motivazione personale</string>
   <string name="successful">Riuscito</string>
   <string name="summary">Oggetto</string>
@@ -121,7 +122,7 @@
   <string name="config-revertsummaries">Riassunti dei ripristini disponibili nel menu</string>
   <string name="config-extendreports">Estendere i rapporti dopo ulteriori vandalismi</string>
   <string name="config-autoreport">Quando viene chiesto di avvisare un utente con un ultimo avvertimento</string>
-  <string name="config-reportnone">Ignora</string>
+  <string name="config-reportnone">Non fare nulla</string>
   <string name="config-reportprompt">Proponi una segnalazione</string>
   <string name="config-reportauto">Segnala automaticamente</string>
   <string name="config-templates">Modello dei messaggi utente</string>
@@ -133,9 +134,9 @@
   <string name="config-blocktimeanon">utenti anonimi</string>
   <string name="config-blocktimereg">utenti registrati</string>
   <string name="config-summaryprompt">Inserisci oggetto</string>
-  <string name="config-history">Scarica tutta la cronologia di tutte le voci</string>
-  <string name="config-defaultsprompt">Ripristina le impostazioni predefinite?</string>
-  <string name="config-logbrowsetitle">Percorso dei file di Log</string>
+  <string name="config-history">Scarica la cronologia completa di tutte le voci</string>
+  <string name="config-defaultsprompt">Ripristinare le impostazioni predefinite?</string>
+  <string name="config-logbrowsetitle">Percorso dei file di registro</string>
   <string name="config-shortcutconflict">Il collegamento \'$1\' è in conflitto con il collegamento esistente per \'$1\'.</string>
   <string name="config-no-colon">Non puoi usare : al posto della coda</string>
   <string name="config-notify-update">Controlla aggiornamenti</string>
@@ -157,7 +158,7 @@
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
-  <string name="historyform-retrieving-history">Recuperando la cronologia</string>
+  <string name="historyform-retrieving-history">Recupero della cronologia</string>
   <string name="historyform-not-latest-tip">Questa non è l\'ultima versione di questa pagina. Assicurati di controllare anche le versioni più recenti. Per favore ricorda anche che il rollback potrebbe non essere possibile da questo punto in poi.</string>
   <string name="history-error-message-title">Impossibile annullare</string>
   <string name="history-error">L\'elemento non può essere annullato. La pagina può essere stata modificata o cancellata nel frattempo, e Huggle non è in grado di effettuare un annullamento da questo punto. Se vuoi veramente annullarlo, dovrai farlo a mano usando l\'interfaccia di MediaWiki.</string>
@@ -375,6 +376,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="protect-none">Nessuno</string>
   <string name="protect-token">Il token non può essere recuperato. Il motivo era: $1</string>
   <string name="protect-semiprotection">Semi-protezione</string>
+  <string name="protect-error">Impossibile proteggere la pagina perché: $1</string>
   <string name="protect-fail-no-info">Nessuna informazione sulla pagina era disponibile (sei un amministratore?)</string>
   <string name="protect-fullprotection">Protezione completa</string>
   <string name="protect-message-title-fail">Impossibile da proteggere</string>
@@ -495,10 +497,10 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="shortcut-open-in-huggle">Apri la pagina attualmente mostrata</string>
   <string name="shortcut-open">Apri in un browser la modifica attualmente visualizzata</string>
   <string name="shortcut-talk">Mostra la pagina di discussione dell\'utente che ha effettuato questa modifica</string>
-  <string name="shortcut-revert-agf-1">Ripristina l\'ultima versione, presupponendo la buona fede</string>
+  <string name="shortcut-revert-agf-1">Annulla l\'ultima revisione, presupponendo la buona fede</string>
   <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
   <string name="shortcut-tab">Apre una nuova scheda</string>
-  <string name="shortcut-rw-stay">Ripristina la modifica attuale, avverte un utente e rimane sulla pagina</string>
+  <string name="shortcut-rw-stay">Annulla la modifica attuale, avverte un utente e rimane sulla pagina</string>
   <string name="warning-title">Avverti $1</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>
@@ -532,6 +534,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="deletelog-fail">Recupero del registro delle cancellazioni per $1 non riuscito</string>
   <string name="deletelog-none">Nessun registro delle cancellazioni per $1</string>
   <string name="deletelog-progress">Recupero del registro delle cancellazioni per $1...</string>
+  <string name="edit-bar-top">Questa modifica è una revisione principale</string>
   <string name="edit-fail">$1 non è stato modificato</string>
   <string name="edit-progress">Modifica di $1...</string>
   <string name="history-fail">Impossibile recuperare la cronologia di $1</string>
@@ -584,6 +587,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="cr-resolved-same-user">Conflitto risolto: ripristinate tutte le modifiche incluse le nuove modifiche, fatte dagli stessi utenti - le modifiche provengono dallo stesso utente: $1</string>
   <string name="cr-stop-new-edit">Conflitto risolto: nessuna azione è stata eseguita - ci sono nuove modifiche a $1</string>
   <string name="cr-stop-multiple-same">Conflitto risolto: non effettuare alcuna azione - ci sono modifiche multiple dello stesso utente a $1</string>
+  <string name="cr-revert-same-user">Conflitto risolto: annullare tutte le modifiche - ci sono modifiche multiple da parte dello stesso utente a $1</string>
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
