@@ -133,7 +133,7 @@ void ReportUser::Tick()
             {
                 QDomNode node = results.at(CurrentId);
                 QDomElement _e = results.at(CurrentId).toElement();
-                CurrentId++;
+                ++CurrentId;
                 if (!_e.attributes().contains("logid"))
                     continue;
                 if (!_e.attributes().contains("type"))
@@ -166,7 +166,7 @@ void ReportUser::Tick()
                 while (flag_n < qlflags.count())
                 {
                     QDomElement fe = qlflags.at(flag_n).toElement();
-                    flag_n++;
+                    ++flag_n;
                     if (fe.nodeName() != "block")
                     {
                         continue;
@@ -317,7 +317,7 @@ void ReportUser::Tick()
                 QCheckBox *Item = new QCheckBox(this);
                 this->CheckBoxes.insert(0, Item);
                 this->ui->tableWidget->setCellWidget(0, 4, Item);
-                xx++;
+                ++xx;
             }
             this->ui->tableWidget->sortByColumn(1, Qt::DescendingOrder);
         }
@@ -458,12 +458,12 @@ void ReportUser::on_pushButton_clicked()
         {
             if (this->CheckBoxes.at(xx)->isChecked())
             {
-                EvidenceID++;
+                ++EvidenceID;
                 reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
                            QString::number(EvidenceID) + "]] ";
             }
         }
-        xx++;
+        ++xx;
     }
     if (reports.isEmpty())
     {
@@ -518,7 +518,7 @@ void Huggle::ReportUser::on_pushButton_5_clicked()
         if (this->CheckBoxes.count() > xx)
             this->CheckBoxes.at(xx)->setChecked(true);
 
-        xx++;
+        ++xx;
     }
 }
 
@@ -530,7 +530,7 @@ void Huggle::ReportUser::on_pushButton_6_clicked()
         if (this->CheckBoxes.count() > xx)
             this->CheckBoxes.at(xx)->setChecked(false);
 
-        xx++;
+        ++xx;
     }
 }
 

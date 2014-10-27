@@ -49,7 +49,7 @@ WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
             WikiUser::ProblematicUserListLock.unlock();
             return u;
         }
-        User++;
+        ++User;
     }
     WikiUser::ProblematicUserListLock.unlock();
     return nullptr;
@@ -69,7 +69,7 @@ void WikiUser::TrimProblematicUsersList()
             delete user;
             continue;
         }
-        i++;
+        ++i;
     }
     WikiUser::ProblematicUserListLock.unlock();
 }
@@ -100,7 +100,7 @@ void WikiUser::UpdateUser(WikiUser *us)
             WikiUser::ProblematicUserListLock.unlock();
             return;
         }
-        c++;
+        ++c;
     }
     ProblematicUsers.append(new WikiUser(us));
     WikiUser::ProblematicUserListLock.unlock();
@@ -229,7 +229,7 @@ WikiUser::WikiUser(QString user)
             WikiUser::ProblematicUserListLock.unlock();
             return;
         }
-        c++;
+        ++c;
     }
     WikiUser::ProblematicUserListLock.unlock();
     this->BadnessScore = 0;

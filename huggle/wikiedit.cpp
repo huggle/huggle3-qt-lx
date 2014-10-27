@@ -148,7 +148,7 @@ bool WikiEdit::FinalizePostProcessing()
                 QString gn = group.text();
                 if (gn != "*" && gn != "user")
                 this->User->Groups.append(gn);
-                x++;
+                ++x;
             }
             this->Score += (Configuration::HuggleConfiguration->ProjectConfig->ScoreFlag * this->User->Groups.count());
             if (this->User->Groups.contains("bot"))
@@ -384,7 +384,7 @@ void WikiEdit::ProcessWords()
             this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(xx).score;
             ScoreWords.append(w);
         }
-        xx++;
+        ++xx;
     }
     xx = 0;
     while (xx<Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.count())
@@ -393,7 +393,7 @@ void WikiEdit::ProcessWords()
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
         {
-            xx++;
+            ++xx;
             continue;
         }
         int SD = 0;
@@ -423,16 +423,16 @@ void WikiEdit::ProcessWords()
                 }
                 if (found)
                     break;
-                SL++;
+                ++SL;
             }
-            SD++;
+            ++SD;
         }
         if (found)
         {
             this->Score += Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(xx).score;
             ScoreWords.append(w);
         }
-        xx++;
+        ++xx;
     }
 }
 
@@ -531,7 +531,7 @@ Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid, QString pre
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x);
-        x++;
+        ++x;
         if (edit->RevID == revid && edit->DiffTo == prev)
         {
             e = edit;
@@ -606,7 +606,7 @@ void ProcessorThread::run()
         {
             this->Process(PendingEdits.at(e));
             PendingEdits.at(e)->UnregisterConsumer(HUGGLECONSUMER_PROCESSOR);
-            e++;
+            ++e;
         }
         PendingEdits.clear();
         ProcessorThread::EditLock.unlock();

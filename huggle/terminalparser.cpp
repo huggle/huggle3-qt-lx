@@ -27,7 +27,7 @@ TerminalParser::TerminalParser(int argc, char *argv[])
     while (i<argc)
     {
         this->args.append(QString(argv[i]));
-        i++;
+        ++i;
     }
 }
 
@@ -38,7 +38,7 @@ bool TerminalParser::Init()
     {
         //bool valid = false;
         QString text = this->args.at(x);
-        x++;
+        ++x;
         if (text == "-h" || text == "--help")
         {
             DisplayHelp();
@@ -103,7 +103,7 @@ bool TerminalParser::Parse()
                 if (!this->args.at(x + 1).startsWith("-"))
                 {
                     Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
-                    x++;
+                    ++x;
                 }
             }
             valid = true;
@@ -114,7 +114,7 @@ bool TerminalParser::Parse()
             {
                 Configuration::HuggleConfiguration->HomePath = this->args.at(x + 1);
                 valid = true;
-                x++;
+                ++x;
             } else
             {
                 cerr << "Parameter --chroot requires an argument for it to work!" << endl;
@@ -147,7 +147,7 @@ bool TerminalParser::Parse()
                 Configuration::HuggleConfiguration->SystemConfig_Username = credentials.mid(0, credentials.indexOf(":"));
                 Configuration::HuggleConfiguration->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
                 valid = true;
-                x++;
+                ++x;
             } else
             {
                 cerr << "Parameter --login-file requires an argument for it to work!" << endl;
@@ -172,7 +172,7 @@ bool TerminalParser::Parse()
             }
             return true;
         }
-        x++;
+        ++x;
     }
     return false;
 }

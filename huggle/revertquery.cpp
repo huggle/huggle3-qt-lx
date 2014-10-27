@@ -208,7 +208,7 @@ void RevertQuery::Preflight()
         while (index < WikiEdit::EditList.count())
         {
             WikiEdit *w = WikiEdit::EditList.at(index);
-            index++;
+            ++index;
             if (w != this->edit)
             {
                 if (w->Page->PageName != this->edit->Page->PageName)
@@ -303,7 +303,7 @@ void RevertQuery::CheckPreflight()
     {
         QDomElement e = l.at(x).toElement();
         int RevID = WIKI_UNKNOWN_REVID;
-        x++;
+        ++x;
         if (e.attributes().contains("revid"))
         {
             RevID = e.attribute("revid").toInt();
@@ -544,7 +544,7 @@ bool RevertQuery::ProcessRevert()
     while (x < l.count())
     {
         QDomElement e = l.at(x).toElement();
-        x++;
+        ++x;
         if (e.attributes().contains("revid"))
         {
             if (this->edit->RevID == e.attribute("revid").toInt())
@@ -605,8 +605,8 @@ bool RevertQuery::ProcessRevert()
             this->SR_Target = sanitized;
             break;
         }
-        this->SR_Depth++;
-        x++;
+        ++this->SR_Depth;
+        ++x;
     }
     // let's check if depth isn't too low
     if (this->SR_Depth == 0)
