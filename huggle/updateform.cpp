@@ -43,13 +43,7 @@ UpdateForm::~UpdateForm()
 void UpdateForm::Check()
 {
     this->qData = new WebserverQuery();
-    QString version = Configuration::HuggleConfiguration->HuggleVersion;
-    if (version.contains(" "))
-    {
-        // we don't need to send the irrelevant stuff
-        version = version.mid(0, version.indexOf(" "));
-    }
-    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(version)
+    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform);
     if (Configuration::HuggleConfiguration->SystemConfig_NotifyBeta)
     {
