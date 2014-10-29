@@ -110,7 +110,7 @@ void UpdateForm::OnTick()
             // we don't know how to update o.O
             info = l.at(0).toElement().text();
             this->ui->pushButton->setEnabled(false);
-            info = info.replace("$LATESTHUGGLE", version);
+            info = info.replace("$LATESTHUGGLE", version).replace("$VERSION", hcfg->HuggleVersion);
             this->ui->label->setText(info);
             l = r.elementsByTagName("manualDownloadpage");
             if(l.count() > 0)
