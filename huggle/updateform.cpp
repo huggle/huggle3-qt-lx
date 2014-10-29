@@ -45,7 +45,7 @@ void UpdateForm::Check()
     this->qData = new WebserverQuery();
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform)
-            + "language=" + Localizations::HuggleLocalizations->PreferredLanguage;
+            + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage;
     if (Configuration::HuggleConfiguration->SystemConfig_NotifyBeta)
     {
        this->qData->URL += "&notifybeta";
