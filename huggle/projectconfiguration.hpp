@@ -101,6 +101,7 @@ namespace Huggle
             QString         RFPP_TemplateUser = "";
             QString         RFPP_Summary = "Sending request to protect a page";
             bool            RFPP_PlaceTop = false;
+            QString         RFPP_Mark = "";
             QString         RFPP_Regex = "";
             QString         RFPP_Page = "";
             QString         ReportAIV = "";
