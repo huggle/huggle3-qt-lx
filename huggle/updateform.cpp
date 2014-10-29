@@ -184,4 +184,5 @@ void UpdateForm::reject()
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
+    QDialog::reject();
 }
