@@ -501,7 +501,7 @@ void MainWindow::RequestPD()
     }
     if (this->fSpeedyDelete)
         delete this->fSpeedyDelete;
-    this->fSpeedyDelete = new SpeedyForm();
+    this->fSpeedyDelete = new SpeedyForm(this);
     this->fSpeedyDelete->Init(this->CurrentEdit);
     this->fSpeedyDelete->show();
 }
@@ -1120,7 +1120,7 @@ void MainWindow::TriggerWarn()
     {
         if (this->fWarningList != nullptr)
             delete this->fWarningList;
-        this->fWarningList = new Huggle::WarningList(this->CurrentEdit);
+        this->fWarningList = new Huggle::WarningList(this->CurrentEdit, this);
         this->fWarningList->show();
         return;
     }
@@ -2410,7 +2410,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (this->fUaaReportForm != nullptr)
         delete this->fUaaReportForm;
-    this->fUaaReportForm = new UAAReport();
+    this->fUaaReportForm = new UAAReport(this);
     this->fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
     this->fUaaReportForm->show();
 }
@@ -2624,7 +2624,7 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     }
     if (this->fRFProtection != nullptr)
         delete this->fRFProtection;
-    this->fRFProtection = new RequestProtect(this->CurrentEdit->Page);
+    this->fRFProtection = new RequestProtect(this->CurrentEdit->Page, this);
     this->fRFProtection->show();
 }
 
