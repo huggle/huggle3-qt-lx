@@ -85,6 +85,7 @@ namespace Huggle
             bool UsingPOST = false;
             //! This is a requested format in which the result should be written in
             Format RequestFormat;
+            bool IsContinuous = false;
             //! This is an url of api request, you probably don't want to change it unless
             //! you want to construct whole api request yourself
             QString URL = "";

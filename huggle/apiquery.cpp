@@ -33,6 +33,8 @@ void ApiQuery::ConstructUrl()
     }
     if (this->Parameters.length() > 0)
         this->URL += "&" + this->Parameters;
+    if (this->IsContinuous)
+        this->URL += "&rawcontinue=1";
     switch (this->RequestFormat)
     {
         case XML:
@@ -59,6 +61,8 @@ QString ApiQuery::ConstructParameterLessUrl()
         url = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;
     else
         url = Configuration::GetURLProtocolPrefix(this->GetSite()) + this->OverrideWiki + "api.php?action=" + this->ActionPart;
+    if (this->IsContinuous)
+        url += "&rawcontinue=1";
     switch (this->RequestFormat)
     {
         case XML:
@@ -214,6 +218,7 @@ void ApiQuery::SetAction(const Action action)
             return;
         case ActionQuery:
             this->ActionPart = "query";
+            this->IsContinuous = true;
             this->EnforceLogin = false;
             return;
         case ActionLogin:
