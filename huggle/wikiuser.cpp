@@ -113,6 +113,11 @@ void WikiUser::UpdateUser(WikiUser *us)
     }
     ProblematicUsers.append(new WikiUser(us));
     WikiUser::ProblematicUserListLock.unlock();
+    if (us->GetWarningLevel() > 0)
+    {
+        // this user has higher warning level than 0 so we need to update interface in case it was already somewhere
+        MainWindow::HuggleMain->Queue1->UpdateUser(us);
+    }
 }
 
 bool WikiUser::IsIPv4(QString user)
