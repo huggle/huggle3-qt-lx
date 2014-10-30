@@ -22,7 +22,7 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_RELEASE     0x5
 
 // Version of mediawiki that we do support
-#define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.22"
+#define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
 
 // How often the statistics get purged in seconds (smaller, more precise they will be)
 #define HUGGLE_STATISTICS_LIFETIME     200

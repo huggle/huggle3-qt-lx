@@ -138,6 +138,8 @@ namespace Huggle
             QString         SoftwareRevertDefaultSummary;
             /// \todo use rollback summary at least at mw-rollback
             QString         RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
+            //! This is a token returned by tokens query from mw which should be same for all rollback execs
+            QString         RollbackToken;
             QString         RollbackSummaryUnknownTarget = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
             QString         DefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
             QString         SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";

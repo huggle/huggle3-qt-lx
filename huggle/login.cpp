@@ -172,10 +172,14 @@ void Login::RemoveQueries()
     Sites = this->WhitelistQueries.keys();
     foreach (WikiSite* st, Sites)
         this->WhitelistQueries[st]->DecRef();
+    Sites = this->qTokenInfo.keys();
+    foreach (WikiSite* st, Sites)
+        this->qTokenInfo[st]->DecRef();
     Sites = this->qSiteInfo.keys();
     foreach (WikiSite* st, Sites)
         this->qSiteInfo[st]->DecRef();
     this->qSiteInfo.clear();
+    this->qTokenInfo.clear();
     this->WhitelistQueries.clear();
     this->LoginQueries.clear();
 }
@@ -507,6 +511,11 @@ void Login::FinishLogin(WikiSite *site)
         this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOGIN), LoadingForm_Icon_Success);
         qr->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
         qr->Process();
+        qr = new ApiQuery(ActionQuery, site);
+        this->qTokenInfo.insert(site, qr);
+        qr->IncRef();
+        qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("watch|patrol|rollback");
+        qr->Process();
         this->Statuses[site] = RetrievingProjectConfig;
     }
 }
@@ -753,9 +762,33 @@ void Login::DeveloperMode()
 
 void Login::ProcessSiteInfo(WikiSite *site)
 {
-    if (this->qSiteInfo.contains(site) && this->qSiteInfo[site]->IsProcessed())
+    if (this->qTokenInfo.contains(site) && this->qSiteInfo.contains(site)
+            && this->qTokenInfo[site]->IsProcessed() && this->qSiteInfo[site]->IsProcessed())
     {
-        //! \todo Check that request isnt failed
+        if (this->qSiteInfo[site]->IsFailed())
+        {
+            this->DisplayError("Site info query for " + site->Name + " has failed: " + this->qSiteInfo[site]->GetFailureReason());
+            return;
+        }
+        if (!this->qTokenInfo[site]->IsFailed())
+        {
+            // if this query failed user is probably on older mediawiki, that means some features will not work
+            // but there is no reason why we should abort whole login operation just because of that
+            ApiQueryResultNode *tokens = this->qTokenInfo[site]->GetApiQueryResult()->GetNode("tokens");
+            if (tokens != nullptr)
+            {
+                if (tokens->Attributes.contains("rollbacktoken"))
+                    site->GetProjectConfig()->RollbackToken = tokens->GetAttribute("rollbacktoken");
+                else
+                    HUGGLE_DEBUG1("No rollback for " + site->Name + "result: " + this->qTokenInfo[site]->Result->Data);
+            }
+        } else
+        {
+            Syslog::HuggleLogs->WarningLog("Tokens query for " + site->Name + " has failed: " + this->qTokenInfo[site]->GetFailureReason());
+        }
+        // we can remove the query no matter if it was finished or not
+        this->qTokenInfo[site]->DecRef();
+        this->qTokenInfo.remove(site);
         QDomDocument d;
         d.setContent(this->qSiteInfo[site]->Result->Data);
         QDomNodeList l = d.elementsByTagName("general");

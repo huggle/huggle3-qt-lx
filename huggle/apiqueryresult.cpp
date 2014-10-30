@@ -39,31 +39,34 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
         id++;
         if (element.tagName().isEmpty())
             continue;
-        ApiQueryResultNode *node = new ApiQueryResultNode();
-        node->Name = element.tagName();
-        int attr = 0;
-        while (attr < element.attributes().count())
+        if (element.tagName() != "warnings")
         {
-            QDomAttr ca = element.attributes().item(attr).toAttr();
-            attr++;
-            if (!node->Attributes.contains(ca.name()))
-                node->Attributes.insert(ca.name(), ca.value());
-            else
-                Syslog::HuggleLogs->WarningLog("Invalid xml node (present multiple times) " + ca.name() + " in " + element.tagName());
-        }
-        result->Nodes.append(node);
-        if (element.childNodes().count())
-            ProcessChildXMLNodes(result, element.childNodes());
+            ApiQueryResultNode *node = new ApiQueryResultNode();
+            node->Name = element.tagName();
+            int attr = 0;
+            while (attr < element.attributes().count())
+            {
+                QDomAttr ca = element.attributes().item(attr).toAttr();
+                attr++;
+                if (!node->Attributes.contains(ca.name()))
+                    node->Attributes.insert(ca.name(), ca.value());
+                else
+                    Syslog::HuggleLogs->WarningLog("Invalid xml node (present multiple times) " + ca.name() + " in " + element.tagName());
+            }
+            result->Nodes.append(node);
+            if (element.childNodes().count())
+                ProcessChildXMLNodes(result, element.childNodes());
 
-        node->Value = element.text();
-        if (node->Name == "error")
-        {
-            QString code = node->GetAttribute("code");
-            result->SetError(HUGGLE_EUNKNOWN, "code: " + code + " details: " + node->Value);
-            HUGGLE_DEBUG1("Query failed: " + code + " details: " + node->Value);
-            HUGGLE_DEBUG(result->Data, 8);
+            node->Value = element.text();
+            if (node->Name == "error")
+            {
+                QString code = node->GetAttribute("code");
+                result->SetError(HUGGLE_EUNKNOWN, "code: " + code + " details: " + node->Value);
+                HUGGLE_DEBUG1("Query failed: " + code + " details: " + node->Value);
+                HUGGLE_DEBUG(result->Data, 8);
+            }
         }
-        if (node->Name == "warnings" && !hcfg->SystemConfig_SuppressWarnings)
+        if (element.tagName() == "warnings" && !hcfg->SystemConfig_SuppressWarnings)
         {
             // there are some warnings which we need to find now
             int cn = 0;
