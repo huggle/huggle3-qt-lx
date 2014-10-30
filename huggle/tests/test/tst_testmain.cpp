@@ -90,7 +90,7 @@ static void testTalkPageWarningParser(QString id, QDate date, int level)
     QString text = QString(file->readAll());
     user->TalkPage_SetContents(text);
     user->ParseTP(date);
-    QVERIFY2(user->WarningLevel == level, QString("level parsed was " + QString::number(user->WarningLevel) + " should be " + QString::number(level) + "!!").toUtf8().data());
+    QVERIFY2(user->GetWarningLevel() == level, QString("level parsed was " + QString::number(user->GetWarningLevel()) + " should be " + QString::number(level) + "!!").toUtf8().data());
     file->close();
     delete file;
     delete user;
