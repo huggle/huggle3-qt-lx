@@ -31,6 +31,8 @@ namespace Huggle
 {
     class HuggleQueueFilter;
     class HuggleQueueItemLabel;
+    class WikiEdit;
+    class WikiUser;
 
     //! Queue of edits
     class HuggleQueue : public QDockWidget
@@ -56,6 +58,7 @@ namespace Huggle
             bool DeleteByRevID(int RevID, WikiSite *site);
             //! Delete all edits to the page that are older than this edit
             void DeleteOlder(WikiEdit *edit);
+            void UpdateUser(WikiUser *user);
             //! Reload filters
             void Filters();
             //! Switch and render next edit in queue

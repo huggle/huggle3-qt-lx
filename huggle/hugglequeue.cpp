@@ -17,6 +17,7 @@
 #include "ui_hugglequeue.h"
 #include "syslog.hpp"
 #include "wikipage.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 
@@ -442,6 +443,22 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         i++;
     }
     this->RedrawTitle();
+}
+
+void HuggleQueue::UpdateUser(WikiUser *user)
+{
+    int i = 0;
+    while (i < this->Items.count())
+    {
+        WikiEdit *ed = this->Items.at(i)->Page;
+        if (ed->User->Username == user->Username)
+        {
+            // we have a match, let's update the icon
+            ed->User->SetWarningLevel(user->GetWarningLevel());
+            this->Items.at(i)->UpdatePixmap();
+        }
+        i++;
+    }
 }
 
 void HuggleQueue::Clear()

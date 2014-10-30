@@ -122,10 +122,12 @@ namespace Huggle
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);
+            void DecrementWarningLevel();
+            void IncrementWarningLevel();
+            void SetWarningLevel(byte_ht level);
+            byte_ht GetWarningLevel() const;
             //! Username
             QString Username;
-            //! Current warning level of user
-            byte_ht WarningLevel;
             bool IsBlocked;
             //! Local cache that holds information if user is reported or not. This information
             //! may be wrong, don't relly on it
@@ -150,6 +152,8 @@ namespace Huggle
              * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
              */
             long BadnessScore;
+            //! Current warning level of user
+            byte_ht WarningLevel;
             //! Status of whitelist 0 means user is not whitelisted, 1 that it is and different value means we don't know
             byte_ht WhitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it

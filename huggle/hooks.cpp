@@ -67,7 +67,7 @@ void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
 
 void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
 {
-    Core::HuggleCore->Main->VandalDock->WarningSent(User, User->WarningLevel);
+    Core::HuggleCore->Main->VandalDock->WarningSent(User, User->GetWarningLevel());
 }
 
 void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)

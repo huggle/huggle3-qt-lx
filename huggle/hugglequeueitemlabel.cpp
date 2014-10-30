@@ -63,6 +63,11 @@ void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
     this->ParentQueue->Delete(this, qi);
 }
 
+void HuggleQueueItemLabel::UpdatePixmap()
+{
+    this->ui->label->setPixmap(QPixmap(this->Page->GetPixmap()));
+}
+
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)

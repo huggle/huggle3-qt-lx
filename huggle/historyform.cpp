@@ -207,9 +207,9 @@ void HistoryForm::onTick01()
             {
                 item->Type = EditType_Reported;
                 icon = QIcon(":/huggle/pictures/Resources/blob-reported.png");
-            } else if (wu->WarningLevel > 0)
+            } else if (wu->GetWarningLevel() > 0)
             {
-                switch(wu->WarningLevel)
+                switch(wu->GetWarningLevel())
                 {
                     case 1:
                         item->Type = EditType_1;

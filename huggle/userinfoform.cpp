@@ -82,7 +82,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
     }
     this->Items.clear();
     QString text = "Flags: " + user->Flags() + " Score: " + QString::number(user->GetBadnessScore()) + " level: "
-                    + QString::number(user->WarningLevel);
+                    + QString::number(user->GetWarningLevel());
     if (user->EditCount > 0)
     {
         text += " Edit count: " + QString::number(user->EditCount);

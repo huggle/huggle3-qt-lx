@@ -670,7 +670,7 @@ void ProcessorThread::Process(WikiEdit *edit)
     edit->User->ParseTP(QDate::currentDate());
     if (edit->Summary.size() == 0)
         edit->Score += 10;
-    switch(edit->User->WarningLevel)
+    switch(edit->User->GetWarningLevel())
     {
         case 1:
             edit->Score += 200;

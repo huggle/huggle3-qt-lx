@@ -61,10 +61,8 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
     // check if user wasn't changed and if was, let's update the info
     Edit->User->Resync();
-    // get a template
-    Edit->User->WarningLevel++;
 
-    if (Edit->User->WarningLevel > Edit->GetSite()->GetProjectConfig()->WarningLevel)
+    if (Edit->User->GetWarningLevel() >= Edit->GetSite()->GetProjectConfig()->WarningLevel)
     {
         // we should report this user instead
         if (Edit->User->IsReported)
@@ -88,7 +86,11 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         return nullptr;
     }
 
-    QString Template_ = WarningType + QString::number(Edit->User->WarningLevel);
+    // get a template
+    Edit->User->IncrementWarningLevel();
+    // we need to update the user so that new level gets propagated everywhere on interface of huggle
+    Edit->User->Update();
+    QString Template_ = WarningType + QString::number(Edit->User->GetWarningLevel());
     QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_, Edit->GetSite());
 
     if (!MessageText_.size())
@@ -101,7 +103,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     /// \todo This needs to be localized because it's in message, but it must be in config, not localization
     QString Summary_ = "Message re " + Edit->Page->PageName;
 
-    switch (Edit->User->WarningLevel)
+    switch (Edit->User->GetWarningLevel())
     {
         case 1:
             Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary;
@@ -261,12 +263,9 @@ void Warnings::ResendWarnings()
                 continue;
             }
             Syslog::HuggleLogs->DebugLog("Failed to deliver message to " + warning->Warning->User->Username);
-            // we need to decrease the warning level of that user because we didn't deliver the warning message
-            if (warning->RelatedEdit->User->WarningLevel > 0)
-            {
-                warning->RelatedEdit->User->WarningLevel--;
-                warning->RelatedEdit->User->Update();
-            }
+            // we need to dec. the warning level of that user because we didn't deliver the warning message
+            warning->RelatedEdit->User->DecrementWarningLevel();
+            warning->RelatedEdit->User->Update();
             // check if the warning wasn't delivered because someone edited the page
             if (warning->Warning->Error == Huggle::MessageError_Obsolete || warning->Warning->Error == Huggle::MessageError_ArticleExist)
             {
