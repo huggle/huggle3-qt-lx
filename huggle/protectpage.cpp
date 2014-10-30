@@ -40,7 +40,7 @@ ProtectPage::~ProtectPage()
 
 void ProtectPage::setPageToProtect(WikiPage *Page)
 {
-    this->PageToProtect = Page;
+    this->PageToProtect = new WikiPage(Page);
 }
 
 void ProtectPage::getTokenToProtect()
