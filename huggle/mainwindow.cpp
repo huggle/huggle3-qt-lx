@@ -623,7 +623,7 @@ void MainWindow::UpdateStatusBarData()
         if (VandalismLevel > 1.2)
             color = "black";
         if (VandalismLevel > 1.8)
-            color = "orange";
+            color = "red";
         // make the numbers easier to read
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
