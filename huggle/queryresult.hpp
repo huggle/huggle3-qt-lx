@@ -35,7 +35,7 @@ namespace Huggle
             void SetError();
             void SetError(QString error);
             void SetError(int error, QString details = "");
-            bool IsFailed() { return Failed; }
+            bool IsFailed() { return this->Failed; }
             //! If query is in error the reason for error is stored here
             QString ErrorMessage;
             int ErrorCode = 0;

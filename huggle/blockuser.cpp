@@ -111,9 +111,9 @@ void BlockUser::CheckToken()
 {
     if (this->qTokenApi == nullptr || !this->qTokenApi->IsProcessed())
         return;
-    if (this->qTokenApi->Result->IsFailed())
+    if (this->qTokenApi->IsFailed())
     {
-        this->Failed(_l("block-token-e1", this->qTokenApi->Result->ErrorMessage));
+        this->Failed(_l("block-token-e1", this->qTokenApi->GetFailureReason()));
         return;
     }
     QDomDocument d;
@@ -166,9 +166,9 @@ void BlockUser::Block()
 {
     if (this->qUser == nullptr || !this->qUser->IsProcessed())
         return;
-    if (this->qUser->Result->IsFailed())
+    if (this->qUser->IsFailed())
     {
-        this->Failed(_l("block-fail", this->qUser->Result->ErrorMessage));
+        this->Failed(_l("block-fail", this->qUser->GetFailureReason()));
         return;
     }
     QDomDocument d;

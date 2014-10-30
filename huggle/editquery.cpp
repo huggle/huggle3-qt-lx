@@ -101,10 +101,10 @@ bool EditQuery::IsProcessed()
         if (!this->qToken->IsProcessed())
             return false;
 
-        if (this->qToken->Result->IsFailed())
+        if (this->qToken->IsFailed())
         {
             this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->Result->ErrorMessage);
+            this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->GetFailureReason());
             this->qToken.Delete();
             this->ProcessFailure();
             return true;

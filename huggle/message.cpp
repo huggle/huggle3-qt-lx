@@ -178,13 +178,13 @@ void Message::Finish()
         {
             return;
         }
-        if (this->query->Result->IsFailed())
+        if (this->query->IsFailed())
         {
             this->Fail(_l("message-fail-retrieve-talk"));
             return;
         }
         this->ProcessTalk();
-        this->query = nullptr;
+        this->query.Delete();
         // we should be able to finish sending now
         this->ProcessSend();
         return;
@@ -279,7 +279,7 @@ bool Message::FinishToken()
     {
         return false;
     }
-    if (this->qToken->Result->IsFailed())
+    if (this->qToken->IsFailed())
     {
         this->Fail(_l("message-fail-token-1"));
         return false;

@@ -138,7 +138,7 @@ void HistoryForm::onTick01()
     if (this->query == nullptr || !this->query->IsProcessed())
         return;
 
-    if (this->query->Result->IsFailed())
+    if (this->query->IsFailed())
     {
         this->ui->pushButton->setEnabled(true);
         Huggle::Syslog::HuggleLogs->ErrorLog(_l("history-failure"));

@@ -165,11 +165,9 @@ bool WikiEdit::FinalizePostProcessing()
     {
         // check if api was processed
         if (!this->qTalkpage->IsProcessed())
-        {
             return false;
-        }
 
-        if (this->qTalkpage->Result->IsFailed())
+        if (this->qTalkpage->IsFailed())
         {
             /// \todo LOCALIZE ME
             Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
@@ -233,7 +231,7 @@ bool WikiEdit::FinalizePostProcessing()
             return false;
         }
 
-        if (this->qDifference->Result->IsFailed())
+        if (this->qDifference->IsFailed())
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
@@ -269,6 +267,10 @@ bool WikiEdit::FinalizePostProcessing()
                     }
                     if (e.attributes().contains("revid"))
                         this->RevID = e.attribute("revid").toInt();
+                } else
+                {
+                    HUGGLE_DEBUG1("Ignoring revision information for revision " + QString::number(this->RevID) + " because user " + this->User->Username +
+                                  " is not " + e.attribute("user"));
                 }
                 if (e.attributes().contains("timestamp"))
                     this->Time = MediaWiki::FromMWTimestamp(e.attribute("timestamp"));

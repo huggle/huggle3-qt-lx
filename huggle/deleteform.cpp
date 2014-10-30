@@ -106,9 +106,9 @@ void DeleteForm::CheckDeleteToken()
     {
         return;
     }
-    if (this->qToken->Result->IsFailed())
+    if (this->qToken->IsFailed())
     {
-        this->Failed(_l("delete-error-token", this->qToken->Result->ErrorMessage));
+        this->Failed(_l("delete-error-token", this->qToken->GetFailureReason()));
         return;
     }
     QDomDocument d;
@@ -120,7 +120,7 @@ void DeleteForm::CheckDeleteToken()
 
         if (this->qTokenOfTalkPage->Result->IsFailed())
         {
-            this->Failed(_l("delete-error-token", this->qToken->Result->ErrorMessage));
+            this->Failed(_l("delete-error-token", this->qToken->GetFailureReason()));
             return;
         }
         d.setContent(this->qTokenOfTalkPage->Result->Data);
@@ -187,7 +187,7 @@ void DeleteForm::Delete()
         return;
     if (this->qDelete->Result->IsFailed())
     {
-        this->Failed(_l("delete-e1", this->qDelete->Result->ErrorMessage));
+        this->Failed(_l("delete-e1", this->qDelete->GetFailureReason()));
         return;
     }
     // let's assume the page was deleted

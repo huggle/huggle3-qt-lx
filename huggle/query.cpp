@@ -134,3 +134,11 @@ bool Query::IsFailed()
 
     return false;
 }
+
+QString Query::GetFailureReason()
+{
+    if (this->Result != nullptr)
+        return this->Result->ErrorMessage;
+
+    return this->FailureReason;
+}

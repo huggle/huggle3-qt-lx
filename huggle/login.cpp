@@ -417,10 +417,10 @@ void Login::PerformLoginPart2(WikiSite *site)
         return;
 
     ApiQuery *query = this->LoginQueries[site];
-    if (query->Result->IsFailed())
+    if (query->IsFailed())
     {
         this->CancelLogin();
-        this->Update(_l("login-fail", site->Name) + ": " + query->Result->ErrorMessage);
+        this->Update(_l("login-fail", site->Name) + ": " + query->GetFailureReason());
         return;
     }
     QString token = this->GetToken(query->Result->Data);
@@ -490,7 +490,7 @@ void Login::FinishLogin(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     if (query->Result->IsFailed())
     {
-        this->DisplayError("Login failed (on " + site->Name + "): " + query->Result->ErrorMessage);
+        this->DisplayError("Login failed (on " + site->Name + "): " + query->GetFailureReason());
         this->Statuses[site] = LoginFailed;
         return;
     }
@@ -519,7 +519,7 @@ void Login::RetrieveWhitelist(WikiSite *site)
         if (query->IsProcessed())
         {
             this->WhitelistQueries.remove(site);
-            if (query->Result->IsFailed())
+            if (query->IsFailed())
             {
                 //! \todo This needs to be handled per project, there is no point in disabling WL on all projects
                 Configuration::HuggleConfiguration->SystemConfig_WhitelistDisabled = true;
@@ -551,7 +551,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         ApiQuery *query = this->LoginQueries[site];
         if (query->IsProcessed())
         {
-            if (query->Result->IsFailed())
+            if (query->IsFailed())
             {
                 this->DisplayError(_l("login-error-config", site->Name, query->Result->ErrorMessage));
                 return;
@@ -602,7 +602,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
         ApiQuery *q = this->LoginQueries[site];
         if (q->IsProcessed())
         {
-            if (q->Result->IsFailed())
+            if (q->IsFailed())
             {
                 this->DisplayError("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
                 return;
@@ -685,9 +685,9 @@ void Login::RetrieveUserInfo(WikiSite *site)
         ApiQuery *query = this->LoginQueries[site];
         if (query->IsProcessed())
         {
-            if (query->Result->IsFailed())
+            if (query->IsFailed())
             {
-                this->DisplayError(_l("login-fail-no-info", site->Name, query->Result->ErrorMessage));
+                this->DisplayError(_l("login-fail-no-info", site->Name, query->GetFailureReason()));
                 return;
             }
             QList<ApiQueryResultNode*> node = query->GetApiQueryResult()->GetNodes("r");
