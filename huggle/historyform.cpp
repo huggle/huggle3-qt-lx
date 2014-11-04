@@ -83,8 +83,7 @@ void HistoryForm::Read()
     this->ui->pushButton->hide();
     this->query = new ApiQuery(ActionQuery, this->CurrentEdit->GetSite());
     this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
-            QString::number(Huggle::Configuration::HuggleConfiguration->UserConfig->HistoryMax) +
-            "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+            QString::number(hcfg->UserConfig->HistoryMax) + "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
     this->query->Process();
     delete this->t1;
     this->t1 = new QTimer(this);

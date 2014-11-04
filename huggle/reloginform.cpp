@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "reloginform.hpp"
-#include <QtXml>
+#include "apiqueryresult.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
@@ -57,32 +57,27 @@ void ReloginForm::LittleTick()
     if (this->qReloginPw)
     {
         if (!this->qReloginPw->IsProcessed())
-        {
             return;
-        }
 
         if (this->qReloginPw->IsFailed())
         {
             this->Fail(this->qReloginPw->Result->ErrorMessage);
             return;
         }
-        QDomDocument result;
-        result.setContent(this->qReloginPw->Result->Data);
-        QDomNodeList login = result.elementsByTagName("login");
-        if (login.count() < 1)
+        ApiQueryResultNode *login_ = this->qReloginPw->GetApiQueryResult()->GetNode("login");
+        if (login_ == nullptr)
         {
             this->Fail("No data returned by login query");
             HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
-        QDomElement element = login.at(0).toElement();
-        if (!element.attributes().contains("result"))
+        if (!login_->Attributes.contains("result"))
         {
             this->Fail("No result was provided by login query");
             HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
-        QString Result = element.attribute("result");
+        QString Result = login_->GetAttribute("result");
         if (Result == "Success")
         {
             // we are logged back in
@@ -116,36 +111,33 @@ void ReloginForm::LittleTick()
             this->Fail(this->qReloginTokenReq->Result->ErrorMessage);
             return;
         }
-        QDomDocument result;
-        result.setContent(this->qReloginTokenReq->Result->Data);
-        QDomNodeList login = result.elementsByTagName("login");
-        if (login.count() < 1)
+        ApiQueryResultNode *login_ = this->qReloginTokenReq->GetApiQueryResult()->GetNode("login");
+        if (login_ == nullptr)
         {
             this->Fail("No data returned by login query");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QDomElement element = login.at(0).toElement();
-        if (!element.attributes().contains("result"))
+        if (!login_->Attributes.contains("result"))
         {
             this->Fail("No result was provided by login query");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QString reslt_ = element.attribute("result");
+        QString reslt_ = login_->GetAttribute("result");
         if (reslt_ != "NeedToken")
         {
             this->Fail("Result returned " + reslt_ + " NeedToken expected");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        if (!element.attributes().contains("token"))
+        if (!login_->Attributes.contains("token"))
         {
             this->Fail("No token");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QString t = QUrl::toPercentEncoding(element.attribute("token"));
+        QString t = QUrl::toPercentEncoding(login_->GetAttribute("token"));
         GC_DECREF(this->qReloginTokenReq);
         this->qReloginPw = new ApiQuery(ActionLogin);
         this->qReloginPw->HiddenQuery = true;

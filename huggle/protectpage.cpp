@@ -9,8 +9,8 @@
 //GNU General Public License for more details.
 
 #include "protectpage.hpp"
-#include <QMessageBox>
 #include "configuration.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
@@ -132,11 +132,7 @@ void ProtectPage::on_pushButton_2_clicked()
 
 void ProtectPage::Failed(QString reason)
 {
-    QMessageBox *_pmb = new QMessageBox();
-    _pmb->setWindowTitle(_l("protect-message-title-fail"));
-    _pmb->setText(_l("protect-error", reason));
-    _pmb->exec();
-    delete _pmb;
+    Generic::MessageBox(_l("protect-message-title-fail"), _l("protect-error", reason), MessageBoxStyleWarning, true);
     this->tt->stop();
     delete this->tt;
     this->qProtection.Delete();
