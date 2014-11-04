@@ -9,17 +9,18 @@
 //GNU General Public License for more details.
 
 #include "deleteform.hpp"
-#include <QtXml>
-#include <QMessageBox>
 #include <QLineEdit>
 #include <QUrl>
+#include "apiqueryresult.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "gc.hpp"
 #include "configuration.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "ui_deleteform.h"
 
@@ -29,11 +30,6 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
 {
     this->ui->setupUi(this);
     int xx = 0;
-    while (xx < Configuration::HuggleConfiguration->ProjectConfig->DeletionSummaries.count())
-    {
-        this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->DeletionSummaries.at(xx));
-        xx++;
-    }
     this->page = nullptr;
     this->tDelete = nullptr;
     this->DeleteToken = "";
@@ -56,6 +52,10 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
         throw new Huggle::Exception("Page must not be NULL", "void DeleteForm::setPage(WikiPage *Page)");
     }
     this->page = new WikiPage(Page);
+    foreach(QString summary, Page->GetSite()->GetProjectConfig()->DeletionSummaries)
+    {
+        this->ui->comboBox->addItem(summary);
+    }
     if (this->page->IsTalk())
     {
         this->ui->checkBox_2->setChecked(false);
@@ -103,16 +103,12 @@ void DeleteForm::OnTick()
 void DeleteForm::CheckDeleteToken()
 {
     if (this->qToken == nullptr || !this->qToken->IsProcessed())
-    {
         return;
-    }
     if (this->qToken->IsFailed())
     {
         this->Failed(_l("delete-error-token", this->qToken->GetFailureReason()));
         return;
     }
-    QDomDocument d;
-    QDomNodeList l;
     if (this->TalkPage != nullptr)
     {
         if (this->qTokenOfTalkPage == nullptr || !this->qTokenOfTalkPage->IsProcessed())
@@ -123,22 +119,20 @@ void DeleteForm::CheckDeleteToken()
             this->Failed(_l("delete-error-token", this->qToken->GetFailureReason()));
             return;
         }
-        d.setContent(this->qTokenOfTalkPage->Result->Data);
-        l = d.elementsByTagName("page");
-        if (l.count() == 0)
+        ApiQueryResultNode *page_ = this->qTokenOfTalkPage->GetApiQueryResult()->GetNode("page");
+        if (page == nullptr)
         {
             HUGGLE_DEBUG(this->qTokenOfTalkPage->Result->Data, 1);
             this->Failed(_l("delete-failed-no-info"));
             return;
         }
-        QDomElement element = l.at(0).toElement();
-        if (!element.attributes().contains("deletetoken"))
+        if (!page_->Attributes.contains("deletetoken"))
         {
             this->Failed(_l("delete-token02"));
             return;
         }
-        this->DeleteToken2 = element.attribute("deletetoken");
-        this->qTokenOfTalkPage = nullptr;
+        this->DeleteToken2 = page_->GetAttribute("deletetoken");
+        this->qTokenOfTalkPage.Delete();
         HUGGLE_DEBUG("Delete token for " + this->TalkPage->PageName + ": " + this->DeleteToken2, 1);
 
         // let's delete the page
@@ -151,21 +145,19 @@ void DeleteForm::CheckDeleteToken()
         QueryPool::HugglePool->AppendQuery(this->qTalk);
         this->qTalk->Process();
     }
-    d.setContent(this->qToken->Result->Data);
-    l = d.elementsByTagName("page");
-    if (l.count() == 0)
+    ApiQueryResultNode *token = this->qToken->GetApiQueryResult()->GetNode("page");
+    if (token == nullptr)
     {
         HUGGLE_DEBUG(this->qToken->Result->Data, 1);
         this->Failed(_l("delete-failed-no-info"));
         return;
     }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("deletetoken"))
+    if (!token->Attributes.contains("deletetoken"))
     {
         this->Failed(_l("delete-token02"));
         return;
     }
-    this->DeleteToken = element.attribute("deletetoken");
+    this->DeleteToken = token->GetAttribute("deletetoken");
     this->delQueryPhase++;
     this->qToken = nullptr;
     HUGGLE_DEBUG("Delete token for " + this->page->PageName + ": " + this->DeleteToken, 1);
@@ -198,11 +190,7 @@ void DeleteForm::Delete()
 
 void DeleteForm::Failed(QString Reason)
 {
-    QMessageBox *_b = new QMessageBox();
-    _b->setWindowTitle(_l("delete-e2"));
-    _b->setText(_l("delete-edsc", Reason));
-    _b->exec();
-    delete _b;
+    Generic::MessageBox(_l("delete-e2"), _l("delete-edsc", Reason), MessageBoxStyleError, true);
     this->tDelete->stop();
     delete this->tDelete;
     this->tDelete = nullptr;

@@ -181,19 +181,27 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
     switch (st)
     {
         case MessageBoxStyleQuestion:
+            mb.setIcon(QMessageBox::Question);
             mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
             mb.setDefaultButton(QMessageBox::Yes);
             return mb.exec();
         case MessageBoxStyleNormal:
+            mb.setIcon(QMessageBox::Information);
+            goto exec;
         case MessageBoxStyleError:
+            mb.setIcon(QMessageBox::Critical);
+            goto exec;
         case MessageBoxStyleWarning:
-            if (enforce_stop)
-                mb.exec();
-            else
-                mb.show();
-            return 0;
+            mb.setIcon(QMessageBox::Warning);
+            goto exec;
     }
     return -1;
+    exec:
+        if (enforce_stop)
+            mb.exec();
+        else
+            mb.show();
+        return 0;
 }
 
 bool Generic::CompareVersions(QString a, QString b)
