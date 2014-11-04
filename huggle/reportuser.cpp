@@ -30,7 +30,6 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 {
     this->ui->setupUi(this);
     this->ReportedUser = nullptr;
-    this->ui->lineEdit->setText(Configuration::HuggleConfiguration->ProjectConfig->ReportDefaultReason);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(_l("report-history"));
@@ -89,6 +88,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
 ReportUser::~ReportUser()
 {
     delete this->tPageDiff;
+    delete this->ReportedUser;
     delete this->BlockForm;
     delete this->ui;
 }
@@ -98,14 +98,17 @@ bool ReportUser::SetUser(WikiUser *user)
     if (!user)
         throw new Huggle::NullPointerException("user", "bool ReportUser::SetUser(WikiUser *user)");
 
-    this->ReportedUser = user;
+    if (this->ReportedUser)
+        delete this->ReportedUser;
+    this->ReportedUser = new WikiUser(user);
     this->setWindowTitle(_l("report-title", this->ReportedUser->Username));
     this->ui->label->setText(_l("report-intro", user->Username));
-    this->qHistory = new ApiQuery(ActionQuery, this->ReportedUser->Site);
+    this->ui->lineEdit->setText(this->ReportedUser->GetSite()->GetProjectConfig()->ReportDefaultReason);
+    this->qHistory = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->Process();
-    if (!Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("block"))
+    if (!this->ReportedUser->GetSite()->ProjectConfig->Rights.contains("block"))
     {
         this->ui->pushButton_4->setEnabled(false);
     }
@@ -168,21 +171,14 @@ void ReportUser::Tick()
                     QDomElement fe = qlflags.at(flag_n).toElement();
                     ++flag_n;
                     if (fe.nodeName() != "block")
-                    {
                         continue;
-                    }
                     if (fe.attributes().contains("duration"))
-                    {
                         duration = fe.attribute("duration");
-                    }
+
                     if (fe.attributes().contains("expiry"))
-                    {
                         expiration = fe.attribute("expiry");
-                    }
                     if (fe.attributes().contains("flags"))
-                    {
                         flags = fe.attribute("flags");
-                    }
                 }
                 this->ui->tableWidget_2->insertRow(0);
                 this->ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem(id));
@@ -217,8 +213,6 @@ void ReportUser::Tick()
                 this->Kill();
                 return;
             }
-
-            // ok
             this->ReportedUser->IsReported = true;
             this->ui->pushButton->setText(_l("report-done"));
             WikiUser::UpdateUser(this->ReportedUser);
@@ -240,7 +234,7 @@ void ReportUser::Tick()
             QDomNodeList results = d.elementsByTagName("rev");
             if (results.count() == 0)
             {
-                this->ui->pushButton->setText(_l("report-fail2", Configuration::HuggleConfiguration->ProjectConfig->ReportAIV));
+                this->ui->pushButton->setText(_l("report-fail2", this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV));
                 this->qHistory = nullptr;
                 return;
             }
@@ -267,9 +261,9 @@ void ReportUser::Tick()
             }
             this->InsertUser();
             // everything is ok we report user
-            QString summary = Configuration::HuggleConfiguration->ProjectConfig->ReportSummary;
+            QString summary = this->ReportedUser->GetSite()->GetProjectConfig()->ReportSummary;
             summary = summary.replace("$1",this->ReportedUser->Username);
-            this->qEdit = WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->AIVP, this->ReportContent, summary,
+            this->qEdit = WikiUtil::EditPage(this->ReportedUser->GetSite()->GetProjectConfig()->AIVP, this->ReportContent, summary,
                                              false, this->ReportTs);
             this->ui->pushButton->setText(_l("report-write"));
             this->qHistory.Delete();
@@ -308,7 +302,7 @@ void ReportUser::Tick()
                 {
                     diff = edit.attribute("revid");
                 }
-                QString link = Configuration::GetProjectScriptURL() + "index.php?title=" + page + "&diff=" + diff;
+                QString link = Configuration::GetProjectScriptURL(this->ReportedUser->GetSite()) + "index.php?title=" + page + "&diff=" + diff;
                 this->ui->tableWidget->insertRow(0);
                 this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(page));
                 this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(time));
@@ -415,7 +409,7 @@ void ReportUser::Test()
         this->ui->pushButton_3->setEnabled(true);
         if (results.count() == 0)
         {
-            this->failCheck("Error unable to retrieve report page at " + Configuration::HuggleConfiguration->ProjectConfig->ReportAIV);
+            this->failCheck("Error unable to retrieve report page at " + this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV);
             return;
         }
         this->ui->pushButton_3->setEnabled(true);
@@ -478,8 +472,7 @@ void ReportUser::on_pushButton_clicked()
     // obtain current page
     this->Loading = true;
     this->ui->pushButton->setText(_l("report-retrieving"));
-    WikiSite *site = this->ReportedUser->GetSite();
-    this->qHistory = Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ReportAIV, site);
+    this->qHistory = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->ReportedUser->GetSite());
     this->qHistory->Site = this->ReportedUser->GetSite();
     this->qHistory->Process();
     this->ReportText = reports;
@@ -489,7 +482,7 @@ void ReportUser::on_pushButton_clicked()
 
 void ReportUser::on_pushButton_2_clicked()
 {
-    QUrl u = QUrl::fromEncoded(QString(Configuration::GetProjectWikiURL() + QUrl::toPercentEncoding
+    QUrl u = QUrl::fromEncoded(QString(Configuration::GetProjectWikiURL(this->ReportedUser->GetSite()) + QUrl::toPercentEncoding
                                  (this->ReportedUser->GetTalk()) + "?action=render").toUtf8());
     this->ui->webView->load(u);
 }
@@ -545,15 +538,15 @@ bool ReportUser::CheckUser()
 
 void ReportUser::InsertUser()
 {
-    QString xx = Configuration::HuggleConfiguration->ProjectConfig->IPVTemplateReport;
+    QString text = this->ReportedUser->GetSite()->GetProjectConfig()->IPVTemplateReport;
     if (!this->ReportedUser->IsIP())
     {
-        xx = Configuration::HuggleConfiguration->ProjectConfig->RUTemplateReport;
+        text = this->ReportedUser->GetSite()->GetProjectConfig()->RUTemplateReport;
     }
-    xx = xx.replace("$1", this->ReportedUser->Username);
-    xx = xx.replace("$2", ReportText);
-    xx = xx.replace("$3", ui->lineEdit->text());
-    this->ReportContent = ReportContent + "\n" + xx;
+    text = text.replace("$1", this->ReportedUser->Username);
+    text = text.replace("$2", ReportText);
+    text = text.replace("$3", ui->lineEdit->text());
+    this->ReportContent = ReportContent + "\n" + text;
 }
 
 void ReportUser::Kill()
@@ -576,7 +569,8 @@ void ReportUser::failCheck(QString reason)
 void ReportUser::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qReport = Generic::RetrieveWikiPageContents(Configuration::HuggleConfiguration->ProjectConfig->ReportAIV, this->ReportedUser->GetSite());
+    this->qReport = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV,
+                                                      this->ReportedUser->GetSite());
     this->qReport->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }
