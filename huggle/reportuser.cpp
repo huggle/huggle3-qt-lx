@@ -280,6 +280,7 @@ void ReportUser::Tick()
         int xx = 0;
         if (results.count() > 0)
         {
+            this->CheckBoxes.clear();
             while (results.count() > xx)
             {
                 QDomElement edit = results.at(xx).toElement();
@@ -442,7 +443,8 @@ void ReportUser::on_pushButton_clicked()
     {
         if (this->CheckBoxes.count() > xx)
         {
-            if (this->CheckBoxes.at(xx)->isChecked())
+            QCheckBox *checkBox = (QCheckBox*)this->ui->tableWidget->cellWidget(xx, 4);
+            if (checkBox->isChecked())
             {
                 ++EvidenceID;
                 reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
