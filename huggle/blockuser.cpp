@@ -9,13 +9,15 @@
 //GNU General Public License for more details.
 
 #include "blockuser.hpp"
-#include <QtXml>
 #include <QLineEdit>
-#include <QMessageBox>
 #include <QTimer>
+#include "apiquery.hpp"
+#include "apiqueryresult.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
+#include "wikisite.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
@@ -38,12 +40,6 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->BlockReason);
-    int x = 0;
-    while (Configuration::HuggleConfiguration->ProjectConfig->BlockExpiryOptions.count() > x)
-    {
-        this->ui->comboBox_2->addItem(Configuration::HuggleConfiguration->ProjectConfig->BlockExpiryOptions.at(x));
-        x++;
-    }
 }
 
 BlockUser::~BlockUser()
@@ -60,6 +56,9 @@ void BlockUser::SetWikiUser(WikiUser *User)
         throw new Huggle::Exception("WikiUser *User can't be NULL", "void BlockUser::SetWikiUser(WikiUser *User)");
     }
     this->user = new WikiUser(User);
+    this->ui->comboBox_2->clear();
+    foreach (QString op, User->GetSite()->GetProjectConfig()->BlockExpiryOptions)
+        this->ui->comboBox_2->addItem(op);
     this->setWindowTitle(_l("block-title", this->user->Username));
     if (this->user->IsIP())
     {
@@ -116,22 +115,19 @@ void BlockUser::CheckToken()
         this->Failed(_l("block-token-e1", this->qTokenApi->GetFailureReason()));
         return;
     }
-    QDomDocument d;
-    d.setContent(this->qTokenApi->Result->Data);
-    QDomNodeList l = d.elementsByTagName("page");
-    if (l.count() == 0)
+    ApiQueryResultNode *page = this->qTokenApi->GetApiQueryResult()->GetNode("page");
+    if (page == nullptr)
     {
         HUGGLE_DEBUG(this->qTokenApi->Result->Data, 1);
         this->Failed(_l("block-error-no-info"));
         return;
     }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("blocktoken"))
+    if (!page->Attributes.contains("blocktoken"))
     {
         this->Failed(_l("no-token"));
         return;
     }
-    this->BlockToken = element.attribute("blocktoken");
+    this->BlockToken = page->GetAttribute("blocktoken");
     this->QueryPhase++;
     this->qTokenApi = nullptr;
     HUGGLE_DEBUG("Block token for " + this->user->Username + ": " + this->BlockToken, 1);
@@ -171,21 +167,15 @@ void BlockUser::Block()
         this->Failed(_l("block-fail", this->qUser->GetFailureReason()));
         return;
     }
-    QDomDocument d;
-    d.setContent(this->qUser->Result->Data);
-    QDomNodeList l = d.elementsByTagName("error");
-    if (l.count() > 0)
+    ApiQueryResultNode *error = this->qUser->GetApiQueryResult()->GetNode("error");
+    if (error != nullptr)
     {
-        QDomElement node = l.at(0).toElement();
         QString reason = this->qUser->Result->Data;
-        if (node.attributes().contains("info"))
+        if (error->Attributes.contains("info"))
         {
-            reason = node.attribute("info");
+            reason = error->GetAttribute("info");
         }
-        QMessageBox mb;
-        mb.setWindowTitle(_l("error"));
-        mb.setText(_l("block-fail", reason));
-        mb.exec();
+        Generic::MessageBox(_l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
         this->ui->pushButton->setText(_l("block-title", this->user->Username));
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
@@ -196,18 +186,15 @@ void BlockUser::Block()
     // let's assume the user was blocked
     this->ui->pushButton->setText(_l("block-done", this->user->Username));
     HUGGLE_DEBUG("block result: " + this->qUser->Result->Data, 2);
-    this->qUser = nullptr;
+    this->qUser.Delete();
     this->t0->stop();
     this->sendBlockNotice(nullptr);
 }
 
 void BlockUser::Failed(QString reason)
 {
-    QMessageBox *_b = new QMessageBox();
-    _b->setWindowTitle("Unable to block user");
-    _b->setText(_l("block-fail", reason));
-    _b->exec();
-    delete _b;
+    Generic::MessageBox("Unable to block user", _l("block-fail", reason),
+                        MessageBoxStyleError, true);
     this->t0->stop();
     delete this->t0;
     this->t0 = nullptr;
@@ -269,21 +256,18 @@ void BlockUser::Recheck()
         throw new Huggle::Exception("user must not be NULLPTR",  "void BlockUser::Recheck()");
     if (this->qUser->IsProcessed())
     {
-        QDomDocument d;
-        d.setContent(this->qUser->Result->Data);
-        QMessageBox mb;
-        mb.setWindowTitle(_l("result"));
-        QDomNodeList l = d.elementsByTagName("block");
-        if (l.count() > 0)
+        ApiQueryResultNode *result = this->qUser->GetApiQueryResult()->GetNode("block");
+        QString text;
+        if (result != nullptr)
         {
-            mb.setText(_l("warn-alreadyblocked"));
+            text = _l("warn-alreadyblocked");
             this->user->IsBlocked = true;
             this->user->Update();
         } else
         {
-            mb.setText(_l("block-not"));
+            text = _l("block-not");
         }
-        mb.exec();
+        Generic::MessageBox(_l("result"), text, MessageBoxStyleNormal, true);
         this->qUser = nullptr;
         this->t0->stop();
         this->ui->pushButton_3->setEnabled(true);

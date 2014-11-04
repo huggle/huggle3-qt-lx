@@ -58,7 +58,7 @@ namespace Huggle
     //! Query base class for all http queries executed by huggle
 
     //! Every request to website is processed as a query, this is a base object that all
-    //! other queries are derived from. The query system is using own GC see a QueryGC
+    //! other queries are derived from. The query system is using GC.
     //! That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
