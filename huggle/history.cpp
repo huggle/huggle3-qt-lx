@@ -90,11 +90,7 @@ void History::Undo(HistoryItem *hist)
     if (!hist->IsRevertable)
     {
         // there is no way to revert this
-        QMessageBox mb;
-        mb.setWindowTitle(_l("history-error-message-title"));
-        mb.setText(_l("history-error"));
-        mb.setIcon(QMessageBox::Warning);
-        mb.exec();
+        Generic::MessageBox(_l("history-error-message-title"), _l("history-error"), MessageBoxStyleWarning, true);
         return;
     }
     switch (hist->Type)
@@ -103,10 +99,10 @@ void History::Undo(HistoryItem *hist)
             // we need to revert only the newly created message on talk page, eg. last edit we made on talk page
             if (hist->ReferencedBy)
             {
-                QMessageBox::StandardButton reply;
+                int reply;
                 // let's ask user if they really want to undo just message because that is weird to do
-                reply = QMessageBox::question(this, _l("history-message-revert-title"), _l("history-message-revert-body"),
-                                              QMessageBox::Yes|QMessageBox::No);
+                reply = Generic::MessageBox(_l("history-message-revert-title"), _l("history-message-revert-body"),
+                                              MessageBoxStyleQuestion);
                 if (reply == QMessageBox::No)
                     return;
 
@@ -131,11 +127,8 @@ void History::Undo(HistoryItem *hist)
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryUnknown:
-            QMessageBox mb;
-            mb.setWindowTitle(_l("history-error-message-title"));
-            mb.setText("Unknown item");
-            mb.exec();
-            break;
+            Generic::MessageBox(_l("history-error-message-title"), "Unknown item");
+            return;
     }
     Syslog::HuggleLogs->Log(_l("history-work", hist->Target));
 }

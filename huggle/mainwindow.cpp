@@ -9,8 +9,8 @@
 //GNU General Public License for more details.
 
 #include "mainwindow.hpp"
-#include <QDesktopServices>
 #include <QMessageBox>
+#include <QDesktopServices>
 #include <QToolButton>
 #include <QInputDialog>
 #include <QMutex>
@@ -116,29 +116,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->wEditBar->hide();
     this->preferencesForm = new Preferences(this);
     this->aboutForm = new AboutForm(this);
-    this->ui->actionDisplay_bot_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots);
-    this->ui->actionDisplay_user_data->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser);
-    this->ui->actionDisplay_user_messages->setChecked(Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk);
+    this->ui->actionDisplay_bot_data->setChecked(hcfg->UserConfig->HAN_DisplayBots);
+    this->ui->actionDisplay_user_data->setChecked(hcfg->UserConfig->HAN_DisplayUser);
+    this->ui->actionDisplay_user_messages->setChecked(hcfg->UserConfig->HAN_DisplayUserTalk);
     // we store the value in bool so that we don't need to call expensive string function twice
-    bool PermissionBlock = Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("block");
+    bool PermissionBlock = hcfg->ProjectConfig->Rights.contains("block");
     this->ui->actionBlock_user->setEnabled(PermissionBlock);
     this->ui->actionBlock_user_2->setEnabled(PermissionBlock);
-    bool PermissionDelete = Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("delete");
+    bool PermissionDelete = hcfg->ProjectConfig->Rights.contains("delete");
     this->ui->actionDelete->setEnabled(PermissionDelete);
-    this->ui->actionProtect->setEnabled(Configuration::HuggleConfiguration->ProjectConfig->Rights.contains("protect"));
+    this->ui->actionProtect->setEnabled(hcfg->ProjectConfig->Rights.contains("protect"));
     this->addDockWidget(Qt::LeftDockWidgetArea, this->_History);
     this->SystemLog->resize(100, 80);
-    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+    foreach (WikiSite *site, hcfg->Projects)
     {
-        if (!site->GetProjectConfig()->WhiteList.contains(Configuration::HuggleConfiguration->SystemConfig_Username))
-            site->GetProjectConfig()->WhiteList.append(Configuration::HuggleConfiguration->SystemConfig_Username);
+        if (!site->GetProjectConfig()->WhiteList.contains(hcfg->SystemConfig_Username))
+            site->GetProjectConfig()->WhiteList.append(hcfg->SystemConfig_Username);
     }
     QueryPool::HugglePool->Processes = this->Queries;
-    QString projects = Configuration::HuggleConfiguration->Project->Name;
-    if (Configuration::HuggleConfiguration->Multiple)
+    QString projects = hcfg->Project->Name;
+    if (hcfg->Multiple)
     {
         projects = "multiple projects (";
-        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        foreach (WikiSite *site, hcfg->Projects)
             projects += site->Name + ", ";
         projects = projects.mid(0, projects.length() - 2);
         projects += ")";
@@ -359,11 +359,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     // only use this if current projects support it
     if (!conf->AIV)
     {
-        QMessageBox mb;
-        mb.setText(_l("missing-aiv"));
-        mb.setWindowTitle(_l("function-miss"));
-        mb.setIcon(QMessageBox::Information);
-        mb.exec();
+        Generic::MessageBox(_l("missing-aiv"), _l("function-miss"));
         return;
     }
     if (this->fReportForm != nullptr)
@@ -901,10 +897,8 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     }
     if (this->CurrentEdit->NewPage)
     {
-        QMessageBox mb;
-        mb.setWindowTitle("Can't revert this");
-        mb.setText("This is a new page, so it can't be reverted, you can either tag it, or delete it.");
-        mb.exec();
+        Generic::MessageBox("Can't revert this", "This is a new page, so it can't be reverted, you can either tag it, or delete it.",
+                            MessageBoxStyleNormal, true);
         return ptr_;
     }
     if (!this->CurrentEdit->IsPostProcessed())
@@ -945,10 +939,8 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
     if (this->qNext != nullptr)
     {
-        QMessageBox *mb = new QMessageBox();
-        mb->setWindowTitle("This edit is already being reverted");
-        mb->setText("You can't revert this edit, because it's already being reverted. Please wait!");
-        mb->exec();
+        Generic::MessageBox("This edit is already being reverted", "You can't revert this edit, because it's already being reverted. Please wait!",
+                            MessageBoxStyleNormal, true);
         return false;
     }
     if (_e == nullptr)
@@ -974,10 +966,8 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (Warn)
     {
-        QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Revert edit"
-                      , "This edit is " + type + ", so even if it looks like it is a vandalism,"\
-                      " it may not be, are you sure you want to revert it?"
-                      , QMessageBox::Yes|QMessageBox::No);
+        int q = Generic::MessageBox("Revert edit", "This edit is " + type + ", so even if it looks like it is a vandalism,"\
+                                    " it may not be, are you sure you want to revert it?", MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
             return false;
     }
@@ -1653,10 +1643,7 @@ bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
-        QMessageBox mb;
-        mb.setWindowTitle("Cannot perform action");
-        mb.setText(_l("main-no-page"));
-        mb.exec();
+        Generic::MessageBox("Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
@@ -1967,10 +1954,8 @@ bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
     {
-        QMessageBox mb;
-        mb.setWindowTitle(_l("error"));
-        mb.setText(_l("main-shutting-down"));
-        mb.exec();
+        Generic::MessageBox(_l("error"), _l("main-shutting-down"),
+                               MessageBoxStyleNormal, true);
         return false;
     }
     return true;
@@ -1985,14 +1970,13 @@ void MainWindow::Welcome()
     bool create_only = true;
     if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
     {
-        if (QMessageBox::question(this, "Welcome :o", _l("welcome-tp-empty-fail"),
-                         QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
+        if (Generic::MessageBox("Welcome :o", _l("welcome-tp-empty-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
         else
             create_only = false;
     } else if (!this->CurrentEdit->User->TalkPage_WasRetrieved())
     {
-        if (QMessageBox::question(this, "Welcome :o", _l("welcome-page-miss-fail"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::No)
+        if (Generic::MessageBox("Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
     }
     if (this->CurrentEdit->User->IsIP())
@@ -2397,11 +2381,8 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
     {
-        QMessageBox dd;
-        dd.setIcon(dd.Information);
-        dd.setWindowTitle(_l("uaa-not-supported"));
-        dd.setText(_l("uaa-not-supported-text"));
-        dd.exec();
+        Generic::MessageBox(_l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
+        return;
     }
     if (this->CurrentEdit->User->IsIP())
     {

@@ -9,12 +9,12 @@
 //GNU General Public License for more details.
 
 #include "reloginform.hpp"
-#include <QMessageBox>
 #include <QtXml>
 #include "core.hpp"
 #include "configuration.hpp"
-#include "syslog.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_reloginform.h"
 
 //! \todo This thing is totally fucked up
@@ -163,10 +163,8 @@ void ReloginForm::Fail(QString why)
     this->little_cute_timer->stop();
     GC_DECREF(this->qReloginTokenReq);
     GC_DECREF(this->qReloginPw);
-    QMessageBox mb;
-    mb.setWindowTitle("Fail");
-    mb.setText("Unable to login to wiki: " + why);
-    mb.exec();
+    Generic::MessageBox("Fail", "Unable to login to wiki: " + why,
+                        MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
 }
 
