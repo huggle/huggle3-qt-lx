@@ -174,7 +174,9 @@ void HuggleTool::FinishPage()
         }
         this->edit = new WikiEdit();
         this->edit->Page = new WikiPage(first_one.attribute("title"));
+        this->edit->Page->Site = this->query->GetSite();
         this->edit->User = new WikiUser(first_one.attribute("user"));
+        this->edit->User->Site = this->query->GetSite();
         this->edit->RevID = first_one.attribute("revid").toInt();
         QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
@@ -183,6 +185,7 @@ void HuggleTool::FinishPage()
     {
         this->edit = new WikiEdit();
         this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
+        this->edit->Page->Site = this->query->GetSite();
         QDomNodeList l = d.elementsByTagName("rev");
         if (l.count() > 0)
         {
@@ -200,6 +203,7 @@ void HuggleTool::FinishPage()
             if (e.attributes().contains("user"))
             {
                 this->edit->User = new WikiUser(e.attribute("user"));
+                this->edit->User->Site = this->GetSite();
             }
             if (e.attributes().contains("revid"))
             {
@@ -209,6 +213,7 @@ void HuggleTool::FinishPage()
         if (this->edit->User == nullptr)
         {
             this->edit->User = new WikiUser();
+            this->edit->User->Site = this->query->GetSite();
         }
         QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
@@ -239,7 +244,7 @@ void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
     this->ui->pushButton->setEnabled(false);
     this->ui->lineEdit_2->setStyleSheet("color: green;");
     // retrieve information about the user
-    this->query = new ApiQuery(ActionQuery);
+    this->query = new ApiQuery(ActionQuery, this->GetSite());
     this->QueryPhase = 3;
     this->query->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->ui->lineEdit_2->text()) +
                               "&ucprop=flags%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csize&uclimit=20";

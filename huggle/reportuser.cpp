@@ -284,19 +284,13 @@ void ReportUser::Tick()
             {
                 QDomElement edit = results.at(xx).toElement();
                 if (!edit.attributes().contains("type"))
-                {
                     continue;
-                }
                 QString page = "unknown page";
                 if (edit.attributes().contains("title"))
-                {
                     page = edit.attribute("title");
-                }
                 QString time = "unknown time";
                 if (edit.attributes().contains("timestamp"))
-                {
                     time = edit.attribute("timestamp");
-                }
                 QString diff = "";
                 if (edit.attributes().contains("revid"))
                 {
@@ -343,9 +337,7 @@ void ReportUser::On_DiffTick()
     {
         QDomElement e = diff.at(0).toElement();
         if (e.nodeName() == "diff")
-        {
             Diff = e.text();
-        }
     } else
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qDiff->Result->Data);
