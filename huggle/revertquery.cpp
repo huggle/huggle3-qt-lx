@@ -9,10 +9,12 @@
 //GNU General Public License for more details.
 
 #include "revertquery.hpp"
+#include <QMessageBox>
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "querypool.hpp"
 #include "history.hpp"
 #include "historyitem.hpp"
@@ -255,9 +257,8 @@ void RevertQuery::Preflight()
                 // to revert them all? (it will likely fail anyway because of old token)
                 text = (_l("cr-message-not-same", this->edit->Page->PageName));
             }
-            QMessageBox::StandardButton re;
-            re = QMessageBox::question(MainWindow::HuggleMain, _l("revert-preflightcheck"),
-                                       text, QMessageBox::Yes|QMessageBox::No);
+            int re;
+            re = Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion, true);
             if (re == QMessageBox::No)
             {
                 this->Cancel();
@@ -294,22 +295,17 @@ void RevertQuery::CheckPreflight()
         this->ProcessFailure();
         return;
     }
-    QDomDocument d;
-    d.setContent(this->qPreflight->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
-    int x=0;
+    QList<ApiQueryResultNode*> revs = this->qPreflight->GetApiQueryResult()->GetNodes("rev");
     bool MadeBySameUser = true;
     bool MultipleEdits = false;
     bool PreviousEditsMadeBySameUser = true;
     bool passed = true;
-    while (x < l.count())
+    foreach (ApiQueryResultNode *result, revs)
     {
-        QDomElement e = l.at(x).toElement();
         int RevID = WIKI_UNKNOWN_REVID;
-        ++x;
-        if (e.attributes().contains("revid"))
+        if (result->Attributes.contains("revid"))
         {
-            RevID = e.attribute("revid").toInt();
+            RevID = result->GetAttribute("revid").toInt();
             if (edit->RevID == RevID)
             {
                 continue;
@@ -318,9 +314,9 @@ void RevertQuery::CheckPreflight()
         {
             continue;
         }
-        if (e.attributes().contains("user"))
+        if (result->Attributes.contains("user"))
         {
-            QString user = WikiUtil::SanitizeUser(e.attribute("user"));
+            QString user = WikiUtil::SanitizeUser(result->GetAttribute("user"));
             if (PreviousEditsMadeBySameUser && this->edit->RevID != WIKI_UNKNOWN_REVID && RevID > this->edit->RevID)
             {
                 if (user != this->edit->User->Username)
@@ -379,8 +375,8 @@ void RevertQuery::CheckPreflight()
                 }
             }
         }
-        QMessageBox::StandardButton re;
-        re = QMessageBox::question(MainWindow::HuggleMain, _l("revert-preflightcheck"), text, QMessageBox::Yes|QMessageBox::No);
+        int re;
+        re = Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion);
         if (re == QMessageBox::No)
         {
             // abort
@@ -477,29 +473,26 @@ bool RevertQuery::ProcessRevert()
         }
         QString summary = this->Summary;
         QString content = "";
-        QDomDocument d;
-        d.setContent(this->qRetrieve->Result->Data);
-        QDomNodeList l = d.elementsByTagName("rev");
-        if (l.count() == 0)
+        ApiQueryResultNode* info = this->qRetrieve->GetApiQueryResult()->GetNode("rev");
+        if (info == nullptr)
         {
             this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
             return true;
         }
-        QDomElement element = l.at(0).toElement();
-        if (!element.attributes().contains("revid"))
+        if (!info->Attributes.contains("revid"))
         {
             this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
                                " version retrieved no RevID");
             return true;
         }
-        QString rv = element.attribute("revid");
+        QString rv = info->GetAttribute("revid");
         if (rv.toInt() != this->SR_RevID)
         {
             this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
                                " version returned invalid RevID");
             return true;
         }
-        content = element.text();
+        content = info->Value;
         if (summary.isEmpty())
             summary = this->GetSite()->GetProjectConfig()->SoftwareRevertDefaultSummary;
         summary = summary.replace("$1", this->edit->User->Username)
@@ -527,13 +520,11 @@ bool RevertQuery::ProcessRevert()
         this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->Result->ErrorMessage);
         return true;
     }
-    QDomDocument d;
-    d.setContent(this->qHistoryInfo->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
+    QList<ApiQueryResultNode *> revs = this->qHistoryInfo->GetApiQueryResult()->GetNodes("rev");
     // we need to find a first revision that is made by a different user
     // but first we need to check if last revision was actually made by this user, because if not
     // it's possible that someone else already reverted them
-    if (l.count() == 0)
+    if (revs.count() == 0)
     {
         // if we have absolutely no revisions in the result, it's pretty fucked
         this->DisplayError("Failed to retrieve a list of edits made to this page, query returned no data");
@@ -543,22 +534,19 @@ bool RevertQuery::ProcessRevert()
     bool passed = true;
     this->SR_Depth = 0;
     bool new_edits_resv = false;
-    int x = 0;
-    while (x < l.count())
+    foreach (ApiQueryResultNode *e, revs)
     {
-        QDomElement e = l.at(x).toElement();
-        ++x;
-        if (e.attributes().contains("revid"))
+        if (e->Attributes.contains("revid"))
         {
-            if (this->edit->RevID == e.attribute("revid").toInt())
+            if (this->edit->RevID == e->GetAttribute("revid").toInt())
                 continue;
-            if (this->edit->RevID != WIKI_UNKNOWN_REVID && e.attribute("revid").toInt() > this->edit->RevID)
+            if (this->edit->RevID != WIKI_UNKNOWN_REVID && e->GetAttribute("revid").toInt() > this->edit->RevID)
             {
-                HUGGLE_DEBUG("RevID " + QString::number(e.attribute("revid").toInt()) + " > " + QString::number(this->edit->RevID), 2);
+                HUGGLE_DEBUG("RevID " + QString::number(e->GetAttribute("revid").toInt()) + " > " + QString::number(this->edit->RevID), 2);
                 if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts &&
                     Configuration::HuggleConfiguration->UserConfig->RevertNewBySame &&
-                    e.attributes().contains("user") &&
-                    WikiUtil::SanitizeUser(e.attribute("user")) == this->edit->User->Username)
+                    e->Attributes.contains("user") &&
+                    WikiUtil::SanitizeUser(e->GetAttribute("user")) == this->edit->User->Username)
                 {
                     // we want to automatically revert new edits that are made by same user
                     if (!new_edits_resv)
@@ -582,19 +570,17 @@ bool RevertQuery::ProcessRevert()
         return true;
     }
     // now we need to find the first revision that was done by some different user
-    x = 0;
     //! \todo this list needs to be sorted by RevID
-    while (x < l.count())
+    foreach (ApiQueryResultNode *node, revs)
     {
-        QDomElement e = l.at(x).toElement();
-        if (!e.attributes().contains("revid") || !e.attributes().contains("user"))
+        if (!node->Attributes.contains("revid") || !node->Attributes.contains("user"))
         {
             // this is fucked up piece of shit
             this->DisplayError("Unable to revert the page " + this->edit->Page->PageName + " because mediawiki returned some non-sense");
             Huggle::Syslog::HuggleLogs->DebugLog("Nonsense: " + this->qHistoryInfo->Result->Data);
             return true;
         }
-        QString sanitized = WikiUtil::SanitizeUser(e.attribute("user"));
+        QString sanitized = WikiUtil::SanitizeUser(node->GetAttribute("user"));
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
         if ((this->SR_Depth >= 1 && this->OneEditOnly) || sanitized != this->edit->User->Username)
         {
@@ -604,12 +590,11 @@ bool RevertQuery::ProcessRevert()
                                              + sanitized + " != " + this->edit->User->Username, 2);
             }
             // we got it, this is the revision we want to revert to
-            this->SR_RevID = e.attribute("revid").toInt();
+            this->SR_RevID = node->GetAttribute("revid").toInt();
             this->SR_Target = sanitized;
             break;
         }
         ++this->SR_Depth;
-        ++x;
     }
     // let's check if depth isn't too low
     if (this->SR_Depth == 0)
