@@ -91,7 +91,7 @@ QString ApiQuery::GetAssertPartSuffix()
 // TODO: move this function to RevertQuery
 void ApiQuery::FinishRollback()
 {
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result->Data);
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result, this->GetSite());
     if (this->CustomStatus != "Reverted")
     {
         this->Result->SetError();

@@ -9,8 +9,8 @@
 //GNU General Public License for more details.
 
 #include "revertquery.hpp"
-#include <QMessageBox>
-#include <QtXml>
+#include "apiquery.hpp"
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "querypool.hpp"
@@ -175,20 +175,23 @@ void RevertQuery::OnTick()
     }
 }
 
-QString RevertQuery::GetCustomRevertStatus(QString RevertData)
+QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site)
 {
-    QDomDocument d;
-    d.setContent(RevertData);
-    QDomNodeList l = d.elementsByTagName("error");
-    if (l.count() > 0)
+    ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
+    if (ms != nullptr)
     {
-        if (l.at(0).toElement().attributes().contains("code"))
+        if (ms->Attributes.contains("code"))
         {
-            QString Error = l.at(0).toElement().attribute("code");
+            QString Error = ms->GetAttribute("code");
             if (Error == "alreadyrolled")
                 return "Edit was reverted by someone else - skipping";
             if (Error == "onlyauthor")
                 return "ERROR: Cannot rollback - page only has one author";
+            if (Error == "badtoken")
+            {
+                site->GetProjectConfig()->RollbackToken.clear();
+                return "ERROR: Cannot rollback, token is not valid, please try it once more";
+            }
             return "In error (" + Error +")";
         }
     }
@@ -400,7 +403,7 @@ bool RevertQuery::CheckRevert()
         return ProcessRevert();
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result->Data);
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite());
     if (this->CustomStatus != "Reverted")
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));

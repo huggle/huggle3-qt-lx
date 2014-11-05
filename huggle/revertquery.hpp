@@ -25,6 +25,7 @@
 namespace Huggle
 {
     class ApiQuery;
+    class QueryResult;
     class EditQuery;
     class WikiEdit;
     class WikiSite;
@@ -36,7 +37,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static QString GetCustomRevertStatus(QString RevertData);
+            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site);
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
