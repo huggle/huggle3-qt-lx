@@ -39,9 +39,9 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->ui->pushButton->setText(_l("main-page-load"));
     this->ui->label_3->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
-    this->ui->label->setText(_l("User"));
+    this->ui->label->setText(_l("user"));
     this->page = nullptr;
-    this->ui->label_2->setText(_l("Page"));
+    this->ui->label_2->setText(_l("page"));
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         this->ui->comboBox->addItem(site->Name);
     this->ui->comboBox->setCurrentIndex(0);
