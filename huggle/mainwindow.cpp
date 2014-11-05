@@ -910,8 +910,14 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     }
     if (this->CurrentEdit->RollbackToken.isEmpty())
     {
-        Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
-        rollback = false;
+        if (!this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken.isEmpty())
+        {
+            this->CurrentEdit->RollbackToken = this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken;
+        } else 
+        {
+            Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
+            rollback = false;
+        }
     }
     if (this->PreflightCheck(this->CurrentEdit))
     {

@@ -241,9 +241,6 @@ bool WikiEdit::FinalizePostProcessing()
             return true;
         }
 
-        if (!this->GetSite()->GetProjectConfig()->RollbackToken.isEmpty())
-            this->RollbackToken = this->GetSite()->GetProjectConfig()->RollbackToken;
-
         // parse the diff now
         QDomDocument d;
         d.setContent(this->qDifference->Result->Data);
@@ -262,7 +259,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     if (e.attribute("user") == this->User->Username)
                     {
-                        if (this->RollbackToken.isEmpty() && e.attributes().contains("rollbacktoken"))
+                        if (this->GetSite()->GetProjectConfig()->RollbackToken.isEmpty() && this->RollbackToken.isEmpty() && e.attributes().contains("rollbacktoken"))
                         {
                             // let's update it from fresh diff
                             this->RollbackToken = e.attribute("rollbacktoken");

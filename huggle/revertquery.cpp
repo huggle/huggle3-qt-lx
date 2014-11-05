@@ -191,8 +191,9 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
                 return "ERROR: Cannot rollback - page only has one author";
             if (Error == "badtoken")
             {
+                QString msg = "ERROR: Cannot rollback, token " + site->GetProjectConfig()->RollbackToken + " is not valid for some reason (mediawiki bug), please try it once more";
                 site->GetProjectConfig()->RollbackToken.clear();
-                return "ERROR: Cannot rollback, token is not valid, please try it once more";
+                return msg;
             }
             return "In error (" + Error +")";
         }
