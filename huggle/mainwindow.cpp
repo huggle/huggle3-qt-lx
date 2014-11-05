@@ -1364,7 +1364,7 @@ void MainWindow::OnTimerTick0()
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
                     if (Generic::MessageBox("Do you really want to store the configs",
-                                            "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older that version of huggle that you used last (" +
+                                            "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
                                             site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
                                             "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
                                             MessageBoxStyleQuestion, true) == QMessageBox::No)
