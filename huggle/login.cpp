@@ -778,9 +778,13 @@ void Login::ProcessSiteInfo(WikiSite *site)
             if (tokens != nullptr)
             {
                 if (tokens->Attributes.contains("rollbacktoken"))
+                {
                     site->GetProjectConfig()->RollbackToken = tokens->GetAttribute("rollbacktoken");
-                else
+                    HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->RollbackToken, 2);
+                } else
+                {
                     HUGGLE_DEBUG1("No rollback for " + site->Name + "result: " + this->qTokenInfo[site]->Result->Data);
+                }
             }
         } else
         {
