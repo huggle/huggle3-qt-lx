@@ -815,6 +815,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
             {
                 vr = vr.mid(vr.indexOf(" ") + 1);
                 site->MediawikiVersion = Version(vr);
+                HUGGLE_DEBUG1(site->Name + " mediawiki " + site->MediawikiVersion.ToString());
                 if (site->MediawikiVersion < Version::SupportedMediawiki)
                     Syslog::HuggleLogs->WarningLog("Mediawiki of " + site->Name + " is using version " + site->MediawikiVersion.ToString() +
                                                    " which isn't supported by huggle");

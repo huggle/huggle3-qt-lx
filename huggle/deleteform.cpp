@@ -29,7 +29,6 @@ using namespace Huggle;
 DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
 {
     this->ui->setupUi(this);
-    int xx = 0;
     this->page = nullptr;
     this->tDelete = nullptr;
     this->DeleteToken = "";

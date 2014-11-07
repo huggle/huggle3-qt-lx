@@ -14,19 +14,31 @@
 #include "localization.hpp"
 #include "processlist.hpp"
 #include "ui_processlist.h"
+#include <QMenu>
+#include <QClipboard>
 
 using namespace Huggle;
 
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
     this->ui->setupUi(this);
-    this->ui->tableWidget->setColumnCount(4);
     QStringList header;
+    this->IsDebuged = hcfg->Verbosity > 0;
     header << _l("id") << _l("type") << _l("target") << _l("status");
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setColumnCount(6);
+        header << "Url" << "Debug info";
+    } else
+    {
+        this->ui->tableWidget->setColumnCount(4);
+    }
+    this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
     if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
     {
 #if QT_VERSION >= 0x050000
@@ -42,11 +54,15 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
         this->ui->tableWidget->setColumnWidth(1, 200);
         this->ui->tableWidget->setColumnWidth(2, 200);
         this->ui->tableWidget->setColumnWidth(3, 80);
+        if (this->IsDebuged)
+        {
+            this->ui->tableWidget->setColumnWidth(4, 800);
+        }
     }
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
-    this->Removed = new QList<ProcessListRemovedItem*> ();
+    this->Removed = new QList<ProcessListRemovedItem*>();
 }
 
 void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
@@ -61,6 +77,11 @@ void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
     this->ui->tableWidget->setItem(size, 1, new QTableWidgetItem(query->QueryTypeToString()));
     this->ui->tableWidget->setItem(size, 2, new QTableWidgetItem(query->QueryTargetToString()));
     this->ui->tableWidget->setItem(size, 3, new QTableWidgetItem(query->QueryStatusToString()));
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setItem(size, 4, new QTableWidgetItem(query->DebugURL()));
+        this->ui->tableWidget->setItem(size, 5, new QTableWidgetItem(query->Result->ErrorMessage));
+    }
     this->ui->tableWidget->resizeRowToContents(size);
 }
 
@@ -97,6 +118,11 @@ void ProcessList::UpdateQuery(Query *query)
     this->ui->tableWidget->setItem(query_, 1, new QTableWidgetItem(query->QueryTypeToString()));
     this->ui->tableWidget->setItem(query_, 2, new QTableWidgetItem(query->QueryTargetToString()));
     this->ui->tableWidget->setItem(query_, 3, new QTableWidgetItem(query->QueryStatusToString()));
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setItem(query_, 4, new QTableWidgetItem(query->DebugURL()));
+        this->ui->tableWidget->setItem(query_, 5, new QTableWidgetItem(query->Result->ErrorMessage));
+    }
     this->ui->tableWidget->resizeRowToContents(query_);
 }
 
@@ -124,7 +150,7 @@ void ProcessList::RemoveExpired()
     int i = 0;
     while (i < this->Removed->count())
     {
-        if (this->Removed->at(i)->Expired())
+        if (this->Removed->at(i)->Expired(this->IsDebuged))
         {
             rm.append(this->Removed->at(i));
         }
@@ -180,6 +206,23 @@ ProcessList::~ProcessList()
     delete this->ui;
 }
 
+void ProcessList::ContextMenu(const QPoint &position)
+{
+    QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
+    QMenu menu;
+    QAction *copy = new QAction(_l("copy"), &menu);
+    menu.addAction(copy);
+    QAction *selection = menu.exec(g_);
+    if (selection == copy)
+    {
+        QString t = "";
+        foreach (QTableWidgetItem *text, this->ui->tableWidget->selectedItems())
+            t += text->text() + "\n";
+        if (!t.isEmpty())
+            QApplication::clipboard()->setText(t);
+    }
+}
+
 ProcessListRemovedItem::ProcessListRemovedItem(int ID)
 {
     this->id = ID;
@@ -191,8 +234,10 @@ int ProcessListRemovedItem::GetID()
     return this->id;
 }
 
-bool ProcessListRemovedItem::Expired()
+bool ProcessListRemovedItem::Expired(bool Debug)
 {
-    return this->time < QDateTime::currentDateTime().addSecs(-Configuration::HuggleConfiguration->SystemConfig_QueryListTimeLimit);
+    if (Debug)
+        return this->time < QDateTime::currentDateTime().addSecs(-120);
+    return this->time < QDateTime::currentDateTime().addSecs(-hcfg->SystemConfig_QueryListTimeLimit);
 }
 

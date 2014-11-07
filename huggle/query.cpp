@@ -142,3 +142,8 @@ QString Query::GetFailureReason()
 
     return this->FailureReason;
 }
+
+QString Query::DebugURL()
+{
+    return "null";
+}

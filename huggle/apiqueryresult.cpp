@@ -74,6 +74,7 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
             {
                 QDomElement warning = element.childNodes().at(cn).toElement();
                 Syslog::HuggleLogs->WarningLog("API query (" + warning.tagName() + "): " + warning.text());
+                result->Warning = warning.text();
                 // let's go next
                 cn++;
             }
@@ -115,6 +116,11 @@ QList<ApiQueryResultNode *> ApiQueryResult::GetNodes(QString node_name)
     }
 
     return result;
+}
+
+bool ApiQueryResult::HasWarnings()
+{
+    return !this->Warning.isEmpty();
 }
 
 QString ApiQueryResultNode::GetAttribute(QString name, QString default_val)

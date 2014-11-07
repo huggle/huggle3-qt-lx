@@ -42,7 +42,10 @@ namespace Huggle
             void Process();
             ApiQueryResultNode *GetNode(QString node_name);
             QList<ApiQueryResultNode*> GetNodes(QString node_name);
+            bool HasWarnings();
             QList<ApiQueryResultNode*> Nodes;
+            QString Warning;
+            bool HasErrors = false;
     };
 }
 

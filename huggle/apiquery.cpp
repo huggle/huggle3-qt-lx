@@ -273,3 +273,10 @@ void ApiQuery::SetAction(const Action action)
             return;
     }
 }
+
+QString ApiQuery::DebugURL()
+{
+    if (this->HiddenQuery)
+        return "Protected link";
+    return this->URL;
+}

@@ -72,6 +72,7 @@ namespace Huggle
             void SetAction(const Action action);
             //! Set the raw action type, you should not use this unless you have to
             void SetAction(const QString action);
+            QString DebugURL();
             //! Terminate the query
             void Kill();
             //! Get a query target as a string

@@ -40,7 +40,7 @@ namespace Huggle
         public:
             ProcessListRemovedItem(int ID);
             int GetID();
-            bool Expired();
+            bool Expired(bool Debug);
     };
 
     //! List of processes in a main window
@@ -64,11 +64,13 @@ namespace Huggle
             void UpdateQuery(Query *query);
             void RemoveExpired();
             ~ProcessList();
-
+        private slots:
+            void ContextMenu(const QPoint& position);
         private:
             int GetItem(Query *q);
             int GetItem(int Id);
             bool IsExpired(Query *q);
+            bool IsDebuged;
             QList<ProcessListRemovedItem*> *Removed;
             Ui::ProcessList *ui;
     };
