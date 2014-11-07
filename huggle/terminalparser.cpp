@@ -98,13 +98,20 @@ bool TerminalParser::Parse()
         if (text == "--syslog")
         {
             Configuration::HuggleConfiguration->SystemConfig_Log2File = true;
-            if (this->args.count() > x + 1)
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
             {
-                if (!this->args.at(x + 1).startsWith("-"))
-                {
-                    Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
-                    ++x;
-                }
+                Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
+                ++x;
+            }
+            valid = true;
+        }
+        if (text == "--qd")
+        {
+            Configuration::HuggleConfiguration->QueryDebugging = true;
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                ++x;
+                Configuration::HuggleConfiguration->QueryDebugPath = this->args.at(x);
             }
             valid = true;
         }
@@ -222,7 +229,8 @@ void TerminalParser::DisplayHelp()
             "  --language-test: Will perform CPU expensive language test on startup, which reports\n"\
             "                   warnings found in localization files. This option is useful for\n"\
             "                   developers and people who create localization files\n"\
-            "  --dot:           Debug on terminal only mode\n\n"\
+            "  --dot:           Debug on terminal only mode\n"\
+            "  --qd [file]:     Write all transferred data to a file\n\n"\
             "Note: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;

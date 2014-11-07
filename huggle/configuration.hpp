@@ -351,6 +351,8 @@ namespace Huggle
             QString     VandalNw_Server = "irc.tm-irc.org";
             QString     VandalNw_Ident;
             bool        VandalNw_Login = true;
+            QString     QueryDebugPath = "querydump.dat";
+            bool        QueryDebugging = false;
             //! Operating system that is sent to update server
             QString     Platform;
         private:

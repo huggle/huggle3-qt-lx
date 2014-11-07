@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "apiquery.hpp"
+#include <QFile>
 #include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
@@ -130,6 +131,35 @@ ApiQueryResult *ApiQuery::GetApiQueryResult()
     return (ApiQueryResult*)this->Result;
 }
 
+static void WriteFile(QString text)
+{
+    QFile *file = new QFile(hcfg->QueryDebugPath);
+    if (file->open(QIODevice::Append))
+    {
+        file->write(QString(text + "\n").toUtf8());
+        file->close();
+    }
+    delete file;
+}
+
+static void WriteIn(ApiQuery *q)
+{
+    if (hcfg->QueryDebugging)
+        WriteFile(QString::number(q->QueryID()) + " IN " + q->Result->Data);
+}
+
+static void WriteOut(ApiQuery *q)
+{
+    if (!hcfg->QueryDebugging)
+        return;
+    if (q->HiddenQuery)
+        WriteFile(QString::number(q->QueryID()) + " OUT secret");
+    else if (q->UsingPOST)
+        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + " " + q->Parameters);
+    else
+        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL);
+}
+
 void ApiQuery::Finished()
 {
     ApiQueryResult *result = (ApiQueryResult*)this->Result;
@@ -154,6 +184,7 @@ void ApiQuery::Finished()
         result->Process();
     this->Status = StatusDone;
     this->ProcessCallback();
+    WriteIn(this);
 }
 
 void ApiQuery::Process()
@@ -190,6 +221,7 @@ void ApiQuery::Process()
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
+    WriteOut(this);
     if (this->UsingPOST)
     {
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
