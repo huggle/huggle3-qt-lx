@@ -80,7 +80,7 @@ void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
     if (this->IsDebuged)
     {
         this->ui->tableWidget->setItem(size, 4, new QTableWidgetItem(query->DebugURL()));
-        this->ui->tableWidget->setItem(size, 5, new QTableWidgetItem(query->Result->ErrorMessage));
+        this->ui->tableWidget->setItem(size, 5, new QTableWidgetItem(query->GetFailureReason()));
     }
     this->ui->tableWidget->resizeRowToContents(size);
 }
@@ -121,7 +121,7 @@ void ProcessList::UpdateQuery(Query *query)
     if (this->IsDebuged)
     {
         this->ui->tableWidget->setItem(query_, 4, new QTableWidgetItem(query->DebugURL()));
-        this->ui->tableWidget->setItem(query_, 5, new QTableWidgetItem(query->Result->ErrorMessage));
+        this->ui->tableWidget->setItem(query_, 5, new QTableWidgetItem(query->GetFailureReason()));
     }
     this->ui->tableWidget->resizeRowToContents(query_);
 }

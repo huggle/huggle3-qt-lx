@@ -278,5 +278,7 @@ QString ApiQuery::DebugURL()
 {
     if (this->HiddenQuery)
         return "Protected link";
+    if (this->UsingPOST)
+        return this->URL + " POST: " + this->Parameters;
     return this->URL;
 }
