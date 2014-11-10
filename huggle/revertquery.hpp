@@ -37,7 +37,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site);
+            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *token = nullptr);
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
@@ -58,6 +58,7 @@ namespace Huggle
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck = false;
             QString Token = "";
+            int RetryTime = 0;
             bool MinorEdit = false;
         public slots:
             void OnTick();
@@ -79,6 +80,7 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qRetrieve;
             Collectable_SmartPtr<EditQuery> eqSoftwareRollback;
             Collectable_SmartPtr<WikiEdit> edit;
+            Collectable_SmartPtr<ApiQuery> qToken;
             QTimer *timer = nullptr;
             //! Revert only and only last edit
             bool OneEditOnly = false;

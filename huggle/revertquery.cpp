@@ -1,4 +1,4 @@
-//This program is free software: you can redistribute it and/or modify
+﻿//This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
@@ -112,6 +112,11 @@ void RevertQuery::Kill()
         this->qHistoryInfo->Kill();
         this->qHistoryInfo.Delete();
     }
+    if (this->qToken != nullptr)
+    {
+        this->qToken->Kill();
+        this->qToken.Delete();
+    }
     // set the status
     this->Status = StatusInError;
     if (this->Result == nullptr)
@@ -177,7 +182,7 @@ void RevertQuery::OnTick()
     }
 }
 
-QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site)
+QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *token)
 {
     ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
     if (ms != nullptr)
@@ -191,9 +196,9 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
                 return "ERROR: Cannot rollback - page only has one author";
             if (Error == "badtoken")
             {
-                QString msg = "ERROR: Cannot rollback, token " + site->GetProjectConfig()->RollbackToken + " is not valid for some reason (mediawiki bug), please try it once more";
-                site->GetProjectConfig()->RollbackToken.clear();
-                return msg;
+                if (token)
+                    *token = true;
+                return "Bad token";
             }
             return "In error (" + Error +")";
         }
@@ -396,11 +401,55 @@ void RevertQuery::CheckPreflight()
 
 bool RevertQuery::CheckRevert()
 {
+    if (this->qToken != nullptr)
+    {
+        if (this->qToken->IsProcessed())
+        {
+            if (this->qToken->IsFailed())
+            {
+                this->DisplayError(this->qToken->GetFailureReason());
+                return true;
+            }
+            // we got a new token, let's try to use it
+            ApiQueryResultNode *token = this->qToken->GetApiQueryResult()->GetNode("tokens");
+            if (token == nullptr || !token->Attributes.contains("rollbacktoken"))
+            {
+                this->DisplayError("No proper tokens returned by MW (bug in mw?)");
+                return true;
+            }
+            this->GetSite()->ProjectConfig->RollbackToken = token->GetAttribute("rollbacktoken");
+            this->Token = this->GetSite()->ProjectConfig->RollbackToken;
+            HUGGLE_DEBUG1("New rollback token is: " + this->Token + " wheeee");
+            this->PreflightFinished = false;
+            this->qToken.Delete();
+            Syslog::HuggleLogs->Log("Retrieved new rollback token, trying again for " + QString::number(++this->RetryTime) +
+                                    " time");
+            this->Preflight();
+        }
+        return false;
+    }
     if (this->UsingSR)
         return ProcessRevert();
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite());
+    bool token = false;
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite(), &token);
+    if (token)
+    {
+        // the token was not valid so we need to try to get it once more
+        if (this->RetryTime > 4)
+        {
+            this->DisplayError("Rollback failed for 5 times, giving up");
+            return true;
+        }
+        Syslog::HuggleLogs->ErrorLog("Cannot rollback, token " + this->GetSite()->GetProjectConfig()->RollbackToken +
+                            " is not valid for some reason (mediawiki bug), trying to get a fresh token");
+        this->GetSite()->GetProjectConfig()->RollbackToken.clear();
+        this->qToken = new ApiQuery(ActionQuery, this->GetSite());
+        this->qToken->Parameters = "meta=tokens&type=rollback";
+        this->qToken->Process();
+        return false;
+    }
     if (this->CustomStatus != "Reverted")
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
