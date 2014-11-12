@@ -12,6 +12,9 @@
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
+#include <QTimer>
+#include <QMutex>
+#include <QtNetwork>
 
 using namespace Huggle::IRC;
 

@@ -15,11 +15,14 @@
 
 #include <QHash>
 #include <QString>
-#include <QtNetwork>
+#include <QStringList>
 #include <QThread>
-#include <QMutex>
 #include "sleeper.hpp"
 #include "exception.hpp"
+
+class QTcpSocket;
+class QTimer;
+class QMutex;
 
 namespace Huggle
 {
