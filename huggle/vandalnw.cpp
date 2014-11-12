@@ -288,7 +288,7 @@ void VandalNw::Message()
 void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 {
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() - 200);
-    this->Insert("<font color=blue>" + user + " seen a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
+    this->Insert("<font color=blue>" + user + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
                      + " (" + QString::number(edit->RevID) + ")" + "</font>", HAN::MessageType_User);
     Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
