@@ -359,7 +359,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     // only use this if current projects support it
     if (!conf->AIV)
     {
-        Generic::MessageBox(_l("missing-aiv"), _l("function-miss"));
+        Generic::pMessageBox(this, _l("missing-aiv"), _l("function-miss"));
         return;
     }
     if (this->fReportForm != nullptr)
@@ -897,7 +897,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     }
     if (this->CurrentEdit->NewPage)
     {
-        Generic::MessageBox("Can't revert this", "This is a new page, so it can't be reverted, you can either tag it, or delete it.",
+        Generic::pMessageBox(this, "Can't revert this", "This is a new page, so it can't be reverted, you can either tag it, or delete it.",
                             MessageBoxStyleNormal, true);
         return ptr_;
     }
@@ -945,7 +945,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
     if (this->qNext != nullptr)
     {
-        Generic::MessageBox("This edit is already being reverted", "You can't revert this edit, because it's already being reverted. Please wait!",
+        Generic::pMessageBox(this, "This edit is already being reverted", "You can't revert this edit, because it's already being reverted. Please wait!",
                             MessageBoxStyleNormal, true);
         return false;
     }
@@ -972,8 +972,8 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (Warn)
     {
-        int q = Generic::MessageBox("Revert edit", "This edit is " + type + ", so even if it looks like it is a vandalism,"\
-                                    " it may not be, are you sure you want to revert it?", MessageBoxStyleQuestion);
+        int q = Generic::pMessageBox(this, "Revert edit", "This edit is " + type + ", so even if it looks like it is a vandalism,"\
+                                     " it may not be, are you sure you want to revert it?", MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
             return false;
     }
@@ -1363,11 +1363,11 @@ void MainWindow::OnTimerTick0()
             {
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
-                    if (Generic::MessageBox("Do you really want to store the configs",
-                                            "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
-                                            site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
-                                            "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
-                                            MessageBoxStyleQuestion, true) == QMessageBox::No)
+                    if (Generic::pMessageBox(this, "Do you really want to store the configs",
+                                              "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
+                                              site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
+                                              "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
+                                              MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
                 WikiPage *uc = new WikiPage(page);
@@ -1649,7 +1649,7 @@ bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
-        Generic::MessageBox("Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
+        Generic::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
@@ -1960,7 +1960,7 @@ bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
     {
-        Generic::MessageBox(_l("error"), _l("main-shutting-down"),
+        Generic::pMessageBox(this, _l("error"), _l("main-shutting-down"),
                                MessageBoxStyleNormal, true);
         return false;
     }
@@ -1976,13 +1976,13 @@ void MainWindow::Welcome()
     bool create_only = true;
     if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
     {
-        if (Generic::MessageBox("Welcome :o", _l("welcome-tp-empty-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
+        if (Generic::pMessageBox(this, "Welcome :o", _l("welcome-tp-empty-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
         else
             create_only = false;
     } else if (!this->CurrentEdit->User->TalkPage_WasRetrieved())
     {
-        if (Generic::MessageBox("Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
+        if (Generic::pMessageBox(this, "Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
     }
     if (this->CurrentEdit->User->IsIP())
@@ -2387,7 +2387,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
     {
-        Generic::MessageBox(_l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
+        Generic::pMessageBox(this, _l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
         return;
     }
     if (this->CurrentEdit->User->IsIP())

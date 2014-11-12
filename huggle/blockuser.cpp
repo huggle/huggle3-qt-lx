@@ -175,7 +175,7 @@ void BlockUser::Block()
         {
             reason = error->GetAttribute("info");
         }
-        Generic::MessageBox(_l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
+        Generic::pMessageBox(this, _l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
         this->ui->pushButton->setText(_l("block-title", this->user->Username));
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
@@ -193,8 +193,8 @@ void BlockUser::Block()
 
 void BlockUser::Failed(QString reason)
 {
-    Generic::MessageBox("Unable to block user", _l("block-fail", reason),
-                        MessageBoxStyleError, true);
+    Generic::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
+                         MessageBoxStyleError, true);
     this->t0->stop();
     delete this->t0;
     this->t0 = nullptr;

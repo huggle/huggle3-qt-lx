@@ -173,9 +173,10 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
     return text_;
 }
 
-int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop)
+int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
 {
     QMessageBox mb;
+    mb.setParent(parent);
     mb.setWindowTitle(title);
     mb.setText(text);
     switch (st)
@@ -222,4 +223,10 @@ bool Generic::CompareVersions(QString a, QString b)
         cv++;
     }
     return true;
+}
+
+
+int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
+{
+    Generic::MessageBox(title, text, st, enforce_stop, parent);
 }
