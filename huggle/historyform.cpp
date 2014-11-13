@@ -11,7 +11,7 @@
 #include "historyform.hpp"
 #include <QTimer>
 #include <QToolTip>
-#include <QtXml>
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "editbar.hpp"
 #include "exception.hpp"
@@ -146,13 +146,11 @@ void HistoryForm::onTick01()
         return;
     }
     bool IsLatest = false;
-    QDomDocument d;
-    d.setContent(this->query->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
+    QList<ApiQueryResultNode*>revision_data = this->query->GetApiQueryResult()->GetNodes("rev");
     int x=0;
     QColor xb;
     bool xt = false;
-    while (x < l.count())
+    while (x < revision_data.count())
     {
         if (xt)
         {
@@ -162,11 +160,11 @@ void HistoryForm::onTick01()
             xb = QColor(224, 222, 250);
         }
         xt = !xt;
-        QDomElement e = l.at(x).toElement();
+        ApiQueryResultNode *rv = revision_data.at(x);
         WikiPageHistoryItem *item = new WikiPageHistoryItem();
-        if (e.attributes().contains("revid"))
+        if (rv->Attributes.contains("revid"))
         {
-            item->RevID = e.attribute("revid");
+            item->RevID = rv->GetAttribute("revid");
         } else
         {
             x++;
@@ -174,14 +172,14 @@ void HistoryForm::onTick01()
         }
         item->Name = this->CurrentEdit->Page->PageName;
         item->Site = this->CurrentEdit->GetSite();
-        if (e.attributes().contains("user"))
-            item->User = e.attribute("user");
-        if (e.attributes().contains("size"))
-            item->Size = e.attribute("size");
-        if (e.attributes().contains("timestamp"))
-            item->Date = e.attribute("timestamp");
-        if (e.attributes().contains("comment") && !e.attribute("comment").isEmpty())
-            item->Summary = e.attribute("comment");
+        if (rv->Attributes.contains("user"))
+            item->User = rv->GetAttribute("user");
+        if (rv->Attributes.contains("size"))
+            item->Size = rv->GetAttribute("size");
+        if (rv->Attributes.contains("timestamp"))
+            item->Date = rv->GetAttribute("timestamp");
+        if (rv->Attributes.contains("comment") && !rv->GetAttribute("comment").isEmpty())
+            item->Summary = rv->GetAttribute("comment");
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
         if (WikiUtil::IsRevert(item->Summary))

@@ -59,6 +59,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
             *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version.ToString() + " or newer.";
         return false;
     }
+    if (SafeBool(HuggleParser::ConfigurationParse("approval", config, "false")))
+        Syslog::HuggleLogs->WarningLog(this->ProjectName + " is using obsolete option 'approval' which is not supported");
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
     this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));

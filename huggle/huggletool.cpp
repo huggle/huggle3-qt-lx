@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "huggletool.hpp"
-#include <QtXml>
+#include "apiqueryresult.hpp"
 #include "core.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
@@ -154,30 +154,27 @@ void HuggleTool::FinishPage()
 {
     if (this->query == nullptr || !this->query->IsProcessed())
         return;
-    QDomDocument d;
-    d.setContent(this->query->Result->Data);
     if (this->QueryPhase == 3)
     {
-        QDomNodeList l = d.elementsByTagName("item");
-        if (l.count() == 0)
+        ApiQueryResultNode *item = this->query->GetApiQueryResult()->GetNode("item");
+        if (!item)
         {
             this->ui->lineEdit_2->setStyleSheet("color: red;");
             this->tick->stop();
             return;
         }
-        QDomElement first_one = l.at(0).toElement();
-        if (!first_one.attributes().contains("title"))
+        if (!item->Attributes.contains("title"))
         {
             this->ui->lineEdit_2->setStyleSheet("color: red;");
             this->tick->stop();
             return;
         }
         this->edit = new WikiEdit();
-        this->edit->Page = new WikiPage(first_one.attribute("title"));
+        this->edit->Page = new WikiPage(item->GetAttribute("title"));
         this->edit->Page->Site = this->query->GetSite();
-        this->edit->User = new WikiUser(first_one.attribute("user"));
+        this->edit->User = new WikiUser(item->GetAttribute("user"));
         this->edit->User->Site = this->query->GetSite();
-        this->edit->RevID = first_one.attribute("revid").toInt();
+        this->edit->RevID = item->GetAttribute("revid").toInt();
         QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
         this->QueryPhase = 4;
@@ -186,11 +183,10 @@ void HuggleTool::FinishPage()
         this->edit = new WikiEdit();
         this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
         this->edit->Page->Site = this->query->GetSite();
-        QDomNodeList l = d.elementsByTagName("rev");
-        if (l.count() > 0)
+        ApiQueryResultNode *rev = this->query->GetApiQueryResult()->GetNode("rev");
+        if (rev)
         {
-            QDomElement e = l.at(0).toElement();
-            if (e.attributes().contains("missing"))
+            if (rev->Attributes.contains("missing"))
             {
                 // there is no such a page
                 this->ui->lineEdit_3->setStyleSheet("color: red;");
@@ -200,15 +196,13 @@ void HuggleTool::FinishPage()
                 this->query.Delete();
                 return;
             }
-            if (e.attributes().contains("user"))
+            if (rev->Attributes.contains("user"))
             {
-                this->edit->User = new WikiUser(e.attribute("user"));
+                this->edit->User = new WikiUser(rev->GetAttribute("user"));
                 this->edit->User->Site = this->GetSite();
             }
-            if (e.attributes().contains("revid"))
-            {
-                this->edit->RevID = e.attribute("revid").toInt();
-            }
+            if (rev->Attributes.contains("revid"))
+                this->edit->RevID = rev->GetAttribute("revid").toInt();
         }
         if (this->edit->User == nullptr)
         {

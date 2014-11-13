@@ -10,7 +10,6 @@
 
 #include "core.hpp"
 #include <QtXml>
-#include <QMessageBox>
 #include <QPluginLoader>
 #include "configuration.hpp"
 #include "exception.hpp"
