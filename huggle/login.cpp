@@ -9,15 +9,14 @@
 //GNU General Public License for more details.
 
 #include "login.hpp"
-#include <QMessageBox>
 #include <QCheckBox>
 #include <QUrl>
 #include <QDesktopServices>
-#include <QtXml>
 #include "apiqueryresult.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "mediawiki.hpp"
@@ -306,19 +305,13 @@ void Login::PressOK()
     this->GlobalConfig = false;
     if (this->ui->tab_oauth->isVisible())
     {
-        QMessageBox mb;
-        mb.setWindowTitle(_l("function-miss"));
-        mb.setText("This function is not available for wmf wikis in this moment");
-        mb.exec();
+        Generic::pMessageBox(this, _l("function-miss"), "This function is not available for wmf wikis in this moment");
         return;
     }
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
-        QMessageBox mb;
-        mb.setWindowTitle(_l("error"));
-        mb.setText("There are no projects defined in a list you need to set up some on global wiki");
-        mb.exec();
+        Generic::pMessageBox(this, _l("error"), "There are no projects defined in a list you need to set up some on global wiki");
         return;
     }
     Configuration::HuggleConfiguration->IndexOfLastWiki = this->ui->Project->currentIndex();
@@ -793,21 +786,18 @@ void Login::ProcessSiteInfo(WikiSite *site)
         // we can remove the query no matter if it was finished or not
         this->qTokenInfo[site]->DecRef();
         this->qTokenInfo.remove(site);
-        QDomDocument d;
-        d.setContent(this->qSiteInfo[site]->Result->Data);
-        QDomNodeList l = d.elementsByTagName("general");
-        if( l.count() < 1 )
+        ApiQueryResultNode *g_ = this->qSiteInfo[site]->GetApiQueryResult()->GetNode("general");
+        if( g_ == nullptr )
         {
             this->DisplayError("No site info was returned for this wiki");
             return;
         }
-        QDomElement item = l.at(0).toElement();
-        if (item.attributes().contains("rtl"))
+        if (g_->Attributes.contains("rtl"))
             site->IsRightToLeft = true;
 
-        if (item.attributes().contains("generator"))
+        if (g_->Attributes.contains("generator"))
         {
-            QString vr = item.attribute("generator");
+            QString vr = g_->GetAttribute("generator");
             if (!vr.contains(" "))
             {
                 Syslog::HuggleLogs->WarningLog("Mediawiki of " + site->Name + " has some invalid version: " + vr);
@@ -824,13 +814,13 @@ void Login::ProcessSiteInfo(WikiSite *site)
         {
             Syslog::HuggleLogs->WarningLog("MediaWiki of " + site->Name + " provides no version");
         }
-        if (item.attributes().contains("time"))
+        if (g_->Attributes.contains("time"))
         {
-            QDateTime server_time = MediaWiki::FromMWTimestamp(item.attribute("time"));
+            QDateTime server_time = MediaWiki::FromMWTimestamp(g_->GetAttribute("time"));
             site->GetProjectConfig()->ServerOffset = QDateTime::currentDateTime().secsTo(server_time);
         }
-        l = d.elementsByTagName("ns");
-        if (l.count() < 1)
+        QList<ApiQueryResultNode*> ns = this->qSiteInfo[site]->GetApiQueryResult()->GetNodes("ns");
+        if (ns.count() < 1)
         {
             Syslog::HuggleLogs->WarningLog(QString("Mediawiki of ") + site->Name + " provided no information about namespaces");
         } else
@@ -838,13 +828,13 @@ void Login::ProcessSiteInfo(WikiSite *site)
             // let's prepare a NS list
             site->ClearNS();
             register int index = 0;
-            while (index < l.count())
+            while (index < ns.count())
             {
-                QDomElement e = l.at(index).toElement();
+                ApiQueryResultNode *node = ns.at(index);
                 index++;
-                if (!e.attributes().contains("id") || !e.attributes().contains("canonical"))
+                if (!node->Attributes.contains("id") || !node->Attributes.contains("canonical"))
                     continue;
-                site->InsertNS(new WikiPageNS(e.attribute("id").toInt(), e.text(), e.attribute("canonical")));
+                site->InsertNS(new WikiPageNS(node->GetAttribute("id").toInt(), node->Value, node->GetAttribute("canonical")));
             }
         }
         this->processedSiteinfos[site] = true;

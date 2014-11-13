@@ -105,9 +105,9 @@ ApiQueryResultNode *ApiQueryResult::GetNode(QString node_name)
     return nullptr;
 }
 
-QList<ApiQueryResultNode *> ApiQueryResult::GetNodes(QString node_name)
+QList<ApiQueryResultNode*> ApiQueryResult::GetNodes(QString node_name)
 {
-    QList<ApiQueryResultNode  *> result;
+    QList<ApiQueryResultNode*> result;
 
     foreach (ApiQueryResultNode *node, this->Nodes)
     {

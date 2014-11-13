@@ -228,5 +228,5 @@ bool Generic::CompareVersions(QString a, QString b)
 
 int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
 {
-    Generic::MessageBox(title, text, st, enforce_stop, parent);
+    return Generic::MessageBox(title, text, st, enforce_stop, parent);
 }
