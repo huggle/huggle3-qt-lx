@@ -47,7 +47,7 @@ WikiPageTagsForm::~WikiPageTagsForm()
 void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 {
     if (wikipage == nullptr)
-        throw new Huggle::NullPointerException("wikipage", "void WikiPageTagsForm::ChangePage(WikiPage *wikipage)");
+        throw new Huggle::NullPointerException("wikipage", BOOST_CURRENT_FUNCTION);
 
     // we copy the page now
     this->page = new WikiPage(wikipage);

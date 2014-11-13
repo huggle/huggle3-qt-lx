@@ -34,7 +34,7 @@ static QString Bool2ExcludeRequire(HuggleQueueFilterMatch match)
         case HuggleQueueFilterMatchIgnore:
             return "ignore";
     }
-    throw Huggle::Exception("Invalid enum", "static QString Bool2ExcludeRequire(HuggleQueueFilterMatch match)");
+    throw Huggle::Exception("Invalid enum", BOOST_CURRENT_FUNCTION);
 }
 
 Huggle::UserConfiguration::UserConfiguration()
@@ -69,8 +69,7 @@ QVariant UserConfiguration::SetOption(QString key_, QString config_, QVariant de
     if (this->UserOptions.contains(key_))
     {
         // we must not add 2 same
-        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
-                                    "void Configuration::SetOption(QString key, QVariant data)");
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
     }
     QString d_ = default_.toString();
     QString value = ConfigurationParse(key_, config_, d_);
@@ -172,7 +171,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         if (option == nullptr)
         {
             // this must never happen
-            throw new Huggle::Exception("Option key was nullptr during store", "QString Configuration::MakeLocalUserConfig()");
+            throw new Huggle::Exception("Option key was nullptr during store", BOOST_CURRENT_FUNCTION);
         }
         if (!option->IsDefault())
         {
@@ -230,8 +229,7 @@ QStringList UserConfiguration::SetUserOptionList(QString key_, QString config_, 
     if (this->UserOptions.contains(key_))
     {
         // we must not add 2 same
-        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it",
-                                    "void Configuration::SetUserOptionList(QString key, QVariant data)");
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
     }
     QStringList value = HuggleParser::ConfigurationParse_QL(key_, config_, default_, CS);
     HuggleOption *h = new HuggleOption(key_, value, value == default_);

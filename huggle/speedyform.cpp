@@ -147,7 +147,7 @@ void SpeedyForm::Init(WikiEdit *edit_)
 {
     if (edit_ == nullptr)
     {
-        throw new Huggle::Exception("edit was NULL", "void SpeedyForm::Init(WikiEdit *edit_)");
+        throw new Huggle::Exception("edit was NULL", BOOST_CURRENT_FUNCTION);
     }
     this->edit = edit_;
     this->ui->label_2->setText(edit_->Page->PageName);

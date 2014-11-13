@@ -273,7 +273,7 @@ bool Message::FinishToken()
 {
     if (this->qToken == nullptr)
     {
-        throw new Huggle::Exception("qToken must not be NULL in this context", "void Message::FinishToken()");
+        throw new Huggle::("qToken must not be NULL in this context", BOOST_CURRENT_FUNCTION);
     }
     if (!this->qToken->IsProcessed())
     {

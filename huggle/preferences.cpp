@@ -470,7 +470,7 @@ void Preferences::RecordKeys(int row, int column)
         return;
     if (column != 2)
     {
-        Exception::ThrowSoftException("Invalid column", "Preferences::RecordKeys");
+        Exception::ThrowSoftException("Invalid column", BOOST_CURRENT_FUNCTION);
         return;
     }
 

@@ -127,11 +127,11 @@ void VandalNw::Good(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
+        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
-        throw new Exception("There is no channel for this site", "void VandalNw::Good(WikiEdit *Edit)");
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
     this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "GOOD " + QString::number(Edit->RevID));
 }
@@ -140,11 +140,11 @@ void VandalNw::Rollback(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
-        throw new Exception("There is no channel for this site", "void VandalNw::Rollback(WikiEdit *Edit)");
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
     this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
 }
@@ -153,11 +153,11 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
-        throw new Exception("There is no channel for this site", "void VandalNw::Good(WikiEdit *Edit)");
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
     this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
@@ -166,11 +166,11 @@ void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
 {
     if (user == nullptr)
     {
-        throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
+        throw new Exception("WikiUser *user was NULL", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(user->GetSite()))
     {
-        throw new Exception("There is no channel for this site", "void VandalNw::Good(WikiEdit *Edit)");
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
     this->Irc->Send(this->Site2Channel[user->GetSite()], this->Prefix + "WARN " + QString::number(Level)
                     + " " + QUrl::toPercentEncoding(user->Username));

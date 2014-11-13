@@ -75,13 +75,13 @@ void QueryPool::AppendQuery(Query *item)
 void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Huggle::NullPointerException("edit", "void QueryPool::PreProcessEdit(WikiEdit *edit)");
+        throw new Huggle::NullPointerException("edit", BOOST_CURRENT_FUNCTION);
     if (edit->Status == StatusProcessed)
         return;
     if (edit->Status == StatusPostProcessed)
-        throw new Huggle::Exception("Pre process of edit that was already post processed");
+        throw new Huggle::Exception("Pre process of edit that was already post processed", BOOST_CURRENT_FUNCTION);
     if (edit->User == nullptr)
-        throw new Huggle::NullPointerException("edit->User", "void QueryPool::PreProcessEdit(WikiEdit *edit)");
+        throw new Huggle::NullPointerException("edit->User", BOOST_CURRENT_FUNCTION);
     if (edit->Bot)
         edit->User->SetBot(true);
 
@@ -117,7 +117,7 @@ void QueryPool::PostProcessEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
     {
-        throw new Exception("NULL edit in PostProcessEdit(WikiEdit *_e) is not a valid edit");
+        throw new Huggle::NullPointerException("local::WikiEdit *edit", BOOST_CURRENT_FUNCTION);
     }
     edit->RegisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
     edit->PostProcess();

@@ -39,7 +39,7 @@ HistoryItem::HistoryItem(HistoryItem *item) : MediaWikiObject(item)
 {
     if (item == nullptr)
     {
-        throw new Huggle::Exception("HistoryItem item must not be NULL", "HistoryItem::HistoryItem(HistoryItem *item)");
+        throw new Huggle::Exception("HistoryItem item must not be NULL", BOOST_CURRENT_FUNCTION);
     }
     this->ID = item->ID;
     this->Type = item->Type;

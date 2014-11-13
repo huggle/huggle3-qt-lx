@@ -96,7 +96,7 @@ ReportUser::~ReportUser()
 bool ReportUser::SetUser(WikiUser *user)
 {
     if (!user)
-        throw new Huggle::NullPointerException("user", "bool ReportUser::SetUser(WikiUser *user)");
+        throw new Huggle::NullPointerException("user", BOOST_CURRENT_FUNCTION);
 
     if (this->ReportedUser)
         delete this->ReportedUser;

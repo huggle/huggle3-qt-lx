@@ -23,7 +23,7 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Huggle::Exception("Huggle::WikiEdit *Edit must not be nullptr", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+        throw new Huggle::Exception("Huggle::WikiEdit *Edit must not be nullptr", BOOST_CURRENT_FUNCTION);
     }
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
@@ -41,7 +41,7 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("Huggle::WikiEdit *Edit must not be nullptr", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+        throw new Exception("Huggle::WikiEdit *Edit must not be nullptr", BOOST_CURRENT_FUNCTION);
     }
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
@@ -79,8 +79,7 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
     if (User == nullptr)
     {
-        throw new Exception("Huggle::WikiUser *User must not be nullptr", "void Huggle::Hooks::BadnessScore(Huggle::WikiUser "\
-                            "*User, int Score)");
+        throw new Exception("Huggle::WikiUser *User must not be nullptr", BOOST_CURRENT_FUNCTION);
     }
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())

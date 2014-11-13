@@ -48,7 +48,7 @@ void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)
         return;
     if (this->ui->tableWidget->rowCount() < row + 1)
     {
-        throw new Huggle::Exception("There is no such an item in list");
+        throw new Huggle::Exception("There is no such an item in list", BOOST_CURRENT_FUNCTION);
     }
     QIcon icon;
     switch (it)

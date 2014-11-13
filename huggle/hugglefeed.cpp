@@ -45,7 +45,7 @@ HuggleFeed::~HuggleFeed()
 double HuggleFeed::GetRevertsPerMinute()
 {
     if (this->StatisticsBlocks.count() < 1)
-        throw new Huggle::Exception("Invalid number of statistics blocks");
+        throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
     double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)
@@ -64,7 +64,7 @@ double HuggleFeed::GetEditsPerMinute()
 {
     this->RotateStats();
     if (this->StatisticsBlocks.count() < 1)
-        throw new Huggle::Exception("Invalid number of statistics blocks");
+        throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
     double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)

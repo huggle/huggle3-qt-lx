@@ -41,7 +41,7 @@ HuggleQueueFilter::HuggleQueueFilter()
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Huggle::NullPointerException("WikiEdit *edit", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
     if (this->UserSpace != HuggleQueueFilterMatchIgnore)
     {

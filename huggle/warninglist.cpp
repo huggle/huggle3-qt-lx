@@ -30,7 +30,7 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
     if (edit->User == nullptr)
     {
         // unlikely to happen
-        throw new Huggle::Exception("null user", "WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(new Ui::WarningList)");
+        throw new Huggle::Exception("null user", BOOST_CURRENT_FUNCTION);
     }
     this->setWindowTitle(_l("warning-title", edit->User->Username));
     this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
@@ -58,7 +58,7 @@ void WarningList::on_pushButton_clicked()
     if (this->wikiEdit == nullptr)
     {
         // ERROR :'(
-        throw new Huggle::Exception("invalid null edit", "void WarningList::on_pushButton_clicked()");
+        throw new Huggle::Exception("invalid null edit", BOOST_CURRENT_FUNCTION);
     }
     QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText(), this->wikiEdit->GetSite()->GetProjectConfig());
     if (wt.isEmpty())

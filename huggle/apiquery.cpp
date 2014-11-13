@@ -24,7 +24,7 @@ using namespace Huggle;
 void ApiQuery::ConstructUrl()
 {
     if (this->ActionPart.isEmpty())
-        throw new Huggle::Exception("No action provided for api request");
+        throw new Huggle::Exception("No action provided for api request", BOOST_CURRENT_FUNCTION);
     if (this->OverrideWiki.isEmpty())
     {
         this->URL = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;
@@ -56,7 +56,7 @@ QString ApiQuery::ConstructParameterLessUrl()
     QString url;
     if (this->ActionPart.isEmpty())
     {
-        throw new Huggle::Exception("No action provided for api request", "void ApiQuery::ConstructParameterLessUrl()");
+        throw new Huggle::Exception("No action provided for api request", BOOST_CURRENT_FUNCTION);
     }
     if (!this->OverrideWiki.size())
         url = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;

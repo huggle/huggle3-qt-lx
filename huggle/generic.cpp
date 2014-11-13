@@ -76,8 +76,7 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
 {
     if (!failed)
     {
-        throw new Huggle::Exception("failed was NULL", "QString Generic::EvaluateWikiPageContents(ApiQuery *query, "\
-                                    "bool *failed, QDateTime *base, QString *comment, QString *user, int *revid)");
+        throw new Huggle::Exception("failed was NULL", BOOST_CURRENT_FUNCTION);
     }
     if (query == nullptr)
     {
@@ -147,7 +146,7 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
 {
     if (size < minimum)
     {
-        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
+        throw new Huggle::Exception("Parameter size must be more than 2", BOOST_CURRENT_FUNCTION);
     }
     // let's copy the text into new variable so that we don't break the original
     // who knows how these mutable strings are going to behave in qt :D

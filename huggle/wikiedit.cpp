@@ -325,7 +325,7 @@ bool WikiEdit::FinalizePostProcessing()
 QString WikiEdit::GetPixmap()
 {
     if (this->User == nullptr)
-        throw new Huggle::NullPointerException("WikiEdit::User", "QString WikiEdit::GetPixmap()");
+        throw new Huggle::NullPointerException("WikiEdit::User", BOOST_CURRENT_FUNCTION);
 
     if (this->OwnEdit)
         return ":/huggle/pictures/Resources/blob-me.png";
@@ -469,7 +469,7 @@ void WikiEdit::PostProcess()
         return;
 
     if (this->Page == nullptr)
-        throw new Huggle::NullPointerException("Page", "void WikiEdit::PostProcess()");
+        throw new Huggle::NullPointerException("Page", BOOST_CURRENT_FUNCTION);
     if (this->Status == Huggle::StatusNone)
     {
         Exception::ThrowSoftException("Processing edit to " + this->Page->PageName + "which was requested to be post processed,"\

@@ -623,7 +623,7 @@ void RevertQuery::Rollback()
 {
     if (this->RollingBack)
     {
-        Huggle::Exception::ThrowSoftException("Multiple request to rollback same query", "void RevertQuery::Rollback()");
+        Huggle::Exception::ThrowSoftException("Multiple request to rollback same query", BOOST_CURRENT_FUNCTION);
         return;
     }
     this->RollingBack = true;

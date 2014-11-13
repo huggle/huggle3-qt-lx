@@ -48,11 +48,11 @@ bool NetworkIrc::Connect()
     {
         if (this->NetworkThread->__IsConnecting)
         {
-            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connecting", "bool NetworkIrc::Connect()");
+            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connecting", BOOST_CURRENT_FUNCTION);
         }
         if (this->NetworkThread->__Connected)
         {
-            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected");
+            throw new Huggle::Exception("You attempted to connect NetworkIrc which is already connected", BOOST_CURRENT_FUNCTION);
         }
     }
     if (this->NetworkThread != nullptr)
@@ -132,7 +132,7 @@ void NetworkIrc::Data(QString text)
 {
     if (this->NetworkThread == nullptr || this->NetworkSocket == nullptr)
     {
-        throw new Exception("You can't send data to network which you never connected to", "void NetworkIrc::Data(QString text)");
+        throw new Exception("You can't send data to network which you never connected to", BOOST_CURRENT_FUNCTION);
     }
     this->NetworkSocket->write(QString(text + "\n").toUtf8());
 }
@@ -428,8 +428,7 @@ void NetworkIrc_th::ProcessJoin(QString source, QString channel, QString message
     }
     if (channel.isEmpty())
     {
-        throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessJoin"\
-                                    "(QString source, QString channel, QString message)");
+        throw new Huggle::Exception("Invalid channel name", BOOST_CURRENT_FUNCTION);
     }
     channel = channel.toLower();
     // first lock the channel list and check if we know this channel
@@ -528,8 +527,7 @@ void NetworkIrc_th::ProcessPart(QString source, QString channel, QString message
     User user(source.mid(0, source.indexOf("!")));
     if (channel.isEmpty())
     {
-        throw new Huggle::Exception("Invalid channel name", "void NetworkIrc_th::ProcessPart("\
-                                    "QString source, QString channel, QString message)");
+        throw new Huggle::Exception("Invalid channel name", BOOST_CURRENT_FUNCTION);
     }
     channel = channel.toLower();
     // first lock the channel list and check if we know this channel

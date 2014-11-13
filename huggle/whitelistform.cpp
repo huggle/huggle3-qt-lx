@@ -74,8 +74,7 @@ void WhitelistForm::Reload(int pn)
     {
         if (Configuration::HuggleConfiguration->Projects.count() <= pn)
         {
-            throw new Huggle::Exception("There is more projects in a list than in global list",
-                                        "void WhitelistForm::Reload(int pn)");
+            throw new Huggle::Exception("There is more projects in a list than in global list", BOOST_CURRENT_FUNCTION);
         }
         site = Configuration::HuggleConfiguration->Projects.at(pn);
     } else

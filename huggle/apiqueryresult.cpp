@@ -86,9 +86,9 @@ static void ProcessChildXMLNodes(ApiQueryResult *result, QDomNodeList nodes)
 void ApiQueryResult::Process()
 {
     if (this->Data.isEmpty())
-        throw new Huggle::Exception("There is no data to be processed", "void ApiQueryResult::Process()");
+        throw new Huggle::Exception("There is no data to be processed", BOOST_CURRENT_FUNCTION);
     if (this->IsFailed())
-        throw new Huggle::Exception("Not processing a failed result", "void ApiQueryResult::Process()");
+        throw new Huggle::Exception("Not processing a failed result", BOOST_CURRENT_FUNCTION);
 
     QDomDocument result;
     result.setContent(this->Data);

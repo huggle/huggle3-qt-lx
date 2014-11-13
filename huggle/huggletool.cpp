@@ -74,7 +74,7 @@ void HuggleTool::SetUser(QString user)
 void HuggleTool::SetPage(WikiPage *page)
 {
     if (page == nullptr)
-        throw new Huggle::NullPointerException("page", "void HuggleTool::SetPage(WikiPage *page)");
+        throw new Huggle::NullPointerException("page", BOOST_CURRENT_FUNCTION);
 
     this->ui->lineEdit_3->setText(page->PageName);
     if (Configuration::HuggleConfiguration->Projects.contains(page->GetSite()) &&
@@ -104,7 +104,7 @@ WikiSite *HuggleTool::GetSite()
     {
         // this should not happen ever
         throw new Huggle::Exception("Wrong number of projects (Configuration::HuggleConfiguration->Projects.count() isn't same as comboBox->count())",
-                                    "WikiSite *HuggleTool::GetSite()");
+                                    BOOST_CURRENT_FUNCTION);
     }
     return Configuration::HuggleConfiguration->Projects.at(this->ui->comboBox->currentIndex());
 }

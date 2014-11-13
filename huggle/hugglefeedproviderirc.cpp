@@ -112,7 +112,7 @@ void HuggleFeedProviderIRC::Stop()
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Huggle::NullPointerException("WikiEdit *edit", "void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)");
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
     // Increase the number of edits that were made since provider is up, this is used for statistics
     this->IncrementEdits();
@@ -315,7 +315,7 @@ void HuggleFeedProviderIRC_t::run()
     if (this->p == nullptr)
     {
         this->Stopped = true;
-        throw new Huggle::Exception("Pointer to parent IRC feed is NULL");
+        throw new Huggle::Exception("Pointer to parent IRC feed is NULL", BOOST_CURRENT_FUNCTION);
     }
     // wait until we finish connecting to a network
     while (this->Running && !this->p->Network->IsConnected())

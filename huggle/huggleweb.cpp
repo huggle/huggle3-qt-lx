@@ -42,7 +42,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
 {
     if (page == nullptr)
     {
-        throw new Huggle::Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
+        throw new Huggle::NullPointerException("WikiPage *page", BOOST_CURRENT_FUNCTION);
     }
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
@@ -98,7 +98,7 @@ QString HuggleWeb::GetShortcut()
 {
     QString incoming = Resources::HtmlIncoming;
     if (!Configuration::HuggleConfiguration->Shortcuts.contains("main-mytalk"))
-        throw new Huggle::Exception("key");
+        throw new Huggle::Exception("key", BOOST_CURRENT_FUNCTION);
     Shortcut sh = Configuration::HuggleConfiguration->Shortcuts["main-mytalk"];
     incoming.replace("$shortcut", sh.QAccel);
     return incoming;
@@ -109,9 +109,9 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     this->CurrentEdit = edit;
     this->ui->webView->history()->clear();
     if (edit == nullptr)
-        throw new Huggle::Exception("The edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+        throw new Huggle::Exception("The edit was NULL in HuggleWeb::DisplayDiff(*edit)", BOOST_CURRENT_FUNCTION);
     if (edit->Page == nullptr)
-        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
+        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)", BOOST_CURRENT_FUNCTION);
     if (edit->NewPage && !edit->Page->Contents.size())
     {
         this->ui->webView->setHtml(_l("browser-load"));
@@ -184,7 +184,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
 {
     if (!edit)
-        throw new Exception("Edit must not be NULL");
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
     this->CurrentEdit = edit;
     QString HTML = Resources::GetHtmlHeader();

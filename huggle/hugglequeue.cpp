@@ -38,7 +38,7 @@ HuggleQueue::~HuggleQueue()
 void HuggleQueue::AddItem(WikiEdit *page)
 {
     if (page == nullptr)
-        throw new Huggle::Exception("WikiEdit *page must not be nullptr", "void HuggleQueue::AddItem(WikiEdit *page)");
+        throw new Huggle::Exception("WikiEdit *page must not be nullptr", BOOST_CURRENT_FUNCTION);
 
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
@@ -100,7 +100,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
         if (this->ui->itemList->count() == 0)
         {
             // this should never happen - if there were 0 items in a queue it means there is no spacer, let's crash here
-            throw Huggle::Exception("The container must have at least one spacer", "void HuggleQueue::AddItem(WikiEdit *page)");
+            throw Huggle::Exception("The container must have at least one spacer", BOOST_CURRENT_FUNCTION);
         }
         this->ui->itemList->insertWidget(this->ui->itemList->count() - 1, label);
     } else
@@ -304,8 +304,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == nullptr)
     {
-        throw new Huggle::Exception("HuggleQueueItemLabel *item must not be nullptr in this context",
-                            "void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)");
+        throw new Huggle::Exception("HuggleQueueItemLabel *item must not be nullptr in this context", BOOST_CURRENT_FUNCTION);
     }
     if (qi != nullptr)
     {
@@ -373,7 +372,7 @@ void HuggleQueue::Trim(int i)
 {
     if (i < 1)
     {
-        throw new Huggle::Exception("Parameter i must be greater than 0 in HuggleQueue::Trim(i)");
+        throw new Huggle::Exception("Parameter i must be greater than 0 in HuggleQueue::Trim(i)", BOOST_CURRENT_FUNCTION);
     }
 
     while (i > 0)
@@ -393,8 +392,7 @@ void HuggleQueue::Trim()
     QLayoutItem *i = this->ui->itemList->itemAt(x);
     if (i == this->ui->verticalSpacer)
     {
-        throw new Huggle::Exception("Vertical spacer was not last in queue",
-                                    "void HuggleQueue::Trim()");
+        throw new Huggle::Exception("Vertical spacer was not last in queue", BOOST_CURRENT_FUNCTION);
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Remove();
@@ -493,7 +491,7 @@ long HuggleQueue::GetScore(int id)
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     if (!label)
     {
-        throw new Huggle::Exception("label was nullptr", "long HuggleQueue::GetScore(int id)");
+        throw new Huggle::Exception("label was nullptr", BOOST_CURRENT_FUNCTION);
     }
     if (label->Page == nullptr)
     {

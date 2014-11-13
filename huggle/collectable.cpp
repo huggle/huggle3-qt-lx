@@ -47,7 +47,7 @@ Collectable::~Collectable()
 {
     if (this->IsManaged())
     {
-        throw new Huggle::Exception("Request to delete managed entity");
+        throw new Huggle::Exception("Request to delete managed entity", BOOST_CURRENT_FUNCTION);
     }
     this->Unlock();
     delete this->_collectableQL;
@@ -87,8 +87,7 @@ void Collectable::DecRef()
 {
     if (!this->_collectableRefs)
     {
-        throw new Huggle::Exception("Decrementing negative reference",
-                  "inline void Collectable::DecRef()");
+        throw new Huggle::Exception("Decrementing negative reference", BOOST_CURRENT_FUNCTION);
     }
     this->_collectableRefs--;
 }

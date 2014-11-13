@@ -203,10 +203,10 @@ void Login::CancelLogin()
 int Login::GetRowIDForSite(WikiSite *site, int row)
 {
     if (!this->LoadingFormRows.contains(site))
-        throw new Huggle::Exception("There is no such a site in DB of rows", "int Login::GetRowIDForSite(WikiSite *site, int row)");
+        throw new Huggle::Exception("There is no such a site in DB of rows", BOOST_CURRENT_FUNCTION);
 
     if (!this->LoadingFormRows[site].contains(row))
-        throw new Huggle::Exception("There is no such a row in DB of rows", "int Login::GetRowIDForSite(WikiSite *site, int row)");
+        throw new Huggle::Exception("There is no such a row in DB of rows", BOOST_CURRENT_FUNCTION);
 
     return this->LoadingFormRows[site][row];
 }
@@ -326,7 +326,7 @@ void Login::PressOK()
         foreach (QCheckBox* cb, this->Project_CheckBoxens)
         {
             if (project_id >= Configuration::HuggleConfiguration->ProjectList.count())
-                throw new Huggle::Exception("Inconsistent number of projects and check boxes in memory");
+                throw new Huggle::Exception("Inconsistent number of projects and check boxes in memory", BOOST_CURRENT_FUNCTION);
             WikiSite *project = Configuration::HuggleConfiguration->ProjectList.at(project_id);
             if (cb->isChecked() && !Configuration::HuggleConfiguration->Projects.contains(project))
                 Configuration::HuggleConfiguration->Projects << project;
@@ -569,7 +569,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             query->DecRef();
             // since now data may be deleted
             if (site->ProjectConfig == nullptr)
-                throw new Huggle::NullPointerException("site->Project", "void Login::RetrieveProjectConfig(WikiSite *site)");
+                throw new Huggle::NullPointerException("site->Project", BOOST_CURRENT_FUNCTION);
             QString reason;
             if (site->ProjectConfig->Parse(value, &reason))
             {
@@ -1005,7 +1005,7 @@ void Login::OnTimerTick()
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
         if (!this->Statuses.contains(site))
-            throw new Huggle::Exception("There is no such a wiki in statuses list");
+            throw new Huggle::Exception("There is no such a wiki in statuses list", BOOST_CURRENT_FUNCTION);
         if (!this->GlobalConfig)
         {
             // we need to skip these unless it's login

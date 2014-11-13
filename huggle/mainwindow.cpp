@@ -349,7 +349,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     if (User == nullptr)
         User = this->CurrentEdit->User;
     if (User == nullptr)
-        throw new Huggle::Exception("WikiUser must not be nullptr", "void MainWindow::DisplayReportUserWindow(WikiUser *User)");
+        throw new Huggle::NullPointerException("local WikiUser *User", BOOST_CURRENT_FUNCTION);
     if (User->IsReported)
     {
         Syslog::HuggleLogs->ErrorLog(_l("report-duplicate"));
@@ -386,8 +386,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     if (e->Page == nullptr || e->User == nullptr)
     {
-        throw new Huggle::Exception("Page and User must not be nullptr in edit that is supposed to be displayed on form",
-                  "void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser)");
+        throw new Huggle::Exception("Page and User must not be nullptr in edit that is supposed to be displayed on form", BOOST_CURRENT_FUNCTION);
     }
     if (this->OnNext_EvPage != nullptr)
     {
@@ -440,7 +439,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Page == nullptr)
-            throw new Huggle::Exception("Page of CurrentEdit can't be nullptr at MainWindow::Render()");
+            throw new Huggle::NullPointerException("CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
 
         this->wEditBar->RemoveAll();
         if (!KeepUser)
@@ -680,7 +679,7 @@ static inline void ReloadIndexedMenuShortcut(QList<QAction *> list, int item, Sh
 void MainWindow::ReloadShort(QString id)
 {
     if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
-        throw new Huggle::Exception("Invalid shortcut name");
+        throw new Huggle::Exception("Invalid shortcut name", BOOST_CURRENT_FUNCTION);
     Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
     QAction *q = nullptr;
     QAction *tip = nullptr;
@@ -1617,7 +1616,7 @@ bool MainWindow::ReconnectIRC(WikiSite *site)
     if (!site->Provider)
     {
         // this is problem
-        throw new Huggle::NullPointerException("site->Provider", "void MainWindow::ReconnectIRC(WikiSite *site)");
+        throw new Huggle::NullPointerException("site->Provider", BOOST_CURRENT_FUNCTION);
     }
     site->Provider->Stop();
     while (!site->Provider->IsStopped())
@@ -1663,7 +1662,7 @@ bool MainWindow::CheckEditableBrowserPage()
         }
     }
     if (this->CurrentEdit->Page == nullptr)
-        throw Huggle::Exception("this->CurrentEdit->Page == nullptr");
+        throw Huggle::NullPointerException("CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
 
     return true;
 }
@@ -2709,8 +2708,7 @@ void MainWindow::SetProviderIRC()
         return;
     QAction *action = (QAction*)QObject::sender();
     if (!this->ActionSites.contains(action))
-        throw new Huggle::Exception("There is no such a site in hash table",
-                                    "void MainWindow::SetProviderIRC()");
+        throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
     if (this->ReconnectIRC(wiki))
     {
@@ -2731,8 +2729,7 @@ void MainWindow::SetProviderWiki()
         return;
     QAction *action = (QAction*)QObject::sender();
     if (!this->ActionSites.contains(action))
-        throw new Huggle::Exception("There is no such a site in hash table",
-                                    "void MainWindow::SetProviderIRC()");
+        throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
     Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
     wiki->Provider->Stop();
@@ -2755,8 +2752,7 @@ void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
         return;
 
     if (this->CurrentEdit->Page == nullptr)
-        throw new Huggle::NullPointerException("this->CurrentEdit->Page",
-                                               "void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()");
+        throw new Huggle::NullPointerException("this->CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
     WikiUtil::Watchlist(this->CurrentEdit->Page);
 }
 
@@ -2766,7 +2762,7 @@ void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
         return;
 
     if (this->CurrentEdit->Page == nullptr)
-        throw new Huggle::NullPointerException("this->CurrentEdit->Page", "void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()");
+        throw new Huggle::NullPointerException("this->CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
     WikiUtil::Unwatchlist(this->CurrentEdit->Page);
 }
 
@@ -2814,7 +2810,7 @@ void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
     {
         this->Browser = (HuggleWeb*)this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget();
         if (!this->Browser)
-            throw new Huggle::Exception("Invalid browser pointer");
+            throw new Huggle::Exception("Invalid browser pointer", BOOST_CURRENT_FUNCTION);
 
         // we need to change edit to what we have in that tab including all other stuff
         this->CurrentEdit = this->Browser->CurrentEdit;
