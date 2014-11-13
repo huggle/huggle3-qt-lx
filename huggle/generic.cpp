@@ -205,27 +205,6 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
         return 0;
 }
 
-bool Generic::CompareVersions(QString a, QString b)
-{
-    QStringList va = a.split('.');
-    QStringList vb = b.split('.');
-    int cv = 0;
-    while (cv < va.count())
-    {
-        if (vb.count() <= cv)
-            break;
-        // if it's greater we have a newer version
-        if (va[cv] > vb[cv])
-            return true;
-        // if it's smaller we have older version
-        if (vb[cv] > va[cv])
-            return false;
-        cv++;
-    }
-    return true;
-}
-
-
 int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
 {
     return Generic::MessageBox(title, text, st, enforce_stop, parent);

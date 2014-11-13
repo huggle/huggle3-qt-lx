@@ -47,13 +47,6 @@ namespace Huggle
          * \return string
          */
         QString Bool2String(bool b);
-        /*!
-         * \brief CompareVersions
-         * \param a version
-         * \param b version
-         * \return true in case version b is older or same as version a
-         */
-        bool CompareVersions(QString a, QString b);
         bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
         bool ReportPreFlightCheck();

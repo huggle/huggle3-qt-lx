@@ -12,6 +12,7 @@
 #include "generic.hpp"
 #include "huggleparser.hpp"
 #include "syslog.hpp"
+#include "version.hpp"
 #include "wikipage.hpp"
 
 using namespace Huggle::Generic;
@@ -50,11 +51,12 @@ ProjectConfiguration::~ProjectConfiguration()
 
 bool ProjectConfiguration::Parse(QString config, QString *reason)
 {
-    QString version = HuggleParser::ConfigurationParse("min-version", config, "3.0.0");
-    if (!Generic::CompareVersions(HUGGLE_VERSION, version))
+    Version version(HuggleParser::ConfigurationParse("min-version", config, "3.0.0"));
+    Version huggle_version(HUGGLE_VERSION);
+    if (&huggle_version < &version)
     {
         if (reason)
-            *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version + " or newer.";
+            *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version.ToString() + " or newer.";
         return false;
     }
     //AIV
