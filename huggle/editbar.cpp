@@ -55,6 +55,7 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 {
     EditBarItem *item = new EditBarItem(this);
     this->Items.append(item);
+    item->IsUser = false;
     this->ui->horizontalLayout_page->insertWidget(1, item);
     item->RevID = page->RevID;
     if (page->IsCurrent)
