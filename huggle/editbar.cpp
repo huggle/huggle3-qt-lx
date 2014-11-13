@@ -53,7 +53,7 @@ void EditBar::Refresh()
 
 void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 {
-    EditBarItem *item = new EditBarItem();
+    EditBarItem *item = new EditBarItem(this);
     this->Items.append(item);
     this->ui->horizontalLayout_page->insertWidget(1, item);
     item->RevID = page->RevID;
@@ -70,7 +70,7 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 
 void EditBar::InsertUser(UserInfoFormHistoryItem *user)
 {
-    EditBarItem *item = new EditBarItem();
+    EditBarItem *item = new EditBarItem(this);
     this->Items.append(item);
     this->ui->horizontalLayout_user->insertWidget(1, item);
     item->RevID = user->RevID;
