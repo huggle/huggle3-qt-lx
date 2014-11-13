@@ -175,34 +175,37 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
 
 int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
 {
-    QMessageBox mb;
-    mb.setParent(parent);
-    mb.setWindowTitle(title);
-    mb.setText(text);
+    QMessageBox *mb = new QMessageBox(parent);
+    mb->setWindowTitle(title);
+    mb->setText(text);
+    int return_value = -1;
     switch (st)
     {
         case MessageBoxStyleQuestion:
-            mb.setIcon(QMessageBox::Question);
-            mb.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-            mb.setDefaultButton(QMessageBox::Yes);
-            return mb.exec();
+            mb->setIcon(QMessageBox::Question);
+            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            mb->setDefaultButton(QMessageBox::Yes);
+            return_value = mb->exec();
+            break;
         case MessageBoxStyleNormal:
-            mb.setIcon(QMessageBox::Information);
+            mb->setIcon(QMessageBox::Information);
             goto exec;
         case MessageBoxStyleError:
-            mb.setIcon(QMessageBox::Critical);
+            mb->setIcon(QMessageBox::Critical);
             goto exec;
         case MessageBoxStyleWarning:
-            mb.setIcon(QMessageBox::Warning);
+            mb->setIcon(QMessageBox::Warning);
             goto exec;
     }
-    return -1;
+    delete mb;
+    return return_value;
     exec:
         if (enforce_stop)
-            mb.exec();
+            return_value = mb->exec();
         else
-            mb.show();
-        return 0;
+            mb->show();
+        delete mb;
+        return return_value;
 }
 
 int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
