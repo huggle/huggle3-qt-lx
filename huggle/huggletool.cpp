@@ -74,7 +74,7 @@ void HuggleTool::SetUser(QString user)
 void HuggleTool::SetPage(WikiPage *page)
 {
     if (page == nullptr)
-        throw new Huggle::Exception("HuggleTool::SetPage(WikiPage* page) page must not be nullptr");
+        throw new Huggle::NullPointerException("page", "void HuggleTool::SetPage(WikiPage *page)");
 
     this->ui->lineEdit_3->setText(page->PageName);
     if (Configuration::HuggleConfiguration->Projects.contains(page->GetSite()) &&
