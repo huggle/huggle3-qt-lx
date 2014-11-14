@@ -36,7 +36,7 @@ namespace Huggle
             int GetMajor();
             int GetMinor();
             int GetRevision();
-            bool IsEqual(Version *b);
+            bool IsEqual(Version *b, bool ignore_suffix = false);
             bool IsLower(Version *b);
             bool IsGreater(Version *b);
             bool IsValid();

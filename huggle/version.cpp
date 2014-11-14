@@ -78,7 +78,7 @@ Version::~Version()
 
 }
 
-bool Version::IsEqual(Version *b)
+bool Version::IsEqual(Version *b, bool ignore_suffix)
 {
     if (!this->isValid || !b->isValid)
         return false;
@@ -86,8 +86,9 @@ bool Version::IsEqual(Version *b)
         this->minor != b->minor ||
         this->patch != b->patch ||
         this->revision != b->revision ||
-        this->versionType != b->versionType ||
-        this->suffix != b->suffix)
+        this->versionType != b->versionType)
+        return false;
+    if (!ignore_suffix && this->suffix != b->suffix)
         return false;
     else
         return true;
@@ -97,14 +98,14 @@ bool Version::IsLower(Version *b)
 {
     if (!this->IsValid() || !b->IsValid())
         return false;
-    if (this->GetMajor() < b->GetMajor())
-        return true;
-    if (this->GetMinor() < b->GetMinor())
-        return true;
-    if (this->GetRevision() < b->GetRevision())
-        return true;
+    if (this->GetMajor() > b->GetMajor())
+        return false;
+    if (this->GetMinor() > b->GetMinor())
+        return false;
+    if (this->GetRevision() > b->GetRevision())
+        return false;
 
-    return false;
+    return !this->IsEqual(b, true);
 }
 
 bool Version::IsGreater(Version *b)
