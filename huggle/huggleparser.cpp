@@ -290,17 +290,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
                 continue;
             }
             QString time = section.mid(section.lastIndexOf(site->GetProjectConfig()->Parser_Date_Prefix) + site->GetProjectConfig()->Parser_Date_Prefix.length());
-            if (time.length() < 2)
-            {
-                // what the fuck
-                HUGGLE_DEBUG("Negative position: " + time, 1);
-                CurrentIndex++;
-                continue;
-            }
-            // we remove the comma
-            time = time.mid(2);
             // now we need this uberhack so that we can get a month name from localized version
             // let's hope that month is a word in a middle of string
+            time = time.trimmed();
             QString month_name = time;
             QStringList parts_time = time.split(' ');
             if (parts_time.count() < 3)
