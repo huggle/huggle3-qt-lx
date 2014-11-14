@@ -199,16 +199,16 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
     delete mb;
     return return_value;
     exec:
-        //if (enforce_stop)
-        //{
+        if (enforce_stop)
+        {
             return_value = mb->exec();
             delete mb;
-        //}
-        //else
-        //{
-        //    mb->show();
-        //    mb->deleteLater();
-        //}
+        }
+        else
+        {
+            mb->setAttribute(Qt::WA_DeleteOnClose, true);
+            mb->show();
+        }
         return return_value;
 }
 
