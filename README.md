@@ -92,7 +92,7 @@ sanity check, like documentation or comments, please append [ci skip] to your me
 
 Reporting bugs
 ===============
-Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle
+Please use https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle or https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle
 
 License
 ===============
