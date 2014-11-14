@@ -23,6 +23,7 @@
   <string name="show">Göster</string>
   <string name="undo">Geri al</string>
   <string name="yes">Evet</string>
+  <string name="editing-page">Sayfa düzenleniyor</string>
   <string name="agf">İyi niyetli değişikliği gerekçeyle geri çevir.</string>
   <string name="successful">Başarılı</string>
   <string name="summary">Özet</string>
@@ -374,6 +375,7 @@
   <string name="protect-none">Hiçbiri</string>
   <string name="protect-token">Belirteç (token) alınamadı. Sebep: $1</string>
   <string name="protect-semiprotection">Yarı koruma</string>
+  <string name="protect-error">Sayfa korumaya alınamadı: $1</string>
   <string name="protect-fail-no-info">Sayfa bilgisi bulunamadı (yönetici misiniz?)</string>
   <string name="protect-fullprotection">Tam koruma</string>
   <string name="protect-message-title-fail">Koruma uygulanamıyor</string>
@@ -531,6 +533,7 @@
   <string name="deletelog-fail">$1 için silme kayıtlarına erişilemiyor</string>
   <string name="deletelog-none">$1 için silme kaydı yok</string>
   <string name="deletelog-progress">$1 için silme kaydı alınıyor...</string>
+  <string name="edit-bar-top">Bu düzenleme güncel</string>
   <string name="edit-fail">$1 değiştirilmedi</string>
   <string name="edit-progress">$1 değiştiriliyor...</string>
   <string name="history-fail">$1\'in geçmişine erişilemedi</string>
@@ -583,6 +586,7 @@
   <string name="cr-resolved-same-user">Çakışma düzeltildi: aynı kullanıcı tarafından yapılan ve yeni değişiklikler dahil tüm değişiklikler geri alındı - değişiklikleri yapan kullanıcı: $1</string>
   <string name="cr-stop-new-edit">Çakışma çözüldü: Herhangi bir eylem gerçekleştirilmedi - $1 için yeni değişiklikler var</string>
   <string name="cr-stop-multiple-same">Çakışma düzeltildi: herhangi bir eylem gerçekleştirmeyin - $1 üzerinde aynı kullanıcı tarafından birden fazla değişiklik var</string>
+  <string name="cr-revert-same-user">Çakışma düzeltildi: tüm değişiklikleri geri al - Aynı kullanıcının $1\'e yaptığı birçok düzenleme var</string>
   <string name="cr-message-same">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>

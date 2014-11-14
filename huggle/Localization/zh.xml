@@ -110,6 +110,8 @@
   <string name="config-watchlist">添加到监视列表</string>
   <string name="config-defaultsummary">默认为手工编辑摘要</string>
   <string name="config-undosummary">撤销自身编辑的默认编辑摘要</string>
+  <string name="config-confirm-us">需要确认以回退在用户名字空间做出的编辑</string>
+  <string name="config-confirm-wl">需要确认以回退白名单用户做出的编辑</string>
   <string name="config-confirmmultiple">同一用户的多个贡献时确认历史版本</string>
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
   <string name="config-confirmselfrevert">回退自身编辑时确认历史版本</string>
@@ -142,7 +144,7 @@
   <string name="config-notify-beta">如果可用，检查测试版本</string>
   <string name="delete-title">删除$1</string>
   <string name="delete-reason">原因:</string>
-  <string name="delete-deletionlog">删除日志:</string>
+  <string name="delete-deletionlog">删除日志：</string>
   <string name="delete-rem-talk">删除相关的讨论页</string>
   <string name="delete-notify">通知创建者</string>
   <string name="delete-error-token">错误：检索删除令牌失败。原因：$1</string>
@@ -161,6 +163,7 @@
   <string name="historyform-not-latest-tip">这不是此页面的最新版本——确信您复核了更新版本。也请时刻保持注意此处回退可能不可行。</string>
   <string name="history-error-message-title">无法撤消</string>
   <string name="history-error">此项不能撤销。此页面可能已同时更新或删除，且Huggle当前无法执行撤销。如果您仍希望撤销，您需要通过MediaWiki界面手动进行。</string>
+  <string name="history-failure">无法检索历史</string>
   <string name="userhistory-title">您的更改历史</string>
   <string name="irc-connected">$1：已连接IRC最近更新订阅</string>
   <string name="irc-connecting">尝试在$1连接IRC最近更改，这将花费几分钟……</string>
@@ -211,7 +214,7 @@
   <string name="login-progress-user">检查$1的用户配置</string>
   <string name="login-progress-user-info">检查$1的用户信息</string>
   <string name="login-progress-whitelist">获取白名单...</string>
-  <string name="login-ssl">使用HTTPS（需要openssl）</string>
+  <string name="login-ssl">使用 HTTPS（需要 OpenSSL）</string>
   <string name="login-fail">登录$1失败</string>
   <string name="login-error-admin">这个计划上需要管理员权限才能使用Huggle。</string>
   <string name="login-error-age">这个计划上要求你的账户注册至少$1天才能使用Huggle。</string>
@@ -253,7 +256,7 @@
   <string name="main-system-abort">中止</string>
   <string name="main-system-change-provider">更改提供程序</string>
   <string name="main-system-change-provider-irc">IRC</string>
-  <string name="main-system-change-provider-wiki">wiki</string>
+  <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">退出</string>
   <string name="main-tools-scoreword-list">显示scorewords的列表</string>
   <string name="main-queue">队列</string>
@@ -531,6 +534,7 @@
   <string name="deletelog-fail">无法获得$1的删除日志</string>
   <string name="deletelog-none">没有删除$1的日志</string>
   <string name="deletelog-progress">获取$1的删除日志</string>
+  <string name="edit-bar-top">此编辑是最近修订</string>
   <string name="edit-fail">未编辑$1</string>
   <string name="edit-progress">编辑$1中…</string>
   <string name="history-fail">获取$1历史失败</string>
@@ -583,6 +587,7 @@
   <string name="cr-resolved-same-user">冲突已解决：回退包含新编辑在内所有编辑，由同一用户做出：$1</string>
   <string name="cr-stop-new-edit">冲突已解决：不执行任何操作——有对$1的更新编辑</string>
   <string name="cr-stop-multiple-same">冲突已解决：不执行任何操作——同一用户多次编辑$1</string>
+  <string name="cr-revert-same-user">冲突已解决：回退所有编辑——同一用户对$1的多次编辑</string>
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>

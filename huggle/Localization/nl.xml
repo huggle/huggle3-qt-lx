@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Nederlands (Dutch)</string>
+  <string name="isrtl">onwaar</string>
   <string name="add">Toevoegen</string>
   <string name="cancel">Annuleren</string>
   <string name="clear">Leegmaken</string>
@@ -22,6 +23,7 @@
   <string name="show">Weergeven</string>
   <string name="undo">Ongedaan maken</string>
   <string name="yes">Ja</string>
+  <string name="editing-page">Pagina bewerken</string>
   <string name="successful">Succesvol</string>
   <string name="summary">Samenvatting</string>
   <string name="id">Nummer</string>
@@ -39,13 +41,17 @@
   <string name="status">Status</string>
   <string name="link">Koppeling</string>
   <string name="reason">Reden</string>
+  <string name="diffid">DiffID</string>
   <string name="expiry-time">Vervaltijd</string>
   <string name="duration">Duur</string>
   <string name="no-token">Geen token</string>
+  <string name="flags">Markeringen</string>
   <string name="score-score">Score</string>
   <string name="score-word">Woord</string>
+  <string name="score-range">Bereik</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
   <string name="about-contributors">Gebruikers:</string>
+  <string name="block-not">Gebruiker is niet geblokkeerd</string>
   <string name="block-title">Blokkeer $1</string>
   <string name="block-reason">Reden:</string>
   <string name="block-duration">Duur:</string>
@@ -64,12 +70,13 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="block-type">Blokkeren / deblokkeren</string>
   <string name="block-admin">Blokkerende moderator</string>
   <string name="block-none">Er is geen gebruiker te blokkeren.</string>
+  <string name="config-function">Functie</string>
   <string name="config-description">Beschrijving</string>
   <string name="config-shortcut">Snelkoppeling</string>
   <string name="config-summ">Gepersonaliseerde terugdraaisamenvattingen voor sjablonen</string>
   <string name="config-title">Opties</string>
   <string name="config-openinbrowser">Browserlinks in een nieuw venster openen</string>
-  <string name="config-shownewedits">Toon nieuwe bewerkingen op de geselecteerde pagina gelijk als ze zijn gemaakt</string>
+  <string name="config-shownewedits">Nieuwe bewerkingen op de geselecteerde pagina gelijk  weergeven als ze zijn gemaakt</string>
   <string name="config-ircmode">Gebruik IRC voor de recente wijzigingen, indien mogelijk</string>
   <string name="config-ircport">IRC-poort</string>
   <string name="config-difffontsize">Lettergrootte van diffs</string>
@@ -167,6 +174,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-revision-previous">Vorige</string>
   <string name="main-revision-next">Volgende</string>
   <string name="main-tools">Hulpmiddelen</string>
+  <string name="main-page-next">Volgende</string>
   <string name="main-page-watch">Volgen</string>
   <string name="main-page-unwatch">Niet volgen</string>
   <string name="main-page-purge">Vernieuwen</string>
@@ -236,6 +244,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="update-title">Nieuwe versie beschikbaar</string>
   <string name="updater-title">Nieuwe versie van Huggle is beschikbaar</string>
   <string name="updater-open-manualdownloadpage">Downloadpagina openen</string>
+  <string name="updater-close">Sluiten</string>
   <string name="updater-disable-notify">Updates uitschakelen</string>
   <string name="userinfo-generic">Gebruikersinformatie</string>
   <string name="shortcut-my-talk">Mijn overlegpagina</string>
@@ -253,5 +262,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="error-noresponse">Geen antwoord</string>
   <string name="error-pagemissing">De pagina bestaat niet</string>
   <string name="error-unknown">Onbekende fout</string>
+  <string name="speedy-finished">Voltooid</string>
   <string name="logs-widget-name">Systeemlogboek</string>
+  <string name="wait">Een ogenblik geduld...</string>
 </resources>

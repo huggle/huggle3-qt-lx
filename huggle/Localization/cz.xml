@@ -145,7 +145,7 @@
   <string name="historyform-retrieving-history">Stahuji historii</string>
   <string name="historyform-not-latest-tip">To není poslední revize této stránky - ujistěte se, že jste shledli novější verze. Prosím také mějte na paměti, že rollback nemusi byt možny z teto revize.</string>
   <string name="history-error-message-title">Nelze vrátit</string>
-  <string name="history-error">Tuto položku nelze vrátit zpět, stránka byla změněna nebo odstraněna a huggle jí už nemůže obnovit z tohoto bodu. Pokud jí chcete opravdu vrátit, musíte to udělat ručně pomocí MediaWiki rozhraní.</string>
+  <string name="history-error">Tuto položku nelze vrátit zpět. Stránka mohla být změněna nebo odstraněna a huggle ji z tohoto bodu už nemůže obnovit. Pokud ji opravdu chcete vrátit, musíte to udělat ručně pomocí rozhraní MediaWiki.</string>
   <string name="userhistory-title">Historie vašich změn</string>
   <string name="irc-connected">$1: Připojen k serveru IRC</string>
   <string name="irc-connecting">$1: Pokouším se připojit k IRC serveru...</string>
