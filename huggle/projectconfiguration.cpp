@@ -34,6 +34,9 @@ ProjectConfiguration::ProjectConfiguration(QString project_name)
                  << "October"
                  << "November"
                  << "December";
+
+    this->Parser_Date_Suffix << "(CET)" << "(UTC)" << "(CEST)";
+
     // defaults
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
@@ -53,7 +56,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
 {
     Version version(HuggleParser::ConfigurationParse("min-version", config, "3.0.0"));
     Version huggle_version(HUGGLE_VERSION);
-    if (&huggle_version < &version)
+    if (huggle_version < version)
     {
         if (reason)
             *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version.ToString() + " or newer.";
@@ -66,6 +69,9 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
     this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
     this->ReportAIV = HuggleParser::ConfigurationParse("aiv", config);
     this->ReportSt = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
+    // we use these to understand which format they use on a wiki for dates
+    this->Parser_Date_Suffix = HuggleParser::ConfigurationParse_QL("parser-date-suffix", config, this->Parser_Date_Suffix, true);
+    this->Parser_Date_Prefix = HuggleParser::ConfigurationParse("parser-date-prefix", config, this->Parser_Date_Prefix);
     this->IPVTemplateReport = HuggleParser::ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
     this->RUTemplateReport = HuggleParser::ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
     this->ReportDefaultReason = HuggleParser::ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\
