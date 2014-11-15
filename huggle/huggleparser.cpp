@@ -293,7 +293,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             // now we need this uberhack so that we can get a month name from localized version
             // let's hope that month is a word in a middle of string
             time = time.trimmed();
-            QString month_name = time;
+            QString month_name = "";
             QStringList parts_time = time.split(' ');
             if (parts_time.count() < 3)
             {
@@ -306,16 +306,23 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             // e.g. dewiki's days end with dot
             if(day.endsWith('.'))
                 day = day.mid(0, day.length() - 1);
-            month_name = parts_time.at(1);
+            // on some wikis months have spaces in name
+            int i = 1;
+            while (i < parts_time.count() - 1)
+            {
+                month_name += parts_time.at(i) + " ";
+                i++;
+            }
+            month_name = month_name.trimmed();
             byte_ht month = HuggleParser::GetIDOfMonth(month_name);
 
              // let's create a new time string from converted one, just to make sure it will be parsed properly
             if (month > 0)
             {
-                time = day + " " + QString::number(month) + " " + parts_time.at(2);
+                time = day + " " + QString::number(month) + " " + parts_time.last();
             } else
             {
-                time = day + " " + parts_time.at(1); + " " + parts_time.at(2);
+                time = day + " " + parts_time.at(1); + " " + parts_time.last();
             }
             QDate date = QDate::fromString(time, "d M yyyy");
             if (!date.isValid())
