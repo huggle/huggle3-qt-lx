@@ -212,16 +212,14 @@ QString HuggleParser::GetKeyFromValue(QString item)
     return item;
 }
 
-static int DateMark(QString page)
+static int DateMark(QString page, WikiSite *site)
 {
-    QStringList marks;
-    marks << "(UTC)" << "(CET)" << "(CEST)";
     int m = 0;
     int position = 0;
     QString mark = "";
-    while (m < marks.count())
+    while (m < site->GetProjectConfig()->Parser_Date_Suffix.count())
     {
-        QString m_ = marks.at(m);
+		QString m_ = site->GetProjectConfig()->Parser_Date_Suffix.at(m);
         if (page.contains(m_))
         {
             int mp = page.lastIndexOf(m_);
@@ -275,7 +273,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
         page = "";
         while (CurrentIndex < sections.count())
         {
-            int dp = DateMark(sections.at(CurrentIndex));
+            int dp = DateMark(sections.at(CurrentIndex), site);
             // we need to find a date in this section
             if (!dp)
             {
@@ -285,25 +283,17 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             }
             QString section = sections.at(CurrentIndex);
             section = section.mid(0, dp).trimmed();
-            if (!section.contains(","))
+            if (!section.contains(site->GetProjectConfig()->Parser_Date_Prefix))
             {
                 // this is some borked date let's remove it
                 CurrentIndex++;
                 continue;
             }
-            QString time = section.mid(section.lastIndexOf(","));
-            if (time.length() < 2)
-            {
-                // what the fuck
-                HUGGLE_DEBUG("Negative position: " + time, 1);
-                CurrentIndex++;
-                continue;
-            }
-            // we remove the comma
-            time = time.mid(2);
+            QString time = section.mid(section.lastIndexOf(site->GetProjectConfig()->Parser_Date_Prefix) + site->GetProjectConfig()->Parser_Date_Prefix.length());
             // now we need this uberhack so that we can get a month name from localized version
             // let's hope that month is a word in a middle of string
-            QString month_name = time;
+            time = time.trimmed();
+            QString month_name = "";
             QStringList parts_time = time.split(' ');
             if (parts_time.count() < 3)
             {
@@ -316,16 +306,23 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             // e.g. dewiki's days end with dot
             if(day.endsWith('.'))
                 day = day.mid(0, day.length() - 1);
-            month_name = parts_time.at(1);
+            // on some wikis months have spaces in name
+            int i = 1;
+            while (i < parts_time.count() - 1)
+            {
+                month_name += parts_time.at(i) + " ";
+                i++;
+            }
+            month_name = month_name.trimmed();
             byte_ht month = HuggleParser::GetIDOfMonth(month_name);
 
              // let's create a new time string from converted one, just to make sure it will be parsed properly
             if (month > 0)
             {
-                time = day + " " + QString::number(month) + " " + parts_time.at(2);
+                time = day + " " + QString::number(month) + " " + parts_time.last();
             } else
             {
-                time = day + " " + parts_time.at(1); + " " + parts_time.at(2);
+                time = day + " " + parts_time.at(1); + " " + parts_time.last();
             }
             QDate date = QDate::fromString(time, "d M yyyy");
             if (!date.isValid())

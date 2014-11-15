@@ -201,6 +201,8 @@ namespace Huggle
             QStringList             Assisted;
             QStringList             Templates;
             QStringList             IgnorePatterns;
+            QString                 Parser_Date_Prefix = ",";
+            QStringList             Parser_Date_Suffix;
             int                     TalkPageWarningScore = -800;
             bool                    GlobalRequired = true;
             // Tagging
