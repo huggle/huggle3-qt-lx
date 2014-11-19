@@ -1322,6 +1322,8 @@ void MainWindow::OnTimerTick0()
                     this->WhitelistQueries[site]->DecRef();
                     this->WhitelistQueries.remove(site);
                 }
+                if (!site->GetProjectConfig()->NewWhitelist.count())
+                    continue;
                 this->WhitelistQueries.insert(site, new WLQuery(site));
                 this->WhitelistQueries[site]->Type = WLQueryType_WriteWL;
                 this->WhitelistQueries[site]->IncRef();
