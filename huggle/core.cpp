@@ -303,14 +303,12 @@ void Core::ExtensionLoad()
             }
         }
 #endif
-        int xx = 0;
-        while (xx < extensions.count())
+        foreach (QString ename, extensions)
         {
-            QString name = extensions.at(xx).toLower();
+            QString name = ename.toLower();
             if (name.endsWith(".so") || name.endsWith(".dll"))
             {
-                name = extensions.at(xx);
-                QPluginLoader *extension = new QPluginLoader(name);
+                QPluginLoader *extension = new QPluginLoader(ename);
                 if (extension->load())
                 {
                     QObject* root = extension->instance();
@@ -319,7 +317,7 @@ void Core::ExtensionLoad()
                         iExtension *interface = qobject_cast<iExtension*>(root);
                         if (!interface)
                         {
-                            Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension");
+                            Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension: " + ename);
                         } else
                         {
                             if (interface->RequestNetwork())
@@ -338,33 +336,31 @@ void Core::ExtensionLoad()
                             if (interface->Register())
                             {
                                 Core::Extensions.append(interface);
-                                Huggle::Syslog::HuggleLogs->Log("Successfully loaded: " + extensions.at(xx));
+                                Huggle::Syslog::HuggleLogs->Log("Successfully loaded: " + ename);
                             }
                             else
                             {
-                                Huggle::Syslog::HuggleLogs->Log("Unable to register: " + extensions.at(xx));
+                                Huggle::Syslog::HuggleLogs->Log("Unable to register: " + ename);
                             }
                         }
                     }
                 } else
                 {
-                    Huggle::Syslog::HuggleLogs->Log("Failed to load (reason: " + extension->errorString() + "): " + extensions.at(xx));
+                    Huggle::Syslog::HuggleLogs->Log("Failed to load (reason: " + extension->errorString() + "): " + ename);
                     delete extension;
                 }
             } else if (name.endsWith(".py"))
             {
 #ifdef HUGGLE_PYTHON
-                name = extensions.at(xx);
-                if (Core::Python->LoadScript(name))
+                if (Core::Python->LoadScript(ename))
                 {
-                    Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + name);
+                    Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + ename);
                 } else
                 {
-                    Huggle::Syslog::HuggleLogs->Log("Failed to load a python script: " + name);
+                    Huggle::Syslog::HuggleLogs->Log("Failed to load a python script: " + ename);
                 }
 #endif
             }
-            xx++;
         }
     } else
     {
