@@ -31,7 +31,7 @@ namespace Huggle
     class WikiUser;
     class EditBarItem;
 
-    class EditBar : public QDockWidget
+    class HUGGLE_EX EditBar : public QDockWidget
     {
             Q_OBJECT
         public:

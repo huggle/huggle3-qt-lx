@@ -30,7 +30,7 @@ namespace Huggle
     class WikiPage;
     class ApiQuery;
     //! Form to report users to UAA
-    class UAAReport : public QDialog
+    class HUGGLE_EX UAAReport : public QDialog
     {
             Q_OBJECT
         public:

@@ -28,7 +28,7 @@ namespace Huggle
      *  this is necessary for options that override the project configuration, because we want to store these, only if they
      *  differ
      */
-    class HuggleOption
+    class HUGGLE_EX HuggleOption
     {
         public:
             HuggleOption(QString name, QVariant value, bool isdefault);

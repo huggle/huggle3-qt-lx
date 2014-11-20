@@ -29,9 +29,9 @@ namespace Huggle
 
     namespace WikiUtil
     {
-        bool IsRevert(QString Summary);
+        HUGGLE_EX bool IsRevert(QString Summary);
         //! Return a localized month for a current wiki
-        QString MonthText(int n);
+        HUGGLE_EX QString MonthText(int n);
         /*!
          * \brief RevertEdit Reverts the edit
          * \param _e Pointer to edit that needs to be reverted
@@ -40,7 +40,7 @@ namespace Huggle
          * \param rollback If rollback feature should be used
          * \return Pointer to api query that executes this revert
          */
-        Collectable_SmartPtr<RevertQuery> RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
+        HUGGLE_EX Collectable_SmartPtr<RevertQuery> RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
         /*!
          * \brief MessageUser Message user
          *
@@ -59,17 +59,17 @@ namespace Huggle
          *
          * \return NULL on error or instance of Huggle::Message in case it's success
          */
-        Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
-                             Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
-                             bool autoremove = true, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
+        HUGGLE_EX Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
+                                       Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
+                                       bool autoremove = true, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
         /*!
          * \brief SanitizeUser removes all invalid or problematic characters from user name
          * \param username Username that is to be fixed
          * \return
          */
-        QString SanitizeUser(QString username);
-        Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false);
-        void FinalizeMessages();
+        HUGGLE_EX QString SanitizeUser(QString username);
+        HUGGLE_EX Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false);
+        HUGGLE_EX void FinalizeMessages();
         /*!
          * \brief EditPage Run a new EditQuery that will edit the page
          *
@@ -83,12 +83,12 @@ namespace Huggle
          * \param section
          * \return New instance of edit query
          */
-        Collectable_SmartPtr<EditQuery> EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                                 QString BaseTimestamp = "", unsigned int section = 0);
-        Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                                 QString BaseTimestamp = "", unsigned int section = 0);
-        ApiQuery *Unwatchlist(WikiPage *page);
-        ApiQuery *Watchlist(WikiPage *page);
+        HUGGLE_EX Collectable_SmartPtr<EditQuery> EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
+                                                           QString BaseTimestamp = "", unsigned int section = 0);
+        HUGGLE_EX Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
+                                                           QString BaseTimestamp = "", unsigned int section = 0);
+        HUGGLE_EX ApiQuery *Unwatchlist(WikiPage *page);
+        HUGGLE_EX ApiQuery *Watchlist(WikiPage *page);
     }
 }
 

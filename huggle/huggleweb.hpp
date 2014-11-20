@@ -31,7 +31,7 @@ namespace Huggle
     class Resources;
 
     //! Web browser
-    class HuggleWeb : public QFrame
+    class HUGGLE_EX HuggleWeb : public QFrame
     {
             Q_OBJECT
         public:

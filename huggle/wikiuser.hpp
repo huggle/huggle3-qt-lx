@@ -27,7 +27,7 @@ namespace Huggle
     class WikiSite;
 
     //! User
-    class WikiUser : public MediaWikiObject
+    class HUGGLE_EX WikiUser : public MediaWikiObject
     {
         public:
             //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list

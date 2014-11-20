@@ -21,8 +21,8 @@ namespace Huggle
     //! Helper functions to convert some items to mediawiki format
     namespace MediaWiki
     {
-        QDateTime   FromMWTimestamp(QString timestamp);
-        QString     ToMWTimestamp(QDateTime DateTime_);
+        HUGGLE_EX QDateTime   FromMWTimestamp(QString timestamp);
+        HUGGLE_EX QString     ToMWTimestamp(QDateTime DateTime_);
     }
 }
 

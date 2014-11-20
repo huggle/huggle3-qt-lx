@@ -56,7 +56,7 @@ namespace Huggle
     };
 
     //! Project configuration, each project needs to have own instance of this
-    class ProjectConfiguration
+    class HUGGLE_EX ProjectConfiguration
     {
         public:
             ProjectConfiguration(QString project_name);

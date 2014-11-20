@@ -62,7 +62,7 @@ namespace Huggle
     //! That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
-    class Query : public Collectable
+    class HUGGLE_EX Query : public Collectable
     {
         public:
             //! We need to have a shared manager for all queries

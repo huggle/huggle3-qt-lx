@@ -57,7 +57,7 @@ namespace Huggle
 
     //! Every object must be derived from Collectable, otherwise it
     //! must not be handled by garbage collector
-    class GC
+    class HUGGLE_EX GC
     {
         public:
             /*!

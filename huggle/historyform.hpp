@@ -36,7 +36,7 @@ namespace Huggle
     //! It contains some meta information about page history that can be shared with
     //! other classes that needs to use it. It exists so that we don't need to
     //! download a page history multiple times.
-    class WikiPageHistoryItem : public MediaWikiObject
+    class HUGGLE_EX WikiPageHistoryItem : public MediaWikiObject
     {
         public:
             //! Name of a page that we have this history item for

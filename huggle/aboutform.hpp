@@ -24,7 +24,7 @@ namespace Ui
 namespace Huggle
 {
     //! Form that can be displayed from help menu, should list all developers
-    class AboutForm : public QDialog
+    class HUGGLE_EX AboutForm : public QDialog
     {
             Q_OBJECT
         public:

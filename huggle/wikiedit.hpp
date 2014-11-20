@@ -72,7 +72,7 @@ namespace Huggle
     //!                 were downloaded using separate queries, in this phase the edit
     //!                 structure contains all possible needed information we want.
     //! \image html ../documentation/providers.png
-    class WikiEdit : public Collectable
+    class HUGGLE_EX WikiEdit : public Collectable
     {
         public:
             //! This function will return a constant (which needs to be generated runtime)

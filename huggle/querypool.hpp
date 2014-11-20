@@ -28,7 +28,7 @@ namespace Huggle
 
     //! Not every query is contained here, only these that are managed by something
     //! it's generally a good idea to insert every query to this pool
-    class QueryPool
+    class HUGGLE_EX QueryPool
     {
         public:
             static QueryPool *HugglePool;

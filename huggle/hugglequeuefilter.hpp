@@ -32,7 +32,7 @@ namespace Huggle
     class WikiEdit;
 
     //! Filter that can be applied to edit queue
-    class HuggleQueueFilter : public MediaWikiObject
+    class HUGGLE_EX HuggleQueueFilter : public MediaWikiObject
     {
         public:
             static QList<HuggleQueueFilter*> Filters;

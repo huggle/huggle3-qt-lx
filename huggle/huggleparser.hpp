@@ -35,13 +35,13 @@ namespace Huggle
          * \param missing Default value in case this key is missing in text
          * \return Value of key, in case there is no such a key content of missing is returned
          */
-        QString ConfigurationParse(QString key, QString content, QString missing = "");
+        HUGGLE_EX QString ConfigurationParse(QString key, QString content, QString missing = "");
         //! \todo This function needs a unit test
-        QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
+        HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
-        QString GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
+        HUGGLE_EX QString GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
-        QString GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf);
+        HUGGLE_EX QString GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
@@ -52,34 +52,34 @@ namespace Huggle
          * \param CS Whether the values are separated by comma only (if this is set to true there can be more items on a line)
          * \return List of values from text or empty list
          */
-        QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
+        HUGGLE_EX QStringList ConfigurationParse_QL(QString key, QString content, bool CS = false);
         //! \todo This function needs a unit test
-        QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
+        HUGGLE_EX QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
         //! \todo This function needs a unit test
-        QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
+        HUGGLE_EX QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
         //! \todo This function needs a unit test
-        QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
+        HUGGLE_EX QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
         /*!
          * \brief GetIDOfMonth retrieve a month based on list of localized months in configuration file
          * \param month
          * \return If there is no such a month this function will return negative number
          */
-        byte_ht GetIDOfMonth(QString month);
+        HUGGLE_EX byte_ht GetIDOfMonth(QString month);
         //! \todo This function needs a unit test
         //! Parse a part patterns for score words
-        void ParsePats(QString text);
+        HUGGLE_EX void ParsePats(QString text);
         //! \todo This function needs a unit test
-        void ParseWords(QString text);
+        HUGGLE_EX void ParseWords(QString text);
         //! \todo This function needs a unit test
-        QString GetValueFromKey(QString item);
+        HUGGLE_EX QString GetValueFromKey(QString item);
         //! \todo This function needs a unit test
-        QString GetKeyFromValue(QString item);
+        HUGGLE_EX QString GetKeyFromValue(QString item);
         /*!
          * \brief Process content of talk page in order to figure which user level they have
          * \param page The content of talk page
          * \return Level
          */
-        byte_ht GetLevel(QString page, QDate bt, Huggle::WikiSite *site = nullptr);
+        HUGGLE_EX byte_ht GetLevel(QString page, QDate bt, Huggle::WikiSite *site = nullptr);
     }
 }
 

@@ -32,7 +32,7 @@ namespace Huggle
     void WikiPageTagsForm_FinishRead(Query *result);
 
     //! Form used to tag page
-    class WikiPageTagsForm : public QDialog
+    class HUGGLE_EX WikiPageTagsForm : public QDialog
     {
             Q_OBJECT
         public:

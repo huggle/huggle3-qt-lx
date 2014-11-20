@@ -35,7 +35,7 @@ namespace Huggle
     class WikiUser;
 
     //! Queue of edits
-    class HuggleQueue : public QDockWidget
+    class HUGGLE_EX HuggleQueue : public QDockWidget
     {
             Q_OBJECT
         public:

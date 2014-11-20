@@ -56,7 +56,7 @@ namespace Huggle
     };
 
     //! This class can be used to execute any kind of api query on any wiki
-    class ApiQuery : public QObject, public Query, public MediaWikiObject
+    class HUGGLE_EX ApiQuery : public QObject, public Query, public MediaWikiObject
     {
             Q_OBJECT
         public:

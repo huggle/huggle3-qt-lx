@@ -33,6 +33,10 @@ typedef char byte_ht;
     #define QT_NO_TRANSLATION
 #endif
 
+#if defined _WIN64 || defined _WIN32
+    #define HUGGLE_WIN
+#endif
+
 // comment this out to disable multithreaded garbage collector
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
 // is crashing with it only, it means your code suck and need a fix in destructor :))
@@ -66,7 +70,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 
 // this is a nasty workaround that exist because python is written by noobs
 #ifdef HUGGLE_PYTHON
-  #ifdef _WIN32
+  #ifdef HUGGLE_WIN
   // workaround for http://bugs.python.org/issue11566
   // remove at least 8 months after the bug is fixed
   #include <cmath>
@@ -105,11 +109,32 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #ifndef HUGGLE_TIMER
     #define HUGGLE_TIMER                   200
 #endif
+
+#ifndef HUGGLE_EX
+    #ifdef HUGGLE_EXTENSION
+        #ifdef HUGGLE_WIN
+            #define HUGGLE_EX __declspec(dllimport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX
+    #ifdef HUGGLE_LIBRARY 
+        #ifdef HUGGLE_WIN
+            #define HUGGLE_EX __declspec(dllexport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX
+    #define HUGGLE_EX
+#endif
+
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
     #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
-#elif _WIN32
+#elif HUGGLE_WIN
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows"
 #elif defined HUGGLE_MACX
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "mac"

@@ -23,7 +23,7 @@ namespace Huggle
 {
     class HuggleFeed;
     //! Namespace (mediawiki)
-    class WikiPageNS
+    class HUGGLE_EX WikiPageNS
     {
         public:
             WikiPageNS(int id, QString name, QString canonical_name);

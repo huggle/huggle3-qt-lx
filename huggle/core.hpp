@@ -39,7 +39,7 @@ namespace Huggle
     class iExtension;
 
     //! Override of qapplication so that we can reimplement notify
-    class HgApplication : public QApplication
+    class HUGGLE_EX HgApplication : public QApplication
     {
         public:
             HgApplication(int& argc, char** argv) : QApplication(argc, argv) {}
@@ -56,7 +56,7 @@ namespace Huggle
      * core (in order to hook up into huggle internals) would get these memory addresses and can update these
      * static pointers which it has inside of its own domain, there is no other better way I know how to handle that
      */
-    class Core
+    class HUGGLE_EX Core
     {
         public:
             static void ExceptionHandler(Exception *exception);

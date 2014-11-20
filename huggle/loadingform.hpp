@@ -31,7 +31,7 @@ namespace Huggle
     };
 
     //! Working form that is used for tasks that needs to perform multiple simultaneous things in same time
-    class LoadingForm : public QDialog
+    class HUGGLE_EX LoadingForm : public QDialog
     {
             Q_OBJECT
         public:

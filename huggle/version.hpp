@@ -24,7 +24,7 @@ namespace Huggle
     };
 
     //! This class can be used to store various versions and compare them
-    class Version
+    class HUGGLE_EX Version
     {
         public:
             static bool IsValid(QString version);

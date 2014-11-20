@@ -25,7 +25,7 @@
 
 namespace Huggle
 {
-    class Profiler
+    class HUGGLE_EX Profiler
     {
         public:
             static void Reset();

@@ -44,7 +44,7 @@ namespace Huggle
     };
 
     //! This is similar to query, just it's more simple, you can use it to deliver messages to users
-    class Message : public Collectable
+    class HUGGLE_EX Message : public Collectable
     {
         public:
             //! Creates a new instance of message class that is used to deliver a message to users

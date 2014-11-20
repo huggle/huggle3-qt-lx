@@ -25,10 +25,9 @@ namespace Huggle
     //! Scorewords form
 
     //! This form should display a list of score words
-    class ScoreWordsDbForm : public QDialog
+    class HUGGLE_EX ScoreWordsDbForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit ScoreWordsDbForm(QWidget *parent = nullptr);
             ~ScoreWordsDbForm();

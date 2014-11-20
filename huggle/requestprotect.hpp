@@ -32,10 +32,9 @@ namespace Huggle
     class ApiQuery;
 
     //! This can be used to request protection of a page
-    class RequestProtect : public QDialog
+    class HUGGLE_EX RequestProtect : public QDialog
     {
-        Q_OBJECT
-
+            Q_OBJECT
         public:
             explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = nullptr);
             ~RequestProtect();

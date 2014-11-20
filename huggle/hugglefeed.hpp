@@ -24,7 +24,7 @@ namespace Huggle
     class WikiEdit;
     class WikiSite;
 
-    class StatisticsBlock
+    class HUGGLE_EX StatisticsBlock
     {
         public:
             StatisticsBlock();
@@ -34,7 +34,7 @@ namespace Huggle
     };
 
     //! Feed provider stub class every provider must be derived from this one
-    class HuggleFeed : public MediaWikiObject
+    class HUGGLE_EX HuggleFeed : public MediaWikiObject
     {
         public:
             static QList<HuggleFeed*> Providers;

@@ -35,7 +35,7 @@ namespace Huggle
     /*!
      * \brief The window that is used to report a page for deletion
      */
-    class SpeedyForm : public QDialog
+    class HUGGLE_EX SpeedyForm : public QDialog
     {
             Q_OBJECT
         public:

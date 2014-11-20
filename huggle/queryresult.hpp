@@ -26,7 +26,7 @@ namespace Huggle
 
     //! This is abstract result of every web query, it can be used for API queries as well and their result should be always parsed
     //! using this, instead of native XML parsers so that we can change the API output format while keeping the code unchanged.
-    class QueryResult
+    class HUGGLE_EX QueryResult
     {
         public:
             //! Creates a new instance of query result

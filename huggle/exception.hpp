@@ -40,7 +40,7 @@
 namespace Huggle
 {
     //! Every exception raised by huggle is defined by this class
-    class Exception
+    class HUGGLE_EX Exception
     {
         public:
             /*!
@@ -76,7 +76,7 @@ namespace Huggle
             bool _IsRecoverable;
     };
 
-    class NullPointerException : public Exception
+    class HUGGLE_EX NullPointerException : public Exception
     {
         public:
             NullPointerException(QString name, QString source);

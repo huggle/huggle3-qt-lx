@@ -37,7 +37,7 @@ namespace Huggle
     };
 
     //! Line of log
-    class HuggleLog_Line
+    class HUGGLE_EX HuggleLog_Line
     {
         public:
             HuggleLog_Line(HuggleLog_Line *line);
@@ -51,7 +51,7 @@ namespace Huggle
     //! Provides a logging to various places
 
     //! There is an instance of this class that can be used to log from external modules using same facility
-    class Syslog
+    class HUGGLE_EX Syslog
     {
         public:
             static Syslog *HuggleLogs;
