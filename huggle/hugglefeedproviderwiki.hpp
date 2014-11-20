@@ -29,7 +29,7 @@ namespace Huggle
     class WikiEdit;
 
     //! This is a very simple provider of changes that basically refresh recent changes every 6 seconds
-    class HuggleFeedProviderWiki : public HuggleFeed
+    class HUGGLE_EX HuggleFeedProviderWiki : public HuggleFeed
     {
         public:
             HuggleFeedProviderWiki(WikiSite *site);

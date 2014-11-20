@@ -24,7 +24,7 @@ namespace Ui
 namespace Huggle
 {
     //! A window that contains ignore list
-    class IgnoreList : public QDialog
+    class HUGGLE_EX IgnoreList : public QDialog
     {
             Q_OBJECT
 

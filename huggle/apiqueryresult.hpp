@@ -20,7 +20,7 @@
 namespace Huggle
 {
     //! \todo Currently value is provided even for nodes that shouldn't have it
-    class ApiQueryResultNode
+    class HUGGLE_EX ApiQueryResultNode
     {
           public:
             QString GetAttribute(QString name, QString default_val = "");
@@ -34,7 +34,7 @@ namespace Huggle
     //! this is a universal result class that uses same format for all known
     //! formats we are going to use, including XML or JSON, so that it shouldn't
     //! matter which one we use, we always get this structure as output
-    class ApiQueryResult : public QueryResult
+    class HUGGLE_EX ApiQueryResult : public QueryResult
     {
         public:
             ApiQueryResult();

@@ -87,7 +87,7 @@ namespace Huggle
     class HuggleOption;
 
     //! This is used to handle the shortcuts for the main form
-    class Shortcut
+    class HUGGLE_EX Shortcut
     {
         public:
             Shortcut();
@@ -101,7 +101,7 @@ namespace Huggle
     };
 
     //! Used to store the configuration per extension so that each extension can create own private keys with options
-    class ExtensionConfig
+    class HUGGLE_EX ExtensionConfig
     {
         public:
             void SetOption(QString name, QString value);
@@ -144,7 +144,7 @@ namespace Huggle
 
     //! Temporary config:
     //! Is maintained accross 1 huggle session
-    class Configuration
+    class HUGGLE_EX Configuration
     {
         public:
             //! Return a full url like http://en.wikipedia.org/wiki/

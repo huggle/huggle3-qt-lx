@@ -23,7 +23,7 @@ namespace Huggle
     class MainWindow;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
-    class Hooks
+    class HUGGLE_EX Hooks
     {
         public:
             /*!

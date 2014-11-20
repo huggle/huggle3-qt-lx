@@ -27,7 +27,7 @@ namespace Huggle
 {
     class HuggleQueueFilter;
     //! Preferences window
-    class Preferences : public QDialog
+    class HUGGLE_EX Preferences : public QDialog
     {
             Q_OBJECT
         public:

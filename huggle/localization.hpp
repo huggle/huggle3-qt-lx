@@ -26,7 +26,7 @@ namespace Huggle
     /*!
      * \brief The Language class is used to store localization data
      */
-    class Language
+    class HUGGLE_EX Language
     {
         public:
             //! Creates new instance of language
@@ -46,7 +46,7 @@ namespace Huggle
     //! other 3rd localization system or libraries
     //! is strictly forbidden. Your commits that introduce
     //! those will be reverted mercillesly.
-    class Localizations
+    class HUGGLE_EX Localizations
     {
         public:
             static unsigned int EnglishID;

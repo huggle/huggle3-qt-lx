@@ -46,19 +46,19 @@ namespace Huggle
          * \param b bool
          * \return string
          */
-        QString Bool2String(bool b);
-        bool SafeBool(QString value, bool defaultvalue = false);
+        HUGGLE_EX QString Bool2String(bool b);
+        HUGGLE_EX bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
-        bool ReportPreFlightCheck();
-        int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
+        HUGGLE_EX bool ReportPreFlightCheck();
+        HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
         /*!
          * \brief MessageBox Display a message box
          * \param title Title of message box
          * \param text What is displayed in a message
          */
-        int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
+        HUGGLE_EX int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         //! Display a message box telling user that function is not allowed during developer mode
-        void DeveloperError();
+        HUGGLE_EX void DeveloperError();
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
          * This function can be only used to check the results of query that was created in order to
@@ -72,13 +72,13 @@ namespace Huggle
          * \param reason if there is a failure this is a number of error that happened
          * \return Text of wiki page or error message
          */
-        QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
-                                         QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
-                                         QString *title = nullptr);
+        HUGGLE_EX QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
+                                                   QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
+                                                   QString *title = nullptr);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
-        ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        HUGGLE_EX QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
     }
 }
 

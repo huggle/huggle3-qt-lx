@@ -31,7 +31,7 @@ namespace Huggle
     class HuggleQueue;
 
     //! This is item of queue, it is derived from qt object
-    class HuggleQueueItemLabel : public QFrame
+    class HUGGLE_EX HuggleQueueItemLabel : public QFrame
     {
             Q_OBJECT
         public:

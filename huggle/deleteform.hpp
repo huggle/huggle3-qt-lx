@@ -31,7 +31,7 @@ namespace Huggle
     class WikiUser;
 
     //! This is a delete form
-    class DeleteForm : public QDialog
+    class HUGGLE_EX DeleteForm : public QDialog
     {
             Q_OBJECT
 

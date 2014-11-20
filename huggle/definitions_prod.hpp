@@ -105,6 +105,27 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #ifndef HUGGLE_TIMER
     #define HUGGLE_TIMER                   200
 #endif
+
+#ifndef HUGGLE_EX
+    #ifdef HUGGLE_EXTENSION
+        #ifdef _WIN32
+            #define HUGGLE_EX __declspec(dllimport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX
+    #ifdef HUGGLE_LIBRARY 
+        #ifdef _WIN32
+            #define HUGGLE_EX __declspec(dllexport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX
+    #define HUGGLE_EX
+#endif
+
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"

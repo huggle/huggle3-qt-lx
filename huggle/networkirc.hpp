@@ -34,7 +34,7 @@ namespace Huggle
         class NetworkIrc;
 
         //! Represent a channel on IRC network
-        class Channel
+        class HUGGLE_EX Channel
         {
             public:
                 Channel(QString name);
@@ -54,7 +54,7 @@ namespace Huggle
         /*!
          * \brief The User class represent a user of irc network
          */
-        class User
+        class HUGGLE_EX User
         {
             public:
                 User(QString nick);
@@ -69,7 +69,7 @@ namespace Huggle
         };
 
         //! Represent a message on irc network sent either to a channel or to a user
-        class Message
+        class HUGGLE_EX Message
         {
             public:
                 Message(QString text, User us);
@@ -85,7 +85,7 @@ namespace Huggle
         /*!
          * \brief The NetworkIrc_th class is a network thread for Network Irc
          */
-        class NetworkIrc_th : public QThread
+        class HUGGLE_EX NetworkIrc_th : public QThread
         {
                 Q_OBJECT
             public:
@@ -120,7 +120,7 @@ namespace Huggle
         /*!
          * \brief The NetworkIrc provides connection to IRC servers
          */
-        class NetworkIrc : public QObject
+        class HUGGLE_EX NetworkIrc : public QObject
         {
                 Q_OBJECT
             public:

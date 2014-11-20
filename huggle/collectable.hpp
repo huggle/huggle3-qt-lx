@@ -37,7 +37,7 @@ namespace Huggle
     //! object that has 0 consumers, will be deleted.
 
     //! \image html ../documentation/gc01.png
-    class Collectable
+    class HUGGLE_EX Collectable
     {
         public:
             /*!

@@ -30,7 +30,7 @@ namespace Huggle
     class HuggleFeedProviderIRC;
 
     //! Thread which process the IRC feed
-    class HuggleFeedProviderIRC_t : public QThread
+    class HUGGLE_EX HuggleFeedProviderIRC_t : public QThread
     {
             Q_OBJECT
         public:
@@ -46,7 +46,7 @@ namespace Huggle
     };
 
     //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
-    class HuggleFeedProviderIRC : public HuggleFeed
+    class HUGGLE_EX HuggleFeedProviderIRC : public HuggleFeed
     {
         public:
             HuggleFeedProviderIRC(WikiSite *site);

@@ -21,7 +21,7 @@ namespace Ui
 
 namespace Huggle
 {
-    class EditBarItem : public QFrame
+    class HUGGLE_EX EditBarItem : public QFrame
     {
             Q_OBJECT
         public:

@@ -28,7 +28,7 @@ namespace Huggle
     class WikiSite;
 
     //! Whitelist query :o
-    class WLQuery : public QObject, public MediaWikiObject, public Query
+    class HUGGLE_EX WLQuery : public QObject, public MediaWikiObject, public Query
     {
             Q_OBJECT
         public:

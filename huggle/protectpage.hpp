@@ -34,7 +34,7 @@ namespace Huggle
     /*!
      * \brief The ProtectPage class display a window where user can protect a page given they have the permissions to do that
      */
-    class ProtectPage : public QDialog
+    class HUGGLE_EX ProtectPage : public QDialog
     {
             Q_OBJECT
         public:
