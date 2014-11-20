@@ -25,10 +25,9 @@ namespace Huggle
     //! Session info
 
     //! Display which user, project, what rights and flags your session have
-    class SessionForm : public QDialog
+    class HUGGLE_EX SessionForm : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit SessionForm(QWidget *parent = nullptr);
             ~SessionForm();

@@ -19,7 +19,7 @@
 namespace Huggle
 {
     //! Embedded resource files
-    class Resources
+    class HUGGLE_EX Resources
     {
         public:
             static void Init();

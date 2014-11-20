@@ -36,7 +36,7 @@ namespace Huggle
      * is stored in a list of these pending warnings and periodically checked using timer. If it's finished it's
      * removed, if it's not then it is checked and something is done with it.
      */
-    class PendingWarning
+    class HUGGLE_EX PendingWarning
     {
         public:
             static QList<PendingWarning*> PendingWarnings;
@@ -63,9 +63,9 @@ namespace Huggle
          * \param Report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
-        PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
+        HUGGLE_EX PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
         //! This sends a warning to user no matter if they should receive it or not
-        void ForceWarn(int Level, WikiEdit *Edit);
+        HUGGLE_EX void ForceWarn(int Level, WikiEdit *Edit);
         //! Checks all warnings that weren't sent and try to send them
 
         //! This is used on talk pages of users which changed while we tried to send them a warning

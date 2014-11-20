@@ -33,7 +33,7 @@ namespace Huggle
     class WikiEdit;
     class ApiQuery;
 
-    class UserInfoFormHistoryItem : public MediaWikiObject
+    class HUGGLE_EX UserInfoFormHistoryItem : public MediaWikiObject
     {
         public:
             QString  Page;
@@ -49,7 +49,7 @@ namespace Huggle
      * \brief The UserinfoForm class is a widget that displays the information about user
      * including their history and some other information about the user
      */
-    class UserinfoForm : public QDockWidget
+    class HUGGLE_EX UserinfoForm : public QDockWidget
     {
             Q_OBJECT
         public:

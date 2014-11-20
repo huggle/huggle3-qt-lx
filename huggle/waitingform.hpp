@@ -23,7 +23,7 @@ namespace Ui
 namespace Huggle
 {
     //! This is universal form that is just displaying the progress bar and reason why we need to wait
-    class WaitingForm : public QDialog
+    class HUGGLE_EX WaitingForm : public QDialog
     {
             Q_OBJECT
 

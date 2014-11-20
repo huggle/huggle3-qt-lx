@@ -37,7 +37,7 @@ namespace Huggle
     class Version;
 
     //! User configuration, for a user per project
-    class UserConfiguration
+    class HUGGLE_EX UserConfiguration
     {
         public:
             UserConfiguration();

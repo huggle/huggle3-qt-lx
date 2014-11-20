@@ -34,7 +34,7 @@ namespace Huggle
     class BlockUser;
 
     //! Report user
-    class ReportUser : public QDialog
+    class HUGGLE_EX ReportUser : public QDialog
     {
             Q_OBJECT
         public:

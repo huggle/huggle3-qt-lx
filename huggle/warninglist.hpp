@@ -26,10 +26,9 @@ namespace Huggle
 {
     class WikiEdit;
     //! Widget that allows user to pick a warning to send to user
-    class WarningList : public QDialog
+    class HUGGLE_EX WarningList : public QDialog
     {
             Q_OBJECT
-
         public:
             explicit WarningList(WikiEdit *edit, QWidget *parent = nullptr);
             ~WarningList();
