@@ -153,7 +153,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define __FILE__ "{unknown}"
 #endif
 
-#define HUGGLE_FILE_LINE QString("@") + __FILE__ + ":" + __LINE__
+#define HUGGLE_FILE_LINE QString("@") + QString(__FILE__) + QString(":") + QString(__LINE__)
 
 #ifndef BOOST_CURRENT_FUNCTION
     #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600))
