@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::TopDockWidgetArea, this->wEditBar);
     this->wEditBar->hide();
     this->preferencesForm = nullptr;
-    this->aboutForm = new AboutForm(this);
+    this->aboutForm = nullptr;
     this->ui->actionDisplay_bot_data->setChecked(hcfg->UserConfig->HAN_DisplayBots);
     this->ui->actionDisplay_user_data->setChecked(hcfg->UserConfig->HAN_DisplayUser);
     this->ui->actionDisplay_user_messages->setChecked(hcfg->UserConfig->HAN_DisplayUserTalk);
@@ -1138,6 +1138,9 @@ void MainWindow::on_actionContents_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
+    if (!this->aboutForm)
+        this->aboutForm = new AboutForm(this);
+
     this->aboutForm->show();
 }
 

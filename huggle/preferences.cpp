@@ -564,6 +564,6 @@ void Huggle::Preferences::on_cbSites_currentIndexChanged(int index)
 
 void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
 {
-    this->Site->UserConfig->QueueID = index;
+    this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
     Core::HuggleCore->Main->Queue1->Filters();
 }
