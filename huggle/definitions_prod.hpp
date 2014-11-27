@@ -143,21 +143,33 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #endif
 
 // stolen from boost/current_function.hpp
+// enhanced by Petr Bena, keep the enhancement in case you wanted to update this
+
+#ifndef __LINE__
+    #define __LINE__ 0
+#endif
+
+#ifndef __FILE__
+    #define __FILE__ "{unknown}"
+#endif
+
+#define HUGGLE_FILE_LINE QString("@") + __FILE__ + ":" + __LINE__
+
 #ifndef BOOST_CURRENT_FUNCTION
     #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600))
-        #define BOOST_CURRENT_FUNCTION __PRETTY_FUNCTION__
+        #define BOOST_CURRENT_FUNCTION QString(__PRETTY_FUNCTION__) + HUGGLE_FILE_LINE
     #elif defined(__DMC__) && (__DMC__ >= 0x810)
-        #define BOOST_CURRENT_FUNCTION __PRETTY_FUNCTION__
+        #define BOOST_CURRENT_FUNCTION QString(__PRETTY_FUNCTION__) + HUGGLE_FILE_LINE
     #elif defined(__FUNCSIG__)
-        #define BOOST_CURRENT_FUNCTION __FUNCSIG__
+        #define BOOST_CURRENT_FUNCTION QString(__FUNCSIG__) + HUGGLE_FILE_LINE
     #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
-        #define BOOST_CURRENT_FUNCTION __FUNCTION__
+        #define BOOST_CURRENT_FUNCTION QString(__FUNCTION__) + HUGGLE_FILE_LINE
     #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
-        #define BOOST_CURRENT_FUNCTION __FUNC__
+        #define BOOST_CURRENT_FUNCTION QString(__FUNC__) + HUGGLE_FILE_LINE
     #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
-        #define BOOST_CURRENT_FUNCTION __func__
+        #define BOOST_CURRENT_FUNCTION QString(__func__) + HUGGLE_FILE_LINE
     #else
-        #define BOOST_CURRENT_FUNCTION "(unknown)"
+        #define BOOST_CURRENT_FUNCTION QString("(unknown)") + HUGGLE_FILE_LINE
     #endif
 #endif
 
