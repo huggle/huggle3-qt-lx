@@ -86,7 +86,6 @@ void Core::Init()
     // despite it will fail more to detect vandals. Keep it low but precise enough!!
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
                                                                     << "?" << "/" << "<" << ">" << "[" << "]";
-    HuggleQueueFilter::Filters.append(HuggleQueueFilter::DefaultFilter);
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
 #ifdef HUGGLE_PYTHON
@@ -450,6 +449,7 @@ void Core::Shutdown()
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
+    HuggleQueueFilter::Delete();
     GC::gc = nullptr;
     this->gc = nullptr;
     delete Configuration::HuggleConfiguration;

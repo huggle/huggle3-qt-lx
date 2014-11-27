@@ -19,7 +19,23 @@
 using namespace Huggle;
 
 HuggleQueueFilter *HuggleQueueFilter::DefaultFilter = new HuggleQueueFilter();
-QList<HuggleQueueFilter*> HuggleQueueFilter::Filters;
+QHash<WikiSite*,QList<HuggleQueueFilter*>*> HuggleQueueFilter::Filters;
+
+void HuggleQueueFilter::Delete()
+{
+    foreach (QList<HuggleQueueFilter*>*list, Filters)
+    {
+        while(list->count() > 0)
+        {
+            if (list->at(0) != DefaultFilter)
+                delete list->at(0);
+            list->removeAt(0);
+        }
+        delete list;
+    }
+    delete DefaultFilter;
+    Filters.clear();
+}
 
 HuggleQueueFilter::HuggleQueueFilter()
 {

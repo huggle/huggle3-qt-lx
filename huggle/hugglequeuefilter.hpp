@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QString>
+#include <QHash>
 #include <QList>
 #include "mediawikiobject.hpp"
 
@@ -30,16 +31,19 @@ namespace Huggle
     };
 
     class WikiEdit;
+    class WikiSite;
 
     //! Filter that can be applied to edit queue
     class HUGGLE_EX HuggleQueueFilter : public MediaWikiObject
     {
         public:
-            static QList<HuggleQueueFilter*> Filters;
+            static void Delete();
+            static QHash<WikiSite*,QList<HuggleQueueFilter*>*> Filters;
             static HuggleQueueFilter *DefaultFilter;
 
             //! ctr
             HuggleQueueFilter();
+            ~HuggleQueueFilter() { /* not implemented yet :P */ }
             //! Returns true if edit is ok for this filter (that means it is not filtered out)
             //! if this is false the edit should not be processed later
             bool Matches(WikiEdit *edit);

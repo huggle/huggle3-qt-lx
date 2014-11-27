@@ -52,10 +52,11 @@ ProjectConfiguration::~ProjectConfiguration()
     delete this->UAAP;
 }
 
-bool ProjectConfiguration::Parse(QString config, QString *reason)
+bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site)
 {
     Version version(HuggleParser::ConfigurationParse("min-version", config, "3.0.0"));
     Version huggle_version(HUGGLE_VERSION);
+    this->Site = site;
     if (huggle_version < version)
     {
         if (reason)
@@ -273,7 +274,20 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
         this->_revertPatterns.append(QRegExp(this->RevertPatterns.at(xx)));
         xx++;
     }
-    HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, true);
+    if (!HuggleQueueFilter::Filters.contains(site))
+    {
+        HuggleQueueFilter::Filters.insert(site, new QList<HuggleQueueFilter*>());
+    } else
+    {
+        // we need to delete these
+        foreach (HuggleQueueFilter* filter_p, *HuggleQueueFilter::Filters[site])
+            delete filter_p;
+        // flush
+        HuggleQueueFilter::Filters[site]->clear();
+    }
+    HuggleQueueFilter::Filters[site]->clear();
+    HuggleQueueFilter::Filters[site]->append(HuggleQueueFilter::DefaultFilter);
+    (*HuggleQueueFilter::Filters[site]) += HuggleParser::ConfigurationParseQueueList(config, true);
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);
@@ -291,7 +305,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason)
         while (CurrentWarning <= 4)
         {
             QString xx = HuggleParser::ConfigurationParse(type + QString::number(CurrentWarning), config);
-            if (xx != "")
+            if (!xx.isEmpty())
             {
                 this->WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
             }

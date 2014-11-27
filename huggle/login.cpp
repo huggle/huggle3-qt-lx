@@ -436,7 +436,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     query->Process();
 }
 
-void Login::RetrieveGlobalConfig()
+bool Login::RetrieveGlobalConfig()
 {
     if (this->qConfig != nullptr)
     {
@@ -445,30 +445,31 @@ void Login::RetrieveGlobalConfig()
             if (this->qConfig->Result->IsFailed())
             {
                 this->DisplayError(_l("[[login-error-global]]") + ": " + this->qConfig->Result->ErrorMessage);
-                return;
+                return false;
             }
             ApiQueryResultNode *data = this->qConfig->GetApiQueryResult()->GetNode("rev");
             if (data == nullptr)
             {
                 this->DisplayError("Login failed unable to retrieve global config, the api query returned no data");
-                return;
+                return false;
             }
             if (Configuration::HuggleConfiguration->ParseGlobalConfig(data->Value))
             {
                 if (!Configuration::HuggleConfiguration->GlobalConfig_EnableAll)
                 {
                     this->DisplayError(_l("login-error-alldisabled"));
-                    return;
+                    return false;
                 }
                 this->GlobalConfig = true;
                 this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Success);
-                return;
+                return true;
             }
             Syslog::HuggleLogs->DebugLog(data->Value);
             this->qConfig.Delete();
             this->DisplayError(_l("login-error-global"));
+            return false;
         }
-        return;
+        return false;
     }
     //this->loadingForm->ModifyIcon(LOGINFORM_LOGIN, LoadingForm_Icon_Success);
     this->loadingForm->ModifyIcon(this->GlobalRow, LoadingForm_Icon_Loading);
@@ -477,6 +478,7 @@ void Login::RetrieveGlobalConfig()
     this->qConfig->OverrideWiki = Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress;
     this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=Huggle/Config";
     this->qConfig->Process();
+    return false;
 }
 
 void Login::FinishLogin(WikiSite *site)
@@ -571,7 +573,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             if (site->ProjectConfig == nullptr)
                 throw new Huggle::NullPointerException("site->Project", BOOST_CURRENT_FUNCTION);
             QString reason;
-            if (site->ProjectConfig->Parse(value, &reason))
+            if (site->ProjectConfig->Parse(value, &reason, site))
             {
                 if (!site->ProjectConfig->EnableAll)
                 {
@@ -999,8 +1001,8 @@ void Login::OnTimerTick()
     }
     if (!this->Processing)
         return;
-    if (!this->GlobalConfig)
-        this->RetrieveGlobalConfig();
+    if (!this->GlobalConfig && !this->RetrieveGlobalConfig())
+        return;
     // let's check status for every single project
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {

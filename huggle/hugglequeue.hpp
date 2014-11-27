@@ -32,6 +32,7 @@ namespace Huggle
     class HuggleQueueFilter;
     class HuggleQueueItemLabel;
     class WikiEdit;
+    class WikiSite;
     class WikiUser;
 
     //! Queue of edits
@@ -66,11 +67,13 @@ namespace Huggle
             WikiEdit *GetWikiEditByRevID(int RevID, WikiSite *site);
             void Sort();
             void SortItemByEdit(WikiEdit *e);
-            void Trim(int i);
+            void Trim(unsigned int i);
             //! Remove 1 item
             void Trim();
             void Clear();
             void RedrawTitle();
+            WikiSite *CurrentSite();
+            void ChangeSite(WikiSite *site);
             HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
         private slots:
@@ -80,6 +83,7 @@ namespace Huggle
             void ResortItem(QLayoutItem *item, int position = -1);
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
+            WikiSite *Site = nullptr;
             Ui::HuggleQueue *ui;
             bool loading;
     };

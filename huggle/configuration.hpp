@@ -201,10 +201,11 @@ namespace Huggle
             QString           HANMask = "$feed.huggle";
             QByteArray        WebqueryAgent;
             bool              Multiple = false;
+            //! Every site in which the user is currently logged to
             QList<WikiSite *> Projects;
             //! currently selected project
             WikiSite         *Project = nullptr;
-            //! List of projects
+            //! List of projects that are known by huggle
             QList<WikiSite *> ProjectList;
             QStringList       ProjectString;
             //! When this is true most of functions will not work

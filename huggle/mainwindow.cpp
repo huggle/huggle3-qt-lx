@@ -114,7 +114,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->addDockWidget(Qt::TopDockWidgetArea, this->wEditBar);
     this->wEditBar->hide();
-    this->preferencesForm = new Preferences(this);
+    this->preferencesForm = nullptr;
     this->aboutForm = new AboutForm(this);
     this->ui->actionDisplay_bot_data->setChecked(hcfg->UserConfig->HAN_DisplayBots);
     this->ui->actionDisplay_user_data->setChecked(hcfg->UserConfig->HAN_DisplayUser);
@@ -424,6 +424,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
             }
         }
     }
+    this->Queue1->ChangeSite(e->GetSite());
     e->User->Resync();
     this->EditablePage = true;
     Configuration::HuggleConfiguration->ForcedNoEditJump = ForcedJump;
@@ -1124,6 +1125,9 @@ void MainWindow::TriggerWarn()
 
 void MainWindow::on_actionPreferences_triggered()
 {
+    if (this->preferencesForm == nullptr)
+        this->preferencesForm = new Preferences(this);
+
     this->preferencesForm->show();
 }
 

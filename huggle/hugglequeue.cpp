@@ -18,6 +18,7 @@
 #include "syslog.hpp"
 #include "wikipage.hpp"
 #include "wikiuser.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 
@@ -31,7 +32,6 @@ HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hugg
 
 HuggleQueue::~HuggleQueue()
 {
-    delete this->CurrentFilter;
     delete this->ui;
 }
 
@@ -368,13 +368,8 @@ int HuggleQueue::DeleteByScore(long Score)
     return result;
 }
 
-void HuggleQueue::Trim(int i)
+void HuggleQueue::Trim(unsigned int i)
 {
-    if (i < 1)
-    {
-        throw new Huggle::Exception("Parameter i must be greater than 0 in HuggleQueue::Trim(i)", BOOST_CURRENT_FUNCTION);
-    }
-
     while (i > 0)
     {
         Trim();
@@ -404,10 +399,12 @@ void HuggleQueue::Filters()
     this->ui->comboBox->clear();
     int x = 0;
     int id = 0;
-    while (x < HuggleQueueFilter::Filters.count())
+    if (!HuggleQueueFilter::Filters.contains(this->CurrentSite()))
+        throw new Huggle::Exception("The filter list doesn't contain current site", BOOST_CURRENT_FUNCTION);
+    while (x < HuggleQueueFilter::Filters[this->CurrentSite()]->count())
     {
-        HuggleQueueFilter *FilthyFilter = HuggleQueueFilter::Filters.at(x);
-        if (Configuration::HuggleConfiguration->UserConfig->QueueID == FilthyFilter->QueueName)
+        HuggleQueueFilter *FilthyFilter = HuggleQueueFilter::Filters[this->CurrentSite()]->at(x);
+        if (this->CurrentSite()->UserConfig->QueueID == FilthyFilter->QueueName)
         {
             id = x;
         }
@@ -480,6 +477,23 @@ void HuggleQueue::RedrawTitle()
     this->setWindowTitle(_l("main-queue") + "[" + QString::number(this->Items.count()) + "]");
 }
 
+WikiSite *HuggleQueue::CurrentSite()
+{
+    if (this->Site == nullptr)
+        return hcfg->Project;
+    return this->Site;
+}
+
+void HuggleQueue::ChangeSite(WikiSite *site)
+{
+    if (this->Site != site)
+    {
+        // let's switch the list of queues
+        this->Site = site;
+        this->Filters();
+    }
+}
+
 long HuggleQueue::GetScore(int id)
 {
     if (this->ui->itemList->count() - 1 <= id)
@@ -504,11 +518,13 @@ void HuggleQueue::on_comboBox_currentIndexChanged(int index)
 {
     if (!this->loading)
     {
-        if (index > -1 && index < HuggleQueueFilter::Filters.count())
+        if (!HuggleQueueFilter::Filters.contains(this->CurrentSite()))
+            throw new Huggle::Exception("The filter list doesn't contain site", BOOST_CURRENT_FUNCTION);
+        if (index > -1 && index < HuggleQueueFilter::Filters[this->CurrentSite()]->count())
         {
-            this->CurrentFilter = HuggleQueueFilter::Filters.at(index);
+            this->CurrentFilter = HuggleQueueFilter::Filters[this->CurrentSite()]->at(index);
         }
-        Configuration::HuggleConfiguration->UserConfig->QueueID = this->CurrentFilter->QueueName;
+        hcfg->UserConfig->QueueID = this->CurrentFilter->QueueName;
     }
 }
 

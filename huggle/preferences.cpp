@@ -16,6 +16,7 @@
 #include "huggleoption.hpp"
 #include "hugglequeue.hpp"
 #include "localization.hpp"
+#include "wikisite.hpp"
 #include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "ui_preferences.h"
@@ -70,7 +71,11 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int c = 0;
+    this->Site = hcfg->Projects.at(0);
+    foreach (WikiSite *site, hcfg->Projects)
+        this->ui->cbSites->addItem(site->Name);
     this->Reload();
+    this->ui->cbSites->setCurrentIndex(0);
     while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Loading extension info");
@@ -191,19 +196,21 @@ static void SetValue(HuggleQueueFilterMatch matching, QComboBox *item)
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
     {
         return;
     }
-    if (!HuggleQueueFilter::Filters.at(id)->IsChangeable())
+    if (!HuggleQueueFilter::Filters[this->Site]->at(id)->IsChangeable())
     {
         this->Disable();
     } else
     {
         this->EnableQueues();
     }
-    HuggleQueueFilter *f = HuggleQueueFilter::Filters.at(ui->listWidget->currentRow());
+    HuggleQueueFilter *f = HuggleQueueFilter::Filters[this->Site]->at(ui->listWidget->currentRow());
     SetValue(f->getIgnoreBots(), this->ui->cbqBots);
     SetValue(f->getIgnoreNP(), this->ui->cbqNew);
     SetValue(f->getIgnoreWL(), this->ui->cbqWl);
@@ -346,12 +353,14 @@ static HuggleQueueFilterMatch Match(QComboBox *item)
 
 void Huggle::Preferences::on_pushButton_6_clicked()
 {
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
     {
         return;
     }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
     if (!filter->IsChangeable())
     {
         // don't touch a default filter
@@ -384,12 +393,14 @@ void Huggle::Preferences::on_pushButton_5_clicked()
 
 void Huggle::Preferences::on_pushButton_4_clicked()
 {
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters.count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
     {
         return;
     }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters.at(id);
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
     if (!filter->IsChangeable())
     {
         // don't touch a default filter
@@ -402,7 +413,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
         mb.exec();
         return;
     }
-    HuggleQueueFilter::Filters.removeAll(filter);
+    HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
     delete filter;
     this->Disable();
     Core::HuggleCore->Main->Queue1->Filters();
@@ -411,22 +422,34 @@ void Huggle::Preferences::on_pushButton_4_clicked()
 
 void Huggle::Preferences::on_pushButton_3_clicked()
 {
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     HuggleQueueFilter *filter = new HuggleQueueFilter();
-    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters.count());
-    HuggleQueueFilter::Filters.append(filter);
+    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->Site]->count());
+    HuggleQueueFilter::Filters[this->Site]->append(filter);
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();
 }
 
 void Preferences::Reload()
 {
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int c = 0;
+    int d = 0;
+    this->ui->cbDefault->clear();
     this->ui->listWidget->clear();
-    while (c < HuggleQueueFilter::Filters.count())
+    while (c < HuggleQueueFilter::Filters[this->Site]->count())
     {
-        this->ui->listWidget->addItem(HuggleQueueFilter::Filters.at(c)->QueueName);
+        QString name = HuggleQueueFilter::Filters[this->Site]->at(c)->QueueName;
+
+        if (name == this->Site->UserConfig->QueueID)
+            d = c;
+        this->ui->listWidget->addItem(name);
+        this->ui->cbDefault->addItem(name);
         c++;
     }
+    this->ui->cbDefault->setCurrentIndex(d);
 }
 
 void Preferences::Reload2()
@@ -531,4 +554,16 @@ void Huggle::Preferences::on_pushButton_7_clicked()
     this->ui->checkBox_23->setChecked(true);
     this->ui->radioButton_4->setChecked(true);
     this->ui->checkBox_14->setChecked(true);
+}
+
+void Huggle::Preferences::on_cbSites_currentIndexChanged(int index)
+{
+    this->Site = hcfg->Projects.at(index);
+    this->Reload();
+}
+
+void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
+{
+    this->Site->UserConfig->QueueID = index;
+    Core::HuggleCore->Main->Queue1->Filters();
 }

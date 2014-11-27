@@ -100,7 +100,7 @@ namespace Huggle
             void FinishLogin(WikiSite *site);
             void RetrieveWhitelist(WikiSite *site);
             void RetrieveProjectConfig(WikiSite *site);
-            void RetrieveGlobalConfig();
+            bool RetrieveGlobalConfig();
             void RetrieveUserConfig(WikiSite *site);
             void RetrieveUserInfo(WikiSite *site);
             void DeveloperMode();

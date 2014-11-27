@@ -200,9 +200,11 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     }
     configuration_ += "// queues\nqueues:\n";
     int c = 0;
-    while (c < HuggleQueueFilter::Filters.count())
+    if (!HuggleQueueFilter::Filters.contains(Project->Site))
+        throw new Huggle::Exception("There is no such a site in queue filters", BOOST_CURRENT_FUNCTION);
+    while (c < HuggleQueueFilter::Filters[Project->Site]->count())
     {
-        HuggleQueueFilter *fltr = HuggleQueueFilter::Filters.at(c);
+        HuggleQueueFilter *fltr = HuggleQueueFilter::Filters[Project->Site]->at(c);
         c++;
         if (fltr->IsChangeable())
         {
@@ -263,11 +265,9 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     ProjectConfig->ScoreTalk = this->SetOption("score-talk", config, ProjectConfig->ScoreTalk).toInt();
     ProjectConfig->WarningDefs = this->SetUserOptionList("warning-template-tags", config, ProjectConfig->WarningDefs);
     ProjectConfig->BotScore = this->SetOption("score-bot", config, ProjectConfig->BotScore).toInt();
-    if (IsHome)
-    {
-        // we do this only for home wiki
-        HuggleQueueFilter::Filters += HuggleParser::ConfigurationParseQueueList(config, false);
-    }
+    if (!HuggleQueueFilter::Filters.contains(ProjectConfig->Site))
+        throw new Huggle::Exception("There is no such a wiki", BOOST_CURRENT_FUNCTION);
+    (*HuggleQueueFilter::Filters[ProjectConfig->Site]) += HuggleParser::ConfigurationParseQueueList(config, false);
     ProjectConfig->ConfirmMultipleEdits = SafeBool(ConfigurationParse("confirm-multiple", config), ProjectConfig->ConfirmMultipleEdits);
     ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config), ProjectConfig->ConfirmTalk);
     ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config), ProjectConfig->ConfirmOnSelfRevs);
