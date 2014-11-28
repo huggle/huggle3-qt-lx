@@ -627,6 +627,9 @@
           </layout>
          </item>
          <item>
+          <widget class="QTableWidget" name="tableWidget_3"/>
+         </item>
+         <item>
           <spacer name="verticalSpacer_6">
            <property name="orientation">
             <enum>Qt::Vertical</enum>

@@ -87,9 +87,11 @@ namespace Huggle
             void setIgnoreReverts(HuggleQueueFilterMatch value);
             HuggleQueueFilterMatch getIgnore_UserSpace() const;
             void setIgnore_UserSpace(HuggleQueueFilterMatch value);
+            bool IgnoresNS(int ns);
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
+            QHash<int,bool> Namespaces;
         private:
             HuggleQueueFilterMatch Minor;
             HuggleQueueFilterMatch Users;

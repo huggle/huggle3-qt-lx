@@ -15,8 +15,11 @@
 
 #include <QDialog>
 #include <QList>
+#include <QHash>
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
+
+class QCheckBox;
 
 namespace Ui
 {
@@ -50,13 +53,12 @@ namespace Huggle
             void RecordKeys(int row, int column);
             void on_pushButton_7_clicked();
             void on_cbSites_currentIndexChanged(int index);
-
             void on_cbDefault_currentIndexChanged(int index);
-
         private:
             void Reload();
             //! Used to reload shortcuts only
             void Reload2();
+            QHash<QCheckBox*, int> NamespaceBoxes;
             WikiSite *Site;
             bool IgnoreConflicts = false;
             bool RewritingForm = false;

@@ -576,6 +576,21 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->setIgnoreBots(F2B(val));
                     continue;
                 }
+                if (key == "filtered-ns")
+                {
+                    QStringList ns = val.split(",");
+                    foreach (QString namespace_id, ns)
+                    {
+                        if (namespace_id.isEmpty())
+                            continue;
+                        int nsid = namespace_id.toInt();
+                        if (filter->Namespaces.contains(nsid))
+                            filter->Namespaces[nsid] = true;
+                        else
+                            filter->Namespaces.insert(nsid, true);
+                    }
+                    continue;
+                }
                 if (key == "filter-assisted")
                 {
                     filter->setIgnoreFriends(F2B(val));

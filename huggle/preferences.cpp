@@ -61,6 +61,14 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidget_3->setColumnCount(2);
+    header.clear();
+    header << "Namespace" << "Ignore";
+    this->ui->tableWidget_3->setHorizontalHeaderLabels(header);
+    this->ui->tableWidget_3->verticalHeader()->setVisible(false);
+    this->ui->tableWidget_3->setShowGrid(false);
+    this->ui->tableWidget_3->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(this->ui->tableWidget_2, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
 #if QT_VERSION >= 0x050000
 // Qt5 code
@@ -175,6 +183,8 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
 
 Preferences::~Preferences()
 {
+    foreach (QCheckBox *i, this->NamespaceBoxes.keys())
+        delete i;
     delete this->ui;
 }
 
@@ -219,6 +229,8 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreFriends(), this->ui->cbqFrd);
     SetValue(f->getIgnoreReverts(), this->ui->cbqRevert);
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
+    foreach (QCheckBox *cb, this->NamespaceBoxes.keys())
+        cb->setChecked(f->IgnoresNS(this->NamespaceBoxes[cb]));
     this->ui->lineEdit->setText(f->QueueName);
 }
 
@@ -234,6 +246,7 @@ void Preferences::Disable()
     this->ui->pushButton_5->setEnabled(false);
     this->ui->cbqTp->setEnabled(false);
     this->ui->pushButton_6->setEnabled(false);
+    this->ui->tableWidget_3->setEnabled(false);
     this->ui->cbqUserspace->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->ui->cbqWl->setEnabled(false);
@@ -250,6 +263,7 @@ void Preferences::EnableQueues()
     this->ui->cbqRevert->setEnabled(true);
     this->ui->pushButton_4->setEnabled(true);
     this->ui->cbqTp->setEnabled(true);
+    this->ui->tableWidget_3->setEnabled(true);
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
     this->ui->cbqUserspace->setEnabled(true);
@@ -373,6 +387,8 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         mb.exec();
         return;
     }
+    if (this->ui->tableWidget_3->rowCount() != this->Site->NamespaceList.count())
+        throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
     filter->setIgnoreBots(Match(this->ui->cbqBots));
     filter->setIgnoreNP(Match(this->ui->cbqNew));
     filter->setIgnoreWL(Match(this->ui->cbqWl));
@@ -381,6 +397,24 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->setIgnoreTalk(Match(this->ui->cbqTp));
     filter->setIgnoreFriends(Match(this->ui->cbqFrd));
     filter->setIgnore_UserSpace(Match(this->ui->cbqUserspace));
+    int ns = 0;
+    while (ns < this->ui->tableWidget_3->rowCount())
+    {
+        QCheckBox *selected_box = (QCheckBox*)this->ui->tableWidget_3->cellWidget(ns, 1);
+        if (!this->NamespaceBoxes.contains(selected_box))
+            throw new Huggle::Exception("There is no such a box in the ram", BOOST_CURRENT_FUNCTION);
+        if (!this->Site->NamespaceList.contains(this->NamespaceBoxes[selected_box]))
+            throw new Huggle::Exception("There is no such space in site", BOOST_CURRENT_FUNCTION);
+        int nsid = this->NamespaceBoxes[selected_box];
+        if (!filter->Namespaces.contains(nsid))
+        {
+            filter->Namespaces.insert(nsid, selected_box->isChecked());
+        } else
+        {
+            filter->Namespaces[nsid] = selected_box->isChecked();
+        }
+        ns++;
+    }
     filter->QueueName = this->ui->lineEdit->text();
     Core::HuggleCore->Main->Queue1->Filters();
     this->Reload();
@@ -435,6 +469,23 @@ void Preferences::Reload()
 {
     if (!HuggleQueueFilter::Filters.contains(this->Site))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
+    while (this->ui->tableWidget_3->rowCount() > 0)
+        this->ui->tableWidget_3->removeRow(0);
+    foreach (QCheckBox *qb, this->NamespaceBoxes.keys())
+        delete qb;
+    this->NamespaceBoxes.clear();
+    int rw = 0;
+    foreach (WikiPageNS *ms, this->Site->NamespaceList.values())
+    {
+        this->ui->tableWidget_3->insertRow(rw);
+        this->ui->tableWidget_3->setItem(rw, 0, new QTableWidgetItem(ms->GetName()));
+        QCheckBox *Item = new QCheckBox();
+        this->NamespaceBoxes.insert(Item, ms->GetID());
+        this->ui->tableWidget_3->setCellWidget(rw, 1, Item);
+        rw++;
+    }
+    this->ui->tableWidget_3->resizeColumnsToContents();
+    this->ui->tableWidget_3->resizeRowsToContents();
     int c = 0;
     int d = 0;
     this->ui->cbDefault->clear();
