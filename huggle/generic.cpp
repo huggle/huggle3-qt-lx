@@ -76,7 +76,7 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
 {
     if (!failed)
     {
-        throw new Huggle::Exception("failed was NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("bool *failed", BOOST_CURRENT_FUNCTION);
     }
     if (query == nullptr)
     {

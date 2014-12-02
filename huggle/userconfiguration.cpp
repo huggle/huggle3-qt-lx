@@ -171,7 +171,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         if (option == nullptr)
         {
             // this must never happen
-            throw new Huggle::Exception("Option key was nullptr during store", BOOST_CURRENT_FUNCTION);
+            throw new Huggle::NullPointerException("HuggleOption *option", BOOST_CURRENT_FUNCTION);
         }
         if (!option->IsDefault())
         {

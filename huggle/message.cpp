@@ -62,7 +62,7 @@ void Message::RetrieveToken()
 void Message::Send()
 {
     if (!this->User)
-        throw new Huggle::NullPointerException("User", "void Message::Send()");
+        throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
 
     if (this->HasValidEditToken())
     {
@@ -273,7 +273,7 @@ bool Message::FinishToken()
 {
     if (this->qToken == nullptr)
     {
-        throw new Huggle::NullPointerException("qToken must not be NULL in this context", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local ApiQuery qToken", BOOST_CURRENT_FUNCTION);
     }
     if (!this->qToken->IsProcessed())
     {

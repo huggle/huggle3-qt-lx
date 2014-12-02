@@ -60,7 +60,7 @@ void UAAReport::setUserForUAA(WikiUser *user)
 void UAAReport::getPageContents()
 {
     if (this->User == nullptr)
-        throw new Huggle::NullPointerException("this->User", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
     if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
     this->qUAApage = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
@@ -76,7 +76,7 @@ void UAAReport::onTick()
     if (this->User == nullptr)
     {
         this->Timer->stop();
-        throw new Huggle::NullPointerException("this->User", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
     }
     if (this->qUAApage == nullptr || !this->qUAApage->IsProcessed())
         return;

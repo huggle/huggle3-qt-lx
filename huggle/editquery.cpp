@@ -46,7 +46,7 @@ void EditQuery::Process()
 {
     if (this->Page == nullptr)
     {
-        throw new Huggle::NullPointerException("EditQuery::Page", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local Page", BOOST_CURRENT_FUNCTION);
     }
 
     this->Status = StatusProcessing;

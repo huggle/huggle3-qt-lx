@@ -109,9 +109,9 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     this->CurrentEdit = edit;
     this->ui->webView->history()->clear();
     if (edit == nullptr)
-        throw new Huggle::Exception("The edit was NULL in HuggleWeb::DisplayDiff(*edit)", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
     if (edit->Page == nullptr)
-        throw new Huggle::Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("*edit->Page", BOOST_CURRENT_FUNCTION);
     if (edit->NewPage && !edit->Page->Contents.size())
     {
         this->ui->webView->setHtml(_l("browser-load"));

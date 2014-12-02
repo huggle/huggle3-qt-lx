@@ -386,7 +386,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     if (e->Page == nullptr || e->User == nullptr)
     {
-        throw new Huggle::Exception("Page and User must not be nullptr in edit that is supposed to be displayed on form", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiEdit *e->Page || WikiEdit *e->User", BOOST_CURRENT_FUNCTION);
     }
     if (this->OnNext_EvPage != nullptr)
     {
@@ -440,7 +440,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Page == nullptr)
-            throw new Huggle::NullPointerException("CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
+            throw new Huggle::NullPointerException("local CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
 
         this->wEditBar->RemoveAll();
         if (!KeepUser)
@@ -950,7 +950,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         return false;
     }
     if (_e == nullptr)
-        throw new Huggle::Exception("nullptr edit in PreflightCheck(WikiEdit *_e) is not a valid edit");
+        throw new Huggle::NullPointerException("WikiEdit *_e", BOOST_CURRENT_FUNCTION);
     bool Warn = false;
     QString type = "unknown";
     if (hcfg->WarnUserSpaceRoll && _e->Page->IsUserpage())
@@ -1625,7 +1625,7 @@ bool MainWindow::ReconnectIRC(WikiSite *site)
     if (!site->Provider)
     {
         // this is problem
-        throw new Huggle::NullPointerException("site->Provider", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiSite *site->Provider", BOOST_CURRENT_FUNCTION);
     }
     site->Provider->Stop();
     while (!site->Provider->IsStopped())
@@ -1671,7 +1671,7 @@ bool MainWindow::CheckEditableBrowserPage()
         }
     }
     if (this->CurrentEdit->Page == nullptr)
-        throw Huggle::NullPointerException("CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
+        throw Huggle::NullPointerException("local CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
 
     return true;
 }
@@ -2761,7 +2761,7 @@ void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
         return;
 
     if (this->CurrentEdit->Page == nullptr)
-        throw new Huggle::NullPointerException("this->CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
     WikiUtil::Watchlist(this->CurrentEdit->Page);
 }
 
@@ -2771,7 +2771,7 @@ void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
         return;
 
     if (this->CurrentEdit->Page == nullptr)
-        throw new Huggle::NullPointerException("this->CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
     WikiUtil::Unwatchlist(this->CurrentEdit->Page);
 }
 

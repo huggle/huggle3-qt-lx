@@ -75,7 +75,7 @@ void QueryPool::AppendQuery(Query *item)
 void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
-        throw new Huggle::NullPointerException("edit", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
     if (edit->Status == StatusProcessed)
         return;
     if (edit->Status == StatusPostProcessed)

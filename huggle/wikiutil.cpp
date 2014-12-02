@@ -39,7 +39,7 @@ QString WikiUtil::MonthText(int n)
 {
     if (n < 1 || n > 12)
     {
-        throw new Huggle::Exception("Month must be between 1 and 12");
+        throw new Huggle::Exception("Month must be between 1 and 12", BOOST_CURRENT_FUNCTION);
     }
     n--;
     return Configuration::HuggleConfiguration->ProjectConfig->Months.at(n);
@@ -48,11 +48,11 @@ QString WikiUtil::MonthText(int n)
 Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)
 {
     if (_e == nullptr)
-        throw new Huggle::Exception("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit");
+        throw new Huggle::NullPointerException("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit", BOOST_CURRENT_FUNCTION);
     if (_e->User == nullptr)
-        throw new Huggle::Exception("Object user was NULL in Core::Revert");
+        throw new Huggle::NullPointerException("Object user was NULL in Core::Revert", BOOST_CURRENT_FUNCTION);
     if (_e->Page == nullptr)
-        throw new Huggle::Exception("Object page was NULL");
+        throw new Huggle::NullPointerException("Object page was NULL", BOOST_CURRENT_FUNCTION);
 
     Collectable_SmartPtr<RevertQuery> query = new RevertQuery(_e, _e->GetSite());
     if (summary.length())
@@ -154,8 +154,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text,
 {
     if (page == nullptr)
     {
-        throw Huggle::Exception("Invalid page (NULL)", "EditQuery *WikiUtil::EditPage(WikiPage *page, QString text, QString"\
-                                " summary, bool minor, QString BaseTimestamp)");
+        throw Huggle::NullPointerException("WikiPage *page", BOOST_CURRENT_FUNCTION);
     }
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     summary = Configuration::GenerateSuffix(summary, page->GetSite()->GetProjectConfig());
