@@ -93,6 +93,7 @@ namespace Huggle
             explicit MainWindow(QWidget *parent = nullptr);
             ~MainWindow();
             void DisplayReportUserWindow(WikiUser *User = nullptr);
+            WikiEdit *GetCurrentWikiEdit();
             /*!
              * \brief ProcessEdit Will display an edit in huggle window
              * \param e Edit

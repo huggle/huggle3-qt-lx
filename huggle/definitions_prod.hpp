@@ -134,7 +134,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #ifdef __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
     #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
-#elif HUGGLE_WIN
+#elif defined HUGGLE_WIN
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows"
 #elif defined HUGGLE_MACX
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "mac"

@@ -330,9 +330,7 @@ void Message::ProcessSend()
     this->_Status = MessageStatus_SendingMessage;
     if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
-        if (!this->CreateOnly && (this->User->TalkPage_RetrievalTime().addSecs(
-                                  Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness
-                                      ) < QDateTime::currentDateTime()))
+        if (!this->CreateOnly && (this->User->TalkPage_RetrievalTime().addSecs(hcfg->UserConfig->TalkPageFreshness) < QDateTime::currentDateTime()))
         {
             this->Error = Huggle::MessageError_Expired;
             this->_Status = Huggle::MessageStatus_Failed;

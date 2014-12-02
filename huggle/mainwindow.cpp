@@ -372,6 +372,11 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     this->fReportForm->SetUser(User);
 }
 
+WikiEdit *MainWindow::GetCurrentWikiEdit()
+{
+    return this->CurrentEdit.GetPtr();
+}
+
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
 {
     if (e == nullptr || this->ShuttingDown)

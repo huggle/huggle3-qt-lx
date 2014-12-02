@@ -28,7 +28,7 @@ namespace Huggle
 
     //! These ptrs don't need to allocate new manager for every single object that is maintained
     //! by any smart ptr like std ones do, but utilize the single instance GC we use
-    class Collectable_SmartPtr
+    class HUGGLE_EX Collectable_SmartPtr
     {
         public:
             Collectable_SmartPtr();
