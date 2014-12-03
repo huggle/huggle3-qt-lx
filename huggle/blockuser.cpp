@@ -53,7 +53,7 @@ void BlockUser::SetWikiUser(WikiUser *User)
 {
     if (User == nullptr)
     {
-        throw new Huggle::Exception("WikiUser *User can't be NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiUser *User", BOOST_CURRENT_FUNCTION);
     }
     this->user = new WikiUser(User);
     this->ui->comboBox_2->clear();
@@ -251,7 +251,7 @@ void Huggle::BlockUser::on_pushButton_3_clicked()
 void BlockUser::Recheck()
 {
     if (this->qUser == nullptr)
-        throw new Huggle::Exception("user must not be NULLPTR",  BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local ApiQuery qUser",  BOOST_CURRENT_FUNCTION);
     if (this->qUser->IsProcessed())
     {
         ApiQueryResultNode *result = this->qUser->GetApiQueryResult()->GetNode("block");

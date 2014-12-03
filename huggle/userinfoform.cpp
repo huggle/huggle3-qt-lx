@@ -66,7 +66,7 @@ UserinfoForm::~UserinfoForm()
 void UserinfoForm::ChangeUser(WikiUser *user)
 {
     if (user == nullptr)
-        throw new Huggle::NullPointerException("user", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiUser *user", BOOST_CURRENT_FUNCTION);
     if (this->User != nullptr)
         delete this->User;
     // we create a copy of this wiki user so that we ensure it doesn't get deleted meanwhile

@@ -38,7 +38,7 @@ HuggleQueue::~HuggleQueue()
 void HuggleQueue::AddItem(WikiEdit *page)
 {
     if (page == nullptr)
-        throw new Huggle::Exception("WikiEdit *page must not be nullptr", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiEdit *page", BOOST_CURRENT_FUNCTION);
 
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
@@ -304,7 +304,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 {
     if (item == nullptr)
     {
-        throw new Huggle::Exception("HuggleQueueItemLabel *item must not be nullptr in this context", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("HuggleQueueItemLabel *item", BOOST_CURRENT_FUNCTION);
     }
     if (qi != nullptr)
     {
@@ -505,7 +505,7 @@ long HuggleQueue::GetScore(int id)
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     if (!label)
     {
-        throw new Huggle::Exception("label was nullptr", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("label was nullptr", BOOST_CURRENT_FUNCTION);
     }
     if (label->Page == nullptr)
     {

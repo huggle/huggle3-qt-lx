@@ -325,7 +325,7 @@ bool WikiEdit::FinalizePostProcessing()
 QString WikiEdit::GetPixmap()
 {
     if (this->User == nullptr)
-        throw new Huggle::NullPointerException("WikiEdit::User", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
 
     if (this->OwnEdit)
         return ":/huggle/pictures/Resources/blob-me.png";
@@ -469,17 +469,17 @@ void WikiEdit::PostProcess()
         return;
 
     if (this->Page == nullptr)
-        throw new Huggle::NullPointerException("Page", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local WikiPage Page", BOOST_CURRENT_FUNCTION);
     if (this->Status == Huggle::StatusNone)
     {
         Exception::ThrowSoftException("Processing edit to " + this->Page->PageName + "which was requested to be post processed,"\
-                                      " but wasn't processed yet", "void WikiEdit::PostProcess()");
+                                      " but wasn't processed yet", BOOST_CURRENT_FUNCTION);
         QueryPool::HugglePool->PreProcessEdit(this);
     }
     if (this->Status == Huggle::StatusPostProcessed)
-        throw new Huggle::Exception("Unable to post process an edit that is already processed");
+        throw new Huggle::Exception("Unable to post process an edit that is already processed", BOOST_CURRENT_FUNCTION);
     if (this->Status != Huggle::StatusProcessed)
-        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status");
+        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status", BOOST_CURRENT_FUNCTION);
     this->PostProcessing = true;
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
@@ -594,7 +594,7 @@ WikiSite *WikiEdit::GetSite()
     if (this->Page == nullptr)
     {
         // this must never happen
-        throw new Huggle::Exception("NULL site", "WikiSite *WikiEdit::GetSite()");
+        throw new Huggle::NullPointerException("local WikiSite site", BOOST_CURRENT_FUNCTION);
     }
     return this->Page->Site;
 }

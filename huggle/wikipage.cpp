@@ -21,7 +21,7 @@ WikiPage::WikiPage()
     this->PageName = "Unknown page";
     this->Contents = "";
     if (!this->Site)
-        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+        throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
     this->NS = this->Site->Unknown;
 }
 
@@ -31,7 +31,7 @@ WikiPage::WikiPage(const QString &name)
     this->Site = Configuration::HuggleConfiguration->Project;
     this->Contents = "";
     if (!this->Site)
-        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+        throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
     this->NS = this->Site->RetrieveNSFromTitle(this->PageName);
 }
 
