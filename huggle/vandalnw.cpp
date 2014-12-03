@@ -127,7 +127,7 @@ void VandalNw::Good(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
@@ -140,7 +140,7 @@ void VandalNw::Rollback(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
@@ -153,7 +153,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
     if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", BOOST_CURRENT_FUNCTION);
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(Edit->GetSite()))
     {
@@ -166,7 +166,7 @@ void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
 {
     if (user == nullptr)
     {
-        throw new Exception("WikiUser *user was NULL", BOOST_CURRENT_FUNCTION);
+        throw new NullPointerException("WikiUser *user", BOOST_CURRENT_FUNCTION);
     }
     if (!this->Site2Channel.contains(user->GetSite()))
     {

@@ -109,7 +109,7 @@ void GC::Start()
 {
 #ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
-        throw new Huggle::Exception("gc_t can't be NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local GC_t gc_t", BOOST_CURRENT_FUNCTION);
 
     if (this->gc_t->IsStopped())
     {
@@ -124,7 +124,7 @@ void GC::Stop()
 {
 #ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
-        throw new Huggle::Exception("gc_t can't be NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local GC_t gc_t", BOOST_CURRENT_FUNCTION);
 
     if (this->gc_t->IsRunning())
     {
@@ -137,7 +137,7 @@ bool GC::IsRunning()
 {
 #ifdef HUGGLE_USE_MT_GC
     if (this->gc_t == nullptr)
-        throw new Huggle::Exception("gc_t can't be NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local GC_t gc_t", BOOST_CURRENT_FUNCTION);
 
     return (this->gc_t->IsRunning() || !this->gc_t->IsStopped());
 #else

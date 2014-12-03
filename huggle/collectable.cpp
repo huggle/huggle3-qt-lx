@@ -98,8 +98,7 @@ void Collectable::RegisterConsumer(int consumer)
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
     {
         this->Unlock();
-        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const "\
-                                    "int consumer = " +  QString::number(consumer) + ")");
+        throw new Huggle::Exception("You can't reclaim this managed resource", BOOST_CURRENT_FUNCTION);
     }
     if (!this->iConsumers.contains(consumer))
     {
@@ -117,7 +116,7 @@ void Collectable::UnregisterConsumer(int consumer)
         this->Unlock();
         Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
         //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-        //                            "void Collectable::UnregisterConsumer(const int consumer)");
+        //                            BOOST_CURRENT_FUNCTION);
     }
     this->iConsumers.removeOne(consumer);
     this->SetManaged();
@@ -130,8 +129,7 @@ void Collectable::RegisterConsumer(const QString consumer)
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
     {
         this->Unlock();
-        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const"\
-                                    " QString consumer = " + consumer + ")");
+        throw new Huggle::Exception("You can't reclaim this managed resource", BOOST_CURRENT_FUNCTION);
     }
     this->Consumers.append(consumer);
     this->Consumers.removeDuplicates();
@@ -146,7 +144,7 @@ void Collectable::UnregisterConsumer(const QString consumer)
     {
         this->Unlock();
         Huggle::Exception::ThrowSoftException("You are working with class that was already scheduled for collection",
-                                              "void Collectable::UnregisterConsumer(const int consumer)");
+                                              BOOST_CURRENT_FUNCTION);
     }
     this->Consumers.removeOne(consumer);
     this->SetManaged();

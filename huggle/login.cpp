@@ -571,7 +571,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             query->DecRef();
             // since now data may be deleted
             if (site->ProjectConfig == nullptr)
-                throw new Huggle::NullPointerException("site->Project", BOOST_CURRENT_FUNCTION);
+                throw new Huggle::NullPointerException("site->ProjectConfig", BOOST_CURRENT_FUNCTION);
             QString reason;
             if (site->ProjectConfig->Parse(value, &reason, site))
             {

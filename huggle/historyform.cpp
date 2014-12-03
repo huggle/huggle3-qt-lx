@@ -118,7 +118,7 @@ void HistoryForm::Update(WikiEdit *edit)
 void HistoryForm::onTick01()
 {
     if (this->CurrentEdit == nullptr)
-        throw new Huggle::NullPointerException("sp CurrentEdit", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("local WikiEdit CurrentEdit", BOOST_CURRENT_FUNCTION);
 
     if (this->RetrievingEdit && this->RetrievedEdit != nullptr)
     {

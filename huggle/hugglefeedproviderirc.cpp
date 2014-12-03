@@ -315,7 +315,7 @@ void HuggleFeedProviderIRC_t::run()
     if (this->p == nullptr)
     {
         this->Stopped = true;
-        throw new Huggle::Exception("Pointer to parent IRC feed is NULL", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("Pointer to parent IRC feed is NULL", BOOST_CURRENT_FUNCTION);
     }
     // wait until we finish connecting to a network
     while (this->Running && !this->p->Network->IsConnected())

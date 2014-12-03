@@ -168,7 +168,7 @@ WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
 ProjectConfiguration *WikiSite::GetProjectConfig()
 {
     if (this->ProjectConfig == nullptr)
-        throw new Huggle::Exception("There is no project config for this wiki");
+        throw new Huggle::Exception("There is no project config for this wiki", BOOST_CURRENT_FUNCTION);
 
     return this->ProjectConfig;
 }
@@ -176,7 +176,7 @@ ProjectConfiguration *WikiSite::GetProjectConfig()
 UserConfiguration *WikiSite::GetUserConfig()
 {
     if (this->UserConfig == nullptr)
-        throw new Huggle::Exception("There is no user configuration for this wiki");
+        throw new Huggle::Exception("There is no user configuration for this wiki", BOOST_CURRENT_FUNCTION);
     // we can return the local conf now
     return this->UserConfig;
 }

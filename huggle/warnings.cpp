@@ -50,7 +50,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     *Report = false;
     if (Edit == nullptr)
     {
-        throw new Huggle::NullPointerException("Edit", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
     if (Configuration::HuggleConfiguration->Restricted)
     {

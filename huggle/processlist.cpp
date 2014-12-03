@@ -69,7 +69,7 @@ void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
 {
     if (query == nullptr)
     {
-        throw new Huggle::Exception("NULL query", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::NullPointerException("Collectable_SmartPtr<Query> query", BOOST_CURRENT_FUNCTION);
     }
     int size = this->ui->tableWidget->rowCount();
     this->ui->tableWidget->insertRow(size);
