@@ -104,8 +104,7 @@ void NetworkIrc::Disconnect()
     {
         return;
     }
-    this->Data("QUIT :Huggle (" + Huggle::Configuration::HuggleConfiguration->HuggleVersion +
-               "), the anti vandalism software. See #huggle on irc://chat.freenode.net");
+    this->Data("QUIT :Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net");
     this->NetworkSocket->disconnect();
     this->Timer->stop();
     this->NetworkThread->__IsConnecting = false;

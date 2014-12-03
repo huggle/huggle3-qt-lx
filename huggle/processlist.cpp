@@ -128,46 +128,31 @@ void ProcessList::UpdateQuery(Query *query)
 
 bool ProcessList::IsExpired(Query *q)
 {
-    int i = 0;
-    while (i < this->Removed->count())
-    {
-        if ((unsigned int) this->Removed->at(i)->GetID() == q->QueryID())
-        {
+    foreach(ProcessListRemovedItem *item, *this->Removed)
+        if ((unsigned int) item->GetID() == q->QueryID())
             return true;
-        }
-        i++;
-    }
+
     return false;
 }
 
 void ProcessList::RemoveExpired()
 {
     if (this->Removed->count() == 0)
-    {
         return;
-    }
+
     QList<ProcessListRemovedItem*> rm;
-    int i = 0;
-    while (i < this->Removed->count())
+    foreach (ProcessListRemovedItem *item, *this->Removed)
+        if (item->Expired(this->IsDebuged))
+            rm.append(item);
+
+    foreach (ProcessListRemovedItem *item, rm)
     {
-        if (this->Removed->at(i)->Expired(this->IsDebuged))
-        {
-            rm.append(this->Removed->at(i));
-        }
-        i++;
-    }
-    i = 0;
-    while (i<rm.count())
-    {
-        ProcessListRemovedItem *item = rm.at(i);
         this->Removed->removeOne(item);
         int row = this->GetItem(item->GetID());
         if (row != -1)
-        {
             this->ui->tableWidget->removeRow(row);
-        }
+
         delete item;
-        i++;
     }
 }
 
