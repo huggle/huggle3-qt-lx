@@ -45,52 +45,37 @@ QString HuggleParser::ConfigurationParse(QString key, QString content, QString m
 
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
-    int id=0;
-    while (id < project_conf->RevertSummaries.count())
-    {
-        QString line = project_conf->RevertSummaries.at(id);
+    foreach (QString line, project_conf->RevertSummaries)
         if (line.startsWith(key + ";"))
-        {
             return HuggleParser::GetValueFromKey(line);
-        }
-        id++;
-    }
+
     return project_conf->DefaultSummary;
 }
 
 QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
-    int id=0;
-    while (id<project_conf->WarningTypes.count())
-    {
-        QString line = project_conf->WarningTypes.at(id);
+    // get a key
+    foreach (QString line, project_conf->WarningTypes)
         if (line.startsWith(key) + ";")
-        {
             return HuggleParser::GetValueFromKey(line);
-        }
-        id++;
-    }
     return key;
 }
 
 QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf)
 {
-    int i=0;
-    while (i<project_conf->WarningTypes.count())
+    foreach (QString line, project_conf->WarningTypes)
     {
-        QString line = project_conf->WarningTypes.at(i);
         if (line.endsWith(id) || line.endsWith(id + ","))
         {
             return HuggleParser::GetKeyFromValue(line);
         }
-        i++;
     }
     return id;
 }
 
-void HuggleParser::ParsePats(QString text)
+void HuggleParser::ParsePats(QString text, WikiSite *site)
 {
-    Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.clear();
+    site->ProjectConfig->ScoreParts.clear();
     while (text.contains("score-parts("))
     {
         text = text.mid(text.indexOf("score-parts(") + 12);
@@ -112,31 +97,24 @@ void HuggleParser::ParsePats(QString text)
         {
             QString l = lines.at(line);
             QStringList items = l.split(",");
-            int CurrentItem = 0;
-            while (CurrentItem < items.count())
+            foreach (QString wx, items)
             {
-                QString w = items.at(CurrentItem).trimmed();
-                CurrentItem++;
-                if (w.length() == 0)
-                    continue;
-                word.append(w);
+                wx = wx.trimmed();
+                if (!wx.isEmpty())
+                    word.append(wx);
             }
             if (!l.endsWith(",") || l.trimmed().length() <= 0)
                 break;
             line++;
         }
-        line = 0;
-        while (line < word.count())
-        {
-            Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.append(ScoreWord(word.at(line), score));
-            line++;
-        }
+        foreach (QString wx, word)
+            site->ProjectConfig->ScoreParts.append(ScoreWord(wx, score));
     }
 }
 
-void HuggleParser::ParseWords(QString text)
+void HuggleParser::ParseWords(QString text, WikiSite *site)
 {
-    Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.clear();
+    site->ProjectConfig->ScoreWords.clear();
     while (text.contains("score-words("))
     {
         text = text.mid(text.indexOf("score-words(") + 12);
@@ -161,30 +139,19 @@ void HuggleParser::ParseWords(QString text)
         {
             QString l = lines.at(line);
             QStringList items = l.split(",");
-            int CurrentItem = 0;
-            while ( CurrentItem < items.count() )
+            foreach (QString w, items)
             {
-                QString w = items.at(CurrentItem).trimmed();
-                if (w.length() == 0)
-                {
-                    CurrentItem++;
+                w = w.trimmed();
+                if (w.isEmpty())
                     continue;
-                }
                 word.append(w);
-                CurrentItem++;
             }
             if (l.trimmed().isEmpty() || !l.endsWith(","))
-            {
                 break;
-            }
             line++;
         }
-        line = 0;
-        while (line < word.count())
-        {
-            Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(ScoreWord(word.at(line), score));
-            line++;
-        }
+        foreach (QString w, word)
+            site->ProjectConfig->ScoreWords.append(ScoreWord(w, score));
     }
 }
 

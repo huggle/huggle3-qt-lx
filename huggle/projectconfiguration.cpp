@@ -291,8 +291,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);
-    HuggleParser::ParsePats(config);
-    HuggleParser::ParseWords(config);
+    HuggleParser::ParsePats(config, site);
+    HuggleParser::ParseWords(config, site);
     if (this->UAAP != nullptr)
         delete this->UAAP;
     this->UAAP = new WikiPage(this->UAAPath);
