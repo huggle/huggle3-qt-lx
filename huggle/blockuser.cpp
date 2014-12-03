@@ -196,8 +196,6 @@ void BlockUser::Failed(QString reason)
     Generic::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                          MessageBoxStyleError, true);
     this->t0->stop();
-    delete this->t0;
-    this->t0 = nullptr;
     this->ui->pushButton->setEnabled(true);
     // remove the pointers
     this->qTokenApi.Delete();
