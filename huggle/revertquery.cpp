@@ -177,13 +177,14 @@ void RevertQuery::OnTick()
     }
 }
 
-QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site)
+QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed)
 {
     ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
     if (ms != nullptr)
     {
         if (ms->Attributes.contains("code"))
         {
+            *failed = true;
             QString Error = ms->GetAttribute("code");
             if (Error == "alreadyrolled")
                 return "Edit was reverted by someone else - skipping";
@@ -200,6 +201,7 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
             return "In error (" + Error +")";
         }
     }
+    *failed = false;
     return "Reverted";
 }
 
@@ -402,8 +404,9 @@ bool RevertQuery::CheckRevert()
         return ProcessRevert();
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite());
-    if (this->CustomStatus != "Reverted")
+    bool failed = false;
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite(), &failed);
+    if (failed)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
         this->qRevert->Result->SetError(CustomStatus);

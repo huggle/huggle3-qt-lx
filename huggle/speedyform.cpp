@@ -65,10 +65,7 @@ void SpeedyForm::on_pushButton_clicked()
     }
     if (this->ui->comboBox->currentText().isEmpty())
     {
-        QMessageBox mb;
-        mb.setText(_l("speedy-wrong"));
-        mb.setWindowTitle("Wrong csd");
-        mb.exec();
+        Generic::MessageBox(_l("speedy-wrong"), "Wrong csd");
         return;
     }
     this->ui->checkBox->setEnabled(false);
@@ -96,12 +93,9 @@ void Finalize(Query *result)
 void SpeedyForm::Fail(QString reason)
 {
     this->qObtainText.Delete();
-    QMessageBox mb;
     this->Template.Delete();
-    mb.setWindowTitle("Error");
-    mb.setText(reason);
+    Generic::MessageBox("Error", reason, MessageBoxStyleError);
     Hooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
-    mb.exec();
     this->timer->stop();
 }
 
@@ -116,7 +110,9 @@ void SpeedyForm::processTags()
         return;
     }
     //! \todo make this cross wiki instead of checking random tag
-    if (this->Text.contains("{{db"))
+    QString lower = this->Text;
+    lower = lower.toLower();
+    if (lower.contains("{{db"))
     {
         this->Fail("There is already a CSD tag on the page.");
         this->close();

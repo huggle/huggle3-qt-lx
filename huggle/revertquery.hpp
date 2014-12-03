@@ -37,7 +37,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site);
+            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed);
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
