@@ -46,7 +46,7 @@ namespace Huggle
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
          * The list must be either separated by comma and newline or it can be a list of values separated
-         * by comma only
+         * by comma only, however if you want to have multiple items per line, you need to set CS to true
          * \param key Key
          * \param content Text to parse key from
          * \param CS Whether the values are separated by comma only (if this is set to true there can be more items on a line)
@@ -64,7 +64,7 @@ namespace Huggle
          * \param month
          * \return If there is no such a month this function will return negative number
          */
-        HUGGLE_EX byte_ht GetIDOfMonth(QString month);
+        HUGGLE_EX byte_ht GetIDOfMonth(QString month, WikiSite *site);
         //! \todo This function needs a unit test
         //! Parse a part patterns for score words
         HUGGLE_EX void ParsePats(QString text);

@@ -314,7 +314,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
                 i++;
             }
             month_name = month_name.trimmed();
-            byte_ht month = HuggleParser::GetIDOfMonth(month_name);
+            byte_ht month = HuggleParser::GetIDOfMonth(month_name, site);
 
              // let's create a new time string from converted one, just to make sure it will be parsed properly
             if (month > 0)
@@ -466,24 +466,24 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, QS
 QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS, bool RemoveNull)
 {
     QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
-    int x = 0;
     QStringList trimmed;
-    while (x < result.count())
+    foreach (QString item, result)
     {
-        QString item = result.at(x);
-        if (RemoveNull && item.replace(",", "").length() < 1)
+        if (RemoveNull)
         {
-            x++;
-            continue;
+            // this replace must be done on copy of string because this Qt function will modify the original string
+            QString rp = item;
+            rp = rp.replace(",", "");
+            if (rp.isEmpty())
+            {
+                // we don't want to process a null string here
+                continue;
+            }
         }
         if (item.endsWith(","))
-        {
             trimmed.append(item.mid(0, item.length() - 1));
-        } else
-        {
+        else
             trimmed.append(item);
-        }
-        x++;
     }
     return trimmed;
 }
@@ -509,10 +509,8 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
     QStringList Filtered = content.replace("\r", "").split("\n");
     QStringList Info;
     // we need to assume that all queues are intended with at least 4 spaces
-    int line = 0;
-    while (line < Filtered.count())
+    foreach (QString lt, Filtered)
     {
-        QString lt = Filtered.at(line);
         if (lt.startsWith("    ") || lt.length() == 0)
         {
             Info.append(lt);
@@ -521,10 +519,9 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             // we reached the end of block with queue defs
             break;
         }
-        line++;
     }
     // now we can split the queue info
-    line = 0;
+    int line = 0;
     while (line < Info.count())
     {
         QString text = Info.at(line);
@@ -636,20 +633,20 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
     return ReturnValue;
 }
 
-byte_ht HuggleParser::GetIDOfMonth(QString month)
+byte_ht HuggleParser::GetIDOfMonth(QString month, WikiSite *site)
 {
     int i = 0;
     month = month.toLower();
-    while (i < Configuration::HuggleConfiguration->ProjectConfig->Months.count())
+    while (i < site->ProjectConfig->Months.count())
     {
-        if (Configuration::HuggleConfiguration->ProjectConfig->Months.at(i).toLower() == month)
+        if (site->ProjectConfig->Months.at(i).toLower() == month)
             return i+1;
         i++;
     }
     i = 1;
     while (i < 13)
     {
-        if (Configuration::HuggleConfiguration->ProjectConfig->AlternativeMonths[i].contains(month, Qt::CaseInsensitive))
+        if (site->ProjectConfig->AlternativeMonths[i].contains(month, Qt::CaseInsensitive))
             return i;
         i++;
     }
