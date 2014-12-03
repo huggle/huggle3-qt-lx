@@ -234,6 +234,11 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     return configuration_;
 }
 
+bool UserConfiguration::EnforceSoftwareRollback()
+{
+    return this->EnforceManualSoftwareRollback || this->EnforceManualSRT;
+}
+
 QStringList UserConfiguration::SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS)
 {
     if (this->UserOptions.contains(key_))

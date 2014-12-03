@@ -62,12 +62,16 @@ namespace Huggle
             QString GetSafeUserString(QString key_, QString default_value = "");
             //! This function creates a user configuration that is stored on wiki
             QString MakeLocalUserConfig(ProjectConfiguration *Project);
+            bool            EnforceSoftwareRollback();
             QHash<QString, HuggleOption*> UserOptions;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = false;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             bool            EnforceManualSoftwareRollback = false;
             bool            EnforceMonthsAsHeaders = true;
+            //! This will temporarily make huggle use software rollback as a workaround for bug where
+            //! mediawiki reject token with no reason
+            bool            EnforceManualSRT = false;
             //! Size of fonts in diff
             int             FontSize = 16;
             //! Font that we use to render diffs and similar pages

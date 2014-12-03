@@ -59,7 +59,7 @@ Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString sum
         query->Summary = summary;
     query->MinorEdit = minor;
     QueryPool::HugglePool->AppendQuery(query);
-    if (hcfg->UserConfig->EnforceManualSoftwareRollback)
+    if (hcfg->UserConfig->EnforceSoftwareRollback())
         query->SetUsingSR(true);
     else
         query->SetUsingSR(!rollback);
