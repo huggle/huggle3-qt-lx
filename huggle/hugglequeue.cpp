@@ -486,7 +486,7 @@ WikiSite *HuggleQueue::CurrentSite()
 
 void HuggleQueue::ChangeSite(WikiSite *site)
 {
-    if (this->Site != site)
+    if (this->CurrentSite() != site)
     {
         // let's switch the list of queues
         this->Site = site;
