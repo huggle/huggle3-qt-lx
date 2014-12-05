@@ -33,7 +33,6 @@ void HuggleQueueFilter::Delete()
         }
         delete list;
     }
-    delete DefaultFilter;
     Filters.clear();
 }
 
