@@ -23,6 +23,7 @@
 #include "localization.hpp"
 #include "loadingform.hpp"
 #include "huggleprofiler.hpp"
+#include "hugglequeuefilter.hpp"
 #include "proxy.hpp"
 #include "wikisite.hpp"
 #include "wikiutil.hpp"
@@ -371,6 +372,8 @@ void Login::PressOK()
     }
     this->Disable();
     this->loadingForm->show();
+    // we need to delete the filters here so that if previous login didn't finish we don't reuse the previous ones
+    HuggleQueueFilter::Delete();
     // this is pretty tricky here
     // we need to register every single login operation but we also need to remember which row it was on
     // for that we will use some super hash table, but first we need to make it empty...
