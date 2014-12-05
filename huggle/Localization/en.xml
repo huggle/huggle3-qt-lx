@@ -64,6 +64,7 @@
     <string name="block-reason">Reason:</string>
     <string name="block-duration">Duration:</string>
     <string name="block-message">Talk page message:</string>
+    <string name="block-message-user">Send message to target user with explanation for block</string>
     <string name="block-anononly">Block anonymous users only</string>
     <string name="block-creation">Block account creation</string>
     <string name="block-autoblock">Enable autoblocks</string>

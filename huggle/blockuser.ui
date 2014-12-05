@@ -47,6 +47,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="cbMessageTarget">
+     <property name="text">
+      <string>Send message to target user with explanation for block</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="checkBox">
      <property name="text">
       <string>Remove talk page access</string>
