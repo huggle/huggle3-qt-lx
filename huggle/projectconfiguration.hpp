@@ -89,6 +89,8 @@ namespace Huggle
             //! If autoconfirmed is required to use huggle
             bool            RequireAutoconfirmed = false;
             bool            RequireConfig = false;
+            //! Number of days for user since registration that is needed for login
+            int             RequireTime = 0;
             //! Amount of edits required to use huggle
             int             RequireEdits = 0;
             //! If rollback right is required to use huggle

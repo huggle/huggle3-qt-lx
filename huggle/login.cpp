@@ -721,8 +721,28 @@ void Login::RetrieveUserInfo(WikiSite *site)
             // remove the query
             this->LoginQueries.remove(site);
             ApiQueryResultNode* ui = query->GetApiQueryResult()->GetNode("userinfo");
+            if (!ui)
+            {
+                this->DisplayError("Site didn't return any userinfo information");
+                return;
+            }
             int editcount = ui->GetAttribute("editcount", "-1").toInt();
             query->DecRef();
+            if (site->GetProjectConfig()->RequireTime)
+            {
+                QString registration_info = ui->GetAttribute("registrationdate");
+                if (registration_info.isEmpty())
+                {
+                    this->DisplayError("Invalid registrationdate returned by mediawiki");
+                    return;
+                }
+                QDateTime registration_date = MediaWiki::FromMWTimestamp(registration_info);
+                if (registration_date.addDays(site->GetProjectConfig()->RequireTime) > QDateTime::currentDateTime())
+                {
+                    this->DisplayError(_l("login-error-age", QString::number(site->GetProjectConfig()->RequireTime)));
+                    return;
+                }
+            }
             if (site->GetProjectConfig()->RequireEdits > editcount)
             {
                 this->DisplayError(_l("login-failed-edit", site->Name));
@@ -740,7 +760,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
     ApiQuery *temp = new ApiQuery(ActionQuery, site);
     temp->IncRef();
     // now we can retrieve some information about user for this project
-    temp->Parameters = "meta=userinfo&uiprop=" + QUrl::toPercentEncoding("rights|editcount");
+    temp->Parameters = "meta=userinfo&uiprop=" + QUrl::toPercentEncoding("rights|registrationdate|editcount");
     temp->Process();
     this->LoginQueries.insert(site, temp);
 }

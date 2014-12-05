@@ -83,6 +83,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RequireAutoconfirmed = SafeBool(HuggleParser::ConfigurationParse("require-autoconfirmed", config, "false"));
     this->RequireConfig = SafeBool(HuggleParser::ConfigurationParse("require-config", config, "false"));
     this->RequireEdits = HuggleParser::ConfigurationParse("require-edits", config, "0").toInt();
+    this->RequireTime = HuggleParser::ConfigurationParse("require-time", config, "0").toInt();
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
     this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
