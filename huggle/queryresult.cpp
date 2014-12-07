@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "queryresult.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 
