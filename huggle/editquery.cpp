@@ -217,7 +217,7 @@ void EditQuery::EditPage()
         return;
     }
     this->qEdit = new ApiQuery(ActionEdit, this->Page->Site);
-    this->qEdit->Target = "Writing " + this->Page->PageName;
+    this->qEdit->Target = _l("report-write") + " " + this->Page->PageName;
     this->qEdit->UsingPOST = true;
     QString t;
     if (this->Append)

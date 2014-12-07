@@ -88,7 +88,7 @@ void RevertQuery::Process()
     // we need to register the consumer here because of timer so that in case we decided to
     // decref this query while timer is still running we don't run to segfault
     this->RegisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
-    this->CustomStatus = "Preflight check";
+    this->CustomStatus = _l("revert-preflightcheck");
     this->Preflight();
 }
 
@@ -670,7 +670,7 @@ void RevertQuery::Rollback()
     {
         token = QUrl::toPercentEncoding(token);
     }
-    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token=" 
+    this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token="
                 + token + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;

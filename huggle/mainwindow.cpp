@@ -918,7 +918,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         if (!this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken.isEmpty())
         {
             this->CurrentEdit->RollbackToken = this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken;
-        } else 
+        } else
         {
             Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
             rollback = false;
@@ -977,7 +977,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (Warn)
     {
-        int q = Generic::pMessageBox(this, "Revert edit", "This edit is " + type + ", so even if it looks like it is a vandalism,"\
+        int q = Generic::pMessageBox(this, _l("shortcut-revert"), "This edit is " + type + ", so even if it looks like it is a vandalism,"\
                                      " it may not be, are you sure you want to revert it?", MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
             return false;
