@@ -70,6 +70,9 @@
 #include "uaareport.hpp"
 #include "ui_mainwindow.h"
 #include "requestprotect.hpp"
+#ifdef DeleteForm
+    #undef DeleteForm
+#endif
 
 using namespace Huggle;
 MainWindow *MainWindow::HuggleMain = nullptr;

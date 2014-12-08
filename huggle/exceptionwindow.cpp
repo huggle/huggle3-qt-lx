@@ -22,7 +22,7 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
                           "\n\nSystem log\n==================\n" + Huggle::Syslog::HuggleLogs->RingLogToText()
                           + "\n\n\n\nException details\n===========================\nError code: "
                           + QString::number(e->ErrorCode) + "\nReason: "
-                          + e->Message + "\nSource:" + e->Source);
+                          + e->Message + "\nSource:" + e->Source + "\nStack trace:\n" + e->StackTrace);
 }
 
 ExceptionWindow::~ExceptionWindow()

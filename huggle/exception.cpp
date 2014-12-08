@@ -17,8 +17,12 @@
 #ifdef __linux__
     //linux code goes here
 QString Breakpad_DumpPath = "/tmp";
-#elif _WIN32
+#elif defined HUGGLE_WIN
     // windows code goes here
+#include <windows.h>
+#include <winbase.h>
+#include <dbghelp.h>
+#include <winnt.h>
 QString Breakpad_DumpPath = QDir::tempPath();
 #endif
 
@@ -72,6 +76,7 @@ Exception::Exception(QString text, bool isRecoverable)
     std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
     this->Message = text;
     this->ErrorCode = 2;
+    this->StackTrace = GetCurrentStackTrace();
     this->Source = "{hidden}";
     this->_IsRecoverable = isRecoverable;
 }
@@ -95,6 +100,7 @@ void Exception::construct(QString text, QString source, bool isRecoverable)
 {
     std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
     this->Source = source;
+    this->StackTrace = GetCurrentStackTrace();
     this->Message = text;
     this->ErrorCode = 2;
     this->_IsRecoverable = isRecoverable;
@@ -109,6 +115,40 @@ void Exception::ThrowSoftException(QString Text, QString Source)
     {
         Syslog::HuggleLogs->WarningLog("Soft exception: " + Text + " source: " + Source);
     }
+}
+
+QString Exception::GetCurrentStackTrace()
+{
+    QString result;
+#ifdef __linux__
+    return "Stack trace not available for this OS";
+#elif defined HUGGLE_WIN
+    result = "";
+    unsigned int   i;
+    void          *stack[HUGGLE_STACK];
+    unsigned short frames;
+    SYMBOL_INFO   *symbol;
+    HANDLE         process;
+    process = GetCurrentProcess();
+    SymInitialize( process, NULL, TRUE );
+    frames               = CaptureStackBackTrace( 0, HUGGLE_STACK, stack, NULL );
+    symbol               = ( SYMBOL_INFO * )calloc( sizeof( SYMBOL_INFO ) + 256 * sizeof( char ), 1 );
+    symbol->MaxNameLen   = 255;
+    symbol->SizeOfStruct = sizeof( SYMBOL_INFO );
+    for( i = 0; i < frames; i++ )
+    {
+        SymFromAddr( process, ( DWORD64 )( stack[ i ] ), 0, symbol );
+        QString symbol_name = "unknown symbol";
+        if (!QString(symbol->Name).isEmpty())
+        symbol_name = QString(symbol->Name);
+        result += QString(QString::number(frames - i - 1) + QString(" ") + symbol_name + QString(" 0x") +
+                          QString::number(symbol->Address, 16) + QString("\n"));
+    }
+    free( symbol );
+#else
+    result = "Stack trace not available for this OS";
+#endif
+    return result;
 }
 
 void Exception::InitBreakpad()

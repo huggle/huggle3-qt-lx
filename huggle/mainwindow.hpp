@@ -18,6 +18,10 @@
 #include "editquery.hpp"
 #include "revertquery.hpp"
 #include "wlquery.hpp"
+// windows fix
+#ifdef DeleteForm
+    #undef DeleteForm
+#endif
 class QLabel;
 class QTimer;
 class QMenu;

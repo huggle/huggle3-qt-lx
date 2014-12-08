@@ -41,7 +41,7 @@ bool TerminalParse(Huggle::TerminalParser *p)
 int Fatal(Huggle::Exception *fail)
 {
     Huggle::Syslog::HuggleLogs->ErrorLog("FATAL: Unhandled exception occured, description: " + fail->Message
-                                         + "\nSource: " + fail->Source);
+                                         + "\nSource: " + fail->Source + "\nStack: " + fail->StackTrace);
     delete Huggle::Core::HuggleCore;
     Huggle::Exception::ExitBreakpad();
     return fail->ErrorCode;

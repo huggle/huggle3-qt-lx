@@ -45,7 +45,7 @@ DEFINES *= QT_USE_QSTRINGBUILDER
 
 win32{
     INCLUDEPATH += "C:\\python33\\include"
-    LIBS += -LC:/OpenSSL-Win32/lib -lubsec
+    LIBS += -LC:/OpenSSL-Win32/lib -lubsec -ldbghelp
     INCLUDEPATH += C:/OpenSSL-Win32/include
 }
 
