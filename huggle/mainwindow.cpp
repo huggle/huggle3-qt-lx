@@ -614,6 +614,9 @@ void MainWindow::UpdateStatusBarData()
     } else if (Uptime < 50)
     {
         statistics_ = "waiting for more edits";
+    } else if (this->GetCurrentWikiSite()->Provider->IsPaused())
+    {
+        statistics_ = "paused";
     } else
     {
         double EditsPerMinute = this->GetCurrentWikiSite()->Provider->GetEditsPerMinute();
