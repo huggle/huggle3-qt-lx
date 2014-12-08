@@ -44,6 +44,8 @@ HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 
 bool HuggleFeedProviderWiki::Start()
 {
+    if (this->IsPaused())
+        this->UptimeDate = QDateTime::currentDateTime();
     this->Resume();
     this->Refresh();
     return true;

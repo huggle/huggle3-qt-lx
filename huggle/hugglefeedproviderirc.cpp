@@ -78,6 +78,7 @@ bool HuggleFeedProviderIRC::Start()
     this->thread->p = this;
     this->thread->start();
     this->Connected = true;
+    this->UptimeDate = QDateTime::currentDateTime();
     return true;
 }
 
