@@ -16,6 +16,11 @@
 
 #ifdef __linux__
     //linux code goes here
+#include <stdio.h>
+#include <execinfo.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
 QString Breakpad_DumpPath = "/tmp";
 #elif defined HUGGLE_WIN
     // windows code goes here
@@ -121,7 +126,18 @@ QString Exception::GetCurrentStackTrace()
 {
     QString result;
 #ifdef __linux__
-    return "Stack trace not available for this OS";
+    result = "";
+    void *array[HUGGLE_STACK];
+    int i;
+    size_t size;
+    char **messages;
+    size = backtrace(array, HUGGLE_STACK);
+    messages = backtrace_symbols(array, size);
+    for (i = 1; i < size && messages != NULL; ++i)
+    {
+        result += QString(QString::number(i) + QString(" ") + QString(messages[i]) + QString("\n"));
+    }
+    free(messages);
 #elif defined HUGGLE_WIN
     result = "";
     unsigned int   i;
