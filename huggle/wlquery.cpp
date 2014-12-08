@@ -127,6 +127,8 @@ void WLQuery::Finished()
         if (!this->Result->Data.contains("written"))
             Syslog::HuggleLogs->ErrorLog("Failed to store data to white list: " + this->Result->Data);
     }
+    if (this->Type == WLQueryType_SuspWL)
+        HUGGLE_DEBUG("Result of susp.php: " + this->Result->Data, 2);
     // now we need to check if request was successful or not
     if (this->networkReply->error())
     {
