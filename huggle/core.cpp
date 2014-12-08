@@ -291,8 +291,11 @@ void Core::ExtensionLoad()
         if (QDir().exists(HUGGLE_GLOBAL_EXTENSION_PATH))
         {
             QString globalpath(HUGGLE_GLOBAL_EXTENSION_PATH);
-            // ensure it's finished with slash
+#ifdef HUGGLE_WIN
+            globalpath += "\\";
+#else
             globalpath += "/";
+#endif
             QDir g(globalpath);
             files = g.entryList();
             foreach (QString e_, files)
