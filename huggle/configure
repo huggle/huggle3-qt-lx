@@ -231,6 +231,7 @@ fi
 ok
 if [ $modules -gt 0 ];then
     ./build/extensions_init.sh || exit 1
+    CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
 fi
 if [ -d "$BUILD" ];then
   echo $WARN"WARNING: build directory already exist make sure it's clean"$NORMAL
