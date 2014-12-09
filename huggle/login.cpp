@@ -969,6 +969,11 @@ bool Login::ProcessOutput(WikiSite *site)
         this->DisplayError(_l("login-fail-wrong-name"));
         return false;
     }
+    if (Result == "NotExists")
+    {
+        this->DisplayError("This username doesn't exist");
+        return false;
+    }
     this->DisplayError(_l("login-api", Result));
     return false;
 }
