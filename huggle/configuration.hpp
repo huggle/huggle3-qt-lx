@@ -354,6 +354,7 @@ namespace Huggle
             bool        VandalNw_Login = true;
             QString     QueryDebugPath = "querydump.dat";
             bool        QueryDebugging = false;
+            QStringList   IgnoredExtensions;
             //! Operating system that is sent to update server
             QString     Platform;
         private:

@@ -27,7 +27,7 @@
 using namespace Huggle::HuggleParser;
 using namespace Huggle;
 using namespace Huggle::Generic;
-Configuration * Configuration::HuggleConfiguration = nullptr;
+Configuration * hcfg = nullptr;
 
 Configuration::Configuration()
 {
@@ -128,7 +128,7 @@ QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
 
 QString Configuration::GetExtensionsRootPath()
 {
-    QString path_ = Configuration::HuggleConfiguration->HomePath + QDir::separator() + EXTENSION_PATH;
+    QString path_ = hcfg->HomePath + QDir::separator() + EXTENSION_PATH;
     QDir conf(path_);
     if (!conf.exists() && !conf.mkpath(path_))
     {
@@ -139,19 +139,19 @@ QString Configuration::GetExtensionsRootPath()
 
 QString Configuration::GetLocalizationDataPath()
 {
-    QDir conf(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+    QDir conf(hcfg->HomePath + QDir::separator() + "Localization");
     if (!conf.exists())
     {
-        conf.mkpath(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization");
+        conf.mkpath(hcfg->HomePath + QDir::separator() + "Localization");
     }
-    return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Localization" + QDir::separator();
+    return hcfg->HomePath + QDir::separator() + "Localization" + QDir::separator();
 }
 
 QString Configuration::GetURLProtocolPrefix(WikiSite *s)
 {
     if (s && !s->SupportHttps)
         return "http://";
-    if (!Configuration::HuggleConfiguration->SystemConfig_UsingSSL)
+    if (!hcfg->SystemConfig_UsingSSL)
         return "http://";
 
     return "https://";
@@ -159,12 +159,12 @@ QString Configuration::GetURLProtocolPrefix(WikiSite *s)
 
 QString Configuration::GetConfigurationPath()
 {
-    QDir conf(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration");
+    QDir conf(hcfg->HomePath + QDir::separator() + "Configuration");
     if (!conf.exists())
     {
-        conf.mkpath(Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration");
+        conf.mkpath(hcfg->HomePath + QDir::separator() + "Configuration");
     }
-    return Configuration::HuggleConfiguration->HomePath + QDir::separator() + "Configuration" + QDir::separator();
+    return hcfg->HomePath + QDir::separator() + "Configuration" + QDir::separator();
 }
 
 QString Configuration::ReplaceSpecialUserPage(QString PageName)
@@ -221,7 +221,14 @@ void Configuration::LoadSystemConfig(QString fn)
     file.close();
     QDomNodeList l = conf.elementsByTagName("local");
     QDomNodeList e = conf.elementsByTagName("extern");
+    QDomNodeList ignores = conf.elementsByTagName("ignore");
     int item = 0;
+    while (item < ignores.count())
+    {
+        hcfg->IgnoredExtensions.append(ignores.at(item).toElement().text());
+        item++;
+    }
+    item = 0;
     while (item < l.count())
     {
         QDomElement option = l.at(item).toElement();
@@ -234,37 +241,37 @@ void Configuration::LoadSystemConfig(QString fn)
         QString key = option.attribute("key");
         if (key == "Multiple")
         {
-            Configuration::HuggleConfiguration->Multiple = SafeBool(option.attribute("text"));
+            hcfg->Multiple = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "Cache_InfoSize")
         {
-            Configuration::HuggleConfiguration->SystemConfig_QueueSize = option.attribute("text").toInt();
+            hcfg->SystemConfig_QueueSize = option.attribute("text").toInt();
             continue;
         }
         if (key == "GlobalConfigurationWikiAddress")
         {
-            Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress = option.attribute("text");
+            hcfg->GlobalConfigurationWikiAddress = option.attribute("text");
             continue;
         }
         if (key == "IRCIdent")
         {
-            Configuration::HuggleConfiguration->IRCIdent = option.attribute("text");
+            hcfg->IRCIdent = option.attribute("text");
             continue;
         }
         if (key == "IRCNick")
         {
-            Configuration::HuggleConfiguration->IRCNick = option.attribute("text");
+            hcfg->IRCNick = option.attribute("text");
             continue;
         }
         if (key == "IRCPort")
         {
-            Configuration::HuggleConfiguration->IRCPort = option.attribute("text").toInt();
+            hcfg->IRCPort = option.attribute("text").toInt();
             continue;
         }
         if (key == "IRCServer")
         {
-            Configuration::HuggleConfiguration->IRCServer = option.attribute("text");
+            hcfg->IRCServer = option.attribute("text");
             continue;
         }
         if (key == "Language")
@@ -274,107 +281,107 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         if (key == "ProviderCache")
         {
-            Configuration::HuggleConfiguration->SystemConfig_ProviderCache = option.attribute("text").toInt();
+            hcfg->SystemConfig_ProviderCache = option.attribute("text").toInt();
             continue;
         }
         if (key == "AskUserBeforeReport")
         {
-            Configuration::HuggleConfiguration->AskUserBeforeReport = SafeBool(option.attribute("text"));
+            hcfg->AskUserBeforeReport = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "HistorySize")
         {
-            Configuration::HuggleConfiguration->SystemConfig_HistorySize = option.attribute("text").toInt();
+            hcfg->SystemConfig_HistorySize = option.attribute("text").toInt();
             continue;
         }
         if (key == "VandalNw_Login")
         {
-            Configuration::HuggleConfiguration->VandalNw_Login = SafeBool(option.attribute("text"));
+            hcfg->VandalNw_Login = SafeBool(option.attribute("text"));
             continue;
         }
-        if (key == "UserName" && Configuration::HuggleConfiguration->SystemConfig_Username.isEmpty())
+        if (key == "UserName" && hcfg->SystemConfig_Username.isEmpty())
         {
-            Configuration::HuggleConfiguration->SystemConfig_Username = option.attribute("text");
+            hcfg->SystemConfig_Username = option.attribute("text");
             continue;
         }
         if (key == "RingLogMaxSize")
         {
-            Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
+            hcfg->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
             continue;
         }
         if (key == "DynamicColsInList")
         {
-            Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_DynamicColsInList = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "WarnUserSpaceRoll")
         {
-            Configuration::HuggleConfiguration->WarnUserSpaceRoll = SafeBool(option.attribute("text"));
+            hcfg->WarnUserSpaceRoll = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "EnableUpdates")
         {
-            Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_UpdatesEnabled = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "NotifyBeta")
         {
-            Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_NotifyBeta = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "QueueNewEditsUp")
         {
-            Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_QueueNewEditsUp = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "IndexOfLastWiki")
         {
-            Configuration::HuggleConfiguration->IndexOfLastWiki = option.attribute("text").toInt();
+            hcfg->IndexOfLastWiki = option.attribute("text").toInt();
             continue;
         }
         if (key == "UsingSSL")
         {
-            Configuration::HuggleConfiguration->SystemConfig_UsingSSL = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_UsingSSL = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "GlobalConfigWikiList")
         {
-            Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList = option.attribute("text");
+            hcfg->SystemConfig_GlobalConfigWikiList = option.attribute("text");
             continue;
         }
         if (key == "DelayVal")
         {
-            Configuration::HuggleConfiguration->SystemConfig_DelayVal = option.attribute("text").toUInt();
+            hcfg->SystemConfig_DelayVal = option.attribute("text").toUInt();
             continue;
         }
         if (key == "WikiRC")
         {
-            Configuration::HuggleConfiguration->SystemConfig_WikiRC = option.attribute("text").toUInt();
+            hcfg->SystemConfig_WikiRC = option.attribute("text").toUInt();
             continue;
         }
         if (key == "RequestDelay")
         {
-            Configuration::HuggleConfiguration->SystemConfig_RequestDelay = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_RequestDelay = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "RevertDelay")
         {
-            Configuration::HuggleConfiguration->SystemConfig_RevertDelay = option.attribute("text").toUInt();
+            hcfg->SystemConfig_RevertDelay = option.attribute("text").toUInt();
             continue;
         }
         if (key == "InstantReverts")
         {
-            Configuration::HuggleConfiguration->SystemConfig_InstantReverts = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_InstantReverts = SafeBool(option.attribute("text"));
             continue;
         }
         if (key == "Projects")
         {
-            Configuration::HuggleConfiguration->ProjectString = option.attribute("text").split(",");
+            hcfg->ProjectString = option.attribute("text").split(",");
             continue;
         }
         if (key == "SuppressWarnings")
         {
-            Configuration::HuggleConfiguration->SystemConfig_SuppressWarnings = SafeBool(option.attribute("text"));
+            hcfg->SystemConfig_SuppressWarnings = SafeBool(option.attribute("text"));
             continue;
         }
     }
@@ -387,12 +394,12 @@ void Configuration::LoadSystemConfig(QString fn)
             continue;
         QString ExtensionName = option.attribute("extension");
         QString KeyName = option.attribute("name");
-        if (!Configuration::HuggleConfiguration->ExtensionData.contains(ExtensionName))
+        if (!hcfg->ExtensionData.contains(ExtensionName))
         {
             // we need to insert a new option list because this extension is not yet known
-            Configuration::HuggleConfiguration->ExtensionData.insert(ExtensionName, new ExtensionConfig());
+            hcfg->ExtensionData.insert(ExtensionName, new ExtensionConfig());
         }
-        Configuration::HuggleConfiguration->ExtensionData[ExtensionName]->SetOption(KeyName, option.attribute("value"));
+        hcfg->ExtensionData[ExtensionName]->SetOption(KeyName, option.attribute("value"));
     }
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
@@ -410,35 +417,35 @@ void Configuration::SaveSystemConfig()
     writer->setAutoFormatting(true);
     writer->writeStartDocument();
     writer->writeStartElement("huggle");
-    InsertConfig("DelayVal", QString::number(Configuration::HuggleConfiguration->SystemConfig_DelayVal), writer);
-    InsertConfig("RequestDelay", Bool2String(Configuration::HuggleConfiguration->SystemConfig_RequestDelay), writer);
-    InsertConfig("RevertDelay", QString::number(Configuration::HuggleConfiguration->SystemConfig_RevertDelay), writer);
-    InsertConfig("InstantReverts", Bool2String(Configuration::HuggleConfiguration->SystemConfig_InstantReverts), writer);
-    InsertConfig("UsingSSL", Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL), writer);
-    InsertConfig("Cache_InfoSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_QueueSize), writer);
-    InsertConfig("GlobalConfigurationWikiAddress", Configuration::HuggleConfiguration->GlobalConfigurationWikiAddress, writer);
-    InsertConfig("IRCIdent", Configuration::HuggleConfiguration->IRCIdent, writer);
-    InsertConfig("IRCNick", Configuration::HuggleConfiguration->IRCNick, writer);
-    InsertConfig("IRCPort", QString::number(Configuration::HuggleConfiguration->IRCPort), writer);
-    InsertConfig("IRCServer", Configuration::HuggleConfiguration->IRCServer, writer);
+    InsertConfig("DelayVal", QString::number(hcfg->SystemConfig_DelayVal), writer);
+    InsertConfig("RequestDelay", Bool2String(hcfg->SystemConfig_RequestDelay), writer);
+    InsertConfig("RevertDelay", QString::number(hcfg->SystemConfig_RevertDelay), writer);
+    InsertConfig("InstantReverts", Bool2String(hcfg->SystemConfig_InstantReverts), writer);
+    InsertConfig("UsingSSL", Bool2String(hcfg->SystemConfig_UsingSSL), writer);
+    InsertConfig("Cache_InfoSize", QString::number(hcfg->SystemConfig_QueueSize), writer);
+    InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
+    InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
+    InsertConfig("IRCNick", hcfg->IRCNick, writer);
+    InsertConfig("IRCPort", QString::number(hcfg->IRCPort), writer);
+    InsertConfig("IRCServer", hcfg->IRCServer, writer);
     InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, writer);
-    InsertConfig("ProviderCache", QString::number(Configuration::HuggleConfiguration->SystemConfig_ProviderCache), writer);
-    InsertConfig("AskUserBeforeReport", Bool2String(Configuration::HuggleConfiguration->AskUserBeforeReport), writer);
-    InsertConfig("HistorySize", QString::number(Configuration::HuggleConfiguration->SystemConfig_HistorySize), writer);
-    InsertConfig("QueueNewEditsUp", Bool2String(Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp), writer);
-    InsertConfig("RingLogMaxSize", QString::number(Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize), writer);
-    InsertConfig("TrimOldWarnings", Bool2String(Configuration::HuggleConfiguration->TrimOldWarnings), writer);
-    InsertConfig("EnableUpdates", Bool2String(Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled), writer);
-    InsertConfig("NotifyBeta", Bool2String(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta), writer);
-    InsertConfig("WarnUserSpaceRoll", Bool2String(Configuration::HuggleConfiguration->WarnUserSpaceRoll), writer);
-    InsertConfig("WikiRC", QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC), writer);
-    InsertConfig("UserName", Configuration::HuggleConfiguration->SystemConfig_Username, writer);
-    InsertConfig("IndexOfLastWiki", QString::number(Configuration::HuggleConfiguration->IndexOfLastWiki), writer);
-    InsertConfig("DynamicColsInList", Bool2String(Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList), writer);
-    InsertConfig("Multiple", Bool2String(Configuration::HuggleConfiguration->Multiple), writer);
-    InsertConfig("SuppressWarnings", Bool2String(Configuration::HuggleConfiguration->SystemConfig_SuppressWarnings), writer);
+    InsertConfig("ProviderCache", QString::number(hcfg->SystemConfig_ProviderCache), writer);
+    InsertConfig("AskUserBeforeReport", Bool2String(hcfg->AskUserBeforeReport), writer);
+    InsertConfig("HistorySize", QString::number(hcfg->SystemConfig_HistorySize), writer);
+    InsertConfig("QueueNewEditsUp", Bool2String(hcfg->SystemConfig_QueueNewEditsUp), writer);
+    InsertConfig("RingLogMaxSize", QString::number(hcfg->SystemConfig_RingLogMaxSize), writer);
+    InsertConfig("TrimOldWarnings", Bool2String(hcfg->TrimOldWarnings), writer);
+    InsertConfig("EnableUpdates", Bool2String(hcfg->SystemConfig_UpdatesEnabled), writer);
+    InsertConfig("NotifyBeta", Bool2String(hcfg->SystemConfig_NotifyBeta), writer);
+    InsertConfig("WarnUserSpaceRoll", Bool2String(hcfg->WarnUserSpaceRoll), writer);
+    InsertConfig("WikiRC", QString::number(hcfg->SystemConfig_WikiRC), writer);
+    InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
+    InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
+    InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
+    InsertConfig("Multiple", Bool2String(hcfg->Multiple), writer);
+    InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);
     QString projects;
-    foreach (QString wiki, Configuration::HuggleConfiguration->ProjectString)
+    foreach (QString wiki, hcfg->ProjectString)
     {
         projects += wiki + ",";
     }
@@ -446,12 +453,12 @@ void Configuration::SaveSystemConfig()
     /////////////////////////////
     // Vandal network
     /////////////////////////////
-    InsertConfig("VandalNw_Login", Bool2String(Configuration::HuggleConfiguration->VandalNw_Login), writer);
-    InsertConfig("GlobalConfigWikiList", Configuration::HuggleConfiguration->SystemConfig_GlobalConfigWikiList, writer);
-    QStringList extensions = Configuration::HuggleConfiguration->ExtensionData.keys();
+    InsertConfig("VandalNw_Login", Bool2String(hcfg->VandalNw_Login), writer);
+    InsertConfig("GlobalConfigWikiList", hcfg->SystemConfig_GlobalConfigWikiList, writer);
+    QStringList extensions = hcfg->ExtensionData.keys();
     foreach (QString ex, extensions)
     {
-        ExtensionConfig *ed = Configuration::HuggleConfiguration->ExtensionData[ex];
+        ExtensionConfig *ed = hcfg->ExtensionData[ex];
         QStringList options = ed->Options.keys();
         foreach (QString option, options)
         {
@@ -461,6 +468,12 @@ void Configuration::SaveSystemConfig()
             writer->writeAttribute("value", ed->Options[option]);
             writer->writeEndElement();
         }
+    }
+    foreach (QString extension, hcfg->IgnoredExtensions)
+    {
+        writer->writeStartElement("ignore");
+        writer->writeCharacters(extension);
+        writer->writeEndElement();
     }
     writer->writeEndElement();
     writer->writeEndDocument();
@@ -493,7 +506,7 @@ QString Configuration::GetExtensionConfig(QString extension, QString name, QStri
 
 QString Configuration::GetProjectURL(WikiSite *Project)
 {
-    return Configuration::HuggleConfiguration->GetURLProtocolPrefix() + Project->URL;
+    return hcfg->GetURLProtocolPrefix() + Project->URL;
 }
 
 QString Configuration::GetProjectWikiURL(WikiSite *Project)
@@ -508,17 +521,17 @@ QString Configuration::GetProjectScriptURL(WikiSite *Project)
 
 QString Configuration::GetProjectURL()
 {
-    return Configuration::GetURLProtocolPrefix() + Configuration::HuggleConfiguration->Project->URL;
+    return Configuration::GetURLProtocolPrefix() + hcfg->Project->URL;
 }
 
 QString Configuration::GetProjectWikiURL()
 {
-    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->LongPath;
+    return Configuration::GetProjectURL(hcfg->Project) + Configuration::HuggleConfiguration->Project->LongPath;
 }
 
 QString Configuration::GetProjectScriptURL()
 {
-    return Configuration::GetProjectURL(Configuration::HuggleConfiguration->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
+    return Configuration::GetProjectURL(hcfg->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
 }
 
 void Configuration::InsertConfig(QString key, QString value, QXmlStreamWriter *s)

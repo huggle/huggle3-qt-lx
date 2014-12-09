@@ -307,6 +307,11 @@ void Core::ExtensionLoad()
 #endif
         foreach (QString ename, extensions)
         {
+            if (hcfg->IgnoredExtensions.contains(ename))
+            {
+                HUGGLE_DEBUG1("Path was ignored: " + ename);
+                continue;
+            }
             QString name = ename.toLower();
             if (name.endsWith(".so") || name.endsWith(".dll"))
             {
