@@ -36,12 +36,10 @@ Linux
 * cd REPO/huggle, execute
 
 ```sh
-./configure --qt4 #you can use --qt5 in case you have it
+./configure --extension --qt4 #you can use --qt5 in case you have it
 cd huggle_release
 make
 sudo make install
-# extensions (optional)
-./build/extensions.sh
 ```
 
 MacOS
