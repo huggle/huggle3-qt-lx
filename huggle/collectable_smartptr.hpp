@@ -28,16 +28,16 @@ namespace Huggle
 
     //! These ptrs don't need to allocate new manager for every single object that is maintained
     //! by any smart ptr like std ones do, but utilize the single instance GC we use
-    class HUGGLE_EX Collectable_SmartPtr
+    class Collectable_SmartPtr
     {
         public:
-            Collectable_SmartPtr();
-            Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
-            Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
-            Collectable_SmartPtr<T>(T *pt);
-            virtual ~Collectable_SmartPtr();
+            HUGGLE_EX Collectable_SmartPtr();
+            HUGGLE_EX Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
+            HUGGLE_EX Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
+            HUGGLE_EX Collectable_SmartPtr<T>(T *pt);
+            HUGGLE_EX virtual ~Collectable_SmartPtr();
             //! Change a bare pointer to other pointer
-            virtual void SetPtr(T *pt);
+            HUGGLE_EX virtual void SetPtr(T *pt);
             //! Remove a bare pointer if there is some
             void Delete();
             void operator=(T* _ptr)
@@ -53,9 +53,9 @@ namespace Huggle
                 this->SetPtr(null);
             }
             operator void* () const;
-            operator T* () const;
-            T* operator->();
-            T* GetPtr() const;
+            HUGGLE_EX operator T* () const;
+            HUGGLE_EX T* operator->();
+            HUGGLE_EX T* GetPtr() const;
         protected:
         private:
             void FreeAcqRsrPtr();
