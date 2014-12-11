@@ -11,6 +11,7 @@
 #include "wikiutil.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "editquery.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
 #include "wikisite.hpp"
@@ -128,11 +129,13 @@ void WikiUtil::FinalizeMessages()
     }
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString text, QString summary, bool minor)
+Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString text, QString summary, bool minor, WikiSite *site)
 {
-    ///! \todo assumes main project?
+    if (!site)
+        site = hcfg->Project;
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     eq->Page = new WikiPage(page);
+    eq->Page->Site = site;
     eq->text = text;
     summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
@@ -232,4 +235,23 @@ ApiQuery *WikiUtil::Watchlist(WikiPage *page)
     QueryPool::HugglePool->PendingWatches.append(wt);
     wt->Process();
     return wt;
+}
+
+
+Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QString text, QString summary, bool minor, WikiSite *site)
+{
+    if (!site)
+        site = hcfg->Project;
+    Collectable_SmartPtr<EditQuery> eq = new EditQuery();
+    eq->Page = new WikiPage(page);
+    eq->Page->Site = site;
+    eq->text = text;
+    summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
+    eq->Summary = summary;
+    eq->Minor = minor;
+    eq->Prepend = true;
+    eq->RegisterConsumer(HUGGLECONSUMER_QP_MODS);
+    QueryPool::HugglePool->PendingMods.append(eq);
+    eq->Process();
+    return eq;
 }

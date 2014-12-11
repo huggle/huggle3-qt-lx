@@ -208,7 +208,11 @@ bool EditQuery::IsProcessed()
 
 void EditQuery::EditPage()
 {
-    if (this->Append && !this->HasPreviousPageText)
+    if (this->Append && this->Prepend)
+    {
+        throw Huggle::Exception("You can't use both Append and Prepend for edit of page", BOOST_CURRENT_FUNCTION);
+    }
+    if ((this->Append || this->Prepend) && !this->HasPreviousPageText)
     {
         // we first need to get a text of current page
         this->qRetrieve = Generic::RetrieveWikiPageContents(this->Page);
@@ -225,7 +229,11 @@ void EditQuery::EditPage()
         // we append new text now
         this->Section = 0;
         t = this->OriginalText + this->text;
-    } else
+    } else if (this->Prepend)
+    {
+        this->Section = 0;
+        t = this->text + this->OriginalText;
+    }
     {
         t = this->text;
     }

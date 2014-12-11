@@ -68,7 +68,8 @@ namespace Huggle
          * \return
          */
         HUGGLE_EX QString SanitizeUser(QString username);
-        HUGGLE_EX Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false);
+        HUGGLE_EX Collectable_SmartPtr<EditQuery> PrependTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
+        HUGGLE_EX Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
         HUGGLE_EX void FinalizeMessages();
         /*!
          * \brief EditPage Run a new EditQuery that will edit the page

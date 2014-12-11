@@ -32,6 +32,7 @@ namespace Huggle
             void Process();
             bool IsProcessed();
             bool Append = false;
+            bool Prepend = false;
             bool InsertTargetToWatchlist = false;
             //! Page that is going to be edited
             WikiPage *Page = nullptr;
