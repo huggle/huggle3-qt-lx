@@ -42,6 +42,9 @@ namespace Huggle
             explicit SpeedyForm(QWidget *parent = nullptr);
             ~SpeedyForm();
             void Init(WikiEdit *edit_);
+            QString GetSelectedDBReason();
+            QString GetSelectedTagID();
+            void SetMessageUserCheck(bool new_value);
             Collectable_SmartPtr<WikiEdit> edit;
             QString Text;
             QString Header;

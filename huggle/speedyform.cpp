@@ -150,6 +150,27 @@ void SpeedyForm::Init(WikiEdit *edit_)
     this->ui->label_2->setText(edit_->Page->PageName);
 }
 
+QString SpeedyForm::GetSelectedDBReason()
+{
+    return this->ui->comboBox->currentText();
+}
+
+QString SpeedyForm::GetSelectedTagID()
+{
+    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates
+                       .at(this->ui->comboBox->currentIndex()).split(";");
+    if (vals.count() < 4)
+    {
+        return "";
+    }
+    return vals.at(2);
+}
+
+void SpeedyForm::SetMessageUserCheck(bool new_value)
+{
+    this->ui->checkBox->setChecked(new_value);
+}
+
 void SpeedyForm::OnTick()
 {
     if (this->qObtainText != nullptr)

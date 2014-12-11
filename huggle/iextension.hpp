@@ -55,6 +55,12 @@ namespace Huggle
              */
             virtual void Hook_EditPreProcess(void *edit) {}
             virtual void Hook_SpeedyFinished(void *edit, QString tags, bool successfull) {}
+            /*!
+             * \brief Hook_SpeedyBeforeOK Called right after user request processing of speedy form
+             * \param edit
+             * \param form
+             * \return if false is returned whole operation is refused
+             */
             virtual bool Hook_SpeedyBeforeOK(void *edit, void *form) { return true; }
             virtual void Hook_Shutdown() {}
             /*!
