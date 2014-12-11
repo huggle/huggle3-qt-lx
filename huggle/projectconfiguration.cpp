@@ -67,7 +67,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
     this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
-    this->ApprovalPage = HuggleParser::ConfigurationParse("approval-page", config, this->ApprovalPage);
+    this->ApprovalPage = HuggleParser::ConfigurationParse("userlist", config, this->ApprovalPage);
     this->ReportAIV = HuggleParser::ConfigurationParse("aiv", config);
     this->ReportSt = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
     // we use these to understand which format they use on a wiki for dates
