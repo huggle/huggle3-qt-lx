@@ -255,3 +255,13 @@ Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QStrin
     eq->Process();
     return eq;
 }
+
+Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(WikiPage *page, QString text, QString summary, bool minor)
+{
+    return WikiUtil::PrependTextToPage(page->PageName, text, summary, minor, page->GetSite());
+}
+
+Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(WikiPage *page, QString text, QString summary, bool minor)
+{
+    return WikiUtil::AppendTextToPage(page->PageName, text, summary, minor, page->GetSite());
+}
