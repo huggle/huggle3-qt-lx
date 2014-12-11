@@ -378,7 +378,7 @@ void ReportUser::Test()
         QDomDocument d;
         d.setContent(this->qCheckIfBlocked->Result->Data);
         QMessageBox mb;
-        mb.setWindowTitle("Result");
+        mb.setWindowTitle(_l("result"));
         QDomNodeList l = d.elementsByTagName("block");
         if (l.count() > 0)
         {
@@ -387,7 +387,7 @@ void ReportUser::Test()
             this->ReportedUser->Update();
         } else
         {
-            mb.setText("User is not blocked");
+            mb.setText(_l("block-not"));
         }
         mb.exec();
         this->qCheckIfBlocked.Delete();

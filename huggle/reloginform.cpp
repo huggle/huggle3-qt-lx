@@ -133,7 +133,7 @@ void ReloginForm::LittleTick()
         }
         if (!login_->Attributes.contains("token"))
         {
-            this->Fail("No token");
+            this->Fail(_l("no-token"));
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
