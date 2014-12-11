@@ -127,6 +127,8 @@ namespace Huggle
             Callback FailureCallback = nullptr;
             //! This is a pointer to object returned by your callback function
             void* CallbackResult = nullptr;
+            //! You can use this to set a reference to a class which used this callback function
+            void* CallbackOwner = nullptr;
             bool RetryOnTimeoutFailure;
             QDateTime StartTime;
             int Timeout;
