@@ -114,6 +114,7 @@
     <string name="config-undosummary">Summary when undoing own edits</string>
     <string name="config-confirm-user">Require confirmation for revert of edit that was made in user space</string>
     <string name="config-confirm-wl">Require confirmation for revert of edit that was made by whitelisted user</string>
+    <string name="config-confirm-talk">Require confirmation for revert of talk page</string>
     <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
     <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
     <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
