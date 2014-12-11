@@ -808,6 +808,15 @@ void Login::RetrieveUserInfo(WikiSite *site)
 
 void Login::DeveloperMode()
 {
+    // load dummy project config files
+    QFile *vf;
+    vf = new QFile(":/huggle/resources/Resources/DefaultConfig.txt");
+    vf->open(QIODevice::ReadOnly);
+    QString pref = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    foreach (WikiSite *site, hcfg->Projects)
+        site->GetProjectConfig()->Parse(pref, nullptr, site);
     hcfg->Restricted = true;
     MainWindow::HuggleMain = new MainWindow();
     MainWindow::HuggleMain->show();

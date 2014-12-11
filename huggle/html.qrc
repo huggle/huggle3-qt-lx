@@ -8,5 +8,6 @@
         <file>Resources/html/StopFire.html</file>
         <file>Resources/html/DiffEnd.html</file>
         <file>Resources/html/RTL.css</file>
+        <file>Resources/DefaultConfig.txt</file>
     </qresource>
 </RCC>
