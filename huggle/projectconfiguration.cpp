@@ -63,11 +63,11 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
             *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version.ToString() + " or newer.";
         return false;
     }
-    if (SafeBool(HuggleParser::ConfigurationParse("approval", config, "false")))
-        Syslog::HuggleLogs->WarningLog(this->ProjectName + " is using obsolete option 'approval' which is not supported");
+    this->Approval = SafeBool(HuggleParser::ConfigurationParse("approval", config, "false"));
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
     this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
+    this->ApprovalPage = HuggleParser::ConfigurationParse("approval-page", config, this->ApprovalPage);
     this->ReportAIV = HuggleParser::ConfigurationParse("aiv", config);
     this->ReportSt = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
     // we use these to understand which format they use on a wiki for dates

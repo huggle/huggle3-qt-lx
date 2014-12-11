@@ -70,6 +70,8 @@ namespace Huggle
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
             bool IsSane = false;
+            bool Approval = false;
+            QString ApprovalPage = "Project:Huggle/Users";
             QString ProjectName;
             WikiSite    *Site = nullptr;
             QString     EditToken = "";

@@ -125,25 +125,25 @@ namespace Huggle
 
     //! System config:
     //! That is configuration which is related to selected computer, like fonts, sizes and layout of GUI
-    //! this configuration is not stored on wiki, it's only in local configuration file
+    //! this configuration is not stored on wiki, it's only in local configuration file.
 
     //! Global config:
     //! Is configuration used for all wikimedia projects, stored on meta, it can't be overriden neither by users
-    //! nor by project configs
+    //! nor by project configs.
 
     //! Project config:
-    //! Is configuration local to projects, which can't be overriden by user config
+    //! Is configuration local to projects, which can't be overriden by user config.
 
     //! Shared config:
     //! Is configuration local to projects, which contains definitions for templates and so on, this can be
-    //! overriden by user config
+    //! overriden by user config.
 
     //! User config:
     //! Maintained by user and stored in huggle3.css on wiki, this is only wiki-side configuration that is being
-    //! updated directly by huggle
+    //! updated directly by huggle.
 
     //! Temporary config:
-    //! Is maintained accross 1 huggle session
+    //! Is maintained accross 1 huggle session.
     class HUGGLE_EX Configuration
     {
         public:
@@ -186,6 +186,7 @@ namespace Huggle
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
             QString GetExtensionConfig(QString extension, QString name, QString ms);
+
             ////////////////////////////////////////////
             // System
             ////////////////////////////////////////////
@@ -209,6 +210,7 @@ namespace Huggle
             QList<WikiSite *> ProjectList;
             QStringList       ProjectString;
             //! When this is true most of functions will not work
+            //! used on "Developer Mode" so far
             bool            Restricted = false;
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information

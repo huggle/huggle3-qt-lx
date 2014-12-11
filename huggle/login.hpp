@@ -126,11 +126,11 @@ namespace Huggle
             bool Refreshing = false;
             QHash<WikiSite*, bool> processedSiteinfos;
             QHash<WikiSite*, bool> processedLogin;
-            //! This query is used to get a wl
+            QHash<WikiSite*, ApiQuery*> qApproval;
             QHash<WikiSite*, WLQuery*> WhitelistQueries;
             QHash<WikiSite*, ApiQuery*> qSiteInfo;
             QHash<WikiSite*, ApiQuery*> qTokenInfo;
-            QHash<WikiSite*,ApiQuery*> LoginQueries;
+            QHash<WikiSite*, ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
             bool Loading;
             Collectable_SmartPtr<ApiQuery> qDatabase;

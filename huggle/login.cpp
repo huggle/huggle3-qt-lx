@@ -175,11 +175,15 @@ void Login::RemoveQueries()
     Sites = this->qTokenInfo.keys();
     foreach (WikiSite* st, Sites)
         this->qTokenInfo[st]->DecRef();
+    Sites = this->qApproval.keys();
+    foreach (WikiSite* st, Sites)
+        this->qApproval[st]->DecRef();
     Sites = this->qSiteInfo.keys();
     foreach (WikiSite* st, Sites)
         this->qSiteInfo[st]->DecRef();
     this->qSiteInfo.clear();
     this->qTokenInfo.clear();
+    this->qApproval.clear();
     this->WhitelistQueries.clear();
     this->LoginQueries.clear();
 }
@@ -552,6 +556,32 @@ void Login::RetrieveWhitelist(WikiSite *site)
 
 void Login::RetrieveProjectConfig(WikiSite *site)
 {
+    // check approval page
+    if (this->qApproval.contains(site))
+    {
+        ApiQuery *query = this->qApproval[site];
+        if (query->IsProcessed())
+        {
+            QString result;
+            bool failed = false;
+            result = Generic::EvaluateWikiPageContents(query, &failed);
+            if (failed)
+            {
+                this->DisplayError("Unable to retrieve user list: " + result);
+                return;
+            }
+            QStringList users = result.toLower().split("\n");
+            if (!users.contains(QString("* [[Special:Contributions/" + hcfg->SystemConfig_Username + "|" + hcfg->SystemConfig_Username + "]]").toLower()))
+            {
+                this->DisplayError(_l("login-error-approval", site->Name));
+                return;
+            }
+            this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
+            this->Statuses[site] = RetrievingUserConfig;
+        }
+        return;
+    }
+
     if (this->LoginQueries.contains(site))
     {
         ApiQuery *query = this->LoginQueries[site];
@@ -575,11 +605,19 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             if (site->ProjectConfig == nullptr)
                 throw new Huggle::NullPointerException("site->ProjectConfig", BOOST_CURRENT_FUNCTION);
             QString reason;
-            if (site->ProjectConfig->Parse(value, &reason, site))
+            if (site->GetProjectConfig()->Parse(value, &reason, site))
             {
-                if (!site->ProjectConfig->EnableAll)
+                if (!site->GetProjectConfig()->EnableAll)
                 {
                     this->DisplayError(_l("login-error-projdisabled", site->Name));
+                    return;
+                }
+                if (site->GetProjectConfig()->Approval)
+                {
+                    // we need to have approval in order to use huggle
+                    this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
+                    this->qApproval[site]->IncRef();
+                    this->qApproval[site]->Process();
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
