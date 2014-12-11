@@ -20,6 +20,8 @@ typedef char byte_ht;
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3
 #define HUGGLE_BYTE_VERSION_MINOR       0x1
 #define HUGGLE_BYTE_VERSION_RELEASE     0x6
+// format is 0xMAJOR(2)MINOR(2)RELEASE(2) so for 3.1.2 it's 0x030102
+#define HUGGLE_BYTE_VERSION             0x030106
 
 // Version of mediawiki that we do support
 #define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
