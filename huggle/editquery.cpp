@@ -223,19 +223,18 @@ void EditQuery::EditPage()
     this->qEdit = new ApiQuery(ActionEdit, this->Page->Site);
     this->qEdit->Target = "Writing " + this->Page->PageName;
     this->qEdit->UsingPOST = true;
-    QString t;
     if (this->Append)
     {
         // we append new text now
         this->Section = 0;
-        t = this->OriginalText + this->text;
+        this->text = this->OriginalText + this->text;
     } else if (this->Prepend)
     {
         this->Section = 0;
-        t = this->text + this->OriginalText;
+        this->text = this->text + this->OriginalText;
     }
     {
-        t = this->text;
+        this->text = this->text;
     }
     QString base = "";
     QString start_ = "";
