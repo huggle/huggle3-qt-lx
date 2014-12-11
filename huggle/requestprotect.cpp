@@ -172,7 +172,7 @@ QString RequestProtect::ProtectionType()
 void RequestProtect::Fail(QString message)
 {
     QMessageBox mb;
-    mb.setWindowTitle("Error");
+    mb.setWindowTitle(_l("error"));
     mb.setText(message);
     mb.exec();
     // delete the queries and stop

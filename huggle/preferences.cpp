@@ -143,10 +143,51 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
             break;
     }
     this->Disable();
+    this->ui->checkBox->setText(_l("config-conflicts-revert"));
     this->ui->checkBox_2->setText(_l("config-confirm-user"));
     this->ui->checkBox_3->setText(_l("config-confirmselfrevert"));
     this->ui->checkBox_4->setText(_l("config-confirm-wl"));
     this->ui->checkBox_11->setText(_l("config-confirm-talk"));
+    this->ui->checkbox_5->setText(_l("config-use-rollback"));
+    this->ui->checkbox_30->setText(_l("config-welcome-empty-page"));
+    this->ui->checkBox_27->setText(_l("config-instant-reverts"));
+    this->ui->label_3->setText(_l("config-revert-wait"));
+    this->ui->radioButton_2->setText(_l("config-revert"));
+    this->ui->checkBox_20->setText(_l("config-revert-diff"));
+    this->ui->pushButton_7->setText(_l("config-change-all"));
+    this->ui->checkBox_17->setText(_l("config-merge-messages"));
+    this->ui->checkBox_16->setText(_l("config-months-name"));
+    this->ui->checkBox_24->setText(_l("config-automatic-warning"));
+    this->ui->checkBox_12->setText(_l("config-enable-irc"));
+    this->ui->checkBox_15->setText(_l("config-remove-reverted"));
+    this->ui->checkBox_19->setText(_l("config-remove-old"));
+    this->ui->checkBox_14->setText(_l("config-auto-load-history"));
+    this->ui->checkBox_21->setText(_l("config-last-revision"));
+    this->ui->checkBox_26->setText(_l("config-require-delay"));
+    this->ui->label_2->setText(_l("config-wait-edit"));
+    this->ui->radioButton_3->setText(_l("config-display-text"));
+    this->ui->radioButton_4->setText(_l("config-retrieve-edit"));
+    this->ui->radioButton_5->setText(_l("config-nothing"));
+    this->ui->label_4->setText(_l("config-bot-edits"));
+    this->ui->label_6->setText(_l("config-own-edits"));
+    this->ui->label_5->setText(_l("config-reverts"));
+    this->ui->label_8->setText(_l("config-new-page"));
+    this->ui->label_7->setText(_l("config-minor"));
+    this->ui->label_9->setText(_l("config-whitelisted"));
+    this->ui->label_10->setText(_l("config-friend"));
+    this->ui->label_11->setText(_l("config-userspace"));
+    this->ui->label_12->setText(_l("config-talk"));
+    this->ui->checkBox_22->setText(_l("config-columns-dynamic"));
+    this->ui->checkBox_25->setText(_l("config-message-notification"));
+    this->ui->checkBox_6->setText(_l("config-warning-api"));
+    this->ui->checkBox_23->setText(_l("config-title-diff"));
+    this->ui->checkBox_notifyUpdate->setText(_l("config-updates"));
+    this->ui->checkBox_notifyBeta->setText(_l("config-beta"));
+    this->ui->checkBox_31->setText(_l("config-html-messages"));
+    this->ui->checkBox_7->setText(_l("config-summary-present"));
+    this->ui->pushButton_2->setText(_l("ok"));
+    this->ui->pushButton->setText(_l("config-close-without"));
+
     // options
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
@@ -452,7 +493,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
     if (Core::HuggleCore->Main->Queue1->CurrentFilter == filter)
     {
         QMessageBox mb;
-        mb.setText("You can't delete a filter that is currently being used");
+        mb.setText(_l("preferences-delete-using-filter"));
         mb.exec();
         return;
     }
@@ -579,7 +620,7 @@ void Preferences::RecordKeys(int row, int column)
                 if (hcfg->Shortcuts[s].QAccel == key && s != id)
                 {
                     QMessageBox m;
-                    m.setWindowTitle("Fail");
+                    m.setWindowTitle(_l("fail"));
                     m.setText(_l("config-already-in-use", hcfg->Shortcuts[s].Name));
                     m.exec();
                     goto revert;
