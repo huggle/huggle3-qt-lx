@@ -148,8 +148,8 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_3->setText(_l("config-confirmselfrevert"));
     this->ui->checkBox_4->setText(_l("config-confirm-wl"));
     this->ui->checkBox_11->setText(_l("config-confirm-talk"));
-    this->ui->checkbox_5->setText(_l("config-use-rollback"));
-    this->ui->checkbox_30->setText(_l("config-welcome-empty-page"));
+    this->ui->checkBox_5->setText(_l("config-use-rollback"));
+    this->ui->checkBox_30->setText(_l("config-welcome-empty-page"));
     this->ui->checkBox_27->setText(_l("config-instant-reverts"));
     this->ui->label_3->setText(_l("config-revert-wait"));
     this->ui->radioButton_2->setText(_l("config-revert"));
