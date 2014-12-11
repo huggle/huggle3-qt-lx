@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>481</height>
+    <height>618</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -346,7 +346,11 @@
         <number>8</number>
        </property>
        <item>
-        <widget class="QTableWidget" name="tableWidget"/>
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

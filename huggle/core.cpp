@@ -309,6 +309,11 @@ void Core::ExtensionLoad()
         {
             if (hcfg->IgnoredExtensions.contains(ename))
             {
+                ExtensionHolder *extension = new ExtensionHolder();
+                extension->Name = QFile(ename).fileName();
+                extension->huggle__internal_SetPath(ename);
+                // we append this so that it's possible to re enable it
+                Extensions.append(extension);
                 HUGGLE_DEBUG1("Path was ignored: " + ename);
                 continue;
             }
@@ -327,6 +332,7 @@ void Core::ExtensionLoad()
                             Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension: " + ename);
                         } else
                         {
+                            interface->huggle__internal_SetPath(ename);
                             if (interface->RequestNetwork())
                             {
                                 interface->Networking = Query::NetworkManager;

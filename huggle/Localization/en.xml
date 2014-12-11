@@ -46,6 +46,8 @@
     <string name="whitelisted">$1 with score $2 on $3 has been inserted to whitelist</string>
     <string name="expiry-time">Expiry time</string>
     <string name="duration">Duration</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
     <string name="no-token">No token</string>
     <string name="flags">Flags</string>
     <string name="score-score">Score</string>
@@ -154,8 +156,8 @@
     <string name="delete-e2">Unable to delete page</string>
     <string name="delete-edsc">Unable to delete page because $1</string>
     <string name="delete-failed-no-info">No page info was present in query (are you sysop?)</string>
-    <string name="extension-kl">Killed</string>
-    <string name="extension-fine">Loaded and running</string>
+    <string name="extension-kl">Not running</string>
+    <string name="extension-ok">Loaded and running</string>
     <string name="historyform-no-info">No edit info</string>
     <string name="historyform-title">History</string>
     <string name="historyform-retrieve-history">Retrieve history</string>

@@ -9,5 +9,19 @@
 //GNU General Public License for more details.
 
 #include "iextension.hpp"
+#include "exception.hpp"
 
 using namespace Huggle;
+
+void iExtension::huggle__internal_SetPath(QString path)
+{
+    if (!this->huggle__internal_ExtensionPath.isEmpty())
+        throw new Exception("Extension path is read only", BOOST_CURRENT_FUNCTION);
+
+    this->huggle__internal_ExtensionPath = path;
+}
+
+QString iExtension::GetExtensionFullPath()
+{
+    return this->huggle__internal_ExtensionPath;
+}

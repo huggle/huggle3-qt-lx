@@ -10,9 +10,11 @@
 
 #include "preferences.hpp"
 #include <QMessageBox>
+#include <QMenu>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "huggleoption.hpp"
 #include "hugglequeue.hpp"
 #include "localization.hpp"
@@ -88,11 +90,16 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Loading extension info");
         iExtension *extension = Huggle::Core::HuggleCore->Extensions.at(c);
+        QString status;
+        if (extension->IsWorking())
+            status = _l("extension-ok");
+        else
+            status = _l("extension-kl");
         this->ui->tableWidget->insertRow(0);
         this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
         this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
         this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
-        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok")));
+        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(status));
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
@@ -618,4 +625,53 @@ void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
 {
     this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
     Core::HuggleCore->Main->Queue1->Filters();
+}
+
+void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint &pos)
+{
+    QPoint g_ = this->ui->tableWidget->mapToGlobal(pos);
+    QMenu menu;
+    QAction *disable = new QAction(_l("disable"), &menu);
+    QAction *enable = new QAction(_l("enable"), &menu);
+    menu.addAction(disable);
+    menu.addAction(enable);
+    QAction *selection = menu.exec(g_);
+    if (selection == disable)
+    {
+        foreach (QTableWidgetItem *extension, this->ui->tableWidget->selectedItems())
+        {
+            if (extension->row() >= Core::HuggleCore->Extensions.count())
+                throw new Huggle::Exception("ERROR: Invalid exception id", BOOST_CURRENT_FUNCTION);
+
+            iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
+            if (hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
+            {
+                Generic::MessageBox("Error", "This extension is already scheduled for disabling next startup of huggle");
+            }
+            else
+            {
+                hcfg->IgnoredExtensions.append(ex->GetExtensionFullPath());
+                Generic::MessageBox("Done", "Extension was disabled, however you need to restart huggle for it to happen");
+            }
+        }
+    }
+    if (selection == enable)
+    {
+        foreach (QTableWidgetItem *extension, this->ui->tableWidget->selectedItems())
+        {
+            if (extension->row() >= Core::HuggleCore->Extensions.count())
+                throw new Huggle::Exception("ERROR: Invalid exception id", BOOST_CURRENT_FUNCTION);
+
+            iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
+            if (!hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
+            {
+                Generic::MessageBox("Error", "This extension is not scheduled for disabling next startup of huggle");
+            }
+            else
+            {
+                hcfg->IgnoredExtensions.removeAll(ex->GetExtensionFullPath());
+                Generic::MessageBox("Done", "Extension was enabled, however you need to restart huggle for it to happen");
+            }
+        }
+    }
 }

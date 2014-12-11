@@ -43,6 +43,8 @@ namespace Huggle
             virtual bool IsWorking() { return false; }
             virtual ~iExtension() {}
             virtual bool Register() { return false; }
+            void huggle__internal_SetPath(QString path);
+            HUGGLE_EX QString GetExtensionFullPath();
             /*!
              * \brief This is called when the extension is removed from system
              */
@@ -80,6 +82,15 @@ namespace Huggle
             void *Configuration;
             void *Localization;
             QNetworkAccessManager *Networking;
+        private:
+            QString huggle__internal_ExtensionPath;
+    };
+
+    class ExtensionHolder : public iExtension
+    {
+        public:
+            QString GetExtensionName() { return this->Name; }
+            QString Name;
     };
 }
 
