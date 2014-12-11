@@ -55,6 +55,7 @@ namespace Huggle
              */
             virtual void Hook_EditPreProcess(void *edit) {}
             virtual void Hook_SpeedyFinished(void *edit, QString tags, bool successfull) {}
+            virtual bool Hook_SpeedyBeforeOK(void *edit, void *form) { return true; }
             virtual void Hook_Shutdown() {}
             /*!
              * \brief Hook_EditScore is called after edit score is calculated

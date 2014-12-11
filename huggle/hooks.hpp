@@ -21,6 +21,7 @@ namespace Huggle
     class WikiEdit;
     class Exception;
     class MainWindow;
+    class SpeedyForm;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
     class HUGGLE_EX Hooks
@@ -62,6 +63,7 @@ namespace Huggle
              * \param Score New score of user
              */
             static void BadnessScore(WikiUser *User, int Score);
+            static bool Speedy_BeforeOK(Huggle::WikiEdit *edit, SpeedyForm *form);
             static void Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool success);
             /*!
              * \brief Window is loaded

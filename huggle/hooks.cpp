@@ -128,3 +128,19 @@ void Huggle::Hooks::Shutdown()
     Huggle::Core::HuggleCore->Python->Hook_HuggleShutdown();
 #endif
 }
+
+bool Huggle::Hooks::Speedy_BeforeOK(Huggle::WikiEdit *edit, Huggle::SpeedyForm *form)
+{
+    bool result = true;
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+        {
+           if (!e->Hook_SpeedyBeforeOK((void*)edit, (void*)form))
+           {
+               result = false;
+           }
+        }
+    }
+    return result;
+}
