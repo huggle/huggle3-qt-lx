@@ -20,7 +20,7 @@ Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
     this->ui->setupUi(this);
     this->ui->label->setText(_l("login-proxyaddress"));
     this->ui->label_3->setText(_l("login-proxyport"));
-    this->ui->comboBox->addItem("None");
+    this->ui->comboBox->addItem(_l("protect-none"));
     this->ui->comboBox->addItem("Socks 5");
     this->ui->comboBox->addItem("Http");
     this->ui->comboBox->addItem("Http (caching proxy)");

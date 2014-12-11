@@ -26,7 +26,7 @@ AboutForm::AboutForm(QWidget *parent) : QDialog(parent), ui(new Ui::AboutForm)
         python = ", with python support";
     }
     QString version = ", compiled using QT " + QString(QT_VERSION_STR) + " Running on QT " + QString(qVersion());
-    this->ui->label_7->setText("Version: " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
+    this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
 }
 
 AboutForm::~AboutForm()

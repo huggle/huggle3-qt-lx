@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "queryresult.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 
@@ -37,7 +38,7 @@ void QueryResult::SetError()
 {
     this->ErrorCode = 1;
     this->Failed = true;
-    this->ErrorMessage = "Unknown error";
+    this->ErrorMessage = _l("error-unknown");
 }
 
 void QueryResult::SetError(QString error)
