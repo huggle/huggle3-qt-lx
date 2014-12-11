@@ -183,7 +183,7 @@ QString WikiUtil::SanitizeUser(QString username)
     return username;
 }
 
-ApiQuery *WikiUtil::Unwatchlist(WikiPage *page)
+Collectable_SmartPtr<ApiQuery> WikiUtil::Unwatchlist(WikiPage *page)
 {
     ApiQuery *wt = new ApiQuery(ActionUnwatch, page->GetSite());
     wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
@@ -210,7 +210,7 @@ ApiQuery *WikiUtil::Unwatchlist(WikiPage *page)
     return wt;
 }
 
-ApiQuery *WikiUtil::Watchlist(WikiPage *page)
+Collectable_SmartPtr<ApiQuery> WikiUtil::Watchlist(WikiPage *page)
 {
     ApiQuery *wt = new ApiQuery(ActionWatch, page->GetSite());
     wt->RegisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);

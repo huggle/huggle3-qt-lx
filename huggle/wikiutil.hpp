@@ -90,8 +90,8 @@ namespace Huggle
                                                            QString BaseTimestamp = "", unsigned int section = 0);
         HUGGLE_EX Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
                                                            QString BaseTimestamp = "", unsigned int section = 0);
-        HUGGLE_EX ApiQuery *Unwatchlist(WikiPage *page);
-        HUGGLE_EX ApiQuery *Watchlist(WikiPage *page);
+        HUGGLE_EX Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
+        HUGGLE_EX Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);
     }
 }
 
