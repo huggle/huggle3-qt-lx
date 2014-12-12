@@ -55,7 +55,8 @@ SpeedyForm::~SpeedyForm()
 
 void SpeedyForm::on_pushButton_clicked()
 {
-
+    if (!Hooks::Speedy_BeforeOK(this->edit, this))
+        return;
     if (this->edit->Page->IsUserpage())
     {
         QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "Request",  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);

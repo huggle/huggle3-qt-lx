@@ -183,8 +183,9 @@ void DeleteForm::Delete()
     }
     // let's assume the page was deleted
     this->ui->pushButton->setText(_l("deleted"));
-    HUGGLE_DEBUG("Deletion result: " + this->qDelete->Result->Data, 2);
     this->tDelete->stop();
+    HUGGLE_DEBUG("Deletion result: " + this->qDelete->Result->Data, 2);
+    this->close();
 }
 
 void DeleteForm::Failed(QString Reason)
