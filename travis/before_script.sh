@@ -10,20 +10,20 @@ if [ "$QTTYPE" = "4" ]; then
 	./configure --qt4 --extension
         cp definitions_prod.hpp definitions.hpp
         cd huggle_release
-	make
+	make || exit 1
         cd ..
 	cd tests/test
 	cmake .
-	make
+	make || exit 1
 fi
 
 if [ "$QTTYPE" = "5" ]; then
 	./configure --qt5 --extension
         cp definitions_prod.hpp definitions.hpp
         cd huggle_release
-	make
+	make || exit 1
         cd ..
 	cd tests/test
         cmake . -DQT5_BUILD=true
-	make
+	make || exit 1
 fi
