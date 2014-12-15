@@ -11,6 +11,7 @@
 // this is nasty hack to ensure that Python.h is included first
 // see http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
 
+#ifndef HUGGLE_LIBRARY
 #include "definitions.hpp"
 
 #include <QApplication>
@@ -98,3 +99,4 @@ int main(int argc, char *argv[])
     }
 }
 
+#endif
