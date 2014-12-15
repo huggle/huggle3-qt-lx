@@ -128,7 +128,7 @@ QString Exception::GetCurrentStackTrace()
 #ifdef __linux__
     result = "";
     void *array[HUGGLE_STACK];
-    int i;
+    unsigned int i;
     size_t size;
     char **messages;
     size = backtrace(array, HUGGLE_STACK);
