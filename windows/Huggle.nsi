@@ -125,8 +125,8 @@ File "release\platforms\qminimal.dll"
 File "release\platforms\qoffscreen.dll"
 File "release\platforms\qwindows.dll"
 SetOutPath "$INSTDIR\extensions"
-File "release\MassDelivery.dll"
-File "release\enwiki.dll"
+File "release\libhuggle_md.dll"
+File "release\liben.dll"
 SectionEnd
 
 ######################################################################
@@ -181,9 +181,9 @@ ${INSTALL_TYPE}
 Delete "$INSTDIR\${MAIN_APP_EXE}"
 Delete "$INSTDIR\icuin53.dll"
 Delete "$INSTDIR\libcore.dll.a"
-Delete "$INSTDIR\extensions\MassDelivery.dll"
+Delete "$INSTDIR\extensions\libhuggle_md.dll"
 Delete "$INSTDIR\libcore.dll"
-Delete "$INSTDIR\extensions\enwiki.dll"
+Delete "$INSTDIR\extensions\liben.dll"
 Delete "$INSTDIR\Qt5Core.dll"
 Delete "$INSTDIR\Qt5Multimedia.dll"
 Delete "$INSTDIR\icudt53.dll"
