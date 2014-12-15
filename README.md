@@ -46,9 +46,7 @@ run ./configure with --python option, for example
 ```
 Note: you need to have cmake 3.0.0 or newer for this to work
 
-On windows:
-* open huggle.pro and uncomment / add python library
-* open definitions.hpp and uncomment #define PYTHONENGINE
+On windows you need to run cmake with -DHUGGLE_PYTHON=TRUE for it to work
 
 Now rebuild Huggle and hopefor the best!
 
