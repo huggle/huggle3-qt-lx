@@ -11,7 +11,9 @@
 #include "updateform.hpp"
 #include <QDesktopServices>
 #include <QtXml>
+#if QT_VERSION >= 0x050000
 #include <QTemporaryDir>
+#endif
 #include <QNetworkReply>
 #ifdef HUGGLE_WIN
 #include <windows.h>
@@ -85,11 +87,15 @@ void UpdateForm::Check()
 // Checks if OS is supported by updater
 static bool IsSupported()
 {
+#if QT_VERSION >= 0x050000
 #ifdef HUGGLE_WIN
     return true;
 #else
     return false;
 #endif
+#else
+    return false;
+#endif;
 }
 
 static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &dirs)
@@ -128,6 +134,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
     }
     else
     {
+#if QT_VERSION >= 0x050000
         this->ui->pushButton->setEnabled(false);
         if (this->Instructions.count() < 1)
         {
@@ -217,6 +224,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         {
             this->Fail("Unable to launch the updater");
         }
+#endif
 #endif
     }
     this->close();
