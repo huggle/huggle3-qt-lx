@@ -35,12 +35,22 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
     this->ui->setupUi(this);
     this->qData = NULL;
     this->timer = new QTimer(this);
-
-    this->setWindowTitle(_l("updater-title"));
-    this->ui->pushButton->setText(_l("updater-update"));
-    this->ui->pushButton_2->setText(_l("updater-close"));
-    this->ui->checkBox->setText(_l("updater-disable-notify"));
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
+    if (hcfg->UpdaterMode)
+    {
+        this->ui->checkBox->setEnabled(false);
+        this->ui->checkBox_2->setEnabled(false);
+        this->ui->label->setText("I am now updating huggle, please wait...");
+        this->ui->pushButton->setEnabled(false);
+        this->ui->pushButton_2->setEnabled(false);
+    }
+    else
+    {
+        this->setWindowTitle(_l("updater-title"));
+        this->ui->pushButton->setText(_l("updater-update"));
+        this->ui->pushButton_2->setText(_l("updater-close"));
+        this->ui->checkBox->setText(_l("updater-disable-notify"));
+    }
 }
 
 UpdateForm::~UpdateForm()
@@ -173,7 +183,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         // now we can launch the copy of huggle with parameters for update
 #ifdef HUGGLE_WIN
         QString program = temp.path() + QDir::separator() + "huggle.exe";
-        QString arguments = "--update" + manifest_path;
+        QString arguments = "--update -v --syslog " + temp.path() + QDir::separator() + "update.log";
         /*
         QProcess *ClientProcess = new QProcess( this );
         // exit calling application on called application start
@@ -191,8 +201,9 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         shExInfo.lpFile = program.toStdWString().c_str();
         shExInfo.lpParameters = arguments.toStdWString().c_str();
 #else
+        //! \todo This is broken on Visual Studio 2013
         shExInfo.lpVerb = _T("runas");
-        shExInfo.lpFile = _T(program.toStdString().c_str());
+        shExInfo.lpFile = _T(program.toLocal8Bit().toStdString().c_str());
         shExInfo.lpParameters = _T(arguments.toStdString().c_str());
 #endif
         shExInfo.lpDirectory = 0;

@@ -92,6 +92,7 @@ bool TerminalParser::Parse()
         }
         if (text == "--update")
         {
+            hcfg->UpdaterMode = true;
             valid = true;
         }
         if (text == "--version")
