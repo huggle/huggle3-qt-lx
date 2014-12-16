@@ -90,6 +90,10 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
             valid = true;
         }
+        if (text == "--update")
+        {
+            valid = true;
+        }
         if (text == "--version")
         {
             DisplayVersion();

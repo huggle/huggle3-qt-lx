@@ -186,9 +186,15 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         shExInfo.cbSize = sizeof(shExInfo);
         shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
         shExInfo.hwnd = 0;
-        shExInfo.lpVerb = reinterpret_cast<LPCTSTR>("runas");
-        shExInfo.lpFile = reinterpret_cast<LPCTSTR>(program.utf16());
-        shExInfo.lpParameters = reinterpret_cast<LPCTSTR>(arguments.utf16());
+#ifdef __GNUC__
+        shExInfo.lpVerb = QString("runas").toStdWString().c_str();
+        shExInfo.lpFile = program.toStdWString().c_str();
+        shExInfo.lpParameters = arguments.toStdWString().c_str();
+#else
+        shExInfo.lpVerb = _T("runas");
+        shExInfo.lpFile = _T(program.toStdString().c_str());
+        shExInfo.lpParameters = _T(arguments.toStdString().c_str());
+#endif
         shExInfo.lpDirectory = 0;
         shExInfo.nShow = SW_SHOW;
         shExInfo.hInstApp = 0;
