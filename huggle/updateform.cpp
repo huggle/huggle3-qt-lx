@@ -95,7 +95,7 @@ static bool IsSupported()
 #endif
 #else
     return false;
-#endif;
+#endif
 }
 
 static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &dirs)
