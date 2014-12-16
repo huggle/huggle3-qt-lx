@@ -18,11 +18,6 @@
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
 
-#ifdef MessageBox
-    // fix GCC for windows headers port
-    #undef MessageBox
-#endif
-
 using namespace Huggle;
 
 // we need to preload this thing so that we don't need to create this string so frequently and toast teh PC

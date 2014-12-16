@@ -21,6 +21,11 @@
 #define EvaluatePageErrorReason_NoRevs  3
 #define EvaluatePageErrorReason_Running 4
 
+#ifdef MessageBox
+    // fix GCC for windows headers port
+    #undef MessageBox
+#endif
+
 class QWidget;
 
 namespace Huggle
