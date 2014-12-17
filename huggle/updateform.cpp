@@ -180,6 +180,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         this->MovingFiles = true;
         this->ui->progressBar->setMaximum(values.count());
         this->timer->start(20);
+#endif
     }
 }
 void Huggle::UpdateForm::on_pushButton_2_clicked()
