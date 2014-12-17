@@ -582,7 +582,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QString sanitized_name = hcfg->SystemConfig_Username;
             sanitized_name = sanitized_name.toLower();
             sanitized_name = sanitized_name.replace("_", " ");
-            if (!users.contains("* [[special:contributions/" + hcfg->SystemConfig_Username + "|" + hcfg->SystemConfig_Username + "]]"))
+            if (!sanitized.contains("* [[special:contributions/" + sanitized_name + "|" + sanitized_name + "]]"))
             {
                 this->DisplayError(_l("login-error-approval", site->Name));
                 return;
