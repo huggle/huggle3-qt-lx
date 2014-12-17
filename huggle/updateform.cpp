@@ -603,6 +603,7 @@ void UpdateForm::Write(QString message)
 
 void UpdateForm::NextInstruction()
 {
+#if QT_VERSION >= 0x050000
     if (this->inst)
         return;
     if (this->Instructions.count() == 0)
@@ -650,6 +651,8 @@ void UpdateForm::NextInstruction()
     }
     delete this->inst;
     this->inst = nullptr;
+#endif
+    return;
 }
 
 void UpdateForm::Update()
