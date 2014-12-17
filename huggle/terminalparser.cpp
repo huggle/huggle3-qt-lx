@@ -90,7 +90,7 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
             valid = true;
         }
-        if (text == "--update")
+        if (text == "--huggleinternal-update")
         {
             hcfg->UpdaterMode = true;
             valid = true;

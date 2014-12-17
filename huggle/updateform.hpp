@@ -17,9 +17,14 @@
 #include <QString>
 #include <QDialog>
 #include <QProcess>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
 #include <QTimer>
 
 class QDomElement;
+class QFile;
 namespace Ui
 {
     class UpdateForm;
@@ -44,6 +49,7 @@ namespace Huggle
      * <exec elevated=true>Path</exec> - will execute as Administrator on Windows, or root on Linux
      * <copy elevated=bool from=path to=path overwrite=bool></copy> - will copy a file
      * <move elevated=bool from=path to=path overwrite=bool></move> - will move a file or folder
+     * <folder>path</folder> - will create a folder
      * <copydir elevated=bool from=path to=path overwrite=bool merge=bool></copydir> - will copy a folder
      * <movedir elevated=bool from=path to=path overwrite=bool merge=bool></movedir> - moves a folder
      * <remove elevated=bool recursive=bool>path</remove>
@@ -72,12 +78,36 @@ namespace Huggle
             void OnTick();
             void Exit();
             void on_label_linkActivated(const QString &link);
+            void httpReadyRead();
+            void httpDownloadFinished();
+            void updateDownloadProgress(qint64, qint64);
         private:
             bool parse_xml(QDomElement *line);
             void reject();
+            void PreparationFinish();
             void Fail(QString reason);
+            //! Pointer to current instruction if this is
+            //! nullptr updater will jump on next
+            Instruction* inst = nullptr;
+            bool ProcessManifest(QString data);
+            void ProcessDownload();
+            void Write(QString message);
+            void NextInstruction();
+            void Update();
+            bool MovingFiles = false;
+            int CurrentFile = 0;
+            QStringList values;
+            QStringList dirs;
+            QString Path(QString text);
+            QString RootPath;
+            QString TempPath;
             QString Manifest;
             Ui::UpdateForm *ui;
+            QUrl url;
+            QNetworkAccessManager *manager = nullptr;
+            QNetworkReply *reply = nullptr;
+            QFile *file = nullptr;
+            qint64 fileSize;
             QList<Instruction*> Instructions;
             QTimer *timer;
             QUrl *manualDownloadpage = nullptr;
@@ -89,13 +119,14 @@ namespace Huggle
         Instruction_Move,
         Instruction_Download,
         Instruction_Delete,
-        Instruction_Execute
+        Instruction_Execute,
+        Instruction_Folder
     };
 
     class Instruction
     {
         public:
-            Instruction(InstructionType type, QString from, QString to, bool is_elevated = false, bool is_recursive = false, bool merge = false, bool is_overwriting = false);
+            Instruction(InstructionType type, QString from, QString to, bool is_elevated = false, bool is_recursive = false, bool merge = false, bool is_overwriting = false, QString md5 = "");
             InstructionType Type;
             QString Source;
             QString Destination;
@@ -104,6 +135,7 @@ namespace Huggle
             bool Overwrite;
             bool Is_Recursive;
             bool Is_Merging;
+            int operation = 0;
     };
 }
 #endif // UPDATEFORM_H
