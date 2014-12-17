@@ -199,7 +199,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
         connect(ClientProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(ProcessError(QProcess::ProcessError)));
 
         ClientProcess->startDetached( program, arguments );*/
-        SHELLEXECUTEINFO shExInfo = {0};
+        SHELLEXECUTEINFO shExInfo = {};
         shExInfo.cbSize = sizeof(shExInfo);
         shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
         shExInfo.hwnd = 0;
