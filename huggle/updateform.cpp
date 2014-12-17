@@ -516,7 +516,6 @@ void UpdateForm::PreparationFinish()
         this->Fail("Unable to launch the updater");
     }
 #endif
-#endif
     this->close();
 }
 
