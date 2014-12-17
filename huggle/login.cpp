@@ -571,7 +571,18 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                 return;
             }
             QStringList users = result.toLower().split("\n");
-            if (!users.contains(QString("* [[Special:Contributions/" + hcfg->SystemConfig_Username + "|" + hcfg->SystemConfig_Username + "]]").toLower()))
+            QStringList sanitized;
+            // sanitize user list
+            foreach (QString user, users)
+            {
+                user = user.replace("_", " ");
+                user = user.trimmed();
+                sanitized.append(user);
+            }
+            QString sanitized_name = hcfg->SystemConfig_Username;
+            sanitized_name = sanitized_name.toLower();
+            sanitized_name = sanitized_name.replace("_", " ");
+            if (!users.contains("* [[special:contributions/" + hcfg->SystemConfig_Username + "|" + hcfg->SystemConfig_Username + "]]"))
             {
                 this->DisplayError(_l("login-error-approval", site->Name));
                 return;
