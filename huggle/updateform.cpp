@@ -630,7 +630,7 @@ void UpdateForm::NextInstruction()
         case Instruction_Delete:
         {
             QString path = this->Path(this->inst->Destination);
-            LOG("Deleting: " + path);
+            this->Write("Deleting: " + path);
             if (this->inst->Is_Recursive)
             {
                 if (!QDir(path).removeRecursively())
@@ -647,6 +647,58 @@ void UpdateForm::NextInstruction()
                 }
             }
         }
+            break;
+        case Instruction_Copy:
+        {
+            QString from = this->Path(this->inst->Source);
+            QString to = this->Path(this->inst->Destination);
+            this->Write("Copying " + from + " to " + to);
+            if (this->inst->Is_Recursive)
+            {
+                // first recreate the hierarchy of data structures
+                QStringList folders;
+                QStringList files;
+                QDir target(to);
+                QDir source(from);
+                if (!target.exists() && !target.mkpath(to))
+                {
+                    this->Fail("Unable to create folder " + to);
+                    break;
+                }
+                if (!source.exists())
+                {
+                    this->Fail("Source " + from + " doesn't exist");
+                    break;
+                }
+                recurseAddDir(source, files, to, folders);
+                foreach (QString directory, folders)
+                {
+                    if (!QDir().mkpath(temp.path() + QDir::separator() + directory))
+                    {
+                        LOG("Creating folder " + directory);
+                        this->Fail("Failed to create " + temp.path() + QDir::separator() + directory);
+                        return;
+                    }
+                }
+                foreach (QString file, files)
+                {
+                    LOG("Copying " + file);
+                }
+            } else
+            {
+                if (!QFile().copy(from, to))
+                {
+                    this->Fail("Unable to copy to " + to);
+                    break;
+                }
+            }
+        }
+            break;
+        case Instruction_Execute:
+
+            break;
+        case Instruction_Move:
+
             break;
     }
     delete this->inst;
