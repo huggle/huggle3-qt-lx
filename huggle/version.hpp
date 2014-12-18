@@ -27,19 +27,59 @@ namespace Huggle
     class HUGGLE_EX Version
     {
         public:
+            /*!
+             * \brief Returns whether or not a string is a valid version number
+             * \param String to check
+             */
             static bool IsValid(QString version);
+
+            /*!
+             * \brief The version of mediawiki supported by huggle
+             */
             static Version SupportedMediawiki;
 
             Version();
+
             Version(QString version);
+
             ~Version();
+
+            /*!
+             * \brief Returns the major section of the version number
+             */
             int GetMajor();
+
+            /*!
+             * \brief Returns the minor section of the version number
+             */
             int GetMinor();
+
+            /*!
+             * \brief Returns the revision section of the version number
+             */
             int GetRevision();
+
+            /*!
+             * \brief Returns whether or not 2 versions are equal
+             * \param The version to check against
+             * \param If the suffix of the version should be ignored
+             */
             bool IsEqual(Version *b, bool ignore_suffix = false);
+            /*!
+            * \brief Returns whether or not  the current version is lower than another version
+            * \param The version to check against
+            */
             bool IsLower(Version *b);
+
+            /*!
+             * \brief Returns whether or not  the current version is higher than another version
+             * \param The version to check against
+             */
             bool IsGreater(Version *b);
+
+            // \brief Returns if the instance's version is valid
             bool IsValid();
+
             QString ToString();
         private:
             QString getSuffixed(QString number);
