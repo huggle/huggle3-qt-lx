@@ -140,7 +140,6 @@
     <string name="config-own-edits">Own edits</string>
     <string name="config-reverts">Reverts</string>
     <string name="config-new-page">New page</string>
-    <string name="config-minor">Minor</string>
     <string name="config-whitelisted">Whitelisted</string>
     <string name="config-friend">Friend</string>
     <string name="config-userspace">Userspace</string>
