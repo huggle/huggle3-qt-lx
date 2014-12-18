@@ -78,7 +78,7 @@ namespace Huggle
             void on_label_linkActivated(const QString &link);
             void httpReadyRead();
             void httpDownloadFinished();
-            void updateDownloadProgress(qint64, qint64);
+            void updateDownloadProgress(qint64 value, qint64 max);
         private:
             bool parse_xml(QDomElement *line);
             void reject();

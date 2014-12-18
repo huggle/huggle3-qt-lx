@@ -39,6 +39,7 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
     this->ui->setupUi(this);
     this->qData = NULL;
     this->timer = new QTimer(this);
+    this->ui->progressBar_2->setVisible(false);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
     if (hcfg->SystemConfig_UM)
     {
@@ -98,6 +99,10 @@ static QString TrimSlashes(QString path)
 
     while (path.contains("\\\\"))
         path = path.replace("\\\\", "\\");
+
+#ifdef HUGGLE_WIN
+    path = path.replace("/", "\\");
+#endif
 
     return path;
 }
@@ -345,8 +350,10 @@ void UpdateForm::httpReadyRead()
 
 void UpdateForm::httpDownloadFinished()
 {
+    this->ui->progressBar_2->setVisible(false);
     this->file->flush();
     this->file->close();
+    this->Write("Working...");
     delete this->file;
     this->file = nullptr;
     // there is a bug in Qt, we need to reopen the file for hash to be correct
@@ -365,9 +372,11 @@ void UpdateForm::httpDownloadFinished()
     this->inst = nullptr;
 }
 
-void UpdateForm::updateDownloadProgress(qint64, qint64)
+void UpdateForm::updateDownloadProgress(qint64 value, qint64 max)
 {
-
+    if (this->ui->progressBar_2->maximum() != max)
+        this->ui->progressBar_2->setMaximum(max);
+    this->ui->progressBar_2->setValue(value);
 }
 
 bool Huggle::UpdateForm::parse_xml(QDomElement *line)
@@ -391,6 +400,7 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
             i->Original = line->attribute("compare");
 
         this->Instructions.append(i);
+        return true;
     }
     if (line->tagName() == "move")
     {
@@ -408,6 +418,8 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         bool overwrite_ = false;
         bool merging_ = false;
         bool recursive_ = false;
+        if (line->attributes().contains("merging") && line->attribute("merging") == "true")
+            merging_ = true;
         if (line->attributes().contains("recursive") && line->attribute("recursive") == "true")
             recursive_ = true;
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
@@ -415,6 +427,7 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
             overwrite_ = true;
         this->Instructions.append(new Instruction(Instruction_Move, line->attribute("from"), line->attribute("to"), elevated_, recursive_, merging_, overwrite_));
+        return true;
     }
     if (line->tagName() == "copy")
     {
@@ -432,6 +445,8 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         bool overwrite_ = false;
         bool merging_ = false;
         bool recursive_ = false;
+        if (line->attributes().contains("merging") && line->attribute("merging") == "true")
+            merging_ = true;
         if (line->attributes().contains("recursive") && line->attribute("recursive") == "true")
             recursive_ = true;
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
@@ -439,6 +454,12 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
             overwrite_ = true;
         this->Instructions.append(new Instruction(Instruction_Copy, line->attribute("from"), line->attribute("to"), elevated_, recursive_, merging_, overwrite_));
+        return true;
+    }
+    if (line->tagName() == "folder")
+    {
+        this->Instructions.append(new Instruction(Instruction_Folder, line->text(), ""));
+        return true;
     }
     if (line->tagName() == "remove")
     {
@@ -452,6 +473,7 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
             overwrite_ = true;
         this->Instructions.append(new Instruction(Instruction_Delete, line->text(), "", elevated_, recursive_));
+        return true;
     }
     if (line->tagName() == "exec")
     {
@@ -459,6 +481,7 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
             root = true;
         this->Instructions.append(new Instruction(Instruction_Execute, line->text(), "", root));
+        return true;
     }
     return true;
 }
@@ -577,6 +600,17 @@ bool UpdateForm::ProcessManifest(QString data)
 
 void UpdateForm::ProcessDownload()
 {
+    QString download_target = this->TempPath + "temp/";
+    if (QFile().exists(download_target + this->inst->Destination))
+    {
+        this->Fail(download_target + this->inst->Destination + " already exists!");
+        return;
+    }
+    if (!QDir().exists(download_target) && !QDir().mkpath(download_target))
+    {
+        this->Fail("Unable to create a temporary folder");
+        return;
+    }
     if (!this->inst->Original.isEmpty() && !this->inst->Hash_MD5.isEmpty())
     {
         QString path = this->Path(this->inst->Original);
@@ -586,12 +620,18 @@ void UpdateForm::ProcessDownload()
             if (hash == this->inst->Hash_MD5)
             {
                 LOG("Skipping " + this->inst->Source);
+                if (!QFile().copy(path, download_target + this->inst->Destination))
+                    this->Fail("Unable to copy " +
+                               path +
+                               " to " + download_target + this->inst->Destination);
                 delete this->inst;
                 this->inst = nullptr;
                 return;
             }
         }
     }
+    this->ui->progressBar_2->setValue(0);
+    this->ui->progressBar_2->setVisible(true);
     if (this->file)
     {
         this->file->close();
@@ -601,18 +641,7 @@ void UpdateForm::ProcessDownload()
     this->Write("Downloading " + this->inst->Source + "...");
     delete this->manager;
     this->manager = new QNetworkAccessManager(this);
-    QString download_target = this->TempPath + "temp/";
-    if (!QDir().exists(download_target) && !QDir().mkpath(download_target))
-    {
-        this->Fail("Unable to create a temporary folder");
-        return;
-    }
     this->file = new QFile(download_target + this->inst->Destination);
-    if (this->file->exists())
-    {
-        this->Fail(download_target + this->inst->Destination + " already exists!");
-        return;
-    }
     QFileInfo info(download_target + this->inst->Destination);
     if (!QDir().exists(info.absoluteDir().path()) && !QDir().mkpath(info.absoluteDir().path()))
     {
@@ -674,9 +703,9 @@ void UpdateForm::NextInstruction()
             ProcessDownload();
             return;
         case Instruction_Folder:
-            if (!QDir().mkpath(this->Path(this->inst->Destination)))
+            if (!QDir().mkpath(this->Path(this->inst->Source)))
             {
-                this->Fail("Unable to create folder " + this->Path(this->inst->Destination));
+                this->Fail("Unable to create folder " + this->Path(this->inst->Source));
             }
             break;
         case Instruction_Delete:
@@ -755,7 +784,7 @@ void UpdateForm::NextInstruction()
             {
                 if (!QFile().copy(from, to))
                 {
-                    this->Fail("Unable to copy to " + to);
+                    this->Fail("Unable to copy from " + from + " to " + to);
                     break;
                 }
             }
@@ -800,10 +829,10 @@ void UpdateForm::Update()
 QString UpdateForm::Path(QString text)
 {
     QString path = text;
-    path = path.replace("$root", this->RootPath)
-            .replace("$temp", this->TempPath + "/temp")
-            .replace("$root_bck", this->TempPath);
-    return path;
+    path = path.replace("$root_bck", this->TempPath)
+            .replace("$root", this->RootPath)
+            .replace("$temp", this->TempPath + "/temp");
+    return TrimSlashes(path);
 }
 
 Instruction::Instruction(InstructionType type, QString from, QString to, bool is_elevated, bool is_recursive, bool merge, bool is_overwriting, QString md5)
