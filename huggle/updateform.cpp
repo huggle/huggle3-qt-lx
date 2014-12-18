@@ -577,6 +577,21 @@ bool UpdateForm::ProcessManifest(QString data)
 
 void UpdateForm::ProcessDownload()
 {
+    if (!this->inst->Original.isEmpty() && !this->inst->Hash_MD5.isEmpty())
+    {
+        QString path = this->Path(this->inst->Original);
+        if (QFile().exists(path))
+        {
+            QString hash = this->MD5(path);
+            if (hash == this->inst->Hash_MD5)
+            {
+                LOG("Skipping " + this->inst->Source);
+                delete this->inst;
+                this->inst = nullptr;
+                return;
+            }
+        }
+    }
     if (this->file)
     {
         this->file->close();
@@ -647,6 +662,9 @@ void UpdateForm::NextInstruction()
         this->timer->stop();
         return;
     }
+    int value = this->ui->progressBar->value();
+    if (this->ui->progressBar->maximum() > value)
+        this->ui->progressBar->setValue(value+1);
     // we read the instruction and process it
     this->inst = this->Instructions.at(0);
     this->Instructions.removeAt(0);
@@ -774,6 +792,7 @@ void UpdateForm::Update()
         return;
     }
     file.close();
+    this->ui->progressBar->setMaximum(this->Instructions.count());
     LOG("Processing update");
     this->timer->start(HUGGLE_TIMER);
 }
