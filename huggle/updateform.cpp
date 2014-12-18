@@ -223,10 +223,14 @@ void Huggle::UpdateForm::on_pushButton_clicked()
 #endif
     }
 }
+
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
     if (hcfg->SystemConfig_UM)
     {
+#ifdef HUGGLE_WIN
+        this->Generic_Exec(this->RootPath + "/huggle.exe", "");
+#endif
         QApplication::exit();
         return;
     }
@@ -687,7 +691,7 @@ void UpdateForm::NextInstruction()
     if (this->Instructions.count() == 0)
     {
         this->ui->pushButton_2->setEnabled(true);
-        this->Write("Update was successfuly finished, you can start huggle now");
+        this->Write("Update was successfuly finished, you can start huggle now by closing this form!");
         this->timer->stop();
         return;
     }
@@ -824,6 +828,12 @@ void UpdateForm::Update()
     this->ui->progressBar->setMaximum(this->Instructions.count());
     LOG("Processing update");
     this->timer->start(HUGGLE_TIMER);
+}
+
+void UpdateForm::Generic_Exec(QString path, QString parameters)
+{
+    QProcess *ClientProcess = new QProcess(this);
+    ClientProcess->startDetached(path, parameters);
 }
 
 QString UpdateForm::Path(QString text)

@@ -93,6 +93,7 @@ namespace Huggle
             QString MD5(QString file);
             void NextInstruction();
             void Update();
+            void Generic_Exec(QString path, QString parameters);
             bool MovingFiles = false;
             int CurrentFile = 0;
             QStringList values;
