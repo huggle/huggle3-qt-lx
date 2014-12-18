@@ -202,7 +202,8 @@ namespace Huggle
             QString           HANMask = "$feed.huggle";
             QByteArray        WebqueryAgent;
             bool              Multiple = false;
-            bool              UpdaterMode = false;
+            bool              SystemConfig_UM = false;
+            QString           UpdaterRoot;
             //! Every site in which the user is currently logged to
             QList<WikiSite *> Projects;
             //! currently selected project

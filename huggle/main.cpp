@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
             delete Huggle::Configuration::HuggleConfiguration;
             return 0;
         }
-        if (hcfg->UpdaterMode)
+        if (hcfg->SystemConfig_UM)
         {
             // we start huggle in updater mode, so that it performs some updates
             // which needs to be done in separate process

@@ -47,11 +47,9 @@ namespace Huggle
      * Following commands are available so far:
      * <exec>Path</exec> - will execute as regular user
      * <exec elevated=true>Path</exec> - will execute as Administrator on Windows, or root on Linux
-     * <copy elevated=bool from=path to=path overwrite=bool></copy> - will copy a file
+     * <copy md5=hash elevated=bool recursive=bool from=path to=path overwrite=bool></copy> - will copy a file
      * <move elevated=bool from=path to=path overwrite=bool></move> - will move a file or folder
      * <folder>path</folder> - will create a folder
-     * <copydir elevated=bool from=path to=path overwrite=bool merge=bool></copydir> - will copy a folder
-     * <movedir elevated=bool from=path to=path overwrite=bool merge=bool></movedir> - moves a folder
      * <remove elevated=bool recursive=bool>path</remove>
      * <download to=path ssl=bool md5=string>URL</download>
      * These commands are only used if following is present
@@ -92,6 +90,7 @@ namespace Huggle
             bool ProcessManifest(QString data);
             void ProcessDownload();
             void Write(QString message);
+            QString MD5(QString file);
             void NextInstruction();
             void Update();
             bool MovingFiles = false;
@@ -131,6 +130,7 @@ namespace Huggle
             QString Source;
             QString Destination;
             QString Hash_MD5;
+            QString Original;
             bool Elevated;
             bool Overwrite;
             bool Is_Recursive;

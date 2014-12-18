@@ -40,10 +40,11 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
     this->qData = NULL;
     this->timer = new QTimer(this);
     this->ui->checkBox_2->setChecked(Configuration::HuggleConfiguration->SystemConfig_NotifyBeta);
-    if (hcfg->UpdaterMode)
+    if (hcfg->SystemConfig_UM)
     {
         this->ui->checkBox->setEnabled(false);
         this->ui->checkBox_2->setEnabled(false);
+        this->RootPath = hcfg->UpdaterRoot;
         this->ui->label->setText("I am now updating huggle, please wait...");
         this->ui->pushButton->setEnabled(false);
         this->ui->pushButton_2->setEnabled(false);
@@ -78,7 +79,7 @@ void UpdateForm::Check()
     this->qData = new WebserverQuery();
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform)
-            + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage + "&test";
+            + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage;
 
     if (Configuration::HuggleConfiguration->SystemConfig_NotifyBeta)
        this->qData->URL += "&notifybeta";
@@ -88,6 +89,17 @@ void UpdateForm::Check()
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->qData->IncRef();
     this->timer->start(HUGGLE_TIMER);
+}
+
+static QString TrimSlashes(QString path)
+{
+    while (path.contains("//"))
+        path = path.replace("//", "/");
+
+    while (path.contains("\\\\"))
+        path = path.replace("\\\\", "\\");
+
+    return path;
 }
 
 // Checks if OS is supported by updater
@@ -121,7 +133,30 @@ static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &
         }
         else
         {
-            list << QDir::toNativeSeparators(path + finfo.fileName());
+            list << QDir::toNativeSeparators(TrimSlashes(path + finfo.fileName()));
+        }
+    }
+}
+
+static void recurseAddDirWithSources(QDir d, QStringList &list, QStringList &sources, QString path, QString source, QStringList &dirs)
+{
+    QStringList qsl = d.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
+    foreach(QString file, qsl)
+    {
+        QFileInfo finfo(QString("%1/%2").arg(d.path()).arg(file));
+        if (finfo.isSymLink())
+            return;
+        if (finfo.isDir())
+        {
+            QString dirname = finfo.fileName();
+            QDir sd(finfo.filePath());
+            dirs << QDir::toNativeSeparators(path + dirname);
+            recurseAddDir(sd, list, path + dirname + QDir::separator(), dirs);
+        }
+        else
+        {
+            sources << QDir::toNativeSeparators(TrimSlashes(source + "/" + finfo.fileName()));
+            list << QDir::toNativeSeparators(TrimSlashes(path + "/" + finfo.fileName()));
         }
     }
 }
@@ -185,7 +220,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
 }
 void Huggle::UpdateForm::on_pushButton_2_clicked()
 {
-    if (hcfg->UpdaterMode)
+    if (hcfg->SystemConfig_UM)
     {
         QApplication::exit();
         return;
@@ -220,7 +255,7 @@ void UpdateForm::OnTick()
         this->ui->progressBar->setValue(this->CurrentFile);
         return;
     }
-    if (hcfg->UpdaterMode)
+    if (hcfg->SystemConfig_UM)
     {
         this->NextInstruction();
         return;
@@ -312,16 +347,10 @@ void UpdateForm::httpDownloadFinished()
 {
     this->file->flush();
     this->file->close();
-    // there is a bug in Qt, we need to reopen the file for hash to be correct
     delete this->file;
-    this->file = new QFile(this->TempPath + "temp/" +this->inst->Destination);
-    if (!file->open(QIODevice::ReadOnly))
-    {
-        this->Fail("Unable to open " + this->TempPath + "temp/" + this->inst->Destination);
-    }
-    QByteArray data = file->readAll();
-    file->close();
-    QString hash = QString(QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex());
+    this->file = nullptr;
+    // there is a bug in Qt, we need to reopen the file for hash to be correct
+    QString hash = this->MD5(this->TempPath + "temp/" +this->inst->Destination);
     if (hash != this->inst->Hash_MD5)
     {
         LOG("Hash " + hash + " not matches " + this->inst->Hash_MD5);
@@ -330,8 +359,6 @@ void UpdateForm::httpDownloadFinished()
     {
         LOG("Hash " + hash + " matches " + this->inst->Hash_MD5);
     }
-    delete this->file;
-    this->file = nullptr;
     this->reply->deleteLater();
     this->reply = nullptr;
     delete this->inst;
@@ -358,8 +385,12 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
             return false;
         }
 
-        this->Instructions.append(new Instruction(Instruction_Download, line->text(), line->attribute("to"),
-                                                  false, false, false, false, line->attribute("md5")));
+        Instruction *i = new Instruction(Instruction_Download, line->text(), line->attribute("to"),
+                                         false, false, false, false, line->attribute("md5"));
+        if (line->attributes().contains("compare"))
+            i->Original = line->attribute("compare");
+
+        this->Instructions.append(i);
     }
     if (line->tagName() == "move")
     {
@@ -377,33 +408,13 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         bool overwrite_ = false;
         bool merging_ = false;
         bool recursive_ = false;
+        if (line->attributes().contains("recursive") && line->attribute("recursive") == "true")
+            recursive_ = true;
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
             elevated_ = true;
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
             overwrite_ = true;
         this->Instructions.append(new Instruction(Instruction_Move, line->attribute("from"), line->attribute("to"), elevated_, recursive_, merging_, overwrite_));
-    }
-    if (line->tagName() == "copydir")
-    {
-        if (!line->attributes().contains("to"))
-        {
-            Syslog::HuggleLogs->WarningLog("Invalid updater instruction: copydir is missing to, ignoring the update");
-            return false;
-        }
-        if (!line->attributes().contains("from"))
-        {
-            Syslog::HuggleLogs->WarningLog("Invalid updater instruction: copydir is missing from, ignoring the update");
-            return false;
-        }
-        bool elevated_ = false;
-        bool overwrite_ = false;
-        bool merging_ = false;
-        bool recursive_ = false;
-        if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
-            elevated_ = true;
-        if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
-            overwrite_ = true;
-        this->Instructions.append(new Instruction(Instruction_Copy, line->attribute("from"), line->attribute("to"), elevated_, recursive_, merging_, overwrite_));
     }
     if (line->tagName() == "copy")
     {
@@ -421,6 +432,8 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
         bool overwrite_ = false;
         bool merging_ = false;
         bool recursive_ = false;
+        if (line->attributes().contains("recursive") && line->attribute("recursive") == "true")
+            recursive_ = true;
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
             elevated_ = true;
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
@@ -431,8 +444,9 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
     {
         bool elevated_ = false;
         bool overwrite_ = false;
-        bool merging_ = false;
         bool recursive_ = false;
+        if (line->attributes().contains("recursive") && line->attribute("recursive") == "true")
+            recursive_ = true;
         if (line->attributes().contains("elevated") && line->attribute("elevated") == "true")
             elevated_ = true;
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
@@ -476,7 +490,7 @@ void UpdateForm::PreparationFinish()
     // now we can launch the copy of huggle with parameters for update
 #ifdef HUGGLE_WIN
     QString program = this->TempPath + QDir::separator() + "huggle.exe";
-    QString arguments = "--huggleinternal-update -v --syslog " + this->TempPath + QDir::separator() + "update.log";
+    QString arguments = "--huggleinternal-update " + this->RootPath + " -v --syslog " + this->TempPath + QDir::separator() + "update.log";
     /*
     QProcess *ClientProcess = new QProcess( this );
     // exit calling application on called application start
@@ -491,6 +505,7 @@ void UpdateForm::PreparationFinish()
     shExInfo.hwnd = 0;
 #ifdef __GNUC__
 #ifdef UNICODE
+    shExInfo.lpDirectory = this->TempPath.toStdWString().c_str();
     shExInfo.lpVerb = QString("runas").toStdWString().c_str();
     shExInfo.lpFile = program.toStdWString().c_str();
     shExInfo.lpParameters = arguments.toStdWString().c_str();
@@ -498,14 +513,15 @@ void UpdateForm::PreparationFinish()
     shExInfo.lpVerb = QString("runas").toStdString().c_str();
     shExInfo.lpFile = program.toStdString().c_str();
     shExInfo.lpParameters = arguments.toStdString().c_str();
+    shExInfo.lpDirectory = this->TempPath.toStdString().c_str();
 #endif
 #else
     //! \todo This is broken on Visual Studio 2013
     shExInfo.lpVerb = _T("runas");
     shExInfo.lpFile = _T(program.toLocal8Bit().toStdString().c_str());
     shExInfo.lpParameters = _T(arguments.toStdString().c_str());
+    shExInfo.lpDirectory = _T(this->TempPath.toStdString().c_str());
 #endif
-    shExInfo.lpDirectory = 0;
     shExInfo.nShow = SW_SHOW;
     shExInfo.hInstApp = 0;
 
@@ -522,12 +538,17 @@ void UpdateForm::PreparationFinish()
 
 void UpdateForm::Fail(QString reason)
 {
+    if (hcfg->SystemConfig_UM)
+        reason += "\n\nUpdating of huggle has failed, please note that there is full "\
+                    "backup in " + this->TempPath +
+                    " this log has file update.log, please send it to developers "\
+                    "for analysis of update problem. ";
     Generic::MessageBox("Fatal", reason, MessageBoxStyleError, true);
     this->Error = reason;
     if (this->timer)
         this->timer->stop();
     this->close();
-    if (hcfg->UpdaterMode)
+    if (hcfg->SystemConfig_UM)
         QApplication::exit();
 }
 
@@ -601,6 +622,19 @@ void UpdateForm::Write(QString message)
     this->ui->label->setText(message);
 }
 
+QString UpdateForm::MD5(QString file)
+{
+    QFile *source_ = new QFile(file);
+    if (!source_->open(QIODevice::ReadOnly))
+    {
+        this->Fail("Unable to open " + file);
+    }
+    QByteArray data = source_->readAll();
+    source_->close();
+    delete source_;
+    return QString(QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex());
+}
+
 void UpdateForm::NextInstruction()
 {
 #if QT_VERSION >= 0x050000
@@ -629,8 +663,13 @@ void UpdateForm::NextInstruction()
             break;
         case Instruction_Delete:
         {
-            QString path = this->Path(this->inst->Destination);
+            QString path = this->Path(this->inst->Source);
             this->Write("Deleting: " + path);
+            if (path.isEmpty())
+            {
+                this->Fail("Refusing to delete everything in folder");
+                break;
+            }
             if (this->inst->Is_Recursive)
             {
                 if (!QDir(path).removeRecursively())
@@ -658,6 +697,7 @@ void UpdateForm::NextInstruction()
                 // first recreate the hierarchy of data structures
                 QStringList folders;
                 QStringList files;
+                QStringList fl;
                 QDir target(to);
                 QDir source(from);
                 if (!target.exists() && !target.mkpath(to))
@@ -670,19 +710,28 @@ void UpdateForm::NextInstruction()
                     this->Fail("Source " + from + " doesn't exist");
                     break;
                 }
-                recurseAddDir(source, files, to, folders);
+                recurseAddDirWithSources(source, files, fl, to, from, folders);
                 foreach (QString directory, folders)
                 {
-                    if (!QDir().mkpath(temp.path() + QDir::separator() + directory))
+                    LOG("Creating folder " + directory);
+                    if (!QDir().mkpath(directory))
                     {
-                        LOG("Creating folder " + directory);
-                        this->Fail("Failed to create " + temp.path() + QDir::separator() + directory);
+                        this->Fail("Failed to create " + directory);
                         return;
                     }
                 }
-                foreach (QString file, files)
+                int x = 0;
+                while (x < fl.count())
                 {
-                    LOG("Copying " + file);
+                    QString fromf = fl.at(x);
+                    QString tof = files.at(x);
+                    LOG("Copying " + fromf + " to " + tof);
+                    if (!QFile().copy(fromf, tof))
+                    {
+                        this->Fail("Unable to copy " + fromf + " to " + tof);
+                        return;
+                    }
+                    x++;
                 }
             } else
             {
@@ -695,10 +744,10 @@ void UpdateForm::NextInstruction()
         }
             break;
         case Instruction_Execute:
-
+            this->Fail("Execute is not implemented yet");
             break;
         case Instruction_Move:
-
+            this->Fail("Move is not implemented yet");
             break;
     }
     delete this->inst;
