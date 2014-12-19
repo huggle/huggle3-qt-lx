@@ -32,33 +32,25 @@ namespace Huggle
              * \param String to check
              */
             static bool IsValid(QString version);
-
             /*!
              * \brief The version of mediawiki supported by huggle
              */
             static Version SupportedMediawiki;
-
             Version();
-
             Version(QString version);
-
             ~Version();
-
             /*!
              * \brief Returns the major section of the version number
              */
             int GetMajor();
-
             /*!
              * \brief Returns the minor section of the version number
              */
             int GetMinor();
-
             /*!
              * \brief Returns the revision section of the version number
              */
             int GetRevision();
-
             /*!
              * \brief Returns whether or not 2 versions are equal
              * \param The version to check against
@@ -70,16 +62,14 @@ namespace Huggle
             * \param The version to check against
             */
             bool IsLower(Version *b);
-
             /*!
              * \brief Returns whether or not  the current version is higher than another version
              * \param The version to check against
              */
             bool IsGreater(Version *b);
-
-            // \brief Returns if the instance's version is valid
+            //! Returns if the instance's version is valid
             bool IsValid();
-
+            //! Version as string
             QString ToString();
         private:
             QString getSuffixed(QString number);
