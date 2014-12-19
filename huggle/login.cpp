@@ -691,7 +691,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     this->LoginQueries.remove(site);
                     this->Statuses[site] = RetrievingUser;
                     return;
-                }
+                }   
                 HUGGLE_DEBUG1(q->Result->Data);
                 this->DisplayError(_l("login-fail-css", site->Name));
                 return;
@@ -705,7 +705,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                 {
                     // if we loaded the old config we write that to debug log because othewise we hardly check this
                     // piece of code really works
-                    Syslog::HuggleLogs->DebugLog("We successfuly loaded and converted the old config for " + site->Name + " (huggle.css) :)");
+                    Syslog::HuggleLogs->DebugLog("We successfully loaded and converted the old config for " + site->Name + " (huggle.css) :)");
                 }
                 if (!site->ProjectConfig->EnableAll)
                 {
