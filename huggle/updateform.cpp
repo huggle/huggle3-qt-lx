@@ -229,7 +229,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
     if (hcfg->SystemConfig_UM)
     {
 #ifdef HUGGLE_WIN
-        this->Generic_Exec(this->RootPath + "/huggle.exe", "");
+        this->Generic_Exec(this->RootPath + "/huggle.exe", QStringList());
 #endif
         QApplication::exit();
         return;
@@ -830,7 +830,7 @@ void UpdateForm::Update()
     this->timer->start(HUGGLE_TIMER);
 }
 
-void UpdateForm::Generic_Exec(QString path, QString parameters)
+void UpdateForm::Generic_Exec(QString path, QStringList parameters)
 {
     QProcess *ClientProcess = new QProcess(this);
     ClientProcess->startDetached(path, parameters);
