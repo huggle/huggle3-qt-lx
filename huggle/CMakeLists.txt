@@ -121,5 +121,7 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/build/huggle.desktop DESTINATION share/applica
 if (HUGGLE_EXT OR LIBCORE)
     INSTALL(TARGETS core DESTINATION lib)
 endif ()
+INCLUDE(${CMAKE_SOURCE_DIR}/CPackInfo)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/Resources/huggle3_newlogo.png DESTINATION share/huggle)
 INSTALL(TARGETS huggle DESTINATION bin)
+INCLUDE(CPack)
