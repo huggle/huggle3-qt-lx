@@ -691,7 +691,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
                     this->LoginQueries.remove(site);
                     this->Statuses[site] = RetrievingUser;
                     return;
-                }   
+                }
                 HUGGLE_DEBUG1(q->Result->Data);
                 this->DisplayError(_l("login-fail-css", site->Name));
                 return;

@@ -49,6 +49,18 @@ bool Generic::ReportPreFlightCheck()
     return (q != QMessageBox::No);
 }
 
+QString Generic::SanitizePath(QString name)
+{
+    QString new_name = name;
+    while (new_name.contains("//"))
+        new_name = new_name.replace("//", "/");
+#ifdef HUGGLE_WIN
+    return new_name.replace("/", "\\");
+#else
+    return name;
+#endif // HUGGLE_WIN
+}
+
 ApiQuery *Generic::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
 {
     WikiPage pt(page);

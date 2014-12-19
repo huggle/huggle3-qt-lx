@@ -56,6 +56,7 @@ namespace Huggle
         //! Display a user message before reporting a user based on user preferences
         HUGGLE_EX bool ReportPreFlightCheck();
         HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
+        HUGGLE_EX QString SanitizePath(QString name);
         /*!
          * \brief MessageBox Display a message box
          * \param title Title of message box

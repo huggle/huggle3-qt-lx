@@ -128,23 +128,24 @@ QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
 
 QString Configuration::GetExtensionsRootPath()
 {
-    QString path_ = hcfg->HomePath + QDir::separator() + EXTENSION_PATH;
+    QString path_ = Generic::SanitizePath(hcfg->HomePath + QDir::separator() + EXTENSION_PATH + QDir::separator());
     QDir conf(path_);
     if (!conf.exists() && !conf.mkpath(path_))
     {
             Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
     }
-    return path_ + QDir::separator();
+    return path_;
 }
 
 QString Configuration::GetLocalizationDataPath()
 {
-    QDir conf(hcfg->HomePath + QDir::separator() + "Localization");
+    QString path_ = Generic::SanitizePath(hcfg->HomePath + QDir::separator() + "Localization" + QDir::separator());
+    QDir conf(path_);
     if (!conf.exists())
     {
-        conf.mkpath(hcfg->HomePath + QDir::separator() + "Localization");
+        conf.mkpath(path_);
     }
-    return hcfg->HomePath + QDir::separator() + "Localization" + QDir::separator();
+    return path_;
 }
 
 QString Configuration::GetURLProtocolPrefix(WikiSite *s)
@@ -159,12 +160,13 @@ QString Configuration::GetURLProtocolPrefix(WikiSite *s)
 
 QString Configuration::GetConfigurationPath()
 {
-    QDir conf(hcfg->HomePath + QDir::separator() + "Configuration");
+    QString path = Generic::SanitizePath(hcfg->HomePath + QDir::separator() + "Configuration" + QDir::separator());
+    QDir conf(path);
     if (!conf.exists())
     {
-        conf.mkpath(hcfg->HomePath + QDir::separator() + "Configuration");
+        conf.mkpath(path);
     }
-    return hcfg->HomePath + QDir::separator() + "Configuration" + QDir::separator();
+    return path;
 }
 
 QString Configuration::ReplaceSpecialUserPage(QString PageName)
