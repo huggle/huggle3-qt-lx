@@ -20,6 +20,7 @@
 #include "syslog.hpp"
 #include "ui_speedyform.h"
 #include "wikiuser.hpp"
+#include "wikisite.hpp"
 #include "wikiutil.hpp"
 
 using namespace Huggle;
@@ -31,21 +32,6 @@ SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm
     this->ui->setupUi(this);
     this->ui->checkBox->setText(_l("speedy-notifycreator"));
     this->ui->label->setText(_l("speedy-reason"));
-    int i=0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates.count())
-    {
-        QString item = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates.at(i);
-        // now we need to get first 2 items
-        QStringList vals = item.split(";");
-        if (vals.count() < 4)
-        {
-            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
-            i++;
-            continue;
-        }
-        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
-        i++;
-    }
 }
 
 SpeedyForm::~SpeedyForm()
@@ -104,7 +90,7 @@ void SpeedyForm::Fail(QString reason)
 void SpeedyForm::processTags()
 {
     // insert the template to bottom of the page
-    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates
+    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
                        .at(this->ui->comboBox->currentIndex()).split(";");
     if (vals.count() < 4)
     {
@@ -120,6 +106,8 @@ void SpeedyForm::processTags()
         this->close();
         return;
     }
+    if (this->ReplacePage)
+        this->Text = this->ReplacingText;
     // insert a tag to page
     if (this->ui->lineEdit->text().isEmpty())
         this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
@@ -128,7 +116,7 @@ void SpeedyForm::processTags()
     // store a message we later send to user (we need to check if edit is successful first)
     this->warning = vals.at(3);
     // let's modify the page now
-    QString summary = Configuration::HuggleConfiguration->ProjectConfig->SpeedyEditSummary;
+    QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
     this->Template->CallbackResult = (void*)this;
@@ -148,6 +136,17 @@ void SpeedyForm::Init(WikiEdit *edit_)
         throw new Huggle::NullPointerException("WikiEdit *edit_", BOOST_CURRENT_FUNCTION);
     }
     this->edit = edit_;
+    foreach (QString item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
+    {
+        // now we need to get first 2 items
+        QStringList vals = item.split(";");
+        if (vals.count() < 4)
+        {
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
+            continue;
+        }
+        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
+    }
     this->ui->label_2->setText(edit_->Page->PageName);
 }
 
@@ -158,7 +157,7 @@ QString SpeedyForm::GetSelectedDBReason()
 
 QString SpeedyForm::GetSelectedTagID()
 {
-    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig->SpeedyTemplates
+    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
                        .at(this->ui->comboBox->currentIndex()).split(";");
     if (vals.count() < 4)
     {
@@ -200,7 +199,7 @@ void SpeedyForm::OnTick()
             this->Template = nullptr;
             if (this->ui->checkBox->isChecked())
             {
-                QString summary = Configuration::HuggleConfiguration->ProjectConfig->SpeedyWarningSummary;
+                QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyWarningSummary;
                 summary.replace("$1", this->edit->Page->PageName);
                 this->warning.replace("$1", this->edit->Page->PageName);
                 WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);

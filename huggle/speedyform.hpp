@@ -45,6 +45,8 @@ namespace Huggle
             QString GetSelectedDBReason();
             QString GetSelectedTagID();
             void SetMessageUserCheck(bool new_value);
+            bool ReplacePage = false;
+            QString ReplacingText;
             Collectable_SmartPtr<WikiEdit> edit;
             QString Text;
             QString Header;
