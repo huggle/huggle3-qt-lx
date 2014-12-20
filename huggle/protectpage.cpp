@@ -46,7 +46,7 @@ void ProtectPage::setPageToProtect(WikiPage *Page)
 void ProtectPage::getTokenToProtect()
 {
     this->qToken = new ApiQuery(ActionQuery, this->PageToProtect->GetSite());
-    this->qToken->Parameters = "prop=info&intoken=protect&titles=" + QUrl::toPercentEncoding(this->PageToProtect->PageName);
+    this->qToken->Parameters = "meta=tokens&type=csrf";
     this->qToken->Target = _l("protection-ft");
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
@@ -81,7 +81,7 @@ void ProtectPage::checkTokenToProtect()
     }
     QDomDocument r;
     r.setContent(this->qToken->Result->Data);
-    QDomNodeList l = r.elementsByTagName("page");
+    QDomNodeList l = r.elementsByTagName("tokens");
     if (l.count() == 0)
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
@@ -89,12 +89,12 @@ void ProtectPage::checkTokenToProtect()
         return;
     }
     QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("protecttoken"))
+    if (!element.attributes().contains("csrftoken"))
     {
         this->Failed("No token");
         return;
     }
-    this->ProtectToken = element.attribute("protecttoken");
+    this->ProtectToken = element.attribute("csrftoken");
     this->PtQueryPhase++;
     this->qToken.Delete();
     Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);

@@ -490,7 +490,7 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 
     this->qDiff = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                      "&rvlimit=1&rvtoken=rollback&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
+                      "&rvlimit=1&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
                       "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
                       QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
     this->qDiff->Process();

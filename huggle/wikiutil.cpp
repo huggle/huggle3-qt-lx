@@ -194,7 +194,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Unwatchlist(WikiPage *page)
     {
         // we need to append this query to watchlist queries that just wait for token
         ApiQuery *token = new ApiQuery(ActionQuery, page->GetSite());
-        token->Parameters = "prop=info&intoken=watch&titles=" + page->EncodedName();
+        token->Parameters = "meta=tokens&type=watch";
         token->Target = "Watchlist token";
         token->IncRef();
         wt->Dependency = token;
@@ -221,7 +221,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Watchlist(WikiPage *page)
     {
         // we need to append this query to watchlist queries that just wait for token
         ApiQuery *token = new ApiQuery(ActionQuery, page->GetSite());
-        token->Parameters = "prop=info&intoken=watch&titles=" + page->EncodedName();
+        token->Parameters = "meta=tokens&type=watch";
         token->Target = "Watchlist token";
         token->IncRef();
         wt->Dependency = token;
