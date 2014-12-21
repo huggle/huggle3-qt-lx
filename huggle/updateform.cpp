@@ -107,19 +107,17 @@ static QString TrimSlashes(QString path)
     return path;
 }
 
+#if QT_VERSION >= 0x050000
 // Checks if OS is supported by updater
 static bool IsSupported()
 {
-#if QT_VERSION >= 0x050000
 #ifdef HUGGLE_WIN
     return true;
 #else
     return false;
 #endif
-#else
-    return false;
-#endif
 }
+#endif
 
 static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &dirs)
 {
@@ -143,6 +141,7 @@ static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &
     }
 }
 
+#if QT_VERSION >= 0x050000
 static void recurseAddDirWithSources(QDir d, QStringList &list, QStringList &sources, QString path, QString source, QStringList &dirs)
 {
     QStringList qsl = d.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
@@ -165,6 +164,7 @@ static void recurseAddDirWithSources(QDir d, QStringList &list, QStringList &sou
         }
     }
 }
+#endif
 
 void Huggle::UpdateForm::on_pushButton_clicked()
 {
@@ -476,7 +476,7 @@ bool Huggle::UpdateForm::parse_xml(QDomElement *line)
             elevated_ = true;
         if (line->attributes().contains("overwrite") && line->attribute("overwrite") == "true")
             overwrite_ = true;
-        this->Instructions.append(new Instruction(Instruction_Delete, line->text(), "", elevated_, recursive_));
+        this->Instructions.append(new Instruction(Instruction_Delete, line->text(), "", elevated_, recursive_, false, overwrite_));
         return true;
     }
     if (line->tagName() == "exec")

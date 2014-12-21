@@ -22,6 +22,8 @@
 #include <QSplitter>
 #include <QDockWidget>
 #include "aboutform.hpp"
+#include "apiquery.hpp"
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "editbar.hpp"
 #include "reloginform.hpp"
@@ -2882,4 +2884,63 @@ void Huggle::MainWindow::on_actionVerbosity_2_triggered()
 void Huggle::MainWindow::on_actionVerbosity_triggered()
 {
     hcfg->Verbosity -= 1;
+}
+
+void Huggle::MainWindow::on_actionLog_out_triggered()
+{
+
+}
+
+static void FinishTokens(Query *token)
+{
+    ApiQuery *q = (ApiQuery*) token;
+    WikiSite *site = (WikiSite*) token->CallbackOwner;
+    ApiQueryResultNode *tokens = q->GetApiQueryResult()->GetNode("tokens");
+    if (tokens != nullptr)
+    {
+        if (tokens->Attributes.contains("rollbacktoken"))
+        {
+            site->GetProjectConfig()->Token_Rollback = tokens->GetAttribute("rollbacktoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->Token_Rollback, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No rollback for " + site->Name + " result: " + q->Result->Data);
+        }
+        if (tokens->Attributes.contains("csrftoken"))
+        {
+            site->GetProjectConfig()->Token_Csrf = tokens->GetAttribute("csrftoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " csrf " + site->GetProjectConfig()->Token_Csrf, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No csrf for " + site->Name + " result: " + q->Result->Data);
+        }
+        if (tokens->Attributes.contains("watchtoken"))
+        {
+            site->GetProjectConfig()->Token_Watch = tokens->GetAttribute("watchtoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " watch " + site->GetProjectConfig()->Token_Watch, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No watch for " + site->Name + " result: " + q->Result->Data);
+        }
+    }
+
+    token->DecRef();
+}
+
+static void FailureTokens(Query *token)
+{
+    Syslog::HuggleLogs->ErrorLog("Failed to process: " + token->GetFailureReason());
+    token->DecRef();
+}
+
+void Huggle::MainWindow::on_actionReload_tokens_triggered()
+{
+    ApiQuery *qr = new ApiQuery(ActionQuery, this->GetCurrentWikiSite());
+    qr->IncRef();
+    qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
+    qr->Target = "Tokens";
+    qr->CallbackOwner = this->GetCurrentWikiSite();
+    qr->FailureCallback = (Callback)FailureTokens;
+    qr->callback = (Callback)FinishTokens;
+    qr->Process();
 }

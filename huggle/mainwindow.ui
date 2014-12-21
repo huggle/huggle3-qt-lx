@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -118,6 +118,8 @@
      <addaction name="actionReload_menus"/>
      <addaction name="actionVerbosity"/>
      <addaction name="actionVerbosity_2"/>
+     <addaction name="actionReload_tokens"/>
+     <addaction name="actionLog_out"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="separator"/>
@@ -1041,6 +1043,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionReload_tokens">
+   <property name="text">
+    <string>Reload tokens</string>
+   </property>
+  </action>
+  <action name="actionLog_out">
+   <property name="text">
+    <string>Log out</string>
    </property>
   </action>
  </widget>

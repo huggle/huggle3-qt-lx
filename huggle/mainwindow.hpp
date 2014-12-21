@@ -310,6 +310,8 @@ namespace Huggle
             void on_actionOpen_new_tab_triggered();
             void on_actionVerbosity_2_triggered();
             void on_actionVerbosity_triggered();
+            void on_actionLog_out_triggered();
+            void on_actionReload_tokens_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger

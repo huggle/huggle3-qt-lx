@@ -463,6 +463,7 @@ void Core::Shutdown()
     delete HuggleQueueFilter::DefaultFilter;
     GC::gc = nullptr;
     this->gc = nullptr;
+    delete Query::NetworkManager;
     delete Configuration::HuggleConfiguration;
     delete Localizations::HuggleLocalizations;
     QApplication::quit();

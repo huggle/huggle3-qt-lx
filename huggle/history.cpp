@@ -126,6 +126,12 @@ void History::Undo(HistoryItem *hist)
             QueryPool::HugglePool->AppendQuery(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
+        case HistoryBlock:
+        case HistoryDelete:
+        case HistoryProtect:
+        case HistoryUndelete:
+            Generic::MessageBox(_l("history-error-message-title"), "This feature was not implemented yet");
+            return;
         case HistoryUnknown:
             Generic::MessageBox(_l("history-error-message-title"), "Unknown item");
             return;
@@ -183,6 +189,10 @@ void History::ContextMenu(const QPoint &position)
                 }
                 break;
             case HistoryUnknown:
+            case HistoryBlock:
+            case HistoryUndelete:
+            case HistoryDelete:
+            case HistoryProtect:
                 return;
         }
         if (!edit->IsPostProcessed())
