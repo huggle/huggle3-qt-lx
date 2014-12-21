@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "wikiutil.hpp"
+#include "apiquery.hpp"
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "editquery.hpp"
@@ -250,4 +252,58 @@ Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(WikiPage *page, QStr
 Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(WikiPage *page, QString text, QString summary, bool minor)
 {
     return WikiUtil::AppendTextToPage(page->PageName, text, summary, minor, page->GetSite());
+}
+
+static void FinishTokens(Query *token)
+{
+    ApiQuery *q = (ApiQuery*) token;
+    WikiSite *site = (WikiSite*) token->CallbackOwner;
+    ApiQueryResultNode *tokens = q->GetApiQueryResult()->GetNode("tokens");
+    if (tokens != nullptr)
+    {
+        if (tokens->Attributes.contains("rollbacktoken"))
+        {
+            site->GetProjectConfig()->Token_Rollback = tokens->GetAttribute("rollbacktoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->Token_Rollback, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No rollback for " + site->Name + " result: " + q->Result->Data);
+        }
+        if (tokens->Attributes.contains("csrftoken"))
+        {
+            site->GetProjectConfig()->Token_Csrf = tokens->GetAttribute("csrftoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " csrf " + site->GetProjectConfig()->Token_Csrf, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No csrf for " + site->Name + " result: " + q->Result->Data);
+        }
+        if (tokens->Attributes.contains("watchtoken"))
+        {
+            site->GetProjectConfig()->Token_Watch = tokens->GetAttribute("watchtoken");
+            HUGGLE_DEBUG("Token for " + site->Name + " watch " + site->GetProjectConfig()->Token_Watch, 2);
+        } else
+        {
+            HUGGLE_DEBUG1("No watch for " + site->Name + " result: " + q->Result->Data);
+        }
+    }
+    token->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    token->DecRef();
+}
+
+static void FailureTokens(Query *token)
+{
+    Syslog::HuggleLogs->ErrorLog("Failed to process: " + token->GetFailureReason());
+    token->DecRef();
+}
+
+void WikiUtil::RetrieveTokens(WikiSite *wiki_site)
+{
+    ApiQuery *qr = new ApiQuery(ActionQuery, wiki_site);
+    qr->IncRef();
+    qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
+    qr->Target = "Tokens";
+    qr->CallbackOwner = wiki_site;
+    qr->FailureCallback = (Callback)FailureTokens;
+    qr->callback = (Callback)FinishTokens;
+    qr->Process();
 }
