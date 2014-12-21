@@ -18,8 +18,9 @@
 #include <QStringList>
 #include <QString>
 #include "configuration.hpp"
-#include "syslog.hpp"
 #include "core.hpp"
+#include "syslog.hpp"
+#include "updateform.hpp"
 #include "terminalparser.hpp"
 #include "login.hpp"
 #include "exception.hpp"
@@ -77,6 +78,16 @@ int main(int argc, char *argv[])
             Huggle::Exception::ExitBreakpad();
             delete Huggle::Configuration::HuggleConfiguration;
             return 0;
+        }
+        if (hcfg->SystemConfig_UM)
+        {
+            // we start huggle in updater mode, so that it performs some updates
+            // which needs to be done in separate process
+            Huggle::UpdateForm *update_form = new Huggle::UpdateForm();
+            update_form->show();
+            ReturnCode = a.exec();
+            delete update_form;
+            return ReturnCode;
         }
         // we load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
