@@ -82,6 +82,7 @@ void ReloginForm::LittleTick()
             // we are logged back in
             Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
             Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = false;
+            WikiUtil::RetrieveTokens(this->Site);
             this->close();
             this->little_cute_timer->stop();
             WikiUtil::RetrieveTokens(this->Site);
