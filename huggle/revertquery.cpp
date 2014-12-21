@@ -653,7 +653,7 @@ void RevertQuery::Rollback()
         return;
     }
     if (this->Token.isEmpty())
-        this->Token = this->edit->RollbackToken;
+        this->Token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
     if (this->Token.isEmpty())
     {
         Huggle::Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "rollback token was empty"));

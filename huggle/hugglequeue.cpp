@@ -40,6 +40,12 @@ void HuggleQueue::AddItem(WikiEdit *page)
     if (page == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *page", BOOST_CURRENT_FUNCTION);
 
+    if (!page->IsValid)
+    {
+        HUGGLE_DEBUG1("Not inserting edit " + page->Page->PageName + " because it's broken");
+        return;
+    }
+
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
     {

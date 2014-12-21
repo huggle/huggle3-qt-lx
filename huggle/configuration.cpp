@@ -128,6 +128,14 @@ QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
     return text;
 }
 
+void Configuration::Logout(WikiSite *site)
+{
+    site->GetProjectConfig()->IsLoggedIn = false;
+    site->GetProjectConfig()->Token_Csrf = "";
+    site->GetProjectConfig()->Token_Rollback = "";
+    site->GetProjectConfig()->Token_Watch = "";
+}
+
 QString Configuration::GetExtensionsRootPath()
 {
     QString path_ = Generic::SanitizePath(hcfg->HomePath + QDir::separator() + EXTENSION_PATH + QDir::separator());

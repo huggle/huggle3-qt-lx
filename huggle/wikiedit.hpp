@@ -116,6 +116,7 @@ namespace Huggle
             int Diff;
             //! Priority in queue
             int Priority;
+            bool IsValid = true;
             //! Old id
             int OldID;
             bool IsRevert;
@@ -127,11 +128,6 @@ namespace Huggle
             WarningLevel CurrentUserWarningLevel;
             //! Summary of edit
             QString Summary;
-            //! Token that can be used to rollback this edit
-
-            //! This token needs to be retrieved in same time as information about edit, so that
-            //! it's not possible for other user to change the page meanwhile it's reviewed
-            QString RollbackToken;
             //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
             //! Base time of last revision of talk page which is needed to check if someone changed the talk

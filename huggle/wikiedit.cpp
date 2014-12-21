@@ -41,7 +41,6 @@ WikiEdit::WikiEdit()
     this->OwnEdit = false;
     this->EditMadeByHuggle = false;
     this->TrustworthEdit = false;
-    this->RollbackToken = "";
     this->PostProcessing = false;
     this->ProcessingDiff = false;
     this->ProcessingRevs = false;
@@ -257,22 +256,17 @@ bool WikiEdit::FinalizePostProcessing()
                 // check if this revision matches our user
                 if (e.attributes().contains("user"))
                 {
-                    if (e.attribute("user") == this->User->Username)
+                    if (e.attribute("user") != this->User->Username)
                     {
-                        if (this->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty() && this->RollbackToken.isEmpty() && e.attributes().contains("rollbacktoken"))
-                        {
-                            // let's update it from fresh diff
-                            this->RollbackToken = e.attribute("rollbacktoken");
-                            this->GetSite()->GetProjectConfig()->Token_Rollback = e.attribute("rollbacktoken");
-                        }
+                        HUGGLE_DEBUG("User " + e.attribute("user") + " != " + this->User->Username, 3);
+                        this->IsValid = false;
                     }
-                    if (e.attributes().contains("revid"))
-                        this->RevID = e.attribute("revid").toInt();
                 } else
                 {
-                    HUGGLE_DEBUG1("Ignoring revision information for revision " + QString::number(this->RevID) + " because user " + this->User->Username +
-                                  " is not " + e.attribute("user"));
+                    this->IsValid = false;
                 }
+                if (e.attributes().contains("revid"))
+                    this->RevID = e.attribute("revid").toInt();
                 if (e.attributes().contains("timestamp"))
                     this->Time = MediaWiki::FromMWTimestamp(e.attribute("timestamp"));
                 if (e.attributes().contains("comment"))

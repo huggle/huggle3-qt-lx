@@ -178,6 +178,7 @@ namespace Huggle
             static void LoadSystemConfig(QString fn);
             //! This function appends the huggle suffix to a edit summary
             static QString GenerateSuffix(QString text, ProjectConfiguration *conf);
+            static void Logout(WikiSite *site);
             static Configuration *HuggleConfiguration;
 
             Configuration();

@@ -921,16 +921,10 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
         return ptr_;
     }
-    if (this->CurrentEdit->RollbackToken.isEmpty())
+    if (this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
     {
-        if (!this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
-        {
-            this->CurrentEdit->RollbackToken = this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback;
-        } else
-        {
-            Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
-            rollback = false;
-        }
+        Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
+        rollback = false;
     }
     if (this->PreflightCheck(this->CurrentEdit))
     {
@@ -1167,7 +1161,7 @@ void MainWindow::OnMainTimerTick()
         cfg->RequestingLogin = true;
         this->fRelogin = new ReloginForm(this);
         // exec to freeze
-        this->fRelogin->show();
+        this->fRelogin->exec();
     }
     if (Configuration::HuggleConfiguration->ReloadOfMainformNeeded)
         this->ReloadSc();
@@ -2878,17 +2872,21 @@ void Huggle::MainWindow::on_actionOpen_new_tab_triggered()
 
 void Huggle::MainWindow::on_actionVerbosity_2_triggered()
 {
-    hcfg->Verbosity += 1;
+    hcfg->Verbosity++;
 }
 
 void Huggle::MainWindow::on_actionVerbosity_triggered()
 {
-    hcfg->Verbosity -= 1;
+    if (hcfg->Verbosity > 0)
+        hcfg->Verbosity--;
 }
 
 void Huggle::MainWindow::on_actionLog_out_triggered()
 {
-
+    ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
+    QueryPool::HugglePool->AppendQuery(qx);
+    qx->Process();
+    Configuration::Logout(this->GetCurrentWikiSite());
 }
 
 static void FinishTokens(Query *token)
