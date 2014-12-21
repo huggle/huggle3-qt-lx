@@ -18,7 +18,7 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
 {
     this->ui->setupUi(this);
     this->ui->textEdit->setText("Unfortunately Huggle has crashed. Please submit the following information "\
-                          "together with details of what were you doing to https://bugzilla.wikimedia.org/enter_bug.cgi?product=Huggle"\
+                          "together with details of what were you doing to https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle"\
                           "\n\nSystem log\n==================\n" + Huggle::Syslog::HuggleLogs->RingLogToText()
                           + "\n\n\n\nException details\n===========================\nError code: "
                           + QString::number(e->ErrorCode) + "\nReason: "
