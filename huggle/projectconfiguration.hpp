@@ -74,7 +74,7 @@ namespace Huggle
             QString ApprovalPage = "Project:Huggle/Users";
             QString ProjectName;
             WikiSite    *Site = nullptr;
-            QString     EditToken = "";
+            QString     CSRFToken = "";
             QStringList Months;
             //! Pointer to AIV page
             WikiPage    *AIVP = nullptr;

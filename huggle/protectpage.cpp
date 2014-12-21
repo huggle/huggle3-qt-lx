@@ -15,6 +15,7 @@
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "ui_protectpage.h"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 
@@ -26,7 +27,6 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ui->comboBox_3->addItem(_l("protect-semiprotection"));
     this->ui->comboBox_3->addItem(_l("protect-fullprotection"));
     this->ui->comboBox_3->setCurrentIndex(2);
-    this->ProtectToken = "";
     this->tt = nullptr;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason);
 }
@@ -43,61 +43,19 @@ void ProtectPage::setPageToProtect(WikiPage *Page)
     this->PageToProtect = new WikiPage(Page);
 }
 
-void ProtectPage::getTokenToProtect()
-{
-    this->qToken = new ApiQuery(ActionQuery, this->PageToProtect->GetSite());
-    this->qToken->Parameters = "meta=tokens&type=csrf";
-    this->qToken->Target = _l("protection-ft");
-    QueryPool::HugglePool->AppendQuery(this->qToken);
-    this->qToken->Process();
-    this->tt = new QTimer(this);
-    connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->PtQueryPhase = 0;
-    this->tt->start(HUGGLE_TIMER);
-}
-
 void ProtectPage::onTick()
 {
     switch(this->PtQueryPhase)
     {
         case 0:
-            this->checkTokenToProtect();
-            return;
-        case 1:
             this->Protect();
             return;
     }
     this->tt->stop();
 }
 
-void ProtectPage::checkTokenToProtect()
+void ProtectPage::sendProtectRequest()
 {
-    if (this->qToken == nullptr || !this->qToken->IsProcessed())
-        return;
-    if (this->qToken->Result->IsFailed())
-    {
-        this->Failed(_l("protect-token", this->qToken->Result->ErrorMessage));
-        return;
-    }
-    QDomDocument r;
-    r.setContent(this->qToken->Result->Data);
-    QDomNodeList l = r.elementsByTagName("tokens");
-    if (l.count() == 0)
-    {
-        Huggle::Syslog::HuggleLogs->DebugLog(this->qToken->Result->Data);
-        this->Failed(_l("protect-fail-no-info"));
-        return;
-    }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("csrftoken"))
-    {
-        this->Failed("No token");
-        return;
-    }
-    this->ProtectToken = element.attribute("csrftoken");
-    this->PtQueryPhase++;
-    this->qToken.Delete();
-    Huggle::Syslog::HuggleLogs->DebugLog("Protection token for " + this->PageToProtect->PageName + ": " + this->ProtectToken);
     this->qProtection = new ApiQuery(ActionProtect, this->PageToProtect->GetSite());
     QString protection = "edit=sysop|move=sysop";
     switch (this->ui->comboBox_3->currentIndex())
@@ -113,10 +71,15 @@ void ProtectPage::checkTokenToProtect()
             + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason)
             + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
             + "&protections=" + QUrl::toPercentEncoding(protection)
-            + "&token=" + QUrl::toPercentEncoding(this->ProtectToken);
+            + "&token=" + QUrl::toPercentEncoding(this->PageToProtect->GetSite()->GetProjectConfig()->CSRFToken);
     this->qProtection->Target = "Protecting " + this->PageToProtect->PageName;
     QueryPool::HugglePool->AppendQuery(this->qProtection);
     this->qProtection->Process();
+
+    this->tt = new QTimer(this);
+    connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
+    this->PtQueryPhase = 0;
+    this->tt->start(HUGGLE_TIMER);
 }
 
 void ProtectPage::on_pushButton_clicked()
@@ -126,7 +89,7 @@ void ProtectPage::on_pushButton_clicked()
 
 void ProtectPage::on_pushButton_2_clicked()
 {
-    this->getTokenToProtect();
+    this->sendProtectRequest();
     this->ui->pushButton_2->setEnabled(false);
 }
 
@@ -137,7 +100,6 @@ void ProtectPage::Failed(QString reason)
     delete this->tt;
     this->qProtection.Delete();
     this->tt = nullptr;
-    this->qToken.Delete();
     ui->pushButton->setEnabled(true);
 }
 

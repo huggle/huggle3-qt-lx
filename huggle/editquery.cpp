@@ -51,18 +51,7 @@ void EditQuery::Process()
 
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    this->Token = this->Page->GetSite()->GetProjectConfig()->EditToken;
-    if (this->Token.isEmpty())
-    {
-        this->qToken = new ApiQuery(ActionQuery, this->Page->Site);
-        this->qToken->Parameters = "meta=tokens&type=csrf";
-        this->qToken->Target = _l("editquery-token", this->Page->PageName);
-        QueryPool::HugglePool->AppendQuery(this->qToken);
-        this->qToken->Process();
-    } else
-    {
-        this->EditPage();
-    }
+    this->EditPage();
 }
 
 bool EditQuery::IsProcessed()
@@ -96,44 +85,7 @@ bool EditQuery::IsProcessed()
         this->EditPage();
         return false;
     }
-    if (this->qToken != nullptr)
-    {
-        if (!this->qToken->IsProcessed())
-            return false;
 
-        if (this->qToken->IsFailed())
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->GetFailureReason());
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        ApiQueryResultNode *page = this->qToken->GetApiQueryResult()->GetNode("tokens");
-        if (page == nullptr)
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error"));
-            HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        if (!page->Attributes.contains("csrftoken"))
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error"));
-            HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        this->Token = page->GetAttribute("csrftoken");
-        this->Page->GetSite()->GetProjectConfig()->EditToken = this->Token;
-        this->qToken.Delete();
-        this->EditPage();
-        return false;
-    }
     if (this->qEdit != nullptr)
     {
         if (!this->qEdit->IsProcessed())
@@ -163,7 +115,6 @@ bool EditQuery::IsProcessed()
                     reason = "Bad token";
                     hec = HUGGLE_ETOKEN;
                     // we invalidate the token so that next time we get a fresh one
-                    this->Page->GetSite()->GetProjectConfig()->EditToken = "";
                     Syslog::HuggleLogs->ErrorLog("Unable to edit " + this->Page->PageName + " because token I had in cache is no longer valid, please try to edit that page once more");
                 }
                 this->Result = new QueryResult(true);
@@ -203,6 +154,8 @@ bool EditQuery::IsProcessed()
         }
         this->qEdit = nullptr;
     }
+
+    this->EditPage();
     return false;
 }
 
@@ -252,7 +205,7 @@ void EditQuery::EditPage()
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                              QUrl::toPercentEncoding(this->Token);
+                              QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->CSRFToken);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();
 }

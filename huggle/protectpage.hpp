@@ -52,11 +52,7 @@ namespace Huggle
         private:
             void Failed(QString reason);
             void Protect();
-            void getTokenToProtect();
-            void checkTokenToProtect();
-            QString ProtectToken;
-            //! Pointer to get first token
-            Collectable_SmartPtr<ApiQuery> qToken;
+            void sendProtectRequest();
             //! Pointer for	protection
             Collectable_SmartPtr<ApiQuery> qProtection;
             Ui::ProtectPage *ui;

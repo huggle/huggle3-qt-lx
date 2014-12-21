@@ -38,8 +38,7 @@ namespace Huggle
             explicit BlockUser(QWidget *parent = nullptr);
             ~BlockUser();
             void SetWikiUser(WikiUser *User);
-            void CheckToken();
-            void GetToken();
+            void SendBlockRequest();
             void Failed(QString reason);
             void Block();
             void sendBlockNotice(ApiQuery *dependency);
@@ -56,8 +55,6 @@ namespace Huggle
             WikiUser *user;
             //! Query to exec api to block user
             Collectable_SmartPtr<ApiQuery> qUser;
-            Collectable_SmartPtr<ApiQuery> qTokenApi;
-            QString BlockToken;
             int QueryPhase;
     };
 }

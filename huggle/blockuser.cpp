@@ -30,7 +30,6 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
 {
     this->ui->setupUi(this);
     // we should initialise every variable
-    this->BlockToken = "";
     this->user = nullptr;
     this->ui->checkBox_5->setText(_l("block-anononly"));
     this->ui->checkBox_3->setText(_l("block-autoblock"));
@@ -72,18 +71,6 @@ void BlockUser::SetWikiUser(WikiUser *User)
     }
 }
 
-void BlockUser::GetToken()
-{
-    // Let's get a token before anything
-    this->qTokenApi = new ApiQuery(ActionQuery, this->user->GetSite());
-    this->qTokenApi->Parameters = "meta=tokens&type=csrf";
-    this->qTokenApi->Target = _l("block-token-1", this->user->Username);
-    QueryPool::HugglePool->AppendQuery(this->qTokenApi);
-    this->qTokenApi->Process();
-    this->QueryPhase = 0;
-    this->t0->start(HUGGLE_TIMER);
-}
-
 void BlockUser::on_pushButton_2_clicked()
 {
     this->hide();
@@ -94,43 +81,18 @@ void BlockUser::onTick()
     switch (this->QueryPhase)
     {
         case 0:
-            this->CheckToken();
-            return;
-        case 1:
             this->Block();
             return;
-        case 2:
+        case 1:
             this->Recheck();
             return;
     }
     this->t0->stop();
 }
 
-void BlockUser::CheckToken()
+void BlockUser::SendBlockRequest()
 {
-    if (this->qTokenApi == nullptr || !this->qTokenApi->IsProcessed())
-        return;
-    if (this->qTokenApi->IsFailed())
-    {
-        this->Failed(_l("block-token-e1", this->qTokenApi->GetFailureReason()));
-        return;
-    }
-    ApiQueryResultNode *page = this->qTokenApi->GetApiQueryResult()->GetNode("tokens");
-    if (page == nullptr)
-    {
-        HUGGLE_DEBUG(this->qTokenApi->Result->Data, 1);
-        this->Failed(_l("block-error-no-info"));
-        return;
-    }
-    if (!page->Attributes.contains("csrftoken"))
-    {
-        this->Failed(_l("no-token"));
-        return;
-    }
-    this->BlockToken = page->GetAttribute("csrftoken");
     this->QueryPhase++;
-    this->qTokenApi = nullptr;
-    HUGGLE_DEBUG("Block token for " + this->user->Username + ": " + this->BlockToken, 1);
     // let's block them
     this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     QString nocreate = "";
@@ -151,11 +113,15 @@ void BlockUser::CheckToken()
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
-            + noemail + autoblock + allowusertalk + "&token=" + QUrl::toPercentEncoding(BlockToken);
+            + noemail + autoblock + allowusertalk
+            + "&token=" + QUrl::toPercentEncoding(this->user->GetSite()->GetProjectConfig()->CSRFToken);
     this->qUser->Target = _l("block-progress", this->user->Username);
     this->qUser->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qUser);
     this->qUser->Process();
+
+    this->QueryPhase = 0;
+    this->t0->start(HUGGLE_TIMER);
 }
 
 void BlockUser::Block()
@@ -199,13 +165,12 @@ void BlockUser::Failed(QString reason)
     this->t0->stop();
     this->ui->pushButton->setEnabled(true);
     // remove the pointers
-    this->qTokenApi.Delete();
     this->qUser.Delete();
 }
 
 void BlockUser::on_pushButton_clicked()
 {
-    this->GetToken();
+    this->SendBlockRequest();
     // disable the button so that user can't click it multiple times
     this->ui->pushButton->setEnabled(false);
 }

@@ -515,7 +515,7 @@ void Login::FinishLogin(WikiSite *site)
         qr = new ApiQuery(ActionQuery, site);
         this->qTokenInfo.insert(site, qr);
         qr->IncRef();
-        qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("watch|patrol|rollback");
+        qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|watch|patrol|rollback");
         qr->Process();
         this->Statuses[site] = RetrievingProjectConfig;
     }
@@ -859,6 +859,15 @@ void Login::ProcessSiteInfo(WikiSite *site)
                 } else
                 {
                     HUGGLE_DEBUG1("No rollback for " + site->Name + "result: " + this->qTokenInfo[site]->Result->Data);
+                }
+
+                if (tokens->Attributes.contains("csrftoken"))
+                {
+                    site->GetProjectConfig()->CSRFToken = tokens->GetAttribute("csrftoken");
+                    HUGGLE_DEBUG("CSRF token for " + site->Name + ": " + site->GetProjectConfig()->RollbackToken, 2);
+                } else
+                {
+                    HUGGLE_DEBUG1("No CSRF token for " + site->Name + ", result: " + this->qTokenInfo[site]->Result->Data);
                 }
             }
         } else

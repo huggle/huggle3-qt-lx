@@ -49,28 +49,12 @@ Message::~Message()
     delete this->User;
 }
 
-void Message::RetrieveToken()
-{
-    this->_Status = Huggle::MessageStatus_RetrievingToken;
-    this->qToken = new ApiQuery(ActionQuery, this->User->GetSite());
-    this->qToken->Parameters = "meta=tokens&type=csrf";
-    this->qToken->Target = _l("message-retrieve-new-token", this->User->GetTalk());
-    QueryPool::HugglePool->AppendQuery(this->qToken);
-    this->qToken->Process();
-}
-
 void Message::Send()
 {
     if (!this->User)
         throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
 
-    if (this->HasValidEditToken())
-    {
-        this->PreflightCheck();
-        return;
-    }
-    // first we need to get an edit token
-    this->RetrieveToken();
+    this->PreflightCheck();
 }
 
 void Message::Fail(QString reason)
@@ -81,7 +65,6 @@ void Message::Fail(QString reason)
     this->_Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
     this->ErrorText = reason;
-    this->qToken = nullptr;
     this->query = nullptr;
 }
 
@@ -106,16 +89,7 @@ bool Message::IsFinished()
             return true;
         }
     }
-    if (this->RetrievingToken())
-    {
-        // we are retrieving token so we can check if the token
-        // has beed retrieved and if yes, we can continue
-        if (this->FinishToken())
-        {
-            // good, we have the token now so we can edit the page, however some checks are needed before we do that
-            this->PreflightCheck();
-        }
-    }
+    // we can edit the page, however some checks are needed before we do that
     this->Finish();
     return this->Done();
 }
@@ -123,16 +97,6 @@ bool Message::IsFinished()
 bool Message::IsFailed()
 {
     return this->_Status == Huggle::MessageStatus_Failed;
-}
-
-bool Message::HasValidEditToken()
-{
-    return (!this->User->GetSite()->GetProjectConfig()->EditToken.isEmpty());
-}
-
-bool Message::RetrievingToken()
-{
-    return (this->_Status == Huggle::MessageStatus_RetrievingToken);
 }
 
 bool Message::IsSending()
@@ -151,20 +115,6 @@ void Message::Finish()
     {
         // we really need to quit now because query is null
         return;
-    }
-    // Check if we have a valid token
-    if (!this->HasValidEditToken())
-    {
-        // we need to get a token
-        if (this->_Status == Huggle::MessageStatus_RetrievingToken)
-        {
-            // we are already retrieving the token, so let's wait for it to finish
-            return;
-        } else
-        {
-            this->RetrieveToken();
-            return;
-        }
     }
     if (this->query == nullptr)
     {
@@ -269,42 +219,6 @@ void Message::Finish()
     }
 }
 
-bool Message::FinishToken()
-{
-    if (this->qToken == nullptr)
-    {
-        throw new Huggle::NullPointerException("local ApiQuery qToken", BOOST_CURRENT_FUNCTION);
-    }
-    if (!this->qToken->IsProcessed())
-    {
-        return false;
-    }
-    if (this->qToken->IsFailed())
-    {
-        this->Fail(_l("message-fail-token-1"));
-        return false;
-    }
-    QDomDocument dToken_;
-    dToken_.setContent(this->qToken->Result->Data);
-    QDomNodeList l = dToken_.elementsByTagName("tokens");
-    if (l.isEmpty())
-    {
-        this->Fail(_l("message-fail-token-2"));
-        Huggle::Syslog::HuggleLogs->DebugLog("No token");
-        return false;
-    }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("csrftoken"))
-    {
-        this->Fail(_l("message-fail-token-2"));
-        Huggle::Syslog::HuggleLogs->DebugLog("No token");
-        return false;
-    }
-    this->User->GetSite()->GetProjectConfig()->EditToken = element.attribute("csrftoken");
-    this->qToken = nullptr;
-    return true;
-}
-
 void Message::PreflightCheck()
 {
     // check if we can directly append the data or if we need to fetch the previous page content before we do that
@@ -381,13 +295,13 @@ void Message::ProcessSend()
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
-                + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
+                + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->CSRFToken);
     }else
     {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
-                + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->EditToken);
+                + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->CSRFToken);
     }
     HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
     QueryPool::HugglePool->AppendQuery(query);

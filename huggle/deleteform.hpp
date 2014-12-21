@@ -44,19 +44,14 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void OnTick();
         private:
-            void GetToken();
             void Delete();
-            void CheckDeleteToken();
+            void SendDeleteRequest();
             void Failed(QString Reason);
             Ui::DeleteForm *ui;
             WikiPage *page;
-            QString DeleteToken;
-            QString DeleteToken2;
             //! Query used to execute delete of a page
             Collectable_SmartPtr<ApiQuery> qDelete;
             Collectable_SmartPtr<ApiQuery> qTalk;
-            //! This is used to retrieve a token
-            Collectable_SmartPtr<ApiQuery> qToken;
             //! Set the page to delete
             QTimer *tDelete;
             WikiPage *TalkPage;
