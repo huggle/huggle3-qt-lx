@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "reloginform.hpp"
+#include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
@@ -16,13 +17,13 @@
 #include "localization.hpp"
 #include "syslog.hpp"
 #include "ui_reloginform.h"
-
-//! \todo This thing is totally fucked up
+#include "wikiutil.hpp"
 
 using namespace Huggle;
-ReloginForm::ReloginForm(QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
+ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
     this->ui->setupUi(this);
+    this->Site = site;
     this->little_cute_timer = new QTimer();
     connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
 }
@@ -31,8 +32,6 @@ ReloginForm::~ReloginForm()
 {
     delete this->little_cute_timer;
     delete this->ui;
-    GC_DECREF(this->qReloginTokenReq);
-    GC_DECREF(this->qReloginPw);
 }
 
 void Huggle::ReloginForm::on_pushButton_clicked()
@@ -43,18 +42,18 @@ void Huggle::ReloginForm::on_pushButton_clicked()
 void Huggle::ReloginForm::on_pushButton_2_clicked()
 {
     this->ui->pushButton_2->setEnabled(false);
-    this->qReloginTokenReq = new ApiQuery(ActionLogin);
+    this->ui->lineEdit->setEnabled(false);
+    this->qReloginTokenReq = new ApiQuery(ActionLogin, this->Site);
     this->little_cute_timer->start(HUGGLE_TIMER);
     this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
     this->qReloginTokenReq->HiddenQuery = true;
-    this->qReloginTokenReq->IncRef();
     this->qReloginTokenReq->UsingPOST = true;
     this->qReloginTokenReq->Process();
 }
 
 void ReloginForm::LittleTick()
 {
-    if (this->qReloginPw)
+    if (this->qReloginPw != nullptr)
     {
         if (!this->qReloginPw->IsProcessed())
             return;
@@ -83,6 +82,7 @@ void ReloginForm::LittleTick()
             // we are logged back in
             Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
             Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = false;
+            WikiUtil::RetrieveTokens(this->Site);
             this->close();
             return;
         }
@@ -104,7 +104,7 @@ void ReloginForm::LittleTick()
         this->Fail(_l("login-api", Result));
         return;
     }
-    if (this->qReloginTokenReq && this->qReloginTokenReq->IsProcessed())
+    if (this->qReloginTokenReq != nullptr && this->qReloginTokenReq->IsProcessed())
     {
         if (this->qReloginTokenReq->IsFailed())
         {
@@ -138,13 +138,11 @@ void ReloginForm::LittleTick()
             return;
         }
         QString t = QUrl::toPercentEncoding(login_->GetAttribute("token"));
-        GC_DECREF(this->qReloginTokenReq);
         this->qReloginPw = new ApiQuery(ActionLogin);
         this->qReloginPw->HiddenQuery = true;
         this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
                 + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + t;
         this->qReloginPw->UsingPOST = true;
-        this->qReloginPw->IncRef();
         this->qReloginPw->Process();
         return;
     }
@@ -153,8 +151,9 @@ void ReloginForm::LittleTick()
 void ReloginForm::Fail(QString why)
 {
     this->little_cute_timer->stop();
-    GC_DECREF(this->qReloginTokenReq);
-    GC_DECREF(this->qReloginPw);
+    this->qReloginTokenReq.Delete();
+    this->ui->lineEdit->setEnabled(true);
+    this->qReloginPw.Delete();
     Generic::MessageBox("Fail", "Unable to login to wiki: " + why,
                         MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
@@ -162,5 +161,8 @@ void ReloginForm::Fail(QString why)
 
 void ReloginForm::reject()
 {
-    Core::HuggleCore->Shutdown();
+    if (!this->Site->GetProjectConfig()->IsLoggedIn)
+        Core::HuggleCore->Shutdown();
+    else
+        QDialog::reject();
 }

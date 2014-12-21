@@ -1159,7 +1159,7 @@ void MainWindow::OnMainTimerTick()
         delete this->fRelogin;
         // we need to flag it here so that we don't reload the form next tick
         cfg->RequestingLogin = true;
-        this->fRelogin = new ReloginForm(this);
+        this->fRelogin = new ReloginForm(this->GetCurrentWikiSite(), this);
         // exec to freeze
         this->fRelogin->exec();
     }
@@ -2644,7 +2644,7 @@ void Huggle::MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_tri
 
 void Huggle::MainWindow::on_actionRelog_triggered()
 {
-    ReloginForm *form = new ReloginForm(this);
+    ReloginForm *form = new ReloginForm(this->GetCurrentWikiSite(), this);
     form->exec();
     delete form;
 }
@@ -2881,64 +2881,22 @@ void Huggle::MainWindow::on_actionVerbosity_triggered()
         hcfg->Verbosity--;
 }
 
+static void FinishLogout(Query *query)
+{
+    Configuration::Logout((WikiSite*)query->CallbackOwner);
+    query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+}
+
 void Huggle::MainWindow::on_actionLog_out_triggered()
 {
     ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
+    qx->CallbackOwner = this->GetCurrentWikiSite();
+    qx->callback = (Callback)FinishLogout;
     QueryPool::HugglePool->AppendQuery(qx);
     qx->Process();
-    Configuration::Logout(this->GetCurrentWikiSite());
-}
-
-static void FinishTokens(Query *token)
-{
-    ApiQuery *q = (ApiQuery*) token;
-    WikiSite *site = (WikiSite*) token->CallbackOwner;
-    ApiQueryResultNode *tokens = q->GetApiQueryResult()->GetNode("tokens");
-    if (tokens != nullptr)
-    {
-        if (tokens->Attributes.contains("rollbacktoken"))
-        {
-            site->GetProjectConfig()->Token_Rollback = tokens->GetAttribute("rollbacktoken");
-            HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->Token_Rollback, 2);
-        } else
-        {
-            HUGGLE_DEBUG1("No rollback for " + site->Name + " result: " + q->Result->Data);
-        }
-        if (tokens->Attributes.contains("csrftoken"))
-        {
-            site->GetProjectConfig()->Token_Csrf = tokens->GetAttribute("csrftoken");
-            HUGGLE_DEBUG("Token for " + site->Name + " csrf " + site->GetProjectConfig()->Token_Csrf, 2);
-        } else
-        {
-            HUGGLE_DEBUG1("No csrf for " + site->Name + " result: " + q->Result->Data);
-        }
-        if (tokens->Attributes.contains("watchtoken"))
-        {
-            site->GetProjectConfig()->Token_Watch = tokens->GetAttribute("watchtoken");
-            HUGGLE_DEBUG("Token for " + site->Name + " watch " + site->GetProjectConfig()->Token_Watch, 2);
-        } else
-        {
-            HUGGLE_DEBUG1("No watch for " + site->Name + " result: " + q->Result->Data);
-        }
-    }
-
-    token->DecRef();
-}
-
-static void FailureTokens(Query *token)
-{
-    Syslog::HuggleLogs->ErrorLog("Failed to process: " + token->GetFailureReason());
-    token->DecRef();
 }
 
 void Huggle::MainWindow::on_actionReload_tokens_triggered()
 {
-    ApiQuery *qr = new ApiQuery(ActionQuery, this->GetCurrentWikiSite());
-    qr->IncRef();
-    qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
-    qr->Target = "Tokens";
-    qr->CallbackOwner = this->GetCurrentWikiSite();
-    qr->FailureCallback = (Callback)FailureTokens;
-    qr->callback = (Callback)FinishTokens;
-    qr->Process();
+    WikiUtil::RetrieveTokens(this->GetCurrentWikiSite());
 }

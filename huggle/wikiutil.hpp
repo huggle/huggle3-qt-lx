@@ -92,6 +92,7 @@ namespace Huggle
                                                            QString BaseTimestamp = "", unsigned int section = 0);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);
+        void RetrieveTokens(WikiSite *wiki_site);
     }
 }
 

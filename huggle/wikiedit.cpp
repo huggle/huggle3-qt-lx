@@ -19,6 +19,7 @@
 #include "syslog.hpp"
 #include "mediawiki.hpp"
 #include "wikipage.hpp"
+#include "wikiutil.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
 
@@ -256,7 +257,7 @@ bool WikiEdit::FinalizePostProcessing()
                 // check if this revision matches our user
                 if (e.attributes().contains("user"))
                 {
-                    if (e.attribute("user") != this->User->Username)
+                    if (WikiUtil::SanitizeUser(e.attribute("user")).toUpper() != WikiUtil::SanitizeUser(this->User->Username).toUpper())
                     {
                         HUGGLE_DEBUG("User " + e.attribute("user") + " != " + this->User->Username, 3);
                         this->IsValid = false;

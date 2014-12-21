@@ -18,6 +18,7 @@
 #include <QString>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "wikisite.hpp"
 
 namespace Ui
 {
@@ -32,7 +33,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit ReloginForm(QWidget *parent = nullptr);
+            explicit ReloginForm(WikiSite *site, QWidget *parent = nullptr);
             ~ReloginForm();
 
         private slots:
@@ -43,10 +44,11 @@ namespace Huggle
         private:
             void Fail(QString why);
             void reject();
+            WikiSite *Site;
             //! This is just a timer, it's called little and cute because I was bored when writing this piece of code
             QTimer *little_cute_timer;
-            ApiQuery *qReloginTokenReq = nullptr;
-            ApiQuery *qReloginPw = nullptr;
+            Collectable_SmartPtr<ApiQuery> qReloginTokenReq;
+            Collectable_SmartPtr<ApiQuery> qReloginPw;
             Ui::ReloginForm *ui;
     };
 }
