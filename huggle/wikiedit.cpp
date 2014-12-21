@@ -259,11 +259,11 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     if (e.attribute("user") == this->User->Username)
                     {
-                        if (this->GetSite()->GetProjectConfig()->RollbackToken.isEmpty() && this->RollbackToken.isEmpty() && e.attributes().contains("rollbacktoken"))
+                        if (this->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty() && this->RollbackToken.isEmpty() && e.attributes().contains("rollbacktoken"))
                         {
                             // let's update it from fresh diff
                             this->RollbackToken = e.attribute("rollbacktoken");
-                            this->GetSite()->GetProjectConfig()->RollbackToken = e.attribute("rollbacktoken");
+                            this->GetSite()->GetProjectConfig()->Token_Rollback = e.attribute("rollbacktoken");
                         }
                     }
                     if (e.attributes().contains("revid"))
@@ -492,19 +492,9 @@ void WikiEdit::PostProcess()
         if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
-            if (this->GetSite()->GetProjectConfig()->RollbackToken.isEmpty())
-            {
-                // this is here for compatibility reason and when mediawiki gets fucked up
-                this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvstartid=" + QString::number(this->RevID) +
-                                            "&rvdiffto=" + this->DiffTo + "&titles=" +
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+                                            "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
-            } else
-            {
-                this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                                "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
-                                                QUrl::toPercentEncoding(this->Page->PageName);
-            }
         } else
         {
             this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +

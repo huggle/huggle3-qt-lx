@@ -25,7 +25,11 @@ namespace Huggle
         HistoryUnknown,
         HistoryEdit,
         HistoryRollback,
-        HistoryMessage
+        HistoryMessage,
+        HistoryProtect,
+        HistoryDelete,
+        HistoryUndelete,
+        HistoryBlock
     };
 
     //! History consist of these items

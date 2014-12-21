@@ -921,9 +921,9 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     }
     if (this->CurrentEdit->RollbackToken.isEmpty())
     {
-        if (!this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken.isEmpty())
+        if (!this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
         {
-            this->CurrentEdit->RollbackToken = this->CurrentEdit->GetSite()->GetProjectConfig()->RollbackToken;
+            this->CurrentEdit->RollbackToken = this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback;
         } else
         {
             Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));

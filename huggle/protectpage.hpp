@@ -52,11 +52,6 @@ namespace Huggle
         private:
             void Failed(QString reason);
             void Protect();
-            void getTokenToProtect();
-            void checkTokenToProtect();
-            QString ProtectToken;
-            //! Pointer to get first token
-            Collectable_SmartPtr<ApiQuery> qToken;
             //! Pointer for	protection
             Collectable_SmartPtr<ApiQuery> qProtection;
             Ui::ProtectPage *ui;
@@ -64,7 +59,6 @@ namespace Huggle
             WikiPage *PageToProtect;
             //! Timer that is used to switch between phases
             QTimer *tt;
-            int PtQueryPhase;
     };
 }
 

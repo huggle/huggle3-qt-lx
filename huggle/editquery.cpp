@@ -51,18 +51,12 @@ void EditQuery::Process()
 
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    this->Token = this->Page->GetSite()->GetProjectConfig()->EditToken;
-    if (this->Token.isEmpty())
+    if (this->Page->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty())
     {
-        this->qToken = new ApiQuery(ActionQuery, this->Page->Site);
-        this->qToken->Parameters = "meta=tokens&type=csrf";
-        this->qToken->Target = _l("editquery-token", this->Page->PageName);
-        QueryPool::HugglePool->AppendQuery(this->qToken);
-        this->qToken->Process();
-    } else
-    {
-        this->EditPage();
+        this->SetError("No CSRF token");
+        return;
     }
+    this->EditPage();
 }
 
 bool EditQuery::IsProcessed()
@@ -74,10 +68,8 @@ bool EditQuery::IsProcessed()
     {
         if (this->qRetrieve->IsFailed())
         {
-            this->Result = new QueryResult(true);
-            this->Result->SetError("Unable to retrieve the previous content of page: " + this->qRetrieve->Result->ErrorMessage);
+            this->SetError("Unable to retrieve the previous content of page: " + this->qRetrieve->Result->ErrorMessage);
             this->qRetrieve.Delete();
-            this->ProcessFailure();
             return true;
         }
         bool failed = false;
@@ -86,9 +78,7 @@ bool EditQuery::IsProcessed()
         this->qRetrieve.Delete();
         if (failed)
         {
-            this->Result = new QueryResult(true);
-            this->Result->SetError("Unable to retrieve the previous content of page: " + this->OriginalText);
-            this->ProcessFailure();
+            this->SetError("Unable to retrieve the previous content of page: " + this->OriginalText);
             return true;
         }
         this->HasPreviousPageText = true;
@@ -96,44 +86,7 @@ bool EditQuery::IsProcessed()
         this->EditPage();
         return false;
     }
-    if (this->qToken != nullptr)
-    {
-        if (!this->qToken->IsProcessed())
-            return false;
 
-        if (this->qToken->IsFailed())
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error") + ": " + this->qToken->GetFailureReason());
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        ApiQueryResultNode *page = this->qToken->GetApiQueryResult()->GetNode("tokens");
-        if (page == nullptr)
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error"));
-            HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        if (!page->Attributes.contains("csrftoken"))
-        {
-            this->Result = new QueryResult();
-            this->Result->SetError(_l("editquery-token-error"));
-            HUGGLE_DEBUG1("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken.Delete();
-            this->ProcessFailure();
-            return true;
-        }
-        this->Token = page->GetAttribute("csrftoken");
-        this->Page->GetSite()->GetProjectConfig()->EditToken = this->Token;
-        this->qToken.Delete();
-        this->EditPage();
-        return false;
-    }
     if (this->qEdit != nullptr)
     {
         if (!this->qEdit->IsProcessed())
@@ -252,7 +205,15 @@ void EditQuery::EditPage()
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                              QUrl::toPercentEncoding(this->Token);
+                              QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();
+}
+
+void EditQuery::SetError(QString reason)
+{
+    this->Result = new QueryResult(true);
+    this->Result->SetError(reason);
+    this->FailureReason = reason;
+    this->Status = StatusInError;
 }

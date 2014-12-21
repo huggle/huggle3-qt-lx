@@ -63,6 +63,14 @@ QString HistoryItem::TypeToString(HistoryType type)
             return "Edit";
         case HistoryRollback:
             return "Rollback";
+        case HistoryBlock:
+            return "Block";
+        case HistoryDelete:
+            return "Delete";
+        case HistoryProtect:
+            return "Protect";
+        case HistoryUndelete:
+            return "Undelete";
     }
     return "Unknown";
 }

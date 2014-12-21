@@ -119,6 +119,8 @@ Configuration::~Configuration()
 
 QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
 {
+    if (hcfg->UserConfig && !hcfg->UserConfig->HuggleSuffix)
+        return text;
     if (!text.endsWith(conf->EditSuffixOfHuggle))
     {
         text = text + " " + conf->EditSuffixOfHuggle;

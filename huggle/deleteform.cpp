@@ -14,7 +14,10 @@
 #include "apiqueryresult.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
+#include "history.hpp"
 #include "localization.hpp"
+#include "historyitem.hpp"
+#include "mainwindow.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "gc.hpp"
@@ -31,7 +34,6 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
     this->ui->setupUi(this);
     this->page = nullptr;
     this->tDelete = nullptr;
-    this->DeleteToken = "";
     this->TalkPage = nullptr;
     this->ui->comboBox->setCurrentIndex(0);
     this->PageUser = nullptr;
@@ -39,6 +41,7 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
 
 DeleteForm::~DeleteForm()
 {
+    delete this->tDelete;
     delete this->ui;
     delete this->page;
     delete this->TalkPage;
@@ -64,81 +67,9 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
     this->PageUser = User;
 }
 
-void DeleteForm::GetToken()
-{
-    this->qToken = new ApiQuery(ActionQuery, this->page->Site);
-    this->qToken->Parameters = "meta=tokens&type=csrf";
-    this->qToken->Target = _l("delete-token01", this->page->PageName);
-    QueryPool::HugglePool->AppendQuery(this->qToken);
-    this->qToken->Process();
-    this->tDelete = new QTimer(this);
-    connect(this->tDelete, SIGNAL(timeout()), this, SLOT(OnTick()));
-    this->delQueryPhase = 0;
-    this->tDelete->start(200);
-}
-
 void DeleteForm::OnTick()
 {
-    switch (this->delQueryPhase)
-    {
-        case 0:
-            this->CheckDeleteToken();
-            return;
-        case 1:
-            this->Delete();
-            return;
-    }
-    this->tDelete->stop();
-}
-
-void DeleteForm::CheckDeleteToken()
-{
-    if (this->qToken == nullptr || !this->qToken->IsProcessed())
-        return;
-    if (this->qToken->IsFailed())
-    {
-        this->Failed(_l("delete-error-token", this->qToken->GetFailureReason()));
-        return;
-    }
-    ApiQueryResultNode *token = this->qToken->GetApiQueryResult()->GetNode("tokens");
-    if (token == nullptr)
-    {
-        HUGGLE_DEBUG(this->qToken->Result->Data, 1);
-        this->Failed(_l("delete-failed-no-info"));
-        return;
-    }
-    if (!token->Attributes.contains("csrftoken"))
-    {
-        this->Failed(_l("delete-token02"));
-        return;
-    }
-    this->DeleteToken = token->GetAttribute("csrftoken");
-    this->delQueryPhase++;
-    this->qToken = nullptr;
-    HUGGLE_DEBUG("Delete token for " + this->page->PageName + ": " + this->DeleteToken, 1);
-
-    // let's delete the page
-    this->qDelete = new ApiQuery(ActionDelete, this->page->GetSite());
-    this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
-            + "&reason=" + QUrl::toPercentEncoding(this->ui->comboBox->lineEdit()->text())
-            + "&token=" + QUrl::toPercentEncoding(this->DeleteToken);
-    this->qDelete->Target = "Deleting "  + this->page->PageName;
-    this->qDelete->UsingPOST = true;
-    QueryPool::HugglePool->AppendQuery(qDelete);
-    this->qDelete->Process();
-
-    if (this->TalkPage != nullptr)
-    {
-        // let's delete the talk page
-        this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());
-        this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
-                + "&reason=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->ProjectConfig->AssociatedDelete)
-                + "&token=" + QUrl::toPercentEncoding(this->DeleteToken);
-        this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
-        this->qTalk->UsingPOST = true;
-        QueryPool::HugglePool->AppendQuery(this->qTalk);
-        this->qTalk->Process();
-    }
+    this->Delete();
 }
 
 void DeleteForm::Delete()
@@ -154,6 +85,12 @@ void DeleteForm::Delete()
     this->ui->pushButton->setText(_l("deleted"));
     this->tDelete->stop();
     HUGGLE_DEBUG("Deletion result: " + this->qDelete->Result->Data, 2);
+    HistoryItem *hi = new HistoryItem();
+    hi->IsRevertable = false;
+    hi->Result = _l("successful");
+    hi->Target = this->page->PageName;
+    hi->Type = HistoryDelete;
+    MainWindow::HuggleMain->_History->Prepend(hi);
     this->close();
 }
 
@@ -165,7 +102,6 @@ void DeleteForm::Failed(QString Reason)
     this->tDelete = nullptr;
     this->qDelete.Delete();
     this->qTalk.Delete();
-    this->qToken.Delete();
     this->ui->pushButton->setEnabled(true);
 }
 
@@ -182,7 +118,33 @@ void DeleteForm::on_pushButton_clicked()
     this->ui->checkBox_2->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
     this->ui->pushButton->setEnabled(false);
-    this->GetToken();
+    // let's delete the page
+    this->qDelete = new ApiQuery(ActionDelete, this->page->GetSite());
+    this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
+            + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(this->ui->comboBox->lineEdit()->text(),
+                                                                                 this->page->GetSite()->GetProjectConfig()))
+            + "&token=" + QUrl::toPercentEncoding(this->page->GetSite()->GetProjectConfig()->Token_Csrf);
+    this->qDelete->Target = "Deleting "  + this->page->PageName;
+    this->qDelete->UsingPOST = true;
+    QueryPool::HugglePool->AppendQuery(this->qDelete);
+    this->qDelete->Process();
+
+    if (this->TalkPage != nullptr)
+    {
+        // let's delete the talk page
+        this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());
+        this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
+                + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(Configuration::HuggleConfiguration->ProjectConfig->AssociatedDelete,
+                                                                                     this->page->GetSite()->GetProjectConfig()))
+                + "&token=" + QUrl::toPercentEncoding(this->page->GetSite()->GetProjectConfig()->Token_Csrf);
+        this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
+        this->qTalk->UsingPOST = true;
+        QueryPool::HugglePool->AppendQuery(this->qTalk);
+        this->qTalk->Process();
+    }
+    this->tDelete = new QTimer();
+    connect(this->tDelete, SIGNAL(timeout()), this, SLOT(OnTick()));
+    this->tDelete->start(HUGGLE_TIMER);
 }
 
 void DeleteForm::on_pushButton_2_clicked()

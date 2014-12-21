@@ -515,7 +515,7 @@ void Login::FinishLogin(WikiSite *site)
         qr = new ApiQuery(ActionQuery, site);
         this->qTokenInfo.insert(site, qr);
         qr->IncRef();
-        qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("watch|patrol|rollback");
+        qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
         qr->Process();
         this->Statuses[site] = RetrievingProjectConfig;
     }
@@ -854,11 +854,27 @@ void Login::ProcessSiteInfo(WikiSite *site)
             {
                 if (tokens->Attributes.contains("rollbacktoken"))
                 {
-                    site->GetProjectConfig()->RollbackToken = tokens->GetAttribute("rollbacktoken");
-                    HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->RollbackToken, 2);
+                    site->GetProjectConfig()->Token_Rollback = tokens->GetAttribute("rollbacktoken");
+                    HUGGLE_DEBUG("Token for " + site->Name + " rollback " + site->GetProjectConfig()->Token_Rollback, 2);
                 } else
                 {
-                    HUGGLE_DEBUG1("No rollback for " + site->Name + "result: " + this->qTokenInfo[site]->Result->Data);
+                    HUGGLE_DEBUG1("No rollback for " + site->Name + " result: " + this->qTokenInfo[site]->Result->Data);
+                }
+                if (tokens->Attributes.contains("csrftoken"))
+                {
+                    site->GetProjectConfig()->Token_Csrf = tokens->GetAttribute("csrftoken");
+                    HUGGLE_DEBUG("Token for " + site->Name + " csrf " + site->GetProjectConfig()->Token_Csrf, 2);
+                } else
+                {
+                    HUGGLE_DEBUG1("No csrf for " + site->Name + " result: " + this->qTokenInfo[site]->Result->Data);
+                }
+                if (tokens->Attributes.contains("watchtoken"))
+                {
+                    site->GetProjectConfig()->Token_Watch = tokens->GetAttribute("watchtoken");
+                    HUGGLE_DEBUG("Token for " + site->Name + " watch " + site->GetProjectConfig()->Token_Watch, 2);
+                } else
+                {
+                    HUGGLE_DEBUG1("No watch for " + site->Name + " result: " + this->qTokenInfo[site]->Result->Data);
                 }
             }
         } else
