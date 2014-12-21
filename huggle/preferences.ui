@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>618</height>
+    <height>658</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -227,25 +227,32 @@
         <number>8</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="checkBox_17">
-         <property name="text">
-          <string>Merge your messages with others in existing sections</string>
+        <layout class="QVBoxLayout" name="verticalLayout_13">
+         <property name="spacing">
+          <number>0</number>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_16">
-         <property name="text">
-          <string>Use months as headers instead of name of page</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_24">
-         <property name="text">
-          <string>Use automatic warning type and level on &quot;send warning&quot; function</string>
-         </property>
-        </widget>
+         <item>
+          <widget class="QCheckBox" name="checkBox_17">
+           <property name="text">
+            <string>Merge your messages with others in existing sections</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_16">
+           <property name="text">
+            <string>Use months as headers instead of name of page</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_24">
+           <property name="text">
+            <string>Use automatic warning type and level on &quot;send warning&quot; function</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer_3">
