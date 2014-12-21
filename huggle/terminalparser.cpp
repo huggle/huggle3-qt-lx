@@ -90,6 +90,20 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
             valid = true;
         }
+        if (text == "--huggleinternal-update")
+        {
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                hcfg->UpdaterRoot = this->args.at(x + 1);
+                hcfg->SystemConfig_UM = true;
+                valid = true;
+                x++;
+            } else
+            {
+                cerr << "Parameter --huggleinternal-update requires an argument for it to work!" << endl;
+                return true;
+            }
+        }
         if (text == "--version")
         {
             DisplayVersion();
