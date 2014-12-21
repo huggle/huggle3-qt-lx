@@ -55,7 +55,7 @@ void EditQuery::Process()
     if (this->Token.isEmpty())
     {
         this->qToken = new ApiQuery(ActionQuery, this->Page->Site);
-        this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
+        this->qToken->Parameters = "meta=tokens&type=csrf";
         this->qToken->Target = _l("editquery-token", this->Page->PageName);
         QueryPool::HugglePool->AppendQuery(this->qToken);
         this->qToken->Process();
@@ -109,7 +109,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        ApiQueryResultNode *page = this->qToken->GetApiQueryResult()->GetNode("page");
+        ApiQueryResultNode *page = this->qToken->GetApiQueryResult()->GetNode("tokens");
         if (page == nullptr)
         {
             this->Result = new QueryResult();
@@ -119,7 +119,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        if (!page->Attributes.contains("edittoken"))
+        if (!page->Attributes.contains("csrftoken"))
         {
             this->Result = new QueryResult();
             this->Result->SetError(_l("editquery-token-error"));
@@ -128,7 +128,7 @@ bool EditQuery::IsProcessed()
             this->ProcessFailure();
             return true;
         }
-        this->Token = page->GetAttribute("edittoken");
+        this->Token = page->GetAttribute("csrftoken");
         this->Page->GetSite()->GetProjectConfig()->EditToken = this->Token;
         this->qToken.Delete();
         this->EditPage();

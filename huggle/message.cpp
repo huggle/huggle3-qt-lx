@@ -53,7 +53,7 @@ void Message::RetrieveToken()
 {
     this->_Status = Huggle::MessageStatus_RetrievingToken;
     this->qToken = new ApiQuery(ActionQuery, this->User->GetSite());
-    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->User->GetTalk());
+    this->qToken->Parameters = "meta=tokens&type=csrf";
     this->qToken->Target = _l("message-retrieve-new-token", this->User->GetTalk());
     QueryPool::HugglePool->AppendQuery(this->qToken);
     this->qToken->Process();
@@ -286,21 +286,21 @@ bool Message::FinishToken()
     }
     QDomDocument dToken_;
     dToken_.setContent(this->qToken->Result->Data);
-    QDomNodeList l = dToken_.elementsByTagName("page");
+    QDomNodeList l = dToken_.elementsByTagName("tokens");
     if (l.isEmpty())
-    {
-        this->Fail(_l("message-fail-token-2"));
-        Huggle::Syslog::HuggleLogs->DebugLog("No page");
-        return false;
-    }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("edittoken"))
     {
         this->Fail(_l("message-fail-token-2"));
         Huggle::Syslog::HuggleLogs->DebugLog("No token");
         return false;
     }
-    this->User->GetSite()->GetProjectConfig()->EditToken = element.attribute("edittoken");
+    QDomElement element = l.at(0).toElement();
+    if (!element.attributes().contains("csrftoken"))
+    {
+        this->Fail(_l("message-fail-token-2"));
+        Huggle::Syslog::HuggleLogs->DebugLog("No token");
+        return false;
+    }
+    this->User->GetSite()->GetProjectConfig()->EditToken = element.attribute("csrftoken");
     this->qToken = nullptr;
     return true;
 }

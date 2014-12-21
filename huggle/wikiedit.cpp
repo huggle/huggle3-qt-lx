@@ -496,8 +496,8 @@ void WikiEdit::PostProcess()
             {
                 // this is here for compatibility reason and when mediawiki gets fucked up
                 this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvtoken=rollback&rvstartid=" +
-                                            QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
+                                            "&rvlimit=1&rvstartid=" + QString::number(this->RevID) +
+                                            "&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
             } else
             {
@@ -508,7 +508,7 @@ void WikiEdit::PostProcess()
         } else
         {
             this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                                            "&rvlimit=1&rvtoken=rollback&rvdiffto=" + this->DiffTo + "&titles=" +
+                                            "&rvlimit=1&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         }
         this->qDifference->Target = Page->PageName;

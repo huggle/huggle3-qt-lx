@@ -76,8 +76,7 @@ void BlockUser::GetToken()
 {
     // Let's get a token before anything
     this->qTokenApi = new ApiQuery(ActionQuery, this->user->GetSite());
-    this->qTokenApi->Parameters = "prop=info&intoken=block&titles=User:" +
-            QUrl::toPercentEncoding(this->user->Username);
+    this->qTokenApi->Parameters = "meta=tokens&type=csrf";
     this->qTokenApi->Target = _l("block-token-1", this->user->Username);
     QueryPool::HugglePool->AppendQuery(this->qTokenApi);
     this->qTokenApi->Process();
@@ -116,19 +115,19 @@ void BlockUser::CheckToken()
         this->Failed(_l("block-token-e1", this->qTokenApi->GetFailureReason()));
         return;
     }
-    ApiQueryResultNode *page = this->qTokenApi->GetApiQueryResult()->GetNode("page");
+    ApiQueryResultNode *page = this->qTokenApi->GetApiQueryResult()->GetNode("tokens");
     if (page == nullptr)
     {
         HUGGLE_DEBUG(this->qTokenApi->Result->Data, 1);
         this->Failed(_l("block-error-no-info"));
         return;
     }
-    if (!page->Attributes.contains("blocktoken"))
+    if (!page->Attributes.contains("csrftoken"))
     {
         this->Failed(_l("no-token"));
         return;
     }
-    this->BlockToken = page->GetAttribute("blocktoken");
+    this->BlockToken = page->GetAttribute("csrftoken");
     this->QueryPhase++;
     this->qTokenApi = nullptr;
     HUGGLE_DEBUG("Block token for " + this->user->Username + ": " + this->BlockToken, 1);

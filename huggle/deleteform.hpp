@@ -57,7 +57,6 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qTalk;
             //! This is used to retrieve a token
             Collectable_SmartPtr<ApiQuery> qToken;
-            Collectable_SmartPtr<ApiQuery> qTokenOfTalkPage;
             //! Set the page to delete
             QTimer *tDelete;
             WikiPage *TalkPage;

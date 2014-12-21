@@ -144,10 +144,10 @@ void QueryPool::CheckQueries()
                 goto watchlist_fail;
             }
             d.setContent(qrtk->Result->Data);
-            page_ls = d.elementsByTagName("page");
+            page_ls = d.elementsByTagName("tokens");
             if (!page_ls.count())
             {
-                error = "no pages returned";
+                error = "no tokens returned";
                 goto watchlist_fail;
             }
             result = page_ls.at(0).toElement();
