@@ -635,4 +635,10 @@
     <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
     <string name="preferences-delete-using-filter">You can't delete a filter that is currently being used</string>
     <string name="fail">Fail</string>
+    <string name="request">Request</string>
+    <string name="requesting">Requesting</string>
+    <string name="requested">Requested</string>
+    <string name="protect-request-fail">Unable to retrieve the current report page</string>
+    <string name="protect-request-fail-notext">Unable to retrieve the current report page because the query didn't return any text for this page</string>
+    <string name="protect-request-fail-notime">The query didn't return any timestamp (mediawiki bug?) aborting the query</string>
 </resource>
