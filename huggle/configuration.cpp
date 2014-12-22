@@ -130,10 +130,7 @@ QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)
 
 void Configuration::Logout(WikiSite *site)
 {
-    site->GetProjectConfig()->IsLoggedIn = false;
-    site->GetProjectConfig()->Token_Csrf = "";
-    site->GetProjectConfig()->Token_Rollback = "";
-    site->GetProjectConfig()->Token_Watch = "";
+    site->GetProjectConfig()->RequestLogin();
 }
 
 QString Configuration::GetExtensionsRootPath()

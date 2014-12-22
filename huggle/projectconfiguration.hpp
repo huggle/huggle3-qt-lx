@@ -74,7 +74,6 @@ namespace Huggle
             QString ApprovalPage = "Project:Huggle/Users";
             QString ProjectName;
             WikiSite    *Site = nullptr;
-            QString     EditToken = "";
             QStringList Months;
             //! Pointer to AIV page
             WikiPage    *AIVP = nullptr;
@@ -242,7 +241,12 @@ namespace Huggle
     inline void ProjectConfiguration::RequestLogin()
     {
         if (this->IsLoggedIn && !this->RequestingLogin)
+        {
             this->IsLoggedIn = false;
+            this->Token_Csrf = "";
+            this->Token_Rollback = "";
+            this->Token_Watch = "";
+        }
     }
 }
 

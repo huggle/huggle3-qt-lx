@@ -28,7 +28,6 @@ namespace Huggle
         MessageStatus_None,
         MessageStatus_Done,
         MessageStatus_Failed,
-        MessageStatus_RetrievingToken,
         MessageStatus_RetrievingTalkPage,
         MessageStatus_SendingMessage
     };
@@ -50,7 +49,6 @@ namespace Huggle
             //! Creates a new instance of message class that is used to deliver a message to users
             Message(WikiUser *target, QString MessageText, QString MessageSummary);
             ~Message();
-            void RetrieveToken();
             //! Send a message to user
             void Send();
             //! Returns true in case that message was sent
@@ -91,13 +89,10 @@ namespace Huggle
             //! This is a generic finish that either finishes whole message sending, or call respective finish function
             //! that is needed to finish the current step
             void Finish();
-            //! Finish parsing the token
-            bool FinishToken();
             //! Returns true if there is a valid token in memory
 
             //! Valid token means that it is syntactically correct, not that it isn't expired
             bool HasValidEditToken();
-            bool RetrievingToken();
             bool IsSending();
             //! This function perform several checks and if everything is ok, it automatically calls next functions that send the message
             void PreflightCheck();
@@ -107,7 +102,6 @@ namespace Huggle
             void ProcessSend();
             void ProcessTalk();
             QString Append(QString text, QString OriginalText, QString Label);
-            Collectable_SmartPtr<ApiQuery> qToken;
             Collectable_SmartPtr<ApiQuery> query;
             //! This is a text of talk page that was present before we change it
             QString Page;
