@@ -11,6 +11,7 @@
 #include "networkirc.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include "sleeper.hpp"
 #include "syslog.hpp"
 #include <QTimer>
 #include <QMutex>
@@ -34,7 +35,10 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
 
 NetworkIrc::~NetworkIrc()
 {
-    this->ClearList();
+    this->Disconnect();
+    HUGGLE_DEBUG1("Waiting for IRC thread to stop");
+    while (this->NetworkThread && !this->NetworkThread->isFinished())
+        Sleeper::usleep(200);
     delete this->MessagesLock;
     delete this->NetworkSocket;
     delete this->ChannelsLock;
