@@ -199,7 +199,7 @@ void Message::Finish()
         }
         if (this->query->IsFailed())
         {
-            this->Fail("Failed to deliver the message");
+            this->Fail(_l("message-fail"));
             return;
         }
         bool sent = false;
@@ -215,16 +215,16 @@ void Message::Finish()
                 if (ec == "editconflict")
                 {
                     // someone edit the page meanwhile which means that our token has expired
-                    this->Fail("Edit conflict");
+                    this->Fail(_l("edit-conflict"));
                     Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->User->Username);
                     this->Error = MessageError_Obsolete;
                 } else if (ec == "articleexists")
                 {
-                    this->Fail("Edit conflict");
+                    this->Fail(_l("edit-conflict"));
                     this->Error = MessageError_ArticleExist;
                 } else
                 {
-                    this->Fail("Unknown error: " + ec);
+                    this->Fail(_l("error-unknown") + ec);
                     this->Error = MessageError_Unknown;
                 }
                 return;

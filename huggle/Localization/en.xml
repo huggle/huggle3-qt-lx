@@ -641,4 +641,6 @@
     <string name="protect-request-fail">Unable to retrieve the current report page</string>
     <string name="protect-request-fail-notext">Unable to retrieve the current report page because the query didn't return any text for this page</string>
     <string name="protect-request-fail-notime">The query didn't return any timestamp (mediawiki bug?) aborting the query</string>
+    <string name="message-fail">Failed to deliver the message</string>
+    <string name="edit-conflict">Edit conflict</string>
 </resource>
