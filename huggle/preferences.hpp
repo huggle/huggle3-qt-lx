@@ -56,6 +56,7 @@ namespace Huggle
             void on_cbDefault_currentIndexChanged(int index);
             void on_tableWidget_customContextMenuRequested(const QPoint &pos);
         private:
+            void ResetItems();
             void Reload();
             //! Used to reload shortcuts only
             void Reload2();
