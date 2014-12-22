@@ -124,24 +124,6 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
     }
 #endif
-    switch(hcfg->UserConfig->GoNext)
-    {
-        case Configuration_OnNext_Stay:
-            this->ui->radioButton_5->setChecked(true);
-            this->ui->radioButton_4->setChecked(false);
-            this->ui->radioButton_3->setChecked(false);
-            break;
-        case Configuration_OnNext_Revert:
-            this->ui->radioButton_5->setChecked(false);
-            this->ui->radioButton_4->setChecked(true);
-            this->ui->radioButton_3->setChecked(false);
-            break;
-        case Configuration_OnNext_Next:
-            this->ui->radioButton_5->setChecked(false);
-            this->ui->radioButton_3->setChecked(true);
-            this->ui->radioButton_4->setChecked(false);
-            break;
-    }
     this->Disable();
     this->ui->checkBox->setText(_l("config-conflicts-revert"));
     this->ui->checkBox_2->setText(_l("config-confirm-user"));
@@ -161,6 +143,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->checkBox_12->setText(_l("config-enable-irc"));
     this->ui->checkBox_15->setText(_l("config-remove-reverted"));
     this->ui->checkBox_19->setText(_l("config-remove-old"));
+    this->ui->checkBox_12->setText(_l("config-ircmode"));
+    this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
+    this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
     this->ui->checkBox_14->setText(_l("config-auto-load-history"));
     this->ui->checkBox_21->setText(_l("config-last-revision"));
     this->ui->checkBox_26->setText(_l("config-require-delay"));
@@ -685,13 +670,30 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
 
 void Preferences::ResetItems()
 {
+    switch(hcfg->UserConfig->GoNext)
+    {
+        case Configuration_OnNext_Stay:
+            this->ui->radioButton_5->setChecked(true);
+            this->ui->radioButton_4->setChecked(false);
+            this->ui->radioButton_3->setChecked(false);
+            break;
+        case Configuration_OnNext_Revert:
+            this->ui->radioButton_5->setChecked(false);
+            this->ui->radioButton_4->setChecked(true);
+            this->ui->radioButton_3->setChecked(false);
+            break;
+        case Configuration_OnNext_Next:
+            this->ui->radioButton_5->setChecked(false);
+            this->ui->radioButton_3->setChecked(true);
+            this->ui->radioButton_4->setChecked(false);
+            break;
+    }
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(hcfg->UserConfig->EnforceSoftwareRollback());
     this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
     this->ui->checkBox_2->setChecked(hcfg->WarnUserSpaceRoll);
     this->ui->checkBox->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
-    this->ui->checkBox_12->setText(_l("config-ircmode"));
     this->ui->checkBox_12->setChecked(hcfg->UsingIRC);
     this->ui->checkBox_14->setChecked(hcfg->UserConfig->HistoryLoad);
     this->ui->checkBox_3->setChecked(hcfg->ProjectConfig->ConfirmOnSelfRevs);
@@ -716,10 +718,8 @@ void Preferences::ResetItems()
     this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
-    this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
     this->ui->lineEdit_5->setText(hcfg->UserConfig->Font);
     this->ui->lineEdit_4->setText(QString::number(hcfg->UserConfig->FontSize));
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
-    this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
 }
