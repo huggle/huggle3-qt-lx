@@ -64,6 +64,7 @@ namespace Huggle
             explicit ApiQuery();
             explicit ApiQuery(Action action);
             explicit ApiQuery(Action action, WikiSite *site);
+            ~ApiQuery();
             Action GetAction();
             ApiQueryResult *GetApiQueryResult();
             //! Run
@@ -127,8 +128,12 @@ namespace Huggle
 
     inline void ApiQuery::Kill()
     {
-        if (this->reply != nullptr)
+        if (this->Status == StatusProcessing && this->reply != nullptr)
+        {
             this->reply->abort();
+            this->reply->deleteLater();
+            this->reply = nullptr;
+        }
     }
 
     inline QString ApiQuery::QueryTargetToString()

@@ -122,6 +122,11 @@ ApiQuery::ApiQuery(Action action, WikiSite *site)
     this->SetAction(action);
 }
 
+ApiQuery::~ApiQuery()
+{
+    this->Kill();
+}
+
 Action ApiQuery::GetAction()
 {
     return this->_action;
