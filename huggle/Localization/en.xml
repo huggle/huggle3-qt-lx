@@ -651,4 +651,9 @@
     <string name="speedy-csd-invalid">Invalid CSD tag, there is no message and wiki tag to use</string>
     <string name="speedy-csd-existing">There is already a CSD tag on the page</string>
     <string name="namespace">Namespace</string>
+    <string name="block-alreadyblocked">User is already blocked</string>
+    <string name="report-fail">Failed to report user because</string>
+    <string name="report-page-fail">Error unable to retrieve report page at</string>
+    <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure</string>
+    <string name="report-unable">Unable to report user</string>
 </resource>
