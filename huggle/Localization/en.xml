@@ -644,4 +644,7 @@
     <string name="message-fail">Failed to deliver the message</string>
     <string name="edit-conflict">Edit conflict</string>
     <string name="session-name">You are logged in as </string>
+    <string name="page-tag-nodescription">there is no description for this tag</string>
+    <string name="page-tag-fail">Failed to tag page</string>
+    <string name="page-tag-error">Unable to tag the page, error was</string>
 </resource>
