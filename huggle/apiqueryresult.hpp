@@ -19,13 +19,23 @@
 
 namespace Huggle
 {
+    //! Key/value node for data from API queries
     //! \todo Currently value is provided even for nodes that shouldn't have it
     class HUGGLE_EX ApiQueryResultNode
     {
           public:
+            /*!
+            * \brief GetAttribute Return the specified attribute if it exists, otherwise return the default
+            * \param name Name of attribute
+            * \param default_val Value to return if the attribute is not found
+            * \return Value of attribute or default value
+            */
             QString GetAttribute(QString name, QString default_val = "");
+            //! Name of attribute
             QString Name;
+            //! Value of attribute
             QString Value;
+            //! Hashtable of attribtues
             QHash<QString, QString> Attributes;
     };
 
@@ -38,13 +48,34 @@ namespace Huggle
     {
         public:
             ApiQueryResult();
+            //! Frees the results from memory
             ~ApiQueryResult();
+            /*!
+            * \brief Process Process the data into Nodes and handle any warnings / errors
+            */
             void Process();
+            /*!
+            * \brief GetNode Get the first node with the specified name
+            * \param node_name Name of node
+            * \return The specified node or a null pointer if none found
+            */
             ApiQueryResultNode *GetNode(QString node_name);
+            /*!
+            * \brief GetNodes Get all nodes with the specified name
+            * \param node_name Name of node
+            * \return QList of found nodes
+            */
             QList<ApiQueryResultNode*> GetNodes(QString node_name);
+            /*!
+            * \brief HasWarnings Return if the API has returned any warnings
+            * \return True if there are warnings, false otherwise
+            */
             bool HasWarnings();
+            //! List of result nodes
             QList<ApiQueryResultNode*> Nodes;
+            //! Warning from API query
             QString Warning;
+            //! If any error was encountered during the query
             bool HasErrors = false;
     };
 }

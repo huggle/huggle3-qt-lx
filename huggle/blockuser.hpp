@@ -37,9 +37,23 @@ namespace Huggle
         public:
             explicit BlockUser(QWidget *parent = nullptr);
             ~BlockUser();
+            /*!
+            * \brief SetWikiUser Select the user/IP to block, display block expiry options from site
+            * \param User User to select
+            */
             void SetWikiUser(WikiUser *User);
+            /*!
+            * \brief Failed Show failure message
+            * \param reason Reason why blocking failed
+            */
             void Failed(QString reason);
+            /*!
+            * \brief Block Block the selected user and show result
+            */
             void Block();
+            /*!
+            * \brief sendBlockNotice Send the relevant block notice to the user's talk page
+            */
             void sendBlockNotice(ApiQuery *dependency);
         private slots:
             void on_pushButton_clicked();
