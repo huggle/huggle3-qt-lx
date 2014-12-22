@@ -94,7 +94,7 @@ void SpeedyForm::processTags()
                        .at(this->ui->comboBox->currentIndex()).split(";");
     if (vals.count() < 4)
     {
-        this->Fail("Invalid CSD tag, there is no message and wiki tag to use");
+        this->Fail(_l("speedy-csd-invalid"));
         return;
     }
     //! \todo make this cross wiki instead of checking random tag
@@ -102,7 +102,7 @@ void SpeedyForm::processTags()
     lower = lower.toLower();
     if (lower.contains("{{db"))
     {
-        this->Fail("There is already a CSD tag on the page.");
+        this->Fail(_l("speedy-csd-existing") + ".");
         this->close();
         return;
     }
