@@ -1162,6 +1162,7 @@ void MainWindow::OnMainTimerTick()
         this->fRelogin = new ReloginForm(this->GetCurrentWikiSite(), this);
         // exec to freeze
         this->fRelogin->exec();
+        return;
     }
     if (Configuration::HuggleConfiguration->ReloadOfMainformNeeded)
         this->ReloadSc();
