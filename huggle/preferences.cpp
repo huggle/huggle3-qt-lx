@@ -65,7 +65,7 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget_3->setColumnCount(2);
     header.clear();
-    header << "Namespace" << "Ignore";
+    header << _l("namespace") << _l("main-user-ignore");
     this->ui->tableWidget_3->setHorizontalHeaderLabels(header);
     this->ui->tableWidget_3->verticalHeader()->setVisible(false);
     this->ui->tableWidget_3->setShowGrid(false);
