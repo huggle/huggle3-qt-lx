@@ -46,7 +46,7 @@ void RequestProtect::Tick()
         // we are reading the request page let's see if we got it
         if (this->qRFPPage->IsFailed())
         {
-            this->Fail(_l("protect-request-fail") + ":" + this->qRFPPage->Result->ErrorMessage);
+            this->Fail(_l("protect-request-fail", this->qRFPPage->Result->ErrorMessage));
             return;
         }
         QDomDocument d;

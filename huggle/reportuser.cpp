@@ -207,7 +207,7 @@ void ReportUser::Tick()
                 this->ui->pushButton->setText(_l("report-user"));
                 this->ui->pushButton->setEnabled(true);
                 QMessageBox mb;
-                mb.setText(_l("report-fail") + ": " + this->qEdit->Result->ErrorMessage);
+                mb.setText(_l("report-fail", this->qEdit->Result->ErrorMessage));
                 Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
                 mb.exec();
                 this->Kill();
@@ -242,7 +242,7 @@ void ReportUser::Tick()
             if (!e.attributes().contains("timestamp"))
             {
                 QMessageBox mb;
-                mb.setText(_l("report-page-fail-time") + ":\n\n" + this->qReport->Result->Data);
+                mb.setText(_l("report-page-fail-time",this->qReport->Result->Data));
                 mb.exec();
                 this->Kill();
                 return;
@@ -402,7 +402,7 @@ void ReportUser::Test()
         this->ui->pushButton_3->setEnabled(true);
         if (results.count() == 0)
         {
-            this->failCheck(_l("report-page-fail") + " " + this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV);
+            this->failCheck(_l("report-page-fail", this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV));
             return;
         }
         this->ui->pushButton_3->setEnabled(true);
@@ -412,7 +412,7 @@ void ReportUser::Test()
             this->ReportTs = e.attribute("timestamp");
         } else
         {
-            this->failCheck(_l("report-page-fail-time")+":\n\n" + this->qReport->Result->Data);
+            this->failCheck(_l("report-page-fail-time", this->qReport->Result->Data));
             return;
         }
         this->ReportContent = e.text();
@@ -553,7 +553,7 @@ void ReportUser::Kill()
 void ReportUser::failCheck(QString reason)
 {
     QMessageBox mb;
-    mb.setWindowTitle(_l("report-unable") + ":(");
+    mb.setWindowTitle(_l("report-unable"));
     mb.setText(reason);
     mb.exec();
     this->tReportUser->stop();

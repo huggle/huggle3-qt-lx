@@ -224,7 +224,7 @@ void Message::Finish()
                     this->Error = MessageError_ArticleExist;
                 } else
                 {
-                    this->Fail(_l("error-unknown") + ec);
+                    this->Fail(_l("error-unknown-code",ec));
                     this->Error = MessageError_Unknown;
                 }
                 return;

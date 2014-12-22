@@ -58,7 +58,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
     foreach (QString item, keys)
     {
         QString key = item;
-        QString description = _l("page-tag-nodescription") + " :/";
+        QString description = _l("page-tag-nodescription");
         if (key.contains(";"))
         {
             description = key.mid(key.indexOf(";") + 1);
@@ -90,7 +90,7 @@ static void Fail(Query *result)
 {
     QMessageBox mb;
     mb.setWindowTitle(_l("page-tag-fail"));
-    mb.setText(_l("page-tag-error") + ": " + text);
+    mb.setText(_l("page-tag-error", result->Result->ErrorMessage));
     mb.exec();
     result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -106,7 +106,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     {
         QMessageBox mb;
         mb.setWindowTitle(_l("page-tag-fail"));
-        mb.setText(_l("page-tag-error") + ": " + text);
+        mb.setText(_l("page-tag-error", text));
         mb.exec();
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;

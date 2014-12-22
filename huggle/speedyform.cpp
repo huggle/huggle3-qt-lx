@@ -102,7 +102,7 @@ void SpeedyForm::processTags()
     lower = lower.toLower();
     if (lower.contains("{{db"))
     {
-        this->Fail(_l("speedy-csd-existing") + ".");
+        this->Fail(_l("speedy-csd-existing"));
         this->close();
         return;
     }
