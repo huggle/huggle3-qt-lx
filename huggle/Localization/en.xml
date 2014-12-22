@@ -656,4 +656,8 @@
     <string name="report-page-fail">Error unable to retrieve report page at</string>
     <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure</string>
     <string name="report-unable">Unable to report user</string>
+    <string name="about-python-with">with python support</string>
+    <string name="about-python-without">without python support</string>
+    <string name="about-qt-compiled">compiled using QT</string>
+    <string name="about-qt-running">Running on QT</string>
 </resource>
