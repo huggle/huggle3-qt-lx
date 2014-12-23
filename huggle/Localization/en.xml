@@ -655,9 +655,8 @@
     <string name="report-page-fail">Error unable to retrieve report page at $1</string>
     <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
     <string name="report-unable">Unable to report user :(</string>
-    <string name="about-python-with">with python support</string>
-    <string name="about-python-without">without python support</string>
-    <string name="about-qt-compiled">compiled using QT</string>
-    <string name="about-qt-running">Running on QT</string>
+    <string name="about-python-with"> ,with python support</string>
+    <string name="about-python-without"> without python support</string>
+    <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
     <string name="error-unknown-code">Unknown Error: $1</string>
 </resource>
