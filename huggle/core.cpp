@@ -325,7 +325,12 @@ void Core::ExtensionLoad()
                         if (!interface)
                         {
                             Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension: " + ename);
-                        } else
+                        }
+                        else if (interface->CompiledFor() != QString(HUGGLE_VERSION))
+                        {
+                            Huggle::Syslog::HuggleLogs->WarningLog("Extension " + ename + " was compiled for huggle " + interface->CompiledFor() + " which is not compatible, unloading");
+                            delete interface;
+                        }
                         {
                             interface->huggle__internal_SetPath(ename);
                             if (interface->RequestNetwork())

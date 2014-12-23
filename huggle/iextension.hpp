@@ -45,6 +45,11 @@ namespace Huggle
             virtual bool Register() { return false; }
             void huggle__internal_SetPath(QString path);
             HUGGLE_EX QString GetExtensionFullPath();
+            virtual QString CompiledFor()
+            {
+                // version of huggle this extension was built for
+                return QString(HUGGLE_VERSION);
+            }
             /*!
              * \brief This is called when the extension is removed from system
              */
