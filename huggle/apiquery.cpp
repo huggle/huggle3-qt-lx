@@ -168,6 +168,13 @@ static void WriteOut(ApiQuery *q)
 
 void ApiQuery::Finished()
 {
+    // don't even try to do anything if query was killed
+    if (this->Status == StatusKilled)
+        return;
+    if (this->Result == nullptr)
+        throw new Huggle::NullPointerException("loc ApiQuery::Result", BOOST_CURRENT_FUNCTION);
+    if (this->reply == nullptr)
+        throw new Huggle::NullPointerException("loc ApiQuery::reply", BOOST_CURRENT_FUNCTION);
     ApiQueryResult *result = (ApiQueryResult*)this->Result;
     result->Data += QString(this->reply->readAll());
     // now we need to check if request was successful or not

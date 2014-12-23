@@ -34,6 +34,7 @@ namespace Huggle
     {
         StatusNull,
         StatusDone,
+        StatusKilled,
         StatusProcessing,
         StatusInError
     };

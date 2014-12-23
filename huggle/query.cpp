@@ -35,6 +35,7 @@ Query::Query()
 Query::~Query()
 {
     delete this->Result;
+    this->Result = nullptr;
 }
 
 bool Query::IsProcessed()
