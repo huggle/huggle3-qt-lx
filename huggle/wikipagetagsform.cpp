@@ -58,7 +58,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
     foreach (QString item, keys)
     {
         QString key = item;
-        QString description = "there is no description for this tag :/";
+        QString description = _l("page-tag-nodescription");
         if (key.contains(";"))
         {
             description = key.mid(key.indexOf(";") + 1);
@@ -89,8 +89,8 @@ static void Finish(Query *result)
 static void Fail(Query *result)
 {
     QMessageBox mb;
-    mb.setWindowTitle("Failed to tag page");
-    mb.setText("Unable to tag the page, error was: " + result->Result->ErrorMessage);
+    mb.setWindowTitle(_l("page-tag-fail"));
+    mb.setText(_l("page-tag-error", result->Result->ErrorMessage));
     mb.exec();
     result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -105,8 +105,8 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     if (success)
     {
         QMessageBox mb;
-        mb.setWindowTitle("Failed to tag page");
-        mb.setText("Unable to tag the page, error was: " + text);
+        mb.setWindowTitle(_l("page-tag-fail"));
+        mb.setText(_l("page-tag-error", text));
         mb.exec();
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;

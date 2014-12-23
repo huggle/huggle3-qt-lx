@@ -13,12 +13,13 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "wikisite.hpp"
+#include "localization.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()
 {
     this->Site = Configuration::HuggleConfiguration->Project;
-    this->PageName = "Unknown page";
+    this->PageName = _l("page-unknown");
     this->Contents = "";
     if (!this->Site)
         throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
