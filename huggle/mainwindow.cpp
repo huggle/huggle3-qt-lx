@@ -405,7 +405,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     // we need to safely delete the edit later
     e->IncRef();
-    // if there are actually some totaly old edits in history that we need to delete
+    // if there are actually some totally old edits in history that we need to delete
     while (this->Historical.count() > Configuration::HuggleConfiguration->SystemConfig_HistorySize)
     {
         WikiEdit *prev = this->Historical.at(0);

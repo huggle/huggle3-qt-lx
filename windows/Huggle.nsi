@@ -87,6 +87,7 @@ Section -MainProgram
 ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
+RmDir /r "$INSTDIR\extensions"
 File "release\huggle.exe"
 File "release\huggle.ico"
 File "release\py_hug.exe"
@@ -217,8 +218,7 @@ Delete "$INSTDIR\uninstall.exe"
 !ifdef WEB_SITE
 Delete "$INSTDIR\${APP_NAME} website.url"
 !endif
-
-RmDir "$INSTDIR\extensions"
+RmDir /r "$INSTDIR\extensions"
 RmDir "$INSTDIR"
 
 !ifdef REG_START_MENU
