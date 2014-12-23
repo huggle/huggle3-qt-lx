@@ -28,6 +28,7 @@ namespace Huggle
             Q_OBJECT
         public:
             WebserverQuery();
+            ~WebserverQuery();
             //! Whether the query will submit parameters using POST data
             bool UsingPOST;
             //! This is an url of api request, you probably don't want to change it unless

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "webserverquery.hpp"
+#include "exception.hpp"
 #include <QtNetwork>
 #include <QUrl>
 #include <QtXml>
@@ -22,6 +23,17 @@ WebserverQuery::WebserverQuery()
     this->reply = NULL;
     this->Parameters = "";
     this->UsingPOST = false;
+}
+
+Huggle::WebserverQuery::~WebserverQuery()
+{
+    if (this->reply != nullptr)
+    {
+        this->reply->abort();
+        this->reply->disconnect(this);
+        this->reply->deleteLater();
+        this->reply = nullptr;
+    }
 }
 
 void WebserverQuery::Process()
@@ -61,12 +73,25 @@ void WebserverQuery::Kill()
 }
 
 void WebserverQuery::ReadData()
-{
+{    // don't even try to do anything if query was killed
+    if (this->Status == StatusKilled)
+        return;
+    if (this->Result == nullptr)
+        throw new Huggle::NullPointerException("loc WebserverQuery::Result", BOOST_CURRENT_FUNCTION);
+    if (this->reply == nullptr)
+        throw new Huggle::NullPointerException("loc WebserverQuery::reply", BOOST_CURRENT_FUNCTION);
     this->Result->Data += QString(this->reply->readAll());
 }
 
 void WebserverQuery::Finished()
 {
+    // don't even try to do anything if query was killed
+    if (this->Status == StatusKilled)
+        return;
+    if (this->Result == nullptr)
+        throw new Huggle::NullPointerException("loc WebserverQuery::Result", BOOST_CURRENT_FUNCTION);
+    if (this->reply == nullptr)
+        throw new Huggle::NullPointerException("loc WebserverQuery::reply", BOOST_CURRENT_FUNCTION);
     this->Result->Data += QString(this->reply->readAll());
     // now we need to check if request was successful or not
     if (this->reply->error())

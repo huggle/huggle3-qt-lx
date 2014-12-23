@@ -27,8 +27,13 @@ WLQuery::WLQuery(WikiSite *site)
 
 WLQuery::~WLQuery()
 {
-    delete Result;
-    this->Result = nullptr;
+    if (this->networkReply != nullptr)
+    {
+        this->networkReply->abort();
+        this->networkReply->disconnect(this);
+        this->networkReply->deleteLater();
+        this->networkReply = nullptr;
+    }
 }
 
 QString WLQuery::QueryTypeToString()

@@ -250,6 +250,13 @@ void ApiQuery::Process()
 
 void ApiQuery::ReadData()
 {
+    // don't even try to do anything if query was killed
+    if (this->Status == StatusKilled)
+        return;
+    if (this->Result == nullptr)
+        throw new Huggle::NullPointerException("loc ApiQuery::Result", BOOST_CURRENT_FUNCTION);
+    if (this->reply == nullptr)
+        throw new Huggle::NullPointerException("loc ApiQuery::reply", BOOST_CURRENT_FUNCTION);
     this->Result->Data += QString(this->reply->readAll());
 }
 
