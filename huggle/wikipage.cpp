@@ -13,6 +13,7 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "wikisite.hpp"
+#include "localization.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()
