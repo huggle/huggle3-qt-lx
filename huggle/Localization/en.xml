@@ -469,7 +469,6 @@
     <string name="reportuser-not">This user is not reported now</string>
     <string name="report-evidence-none-provid">No diffs were provided as evidence. This will make it very hard for administrators to figure out whether the user is a vandal or not. Are you sure you want to continue?</string>
     <string name="report-duplicate">The user has already been reported</string>
-    <string name="report-fail">Did not report $1</string>
     <string name="report-fail2">Error unable to retrieve report page at $1</string>
     <string name="report-progress">Reporting $1...</string>
     <string name="report-retrieving">Retrieving current report page...</string>
