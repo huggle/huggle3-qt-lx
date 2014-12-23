@@ -215,7 +215,7 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedSusp.at(item).RevID == edit->RevID)
         {
-            this->ProcessSusp(edit, this->UnparsedRoll.at(item).User);
+            this->ProcessSusp(edit, this->UnparsedSusp.at(item).User);
             this->UnparsedSusp.removeAt(item);
             return true;
         }
@@ -226,7 +226,7 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedGood.at(item).RevID == edit->RevID)
         {
-            this->ProcessGood(edit, this->UnparsedRoll.at(item).User);
+            this->ProcessGood(edit, this->UnparsedGood.at(item).User);
             this->UnparsedGood.removeAt(item);
             return true;
         }
