@@ -20,12 +20,12 @@ using namespace Huggle;
 AboutForm::AboutForm(QWidget *parent) : QDialog(parent), ui(new Ui::AboutForm)
 {
     this->ui->setupUi(this);
-    QString python = " without python support";
+    QString python = _l("about-python-without");
     if (Configuration::HuggleConfiguration->PythonEngine)
     {
-        python = ", with python support";
+        python = _l("about-python-with");
     }
-    QString version = ", compiled using QT " + QString(QT_VERSION_STR) + " Running on QT " + QString(qVersion());
+    QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
     this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
 }
 

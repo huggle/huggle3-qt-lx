@@ -46,7 +46,7 @@ void RequestProtect::Tick()
         // we are reading the request page let's see if we got it
         if (this->qRFPPage->IsFailed())
         {
-            this->Fail("Unable to retrieve the current report page: " + this->qRFPPage->Result->ErrorMessage);
+            this->Fail(_l("protect-request-fail", this->qRFPPage->Result->ErrorMessage));
             return;
         }
         QDomDocument d;
@@ -54,13 +54,13 @@ void RequestProtect::Tick()
         QDomNodeList results = d.elementsByTagName("rev");
         if (results.count() == 0)
         {
-            this->Fail("Unable to retrieve the current report page because the query didn't return any text for this page");
+            this->Fail(_l("protect-request-fail-notext"));
             return;
         }
         QDomElement e = results.at(0).toElement();
         if (!e.attributes().contains("timestamp"))
         {
-            this->Fail("The query didn't return any timestamp (mediawiki bug?) aborting the query");
+            this->Fail(_l("protect-request-fail-notime"));
             return;
         }
         this->Timestamp = e.attribute("timestamp");
@@ -112,7 +112,7 @@ void RequestProtect::Tick()
         QString summary_ = this->page->GetSite()->GetProjectConfig()->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
         summary_.replace("$2", this->page->PageName);
-        this->ui->pushButton->setText("Requesting");
+        this->ui->pushButton->setText(_l("requesting"));
         // let's edit the page now
         if (this->page->GetSite()->GetProjectConfig()->RFPP_Section == 0)
         {
@@ -134,7 +134,7 @@ void RequestProtect::Tick()
             this->Fail("Unable to process: " + this->qEditRFP->Result->ErrorMessage);
             return;
         }
-        this->ui->pushButton->setText("Requested");
+        this->ui->pushButton->setText(_l("requested"));
         this->tm->stop();
     }
 }
@@ -156,7 +156,7 @@ void Huggle::RequestProtect::on_pushButton_clicked()
     QueryPool::HugglePool->AppendQuery(this->qRFPPage);
     this->qRFPPage->Process();
     this->tm->start(HUGGLE_TIMER);
-    this->ui->pushButton->setText("Retrieving");
+    this->ui->pushButton->setText(_l("retrieving"));
     this->ui->pushButton->setEnabled(false);
 }
 
@@ -180,7 +180,7 @@ void RequestProtect::Fail(QString message)
     this->qRFPPage.Delete();
     this->tm->stop();
     this->ui->pushButton->setEnabled(true);
-    this->ui->pushButton->setText("Request");
+    this->ui->pushButton->setText(_l("request"));
 }
 
 void Huggle::RequestProtect::on_pushButton_2_clicked()
