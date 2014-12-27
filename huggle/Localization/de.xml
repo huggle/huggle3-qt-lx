@@ -110,7 +110,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>
   <string name="config-undosummary">Zusammenfassung für das Widerrufen einer eigenen Änderung</string>
-  <string name="config-confirm-us">Bestätigung für das Zurücksetzen der Bearbeitung im Benutzernamensraum erforderlich</string>
   <string name="config-confirm-wl">Bestätigung für das Zurücksetzen der Bearbeitung eines weißgelisteten Benutzers erforderlich</string>
   <string name="config-confirmmultiple">Verlange Bestätigung, wenn mehrere Änderungen eines Benutzers widerrufen werden sollen</string>
   <string name="config-confirmsame">Verlange Bestätigung, wenn die Änderung auf einer Version die dieser Benutzer bearbeitet hat, zurückgesetzt wird</string>
@@ -154,8 +153,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="delete-e2">Seite kann nicht gelöscht werden</string>
   <string name="delete-edsc">Seite konnte nicht gelöscht werden, da $1</string>
   <string name="delete-failed-no-info">Es sind keine Seiteninformationen in der Abfrage vorhanden. Bist du ein Administrator?</string>
-  <string name="extension-kl">Gelöscht</string>
-  <string name="extension-fine">Geladen und läuft</string>
+  <string name="extension-kl" fuzzy="true">Gelöscht</string>
   <string name="historyform-no-info">Keine Bearbeitungsinformation</string>
   <string name="historyform-title">Versionsgeschichte</string>
   <string name="historyform-retrieve-history">Rufe Versionsgeschichte ab</string>
@@ -428,7 +426,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="reportuser-not">Dieser Benutzer ist jetzt nicht gemeldet</string>
   <string name="report-evidence-none-provid">Es wurden keine Unterschiede als Beweis angegeben. Dies wird für Administratoren sehr schwierig herauszufinden, ob der Benutzer ein Vandale ist oder nicht. Möchtest du wirklich fortfahren?</string>
   <string name="report-duplicate">Dieser Benutzer wurde bereits gemeldet</string>
-  <string name="report-fail">$1 wurde nicht berichtet</string>
   <string name="report-fail2">Fehler: Berichtsseite bei $1 konnte nicht abgerufen werden</string>
   <string name="report-progress">Berichte $1 …</string>
   <string name="report-retrieving">Rufe aktuelle Berichtsseite ab …</string>
@@ -591,4 +588,5 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>
+  <string name="report-fail" fuzzy="true">$1 wurde nicht berichtet</string>
 </resources>

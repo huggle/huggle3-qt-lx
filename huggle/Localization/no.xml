@@ -244,7 +244,6 @@
   <string name="report-message">Melding:</string>
   <string name="report-log">Advarsler for denne brukeren:</string>
   <string name="report-duplicate">Brukeren har allerede blitt rapportert</string>
-  <string name="report-fail">Rapporterte ikke \'$1\'</string>
   <string name="report-progress">Rapporterer \'$1\'...</string>
   <string name="revert-confirm-multiple">Dette vil tilbakestille flere redigeringer av \'$1\'. Fortsett?</string>
   <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, $1, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
@@ -321,4 +320,5 @@
   <string name="speedy-fail" fuzzy="true">Tagget ikke \'$1\' for hurtigsletting</string>
   <string name="speedy-progress" fuzzy="true">Tagger \'$1\' for hurtigsletting...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
+  <string name="report-fail" fuzzy="true">Rapporterte ikke \'$1\'</string>
 </resources>

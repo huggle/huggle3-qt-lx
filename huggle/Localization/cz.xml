@@ -23,6 +23,7 @@
   <string name="show">Zobrazit</string>
   <string name="undo">Vrátit</string>
   <string name="yes">Ano</string>
+  <string name="editing-page">Upravuji stránku</string>
   <string name="agf">Vrátit edit v dobré víře (upravit s vlastním důvodem)</string>
   <string name="successful">Úspěšně</string>
   <string name="summary">Komentář</string>
@@ -47,6 +48,11 @@
   <string name="duration">Doba</string>
   <string name="no-token">Chybí token</string>
   <string name="flags">Flagy</string>
+  <string name="score-score">Skóre</string>
+  <string name="score-word">Slovo</string>
+  <string name="score-range">Rozsah</string>
+  <string name="score-only-whole-word">Odpovídá pouze celým slovům</string>
+  <string name="score-take-any-word">Odpovídá jakémukoliv slovu, které obsahuje tento řetězec</string>
   <string name="browser-none">Žádná stránka nyní není zobrazena</string>
   <string name="browser-load">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
   <string name="browser-miss-summ">žádné shrnutí</string>
@@ -75,9 +81,15 @@
   <string name="block-type">Zablokovat / odblokovat</string>
   <string name="block-admin">Správce, který provedl tento blok</string>
   <string name="block-none">Neexistuje žádný uživatel ktereho lze zablokovat.</string>
+  <string name="config-function">Funkce</string>
+  <string name="config-description">Popis</string>
   <string name="config-shortcut">Klávesové zkratky</string>
+  <string name="config-queue-filter-ignore">Ignorovat (nezáleží)</string>
+  <string name="config-queue-filter-exclude">Vyloučit (nesmí být)</string>
+  <string name="config-queue-filter-require">Vyžadují (musí být)</string>
   <string name="config-summ">Vlastní shrnutí pro editace pomocí template</string>
   <string name="config-title">Nastavení</string>
+  <string name="config-already-in-use">Tento zástupce je již používán $1, vyberte prosím jiný</string>
   <string name="config-openinbrowser">Otevřít odkazy v novém okně prohlížeče</string>
   <string name="config-shownewedits">Zobrazit nové editace pro vybranou stránku ve chvíli kdy jsou provedeny</string>
   <string name="config-ircmode">Použit IRC kanál pro poslední změny pokud je k dispozici</string>
@@ -97,6 +109,7 @@
   <string name="config-watchlist">Přidat do sledovaných stránek</string>
   <string name="config-defaultsummary">Výchozí shrnutí pro ruční editace</string>
   <string name="config-undosummary">Shrnutí při vracení vlastní úpravy</string>
+  <string name="config-confirm-wl">Požadovat potvrzení pro návrat úpravy, která byla provedena uživatelem ktery je na bílé listině</string>
   <string name="config-confirmmultiple">Potvrdit více revertů úprav provedených jedním uživatelem</string>
   <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
@@ -139,6 +152,7 @@
   <string name="delete-e2">Nelze odstranit stránku</string>
   <string name="delete-edsc">Nelze odstranit stránku, protože $1</string>
   <string name="delete-failed-no-info">Žádné informace o stránce nebyly přítomne v dotazu (jste sysop?)</string>
+  <string name="extension-kl" fuzzy="true">Vypnuta</string>
   <string name="historyform-no-info">Není otevřen diff</string>
   <string name="historyform-title">Historie</string>
   <string name="historyform-retrieve-history">Stáhnout historii</string>
@@ -146,6 +160,7 @@
   <string name="historyform-not-latest-tip">To není poslední revize této stránky - ujistěte se, že jste shledli novější verze. Prosím také mějte na paměti, že rollback nemusi byt možny z teto revize.</string>
   <string name="history-error-message-title">Nelze vrátit</string>
   <string name="history-error">Tuto položku nelze vrátit zpět. Stránka mohla být změněna nebo odstraněna a huggle ji z tohoto bodu už nemůže obnovit. Pokud ji opravdu chcete vrátit, musíte to udělat ručně pomocí rozhraní MediaWiki.</string>
+  <string name="history-failure">Nelze načíst historii</string>
   <string name="userhistory-title">Historie vašich změn</string>
   <string name="irc-connected">$1: Připojen k serveru IRC</string>
   <string name="irc-connecting">$1: Pokouším se připojit k IRC serveru...</string>
@@ -216,6 +231,7 @@
   <string name="login-error-version">Tato verze je zastaralá. Aktualizovat na nejnovější verzi.</string>
   <string name="login-error-whitelist">Nepodařilo se načíst uživatelskou bílou listinu pro $1.</string>
   <string name="main-menu-provider-stop">Zastavit poskytovatele</string>
+  <string name="main-menu-provider-resume">Obnovit poskytovatele</string>
   <string name="main-no-reason">Žádný důvod nebyl poskytnut</string>
   <string name="main-restoring-slap">V tuto chvíli obnovuji jinou editaci, prosím počkejte…</string>
   <string name="main-page">Stránka</string>
@@ -225,7 +241,7 @@
   <string name="main-new-messages">Máte nové zprávy. Vyberte systém-&gt; Ukázat nové zprávy nebo stiskněte M pro jejich zobrazení.</string>
   <string name="main-space">Jméno stránky nemůže končit mezerou. Prosím, opravte jméno stránky</string>
   <string name="main-system">Systém</string>
-  <string name="main-status-bar" fuzzy="true">&lt;b&gt;$1&lt;/b&gt;editací a &lt;b&gt;$2&lt;/b&gt;dotazů. Ignoruji &lt;b&gt;$3&lt;/b&gt; uživatelů, velikost fronty: &lt;b&gt;$4&lt;/b&gt; Statistiky pro $6: $5</string>
+  <string name="main-status-bar">&lt;b&gt;$1&lt;/b&gt; editací a &lt;b&gt;$2&lt;/b&gt; dotazů. Ignoruji &lt;b&gt;$3&lt;/b&gt; uživatelů, velikost fronty: &lt;b&gt;$4&lt;/b&gt; Statistiky pro $6: $5</string>
   <string name="main-shutting-down">Huggle se vypíná, požadavek ignorován</string>
   <string name="main-system-messages">Zobrazit nové zprávy</string>
   <string name="main-system-reconnectirc">Připojit k IRC</string>
@@ -357,6 +373,7 @@
   <string name="protect-none">Žádná</string>
   <string name="protect-token">Token se nepodařilo získat, důvod: $1</string>
   <string name="protect-semiprotection">Semi-ochrana</string>
+  <string name="protect-error">Nelze uzamknout stránku, protože $1</string>
   <string name="protect-fail-no-info">Nebyly k dispozici žádné informace o stránce (jste admin?)</string>
   <string name="protect-fullprotection">Plná ochrana</string>
   <string name="protect-message-title-fail">Nelze nastavit ochranu</string>
@@ -408,7 +425,6 @@
   <string name="reportuser-not">Uživatel není nahlášen</string>
   <string name="report-evidence-none-provid">Nebyly poskytnuty žádné dify jako evidence, díky čemuž bude složité pro administrátory, potvrdit že se jedná o vandala. Jste si jistý že chcete pokračovat?</string>
   <string name="report-duplicate">Tento uživatel již byl nahlášen</string>
-  <string name="report-fail">Nepodařilo se nahlásit uživatele: $1</string>
   <string name="report-fail2">Nepodařilo se otevřít stránku pro nahlášení uživatele $1</string>
   <string name="report-progress">Nahlašuji $1...</string>
   <string name="report-retrieving">Stahuji současnou stránku pro nahlášení...</string>
@@ -465,6 +481,22 @@
   <string name="shortcut-next">Jít na další úpravy</string>
   <string name="shortcut-suspicious">Označit edit jako podezřelou editaci</string>
   <string name="shortcut-back">Jít na dříve zobrazený edit.</string>
+  <string name="shortcut-forward">Jít na edit který jste v minulosti otevřel, ale vrátil se z něj na předchozí</string>
+  <string name="shortcut-warn">Poslat varování pro uživatele, bez revertu editace</string>
+  <string name="shortcut-revert">Revertovat editaci</string>
+  <string name="shortcut-x-raw">Spusť N-tou položku menu vrátit a varovat</string>
+  <string name="shortcut-x-revert">Spusť N-tou položku menu vrátit</string>
+  <string name="shortcut-watch">Vloží zobrazenou stránku do sledovaných stránek</string>
+  <string name="shortcut-unwatch">Odstraňit zobrazenou stránku ze sledovaných stránek</string>
+  <string name="shortcut-x-warn">Spusť N-tou položku menu varovat</string>
+  <string name="shortcut-good">Označit edit jako dobrou úpravu</string>
+  <string name="shortcut-open-in-huggle">Otevřít aktuálně zobrazenout stranu</string>
+  <string name="shortcut-open">Otevřít aktuálně zobrazenou stránku v prohlížeči</string>
+  <string name="shortcut-talk">Zobrazit diskusní stránku uživatele, který provedl tuto změnu</string>
+  <string name="shortcut-revert-agf-1">Vrátit poslední edit za předpokladu, že byl proveden v dobré víře</string>
+  <string name="shortcut-browser-close-tab">Zavřít okno prohlížeče</string>
+  <string name="shortcut-tab">Otevře novou záložku</string>
+  <string name="shortcut-rw-stay">Vrátí aktuální edit, varuje tohoto uživatele a zůstane na stránce</string>
   <string name="warning-title">Varovat $1</string>
   <string name="warning-levelgroup">Úroveň pro upozornění</string>
   <string name="warning-levelauto">Automatické</string>
@@ -475,6 +507,7 @@
   <string name="warning-warntype">Typ varování:</string>
   <string name="warning-warnlog">Upozornění pro tohoto uživatele:</string>
   <string name="warning-submit">Odeslat</string>
+  <string name="missing-warning">Neexistujíci template $1</string>
   <string name="han-not">HAN není povolena v konfiguraci</string>
   <string name="han-connecting">Připojování do HAN</string>
   <string name="error-loggedout">Účet byl odhlášen, přihlašuji se...</string>
@@ -497,10 +530,17 @@
   <string name="deletelog-fail">Nepodařilo se získat log výmazů pro $1</string>
   <string name="deletelog-none">Žádný seznam výmazů pro $1</string>
   <string name="deletelog-progress">Stahuji seznam výmazů pro $1</string>
+  <string name="edit-bar-top">Tento edit je posledni revize</string>
   <string name="edit-fail">Nepodařilo se editovat $1</string>
   <string name="edit-progress">Editování $1 ...</string>
   <string name="history-fail">Nepodařilo se načíst historii $1</string>
   <string name="history-progress">Načítání historie $1 ($2)...</string>
+  <string name="history-work">Obnovuji vlastní editaci která byla na $1</string>
+  <string name="history-message-revert-title">Opravdu chcete vrátit jen tuto zprávu?</string>
+  <string name="history-not-found">Nic nebylo nalezeno</string>
+  <string name="history-already-done">Již bylo vráceno zpět</string>
+  <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
+  <string name="history-revert-fail">Nelze vrátit zpět editace $1 chyba při revertaci: $2</string>
   <string name="notify-fail">Nepodařilo se notifikovat autora $1</string>
   <string name="notify-unknowncreator">Nelze najít autora stránky</string>
   <string name="protect-done">Zámek $1 byl upraven</string>
@@ -543,7 +583,9 @@
   <string name="cr-resolved-same-user">Konflikt vyřešen: revert všech nových změn, vyrobených stejným uživatelem $1</string>
   <string name="cr-stop-new-edit">Konflikt vyřešen: neprovedena žádná akce, nové editace $1</string>
   <string name="cr-stop-multiple-same">Konflikt vyřešen: neprovedena žádná akce, je zde několik editací provedených uživatelem $1</string>
+  <string name="cr-revert-same-user">Konflikt vyřešen: vrátit všechny úpravy, je zde několik editací provedených uživatelem $1</string>
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené stejným uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="report-fail" fuzzy="true">Nepodařilo se nahlásit uživatele: $1</string>
 </resources>

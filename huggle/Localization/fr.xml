@@ -110,7 +110,6 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-watchlist">Ajouter à la liste de suivi</string>
   <string name="config-defaultsummary">Résumé par défaut pour les éditions manuelles</string>
   <string name="config-undosummary">Résumé pour l\'annulation de ses propres modifications</string>
-  <string name="config-confirm-us">Demander confirmation pour annuler une modification faite dans l’espace utilisateur</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
@@ -154,8 +153,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="delete-e2">Impossible de supprimer la page</string>
   <string name="delete-edsc">Impossible de supprimer la page parce que $1</string>
   <string name="delete-failed-no-info">Aucune information de page n’était présente dans la requête (êtes-vous opérateur système ?)</string>
-  <string name="extension-kl">Tué</string>
-  <string name="extension-fine">Chargé et en cours d’exécution</string>
+  <string name="extension-kl" fuzzy="true">Tué</string>
   <string name="historyform-no-info">Aucune information sur la modification</string>
   <string name="historyform-title">Historique</string>
   <string name="historyform-retrieve-history">Récupérer l’historique</string>
@@ -428,7 +426,6 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="reportuser-not">L’utilisateur n’est actuellement pas déclaré</string>
   <string name="report-evidence-none-provid">Aucune différence n’a été fournie comme preuve, cela rendra très difficile aux administrateurs de déterminer si cet utilisateur est ou non un vandale. Êtes-vous sûr de vouloir continuer ?</string>
   <string name="report-duplicate">L\'utilisateur a déjà été signalé</string>
-  <string name="report-fail">Ne pas signaler $1</string>
   <string name="report-fail2">Erreur : impossible de récupérer la page de rapport à $1</string>
   <string name="report-progress">Signalisation de $1…</string>
   <string name="report-retrieving">Récupération de la page de rapport actuelle…</string>
@@ -591,4 +588,5 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
+  <string name="report-fail" fuzzy="true">Ne pas signaler $1</string>
 </resources>

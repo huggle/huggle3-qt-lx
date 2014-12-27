@@ -110,7 +110,6 @@
   <string name="config-watchlist">הוספה לרשימת המעקב</string>
   <string name="config-defaultsummary">תקציר בררת מחדל לעריכות ידניות</string>
   <string name="config-undosummary">תקציר בעת ביטול עריכות עצמיות</string>
-  <string name="config-confirm-us">לדרוש אישור על שחזור של עריכה שנעשתה במרחב משתמש</string>
   <string name="config-confirm-wl">לדרוש אישור על שחזור של עריכה שעשה משתמש ברשימה הלבנה</string>
   <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
   <string name="config-confirmsame">לבקש אישר על שחזור לעריכה של המשתמש שעריכתו משוחזרת</string>
@@ -154,8 +153,7 @@
   <string name="delete-e2">אין אפשרות למחוק את דף</string>
   <string name="delete-edsc">אין אפשרות למחוק את הדף: $1</string>
   <string name="delete-failed-no-info">לא היה שום דף בשאילתה (האם יש לך הרשאת מפעיל?)</string>
-  <string name="extension-kl">הופסק</string>
-  <string name="extension-fine">נטען ורץ</string>
+  <string name="extension-kl" fuzzy="true">הופסק</string>
   <string name="historyform-no-info">אין מידע על עריכה</string>
   <string name="historyform-title">היסטוריה</string>
   <string name="historyform-retrieve-history">אחזור היסטוריה</string>
@@ -428,7 +426,6 @@
   <string name="reportuser-not">המשתמש הזה אינו מדְווח עכשיו</string>
   <string name="report-evidence-none-provid">לא ניתנו השוואות בין גרסאות בתור ראיות. זה יקשה מאוד על המפעילים להבין אם המשתמש הוא משחית או לא. האם ברצונך להמשיך?</string>
   <string name="report-duplicate">המשתמש הזה כבר דווח</string>
-  <string name="report-fail">לא דיווחת את $1</string>
   <string name="report-fail2">שגיאה: לא ניתן לאחזר את דף הדיווח $1</string>
   <string name="report-progress">דיווח $1...</string>
   <string name="report-retrieving">אחזור דף הדיווח הנוכחי...</string>
@@ -591,4 +588,5 @@
   <string name="cr-message-same">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
   <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
+  <string name="report-fail" fuzzy="true">לא דיווחת את $1</string>
 </resources>

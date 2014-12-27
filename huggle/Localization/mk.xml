@@ -110,7 +110,6 @@
   <string name="config-watchlist">Додај во набљудувани</string>
   <string name="config-defaultsummary">Стандарден опис за рачни уредувања</string>
   <string name="config-undosummary">Опис за враќање на свои уредувања</string>
-  <string name="config-confirm-us">Барај потврда при отповикување на уредување направено во главниот именски простор</string>
   <string name="config-confirm-wl">Барај потврда при отповикување на уредување направено од корисник на белиот список</string>
   <string name="config-confirmmultiple">Потврдувај повеќе преработки на уредување од ист корисник</string>
   <string name="config-confirmsame">Потврдувај преработки на уредување од корисник, кое се отповикува</string>
@@ -154,8 +153,7 @@
   <string name="delete-e2">Не можам да ја избришам страницата</string>
   <string name="delete-edsc">Не можам да ја избришам страницата бидејќи $1</string>
   <string name="delete-failed-no-info">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
-  <string name="extension-kl">Избришано</string>
-  <string name="extension-fine">Вчитано и работи</string>
+  <string name="extension-kl" fuzzy="true">Избришано</string>
   <string name="historyform-no-info">Нема информации за уредувањето</string>
   <string name="historyform-title">Историја</string>
   <string name="historyform-retrieve-history">Преземи историја</string>
@@ -194,7 +192,7 @@
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
   <string name="login-fail-no-info">Најавате не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
   <string name="login-fail-parse-config">Најавате не успеа на $1: Не можам да ги расчленам корисничките поставки. Повеќе информации ќе најдете во дневникот на грешки.</string>
-  <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Прилогот не даде податоци по зададеното барање.</string>
+  <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
   <string name="login-fail-rollback-rights">Најавате не успеа на $1: Немате дозвола за отповикување на проектов.</string>
   <string name="login-failed-autoconfirm-rights">Најавате не успеа на $1: Не сте автопотврден корисник на проектов.</string>
   <string name="login-failed-edit">Најавате не успеа на $1: Немате направено доволно уредувања на проектов.</string>
@@ -428,7 +426,6 @@
   <string name="reportuser-not">Корисникот сега не е пријавен</string>
   <string name="report-evidence-none-provid">Нема претставено разлики како доказ, што значи дека ќе им биде многу тешко на администраторите да уврдат дали корисникот е вандал.</string>
   <string name="report-duplicate">Корисникот е веќе пријавен.</string>
-  <string name="report-fail">Не го пријавивте $1</string>
   <string name="report-fail2">Грешка: не можам да ја добијам пријавната страница на $1</string>
   <string name="report-progress">Го пријавувам $1...</string>
   <string name="report-retrieving">Ја преземам тековната пријавна страница...</string>
@@ -591,4 +588,5 @@
   <string name="cr-message-same">$1 има повеќе уредувања од еден ист корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
+  <string name="report-fail" fuzzy="true">Не го пријавивте $1</string>
 </resources>

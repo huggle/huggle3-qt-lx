@@ -68,7 +68,7 @@
   <string name="block-rangeblockwarning">$1 wordt al getroffen door een rangeblock op $2.
 Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string>
   <string name="block-type">Blokkeren / deblokkeren</string>
-  <string name="block-admin">Blokkerende moderator</string>
+  <string name="block-admin">Blokkerende beheerder</string>
   <string name="block-none">Er is geen gebruiker te blokkeren.</string>
   <string name="config-function">Functie</string>
   <string name="config-description">Beschrijving</string>
@@ -113,7 +113,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="delete-error-token">Fout: Het opvragen van het verwijdertoken is mislukt. De opgegeven reden was: $1</string>
   <string name="delete-e1">De pagina kan niet worden verwijderd: $1</string>
   <string name="delete-e2">Pagina kan niet worden verwijderd</string>
-  <string name="extension-kl">Gedood</string>
+  <string name="extension-kl" fuzzy="true">Gedood</string>
   <string name="historyform-no-info">Geen bewerkingsinformatie</string>
   <string name="historyform-title">Geschiedenis</string>
   <string name="historyform-retrieving-history">Geschiedenis opvragen</string>

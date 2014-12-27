@@ -71,7 +71,7 @@
   <string name="block-usertalk">讨论</string>
   <string name="block-usercontribs">贡献</string>
   <string name="block-blockloglabel">封禁日志:</string>
-  <string name="block-warnloglabel">警告:</string>
+  <string name="block-warnloglabel">警告：</string>
   <string name="block-sharedipwarning">提示：$1已被标记为共享或动态IP地址。</string>
   <string name="block-rangeblockwarning">$1已经受到了自动封禁$2的影响。
 这次封禁将会覆盖自动封禁设置。是否继续？</string>
@@ -110,7 +110,6 @@
   <string name="config-watchlist">添加到监视列表</string>
   <string name="config-defaultsummary">默认为手工编辑摘要</string>
   <string name="config-undosummary">撤销自身编辑的默认编辑摘要</string>
-  <string name="config-confirm-us">需要确认以回退在用户名字空间做出的编辑</string>
   <string name="config-confirm-wl">需要确认以回退白名单用户做出的编辑</string>
   <string name="config-confirmmultiple">同一用户的多个贡献时确认历史版本</string>
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
@@ -154,8 +153,7 @@
   <string name="delete-e2">无法删除页面</string>
   <string name="delete-edsc">无法删除页面，因为$1</string>
   <string name="delete-failed-no-info">目前查询中没有页面信息（您是管理员么？）</string>
-  <string name="extension-kl">已死</string>
-  <string name="extension-fine">加载并运行</string>
+  <string name="extension-kl" fuzzy="true">已死</string>
   <string name="historyform-no-info">没有编辑信息</string>
   <string name="historyform-title">历史</string>
   <string name="historyform-retrieve-history">检索历史</string>
@@ -180,13 +178,13 @@
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">登录</string>
   <string name="login-reload-tool-tip">重新加载可使用 Huggle 工具的项目的列表。这对您希望在已启用项目使用 Huggle 时非常有用。</string>
-  <string name="login-language">语言:</string>
+  <string name="login-language">语言：</string>
   <string name="login-project">项目：</string>
   <string name="login-username">用户名：</string>
   <string name="login-password">密码:</string>
   <string name="login-proxygroup">代理设置</string>
   <string name="login-proxy">使用代理服务器</string>
-  <string name="login-proxyaddress">地址:</string>
+  <string name="login-proxyaddress">地址：</string>
   <string name="login-proxyport">端口:</string>
   <string name="login-proxydomain">域:</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>
@@ -428,7 +426,6 @@
   <string name="reportuser-not">此用户现在没有报告</string>
   <string name="report-evidence-none-provid">没有提供差异作为证据。这将使管理员很难找出做出破坏行为的用户。您确定要继续么？</string>
   <string name="report-duplicate">用户已被提交</string>
-  <string name="report-fail">未提报$1</string>
   <string name="report-fail2">错误无法检索，请在$1汇报</string>
   <string name="report-progress">提报$1…</string>
   <string name="report-retrieving">正在检索当前报告页…</string>
@@ -591,4 +588,5 @@
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
+  <string name="report-fail" fuzzy="true">未提报$1</string>
 </resources>

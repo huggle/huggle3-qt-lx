@@ -110,7 +110,6 @@
   <string name="config-watchlist">افزودن به پی‌گیری‌ها</string>
   <string name="config-defaultsummary">خلاصه ویرایش پیش‌فرض برای ویرایش‌های دستی</string>
   <string name="config-undosummary">خلاصه ویرایش برای واگردانی ویرایش‌های خودتان</string>
-  <string name="config-confirm-us">نیاز به تایید برای واگردانی ویرایشی که در فضای کاربری است</string>
   <string name="config-confirm-wl">نیاز به تایید برای واگردانی ویرایشی کهتوسط کاربر فهرست سفید انجام شده‌است</string>
   <string name="config-confirmmultiple">واگردانی‌های متعدد یک ویرایش توسط همان کاربر را تائید کن</string>
   <string name="config-confirmsame">تائید واگردانی ویرایش کاربر واگردانی شده</string>
@@ -154,8 +153,7 @@
   <string name="delete-e2">نمی‌توان صفحه را حذف کرد</string>
   <string name="delete-edsc">نمی‌توان صفحه را حذف به دلیل: $1</string>
   <string name="delete-failed-no-info">هیچ اطلاعات صفحه‌ای در این کوئری نیست (آیا مدیر هستید؟)</string>
-  <string name="extension-kl">کشته‌شد</string>
-  <string name="extension-fine">بارگیری‌شده و در حال اجرا</string>
+  <string name="extension-kl" fuzzy="true">کشته‌شد</string>
   <string name="historyform-no-info">اطلاعات ویرایش وجود ندارد</string>
   <string name="historyform-title">تاریخچه</string>
   <string name="historyform-retrieve-history">گرفتن تاریخچه</string>
@@ -428,7 +426,6 @@
   <string name="reportuser-not">این کاربر هم‌اکنون گزارش نشده است</string>
   <string name="report-evidence-none-provid">هیچ تفاوتی به عنوان مدرک فراهم نشده. این باعث می‌شود مدیران خیلی سخت بتوانند خرابکار بودن یا نبودن کاربر را تشخیص دهند. مطمئنید که می‌خواهید ادامه دهید؟</string>
   <string name="report-duplicate">کاربر در حال حاضر گزارش شده‌است</string>
-  <string name="report-fail">$1 را گزارش نکرد</string>
   <string name="report-fail2">خطا، امکان دریافت صفحهٔ‌ گزارش در $1 نبود</string>
   <string name="report-progress">گزارش  $1 ...</string>
   <string name="report-retrieving">در حال بازیابی صفحه گزارش کنونی...</string>
@@ -591,4 +588,5 @@
   <string name="cr-message-same">چند ویرایش به وسیله همان کاربر در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-new">ویرایش‌های تازه‌ای  در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
+  <string name="report-fail" fuzzy="true">$1 را گزارش نکرد</string>
 </resources>

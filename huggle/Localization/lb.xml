@@ -99,7 +99,7 @@
   <string name="delete-e1">D\'Säit kann net geläscht ginn: $1</string>
   <string name="delete-e2">Säit konnt net geläscht ginn</string>
   <string name="delete-edsc">Säit konnt net geläscht gi well $1</string>
-  <string name="extension-kl">Ëmbruecht</string>
+  <string name="extension-kl" fuzzy="true">Ëmbruecht</string>
   <string name="historyform-title">Versiounen</string>
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>

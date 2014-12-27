@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">Arabic</string>
+  <string name="name">العربية</string>
   <string name="isrtl">true</string>
   <string name="add">أضف</string>
   <string name="cancel">ألغِ</string>
@@ -23,6 +23,7 @@
   <string name="show">أظهر</string>
   <string name="undo">تراجع</string>
   <string name="yes">نعم</string>
+  <string name="editing-page">تعديل الصفحة</string>
   <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
@@ -46,6 +47,7 @@
   <string name="duration">المدة</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
+  <string name="score-word">كلمة</string>
   <string name="browser-none">ما من صفحات معروضة الآن</string>
   <string name="browser-miss-summ">لم يعطى أي ملخص</string>
   <string name="about-contributors">المطورون:</string>
@@ -70,6 +72,8 @@
   <string name="block-type">امنع / ارفع المنع</string>
   <string name="block-admin">مدير النظام المانع</string>
   <string name="block-none">ما من مستخدمٍ لمنعه.</string>
+  <string name="config-function">دالة</string>
+  <string name="config-description">وصف</string>
   <string name="config-shortcut">مختصر</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
@@ -135,6 +139,7 @@
   <string name="historyform-retrieving-history">يتم جلب التاريخ</string>
   <string name="historyform-not-latest-tip">هذه ليست آخر نسخة من الصفحة. تأكَّد من أنك راجعت النسخ الأحدث أيضاً قبل الاسترجاع. انتبه أيضاً إلى أنَّه قد لا يمكنك استرجاع هذه النسخة وحدها.</string>
   <string name="history-error-message-title">لا يمكن التراجع</string>
+  <string name="userhistory-title">تاريخ تغييراتك</string>
   <string name="irc-connected">تم الاتصال بتلقيم آي آر سي لأحدث التغييرات</string>
   <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
@@ -238,7 +243,11 @@
   <string name="main-browser-open">عرض هذا في متصفح خارجي</string>
   <string name="main-browser-newedits">أظهر التعديلات الجديدة للصفحة</string>
   <string name="main-browser-newcontribs">أظهر مساهمات المستخدم الجديدة</string>
+  <string name="main-han-disconnect">قطع الاتصال</string>
+  <string name="main-han-connect">اتصال</string>
   <string name="main-help">مساعدة</string>
+  <string name="main-han-display-user-messages">عرض رسائل المستخدم</string>
+  <string name="main-han-display-user-data">عرض بيانات المستخدم</string>
   <string name="main-help-documentation">المستندات</string>
   <string name="main-help-feedback">رأيك</string>
   <string name="main-help-about">عن Huggle...</string>
@@ -247,6 +256,9 @@
   <string name="main-usermessageother">رسالة أخرى...</string>
   <string name="main-advanced">متقدّم...</string>
   <string name="main-stats">$1 حرر في الدقيقة, $2 استرجع في الدقيقة</string>
+  <string name="main-display-session-data">عرض بيانات الجلسة</string>
+  <string name="main-display-whitelist">عرض القائمة البيضاء</string>
+  <string name="main-revert-custom-reson">يرجى تقديم سبب رغبتك بالرجوع عن هذا التعديل إلى المراجعة السابقة</string>
   <string name="main-tip-pagetagdelete">وسم هذه الصفحة للشطب</string>
   <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
@@ -301,11 +313,13 @@
   <string name="queue-examplelabel3">لا تفحص هذه الخاصية</string>
   <string name="queue-usergroup">أظهر تعديلات هؤلاء المستخدمين فقط</string>
   <string name="report-title">أخطر عن $1ء</string>
+  <string name="report-tu">تبليغ عن مستخدم</string>
   <string name="report-reason">السبب:</string>
   <string name="report-message">الرسالة:</string>
   <string name="report-log">التنبيهات لهذا المستخدم:</string>
+  <string name="report-include">تضمين في التقرير</string>
+  <string name="report-write">كتابة</string>
   <string name="report-duplicate">تم الاخطار عن هذا المستخدم</string>
-  <string name="report-fail">لم يتم الاخطار عن \'$1\'ء</string>
   <string name="report-progress">قيد اخطار اداري عن \'$1\'...ء</string>
   <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'$1\'. استمر؟</string>
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, $2, في نفس نطاق مؤلف النسخة الحالية, $1, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
@@ -331,6 +345,20 @@
   <string name="update-title">يوجد إصدار جديد</string>
   <string name="update-progress">جاري تنزيل الاصدار الجديد. . .</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
+  <string name="updater-update">حدِّث</string>
+  <string name="updater-open-manualdownloadpage">فتح صفحة التنزيل</string>
+  <string name="updater-close">غلق</string>
+  <string name="updater-disable-notify">تعطيل التحديثات</string>
+  <string name="userinfo-generic">معلومات المستخدم</string>
+  <string name="shortcut-my-talk">صفحة نقاشي</string>
+  <string name="shortcut-raw">الرجوع عن التعديل وتحذير المستخدم</string>
+  <string name="shortcut-next">انتقل إلى التعديل التالي</string>
+  <string name="shortcut-suspicious">علِّم التعديل كمشبوه به</string>
+  <string name="shortcut-warn">إرسال تحذير للمستخدم، دون الرجوع عن التعديل خاصته</string>
+  <string name="shortcut-revert">الرجوع عن التعديل</string>
+  <string name="shortcut-open-in-huggle">فتح الصفحة المعروضة حالياً</string>
+  <string name="shortcut-open">فتح التعديل المعروض حالياً في المتصفح</string>
+  <string name="shortcut-talk">عرض صفحة نقاش المستخدم الذي فعل هذا التغيير</string>
   <string name="warning-title">حذّر $1ء</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>
@@ -340,6 +368,7 @@
   <string name="warning-level4">المستوى 4 (النهائي)</string>
   <string name="warning-warntype">التحذير من النوع:</string>
   <string name="warning-warnlog">تحذيرات لهذا المستخدم:</string>
+  <string name="warning-submit">إرسال</string>
   <string name="error-loggedout">تم الخروج من الحساب، قيد تسجيل الدخول...</string>
   <string name="error-noresponse">لا رد</string>
   <string name="error-pagemissing">الصفحة غير موجودة</string>
@@ -381,5 +410,9 @@
   <string name="reqprotection-progress">قيد طلب طلب الحماية لـ\'$1\'...ء</string>
   <string name="speedy-fail">لم يمكن وسم \'$1\' للحذف السريع</string>
   <string name="speedy-progress">قيد وسم \'$1\' للحذف السريع...</string>
+  <string name="speedy-finished">انتهى</string>
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>
+  <string name="logs-widget-name">سجلات النظام</string>
+  <string name="wait">يرجى الانتظار ...</string>
+  <string name="report-fail" fuzzy="true">لم يتم الاخطار عن \'$1\'ء</string>
 </resources>

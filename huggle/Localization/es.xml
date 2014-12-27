@@ -377,7 +377,6 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="reportuser-not">Este usuario no se encuentra denunciado actualmente</string>
   <string name="report-evidence-none-provid">No se han proporcionado \"diffs\" como prueba. Esto hará que a los administradores les resulte más difícil averigüar si el usuario es en realidad un vándalo. ¿Deseas continuar de todos modos?</string>
   <string name="report-duplicate">El usuario ya ha sido reportado</string>
-  <string name="report-fail">No se pudo reportar a \'$1\'</string>
   <string name="report-fail2">Error: no se puede recuperar de la página del informe en $1</string>
   <string name="report-progress">Reportando a $1...</string>
   <string name="report-retrieving">Recuperando página actual de informes...</string>
@@ -425,7 +424,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="updater-open-manualdownloadpage">Abrir la página de descarga</string>
   <string name="updater-close">Cerrar</string>
   <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
-  <string name="user-history-fail">no se pueden recuperar los antecedentes de usuario: $1</string>
+  <string name="user-history-fail">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
   <string name="shortcut-my-talk">Mi página de discusión</string>
@@ -508,4 +507,5 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
   <string name="report-no-user">Ningún usuario ha sido seleccionada para informar, por favor, seleccione un usuario primero</string>
   <string name="welcome-tp-empty-fail">Este usuario no tiene página de discusión vacía, ¿está seguro de que desea enviarle un mensaje?</string>
+  <string name="report-fail" fuzzy="true">No se pudo reportar a \'$1\'</string>
 </resources>

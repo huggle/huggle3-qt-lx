@@ -23,6 +23,7 @@
   <string name="show">Diskouez</string>
   <string name="undo">Dizober</string>
   <string name="yes">Ya</string>
+  <string name="editing-page">Kemmañ ar bajenn</string>
   <string name="successful">Deuet da benn vat</string>
   <string name="summary">Diverradur</string>
   <string name="id">ID</string>
@@ -101,7 +102,6 @@
   <string name="config-noshortcut">Hini ebet</string>
   <string name="config-defaults">Dre ziouer</string>
   <string name="config-watchlist">Ouzhpennañ d\'ar roll evezhiañ</string>
-  <string name="config-confirm-us">Goulenn kadarnaat evit nullañ ur c\'hemm en takad implijer.</string>
   <string name="config-confirm-wl">Goulenn kadarnaat evit nullañ ur c\'hemm graet gant un implijer el listenn wenn.</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
@@ -126,11 +126,12 @@
   <string name="delete-notify">Kemenn ar c\'hrouer</string>
   <string name="delete-e1">Ne c\'hall ket ar bajenn bezañ dilamet : $1</string>
   <string name="delete-e2">Ne c\'haller ket dilemel ar bajenn</string>
-  <string name="extension-kl">Lazhet</string>
+  <string name="extension-kl" fuzzy="true">Lazhet</string>
   <string name="historyform-title">Istor</string>
   <string name="historyform-retrieve-history">Adtapout an istor</string>
   <string name="historyform-retrieving-history">Oc\'h adtapout an istor</string>
   <string name="history-error-message-title">Ne c\'haller ket dizober</string>
+  <string name="history-failure">Ne c\'haller ket adtapout an istor.</string>
   <string name="userhistory-title">Istor ho kemmoù</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Kevreañ</string>

@@ -130,8 +130,7 @@
   <string name="delete-notify">Уведомление автору</string>
   <string name="delete-e2">Не удаётся удалить страницу</string>
   <string name="delete-edsc">Не удаётся удалить страницу, потому что $1</string>
-  <string name="extension-kl">Убито</string>
-  <string name="extension-fine">Загружен и запущен</string>
+  <string name="extension-kl" fuzzy="true">Убито</string>
   <string name="historyform-title">История</string>
   <string name="historyform-retrieve-history">Получить историю</string>
   <string name="historyform-retrieving-history">Получение истории</string>
@@ -336,7 +335,6 @@
   <string name="report-log">Предупреждения для этого участника:</string>
   <string name="report-include">Включить в отчёт</string>
   <string name="report-duplicate">Об этом участнике уже сообщили</string>
-  <string name="report-fail">Сообщение не отправлено \'$1\'</string>
   <string name="report-progress">Отправка сообщения \'$1\'...</string>
   <string name="uaa-nr">Не была указана причина</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>
@@ -435,4 +433,5 @@
   <string name="missing-page">В этой вики нет страницы $1</string>
   <string name="updating-wl">Начать с чистого листа...</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
+  <string name="report-fail" fuzzy="true">Сообщение не отправлено \'$1\'</string>
 </resources>

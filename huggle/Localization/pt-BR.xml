@@ -23,6 +23,7 @@
   <string name="show">Exibir</string>
   <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
+  <string name="editing-page">Editando página</string>
   <string name="agf">Reverter como edição de boa-fé com motivo personalizado</string>
   <string name="successful">Bem sucedido!</string>
   <string name="summary">Sumário</string>
@@ -48,7 +49,7 @@
   <string name="no-token">Sem token</string>
   <string name="flags">Sinalizações</string>
   <string name="score-score">Pontuação</string>
-  <string name="score-word">Palavra:</string>
+  <string name="score-word">Palavra</string>
   <string name="score-range">Gama</string>
   <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
   <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
@@ -89,7 +90,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-queue-filter-require">Exigir (deve ser)</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
-  <string name="config-already-in-use">Este atalho já está a ser usado por $1 , por favor, escolha um diferente</string>
+  <string name="config-already-in-use">Este atalho já é usado por $1, por favor, escolha um diferente</string>
   <string name="config-openinbrowser">Abrir hiperligações numa nova janela do navegador externo</string>
   <string name="config-shownewedits">Mostrar automaticamente novas edições na página caso elas ocorram</string>
   <string name="config-ircmode">Usar se possível o feed IRC para as mudanças recentes</string>
@@ -109,6 +110,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-watchlist">Adicionar à lista de páginas vigiadas</string>
   <string name="config-defaultsummary">Sumário padrão para edições manuais</string>
   <string name="config-undosummary">Sumário para quando reverter as próprias edições</string>
+  <string name="config-confirm-wl">É necessária confirmação para reverter uma edição feita por um usuário da lista branca</string>
   <string name="config-confirmmultiple">Pedir confirmação ao reverter várias edições do mesmo usuário</string>
   <string name="config-confirmsame">Pedir confirmação ao reverter para uma edição do mesmo usuário</string>
   <string name="config-confirmselfrevert">Pedir confirmação ao reverter minhas próprias edições (excluindo desfazer)</string>
@@ -151,8 +153,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="delete-e2">Não é possível eliminar a página</string>
   <string name="delete-edsc">Não é possível eliminar a página porque $1</string>
   <string name="delete-failed-no-info">Nenhuma informação do usuário estava presente na consulta (você é um administrador?)</string>
-  <string name="extension-kl">Morto</string>
-  <string name="extension-fine">Carregado e em execução</string>
+  <string name="extension-kl" fuzzy="true">Morto</string>
   <string name="historyform-no-info">Sem informações de edição</string>
   <string name="historyform-title">Histórico</string>
   <string name="historyform-retrieve-history">Recuperar histórico</string>
@@ -160,6 +161,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="historyform-not-latest-tip">Esta não é a revisão mais recente desta página. Certifique-se de que analisou as versões mais recentes. Por favor, tenha também em mente que a reversão pode não ser possível a partir deste ponto.</string>
   <string name="history-error-message-title">Impossível desfazer</string>
   <string name="history-error">Este item não pode ser desfeito. A página deve ter sido alterada ou eliminada, e o Huggle não pode desfazer neste ponto. Se realmente quer desfazer, você precisará fazê-lo manualmente usando a interface do MediaWiki.</string>
+  <string name="history-failure">Não foi possível recuperar o histórico</string>
   <string name="userhistory-title">Histórico das suas alterações</string>
   <string name="irc-connected">Conectado ao feed  IRC de mudanças recentes</string>
   <string name="irc-connecting">Conectando-se ao feed IRC de mudanças recentes em $1; isto pode demorar alguns momentos...</string>
@@ -356,13 +358,13 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="message-message">Mensagem:</string>
   <string name="message-summary">Sumário:</string>
   <string name="message-autosign">Adicionar automaticamente a assinatura no final da mensagem</string>
-  <string name="message-retrieve-new-token">Recuperando chave para editar $1</string>
+  <string name="message-retrieve-new-token">Recuperando token para editar $1</string>
   <string name="message-fail-re-user-tp">Impossível recuperar $1. Parando a entrega da mensagem para aquele usuário</string>
   <string name="message-er">Impossível entregar a mensagem para $1: $2</string>
   <string name="message-error">Falha ao entregar a mensagem a $1! Por favor, verifique os registos!</string>
   <string name="message-fail-retrieve-talk">impossível recuperar a página de discussão do usuário</string>
   <string name="message-done">Mensagem entregue com sucesso de $2 para: $1</string>
-  <string name="message-fail-token-1">Não foi possível recuperar chave para editar</string>
+  <string name="message-fail-token-1">Não foi possível recuperar token para editar</string>
   <string name="message-fail-token-2">Nenhum token foi retornado pela requisição</string>
   <string name="protect-request-title">Solicitar proteção de $1</string>
   <string name="protect-reason">Razão:</string>
@@ -373,11 +375,12 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="protect-none">Nenhuma</string>
   <string name="protect-token">Token não pode ser recuperado. A razão foi: $1</string>
   <string name="protect-semiprotection">Semi-proteção</string>
-  <string name="protect-fail-no-info">Nenhuma página de informação estava disponível (você é um administrador?)</string>
+  <string name="protect-error">Não é possível proteger a página porque $1</string>
+  <string name="protect-fail-no-info">Nenhuma informação sobre a página estava disponível (você é um administrador?)</string>
   <string name="protect-fullprotection">Proteção total</string>
   <string name="protect-message-title-fail">Impossível proteger</string>
-  <string name="protect-moveprotection">Proteção de movimentos</string>
-  <string name="protect-ft">Buscando chave para proteger $1</string>
+  <string name="protect-moveprotection">Proteção contra moção</string>
+  <string name="protect-ft">Buscando token para proteger $1</string>
   <string name="queue-title">Fila de edições a rever</string>
   <string name="queue-queues">Filas de edições a rever:</string>
   <string name="queue-typegroup">Tipo de fila de edições a rever</string>
@@ -402,7 +405,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="queue-filterreverts">Reverter</string>
   <string name="queue-filternotifications">Notificação</string>
   <string name="queue-filterwarnings">Aviso</string>
-  <string name="queue-filtertags">Marcação com predefinição</string>
+  <string name="queue-filtertags">Adicionar etiqueta</string>
   <string name="queue-filterbot">Edição de robô</string>
   <string name="queue-filterassisted">Edição assistida</string>
   <string name="queue-filterhuggle">Edição feita com o Huggle</string>
@@ -412,19 +415,18 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="queue-examplelabel3">Não verificar este atributo</string>
   <string name="queue-usergroup">Mostrar apenas edições destes usuários</string>
   <string name="report-title">Reportar $1</string>
-  <string name="report-warn">\"Este utilizador já atingiu o nível de aviso 4, sendo que não existem mais predefinições adequadas. Pode denunciá-lo agora, mas por favor, certifique-se de que já foi atingido o número adequado de últimos avisos! Pode fazê-lo ao clicar no botão \"página de discussão\" no formulário a seguir. Tenha em mente que este formulário e este aviso é exibido, não importa se a sua reversão foi ou não bem sucedida, por isso pode entrar em conflito com outros utilizadores (verifique se o utilizador não foi já denunciado). Pretende denunciar este usuário?</string>
+  <string name="report-warn">Este usuário já atingiu o 4º nível de aviso, então nenhuma outra predefinição será enviada. Você pode denunciá-lo agora, mas por favor, certifique-se de que já foi atingido o número adequado de avisos! Pode fazê-lo ao clicar no botão \"página de discussão\" no formulário a seguir. Tenha em mente que este formulário e este aviso é exibido, não importa se a sua reversão foi ou não bem sucedida, por isso pode entrar em conflito com outros usuários (verifique se o usuário não foi já denunciado). Pretende denunciar este usuário?</string>
   <string name="report-tu">Denunciar usuário</string>
   <string name="report-reason">Razão:</string>
   <string name="report-intro">Você está reportando usuário $1</string>
   <string name="report-message">Mensagem:</string>
   <string name="report-log">Avisos para este usuário:</string>
   <string name="report-include">Incluir no relatório</string>
-  <string name="report-select">Por favor, selecione um dif na lista para abrir a visualização</string>
+  <string name="report-select">Por favor, selecione um diff na lista para abrir a visualização</string>
   <string name="report-write">Escrevendo</string>
-  <string name="reportuser-not">Este utilizador não está denunciado no momento</string>
-  <string name="report-evidence-none-provid">Nenhum diff foi fornecido como evidência, isto torna muito difícil para os administradores perceber se o editor é um vândalo ou não. Tem certeza que quer continuar?</string>
+  <string name="reportuser-not">Este usuário não está denunciado no momento</string>
+  <string name="report-evidence-none-provid">Nenhum diff foi fornecido como evidência. Isto torna muito difícil para os administradores perceberem se o editor é um vândalo ou não. Tem certeza que quer continuar?</string>
   <string name="report-duplicate">O usuário já foi reportado aos administradores</string>
-  <string name="report-fail">Não foi possível reportar \'$1\' aos administradores</string>
   <string name="report-fail2">Erro ao recuperar a página do relatório em $1</string>
   <string name="report-progress">Reportando \'$1\'...</string>
   <string name="report-retrieving">Recuperando página do relatório atual...</string>
@@ -463,7 +465,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="tag-tagselector">Adicionar:</string>
   <string name="tag-tags">Marcações:</string>
   <string name="tag-summary">Sumário:</string>
-  <string name="tag-insertatend">Inserir no final da página e não no início</string>
+  <string name="tag-insertatend">Inserir no final da página</string>
   <string name="update-title">Nova versão disponível</string>
   <string name="update-progress">Baixando a nova versão...</string>
   <string name="update-error">Não foi possível baixar a nova versão.</string>
@@ -509,7 +511,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="warning-submit">Enviar</string>
   <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">Rede de vandalismo não está disponível nas opções</string>
-  <string name="han-connecting">Contectando o huggle à rede de anti-vandalismo</string>
+  <string name="han-connecting">Conectando à rede de anti-vandalismo do Huggle</string>
   <string name="error-loggedout">Você saiu de sua conta de usuário, entrando na conta...</string>
   <string name="error-noresponse">Sem resposta</string>
   <string name="error-pagemissing">A página não existe</string>
@@ -530,6 +532,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="deletelog-fail">Não foi possível receber o registro de eliminação para \'$1\'</string>
   <string name="deletelog-none">Não existem entradas no registro de eliminações para \'$1\'</string>
   <string name="deletelog-progress">Recebendo o registro de eliminações para \'$1\'...</string>
+  <string name="edit-bar-top">Essa edição é a última realizada na página</string>
   <string name="edit-fail">Não foi possível editar \'$1\'</string>
   <string name="edit-progress">Editando \'$1\'...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de \'$1\'</string>
@@ -539,7 +542,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">isto já foi desfeito</string>
   <string name="history-message-revert-body">Essa foi uma mensagem modificada por um reversor, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou? (você terá que reverter o reversor se você quiser reverter os dois)</string>
-  <string name="history-revert-fail">Impossivel de desfazer a sua ediçao em $1 erro durante a reversão: $2</string>
+  <string name="history-revert-fail">Impossível de desfazer a sua edição em $1. Erro durante a reversão: $2</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>
@@ -562,7 +565,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="speedy-finished">Concluído</string>
   <string name="warn-alreadyblocked">O usuário já foi bloqueado</string>
   <string name="editquery-success">$1 editado com sucesso em $2</string>
-  <string name="editquery-token">Recuperando chave para editar $1</string>
+  <string name="editquery-token">Recuperando token para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
   <string name="provider-failure">Falha do provedor de feed primário, tentando recuperar</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
@@ -580,9 +583,11 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="welcome-page-miss-fail">Huggle não conseguiu recuperar o conteúdo da página de discussão do usuário, tem certeza que quer mandar uma mensagem de boas vindas para ele?</string>
   <string name="cr-newer-edits">Conflito resolvido: todas as edições revertidas, incluindo novas edições. Edições foram feitas pelo mesmo usuário: $1.</string>
   <string name="cr-resolved-same-user">Conflito resolvido: todas as edições revertidas, incluindo novas edições, feitas pelo mesmo usuário: $1</string>
-  <string name="cr-stop-new-edit">Conflito resolvido: nenhuma ação executada - havia edições novas para $1</string>
-  <string name="cr-stop-multiple-same">Conflito resolvido: nenhuma ação tomada - existem diversas edições feitas pelo mesmo utilizador em $1.</string>
+  <string name="cr-stop-new-edit">Conflito resolvido: nenhuma ação executada - há novas edições em $1</string>
+  <string name="cr-stop-multiple-same">Conflito resolvido: nenhuma ação tomada - existem diversas edições feitas pelo mesmo usuário em $1.</string>
+  <string name="cr-revert-same-user">Conflito resolvido: revertidas todas as edições - existem múltiplas edições feitas pelo mesmo usuário em $1.</string>
   <string name="cr-message-same">Existem múltiplas edições para $1 pelo mesmo usuário, tem certeza que quer revertê-las?</string>
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
+  <string name="report-fail" fuzzy="true">Não foi possível reportar \'$1\' aos administradores</string>
 </resources>

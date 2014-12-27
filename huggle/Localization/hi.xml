@@ -258,7 +258,6 @@
   <string name="report-message">सन्देश:</string>
   <string name="report-log">इस प्रयोक्ता के लिए चेतावनियाँ:</string>
   <string name="report-duplicate">ये सदस्य को पहले से रिपोर्ट कर दिया गया है</string>
-  <string name="report-fail">\'$1\' को रिपोर्ट नहीं किया</string>
   <string name="report-progress">\'$1\' को रिपोर्ट कर रहे है...</string>
   <string name="revert-confirm-multiple">ये \'$1\' द्वारा एकाधिक संपादन को वापस ले लेगा। जारी रखें?</string>
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, $2, वर्तमान संशोधन के लेखक के समान सीमा में है, $1, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
@@ -336,4 +335,5 @@
   <string name="speedy-fail" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
   <string name="speedy-progress" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
+  <string name="report-fail" fuzzy="true">\'$1\' को रिपोर्ट नहीं किया</string>
 </resources>

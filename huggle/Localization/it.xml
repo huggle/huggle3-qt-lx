@@ -109,7 +109,6 @@
   <string name="config-watchlist">Aggiungi agli osservati speciali</string>
   <string name="config-defaultsummary">Sommario predefinito per le modifiche manuali</string>
   <string name="config-undosummary">Sommario per l\'annullamento delle proprie modifiche</string>
-  <string name="config-confirm-us">Richiedere conferma per annullare una modifica fatta nello spazio utente</string>
   <string name="config-confirm-wl">Richiedere conferma per annullare una modifica realizzata da un utente in lista bianca</string>
   <string name="config-confirmmultiple">Conferma gli annullamenti multipli di una modifica da parte dello stesso utente</string>
   <string name="config-confirmsame">Conferma il ritorno ad una modifica dello stesso utente</string>
@@ -153,8 +152,7 @@
   <string name="delete-e2">Impossibile cancellare la pagina</string>
   <string name="delete-edsc">Impossibile cancellare la pagina poiché $1</string>
   <string name="delete-failed-no-info">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
-  <string name="extension-kl">Ucciso</string>
-  <string name="extension-fine">Caricato e in esecuzione</string>
+  <string name="extension-kl" fuzzy="true">Ucciso</string>
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
@@ -428,7 +426,6 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="reportuser-not">Questo utente non è attualmente segnalato</string>
   <string name="report-evidence-none-provid">Nessuna differenza è stata fornita come prova. Ciò renderà molto difficile per gli amministratori capire se l\'utente è un vandalo o no. Sei certo di voler continuare?</string>
   <string name="report-duplicate">L\'utente è già stato segnalato</string>
-  <string name="report-fail">Impossibile segnalare $1</string>
   <string name="report-fail2">Errore impossibile recuperare la pagina di rapporto su $1</string>
   <string name="report-progress">Segnalazione di $1...</string>
   <string name="report-retrieving">Recupero della pagina di segnalazione attuale...</string>
@@ -591,4 +588,5 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
+  <string name="report-fail" fuzzy="true">Impossibile segnalare $1</string>
 </resources>

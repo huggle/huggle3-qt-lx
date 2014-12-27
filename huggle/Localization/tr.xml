@@ -109,7 +109,6 @@
   <string name="config-watchlist">İzleme listesine ekle</string>
   <string name="config-defaultsummary">Elle yapılan değişiklikler için varsayılan özet</string>
   <string name="config-undosummary">Kendi değişikliklerinizi eski haline getirmek için özet</string>
-  <string name="config-confirm-us">Kullanıcı alanında yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
   <string name="config-confirm-wl">Beyaz listedeki kullanıcı tarafından yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
   <string name="config-confirmmultiple">Aynı kullanıcı tarafından yapılan çoklu geri almayı onayla</string>
   <string name="config-confirmsame">Geri çevirilen kullanıcı tarafından yapılan değişikliği geri almayı onayla</string>
@@ -153,8 +152,7 @@
   <string name="delete-e2">Sayfa silinemedi</string>
   <string name="delete-edsc">Sayfa silinemedi. Sebep $1</string>
   <string name="delete-failed-no-info">Sorguda hiç sayfa bilgisi görüntülenemedi (hizmetli misiniz?)</string>
-  <string name="extension-kl">Sonlandırıldı</string>
-  <string name="extension-fine">Yüklendi ve yürütülüyor</string>
+  <string name="extension-kl" fuzzy="true">Sonlandırıldı</string>
   <string name="historyform-no-info">Düzenleme bilgisi yok</string>
   <string name="historyform-title">Geçmiş</string>
   <string name="historyform-retrieve-history">Geçmişi getir</string>
@@ -427,7 +425,6 @@
   <string name="reportuser-not">Bu kullanıcı rapor edilmedi</string>
   <string name="report-evidence-none-provid">Kanıt olarak herhangi bir değişiklik belirtilmedi. Kullanıcının vandal olup olmadığının anlaşılması bu şekilde çok zorlaşacaktır. Devam etmek istediğinize emin misiniz?</string>
   <string name="report-duplicate">Kullanıcı zaten rapor edilmiş</string>
-  <string name="report-fail">$1 rapor edilmedi</string>
   <string name="report-fail2">Hata: $1\'deki rapor sayfasına ulaşılamıyor</string>
   <string name="report-progress">$1 rapor ediliyor...</string>
   <string name="report-retrieving">Geçerli rapor sayfası alınıyor...</string>
@@ -590,4 +587,5 @@
   <string name="cr-message-same">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
+  <string name="report-fail" fuzzy="true">$1 rapor edilmedi</string>
 </resources>

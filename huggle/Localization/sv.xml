@@ -49,6 +49,7 @@
   <string name="flags">Flaggor</string>
   <string name="score-word">Ord</string>
   <string name="score-range">Intervall</string>
+  <string name="score-take-any-word">Matchar alla ord som innehåller denna sträng</string>
   <string name="browser-none">Ingen sida visas nu</string>
   <string name="browser-load">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
@@ -82,6 +83,8 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-description">Beskrivning</string>
   <string name="config-shortcut">Genväg</string>
   <string name="config-queue-filter-ignore">Ignorera (spelar ingen roll)</string>
+  <string name="config-queue-filter-exclude">Utesluta (måste inte)</string>
+  <string name="config-queue-filter-require">Kräver (måste vara)</string>
   <string name="config-summ">Anpassade återstälnings-sammanfattningar för mallar</string>
   <string name="config-title">Inställningar</string>
   <string name="config-openinbrowser">Öppna webbläsarlänkar i ett nytt fönster</string>
@@ -103,6 +106,8 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-watchlist">Lägg till i bevakningslistan</string>
   <string name="config-defaultsummary">Standardsammanfattning för manuella redigeringar</string>
   <string name="config-undosummary">Sammanfattning när egna redigeringar ångras</string>
+  <string name="config-confirm-wl">Kräver bekräftelse för återställning av ändringen som gjordes av godkända användare</string>
+  <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
   <string name="config-reportnone">Gör inget</string>
   <string name="config-templatetext">Visa text</string>
   <string name="config-template">Mall</string>

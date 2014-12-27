@@ -132,8 +132,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="delete-e1">Strona nie może zostać usunięta: $1</string>
   <string name="delete-e2">Nie można usunąć strony</string>
   <string name="delete-edsc">Nie można usunąć strony, ponieważ $1</string>
-  <string name="extension-kl">Zabity</string>
-  <string name="extension-fine">Załadowany i działa</string>
+  <string name="extension-kl" fuzzy="true">Zabity</string>
   <string name="historyform-title">Historia</string>
   <string name="history-error-message-title">Nie można cofnąć</string>
   <string name="userhistory-title">Historia twoich zmian</string>

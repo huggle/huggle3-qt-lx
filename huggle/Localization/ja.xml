@@ -81,7 +81,6 @@
   <string name="config-watchlist">ウォッチリストに追加</string>
   <string name="config-defaultsummary">手動編集のデフォルト要約</string>
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
-  <string name="config-confirm-us">利用者空間における改編について承認を要求</string>
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-confirmmultiple">同一利用者による複数の版を一気に差し戻す時は確認する</string>
   <string name="config-confirmsame">リバートを受けている利用者による版へ差し戻す時は確認する</string>
@@ -335,7 +334,6 @@
   <string name="report-select">プレビューを開くには、一覧から差分を選択してください</string>
   <string name="report-write">書き込み中</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
-  <string name="report-fail">\'$1\' の報告に失敗しました</string>
   <string name="report-progress">\'$1\' を報告しています...</string>
   <string name="uaa-not-supported">UAA を利用できません</string>
   <string name="revert-confirm-multiple">\'$1\' による複数の編集をリバートします。 実行しますか？</string>
@@ -442,4 +440,5 @@
   <string name="cr-revert-same-user">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
   <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
+  <string name="report-fail" fuzzy="true">\'$1\' の報告に失敗しました</string>
 </resources>

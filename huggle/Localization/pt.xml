@@ -417,7 +417,6 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="reportuser-not">Este utilizador está agora denunciado</string>
   <string name="report-evidence-none-provid">Não foram fornecidos diff como evidência, portanto, será difícil para os administradores avaliar este caso. Tem a certeza de que pretende continuar?</string>
   <string name="report-duplicate">O utilizador já foi denunciado aos administradores</string>
-  <string name="report-fail">Não foi possível denunciar $1</string>
   <string name="report-fail2">Erro: Não foi possível aceder à página em $1</string>
   <string name="report-progress">A denunciar $1...</string>
   <string name="report-retrieving">A aceder à página de pedidos de bloqueio...</string>
@@ -573,4 +572,5 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
+  <string name="report-fail" fuzzy="true">Não foi possível denunciar $1</string>
 </resources>

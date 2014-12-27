@@ -151,8 +151,7 @@
   <string name="delete-e2">문서를 삭제할 수 없습니다</string>
   <string name="delete-edsc">$1 때문에 문서를 삭제할 수 없습니다</string>
   <string name="delete-failed-no-info">문서 정보가 쿼리에 존재하지 않습니다 (관리자입니까?)</string>
-  <string name="extension-kl">죽음</string>
-  <string name="extension-fine">불러옴 및 실행 중</string>
+  <string name="extension-kl" fuzzy="true">죽음</string>
   <string name="historyform-no-info">편집 정보 없음</string>
   <string name="historyform-title">역사</string>
   <string name="historyform-retrieve-history">역사 얻기</string>
@@ -412,7 +411,6 @@
   <string name="reportuser-not">이 사용자는 이제 보고되지 않습니다</string>
   <string name="report-evidence-none-provid">바뀜 링크가 증거로서 제시되지 않았습니다. 이것은 관리자가 이 사용자가 문서 훼손을 저질렀는지 알아보기 힘들게 만듭니다. 계속하시겠습니까?</string>
   <string name="report-duplicate">이 사용자는 이미 보고되어 있습니다</string>
-  <string name="report-fail">$1 을 보고하지 못했습니다</string>
   <string name="report-fail2">$1에서 보고 문서를 얻을 수 없습니다</string>
   <string name="report-progress">$1 보고 중...</string>
   <string name="report-retrieving">현재 보고 문서를 얻는 중...</string>
@@ -503,4 +501,5 @@
   <string name="updating-wl">허용 목록을 업데이트 중...</string>
   <string name="feature-nfru">이 기능은 IP 사용자만입니다</string>
   <string name="welcome-page-miss-fail">허글이 사용자 토론 문서의 포함을 얻을 수 없습니다, 그들에게 환영 메시지를 보내겠습니까?</string>
+  <string name="report-fail" fuzzy="true">$1 을 보고하지 못했습니다</string>
 </resources>
