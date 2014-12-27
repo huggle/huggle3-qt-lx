@@ -98,6 +98,8 @@ QString Query::QueryStatusToString()
             return "Done";
         case StatusProcessing:
             return "Processing";
+        case StatusKilled:
+            return "Killed";
         case StatusInError:
             if (this->Result != nullptr && this->Result->IsFailed() && !this->Result->ErrorMessage.isEmpty())
                 return "In error: " + this->Result->ErrorMessage;
