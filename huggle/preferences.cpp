@@ -638,12 +638,12 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
             iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
             if (hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
             {
-                Generic::MessageBox("Error", "This extension is already scheduled for disabling next startup of huggle");
+                Generic::MessageBox(_l("error"), _l("preferences-extension-disabled"));
             }
             else
             {
                 hcfg->IgnoredExtensions.append(ex->GetExtensionFullPath());
-                Generic::MessageBox("Done", "Extension was disabled, however you need to restart huggle for it to happen");
+                Generic::MessageBox(_l("done"), _l("preferences-extension-disabled-restart"));
             }
         }
     }
@@ -657,12 +657,12 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
             iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
             if (!hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
             {
-                Generic::MessageBox("Error", "This extension is not scheduled for disabling next startup of huggle");
+                Generic::MessageBox(_l("error"), _l("preferences-extension-enabled"));
             }
             else
             {
                 hcfg->IgnoredExtensions.removeAll(ex->GetExtensionFullPath());
-                Generic::MessageBox("Done", "Extension was enabled, however you need to restart huggle for it to happen");
+                Generic::MessageBox(_l("done"), _l("preferences-extension-enabled-restart"));
             }
         }
     }

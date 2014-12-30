@@ -245,8 +245,7 @@ void Message::PreflightCheck()
         this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
         QueryPool::HugglePool->AppendQuery(this->query);
-        /// \todo LOCALIZE ME
-        this->query->Target = "Reading TP of " + this->User->Username;
+        this->query->Target = _l("main-user-retrieving-tp", this->User->Username);
         this->query->Process();
     } else
     {

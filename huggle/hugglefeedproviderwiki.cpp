@@ -144,7 +144,7 @@ void HuggleFeedProviderWiki::Process(QString data)
         QDomElement item = l.at(CurrentNode).toElement();
         if (!item.attributes().contains("timestamp"))
         {
-            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing timestamp attribute: " + item.toElement().nodeName());
+            Huggle::Syslog::HuggleLogs->Log(_l("rc-timestamp-missing", item.toElement().nodeName()));
             continue;
         }
         QDateTime time = MediaWiki::FromMWTimestamp(item.attribute("timestamp"));
@@ -159,12 +159,12 @@ void HuggleFeedProviderWiki::Process(QString data)
         }
         if (!item.attributes().contains("type"))
         {
-            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing type attribute: " + item.text());
+            Huggle::Syslog::HuggleLogs->Log(_l("rc-type-missing", item.text()));
             continue;
         }
         if (!item.attributes().contains("title"))
         {
-            Huggle::Syslog::HuggleLogs->Log("RC Feed: Item was missing title attribute: " + item.text());
+            Huggle::Syslog::HuggleLogs->Log(_l("rc-title-missing", item.text()));
             continue;
         }
         QString type = item.attribute("type");

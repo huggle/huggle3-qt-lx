@@ -156,7 +156,7 @@ void ReloginForm::Fail(QString why)
     this->qReloginTokenReq.Delete();
     this->ui->lineEdit->setEnabled(true);
     this->qReloginPw.Delete();
-    Generic::MessageBox("Fail", "Unable to login to wiki: " + why,
+    Generic::MessageBox(_l("fail"), _l("relogin-fail", why),
                         MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
 }

@@ -117,7 +117,7 @@ bool EditQuery::IsProcessed()
                     hec = HUGGLE_ETOKEN;
                     // we log off the site
                     Configuration::Logout(this->Page->GetSite());
-                    Syslog::HuggleLogs->ErrorLog("Unable to edit " + this->Page->PageName + " because token I had in cache is no longer valid, please try to edit that page once more");
+                    Syslog::HuggleLogs->ErrorLog(_l("editquery-invalid-token", this->Page->PageName));
                 }
                 this->Result = new QueryResult(true);
                 this->Result->SetError(hec, reason);

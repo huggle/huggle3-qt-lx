@@ -17,6 +17,7 @@
   <string name="deleted">{{Identical|Deleted}}</string>
   <string name="error">{{Identical|Error}}</string>
   <string name="exit">{{Identical|Exit}}</string>
+  <string name="done">{{Identical|Done}}</string>
   <string name="no">Label of a button in a dialog containing a question. For instance:
 * [possibly] {{msg-huggle|Block-sensitivewarning}}
 
@@ -314,6 +315,8 @@ The title for this error is {{msg-huggle|Error}}.</string>
 {{Identical|IRC}}</string>
   <string name="main-system-change-provider-wiki">{{Identical|Wiki}}</string>
   <string name="main-system-exit">{{Identical|Exit}}</string>
+  <string name="main-config-state-fail">Used as error log entry.</string>
+  <string name="main-config-geom-fail">Used as error log entry. Geometry means main window geometry (layout).</string>
   <string name="main-tools-scoreword-list">\"Scorewords\" are words, that when they are present in a diff of an edit they increase the score of an edit by given value. A higher score could imply that the edit might be vandalism.</string>
   <string name="main-queue">{{Identical|Queue}}</string>
   <string name="main-queue-next">{{Identical|Next}}</string>
@@ -366,9 +369,14 @@ See also:
   <string name="main-user-message">{{Identical|Message}}</string>
   <string name="main-user-warn">{{Identical|Warning}}</string>
   <string name="main-user-report">{{Identical|Report}}</string>
+  <string name="main-user-retrieving-tp">Used as a target in Query.
+
+Parameters:
+* $1 - username</string>
   <string name="main-user-block">{{Identical|Block}}</string>
   <string name="main-browser-back">{{Identical|Back}}</string>
   <string name="main-browser-forward">{{Identical|Forward}}</string>
+  <string name="main-browser-lasttab">Used as error log entry.</string>
   <string name="main-revert-manual">Parameters:
 * $1 - pagename</string>
   <string name="main-han">Abbreviation for Huggle Antivandalism Network.</string>
@@ -390,6 +398,10 @@ See also:
 * $1 - pagename</string>
   <string name="main-tip-pagedelete">{{Identical|Delete this page}}</string>
   <string name="main-revert-null">Used as error log entry.</string>
+  <string name="main-revert-newpage-title">Used as a message box title when user tries to revert creating a new page.</string>
+  <string name="main-revert-newpage">Used as a message box message when user tries to revert creating a new page.</string>
+  <string name="main-restore-text-fail">Used as a log entry.</string>
+  <string name="main-restore-data-fail">Used as error log entry.</string>
   <string name="message-title">{{Identical|Message}}</string>
   <string name="message-subject">{{Identical|Subject}}</string>
   <string name="message-message">{{Identical|Message}}</string>
@@ -412,6 +424,7 @@ See also:
   <string name="protect-message-title-fail">Used as window title when the process has failed.
 
 The windows has the message \"Unable to protect the page because \'\'reason\'\'\" (untranslatable).</string>
+  <string name="protect-request-proj-fail">Used as error log entry.</string>
   <string name="queue-title">{{Identical|Queue}}</string>
   <string name="queue-queues">{{Identical|Queue}}</string>
   <string name="queue-listselector">{{Identical|List}}</string>
@@ -467,6 +480,10 @@ UAA is short for \"Usernames for administrator attention\".</string>
   <string name="updater-title">Used as window title.</string>
   <string name="updater-update">Used as label for button.
 {{Identical|Update}}</string>
+  <string name="updater-update-available">Used as a label in update dialog.
+
+Parameters:
+* $1 - version string</string>
   <string name="updater-open-manualdownloadpage">Used as label for button.</string>
   <string name="updater-close">Used as label for the button.
 {{Identical|Close}}</string>
@@ -483,8 +500,15 @@ UAA is short for \"Usernames for administrator attention\".</string>
   <string name="warning-title">{{Identical|Warning}}</string>
   <string name="warning-levelauto">{{Identical|Automatic}}</string>
   <string name="warning-submit">{{Identical|Send}}</string>
+  <string name="wikiedit-tp-fail">Used as a log entry when retrieval of user talk page fails.
+
+Parameters:
+* $1 - talk page name</string>
   <string name="missing-warning">Used as log entry. Parameters:
 * $1 - template name</string>
+  <string name="han-already-connected">Used as a log entry.</string>
+  <string name="han-already-connecting">Used as a log entry.</string>
+  <string name="han-disconnected">Used as a status message.</string>
   <string name="error-unknown">{{Identical|Unknown error}}</string>
   <string name="block-done">{{Identical|Blocked}}</string>
   <string name="block-progress">{{Identical|Blocking}}</string>
@@ -496,7 +520,9 @@ UAA is short for \"Usernames for administrator attention\".</string>
   <string name="edit-progress">{{Identical|Editing}}</string>
   <string name="history-work">Used as log entry. Parameters:
 * $1 - pagename</string>
+  <string name="history-no-item-selected">Used as error log entry.</string>
   <string name="history-message-revert-title">Used as title for the message box {{msg-huggle|History-message-revert-body}}.</string>
+  <string name="history-another-edit">Used as error log entry.</string>
   <string name="history-not-found">Used as error log entry.</string>
   <string name="history-message-revert-body">Used in message box containing Yes/No question.
 
@@ -504,6 +530,12 @@ The title for this message is {{msg-huggle|History-message-revert-title}}.</stri
   <string name="history-revert-fail">Used as failure message. Parameters:
 * $1 - page title
 * $2 - error message</string>
+  <string name="history-undone">Used as a log entry. Parameters:
+* $1 - page title</string>
+  <string name="history-retrieve-fail">Used as error log entry. Parameters:
+* $1 - error message</string>
+  <string name="history-welcome-msg-title">Used as a message box title when user tries to revert creating a talk page.</string>
+  <string name="history-welcome-msg">Used in a message box when user tries to revert creating a talk page.</string>
   <string name="loadglobalconfig-fail">See also:
 * {{msg-huggle|Loadprojectconfig-fail}}</string>
   <string name="loadprojectconfig-fail">See also:
@@ -523,6 +555,14 @@ CSD is short for \"Candidates for speedy deletion\".</string>
   <string name="editquery-success">Used as log entry. Parameters:
 * $1 - page name
 * $2 - sitename</string>
+  <string name="editquery-invalid-token">Used as error log entry. Parameters:
+* $1 - page name</string>
+  <string name="rc-timestamp-missing">Used as a log entry. Parameters:
+* $1 - item node name</string>
+  <string name="rc-type-missing">Used as a log entry. Parameters:
+* $1 - item text</string>
+  <string name="rc-title-missing">Used as a log entry. Parameters:
+* $1 - item text</string>
   <string name="whitelist-download">Used as status when new whitelist is being downloaded.</string>
   <string name="logs-widget-name">Used as tab label.
 {{Identical|System log}}</string>
@@ -551,4 +591,10 @@ See also:
 See also:
 * {{msg-huggle|Cr-message-same}}
 * {{msg-huggle|Cr-message-new}}</string>
+  <string name="relogin-fail">Used in error message box. Parameters:
+* $1 - reason of failure</string>
+  <string name="preferences-extension-disabled">Used as a message box content.</string>
+  <string name="preferences-extension-disabled-restart">Used as a message box content.</string>
+  <string name="preferences-extension-enabled">Used as a message box content.</string>
+  <string name="preferences-extension-enabled-restart">Used as a message box content.</string>
 </resources>

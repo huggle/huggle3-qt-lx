@@ -227,7 +227,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         HUGGLE_DEBUG1("Loading state");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
         if (!layout->open(QIODevice::ReadOnly))
-            Syslog::HuggleLogs->ErrorLog("Unable to read state from a config file");
+            Syslog::HuggleLogs->ErrorLog(_l("main-config-state-fail"));
         else if (!this->restoreState(layout->readAll()))
             HUGGLE_DEBUG1("Failed to restore state");
 
@@ -239,7 +239,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         HUGGLE_DEBUG1("Loading geometry");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
         if (!layout->open(QIODevice::ReadOnly))
-            Syslog::HuggleLogs->ErrorLog("Unable to read geometry from a config file");
+            Syslog::HuggleLogs->ErrorLog(_l("main-config-geom-fail"));
         else if (!this->restoreGeometry(layout->readAll()))
                 HUGGLE_DEBUG1("Failed to restore layout");
         layout->close();
@@ -910,8 +910,8 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     }
     if (this->CurrentEdit->NewPage)
     {
-        Generic::pMessageBox(this, "Can't revert this", "This is a new page, so it can't be reverted, you can either tag it, or delete it.",
-                            MessageBoxStyleNormal, true);
+        Generic::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal,
+                true);
         return ptr_;
     }
     if (!this->CurrentEdit->IsPostProcessed())
@@ -1059,7 +1059,7 @@ void MainWindow::FinishRestore()
         {
             this->RestoreQuery.Delete();
             this->RestoreEdit.Delete();
-            Huggle::Syslog::HuggleLogs->ErrorLog("Unable to restore the revision, because there is no text available for it");
+            Huggle::Syslog::HuggleLogs->ErrorLog(_l("main-restore-text-fail"));
             return;
         }
     }
@@ -1071,7 +1071,7 @@ void MainWindow::FinishRestore()
         if (text.isEmpty())
         {
             this->RestoreQuery.Delete();
-            Huggle::Syslog::HuggleLogs->Log("Unable to restore the revision, because there is no text available for it");
+            Huggle::Syslog::HuggleLogs->Log(_l("main-restore-text-fail"));
             this->RestoreEdit.Delete();
             return;
         }
@@ -1083,7 +1083,7 @@ void MainWindow::FinishRestore()
     } else
     {
         HUGGLE_DEBUG1(this->RestoreQuery->Result->Data);
-        Syslog::HuggleLogs->ErrorLog("Unable to restore the revision because wiki provided no data for selected version");
+        Syslog::HuggleLogs->ErrorLog(_l("main-restore-data-fail"));
     }
     this->RestoreEdit.Delete();
     this->RestoreQuery.Delete();
@@ -2622,8 +2622,7 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
         return;
     if (!this->GetCurrentWikiSite()->GetProjectConfig()->RFPP)
     {
-        //! \todo Localize
-        Syslog::HuggleLogs->ErrorLog("This project doesn't support requests for protection");
+        Syslog::HuggleLogs->ErrorLog(_l("protect-request-proj-fail"));
     }
     if (this->fRFProtection != nullptr)
         delete this->fRFProtection;
@@ -2839,7 +2838,7 @@ void Huggle::MainWindow::on_actionClose_current_tab_triggered()
 {
     if (this->Browsers.count() < 2)
     {
-        Syslog::HuggleLogs->ErrorLog("I can't close this tab because it's last one, you must have at least 1 tab open");
+        Syslog::HuggleLogs->ErrorLog(_l("main-browser-lasttab"));
         return;
     }
 
