@@ -248,6 +248,24 @@ void ApiQuery::Process()
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
 
+void ApiQuery::Kill()
+{
+    if (this->reply != nullptr)
+    {
+        QObject::disconnect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
+        QObject::disconnect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+        if (this->Status == StatusProcessing)
+        {
+            this->Status = StatusKilled;
+            this->disconnect(this->reply);
+            this->reply->abort();
+            this->reply->disconnect(this);
+            this->reply->deleteLater();
+            this->reply = nullptr;
+        }
+    }
+}
+
 void ApiQuery::ReadData()
 {
     // don't even try to do anything if query was killed

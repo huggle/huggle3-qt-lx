@@ -126,19 +126,6 @@ namespace Huggle
         this->ActionPart = action;
     }
 
-    inline void ApiQuery::Kill()
-    {
-        if (this->Status == StatusProcessing && this->reply != nullptr)
-        {
-            this->Status = StatusKilled;
-            this->disconnect(this->reply);
-            this->reply->abort();
-            this->reply->disconnect(this);
-            this->reply->deleteLater();
-            this->reply = nullptr;
-        }
-    }
-
     inline QString ApiQuery::QueryTargetToString()
     {
         return this->Target;
