@@ -29,6 +29,7 @@ Huggle::WebserverQuery::~WebserverQuery()
 {
     if (this->reply != nullptr)
     {
+        this->disconnect(this->reply);
         this->reply->abort();
         this->reply->disconnect(this);
         this->reply->deleteLater();
@@ -38,7 +39,7 @@ Huggle::WebserverQuery::~WebserverQuery()
 
 void WebserverQuery::Process()
 {
-    if (this->URL == "")
+    if (this->URL.isEmpty())
     {
         this->Result = new QueryResult(true);
         this->Result->SetError("You provided invalid url");

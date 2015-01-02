@@ -131,6 +131,7 @@ namespace Huggle
         if (this->Status == StatusProcessing && this->reply != nullptr)
         {
             this->Status = StatusKilled;
+            this->disconnect(this->reply);
             this->reply->abort();
             this->reply->disconnect(this);
             this->reply->deleteLater();
