@@ -75,8 +75,10 @@ void Huggle::GC::DeleteOld()
             } else
             {
                 // we can remove it now because it's deleted
+                // don't delete this item from this->list
+                // it will happen automatically in
+                // Collectable->SafeDelete()
                 copy.removeAt(x);
-                this->list.removeAll(q);
             }
         }
         return;

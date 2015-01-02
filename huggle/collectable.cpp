@@ -62,7 +62,11 @@ bool Collectable::SafeDelete()
             GC::gc->Lock->lock();
             if (GC::gc->list.contains(this))
             {
-                GC::gc->list.removeAll(this);
+                if (GC::gc->list.removeAll(this) < 1)
+                {
+                    // whoa, the application will crash soon
+                    Syslog::HuggleLogs->DebugLog("Collectable removed 0 references after its deletion from memory");
+                }
             }
             GC::gc->Lock->unlock();
         } else
