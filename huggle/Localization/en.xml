@@ -12,6 +12,7 @@
     <string name="deleted">Deleted</string>
     <string name="error">Error</string>
     <string name="exit">Exit</string>
+    <string name="done">Done</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="remove">Remove</string>
@@ -299,6 +300,8 @@
     <string name="main-system-change-provider-irc">IRC</string>
     <string name="main-system-change-provider-wiki">Wiki</string>
     <string name="main-system-exit">Exit</string>
+    <string name="main-config-state-fail">Unable to read state from a config file</string>
+    <string name="main-config-geom-fail">Unable to read geometry from a config file</string>
     <string name="main-tools-scoreword-list">Show a list of scorewords</string>
     <string name="main-queue">Queue</string>
     <string name="main-queue-next">Next</string>
@@ -361,12 +364,14 @@
     <string name="main-user-report">Report</string>
     <string name="main-user-ib">Increase badness score</string>
     <string name="main-user-clear-tp">Clear talk page of user</string>
+    <string name="main-user-retrieving-tp">Retrieving Talk Page of %1</string>
     <string name="main-user-block">Block...</string>
     <string name="main-browser-back">Back</string>
     <string name="main-browser-forward">Forward</string>
     <string name="main-browser-open">View this in an external browser</string>
     <string name="main-browser-newedits">Show new edits to page</string>
     <string name="main-browser-newcontribs">Show new contributions by user</string>
+    <string name="main-browser-lasttab">I can't close this tab because it's last one, you must have at least 1 tab open</string>
     <string name="main-revert-manual">No rollback token, fallback to manual revert of $1</string>
     <string name="main-han">HAN</string>
     <string name="main-han-disconnect">Disconnect</string>
@@ -394,6 +399,10 @@
     <string name="main-revision-acceptpend">Accept this pending revision</string>
     <string name="main-no-page">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
     <string name="main-revert-null">Unable to revert: edit is null</string>
+    <string name="main-revert-newpage-title">Can't revert this</string>
+    <string name="main-revert-newpage">This is a new page, so it can't be reverted, you can either tag it, or delete it.</string>
+    <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
+    <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
     <string name="message-title">Message $1</string>
     <string name="message-help">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
     <string name="message-subject">Subject:</string>
@@ -423,6 +432,7 @@
     <string name="protect-message-title-fail">Unable to protect</string>
     <string name="protect-moveprotection">Move protection</string>
     <string name="protect-ft">Fetching token to protect $1</string>
+    <string name="protect-request-proj-fail">This project doesn't support requests for protection</string>
     <string name="queue-title">Queues</string>
     <string name="queue-queues">Queues:</string>
     <string name="queue-typegroup">Queue type</string>
@@ -513,6 +523,7 @@
     <string name="update-error">Failed to download the new version</string>
     <string name="updater-title">New version of Huggle is available</string>
     <string name="updater-update">Update</string>
+    <string name="updater-update-available">A newer version of Huggle is available: version $1</string>
     <string name="updater-open-manualdownloadpage">Open the download page</string>
     <string name="updater-close">Close</string>
     <string name="updater-disable-notify">Disable updates</string>
@@ -552,9 +563,13 @@
     <string name="warning-warntype">Warning type:</string>
     <string name="warning-warnlog">Warnings for this user:</string>
     <string name="warning-submit">Send</string>
+    <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level will not be scored by it</string>
     <string name="missing-warning">There is no such warning template $1</string>
     <string name="han-not">Vandalism network isn't allowed in options</string>
     <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
+    <string name="han-already-connected">Not connecting to HAN because it's already connected</string>
+    <string name="han-already-connecting">Please wait, I am already connecting to HAN</string>
+    <string name="han-disconnected">You were disconnected from HAN</string>
     <string name="error-loggedout">Account has been logged out, logging back in...</string>
     <string name="error-noresponse">No response</string>
     <string name="error-pagemissing">The page does not exist</string>
@@ -581,11 +596,17 @@
     <string name="history-fail">Failed to retrieve history of $1</string>
     <string name="history-progress">Retrieving history of $1 ($2)...</string>
     <string name="history-work">Undoing own edit made to $1</string>
+    <string name="history-no-item-selected">No item is selected in history widget</string>
     <string name="history-message-revert-title">Do you really want to undo just this message?</string>
+    <string name="history-another-edit">I am already undoing another edit, please wait</string>
     <string name="history-not-found">Nothing was found to undo</string>
     <string name="history-already-done">This was already undone</string>
     <string name="history-message-revert-body">This was a message that is referenced by a rollback, are you sure you want to undo only template and not even your edit to page? (you need to undo the rollback in case you want to revert both of these)</string>
     <string name="history-revert-fail">Unable to undo your edit to $1 error during revert: $2</string>
+    <string name="history-undone">Successfully undone edit to $1</string>
+    <string name="history-retrieve-fail">Unable to retrieve content of page we wanted to undo own edit for, error was: $1</string>
+    <string name="history-welcome-msg-title">Send welcome message instead?</string>
+    <string name="history-welcome-msg">You created this talk page, so it can't be undone, do you want to replace it with a welcome template?</string>
     <string name="notify-fail">Did not notify the creator of $1</string>
     <string name="notify-unknowncreator">Cannot find page creator</string>
     <string name="protect-done">Changed protection level for $1</string>
@@ -610,9 +631,13 @@
     <string name="editquery-success">Successfully edit $1 on $2</string>
     <string name="editquery-token">Retrieving token to edit $1</string>
     <string name="editquery-token-error">Unable to retrieve edit token</string>
+    <string name="editquery-invalid-token">Unable to edit $1 because token I had in cache is no longer valid, please try to edit that page once more</string>
     <string name="provider-failure">Failure of primary feed provider, trying to recover</string>
     <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>
     <string name="rc-error">Unable to retrieve data from wiki feed, last error: $1</string>
+    <string name="rc-timestamp-missing">RC Feed: Item was missing timestamp attribute: $1</string>
+    <string name="rc-type-missing">RC Feed: Item was missing type attribute: $1</string>
+    <string name="rc-title-missing">RC Feed: Item was missing title attribute: $1</string>
     <string name="whitelist-download">Downloading new whitelist</string>
     <string name="logs-widget-name">System logs</string>
     <string name="wait">Please wait...</string>
@@ -633,6 +658,10 @@
     <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
     <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
     <string name="preferences-delete-using-filter">You can't delete a filter that is currently being used</string>
+    <string name="preferences-extension-disabled">This extension is already scheduled for disabling next startup of huggle</string>
+    <string name="preferences-extension-disabled-restart">This extension is already scheduled for disabling next startup of huggle</string>
+    <string name="preferences-extension-enabled">This extension is not scheduled for disabling next startup of huggle</string>
+    <string name="preferences-extension-enabled-restart">Extension was enabled, however you need to restart huggle for it to happen</string>
     <string name="fail">Fail</string>
     <string name="request">Request</string>
     <string name="requesting">Requesting</string>
@@ -658,4 +687,5 @@
     <string name="about-python-without"> without python support</string>
     <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
     <string name="error-unknown-code">Unknown Error: $1</string>
+    <string name="relogin-fail">Unable to login to wiki: $1</string>
 </resource>

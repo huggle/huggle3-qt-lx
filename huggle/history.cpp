@@ -69,7 +69,7 @@ void History::Undo(HistoryItem *hist)
 {
     if (this->RevertingItem != nullptr)
     {
-        Syslog::HuggleLogs->ErrorLog("I am already undoing another edit, please wait");
+        Syslog::HuggleLogs->ErrorLog(_l("history-another-edit"));
         return;
     }
     if (hist == nullptr)
@@ -163,7 +163,7 @@ void History::ContextMenu(const QPoint &position)
         HistoryItem *hi;
         if (this->CurrentItem < 0)
         {
-            Syslog::HuggleLogs->ErrorLog("No item is selected in history widget");
+            Syslog::HuggleLogs->ErrorLog(_l("history-no-item-selected"));
             return;
         }
         hi = this->Items.at(this->CurrentItem);
@@ -232,7 +232,7 @@ void History::Tick()
         }
         // we finished reverting the edit
         this->RevertingItem->Undone = true;
-        Syslog::HuggleLogs->Log("Successfully undone edit to " + this->RevertingItem->Target);
+        Syslog::HuggleLogs->Log(_l("history-undone", this->RevertingItem->Target));
         int position = this->ui->tableWidget->rowCount() - this->RevertingItem->ID;
         this->ui->tableWidget->setItem(position, 3, new QTableWidgetItem("Undone"));
         // we need to delete all queries now
@@ -264,7 +264,7 @@ void History::Tick()
         this->qEdit.Delete();
         if (failed)
         {
-            Syslog::HuggleLogs->ErrorLog("Unable to retrieve content of page we wanted to undo own edit for, error was: " + result);
+            Syslog::HuggleLogs->ErrorLog(_l("history-retrieve-fail", result));
             this->RevertingItem = nullptr;
             this->timerRetrievePageInformation->stop();
             return;
@@ -282,8 +282,8 @@ void History::Tick()
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
         {
-            int message = Generic::MessageBox("Send welcome message instead?", "You created this talk page, so it can't be undone"\
-                                              ", do you want to replace it with a welcome template?", MessageBoxStyleQuestion);
+            int message = Generic::MessageBox(_l("history-welcome-msg-title"), _l("history-welcome-msg"),
+                    MessageBoxStyleQuestion);
             if (message == QMessageBox::Yes)
             {
                 if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.count() == 0)

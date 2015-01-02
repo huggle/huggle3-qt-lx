@@ -22,6 +22,7 @@
 #include "wikiutil.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
@@ -169,8 +170,7 @@ bool WikiEdit::FinalizePostProcessing()
 
         if (this->qTalkpage->IsFailed())
         {
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+            Huggle::Syslog::HuggleLogs->Log(_l("wikiedit-tp-fail", this->User->GetTalk()));
         } else
         {
             // parse the talk page now
@@ -203,8 +203,7 @@ bool WikiEdit::FinalizePostProcessing()
                     this->User->TalkPage_SetContents(e.text());
                 } else
                 {
-                    /// \todo LOCALIZE ME
-                    Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Huggle::Syslog::HuggleLogs->Log(_l("wikiedit-tp-fail", this->User->GetTalk()));
                 }
             } else
             {
@@ -214,8 +213,7 @@ bool WikiEdit::FinalizePostProcessing()
                     this->User->TalkPage_SetContents("");
                 } else
                 {
-                    /// \todo LOCALIZE ME
-                    Huggle::Syslog::HuggleLogs->Log("Unable to retrieve " + this->User->GetTalk() + " warning level will not be scored by it");
+                    Huggle::Syslog::HuggleLogs->Log(_l("wikiedit-tp-fail", this->User->GetTalk()));
                     HUGGLE_DEBUG(this->qTalkpage->Result->Data, 1);
                 }
             }
