@@ -110,6 +110,7 @@
   <string name="config-defaultsummary">Elle yapılan değişiklikler için varsayılan özet</string>
   <string name="config-undosummary">Kendi değişikliklerinizi eski haline getirmek için özet</string>
   <string name="config-confirm-wl">Beyaz listedeki kullanıcı tarafından yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
+  <string name="config-userspace">Kullanıcı alanı</string>
   <string name="config-confirmmultiple">Aynı kullanıcı tarafından yapılan çoklu geri almayı onayla</string>
   <string name="config-confirmsame">Geri çevirilen kullanıcı tarafından yapılan değişikliği geri almayı onayla</string>
   <string name="config-confirmselfrevert">Kendi değişikliklerini (eski haline getirme hariç) geri almayı onayla</string>
@@ -587,5 +588,7 @@
   <string name="cr-message-same">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
+  <string name="requested">Talep</string>
+  <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
   <string name="report-fail" fuzzy="true">$1 rapor edilmedi</string>
 </resources>

@@ -42,6 +42,8 @@
   <string name="link">Link</string>
   <string name="reason">Grond</string>
   <string name="duration">Dauer</string>
+  <string name="enable">Aschalten</string>
+  <string name="disable">Ausschalten</string>
   <string name="flags">Markéierungen</string>
   <string name="score-word">Wuert</string>
   <string name="browser-none">Elo gëtt keng Säit gewisen</string>
@@ -54,6 +56,8 @@
   <string name="block-duration">Dauer:</string>
   <string name="block-message">Message op der Diskussiounssäit:</string>
   <string name="block-anononly">Nëmmen anonym Benotzer spären</string>
+  <string name="block-creation">Uleeë vu Benotzerkonte spären</string>
+  <string name="block-autoblock">Automagtesch Spären aschalten</string>
   <string name="block-email">E-Mail spären</string>
   <string name="block-usertalk">Diskussioun</string>
   <string name="block-usercontribs">Kontributiounen</string>
@@ -65,6 +69,7 @@
   <string name="block-none">Et gëtt kee Benotzer fir ze spären.</string>
   <string name="config-function">Funktioun</string>
   <string name="config-description">Beschreiwung</string>
+  <string name="config-queue-filter-ignore">Ignoréieren (spillt keng Roll)</string>
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>
   <string name="config-title">Optiounen</string>
@@ -76,6 +81,20 @@
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="config-defaultsummary">Standard-Resumé fir manuell Ännerungen</string>
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
+  <string name="config-revert">Zrécksetzen</string>
+  <string name="config-enable-irc">IRC aktivéieren</string>
+  <string name="config-display-text">Nächst weisen</string>
+  <string name="config-nothing">Näischt</string>
+  <string name="config-bot-edits">Bot-Ännerungen (b)</string>
+  <string name="config-own-edits">Eegen Ännerungen</string>
+  <string name="config-reverts">Zrécksetzungen</string>
+  <string name="config-new-page">Nei Säit</string>
+  <string name="config-friend">Frënd</string>
+  <string name="config-userspace">Benotzernummraum</string>
+  <string name="config-talk">Diskussiounssäit</string>
+  <string name="config-updates">No Aktualisatioune sichen</string>
+  <string name="config-beta">No Beta-Versioune sichen</string>
+  <string name="config-close-without">Zoumaachen ouni ze späicheren</string>
   <string name="config-confirmmultiple">Méi Zrécksetzunge vun enger Ännerung vum selweschte Benotzer confirméieren</string>
   <string name="config-confirmsame">Zrécksetze confirméieren wann ob eng Ännerung zréckgesat gëtt déi vum selwechte Benotzer ass</string>
   <string name="config-confirmwarned">Zrécksetzen op eng Ännerung vun engem verwarnte Benotzer confirméieren</string>
@@ -96,10 +115,11 @@
   <string name="delete-title">$1 läschen</string>
   <string name="delete-reason">Grond:</string>
   <string name="delete-deletionlog">Logbuch vum Läschen:</string>
+  <string name="delete-rem-talk">Associéiert Diskussioun läschen</string>
   <string name="delete-e1">D\'Säit kann net geläscht ginn: $1</string>
   <string name="delete-e2">Säit konnt net geläscht ginn</string>
   <string name="delete-edsc">Säit konnt net geläscht gi well $1</string>
-  <string name="extension-kl" fuzzy="true">Ëmbruecht</string>
+  <string name="extension-kl">Funktionéiert net</string>
   <string name="historyform-title">Versiounen</string>
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
@@ -113,6 +133,7 @@
   <string name="login-proxygroup">Proxy-Astellungen</string>
   <string name="login-proxy">E Proxy-Server benotzen</string>
   <string name="login-proxyaddress">Adress:</string>
+  <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domaine:</string>
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
   <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.
@@ -312,6 +333,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
   <string name="shortcut-open-in-huggle">Déi Säit déi elo gewise gët opmaachen</string>
   <string name="shortcut-tab">Mécht en neien Tab op</string>
+  <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelauto">Automatesch</string>
   <string name="warning-level1">Niveau 1</string>
@@ -356,4 +378,13 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
+  <string name="request">Ufro</string>
+  <string name="requesting">Ufroen</string>
+  <string name="requested">Ugefrot</string>
+  <string name="edit-conflict">Ännerungskonflikt</string>
+  <string name="page-tag-nodescription">et gëtt keng Beschreiwung fir dësen Tag :/</string>
+  <string name="page-unknown">Onbekannt Säit</string>
+  <string name="namespace">Nummraum</string>
+  <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>
+  <string name="error-unknown-code">Onbekannte Feeler: $1</string>
 </resources>

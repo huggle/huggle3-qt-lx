@@ -46,6 +46,8 @@
   <string name="whitelisted">$1 con punteggio $2 su $3 è stato inserito nella lista bianca</string>
   <string name="expiry-time">Tempo di scadenza</string>
   <string name="duration">Durata</string>
+  <string name="enable">Attiva</string>
+  <string name="disable">Disattiva</string>
   <string name="no-token">Nessun token</string>
   <string name="flags">Flag</string>
   <string name="score-score">Punteggio</string>
@@ -64,6 +66,7 @@
   <string name="block-reason">Motivo:</string>
   <string name="block-duration">Durata:</string>
   <string name="block-message">Messaggio per la pagina di discussione:</string>
+  <string name="block-message-user">Invia un messaggio all\'utente bersaglio con una spiegazione per il blocco</string>
   <string name="block-anononly">Blocca solo utenti anonimi</string>
   <string name="block-creation">Blocca la creazione di utenze</string>
   <string name="block-autoblock">Attivare autoblocks</string>
@@ -109,7 +112,31 @@
   <string name="config-watchlist">Aggiungi agli osservati speciali</string>
   <string name="config-defaultsummary">Sommario predefinito per le modifiche manuali</string>
   <string name="config-undosummary">Sommario per l\'annullamento delle proprie modifiche</string>
+  <string name="config-confirm-user">Richiesta di conferma per annullare una modifica in namespace utente</string>
   <string name="config-confirm-wl">Richiedere conferma per annullare una modifica realizzata da un utente in lista bianca</string>
+  <string name="config-confirm-talk">Richiesta di conferma per annullare una modifica in pagina di discussione</string>
+  <string name="config-welcome-empty-page">Invia un messaggio di benvenuto agli utenti con la pagina di discussione vuota quando effettuano una modifica corretta</string>
+  <string name="config-conflicts-revert">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
+  <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
+  <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
+  <string name="config-enable-irc">Attiva IRC</string>
+  <string name="config-auto-load-history">Carica automaticamente la cronologia e le informazioni dell\'utente (richiede molta connessione di rete)</string>
+  <string name="config-last-revision">Mostra l\'ultima revisione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima revisione (la scaricherà in seguito bypassando la cache)</string>
+  <string name="config-display-text">Mostra il successivo</string>
+  <string name="config-bot-edits">Modifiche di Bot (b)</string>
+  <string name="config-own-edits">Le proprie modifiche</string>
+  <string name="config-reverts">Annullamenti</string>
+  <string name="config-new-page">Nuova pagina</string>
+  <string name="config-whitelisted">In lista bianca</string>
+  <string name="config-friend">Amico</string>
+  <string name="config-userspace">Spazio Utente</string>
+  <string name="config-talk">Pagina di discussione</string>
+  <string name="config-title-diff">Titolo della pagina in ogni diff (testo di grandi dimensioni che mostra solo il titolo di una pagina in alto ad ogni diff)</string>
+  <string name="config-updates">Verifica aggiornamenti</string>
+  <string name="config-beta">Verifica eventuali versioni beta</string>
+  <string name="config-html-messages">HAN può mostrare i messaggi in formato HTML (pericoloso)</string>
+  <string name="config-summary-present">Evidenzia campo oggetto quando presente, invece che quando manca</string>
+  <string name="config-close-without">Chiudi senza salvare</string>
   <string name="config-confirmmultiple">Conferma gli annullamenti multipli di una modifica da parte dello stesso utente</string>
   <string name="config-confirmsame">Conferma il ritorno ad una modifica dello stesso utente</string>
   <string name="config-confirmselfrevert">Conferma il revert delle proprie modifiche (tranne annulla)</string>
@@ -152,7 +179,8 @@
   <string name="delete-e2">Impossibile cancellare la pagina</string>
   <string name="delete-edsc">Impossibile cancellare la pagina poiché $1</string>
   <string name="delete-failed-no-info">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
-  <string name="extension-kl" fuzzy="true">Ucciso</string>
+  <string name="extension-kl">Non in esecuzione</string>
+  <string name="extension-ok">Caricato e in esecuzione</string>
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
@@ -498,6 +526,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
   <string name="shortcut-tab">Apre una nuova scheda</string>
   <string name="shortcut-rw-stay">Annulla la modifica attuale, avverte un utente e rimane sulla pagina</string>
+  <string name="shortcut-revert-and-stay">Ripristina la versione attuale e rimani sulla pagina</string>
   <string name="warning-title">Avverti $1</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>
@@ -588,5 +617,22 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
-  <string name="report-fail" fuzzy="true">Impossibile segnalare $1</string>
+  <string name="fail">Fallito</string>
+  <string name="request">Richiesta</string>
+  <string name="requesting">Richiesta</string>
+  <string name="requested">Richiesto</string>
+  <string name="edit-conflict">Conflitto di edizione</string>
+  <string name="page-tag-nodescription">non vi è alcuna descrizione per questo tag :/</string>
+  <string name="page-tag-fail">Impossibile taggare la pagina</string>
+  <string name="page-tag-error">Impossibile taggare la pagina, l\'errore è: $1</string>
+  <string name="page-unknown">Pagina sconosciuta</string>
+  <string name="speedy-csd-invalid">Tag CSD non valido, non c\'è alcun messaggio o wiki tag da utilizzare</string>
+  <string name="speedy-csd-existing">C\'è già un tag CSD sulla pagina.</string>
+  <string name="namespace">Namespace</string>
+  <string name="block-alreadyblocked">L\'utente è già bloccato</string>
+  <string name="report-fail">Impossibile segnalare l\'utente perché: $1</string>
+  <string name="about-python-with">, con supporto python</string>
+  <string name="about-python-without">senza supporto python</string>
+  <string name="about-qt">, compilato usando QT $1 In esecuzione su QT $1</string>
+  <string name="error-unknown-code">Errore Sconosciuto: $1</string>
 </resources>

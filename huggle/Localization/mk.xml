@@ -46,6 +46,8 @@
   <string name="whitelisted">$1 со оценка $2 на $3 е ставен на белиот список</string>
   <string name="expiry-time">Истек</string>
   <string name="duration">Траење</string>
+  <string name="enable">Овозможи</string>
+  <string name="disable">Оневозможи</string>
   <string name="no-token">Нема шифра</string>
   <string name="flags">Бележници</string>
   <string name="score-score">Оценка</string>
@@ -64,6 +66,7 @@
   <string name="block-reason">Причина:</string>
   <string name="block-duration">Траење:</string>
   <string name="block-message">Порака на страницата за разговор:</string>
+  <string name="block-message-user">Испратете порака на целниот корисник со образложение за блокот</string>
   <string name="block-anononly">Блокирај само анонимни корисници</string>
   <string name="block-creation">Забрани создавање сметки</string>
   <string name="block-autoblock">Вклучи автоблокирање</string>
@@ -110,7 +113,47 @@
   <string name="config-watchlist">Додај во набљудувани</string>
   <string name="config-defaultsummary">Стандарден опис за рачни уредувања</string>
   <string name="config-undosummary">Опис за враќање на свои уредувања</string>
+  <string name="config-confirm-user">Барај потврда за отповикување на уредување направено во корисничкиот именски простор</string>
   <string name="config-confirm-wl">Барај потврда при отповикување на уредување направено од корисник на белиот список</string>
+  <string name="config-confirm-talk">Барај потврда за отповикување на страница за разговор</string>
+  <string name="config-use-rollback">Користи отповикување преку програм</string>
+  <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни страници за разговор при извршено добро уредување</string>
+  <string name="config-conflicts-revert">Автоматски решавај спорови со други уредници кои ја отповикуваат или менуваат страницата</string>
+  <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
+  <string name="config-revert-wait">Чекање за отповикување (секунди)</string>
+  <string name="config-revert">Отповикај</string>
+  <string name="config-revert-diff">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист корисник (ист вандал)</string>
+  <string name="config-change-all">Смени ги сите поставки на Huggle за да се однесува повеќе како Huggle 2</string>
+  <string name="config-merge-messages">Спој ги моите пораки со други од постоечките делови</string>
+  <string name="config-months-name">Користи месеци како заглавија наместо имиња на страниците</string>
+  <string name="config-automatic-warning">КОристи автоматски тип на опомена и степен во функцијата за испраќање опомена</string>
+  <string name="config-enable-irc">Вклучи го IRC</string>
+  <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг</string>
+  <string name="config-remove-old">Отстрани стари уредувања ако е расчленето поново уредување на истата страница</string>
+  <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
+  <string name="config-last-revision">Прикажувај ја последната преработка на страница во случај тековно вчитаното уредување да не е последната верзиаја (се презема со заобиколување на меѓускладот)</string>
+  <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување за кое не е можно да се употреби никаква записна функција (корисно при решавање на проблем со стискање на повеќе копчиња на тастатурата)</string>
+  <string name="config-wait-edit">За колку да се одложи помеѓу вклучувањето на уредните можности (секунди):</string>
+  <string name="config-display-text">Прикажи следно</string>
+  <string name="config-retrieve-edit">Дај мое уредување</string>
+  <string name="config-nothing">Ништо</string>
+  <string name="config-bot-edits">Ботски уредувања (b)</string>
+  <string name="config-own-edits">Сопствени уредувања</string>
+  <string name="config-reverts">Отповикувања</string>
+  <string name="config-new-page">Нова страница</string>
+  <string name="config-whitelisted">На Белиот список</string>
+  <string name="config-friend">Пријател</string>
+  <string name="config-userspace">Кориснички простор</string>
+  <string name="config-talk">Страница за разговор</string>
+  <string name="config-columns-dynamic">Направи ги колоните во списокот динамички (ќе ја сменат големината зависно од големината на ставките) или рачни (корисникот може да им ја менува големината)</string>
+  <string name="config-message-notification">Прикажувај известување кога ќе примам нова порака во мојата страница за разговор</string>
+  <string name="config-warning-api">Прикажувај предупредувања за барања од извршник</string>
+  <string name="config-title-diff">Наслов на страницата во сите разлики (голем текст со кој е испишан само насловот на страницата поставен врз секоја разлика)</string>
+  <string name="config-updates">Провери поднови</string>
+  <string name="config-beta">Провери бета-верзии</string>
+  <string name="config-html-messages">HAN може да испише HTML-пораки (опасно)</string>
+  <string name="config-summary-present">Истакни краток преглед кога е присутно наместо кога е отсутно</string>
+  <string name="config-close-without">Затвори без зачувување</string>
   <string name="config-confirmmultiple">Потврдувај повеќе преработки на уредување од ист корисник</string>
   <string name="config-confirmsame">Потврдувај преработки на уредување од корисник, кое се отповикува</string>
   <string name="config-confirmselfrevert">Потврдувај отповикувања на сопствени уредувања (освен враќања)</string>
@@ -153,7 +196,8 @@
   <string name="delete-e2">Не можам да ја избришам страницата</string>
   <string name="delete-edsc">Не можам да ја избришам страницата бидејќи $1</string>
   <string name="delete-failed-no-info">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
-  <string name="extension-kl" fuzzy="true">Избришано</string>
+  <string name="extension-kl">Не работи</string>
+  <string name="extension-ok">Вчитано и работи</string>
   <string name="historyform-no-info">Нема информации за уредувањето</string>
   <string name="historyform-title">Историја</string>
   <string name="historyform-retrieve-history">Преземи историја</string>
@@ -498,6 +542,7 @@
   <string name="shortcut-browser-close-tab">Затвори јазиче од прелистувачот</string>
   <string name="shortcut-tab">Отвора ново јазиче</string>
   <string name="shortcut-rw-stay">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
+  <string name="shortcut-revert-and-stay">Отповикај го тековното уредување и остани на страницата</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
   <string name="warning-levelauto">Автоматски</string>
@@ -588,5 +633,32 @@
   <string name="cr-message-same">$1 има повеќе уредувања од еден ист корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
-  <string name="report-fail" fuzzy="true">Не го пријавивте $1</string>
+  <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
+  <string name="fail">Неуспех</string>
+  <string name="request">Барање</string>
+  <string name="requesting">Барање</string>
+  <string name="requested">Побарано</string>
+  <string name="protect-request-fail">Не можам да ја добијам тековната пријавна страница: $1</string>
+  <string name="protect-request-fail-notext">Не можам да ја добијам тековната приајвна страница бидејќи барањето не даде никаков текст од оваа страница</string>
+  <string name="protect-request-fail-notime">Барањето не даде никакакво време и датум (грешка во МедијаВики?). Запирам со барањето.</string>
+  <string name="message-fail">Не успеав да ја доставам пораката</string>
+  <string name="edit-conflict">Спротиставеност во уредувањето.</string>
+  <string name="page-tag-nodescription">нема опис за оваа ознака :/</string>
+  <string name="page-tag-fail">Не успеав да ја означам страницата</string>
+  <string name="page-tag-error">Не можам да ја означам страницата. Грешката гласи: $1</string>
+  <string name="page-unknown">Непозната страница</string>
+  <string name="speedy-csd-invalid">Неважечка CSD-ознака. Нема порака и викиознака што може да се употреби</string>
+  <string name="speedy-csd-existing">Веќе има CSD-ознака на страницата.</string>
+  <string name="namespace">Именски простор</string>
+  <string name="block-alreadyblocked">Корисникот е веќе блокиран</string>
+  <string name="report-fail">Не можам да го пријавам корисникот бидејќи: $1</string>
+  <string name="report-page-fail">Грешка: не можам да ја добијам пријавната страница на $1</string>
+  <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:
+
+ $1</string>
+  <string name="report-unable">Не можам да го пријавам корисникот  :(</string>
+  <string name="about-python-with"> , со поддршка за Python</string>
+  <string name="about-python-without"> без поддршка за Python</string>
+  <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
+  <string name="error-unknown-code">Непозната грешка: $1</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">简体中文</string>
-  <string name="isrtl">失败</string>
+  <string name="isrtl">false</string>
   <string name="add">添加</string>
   <string name="cancel">取消</string>
   <string name="clear">清除</string>
@@ -46,6 +46,8 @@
   <string name="whitelisted">$1连带在$3的分数$2已加入白名单</string>
   <string name="expiry-time">终止时间</string>
   <string name="duration">期限</string>
+  <string name="enable">启用</string>
+  <string name="disable">禁用</string>
   <string name="no-token">无标记</string>
   <string name="flags">标记</string>
   <string name="score-score">分数</string>
@@ -64,6 +66,7 @@
   <string name="block-reason">原因：</string>
   <string name="block-duration">时长:</string>
   <string name="block-message">讨论页消息:</string>
+  <string name="block-message-user">向目标用户发送包含封禁解释的信息</string>
   <string name="block-anononly">仅封禁匿名用户</string>
   <string name="block-creation">禁止创建新账户</string>
   <string name="block-autoblock">启用自动封禁</string>
@@ -110,7 +113,33 @@
   <string name="config-watchlist">添加到监视列表</string>
   <string name="config-defaultsummary">默认为手工编辑摘要</string>
   <string name="config-undosummary">撤销自身编辑的默认编辑摘要</string>
+  <string name="config-confirm-user">回退在用户命名空间做出的编辑时需要确认</string>
   <string name="config-confirm-wl">需要确认以回退白名单用户做出的编辑</string>
+  <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
+  <string name="config-use-rollback">使用软件回退</string>
+  <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
+  <string name="config-revert-wait">回退等待（秒）</string>
+  <string name="config-revert">回退</string>
+  <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
+  <string name="config-change-all">将所有设定更改以模拟Huggle 2的行为</string>
+  <string name="config-merge-messages">将你的信息和其他人的一起合并到已有的段落中</string>
+  <string name="config-months-name">使用月份而不是页面名作为标题</string>
+  <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
+  <string name="config-enable-irc">启用IRC</string>
+  <string name="config-display-text">显示下一个</string>
+  <string name="config-retrieve-edit">取得自己的编辑</string>
+  <string name="config-nothing">什么都没有</string>
+  <string name="config-bot-edits">机器人编辑（b）</string>
+  <string name="config-own-edits">自己的编辑</string>
+  <string name="config-reverts">回退</string>
+  <string name="config-new-page">新页面</string>
+  <string name="config-whitelisted">白名单</string>
+  <string name="config-friend">朋友</string>
+  <string name="config-userspace">用户名字空间</string>
+  <string name="config-talk">讨论页</string>
+  <string name="config-updates">检查更新</string>
+  <string name="config-beta">检查测试版本</string>
+  <string name="config-close-without">不保存关闭</string>
   <string name="config-confirmmultiple">同一用户的多个贡献时确认历史版本</string>
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
   <string name="config-confirmselfrevert">回退自身编辑时确认历史版本</string>
@@ -153,7 +182,8 @@
   <string name="delete-e2">无法删除页面</string>
   <string name="delete-edsc">无法删除页面，因为$1</string>
   <string name="delete-failed-no-info">目前查询中没有页面信息（您是管理员么？）</string>
-  <string name="extension-kl" fuzzy="true">已死</string>
+  <string name="extension-kl">未运行</string>
+  <string name="extension-ok">已加载，正在运行</string>
   <string name="historyform-no-info">没有编辑信息</string>
   <string name="historyform-title">历史</string>
   <string name="historyform-retrieve-history">检索历史</string>
@@ -498,6 +528,7 @@
   <string name="shortcut-browser-close-tab">关闭浏览器标签</string>
   <string name="shortcut-tab">打开新标签</string>
   <string name="shortcut-rw-stay">回退最近编辑，警告用户并留在此页</string>
+  <string name="shortcut-revert-and-stay">回退当前编辑并留在页面</string>
   <string name="warning-title">警告$1</string>
   <string name="warning-levelgroup">警告层级</string>
   <string name="warning-levelauto">自动</string>
@@ -588,5 +619,31 @@
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
-  <string name="report-fail" fuzzy="true">未提报$1</string>
+  <string name="preferences-delete-using-filter">你无法删除一个正在使用的过滤器</string>
+  <string name="fail">失败</string>
+  <string name="request">请求</string>
+  <string name="requesting">请求中</string>
+  <string name="requested">已请求</string>
+  <string name="protect-request-fail">无法获取当前举报页面：$1</string>
+  <string name="protect-request-fail-notext">无法获取当前举报页面，因为查询没有返回任何文本</string>
+  <string name="message-fail">发送信息失败</string>
+  <string name="edit-conflict">编辑冲突</string>
+  <string name="page-tag-nodescription">这个标记没有说明 :(</string>
+  <string name="page-tag-fail">无法标记页面</string>
+  <string name="page-tag-error">无法标记页面，错误是:$1</string>
+  <string name="page-unknown">未知页面</string>
+  <string name="speedy-csd-invalid">无效速删标记，没有信息或维基标记可以使用</string>
+  <string name="speedy-csd-existing">页面上已经有一个速删标记了。</string>
+  <string name="namespace">名字空间</string>
+  <string name="block-alreadyblocked">用户已被封禁</string>
+  <string name="report-fail">无法提报用户，因为：$1</string>
+  <string name="report-page-fail">错误 无法获取，请在$1汇报</string>
+  <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：
+
+$1</string>
+  <string name="report-unable">无法提报用户 :(</string>
+  <string name="about-python-with">，包含Python支持</string>
+  <string name="about-python-without">无Python支持</string>
+  <string name="about-qt">，使用QT $1编译 正在用QT $1运行</string>
+  <string name="error-unknown-code">未知错误：$1</string>
 </resources>

@@ -46,6 +46,8 @@
   <string name="whitelisted">$1 se skóre $2 byl vložen do wl pro $3</string>
   <string name="expiry-time">Datum vypršení</string>
   <string name="duration">Doba</string>
+  <string name="enable">Zapnuto</string>
+  <string name="disable">Vypnuto</string>
   <string name="no-token">Chybí token</string>
   <string name="flags">Flagy</string>
   <string name="score-score">Skóre</string>
@@ -110,6 +112,7 @@
   <string name="config-defaultsummary">Výchozí shrnutí pro ruční editace</string>
   <string name="config-undosummary">Shrnutí při vracení vlastní úpravy</string>
   <string name="config-confirm-wl">Požadovat potvrzení pro návrat úpravy, která byla provedena uživatelem ktery je na bílé listině</string>
+  <string name="config-revert">Vrátit zpět</string>
   <string name="config-confirmmultiple">Potvrdit více revertů úprav provedených jedním uživatelem</string>
   <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
@@ -587,5 +590,8 @@
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené stejným uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="request">Požadavek</string>
+  <string name="namespace">Jmenný prostor</string>
+  <string name="block-alreadyblocked">Uživatel již je zablokován.</string>
   <string name="report-fail" fuzzy="true">Nepodařilo se nahlásit uživatele: $1</string>
 </resources>

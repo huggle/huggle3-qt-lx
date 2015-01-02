@@ -46,6 +46,8 @@
   <string name="whitelisted">$1 mit dem Score $2 auf $3 wurde der Whitelist hinzugefügt</string>
   <string name="expiry-time">Zeit des Ablaufs</string>
   <string name="duration">Dauer</string>
+  <string name="enable">Aktivieren</string>
+  <string name="disable">Deaktivieren</string>
   <string name="no-token">Kein Token</string>
   <string name="flags">Markierungen</string>
   <string name="score-score">Score</string>
@@ -64,6 +66,7 @@
   <string name="block-reason">Grund:</string>
   <string name="block-duration">Dauer:</string>
   <string name="block-message">Nachricht auf Diskussionsseite:</string>
+  <string name="block-message-user">Nachricht mit einer Erklärung für die Sperre an den Zielbenutzer senden</string>
   <string name="block-anononly">Nur anonyme Benutzer sperren</string>
   <string name="block-creation">Erstellen von Konten verhindern</string>
   <string name="block-autoblock">Autosperren anschalten</string>
@@ -110,7 +113,47 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>
   <string name="config-undosummary">Zusammenfassung für das Widerrufen einer eigenen Änderung</string>
+  <string name="config-confirm-user">Bestätigung für das Zurücksetzen einer Bearbeitung anfordern, die im Benutzernamensraum durchgeführt wurde.</string>
   <string name="config-confirm-wl">Bestätigung für das Zurücksetzen der Bearbeitung eines weißgelisteten Benutzers erforderlich</string>
+  <string name="config-confirm-talk">Bestätigung zum Zurücksetzen einer Diskussionsseite anfordern</string>
+  <string name="config-use-rollback">Software-Rollback verwenden</string>
+  <string name="config-welcome-empty-page">Bei guten Bearbeitungen Willkommensnachrichten an Benutzer mit leerer Diskussionsseite senden</string>
+  <string name="config-conflicts-revert">Konflikte mit anderen Benutzern, die die Seite zurücksetzen oder ändern, automatisch beheben.</string>
+  <string name="config-instant-reverts">Sofortiges Zurücksetzen verwenden (sehr schnell; kann jedoch, sobald ausgeführt, nicht abgebrochen werden).</string>
+  <string name="config-revert-wait">Warten für das Zurücksetzen (Sekunden)</string>
+  <string name="config-revert">Zurücksetzen</string>
+  <string name="config-revert-diff">Neuere Bearbeitungen an der Seite als im angezeigten Unterschied zurücksetzen, falls sie vom gleichen Benutzer durchgeführt wurden (derselbe Vandale).</string>
+  <string name="config-change-all">Alle Huggle-Einstellungen auf das Verhalten von Huggle 2 ändern</string>
+  <string name="config-merge-messages">Deine Nachrichten mit anderen in vorhandenen Abschnitten zusammenführen</string>
+  <string name="config-months-name">Monate anstelle des Seitennamens als Überschriften verwenden</string>
+  <string name="config-automatic-warning">Automatischen Warntyp und -Level auf der Funktion „Warnung senden“ verwenden</string>
+  <string name="config-enable-irc">IRC aktivieren</string>
+  <string name="config-remove-reverted">Bearbeitungen entfernen, die bereits von jemand anderem zurückgesetzt wurden.</string>
+  <string name="config-remove-old">Alte Bearbeitungen entfernen, falls neuere Bearbeitung an der gleichen Seite geparst ist.</string>
+  <string name="config-auto-load-history">Versionsgeschichte und Benutzerinformationen automatisch laden (erfordert eine hohe Datenmenge).</string>
+  <string name="config-last-revision">Letzte Seitenversion anzeigen, falls die derzeit geladene Bearbeitung nicht die letzte Version ist (wird mit dem Umgehen des Caches nachgeladen).</string>
+  <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, für die keine Schreibfunktionen möglich sind (nützlich, wenn du einen Tastatur-Mehrfachdrück-Fehler beheben musst).</string>
+  <string name="config-wait-edit">Zu wartende Zeit bis zur Aktivierung von Bearbeitungsfunktionen (Sekunden):</string>
+  <string name="config-display-text">Nächste anzeigen</string>
+  <string name="config-retrieve-edit">Eigene Bearbeitung abrufen</string>
+  <string name="config-nothing">Nichts</string>
+  <string name="config-bot-edits">Bot-Bearbeitungen (b)</string>
+  <string name="config-own-edits">Eigene Bearbeitungen</string>
+  <string name="config-reverts">Zurücksetzungen</string>
+  <string name="config-new-page">Neue Seite</string>
+  <string name="config-whitelisted">Weißgelistet</string>
+  <string name="config-friend">Freund</string>
+  <string name="config-userspace">Benutzernamensraum</string>
+  <string name="config-talk">Diskussionsseite</string>
+  <string name="config-columns-dynamic">Die Listenspalten dynamisch machen (werden basierend auf der Größe der Elemente angepasst) oder manuell (Benutzer kann ihre Größe ändern).</string>
+  <string name="config-message-notification">Eine Benachrichtigung anzeigen, wenn du eine neue Nachricht auf deiner Diskussionsseite erhältst.</string>
+  <string name="config-warning-api">Warnungen für API-Anfragen anzeigen</string>
+  <string name="config-title-diff">Seitentitel in jedem Unterschied (langer Text, der nur einen Seitentitel am Anfang jeden Unterschieds anzeigt).</string>
+  <string name="config-updates">Nach Aktualisierungen suchen</string>
+  <string name="config-beta">Nach Beta-Versionen suchen</string>
+  <string name="config-html-messages">HAN kann HTML-Nachrichten anzeigen (gefährlich)</string>
+  <string name="config-summary-present">Vorhandene statt fehlende Zusammenfassung hervorheben</string>
+  <string name="config-close-without">Schließen ohne zu speichern</string>
   <string name="config-confirmmultiple">Verlange Bestätigung, wenn mehrere Änderungen eines Benutzers widerrufen werden sollen</string>
   <string name="config-confirmsame">Verlange Bestätigung, wenn die Änderung auf einer Version die dieser Benutzer bearbeitet hat, zurückgesetzt wird</string>
   <string name="config-confirmselfrevert">Verlange Bestätigung für das Widerrufen eigener Änderungen (außer Entfernen)</string>
@@ -153,7 +196,8 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="delete-e2">Seite kann nicht gelöscht werden</string>
   <string name="delete-edsc">Seite konnte nicht gelöscht werden, da $1</string>
   <string name="delete-failed-no-info">Es sind keine Seiteninformationen in der Abfrage vorhanden. Bist du ein Administrator?</string>
-  <string name="extension-kl" fuzzy="true">Gelöscht</string>
+  <string name="extension-kl">Läuft nicht</string>
+  <string name="extension-ok">Geladen und läuft</string>
   <string name="historyform-no-info">Keine Bearbeitungsinformation</string>
   <string name="historyform-title">Versionsgeschichte</string>
   <string name="historyform-retrieve-history">Rufe Versionsgeschichte ab</string>
@@ -498,6 +542,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="shortcut-browser-close-tab">Eine Browser-Registerkarte schließen</string>
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
   <string name="shortcut-rw-stay">Aktuelle Bearbeitung zurücksetzen, warnt einen Benutzer und bleibt auf der Seite.</string>
+  <string name="shortcut-revert-and-stay">Aktuelle Bearbeitung zurücksetzen und auf Seite bleiben</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -588,5 +633,32 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>
-  <string name="report-fail" fuzzy="true">$1 wurde nicht berichtet</string>
+  <string name="preferences-delete-using-filter">Du kannst keinen Filter löschen, der bereits verwendet wird.</string>
+  <string name="fail">Fehlgeschlagen</string>
+  <string name="request">Anfragen</string>
+  <string name="requesting">Frage an …</string>
+  <string name="requested">Angefragt</string>
+  <string name="protect-request-fail">Die aktuelle Berichtsseite konnte nicht abgerufen werden: $1</string>
+  <string name="protect-request-fail-notext">Die aktuelle Berichtsseite konnte nicht abgerufen werden, da die Anfrage keinen Text für diese Seite zurückgegeben hat.</string>
+  <string name="protect-request-fail-notime">Die Anfrage hat keinen Zeitstempel zurückgegeben (Fehler in MediaWiki?). Anfrage wird verworfen.</string>
+  <string name="message-fail">Nachricht konnte nicht versandt werden</string>
+  <string name="edit-conflict">Bearbeitungskonflikt</string>
+  <string name="page-tag-nodescription">Für diese Markierung gibt es keine Beschreibung :/</string>
+  <string name="page-tag-fail">Seite konnte nicht markiert werden</string>
+  <string name="page-tag-error">Seite konnte nicht markiert werden. Der Fehler war: $1</string>
+  <string name="page-unknown">Unbekannte Seite</string>
+  <string name="speedy-csd-invalid">Ungültige CSD-Markierung. Es gibt keine zu verwendende Nachricht und Wiki-Markierung.</string>
+  <string name="speedy-csd-existing">Es gibt bereits eine CSD-Markierung auf der Seite.</string>
+  <string name="namespace">Namensraum</string>
+  <string name="block-alreadyblocked">Benutzer ist bereits gesperrt</string>
+  <string name="report-fail">Benutzer konnte nicht berichtet werden, da: $1</string>
+  <string name="report-page-fail">Fehler: Berichtsseite unter $1 konnte nicht abgerufen werden.</string>
+  <string name="report-page-fail-time">Der Zeitstempel für die aktuelle Berichtsseite konnte nicht abgerufen werden. API-Fehler:
+
+ $1</string>
+  <string name="report-unable">Benutzer konnte nicht berichtet werden :(</string>
+  <string name="about-python-with"> , mit Python-Unterstützung</string>
+  <string name="about-python-without">ohne Python-Unterstützung</string>
+  <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
+  <string name="error-unknown-code">Unbekannter Fehler: $1</string>
 </resources>

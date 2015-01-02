@@ -45,6 +45,8 @@
   <string name="whitelisted">$1, com uma pontuação de $2 em $3, foi adicionado(a) à lista branca</string>
   <string name="expiry-time">Validade</string>
   <string name="duration">Duração</string>
+  <string name="enable">Ativar</string>
+  <string name="disable">Desativar</string>
   <string name="no-token">Nenhum código de verificação</string>
   <string name="flags">Sinalizações</string>
   <string name="score-score">Pontuação</string>
@@ -104,6 +106,17 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-watchlist">Adicionar às páginas vigiadas</string>
   <string name="config-defaultsummary">Sumário padrão para edições manuais</string>
   <string name="config-undosummary">Sumário para edições minhas que eu cancelar</string>
+  <string name="config-use-rollback">Usar software de reversão</string>
+  <string name="config-welcome-empty-page">Enviar mensagens de boas-vindas, devido a uma uma boa edição, para utilizadores com uma página de discussão vazia</string>
+  <string name="config-revert">Reverter</string>
+  <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
+  <string name="config-bot-edits">Edições de robô (b)</string>
+  <string name="config-reverts">Reversões</string>
+  <string name="config-new-page">Página nova</string>
+  <string name="config-userspace">Domínio Utilizador</string>
+  <string name="config-talk">Página de discussão</string>
+  <string name="config-beta">Verificar existência de versões beta</string>
+  <string name="config-close-without">Fechar sem gravar</string>
   <string name="config-confirmmultiple">Pedir confirmação ao reverter várias edições do mesmo utilizador</string>
   <string name="config-confirmsame">Pedir confirmação ao reverter para uma edição do mesmo utilizador</string>
   <string name="config-confirmselfrevert">Pedir confirmação ao reverter as minhas edições (excluindo desfazer)</string>
@@ -572,5 +585,10 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
-  <string name="report-fail" fuzzy="true">Não foi possível denunciar $1</string>
+  <string name="page-unknown">Página desconhecida</string>
+  <string name="namespace">Domínio</string>
+  <string name="block-alreadyblocked">O utilizador já se encontra bloqueado</string>
+  <string name="report-fail">Não foi possível denunciar o utilizador: $1</string>
+  <string name="report-unable">Não foi possível denunciar o utilizador :(</string>
+  <string name="error-unknown-code">Erro desconhecido: \"$1\"</string>
 </resources>
