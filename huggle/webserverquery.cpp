@@ -29,6 +29,8 @@ Huggle::WebserverQuery::~WebserverQuery()
 {
     if (this->reply != nullptr)
     {
+        QObject::disconnect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
+        QObject::disconnect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
         this->disconnect(this->reply);
         this->reply->abort();
         this->reply->disconnect(this);
