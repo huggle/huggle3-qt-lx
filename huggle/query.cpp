@@ -150,3 +150,12 @@ QString Query::DebugURL()
 {
     return "null";
 }
+
+void Query::ThrowOnValidResult()
+{
+    if (!this->Result)
+        return;
+
+    this->Status = StatusInError;
+    throw new Huggle::Exception("Result was not NULL memory leaked", BOOST_CURRENT_FUNCTION);
+}

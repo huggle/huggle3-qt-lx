@@ -51,6 +51,8 @@ QString WLQuery::QueryTargetToString()
 
 void WLQuery::Process()
 {
+    this->StartTime = QDateTime::currentDateTime();
+    this->ThrowOnValidResult();
     if (Configuration::HuggleConfiguration->GlobalConfig_Whitelist.isEmpty())
     {
         // there is no whitelist in config for this wiki
@@ -60,7 +62,6 @@ void WLQuery::Process()
         this->Status = Huggle::StatusInError;
         return;
     }
-    this->StartTime = QDateTime::currentDateTime();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist

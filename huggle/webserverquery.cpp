@@ -41,6 +41,7 @@ Huggle::WebserverQuery::~WebserverQuery()
 
 void WebserverQuery::Process()
 {
+    this->StartTime = QDateTime::currentDateTime();
     if (this->URL.isEmpty())
     {
         this->Result = new QueryResult(true);
@@ -48,7 +49,7 @@ void WebserverQuery::Process()
         this->Status = StatusInError;
         return;
     }
-    this->StartTime = QDateTime::currentDateTime();
+    this->ThrowOnValidResult();
     this->Status = StatusProcessing;
     this->Result = new QueryResult();
 

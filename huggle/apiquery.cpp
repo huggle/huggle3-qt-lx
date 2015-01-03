@@ -208,6 +208,7 @@ void ApiQuery::Process()
         return;
     }
     this->StartTime = QDateTime::currentDateTime();
+    this->ThrowOnValidResult();
     if (!this->URL.size())
         this->ConstructUrl();
     this->Status = StatusProcessing;
