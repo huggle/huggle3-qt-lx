@@ -217,7 +217,7 @@ namespace Huggle
             QStringList             Tags;
             //! Help for tags
             QHash<QString,QString>  TagsDesc;
-            QHash<QString,bool>     TagsArgs;
+            QHash<QString,QString>  TagsArgs;
             //! Where the welcome message is stored
             QString                 WelcomeMP = "Project:Huggle/Message";
             // This is internal only do not prefix it!!

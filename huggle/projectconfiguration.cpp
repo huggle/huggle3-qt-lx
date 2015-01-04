@@ -168,8 +168,19 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->UAAPath = HuggleParser::ConfigurationParse("uaa", config);
     this->TaggingSummary = HuggleParser::ConfigurationParse("tag-summary", config, "Tagging page");
     this->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
+    QStringList tags_copy(this->Tags);
     this->TagsArgs.clear();
     this->TagsDesc.clear();
+    foreach (QString item, tags_copy)
+    {
+        if (item.contains("|"))
+        {
+            QString pm = item.mid(item.indexOf("|") + 1);
+            QString key = item.mid(0, item.indexOf("|"));
+            if (!this->TagsArgs.contains(key))
+                this->TagsArgs.insert(key, pm);
+        }
+    }
     QStringList TagsInfo = HuggleParser::ConfigurationParse_QL("tags-info", config);
     foreach (QString tag, TagsInfo)
     {
@@ -179,14 +190,15 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
             HUGGLE_DEBUG("Ignoring invalid tag info: " + tag, 2);
             continue;
         }
-        if (this->TagsDesc.contains(info[0]) || this->TagsArgs.contains(info[0]))
+        if (this->TagsDesc.contains(info[0]))
         {
             HUGGLE_DEBUG1("Multiple taginfo: " + tag);
             continue;
         }
         if (!this->Tags.contains(info[0]))
             this->Tags.append(info[0]);
-        this->TagsArgs.insert(info[0], Generic::SafeBool(info[1]));
+        if (!this->TagsArgs.contains(info[0]))
+            this->TagsArgs.insert(info[0],info[1]);
         this->TagsDesc.insert(info[0],info[2]);
     }
     // Blocking
