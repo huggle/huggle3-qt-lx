@@ -184,6 +184,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     QStringList TagsInfo = HuggleParser::ConfigurationParse_QL("tags-info", config);
     foreach (QString tag, TagsInfo)
     {
+        if (tag.endsWith(","))
+            tag = tag.mid(0, tag.size() - 1);
         QStringList info = tag.split(QChar(';'));
         if (info.count() < 2)
         {
