@@ -187,12 +187,12 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         QStringList info = tag.split(QChar(';'));
         if (info.count() < 2)
         {
-            HUGGLE_DEBUG("Ignoring invalid tag info: " + tag, 2);
+            Syslog::HuggleLogs->DebugLog("Ignoring invalid tag info: " + tag);
             continue;
         }
         if (this->TagsDesc.contains(info[0]))
         {
-            HUGGLE_DEBUG1("Multiple taginfo: " + tag);
+            Syslog::HuggleLogs->DebugLog("Multiple taginfo: " + tag);
             continue;
         }
         if (!this->Tags.contains(info[0]))
