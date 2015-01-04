@@ -177,6 +177,9 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         {
             QString pm = item.mid(item.indexOf("|") + 1);
             QString key = item.mid(0, item.indexOf("|"));
+            int index = this->Tags.indexOf(item);
+            this->Tags.removeAt(index);
+            this->Tags.insert(index, key);
             if (!this->TagsArgs.contains(key))
                 this->TagsArgs.insert(key, pm);
         }
