@@ -168,19 +168,26 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->UAAPath = HuggleParser::ConfigurationParse("uaa", config);
     this->TaggingSummary = HuggleParser::ConfigurationParse("tag-summary", config, "Tagging page");
     this->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
-    QStringList t2 = HuggleParser::ConfigurationParse_QL("tags-detailed", config, true);
-    foreach (QString item, t2)
+    this->TagsArgs.clear();
+    this->TagsDesc.clear();
+    QStringList TagsInfo = HuggleParser::ConfigurationParse_QL("tags-info", config);
+    foreach (QString tag, TagsInfo)
     {
-        // we need to copy the tags from this other list
-        // to keep h2 work with old ones
-        if (item.contains(";"))
+        QStringList info = tag.split(QChar(';'));
+        if (info.count() < 2)
         {
-            // extract name
-            QString name = item.mid(0, item.indexOf(";"));
-            if (this->Tags.contains(name))
-                this->Tags.removeOne(name);
+            HUGGLE_DEBUG("Ignoring invalid tag info: " + tag, 2);
+            continue;
         }
-        this->Tags.append(item);
+        if (this->TagsDesc.contains(info[0]) || this->TagsArgs.contains(info[0]))
+        {
+            HUGGLE_DEBUG1("Multiple taginfo: " + tag);
+            continue;
+        }
+        if (!this->Tags.contains(info[0]))
+            this->Tags.append(info[0]);
+        this->TagsArgs.insert(info[0], Generic::SafeBool(info[1]));
+        this->TagsDesc.insert(info[0],info[2]);
     }
     // Blocking
     this->WhitelistScore = HuggleParser::ConfigurationParse("score-wl", config, "-800").toInt();

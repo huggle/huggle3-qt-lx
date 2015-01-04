@@ -53,17 +53,14 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
     this->page = new WikiPage(wikipage);
     this->setWindowTitle(_l("tag-title", page->PageName));
     // fill it up with tags
-    QStringList keys = Configuration::HuggleConfiguration->ProjectConfig->Tags;
+    QStringList keys = wikipage->GetSite()->GetProjectConfig()->Tags;
     int rx = 0;
     foreach (QString item, keys)
     {
         QString key = item;
         QString description = _l("page-tag-nodescription");
-        if (key.contains(";"))
-        {
-            description = key.mid(key.indexOf(";") + 1);
-            key = key.mid(0, key.indexOf(";"));
-        }
+        if (wikipage->GetSite()->GetProjectConfig()->TagsDesc.contains(key))
+            description = wikipage->GetSite()->GetProjectConfig()->TagsDesc[key];
         this->ui->tableWidget->insertRow(rx);
         QCheckBox *Item = new QCheckBox(this);
         if (this->page->Contents.contains(key))
