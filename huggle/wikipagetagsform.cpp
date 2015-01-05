@@ -73,8 +73,6 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
         this->Arguments.insert(key, line);
         if (wikipage->GetSite()->GetProjectConfig()->TagsArgs.contains(key) && !wikipage->GetSite()->GetProjectConfig()->TagsArgs[key].isEmpty())
         {
-            line->setEnabled(true);
-
             line->setText(wikipage->GetSite()->GetProjectConfig()->TagsArgs[key]);
         }
         else
