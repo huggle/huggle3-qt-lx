@@ -159,7 +159,7 @@ void Warnings::ResendWarnings()
                 {
                     // there was some error, which suck, we print it to console and delete this warning, there is a little point
                     // in doing anything else to fix it.
-                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->User->Username
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->RelatedEdit->User->Username
                                      + " the warning will not be delivered to this user");
                     PendingWarning::PendingWarnings.removeAt(x);
                     delete warning;
@@ -178,7 +178,7 @@ void Warnings::ResendWarnings()
                     {
                         // the talk page which existed was probably deleted by someone
                         Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user "
-                                                     + warning->Warning->User->Username
+                                                     + warning->RelatedEdit->User->Username
                                                      + " because it was deleted meanwhile, the warning will not be delivered to this user");
                         PendingWarning::PendingWarnings.removeAt(x);
                         delete warning;
@@ -193,7 +193,7 @@ void Warnings::ResendWarnings()
                     {
                         if (!e.attributes().contains("timestamp"))
                         {
-                            Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + warning->Warning->User->Username +
+                            Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + warning->RelatedEdit->User->Username +
                                                                  " couldn't be retrieved, mediawiki returned no data for it");
                             PendingWarning::PendingWarnings.removeAt(x);
                             delete warning;
@@ -202,13 +202,13 @@ void Warnings::ResendWarnings()
                         {
                             TPRevBaseTime = e.attribute("timestamp");
                         }
-                        warning->Warning->User->TalkPage_SetContents(e.text());
+                        warning->RelatedEdit->User->TalkPage_SetContents(e.text());
                     } else
                     {
                         // there was some error, which suck, we print it to console and delete this warning, there is a little point
                         // in doing anything else to fix it.
                         Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user "
-                                                     + warning->Warning->User->Username
+                                                     + warning->RelatedEdit->User->Username
                                                      + " the warning will not be delivered to this user, check debug logs for more");
                         Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
                         PendingWarning::PendingWarnings.removeAt(x);
@@ -219,7 +219,7 @@ void Warnings::ResendWarnings()
                 {
                     // there was some error, which suck, we print it to console and delete this warning, there is a little point
                     // in doing anything else to fix it.
-                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->Warning->User->Username
+                    Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->RelatedEdit->User->Username
                                         + " the warning will not be delivered to this user, check debug logs for more");
                     Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
                     PendingWarning::PendingWarnings.removeAt(x);
@@ -228,8 +228,8 @@ void Warnings::ResendWarnings()
                 }
 
                 // so we now have the new talk page content so we need to reclassify the user
-                warning->Warning->User->ParseTP(QDate::currentDate());
-                warning->Warning->User->Update(true);
+                warning->RelatedEdit->User->ParseTP(QDate::currentDate());
+                warning->RelatedEdit->User->Update(true);
 
                 // now when we have the new level of warning we can try to send a new warning and hope that talk page wasn't
                 // changed meanwhile again lol :D
