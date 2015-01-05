@@ -185,12 +185,12 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         flags.contains("helpful")  || flags.contains("approve") ||
         flags.contains("resolve")  || flags.contains("upload") ||
         flags.contains("feature")  || flags.contains("noaction") ||
-        flags.contains("selfadd")  || flags.contains("overwrite") ||
+        flags.contains("byemail")  || flags.contains("overwrite") ||
         flags.contains("create")   || flags.contains("delete") ||
         flags.contains("restore")  || flags.contains("move") ||
         flags.contains("tag")      || /* abuse filter */flags.contains("hit") ||
         flags.contains("patrol")   || flags.contains("revision") ||
-        flags.contains("add"))
+        flags.contains("add")      || flags.contains("selfadd"))
     {
         edit->DecRef();
         return;
