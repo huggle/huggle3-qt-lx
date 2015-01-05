@@ -112,7 +112,7 @@ namespace Huggle
             void FinishRollback();
             QString ActionPart;
             //! Reply from qnet
-            QNetworkReply *reply;
+            QNetworkReply *reply = nullptr;
     };
 
     inline bool ApiQuery::FormatIsCurrentlySupported()

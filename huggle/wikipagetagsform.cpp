@@ -26,10 +26,10 @@
 using namespace Huggle;
 WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new Ui::WikiPageTagsForm)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     QStringList header;
-    header << "" << _l("tag-tags") << _l("description");
-    this->ui->tableWidget->setColumnCount(3);
+    header << "" << _l("tag-tags") << _l("tag-parameter") << _l("description");
+    this->ui->tableWidget->setColumnCount(4);
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->checkBox->setText(_l("tag-insertatend"));
     this->ui->tableWidget->verticalHeader()->setVisible(false);
@@ -54,6 +54,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
     this->setWindowTitle(_l("tag-title", page->PageName));
     // fill it up with tags
     QStringList keys = wikipage->GetSite()->GetProjectConfig()->Tags;
+    //! \todo Currently we parse the tags from diff instead of page text
     int rx = 0;
     foreach (QString item, keys)
     {
@@ -63,12 +64,28 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
             description = wikipage->GetSite()->GetProjectConfig()->TagsDesc[key];
         this->ui->tableWidget->insertRow(rx);
         QCheckBox *Item = new QCheckBox(this);
-        if (this->page->Contents.contains(key))
+        if (this->page->Contents.toLower().contains("{{" + key.toLower()))
             Item->setChecked(true);
-        this->CheckBoxes.append(Item);
+        if (this->CheckBoxes.contains(key) || this->Arguments.contains(key))
+            throw new Huggle::Exception("Tag is already in hash list", BOOST_CURRENT_FUNCTION);
+        this->CheckBoxes.insert(key, Item);
+        QLineEdit *line = new QLineEdit(this);
+        this->Arguments.insert(key, line);
+        if (wikipage->GetSite()->GetProjectConfig()->TagsArgs.contains(key) && !wikipage->GetSite()->GetProjectConfig()->TagsArgs[key].isEmpty())
+        {
+            line->setEnabled(true);
+
+            line->setText(wikipage->GetSite()->GetProjectConfig()->TagsArgs[key]);
+        }
+        else
+        {
+            line->setText("No parameters");
+            line->setEnabled(false);
+        }
         this->ui->tableWidget->setCellWidget(rx, 0, Item);
         this->ui->tableWidget->setItem(rx, 1, new QTableWidgetItem("{{" + key + "}}"));
-        this->ui->tableWidget->setItem(rx, 2, new QTableWidgetItem(description));
+        this->ui->tableWidget->setCellWidget(rx, 2, line);
+        this->ui->tableWidget->setItem(rx, 3, new QTableWidgetItem(description));
         rx++;
     }
     this->ui->tableWidget->resizeColumnsToContents();
@@ -93,6 +110,31 @@ static void Fail(Query *result)
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
+// This function will remove a tag from page text, it's case
+// insensitive and it removes even tags with parameters
+static QString ClearTag(QString tag, QString value)
+{
+    QString temp = value.toUpper();
+    QString up = tag.toUpper();
+    if (temp.contains("{{" + up))
+    {
+        int start = temp.indexOf("{{" + up);
+        if (!value.mid(start).contains("}}"))
+        {
+            // this means that there is some syntax error in page, which is not our problem
+            // we just skip that broken tag
+            return value;
+        }
+        int end = value.indexOf("}}", start) + 2;
+        // if there is a newline we should remove it as well
+        if (value.size() > end && value.at(end + 1) == QChar('\n'))
+            end++;
+
+        value.remove(start, end - start);
+    }
+    return value;
+}
+
 void Huggle::WikiPageTagsForm_FinishRead(Query *result)
 {
     ApiQuery *retrieve = (ApiQuery*)result;
@@ -101,25 +143,41 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     QString text = Generic::EvaluateWikiPageContents(retrieve, &success, &t_);
     if (success)
     {
-        QMessageBox mb;
-        mb.setWindowTitle(_l("page-tag-fail"));
-        mb.setText(_l("page-tag-error", text));
-        mb.exec();
+        Generic::MessageBox(_l("page-tag-fail"), _l("page-tag-error", text));
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;
     }
     // append all tags to top of page or bottom, depending on preference of user
     int xx = 0;
     WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
+    result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     while (xx < form->ui->tableWidget->rowCount())
     {
-        if (Configuration::HuggleConfiguration->ProjectConfig->Tags.count() > xx && form->CheckBoxes.count() > xx )
+        if (form->page->GetSite()->GetProjectConfig()->Tags.count() > xx && form->Arguments.count() > xx && form->CheckBoxes.count() > xx)
         {
-            QString key = "{{" + Configuration::HuggleConfiguration->ProjectConfig->Tags.at(xx) + "}}";
-            if (form->CheckBoxes.at(xx)->isChecked())
+            QString tag = form->page->GetSite()->GetProjectConfig()->Tags.at(xx);
+            if (!form->CheckBoxes.contains(tag))
+                throw new Huggle::Exception("No such a tag in hash table", BOOST_CURRENT_FUNCTION);
+            if (form->CheckBoxes[tag]->isChecked())
             {
+                if (!form->Arguments.contains(tag))
+                    throw new Huggle::Exception("No such a tag in hash table", BOOST_CURRENT_FUNCTION);
+                QString key = "{{" + form->page->GetSite()->GetProjectConfig()->Tags.at(xx) + "}}";
+                if (!form->page->GetSite()->GetProjectConfig()->TagsArgs.contains(tag))
+                    throw new Huggle::Exception("No such a tag in args hash: " + tag, BOOST_CURRENT_FUNCTION);
+                if (!form->page->GetSite()->GetProjectConfig()->TagsArgs[tag].isEmpty())
+                {
+                    if (form->Arguments[tag]->text() == form->page->GetSite()->GetProjectConfig()->TagsArgs[tag])
+                    {
+                        Generic::pMessageBox(form, "Error", "This tag requires a parameter, but you didn't provide any for it: " + tag);
+                        return;
+                    }
+                    key = "{{" + tag + "|" + form->Arguments[tag]->text() + "}}";
+                }
                 if (!text.contains(key))
                 {
+                    // in case there is a different version of this tag in text, we need to remove it first
+                    text = ClearTag(tag, text);
                     if (!form->ui->checkBox->isChecked())
                         text = key + "\n" + text;
                     else
@@ -127,8 +185,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 }
             } else
             {
-                if (text.contains(key + "\n"))
-                    text.replace(key + "\n", "");
+                text = ClearTag(tag, text);
             }
         }
         xx++;

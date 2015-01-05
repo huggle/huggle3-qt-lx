@@ -15,6 +15,8 @@
 
 #include <QDialog>
 #include <QCheckBox>
+#include <QLineEdit>
+#include <QHash>
 #include <QStringList>
 #include <QString>
 
@@ -44,7 +46,8 @@ namespace Huggle
         private:
             friend void Huggle::WikiPageTagsForm_FinishRead(Query *result);
             WikiPage *page = nullptr;
-            QList<QCheckBox*> CheckBoxes;
+            QHash<QString,QLineEdit*> Arguments;
+            QHash<QString,QCheckBox*> CheckBoxes;
             Ui::WikiPageTagsForm *ui;
     };
 }

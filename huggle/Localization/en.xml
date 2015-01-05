@@ -516,6 +516,7 @@
     <string name="tag-title">Tag $1</string>
     <string name="tag-tagselector">Add tag:</string>
     <string name="tag-tags">Tag(s):</string>
+    <string name="tag-parameter">Parameter</string>
     <string name="tag-summary">Summary:</string>
     <string name="tag-insertatend">Insert at the end of the page</string>
     <string name="update-title">New version available</string>
