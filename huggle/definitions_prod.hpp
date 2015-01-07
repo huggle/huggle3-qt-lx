@@ -11,6 +11,8 @@
 //! This file exist only for compiler options that can be changed before you build huggle
 //! Please do not commit any changes in this file
 
+#include <QObject>
+
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
@@ -37,6 +39,10 @@ typedef char byte_ht;
 
 #if defined _WIN64 || defined _WIN32
     #define HUGGLE_WIN
+#endif
+
+#if QT_VERSION >= 0x050000
+    #define HUGGLE_QTV5
 #endif
 
 // comment this out to disable multithreaded garbage collector

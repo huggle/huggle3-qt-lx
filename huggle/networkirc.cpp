@@ -200,6 +200,7 @@ static QString SocketE2Str(QAbstractSocket::SocketError e)
             return "ProxyNotFoundError";
         case QAbstractSocket::ProxyProtocolError:
             return "ProxyProtocolError";
+#ifdef HUGGLE_QTV5
         case QAbstractSocket::OperationError:
             return "OperationError";
         case QAbstractSocket::SslInternalError:
@@ -208,6 +209,7 @@ static QString SocketE2Str(QAbstractSocket::SocketError e)
             return "SslInvalidUserDataError";
         case QAbstractSocket::TemporaryError:
             return "TemporaryError";
+#endif
         case QAbstractSocket::UnknownSocketError:
             return "UnknownError";
     }
