@@ -211,7 +211,7 @@
     <string name="irc-connecting">Attempting connection to IRC recent changes feed on $1, this may take a few moments...</string>
     <string name="irc-disconnected">Connection to IRC recent changes feed lost on $1. Reconnecting...</string>
     <string name="irc-nochannel">IRC channel for $1 not found; using slower API queries instead</string>
-    <string name="irc-error">Unable to connect to IRC recent changes feed ($1). Using slower API queries instead</string>
+    <string name="irc-error">Unable to connect to IRC recent changes feed ($1: $2). Using slower API queries instead</string>
     <string name="irc-stop">Waiting for the primary feed provider to stop on $1</string>
     <string name="irc-not">Feed: IRC is disabled by project config</string>
     <string name="irc-failure">The primary feed provider has failed. Falling back to the wiki provider...</string>

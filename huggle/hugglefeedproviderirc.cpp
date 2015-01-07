@@ -63,7 +63,7 @@ bool HuggleFeedProviderIRC::Start()
     this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
     if (!this->Network->Connect())
     {
-        Huggle::Syslog::HuggleLogs->Log(_l("irc-error", Configuration::HuggleConfiguration->IRCServer));
+        Huggle::Syslog::HuggleLogs->Log(_l("irc-error", Configuration::HuggleConfiguration->IRCServer, this->Network->ErrorMs));
         delete this->Network;
         this->Network = nullptr;
         return false;

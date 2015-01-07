@@ -19,7 +19,7 @@
 
 using namespace Huggle::IRC;
 
-NetworkIrc::NetworkIrc(QString server, QString nick)
+NetworkIrc::NetworkIrc(QString server, QString nick, bool is_async)
 {
     this->Ident = "huggle";
     this->Nick = nick;
@@ -29,6 +29,7 @@ NetworkIrc::NetworkIrc(QString server, QString nick)
     this->Timer = new QTimer(this);
     this->NetworkSocket = nullptr;
     this->NetworkThread = nullptr;
+    this->async = is_async;
     this->MessagesLock = new QMutex(QMutex::Recursive);
     this->ChannelsLock = new QMutex(QMutex::Recursive);
 }
@@ -68,19 +69,22 @@ bool NetworkIrc::Connect()
     this->NetworkSocket = new QTcpSocket();
     connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
     this->NetworkThread->__IsConnecting = true;
+    connect(this->NetworkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
     this->NetworkSocket->connectToHost(this->Server, this->Port);
-    if (!this->NetworkSocket->waitForConnected())
+    if (!this->async)
     {
-        this->NetworkThread->__IsConnecting = false;
-        return false;
+        if (!this->NetworkSocket->waitForConnected())
+        {
+            this->NetworkThread->__IsConnecting = false;
+            this->ErrorMs = this->NetworkSocket->errorString();
+            return false;
+        }
+        this->OnConnect();
+    } else
+    {
+        // we need to handle the connection later
+        connect(this->NetworkSocket, SIGNAL(connected()), this, SLOT(OnConnect()));
     }
-    this->Data("USER " + this->Ident + " 8 * :" + this->UserName);
-    QString nick = this->Nick;
-    nick = nick.replace(" ", "");
-    this->Data("NICK " + nick);
-    this->NetworkThread->start();
-    connect(this->Timer, SIGNAL(timeout()), this, SLOT(OnTime()));
-    this->Timer->start(100);
     return true;
 }
 
@@ -110,15 +114,7 @@ void NetworkIrc::Disconnect()
     }
     this->Data("QUIT :Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net");
     this->NetworkSocket->disconnect();
-    this->Timer->stop();
-    this->NetworkThread->__IsConnecting = false;
-    this->NetworkThread->__Connected = false;
-    this->ClearList();
-    if (this->NetworkThread != nullptr)
-    {
-        // we have to request the network thread to stop
-        this->NetworkThread->Running = false;
-    }
+    this->Stop();
 }
 
 void NetworkIrc::Join(QString name)
@@ -162,6 +158,68 @@ Message* NetworkIrc::GetMessage()
     return message;
 }
 
+static QString SocketE2Str(QAbstractSocket::SocketError e)
+{
+    switch (e)
+    {
+        case QAbstractSocket::ConnectionRefusedError:
+            return "Connection refused";
+        case QAbstractSocket::RemoteHostClosedError:
+            return "Remote host closed the connection unexpectedly";
+        case QAbstractSocket::HostNotFoundError:
+            return "Host not found";
+        case QAbstractSocket::SocketAccessError:
+            return "Socket access error";
+        case QAbstractSocket::SocketResourceError:
+            return "Socket resource error";
+        case QAbstractSocket::SocketTimeoutError:
+            return "Socket timeout error";
+        case QAbstractSocket::DatagramTooLargeError:
+            return "Datagram too large";
+        case QAbstractSocket::NetworkError:
+            return "Network error";
+        case QAbstractSocket::AddressInUseError:
+            return "AddressInUseError";
+        case QAbstractSocket::SocketAddressNotAvailableError:
+            return "SocketAdddressNotAvailableError";
+        case QAbstractSocket::UnsupportedSocketOperationError:
+            return "UnsupportedSocketOperationError";
+        case QAbstractSocket::UnfinishedSocketOperationError:
+            return "UnfinishedSocketOperationError";
+        case QAbstractSocket::ProxyAuthenticationRequiredError:
+            return "ProxyAuthenticationRequiredError";
+        case QAbstractSocket::SslHandshakeFailedError:
+            return "SslHandshakeFailedError";
+        case QAbstractSocket::ProxyConnectionRefusedError:
+            return "ProxyConnectionRefusedError";
+        case QAbstractSocket::ProxyConnectionClosedError:
+            return "ProxyConnectionClosedError";
+        case QAbstractSocket::ProxyConnectionTimeoutError:
+            return "ProxyConnectionTimeoutError";
+        case QAbstractSocket::ProxyNotFoundError:
+            return "ProxyNotFoundError";
+        case QAbstractSocket::ProxyProtocolError:
+            return "ProxyProtocolError";
+        case QAbstractSocket::OperationError:
+            return "OperationError";
+        case QAbstractSocket::SslInternalError:
+            return "SslInternalError";
+        case QAbstractSocket::SslInvalidUserDataError:
+            return "SslInvalidUserDataError";
+        case QAbstractSocket::TemporaryError:
+            return "TemporaryError";
+        case QAbstractSocket::UnknownSocketError:
+            return "UnknownError";
+    }
+    return "Unknown";
+}
+
+void NetworkIrc::OnError(QAbstractSocket::SocketError er)
+{
+    this->ErrorMs = SocketE2Str(er);
+    this->Stop();
+}
+
 void NetworkIrc::OnReceive()
 {
     QString data(this->NetworkSocket->readLine());
@@ -185,6 +243,17 @@ void NetworkIrc::OnTime()
     this->NetworkThread->lIOBuffers->unlock();
 }
 
+void NetworkIrc::OnConnect()
+{
+    this->Data("USER " + this->Ident + " 8 * :" + this->UserName);
+    QString nick = this->Nick;
+    nick = nick.replace(" ", "");
+    this->Data("NICK " + nick);
+    this->NetworkThread->start();
+    connect(this->Timer, SIGNAL(timeout()), this, SLOT(OnTime()));
+    this->Timer->start(100);
+}
+
 void NetworkIrc::ClearList()
 {
     this->ChannelsLock->lock();
@@ -197,6 +266,19 @@ void NetworkIrc::ClearList()
         keys.removeAt(0);
     }
     this->ChannelsLock->unlock();
+}
+
+void NetworkIrc::Stop()
+{
+    this->Timer->stop();
+    this->NetworkThread->__IsConnecting = false;
+    this->NetworkThread->__Connected = false;
+    this->ClearList();
+    if (this->NetworkThread != nullptr)
+    {
+        // we have to request the network thread to stop
+        this->NetworkThread->Running = false;
+    }
 }
 
 Message::Message(QString text, User us)

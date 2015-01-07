@@ -65,7 +65,7 @@ QString VandalNw::SafeHtml(QString text)
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server,
-                                    Configuration::HuggleConfiguration->SystemConfig_Username);
+                                    Configuration::HuggleConfiguration->SystemConfig_Username, true);
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);

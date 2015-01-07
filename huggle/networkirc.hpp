@@ -16,6 +16,7 @@
 #include <QHash>
 #include <QString>
 #include <QStringList>
+#include <QAbstractSocket>
 #include <QThread>
 #include "sleeper.hpp"
 #include "exception.hpp"
@@ -124,7 +125,7 @@ namespace Huggle
         {
                 Q_OBJECT
             public:
-                NetworkIrc(QString server, QString nick);
+                NetworkIrc(QString server, QString nick, bool is_async = false);
                 ~NetworkIrc();
                 //! Connect to server
                 bool Connect();
@@ -139,6 +140,7 @@ namespace Huggle
                 void Part(QString name);
                 void Data(QString text);
                 void Send(QString name, QString text);
+                bool IsAsync() { return this->async; }
                 /*!
                  * \brief GetMessage provides a last message from any channel and remove it from buffer
                  * \return NULL in case there is no message in buffer remaining or message
@@ -149,17 +151,22 @@ namespace Huggle
                 QString Nick;
                 QString UserName;
                 QString Ident;
+                QString ErrorMs;
                 QMutex *MessagesLock;
                 QHash<QString, Channel*> Channels;
                 QMutex *ChannelsLock;
                 int Port;
                 QList<Message> Messages;
             private slots:
+                void OnError(QAbstractSocket::SocketError er);
                 void OnReceive();
                 void OnTime();
+                void OnConnect();
             private:
                 void ClearList();
+                void Stop();
                 NetworkIrc_th *NetworkThread;
+                bool async;
                 QTcpSocket *NetworkSocket;
                 QTimer *Timer;
         };
