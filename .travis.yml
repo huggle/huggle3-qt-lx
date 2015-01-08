@@ -9,6 +9,8 @@ env:
 branches:
   except:
     - debian
+    - nightly/debian
+    - nightly/ubuntu
     - ubuntu
 
 matrix:
