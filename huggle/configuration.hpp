@@ -303,6 +303,8 @@ namespace Huggle
             QString     GlobalConfig_UserConf_old = "User:$1/huggle.css";
             QString     GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
             bool        GlobalConfigWasLoaded = false;
+            QString     GlobalConfig_Xmlrcs = "huggle-rc.wmflabs.org";
+            int         GlobalConfig_XmlrcsPort = 8822;
 
             //////////////////////////////////////////////
             // Local config

@@ -61,6 +61,64 @@ QString Generic::SanitizePath(QString name)
 #endif // HUGGLE_WIN
 }
 
+QString Generic::SocketError2Str(QAbstractSocket::SocketError error)
+{
+    switch (error)
+    {
+        case QAbstractSocket::ConnectionRefusedError:
+            return "Connection refused";
+        case QAbstractSocket::RemoteHostClosedError:
+            return "Remote host closed the connection unexpectedly";
+        case QAbstractSocket::HostNotFoundError:
+            return "Host not found";
+        case QAbstractSocket::SocketAccessError:
+            return "Socket access error";
+        case QAbstractSocket::SocketResourceError:
+            return "Socket resource error";
+        case QAbstractSocket::SocketTimeoutError:
+            return "Socket timeout error";
+        case QAbstractSocket::DatagramTooLargeError:
+            return "Datagram too large";
+        case QAbstractSocket::NetworkError:
+            return "Network error";
+        case QAbstractSocket::AddressInUseError:
+            return "AddressInUseError";
+        case QAbstractSocket::SocketAddressNotAvailableError:
+            return "SocketAdddressNotAvailableError";
+        case QAbstractSocket::UnsupportedSocketOperationError:
+            return "UnsupportedSocketOperationError";
+        case QAbstractSocket::UnfinishedSocketOperationError:
+            return "UnfinishedSocketOperationError";
+        case QAbstractSocket::ProxyAuthenticationRequiredError:
+            return "ProxyAuthenticationRequiredError";
+        case QAbstractSocket::SslHandshakeFailedError:
+            return "SslHandshakeFailedError";
+        case QAbstractSocket::ProxyConnectionRefusedError:
+            return "ProxyConnectionRefusedError";
+        case QAbstractSocket::ProxyConnectionClosedError:
+            return "ProxyConnectionClosedError";
+        case QAbstractSocket::ProxyConnectionTimeoutError:
+            return "ProxyConnectionTimeoutError";
+        case QAbstractSocket::ProxyNotFoundError:
+            return "ProxyNotFoundError";
+        case QAbstractSocket::ProxyProtocolError:
+            return "ProxyProtocolError";
+#ifdef HUGGLE_QTV5
+        case QAbstractSocket::OperationError:
+            return "OperationError";
+        case QAbstractSocket::SslInternalError:
+            return "SslInternalError";
+        case QAbstractSocket::SslInvalidUserDataError:
+            return "SslInvalidUserDataError";
+        case QAbstractSocket::TemporaryError:
+            return "TemporaryError";
+#endif
+        case QAbstractSocket::UnknownSocketError:
+            return "UnknownError";
+    }
+    return "Unknown";
+}
+
 ApiQuery *Generic::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
 {
     WikiPage pt(page);

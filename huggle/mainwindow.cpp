@@ -2900,3 +2900,8 @@ void Huggle::MainWindow::on_actionReload_tokens_triggered()
 {
     WikiUtil::RetrieveTokens(this->GetCurrentWikiSite());
 }
+
+void Huggle::MainWindow::on_actionXmlRcs_triggered()
+{
+
+}

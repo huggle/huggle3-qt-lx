@@ -134,7 +134,8 @@ SOURCES += main.cpp\
     mediawikiobject.cpp \
     version.cpp \
     editbaritem.cpp \
-    editbar.cpp
+    editbar.cpp \
+    hugglefeedproviderxml.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -221,7 +222,8 @@ HEADERS  += mainwindow.hpp \
     version.hpp \
     editbaritem.hpp \
     editbar.hpp \
-    edittype.hpp
+    edittype.hpp \
+    hugglefeedproviderxml.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

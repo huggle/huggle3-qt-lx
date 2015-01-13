@@ -11,6 +11,7 @@
 #include "networkirc.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include "generic.hpp"
 #include "sleeper.hpp"
 #include "syslog.hpp"
 #include <QTimer>
@@ -158,73 +159,18 @@ Message* NetworkIrc::GetMessage()
     return message;
 }
 
-static QString SocketE2Str(QAbstractSocket::SocketError e)
-{
-    switch (e)
-    {
-        case QAbstractSocket::ConnectionRefusedError:
-            return "Connection refused";
-        case QAbstractSocket::RemoteHostClosedError:
-            return "Remote host closed the connection unexpectedly";
-        case QAbstractSocket::HostNotFoundError:
-            return "Host not found";
-        case QAbstractSocket::SocketAccessError:
-            return "Socket access error";
-        case QAbstractSocket::SocketResourceError:
-            return "Socket resource error";
-        case QAbstractSocket::SocketTimeoutError:
-            return "Socket timeout error";
-        case QAbstractSocket::DatagramTooLargeError:
-            return "Datagram too large";
-        case QAbstractSocket::NetworkError:
-            return "Network error";
-        case QAbstractSocket::AddressInUseError:
-            return "AddressInUseError";
-        case QAbstractSocket::SocketAddressNotAvailableError:
-            return "SocketAdddressNotAvailableError";
-        case QAbstractSocket::UnsupportedSocketOperationError:
-            return "UnsupportedSocketOperationError";
-        case QAbstractSocket::UnfinishedSocketOperationError:
-            return "UnfinishedSocketOperationError";
-        case QAbstractSocket::ProxyAuthenticationRequiredError:
-            return "ProxyAuthenticationRequiredError";
-        case QAbstractSocket::SslHandshakeFailedError:
-            return "SslHandshakeFailedError";
-        case QAbstractSocket::ProxyConnectionRefusedError:
-            return "ProxyConnectionRefusedError";
-        case QAbstractSocket::ProxyConnectionClosedError:
-            return "ProxyConnectionClosedError";
-        case QAbstractSocket::ProxyConnectionTimeoutError:
-            return "ProxyConnectionTimeoutError";
-        case QAbstractSocket::ProxyNotFoundError:
-            return "ProxyNotFoundError";
-        case QAbstractSocket::ProxyProtocolError:
-            return "ProxyProtocolError";
-#ifdef HUGGLE_QTV5
-        case QAbstractSocket::OperationError:
-            return "OperationError";
-        case QAbstractSocket::SslInternalError:
-            return "SslInternalError";
-        case QAbstractSocket::SslInvalidUserDataError:
-            return "SslInvalidUserDataError";
-        case QAbstractSocket::TemporaryError:
-            return "TemporaryError";
-#endif
-        case QAbstractSocket::UnknownSocketError:
-            return "UnknownError";
-    }
-    return "Unknown";
-}
-
 void NetworkIrc::OnError(QAbstractSocket::SocketError er)
 {
-    this->ErrorMs = SocketE2Str(er);
+    this->ErrorMs = Generic::SocketError2Str(er);
     this->Stop();
 }
 
 void NetworkIrc::OnReceive()
 {
     QString data(this->NetworkSocket->readLine());
+    // when there is no data we can quit this
+    if (data.isEmpty())
+        return;
     this->NetworkThread->lIOBuffers->lock();
     while (!data.isEmpty())
     {

@@ -56,6 +56,7 @@ namespace Huggle
             //! Check if feed is containing some edits in buffer
             virtual bool ContainsEdit() { return false; }
             virtual bool IsPaused() { return false; }
+            virtual QString GetError();
             //! If provider is not to be automatically inserted to a list of providers
             //! Builtin providers have hardcoded menus, so they are ignored.
             virtual bool IsBuiltin() { return true; }

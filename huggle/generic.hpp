@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QAbstractSocket>
 #include <QString>
 
 #define EvaluatePageErrorReason_Missing 0
@@ -81,6 +82,7 @@ namespace Huggle
         HUGGLE_EX QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
                                                    QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
                                                    QString *title = nullptr);
+        HUGGLE_EX QString SocketError2Str(QAbstractSocket::SocketError error);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
         HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);

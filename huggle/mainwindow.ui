@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -88,6 +88,7 @@
      </property>
      <addaction name="actionIRC"/>
      <addaction name="actionWiki"/>
+     <addaction name="actionXmlRcs"/>
     </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionReconnect_IRC"/>
@@ -1053,6 +1054,14 @@
   <action name="actionLog_out">
    <property name="text">
     <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionXmlRcs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>XmlRcs</string>
    </property>
   </action>
  </widget>

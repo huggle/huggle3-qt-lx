@@ -312,6 +312,8 @@ namespace Huggle
             void on_actionVerbosity_triggered();
             void on_actionLog_out_triggered();
             void on_actionReload_tokens_triggered();
+            void on_actionXmlRcs_triggered();
+
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
