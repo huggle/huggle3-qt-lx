@@ -21,21 +21,45 @@ namespace Ui
 
 namespace Huggle
 {
+  /*!
+     * \brief The EditBarItem class is used for being an item of an EditBar
+     * It gives general information about the edit of a page
+     */
     class HUGGLE_EX EditBarItem : public QFrame
     {
             Q_OBJECT
         public:
+	    /*!
+	     * \brief EditBarItem Creates a new instance of the EditBarItem class
+	     * \param parent The parent widget in which the EditBar is contained
+	     */
             explicit EditBarItem(QWidget *parent = 0);
             ~EditBarItem();
+	    /*!
+	     * \brief SetLineWidth Sets the width of the textlines
+	     * \param width The width of the textlines
+	     */
             void SetLineWidth(int width);
+	    /*!
+	     * \brief SetText Sets the whole text of this entry
+	     * \param text The text the entrz is to be set to
+	     */
             void SetText(QString text);
+	    /*!
+	     * \brief SetFrame Sets the colour of the items borders
+	     * \param colour The new colour of the items borders
+	     */
             void SetFrame(Qt::GlobalColor colour);
+	    /*!
+	     * \brief SetPixmap Sets the background of the item to a pixmap
+	     * \param path The location where the pixmap is stored
+	     */
             void SetPixmap(QString path);
-            bool IsUser = true;
-            QString Page;
-            QString RevID;
-            int RowId = -1;
-            QString Username;
+            bool IsUser = true; ///< True if edit was made by current user
+            QString Page; ///< The edited page
+            QString RevID; ///< The reference ID of this edit
+            int RowId = -1; ///< The row ID of this edit
+            QString Username; ///< The username of the editing user
 
         private:
             Ui::EditBarItem *ui;
