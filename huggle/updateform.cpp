@@ -525,7 +525,14 @@ void UpdateForm::PreparationFinish()
     connect(ClientProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(ProcessError(QProcess::ProcessError)));
 
     ClientProcess->startDetached( program, arguments );*/
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
     SHELLEXECUTEINFO shExInfo {};
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
     shExInfo.cbSize = sizeof(shExInfo);
     shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     shExInfo.hwnd = 0;

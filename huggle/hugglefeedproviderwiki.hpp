@@ -41,6 +41,7 @@ namespace Huggle
             bool IsWorking();
             void Stop();
             bool Restart() { this->Stop(); return this->Start(); }
+            int GetID() { return HUGGLE_FEED_PROVIDER_WIKI; }
             bool ContainsEdit();
             void Refresh();
             WikiEdit *RetrieveEdit();

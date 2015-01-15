@@ -277,6 +277,7 @@
     <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
     <string name="main-menu-provider-stop">Stop provider</string>
     <string name="main-menu-provider-resume">Resume provider</string>
+    <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
     <string name="main-no-reason">No reason was provided by user</string>
     <string name="main-restoring-slap">I am currently restoring another edit, please wait...</string>
     <string name="main-page">Page</string>
@@ -633,7 +634,7 @@
     <string name="editquery-token">Retrieving token to edit $1</string>
     <string name="editquery-token-error">Unable to retrieve edit token</string>
     <string name="editquery-invalid-token">Unable to edit $1 because token I had in cache is no longer valid, please try to edit that page once more</string>
-    <string name="provider-failure">Failure of primary feed provider, trying to recover</string>
+    <string name="provider-failure">Failure of feed provider $1 on $2, trying to find some alternative provider</string>
     <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>
     <string name="rc-error">Unable to retrieve data from wiki feed, last error: $1</string>
     <string name="rc-timestamp-missing">RC Feed: Item was missing timestamp attribute: $1</string>

@@ -29,6 +29,7 @@ namespace Huggle
             ~HuggleFeedProviderXml();
             bool Start();
             bool IsPaused();
+            int GetID() { return HUGGLE_FEED_PROVIDER_XMLRPC; }
             void Resume();
             void Pause();
             bool IsWorking();
@@ -41,10 +42,10 @@ namespace Huggle
         private slots:
             void OnError(QAbstractSocket::SocketError er);
             void OnReceive();
-            void OnTime();
             void OnConnect();
         protected:
             void Write(QString text);
+            void InsertEdit(WikiEdit *edit);
             QString last_error = "No error";
             bool is_connected = false;
             bool is_connecting = false;

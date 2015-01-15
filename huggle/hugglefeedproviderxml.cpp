@@ -10,10 +10,16 @@
 
 #include "configuration.hpp"
 #include "hugglefeedproviderxml.hpp"
+#include "apiquery.hpp"
+#include "querypool.hpp"
 #include "exception.hpp"
+#include "hugglequeue.hpp"
 #include "generic.hpp"
+#include "mainwindow.hpp"
+#include "wikipage.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
+#include "wikiuser.hpp"
 #include "wikisite.hpp"
 #include <QtXml>
 
@@ -41,7 +47,7 @@ bool HuggleFeedProviderXml::Start()
         HUGGLE_DEBUG1("Refusing to start working Xml feed");
         return false;
     }
-    if (this->GetSite()->XmlRpcName.isEmpty())
+    if (this->GetSite()->XmlRcsName.isEmpty())
     {
         HUGGLE_DEBUG1("There is no XmlRpc provider for " + this->GetSite()->Name);
         return false;
@@ -50,7 +56,6 @@ bool HuggleFeedProviderXml::Start()
         delete this->NetworkSocket;
     this->NetworkSocket = new QTcpSocket();
     connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
-    this->local_thread->__IsConnecting = true;
     connect(this->NetworkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
     this->is_connecting = true;
     this->is_working = true;
@@ -67,12 +72,12 @@ bool HuggleFeedProviderXml::IsPaused()
 
 void HuggleFeedProviderXml::Resume()
 {
-
+    this->is_paused = false;
 }
 
 void HuggleFeedProviderXml::Pause()
 {
-
+    this->is_paused = true;
 }
 
 bool HuggleFeedProviderXml::IsWorking()
@@ -82,7 +87,11 @@ bool HuggleFeedProviderXml::IsWorking()
 
 void HuggleFeedProviderXml::Stop()
 {
-
+    this->NetworkSocket->disconnect();
+    this->is_connected = false;
+    this->is_connecting = false;
+    this->is_working = false;
+    this->is_paused = false;
 }
 
 bool HuggleFeedProviderXml::ContainsEdit()
@@ -97,7 +106,12 @@ QString HuggleFeedProviderXml::GetError()
 
 WikiEdit *HuggleFeedProviderXml::RetrieveEdit()
 {
-    return nullptr;
+    if (this->Buffer.size() == 0)
+        return nullptr;
+
+    WikiEdit *edit = this->Buffer.at(0);
+    this->Buffer.removeAt(0);
+    return edit;
 }
 
 QString HuggleFeedProviderXml::ToString()
@@ -112,19 +126,95 @@ void HuggleFeedProviderXml::OnError(QAbstractSocket::SocketError er)
 
 void HuggleFeedProviderXml::OnReceive()
 {
+    QString data(this->NetworkSocket->readLine());
+    // when there is no data we can quit this
+    if (data.isEmpty())
+        return;
 
-}
+    // this should be an XML string, let's do some quick test
+    if (!data.startsWith("<"))
+    {
+        Syslog::HuggleLogs->WarningLog("Invalid input from XmlRcs server: " + data);
+        return;
+    }
 
-void HuggleFeedProviderXml::OnTime()
-{
+    QDomDocument input;
+    input.setContent(data);
+    QDomElement element = input.firstChild().toElement();
+    QString name = element.nodeName();
+    if (name == "error")
+    {
+        Syslog::HuggleLogs->ErrorLog("XmlRcs returned error: " + element.text());
+        return;
+    }
+    if (name == "ping")
+    {
+        this->Write("pong");
+        return;
+    }
+    if (name == "ok")
+        return;
+    if (name != "edit")
+    {
+        HUGGLE_DEBUG1("Weird result from xml provider: " + data);
+        return;
+    }
 
+    WikiEdit *edit;
+    QString type;
+
+    if (!element.attributes().contains("type"))
+        goto invalid;
+
+    type = element.attribute("type");
+    if (type != "edit" && type != "new")
+    {
+        // we are not interested in this
+        return;
+    }
+
+    // let's verify if all necessary elements are present
+    if (!element.attributes().contains("server_name") ||
+        !element.attributes().contains("revid") ||
+        !element.attributes().contains("type") ||
+        !element.attributes().contains("title") ||
+        !element.attributes().contains("user"))
+    {
+        goto invalid;
+    }
+
+    // now we can create an edit
+    edit = new WikiEdit();
+    edit->Page = new WikiPage(element.attribute("title"));
+    edit->Page->Site = this->GetSite();
+    edit->IncRef();
+    edit->Bot = Generic::SafeBool(element.attribute("bot"));
+    edit->NewPage = (element.attribute("type") == "new");
+    edit->Minor = Generic::SafeBool(element.attribute("minor"));
+    edit->RevID = element.attribute("revid").toLong();
+    edit->User = new WikiUser(element.attribute("user"));
+    edit->User->Site = this->GetSite();
+    edit->Summary = element.attribute("summary");
+    if (element.attributes().contains("length_new")
+           && element.attributes().contains("length_old"))
+    {
+        long size = element.attribute("length_new").toLong() - element.attribute("length_old").toLong();
+        edit->SetSize(size);
+    }
+    edit->OldID = element.attribute("oldid").toInt();
+    this->InsertEdit(edit);
+    return;
+
+    invalid:
+        Syslog::HuggleLogs->WarningLog("Invalid Xml from RC feed: " + data);
 }
 
 void HuggleFeedProviderXml::OnConnect()
 {
     this->is_connected = true;
+    this->is_connecting = false;
     // subscribe
-    this->Write("S " + this->GetSite()->XmlRpcName);
+    this->Write("S " + this->GetSite()->XmlRcsName);
 }
 
 void HuggleFeedProviderXml::Write(QString text)
@@ -132,22 +222,33 @@ void HuggleFeedProviderXml::Write(QString text)
     this->NetworkSocket->write(QString(text + "\n").toUtf8());
 }
 
-HuggleFeedProviderXml_thread::HuggleFeedProviderXml_thread()
+void HuggleFeedProviderXml::InsertEdit(WikiEdit *edit)
 {
+    if (edit == nullptr)
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
-}
-
-HuggleFeedProviderXml_thread::~HuggleFeedProviderXml_thread()
-{
-
-}
-
-bool HuggleFeedProviderXml_thread::IsFinished()
-{
-    return this->isFinished();
-}
-
-void HuggleFeedProviderXml_thread::run()
-{
-
+    // Increase the number of edits that were made since provider is up, this is used for statistics
+    this->IncrementEdits();
+    // We need to pre process edit so that we have all its properties ready for queue filter
+    QueryPool::HugglePool->PreProcessEdit(edit);
+    // We only insert it to buffer in case that current filter matches the edit, this is probably not needed
+    // but it might be a performance improvement at some point
+    if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
+    {
+        if (this->Buffer.size() > hcfg->SystemConfig_ProviderCache)
+        {
+            // If the buffer is full we need to remove 10 oldest edits
+            // we also show a warning to user
+            while (this->Buffer.size() > (hcfg->SystemConfig_ProviderCache - 10))
+            {
+                this->Buffer.at(0)->DecRef();
+                this->Buffer.removeAt(0);
+            }
+            Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in xml cache, increase ProviderCache size, otherwise you will be losing edits");
+        }
+        this->Buffer.append(edit);
+    } else
+    {
+        edit->DecRef();
+    }
 }

@@ -107,7 +107,7 @@ namespace Huggle
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
             //! Name of this site as known by XMLRPC server, if this is empty, alternative provider is used
-            QString XmlRpcName;
+            QString XmlRcsName;
             QString HANChannel;
             Version MediawikiVersion;
             ProjectConfiguration *ProjectConfig = nullptr;

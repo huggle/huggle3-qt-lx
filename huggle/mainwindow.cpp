@@ -34,6 +34,7 @@
 #include "history.hpp"
 #include "hugglefeedproviderwiki.hpp"
 #include "hugglefeedproviderirc.hpp"
+#include "hugglefeedproviderxml.hpp"
 #include "hugglelog.hpp"
 #include "huggleparser.hpp"
 #include "huggleprofiler.hpp"
@@ -172,47 +173,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // configure RC feed provider
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        bool irc = false;
-        if (Configuration::HuggleConfiguration->UsingIRC && site->ProjectConfig->UseIrc)
-        {
-            this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
-            this->ui->actionIRC->setChecked(true);
-            irc = true;
-            if (!site->Provider->Start())
-            {
-                Syslog::HuggleLogs->ErrorLog(_l("irc-failure", site->Name));
-                this->ui->actionIRC->setChecked(false);
-                this->ui->actionWiki->setChecked(true);
-                this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-                site->Provider->Start();
-                irc = false;
-            }
-        } else
-        {
-            this->ui->actionIRC->setChecked(false);
-            this->ui->actionWiki->setChecked(true);
-            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-            site->Provider->Start();
-        }
         if (Configuration::HuggleConfiguration->Multiple)
         {
             QMenu *menu = new QMenu(site->Name, this);
             this->ui->menuChange_provider->addMenu(menu);
-            QAction *irc_a = new QAction("IRC", menu);
-            QAction *wik_a = new QAction("Wiki", menu);
-            this->lWikis.insert(site, wik_a);
-            this->lIRC.insert(site, irc_a);
-            wik_a->setCheckable(true);
-            irc_a->setCheckable(true);
-            connect(wik_a, SIGNAL(triggered()), this, SLOT(SetProviderWiki()));
-            connect(irc_a, SIGNAL(triggered()), this, SLOT(SetProviderIRC()));
-            menu->addAction(irc_a);
-            menu->addAction(wik_a);
-            if (irc)
-                irc_a->setChecked(true);
-            else
-                wik_a->setChecked(true);
+            QAction *provider_irc = new QAction("IRC", menu);
+            QAction *provider_wiki = new QAction("Wiki", menu);
+            QAction *provider_xml = new QAction("XmlRcp", menu);
+            this->lXml.insert(site, provider_xml);
+            this->lWikis.insert(site, provider_wiki);
+            this->lIRC.insert(site, provider_irc);
+            provider_xml->setCheckable(true);
+            provider_wiki->setCheckable(true);
+            provider_irc->setCheckable(true);
+            connect(provider_xml, SIGNAL(triggered()), this, SLOT(SetProviderXml()));
+            connect(provider_wiki, SIGNAL(triggered()), this, SLOT(SetProviderWiki()));
+            connect(provider_irc, SIGNAL(triggered()), this, SLOT(SetProviderIRC()));
+            menu->addAction(provider_xml);
+            menu->addAction(provider_irc);
+            menu->addAction(provider_wiki);
         }
+        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->ReloadInterface();
@@ -1939,6 +1920,30 @@ void MainWindow::WelcomeGood()
     this->DisplayNext();
 }
 
+void MainWindow::SwitchAlternativeFeedProvider(WikiSite *site)
+{
+    if (site->Provider == nullptr)
+    {
+        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+        return;
+    }
+    switch (site->Provider->GetID())
+    {
+        case HUGGLE_FEED_PROVIDER_IRC:
+            // fallback to wiki provider
+            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+            return;
+        case HUGGLE_FEED_PROVIDER_WIKI:
+            // no more solutions
+            Syslog::HuggleLogs->ErrorLog("No more solutions for alternative provider for " + site->Name);
+            return;
+        case HUGGLE_FEED_PROVIDER_XMLRPC:
+            // fallback to irc provider
+            this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+            return;
+    }
+}
+
 void MainWindow::RenderPage(QString Page)
 {
     WikiPage *page = new WikiPage(Page);
@@ -2033,10 +2038,62 @@ void MainWindow::Welcome()
 
 void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 {
+    if (!this->CheckExit())
+        return;
+
     if (site->Provider != nullptr)
         delete site->Provider;
 
     site->Provider = provider;
+    Syslog::HuggleLogs->Log(_l("provider-up", provider->ToString(), site->Name));
+    if (!hcfg->Multiple)
+    {
+        // uncheck all menus for provider
+        this->ui->actionXmlRcs->setChecked(false);
+        this->ui->actionIRC->setChecked(false);
+        this->ui->actionWiki->setChecked(false);
+        // check the proper one based on type
+        switch (site->Provider->GetID())
+        {
+            case HUGGLE_FEED_PROVIDER_IRC:
+                this->ui->actionIRC->setChecked(true);
+                break;
+            case HUGGLE_FEED_PROVIDER_WIKI:
+                this->ui->actionWiki->setChecked(true);
+                break;
+            case HUGGLE_FEED_PROVIDER_XMLRPC:
+                this->ui->actionXmlRcs->setChecked(true);
+                break;
+        }
+    } else
+    {
+        if (!this->lIRC.contains(site) || !this->lWikis.contains(site) || !this->lXml.contains(site))
+            throw new Huggle::Exception("This site is not in provider lists", BOOST_CURRENT_FUNCTION);
+        // uncheck all menus for provider
+        this->lWikis[site]->setChecked(false);
+        this->lXml[site]->setChecked(false);
+        this->lIRC[site]->setChecked(false);
+        // check the proper one based on type
+        switch (site->Provider->GetID())
+        {
+            case HUGGLE_FEED_PROVIDER_IRC:
+                this->lIRC[site]->setChecked(true);
+                break;
+            case HUGGLE_FEED_PROVIDER_WIKI:
+                this->lWikis[site]->setChecked(true);
+                break;
+            case HUGGLE_FEED_PROVIDER_XMLRPC:
+                this->lXml[site]->setChecked(true);
+                break;
+        }
+    }
+    // try to launch the provider now
+    if (!site->Provider->Start())
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("provider-failure", provider->ToString(), site->Name));
+        // provider didn't start so we need to find alternative
+        this->SwitchAlternativeFeedProvider(site);
+    }
 }
 
 void MainWindow::ReloadInterface()
@@ -2720,46 +2777,29 @@ void Huggle::MainWindow::on_actionReload_menus_triggered()
 
 void MainWindow::SetProviderIRC()
 {
-    if (!this->CheckExit())
-        return;
     QAction *action = (QAction*)QObject::sender();
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
-    if (this->ReconnectIRC(wiki))
-    {
-        action->setChecked(true);
-        if (this->lWikis.contains(wiki))
-            this->lWikis[wiki]->setChecked(false);
-    } else
-    {
-        action->setChecked(false);
-        if (this->lWikis.contains(wiki))
-            this->lWikis[wiki]->setChecked(true);
-    }
+    this->ChangeProvider(wiki, new HuggleFeedProviderIRC(wiki));
 }
 
 void MainWindow::SetProviderWiki()
 {
-    if (!this->CheckExit())
-        return;
     QAction *action = (QAction*)QObject::sender();
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
-    Syslog::HuggleLogs->Log(_l("irc-switch-rc"));
-    wiki->Provider->Stop();
-    this->ui->actionIRC->setChecked(false);
-    action->setChecked(true);
-    while (!wiki->Provider->IsStopped())
-    {
-        Syslog::HuggleLogs->Log(_l("irc-stop", wiki->Name));
-        Sleeper::usleep(200000);
-    }
     this->ChangeProvider(wiki, new HuggleFeedProviderWiki(wiki));
-    wiki->Provider->Start();
-    if (this->lIRC.contains(wiki))
-        this->lIRC[wiki]->setChecked(false);
+}
+
+void MainWindow::SetProviderXml()
+{
+    QAction *action = (QAction*)QObject::sender();
+    if (!this->ActionSites.contains(action))
+        throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
+    WikiSite *wiki = this->ActionSites[action];
+    this->ChangeProvider(wiki, new HuggleFeedProviderXml(wiki));
 }
 
 void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
