@@ -42,6 +42,11 @@ HuggleFeed::~HuggleFeed()
     delete this->mutex;
 }
 
+QString HuggleFeed::GetError()
+{
+    return "Unknown error";
+}
+
 double HuggleFeed::GetRevertsPerMinute()
 {
     if (this->StatisticsBlocks.count() < 1)

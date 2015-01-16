@@ -122,7 +122,6 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            bool ReconnectIRC(WikiSite *site);
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             /*!
@@ -140,6 +139,7 @@ namespace Huggle
             void PauseQueue();
             void ResumeQueue();
             void WelcomeGood();
+            void SwitchAlternativeFeedProvider(WikiSite *site);
             //! Try to load a page
             void RenderPage(QString Page);
             WikiSite *GetCurrentWikiSite();
@@ -299,6 +299,7 @@ namespace Huggle
             void on_actionReload_menus_triggered();
             void SetProviderIRC();
             void SetProviderWiki();
+            void SetProviderXml();
             void on_actionInsert_page_to_a_watchlist_triggered();
             void on_actionRemove_page_from_a_watchlist_triggered();
             void on_actionMy_talk_page_triggered();
@@ -312,6 +313,7 @@ namespace Huggle
             void on_actionVerbosity_triggered();
             void on_actionLog_out_triggered();
             void on_actionReload_tokens_triggered();
+            void on_actionXmlRcs_triggered();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -369,6 +371,7 @@ namespace Huggle
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
             QHash<QAction*, WikiSite*> ActionSites;
+            QHash<WikiSite*, QAction*> lXml;
             QHash<WikiSite*, QAction*> lIRC;
             QHash<WikiSite*, QAction*> lWikis;
             //! List of all edits that are kept in history, so that we can track them and delete them

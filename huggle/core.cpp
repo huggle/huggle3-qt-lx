@@ -189,6 +189,8 @@ void Core::LoadDB()
             site->IsRightToLeft = Generic::SafeBool(e.attribute("rtl"));
         if (e.attributes().contains("han_irc"))
             site->HANChannel = e.attribute("han_irc");
+        if (e.attributes().contains("xmlrcs_name"))
+            site->XmlRcsName = e.attribute("xmlrcs_name");
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }

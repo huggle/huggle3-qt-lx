@@ -59,6 +59,7 @@ namespace Huggle
             void InsertEdit(WikiEdit *edit);
             void ParseEdit(QString line);
             bool IsStopped();
+            int GetID() { return HUGGLE_FEED_PROVIDER_IRC; }
             bool ContainsEdit();
             WikiEdit *RetrieveEdit();
             bool IsPaused() { return Paused; }

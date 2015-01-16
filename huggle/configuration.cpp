@@ -497,6 +497,8 @@ bool Configuration::ParseGlobalConfig(QString config)
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
     this->GlobalConfig_UserConf = ReplaceSpecialUserPage(ConfigurationParse("user-config-hg3", config));
     this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(ConfigurationParse("user-config", config));
+    this->GlobalConfig_Xmlrcs = ConfigurationParse("xmlrcs", config, "huggle-rc.wmflabs.org");
+    this->GlobalConfig_XmlrcsPort = ConfigurationParse("xmlrcs-port", config, "8822").toInt();
     this->HANMask = ConfigurationParse("han-mask", config, this->HANMask);
     this->GlobalConfig_Whitelist = ConfigurationParse("whitelist-server", config);
     QString Webquery_ = ConfigurationParse("user-agent", config, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
