@@ -1160,11 +1160,8 @@ void MainWindow::OnMainTimerTick()
     WikiSite *site = this->GetCurrentWikiSite();
     if (site->Provider->IsWorking() != true && this->ShuttingDown != true)
     {
-        Syslog::HuggleLogs->Log(_l("provider-failure", this->GetCurrentWikiSite()->Name));
-        if (!site->Provider->Restart())
-        {
-            this->SwitchAlternativeFeedProvider(site);
-        }
+        Syslog::HuggleLogs->Log(_l("provider-failure", site->Provider->ToString(), this->GetCurrentWikiSite()->Name));
+        this->SwitchAlternativeFeedProvider(site);
     }
     Warnings::ResendWarnings();
     // check if queue isn't full
