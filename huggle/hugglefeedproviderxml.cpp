@@ -122,6 +122,7 @@ QString HuggleFeedProviderXml::ToString()
 void HuggleFeedProviderXml::OnError(QAbstractSocket::SocketError er)
 {
     this->last_error = Generic::SocketError2Str(er);
+    this->Stop();
 }
 
 void HuggleFeedProviderXml::OnReceive()
@@ -152,6 +153,14 @@ void HuggleFeedProviderXml::OnReceive()
         this->Write("pong");
         return;
     }
+
+    if (name == "fatal")
+    {
+        Syslog::HuggleLogs->ErrorLog("XmlRcs failed: " + element.text());
+        this->Stop();
+        return;
+    }
+
     if (name == "ok")
         return;
     if (name != "edit")
