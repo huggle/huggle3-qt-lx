@@ -136,6 +136,8 @@ void HuggleFeedProviderXml::OnError(QAbstractSocket::SocketError er)
 
 void HuggleFeedProviderXml::OnReceive()
 {
+    if (!this->NetworkSocket)
+        throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
     QString data(this->NetworkSocket->readLine());
     // when there is no data we can quit this
     if (data.isEmpty())
@@ -237,6 +239,10 @@ void HuggleFeedProviderXml::OnConnect()
 
 void HuggleFeedProviderXml::Write(QString text)
 {
+    // check if network socket isn't nullptr
+    if (!this->NetworkSocket)
+        throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
+
     this->NetworkSocket->write(QString(text + "\n").toUtf8());
 }
 
