@@ -122,7 +122,6 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            bool ReconnectIRC(WikiSite *site);
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             /*!

@@ -1163,8 +1163,7 @@ void MainWindow::OnMainTimerTick()
         Syslog::HuggleLogs->Log(_l("provider-failure", this->GetCurrentWikiSite()->Name));
         if (!site->Provider->Restart())
         {
-            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-            site->Provider->Start();
+            this->SwitchAlternativeFeedProvider(site);
         }
     }
     Warnings::ResendWarnings();
@@ -1601,42 +1600,6 @@ void MainWindow::Exit()
     this->wlt->start(800);
 }
 
-bool MainWindow::ReconnectIRC(WikiSite *site)
-{
-    if (!this->CheckExit())
-        return false;
-    if (!Configuration::HuggleConfiguration->UsingIRC)
-    {
-        Syslog::HuggleLogs->Log(_l("irc-not"));
-        return false;
-    }
-    Syslog::HuggleLogs->Log(_l("irc-connecting", site->Name));
-    if (!site->Provider)
-    {
-        // this is problem
-        throw new Huggle::NullPointerException("WikiSite *site->Provider", BOOST_CURRENT_FUNCTION);
-    }
-    site->Provider->Stop();
-    while (!site->Provider->IsStopped())
-    {
-        Syslog::HuggleLogs->Log(_l("irc-stop", site->Name));
-        Sleeper::usleep(200000);
-    }
-    this->ui->actionIRC->setChecked(true);
-    this->ui->actionWiki->setChecked(false);
-    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
-    if (!site->Provider->Start())
-    {
-        this->ui->actionIRC->setChecked(false);
-        this->ui->actionWiki->setChecked(true);
-        Syslog::HuggleLogs->ErrorLog(_l("provider-primary-failure", site->Name));
-        this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-        site->Provider->Start();
-        return false;
-    }
-    return true;
-}
-
 bool MainWindow::BrowserPageIsEditable()
 {
     return this->EditablePage;
@@ -1713,7 +1676,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
             query->Target = "Retrieving patrol token for " + e->Page->PageName;
             query->Parameters = "type=patrol";
         }
-        // this uggly piece of code actually rocks
+        // this ugly piece of code actually rocks
         query->CallbackResult = (void*)e;
         query->RegisterConsumer("patrol");
         QueryPool::HugglePool->AppendQuery(query);
@@ -2361,7 +2324,8 @@ void MainWindow::on_actionEdit_user_talk_triggered()
 
 void MainWindow::on_actionReconnect_IRC_triggered()
 {
-    this->ReconnectIRC(this->GetCurrentWikiSite());
+    WikiSite *site = this->GetCurrentWikiSite();
+    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
 }
 
 void MainWindow::on_actionRequest_speedy_deletion_triggered()
@@ -2381,7 +2345,8 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 
 void Huggle::MainWindow::on_actionIRC_triggered()
 {
-    this->ReconnectIRC(this->GetCurrentWikiSite());
+    WikiSite *site = this->GetCurrentWikiSite();
+    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
 }
 
 void Huggle::MainWindow::on_actionWiki_triggered()
@@ -2943,5 +2908,6 @@ void Huggle::MainWindow::on_actionReload_tokens_triggered()
 
 void Huggle::MainWindow::on_actionXmlRcs_triggered()
 {
-
+    WikiSite *site = this->GetCurrentWikiSite();
+    this->ChangeProvider(site, new HuggleFeedProviderXml(site));
 }
