@@ -2005,7 +2005,13 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
         return;
 
     if (site->Provider != nullptr)
+    {
+        if (site->Provider->IsWorking())
+            site->Provider->Stop();
+        // we should be safe to delete here, although some providers
+        // might need to be checked if they actually stopped :/
         delete site->Provider;
+    }
 
     site->Provider = provider;
     Syslog::HuggleLogs->Log(_l("provider-up", provider->ToString(), site->Name));
