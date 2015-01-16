@@ -157,19 +157,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         this->ui->actionRemove_old_edits->setChecked(true);
         this->ui->actionStop_feed->setChecked(false);
-    } else
+    }
+    else
     {
         this->ui->actionRemove_old_edits->setChecked(false);
         this->ui->actionStop_feed->setChecked(true);
     }
-    // initialise queues
-    if (!Configuration::HuggleConfiguration->ProjectConfig->UseIrc)
-    {
-        Syslog::HuggleLogs->Log(_l("irc-not"));
-        this->ui->actionReconnect_IRC->setEnabled(false);
-        this->ui->actionIRC->setEnabled(false);
-    }
-
     // configure RC feed provider
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
@@ -193,7 +186,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
         }
-        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+        this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->ReloadInterface();
@@ -2022,6 +2015,14 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
         switch (site->Provider->GetID())
         {
             case HUGGLE_FEED_PROVIDER_IRC:
+                if (!site->GetProjectConfig()->UseIrc)
+                {
+                    Syslog::HuggleLogs->Log(_l("irc-not"));
+                    this->ui->actionReconnect_IRC->setEnabled(false);
+                    this->ui->actionIRC->setEnabled(false);
+                    this->SwitchAlternativeFeedProvider(site);
+                    return;
+                }
                 this->ui->actionIRC->setChecked(true);
                 break;
             case HUGGLE_FEED_PROVIDER_WIKI:
