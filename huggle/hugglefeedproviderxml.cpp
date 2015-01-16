@@ -91,12 +91,7 @@ bool HuggleFeedProviderXml::IsWorking()
 void HuggleFeedProviderXml::Stop()
 {
     if (this->NetworkSocket)
-    {
         this->NetworkSocket->disconnect();
-        this->NetworkSocket->close();
-        delete this->NetworkSocket;
-        this->NetworkSocket = nullptr;
-    }
     this->is_connected = false;
     this->is_connecting = false;
     this->is_working = false;
