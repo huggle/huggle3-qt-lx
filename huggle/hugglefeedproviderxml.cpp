@@ -38,6 +38,9 @@ HuggleFeedProviderXml::~HuggleFeedProviderXml()
         this->Buffer.at(0)->DecRef();
         this->Buffer.removeAt(0);
     }
+    if (this->NetworkSocket && this->NetworkSocket->isOpen())
+        this->NetworkSocket->close();
+    delete this->NetworkSocket;
 }
 
 bool HuggleFeedProviderXml::Start()
