@@ -186,7 +186,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
         }
-        this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->ReloadInterface();

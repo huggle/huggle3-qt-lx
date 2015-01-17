@@ -779,8 +779,8 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_10">
-         <item>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
           <widget class="QLabel" name="label_13">
            <property name="minimumSize">
             <size>
@@ -793,14 +793,7 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_5"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9">
-         <item>
+         <item row="1" column="0">
           <widget class="QLabel" name="label">
            <property name="minimumSize">
             <size>
@@ -813,10 +806,16 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_4">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_5"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="sxFontSize">
+           <property name="minimum">
+            <number>2</number>
+           </property>
+           <property name="value">
+            <number>12</number>
            </property>
           </widget>
          </item>

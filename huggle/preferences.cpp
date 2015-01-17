@@ -9,8 +9,6 @@
 //GNU General Public License for more details.
 
 #include "preferences.hpp"
-#include <QMessageBox>
-#include <QMenu>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -22,6 +20,9 @@
 #include "syslog.hpp"
 #include "mainwindow.hpp"
 #include "ui_preferences.h"
+#include <QMessageBox>
+#include <QSpinBox>
+#include <QMenu>
 
 using namespace Huggle;
 
@@ -308,7 +309,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
         hcfg->UserConfig->SummaryMode = 1;
     else
         hcfg->UserConfig->SummaryMode = 0;
-    hcfg->UserConfig->FontSize = this->ui->lineEdit_4->text().toInt();
+    hcfg->UserConfig->FontSize = this->ui->sxFontSize->value();
 
     if (hcfg->UserConfig->FontSize < 1)
         hcfg->UserConfig->FontSize = 10;
@@ -719,7 +720,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
     this->ui->lineEdit_5->setText(hcfg->UserConfig->Font);
-    this->ui->lineEdit_4->setText(QString::number(hcfg->UserConfig->FontSize));
+    this->ui->sxFontSize->setValue(hcfg->UserConfig->FontSize);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
 }
