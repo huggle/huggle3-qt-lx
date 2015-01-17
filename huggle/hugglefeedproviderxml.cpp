@@ -198,6 +198,13 @@ void HuggleFeedProviderXml::OnReceive()
         goto invalid;
     }
 
+    // if server name doesn't match we drop edit
+    if (this->GetSite()->XmlRcsName != element.attribute("server_name"))
+    {
+        HUGGLE_DEBUG1("Invalid server: " + this->GetSite()->XmlRcsName + " isn't' " + element.attribute("server_name"));
+        return;
+    }
+
     // now we can create an edit
     edit = new WikiEdit();
     edit->Page = new WikiPage(element.attribute("title"));
