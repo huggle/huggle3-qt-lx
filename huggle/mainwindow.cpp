@@ -582,6 +582,7 @@ void MainWindow::UpdateStatusBarData()
            << QString::number(this->GetCurrentWikiSite()->GetProjectConfig()->WhiteList.size())
            << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
     QString statistics_;
+    //! \todo Localize me
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = this->GetCurrentWikiSite()->Provider->GetUptime();
     if (this->ShuttingDown)
@@ -2434,6 +2435,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (this->CurrentEdit->User->IsIP())
     {
+        //! \todo Localize me
         Syslog::HuggleLogs->ErrorLog("You can't report IP address using this feature");
         return;
     }
@@ -2496,7 +2498,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     }
     bool ok;
     QString reason = QInputDialog::getText(this, _l("reason"), _l("main-revert-custom-reson"), QLineEdit::Normal,
-                                           _l("main-no-reason"), &ok);
+                                                 _l("main-no-reason"), &ok);
     if (!ok)
         return;
     this->RestoreQuery = new ApiQuery(ActionQuery, this->GetCurrentWikiSite());
@@ -2658,7 +2660,7 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
 
 void Huggle::MainWindow::on_actionRemove_edits_made_by_whitelisted_users_triggered()
 {
-    // the number must be higher that the real score so that we match even the edits
+    // the number must be higher than the real score so that we match even the edits
     // which have the same score (-800 + 1) > (-800)
     this->Queue1->DeleteByScore(this->GetCurrentWikiSite()->GetProjectConfig()->WhitelistScore + 1);
 }
@@ -2679,11 +2681,13 @@ void Huggle::MainWindow::on_actionAbort_2_triggered()
 {
     if (!this->RevertStack.count())
     {
+        //! \todo Localize me
         Syslog::HuggleLogs->ErrorLog("Nothing to stop");
         return;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
     {
+        //! \todo Localize me
         Syslog::HuggleLogs->ErrorLog("Unable to cancel the current operation, you need to disable Instant reverts in preferences for this feature to work");
         return;
     }
@@ -2807,8 +2811,8 @@ void Huggle::MainWindow::on_actionMy_Contributions_triggered()
         return;
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
-                                           "Special:Contributions/" +
-                               QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+                                    "Special:Contributions/" +
+                                    QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
 
 void MainWindow::Go()
