@@ -16,10 +16,12 @@
 #endif
 #include <QNetworkReply>
 #ifdef HUGGLE_WIN
+#ifndef HUGGLE_NOUPDATER
 #include <windows.h>
 #include <Shellapi.h>
 #include <tchar.h>
 #include <string>
+#endif
 #endif
 #include "configuration.hpp"
 #include "core.hpp"
@@ -245,6 +247,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
 
 void UpdateForm::OnTick()
 {
+#ifndef HUGGLE_NOUPDATER
     if (this->MovingFiles)
     {
         if (this->CurrentFile >= this->values.count())
@@ -333,6 +336,7 @@ void UpdateForm::OnTick()
     finish:
         this->qData->DecRef();
         this->timer->stop();
+#endif
 }
 
 void UpdateForm::Exit()
@@ -504,6 +508,7 @@ void UpdateForm::reject()
 
 void UpdateForm::PreparationFinish()
 {
+#ifndef HUGGLE_NOUPDATER
     QString manifest_path = this->TempPath + QDir::separator() + "updater.xml";
     QFile manifest(manifest_path);
     if (!manifest.open(QIODevice::ReadWrite))
@@ -565,6 +570,7 @@ void UpdateForm::PreparationFinish()
     {
         this->Fail("Unable to launch the updater");
     }
+#endif
 #endif
     this->close();
 }
