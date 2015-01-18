@@ -284,6 +284,14 @@ void Login::DB()
     {
         return;
     }
+    if (this->qDatabase->IsFailed())
+    {
+        this->DisplayError("Unable to download a db of wikis: " + this->qDatabase->GetFailureReason());
+        this->timer->stop();
+        this->Enable();
+        this->Refreshing = false;
+        return;
+    }
     Syslog::HuggleLogs->DebugLog(this->qDatabase->Result->Data, 2);
     ApiQueryResultNode *result = this->qDatabase->GetApiQueryResult()->GetNode("rev");
     if (result != nullptr)
