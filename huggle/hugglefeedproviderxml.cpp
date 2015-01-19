@@ -52,7 +52,7 @@ bool HuggleFeedProviderXml::Start()
     }
     if (this->GetSite()->XmlRcsName.isEmpty())
     {
-        HUGGLE_DEBUG1("There is no XmlRpc provider for " + this->GetSite()->Name);
+        Syslog::HuggleLogs->ErrorLog("There is no XmlRcs provider for " + this->GetSite()->Name);
         return false;
     }
     if (this->NetworkSocket != nullptr)
