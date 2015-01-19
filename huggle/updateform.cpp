@@ -144,7 +144,7 @@ static void recurseAddDir(QDir d, QStringList &list, QString path, QStringList &
 }
 
 #if QT_VERSION >= 0x050000
-static void recurseAddDirWithSources(QDir d, QStringList &list, QStringList &sources, QString path, QString source, QStringList &dirs)
+static void recurseAddDirWithSources(QDir d, QStringList &lf_to, QStringList &lf_from, QString path, QString source, QStringList &dirs)
 {
     QStringList qsl = d.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
     foreach(QString file, qsl)
@@ -156,13 +156,13 @@ static void recurseAddDirWithSources(QDir d, QStringList &list, QStringList &sou
         {
             QString dirname = finfo.fileName();
             QDir sd(finfo.filePath());
-            dirs << QDir::toNativeSeparators(path + dirname);
-            recurseAddDir(sd, list, path + dirname + QDir::separator(), dirs);
+            dirs << QDir::toNativeSeparators(path + "/" + dirname);
+            recurseAddDirWithSources(sd, lf_to, lf_from, path + "/" + dirname + QDir::separator(), source + "/" + dirname, dirs);
         }
         else
         {
-            sources << QDir::toNativeSeparators(TrimSlashes(source + "/" + finfo.fileName()));
-            list << QDir::toNativeSeparators(TrimSlashes(path + "/" + finfo.fileName()));
+            lf_from << QDir::toNativeSeparators(TrimSlashes(source + "/" + finfo.fileName()));
+            lf_to << QDir::toNativeSeparators(TrimSlashes(path + "/" + finfo.fileName()));
         }
     }
 }
@@ -759,8 +759,8 @@ void UpdateForm::NextInstruction()
             {
                 // first recreate the hierarchy of data structures
                 QStringList folders;
-                QStringList files;
-                QStringList fl;
+                QStringList files_to;
+                QStringList files_from;
                 QDir target(to);
                 QDir source(from);
                 if (!target.exists() && !target.mkpath(to))
@@ -773,7 +773,7 @@ void UpdateForm::NextInstruction()
                     this->Fail("Source " + from + " doesn't exist");
                     break;
                 }
-                recurseAddDirWithSources(source, files, fl, to, from, folders);
+                recurseAddDirWithSources(source, files_to, files_from, to, from, folders);
                 foreach (QString directory, folders)
                 {
                     LOG("Creating folder " + directory);
@@ -784,10 +784,10 @@ void UpdateForm::NextInstruction()
                     }
                 }
                 int x = 0;
-                while (x < fl.count())
+                while (x < files_from.count())
                 {
-                    QString fromf = fl.at(x);
-                    QString tof = files.at(x);
+                    QString fromf = files_from.at(x);
+                    QString tof = files_to.at(x);
                     LOG("Copying " + fromf + " to " + tof);
                     if (!QFile().copy(fromf, tof))
                     {
