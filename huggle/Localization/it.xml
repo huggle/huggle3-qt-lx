@@ -12,6 +12,7 @@
   <string name="deleted">Cancellato</string>
   <string name="error">Errore</string>
   <string name="exit">Esci</string>
+  <string name="done">Fatto</string>
   <string name="no">No</string>
   <string name="ok">OK</string>
   <string name="remove">Rimuovi</string>
@@ -118,11 +119,15 @@
   <string name="config-welcome-empty-page">Invia un messaggio di benvenuto agli utenti con la pagina di discussione vuota quando effettuano una modifica corretta</string>
   <string name="config-conflicts-revert">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
   <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
+  <string name="config-merge-messages">Unisci i tuoi messaggi con gli altri nelle sezioni esistenti</string>
   <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
   <string name="config-enable-irc">Attiva IRC</string>
   <string name="config-auto-load-history">Carica automaticamente la cronologia e le informazioni dell\'utente (richiede molta connessione di rete)</string>
   <string name="config-last-revision">Mostra l\'ultima revisione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima revisione (la scaricherà in seguito bypassando la cache)</string>
+  <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, per cui non è possibile usare alcuna funzionalità di scrittura (utile quando devi risolvere un bug da pressione multipla di più pulsanti sulla tastiera)</string>
   <string name="config-display-text">Mostra il successivo</string>
+  <string name="config-retrieve-edit">Recupera le tue modifiche</string>
+  <string name="config-nothing">Niente</string>
   <string name="config-bot-edits">Modifiche di Bot (b)</string>
   <string name="config-own-edits">Le proprie modifiche</string>
   <string name="config-reverts">Annullamenti</string>
@@ -194,7 +199,7 @@
   <string name="irc-connecting">Tentativo di connessione al feed IRC delle ultime modifiche su $1, potrebbe richiedere un pò di tempo...</string>
   <string name="irc-disconnected">Connessione persa al feed IRC delle ultime modifiche su $1. Riconnessione...</string>
   <string name="irc-nochannel">Canale IRC per $1 non trovato; al suo posto sto usando delle interrogazioni API più lente</string>
-  <string name="irc-error">Impossibile connettersi al feed IRC delle ultime modifiche ($1). Al suo posto sto usando delle interrogazioni API più lente</string>
+  <string name="irc-error" fuzzy="true">Impossibile connettersi al feed IRC delle ultime modifiche ($1). Al suo posto sto usando delle interrogazioni API più lente</string>
   <string name="irc-stop">In attesa dell\'arresto del provider principale del feed su $1</string>
   <string name="irc-not">Feed: IRC è disattivato per configurazione di progetto</string>
   <string name="irc-failure">Il provider principale del feed ha fallito. Ritorno al provider del wiki...</string>
@@ -498,6 +503,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="update-error">Impossibile scaricare la nuova versione</string>
   <string name="updater-title">Una nuova versione di Huggle è disponibile</string>
   <string name="updater-update">Aggiorna</string>
+  <string name="updater-update-available">È disponibile una nuova versione di Huggle: versione $1</string>
   <string name="updater-open-manualdownloadpage">Apri la pagina di download</string>
   <string name="updater-close">Chiudi</string>
   <string name="updater-disable-notify">Disattiva gli aggiornamenti</string>
@@ -595,7 +601,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="editquery-success">$1 modificata con successo su $2</string>
   <string name="editquery-token">Recupero del token per modificare $1</string>
   <string name="editquery-token-error">Impossibile recuperare il token di modifica</string>
-  <string name="provider-failure">Errore del provider del feed principale, tentativo di recupero</string>
+  <string name="provider-failure" fuzzy="true">Errore del provider del feed principale, tentativo di recupero</string>
   <string name="provider-primary-failure">Il provider del feed principale ha avuto un errore, passaggio al provider del wiki</string>
   <string name="rc-error">Impossibile recuperare i dati dal feed del wiki, ultimo errore: $1</string>
   <string name="whitelist-download">Scaricamento della nuova lista bianca</string>

@@ -144,7 +144,7 @@
   <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
-  <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
+  <string name="irc-error" fuzzy="true">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="login-tab-oauth">أو أوث</string>
   <string name="login-tab-login">تسجيل الدخول</string>
   <string name="login-language">اللغة:</string>
@@ -353,11 +353,11 @@
   <string name="shortcut-my-talk">صفحة نقاشي</string>
   <string name="shortcut-raw">الرجوع عن التعديل وتحذير المستخدم</string>
   <string name="shortcut-next">انتقل إلى التعديل التالي</string>
-  <string name="shortcut-suspicious">علِّم التعديل كمشبوه به</string>
+  <string name="shortcut-suspicious">علم التعديل كمشبوه به</string>
   <string name="shortcut-warn">إرسال تحذير للمستخدم، دون الرجوع عن التعديل خاصته</string>
   <string name="shortcut-revert">الرجوع عن التعديل</string>
-  <string name="shortcut-open-in-huggle">فتح الصفحة المعروضة حالياً</string>
-  <string name="shortcut-open">فتح التعديل المعروض حالياً في المتصفح</string>
+  <string name="shortcut-open-in-huggle">فتح الصفحة المعروضة حاليا</string>
+  <string name="shortcut-open">فتح التعديل المعروض حاليا في المتصفح</string>
   <string name="shortcut-talk">عرض صفحة نقاش المستخدم الذي فعل هذا التغيير</string>
   <string name="warning-title">حذّر $1ء</string>
   <string name="warning-levelgroup">مستوى التحذير</string>

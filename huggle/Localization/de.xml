@@ -12,6 +12,7 @@
   <string name="deleted">Gelöscht</string>
   <string name="error">Fehler</string>
   <string name="exit">Beenden</string>
+  <string name="done">Fertig</string>
   <string name="no">Nein</string>
   <string name="ok">OK</string>
   <string name="remove">Entfernen</string>
@@ -211,7 +212,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="irc-connecting">Versuche mit IRC-Feed auf $1 zu verbinden; dies kann einen Augenblick dauern …</string>
   <string name="irc-disconnected">Verbindung mit IRC-Feed auf $1 unterbrochen; verbinde …</string>
   <string name="irc-nochannel">IRC-Kanal für $1 nicht gefunden; verwende stattdessen langsamere API-Abfragen</string>
-  <string name="irc-error">Kann nicht mit IRC-Feed verbinden. Verwende stattdessen langsamere API Querys</string>
+  <string name="irc-error" fuzzy="true">Kann nicht mit IRC-Feed verbinden. Verwende stattdessen langsamere API Querys</string>
   <string name="irc-stop">Warte auf den Stopp des primären Feed-Providers auf $1</string>
   <string name="irc-not">Feed: IRC ist durch Projektkonfiguration deaktiviert</string>
   <string name="irc-failure">Der primäre Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider …</string>
@@ -300,6 +301,8 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Beenden</string>
+  <string name="main-config-state-fail">Status von einer Konfigurationsdatei konnte nicht gelesen werden</string>
+  <string name="main-config-geom-fail">Geometrie von einer Konfigurationsdatei konnte nicht gelesen werden</string>
   <string name="main-tools-scoreword-list">Eine Liste mit Scorewörtern anzeigen</string>
   <string name="main-queue">Warteschlange</string>
   <string name="main-queue-next">Weiter</string>
@@ -362,12 +365,14 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-user-report">Melde</string>
   <string name="main-user-ib">Schlechtheits-Score erhöhen</string>
   <string name="main-user-clear-tp">Diskussionsseite des Benutzers leeren</string>
+  <string name="main-user-retrieving-tp">Rufe Diskussionsseite von %1 ab</string>
   <string name="main-user-block">Sperre Benutzer...</string>
   <string name="main-browser-back">Zurück</string>
   <string name="main-browser-forward">Vorwärts</string>
   <string name="main-browser-open">In externem Browser laden</string>
   <string name="main-browser-newedits">Neue Änderungen der Seite anzeigen</string>
   <string name="main-browser-newcontribs">Neue Beiträge des Benutzers anzeigen</string>
+  <string name="main-browser-lasttab">Ich konnte diese Registerkarte nicht schließen, da sie die letzte ist. Du musst mindestens eine Registerkarte offen haben.</string>
   <string name="main-revert-manual">Kein Zurücksetzungs-Token. Rückgriff auf manuelle Zurücksetzung von $1.</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Trennen</string>
@@ -395,6 +400,10 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-revision-acceptpend">Diese ausstehende Version akzeptieren</string>
   <string name="main-no-page">Die angeforderte Aktion erfordert das Laden einer Seite. Bitte lade eine Seite, bevor du es erneut versuchst.</string>
   <string name="main-revert-null">Zurücksetzung konnte nicht ausgeführt werden</string>
+  <string name="main-revert-newpage-title">Dies konnte nicht rückgängig gemacht werden</string>
+  <string name="main-revert-newpage">Dies ist eine neue Seite. Sie kann nicht zurückgesetzt werden. Du kannst sie entweder markieren oder löschen.</string>
+  <string name="main-restore-text-fail">Die Version konnte nicht wiederhergestellt werden, da kein Text für die Version verfügbar ist.</string>
+  <string name="main-restore-data-fail">Die Version konnte nicht wiederhergestellt werden, da das Wiki keine Daten für die ausgewählte Version bereitstellt.</string>
   <string name="message-title">Nachricht $1</string>
   <string name="message-help">Entweder Betreff und/oder Zusammenfassung angeben. Wenn keine Zusammenfassung angegeben wird, wird der Betreff verwendet; wenn kein Betreff angegeben wird, wird keine Überschrift hinzugefügt.</string>
   <string name="message-subject">Betreff:</string>
@@ -424,6 +433,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="protect-message-title-fail">Seitenschutz fehlgeschlagen</string>
   <string name="protect-moveprotection">Schutz vor Verschieben</string>
   <string name="protect-ft">Rufe Token zum Schutz von $1 ab</string>
+  <string name="protect-request-proj-fail">Dieses Projekt unterstützt keine Anfragen zum Schutz</string>
   <string name="queue-title">Warteschlangen</string>
   <string name="queue-queues">Warteschleifen:</string>
   <string name="queue-typegroup">Warteschlangenart</string>
@@ -514,6 +524,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="update-error">Fehler beim Herunterladen der neuesten Version</string>
   <string name="updater-title">Eine neue Huggle-Version ist verfügbar</string>
   <string name="updater-update">Aktualisieren</string>
+  <string name="updater-update-available">Eine neuere Huggle-Version (Version $1) ist verfügbar</string>
   <string name="updater-open-manualdownloadpage">Download-Seite öffnen</string>
   <string name="updater-close">Schließen</string>
   <string name="updater-disable-notify">Aktualisierungen deaktivieren</string>
@@ -553,9 +564,13 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="warning-warntype">Art der Warnung:</string>
   <string name="warning-warnlog">Verwarnungen dieses Benutzers:</string>
   <string name="warning-submit">Senden</string>
+  <string name="wikiedit-tp-fail">$1 konnte nicht abgerufen werden. Die Warnstufe für die Seite wird nicht gescort.</string>
   <string name="missing-warning">Es gibt keine Warnvorlage „$1“</string>
   <string name="han-not">Das Vandalismus-Netzwerk ist nicht in Optionen erlaubt</string>
   <string name="han-connecting">Verbindung mit dem Huggle-Anti-Vandalismus-Netzwerk</string>
+  <string name="han-already-connected">Verbindung mit HAN wurde nicht hergestellt, da es bereits verbunden ist.</string>
+  <string name="han-already-connecting">Bitte warten. Ich verbinde bereits mit HAN</string>
+  <string name="han-disconnected">Du wurdest von HAN getrennt</string>
   <string name="error-loggedout">Benutzer wurde abgemeldet, logge wieder ein...</string>
   <string name="error-noresponse">Keine Rückmeldung</string>
   <string name="error-pagemissing">Seite existiert nicht</string>
@@ -582,11 +597,17 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="history-fail">Versionsgeschichte von $1 konnte nicht abgerufen werden</string>
   <string name="history-progress">Rufe Versionsgeschichte von $1 ($2) ab …</string>
   <string name="history-work">Mache eigene Bearbeitung auf $1 rückgängig</string>
+  <string name="history-no-item-selected">Es wurde kein Element im Versionsgeschichtenwidget ausgewählt</string>
   <string name="history-message-revert-title">Möchtest du wirklich nur diese Nachricht rückgängig machen?</string>
+  <string name="history-another-edit">Ich mache bereits eine andere Bearbeitung rückgängig. Bitte warten.</string>
   <string name="history-not-found">Nichts zum Rückgängigmachen gefunden</string>
   <string name="history-already-done">Dies wurde bereits rückgängig gemacht</string>
   <string name="history-message-revert-body">Dies war eine Nachricht, die sich auf eine Zurücksetzung bezieht. Bist du sicher, dass du nur die Vorlage und nicht deine Bearbeitung an der Seite rückgängig machen willst? Du musst die Zurücksetzung in dem Fall rückgängig machen, wo du beide zurücksetzen willst.</string>
   <string name="history-revert-fail">Deine Bearbeitung an $1 konnte nicht rückgängig gemacht werden, da ein Fehler aufgetreten ist: $2</string>
+  <string name="history-undone">Bearbeitung an $1 erfolgreich rückgängig gemacht</string>
+  <string name="history-retrieve-fail">Der Inhalt für die Seite, für die die eigene Bearbeitung zurückgesetzt werden soll, konnte nicht abgerufen werden. Der Fehler war: $1</string>
+  <string name="history-welcome-msg-title">Stattdessen Willkommensnachricht senden?</string>
+  <string name="history-welcome-msg">Du hast diese Diskussionsseite erstellt, so dass sie nicht zurückgesetzt werden kann. Möchtest du sie durch eine Willkommensvorlage ersetzen?</string>
   <string name="notify-fail">Der Ersteller von $1 wurde nicht benachrichtigt</string>
   <string name="notify-unknowncreator">Seiten-Ersteller unbekannt</string>
   <string name="protect-done">Schutzstatus für $1 geändert</string>
@@ -611,9 +632,13 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="editquery-success">$1 auf $2 erfolgreich bearbeitet</string>
   <string name="editquery-token">Rufe Token für die Bearbeitung von $1 ab</string>
   <string name="editquery-token-error">Bearbeitungs-Token konnte nicht abgerufen werden</string>
-  <string name="provider-failure">Fehler beim primären Feedprovider. Versuche Wiederherstellung.</string>
+  <string name="editquery-invalid-token">$1 konnte nicht bearbeitet werden, da der cacachte Token nicht länger gültig ist. Bitte versuche, diese Seite erneut zu bearbeiten.</string>
+  <string name="provider-failure" fuzzy="true">Fehler beim primären Feedprovider. Versuche Wiederherstellung.</string>
   <string name="provider-primary-failure">Primärer Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider.</string>
   <string name="rc-error">Daten vom Wikifeed konnten nicht abgerufen werden. Letzter Fehler: $1</string>
+  <string name="rc-timestamp-missing">RC-Feed: Im Element fehlt das Zeitstempel-Attribut: $1</string>
+  <string name="rc-type-missing">RC-Feed: Im Element fehlt das Typ-Attribut: $1</string>
+  <string name="rc-title-missing">RC-Feed: Im Element fehlt das Titel-Attribut: $1</string>
   <string name="whitelist-download">Lade neue Whitelist herunter</string>
   <string name="logs-widget-name">System-Logbücher</string>
   <string name="wait">Bitte warten …</string>
@@ -634,6 +659,10 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>
   <string name="preferences-delete-using-filter">Du kannst keinen Filter löschen, der bereits verwendet wird.</string>
+  <string name="preferences-extension-disabled">Diese Erweiterung wurde bereits zur Deaktivierung beim nächsten Huggle-Start geplant</string>
+  <string name="preferences-extension-disabled-restart">Diese Erweiterung wurde bereits zur Deaktivierung beim nächsten Huggle-Start geplant</string>
+  <string name="preferences-extension-enabled">Diese Erweiterung wurde nicht zur Deaktivierung beim nächsten Huggle-Start geplant</string>
+  <string name="preferences-extension-enabled-restart">Die Erweiterung wurde aktiviert. Vielleicht musst du Huggle neu starten, damit etwas geschieht.</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>
@@ -661,4 +690,5 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="about-python-without">ohne Python-Unterstützung</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
   <string name="error-unknown-code">Unbekannter Fehler: $1</string>
+  <string name="relogin-fail">Anmeldung im Wiki konnte nicht ausgeführt werden: $1</string>
 </resources>

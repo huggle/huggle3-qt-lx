@@ -12,6 +12,7 @@
   <string name="deleted">Usunięto</string>
   <string name="error">Błąd</string>
   <string name="exit">Wyjście</string>
+  <string name="done">Zrobione</string>
   <string name="no">Nie</string>
   <string name="ok">OK</string>
   <string name="remove">Usuń</string>
@@ -275,4 +276,5 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="history-revert-fail">Nie można cofnąć twojej edycji na $1 błąd podczas przeglądania: $2</string>
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
+  <string name="relogin-fail">Nie można zalogować się na: $1</string>
 </resources>

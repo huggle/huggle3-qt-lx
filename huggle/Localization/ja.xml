@@ -123,7 +123,7 @@
   <string name="irc-connecting">$1 の IRC の最近の更新フィードへ接続しています。しばらくお待ちください....</string>
   <string name="irc-disconnected">$1 の IRC の最近の更新フィードから切断されました。再接続しています....</string>
   <string name="irc-nochannel">$1のIRCチャンネルが見つかりません。より低速なAPIクエリを代わりに使用します</string>
-  <string name="irc-error">IRCの最近の更新フィードに接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
+  <string name="irc-error" fuzzy="true">IRCの最近の更新フィードに接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
   <string name="login-intro">プロジェクトを選択して、利用者名とパスワードを入力してください。「Projects」ボタンをクリックすることで、複数のプロジェクトにログインすることもできます。</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">ログイン</string>

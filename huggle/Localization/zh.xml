@@ -12,6 +12,7 @@
   <string name="deleted">已删除</string>
   <string name="error">错误</string>
   <string name="exit">退出</string>
+  <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">确定</string>
   <string name="remove">移除</string>
@@ -117,6 +118,8 @@
   <string name="config-confirm-wl">需要确认以回退白名单用户做出的编辑</string>
   <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
   <string name="config-use-rollback">使用软件回退</string>
+  <string name="config-welcome-empty-page">发送欢迎信息到作出了良好编辑的只有空讨论页的用户</string>
+  <string name="config-conflicts-revert">自动解决与其他用户恢复或者更改该页面的冲突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
   <string name="config-revert-wait">回退等待（秒）</string>
   <string name="config-revert">回退</string>
@@ -126,6 +129,8 @@
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
   <string name="config-enable-irc">启用IRC</string>
+  <string name="config-remove-reverted">移除已经被别人恢复的编辑</string>
+  <string name="config-auto-load-history">自动加载历史记录和用户信息（需进行大量的网络连接）</string>
   <string name="config-display-text">显示下一个</string>
   <string name="config-retrieve-edit">取得自己的编辑</string>
   <string name="config-nothing">什么都没有</string>
@@ -137,8 +142,12 @@
   <string name="config-friend">朋友</string>
   <string name="config-userspace">用户名字空间</string>
   <string name="config-talk">讨论页</string>
+  <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
+  <string name="config-warning-api">显示API查询的警告</string>
   <string name="config-updates">检查更新</string>
   <string name="config-beta">检查测试版本</string>
+  <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
+  <string name="config-summary-present">当它存在而非缺失时高亮摘要</string>
   <string name="config-close-without">不保存关闭</string>
   <string name="config-confirmmultiple">同一用户的多个贡献时确认历史版本</string>
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
@@ -197,7 +206,7 @@
   <string name="irc-connecting">尝试在$1连接IRC最近更改，这将花费几分钟……</string>
   <string name="irc-disconnected">连接$1的 IRC 最近更新中断。重新连接中……</string>
   <string name="irc-nochannel">未找到IRC频道$1；使用较慢的API请求</string>
-  <string name="irc-error">无法连接到IRC频道最近更改订阅（$1）。使用较慢的API查询请求</string>
+  <string name="irc-error" fuzzy="true">无法连接到IRC频道最近更改订阅（$1）。使用较慢的API查询请求</string>
   <string name="irc-stop">等待$1的主订阅提供商停止</string>
   <string name="irc-not">IRC订阅被项目配置文件禁用</string>
   <string name="irc-failure">首选订阅提供程序失败。退回wiki提供……</string>
@@ -286,6 +295,8 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">退出</string>
+  <string name="main-config-state-fail">无法读取一个配置文件的状态</string>
+  <string name="main-config-geom-fail">无法从配置文件读取几何形状（布局）</string>
   <string name="main-tools-scoreword-list">显示scorewords的列表</string>
   <string name="main-queue">队列</string>
   <string name="main-queue-next">下一个</string>
@@ -348,12 +359,14 @@
   <string name="main-user-report">报告</string>
   <string name="main-user-ib">提高不良分数</string>
   <string name="main-user-clear-tp">清空用户讨论页</string>
+  <string name="main-user-retrieving-tp">检索%1的讨论页中</string>
   <string name="main-user-block">封禁...</string>
   <string name="main-browser-back">后退</string>
   <string name="main-browser-forward">前进</string>
   <string name="main-browser-open">用外部浏览器查看</string>
   <string name="main-browser-newedits">查看新编辑</string>
   <string name="main-browser-newcontribs">查看指定用户的新贡献</string>
+  <string name="main-browser-lasttab">我无法关闭此选项卡，因为它是最后一个，您必须有至少一个选项卡处于打开状态</string>
   <string name="main-revert-manual">没有回退令牌，改为手动回退$1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">断开连接</string>
@@ -381,6 +394,10 @@
   <string name="main-revision-acceptpend">接受该版本</string>
   <string name="main-no-page">您请求的操作需要页面已加载。请在重试前加载一个页面。</string>
   <string name="main-revert-null">无法回退：编辑为空</string>
+  <string name="main-revert-newpage-title">不能回退这个</string>
+  <string name="main-revert-newpage">这是一个新页面，所以它不能被恢复，您可以标记它，或者删除它。</string>
+  <string name="main-restore-text-fail">无法还原该修订，因为它没有可用的文本。</string>
+  <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据。</string>
   <string name="message-title">消息$1</string>
   <string name="message-help">指明标题和/或摘要。如果没有摘要，标题或被使用。如果没有标题，就不会插入标题头</string>
   <string name="message-subject">主题：</string>
@@ -410,6 +427,7 @@
   <string name="protect-message-title-fail">无法保护</string>
   <string name="protect-moveprotection">移动保护</string>
   <string name="protect-ft">获取令牌以保护$1</string>
+  <string name="protect-request-proj-fail">此项目不支持请求保护</string>
   <string name="queue-title">队列</string>
   <string name="queue-queues">队列：</string>
   <string name="queue-typegroup">队列类型</string>
@@ -500,6 +518,7 @@
   <string name="update-error">未能下载最新版本</string>
   <string name="updater-title">Huggle新版本可用</string>
   <string name="updater-update">更新</string>
+  <string name="updater-update-available">Huggle的新版本现在可用：版本 $1</string>
   <string name="updater-open-manualdownloadpage">打开下载页</string>
   <string name="updater-close">关闭</string>
   <string name="updater-disable-notify">停用更新</string>
@@ -542,6 +561,9 @@
   <string name="missing-warning">没有这种警告模板$1</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
   <string name="han-connecting">连接Huggle反破坏网络</string>
+  <string name="han-already-connected">没有连接到HAN，因为它已经连接</string>
+  <string name="han-already-connecting">请稍候，我正在连接HAN</string>
+  <string name="han-disconnected">您已从HAN断开</string>
   <string name="error-loggedout">账户已退出，重新登入中…</string>
   <string name="error-noresponse">无反应</string>
   <string name="error-pagemissing">页面不存在</string>
@@ -568,11 +590,17 @@
   <string name="history-fail">获取$1历史失败</string>
   <string name="history-progress">获取$1历史中（$2）…</string>
   <string name="history-work">撤销自己对$1的编辑</string>
+  <string name="history-no-item-selected">没有在历史记录组件中选中项目</string>
   <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
+  <string name="history-another-edit">我已经正在撤销另一个编辑，请稍候</string>
   <string name="history-not-found">没有可以撤销的</string>
   <string name="history-already-done">这已经完成</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
   <string name="history-revert-fail">无法在回退中撤销您对$1的编辑：$2</string>
+  <string name="history-undone">成功撤销对$1的编辑</string>
+  <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
+  <string name="history-welcome-msg-title">改为发送欢迎消息？</string>
+  <string name="history-welcome-msg">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
   <string name="notify-fail">未告知$1的创建者</string>
   <string name="notify-unknowncreator">无法找到页面创建者</string>
   <string name="protect-done">已更改$1的保护级别</string>
@@ -597,7 +625,8 @@
   <string name="editquery-success">成功编辑$2的$1</string>
   <string name="editquery-token">检索令牌以编辑$1</string>
   <string name="editquery-token-error">无法检索编辑令牌</string>
-  <string name="provider-failure">首选订阅提供者失败，尝试恢复</string>
+  <string name="editquery-invalid-token">无法编辑$1，因为我在缓存中持有的令牌已经失效，请再次尝试编辑此页面</string>
+  <string name="provider-failure" fuzzy="true">首选订阅提供者失败，尝试恢复</string>
   <string name="provider-primary-failure">首选订阅提供者失败，退回wiki提供</string>
   <string name="rc-error">无法从wiki订阅检索数据，最后错误：$1</string>
   <string name="whitelist-download">新白名单下载中</string>
@@ -620,12 +649,17 @@
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">你无法删除一个正在使用的过滤器</string>
+  <string name="preferences-extension-disabled">此扩展已计划于下次huggle启动时被禁用</string>
+  <string name="preferences-extension-disabled-restart">此扩展已计划于下次huggle启动时被禁用</string>
+  <string name="preferences-extension-enabled">此扩展未被计划于下次huggle启动时被禁用</string>
+  <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启huggle才能使它生效</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
   <string name="requested">已请求</string>
   <string name="protect-request-fail">无法获取当前举报页面：$1</string>
   <string name="protect-request-fail-notext">无法获取当前举报页面，因为查询没有返回任何文本</string>
+  <string name="protect-request-fail-notime">查询未返回任何时间戳（mediawiki bug？），中止查询</string>
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
   <string name="page-tag-nodescription">这个标记没有说明 :(</string>
@@ -646,4 +680,5 @@ $1</string>
   <string name="about-python-without">无Python支持</string>
   <string name="about-qt">，使用QT $1编译 正在用QT $1运行</string>
   <string name="error-unknown-code">未知错误：$1</string>
+  <string name="relogin-fail">无法登陆wiki：$1</string>
 </resources>

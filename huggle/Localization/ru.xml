@@ -12,6 +12,7 @@
   <string name="deleted">Удалено</string>
   <string name="error">Ошибка</string>
   <string name="exit">Выход</string>
+  <string name="done">Готово</string>
   <string name="no">Нет</string>
   <string name="ok">OK</string>
   <string name="remove">Убрать</string>
@@ -95,6 +96,7 @@
   <string name="config-watchlist">Добавлять в список наблюдения:</string>
   <string name="config-defaultsummary">Описание правки по умолчанию</string>
   <string name="config-undosummary">Описание правки при отмене собственных изменений</string>
+  <string name="config-updates">Проверить на наличие обновлений</string>
   <string name="config-confirmmultiple">Подтвердить откат нескольких правок участника к его же версии</string>
   <string name="config-confirmsame">Подтвердить откат правки участника к его же версии</string>
   <string name="config-confirmselfrevert">Подтвердить откат собственных правок (за исключением отмен)</string>
@@ -130,7 +132,7 @@
   <string name="delete-notify">Уведомление автору</string>
   <string name="delete-e2">Не удаётся удалить страницу</string>
   <string name="delete-edsc">Не удаётся удалить страницу, потому что $1</string>
-  <string name="extension-kl" fuzzy="true">Убито</string>
+  <string name="extension-kl">Не запущено</string>
   <string name="historyform-title">История</string>
   <string name="historyform-retrieve-history">Получить историю</string>
   <string name="historyform-retrieving-history">Получение истории</string>
@@ -140,7 +142,7 @@
   <string name="irc-connecting">Попытка соединения с IRC-каналом свежих правок на $1, это может занять несколько минут…</string>
   <string name="irc-disconnected">Соединение с IRC-каналом было утеряно на $1. Повторное подключение…</string>
   <string name="irc-nochannel">IRC-канал $1 не найден; будет использовано медленное соединение с применением API-запросов</string>
-  <string name="irc-error">Невозможно подключиться к IRC-каналу свежих правок. Будет использовано медленное соединение с применением API-запросов</string>
+  <string name="irc-error" fuzzy="true">Невозможно подключиться к IRC-каналу свежих правок. Будет использовано медленное соединение с применением API-запросов</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Войти</string>
   <string name="login-language">Язык:</string>
@@ -426,7 +428,7 @@
   <string name="speedy-progress">Помечаем \'$1\' к быстрому удалению…</string>
   <string name="speedy-finished">Завершено</string>
   <string name="warn-alreadyblocked">Этот участник уже заблокирован</string>
-  <string name="provider-failure">Отказ основного канала провайдера, попытка восстановить</string>
+  <string name="provider-failure" fuzzy="true">Отказ основного канала провайдера, попытка восстановить</string>
   <string name="logs-widget-name">Системные журналы</string>
   <string name="wait">Пожалуйста, подождите…</string>
   <string name="function-miss">Функция в настоящий момент недоступна</string>

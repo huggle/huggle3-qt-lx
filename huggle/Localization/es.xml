@@ -180,7 +180,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1; esto puede tomar un momento...</string>
   <string name="irc-disconnected">Se perdió la conexión al canal IRC de cambios recientes el $1. Reconectando...</string>
   <string name="irc-nochannel">Canal IRC para $1 no encontrado; usando peticiones API más lentas en lugar de ello</string>
-  <string name="irc-error">No se puede conectar al canal IRC de cambios recientes. Usando peticiones API más lentas en lugar de ello</string>
+  <string name="irc-error" fuzzy="true">No se puede conectar al canal IRC de cambios recientes. Usando peticiones API más lentas en lugar de ello</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Acceder</string>

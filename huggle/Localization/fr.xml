@@ -167,7 +167,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="irc-connecting">Tentative de connexion au flux IRC des changements récents sur $1, ceci peut prendre un peu de temps…</string>
   <string name="irc-disconnected">Connexion perdue au flux IRC des changements récentssur $1. Reconnexion en cours…</string>
   <string name="irc-nochannel">Canal IRC introuvable pour $1 ; utilisation à la place des requêtes d’API plus lentes</string>
-  <string name="irc-error">Impossible de se connecter au flux des changements récents sur IRC ($1). Utilise à la place des requêtes d’API plus lentes.</string>
+  <string name="irc-error" fuzzy="true">Impossible de se connecter au flux des changements récents sur IRC ($1). Utilise à la place des requêtes d’API plus lentes.</string>
   <string name="irc-stop">En attente de l’arrêt du fournisseur principal de flux sur $1</string>
   <string name="irc-not">Flux : IRC est désactivé par la configuration du projet</string>
   <string name="irc-failure">Le fournisseur de flux principal a échoué. Recours au fournisseur du wiki…</string>
@@ -566,7 +566,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="editquery-success">Modification réussie de $1 le $2</string>
   <string name="editquery-token">Récupération du jeton pour modifier $1</string>
   <string name="editquery-token-error">Impossible de récupérer le jeton de modification</string>
-  <string name="provider-failure">Échec du fournisseur de flux principal, tentative de récupération</string>
+  <string name="provider-failure" fuzzy="true">Échec du fournisseur de flux principal, tentative de récupération</string>
   <string name="provider-primary-failure">Le fournisseur de flux principal a échoué, retour au fournisseur du wiki</string>
   <string name="rc-error">Impossible de récupérer des données du flux du wiki, dernière erreur : $1</string>
   <string name="whitelist-download">Téléchargement de la nouvelle liste blanche</string>

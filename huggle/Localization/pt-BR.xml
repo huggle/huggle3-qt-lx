@@ -153,7 +153,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="delete-e2">Não é possível eliminar a página</string>
   <string name="delete-edsc">Não é possível eliminar a página porque $1</string>
   <string name="delete-failed-no-info">Nenhuma informação do usuário estava presente na consulta (você é um administrador?)</string>
-  <string name="extension-kl" fuzzy="true">Morto</string>
+  <string name="extension-kl">Não está executando</string>
   <string name="historyform-no-info">Sem informações de edição</string>
   <string name="historyform-title">Histórico</string>
   <string name="historyform-retrieve-history">Recuperar histórico</string>
@@ -167,7 +167,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="irc-connecting">Conectando-se ao feed IRC de mudanças recentes em $1; isto pode demorar alguns momentos...</string>
   <string name="irc-disconnected">Perdeu-se a ligação ao feed de IRC de mudanças recentes em $1; conectando novamente...</string>
   <string name="irc-nochannel">Não foi encontrado o canal IRC para $1. A usar como alternativa os pedidos API, mais lentos</string>
-  <string name="irc-error">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API, mais lentos</string>
+  <string name="irc-error" fuzzy="true">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API, mais lentos</string>
   <string name="irc-stop">Aguardando pela parada do principal provedor de feed em $1</string>
   <string name="irc-not">Feed: O IRC está desativado por configuração do projeto</string>
   <string name="irc-failure">O provedor primário do feed falhou. Retornando ao provedor wiki...</string>
@@ -567,7 +567,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="editquery-success">$1 editado com sucesso em $2</string>
   <string name="editquery-token">Recuperando token para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
-  <string name="provider-failure">Falha do provedor de feed primário, tentando recuperar</string>
+  <string name="provider-failure" fuzzy="true">Falha do provedor de feed primário, tentando recuperar</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
   <string name="rc-error">Impossível recuperar dados do feed da wiki, último erro: $1</string>
   <string name="whitelist-download">Baixando a nova lista branca</string>
@@ -589,5 +589,5 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="cr-message-same">Existem múltiplas edições para $1 pelo mesmo usuário, tem certeza que quer revertê-las?</string>
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
-  <string name="report-fail" fuzzy="true">Não foi possível reportar \'$1\' aos administradores</string>
+  <string name="report-fail">Falha ao denunciar o usuário porque: $1</string>
 </resources>

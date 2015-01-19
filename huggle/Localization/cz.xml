@@ -169,7 +169,7 @@
   <string name="irc-connecting">$1: Pokouším se připojit k IRC serveru...</string>
   <string name="irc-disconnected">Ztraceno připojení k IRC seznamu pro $1, připojuji se...</string>
   <string name="irc-nochannel">IRC kanál $1 nenalezen; místo toho použiji pomalejší API dotazy</string>
-  <string name="irc-error">Nepodařilo se připojit k IRC serveru, používám pomalejší API systém</string>
+  <string name="irc-error" fuzzy="true">Nepodařilo se připojit k IRC serveru, používám pomalejší API systém</string>
   <string name="irc-stop">Čekání na zastavení primárního poskytovatele pro $1</string>
   <string name="irc-not">Zdroj: IRC je zakázán v projekt configu</string>
   <string name="irc-failure">Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh</string>
@@ -231,7 +231,7 @@
   <string name="login-error-password">Chybné heslo</string>
   <string name="login-error-projdisabled">Huggle je v současné době zakázána na tomto projektu.</string>
   <string name="login-error-unknown">Nelze se přihlásit k $1.</string>
-  <string name="login-error-version">Tato verze je zastaralá. Aktualizovat na nejnovější verzi.</string>
+  <string name="login-error-version">Tato verze je zastaralá. Aktualizujte na nejnovější verzi.</string>
   <string name="login-error-whitelist">Nepodařilo se načíst uživatelskou bílou listinu pro $1.</string>
   <string name="main-menu-provider-stop">Zastavit poskytovatele</string>
   <string name="main-menu-provider-resume">Obnovit poskytovatele</string>
@@ -568,8 +568,8 @@
   <string name="editquery-success">Úspěsně upravena $1 na $2</string>
   <string name="editquery-token">Získávání tokenu k úpravě stránky $1</string>
   <string name="editquery-token-error">Nelze získat edit token</string>
-  <string name="provider-failure">Selhání primárního poskytovatele feedu, snažím se jej obnovit</string>
-  <string name="provider-primary-failure">Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh</string>
+  <string name="provider-failure" fuzzy="true">Selhání primárního poskytovatele feedu, snažím se jej obnovit</string>
+  <string name="provider-primary-failure">Primarní poskytovatel wiki změn selhal, probíhá fallback na záložního poskytovatele</string>
   <string name="rc-error">Data nelze načíst z wiki feedu, poslední chyba: $1</string>
   <string name="whitelist-download">Stahuji whitelist</string>
   <string name="logs-widget-name">Logy</string>

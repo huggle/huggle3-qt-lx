@@ -12,6 +12,7 @@
   <string name="deleted">Verwijderd</string>
   <string name="error">Fout</string>
   <string name="exit">Afsluiten</string>
+  <string name="done">Afgerond</string>
   <string name="no">Nee</string>
   <string name="ok">OK</string>
   <string name="remove">Verwijderen</string>
@@ -120,7 +121,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="userhistory-title">Geschiedenis van uw wijzigingen</string>
   <string name="irc-connected">$1: verbonden met IRC recentewijzigingen-feed</string>
   <string name="irc-nochannel">IRC-kanaal voor $1 niet gevonden; huggle gebruikt langzamere API-zoekopdrachten</string>
-  <string name="irc-error">Het is niet mogelijk om te verbinden met de IRC recente wijzigingen-feed. Huggle gebruikt in plaats daarvan langzamere API-zoekopdrachten</string>
+  <string name="irc-error" fuzzy="true">Het is niet mogelijk om te verbinden met de IRC recente wijzigingen-feed. Huggle gebruikt in plaats daarvan langzamere API-zoekopdrachten</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Aanmelden</string>
   <string name="login-language">Taal:</string>
@@ -205,6 +206,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-tip-pagedelete">Deze pagina verwijderen</string>
   <string name="main-tip-userreport">Gebruiker rapporteren</string>
   <string name="main-tip-userblock">Deze gebruiker blokkeren</string>
+  <string name="main-revert-newpage-title">Kan niet worden teruggedraaid</string>
   <string name="message-title">Bericht $1</string>
   <string name="message-subject">Onderwerp:</string>
   <string name="message-message">Bericht:</string>

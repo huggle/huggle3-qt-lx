@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">हिन्दी</string>
+  <string name="isrtl">false</string>
   <string name="add">जोड़ें</string>
   <string name="cancel">रद्द करें</string>
   <string name="clear">साफ़ करें</string>
@@ -8,20 +9,64 @@
   <string name="continue">जारी रखें</string>
   <string name="copy">प्रतिलिपि बनाएँ</string>
   <string name="delete">मिटाएँ</string>
+  <string name="deleted">हटाया</string>
   <string name="error">त्रुटि</string>
   <string name="exit">निकास</string>
+  <string name="done">पूर्ण हुआ</string>
   <string name="no">नहीं</string>
   <string name="ok">ठीक है</string>
   <string name="remove">हटाएँ</string>
   <string name="rename">पुनर्नामकरण</string>
+  <string name="reload">पुनः प्राप्त किया</string>
+  <string name="project">परियोजना</string>
+  <string name="result">परिणाम</string>
   <string name="save">सहेजें</string>
+  <string name="show">दिखायें</string>
+  <string name="undo">पूर्ववत करें</string>
   <string name="yes">हाँ</string>
+  <string name="editing-page">सम्पादन वाला पृष्ठ</string>
   <string name="agf">रुचिगत कारण देकर अच्छी भावना से किए गए सम्पादन के रूप में पूर्ववत करें</string>
+  <string name="successful">सफल</string>
+  <string name="summary">सारांश</string>
+  <string name="id">आई॰डी॰</string>
+  <string name="type">प्रकार</string>
+  <string name="target">लक्ष्य</string>
+  <string name="user">सदस्य</string>
+  <string name="size">आकार</string>
+  <string name="date">दिनांक</string>
+  <string name="page">पृष्ठ</string>
+  <string name="time">समय</string>
+  <string name="version">संस्करण</string>
+  <string name="general-name">नाम</string>
+  <string name="author">लेखक</string>
+  <string name="description">विवरण</string>
+  <string name="status">स्थिति</string>
+  <string name="link">कड़ी</string>
+  <string name="reason">कारण</string>
+  <string name="diffid">अन्तर पता</string>
+  <string name="whitelisted">$3 पर $2 स्कोर के साथ $1 को श्वेत सूची में समाहित किया</string>
+  <string name="expiry-time">समाप्ति समय</string>
+  <string name="duration">अवधि</string>
+  <string name="enable">सक्षम करें</string>
+  <string name="disable">अक्षम करें</string>
+  <string name="no-token">कोई संकेत नहीं</string>
+  <string name="flags">चिह्न</string>
+  <string name="score-score">स्कोर</string>
+  <string name="score-word">शब्द</string>
+  <string name="score-range">परास</string>
+  <string name="score-only-whole-word">केवल सभी शब्द मेल खाते हैं</string>
+  <string name="score-take-any-word">इस शृंखला वाले सभी शब्द मेल खाते हैं</string>
+  <string name="browser-none">अभी कोई पृष्ठ प्रदर्शित नहीं हुआ</string>
+  <string name="browser-miss-summ">कोई सारांश नहीं दिया गया</string>
+  <string name="browser-diff">पृष्ठों में अन्तर: $1 (स्कोर: $2)</string>
+  <string name="browser-fail">अन्तर प्राप्त करने में अक्षम: $1</string>
   <string name="about-contributors">विकासकर्ता:</string>
+  <string name="block-not">सदस्य प्रतिबन्धित नहीं है</string>
   <string name="block-title">$1 को अवरोधित करें</string>
   <string name="block-reason">कारण:</string>
   <string name="block-duration">अवधि:</string>
   <string name="block-message">वार्ता पृष्ठ सन्देश:</string>
+  <string name="block-message-user">लक्षित सदस्य को प्रतिबन्धित करने के लिए विवरण सहित सन्देश भेजें</string>
   <string name="block-anononly">केवल अज्ञात सदस्यों को अवरोधित करें</string>
   <string name="block-creation">खाता निर्माण अवरोधित करें</string>
   <string name="block-autoblock">स्वतः अवरोधन सक्षम करें</string>
@@ -33,10 +78,22 @@
   <string name="block-sharedipwarning">अवधान: $1 साझाकृत या गत्यात्मक आईपी पते के रूप में अंकित है।</string>
   <string name="block-rangeblockwarning">$1 पहले से ही $2 पर श्रृंखला अवरोधन के कारण प्रभावित है।
 यह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
+  <string name="block-token-1">प्रतिबन्ध $1 के लिए टोकन प्राप्त करें</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
+  <string name="block-token-e1">टोकन पुनः प्राप्त नहीं हो सकता: $1</string>
+  <string name="block-error-no-info">जाँच में कोई सदस्य सूचना उपलब्ध नहीं है (क्या आप प्रबन्धक हो?)</string>
+  <string name="block-type">प्रतिबन्धित करें/प्रतिबन्ध हटायें</string>
+  <string name="block-admin">प्रतिबन्धित करने वाला प्रबन्धक</string>
+  <string name="block-none">कोई भी सदस्य प्रतिबन्धित करने के लिए नहीं है।</string>
+  <string name="config-function">फलन</string>
+  <string name="config-description">विवरण</string>
   <string name="config-shortcut">लघुपथ</string>
+  <string name="config-queue-filter-ignore">छोड़ें (महत्त्व नहीं रखता)</string>
+  <string name="config-queue-filter-exclude">वर्जित करें (नहीं होना चाहिए)</string>
+  <string name="config-queue-filter-require">अपेक्षित (होने चाहिए)</string>
   <string name="config-summ">साँचों के लिये सारांश को व्यक्तिगतरुप से वापस करे</string>
   <string name="config-title">विकल्प</string>
+  <string name="config-already-in-use">लघु पथ को $1 ने पहले ही काम में ले लिया है, कृपया अन्य को चुनें</string>
   <string name="config-openinbrowser">ब्राउज़र कड़ियाँ नई ब्राउज़र विण्डो में खोलें</string>
   <string name="config-shownewedits">चुने गये पन्ने पर किये गये नये संपादन दिखायें जैसे ही वह चुने गये पन्ने बनते है।</string>
   <string name="config-ircmode">अगर संभव हो तो हाल ही में हुए परिवर्तनों के लिये आई आर सी फीड प्रयोग करें</string>
@@ -56,6 +113,18 @@
   <string name="config-watchlist">ध्यानसूची में जोड़ें</string>
   <string name="config-defaultsummary">व्यक्तिगत संपादनों के लिये डिफ्ल्ट सारांश</string>
   <string name="config-undosummary">अपने परिवर्तनों को पूर्ववत करते हुए का सारांश</string>
+  <string name="config-confirm-user">सदस्य स्थान में किये गये सम्पादन को पूर्ववत करने के लिए पुष्टीकरण चाहिए</string>
+  <string name="config-confirm-wl">श्वेत सूची में शामिल सदस्य द्वारा निर्मित सम्पादन को पूर्ववत करने के लिए पुष्टीकरण चाहिए</string>
+  <string name="config-confirm-talk">वार्ता पृष्ठ को पूर्ववत करने के लिए पुष्टीकरण चाहिए</string>
+  <string name="config-use-rollback">सॉफ्टवेयर रोलबैक काम में लें</string>
+  <string name="config-welcome-empty-page">अच्छे सम्पादन करने वाले सदस्यों के खाली वार्ता पृष्ठों पर स्वागत सन्देश भेजें</string>
+  <string name="config-conflicts-revert">पूर्ववत करने अथवा पृष्ठों में बदलाव करने वाले सदस्यों के संघर्ष का स्वचालित रूप समाधान करें</string>
+  <string name="config-instant-reverts">तत्काल बदलाव काम में लें (बहुत तीव्र, लेकिन एक बार निष्पादित करने के बाद निरसित नहीं हो सकता)</string>
+  <string name="config-revert-wait">बदलाव के लिए प्रतीक्षा करें (सैकण्ड)</string>
+  <string name="config-revert">बदलें</string>
+  <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
+  <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>
+  <string name="config-months-name">शीर्षणी में पृष्ठ के नाम के स्थान पर माह का उपयोग करें</string>
   <string name="config-confirmmultiple">एक ही सदस्य के एक ही संपादन के एक से अधिक संस्करण की पुष्टि करें</string>
   <string name="config-confirmsame">एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें</string>
   <string name="config-confirmselfrevert">स्वयं के संपादन आवृति संस्करण की पुष्टि करें</string>
@@ -87,11 +156,11 @@
   <string name="delete-deletionlog">हटाए जाने का लॉग:</string>
   <string name="delete-rem-talk">सम्बन्धित वार्ता हटाएँ</string>
   <string name="delete-notify">निर्माता को सूचित करें</string>
-  <string name="irc-connected" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड से जुडे़</string>
-  <string name="irc-connecting" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड  से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लगेगा।</string>
-  <string name="irc-disconnected" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड से सम्पर्क टूटा; फिर से सम्पर्क किया जा रहा है...</string>
+  <string name="irc-connected">$1: आईआरसी हाल ही भरण से जुड़ा।</string>
+  <string name="irc-connecting">$1 पर आईआरसी हाल ही के भरण से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लग सकता है...</string>
+  <string name="irc-disconnected">$1 पर आईआरसी हाल ही के परिवर्तन भरण से सम्पर्क टूट गया। पुनः सम्पर्क किया जा रहा है...</string>
   <string name="irc-nochannel">$1 के लिये आई आरसी चेनल नहीं मिला;</string>
-  <string name="irc-error">आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग</string>
+  <string name="irc-error" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग</string>
   <string name="login-language">भाषा:</string>
   <string name="login-project">परियोजना:</string>
   <string name="login-username">प्रयोक्तानाम:</string>
@@ -102,8 +171,8 @@
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-start">लॉग इन</string>
-  <string name="login-translate" fuzzy="true">अनुवाद...</string>
-  <string name="login-progress-start" fuzzy="true">लॉग इन कर रहा है...</string>
+  <string name="login-translate">हगल अनुवाद</string>
+  <string name="login-progress-start">$1 में लॉग इन कर रहा है</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
   <string name="login-progress-config">समाकृति पृष्ठों की जाँच कर रहा है...</string>
@@ -111,25 +180,25 @@
   <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
   <string name="login-error-age">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
   <string name="login-error-alldisabled">वर्तमान में हूगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।</string>
-  <string name="login-error-approval" fuzzy="true">इस परियोजना पर हूगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
+  <string name="login-error-approval">$1 पर हगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
   <string name="login-error-cancelled">रद्द किया गया।</string>
-  <string name="login-error-config" fuzzy="true">समाकृति पृष्ठों को लोड करने में असफल रहा!</string>
+  <string name="login-error-config">लॉग-इन असफल रहा, $1 के समाकृति पृष्ठों को लोड नहीं कर पाया: $2</string>
   <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
-  <string name="login-error-disabled" fuzzy="true">आपके खाते के लिए हूगल सक्षम नहीं किया हुआ है, प्रयोक्ता समाकृति पृष्ठ देखें।</string>
-  <string name="login-error-global" fuzzy="true">वैश्विक समाकृति पृष्ठ लोड करने में असफल रहा।</string>
+  <string name="login-error-disabled">आपके खाते $1 के लिए हगल सक्षम नहीं किया गया है। प्रयोक्ता समाकृति पृष्ठ देखें।</string>
+  <string name="login-error-global">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
   <string name="login-error-invalid">अमान्य प्रयोक्तानाम।</string>
-  <string name="login-error-noconfig" fuzzy="true">इस परियोजना का हूगल समाकृति पृष्ठ नहीं है।</string>
-  <string name="login-error-nouser" fuzzy="true">प्रयोक्ता अस्तित्वहीन।</string>
+  <string name="login-error-noconfig">$1 पर हगल संविन्यास पृष्ठ नहीं है।</string>
+  <string name="login-error-nouser">यह सदस्य अस्तित्व में नहीं है</string>
   <string name="login-error-password">गलत पारशब्द।</string>
   <string name="login-error-projdisabled">अभी इस परियोजना पर हूगल अक्षम किया हुआ है।</string>
-  <string name="login-error-unknown" fuzzy="true">लॉग इन करने में असमर्थ।</string>
-  <string name="login-error-version" fuzzy="true">संस्करण अप्रचलित है। नवीनतम संस्करण प्राप्त करें।</string>
-  <string name="login-error-whitelist" fuzzy="true">प्रयोक्ता श्वेतसूची लोड करने में असफल।</string>
+  <string name="login-error-unknown">$1 पर लॉग इन करने में असमर्थ।</string>
+  <string name="login-error-version">यह संस्करण अप्रचलित है। नवीनतम संस्करण के साथ अद्यतन करें।</string>
+  <string name="login-error-whitelist">$1 के लिए श्वेतसूची सदस्य लोड करने में असफल।</string>
   <string name="main-page">पृष्ठ</string>
   <string name="main-user">प्रयोक्ता</string>
   <string name="main-contribs">योगदान</string>
   <string name="main-history">इतिहास</string>
-  <string name="main-new-messages" fuzzy="true">आपके लिये नये संदेश ; व्यवस्था चुने -&gt; नये संदेश दिखाये या  उन्हे देखने के लिये M दबायें।</string>
+  <string name="main-new-messages">आपके लिये नया संदेश। व्यवस्था चुने -&gt; नये संदेश दिखाये या उन्हे देखने के लिये M दबायें।</string>
   <string name="main-system">प्रणाली</string>
   <string name="main-system-messages">नए सन्देश दिखाएँ</string>
   <string name="main-system-reconnectirc">आई आर सी फीड पर फीर से जुडे़</string>
@@ -142,7 +211,7 @@
   <string name="main-queue">पंक्ति</string>
   <string name="main-queue-next">अगला</string>
   <string name="main-queue-clear">वर्तमान साफ करें</string>
-  <string name="main-queue-count" fuzzy="true">$1 वस्तुएँ</string>
+  <string name="main-queue-count">$1 वस्तुएँ</string>
   <string name="main-queue-query">जाँच शुरु...</string>
   <string name="main-queue-reset">फिर से स्थापित करें</string>
   <string name="main-queue-clearall">सब साफ करें</string>
@@ -153,8 +222,8 @@
   <string name="main-revision-decline">संशोधन अस्वीकार करें</string>
   <string name="main-revision">संशोधन</string>
   <string name="main-revision-view">देखें</string>
-  <string name="main-revision-revert" fuzzy="true">पूर्ववत करें</string>
-  <string name="main-revision-faith" fuzzy="true">ऐजीएफ पूर्ववत करें</string>
+  <string name="main-revision-revert">वर्तमान में प्रदर्शित सम्पादन पूर्ववत करें</string>
+  <string name="main-revision-faith">अच्छी नीयत मानते हुये पूर्ववत करें</string>
   <string name="main-revision-previous">पिछला</string>
   <string name="main-revision-next">अगला</string>
   <string name="main-revision-latest">नवीनतम</string>
@@ -164,22 +233,22 @@
   <string name="main-page-viewlatest">नवीनतम संशोधन देखें</string>
   <string name="main-page-history">पुन इतिहास प्राप्त करें</string>
   <string name="main-page-historypage">इतिहास पृष्ठ दिखाये</string>
-  <string name="main-page-edit" fuzzy="true">सम्पादन</string>
+  <string name="main-page-edit">ब्राउज़र में पृष्ठ सम्पादित करें</string>
   <string name="main-page-tag">टैग</string>
-  <string name="main-page-reqdeletion" fuzzy="true">हटाने के लिये बोले</string>
-  <string name="main-page-reqprotection" fuzzy="true">सुरक्षित करने के लिये कहें</string>
+  <string name="main-page-reqdeletion">शीघ्र हटाने हेतु नामांकित करें</string>
+  <string name="main-page-reqprotection">पृष्ठ सुरक्षित करने के लिये अनुरोध करें</string>
   <string name="main-page-watch">ध्यान दें</string>
   <string name="main-page-unwatch">निगरानी न रखें हुए</string>
   <string name="main-page-purge">पर्ज</string>
   <string name="main-page-patrol">पैट्रोल्ड मार्क करें</string>
   <string name="main-page-move">स्थानान्तरण...</string>
-  <string name="main-page-protect" fuzzy="true">सुरक्षित करें...</string>
-  <string name="main-page-delete" fuzzy="true">हटाएँ...</string>
-  <string name="main-page-restore" fuzzy="true">लेख के इस संस्करण को फिर से सहेजें</string>
+  <string name="main-page-protect">सुरक्षित करें</string>
+  <string name="main-page-delete">हटाएँ</string>
+  <string name="main-page-restore">लेख के इस संस्करण पुनः स्थापित करें</string>
   <string name="main-user-info">सदस्य के बारे में सूचना देवें</string>
   <string name="main-user-ignore">उपेक्षित करें</string>
   <string name="main-user-unignore">अनुपेक्षित करें</string>
-  <string name="main-user-contribs" fuzzy="true">पुनर्प्राप्त योगदान</string>
+  <string name="main-user-contribs">ब्राउज़र में सदस्य योगदान दिखायें</string>
   <string name="main-user-talk">वार्ता पृष्ठ देखें</string>
   <string name="main-user-message">सन्देश...</string>
   <string name="main-user-warn">चेतावनी दें...</string>
@@ -263,7 +332,7 @@
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, $2, वर्तमान संशोधन के लेखक के समान सीमा में है, $1, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, $1, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
   <string name="revert-confirm-warned">ये $1 द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?</string>
-  <string name="revert-error-first" fuzzy="true">संपादन पृष्ठ का पहला संपादन है; वापस नहीं लिया जा सकता।</string>
+  <string name="revert-error-first">यह सम्पादन इस पृष्ठ का प्रथम सम्पादन है और यह पूर्ववत नहीं किया जा सकता।</string>
   <string name="revert-only">संपादन पृष्ठ का एकलोता संपादन है।</string>
   <string name="revert-creator">आखरी संपादन पृष्ठ निर्माता, $1, द्वारा बनाया गया था</string>
   <string name="revert-delete-instead">पृष्ठ को हटा दे?</string>
@@ -332,8 +401,8 @@
   <string name="reqprotection-duplicate">सुरक्षा पहले से ही अनुरोधित है</string>
   <string name="reqprotection-fail">\'$1\' के लिए सुरक्षा अनुरोध नहीं किया</string>
   <string name="reqprotection-progress">\'$1\' के लिए सुरक्षा अनुरोध कर रहा है...</string>
-  <string name="speedy-fail" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित नहीं किया</string>
-  <string name="speedy-progress" fuzzy="true">\'$1\' को तीव्र विलोपन के लिए अंकित कर रहा है...</string>
+  <string name="speedy-fail">पृष्ठ को शीघ्र हटाने हेतु नामांकित करने में असफल रहा: $1</string>
+  <string name="speedy-progress">\'$1\' को शीघ्र हटाने के लिए नामांकित कर रहा है।</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
-  <string name="report-fail" fuzzy="true">\'$1\' को रिपोर्ट नहीं किया</string>
+  <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
 </resources>

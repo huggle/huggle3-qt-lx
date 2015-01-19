@@ -82,7 +82,7 @@
   <string name="irc-connecting" fuzzy="true">Forsøker å koble til IRC for siste endringer; dette kan ta noen øyeblikk...</string>
   <string name="irc-disconnected" fuzzy="true">Tilkobling til IRC for siste endringer mistet; kobler til på nytt...</string>
   <string name="irc-nochannel">IRC kanal for $1 ikke funnet, bruker tregere API-spørringer istedet</string>
-  <string name="irc-error">Kunne ikke koble til siste endringer-strømmen på IRC. Bruker tregere API-spørringer istedet</string>
+  <string name="irc-error" fuzzy="true">Kunne ikke koble til siste endringer-strømmen på IRC. Bruker tregere API-spørringer istedet</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Prosjekt:</string>
   <string name="login-username">Brukernavn:</string>

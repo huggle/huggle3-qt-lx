@@ -12,6 +12,7 @@
   <string name="deleted">Geläscht</string>
   <string name="error">Feeler</string>
   <string name="exit">Erausgoen</string>
+  <string name="done">Fäerdeg</string>
   <string name="no">Neen</string>
   <string name="ok">OK</string>
   <string name="remove">Ewechhuelen</string>
@@ -255,6 +256,8 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-tip-userreport">Dëse Benotzer mellen</string>
   <string name="main-tip-userblock">Dëse Benotzer spären</string>
   <string name="main-revert-null">Kann net zréckgesat ginn:Ännerung ass \'null\'</string>
+  <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
+  <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn, Dir kënnt se entweder markéieren oder läschen.</string>
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
@@ -315,6 +318,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
   <string name="updater-title">Eng nei Versioun vun Huggle ass disponibel</string>
   <string name="updater-update">Aktualiséieren</string>
+  <string name="updater-update-available">Eng nei Versioun vun Huggle ass disponibel: Versioun $1</string>
   <string name="updater-open-manualdownloadpage">Download-Säit opmaachen</string>
   <string name="updater-close">Zoumaachen</string>
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
@@ -346,7 +350,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="missing-warning">De Modell fir ze warnen $1 gëtt et net.</string>
   <string name="error-noresponse">Keng Äntwert</string>
   <string name="error-pagemissing">D\'Säit gëtt et net</string>
-  <string name="error-unknown">Onbekannte Feeler</string>
+  <string name="error-unknown">Onbekannt Feeler</string>
   <string name="block-done">$1 gespaart</string>
   <string name="block-progress">$1 spären...</string>
   <string name="blocknotify-progress">$1 vun der Spär informéieren...</string>

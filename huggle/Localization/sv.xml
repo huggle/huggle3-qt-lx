@@ -12,6 +12,7 @@
   <string name="deleted">Raderad</string>
   <string name="error">Fel</string>
   <string name="exit">Stäng</string>
+  <string name="done">Klar</string>
   <string name="no">Nej</string>
   <string name="ok">OK</string>
   <string name="remove">Ta bort</string>
@@ -45,6 +46,8 @@
   <string name="whitelisted">$1 med poängen $2 på $3 har lagts till i vitlistan</string>
   <string name="expiry-time">Förfallotid</string>
   <string name="duration">Längd</string>
+  <string name="enable">Aktivera</string>
+  <string name="disable">Inaktivera</string>
   <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
   <string name="score-word">Ord</string>
@@ -107,6 +110,15 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-defaultsummary">Standardsammanfattning för manuella redigeringar</string>
   <string name="config-undosummary">Sammanfattning när egna redigeringar ångras</string>
   <string name="config-confirm-wl">Kräver bekräftelse för återställning av ändringen som gjordes av godkända användare</string>
+  <string name="config-enable-irc">Aktivera IRC</string>
+  <string name="config-nothing">Ingenting</string>
+  <string name="config-own-edits">Egna redigeringar</string>
+  <string name="config-new-page">Ny sida</string>
+  <string name="config-whitelisted">Vitlistad</string>
+  <string name="config-userspace">Användarnamnrymd</string>
+  <string name="config-talk">Diskussionssida</string>
+  <string name="config-updates">Sök efter uppdateringar</string>
+  <string name="config-close-without">Stäng utan att spara</string>
   <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
   <string name="config-reportnone">Gör inget</string>
   <string name="config-templatetext">Visa text</string>
@@ -132,6 +144,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="delete-e2">Det går inte att ta bort sida</string>
   <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
   <string name="delete-failed-no-info">Ingen sidinfo fanns i frågan (är du sysop?)</string>
+  <string name="extension-kl">Körs inte</string>
   <string name="historyform-no-info">Ingen redigeringsinformation</string>
   <string name="historyform-title">Historik</string>
   <string name="historyform-retrieve-history">Hämta historia</string>
@@ -228,6 +241,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="main-user-contribs">Visa användarbidrag i en webbläsare</string>
   <string name="main-user-clear-talk">Töm användarens diskussionssida</string>
   <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
+  <string name="main-user-retrieving-tp">Hämtar %1s diskussionssida</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Koppla från</string>
   <string name="main-han-connect">Anslut</string>
@@ -256,6 +270,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="warning-submit">Sänd</string>
   <string name="history-message-revert-title">Vill du verkligen bara ångra detta meddelande?</string>
+  <string name="history-welcome-msg-title">Skicka välkomstmeddelande istället?</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
   <string name="editquery-success">Framgångsrik redigering $1 på $2</string>
@@ -270,4 +285,12 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="report-no-user">Ingen användare har valts för att rapportera, vänligen välj en användare först</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
+  <string name="requesting">Begär</string>
+  <string name="requested">Begärd</string>
+  <string name="edit-conflict">Redigeringskonflikt</string>
+  <string name="page-unknown">Okänd sida</string>
+  <string name="namespace">Namnrymd</string>
+  <string name="block-alreadyblocked">Användaren är redan blockerad</string>
+  <string name="error-unknown-code">Okänt fel: $1</string>
+  <string name="relogin-fail">Kunde inte logga in på wiki: $1</string>
 </resources>

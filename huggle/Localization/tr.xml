@@ -12,6 +12,7 @@
   <string name="deleted">Silindi</string>
   <string name="error">Hata</string>
   <string name="exit">Çıkış</string>
+  <string name="done">Yapıldı</string>
   <string name="no">Hayır</string>
   <string name="ok">Tamam</string>
   <string name="remove">Kaldır</string>
@@ -46,6 +47,8 @@
   <string name="whitelisted">$1, $3 üzerinde $2 puanla beyaz listeye eklendi</string>
   <string name="expiry-time">Bitiş zamanı</string>
   <string name="duration">Süre</string>
+  <string name="enable">Etkinleştir</string>
+  <string name="disable">Devre dışı bırak</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
   <string name="score-score">Derecelendirme</string>
@@ -64,6 +67,7 @@
   <string name="block-reason">Sebep:</string>
   <string name="block-duration">Süre:</string>
   <string name="block-message">Mesaj sayfası mesajı:</string>
+  <string name="block-message-user">Engellenen kullanıcı açıklama mesajı gönder</string>
   <string name="block-anononly">Yalnızca anonim kullanıcıları engelle</string>
   <string name="block-creation">Hesap oluşturmayı engelle</string>
   <string name="block-autoblock">Otomatik engellemeyi etkinleştir</string>
@@ -109,8 +113,28 @@
   <string name="config-watchlist">İzleme listesine ekle</string>
   <string name="config-defaultsummary">Elle yapılan değişiklikler için varsayılan özet</string>
   <string name="config-undosummary">Kendi değişikliklerinizi eski haline getirmek için özet</string>
+  <string name="config-confirm-user">Kullanıcı alanında yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
   <string name="config-confirm-wl">Beyaz listedeki kullanıcı tarafından yapılan değişikliğin geri alınabilmesi için onay gerekli</string>
+  <string name="config-confirm-talk">Mesaj sayfasının geri alınabilmesi için onay gerekli</string>
+  <string name="config-use-rollback">Yazılım geri alma kullan</string>
+  <string name="config-welcome-empty-page">İyi düzenleme yapan, boş mesaj sayfasına sahip kullanıcılara hoşgeldin mesajı gönder</string>
+  <string name="config-conflicts-revert">Geri alan veya sayfayı değiştiren diğer kullanıcılarla çatışmaları otomatik olarak kaldır</string>
+  <string name="config-revert">Geri al</string>
+  <string name="config-enable-irc">IRC\'i etkinleştir</string>
+  <string name="config-remove-reverted">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
+  <string name="config-display-text">Sonrakini göster</string>
+  <string name="config-nothing">Hiçbir şey</string>
+  <string name="config-bot-edits">Bot düzenlemeleri (b)</string>
+  <string name="config-own-edits">Kendi düzenlemeleri</string>
+  <string name="config-reverts">Geri almalar</string>
+  <string name="config-new-page">Yeni sayfa</string>
+  <string name="config-whitelisted">Beyaz listenmiş</string>
+  <string name="config-friend">Arkadaş</string>
   <string name="config-userspace">Kullanıcı alanı</string>
+  <string name="config-talk">Tartışma Sayfası</string>
+  <string name="config-updates">Güncelleştirmeleri denetle</string>
+  <string name="config-beta">Beta sürümleri kontrol et</string>
+  <string name="config-close-without">Kaydetmeden çıkış yap</string>
   <string name="config-confirmmultiple">Aynı kullanıcı tarafından yapılan çoklu geri almayı onayla</string>
   <string name="config-confirmsame">Geri çevirilen kullanıcı tarafından yapılan değişikliği geri almayı onayla</string>
   <string name="config-confirmselfrevert">Kendi değişikliklerini (eski haline getirme hariç) geri almayı onayla</string>
@@ -153,7 +177,8 @@
   <string name="delete-e2">Sayfa silinemedi</string>
   <string name="delete-edsc">Sayfa silinemedi. Sebep $1</string>
   <string name="delete-failed-no-info">Sorguda hiç sayfa bilgisi görüntülenemedi (hizmetli misiniz?)</string>
-  <string name="extension-kl" fuzzy="true">Sonlandırıldı</string>
+  <string name="extension-kl">Çalışmıyor</string>
+  <string name="extension-ok">Yüklendi ve çalışıyor</string>
   <string name="historyform-no-info">Düzenleme bilgisi yok</string>
   <string name="historyform-title">Geçmiş</string>
   <string name="historyform-retrieve-history">Geçmişi getir</string>
@@ -167,7 +192,7 @@
   <string name="irc-connecting">$1 üzerinde IRC son değişiklikler beslemesine erişilmeye çalışılıyor; bu işlem biraz zaman alabilir...</string>
   <string name="irc-disconnected">$1 üzerinde IRC son değişiklikler beslemesine bağlantı koptu. Yeniden bağlanılıyor...</string>
   <string name="irc-nochannel">$1 için IRC kanalı bulunamadı; yerine daha yavaş API sorgulamaları kullanılıyor</string>
-  <string name="irc-error">IRC son değişiklikler beslemesine ($1) erişim başarısız. Daha yavaş API sorgulaması kullanılıyor</string>
+  <string name="irc-error" fuzzy="true">IRC son değişiklikler beslemesine ($1) erişim başarısız. Daha yavaş API sorgulaması kullanılıyor</string>
   <string name="irc-stop">$1 üerinde birincil besleme sağlayıcısının durması bekleniyor</string>
   <string name="irc-not">Besleme: IRC proje yapılandırma tarafından devre dışı bırakıldı</string>
   <string name="irc-failure">Birincil besleme sağlayıcısı başarısız, Viki sağlayıcısına dönülüyor...</string>
@@ -566,7 +591,7 @@
   <string name="editquery-success">$2 üzerinde $1 başarılı bir şekilde değiştirildi.</string>
   <string name="editquery-token">$1 değiştirmek için belirteç alınıyor</string>
   <string name="editquery-token-error">Değişiklik için belirteç alınamadı</string>
-  <string name="provider-failure">Birincil besleme sağlayıcı hatası, kurtarılmaya çalışılıyor</string>
+  <string name="provider-failure" fuzzy="true">Birincil besleme sağlayıcı hatası, kurtarılmaya çalışılıyor</string>
   <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, wiki sağlayıcısına dönülüyor</string>
   <string name="rc-error">Wiki beslemesinden bilgi alınamadı, son hata: $1</string>
   <string name="whitelist-download">Yeni beyaz liste indiriyor</string>
@@ -588,7 +613,15 @@
   <string name="cr-message-same">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
+  <string name="fail">Başarısız</string>
+  <string name="request">Talep et</string>
+  <string name="requesting">Talep ediliyor</string>
   <string name="requested">Talep</string>
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
+  <string name="page-unknown">Bilinmeyen sayfa</string>
+  <string name="namespace">Ad alanı</string>
+  <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
   <string name="report-fail" fuzzy="true">$1 rapor edilmedi</string>
+  <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
+  <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
 </resources>

@@ -12,6 +12,7 @@
   <string name="deleted">Избришано</string>
   <string name="error">Грешка</string>
   <string name="exit">Излези</string>
+  <string name="done">Готово</string>
   <string name="no">Не</string>
   <string name="ok">ОК</string>
   <string name="remove">Отстрани</string>
@@ -211,7 +212,7 @@
   <string name="irc-connecting">Се обидувам да се поврзам со IRC-каналот за скорешни промени на $1. Ова може да потрае малку...</string>
   <string name="irc-disconnected">Ја изгубивте врската со IRC-каналот за скорешни промени на $1. Ве препозврзувам...</string>
   <string name="irc-nochannel">Не го пронајдов IRC-кланалот за $1. Наместо тоа, користам побавни барања од API</string>
-  <string name="irc-error">Не можев да се поврзам IRC-кланалот за скорешни промени ($1). Наместо тоа, користам побавни барања од API</string>
+  <string name="irc-error" fuzzy="true">Не можев да се поврзам IRC-кланалот за скорешни промени ($1). Наместо тоа, користам побавни барања од API</string>
   <string name="irc-stop">Чекам да запре главниот каналски добавувач на $1</string>
   <string name="irc-not">Канал: IRC е оневозможен во поставките на проектот</string>
   <string name="irc-failure">Главниот каналски добавувач не успеа. Го користам викидобавувачот...</string>
@@ -300,6 +301,8 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Вики</string>
   <string name="main-system-exit">Излези</string>
+  <string name="main-config-state-fail">Не можам да ја прочитам состојбата од податотеката со поставувања</string>
+  <string name="main-config-geom-fail">Не можам да ја читам геометријата од податотека со поставувања</string>
   <string name="main-tools-scoreword-list">Прикажи список на зборови за оценување</string>
   <string name="main-queue">Редица</string>
   <string name="main-queue-next">Следно</string>
@@ -362,12 +365,14 @@
   <string name="main-user-report">Пријави</string>
   <string name="main-user-ib">Зголеми ја оценката на штетноста на корисникот</string>
   <string name="main-user-clear-tp">Исчисти ја страницата за разговор на корисникот</string>
+  <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор %1</string>
   <string name="main-user-block">Блокирај...</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Напред</string>
   <string name="main-browser-open">Прегледај во надворешен прелистувач</string>
   <string name="main-browser-newedits">Прикажувај нови уредувања на страницата</string>
   <string name="main-browser-newcontribs">Прикажувај нови придонеси на корисникот</string>
+  <string name="main-browser-lasttab">Не можам да го затворам јазичево бидејќи е последно. Мора да имате барем едно отворено.</string>
   <string name="main-revert-manual">Нема шифра за враќање на уредувањето. Преоѓам на рачно повраќање на $1.</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Прекрати</string>
@@ -395,6 +400,10 @@
   <string name="main-revision-acceptpend">Прифати ја оваа преработка во исчекување</string>
   <string name="main-no-page">На дејството што го побаравте му треба вчитана страница. Вчитајте страница и обидете се повторно.</string>
   <string name="main-revert-null">Не можам да вратам. Уредувањето е ништовно.</string>
+  <string name="main-revert-newpage-title">Не можам да го отповикам ова</string>
+  <string name="main-revert-newpage">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
+  <string name="main-restore-text-fail">Не можам да ја повратам преработката бидејќи за неа нема текст.</string>
+  <string name="main-restore-data-fail">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
   <string name="message-title">Порака $1</string>
   <string name="message-help">Укажете Наслов или Опис (може и обете). Ако нема опис, ќе се искористи насловот. Ако нема наслов, нема да има заглавие.</string>
   <string name="message-subject">Наслов:</string>
@@ -424,6 +433,7 @@
   <string name="protect-message-title-fail">Не може да се заштити</string>
   <string name="protect-moveprotection">Заштита од преместување</string>
   <string name="protect-ft">Ја преземам шифрата за заштита на $1</string>
+  <string name="protect-request-proj-fail">Овој проект не поддржува барања за заштита</string>
   <string name="queue-title">Редици</string>
   <string name="queue-queues">Редици</string>
   <string name="queue-typegroup">Тип на редица</string>
@@ -514,6 +524,7 @@
   <string name="update-error">Не успеав да ја преземам новата верзија</string>
   <string name="updater-title">Има нова верзија на Huggle</string>
   <string name="updater-update">Поднови</string>
+  <string name="updater-update-available">На располагање ви е понова верзија на Huggle — верзијата $1</string>
   <string name="updater-open-manualdownloadpage">Отвори страница за преземање</string>
   <string name="updater-close">Затвори</string>
   <string name="updater-disable-notify">Оневозможи подновувања</string>
@@ -553,9 +564,13 @@
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
+  <string name="wikiedit-tp-fail">Не можам да ја добијам $1. Нема да може да го оцени степенот на опомена.</string>
   <string name="missing-warning">Нема таков предупредувачки шаблон „$1“</string>
   <string name="han-not">Противвандалистичката мрежа не е допуштена во нагодувањата</string>
   <string name="han-connecting">Се поврзувам со противвандалистичката мрежа на Huggle</string>
+  <string name="han-already-connected">Не се поврзувам со HAN бидејќи веќе сме поврзани</string>
+  <string name="han-already-connecting">Почекајте. Веќе се поврзувам со HAN</string>
+  <string name="han-disconnected">Поврзани сте од HAN</string>
   <string name="error-loggedout">Одјавени сте. Ве пренајавувам...</string>
   <string name="error-noresponse">Нема одговор</string>
   <string name="error-pagemissing">Оваа страница не постои</string>
@@ -582,11 +597,17 @@
   <string name="history-fail">Не успеав да ја добијам историјата на $1</string>
   <string name="history-progress">Ја вчитувам историјата на $1 ($2)...</string>
   <string name="history-work">Откажување на сопствено уредување направено на $1</string>
+  <string name="history-no-item-selected">Нњмате избрано ставка од елементот за историја</string>
   <string name="history-message-revert-title">Навистина сакате да ја откажете само оваа порака?</string>
+  <string name="history-another-edit">Веќе отповикувам друго уредување. Почекајте.</string>
   <string name="history-not-found">Не најдов ништо за откажување</string>
   <string name="history-already-done">Ова е веќе откажано</string>
   <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само шаблонот, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>
   <string name="history-revert-fail">Не можев да го откажам вашето уредување на $1. Грешка при враќањето: $2</string>
+  <string name="history-undone">Успешно отповикано уредувањето $1</string>
+  <string name="history-retrieve-fail">Не можев да ја добијам содржината на страницата за која требаше да се отповика уредување. Грешката гласеше: $1</string>
+  <string name="history-welcome-msg-title">Наместо тоа да испратам порака со добредојде?</string>
+  <string name="history-welcome-msg">Вие ја создадовте оваа страница за разговор, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
   <string name="notify-fail">Не го известив создавачот на $1</string>
   <string name="notify-unknowncreator">Не можев да го најдам создавачот на страницата</string>
   <string name="protect-done">Изменет степенот на заштита на $1</string>
@@ -611,9 +632,13 @@
   <string name="editquery-success">Успешно изменета $1 на $2</string>
   <string name="editquery-token">Ја преземам шифрата за уредувањето $1</string>
   <string name="editquery-token-error">Не можев да ја добијам шифрата на уредувањето</string>
-  <string name="provider-failure">Не успеав со главниот каналски добавувач. Се обидувам да направам повраток.</string>
+  <string name="editquery-invalid-token">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
+  <string name="provider-failure" fuzzy="true">Не успеав со главниот каналски добавувач. Се обидувам да направам повраток.</string>
   <string name="provider-primary-failure">Не успеав со главниот каналски добавувач. Префрлам на викидобавувачот.</string>
   <string name="rc-error">Не можам да ги добијам податоците од викикаалот. Последната грешка гласи: $1</string>
+  <string name="rc-timestamp-missing">RC-канал: Ставката немаше атрибут за време и датум: $1</string>
+  <string name="rc-type-missing">RC-канал: Ставката немаше атрибут за тип: $1</string>
+  <string name="rc-title-missing">RC-канал: Ставката немаше атрибут за наслов: $1</string>
   <string name="whitelist-download">Преземам нов бел список</string>
   <string name="logs-widget-name">Системски записници</string>
   <string name="wait">Почекајте...</string>
@@ -634,6 +659,10 @@
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
   <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
+  <string name="preferences-extension-disabled">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-disabled-restart">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-enabled">Овој додаток не е предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Higgle одново за да се доврши оневозможувањето.</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
@@ -661,4 +690,5 @@
   <string name="about-python-without"> без поддршка за Python</string>
   <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
   <string name="error-unknown-code">Непозната грешка: $1</string>
+  <string name="relogin-fail">Не можам да ве најавам на викито: $1</string>
 </resources>

@@ -167,7 +167,7 @@
   <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת מספר רגעים...</string>
   <string name="irc-disconnected">התחברות להזנת שינויים אחרונים אבדה ב־$1. התחברות מחדש...</string>
   <string name="irc-nochannel">לא נמצא ערוץ IRC בשביל $1; תשמשנה שאילתות API אטיות יותר במקוםו</string>
-  <string name="irc-error">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1). תשמשנה שאילתות API אטיות יותר במקומו</string>
+  <string name="irc-error" fuzzy="true">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1). תשמשנה שאילתות API אטיות יותר במקומו</string>
   <string name="irc-stop">ממתין לעצירת ספק ההזמנה העיקרי ב־$1</string>
   <string name="irc-not">הזנה: IRC כבוי בהגדרות מיזם</string>
   <string name="irc-failure">ספק ההזנה הראשי נכשל. מתבצע גיבוי לספק ויקי...</string>
@@ -566,7 +566,7 @@
   <string name="editquery-success">ערך בהצלחה את $1 ב־$2</string>
   <string name="editquery-token">אחזור אסימון לערוך את $1</string>
   <string name="editquery-token-error">לא ניתן לאחזר אסימון עריכה</string>
-  <string name="provider-failure">ספק ההזנה העיקרי נכשל, מתבצע ניסיון לתקן</string>
+  <string name="provider-failure" fuzzy="true">ספק ההזנה העיקרי נכשל, מתבצע ניסיון לתקן</string>
   <string name="provider-primary-failure">ספק ההזנה העיקרי נכשל, מתבצע גיבוי לספק ויקי</string>
   <string name="rc-error">לא ניתן לאחזור נתונים מהזנת ויקי. שגיאה אחרונה: $1</string>
   <string name="whitelist-download">הורדת רשימה לבנה חדשה</string>

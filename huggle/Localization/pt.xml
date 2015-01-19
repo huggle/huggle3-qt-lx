@@ -12,6 +12,7 @@
   <string name="deleted">Eliminado</string>
   <string name="error">Erro</string>
   <string name="exit">Sair</string>
+  <string name="done">Concluído</string>
   <string name="no">Não</string>
   <string name="ok">OK</string>
   <string name="remove">Remover</string>
@@ -62,6 +63,7 @@
   <string name="block-reason">Motivo:</string>
   <string name="block-duration">Duração:</string>
   <string name="block-message">Mensagem na página de discussão:</string>
+  <string name="block-message-user">Enviar mensagem ao utilizador com a explicação para o bloqueio</string>
   <string name="block-anononly">Bloquear apenas anónimos</string>
   <string name="block-creation">Bloquear criação de conta</string>
   <string name="block-autoblock">Ativar autobloqueios</string>
@@ -109,12 +111,16 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-use-rollback">Usar software de reversão</string>
   <string name="config-welcome-empty-page">Enviar mensagens de boas-vindas, devido a uma uma boa edição, para utilizadores com uma página de discussão vazia</string>
   <string name="config-revert">Reverter</string>
+  <string name="config-merge-messages">Fundir as suas mensagens com outras em seções existentes</string>
+  <string name="config-enable-irc">Ativar IRC</string>
   <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
   <string name="config-reverts">Reversões</string>
   <string name="config-new-page">Página nova</string>
+  <string name="config-friend">Amigo</string>
   <string name="config-userspace">Domínio Utilizador</string>
   <string name="config-talk">Página de discussão</string>
+  <string name="config-updates">Verificar existência de atualizações</string>
   <string name="config-beta">Verificar existência de versões beta</string>
   <string name="config-close-without">Fechar sem gravar</string>
   <string name="config-confirmmultiple">Pedir confirmação ao reverter várias edições do mesmo utilizador</string>
@@ -172,7 +178,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="irc-connecting">A ligar ao feed IRC de mudanças recentes em $1; aguarde um momento...</string>
   <string name="irc-disconnected">Perdeu-se a ligação ao feed de IRC de mudanças recentes na $1; a ligar novamente...</string>
   <string name="irc-nochannel">Não foi encontrado o canal IRC para $1. A usar como alternativa os pedidos API apesar de serem lentos</string>
-  <string name="irc-error">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API apesar de serem lentos</string>
+  <string name="irc-error" fuzzy="true">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API apesar de serem lentos</string>
   <string name="irc-stop">A aguardar pela paragem do principal provedor de feed em $1</string>
   <string name="irc-not">Feed: O IRC está desativado por configuração do projeto</string>
   <string name="irc-failure">Provedor primário do feed falhou. A usar o provedor wiki de reserva...</string>
@@ -262,6 +268,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Sair do Huggle</string>
+  <string name="main-config-state-fail">Não é possível ler o estado a partir de um ficheiro de configuração</string>
   <string name="main-tools-scoreword-list">Mostrar a lista de palavras marcadas</string>
   <string name="main-queue">Fila de edições</string>
   <string name="main-queue-next">Ver próxima edição a rever na fila</string>
@@ -324,6 +331,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeição</string>
   <string name="main-user-clear-tp">Limpar página de discussão de utilizador(a)</string>
+  <string name="main-user-retrieving-tp">A obter a página de discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Voltar</string>
   <string name="main-browser-forward">Seguinte</string>
@@ -357,6 +365,9 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-revision-acceptpend">Aceitar esta revisão pendente</string>
   <string name="main-no-page">A ação que solicitou requer uma página para carregar. Por favor, carregue uma página antes de tentar novamente.</string>
   <string name="main-revert-null">Impossível reverter, a edição é nula</string>
+  <string name="main-revert-newpage-title">Não é possível desfazer</string>
+  <string name="main-revert-newpage">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>
+  <string name="main-restore-text-fail">Não é possível restaurar a revisão, porque não há nenhum texto disponível para ele</string>
   <string name="message-title">Mensagem $1</string>
   <string name="message-help">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma secção.</string>
   <string name="message-subject">Assunto:</string>
@@ -385,6 +396,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="protect-message-title-fail">Impossível proteger</string>
   <string name="protect-moveprotection">Proteção de movimentos</string>
   <string name="protect-ft">A procurar código de verificação para proteger $1</string>
+  <string name="protect-request-proj-fail">Este projeto não suporta pedidos de proteção</string>
   <string name="queue-title">Fila de edições a rever</string>
   <string name="queue-queues">Filas de edições a rever:</string>
   <string name="queue-typegroup">Tipo de fila de edições a rever</string>
@@ -474,6 +486,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="update-error">Não foi possível descarregar a nova versão.</string>
   <string name="updater-title">Está disponível uma nova versão do Huggle</string>
   <string name="updater-update">Atualizar</string>
+  <string name="updater-update-available">Está disponível uma nova versão do Huggle: $1</string>
   <string name="updater-open-manualdownloadpage">Abrir página para descarga</string>
   <string name="updater-close">Fechar</string>
   <string name="updater-disable-notify">Desativar atualizações</string>
@@ -498,8 +511,11 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="shortcut-open-in-huggle">Abrir a página atualmente exibida</string>
   <string name="shortcut-open">Abrir edição exibida atualmente no navegador</string>
   <string name="shortcut-talk">Mostrar a página de discussão do utilizador que fez esta alteração</string>
+  <string name="shortcut-revert-agf-1">Reverter última edição assumindo boa-fé</string>
+  <string name="shortcut-browser-close-tab">Fechar um separador do navegador</string>
   <string name="shortcut-tab">Abre uma nova aba</string>
   <string name="shortcut-rw-stay">Reverte a edição atual, avisa o utilizador e permanece na página</string>
+  <string name="shortcut-revert-and-stay">Reverter edição atual e permanecer na página</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
@@ -533,13 +549,19 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="deletelog-fail">Não foi possível receber o relatório de eliminação para $1</string>
   <string name="deletelog-none">Não existem entradas no relatório de eliminações para $1</string>
   <string name="deletelog-progress">A receber o relatório de eliminações para $1...</string>
+  <string name="edit-bar-top">Esta edição é a atual</string>
   <string name="edit-fail">Não foi possível editar $1</string>
   <string name="edit-progress">A editar $1...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de $1</string>
   <string name="history-progress">A receber o histórico de $1 ($2)...</string>
   <string name="history-work">A desfazer a própria edição feita em $1</string>
+  <string name="history-no-item-selected">Nenhum item foi selecionado no histórico do widget</string>
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">Já foi desfeita</string>
+  <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
+  <string name="history-retrieve-fail">Não é possível recuperar o conteúdo da página que queria anular, o erro foi: $ 1</string>
+  <string name="history-welcome-msg-title">Enviar antes uma mensagem de boas-vindas?</string>
+  <string name="history-welcome-msg">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de $1</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de $1 foi alterado</string>
@@ -564,7 +586,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="editquery-success">Edição em $1 ($2) feita com sucesso</string>
   <string name="editquery-token">A recuperar código de verificação para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar o código de verificação para editar</string>
-  <string name="provider-failure">Falha do principal provedor de feed, a tentar recuperar</string>
+  <string name="provider-failure" fuzzy="true">Falha do principal provedor de feed, a tentar recuperar</string>
   <string name="provider-primary-failure">O provedor de feed principal falhou, regressar ao provedor da wiki</string>
   <string name="rc-error">Não foi possível aceder aos dados do feed da wiki, último erro: $1</string>
   <string name="whitelist-download">A descarregar nova lista branca</string>
@@ -582,13 +604,26 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="cr-resolved-same-user">Conflito resolvido: todas as edições revertidas, incluindo novas edições, feitas pelos mesmos utilizadores: $1</string>
   <string name="cr-stop-new-edit">Conflito resolvido: nenhuma ação tomada - existem novas edições em $1.</string>
   <string name="cr-stop-multiple-same">Conflito resolvido: nenhuma ação tomada - existem diversas edições feitas pelo mesmo utilizador em $1.</string>
+  <string name="cr-revert-same-user">Conflito resolvido: todas as edições foram desfeitas - existem várias edições feitas pelo mesmo utilizador em $1.</string>
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
+  <string name="preferences-extension-disabled">Esta extensão já está agendada para desativar a próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima
+inicialização do huggle</string>
+  <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará de reiniciar o huggle para que isso aconteça</string>
+  <string name="fail">Falha</string>
+  <string name="protect-request-fail">Não foi possível obter o conteúdo atual da página: $1</string>
+  <string name="message-fail">Falha ao enviar a mensagem</string>
+  <string name="edit-conflict">Conflito de edição</string>
+  <string name="page-tag-nodescription">não há descrição para esta marcação :/</string>
+  <string name="page-tag-fail">A marcação da página falhou</string>
+  <string name="page-tag-error">Não foi possível marcar a página, o erro foi: $1</string>
   <string name="page-unknown">Página desconhecida</string>
   <string name="namespace">Domínio</string>
   <string name="block-alreadyblocked">O utilizador já se encontra bloqueado</string>
   <string name="report-fail">Não foi possível denunciar o utilizador: $1</string>
   <string name="report-unable">Não foi possível denunciar o utilizador :(</string>
   <string name="error-unknown-code">Erro desconhecido: \"$1\"</string>
+  <string name="relogin-fail">Não foi possível iniciar sessão na wiki: $1</string>
 </resources>
