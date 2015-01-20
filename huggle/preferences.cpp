@@ -299,6 +299,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
     hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
+    hcfg->UserConfig->RemoveAfterTrustedEdit = this->ui->ck_RemoveTrusted->isChecked();
     hcfg->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
     hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
     hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
@@ -706,6 +707,7 @@ void Preferences::ResetItems()
     this->ui->radioButton->setChecked(!hcfg->UserConfig->RevertOnMultipleEdits);
     this->ui->checkBox_21->setChecked(hcfg->UserConfig->LastEdit);
     this->ui->checkBox_17->setChecked(hcfg->UserConfig->SectionKeep);
+    this->ui->ck_RemoveTrusted->setChecked(hcfg->UserConfig->RemoveAfterTrustedEdit);
     this->ui->radioButton_2->setChecked(hcfg->UserConfig->RevertOnMultipleEdits);
     this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
     this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());

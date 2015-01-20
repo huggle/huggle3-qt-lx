@@ -130,6 +130,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "RemoveOldestQueueEdits:" + Bool2String(this->RemoveOldQueueEdits) + "\n";
     configuration_ += "TruncateEdits:" + Bool2String(this->TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(this->TalkPageFreshness) + "\n";
+    configuration_ += "RemoveAfterTrustedEdit" + Bool2String(this->RemoveAfterTrustedEdit) + "\n";
     configuration_ += "DisplayTitle:" + Bool2String(this->DisplayTitle) + "\n";
     configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
     configuration_ += "CheckTP:" + Bool2String(this->CheckTP) + "\n";
@@ -293,6 +294,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));
     this->HAN_DisplayUser = SafeBool(ConfigurationParse("HAN_DisplayUser", config, "true"));
     this->ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));
+    this->RemoveAfterTrustedEdit = SafeBool(ConfigurationParse("RemoveAfterTrustedEdit", config), true);
     this->HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->HtmlAllowedInIrc = SafeBool(ConfigurationParse("HAN_Html", config, "false"));
     this->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->TalkPageFreshness)).toInt();

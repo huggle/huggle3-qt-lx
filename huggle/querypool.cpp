@@ -13,6 +13,8 @@
 #include "configuration.hpp"
 #include "editquery.hpp"
 #include "exception.hpp"
+#include "hugglequeue.hpp"
+#include "mainwindow.hpp"
 #include "hugglefeed.hpp"
 #include "query.hpp"
 #include "processlist.hpp"
@@ -110,6 +112,9 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
             this->UncheckedReverts.append(edit);
         }
     }
+    if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() &&
+        MainWindow::HuggleMain && MainWindow::HuggleMain->Queue1)
+        MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
     edit->Status = StatusProcessed;
 }
 

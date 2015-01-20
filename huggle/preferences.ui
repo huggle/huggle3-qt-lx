@@ -315,6 +315,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QCheckBox" name="ck_RemoveTrusted">
+           <property name="text">
+            <string>Remove edits to which newer edit was made by trusted user from queue</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>

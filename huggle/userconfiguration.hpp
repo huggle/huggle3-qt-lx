@@ -80,6 +80,7 @@ namespace Huggle
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits = false;
             bool            HtmlAllowedInIrc = false;
+            bool            RemoveAfterTrustedEdit = true;
             bool            HuggleSuffix = true;
             //! If history and user info should be automatically loaded for every edit
             bool                    HistoryLoad = true;
