@@ -25,6 +25,8 @@ void HuggleQueueFilter::Delete()
 {
     foreach (QList<HuggleQueueFilter*>*list, Filters)
     {
+        if (!list)
+            throw new Huggle::NullPointerException("QList<HuggleQueueFilter*> list", BOOST_CURRENT_FUNCTION);
         while(list->count() > 0)
         {
             if (list->at(0) != DefaultFilter)

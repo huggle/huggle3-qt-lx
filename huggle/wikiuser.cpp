@@ -11,6 +11,7 @@
 #include "wikiuser.hpp"
 #include <QMutex>
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
 #include "mainwindow.hpp"
@@ -64,6 +65,8 @@ void WikiUser::TrimProblematicUsersList()
     while (i < WikiUser::ProblematicUsers.count())
     {
         WikiUser *user = WikiUser::ProblematicUsers.at(i);
+        if (!user)
+            throw new Huggle::NullPointerException("WikiUser user", BOOST_CURRENT_FUNCTION);
         if (user->GetBadnessScore() == 0 && user->WarningLevel == 0)
         {
             // there is no point to hold information for them

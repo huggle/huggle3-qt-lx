@@ -149,6 +149,8 @@ QString Exception::GetCurrentStackTrace()
     SymInitialize( process, NULL, TRUE );
     frames               = CaptureStackBackTrace( 0, HUGGLE_STACK, stack, NULL );
     symbol               = ( SYMBOL_INFO * )calloc( sizeof( SYMBOL_INFO ) + 256 * sizeof( char ), 1 );
+    if (!symbol)
+        return "Failed to retrieve stack trace";
     symbol->MaxNameLen   = 255;
     symbol->SizeOfStruct = sizeof( SYMBOL_INFO );
     for( i = 0; i < frames; i++ )

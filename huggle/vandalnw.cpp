@@ -300,15 +300,11 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
     if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
         // we need to delete older edits that we know and that is somewhere in queue
-        if (Core::HuggleCore->Main != nullptr)
-        {
-            if (Core::HuggleCore->Main->Queue1 != nullptr)
-            {
-                Core::HuggleCore->Main->Queue1->DeleteOlder(edit);
-            }
-        }
+        if (MainWindow::HuggleMain != nullptr && MainWindow::HuggleMain->Queue1 != nullptr)
+                MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
     }
-    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
+    if (MainWindow::HuggleMain != nullptr && MainWindow::HuggleMain->Queue1 != nullptr)
+        Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
