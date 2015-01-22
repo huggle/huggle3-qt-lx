@@ -50,6 +50,7 @@ bool HuggleFeedProviderXml::Start()
         HUGGLE_DEBUG1("Refusing to start working Xml feed");
         return false;
     }
+    this->LastPong = QDateTime::currentDateTime();
     if (this->GetSite()->XmlRcsName.isEmpty())
     {
         Syslog::HuggleLogs->ErrorLog("There is no XmlRcs provider for " + this->GetSite()->Name);
@@ -100,6 +101,18 @@ void HuggleFeedProviderXml::Stop()
 
 bool HuggleFeedProviderXml::ContainsEdit()
 {
+    if (this->is_connected)
+    {
+        if (QDateTime::currentDateTime().addSecs(-80) > this->LastPong)
+        {
+            Syslog::HuggleLogs->ErrorLog("XmlRcs feed has timed out, reconnecting to it");
+            this->Restart();
+            return false;
+        }
+
+        if (QDateTime::currentDateTime().addSecs(-10) > this->LastPong)
+            this->Write("ping");
+    }
     return this->Buffer.count() > 0;
 }
 
@@ -157,6 +170,12 @@ void HuggleFeedProviderXml::OnReceive()
     if (name == "ping")
     {
         this->Write("pong");
+        return;
+    }
+
+    if (name == "pong")
+    {
+        this->LastPong = QDateTime::currentDateTime();
         return;
     }
 
