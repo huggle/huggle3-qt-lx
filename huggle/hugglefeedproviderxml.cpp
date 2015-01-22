@@ -168,6 +168,8 @@ void HuggleFeedProviderXml::OnReceive()
         return;
     }
 
+    // every message will update last time
+    this->LastPong = QDateTime::currentDateTime();
     QDomDocument input;
     input.setContent(data);
     QDomElement element = input.firstChild().toElement();
@@ -180,12 +182,6 @@ void HuggleFeedProviderXml::OnReceive()
     if (name == "ping")
     {
         this->Write("pong");
-        return;
-    }
-
-    if (name == "pong")
-    {
-        this->LastPong = QDateTime::currentDateTime();
         return;
     }
 
