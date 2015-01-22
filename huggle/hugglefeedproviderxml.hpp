@@ -15,6 +15,7 @@
 
 #include <QString>
 #include <QMutex>
+#include <QTimer>
 #include <QThread>
 #include <QDateTime>
 #include <QTcpSocket>
@@ -44,6 +45,7 @@ namespace Huggle
             void OnError(QAbstractSocket::SocketError er);
             void OnReceive();
             void OnConnect();
+            void OnPing();
         protected:
             void Write(QString text);
             void InsertEdit(WikiEdit *edit);
@@ -54,6 +56,8 @@ namespace Huggle
             bool is_working = false;
             QList<WikiEdit*> Buffer;
             QTcpSocket *NetworkSocket;
+        private:
+            QTimer *pinger;
             bool is_paused = false;
     };
 }

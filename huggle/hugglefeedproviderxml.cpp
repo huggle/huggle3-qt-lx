@@ -27,12 +27,15 @@ using namespace Huggle;
 
 HuggleFeedProviderXml::HuggleFeedProviderXml(WikiSite *site) : HuggleFeed(site)
 {
+    this->pinger = new QTimer();
+    connect(this->pinger, SIGNAL(timeout()), this, SLOT(OnPing()));
     this->NetworkSocket = nullptr;
 }
 
 HuggleFeedProviderXml::~HuggleFeedProviderXml()
 {
     this->Stop();
+    delete this->pinger;
     while (this->Buffer.count() > 0)
     {
         this->Buffer.at(0)->DecRef();
@@ -84,6 +87,22 @@ void HuggleFeedProviderXml::Pause()
     this->is_paused = true;
 }
 
+void HuggleFeedProviderXml::OnPing()
+{
+    if (this->is_connected)
+    {
+        if (QDateTime::currentDateTime().addSecs(-8) > this->LastPong)
+        {
+            Syslog::HuggleLogs->ErrorLog("XmlRcs feed has timed out, reconnecting to it");
+            this->Restart();
+        }
+        else if (QDateTime::currentDateTime().addSecs(-2) > this->LastPong)
+        {
+            this->Write("ping");
+        }
+    }
+}
+
 bool HuggleFeedProviderXml::IsWorking()
 {
     return this->is_working;
@@ -95,24 +114,13 @@ void HuggleFeedProviderXml::Stop()
         this->NetworkSocket->disconnect();
     this->is_connected = false;
     this->is_connecting = false;
+    this->pinger->stop();
     this->is_working = false;
     this->is_paused = false;
 }
 
 bool HuggleFeedProviderXml::ContainsEdit()
 {
-    if (this->is_connected)
-    {
-        if (QDateTime::currentDateTime().addSecs(-80) > this->LastPong)
-        {
-            Syslog::HuggleLogs->ErrorLog("XmlRcs feed has timed out, reconnecting to it");
-            this->Restart();
-            return false;
-        }
-
-        if (QDateTime::currentDateTime().addSecs(-10) > this->LastPong)
-            this->Write("ping");
-    }
     return this->Buffer.count() > 0;
 }
 
@@ -253,6 +261,7 @@ void HuggleFeedProviderXml::OnReceive()
 void HuggleFeedProviderXml::OnConnect()
 {
     this->is_connected = true;
+    this->pinger->start(1000);
     this->is_connecting = false;
     // subscribe
     this->Write("S " + this->GetSite()->XmlRcsName);
