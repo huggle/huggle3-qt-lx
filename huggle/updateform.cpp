@@ -540,7 +540,7 @@ void UpdateForm::PreparationFinish()
     // now we can launch the copy of huggle with parameters for update
 #ifdef HUGGLE_WIN
     QString program = this->TempPath + QDir::separator() + "huggle.exe";
-    QString arguments = "--huggleinternal-update " + this->RootPath + " -v --syslog " + this->TempPath + QDir::separator() + "update.log";
+    QString arguments = "--huggleinternal-update \"" + this->RootPath + "\" -v --syslog \"" + this->TempPath + QDir::separator() + "update.log\"";
     /*
     QProcess *ClientProcess = new QProcess( this );
     // exit calling application on called application start
