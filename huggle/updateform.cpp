@@ -82,7 +82,7 @@ void UpdateForm::Check()
     this->qData = new WebserverQuery();
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform)
-            + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage;
+            + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage + "&test=true";
 
     if (Configuration::HuggleConfiguration->SystemConfig_NotifyBeta)
        this->qData->URL += "&notifybeta";
@@ -506,6 +506,25 @@ void UpdateForm::reject()
     QDialog::reject();
 }
 
+#ifdef HUGGLE_WIN
+#ifdef UNICODE
+#define HUGGLE_LPCSTR LPCWSTR
+#else
+#define HUGGLE_LPCSTR LPCSTR
+#endif
+static HUGGLE_LPCSTR QString2Msdn(QString text)
+{
+#ifdef UNICODE
+    wchar_t *temp = (wchar_t*)calloc(text.length() + 1, sizeof(wchar_t));
+    text.toWCharArray(temp);
+    return _wcsdup(_T(temp));
+#else
+    QByteArray byte_array = text.toLocal8Bit();
+    return _strdup(byte_array.constData());
+#endif
+}
+#endif
+
 void UpdateForm::PreparationFinish()
 {
 #ifndef HUGGLE_NOUPDATER
@@ -541,25 +560,10 @@ void UpdateForm::PreparationFinish()
     shExInfo.cbSize = sizeof(shExInfo);
     shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     shExInfo.hwnd = 0;
-#ifdef __GNUC__
-#ifdef UNICODE
-    shExInfo.lpDirectory = this->TempPath.toStdWString().c_str();
-    shExInfo.lpVerb = QString("runas").toStdWString().c_str();
-    shExInfo.lpFile = program.toStdWString().c_str();
-    shExInfo.lpParameters = arguments.toStdWString().c_str();
-#else
-    shExInfo.lpVerb = QString("runas").toStdString().c_str();
-    shExInfo.lpFile = program.toStdString().c_str();
-    shExInfo.lpParameters = arguments.toStdString().c_str();
-    shExInfo.lpDirectory = this->TempPath.toStdString().c_str();
-#endif
-#else
-    //! \todo This is broken on Visual Studio 2013
-    shExInfo.lpVerb = _T("runas");
-    shExInfo.lpFile = _T(program.toLocal8Bit().toStdString().c_str());
-    shExInfo.lpParameters = _T(arguments.toStdString().c_str());
-    shExInfo.lpDirectory = _T(this->TempPath.toStdString().c_str());
-#endif
+    shExInfo.lpVerb = QString2Msdn("runas");
+    shExInfo.lpFile = QString2Msdn(program);
+    shExInfo.lpParameters = QString2Msdn(arguments);
+    shExInfo.lpDirectory = QString2Msdn(this->TempPath);
     shExInfo.nShow = SW_SHOW;
     shExInfo.hInstApp = 0;
 
