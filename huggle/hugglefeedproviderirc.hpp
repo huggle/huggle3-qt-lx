@@ -16,6 +16,7 @@
 #include <QString>
 #include <QThread>
 #include <QList>
+#include <QTimer>
 #include <QMutex>
 #include <QTcpSocket>
 #include "hugglefeed.hpp"
@@ -27,27 +28,11 @@ namespace Huggle
     {
         class NetworkIrc;
     }
-    class HuggleFeedProviderIRC;
-
-    //! Thread which process the IRC feed
-    class HUGGLE_EX HuggleFeedProviderIRC_t : public QThread
-    {
-            Q_OBJECT
-        public:
-            HuggleFeedProviderIRC_t();
-            ~HuggleFeedProviderIRC_t();
-            bool IsFinished();
-            bool Running;
-            HuggleFeedProviderIRC *p;
-        protected:
-            void run();
-        private:
-            bool Stopped;
-    };
 
     //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
-    class HUGGLE_EX HuggleFeedProviderIRC : public HuggleFeed
+    class HUGGLE_EX HuggleFeedProviderIRC : public QObject, public HuggleFeed
     {
+            Q_OBJECT
         public:
             HuggleFeedProviderIRC(WikiSite *site);
             ~HuggleFeedProviderIRC();
@@ -68,10 +53,11 @@ namespace Huggle
             bool IsConnected();
             QString ToString();
             bool Connected;
+        private slots:
+            void OnTick();
         private:
-            QMutex lock;
+            QTimer *timer;
             QList<WikiEdit*> Buffer;
-            HuggleFeedProviderIRC_t *thread;
             bool Paused;
     };
 }

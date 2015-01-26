@@ -28,19 +28,20 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 {
     this->Paused = false;
     this->Connected = false;
-    this->thread = nullptr;
+    this->timer = new QTimer();
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->Network = nullptr;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
     this->Stop();
+    delete this->timer;
     while (this->Buffer.count() > 0)
     {
         this->Buffer.at(0)->DecRef();
         this->Buffer.removeAt(0);
     }
-    delete this->thread;
     delete this->Network;
 }
 
@@ -52,9 +53,8 @@ bool HuggleFeedProviderIRC::Start()
         return false;
     }
     if (this->Network != nullptr)
-    {
         delete this->Network;
-    }
+
     QString nick = "huggle";
     qsrand(QTime::currentTime().msec());
     nick += QString::number(qrand());
@@ -70,13 +70,7 @@ bool HuggleFeedProviderIRC::Start()
     }
     this->Network->Join(this->GetSite()->IRCChannel);
     Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
-    if (this->thread != nullptr)
-    {
-        delete this->thread;
-    }
-    this->thread = new HuggleFeedProviderIRC_t();
-    this->thread->p = this;
-    this->thread->start();
+    this->timer->start(HUGGLE_TIMER);
     this->Connected = true;
     this->UptimeDate = QDateTime::currentDateTime();
     return true;
@@ -97,16 +91,8 @@ void HuggleFeedProviderIRC::Stop()
     {
         return;
     }
-    if (this->thread != nullptr)
-    {
-        this->thread->Running = false;
-    }
+    this->timer->stop();
     this->Network->Disconnect();
-    while (!IsStopped())
-    {
-        Huggle::Syslog::HuggleLogs->Log(_l("irc-stop", this->GetSite()->Name));
-        Sleeper::usleep(200000);
-    }
     this->Connected = false;
 }
 
@@ -123,7 +109,6 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     // but it might be a performance improvement at some point
     if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
     {
-        this->lock.lock();
         if (this->Buffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {
             // If the buffer is full we need to remove 10 oldest edits
@@ -136,7 +121,6 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
             Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in irc cache, increase ProviderCache size, otherwise you will be losing edits");
         }
         this->Buffer.append(edit);
-        this->lock.unlock();
     } else
     {
         edit->DecRef();
@@ -297,13 +281,6 @@ bool HuggleFeedProviderIRC::IsStopped()
     {
         return false;
     }
-    if (this->thread != nullptr)
-    {
-        if (this->thread->Running || !this->thread->IsFinished())
-        {
-            return false;
-        }
-    }
     return true;
 }
 
@@ -312,64 +289,14 @@ bool HuggleFeedProviderIRC::ContainsEdit()
     return (this->Buffer.size() != 0);
 }
 
-void HuggleFeedProviderIRC_t::run()
-{
-    if (this->p == nullptr)
-    {
-        this->Stopped = true;
-        throw new Huggle::NullPointerException("Pointer to parent IRC feed is NULL", BOOST_CURRENT_FUNCTION);
-    }
-    // wait until we finish connecting to a network
-    while (this->Running && !this->p->Network->IsConnected())
-    {
-        QThread::usleep(200000);
-    }
-    while (this->Running && this->p->Network->IsConnected())
-    {
-        Huggle::IRC::Message *message = p->Network->GetMessage();
-        if (message != nullptr)
-        {
-            QString text = message->Text;
-            this->p->ParseEdit(text);
-        }
-        QThread::usleep(200000);
-    }
-    Huggle::Syslog::HuggleLogs->Log("IRC: Closed connection to irc feed");
-    if (this->Running)
-    {
-        this->p->Connected = false;
-    }
-    this->Stopped = true;
-}
-
-HuggleFeedProviderIRC_t::HuggleFeedProviderIRC_t()
-{
-    this->Stopped = false;
-    this->Running = true;
-    this->p = nullptr;
-}
-
-HuggleFeedProviderIRC_t::~HuggleFeedProviderIRC_t()
-{
-    // we must not delete the socket here, that's a job of parent object
-}
-
-bool HuggleFeedProviderIRC_t::IsFinished()
-{
-    return this->Stopped;
-}
-
 WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
 {
-    this->lock.lock();
     if (this->Buffer.size() == 0)
     {
-        this->lock.unlock();
         return nullptr;
     }
     WikiEdit *edit = this->Buffer.at(0);
     this->Buffer.removeAt(0);
-    this->lock.unlock();
     return edit;
 }
 
@@ -381,4 +308,18 @@ bool HuggleFeedProviderIRC::IsConnected()
 QString HuggleFeedProviderIRC::ToString()
 {
     return "IRC";
+}
+
+void HuggleFeedProviderIRC::OnTick()
+{
+    // wait until we finish connecting to a network
+    if (!this->IsWorking() || !this->Network->IsConnected())
+        return;
+
+    Huggle::IRC::Message *message = this->Network->GetMessage();
+    if (message != nullptr)
+    {
+        QString text = message->Text;
+        this->ParseEdit(text);
+    }
 }

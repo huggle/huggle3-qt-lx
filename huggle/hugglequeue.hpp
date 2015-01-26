@@ -58,7 +58,7 @@ namespace Huggle
             int DeleteByScore(long Score);
             bool DeleteByRevID(int RevID, WikiSite *site);
             //! Delete all edits to the page that are older than this edit
-            void DeleteOlder(WikiEdit *edit, bool redraw = true);
+            void DeleteOlder(WikiEdit *edit);
             void UpdateUser(WikiUser *user);
             //! Reload filters
             void Filters();

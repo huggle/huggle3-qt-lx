@@ -114,7 +114,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     }
     if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() &&
         MainWindow::HuggleMain && MainWindow::HuggleMain->Queue1)
-        MainWindow::HuggleMain->Queue1->DeleteOlder(edit, false);
+        MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
     edit->Status = StatusProcessed;
 }
 
