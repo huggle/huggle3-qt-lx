@@ -421,7 +421,7 @@ void HuggleQueue::Filters()
     this->ui->comboBox->setCurrentIndex(id);
 }
 
-void HuggleQueue::DeleteOlder(WikiEdit *edit)
+void HuggleQueue::DeleteOlder(WikiEdit *edit, bool redraw)
 {
     int i = 0;
     while (i < this->Items.count())
@@ -443,7 +443,8 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         }
         i++;
     }
-    this->RedrawTitle();
+    if (redraw)
+        this->RedrawTitle();
 }
 
 void HuggleQueue::UpdateUser(WikiUser *user)
