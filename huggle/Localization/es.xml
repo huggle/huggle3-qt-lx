@@ -12,6 +12,7 @@
   <string name="deleted">Borrado</string>
   <string name="error">Error</string>
   <string name="exit">Salir</string>
+  <string name="done">Hecho</string>
   <string name="no">No</string>
   <string name="ok">Aceptar</string>
   <string name="remove">Eliminar</string>
@@ -66,6 +67,7 @@
   <string name="block-reason">Razón:</string>
   <string name="block-duration">Duración:</string>
   <string name="block-message">Mensaje en página de discusión:</string>
+  <string name="block-message-user">Enviar un mensaje al usuario destino explicando el motivo del bloqueo</string>
   <string name="block-anononly">Bloquear usuarios anónimos solamente.</string>
   <string name="block-creation">Impedir la creación de cuentas de usuario.</string>
   <string name="block-autoblock">Activar bloqueos automáticos</string>
@@ -92,6 +94,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-queue-filter-require">Requieren (debe ser)</string>
   <string name="config-summ">Resúmenes de reversión personalizados para plantillas</string>
   <string name="config-title">Opciones</string>
+  <string name="config-already-in-use">Este acceso directo está siendo usado por $1, por favor seleccione uno diferente</string>
   <string name="config-openinbrowser">Abrir enlaces en una ventana nueva del navegador</string>
   <string name="config-shownewedits">Mostrar ediciones nuevas en la página seleccionada a medida que se van haciendo</string>
   <string name="config-ircmode">Usar el IRC para acceder a los cambios recientes</string>
@@ -111,19 +114,36 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-watchlist">Vigilar todas las páginas</string>
   <string name="config-defaultsummary">Resumen por defecto para ediciones manuales</string>
   <string name="config-undosummary">Resumen cuando se deshacen ediciones propias</string>
+  <string name="config-confirm-user">Solicitar confirmación para revertir la edición que se hizo en el espacio de usuario</string>
+  <string name="config-confirm-wl">Solicitar confirmación para revertir la edición que fue hecha por un usuario en la lista blanca</string>
+  <string name="config-confirm-talk">Solicitar confirmación para revertir la edición en una página de discusión</string>
+  <string name="config-use-rollback">Usar software de reversor</string>
   <string name="config-welcome-empty-page">Enviar mensajes de bienvenida a los usuarios con páginas discusión vacías cuando haga una buena edición</string>
+  <string name="config-conflicts-revert">Automáticamente resolver conflictos con otros usuarios que revirtieron cambios en la página</string>
   <string name="config-instant-reverts">Usa reversiones instantáneas (muy rápido, pero una vez ejecutado no se puede cancelar)</string>
+  <string name="config-revert-wait">Espera para revertir (segundos)</string>
   <string name="config-revert">Revertir</string>
+  <string name="config-revert-diff">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
+  <string name="config-change-all">Cambiar todos los ajustes de Huglle para que se parezca más a Huggle 2</string>
+  <string name="config-merge-messages">Combinar sus mensajes con otros en las secciones existentes</string>
+  <string name="config-months-name">Utilizar meses como titulares en lugar del nombre de la página</string>
+  <string name="config-automatic-warning">Uso automático del tipo de advertencia y el nivel en la función \"enviar advertencia\"</string>
   <string name="config-enable-irc">Activar IRC</string>
   <string name="config-remove-reverted">Borrar las ediciones que ya fueron revertidas por otra persona</string>
+  <string name="config-remove-old">Eliminar las ediciones viejas si la edición más reciente en la misma página es analizada</string>
+  <string name="config-auto-load-history">Cargar automáticamente el historial e información de usuario (requiere mucha conexión de red)</string>
+  <string name="config-last-revision">Visualizar la última revisión de la página en caso de que la edición actualmente cargada no es la última revisión (será posterior a descargarlo sin pasar por la caché)</string>
   <string name="config-wait-edit">Tiempo que debes esperar para que se activen las funcionalidades de edición (segundos):</string>
   <string name="config-display-text">Mostrar siguiente</string>
+  <string name="config-retrieve-edit">Recuperar tu propia edición</string>
   <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Ediciones de bots (b)</string>
   <string name="config-own-edits">Ediciones propias</string>
   <string name="config-reverts">Reversiones</string>
   <string name="config-new-page">Página nueva</string>
+  <string name="config-whitelisted">En la lista blanca</string>
   <string name="config-friend">Amigo</string>
+  <string name="config-userspace">Espacio de usuario</string>
   <string name="config-talk">Página de discusión</string>
   <string name="config-updates">Buscar actualizaciones</string>
   <string name="config-close-without">Cerrar sin guardar</string>
@@ -180,7 +200,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1; esto puede tomar un momento...</string>
   <string name="irc-disconnected">Se perdió la conexión al canal IRC de cambios recientes el $1. Reconectando...</string>
   <string name="irc-nochannel">Canal IRC para $1 no encontrado; usando peticiones API más lentas en lugar de ello</string>
-  <string name="irc-error" fuzzy="true">No se puede conectar al canal IRC de cambios recientes. Usando peticiones API más lentas en lugar de ello</string>
+  <string name="irc-error">No se puede conectar al canal IRC de cambios recientes ($1: $2). Usando peticiones API más lentas en lugar de ello</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Acceder</string>
@@ -433,6 +453,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="tag-title">Etiquetar a $1</string>
   <string name="tag-tagselector">Colocar plantilla:</string>
   <string name="tag-tags">Plantilla(s):</string>
+  <string name="tag-parameter">Parámetro</string>
   <string name="tag-summary">Resumen:</string>
   <string name="tag-insertatend">Colocar al final de la página</string>
   <string name="update-title">Nueva versión disponible</string>
@@ -536,7 +557,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="page-unknown">Página desconocida</string>
   <string name="speedy-csd-existing">Ya existe una etiqueta CSD en la página.</string>
   <string name="namespace">Espacio de nombre</string>
-  <string name="report-fail" fuzzy="true">No se pudo reportar a \'$1\'</string>
+  <string name="report-fail">No se pudo reportar a \'$1\' porque</string>
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>

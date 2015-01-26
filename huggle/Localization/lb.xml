@@ -311,6 +311,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="rollback">$1 zréchsetzen</string>
   <string name="tag-title">Markéierung $1</string>
   <string name="tag-tagselector">Markéierung derbäsetzen</string>
+  <string name="tag-parameter">Parameter</string>
   <string name="tag-summary">Resumé:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
   <string name="update-title">Nei Versioun disponibel</string>

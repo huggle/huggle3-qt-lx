@@ -24,6 +24,7 @@
   <string name="show">Mostrar</string>
   <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
+  <string name="editing-page">A editar página</string>
   <string name="agf">Reverter como edição de boa fé com motivo personalizado</string>
   <string name="successful">Bem sucedido!</string>
   <string name="summary">Resumo</string>
@@ -117,6 +118,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
   <string name="config-reverts">Reversões</string>
   <string name="config-new-page">Página nova</string>
+  <string name="config-whitelisted">Na lista branca</string>
   <string name="config-friend">Amigo</string>
   <string name="config-userspace">Domínio Utilizador</string>
   <string name="config-talk">Página de discussão</string>
@@ -178,7 +180,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="irc-connecting">A ligar ao feed IRC de mudanças recentes em $1; aguarde um momento...</string>
   <string name="irc-disconnected">Perdeu-se a ligação ao feed de IRC de mudanças recentes na $1; a ligar novamente...</string>
   <string name="irc-nochannel">Não foi encontrado o canal IRC para $1. A usar como alternativa os pedidos API apesar de serem lentos</string>
-  <string name="irc-error" fuzzy="true">Não foi possível ligar ao feed de IRC de mudanças recentes ($1). A usar como alternativa os pedidos API apesar de serem lentos</string>
+  <string name="irc-error">Não foi possível ligar ao feed de IRC de mudanças recentes ($1: $2). A usar como alternativa os pedidos API</string>
   <string name="irc-stop">A aguardar pela paragem do principal provedor de feed em $1</string>
   <string name="irc-not">Feed: O IRC está desativado por configuração do projeto</string>
   <string name="irc-failure">Provedor primário do feed falhou. A usar o provedor wiki de reserva...</string>
@@ -586,7 +588,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="editquery-success">Edição em $1 ($2) feita com sucesso</string>
   <string name="editquery-token">A recuperar código de verificação para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar o código de verificação para editar</string>
-  <string name="provider-failure" fuzzy="true">Falha do principal provedor de feed, a tentar recuperar</string>
+  <string name="provider-failure">Falha do provedor de feed $1 em $2, a tentar encontrar um provedor alternativo</string>
   <string name="provider-primary-failure">O provedor de feed principal falhou, regressar ao provedor da wiki</string>
   <string name="rc-error">Não foi possível aceder aos dados do feed da wiki, último erro: $1</string>
   <string name="whitelist-download">A descarregar nova lista branca</string>

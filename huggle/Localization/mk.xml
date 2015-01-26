@@ -212,7 +212,7 @@
   <string name="irc-connecting">Се обидувам да се поврзам со IRC-каналот за скорешни промени на $1. Ова може да потрае малку...</string>
   <string name="irc-disconnected">Ја изгубивте врската со IRC-каналот за скорешни промени на $1. Ве препозврзувам...</string>
   <string name="irc-nochannel">Не го пронајдов IRC-кланалот за $1. Наместо тоа, користам побавни барања од API</string>
-  <string name="irc-error" fuzzy="true">Не можев да се поврзам IRC-кланалот за скорешни промени ($1). Наместо тоа, користам побавни барања од API</string>
+  <string name="irc-error">Не можев да се поврзам IRC-каналот за скорешни промени ($1: $2). Наместо тоа, користам побавни барања од API</string>
   <string name="irc-stop">Чекам да запре главниот каналски добавувач на $1</string>
   <string name="irc-not">Канал: IRC е оневозможен во поставките на проектот</string>
   <string name="irc-failure">Главниот каналски добавувач не успеа. Го користам викидобавувачот...</string>
@@ -278,6 +278,7 @@
   <string name="login-error-whitelist">Не можев да го вчитам белиот список на корисници за $1.</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>
+  <string name="provider-up">Се поврзувам со каналот со скорешни промени на $2 користејќи го добавувачот: $1</string>
   <string name="main-no-reason">Корисникот нема укажано причина</string>
   <string name="main-restoring-slap">Во моментов повраќам друго уредување. Почекајте...</string>
   <string name="main-page">Страница</string>
@@ -517,6 +518,7 @@
   <string name="tag-title">Ознака $1</string>
   <string name="tag-tagselector">Додај ознака:</string>
   <string name="tag-tags">Ознака/и:</string>
+  <string name="tag-parameter">Параметар</string>
   <string name="tag-summary">Опис:</string>
   <string name="tag-insertatend">Вметни на крајот од страницата</string>
   <string name="update-title">Има нова верзија</string>
@@ -633,7 +635,7 @@
   <string name="editquery-token">Ја преземам шифрата за уредувањето $1</string>
   <string name="editquery-token-error">Не можев да ја добијам шифрата на уредувањето</string>
   <string name="editquery-invalid-token">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
-  <string name="provider-failure" fuzzy="true">Не успеав со главниот каналски добавувач. Се обидувам да направам повраток.</string>
+  <string name="provider-failure">Не успеав со главниот каналски добавувач $1 на $2. Се обидувам да најдам друг добавувач</string>
   <string name="provider-primary-failure">Не успеав со главниот каналски добавувач. Префрлам на викидобавувачот.</string>
   <string name="rc-error">Не можам да ги добијам податоците од викикаалот. Последната грешка гласи: $1</string>
   <string name="rc-timestamp-missing">RC-канал: Ставката немаше атрибут за време и датум: $1</string>

@@ -45,6 +45,8 @@
   <string name="diffid">DiffID</string>
   <string name="expiry-time">Vervaltijd</string>
   <string name="duration">Duur</string>
+  <string name="enable">Inschakelen</string>
+  <string name="disable">Uitschakelen</string>
   <string name="no-token">Geen token</string>
   <string name="flags">Markeringen</string>
   <string name="score-score">Score</string>
@@ -95,6 +97,10 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-watchlist">Aan volglijst toevoegen</string>
   <string name="config-defaultsummary">Standaardsamenvatting voor handmatige bewerkingen</string>
   <string name="config-undosummary">Samenvatting voor het ongedaanmaken van eigen wijzigingen</string>
+  <string name="config-nothing">Niets</string>
+  <string name="config-friend">Vriend</string>
+  <string name="config-userspace">Gebruikersruimte</string>
+  <string name="config-talk">Overlegpagina</string>
   <string name="config-confirmmultiple">Meerdere reversies van een bewerking door dezelfde gebruiker bevestigen</string>
   <string name="config-confirmsame">Reversie naar een bewerking van de terug te draaien gebruiker bevestigen</string>
   <string name="config-userollback">Gebruik terugdraaien indien beschikbaar</string>
@@ -191,6 +197,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-user-warn">Waarschuwen...</string>
   <string name="main-user-block">Blokkeren...</string>
   <string name="main-browser-back">Terug</string>
+  <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Verbinding verbreken</string>
   <string name="main-han-connect">Verbinding maken</string>
   <string name="main-help">Help</string>
@@ -241,6 +248,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="report-log">Waarschuwingen voor deze gebruiker:</string>
   <string name="speedy-reason">Reden:</string>
   <string name="speedy-parameters">Parameters:</string>
+  <string name="tag-parameter">Parameter</string>
   <string name="tag-summary">Samenvatting:</string>
   <string name="tag-insertatend">Aan het einde van de pagina invoegen</string>
   <string name="update-title">Nieuwe versie beschikbaar</string>
@@ -267,4 +275,5 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="speedy-finished">Voltooid</string>
   <string name="logs-widget-name">Systeemlogboek</string>
   <string name="wait">Een ogenblik geduld...</string>
+  <string name="namespace">Naamruimte</string>
 </resources>

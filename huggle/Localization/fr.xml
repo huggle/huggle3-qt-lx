@@ -463,6 +463,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="tag-title">Balise $1</string>
   <string name="tag-tagselector">Ajouter l\'identification :</string>
   <string name="tag-tags">Identification(s) :</string>
+  <string name="tag-parameter">Paramètre</string>
   <string name="tag-summary">Résumé :</string>
   <string name="tag-insertatend">Insérer au bas de cette page</string>
   <string name="update-title">Nouvelle version disponible</string>
