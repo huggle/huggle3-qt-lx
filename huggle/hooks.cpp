@@ -22,9 +22,8 @@
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
-    {
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
-    }
+
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
     {
@@ -37,12 +36,27 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
     }
 }
 
+bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
+{
+    bool result = true;
+    int extension = 0;
+    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    {
+        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension++);
+        if (e->IsWorking())
+        {
+            if (!e->Hook_RevertPreflight((void*)Edit))
+                result = false;
+        }
+    }
+    return result;
+}
+
 void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
-    {
         throw new NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
-    }
+
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
     {
@@ -78,9 +92,8 @@ void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)
 void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
     if (User == nullptr)
-    {
         throw new NullPointerException("Huggle::WikiUser *User", BOOST_CURRENT_FUNCTION);
-    }
+
     int extension = 0;
     while (extension < Huggle::Core::HuggleCore->Extensions.count())
     {

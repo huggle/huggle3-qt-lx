@@ -422,6 +422,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_8">
+         <property name="text">
+          <string>Get a founder of every page (required in order to G7 blanked pages)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="checkBox_26">
          <property name="text">
           <string>Require a delay after every load of next edit, for which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>

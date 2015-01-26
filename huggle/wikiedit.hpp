@@ -118,10 +118,10 @@ namespace Huggle
             int Priority;
             bool IsValid = true;
             //! Old id
-            int OldID;
+            long long OldID;
             bool IsRevert;
             //! Revision ID
-            long RevID;
+            long long RevID;
             //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level
@@ -166,6 +166,7 @@ namespace Huggle
             //! This is a query used to retrieve information about the user
             Collectable_SmartPtr<ApiQuery> qUser;
             Collectable_SmartPtr<ApiQuery> qDifference;
+            Collectable_SmartPtr<ApiQuery> qFounder;
             Collectable_SmartPtr<ApiQuery> qText;
             //! Size of change of edit
             long Size;

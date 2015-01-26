@@ -59,6 +59,11 @@ namespace Huggle
              * \param edit is a pointer to edit in question
              */
             virtual void Hook_EditPreProcess(void *edit) {}
+            /*!
+             * \brief Hook_RevertPreflight is called before preflight check is executed and if
+             * false is returned, the revert is cancelled with no warnings
+             */
+            virtual bool Hook_RevertPreflight(void *edit) { return true; }
             virtual void Hook_SpeedyFinished(void *edit, QString tags, bool successfull) {}
             /*!
              * \brief Hook_SpeedyBeforeOK Called right after user request processing of speedy form

@@ -96,6 +96,8 @@ namespace Huggle
 
             explicit MainWindow(QWidget *parent = nullptr);
             ~MainWindow();
+            //! Returns true if current page can be edited
+            bool BrowserPageIsEditable();
             void DisplayReportUserWindow(WikiUser *User = nullptr);
             WikiEdit *GetCurrentWikiEdit();
             /*!
@@ -122,8 +124,6 @@ namespace Huggle
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();
-            //! Returns true if current page can be edited
-            bool BrowserPageIsEditable();
             /*!
              * \brief CheckEditableBrowserPage will check if current page is editable and if it's not it display a message box
              * \return true on success or false in case it's not
@@ -138,6 +138,8 @@ namespace Huggle
             void DisplayTalk();
             void PauseQueue();
             void ResumeQueue();
+            //! Request a page deletion csd or afd and so on
+            void RequestPD(WikiEdit *edit = nullptr);
             void WelcomeGood();
             void SwitchAlternativeFeedProvider(WikiSite *site);
             //! Try to load a page
@@ -332,8 +334,6 @@ namespace Huggle
             void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
             void Render(bool KeepHistory = false, bool KeepUser = false);
-            //! Request a page deletion csd or afd and so on
-            void RequestPD();
             void RevertAgf(bool only);
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();

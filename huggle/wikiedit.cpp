@@ -9,8 +9,8 @@
 //GNU General Public License for more details.
 
 #include "wikiedit.hpp"
-#include <QtXml>
 #include <QMutex>
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
 #include "core.hpp"
@@ -103,29 +103,56 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
     }
 
+    if (this->qFounder != nullptr && this->qFounder->IsProcessed())
+    {
+        if (this->qFounder->IsFailed())
+        {
+            Syslog::HuggleLogs->ErrorLog("Failed to retrieve founder for page " + this->Page->PageName + ": " + this->qFounder->GetFailureReason());
+        } else
+        {
+            QList<ApiQueryResultNode*> revisions = this->qFounder->GetApiQueryResult()->GetNodes("rev");
+            if (revisions.count() == 0)
+            {
+                Syslog::HuggleLogs->ErrorLog("Failed to retrieve founder for page " + this->Page->PageName + ": " + this->qFounder->GetFailureReason());
+                HUGGLE_DEBUG(this->qFounder->Result->Data, 1);
+            }
+            else if (revisions.count() == 1)
+            {
+                ApiQueryResultNode *node = revisions.at(0);
+                if (!node->Attributes.contains("timestamp") || !node->Attributes.contains("user"))
+                {
+                    HUGGLE_DEBUG1("Invalid revision info while fetching info for page");
+                }
+                else
+                {
+                    this->Page->SetFounder(node->GetAttribute("user"));
+                }
+            }
+        }
+        this->qFounder = nullptr;
+    }
+
     if (this->qUser != nullptr && this->qUser->IsProcessed())
     {
         if (this->qUser->IsFailed())
         {
             // it failed for some reason
             Syslog::HuggleLogs->ErrorLog("Unable to fetch user information for " + this->User->Username + ": " +
-                                         this->qUser->Result->ErrorMessage);
+                                         this->qUser->GetFailureReason());
             // we can remove this query now
             this->qUser = nullptr;
 
         } else
         {
             // we fetch the number of edits, registration and groups of user
-            QDomDocument d_;
-            d_.setContent(this->qUser->Result->Data);
-            QDomNodeList u_ = d_.elementsByTagName("user");
-            QDomNodeList g_ = d_.elementsByTagName("g");
-            if (u_.count() > 0)
+            QList<ApiQueryResultNode*> user_data = this->qUser->GetApiQueryResult()->GetNodes("user");
+            QList<ApiQueryResultNode*> group_data = this->qUser->GetApiQueryResult()->GetNodes("g");
+            if (user_data.count() > 0)
             {
-                QDomElement user_info_ = u_.at(0).toElement();
-                if (user_info_.attributes().contains("editcount"))
+                ApiQueryResultNode *user_info_ = user_data.at(0);
+                if (user_info_->Attributes.contains("editcount"))
                 {
-                    this->User->EditCount = user_info_.attribute("editcount").toLong();
+                    this->User->EditCount = user_info_->GetAttribute("editcount").toLong();
                     // users with high number of edits aren't vandals
                     this->Score += this->User->EditCount*-2;
                 }
@@ -133,9 +160,9 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     Syslog::HuggleLogs->WarningLog("Failed to retrieve edit count for " + this->User->Username);
                 }
-                if (user_info_.attributes().contains("registration"))
+                if (user_info_->Attributes.contains("registration"))
                 {
-                    this->User->RegistrationDate = user_info_.attribute("registration");
+                    this->User->RegistrationDate = user_info_->GetAttribute("registration");
                 }
                 else
                 {
@@ -143,10 +170,10 @@ bool WikiEdit::FinalizePostProcessing()
                 }
             }
             int x = 0;
-            while (x < g_.count())
+            while (x < group_data.count())
             {
-                QDomElement group = g_.at(x).toElement();
-                QString gn = group.text();
+                ApiQueryResultNode *group = group_data.at(x);
+                QString gn = group->Value;
                 if (gn != "*" && gn != "user")
                 this->User->Groups.append(gn);
                 ++x;
@@ -174,15 +201,13 @@ bool WikiEdit::FinalizePostProcessing()
         } else
         {
             // parse the talk page now
-            QDomDocument d_;
-            d_.setContent(this->qTalkpage->Result->Data);
-            QDomNodeList rev_ = d_.elementsByTagName("rev");
-            QDomNodeList pages_ = d_.elementsByTagName("page");
+            QList<ApiQueryResultNode*> rev_ = this->qTalkpage->GetApiQueryResult()->GetNodes("rev");
+            QList<ApiQueryResultNode*> pages_ = this->qTalkpage->GetApiQueryResult()->GetNodes("page");
             bool missing = false;
             if (pages_.count() > 0)
             {
-                QDomElement e = pages_.at(0).toElement();
-                if (e.attributes().contains("missing"))
+                ApiQueryResultNode *node = pages_.at(0);
+                if (node->Attributes.contains("missing"))
                 {
                     missing = true;
                 }
@@ -190,21 +215,15 @@ bool WikiEdit::FinalizePostProcessing()
             // get last id
             if (missing != true && rev_.count() > 0)
             {
-                QDomElement e = rev_.at(0).toElement();
-                if (e.nodeName() == "rev")
+                ApiQueryResultNode *rv = rev_.at(0);
+                if (!rv->Attributes.contains("timestamp"))
                 {
-                    if (!e.attributes().contains("timestamp"))
-                    {
-                        Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + this->User->Username + " couldn't be retrieved, mediawiki returned no data for it");
-                    } else
-                    {
-                        this->TPRevBaseTime = e.attribute("timestamp");
-                    }
-                    this->User->TalkPage_SetContents(e.text());
+                    Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + this->User->Username + " couldn't be retrieved, mediawiki returned no data for it");
                 } else
                 {
-                    Huggle::Syslog::HuggleLogs->Log(_l("wikiedit-tp-fail", this->User->GetTalk()));
+                    this->TPRevBaseTime = rv->GetAttribute("timestamp");
                 }
+                this->User->TalkPage_SetContents(rv->Value);
             } else
             {
                 if (missing)
@@ -240,42 +259,37 @@ bool WikiEdit::FinalizePostProcessing()
         }
 
         // parse the diff now
-        QDomDocument d;
-        d.setContent(this->qDifference->Result->Data);
-        QDomNodeList l = d.elementsByTagName("rev");
-        QDomNodeList diff = d.elementsByTagName("diff");
+        QList<ApiQueryResultNode*> revision_data = this->qDifference->GetApiQueryResult()->GetNodes("rev");
+        QList<ApiQueryResultNode*> diffs = this->qDifference->GetApiQueryResult()->GetNodes("diff");
         // get last id
-        if (l.count() > 0)
+        if (revision_data.count() > 0)
         {
-            QDomElement e = l.at(0).toElement();
-            if (e.nodeName() == "rev")
+            ApiQueryResultNode *revision = revision_data.at(0);
+            if (revision->Value.length() > 0)
+                this->Page->Contents = revision->Value;
+            // check if this revision matches our user
+            if (revision->Attributes.contains("user"))
             {
-                if (e.text().length() > 0)
-                    this->Page->Contents = e.text();
-                // check if this revision matches our user
-                if (e.attributes().contains("user"))
+                if (WikiUtil::SanitizeUser(revision->GetAttribute("user")).toUpper() != WikiUtil::SanitizeUser(this->User->Username).toUpper())
                 {
-                    if (WikiUtil::SanitizeUser(e.attribute("user")).toUpper() != WikiUtil::SanitizeUser(this->User->Username).toUpper())
-                    {
-                        HUGGLE_DEBUG("User " + e.attribute("user") + " != " + this->User->Username, 3);
-                        this->IsValid = false;
-                    }
-                } else
-                {
+                    HUGGLE_DEBUG("User " + revision->GetAttribute("user") + " != " + this->User->Username, 3);
                     this->IsValid = false;
                 }
-                if (e.attributes().contains("revid"))
-                    this->RevID = e.attribute("revid").toInt();
-                if (e.attributes().contains("timestamp"))
-                    this->Time = MediaWiki::FromMWTimestamp(e.attribute("timestamp"));
-                if (e.attributes().contains("comment"))
-                    this->Summary = e.attribute("comment");
+            } else
+            {
+                this->IsValid = false;
             }
+            if (revision->Attributes.contains("revid"))
+                this->RevID = revision->GetAttribute("revid").toInt();
+            if (revision->Attributes.contains("timestamp"))
+                this->Time = MediaWiki::FromMWTimestamp(revision->GetAttribute("timestamp"));
+            if (revision->Attributes.contains("comment"))
+                this->Summary = revision->GetAttribute("comment");
         }
-        if (diff.count() > 0)
+        if (diffs.count() > 0)
         {
-            QDomElement e = diff.at(0).toElement();
-            this->DiffText = e.text();
+            ApiQueryResultNode *temp = diffs.at(0);
+            this->DiffText = temp->Value;
         } else
         {
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
@@ -485,16 +499,16 @@ void WikiEdit::PostProcess()
         if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|user|timestamp|comment") +
                                             "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         } else
         {
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|user|timestamp|comment") +
                                             "&rvlimit=1&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         }
-        this->qDifference->Target = Page->PageName;
+        this->qDifference->Target = this->Page->PageName;
         QueryPool::HugglePool->AppendQuery(this->qDifference);
         this->qDifference->Process();
         this->ProcessingDiff = true;
@@ -504,6 +518,15 @@ void WikiEdit::PostProcess()
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         QueryPool::HugglePool->AppendQuery(this->qText);
         this->qText->Process();
+    }
+    if (hcfg->UserConfig->RetrieveFounder)
+    {
+        this->qFounder = new ApiQuery(ActionQuery, this->GetSite());
+        this->qFounder->Parameters = "prop=revisions&titles=" + QUrl::toPercentEncoding(this->Page->PageName) + "&rvdir=newer&rvlimit=1&rvprop=" +
+                                     QUrl::toPercentEncoding("ids|user|timestamp");
+        this->qFounder->Target = this->Page->PageName + " (retrieving founder)";
+        QueryPool::HugglePool->AppendQuery(this->qFounder);
+        this->qFounder->Process();
     }
     this->ProcessingRevs = true;
     if (this->User->IsIP())

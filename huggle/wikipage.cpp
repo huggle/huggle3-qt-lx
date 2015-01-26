@@ -70,6 +70,22 @@ WikiPage *WikiPage::RetrieveTalk()
     return new WikiPage(prefix + this->RootName());
 }
 
+bool WikiPage::FounderKnown()
+{
+    return this->founderKnown;
+}
+
+QString WikiPage::GetFounder()
+{
+    return this->founder;
+}
+
+void WikiPage::SetFounder(QString name)
+{
+    this->founderKnown = true;
+    this->founder = name;
+}
+
 QString WikiPage::RootName()
 {
     QString sanitized = this->PageName;

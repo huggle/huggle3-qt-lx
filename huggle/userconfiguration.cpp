@@ -130,7 +130,9 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "RemoveOldestQueueEdits:" + Bool2String(this->RemoveOldQueueEdits) + "\n";
     configuration_ += "TruncateEdits:" + Bool2String(this->TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(this->TalkPageFreshness) + "\n";
-    configuration_ += "RemoveAfterTrustedEdit" + Bool2String(this->RemoveAfterTrustedEdit) + "\n";
+    configuration_ += "RemoveAfterTrustedEdit:" + Bool2String(this->RemoveAfterTrustedEdit) + "\n";
+    configuration_ += "//Get original creator of every page so that you can G7 instead of reverting the page\n";
+    configuration_ += "RetrieveFounder:" + Bool2String(this->RetrieveFounder) + "\n";
     configuration_ += "DisplayTitle:" + Bool2String(this->DisplayTitle) + "\n";
     configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
     configuration_ += "CheckTP:" + Bool2String(this->CheckTP) + "\n";
@@ -291,6 +293,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
     this->CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
+    this->RetrieveFounder = SafeBool(ConfigurationParse("RetrieveFounder", config, "true"));
     this->HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));
     this->HAN_DisplayUser = SafeBool(ConfigurationParse("HAN_DisplayUser", config, "true"));
     this->ManualWarning = SafeBool(ConfigurationParse("ManualWarning", config, "true"));

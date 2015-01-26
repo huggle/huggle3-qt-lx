@@ -47,6 +47,7 @@ namespace Huggle
              * \param Edit
              */
             static void OnRevert(WikiEdit *Edit);
+            static bool RevertPreflight(WikiEdit *Edit);
             /*!
              * \brief Event that happens when user attempt to send a warning to editor of page
              * \param User

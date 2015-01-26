@@ -110,6 +110,8 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 //! Minimal score the edit can have
 #define MINIMAL_SCORE                   -999999
 #define HUGGLE_CONF                     "huggle3.xml"
+//! When wikipedia get a higher revision ID than this, it will need to look for new anti-vandalism software :P
+#define HUGGLE_MAX_REV                  9223372036854775807
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
 //! Value that is used by default for timers that are used on various places

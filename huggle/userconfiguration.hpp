@@ -79,6 +79,8 @@ namespace Huggle
             unsigned int    TalkPageFreshness = 20;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits = false;
+            //! Whether a founder of every page should be retrieved or not
+            bool            RetrieveFounder = false;
             bool            HtmlAllowedInIrc = false;
             bool            RemoveAfterTrustedEdit = true;
             bool            HuggleSuffix = true;

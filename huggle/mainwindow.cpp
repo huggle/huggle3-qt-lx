@@ -470,7 +470,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
     this->tb->SetTitle(this->Browser->CurrentPageName());
 }
 
-void MainWindow::RequestPD()
+void MainWindow::RequestPD(WikiEdit *edit)
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == nullptr)
         return;
@@ -479,10 +479,12 @@ void MainWindow::RequestPD()
         Generic::DeveloperError();
         return;
     }
+    if (edit == nullptr)
+        edit = this->CurrentEdit;
     if (this->fSpeedyDelete)
         delete this->fSpeedyDelete;
     this->fSpeedyDelete = new SpeedyForm(this);
-    this->fSpeedyDelete->Init(this->CurrentEdit);
+    this->fSpeedyDelete->Init(edit);
     this->fSpeedyDelete->show();
 }
 
@@ -925,6 +927,8 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
 
 bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
+    if (!Hooks::RevertPreflight(_e))
+        return false;
     if (this->qNext != nullptr)
     {
         Generic::pMessageBox(this, "This edit is already being reverted", "You can't revert this edit, because it's already being reverted. Please wait!",

@@ -297,6 +297,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
     hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
     hcfg->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
+    hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
     hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
     hcfg->UserConfig->RemoveAfterTrustedEdit = this->ui->ck_RemoveTrusted->isChecked();
@@ -723,6 +724,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
     this->ui->lineEdit_5->setText(hcfg->UserConfig->Font);
     this->ui->sxFontSize->setValue(hcfg->UserConfig->FontSize);
+    this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
 }

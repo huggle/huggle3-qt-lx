@@ -35,6 +35,10 @@ namespace Huggle
             WikiPageNS *GetNS();
             //! Return true in case this is a talk page
             bool IsTalk();
+            //! True if original creator of this page is known
+            bool FounderKnown();
+            QString GetFounder();
+            void SetFounder(QString name);
             //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();
             QString RootName();
@@ -46,6 +50,8 @@ namespace Huggle
             QString PageName;
         private:
             WikiPageNS *NS;
+            QString founder;
+            bool founderKnown = false;
     };
 
     inline QString WikiPage::SanitizedName()
