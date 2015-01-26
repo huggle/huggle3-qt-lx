@@ -48,6 +48,9 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     SetDefaults(this->ui->cbqTp);
     SetDefaults(this->ui->cbqUserspace);
     SetDefaults(this->ui->cbqWl);
+    this->ui->cbProviders->addItem("Wiki");
+    this->ui->cbProviders->addItem("IRC");
+    this->ui->cbProviders->addItem("XmlRcs");
     headers << _l("config-function") << _l("config-description") << _l("config-shortcut");
     this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_2->verticalHeader()->setVisible(false);
@@ -296,6 +299,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->TruncateEdits = this->ui->checkBox_19->isChecked();
     hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
     hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
+    hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
     hcfg->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
     hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
@@ -673,6 +677,10 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
 
 void Preferences::ResetItems()
 {
+    int provider = 1;
+    if (hcfg->UserConfig->PreferredProvider > -1 && hcfg->UserConfig->PreferredProvider < 3)
+        provider = hcfg->UserConfig->PreferredProvider;
+    this->ui->cbProviders->setCurrentIndex(provider);
     switch(hcfg->UserConfig->GoNext)
     {
         case Configuration_OnNext_Stay:

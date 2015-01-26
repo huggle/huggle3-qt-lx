@@ -127,6 +127,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "OnNext:" + QString::number(static_cast<int>(this->GoNext)) + "\n";
     configuration_ += "DeleteEditsAfterRevert:" + Bool2String(this->DeleteEditsAfterRevert) + "\n";
     configuration_ += "SkipToLastEdit:" + Bool2String(this->LastEdit) + "\n";
+    configuration_ += "PreferredProvider:" + QString::number(this->PreferredProvider) + "\n";
     configuration_ += "RemoveOldestQueueEdits:" + Bool2String(this->RemoveOldQueueEdits) + "\n";
     configuration_ += "TruncateEdits:" + Bool2String(this->TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(this->TalkPageFreshness) + "\n";
@@ -292,6 +293,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
+    this->PreferredProvider = ConfigurationParse("PreferredProvider", config, "1").toInt();
     this->CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
     this->RetrieveFounder = SafeBool(ConfigurationParse("RetrieveFounder", config, "true"));
     this->HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));

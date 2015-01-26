@@ -186,7 +186,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
         }
-        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+        switch (hcfg->UserConfig->PreferredProvider)
+        {
+            case 0:
+                this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
+                break;
+            case 2:
+                this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+                break;
+            default:
+                this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+                break;
+        }
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->ReloadInterface();

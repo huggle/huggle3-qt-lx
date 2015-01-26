@@ -226,7 +226,7 @@ void HuggleFeedProviderXml::OnReceive()
     // if server name doesn't match we drop edit
     if (this->GetSite()->XmlRcsName != element.attribute("server_name"))
     {
-        HUGGLE_DEBUG1("Invalid server: " + this->GetSite()->XmlRcsName + " isn't' " + element.attribute("server_name"));
+        HUGGLE_DEBUG1("Invalid server: " + this->GetSite()->XmlRcsName + " isn't " + element.attribute("server_name"));
         return;
     }
 
