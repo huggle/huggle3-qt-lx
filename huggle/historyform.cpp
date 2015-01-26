@@ -40,10 +40,10 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->PreviouslySelectedRow = 2;
     QStringList header;
     header << "" << _l("user")
-                 << _l("size")
-                 << _l("summary")
-                 << _l("id")
-                 << _l("date");
+        << _l("size")
+        << _l("summary")
+        << _l("id")
+        << _l("date");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -52,13 +52,14 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
     {
 #if QT_VERSION >= 0x050000
-// Qt5 code
+        // Qt5 code
         this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
-// Qt4 code
+        // Qt4 code
         this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
-    } else
+    }
+    else
     {
         this->ui->tableWidget->setColumnWidth(0, 20);
         this->ui->tableWidget->setColumnWidth(1, 100);
@@ -83,7 +84,7 @@ void HistoryForm::Read()
     this->ui->pushButton->hide();
     this->query = new ApiQuery(ActionQuery, this->CurrentEdit->GetSite());
     this->query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|flags|timestamp|user|userid|size|sha1|comment") + "&rvlimit=" +
-            QString::number(hcfg->UserConfig->HistoryMax) + "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
+        QString::number(hcfg->UserConfig->HistoryMax) + "&titles=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName);
     this->query->Process();
     delete this->t1;
     this->t1 = new QTimer(this);
@@ -146,8 +147,8 @@ void HistoryForm::onTick01()
         return;
     }
     bool IsLatest = false;
-    QList<ApiQueryResultNode*>revision_data = this->query->GetApiQueryResult()->GetNodes("rev");
-    int x=0;
+    QList<ApiQueryResultNode*> revision_data = this->query->GetApiQueryResult()->GetNodes("rev");
+    int x = 0;
     QColor xb;
     bool xt = false;
     while (x < revision_data.count())
@@ -155,7 +156,8 @@ void HistoryForm::onTick01()
         if (xt)
         {
             xb = QColor(206, 202, 250);
-        } else
+        }
+        else
         {
             xb = QColor(224, 222, 250);
         }
@@ -165,11 +167,13 @@ void HistoryForm::onTick01()
         if (rv->Attributes.contains("revid"))
         {
             item->RevID = rv->GetAttribute("revid");
-        } else
+        }
+        else
         {
             x++;
             continue;
         }
+        bool founder = false;
         item->Name = this->CurrentEdit->Page->PageName;
         item->Site = this->CurrentEdit->GetSite();
         if (rv->Attributes.contains("user"))
@@ -182,6 +186,8 @@ void HistoryForm::onTick01()
             item->Summary = rv->GetAttribute("comment");
         this->ui->tableWidget->insertRow(x);
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
+        if (this->CurrentEdit->Page->FounderKnown() && WikiUser::CompareUsernames(item->User, this->CurrentEdit->Page->GetFounder()))
+            founder = true;
         if (WikiUtil::IsRevert(item->Summary))
         {
             item->Type = EditType_Revert;
@@ -204,81 +210,61 @@ void HistoryForm::onTick01()
             {
                 item->Type = EditType_Reported;
                 icon = QIcon(":/huggle/pictures/Resources/blob-reported.png");
-            } else if (wu->GetWarningLevel() > 0)
+            }
+            else if (wu->GetWarningLevel() > 0)
             {
-                switch(wu->GetWarningLevel())
+                switch (wu->GetWarningLevel())
                 {
-                    case 1:
-                        item->Type = EditType_1;
-                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-1.png");
-                        break;
-                    case 2:
-                        item->Type = EditType_2;
-                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-2.png");
-                        break;
-                    case 3:
-                        item->Type = EditType_3;
-                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-3.png");
-                        break;
-                    case 4:
-                        item->Type = EditType_4;
-                        icon = QIcon(":/huggle/pictures/Resources/blob-warn-4.png");
-                        break;
+                case 1:
+                    item->Type = EditType_1;
+                    icon = QIcon(":/huggle/pictures/Resources/blob-warn-1.png");
+                    break;
+                case 2:
+                    item->Type = EditType_2;
+                    icon = QIcon(":/huggle/pictures/Resources/blob-warn-2.png");
+                    break;
+                case 3:
+                    item->Type = EditType_3;
+                    icon = QIcon(":/huggle/pictures/Resources/blob-warn-3.png");
+                    break;
+                case 4:
+                    item->Type = EditType_4;
+                    icon = QIcon(":/huggle/pictures/Resources/blob-warn-4.png");
+                    break;
                 }
             }
         }
-        if (this->CurrentEdit->RevID == item->RevID.toInt())
-        {
-            if (x == 0)
-                IsLatest = true;
-            item->IsCurrent = true;
-            this->SelectedRow = x;
-            QFont font;
-            font.setBold(true);
-            QTableWidgetItem *i = new QTableWidgetItem(icon, "");
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 0, i);
-            i = new QTableWidgetItem(item->User);
-            i->setFont(font);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 1, i);
-            i = new QTableWidgetItem(item->Size);
-            i->setFont(font);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 2, i);
-            i = new QTableWidgetItem(item->Summary);
-            i->setFont(font);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 3, i);
-            i = new QTableWidgetItem(item->RevID);
-            i->setFont(font);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 4, i);
-            i = new QTableWidgetItem(item->Date);
-            i->setFont(font);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 5, i);
-        } else
-        {
-            QTableWidgetItem *i = new QTableWidgetItem(icon, "");
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 0, i);
-            i = new QTableWidgetItem(item->User);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 1, i);
-            i = new QTableWidgetItem(item->Size);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 2, i);
-            i = new QTableWidgetItem(item->Summary);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 3, i);
-            i = new QTableWidgetItem(item->RevID);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 4, i);
-            i = new QTableWidgetItem(item->Date);
-            i->setBackgroundColor(xb);
-            this->ui->tableWidget->setItem(x, 5, i);
-        }
+        bool selected = this->CurrentEdit->RevID == item->RevID.toInt();
+        if (x == 0)
+            IsLatest = true;
+        item->IsCurrent = true;
+        this->SelectedRow = x;
+        QFont font;
+        font.setItalic(founder);
+        font.setBold(selected);
+        QTableWidgetItem *i = new QTableWidgetItem(icon, "");
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 0, i);
+        i = new QTableWidgetItem(item->User);
+        i->setFont(font);
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 1, i);
+        i = new QTableWidgetItem(item->Size);
+        i->setFont(font);
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 2, i);
+        i = new QTableWidgetItem(item->Summary);
+        i->setFont(font);
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 3, i);
+        i = new QTableWidgetItem(item->RevID);
+        i->setFont(font);
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 4, i);
+        i = new QTableWidgetItem(item->Date);
+        i->setFont(font);
+        i->setBackgroundColor(xb);
+        this->ui->tableWidget->setItem(x, 5, i);
         this->Items.append(item);
         x++;
     }
@@ -290,7 +276,8 @@ void HistoryForm::onTick01()
         if (Configuration::HuggleConfiguration->UserConfig->LastEdit)
         {
             this->Display(0, Resources::Html_StopFire, true);
-        } else
+        }
+        else
         {
             QPoint pntr(0, this->pos().y());
             if (this->pos().x() > 400)
@@ -422,14 +409,15 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
     QItemSelection selection(this->ui->tableWidget->selectionModel()->selection());
     QList<int> rows;
     foreach(const QModelIndex & index, selection.indexes())
-       rows.append( index.row() );
+        rows.append(index.row());
     if (rows.count() == 1)
     {
         this->Display(rows[0], _l("wait"));
-    } else if (rows.count() > 1)
+    }
+    else if (rows.count() > 1)
     {
         int max = this->ui->tableWidget->item(rows[0], 4)->text().toInt();
-        QString min = this->ui->tableWidget->item(rows[rows.count()-1], 4)->text();
+        QString min = this->ui->tableWidget->item(rows[rows.count() - 1], 4)->text();
         if (!max)
             return;
 

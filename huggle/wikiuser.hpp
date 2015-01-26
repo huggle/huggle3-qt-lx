@@ -32,6 +32,7 @@ namespace Huggle
         public:
             //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
             static void TrimProblematicUsersList();
+            static bool CompareUsernames(QString a, QString b);
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
             static bool IsIPv4(QString user);

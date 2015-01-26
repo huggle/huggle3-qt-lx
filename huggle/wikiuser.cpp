@@ -123,6 +123,14 @@ void WikiUser::UpdateUser(WikiUser *us)
     }
 }
 
+bool WikiUser::CompareUsernames(QString a, QString b)
+{
+    a = a.replace("_", " ");
+    a = a.toLower();
+    b = b.replace("_", " ").toLower();
+    return (a == b);
+}
+
 bool WikiUser::IsIPv4(QString user)
 {
     return WikiUser::IPv4Regex.exactMatch(user);

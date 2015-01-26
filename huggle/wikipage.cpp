@@ -40,6 +40,8 @@ WikiPage::WikiPage(WikiPage *page) : MediaWikiObject(page)
 {
     this->PageName = page->PageName;
     this->Contents = page->Contents;
+    this->founder = page->founder;
+    this->founderKnown = page->founderKnown;
     this->NS = page->NS;
 }
 
@@ -47,6 +49,8 @@ WikiPage::WikiPage(const WikiPage &page) : MediaWikiObject(page)
 {
     this->PageName = page.PageName;
     this->Contents = page.Contents;
+    this->founder = page.founder;
+    this->founderKnown = page.founderKnown;
     this->NS = page.NS;
 }
 
