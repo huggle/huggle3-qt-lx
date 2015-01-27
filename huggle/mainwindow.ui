@@ -885,7 +885,7 @@
   </action>
   <action name="actionHtml_dump">
    <property name="text">
-    <string>Load in webpage</string>
+    <string>Dump page</string>
    </property>
   </action>
   <action name="actionEnforce_sysop_rights">
