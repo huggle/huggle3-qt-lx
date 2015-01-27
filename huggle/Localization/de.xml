@@ -212,7 +212,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="irc-connecting">Versuche mit IRC-Feed auf $1 zu verbinden; dies kann einen Augenblick dauern …</string>
   <string name="irc-disconnected">Verbindung mit IRC-Feed auf $1 unterbrochen; verbinde …</string>
   <string name="irc-nochannel">IRC-Kanal für $1 nicht gefunden; verwende stattdessen langsamere API-Abfragen</string>
-  <string name="irc-error" fuzzy="true">Kann nicht mit IRC-Feed verbinden. Verwende stattdessen langsamere API Querys</string>
+  <string name="irc-error">Kann nicht mit dem IRC-Feed ($1: $2) verbinden. Verwende stattdessen langsamere API-Abfragen.</string>
   <string name="irc-stop">Warte auf den Stopp des primären Feed-Providers auf $1</string>
   <string name="irc-not">Feed: IRC ist durch Projektkonfiguration deaktiviert</string>
   <string name="irc-failure">Der primäre Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider …</string>
@@ -278,6 +278,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-error-whitelist">Konnte Benutzer-Whitelist für $1 nicht laden.</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
+  <string name="provider-up">Verbinde mit dem Letzte-Änderungen-Stream auf $2 mithilfe des Providers: $1</string>
   <string name="main-no-reason">Vom Benutzer wurde keine Begründung angegeben</string>
   <string name="main-restoring-slap">Ich stelle derzeit eine andere Bearbeitung wieder her. Bitte warten …</string>
   <string name="main-page">Seite</string>
@@ -517,6 +518,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="tag-title">Markierung $1</string>
   <string name="tag-tagselector">Markierung hinzufügen:</string>
   <string name="tag-tags">Markierung(en):</string>
+  <string name="tag-parameter">Parameter</string>
   <string name="tag-summary">Zusammenfassung:</string>
   <string name="tag-insertatend">Am Ende der Seite einfügen</string>
   <string name="update-title">Neue Version verfügbar</string>
@@ -633,7 +635,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="editquery-token">Rufe Token für die Bearbeitung von $1 ab</string>
   <string name="editquery-token-error">Bearbeitungs-Token konnte nicht abgerufen werden</string>
   <string name="editquery-invalid-token">$1 konnte nicht bearbeitet werden, da der cacachte Token nicht länger gültig ist. Bitte versuche, diese Seite erneut zu bearbeiten.</string>
-  <string name="provider-failure" fuzzy="true">Fehler beim primären Feedprovider. Versuche Wiederherstellung.</string>
+  <string name="provider-failure">Fehler beim Feedprovider $1 auf $2. Versuche, einen alternativen Provider zu finden.</string>
   <string name="provider-primary-failure">Primärer Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider.</string>
   <string name="rc-error">Daten vom Wikifeed konnten nicht abgerufen werden. Letzter Fehler: $1</string>
   <string name="rc-timestamp-missing">RC-Feed: Im Element fehlt das Zeitstempel-Attribut: $1</string>

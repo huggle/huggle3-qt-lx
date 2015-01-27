@@ -479,6 +479,7 @@ UAA is short for \"Usernames for administrator attention\".</string>
   <string name="tag-title">{{Identical|Tag}}</string>
   <string name="tag-tags">Used as column header.
 {{Identical|Tag}}</string>
+  <string name="tag-parameter">{{Identical|Parameter}}</string>
   <string name="tag-summary">{{Identical|Summary}}</string>
   <string name="tag-insertatend">Used as checkbox label.</string>
   <string name="updater-title">Used as window title.</string>

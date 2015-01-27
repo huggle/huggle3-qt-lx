@@ -142,6 +142,7 @@
   <string name="config-friend">朋友</string>
   <string name="config-userspace">用户名字空间</string>
   <string name="config-talk">讨论页</string>
+  <string name="config-columns-dynamic">让列表的列动态（自动基于项目尺寸调整）或者手动（用户手动调整尺寸）</string>
   <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
   <string name="config-warning-api">显示API查询的警告</string>
   <string name="config-updates">检查更新</string>
@@ -206,7 +207,7 @@
   <string name="irc-connecting">尝试在$1连接IRC最近更改，这将花费几分钟……</string>
   <string name="irc-disconnected">连接$1的 IRC 最近更新中断。重新连接中……</string>
   <string name="irc-nochannel">未找到IRC频道$1；使用较慢的API请求</string>
-  <string name="irc-error" fuzzy="true">无法连接到IRC频道最近更改订阅（$1）。使用较慢的API查询请求</string>
+  <string name="irc-error">无法连接到IRC最近更改频道（$1：$2）。改为使用较慢的API查询方式</string>
   <string name="irc-stop">等待$1的主订阅提供商停止</string>
   <string name="irc-not">IRC订阅被项目配置文件禁用</string>
   <string name="irc-failure">首选订阅提供程序失败。退回wiki提供……</string>
@@ -272,6 +273,7 @@
   <string name="login-error-whitelist">无法载入$1的白名单。</string>
   <string name="main-menu-provider-stop">停止提供</string>
   <string name="main-menu-provider-resume">摘要提供</string>
+  <string name="provider-up">正在连接到$2上的最近更改流，使用提供者：$1</string>
   <string name="main-no-reason">没有用户提供理由</string>
   <string name="main-restoring-slap">我正在恢复另一编辑，请等待…</string>
   <string name="main-page">页面</string>
@@ -387,10 +389,10 @@
   <string name="main-display-whitelist">显示白名单</string>
   <string name="main-revert-custom-reson">请提供为什么您想要将恢复到以前的修订版本的理由</string>
   <string name="main-log1">恢复$1的选定修订版本</string>
-  <string name="main-tip-pagetagdelete">提删本页</string>
-  <string name="main-tip-pagedelete">删除本页</string>
+  <string name="main-tip-pagetagdelete">提删此页面</string>
+  <string name="main-tip-pagedelete">删除此页面</string>
   <string name="main-tip-userreport">报告此用户</string>
-  <string name="main-tip-userblock">封禁该用户</string>
+  <string name="main-tip-userblock">封禁此用户</string>
   <string name="main-revision-acceptpend">接受该版本</string>
   <string name="main-no-page">您请求的操作需要页面已加载。请在重试前加载一个页面。</string>
   <string name="main-revert-null">无法回退：编辑为空</string>
@@ -511,6 +513,7 @@
   <string name="tag-title">标记$1</string>
   <string name="tag-tagselector">添加标记：</string>
   <string name="tag-tags">标记：</string>
+  <string name="tag-parameter">参数</string>
   <string name="tag-summary">摘要：</string>
   <string name="tag-insertatend">在页面末尾插入</string>
   <string name="update-title">新版本可用</string>
@@ -626,7 +629,7 @@
   <string name="editquery-token">检索令牌以编辑$1</string>
   <string name="editquery-token-error">无法检索编辑令牌</string>
   <string name="editquery-invalid-token">无法编辑$1，因为我在缓存中持有的令牌已经失效，请再次尝试编辑此页面</string>
-  <string name="provider-failure" fuzzy="true">首选订阅提供者失败，尝试恢复</string>
+  <string name="provider-failure">$2上的订阅提供者$1失败，尝试找到一些提供商替代品</string>
   <string name="provider-primary-failure">首选订阅提供者失败，退回wiki提供</string>
   <string name="rc-error">无法从wiki订阅检索数据，最后错误：$1</string>
   <string name="whitelist-download">新白名单下载中</string>

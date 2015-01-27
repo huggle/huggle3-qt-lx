@@ -12,6 +12,7 @@
   <string name="deleted">Dilamet</string>
   <string name="error">Fazi</string>
   <string name="exit">Mont kuit</string>
+  <string name="done">Graet</string>
   <string name="no">Ket</string>
   <string name="ok">Mat eo</string>
   <string name="remove">Lemel</string>
@@ -45,6 +46,8 @@
   <string name="whitelisted">$1 en deus ur skor $2 war $3 a zo bet enlakaet el listenn wenn</string>
   <string name="expiry-time">Amzer termen</string>
   <string name="duration">Pad</string>
+  <string name="enable">Gweredekaat</string>
+  <string name="disable">Diweredekaat</string>
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
   <string name="score-score">Poentoù</string>
@@ -103,6 +106,12 @@
   <string name="config-defaults">Dre ziouer</string>
   <string name="config-watchlist">Ouzhpennañ d\'ar roll evezhiañ</string>
   <string name="config-confirm-wl">Goulenn kadarnaat evit nullañ ur c\'hemm graet gant un implijer el listenn wenn.</string>
+  <string name="config-enable-irc">Gweredekaat IRC</string>
+  <string name="config-nothing">Netra</string>
+  <string name="config-new-page">Pajenn nevez</string>
+  <string name="config-whitelisted">El listenn wenn</string>
+  <string name="config-friend">Mignon</string>
+  <string name="config-talk">Pajenn gaozeal</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
   <string name="config-confirmpage">Kadarnaat nulladur ar pajennoù dianavezet</string>
@@ -289,12 +298,19 @@
   <string name="delete-done">Dilamet eo bet $1</string>
   <string name="delete-fail">N\'eo ket bet dilamet $1</string>
   <string name="delete-progress">O tilemel $1...</string>
+  <string name="deletelog-progress">Adtapout renabl al lamadennoù evit §1...</string>
   <string name="edit-fail">N\'eo ket bet aozet $1</string>
   <string name="edit-progress">Oc\'h aozañ $1...</string>
+  <string name="history-progress">Adtapout an istor §1 (§2)...</string>
   <string name="notify-unknowncreator">Ne c\'haller ket kavout krouer ar bajenn</string>
   <string name="reqprotection-duplicate">Goulennet ez eus bet gwarez dija</string>
   <string name="speedy-finished">Echuet eo</string>
   <string name="warn-alreadyblocked">Stanket eo bet an implijer dija</string>
   <string name="logs-widget-name">Marilhoù ar reizhiad</string>
   <string name="wait">Gortozit mar plij...</string>
+  <string name="request">Reked</string>
+  <string name="page-unknown">Pajenn dianav</string>
+  <string name="namespace">Esaouenn anv</string>
+  <string name="error-unknown-code">Fazi dianav: §1</string>
+  <string name="relogin-fail">Ne c\'haller ket kevreañ ouzh wiki: §1</string>
 </resources>

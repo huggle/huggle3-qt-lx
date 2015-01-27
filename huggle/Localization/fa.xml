@@ -212,7 +212,7 @@
   <string name="irc-connecting">در حال تلاش برای اتصال به خوراک تغییرات اخیر آی‌آرسیِ $1؛ این ممکن است چند لحظه‌ای طول بکشد...</string>
   <string name="irc-disconnected">اتصال به خوراک تغیرات اخیر آی‌آرسی در $1 از دست رفت؛ اتصال دوباره...</string>
   <string name="irc-nochannel">کانال آی‌آرسی $1 یافت نشد؛ استفاده از درخواست‌های API به عنوان جایگزین</string>
-  <string name="irc-error" fuzzy="true">امکان اتصال به خوراک تغییرات اخیر آی‌آرسی نبود ($1). در حال استفاده از درخواست‌های کندتر ای‌پی‌آی</string>
+  <string name="irc-error">امکان اتصال به خوراک تغییرات اخیر آی‌آرسی نبود ($1: $2). در حال استفاده از درخواست‌های کندتر ای‌پی‌آی</string>
   <string name="irc-stop">در انتظار توقف ارائه‌دهندهٔ خوراک اصلیِ $1</string>
   <string name="irc-not">خوراک: آی‌آرسی توسط پیکربندی پروژه غیرفعال شده است</string>
   <string name="irc-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. عقب‌گرد به ارائه‌دهندهٔ ویکی...</string>
@@ -278,6 +278,7 @@
   <string name="login-error-whitelist">بارگیری فهرست سفید کاربران برای $1 نافرجام ماند.</string>
   <string name="main-menu-provider-stop">توقف ارائه دهنده</string>
   <string name="main-menu-provider-resume">رزومه ارائه دهنده</string>
+  <string name="provider-up">برقراری ارتباط با روند تغییرات در $2 بدست‌آورنده: $1</string>
   <string name="main-no-reason">هیچ دلیلی توسط کاربر ارائه نشده‌است</string>
   <string name="main-restoring-slap">من اکنون در حال بازگردانی یک ویرایش دیگر هستم، لطفا کمی صبر کنید...</string>
   <string name="main-page">صفحه</string>
@@ -517,6 +518,7 @@
   <string name="tag-title">برچسب $1</string>
   <string name="tag-tagselector">افزودن برچسب:</string>
   <string name="tag-tags">برچسب(ها):</string>
+  <string name="tag-parameter">پارامتر</string>
   <string name="tag-summary">خلاصه:</string>
   <string name="tag-insertatend">درج در انتهای صفحه</string>
   <string name="update-title">نسخهٔ تازه در دسترس است</string>
@@ -633,7 +635,7 @@
   <string name="editquery-token">در حال گرفتن توکن برای ویرایش $1</string>
   <string name="editquery-token-error">قادر به گرفتن توکن برای ویرایش نیستم.</string>
   <string name="editquery-invalid-token">ناتوان در ویرایش $1 زیرا رمزی که من در نهان‌گاه داشتم دیگر معتبر نیست، لطفاً یک بار دیگر آن صفحه را ویرایش کنید</string>
-  <string name="provider-failure" fuzzy="true">ناکارائی ارائه‌دهندهٔ خوراک اصلی، در حال تلاش برای بازیابی</string>
+  <string name="provider-failure">ناکارائی ارائه‌دهندهٔ خوراک  $1 در $2، برای پیدا کردن مهیاکنندهٔ دیگر تلاش کنید</string>
   <string name="provider-primary-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. در حال عقب‌گرد به ارائه‌دهندهٔ ویکی</string>
   <string name="rc-error">ناتوان از گرفتن اطلاعات از فید ویکی، آخرین خطا: $1</string>
   <string name="rc-timestamp-missing">خوراک آرسی: آیتم مشخصهٔ برچسب زمان ندارد: $1</string>
