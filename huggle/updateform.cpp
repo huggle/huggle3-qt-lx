@@ -506,7 +506,7 @@ void UpdateForm::reject()
     QDialog::reject();
 }
 
-#ifdef HUGGLE_WIN
+#if defined(HUGGLE_WIN) && !defined(HUGGLE_NOUPDATER)
 #ifdef UNICODE
 #define HUGGLE_LPCSTR LPCWSTR
 #else
