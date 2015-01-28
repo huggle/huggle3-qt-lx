@@ -49,6 +49,9 @@ namespace Huggle
         protected:
             void Write(QString text);
             void InsertEdit(WikiEdit *edit);
+            void ProcessBufs();
+            QStringList BufferedLines;
+            QString BufferedPart;
             QDateTime LastPong;
             QString last_error = "No error";
             bool is_connected = false;

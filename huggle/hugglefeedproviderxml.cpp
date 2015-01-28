@@ -154,106 +154,38 @@ void HuggleFeedProviderXml::OnError(QAbstractSocket::SocketError er)
 
 void HuggleFeedProviderXml::OnReceive()
 {
+    // THIS IS IMPORTANT
+    // readLine() has some bugs in Qt so don't use it, this function needs to always use readAll from socket otherwise we get in troubles
     if (!this->NetworkSocket)
         throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
-    QString data(this->NetworkSocket->readLine());
+    QString data(this->NetworkSocket->readAll());
     // when there is no data we can quit this
     if (data.isEmpty())
         return;
 
-    // this should be an XML string, let's do some quick test
-    if (!data.startsWith("<"))
+    if (!this->BufferedPart.isEmpty())
+        data = this->BufferedPart + data;
+
+    if (data.contains("\n"))
     {
-        Syslog::HuggleLogs->WarningLog("Invalid input from XmlRcs server: " + data);
+        this->BufferedPart.clear();
+        if (data.endsWith("\n"))
+        {
+            // we received whole block of lines
+            this->BufferedLines = data.split("\n");
+        } else
+        {
+            QStringList lines = data.split("\n");
+            // last line is has not yet finished
+            this->BufferedPart = lines.last();
+            lines.removeLast();
+            this->BufferedLines = lines;
+        }
+        this->ProcessBufs();
         return;
     }
 
-    // every message will update last time
-    this->LastPong = QDateTime::currentDateTime();
-    QDomDocument input;
-    input.setContent(data);
-    QDomElement element = input.firstChild().toElement();
-    QString name = element.nodeName();
-    if (name == "error")
-    {
-        Syslog::HuggleLogs->ErrorLog("XmlRcs returned error: " + element.text());
-        return;
-    }
-    if (name == "ping")
-    {
-        this->Write("pong");
-        return;
-    }
-
-    if (name == "fatal")
-    {
-        Syslog::HuggleLogs->ErrorLog("XmlRcs failed: " + element.text());
-        this->Stop();
-        return;
-    }
-
-    if (name == "ok")
-        return;
-    if (name != "edit")
-    {
-        HUGGLE_DEBUG1("Weird result from xml provider: " + data);
-        return;
-    }
-
-    WikiEdit *edit;
-    QString type;
-
-    if (!element.attributes().contains("type"))
-        goto invalid;
-
-    type = element.attribute("type");
-    if (type != "edit" && type != "new")
-    {
-        // we are not interested in this
-        return;
-    }
-
-    // let's verify if all necessary elements are present
-    if (!element.attributes().contains("server_name") ||
-        !element.attributes().contains("revid") ||
-        !element.attributes().contains("type") ||
-        !element.attributes().contains("title") ||
-        !element.attributes().contains("user"))
-    {
-        goto invalid;
-    }
-
-    // if server name doesn't match we drop edit
-    if (this->GetSite()->XmlRcsName != element.attribute("server_name"))
-    {
-        HUGGLE_DEBUG1("Invalid server: " + this->GetSite()->XmlRcsName + " isn't " + element.attribute("server_name"));
-        return;
-    }
-
-    // now we can create an edit
-    edit = new WikiEdit();
-    edit->Page = new WikiPage(element.attribute("title"));
-    edit->Page->Site = this->GetSite();
-    edit->IncRef();
-    edit->Bot = Generic::SafeBool(element.attribute("bot"));
-    edit->NewPage = (element.attribute("type") == "new");
-    edit->Minor = Generic::SafeBool(element.attribute("minor"));
-    edit->RevID = element.attribute("revid").toLong();
-    edit->User = new WikiUser(element.attribute("user"));
-    edit->User->Site = this->GetSite();
-    edit->Summary = element.attribute("summary");
-    if (element.attributes().contains("length_new")
-           && element.attributes().contains("length_old"))
-    {
-        long size = element.attribute("length_new").toLong() - element.attribute("length_old").toLong();
-        edit->SetSize(size);
-    }
-    edit->OldID = element.attribute("oldid").toInt();
-    this->InsertEdit(edit);
-    return;
-
-    invalid:
-        Syslog::HuggleLogs->WarningLog("Invalid Xml from RC feed: " + data);
+    this->BufferedPart = data;
 }
 
 void HuggleFeedProviderXml::OnConnect()
@@ -302,5 +234,111 @@ void HuggleFeedProviderXml::InsertEdit(WikiEdit *edit)
     } else
     {
         edit->DecRef();
+    }
+}
+
+void HuggleFeedProviderXml::ProcessBufs()
+{
+    while (!this->BufferedLines.isEmpty())
+    {
+        QString data = this->BufferedLines.at(0);
+        this->BufferedLines.removeAt(0);
+        if (data.isEmpty())
+            continue;
+        // this should be an XML string, let's do some quick test
+        if (!data.startsWith("<"))
+        {
+            Syslog::HuggleLogs->WarningLog("Invalid input from XmlRcs server: " + data);
+            continue;
+        }
+
+        // every message will update last time
+        this->LastPong = QDateTime::currentDateTime();
+        QDomDocument input;
+        input.setContent(data);
+        QDomElement element = input.firstChild().toElement();
+        QDateTime ts;
+        QString name = element.nodeName();
+        if (name == "error")
+        {
+            Syslog::HuggleLogs->ErrorLog("XmlRcs returned error: " + element.text());
+            continue;
+        }
+        if (name == "ping")
+        {
+            this->Write("pong");
+            continue;
+        }
+
+        if (name == "fatal")
+        {
+            Syslog::HuggleLogs->ErrorLog("XmlRcs failed: " + element.text());
+            this->Stop();
+            continue;
+        }
+
+        if (name == "ok")
+            continue;
+        if (name != "edit")
+        {
+            HUGGLE_DEBUG1("Weird result from xml provider: " + data);
+            continue;
+        }
+
+        WikiEdit *edit;
+        QString type;
+
+        if (!element.attributes().contains("type"))
+            goto invalid;
+
+        type = element.attribute("type");
+        if (type != "edit" && type != "new")
+        {
+            // we are not interested in this
+            continue;
+        }
+
+        // let's verify if all necessary elements are present
+        if (!element.attributes().contains("server_name") ||
+            !element.attributes().contains("revid") ||
+            !element.attributes().contains("type") ||
+            !element.attributes().contains("title") ||
+            !element.attributes().contains("user"))
+        {
+            goto invalid;
+        }
+
+        // if server name doesn't match we drop edit
+        if (this->GetSite()->XmlRcsName != element.attribute("server_name"))
+        {
+            HUGGLE_DEBUG1("Invalid server: " + this->GetSite()->XmlRcsName + " isn't " + element.attribute("server_name"));
+            continue;
+        }
+
+        // now we can create an edit
+        edit = new WikiEdit();
+        edit->Page = new WikiPage(element.attribute("title"));
+        edit->Page->Site = this->GetSite();
+        edit->IncRef();
+        edit->Bot = Generic::SafeBool(element.attribute("bot"));
+        edit->NewPage = (element.attribute("type") == "new");
+        edit->Minor = Generic::SafeBool(element.attribute("minor"));
+        edit->RevID = element.attribute("revid").toLong();
+        edit->User = new WikiUser(element.attribute("user"));
+        edit->User->Site = this->GetSite();
+        edit->Summary = element.attribute("summary");
+        if (element.attributes().contains("length_new")
+               && element.attributes().contains("length_old"))
+        {
+            long size = element.attribute("length_new").toLong() - element.attribute("length_old").toLong();
+            edit->SetSize(size);
+        }
+        edit->OldID = element.attribute("oldid").toInt();
+        ts.setTime_t(element.attribute("timestamp").toUInt());
+        this->InsertEdit(edit);
+        continue;
+
+        invalid:
+            Syslog::HuggleLogs->WarningLog("Invalid Xml from RC feed: " + data);
     }
 }
