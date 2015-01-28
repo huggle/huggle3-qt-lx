@@ -277,7 +277,7 @@ void HuggleFeedProviderXml::ProcessBufs()
             continue;
         }
 
-        if (name == "ok")
+        if (name == "ok" || name == "pong")
             continue;
         if (name != "edit")
         {

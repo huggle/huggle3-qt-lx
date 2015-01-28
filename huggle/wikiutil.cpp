@@ -38,14 +38,16 @@ bool WikiUtil::IsRevert(QString Summary)
     return false;
 }
 
-QString WikiUtil::MonthText(int n)
+QString WikiUtil::MonthText(int n, WikiSite *site)
 {
     if (n < 1 || n > 12)
     {
         throw new Huggle::Exception("Month must be between 1 and 12", BOOST_CURRENT_FUNCTION);
     }
+    if (!site)
+        site = hcfg->Project;
     n--;
-    return Configuration::HuggleConfiguration->ProjectConfig->Months.at(n);
+    return site->GetProjectConfig()->Months.at(n);
 }
 
 Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)
@@ -224,7 +226,6 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Watchlist(WikiPage *page)
     wt->Process();
     return wt;
 }
-
 
 Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QString text, QString summary, bool minor, WikiSite *site)
 {

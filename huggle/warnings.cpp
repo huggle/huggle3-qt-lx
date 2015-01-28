@@ -124,12 +124,11 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
         QDateTime d = Edit->GetSite()->GetProjectConfig()->ServerTime();
-        HeadingText_ = WikiUtil::MonthText(d.date().month()) + " " + QString::number(d.date().year());
+        HeadingText_ = WikiUtil::MonthText(d.date().month(), Edit->GetSite()) + " " + QString::number(d.date().year());
     } else if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsNone)
     {
         HeadingText_ = "";
     }
-
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
     bool CreateOnly = false;
     if (Edit->User->TalkPage_GetContents().isEmpty())
@@ -347,7 +346,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
         QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
-        id = WikiUtil::MonthText(date_.date().month()) + " " + QString::number(date_.date().year());
+        id = WikiUtil::MonthText(date_.date().month(), Edit->GetSite()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
     WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, nullptr, false,

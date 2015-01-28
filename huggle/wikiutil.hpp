@@ -31,7 +31,7 @@ namespace Huggle
     {
         HUGGLE_EX bool IsRevert(QString Summary);
         //! Return a localized month for a current wiki
-        HUGGLE_EX QString MonthText(int n);
+        HUGGLE_EX QString MonthText(int n, WikiSite *site = nullptr);
         /*!
          * \brief RevertEdit Reverts the edit
          * \param _e Pointer to edit that needs to be reverted
