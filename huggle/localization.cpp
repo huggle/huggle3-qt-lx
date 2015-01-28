@@ -114,7 +114,7 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
             HUGGLE_DEBUG("Fuzzy key ignored: " + name + " " + n_, 12);
             continue;
         }
-        l->Messages.insert(item.attribute("name"), item.text());
+        l->Messages.insert(item.attribute("name"), item.text().replace("\\\"", "\"").replace("\\'", "'"));
     }
     if (l->Messages.contains("name"))
     {
