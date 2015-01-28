@@ -43,7 +43,6 @@ void LoadingForm::Info(QString text)
 
 void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)
 {
-    // fix me
     if (this == nullptr)
         return;
     if (this->ui->tableWidget->rowCount() < row + 1)
