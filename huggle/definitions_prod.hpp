@@ -39,6 +39,9 @@ typedef char byte_ht;
     #define HUGGLE_WIN
 #endif
 
+// uncomment this out to disable updater
+// #define HUGGLE_NOUPDATER
+
 // comment this out to disable multithreaded garbage collector
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
 // is crashing with it only, it means your code suck and need a fix in destructor :))

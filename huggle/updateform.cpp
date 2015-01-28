@@ -79,6 +79,7 @@ UpdateForm::~UpdateForm()
 
 void UpdateForm::Check()
 {
+#ifndef HUGGLE_NOUPDATER
     this->qData = new WebserverQuery();
     this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform)
@@ -92,6 +93,7 @@ void UpdateForm::Check()
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->qData->IncRef();
     this->timer->start(HUGGLE_TIMER);
+#endif
 }
 
 static QString TrimSlashes(QString path)
