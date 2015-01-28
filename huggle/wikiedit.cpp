@@ -317,7 +317,7 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr)
         return false;
 
     this->qTalkpage = nullptr;
