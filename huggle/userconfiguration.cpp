@@ -293,7 +293,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config, "false"));
     this->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config, "true"));
     this->LastEdit = SafeBool(ConfigurationParse("SkipToLastEdit", config, "false"));
-    this->PreferredProvider = ConfigurationParse("PreferredProvider", config, "1").toInt();
+    this->PreferredProvider = ConfigurationParse("PreferredProvider", config, QString::number(this->PreferredProvider)).toInt();
     this->CheckTP = SafeBool(ConfigurationParse("CheckTP", config, "true"));
     this->RetrieveFounder = SafeBool(ConfigurationParse("RetrieveFounder", config, "true"));
     this->HAN_DisplayBots = SafeBool(ConfigurationParse("HAN_DisplayBots", config, "true"));
