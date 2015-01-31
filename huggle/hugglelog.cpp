@@ -93,23 +93,3 @@ void HuggleLog::Render()
     }
 }
 
-HuggleLog_Line::HuggleLog_Line(HuggleLog_Line *line)
-{
-    this->Type = line->Type;
-    this->Date = line->Date;
-    this->Text = line->Text;
-}
-
-HuggleLog_Line::HuggleLog_Line(const HuggleLog_Line &line)
-{
-    this->Type = line.Type;
-    this->Date = line.Date;
-    this->Text = line.Text;
-}
-
-HuggleLog_Line::HuggleLog_Line(QString text, QString date)
-{
-    this->Type = HuggleLogType_Normal;
-    this->Text = text;
-    this->Date = date;
-}
