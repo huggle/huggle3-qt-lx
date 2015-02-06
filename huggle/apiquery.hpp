@@ -15,10 +15,10 @@
 
 #include <QString>
 #include <QObject>
-#include <QtNetwork>
 #include "collectable_smartptr.hpp"
 #include "query.hpp"
 #include "mediawikiobject.hpp"
+class QNetworkReply;
 
 namespace Huggle
 {

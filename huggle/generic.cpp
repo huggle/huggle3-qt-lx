@@ -10,6 +10,7 @@
 
 #include "generic.hpp"
 #include <QMessageBox>
+#include <QUrl>
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"

@@ -15,6 +15,7 @@
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include <QCryptographicHash>
 
 using namespace Huggle;
 

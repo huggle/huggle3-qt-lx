@@ -10,6 +10,7 @@
 
 #include "wikiedit.hpp"
 #include <QMutex>
+#include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"

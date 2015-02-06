@@ -18,6 +18,7 @@
 #include "querypool.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 

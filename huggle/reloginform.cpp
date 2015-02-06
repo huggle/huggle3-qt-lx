@@ -18,6 +18,7 @@
 #include "syslog.hpp"
 #include "ui_reloginform.h"
 #include "wikiutil.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)

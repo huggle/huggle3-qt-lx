@@ -22,6 +22,7 @@
 #include "wikiuser.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
+#include <QUrl>
 
 using namespace Huggle;
 

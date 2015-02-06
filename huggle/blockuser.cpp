@@ -11,6 +11,7 @@
 #include "blockuser.hpp"
 #include <QLineEdit>
 #include <QTimer>
+#include <QUrl>
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "exception.hpp"

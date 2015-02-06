@@ -10,6 +10,7 @@
 
 #include "apiquery.hpp"
 #include <QFile>
+#include <QtNetwork>
 #include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"

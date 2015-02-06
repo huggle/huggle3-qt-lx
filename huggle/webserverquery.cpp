@@ -11,6 +11,7 @@
 #include "webserverquery.hpp"
 #include "exception.hpp"
 #include <QtNetwork>
+#include <QNetworkReply>
 #include <QUrl>
 #include <QtXml>
 #include "syslog.hpp"
