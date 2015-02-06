@@ -21,6 +21,7 @@
 #include "edittype.hpp"
 #include "mediawikiobject.hpp"
 #include "wikiedit.hpp"
+class QModelIndex;
 
 namespace Ui
 {

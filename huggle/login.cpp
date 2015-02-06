@@ -11,6 +11,7 @@
 #include "login.hpp"
 #include <QCheckBox>
 #include <QUrl>
+#include <QSslSocket>
 #include <QDesktopServices>
 #include "apiqueryresult.hpp"
 #include "core.hpp"

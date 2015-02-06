@@ -20,6 +20,7 @@
 #include "editquery.hpp"
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+class QModelIndex;
 
 namespace Ui
 {

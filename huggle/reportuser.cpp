@@ -10,6 +10,7 @@
 
 #include "reportuser.hpp"
 #include <QMessageBox>
+#include <QModelIndex>
 #include <QtXml>
 #include <QWebView>
 #include "configuration.hpp"

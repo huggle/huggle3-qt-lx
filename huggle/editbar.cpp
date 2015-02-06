@@ -21,6 +21,7 @@
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
 #include "ui_editbar.h"
+#include <QModelIndex>
 #include <QScrollBar>
 
 using namespace Huggle;
