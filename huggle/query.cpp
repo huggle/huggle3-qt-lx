@@ -157,5 +157,5 @@ void Query::ThrowOnValidResult()
         return;
 
     this->Status = StatusInError;
-    throw new Huggle::Exception("Result was not NULL memory leaked", BOOST_CURRENT_FUNCTION);
+    throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString::number((int)this->Result, 16), BOOST_CURRENT_FUNCTION);
 }

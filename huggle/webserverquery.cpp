@@ -26,7 +26,7 @@ WebserverQuery::WebserverQuery()
     this->UsingPOST = false;
 }
 
-Huggle::WebserverQuery::~WebserverQuery()
+WebserverQuery::~WebserverQuery()
 {
     if (this->reply != nullptr)
     {
