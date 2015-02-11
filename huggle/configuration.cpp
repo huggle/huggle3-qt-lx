@@ -486,6 +486,8 @@ void Configuration::SaveSystemConfig()
     }
     writer->writeEndElement();
     writer->writeEndDocument();
+    // close the file
+    file.close();
     delete writer;
 }
 
