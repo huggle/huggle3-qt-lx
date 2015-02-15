@@ -208,7 +208,7 @@ void ReportUser::Tick()
                 this->ui->pushButton->setText(_l("report-user"));
                 this->ui->pushButton->setEnabled(true);
                 QMessageBox mb;
-                mb.setText(_l("report-fail", this->qEdit->Result->ErrorMessage));
+                mb.setText(_l("report-fail", this->qEdit->GetFailureReason()));
                 Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
                 mb.exec();
                 this->Kill();
