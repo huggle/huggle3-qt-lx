@@ -318,6 +318,11 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
             continue;
         }
+        if (key == "GlobalConfig")
+        {
+            hcfg->SystemConfig_GlobalConfig = option.attribute("text");
+            continue;
+        }
         if (key == "DynamicColsInList")
         {
             hcfg->SystemConfig_DynamicColsInList = SafeBool(option.attribute("text"));
@@ -432,6 +437,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("InstantReverts", Bool2String(hcfg->SystemConfig_InstantReverts), writer);
     InsertConfig("UsingSSL", Bool2String(hcfg->SystemConfig_UsingSSL), writer);
     InsertConfig("Cache_InfoSize", QString::number(hcfg->SystemConfig_QueueSize), writer);
+    InsertConfig("GlobalConfig", hcfg->SystemConfig_GlobalConfig, writer);
     InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
     InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
     InsertConfig("IRCNick", hcfg->IRCNick, writer);

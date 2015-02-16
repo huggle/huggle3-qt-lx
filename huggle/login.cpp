@@ -491,7 +491,7 @@ bool Login::RetrieveGlobalConfig()
     this->Update(_l("[[login-progress-global]]"));
     this->qConfig = new ApiQuery(ActionQuery);
     this->qConfig->OverrideWiki = hcfg->GlobalConfigurationWikiAddress;
-    this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=Huggle/Config";
+    this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->SystemConfig_GlobalConfig;
     this->qConfig->Process();
     return false;
 }
