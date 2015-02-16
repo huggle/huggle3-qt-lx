@@ -15,6 +15,7 @@
 #define DEFINITIONS_H
 
 typedef char byte_ht;
+typedef long long revid_ht;
 
 #define HUGGLE_VERSION                  "3.1.10"
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3

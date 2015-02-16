@@ -118,10 +118,10 @@ namespace Huggle
             int Priority;
             bool IsValid = true;
             //! Old id
-            long long OldID;
+            revid_ht OldID;
             bool IsRevert;
             //! Revision ID
-            long long RevID;
+            revid_ht RevID;
             //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level
