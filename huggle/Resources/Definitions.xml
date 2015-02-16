@@ -25,4 +25,5 @@
   <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" xmlrcs_name="zh.wikipedia.org" channel="#zh.wikipedia" wl="zh.wikipedia.org"/>
   <wiki name="es.wikivoyage" url="es.wikivoyage.org/" path="wiki/" script="w/" https="true" oauth="true" xmlrcs_name="en.wikivoyage.org" channel="#es.wikivoyage" wl="es.wikivoyage.org"/>
   <wiki name="testwiki" url="test.wikipedia.org/" path="wiki/" script="w/" https="true" oauth="true" xmlrcs_name="test.wikipedia.org" channel="#test.wikipedia" wl="test.wikipedia.org"/>
+  <wiki name="wikidata" url="www.wikidata.org/" path="wiki/" script="w/" https="true" oauth="true" xmlrcs_name="www.wikidata.org" wl="www.wikidata.org"/>
 </db>
