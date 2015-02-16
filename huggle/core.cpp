@@ -67,7 +67,7 @@ void Core::Init()
     this->Processor = new ProcessorThread();
     this->Processor->start();
     this->LoadLocalizations();
-    Huggle::Syslog::HuggleLogs->Log("Home: " + Configuration::GetConfigurationPath());
+    Huggle::Syslog::HuggleLogs->Log("Home: " + hcfg->HomePath);
     if (QFile().exists(Configuration::GetConfigurationPath() + HUGGLE_CONF))
     {
         Configuration::LoadSystemConfig(Configuration::GetConfigurationPath() + HUGGLE_CONF);
