@@ -538,7 +538,7 @@ void WikiEdit::PostProcess()
     this->qUser->Process();
 }
 
-Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(int revid, QString prev)
+Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(revid_ht revid, QString prev)
 {
     Collectable_SmartPtr<WikiEdit> e;
     if (revid == WIKI_UNKNOWN_REVID)

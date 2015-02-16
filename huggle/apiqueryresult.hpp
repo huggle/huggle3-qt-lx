@@ -56,6 +56,7 @@ namespace Huggle
             void Process();
             /*!
             * \brief GetNode Get the first node with the specified name
+            * IMPORTANT: do not delete this node, it's a pointer to item in a list which will be deleted in destructor of class
             * \param node_name Name of node
             * \return The specified node or a null pointer if none found
             */

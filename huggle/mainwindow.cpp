@@ -1863,6 +1863,40 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
+static void DisplayRevid_Finish(WikiEdit *edit, void *source, QString er)
+{
+    Q_UNUSED(source);
+    Q_UNUSED(er);
+    MainWindow *window = MainWindow::HuggleMain;
+    window->ProcessEdit(edit);
+}
+
+static void DisplayRevid_Error(WikiEdit *edit, void *source, QString error)
+{
+    Q_UNUSED(source);
+    Syslog::HuggleLogs->ErrorLog("Unable to retrieve edit for revision " + QString::number(edit->RevID) +
+                                 " reason: " + error);
+    edit->SafeDelete();
+}
+
+void MainWindow::DisplayRevid(revid_ht revid, WikiSite *site)
+{
+    // kill currently displayed edit
+    this->LockPage();
+    Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid);
+    if (edit != nullptr)
+    {
+        this->ProcessEdit(edit);
+        this->wEditBar->RefreshPage();
+        return;
+    }
+    // there is no such edit, let's get it
+    WikiUtil::RetrieveEditByRevid(revid, site, this,
+                                  (WikiUtil::RetrieveEditByRevid_Callback)DisplayRevid_Finish,
+                                  (WikiUtil::RetrieveEditByRevid_Callback)DisplayRevid_Error);
+    //this->Browser->RenderHtml(html);
+}
+
 void MainWindow::PauseQueue()
 {
     if (this->QueueIsNowPaused)

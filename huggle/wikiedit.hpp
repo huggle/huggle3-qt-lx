@@ -64,7 +64,7 @@ namespace Huggle
 
     //! Basically all changes to pages can be represented by this class.
     //! Edits are representing an edit made to a page on a wiki, they
-    //! have a 3 basic statuses:
+    //! have always 3 basic statuses:
     //! None - edit was just created and is not suitable for use
     //! Processed - edit was pre processed, the basic information were properly set. This
     //!             is a very quick serial operation that is handled by Core::Process
@@ -78,7 +78,7 @@ namespace Huggle
             //! This function will return a constant (which needs to be generated runtime)
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
-            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(int revid, QString prev = "prev");
+            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(revid_ht revid, QString prev = "prev");
             static QString GetPixmapFromEditType(EditType edit_type);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
@@ -112,8 +112,8 @@ namespace Huggle
             bool NewPage;
             bool SizeIsKnown = false;
             QString DiffTo = "prev";
-            //! Diff id
-            int Diff;
+            //! Diff id - this is probably same as RevID and can be safely removed
+            revid_ht Diff;
             //! Priority in queue
             int Priority;
             bool IsValid = true;

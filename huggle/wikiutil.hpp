@@ -26,9 +26,12 @@ namespace Huggle
     class RevertQuery;
     class Message;
     class WikiPage;
+    class WikiEdit;
 
     namespace WikiUtil
     {
+        typedef void* (*RetrieveEditByRevid_Callback) (WikiEdit*, void*, QString);
+
         HUGGLE_EX bool IsRevert(QString Summary);
         //! Return a localized month for a current wiki
         HUGGLE_EX QString MonthText(int n, WikiSite *site = nullptr);
@@ -92,7 +95,17 @@ namespace Huggle
                                                            QString BaseTimestamp = "", unsigned int section = 0);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);
-        void RetrieveTokens(WikiSite *wiki_site);
+        /*!
+         * \brief RetrieveEditByRevid Creates a new edit with a given Revid and queries the target site for all information needed
+         * \param revid Revision
+         * \param site Site from which the revision is fetched
+         * \param source Source object that will be passed as a second argument to both callbacks
+         * \param callback_success this function is called on successful finish
+         * \param callback_er this function is called on error
+         */
+        HUGGLE_EX void RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source, RetrieveEditByRevid_Callback callback_success,
+                                           RetrieveEditByRevid_Callback callback_er);
+        HUGGLE_EX void RetrieveTokens(WikiSite *wiki_site);
     }
 }
 

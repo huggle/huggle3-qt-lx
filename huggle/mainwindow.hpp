@@ -136,6 +136,12 @@ namespace Huggle
             void DisplayNext(Query *q = nullptr);
             void DeletePage();
             void DisplayTalk();
+            /*!
+             * \brief DisplayRevid Try to display a revision as a diff in huggle main window
+             * \param RevID ID of revision
+             * \param site Mediawiki site
+             */
+            void DisplayRevid(revid_ht revid, WikiSite *site);
             void PauseQueue();
             void ResumeQueue();
             //! Request a page deletion csd or afd and so on
