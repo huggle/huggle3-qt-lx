@@ -348,6 +348,17 @@ void Login::PressOK()
         }
     }
     hcfg->Multiple = hcfg->Projects.count() > 1;
+    if (hcfg->SystemConfig_UsingSSL)
+    {
+        foreach(WikiSite *wiki, hcfg->Projects)
+        {
+            if (!wiki->SupportHttps)
+            {
+                this->DisplayError("You requested to use SSL but wiki " + wiki->Name + " doesn't support it.");
+                return;
+            }
+        }
+    }
     hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
     hcfg->TemporaryConfig_Password = ui->lineEdit_password->text();
     if (this->loadingForm != nullptr)
