@@ -1314,6 +1314,13 @@ void MainWindow::OnTimerTick0()
         this->Queue1->Clear();
         if (this->Shutdown == ShutdownOpRetrievingWhitelist)
         {
+            if (hcfg->SystemConfig_WhitelistDisabled)
+            {
+                // we finished writing the wl
+                this->fWaiting->Status(90, _l("saveuserconfig-progress"));
+                this->Shutdown = ShutdownOpUpdatingConf;
+                return;
+            }
             this->Shutdown = ShutdownOpUpdatingWhitelist;
             this->fWaiting->Status(60, _l("updating-wl"));
             foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
