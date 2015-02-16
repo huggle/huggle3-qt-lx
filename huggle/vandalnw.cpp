@@ -379,8 +379,11 @@ void VandalNw::onTick()
         this->JoinedMain = true;
         /// \todo LOCALIZE ME
         this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
-        foreach (QString channel, this->Site2Channel.values())
-            this->Irc->Join(channel);
+        foreach(QString channel, this->Site2Channel.values())
+        {
+            if (channel.startsWith("#"))
+                this->Irc->Join(channel);
+        }
     }
     Huggle::IRC::Message *m = this->Irc->GetMessage();
     if (m != nullptr)
