@@ -16,6 +16,7 @@
 #include <QDockWidget>
 #include <QHash>
 #include <QTimer>
+#include <QUrl>
 
 namespace Ui
 {
