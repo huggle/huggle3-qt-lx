@@ -587,7 +587,7 @@ void Huggle::VandalNw::on_lineEdit_returnPressed()
 
 void Huggle::VandalNw::on_textBrowser_anchorClicked(const QUrl &arg1)
 {
-    QString path = arg1.url();
+    QString path = arg1.path();
     if (path.startsWith("huggle://"))
     {
         // ok this is internal huggle link let's get a site
