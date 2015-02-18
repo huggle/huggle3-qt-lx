@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "huggleparser.hpp"
+#include "huggleprofiler.hpp"
 #include "configuration.hpp"
 #include "projectconfiguration.hpp"
 #include "syslog.hpp"
@@ -18,6 +19,7 @@ using namespace Huggle;
 
 QString HuggleParser::ConfigurationParse(QString key, QString content, QString missing)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
     // if first line in config
     if (content.startsWith(key + ":"))
@@ -45,6 +47,7 @@ QString HuggleParser::ConfigurationParse(QString key, QString content, QString m
 
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (QString line, project_conf->RevertSummaries)
         if (line.startsWith(key + ";"))
             return HuggleParser::GetValueFromKey(line);
@@ -54,6 +57,7 @@ QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, Project
 
 QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     // get a key
     foreach (QString line, project_conf->WarningTypes)
         if (line.startsWith(key) + ";")
@@ -63,6 +67,7 @@ QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectCon
 
 QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (QString line, project_conf->WarningTypes)
     {
         if (line.endsWith(id) || line.endsWith(id + ","))
@@ -157,6 +162,7 @@ void HuggleParser::ParseWords(QString text, WikiSite *site)
 
 QString HuggleParser::GetValueFromKey(QString item)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
     {
         QString type = item.mid(item.indexOf(";") + 1);
@@ -171,6 +177,7 @@ QString HuggleParser::GetValueFromKey(QString item)
 
 QString HuggleParser::GetKeyFromValue(QString item)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
     {
         QString type = item.mid(0, item.indexOf(";"));
@@ -181,6 +188,7 @@ QString HuggleParser::GetKeyFromValue(QString item)
 
 static int DateMark(QString page, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int m = 0;
     int position = 0;
     QString mark = "";
@@ -203,6 +211,7 @@ static int DateMark(QString page, WikiSite *site)
 
 byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!site)
     {
         // for compatibilty purposes
@@ -328,6 +337,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
 
 QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bool CS)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     QStringList list;
     if (content.startsWith(key + ":"))
     {

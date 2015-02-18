@@ -14,6 +14,7 @@
 
 #include "collectable.hpp"
 #include "exception.hpp"
+#include "huggleprofiler.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
@@ -55,6 +56,7 @@ Collectable::~Collectable()
 
 bool Collectable::SafeDelete()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->_collectableRefs == 0 && this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
         if (GC::gc != nullptr)
@@ -175,6 +177,7 @@ QString Collectable::ConsumerIdToString(const int id)
 
 void Collectable::SetManaged()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->_collectableManaged)
     {
         return;

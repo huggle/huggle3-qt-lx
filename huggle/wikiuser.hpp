@@ -111,7 +111,7 @@ namespace Huggle
              * \return badness score
              */
             long GetBadnessScore(bool _resync = true);
-            void SetBadnessScore(long value);
+            void SetBadnessScore(long value, bool resync = true, bool update = true);
             //! Flags
 
             //! w - is warned
@@ -201,11 +201,13 @@ namespace Huggle
         return this->BadnessScore;
     }
 
-    inline void WikiUser::SetBadnessScore(long value)
+    inline void WikiUser::SetBadnessScore(long value, bool resync, bool update)
     {
-        this->Resync();
+        if (resync)
+            this->Resync();
         this->BadnessScore = value;
-        this->Update(true);
+        if (update)
+            this->Update(true);
     }
 }
 

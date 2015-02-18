@@ -13,6 +13,7 @@
 #ifdef HUGGLE_PROFILING
 using namespace Huggle;
 
+QHash<QString, unsigned long long> Profiler::callCounter;
 QDateTime Profiler::ts = QDateTime::currentDateTime();
 
 void Profiler::Reset()
@@ -23,5 +24,24 @@ void Profiler::Reset()
 qint64 Profiler::GetTime()
 {
     return ts.msecsTo(QDateTime::currentDateTime());
+}
+
+void Profiler::IncrementCall(QString function)
+{
+    if (!callCounter.contains(function))
+        callCounter.insert(function, 1);
+    callCounter[function]++;
+}
+
+long long Profiler::GetCallsForFunction(QString function)
+{
+    if (!callCounter.contains(function))
+        return 0;
+    return callCounter[function];
+}
+
+QList<QString> Profiler::GetRegisteredCounterFunctions()
+{
+    return callCounter.keys();
 }
 #endif

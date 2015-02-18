@@ -16,6 +16,7 @@
 #include "localization.hpp"
 #include "mainwindow.hpp"
 #include "hugglequeue.hpp"
+#include "huggleprofiler.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
 using namespace Huggle;
@@ -42,6 +43,7 @@ WikiUser *WikiUser::RetrieveUser(WikiUser *user)
 
 WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
     int User = 0;
     while (User < WikiUser::ProblematicUsers.count())
@@ -60,6 +62,7 @@ WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
 
 void WikiUser::TrimProblematicUsersList()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
     int i = 0;
     while (i < WikiUser::ProblematicUsers.count())
@@ -67,7 +70,7 @@ void WikiUser::TrimProblematicUsersList()
         WikiUser *user = WikiUser::ProblematicUsers.at(i);
         if (!user)
             throw new Huggle::NullPointerException("WikiUser user", BOOST_CURRENT_FUNCTION);
-        if (user->GetBadnessScore() == 0 && user->WarningLevel == 0)
+        if (user->GetBadnessScore(false) == 0 && user->WarningLevel == 0)
         {
             // there is no point to hold information for them
             WikiUser::ProblematicUsers.removeAt(i);
@@ -81,6 +84,7 @@ void WikiUser::TrimProblematicUsersList()
 
 void WikiUser::UpdateUser(WikiUser *us)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
     WikiUser::UpdateWl(us, us->GetBadnessScore(false));
     int c=0;
@@ -269,9 +273,10 @@ WikiUser::~WikiUser()
 
 void WikiUser::Resync()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
     WikiUser *user = WikiUser::RetrieveUser(this);
-    if (user)
+    if (user && user != this)
     {
         this->BadnessScore = user->BadnessScore;
         this->ContentsOfTalkPage = user->TalkPage_GetContents();
@@ -319,6 +324,7 @@ void WikiUser::TalkPage_SetContents(QString text)
 
 void WikiUser::Update(bool MatchingOnly)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
     if (MatchingOnly)
     {

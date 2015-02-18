@@ -12,6 +12,7 @@
 #include "mainwindow.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "huggleprofiler.hpp"
 #include "vandalnw.hpp"
 #include "localization.hpp"
 #include "ui_hugglequeue.h"
@@ -160,6 +161,7 @@ void HuggleQueue::Next()
 
 WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;
     while (c < this->Items.count())
     {
@@ -175,6 +177,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID, WikiSite *site)
 
 bool HuggleQueue::DeleteByRevID(int RevID, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;
     while (c < this->Items.count())
     {
@@ -196,6 +199,7 @@ bool HuggleQueue::DeleteByRevID(int RevID, WikiSite *site)
 
 void HuggleQueue::Sort()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;
     // we need to make sure that we won't touch the expander we have in list
     while (c < this->ui->itemList->count() - 1)
@@ -208,6 +212,7 @@ void HuggleQueue::Sort()
 
 void HuggleQueue::SortItemByEdit(WikiEdit *e)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;
     while (c < this->ui->itemList->count() - 1)
     {
@@ -224,6 +229,7 @@ void HuggleQueue::SortItemByEdit(WikiEdit *e)
 
 void HuggleQueue::ResortItem(QLayoutItem *item, int position)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (position < 0)
     {
         // we don't know the position so we need to calculate it
@@ -344,6 +350,7 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
 
 int HuggleQueue::DeleteByScore(long Score)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int result = 0;
     int c = 0;
     while (c < this->Items.count())
@@ -423,6 +430,7 @@ void HuggleQueue::Filters()
 
 void HuggleQueue::DeleteOlder(WikiEdit *edit)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int i = 0;
     while (i < this->Items.count())
     {
@@ -448,15 +456,19 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
 
 void HuggleQueue::UpdateUser(WikiUser *user)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int i = 0;
     while (i < this->Items.count())
     {
         WikiEdit *ed = this->Items.at(i)->Page;
         if (ed->User->Username == user->Username)
         {
-            // we have a match, let's update the icon
-            ed->User->SetWarningLevel(user->GetWarningLevel());
-            this->Items.at(i)->UpdatePixmap();
+            // we have a match, let's update the icon, but only if the levels are actually different for performance reasons
+            if (ed->User->GetWarningLevel() != user->GetWarningLevel())
+            {
+                ed->User->SetWarningLevel(user->GetWarningLevel());
+                this->Items.at(i)->UpdatePixmap();
+            }
         }
         i++;
     }

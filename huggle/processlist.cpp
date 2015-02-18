@@ -12,6 +12,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include "huggleprofiler.hpp"
 #include "processlist.hpp"
 #include "ui_processlist.h"
 #include <QMenu>
@@ -65,8 +66,14 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->Removed = new QList<ProcessListRemovedItem*>();
 }
 
+ProcessList::~ProcessList()
+{
+    delete this->ui;
+}
+
 void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (query == nullptr)
     {
         throw new Huggle::NullPointerException("Collectable_SmartPtr<Query> query", BOOST_CURRENT_FUNCTION);
@@ -93,12 +100,14 @@ void ProcessList::Clear()
 
 bool ProcessList::ContainsQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int result = GetItem(query);
     return result != -1;
 }
 
 void ProcessList::RemoveQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!IsExpired(query))
     {
         this->Removed->append(new ProcessListRemovedItem(query->QueryID()));
@@ -107,6 +116,7 @@ void ProcessList::RemoveQuery(Query *query)
 
 void ProcessList::UpdateQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int query_ = GetItem(query);
     if (query_ == -1)
     {
@@ -128,6 +138,7 @@ void ProcessList::UpdateQuery(Query *query)
 
 bool ProcessList::IsExpired(Query *q)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach(ProcessListRemovedItem *item, *this->Removed)
         if ((unsigned int) item->GetID() == q->QueryID())
             return true;
@@ -158,6 +169,7 @@ void ProcessList::RemoveExpired()
 
 int ProcessList::GetItem(Query *q)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int curr = 0;
     int size = this->ui->tableWidget->rowCount();
     while (curr < size)
@@ -173,6 +185,7 @@ int ProcessList::GetItem(Query *q)
 
 int ProcessList::GetItem(int Id)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int curr = 0;
     int size = this->ui->tableWidget->rowCount();
     while (curr < size)
@@ -184,11 +197,6 @@ int ProcessList::GetItem(int Id)
         curr++;
     }
     return -1;
-}
-
-ProcessList::~ProcessList()
-{
-    delete this->ui;
 }
 
 void ProcessList::ContextMenu(const QPoint &position)

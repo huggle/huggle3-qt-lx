@@ -216,7 +216,7 @@ void Core::SaveDefs()
     while (x<WikiUser::ProblematicUsers.count())
     {
         xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
-                QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore()) +"\"></user>\n";
+                QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore(false)) +"\"></user>\n";
         x++;
     }
     WikiUser::ProblematicUserListLock.unlock();
@@ -266,7 +266,8 @@ void Core::LoadDefs()
             user->Username = e.attribute("name");
             if (e.attributes().contains("badness"))
             {
-                user->SetBadnessScore(e.attribute("badness").toInt());
+                // do not resync this user while we init the db, this is first time it's written to it so there is no point in that
+                user->SetBadnessScore(e.attribute("badness").toInt(), false, false);
             }
             WikiUser::ProblematicUsers.append(user);
             i++;
@@ -456,11 +457,19 @@ void Core::Shutdown()
     // last garbage removal
     GC::gc->DeleteOld();
 #ifdef HUGGLE_PROFILING
-    Syslog::HuggleLogs->Log("Profiler info: locks " + QString::number(Collectable::LockCt));
+    Syslog::HuggleLogs->Log("Profiler data:");
+    Syslog::HuggleLogs->Log("==========================");
+    Syslog::HuggleLogs->Log("Locks " + QString::number(Collectable::LockCt));
     foreach (Collectable *q, GC::gc->list)
     {
         // retrieve GC info
         Syslog::HuggleLogs->Log(q->DebugHgc());
+    }
+    Syslog::HuggleLogs->Log("Function calls:");
+    QStringList functions = Profiler::GetRegisteredCounterFunctions();
+    foreach (QString fx, functions)
+    {
+        Syslog::HuggleLogs->Log(fx + ": " + QString::number(Profiler::GetCallsForFunction(fx)));
     }
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");

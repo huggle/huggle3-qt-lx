@@ -1542,6 +1542,7 @@ void MainWindow::CustomWarn()
 
 QString MainWindow::GetSummaryText(QString text)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int id=0;
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     while (id <conf->RevertSummaries.count())
@@ -2122,6 +2123,7 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 
 void MainWindow::ReloadInterface()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     this->WarnItems.clear();
     this->RevertAndWarnItems.clear();

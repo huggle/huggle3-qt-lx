@@ -17,6 +17,7 @@
 #include <QString>
 
 #define HUGGLE_PROFILER_RESET Huggle::Profiler::Reset()
+#define HUGGLE_PROFILER_INCRCALL(function) Huggle::Profiler::IncrementCall(function)
 #define HUGGLE_PROFILER_TIME  Huggle::Profiler::GetTime()
 #define HUGGLE_PROFILER_PRINT_TIME(function) Huggle::Syslog::HuggleLogs->DebugLog(QString("PROFILER: ") \
                                              + function + " finished in " + QString::number(Huggle::Profiler::GetTime()) \
@@ -30,7 +31,11 @@ namespace Huggle
         public:
             static void Reset();
             static qint64 GetTime();
+            static void IncrementCall(QString function);
+            static long long GetCallsForFunction(QString function);
+            static QList<QString> GetRegisteredCounterFunctions();
         private:
+            static QHash<QString, unsigned long long> callCounter;
             static QDateTime ts;
     };
 }
@@ -39,6 +44,7 @@ namespace Huggle
 #define HUGGLE_PROFILER_PRINT_TIME(function)
 #define HUGGLE_PROFILER_RESET
 #define HUGGLE_PROFILER_TIME 0
+#define HUGGLE_PROFILER_INCRCALL
 
 #endif
 
