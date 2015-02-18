@@ -22,7 +22,7 @@
 #include "login.hpp"
 #include "exception.hpp"
 #ifdef _MSC_VER
-//#    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
 //! This function just read the parameters and return true if we can continue or not
