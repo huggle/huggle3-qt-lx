@@ -469,7 +469,7 @@ void Core::Shutdown()
     QStringList functions = Profiler::GetRegisteredCounterFunctions();
     foreach (QString fx, functions)
     {
-        Syslog::HuggleLogs->Log(fx + ": " + QString::number(Profiler::GetCallsForFunction(fx)));
+        Syslog::HuggleLogs->Log(QString::number(Profiler::GetCallsForFunction(fx)) + ": " + fx);
     }
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");

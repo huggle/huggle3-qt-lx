@@ -20,6 +20,7 @@
 #include "wikipage.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
+#include "huggleprofiler.hpp"
 #include "ui_editbar.h"
 #include <QModelIndex>
 #include <QScrollBar>
@@ -54,6 +55,7 @@ void EditBar::Refresh()
 
 void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     EditBarItem *item = new EditBarItem(this);
     this->Items.append(item);
     item->IsUser = false;
@@ -72,6 +74,7 @@ void EditBar::InsertEdit(WikiPageHistoryItem *page, int RowId)
 
 void EditBar::InsertUser(UserInfoFormHistoryItem *user)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     EditBarItem *item = new EditBarItem(this);
     this->Items.append(item);
     this->ui->horizontalLayout_user->insertWidget(1, item);
@@ -93,6 +96,7 @@ void EditBar::InsertUser(UserInfoFormHistoryItem *user)
 
 void EditBar::RemoveAll()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     this->ClearUser();
     this->ClearPage();
     while (this->Items.count())
@@ -137,6 +141,7 @@ void EditBar::MovePage(int size)
 
 void EditBar::ClearUser()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     while (this->ui->horizontalLayout_user->count() > 1)
     {
         QLayoutItem *i = this->ui->horizontalLayout_user->itemAt(1);
@@ -146,6 +151,7 @@ void EditBar::ClearUser()
 
 void EditBar::ClearPage()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     while (this->ui->horizontalLayout_page->count() > 1)
     {
         QLayoutItem *i = this->ui->horizontalLayout_page->itemAt(1);
