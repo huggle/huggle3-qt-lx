@@ -130,7 +130,10 @@
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
   <string name="config-enable-irc">启用IRC</string>
   <string name="config-remove-reverted">移除已经被别人恢复的编辑</string>
+  <string name="config-remove-old">如果对同一页面的新编辑被解析，就移除旧编辑</string>
   <string name="config-auto-load-history">自动加载历史记录和用户信息（需进行大量的网络连接）</string>
+  <string name="config-last-revision">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
+  <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
   <string name="config-display-text">显示下一个</string>
   <string name="config-retrieve-edit">取得自己的编辑</string>
   <string name="config-nothing">什么都没有</string>
@@ -145,6 +148,7 @@
   <string name="config-columns-dynamic">让列表的列动态（自动基于项目尺寸调整）或者手动（用户手动调整尺寸）</string>
   <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
   <string name="config-warning-api">显示API查询的警告</string>
+  <string name="config-title-diff">每个差异中的页面标题（在每个差异的顶部显示页面标题的大文本）</string>
   <string name="config-updates">检查更新</string>
   <string name="config-beta">检查测试版本</string>
   <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
@@ -561,6 +565,7 @@
   <string name="warning-warntype">警告类型：</string>
   <string name="warning-warnlog">该用户的警告：</string>
   <string name="warning-submit">发送</string>
+  <string name="wikiedit-tp-fail">无法检索$1警告等级，将不会被它计分</string>
   <string name="missing-warning">没有这种警告模板$1</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
   <string name="han-connecting">连接Huggle反破坏网络</string>
@@ -632,6 +637,9 @@
   <string name="provider-failure">$2上的订阅提供者$1失败，尝试找到一些提供商替代品</string>
   <string name="provider-primary-failure">首选订阅提供者失败，退回wiki提供</string>
   <string name="rc-error">无法从wiki订阅检索数据，最后错误：$1</string>
+  <string name="rc-timestamp-missing">RC订阅：项目缺少时间戳属性：$1</string>
+  <string name="rc-type-missing">RC订阅：项目缺少类型属性：$1</string>
+  <string name="rc-title-missing">RC订阅：项目缺少标题属性：$1</string>
   <string name="whitelist-download">新白名单下载中</string>
   <string name="logs-widget-name">系统日志</string>
   <string name="wait">请稍候…</string>

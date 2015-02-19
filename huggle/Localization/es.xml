@@ -109,7 +109,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-shortcutaction">Acción</string>
   <string name="config-changeshortcut">Cambiar acceso directo de $1</string>
   <string name="config-noshortcut">Ninguno</string>
-  <string name="config-defaults">Por defecto</string>
+  <string name="config-defaults">Valores predeterminados</string>
   <string name="config-minor">Marcar como menor</string>
   <string name="config-watchlist">Vigilar todas las páginas</string>
   <string name="config-defaultsummary">Resumen por defecto para ediciones manuales</string>

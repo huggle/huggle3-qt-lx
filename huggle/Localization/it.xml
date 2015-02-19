@@ -118,6 +118,9 @@
   <string name="config-confirm-talk">Richiesta di conferma per annullare una modifica in pagina di discussione</string>
   <string name="config-welcome-empty-page">Invia un messaggio di benvenuto agli utenti con la pagina di discussione vuota quando effettuano una modifica corretta</string>
   <string name="config-conflicts-revert">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
+  <string name="config-instant-reverts">Usa ripristino istantaneo (molto veloce, ma non può essere annullato una volta eseguito)</string>
+  <string name="config-revert">Ripristina</string>
+  <string name="config-revert-diff">Ripristina le modifiche più recenti delle differenze visualizzate, nel caso fossero state fatte dallo stesso utente (stesso vandalo)</string>
   <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
   <string name="config-merge-messages">Unisci i tuoi messaggi con gli altri nelle sezioni esistenti</string>
   <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
@@ -384,6 +387,8 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-revision-acceptpend">Accetta questa revisione pendente</string>
   <string name="main-no-page">L\'azione che hai richiesto necessita di una pagina da caricare. Per favore carica una pagina prima di riprovare.</string>
   <string name="main-revert-null">Impossibile ripristinare: la modifica è nulla</string>
+  <string name="main-revert-newpage-title">Non è possibile ripristinare questo</string>
+  <string name="main-revert-newpage">Questa è una nuova pagina, quindi non può essere ripristinata, è possibile etichettarla, o eliminarla.</string>
   <string name="message-title">Messaggio $1</string>
   <string name="message-help">Specifica uno o entrambi tra Oggetto e Riassunto. Se non viene fornito un riassunto, verrà usato l\'oggetto; se non viene fornito l\'oggetto, non verrà aggiunta alcuna intestazione.</string>
   <string name="message-subject">Oggetto:</string>

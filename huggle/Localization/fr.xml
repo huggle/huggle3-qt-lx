@@ -12,6 +12,7 @@
   <string name="deleted">Supprimé</string>
   <string name="error">Erreur</string>
   <string name="exit">Sortir</string>
+  <string name="done">Fait</string>
   <string name="no">Non</string>
   <string name="ok">OK</string>
   <string name="remove">Retirer</string>
@@ -46,6 +47,8 @@
   <string name="whitelisted">$1 qui possède un score de $2 sur $3 a été inséré à la liste blanche</string>
   <string name="expiry-time">Délai d\'expiration</string>
   <string name="duration">Durée</string>
+  <string name="enable">Activer</string>
+  <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
   <string name="score-score">Score</string>
@@ -64,6 +67,7 @@
   <string name="block-reason">Raison :</string>
   <string name="block-duration">Durée :</string>
   <string name="block-message">Message sur la page de discussion :</string>
+  <string name="block-message-user">Envoyer un message à l\'utilisateur cible avec une explication du blocage</string>
   <string name="block-anononly">Bloquer les utilisateurs anonymes seulement</string>
   <string name="block-creation">Bloquer la création de compte</string>
   <string name="block-autoblock">Activer l\'auto-blocage</string>
@@ -110,7 +114,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-watchlist">Ajouter à la liste de suivi</string>
   <string name="config-defaultsummary">Résumé par défaut pour les éditions manuelles</string>
   <string name="config-undosummary">Résumé pour l\'annulation de ses propres modifications</string>
+  <string name="config-confirm-user">Demander une confirmation pour révoquer les changements faits dans l\'espace utilisateur</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
+  <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
   <string name="config-confirmselfrevert">Confirmer la réversion de modifications propres (sauf annulation)</string>

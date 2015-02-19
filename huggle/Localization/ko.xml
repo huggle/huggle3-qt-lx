@@ -183,7 +183,7 @@
   <string name="irc-connecting">$1에 IRC 최근 바뀜 피드로 연결을 시도하고 있으며, 몇 분 정도 걸릴 수 있습니다...</string>
   <string name="irc-disconnected">$1에서 IRC 최근 바뀜 피드의 연결을 잃었습니다. 다시 연결하고 있습니다...</string>
   <string name="irc-nochannel">$1에 대한 IRC 채널을 찾을 수 없으며; 대신 느린 API 쿼리를 사용하세요</string>
-  <string name="irc-error" fuzzy="true">IRC 최근 바뀜 피드에 연결할 수 없습니다 ($1). 대신 느린 API 쿼리를 사용하세요</string>
+  <string name="irc-error">IRC 최근 바뀜 피드에 연결할 수 없습니다 ($1: $2). 대신 느린 API 쿼리를 사용하세요</string>
   <string name="irc-stop">$1에서 멈추기 위해 1차 피드 제공자를 기다리는 중</string>
   <string name="irc-not">피드: IRC는 프로젝트 설정에 따라 비활성화되어있습니다</string>
   <string name="irc-failure">1차 피드 제공자가 실패하였습니다. 위키 제공자로 대체하는 중...</string>
@@ -203,14 +203,14 @@
   <string name="login-proxyport">포트:</string>
   <string name="login-proxydomain">도메인:</string>
   <string name="login-retrieving-user-conf">사용자 설정을 얻는 중</string>
-  <string name="login-fail-css" fuzzy="true">사용자 설정을 얻을 수 없어 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
-  <string name="login-fail-enable-true" fuzzy="true">당신의 개인 설정에 enable:true가 없기 때문에 로그인에 실패했습니다</string>
-  <string name="login-fail-no-info" fuzzy="true">사용자 정보를 얻을 수 없어 로그인에 실패했습니다: $1</string>
-  <string name="login-fail-parse-config" fuzzy="true">사용자 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
-  <string name="login-fail-user-data" fuzzy="true">사용자 정보를 얻을 수 없어 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
-  <string name="login-fail-rollback-rights" fuzzy="true">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 로그인에 실패했습니다</string>
-  <string name="login-failed-autoconfirm-rights" fuzzy="true">당신은 이 프로젝트에 자동 인증되지 않았기 때문에 로그인에 실패했습니다</string>
-  <string name="login-failed-edit" fuzzy="true">당신은 이 프로젝트에 충분이 편집하지 않았기 때문에 로그인에 실패했습니다</string>
+  <string name="login-fail-css">사용자 설정을 얻을 수 없어 $1에 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
+  <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 $1에 로그인에 실패했습니다</string>
+  <string name="login-fail-no-info">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
+  <string name="login-fail-parse-config">사용자 설정을 구문 분석할 수 없어 $1에 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
+  <string name="login-fail-user-data">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
+  <string name="login-fail-rollback-rights">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 $1에 로그인에 실패했습니다</string>
+  <string name="login-failed-autoconfirm-rights">당신은 이 프로젝트에 자동 인증되지 않았기 때문에 $1에 로그인에 실패했습니다</string>
+  <string name="login-failed-edit">당신은 이 프로젝트에 충분이 편집하지 않았기 때문에 $1에 로그인에 실패했습니다</string>
   <string name="login-retrieving-info">$1에서 사용자 정보를 얻는 중</string>
   <string name="login-password-empty">입력한 비밀번호가 비어 있습니다</string>
   <string name="login-fail-wrong-name">로그인에 제공한 사용자 이름이 올바르지 않습니다</string>
@@ -232,14 +232,14 @@
   <string name="login-error-admin">이 프로젝트에서 허글을 사용하려면 관리자 계정이 필요합니다.</string>
   <string name="login-error-age">이 프로젝트에서 허글을 사용하려면 계정이 만들어지고 나서 적어도 $1일이 지나야 합니다.</string>
   <string name="login-error-alldisabled">허글이 현재 모든 프로젝트에서 비활성화되어 있습니다.</string>
-  <string name="login-error-approval" fuzzy="true">이 프로젝트에서 허글을 사용하려면 승인이 필요합니다.</string>
+  <string name="login-error-approval">$1 프로젝트에서 허글을 사용하려면 승인이 필요합니다.</string>
   <string name="login-error-cancelled">취소되었습니다.</string>
-  <string name="login-error-config" fuzzy="true">로컬 설정을 얻을 수 없어 로그인에 실패했습니다: $1</string>
+  <string name="login-error-config">로컬 설정을 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
   <string name="login-error-count">이 프로젝트에서 허글을 사용하려면 적어도 $1번 편집이 필요합니다.</string>
-  <string name="login-error-disabled" fuzzy="true">허글이 당신의 계정에서 활성화되어 있지 않습니다, 사용자 설정 문서를 확인하세요.</string>
-  <string name="login-error-global" fuzzy="true">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
+  <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다, 사용자 설정 문서를 확인하세요.</string>
+  <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
   <string name="login-error-invalid">잘못된 사용자 이름</string>
-  <string name="login-error-noconfig" fuzzy="true">이 프로젝트는 허글 설정 문서가 없습니다.</string>
+  <string name="login-error-noconfig">$1 프로젝트는 허글 설정 문서가 없습니다.</string>
   <string name="login-error-nouser">사용자가 존재하지 않습니다</string>
   <string name="login-error-password">비밀번호가 잘못되었습니다</string>
   <string name="login-error-projdisabled">허글이 이 프로젝트에서 비활성화되어 있습니다.</string>
@@ -256,7 +256,7 @@
   <string name="main-history">역사</string>
   <string name="main-new-messages">새 메시지가 있습니다. 그들을 보려면 시스템 -&gt; 새 메시지 보이기를 선택하거나 M을 누르세요.</string>
   <string name="main-system">시스템</string>
-  <string name="main-status-bar" fuzzy="true">편집&lt;b&gt;$1&lt;/b&gt;번과 쿼리&lt;b&gt;$2&lt;/b&gt;개를 진행하고 있습니다. 목록에서 허용된 사용자: &lt;b&gt;$3&lt;/b&gt; 대기열 크키: &lt;b&gt;$4&lt;/b&gt; $6에 대한 통계: $5</string>
+  <string name="main-status-bar">편집 &lt;b&gt;$1&lt;/b&gt;번과 쿼리 &lt;b&gt;$2&lt;/b&gt;개를 진행하고 있습니다. 목록에서 허용된 사용자: &lt;b&gt;$3&lt;/b&gt; 대기열 크키: &lt;b&gt;$4&lt;/b&gt; $6에 대한 통계: $5</string>
   <string name="main-shutting-down">허글이 종료되고, 무시됩니다</string>
   <string name="main-system-messages">새 메시지 보이기</string>
   <string name="main-system-reconnectirc">IRC 피드 다시 연결</string>
@@ -337,7 +337,7 @@
   <string name="main-browser-open">이것을 바깥 브라우저에서 보기</string>
   <string name="main-browser-newedits">문서의 새 편집 보기</string>
   <string name="main-browser-newcontribs">사용자의 새 기여 보기</string>
-  <string name="main-revert-manual" fuzzy="true">$1 편집에 대한 되돌리기 토큰을 얻을 수 없습니다, 수동 편집으로 대체해주세요</string>
+  <string name="main-revert-manual">$1 편집에 대한 되돌리기 토큰을 얻을 수 없습니다. 수동 편집으로 대체해주세요.</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">연결 끊기</string>
   <string name="main-han-connect">연결</string>
@@ -370,7 +370,7 @@
   <string name="message-summary">요약:</string>
   <string name="message-autosign">서명은 자동으로 추가됩니다</string>
   <string name="message-retrieve-new-token">$1(을)를 편집할 토큰을 얻는 중</string>
-  <string name="message-fail-re-user-tp" fuzzy="true">$1 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다</string>
+  <string name="message-fail-re-user-tp">$1를 찾을 수 없습니다. 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다.</string>
   <string name="message-er">$1님에게 메시지를 배달할 수 없습니다: $2</string>
   <string name="message-fail-retrieve-talk">사용자 토론 문서를 얻을 수 없습니다</string>
   <string name="message-done">$1님에게: 메시지를 성공적으로 배달했습니다</string>
@@ -436,7 +436,7 @@
   <string name="report-done">보고됨</string>
   <string name="report-user">보고</string>
   <string name="uaa-not-supported">사용자 관리 신청 사용할 수 없음</string>
-  <string name="uaa-not-supported-text" fuzzy="true">이 위키에는 관리자의 관심이 필요한 사용자명 알림판이 존재하지 않습니다.</string>
+  <string name="uaa-not-supported-text">이 위키에는 \"관리자의 관심이 필요한 사용자명\" 알림판이 존재하지 않습니다.</string>
   <string name="uaa-reported">보고됨</string>
   <string name="uaa-nr">제공된 이유가 없습니다</string>
   <string name="uaa-e1">문서 내용에 대한 쿼리는 반환한 데이터가 없습니다 .</string>

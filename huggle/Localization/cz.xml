@@ -12,6 +12,7 @@
   <string name="deleted">Smazáno</string>
   <string name="error">Chyba</string>
   <string name="exit">Ukončit</string>
+  <string name="done">Hotovo</string>
   <string name="no">Ne</string>
   <string name="ok">OK</string>
   <string name="remove">Smazat</string>
@@ -66,6 +67,7 @@
   <string name="block-reason">Důvod:</string>
   <string name="block-duration">Doba:</string>
   <string name="block-message">Poslat tuto zprávu uživateli:</string>
+  <string name="block-message-user">Pošlete zprávu cílovému uživateli, která bude obsahovat vysvětlení zablokování</string>
   <string name="block-anononly">Blokovat pouze anonymní uživatele</string>
   <string name="block-creation">Blokovat vytvoření účtu</string>
   <string name="block-autoblock">Povolit autobloky</string>
@@ -112,7 +114,24 @@
   <string name="config-defaultsummary">Výchozí shrnutí pro ruční editace</string>
   <string name="config-undosummary">Shrnutí při vracení vlastní úpravy</string>
   <string name="config-confirm-wl">Požadovat potvrzení pro návrat úpravy, která byla provedena uživatelem ktery je na bílé listině</string>
+  <string name="config-use-rollback">Použít softwarové vrácení změn</string>
+  <string name="config-welcome-empty-page">Poslat uvítání uživatelům s prázdnou diskuzní stránkou za dobrou editaci</string>
+  <string name="config-conflicts-revert">Autoamticky vyřešit konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
+  <string name="config-instant-reverts">Použít okamžité reverty (velmi rychlé, ale nemohou být zrušeny poté, co jsou povoleny)</string>
+  <string name="config-revert-wait">Revertační prodleva (v sekundách)</string>
   <string name="config-revert">Vrátit zpět</string>
+  <string name="config-enable-irc">Povolit IRC</string>
+  <string name="config-remove-reverted">Odstranit editace, které již někdo dříve revertoval</string>
+  <string name="config-remove-old">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
+  <string name="config-display-text">Zobrazit další</string>
+  <string name="config-own-edits">Vlastní úpravy</string>
+  <string name="config-reverts">Reverty</string>
+  <string name="config-new-page">Nová stránka</string>
+  <string name="config-whitelisted">Whitelist</string>
+  <string name="config-userspace">Uživatelský prostor</string>
+  <string name="config-talk">Diskuzní stránka</string>
+  <string name="config-updates">Zkontrolovat aktualizace</string>
+  <string name="config-beta">Zkontrolovat beta verze</string>
   <string name="config-confirmmultiple">Potvrdit více revertů úprav provedených jedním uživatelem</string>
   <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
@@ -353,6 +372,9 @@
   <string name="main-revision-acceptpend">Přijmout tuto revizi</string>
   <string name="main-no-page">Akce, vyžaduje načtenou stránku.</string>
   <string name="main-revert-null">Nelze vrátit, edit je NULL</string>
+  <string name="main-revert-newpage-title">Toto nelze revertovat</string>
+  <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat, ani tagovat nebo smazat.</string>
+  <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
   <string name="message-help">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
   <string name="message-subject">Předmět:</string>
@@ -465,6 +487,7 @@
   <string name="tag-title">Tagovat \'$1\'</string>
   <string name="tag-tagselector">Přidat tag:</string>
   <string name="tag-tags">Tag(y):</string>
+  <string name="tag-parameter">Parametr</string>
   <string name="tag-summary">Shrnutí:</string>
   <string name="tag-insertatend">Vložit na konec stránky</string>
   <string name="update-title">K dispozici je nová verze programu</string>
@@ -472,6 +495,7 @@
   <string name="update-error">Nepodařilo se stáhnout novou verzi</string>
   <string name="updater-title">Je k dispozici nová verze programu huggle</string>
   <string name="updater-update">Aktualizovat</string>
+  <string name="updater-update-available">K dispozici je nová verze Huggle: $1</string>
   <string name="updater-open-manualdownloadpage">Otevřete stránku pro stažení</string>
   <string name="updater-close">Zavřít</string>
   <string name="updater-disable-notify">Zakázat aktualizace</string>
@@ -500,6 +524,7 @@
   <string name="shortcut-browser-close-tab">Zavřít okno prohlížeče</string>
   <string name="shortcut-tab">Otevře novou záložku</string>
   <string name="shortcut-rw-stay">Vrátí aktuální edit, varuje tohoto uživatele a zůstane na stránce</string>
+  <string name="shortcut-revert-and-stay">Revertovat současné editace a zůstat na stránce</string>
   <string name="warning-title">Varovat $1</string>
   <string name="warning-levelgroup">Úroveň pro upozornění</string>
   <string name="warning-levelauto">Automatické</string>
@@ -513,6 +538,7 @@
   <string name="missing-warning">Neexistujíci template $1</string>
   <string name="han-not">HAN není povolena v konfiguraci</string>
   <string name="han-connecting">Připojování do HAN</string>
+  <string name="han-disconnected">Byli jste odpojeni od HAN</string>
   <string name="error-loggedout">Účet byl odhlášen, přihlašuji se...</string>
   <string name="error-noresponse">Žádná odpověď</string>
   <string name="error-pagemissing">Tato stránka neexistuje</string>
@@ -544,6 +570,8 @@
   <string name="history-already-done">Již bylo vráceno zpět</string>
   <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
   <string name="history-revert-fail">Nelze vrátit zpět editace $1 chyba při revertaci: $2</string>
+  <string name="history-welcome-msg-title">Poslat namísto toho uvítací zprávu?</string>
+  <string name="history-welcome-msg">Vytvořili jste tuto diskuzní stránku, takže tuto editaci nemůžete odstranit. Chcete ji však přepsat uvítací šablonou?</string>
   <string name="notify-fail">Nepodařilo se notifikovat autora $1</string>
   <string name="notify-unknowncreator">Nelze najít autora stránky</string>
   <string name="protect-done">Zámek $1 byl upraven</string>
@@ -591,7 +619,9 @@
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
   <string name="request">Požadavek</string>
+  <string name="page-unknown">Neznámá stránka</string>
   <string name="namespace">Jmenný prostor</string>
   <string name="block-alreadyblocked">Uživatel již je zablokován.</string>
   <string name="report-fail" fuzzy="true">Nepodařilo se nahlásit uživatele: $1</string>
+  <string name="error-unknown-code">Neznámá chyba: $1</string>
 </resources>
