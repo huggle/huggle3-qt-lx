@@ -564,9 +564,9 @@ void Core::LoadLocalizations()
     this->TestLanguages();
 }
 
-double Core::GetUptimeInSeconds()
+qint64 Core::GetUptimeInSeconds()
 {
-    return (double)this->StartupTime.secsTo(QDateTime::currentDateTime());
+    return this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)

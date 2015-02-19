@@ -90,7 +90,7 @@ namespace Huggle
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
-            double GetUptimeInSeconds();
+            qint64 GetUptimeInSeconds();
             void LoadLocalizations();
             QueryPool *HGQP;
             // Global variables
