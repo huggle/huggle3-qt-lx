@@ -193,6 +193,8 @@ namespace Huggle
             // Definitions
             QList<ScoreWord>        ScoreParts;
             QList<ScoreWord>        ScoreWords;
+            QList<ScoreWord>        NoTalkScoreWords;
+            QList<ScoreWord>        NoTalkScoreParts;
             int                     ScoreFlag = -60;
             int                     ForeignUser = 800;
             int                     ScoreTalk = -200;

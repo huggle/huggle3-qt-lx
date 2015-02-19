@@ -379,36 +379,31 @@ QString WikiEdit::GetPixmap()
     return ":/huggle/pictures/Resources/blob-none.png";
 }
 
-void WikiEdit::ProcessWords()
+static long ProcessPartsInWikiText(QStringList *list, QString text, QList<ScoreWord> *wl)
 {
-    QString text = this->DiffText.toLower();
-    int wi = 0;
-    if (this->Page->Contents.length() > 0)
+    long rs = 0;
+    foreach (ScoreWord word, *wl)
     {
-        text = this->Page->Contents.toLower();
-    }
-    // we cache the project config pointer
-    ProjectConfiguration *conf = this->GetSite()->GetProjectConfig();
-    while (wi < conf->ScoreParts.count())
-    {
-        QString w = conf->ScoreParts.at(wi).word;
+        QString w = word.word;
         if (text.contains(w))
         {
-            this->Score += conf->ScoreParts.at(wi).score;
-            ScoreWords.append(w);
+            rs += word.score;
+            list->append(w);
         }
-        ++wi;
     }
-    wi = 0;
-    while (wi < conf->ScoreWords.count())
+    return rs;
+}
+
+static long ProcessWordsInWikiText(QStringList *list, QString text, QList<ScoreWord> *wl)
+{
+    long rs = 0;
+    foreach (ScoreWord word, *wl)
     {
-        QString w = conf->ScoreWords.at(wi).word;
+        QString w = word.word;
         // if there is no such a string in text we can skip it
         if (!text.contains(w))
-        {
-            ++wi;
             continue;
-        }
+
         int SD = 0;
         bool found = false;
         if (text == w)
@@ -441,11 +436,29 @@ void WikiEdit::ProcessWords()
         }
         if (found)
         {
-            this->Score += conf->ScoreWords.at(wi).score;
-            ScoreWords.append(w);
+            rs += word.score;
+            list->append(w);
         }
-        ++wi;
     }
+    return rs;
+}
+
+void WikiEdit::ProcessWords()
+{
+    QString text = this->DiffText.toLower();
+    if (this->Page->Contents.length() > 0)
+    {
+        text = this->Page->Contents.toLower();
+    }
+    // we cache the project config pointer
+    ProjectConfiguration *conf = this->GetSite()->GetProjectConfig();
+    if (!this->Page->IsTalk())
+    {
+        this->Score += ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts);
+        this->Score += ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords);
+    }
+    this->Score += ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords);
+    this->Score += ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts);
 }
 
 void WikiEdit::RemoveFromHistoryChain()

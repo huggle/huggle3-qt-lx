@@ -70,6 +70,8 @@ namespace Huggle
         HUGGLE_EX void ParsePats(QString text, WikiSite *site);
         //! \todo This function needs a unit test
         HUGGLE_EX void ParseWords(QString text, WikiSite *site);
+        HUGGLE_EX void ParseNoTalkWords(QString text, WikiSite *site);
+        HUGGLE_EX void ParseNoTalkPats(QString text, WikiSite *site);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetValueFromKey(QString item);
         //! \todo This function needs a unit test

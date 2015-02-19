@@ -34,23 +34,35 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int x = 0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.count())
+    foreach (ScoreWord word, hcfg->ProjectConfig->ScoreWords)
     {
-        ScoreWord word = Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.at(x);
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
-        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-only-whole-word")));
-        x++;
+        this->ui->tableWidget->setItem(x++, 2, new QTableWidgetItem(_l("score-only-whole-word")));
     }
-    x = 0;
-    while (x < Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.count())
+    foreach (ScoreWord word, hcfg->ProjectConfig->ScoreParts)
     {
-        ScoreWord word = Configuration::HuggleConfiguration->ProjectConfig->ScoreParts.at(x);
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
         this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-any-word")));
+        x++;
+    }
+    foreach (ScoreWord word, hcfg->ProjectConfig->NoTalkScoreParts)
+    {
+        this->ui->tableWidget->insertRow(x);
+        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
+        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-any-no-talk-word")));
+        x++;
+    }
+    foreach (ScoreWord word, hcfg->ProjectConfig->NoTalkScoreWords)
+    {
+        this->ui->tableWidget->insertRow(x);
+        this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
+        this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
+        this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-whole-no-talk-word")));
         x++;
     }
     this->ui->tableWidget->resizeRowsToContents();

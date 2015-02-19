@@ -78,54 +78,15 @@ QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConf
     return id;
 }
 
-void HuggleParser::ParsePats(QString text, WikiSite *site)
+static QList<ScoreWord> ParseScoreWords(QString text, QString wt)
 {
-    site->ProjectConfig->ScoreParts.clear();
-    while (text.contains("score-parts("))
+    QList<ScoreWord> contents;
+    while (text.contains(wt + "("))
     {
-        text = text.mid(text.indexOf("score-parts(") + 12);
-        if (!text.contains(")"))
-            return;
-
-        int score = text.mid(0, text.indexOf(")")).toInt();
-        if (score == 0)
-            continue;
-
-        QStringList word;
-        if (!text.contains(":"))
-            return;
-
-        text = text.mid(text.indexOf(":") + 1);
-        QStringList lines = text.split("\n");
-        int line = 1;
-        while (line < lines.count())
-        {
-            QString l = lines.at(line);
-            QStringList items = l.split(",");
-            foreach (QString wx, items)
-            {
-                wx = wx.trimmed();
-                if (!wx.isEmpty())
-                    word.append(wx);
-            }
-            if (!l.endsWith(",") || l.trimmed().length() <= 0)
-                break;
-            line++;
-        }
-        foreach (QString wx, word)
-            site->ProjectConfig->ScoreParts.append(ScoreWord(wx, score));
-    }
-}
-
-void HuggleParser::ParseWords(QString text, WikiSite *site)
-{
-    site->ProjectConfig->ScoreWords.clear();
-    while (text.contains("score-words("))
-    {
-        text = text.mid(text.indexOf("score-words(") + 12);
+        text = text.mid(text.indexOf(wt + "(") + wt.length() + 1);
         if (!text.contains(")"))
         {
-            return;
+            return contents;
         }
         int score = text.mid(0, text.indexOf(")")).toInt();
         if (score == 0)
@@ -134,7 +95,7 @@ void HuggleParser::ParseWords(QString text, WikiSite *site)
         }
         if (!text.contains(":"))
         {
-            return;
+            return contents;
         }
         text = text.mid(text.indexOf(":") + 1);
         QStringList lines = text.split("\n");
@@ -144,7 +105,7 @@ void HuggleParser::ParseWords(QString text, WikiSite *site)
         {
             QString l = lines.at(line);
             QStringList items = l.split(",");
-            foreach (QString w, items)
+            foreach(QString w, items)
             {
                 w = w.trimmed();
                 if (w.isEmpty())
@@ -155,9 +116,34 @@ void HuggleParser::ParseWords(QString text, WikiSite *site)
                 break;
             line++;
         }
-        foreach (QString w, word)
-            site->ProjectConfig->ScoreWords.append(ScoreWord(w, score));
+        foreach(QString w, word)
+            contents.append(ScoreWord(w, score));
     }
+    return contents;
+}
+
+void HuggleParser::ParseNoTalkWords(QString text, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreWords.clear();
+    site->ProjectConfig->NoTalkScoreWords = ParseScoreWords(text, "score-words-no-talk");
+}
+
+void HuggleParser::ParseNoTalkPats(QString text, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreParts.clear();
+    site->ProjectConfig->NoTalkScoreParts = ParseScoreWords(text, "score-parts-no-talk");
+}
+
+void HuggleParser::ParsePats(QString text, WikiSite *site)
+{
+    site->ProjectConfig->ScoreParts.clear();
+    site->ProjectConfig->ScoreParts = ParseScoreWords(text, "score-parts");
+}
+
+void HuggleParser::ParseWords(QString text, WikiSite *site)
+{
+    site->ProjectConfig->ScoreWords.clear();
+    site->ProjectConfig->ScoreWords = ParseScoreWords(text, "score-words");
 }
 
 QString HuggleParser::GetValueFromKey(QString item)
