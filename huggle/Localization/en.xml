@@ -218,7 +218,7 @@
   <string name="irc-wait">Waiting for the IRC feed provider to stop</string>
   <string name="irc-switch-rc">Switching to the wiki RC feed</string>
   <string name="login-old">Retrieving user config from old location</string>
-  <string name="login-intro">Please pick a project and enter your username and password. You can login to multiple projects by clicking on &quot;Projects&quot; button too.</string>
+  <string name="login-intro">Please pick a project and enter your username and password. You can also login to multiple projects by clicking on &quot;Projects&quot; button.</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Login</string>
   <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which Huggle was recently enabled.</string>
@@ -538,7 +538,7 @@
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
   <string name="shortcut-back">Go to the previously displayed edit</string>
-  <string name="shortcut-forward">Go to an edit you loaded in past but walked back from</string>
+  <string name="shortcut-forward">Go to an edit you loaded in past but moved back from</string>
   <string name="shortcut-warn">Send a warning to user, without reverting edit</string>
   <string name="shortcut-revert">Revert edit</string>
   <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
@@ -604,7 +604,7 @@
   <string name="history-not-found">Nothing was found to undo</string>
   <string name="history-already-done">This was already undone</string>
   <string name="history-message-revert-body">This was a message that is referenced by a rollback, are you sure you want to undo only template and not even your edit to page? (you need to undo the rollback in case you want to revert both of these)</string>
-  <string name="history-revert-fail">Unable to undo your edit to $1 error during revert: $2</string>
+  <string name="history-revert-fail">Unable to undo your edit to $1 as the following error was encountered: $2</string>
   <string name="history-undone">Successfully undone edit to $1</string>
   <string name="history-retrieve-fail">Unable to retrieve content of page we wanted to undo own edit for, error was: $1</string>
   <string name="history-welcome-msg-title">Send welcome message instead?</string>
