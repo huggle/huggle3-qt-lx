@@ -54,6 +54,8 @@
   <string name="score-score">Score</string>
   <string name="score-word">Word</string>
   <string name="score-range">Range</string>
+  <string name="score-take-any-no-talk-word">Matches any word on non-talk pages</string>
+  <string name="score-take-whole-no-talk-word">Matches only whole words on non-talk pages</string>
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
   <string name="browser-none">No page is displayed now</string>
