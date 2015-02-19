@@ -32,7 +32,7 @@ namespace Huggle
             static void Reset();
             static qint64 GetTime();
             static void IncrementCall(QString function);
-            static long long GetCallsForFunction(QString function);
+            static unsigned long long GetCallsForFunction(QString function);
             static QList<QString> GetRegisteredCounterFunctions();
         private:
             static QHash<QString, unsigned long long> callCounter;

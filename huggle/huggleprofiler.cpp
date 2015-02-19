@@ -33,7 +33,7 @@ void Profiler::IncrementCall(QString function)
     callCounter[function]++;
 }
 
-long long Profiler::GetCallsForFunction(QString function)
+unsigned long long Profiler::GetCallsForFunction(QString function)
 {
     if (!callCounter.contains(function))
         return 0;
@@ -42,6 +42,12 @@ long long Profiler::GetCallsForFunction(QString function)
 
 QList<QString> Profiler::GetRegisteredCounterFunctions()
 {
-    return callCounter.keys();
+    // sort the list by number of calls
+    QList<unsigned long long> Numbers = callCounter.values();
+    qSort(Numbers);
+    QList<QString> Functions;
+    foreach(unsigned long long n, Numbers)
+        Functions.append(callCounter.key(n));
+    return Functions;
 }
 #endif
