@@ -65,7 +65,7 @@ QString VandalNw::SafeHtml(QString text)
 
 QString VandalNw::GenerateWikiDiffLink(QString text, QString revid, WikiSite *site)
 {
-    return "<a href=\"huggle://diff/" + site->Name + "/revid/" + revid + "\">" + text + "</a>";
+    return "<a href=\"huggle:///diff/" + site->Name + "/revid/" + revid + "\">" + text + "</a>";
 }
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
@@ -588,10 +588,10 @@ void Huggle::VandalNw::on_lineEdit_returnPressed()
 void Huggle::VandalNw::on_textBrowser_anchorClicked(const QUrl &arg1)
 {
     QString path = arg1.path();
-    if (path.startsWith("huggle://"))
+    if (arg1.scheme() == "huggle")
     {
         // ok this is internal huggle link let's get a site
-        path = path.mid(9);
+        path = path.mid(1);
         if (!path.contains("/"))
             goto restore;
         QStringList elements = path.split("/");
