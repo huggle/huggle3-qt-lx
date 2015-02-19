@@ -536,6 +536,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
     Localizations::HuggleLocalizations->LocalInit("en"); // English
+    Localizations::HuggleLocalizations->LocalInit("en-gb");
     Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
     Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
     Localizations::HuggleLocalizations->LocalInit("fr"); // French
