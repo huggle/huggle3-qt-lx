@@ -322,6 +322,7 @@ namespace Huggle
             void on_actionLog_out_triggered();
             void on_actionReload_tokens_triggered();
             void on_actionXmlRcs_triggered();
+            void OnStatusBarRefreshTimerTick();
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
@@ -361,6 +362,7 @@ namespace Huggle
             QList<QAction*> WarnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
             QTimer *GeneralTimer;
+            QTimer *tStatusBarRefreshTimer;
             QHash<WikiSite*, EditQuery*> StorageQueries;
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;

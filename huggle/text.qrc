@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/huggle/text">
         <file>Localization/en.xml</file>
+        <file>Localization/en-gb.xml</file>
         <file>Localization/ar.xml</file>
         <file>Localization/bg.xml</file>
         <file>Localization/bn.xml</file>

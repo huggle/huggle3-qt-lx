@@ -267,7 +267,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     Hooks::MainWindowIsLoaded(this);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
+    this->tStatusBarRefreshTimer = new QTimer(this);
+    connect(this->tStatusBarRefreshTimer, SIGNAL(timeout()), this, SLOT(OnStatusBarRefreshTimerTick()));
     this->tCheck->start(20000);
+    this->tStatusBarRefreshTimer->start(500);
 }
 
 MainWindow::~MainWindow()
@@ -292,6 +295,7 @@ MainWindow::~MainWindow()
         delete this->Browsers.at(0);
         this->Browsers.removeAt(0);
     }
+    this->tStatusBarRefreshTimer->stop();
     delete this->fWikiPageTags;
     delete this->OnNext_EvPage;
     delete this->fSpeedyDelete;
@@ -307,6 +311,7 @@ MainWindow::~MainWindow()
     delete this->WarnMenu;
     delete this->fProtectForm;
     delete this->wEditBar;
+    delete this->tStatusBarRefreshTimer;
     delete this->RevertSummaries;
     delete this->Queries;
     delete this->preferencesForm;
@@ -1234,7 +1239,6 @@ void MainWindow::OnMainTimerTick()
             }
         }
     }
-    this->UpdateStatusBarData();
     // let's refresh the edits that are being post processed
     if (QueryPool::HugglePool->ProcessingEdits.count() > 0)
     {
@@ -2976,4 +2980,9 @@ void Huggle::MainWindow::on_actionXmlRcs_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
     this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+}
+
+void MainWindow::OnStatusBarRefreshTimerTick()
+{
+    this->UpdateStatusBarData();
 }

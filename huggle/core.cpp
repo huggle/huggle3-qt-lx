@@ -469,7 +469,7 @@ void Core::Shutdown()
     QStringList functions = Profiler::GetRegisteredCounterFunctions();
     foreach (QString fx, functions)
     {
-        Syslog::HuggleLogs->Log(fx + ": " + QString::number(Profiler::GetCallsForFunction(fx)));
+        Syslog::HuggleLogs->Log(QString::number(Profiler::GetCallsForFunction(fx)) + ": " + fx);
     }
 #endif
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
@@ -536,6 +536,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
     Localizations::HuggleLocalizations->LocalInit("en"); // English
+    Localizations::HuggleLocalizations->LocalInit("en-gb");
     Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
     Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
     Localizations::HuggleLocalizations->LocalInit("fr"); // French

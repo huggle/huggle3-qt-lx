@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     Localizations::HuggleLocalizations = new Localizations();
     Localizations::HuggleLocalizations->LocalInit("en"); // English
+    Localizations::HuggleLocalizations->LocalInit("en-gb"); // English
     Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
     Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
     Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
