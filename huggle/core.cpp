@@ -209,20 +209,27 @@ void Core::SaveDefs()
         Huggle::Syslog::HuggleLogs->ErrorLog("Can't open " + Configuration::GetConfigurationPath() + "users.xml");
         return;
     }
-    QString xx = "<definitions>\n";
     WikiUser::TrimProblematicUsersList();
     int x = 0;
+    QXmlStreamWriter *writer = new QXmlStreamWriter();
+    writer->setDevice(&file);
+    writer->setAutoFormatting(true);
+    writer->writeStartDocument();
+    writer->writeStartElement("definitions");
     WikiUser::ProblematicUserListLock.lock();
     while (x<WikiUser::ProblematicUsers.count())
     {
-        xx += "<user name=\"" + WikiUser::ProblematicUsers.at(x)->Username + "\" badness=\"" +
-                QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore(false)) +"\"></user>\n";
+        writer->writeStartElement("user");
+        writer->writeAttribute("name", WikiUser::ProblematicUsers.at(x)->Username);
+        writer->writeAttribute("badness", QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore(false)));
+        writer->writeEndElement();
         x++;
     }
     WikiUser::ProblematicUserListLock.unlock();
-    xx += "</definitions>";
-    file.write(xx.toUtf8());
+    writer->writeEndElement();
+    writer->writeEndDocument();
     file.close();
+    delete writer;
     QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
 }
 
