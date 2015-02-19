@@ -108,6 +108,11 @@ void EditBar::RemoveAll()
 
 void EditBar::RefreshPage()
 {
+    if (!this->isVisible())
+    {
+        this->needsRefresh = true;
+        return;
+    }
     this->ClearPage();
     // we need to fetch all data from history form
     HistoryForm *history = MainWindow::HuggleMain->wHistory;
@@ -125,6 +130,11 @@ void EditBar::RefreshPage()
 
 void EditBar::RefreshUser()
 {
+    if (!this->isVisible())
+    {
+        this->needsRefresh = true;
+        return;
+    }
     this->ClearUser();
     UserinfoForm *userinfo = MainWindow::HuggleMain->wUserInfo;
     // now we need to insert the items upside down
@@ -194,4 +204,17 @@ void EditBar::OnReload()
     this->UserSX = 0;
     this->PageSX = 0;
     this->timer.stop();
+}
+
+void Huggle::EditBar::on_EditBar_visibilityChanged(bool visible)
+{
+    if (!this->needsRefresh)
+        return;
+
+    if (!visible)
+        return;
+
+    this->needsRefresh = false;
+    this->RefreshPage();
+    this->RefreshUser();
 }

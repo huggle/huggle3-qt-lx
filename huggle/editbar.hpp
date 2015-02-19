@@ -68,6 +68,7 @@ namespace Huggle
             void on_pushButton_4_clicked();
             void on_pushButton_3_clicked();
             void OnReload();
+            void on_EditBar_visibilityChanged(bool visible);
         private:
             void InsertEdit(WikiPageHistoryItem *page, int RowId);
             void InsertUser(UserInfoFormHistoryItem *user);
@@ -75,6 +76,7 @@ namespace Huggle
             void ClearUser();
             void ClearPage();
             void MoveUser(int size);
+            bool needsRefresh = false;
             int PageSX;
             int UserSX;
             QTimer timer;
