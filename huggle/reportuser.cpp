@@ -207,10 +207,8 @@ void ReportUser::Tick()
                 this->tReportUser->stop();
                 this->ui->pushButton->setText(_l("report-user"));
                 this->ui->pushButton->setEnabled(true);
-                QMessageBox mb;
-                mb.setText(_l("report-fail", this->qEdit->GetFailureReason()));
+                Generic::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
                 Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
-                mb.exec();
                 this->Kill();
                 return;
             }
@@ -242,9 +240,7 @@ void ReportUser::Tick()
             QDomElement e = results.at(0).toElement();
             if (!e.attributes().contains("timestamp"))
             {
-                QMessageBox mb;
-                mb.setText(_l("report-page-fail-time",this->qReport->Result->Data));
-                mb.exec();
+                Generic::MessageBox(_l("error"), _l("report-page-fail-time",this->qReport->Result->Data), Huggle::MessageBoxStyleError);
                 this->Kill();
                 return;
             } else
@@ -378,19 +374,18 @@ void ReportUser::Test()
     {
         QDomDocument d;
         d.setContent(this->qCheckIfBlocked->Result->Data);
-        QMessageBox mb;
-        mb.setWindowTitle(_l("result"));
+        QString result;
         QDomNodeList l = d.elementsByTagName("block");
         if (l.count() > 0)
         {
-            mb.setText(_l("block-alreadyblocked"));
+            result = _l("block-alreadyblocked");
             this->ReportedUser->IsBlocked = true;
             this->ReportedUser->Update();
         } else
         {
-            mb.setText(_l("block-not"));
+            result = _l("block-not");
         }
-        mb.exec();
+        Generic::pMessageBox(this, _l("result"), result);
         this->qCheckIfBlocked.Delete();
         this->ui->pushButton_7->setEnabled(true);
     }
