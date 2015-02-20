@@ -64,7 +64,7 @@ namespace Huggle
             WikiUser(QString user);
             ~WikiUser();
             /*!
-             * \brief GetContentsOfTalkPage returns a precached content of this users talk page
+             * \brief GetContentsOfTalkPage returns a precached content of this user's talk page
              * If there is a global instance of this user, the talk page is retrieved from it
              * so that in case there are multiple instances of this user, they all share same
              * cached talk page.

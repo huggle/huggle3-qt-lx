@@ -95,6 +95,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 
 #define HUGGLE_SUCCESS                     1
 #define PRODUCTION_BUILD                   0
+#define HUGGLE_WL_UNKNOWN   0
+#define HUGGLE_WL_TRUE      1
+#define HUGGLE_WL_FALSE     2
 #define MEDIAWIKI_DEFAULT_NS_MAIN               ""
 #define MEDIAWIKI_DEFAULT_NS_TALK               "Talk:"
 #define MEDIAWIKI_DEFAULT_NS_USER               "User:"
