@@ -36,6 +36,7 @@ namespace Huggle
          * \return Value of key, in case there is no such a key content of missing is returned
          */
         HUGGLE_EX QString ConfigurationParse(QString key, QString content, QString missing = "");
+        HUGGLE_EX bool ConfigurationParseBool(QString key, QString content, bool missing);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test

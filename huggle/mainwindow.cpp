@@ -894,8 +894,6 @@ QString MainWindow::WikiScriptURL()
 
 Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next, bool single_rv)
 {
-    if (!this->CheckRevertable())
-        return;
     bool rollback = true;
     Collectable_SmartPtr<RevertQuery> ptr_;
     if (this->CurrentEdit == nullptr)
@@ -903,6 +901,8 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         Syslog::HuggleLogs->ErrorLog(_l("main-revert-null"));
         return ptr_;
     }
+    if (!this->CheckRevertable())
+        return ptr_;
     if (this->CurrentEdit->NewPage)
     {
         Generic::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal,

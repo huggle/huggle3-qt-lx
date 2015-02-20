@@ -11,6 +11,7 @@
 #include "huggleparser.hpp"
 #include "huggleprofiler.hpp"
 #include "configuration.hpp"
+#include "generic.hpp"
 #include "projectconfiguration.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
@@ -43,6 +44,11 @@ QString HuggleParser::ConfigurationParse(QString key, QString content, QString m
         return value;
     }
     return missing;
+}
+
+bool HuggleParser::ConfigurationParseBool(QString key, QString content, bool missing)
+{
+    return Generic::SafeBool(ConfigurationParse(key, content, Generic::Bool2String(missing)));
 }
 
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
