@@ -327,6 +327,7 @@ namespace Huggle
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();
+            bool CheckRevertable();
             void DisplayWelcomeMessage();
             void FinishRestore();
             void CreateBrowserTab(QString name, int index);

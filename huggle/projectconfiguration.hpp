@@ -138,6 +138,7 @@ namespace Huggle
             int             IPScore = 20;
             // Reverting
             QString         MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
+            bool            RevertingEnabled = true;
             QStringList     RevertSummaries;
             QStringList     Goto;
             QString         SoftwareRevertDefaultSummary;

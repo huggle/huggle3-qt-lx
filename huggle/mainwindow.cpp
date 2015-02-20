@@ -506,7 +506,7 @@ void MainWindow::RequestPD(WikiEdit *edit)
 
 void MainWindow::RevertAgf(bool only)
 {
-    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
+    if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage() || !this->CheckRevertable())
         return;
     if (Configuration::HuggleConfiguration->Restricted)
     {
@@ -894,6 +894,8 @@ QString MainWindow::WikiScriptURL()
 
 Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next, bool single_rv)
 {
+    if (!this->CheckRevertable())
+        return;
     bool rollback = true;
     Collectable_SmartPtr<RevertQuery> ptr_;
     if (this->CurrentEdit == nullptr)
@@ -1433,7 +1435,7 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
-    if (this->EditingChecks())
+    if (this->EditingChecks() && this->CheckRevertable())
         this->Revert();
 }
 
@@ -1444,7 +1446,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
@@ -1459,7 +1461,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
@@ -1474,7 +1476,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 
 void MainWindow::on_actionRevert_triggered()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
 
     this->Revert();
@@ -1504,7 +1506,7 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomRevert()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
@@ -1516,7 +1518,7 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
@@ -2003,6 +2005,16 @@ bool MainWindow::CheckExit()
     return true;
 }
 
+bool MainWindow::CheckRevertable()
+{
+    if (!this->GetCurrentWikiSite()->GetProjectConfig()->RevertingEnabled)
+    {
+        Generic::pMessageBox(this, _l("error"), "This site doesn't support reverting through huggle, you can only use it to browse edits");
+        return false;
+    }
+    return true;
+}
+
 void MainWindow::Welcome()
 {
     if (!this->EditingChecks())
@@ -2323,7 +2335,7 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
@@ -2332,7 +2344,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
-    if (!this->EditingChecks())
+    if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     this->Revert("", false);
 }
