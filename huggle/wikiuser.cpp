@@ -148,8 +148,7 @@ bool WikiUser::IsIPv6(QString user)
 void WikiUser::UpdateWl(WikiUser *us, long score)
 {
     if (!us->IsIP() &&
-        score <= Configuration::HuggleConfiguration->ProjectConfig->WhitelistScore &&
-        !us->IsWhitelisted())
+        score <= us->GetSite()->GetProjectConfig()->WhitelistScore && !us->IsWhitelisted())
     {
         if (us->GetSite()->GetProjectConfig()->WhiteList.contains(us->Username))
         {
