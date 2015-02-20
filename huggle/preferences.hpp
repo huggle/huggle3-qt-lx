@@ -63,6 +63,7 @@ namespace Huggle
             QHash<QCheckBox*, int> NamespaceBoxes;
             WikiSite *Site;
             bool IgnoreConflicts = false;
+            bool isNowReloadingFilters = false;
             bool RewritingForm = false;
             bool ModifiedForm = false;
             Ui::Preferences *ui;

@@ -495,6 +495,7 @@ void Preferences::Reload()
     this->ui->tableWidget_3->resizeRowsToContents();
     int c = 0;
     int d = 0;
+    this->isNowReloadingFilters = true;
     this->ui->cbDefault->clear();
     this->ui->listWidget->clear();
     while (c < HuggleQueueFilter::Filters[this->Site]->count())
@@ -508,6 +509,7 @@ void Preferences::Reload()
         c++;
     }
     this->ui->cbDefault->setCurrentIndex(d);
+    this->isNowReloadingFilters = false;
 }
 
 void Preferences::Reload2()
@@ -622,6 +624,10 @@ void Huggle::Preferences::on_cbSites_currentIndexChanged(int index)
 
 void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
 {
+    if (this->isNowReloadingFilters)
+        return;
+    
+    // update the filter
     this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
     Core::HuggleCore->Main->Queue1->Filters();
 }
