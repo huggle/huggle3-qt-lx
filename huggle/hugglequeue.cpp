@@ -159,7 +159,7 @@ void HuggleQueue::Next()
     label->Process(i);
 }
 
-WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID, WikiSite *site)
+WikiEdit *HuggleQueue::GetWikiEditByRevID(revid_ht RevID, WikiSite *site)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;
@@ -175,7 +175,7 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(int RevID, WikiSite *site)
     return nullptr;
 }
 
-bool HuggleQueue::DeleteByRevID(int RevID, WikiSite *site)
+bool HuggleQueue::DeleteByRevID(revid_ht RevID, WikiSite *site)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int c = 0;

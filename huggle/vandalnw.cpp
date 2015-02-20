@@ -475,15 +475,14 @@ void VandalNw::onTick()
                 }
                 if (Command == "SCORED")
                 {
-                    int RevID = revid.toInt();
-                    int Score = parameter.toInt();
+                    revid_ht RevID = revid.toLongLong();
+                    long Score = parameter.toLong();
                     if (Score != 0)
                     {
                         WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID, site);
                         if (edit != nullptr)
                         {
-                            this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" +
-                                         edit->Page->PageName + "</b> by <b>" + edit->User->Username +
+                            this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
                                          "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
                             edit->Score += Score;
                             Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
