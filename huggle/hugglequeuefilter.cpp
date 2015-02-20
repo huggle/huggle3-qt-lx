@@ -38,6 +38,25 @@ void HuggleQueueFilter::Delete()
     Filters.clear();
 }
 
+HuggleQueueFilter *HuggleQueueFilter::GetFilter(QString filter_name, WikiSite *site)
+{
+    if (!Filters.contains(site))
+        throw new Huggle::Exception("Invalid key", BOOST_CURRENT_FUNCTION);
+
+    foreach (HuggleQueueFilter *filter, *Filters[site])
+    {
+        if (filter->QueueName == filter_name)
+            return filter;
+    }
+    throw new Huggle::Exception("There is no such a filter", BOOST_CURRENT_FUNCTION);
+}
+
+void HuggleQueueFilter::SetFilters()
+{
+    foreach (WikiSite *site, hcfg->Projects)
+        site->CurrentFilter = HuggleQueueFilter::GetFilter(site->GetUserConfig()->QueueID, site);
+}
+
 HuggleQueueFilter::HuggleQueueFilter()
 {
     this->QueueName = "default";

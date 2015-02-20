@@ -19,6 +19,7 @@
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 
 using namespace Huggle;
@@ -260,7 +261,7 @@ void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
 {
     this->IncrementEdits();
     QueryPool::HugglePool->PreProcessEdit(edit);
-    if (MainWindow::HuggleMain->Queue1->CurrentFilter->Matches(edit))
+    if (edit->GetSite()->CurrentFilter->Matches(edit))
     {
         if (this->Buffer->size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {

@@ -26,7 +26,6 @@ using namespace Huggle;
 HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
     this->ui->setupUi(this);
-    this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->setWindowTitle(_l("main-queue"));
     this->Filters();
 }
@@ -540,9 +539,9 @@ void HuggleQueue::on_comboBox_currentIndexChanged(int index)
             throw new Huggle::Exception("The filter list doesn't contain site", BOOST_CURRENT_FUNCTION);
         if (index > -1 && index < HuggleQueueFilter::Filters[this->CurrentSite()]->count())
         {
-            this->CurrentFilter = HuggleQueueFilter::Filters[this->CurrentSite()]->at(index);
+            this->CurrentSite()->CurrentFilter = HuggleQueueFilter::Filters[this->CurrentSite()]->at(index);
+            hcfg->UserConfig->QueueID = this->CurrentSite()->CurrentFilter->QueueName;
         }
-        hcfg->UserConfig->QueueID = this->CurrentFilter->QueueName;
     }
 }
 

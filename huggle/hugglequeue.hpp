@@ -74,7 +74,6 @@ namespace Huggle
             void RedrawTitle();
             WikiSite *CurrentSite();
             void ChangeSite(WikiSite *site);
-            HuggleQueueFilter *CurrentFilter;
             QList<HuggleQueueItemLabel*> Items;
         private slots:
             void on_comboBox_currentIndexChanged(int index);

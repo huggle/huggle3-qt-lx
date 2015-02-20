@@ -447,11 +447,9 @@ void Huggle::Preferences::on_pushButton_4_clicked()
         // don't touch a default filter
         return;
     }
-    if (Core::HuggleCore->Main->Queue1->CurrentFilter == filter)
+    if (this->Site->CurrentFilter == filter)
     {
-        QMessageBox mb;
-        mb.setText(_l("preferences-delete-using-filter"));
-        mb.exec();
+        Generic::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
         return;
     }
     HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
@@ -629,6 +627,7 @@ void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
     
     // update the filter
     this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
+    this->Site->CurrentFilter = HuggleQueueFilter::GetFilter(this->ui->cbDefault->itemText(index), this->Site);
     Core::HuggleCore->Main->Queue1->Filters();
 }
 

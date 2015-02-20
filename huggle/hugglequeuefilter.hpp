@@ -38,8 +38,10 @@ namespace Huggle
     {
         public:
             static void Delete();
+            static HuggleQueueFilter* GetFilter(QString filter_name, WikiSite *site);
+            static void SetFilters();
             static QHash<WikiSite*,QList<HuggleQueueFilter*>*> Filters;
-            static HuggleQueueFilter *DefaultFilter;
+            static HuggleQueueFilter* DefaultFilter;
 
             //! ctr
             HuggleQueueFilter();

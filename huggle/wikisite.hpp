@@ -22,6 +22,7 @@
 namespace Huggle
 {
     class HuggleFeed;
+    class HuggleQueueFilter;
     //! Namespace (mediawiki)
     class HUGGLE_EX WikiPageNS
     {
@@ -92,6 +93,7 @@ namespace Huggle
             void InsertNS(WikiPageNS *Ns);
             void RemoveNS(int ns);
             void ClearNS();
+            HuggleQueueFilter *CurrentFilter = nullptr;
             QHash<int, WikiPageNS*> NamespaceList;
             //! Name of wiki, used by huggle only
             QString Name;

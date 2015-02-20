@@ -260,6 +260,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
         this->ui->menuGo_to->addActions(list);
     }
+    HuggleQueueFilter::SetFilters();
     this->Localize();
     this->VandalDock->Connect();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");

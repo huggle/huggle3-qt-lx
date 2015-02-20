@@ -482,8 +482,6 @@ void Core::Shutdown()
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
     HuggleQueueFilter::Delete();
-    // why not
-    delete HuggleQueueFilter::DefaultFilter;
     GC::gc = nullptr;
     this->gc = nullptr;
     delete Query::NetworkManager;

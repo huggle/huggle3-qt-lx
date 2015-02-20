@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "hugglequeuefilter.hpp"
 #include "wikisite.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -94,6 +95,7 @@ WikiSite::WikiSite(WikiSite *w)
 
 WikiSite::WikiSite(QString name, QString url)
 {
+    this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->LongPath = "wiki/";
     this->Name = name;
     this->URL = url;
@@ -107,6 +109,7 @@ WikiSite::WikiSite(QString name, QString url)
 
 WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl)
 {
+    this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->IRCChannel = channel;
     this->LongPath = path;
     this->Name = name;
