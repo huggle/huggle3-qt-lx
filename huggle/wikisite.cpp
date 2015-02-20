@@ -22,6 +22,7 @@ WikiPageNS::WikiPageNS(int id, QString name, QString canonical_name)
     QString lw = name.toLower();
     this->Talk = (lc.startsWith("talk") || lc.contains(" talk") || lw.startsWith("talk") || lw.contains(" talk"));
     this->ID = id;
+    canonical_name = canonical_name.replace("_", " ");
     this->CanonicalName = canonical_name;
     this->Name = name;
 }
@@ -153,6 +154,8 @@ WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
 
 WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
 {
+    // canonical names never contain this
+    CanonicalName = CanonicalName.replace("_", " ");
     WikiPageNS *dns_ = nullptr;
     // let's try canonical names
     foreach(WikiPageNS *ns_, this->NamespaceList)

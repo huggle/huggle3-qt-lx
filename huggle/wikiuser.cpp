@@ -129,8 +129,8 @@ void WikiUser::UpdateUser(WikiUser *us)
 
 bool WikiUser::CompareUsernames(QString a, QString b)
 {
-    a = a.replace("_", " ");
-    a = a.toLower();
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+    a = a.replace("_", " ").toLower();
     b = b.replace("_", " ").toLower();
     return (a == b);
 }
@@ -292,6 +292,7 @@ void WikiUser::Resync()
 
 QString WikiUser::TalkPage_GetContents()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     // first we need to lock this object because it might be accessed from another thread in same moment
     this->UserLock->lock();
     // check if there isn't some global talk page
@@ -313,6 +314,7 @@ QString WikiUser::TalkPage_GetContents()
 
 void WikiUser::TalkPage_SetContents(QString text)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     this->UserLock->lock();
     this->_talkPageWasRetrieved = true;
     this->ContentsOfTalkPage = text;
