@@ -148,3 +148,9 @@ functions with variables.
 
 Using this order in every class declaration (.hpp file) will make it easier to find
 where certain stuff is. It is recommended to order everything alphabetically too.
+
+== Exceptions ==
+
+We are using exceptions only in situation where you want huggle to crash so there is no graceful exception handling. You can throw exceptions but you should never catch them. All exceptions must be derived from Huggle::Exception.
+
+You need to keep in mind that any code that throw an exception will make huggle crash, so use them really only when you know that you need to crash it at some point (dangerous situation happens that could damage something).

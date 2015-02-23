@@ -42,6 +42,7 @@ namespace Huggle
             void Process(QLayoutItem *qi = nullptr);
             void Remove(QLayoutItem *qi = nullptr);
             void UpdatePixmap();
+            void SetLabelToolTip(QString text);
             HuggleQueue *ParentQueue;
             Collectable_SmartPtr<WikiEdit> Page;
 

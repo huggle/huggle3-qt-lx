@@ -48,6 +48,11 @@ QString HuggleQueueItemLabel::GetName()
     return this->ui->label_2->text();
 }
 
+void HuggleQueueItemLabel::SetLabelToolTip(QString text)
+{
+    this->setToolTip(text);
+}
+
 void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 {
     MainWindow::HuggleMain->ProcessEdit(this->Page);
