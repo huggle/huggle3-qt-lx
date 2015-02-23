@@ -11,6 +11,7 @@
 #include "configuration.hpp"
 #include "hugglequeuefilter.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikiuser.hpp"
 #include "wikisite.hpp"
@@ -48,7 +49,8 @@ HuggleQueueFilter *HuggleQueueFilter::GetFilter(QString filter_name, WikiSite *s
         if (filter->QueueName == filter_name)
             return filter;
     }
-    throw new Huggle::Exception("There is no such a filter", BOOST_CURRENT_FUNCTION);
+    Syslog::HuggleLogs->WarningLog("There is no filter " + filter_name + " on " + site->Name + " falling back to default filter");
+    return DefaultFilter;
 }
 
 void HuggleQueueFilter::SetFilters()
