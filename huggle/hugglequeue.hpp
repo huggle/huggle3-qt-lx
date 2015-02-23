@@ -19,7 +19,6 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
-#include "hugglequeueitemlabel.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui

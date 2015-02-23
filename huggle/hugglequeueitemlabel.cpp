@@ -33,14 +33,15 @@ HuggleQueueItemLabel::~HuggleQueueItemLabel()
 void HuggleQueueItemLabel::SetName(QString name)
 {
     this->ui->label_2->setText(name);
-    if (this->Page != nullptr)
+    if (this->Edit != nullptr)
     {
-        int id = this->Page->Page->GetNS()->GetID();
+        int id = this->Edit->Page->GetNS()->GetID();
         if (id != 0)
             this->ui->label_2->setStyleSheet("QLabel { background-color : #" + getColor(id) + "; }");
         // change the icon according to edit type
-        this->ui->label->setPixmap(QPixmap(this->Page->GetPixmap()));
+        this->ui->label->setPixmap(QPixmap(this->Edit->GetPixmap()));
     }
+    this->RefreshInfo();
 }
 
 QString HuggleQueueItemLabel::GetName()
@@ -55,7 +56,7 @@ void HuggleQueueItemLabel::SetLabelToolTip(QString text)
 
 void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 {
-    MainWindow::HuggleMain->ProcessEdit(this->Page);
+    MainWindow::HuggleMain->ProcessEdit(this->Edit);
     this->Remove(qi);
 }
 
@@ -71,7 +72,7 @@ void HuggleQueueItemLabel::Remove(QLayoutItem *qi)
 
 void HuggleQueueItemLabel::UpdatePixmap()
 {
-    this->ui->label->setPixmap(QPixmap(this->Page->GetPixmap()));
+    this->ui->label->setPixmap(QPixmap(this->Edit->GetPixmap()));
 }
 
 void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
@@ -80,6 +81,17 @@ void HuggleQueueItemLabel::mousePressEvent(QMouseEvent *event)
     {
         this->Process();
     }
+}
+
+void HuggleQueueItemLabel::RefreshInfo()
+{
+    if (this->Edit == nullptr)
+        return;
+    this->SetLabelToolTip("<b>Wiki: </b>" + this->Edit->GetSite()->Name + "<br><b>User: </b>" +
+                          this->Edit->User->Username +
+                          "<b><br>Date: </b>" + this->Edit->Time.toString() +
+                          "<br><b>Score: </b>" +
+                          QString::number(this->Edit->Score));
 }
 
 QString HuggleQueueItemLabel::getColor(int id)

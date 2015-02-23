@@ -13,6 +13,7 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "huggleprofiler.hpp"
+#include "hugglequeueitemlabel.hpp"
 #include "vandalnw.hpp"
 #include "localization.hpp"
 #include "ui_hugglequeue.h"
@@ -99,7 +100,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     // we create a new label here
-    label->Page = page;
+    label->Edit = page;
     label->SetName(page->Page->PageName);
     if (page->Score <= MINIMAL_SCORE)
     {
@@ -165,9 +166,9 @@ WikiEdit *HuggleQueue::GetWikiEditByRevID(revid_ht RevID, WikiSite *site)
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->Page->RevID == RevID && item->Page->GetSite() == site)
+        if (item->Edit->RevID == RevID && item->Edit->GetSite() == site)
         {
-            return item->Page;
+            return item->Edit;
         }
         c++;
     }
@@ -181,9 +182,9 @@ bool HuggleQueue::DeleteByRevID(revid_ht RevID, WikiSite *site)
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->Page->RevID == RevID && item->Page->GetSite() == site)
+        if (item->Edit->RevID == RevID && item->Edit->GetSite() == site)
         {
-            if (MainWindow::HuggleMain->CurrentEdit == item->Page)
+            if (MainWindow::HuggleMain->CurrentEdit == item->Edit)
             {
                 // we can't delete item that is being reviewed now
                 return false;
@@ -217,7 +218,7 @@ void HuggleQueue::SortItemByEdit(WikiEdit *e)
     {
         QLayoutItem *i = this->ui->itemList->itemAt(c);
         HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
-        if (x && x->Page == e)
+        if (x && x->Edit == e)
         {
             this->ResortItem(i, c);
             return;
@@ -250,7 +251,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
 
     // first we get the item
     HuggleQueueItemLabel *q1 = (HuggleQueueItemLabel*)item->widget();
-    int Score = q1->Page->Score;
+    int Score = q1->Edit->Score;
     int x = 0;
     bool sorted = true;
     while (x < position)
@@ -261,7 +262,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
         if (l2 != item)
         {
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
-            if (q2->Page->Score < Score)
+            if (q2->Edit->Score < Score)
             {
                 sorted = false;
                 break;
@@ -279,7 +280,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
             HuggleQueueItemLabel *q2 = (HuggleQueueItemLabel*)l2->widget();
             // we need to check here if we accidentaly didn't get some
             // element that actually isn't an item
-            if (q2 != nullptr && q2->Page->Score > Score)
+            if (q2 != nullptr && q2->Edit->Score > Score)
             {
                 sorted = false;
                 break;
@@ -291,7 +292,7 @@ void HuggleQueue::ResortItem(QLayoutItem *item, int position)
     {
         // now we need to remove the item and place it again
         // because QT doesn't allow manual insertion of item for unknown reasons, we need to readd whole item
-        WikiEdit *page = q1->Page;
+        WikiEdit *page = q1->Edit;
         page->RegisterConsumer("HuggleQueue::ResortItem");
         this->DeleteItem(q1);
         this->AddItem(page);
@@ -319,8 +320,8 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
     }
     if (qi != nullptr)
     {
-        item->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-        item->Page = nullptr;
+        item->Edit->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+        item->Edit = nullptr;
         this->ui->itemList->removeItem(qi);
         delete qi;
         delete item;
@@ -334,10 +335,10 @@ void HuggleQueue::Delete(HuggleQueueItemLabel *item, QLayoutItem *qi)
         if (label == item)
         {
             this->ui->itemList->removeItem(i);
-            if (label->Page != nullptr)
+            if (label->Edit != nullptr)
             {
-                label->Page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
-                label->Page = nullptr;
+                label->Edit->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+                label->Edit = nullptr;
             }
             delete i;
             delete item;
@@ -355,9 +356,9 @@ int HuggleQueue::DeleteByScore(long Score)
     while (c < this->Items.count())
     {
         HuggleQueueItemLabel *item = this->Items.at(c);
-        if (item->Page->Score < Score)
+        if (item->Edit->Score < Score)
         {
-            if (MainWindow::HuggleMain->CurrentEdit == item->Page)
+            if (MainWindow::HuggleMain->CurrentEdit == item->Edit)
             {
                 // we can't delete item that is being reviewed now
                 c++;
@@ -433,7 +434,7 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
     int i = 0;
     while (i < this->Items.count())
     {
-        WikiEdit *_e = this->Items.at(i)->Page;
+        WikiEdit *_e = this->Items.at(i)->Edit;
         if (edit->RevID > _e->RevID)
         {
             if (edit->Page->PageName == _e->Page->PageName)
@@ -459,7 +460,7 @@ void HuggleQueue::UpdateUser(WikiUser *user)
     int i = 0;
     while (i < this->Items.count())
     {
-        WikiEdit *ed = this->Items.at(i)->Page;
+        WikiEdit *ed = this->Items.at(i)->Edit;
         if (ed->User->Username == user->Username)
         {
             // we have a match, let's update the icon, but only if the levels are actually different for performance reasons
@@ -524,11 +525,11 @@ long HuggleQueue::GetScore(int id)
     {
         throw new Huggle::NullPointerException("label was nullptr", BOOST_CURRENT_FUNCTION);
     }
-    if (label->Page == nullptr)
+    if (label->Edit == nullptr)
     {
         return MINIMAL_SCORE;
     }
-    return label->Page->Score;
+    return label->Edit->Score;
 }
 
 void HuggleQueue::on_comboBox_currentIndexChanged(int index)

@@ -17,6 +17,7 @@
 #include <QMenu>
 #include <QLabel>
 #include <QTimer>
+#include <QCloseEvent>
 #include <QThread>
 #include <QVBoxLayout>
 #include <QSplitter>
