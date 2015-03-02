@@ -81,6 +81,7 @@ namespace Huggle
             virtual void Hook_EditPostProcess(void *edit) {}
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
+            virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
             virtual void Hook_BadnessScore(void *user, int score) {}
             //! Name of the extension
             virtual QString GetExtensionName() { return "Unknown"; }

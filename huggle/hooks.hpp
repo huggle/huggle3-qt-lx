@@ -19,6 +19,7 @@ namespace Huggle
 {
     class WikiUser;
     class WikiEdit;
+    class Shortcut;
     class Exception;
     class MainWindow;
     class SpeedyForm;
@@ -70,7 +71,8 @@ namespace Huggle
              * \brief Window is loaded
              * \param window
              */
-            static void MainWindowIsLoaded(MainWindow *window);
+            static void MainWindow_OnLoad(MainWindow *window);
+            static bool MainWindow_ReloadShortcut(Shortcut *shortcut);
             static void Shutdown();
     };
 }

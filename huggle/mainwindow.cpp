@@ -266,7 +266,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->VandalDock->Connect();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
     this->tCheck = new QTimer(this);
-    Hooks::MainWindowIsLoaded(this);
+    Hooks::MainWindow_OnLoad(this);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
     this->tStatusBarRefreshTimer = new QTimer(this);
@@ -690,6 +690,8 @@ void MainWindow::ReloadShort(QString id)
     if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
         throw new Huggle::Exception("Invalid shortcut name", BOOST_CURRENT_FUNCTION);
     Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
+    if (!Hooks::MainWindow_ReloadShortcut(&s))
+        return;
     QAction *q = nullptr;
     QAction *tip = nullptr;
     // now this horrid switch
