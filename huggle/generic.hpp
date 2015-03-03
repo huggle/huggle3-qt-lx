@@ -44,7 +44,7 @@ namespace Huggle
         MessageBoxStyleError
     };
 
-    //! Generic requests that are frequently issued to wiki
+    //! Generic C++ functions that are missing standard libs
     namespace Generic
     {
         /*!
@@ -53,6 +53,11 @@ namespace Huggle
          * \return string
          */
         HUGGLE_EX QString Bool2String(bool b);
+        /*!
+         * \brief Safely turn a QString into a bool value
+         * \param value QString Text that needs to be changed to bool
+         * \param defaultvalue bool What value should bool have in case that text can't be parsed, by default it's false
+         */
         HUGGLE_EX bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
         HUGGLE_EX bool ReportPreFlightCheck();

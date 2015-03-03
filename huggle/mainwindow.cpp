@@ -2002,8 +2002,7 @@ bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
     {
-        Generic::pMessageBox(this, _l("error"), _l("main-shutting-down"),
-                               MessageBoxStyleNormal, true);
+        Generic::pMessageBox(this, _l("error"), _l("main-shutting-down"), MessageBoxStyleNormal, true);
         return false;
     }
     return true;
