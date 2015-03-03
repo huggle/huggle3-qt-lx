@@ -54,6 +54,17 @@ namespace Huggle
              * \brief This is called when the extension is removed from system
              */
             virtual bool Quit() { return false; }
+            //! Name of the extension
+            virtual QString GetExtensionName() { return "Unknown"; }
+            //! User who created this thing
+            virtual QString GetExtensionAuthor() { return ""; }
+            virtual QString GetExtensionVersion() { return "1.0"; }
+            virtual QString GetExtensionDescription() { return "No description"; }
+            //! Whether this extension need access to huggle configs
+            virtual bool RequestConfiguration() { return false; }
+            //! Whether this extension need access to core
+            virtual bool RequestCore() { return false; }
+            virtual bool RequestNetwork() { return false; }
             /*!
              * \brief Hook_EditPreProcess is called when edit is being pre processed
              * \param edit is a pointer to edit in question
@@ -83,17 +94,6 @@ namespace Huggle
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
             virtual void Hook_BadnessScore(void *user, int score) {}
-            //! Name of the extension
-            virtual QString GetExtensionName() { return "Unknown"; }
-            //! User who created this thing
-            virtual QString GetExtensionAuthor() { return ""; }
-            virtual QString GetExtensionVersion() { return "1.0"; }
-            virtual QString GetExtensionDescription() { return "No description"; }
-            //! Whether this extension need access to huggle configs
-            virtual bool RequestConfiguration() { return false; }
-            //! Whether this extension need access to core
-            virtual bool RequestCore() { return false; }
-            virtual bool RequestNetwork() { return false; }
             //! Pointer to huggle core
             void *HuggleCore;
             //! Pointer to global system configuration
