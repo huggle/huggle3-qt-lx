@@ -15,6 +15,7 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
+#include "resources.hpp"
 #include "syslog.hpp"
 #include "query.hpp"
 #include "wikiedit.hpp"
@@ -497,6 +498,7 @@ static QString DoubleBack(QString path)
 
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
+    this->hugglePyLib = Resources::GetResource("/huggle/resources/Resources/Python/definitions.py");
     // define hooks
     PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it

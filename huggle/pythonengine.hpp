@@ -103,6 +103,7 @@ namespace Huggle
             private:
                 QHash<unsigned long, Query*> Queries;
                 unsigned long LastQuery = 0;
+                QString hugglePyLib;
                 friend class PythonScript;
                 QList<PythonScript*> Scripts;
         };
