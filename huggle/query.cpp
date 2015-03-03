@@ -12,6 +12,7 @@
 #include <QNetworkAccessManager>
 #include "exception.hpp"
 #include "syslog.hpp"
+#include <inttypes.h>
 #include "gc.hpp"
 
 using namespace Huggle;
@@ -157,5 +158,5 @@ void Query::ThrowOnValidResult()
         return;
 
     this->Status = StatusInError;
-    throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString().sprintf("%016" PRIxPTR, (uintptr_t)this->Result), BOOST_CURRENT_FUNCTION);
+    throw new Huggle::Exception("Result was not NULL memory would leak: " + QString().sprintf("%016" PRIxPTR, (uintptr_t)this->Result), BOOST_CURRENT_FUNCTION);
 }
