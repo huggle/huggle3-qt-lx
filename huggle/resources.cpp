@@ -21,7 +21,7 @@ QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::CssRtl;
 
-QString Huggle::GetResource(QString path)
+QString Huggle::Resources::GetResource(QString path)
 {
     QFile *vf = new QFile(":" + path);
     if (!vf->open(QIODevice::ReadOnly))
