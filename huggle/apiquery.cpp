@@ -138,6 +138,12 @@ ApiQueryResult *ApiQuery::GetApiQueryResult()
     return (ApiQueryResult*)this->Result;
 }
 
+void ApiQuery::SetCustomActionPart(QString action)
+{
+    this->SetAction(ActionCustom);
+    this->ActionPart = action;
+}
+
 static void WriteFile(QString text)
 {
     QFile *file = new QFile(hcfg->QueryDebugPath);
@@ -342,6 +348,8 @@ void ApiQuery::SetAction(const Action action)
         case ActionWatch:
             this->ActionPart = "watch";
             this->EditingQuery = true;
+            return;
+        case ActionCustom:
             return;
     }
 }

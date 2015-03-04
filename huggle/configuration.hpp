@@ -186,7 +186,8 @@ namespace Huggle
             void NormalizeConf(WikiSite *site);
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
-            QString GetExtensionConfig(QString extension, QString name, QString ms);
+            QString GetExtensionConfig(QString extension, QString name, QString default_value);
+            void SetExtensionConfig(QString extension, QString name, QString value);
 
             ////////////////////////////////////////////
             // System

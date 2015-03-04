@@ -45,6 +45,8 @@ bool Query::IsProcessed()
     {
         return true;
     }
+    if (this->Status == StatusNull)
+        return false;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
         if (!this->Repeated && this->RetryOnTimeoutFailure)
