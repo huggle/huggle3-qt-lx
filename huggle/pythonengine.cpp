@@ -166,7 +166,7 @@ namespace Huggle
             if (!edit)
                 throw new Huggle::NullPointerException("edit", BOOST_CURRENT_FUNCTION);
             PyObject *edit_revid_k = QString2PyObject("revid");
-            PyObject *edit_revid_v = PyLong_FromUnsignedLongLong(Edit->RevID);
+            PyObject *edit_revid_v = PyLong_FromLongLong(Edit->RevID);
             PyObject *edit_user_k = QString2PyObject("user");
             PyObject *edit_user_v = WikiUser2PyObject(Edit->User);
             PyObject *edit_page_k = QString2PyObject("page");
