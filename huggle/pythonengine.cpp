@@ -19,6 +19,7 @@
 #include "syslog.hpp"
 #include "query.hpp"
 #include "wikiedit.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -38,6 +39,9 @@ namespace Huggle
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
+
+////////////////////////////////////////////////////////////
+
         static void TryCatch(PyObject *script)
         {
             if (script)
@@ -75,6 +79,128 @@ namespace Huggle
             Py_DECREF(tn);
             return result;
         }
+
+///////////////////////////////////////////////////////////////////////
+// MARSHALLING
+///////////////////////////////////////////////////////////////////////
+
+// Functions here are turning our objects into python corresponding versions
+
+// for most of the classes we just create a dict which has each variable mapped to a hash key
+
+        static PyObject *QString2PyObject(QString text)
+        {
+            PyObject *rx = PyUnicode_FromString(text.toUtf8().data());
+            if (!rx)
+            {
+                TryCatch(NULL);
+                throw new Huggle::NullPointerException("rx", BOOST_CURRENT_FUNCTION);
+            }
+
+            return rx;
+        }
+
+        static PyObject *WikiSite2PyObject(WikiSite *Site)
+        {
+            PyObject *site = PyDict_New();
+            if (site == nullptr)
+                throw new Huggle::NullPointerException("site", BOOST_CURRENT_FUNCTION);
+
+            PyObject *site_name_k = QString2PyObject("name");
+            PyObject *site_name_v = QString2PyObject(Site->Name);
+            if (PyDict_SetItem(site, site_name_k, site_name_v))
+                goto error;
+            Py_DECREF(site_name_k);
+            Py_DECREF(site_name_v);
+            return site;
+
+            error:
+                Py_DECREF(site_name_k);
+                Py_DECREF(site_name_v);
+                TryCatch(NULL);
+                throw new Huggle::Exception("Can't turn WikiSite into PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiUser2PyObject(WikiUser *User)
+        {
+            PyObject *user = PyDict_New();
+            if (user == nullptr)
+                throw new Huggle::NullPointerException("user", BOOST_CURRENT_FUNCTION);
+
+            PyObject *user_name_k = QString2PyObject("username");
+            PyObject *user_name_v = QString2PyObject(User->Username);
+            PyObject *user_site_k = QString2PyObject("site");
+            PyObject *user_site_v = WikiSite2PyObject(User->GetSite());
+            if (PyDict_SetItem(user_name_k, user, user_name_v))
+                goto error;
+            if (PyDict_SetItem(user_site_k, user, user_site_v))
+                goto error;
+
+            // we need to decref all values at same moment because in case there was an error and we throw
+            // there is one extra decref in error block as we don't want to leak
+            Py_DECREF(user_site_k);
+            Py_DECREF(user_site_v);
+            Py_DECREF(user_name_k);
+            Py_DECREF(user_name_v);
+            return user;
+
+            error:
+                Py_DECREF(user_site_k);
+                Py_DECREF(user_site_v);
+                Py_DECREF(user_name_k);
+                Py_DECREF(user_name_v);
+                TryCatch(NULL);
+                throw new Huggle::Exception("Can't turn WikiUser into PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiPage2PyObject(WikiPage *Page)
+        {
+            PyObject *page = PyDict_New();
+
+            return page;
+        }
+
+        static PyObject *WikiEdit2PyObject(WikiEdit *Edit)
+        {
+            PyObject *edit = PyDict_New();
+            if (!edit)
+                throw new Huggle::NullPointerException("edit", BOOST_CURRENT_FUNCTION);
+            PyObject *edit_revid_k = QString2PyObject("revid");
+            PyObject *edit_revid_v = PyLong_FromUnsignedLongLong(Edit->RevID);
+            PyObject *edit_user_k = QString2PyObject("user");
+            PyObject *edit_user_v = WikiUser2PyObject(Edit->User);
+            PyObject *edit_page_k = QString2PyObject("page");
+            PyObject *edit_page_v = WikiPage2PyObject(Edit->Page);
+            if (PyDict_SetItem(edit, edit_revid_k, edit_revid_v))
+                goto error;
+            if (PyDict_SetItem(edit, edit_user_k, edit_user_v))
+                goto error;
+            if (PyDict_SetItem(edit, edit_page_k, edit_page_v))
+                goto error;
+
+            Py_DECREF(edit_revid_v);
+            Py_DECREF(edit_revid_k);
+            Py_DECREF(edit_user_k);
+            Py_DECREF(edit_user_v);
+            Py_DECREF(edit_page_k);
+            Py_DECREF(edit_page_v);
+
+            return edit;
+
+            error:
+                Py_DECREF(edit_revid_v);
+                Py_DECREF(edit_revid_k);
+                Py_DECREF(edit_user_k);
+                Py_DECREF(edit_user_v);
+                Py_DECREF(edit_page_k);
+                Py_DECREF(edit_page_v);
+                TryCatch(NULL);
+                throw new Huggle::Exception("Unable to turn WikiEdit to PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+///////////////////////////////////////////////////////////////////////
+// HUGGLE API'S
+///////////////////////////////////////////////////////////////////////
 
         static PyObject *DebugLog(PyObject *self, PyObject *args)
         {
@@ -498,7 +624,7 @@ static QString DoubleBack(QString path)
 
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
-    this->hugglePyLib = Resources::GetResource("/huggle/resources/Resources/Python/definitions.py");
+    this->hugglePyLib = Resources::GetResource("/huggle/text/Resources/Python/definitions.py");
     // define hooks
     PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it

@@ -35,5 +35,6 @@
         <file>Localization/tr.xml</file>
         <file>Localization/zh.xml</file>
         <file>Localization/br.xml</file>
+        <file>Resources/Python/definitions.py</file>
     </qresource>
 </RCC>
