@@ -138,10 +138,13 @@ ApiQueryResult *ApiQuery::GetApiQueryResult()
     return (ApiQueryResult*)this->Result;
 }
 
-void ApiQuery::SetCustomActionPart(QString action)
+void ApiQuery::SetCustomActionPart(QString action, bool editing, bool enforce_login, bool is_continuous)
 {
     this->SetAction(ActionCustom);
     this->ActionPart = action;
+    this->EnforceLogin = enforce_login;
+    this->IsContinuous = is_continuous;
+    this->EditingQuery = editing;
 }
 
 static void WriteFile(QString text)

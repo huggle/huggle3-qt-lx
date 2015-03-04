@@ -67,7 +67,7 @@ namespace Huggle
             explicit ApiQuery(Action action, WikiSite *site);
             ~ApiQuery();
             Action GetAction();
-            void SetCustomActionPart(QString action);
+            void SetCustomActionPart(QString action, bool editing = false, bool enforce_login = false, bool is_continuous = false);
             ApiQueryResult *GetApiQueryResult();
             //! Run
             void Process();
