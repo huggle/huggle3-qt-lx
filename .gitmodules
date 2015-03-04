@@ -4,3 +4,6 @@
 [submodule "huggle/extension_list/enwiki"]
 	path = huggle/extension_list/enwiki
 	url = http://github.com/huggle/enwiki
+[submodule "huggle/extension_list/extension-thanks"]
+	path = huggle/extension_list/extension-thanks
+	url = http://github.com/huggle/extension-thanks

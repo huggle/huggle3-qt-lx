@@ -43,7 +43,8 @@ namespace Huggle
         ActionProtect,
         ActionEdit,
         ActionUnwatch,
-        ActionWatch
+        ActionWatch,
+        ActionCustom
     };
 
     //! Format in which the result will be returned
@@ -66,6 +67,7 @@ namespace Huggle
             explicit ApiQuery(Action action, WikiSite *site);
             ~ApiQuery();
             Action GetAction();
+            void SetCustomActionPart(QString action, bool editing = false, bool enforce_login = false, bool is_continuous = false);
             ApiQueryResult *GetApiQueryResult();
             //! Run
             void Process();

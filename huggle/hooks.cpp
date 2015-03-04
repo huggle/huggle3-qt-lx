@@ -73,6 +73,11 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
 {
     Core::HuggleCore->Main->VandalDock->Good(Edit);
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_GoodEdit((void*)Edit);
+    }
 }
 
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)

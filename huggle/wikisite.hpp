@@ -64,7 +64,7 @@ namespace Huggle
     }
 
     //! Site
-    class WikiSite
+    class HUGGLE_EX WikiSite
     {
         public:
             //! This NS is used in case we can't find a match for page

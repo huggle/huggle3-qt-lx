@@ -516,11 +516,18 @@ bool Configuration::ParseGlobalConfig(QString config)
     return true;
 }
 
-QString Configuration::GetExtensionConfig(QString extension, QString name, QString ms)
+QString Configuration::GetExtensionConfig(QString extension, QString name, QString default_value)
 {
     if (!this->ExtensionData.contains(extension))
-        return ms;
-    return this->ExtensionData[extension]->GetOption(name, ms);
+        return default_value;
+    return this->ExtensionData[extension]->GetOption(name, default_value);
+}
+
+void Configuration::SetExtensionConfig(QString extension, QString name, QString value)
+{
+    if (!this->ExtensionData.contains(extension))
+        this->ExtensionData.insert(extension, new ExtensionConfig());
+    this->ExtensionData[extension]->SetOption(name, value);
 }
 
 QString Configuration::GetProjectURL(WikiSite *Project)

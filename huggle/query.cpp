@@ -45,6 +45,8 @@ bool Query::IsProcessed()
     {
         return true;
     }
+    if (this->Status == StatusNull)
+        return false;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
         if (!this->Repeated && this->RetryOnTimeoutFailure)
@@ -158,5 +160,5 @@ void Query::ThrowOnValidResult()
         return;
 
     this->Status = StatusInError;
-    throw new Huggle::Exception("Result was not NULL memory would leak: " + QString().sprintf("%016" PRIxPTR, (uintptr_t)this->Result), BOOST_CURRENT_FUNCTION);
+    throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString::number((uintptr_t)this->Result, 16), BOOST_CURRENT_FUNCTION);
 }

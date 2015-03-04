@@ -65,11 +65,13 @@ namespace Huggle
             //! Whether this extension need access to core
             virtual bool RequestCore() { return false; }
             virtual bool RequestNetwork() { return false; }
+            virtual void Hook_BadnessScore(void *user, int score) {}
             /*!
              * \brief Hook_EditPreProcess is called when edit is being pre processed
              * \param edit is a pointer to edit in question
              */
             virtual void Hook_EditPreProcess(void *edit) {}
+            virtual void Hook_GoodEdit(void *edit) {}
             /*!
              * \brief Hook_RevertPreflight is called before preflight check is executed and if
              * false is returned, the revert is cancelled with no warnings
@@ -93,7 +95,6 @@ namespace Huggle
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
-            virtual void Hook_BadnessScore(void *user, int score) {}
             //! Pointer to huggle core
             void *HuggleCore;
             //! Pointer to global system configuration
