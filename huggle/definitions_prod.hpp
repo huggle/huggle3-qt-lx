@@ -66,8 +66,10 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 // #define HUGGLE_PROFILING
 
 // uncomment this if you want to enable python support
+#ifndef HUGGLE_EXTENSION
 #ifndef HUGGLE_PYTHON
 //    #define HUGGLE_PYTHON
+#endif
 #endif
 
 // Uncomment this in order to disable breakpad, this is useful when you are having troubles
