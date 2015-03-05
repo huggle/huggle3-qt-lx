@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QStringList>
 #include <QString>
 #include <QMutex>
 #include <QTimer>

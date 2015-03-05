@@ -666,7 +666,6 @@ Query *PythonEngine::GetQuery(unsigned long ID)
         return this->Queries[ID];
 
     // when there is no such a query we return a null pointer
-    // that means there is no such a query
     return nullptr;
 }
 
@@ -718,6 +717,10 @@ unsigned int PythonEngine::Count()
     return s;
 }
 
+///////////////////////////////////////////////////////////////////////
+// HOOK
+///////////////////////////////////////////////////////////////////////
+
 void PythonEngine::Hook_HuggleShutdown()
 {
     foreach (PythonScript *c, this->Scripts)
@@ -727,6 +730,11 @@ void PythonEngine::Hook_HuggleShutdown()
             c->Hook_Shutdown();
         }
     }
+}
+
+QString PythonEngine::HugglePyLibSource()
+{
+    return this->hugglePyLib;
 }
 
 void PythonEngine::Hook_MainWindowIsLoaded()
@@ -750,6 +758,10 @@ void PythonEngine::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
         }
     }
 }
+
+///////////////////////////////////////////////////////////////////////
+// PYTHON SCRIPT
+///////////////////////////////////////////////////////////////////////
 
 PythonScript::PythonScript(QString name)
 {
@@ -842,6 +854,12 @@ QString PythonScript::CallInternal(QString function)
         return "<unknown>";
     }
     PyObject *value = PyObject_CallObject(ptr_python_, nullptr);
+    if (!value)
+    {
+        TryCatch(nullptr);
+        Syslog::HuggleLogs->DebugLog("Python::$" + function + "@" + this->Name + ": value must be not be null type");
+        return "<unknown>";
+    }
     PyObject *text_ = PyUnicode_AsUTF8String(value);
     Py_DECREF(value);
     if (text_ == nullptr || !PyBytes_Check(text_))
@@ -950,7 +968,7 @@ bool PythonScript::Init()
             delete file;
             return false;
         }
-        this->SourceCode = QString(file->readAll());
+        this->SourceCode = Huggle::Core::HuggleCore->Python->HugglePyLibSource() + QString(file->readAll());
         file->close();
         delete file;
         HUGGLE_DEBUG("Importing module " + this->ModuleID, 4);

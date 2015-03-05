@@ -1,6 +1,9 @@
 # this file contains class and constant definitions for huggle
+# it is prepended into every single huggle extension
+import sys
+import huggle
 
-UNKNOWN_REVID = -1
+huggle.UNKNOWN_REVID = -1
 
 class Version:
     major = 0
@@ -17,7 +20,7 @@ class WikiPage:
         self.Contents = contents
 
 class WikiEdit:
-    RevID = UNKNOWN_REVID
+    RevID = huggle.UNKNOWN_REVID
     Page = None
     User = None
     Site = None
@@ -36,3 +39,19 @@ class WikiSite:
     OAuthURL    = ''
     HANChannel  = ''
     MediaWikiVersion = None
+
+# Import all these classes into huggle namespace
+huggle.Version = Version
+huggle.WikiPage = WikiPage
+huggle.WikiEdit = WikiEdit
+huggle.WikiSite = WikiSite
+
+# Remove the local names
+del locals()['Version']
+del locals()['WikiPage']
+del locals()['WikiUser']
+del locals()['WikiSite']
+
+
+
+

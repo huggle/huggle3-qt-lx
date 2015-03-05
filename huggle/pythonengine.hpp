@@ -90,6 +90,7 @@ namespace Huggle
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_HuggleShutdown();
+                QString HugglePyLibSource();
                 PythonScript *PythonScriptObjFromPyObj(PyObject *object);
                 QList<PythonScript*> ScriptsList();
                 Query *GetQuery(unsigned long ID);
