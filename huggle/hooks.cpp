@@ -35,6 +35,9 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
         }
         extension++;
     }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
+#endif
 }
 
 bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
@@ -68,6 +71,9 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
         }
         extension++;
     }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_OnEditPostProcess(Edit);
+#endif
 }
 
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
@@ -78,6 +84,9 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
         if (e->IsWorking())
             e->Hook_GoodEdit((void*)Edit);
     }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_GoodEdit(Edit);
+#endif
 }
 
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)

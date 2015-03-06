@@ -14,10 +14,6 @@ class WikiPage:
     PageName = None
     Site = None
     Contents = None
-    def __init__(self, page_name, site, contents):
-        self.PageName = page_name
-        self.Site = site
-        self.Contents = contents
 
 class WikiEdit:
     RevID = huggle.UNKNOWN_REVID
@@ -40,17 +36,46 @@ class WikiSite:
     HANChannel  = ''
     MediaWikiVersion = None
 
-# Import all these classes into huggle namespace
 huggle.Version = Version
 huggle.WikiPage = WikiPage
+huggle.WikiUser = WikiUser
 huggle.WikiEdit = WikiEdit
 huggle.WikiSite = WikiSite
+
+class Marshalling:
+    @staticmethod
+    def mWikiEdit(edit):
+        e_ = huggle.WikiEdit()
+        e_.RevID = edit["revid"]
+        e_.Page = huggle.Marshalling.mWikiPage(edit["page"])
+        e_.User = huggle.Marshalling.mWikiUser(edit["user"])
+        #e_.Site = huggle.Marshalling.mWikiSite(edit["site"])
+        return e_;
+
+    @staticmethod
+    def mWikiPage(page):
+        p_ = huggle.WikiPage()
+        p_.PageName = page["name"]
+        return p_;
+
+    @staticmethod
+    def mWikiSite(site):
+        s_ = huggle.WikiSite()
+        return s_;
+
+    @staticmethod
+    def mWikiUser(user):
+        u_ = huggle.WikiUser()
+        return u_;
+
+huggle.Marshalling = Marshalling
 
 # Remove the local names
 del locals()['Version']
 del locals()['WikiPage']
 del locals()['WikiUser']
 del locals()['WikiSite']
+del locals()['Marshalling']
 
 
 

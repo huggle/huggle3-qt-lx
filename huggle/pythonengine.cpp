@@ -616,6 +616,9 @@ PythonEngine::PythonEngine(QString ExtensionsFolder_)
     PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it
     Py_Initialize();
+    // Import huggle python
+    if(PyRun_SimpleString(this->hugglePyLib.toUtf8().constData()))
+        TryCatch(nullptr);
     Syslog::HuggleLogs->DebugLog("Inserting extensions folder to path: " + DoubleBack(ExtensionsFolder_));
     if (PyRun_SimpleString(QString("import sys; sys.path.append('" + DoubleBack(ExtensionsFolder_) + "')").toUtf8().data()))
         TryCatch(nullptr);
@@ -732,6 +735,39 @@ void PythonEngine::Hook_HuggleShutdown()
     }
 }
 
+void PythonEngine::Hook_OnEditPreProcess(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_OnEditPreProcess(edit);
+        }
+    }
+}
+
+void PythonEngine::Hook_OnEditPostProcess(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_OnEditPostProcess(edit);
+        }
+    }
+}
+
+void PythonEngine::Hook_GoodEdit(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_GoodEdit(edit);
+        }
+    }
+}
+
 QString PythonEngine::HugglePyLibSource()
 {
     return this->hugglePyLib;
@@ -782,6 +818,11 @@ PythonScript::PythonScript(QString name)
         this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("\\") + 1);
     }
     this->ptr_Hook_MainLoaded = nullptr;
+    this->ptr_Hook_GoodEdit = nullptr;
+    this->ptr_Hook_OnEditPostProcess = nullptr;
+    this->ptr_Hook_OnEditPreProcess = nullptr;
+    this->ptr_Hook_Shutdown = nullptr;
+    this->ptr_Hook_SpeedyFinished = nullptr;
     this->Description = "<unknown>";
     this->Author = "<unknown>";
     this->Version = "<unknown>";
@@ -790,14 +831,13 @@ PythonScript::PythonScript(QString name)
 
 PythonScript::~PythonScript()
 {
-    if (this->ptr_Hook_MainLoaded != nullptr)
-    {
-        Py_DECREF(this->ptr_Hook_MainLoaded);
-    }
-    if (this->object != nullptr)
-    {
-        Py_DECREF(this->object);
-    }
+    if (this->ptr_Hook_MainLoaded != nullptr)  Py_DECREF(this->ptr_Hook_MainLoaded);
+    if (this->ptr_Hook_SpeedyFinished != nullptr)  Py_DECREF(this->ptr_Hook_SpeedyFinished);
+    if (this->ptr_Hook_GoodEdit != nullptr)  Py_DECREF(this->ptr_Hook_GoodEdit);
+    if (this->ptr_Hook_OnEditPostProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPostProcess);
+    if (this->ptr_Hook_OnEditPreProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPreProcess);
+    if (this->ptr_Hook_Shutdown != nullptr)  Py_DECREF(this->ptr_Hook_Shutdown);
+    if (this->object != nullptr) Py_DECREF(this->object);
 }
 
 PyObject *PythonScript::Hook(QString function)
@@ -909,6 +949,61 @@ void PythonScript::Hook_Shutdown()
     }
 }
 
+void PythonScript::Hook_OnEditPreProcess(WikiEdit *edit)
+{
+    if (edit == nullptr)
+        return;
+    if (this->ptr_Hook_OnEditPreProcess == 0)
+        return;
+    HUGGLE_DEBUG("Calling hook Hook_OnEditPreProcess @" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_OnEditPreProcess, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
+void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_OnEditPostProcess == nullptr)
+        return;
+
+    HUGGLE_DEBUG("Calling hook Hook_OnEditPostProcess @" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_OnEditPostProcess, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
+void PythonScript::Hook_GoodEdit(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_GoodEdit == nullptr)
+        return;
+
+    HUGGLE_DEBUG("Calling hook Hook_GoodEdit@" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_GoodEdit, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
 void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
 {
     if (edit == nullptr)
@@ -944,7 +1039,6 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
-
 }
 
 void PythonScript::Hook_MainWindowIsLoaded()
@@ -968,7 +1062,7 @@ bool PythonScript::Init()
             delete file;
             return false;
         }
-        this->SourceCode = Huggle::Core::HuggleCore->Python->HugglePyLibSource() + QString(file->readAll());
+        this->SourceCode = QString(file->readAll());
         file->close();
         delete file;
         HUGGLE_DEBUG("Importing module " + this->ModuleID, 4);
@@ -992,6 +1086,9 @@ bool PythonScript::Init()
         this->ptr_Hook_Shutdown = this->Hook("hook_shutdown");
         this->ptr_Hook_SpeedyFinished = this->Hook("hook_speedy_finished");
         this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
+        this->ptr_Hook_GoodEdit = this->Hook("hook_good_edit");
+        this->ptr_Hook_OnEditPostProcess = this->Hook("hook_on_edit_post_process");
+        this->ptr_Hook_OnEditPreProcess = this->Hook("hook_on_edit_pre_process");
 
         // load the information about the plugin
         this->Author = this->CallInternal("get_author");

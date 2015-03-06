@@ -66,7 +66,7 @@ def warning_log(str_message):
     """
     return true;
 
-class HuggleMarshalling:
+class Marshalling:
     @staticmethod
     def mWikiEdit(edit):
         return WikiEdit(edit);
