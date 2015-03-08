@@ -99,6 +99,26 @@ namespace Huggle
 
             return rx;
         }
+        
+        static PyObject *Bool2PyObject(bool Bool)
+        {
+            if (Bool)
+                return Py_True;
+            
+            return Py_False;
+        }
+        
+        static PyObject *Long2PyObject(long no)
+        {
+            PyObject *n_ = PyLong_FromLong(no);
+            if (!n_)
+            {
+                TryCatch(NULL);
+                throw new Huggle::NullPointerException("no", BOOST_CURRENT_FUNCTION);
+            }
+
+            return n_;
+        }
 
         static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = false)
         {
@@ -117,6 +137,25 @@ namespace Huggle
             return true;
         }
 
+        static PyObject *Version2PyObject(Huggle::Version *Version)
+        {
+            PyObject *ver = PyDict_New();
+            if (ver == nullptr)
+                throw new Huggle::NullPointerException("ver", BOOST_CURRENT_FUNCTION);
+            
+            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true));
+                goto error;
+            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true));
+                goto error;
+            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true));
+                goto error;
+            
+            return ver;
+            
+            error:
+                throw new Huggle::Exception("Unable to marshall version to python", BOOST_CURRENT_FUNCTION);
+        }
+
         static PyObject *WikiSite2PyObject(WikiSite *Site)
         {
             PyObject *site = PyDict_New();
@@ -126,6 +165,19 @@ namespace Huggle
             PyObject *site_name_v = QString2PyObject(Site->Name);
             if (!InsertToPythonHash(site, "name", site_name_v, true))
                 goto error;
+            if (!InsertToPythonHash(site, "mediawiki_version", Version2PyObject(&Site->MediawikiVersion)))
+                goto error;
+            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath), true))
+                goto error;
+            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL), true))
+                goto error;
+            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath), true))
+                goto error;
+            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel), true))
+                goto error;
+            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
+                goto error;
+            
             return site;
 
             error:
