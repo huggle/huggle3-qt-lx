@@ -122,6 +122,8 @@ namespace Huggle
 
         static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = false)
         {
+            if (!object)
+                throw new Huggle::NullPointerException("loc object", BOOST_CURRENT_FUNCTION);
             PyObject *key_ = QString2PyObject(key);
             if (PyDict_SetItem(dict, key_, object))
             {
@@ -143,11 +145,11 @@ namespace Huggle
             if (ver == nullptr)
                 throw new Huggle::NullPointerException("ver", BOOST_CURRENT_FUNCTION);
             
-            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true));
+            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true))
                 goto error;
-            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true));
+            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true))
                 goto error;
-            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true));
+            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true))
                 goto error;
             
             return ver;
@@ -177,6 +179,12 @@ namespace Huggle
                 goto error;
             if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
                 goto error;
+            if (!InsertToPythonHash(site, "oauth_url", QString2PyObject(Site->OAuthURL), true))
+                goto error;
+            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName), true))
+                goto error;
+            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel), true))
+                goto error;
             
             return site;
 
@@ -192,7 +200,7 @@ namespace Huggle
 
             PyObject *user_name_v = QString2PyObject(User->Username);
             PyObject *user_site_v = WikiSite2PyObject(User->GetSite());
-            if (!InsertToPythonHash(user, "username", user_name_v, true))
+            if (!InsertToPythonHash(user, "name", user_name_v, true))
                 goto error;
             if (!InsertToPythonHash(user, "site", user_site_v, true))
                 goto error;
@@ -229,6 +237,18 @@ namespace Huggle
             if (!InsertToPythonHash(edit, "user", edit_user_v))
                 goto error;
             if (!InsertToPythonHash(edit, "page", edit_page_v))
+                goto error;
+            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor)))
+                goto error;
+            if (!InsertToPythonHash(edit, "summary", QString2PyObject(Edit->Summary), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "diff", PyLong_FromLongLong(Edit->Diff), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "diff_text", QString2PyObject(Edit->DiffText), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "bot", Bool2PyObject(Edit->Bot), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "newpage", Bool2PyObject(Edit->NewPage), true))
                 goto error;
 
             return edit;
