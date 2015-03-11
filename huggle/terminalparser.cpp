@@ -13,6 +13,7 @@
 #include <iostream>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "resources.hpp"
 using namespace Huggle;
 using namespace std;
 
@@ -185,6 +186,11 @@ bool TerminalParser::Parse()
             valid = true;
             Configuration::HuggleConfiguration->Fuzzy = true;
         }
+        if (text == "--pylibs-dump")
+        {
+            cout << Resources::GetResource("/huggle/text/Resources/Python/definitions.py").toStdString() << endl;
+            return true;
+        }
         if (!valid)
         {
             if (!this->Silent)
@@ -245,7 +251,9 @@ void TerminalParser::DisplayHelp()
             "                   developers and people who create localization files\n"\
             "  --dot:           Debug on terminal only mode\n"\
             "  --qd [file]:     Write all transferred data to a file\n\n"\
-            "Note: every argument in [brackets] is optional\n"\
+            "Python related:\n"\
+            "  --pylibs-dump:   Dump all built-in python libraries to std out\n"\
+            "\nNote: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }
