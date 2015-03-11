@@ -50,6 +50,9 @@ namespace Huggle
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_Shutdown(); 
+                void Hook_OnEditPreProcess(WikiEdit *edit);
+                void Hook_OnEditPostProcess(WikiEdit *edit);
+                void Hook_GoodEdit(WikiEdit *edit);
                 PyObject *PythonObject();
                 //! Initialize the script
                 bool Init();
@@ -70,7 +73,10 @@ namespace Huggle
                 bool Enabled;
                 PyObject *ptr_Hook_SpeedyFinished;
                 PyObject *ptr_Hook_MainLoaded;
+                PyObject *ptr_Hook_OnEditPreProcess;
                 PyObject *ptr_Hook_Shutdown;
+                PyObject *ptr_Hook_OnEditPostProcess;
+                PyObject *ptr_Hook_GoodEdit;
                 QString SourceCode;
         };
 
@@ -90,6 +96,10 @@ namespace Huggle
                 void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
                 void Hook_HuggleShutdown();
+                void Hook_OnEditPreProcess(WikiEdit *edit);
+                void Hook_OnEditPostProcess(WikiEdit *edit);
+                void Hook_GoodEdit(WikiEdit *edit);
+                QString HugglePyLibSource();
                 PythonScript *PythonScriptObjFromPyObj(PyObject *object);
                 QList<PythonScript*> ScriptsList();
                 Query *GetQuery(unsigned long ID);
@@ -103,6 +113,7 @@ namespace Huggle
             private:
                 QHash<unsigned long, Query*> Queries;
                 unsigned long LastQuery = 0;
+                QString hugglePyLib;
                 friend class PythonScript;
                 QList<PythonScript*> Scripts;
         };

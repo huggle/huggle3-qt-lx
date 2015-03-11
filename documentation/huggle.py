@@ -7,7 +7,6 @@ This module is an interface to use huggle.
 In case you want to create an extension for huggle in python, you should import it.
 When loaded in huggle, you can access all of following functions.
 """
-
 def huggle_version():
     """Returns a version of a huggle in form of string
 
@@ -67,3 +66,19 @@ def warning_log(str_message):
     """
     return true;
 
+class Marshalling:
+    @staticmethod
+    def mWikiEdit(edit):
+        return WikiEdit(edit);
+
+    @staticmethod
+    def mWikiPage(page):
+        return WikiPage(page);
+
+    @staticmethod
+    def mWikiSite(site):
+        return WikiSite(site);
+
+    @staticmethod
+    def mWikiUser(user):
+        return WikiUser(user);

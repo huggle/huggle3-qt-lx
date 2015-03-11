@@ -40,8 +40,8 @@ namespace Huggle
              * \brief IsWorking
              * \return if extension work
              */
-            virtual bool IsWorking() { return false; }
             virtual ~iExtension() {}
+            virtual bool IsWorking() { return false; }
             virtual bool Register() { return false; }
             void huggle__internal_SetPath(QString path);
             HUGGLE_EX QString GetExtensionFullPath();

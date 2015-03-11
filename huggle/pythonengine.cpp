@@ -15,9 +15,11 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
+#include "resources.hpp"
 #include "syslog.hpp"
 #include "query.hpp"
 #include "wikiedit.hpp"
+#include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 
@@ -37,6 +39,9 @@ namespace Huggle
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
+
+////////////////////////////////////////////////////////////
+
         static void TryCatch(PyObject *script)
         {
             if (script)
@@ -74,6 +79,187 @@ namespace Huggle
             Py_DECREF(tn);
             return result;
         }
+
+///////////////////////////////////////////////////////////////////////
+// MARSHALLING
+///////////////////////////////////////////////////////////////////////
+
+// Functions here are turning our objects into python corresponding versions
+
+// for most of the classes we just create a dict which has each variable mapped to a hash key
+
+        static PyObject *QString2PyObject(QString text)
+        {
+            PyObject *rx = PyUnicode_FromString(text.toUtf8().data());
+            if (!rx)
+            {
+                TryCatch(NULL);
+                throw new Huggle::NullPointerException("rx", BOOST_CURRENT_FUNCTION);
+            }
+
+            return rx;
+        }
+        
+        static PyObject *Bool2PyObject(bool Bool)
+        {
+            if (Bool)
+                return Py_True;
+            
+            return Py_False;
+        }
+        
+        static PyObject *Long2PyObject(long no)
+        {
+            PyObject *n_ = PyLong_FromLong(no);
+            if (!n_)
+            {
+                TryCatch(NULL);
+                throw new Huggle::NullPointerException("no", BOOST_CURRENT_FUNCTION);
+            }
+
+            return n_;
+        }
+
+        static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = false)
+        {
+            if (!object)
+                throw new Huggle::NullPointerException("loc object", BOOST_CURRENT_FUNCTION);
+            PyObject *key_ = QString2PyObject(key);
+            if (PyDict_SetItem(dict, key_, object))
+            {
+                TryCatch(NULL);
+                Py_DECREF(key_);
+                if (dcro)
+                    Py_DECREF(object);
+                return false;
+            }
+            if (dcro)
+                Py_DECREF(object);
+            Py_DECREF(key_);
+            return true;
+        }
+
+        static PyObject *Version2PyObject(Huggle::Version *Version)
+        {
+            PyObject *ver = PyDict_New();
+            if (ver == nullptr)
+                throw new Huggle::NullPointerException("ver", BOOST_CURRENT_FUNCTION);
+            
+            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true))
+                goto error;
+            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true))
+                goto error;
+            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true))
+                goto error;
+            
+            return ver;
+            
+            error:
+                throw new Huggle::Exception("Unable to marshall version to python", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiSite2PyObject(WikiSite *Site)
+        {
+            PyObject *site = PyDict_New();
+            if (site == nullptr)
+                throw new Huggle::NullPointerException("site", BOOST_CURRENT_FUNCTION);
+
+            PyObject *site_name_v = QString2PyObject(Site->Name);
+            if (!InsertToPythonHash(site, "name", site_name_v, true))
+                goto error;
+            if (!InsertToPythonHash(site, "mediawiki_version", Version2PyObject(&Site->MediawikiVersion)))
+                goto error;
+            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath), true))
+                goto error;
+            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL), true))
+                goto error;
+            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath), true))
+                goto error;
+            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel), true))
+                goto error;
+            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
+                goto error;
+            if (!InsertToPythonHash(site, "oauth_url", QString2PyObject(Site->OAuthURL), true))
+                goto error;
+            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName), true))
+                goto error;
+            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel), true))
+                goto error;
+            
+            return site;
+
+            error:
+                throw new Huggle::Exception("Can't turn WikiSite into PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiUser2PyObject(WikiUser *User)
+        {
+            PyObject *user = PyDict_New();
+            if (user == nullptr)
+                throw new Huggle::NullPointerException("user", BOOST_CURRENT_FUNCTION);
+
+            PyObject *user_name_v = QString2PyObject(User->Username);
+            PyObject *user_site_v = WikiSite2PyObject(User->GetSite());
+            if (!InsertToPythonHash(user, "name", user_name_v, true))
+                goto error;
+            if (!InsertToPythonHash(user, "site", user_site_v, true))
+                goto error;
+
+            return user;
+
+            error:
+                throw new Huggle::Exception("Can't turn WikiUser into PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiPage2PyObject(WikiPage *Page)
+        {
+            PyObject *page = PyDict_New();
+            if (!InsertToPythonHash(page, "name", QString2PyObject(Page->PageName), true))
+                goto error;
+            if (!InsertToPythonHash(page, "site", WikiSite2PyObject(Page->GetSite())))
+                goto error;
+            return page;
+
+            error:
+                throw new Huggle::Exception("Unable to turn WikiPage to PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+        static PyObject *WikiEdit2PyObject(WikiEdit *Edit)
+        {
+            PyObject *edit = PyDict_New();
+            if (!edit)
+                throw new Huggle::NullPointerException("edit", BOOST_CURRENT_FUNCTION);
+            PyObject *edit_revid_v = PyLong_FromLongLong(Edit->RevID);
+            PyObject *edit_user_v = WikiUser2PyObject(Edit->User);
+            PyObject *edit_page_v = WikiPage2PyObject(Edit->Page);
+            if (!InsertToPythonHash(edit, "revid", edit_revid_v, true))
+                goto error;
+            if (!InsertToPythonHash(edit, "user", edit_user_v))
+                goto error;
+            if (!InsertToPythonHash(edit, "page", edit_page_v))
+                goto error;
+            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor)))
+                goto error;
+            if (!InsertToPythonHash(edit, "summary", QString2PyObject(Edit->Summary), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "diff", PyLong_FromLongLong(Edit->Diff), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "diff_text", QString2PyObject(Edit->DiffText), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "bot", Bool2PyObject(Edit->Bot), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "newpage", Bool2PyObject(Edit->NewPage), true))
+                goto error;
+
+            return edit;
+
+            error:
+                throw new Huggle::Exception("Unable to turn WikiEdit to PyObject", BOOST_CURRENT_FUNCTION);
+        }
+
+///////////////////////////////////////////////////////////////////////
+// HUGGLE API'S
+///////////////////////////////////////////////////////////////////////
 
         static PyObject *DebugLog(PyObject *self, PyObject *args)
         {
@@ -497,10 +683,14 @@ static QString DoubleBack(QString path)
 
 PythonEngine::PythonEngine(QString ExtensionsFolder_)
 {
+    this->hugglePyLib = Resources::GetResource("/huggle/text/Resources/Python/definitions.py");
     // define hooks
     PyImport_AppendInittab("huggle", &PyInit_emb);
     // load it
     Py_Initialize();
+    // Import huggle python
+    if(PyRun_SimpleString(this->hugglePyLib.toUtf8().constData()))
+        TryCatch(nullptr);
     Syslog::HuggleLogs->DebugLog("Inserting extensions folder to path: " + DoubleBack(ExtensionsFolder_));
     if (PyRun_SimpleString(QString("import sys; sys.path.append('" + DoubleBack(ExtensionsFolder_) + "')").toUtf8().data()))
         TryCatch(nullptr);
@@ -551,7 +741,6 @@ Query *PythonEngine::GetQuery(unsigned long ID)
         return this->Queries[ID];
 
     // when there is no such a query we return a null pointer
-    // that means there is no such a query
     return nullptr;
 }
 
@@ -603,6 +792,10 @@ unsigned int PythonEngine::Count()
     return s;
 }
 
+///////////////////////////////////////////////////////////////////////
+// HOOK
+///////////////////////////////////////////////////////////////////////
+
 void PythonEngine::Hook_HuggleShutdown()
 {
     foreach (PythonScript *c, this->Scripts)
@@ -612,6 +805,44 @@ void PythonEngine::Hook_HuggleShutdown()
             c->Hook_Shutdown();
         }
     }
+}
+
+void PythonEngine::Hook_OnEditPreProcess(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_OnEditPreProcess(edit);
+        }
+    }
+}
+
+void PythonEngine::Hook_OnEditPostProcess(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_OnEditPostProcess(edit);
+        }
+    }
+}
+
+void PythonEngine::Hook_GoodEdit(WikiEdit *edit)
+{
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            c->Hook_GoodEdit(edit);
+        }
+    }
+}
+
+QString PythonEngine::HugglePyLibSource()
+{
+    return this->hugglePyLib;
 }
 
 void PythonEngine::Hook_MainWindowIsLoaded()
@@ -636,6 +867,10 @@ void PythonEngine::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
     }
 }
 
+///////////////////////////////////////////////////////////////////////
+// PYTHON SCRIPT
+///////////////////////////////////////////////////////////////////////
+
 PythonScript::PythonScript(QString name)
 {
     this->SourceCode = "";
@@ -655,6 +890,11 @@ PythonScript::PythonScript(QString name)
         this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("\\") + 1);
     }
     this->ptr_Hook_MainLoaded = nullptr;
+    this->ptr_Hook_GoodEdit = nullptr;
+    this->ptr_Hook_OnEditPostProcess = nullptr;
+    this->ptr_Hook_OnEditPreProcess = nullptr;
+    this->ptr_Hook_Shutdown = nullptr;
+    this->ptr_Hook_SpeedyFinished = nullptr;
     this->Description = "<unknown>";
     this->Author = "<unknown>";
     this->Version = "<unknown>";
@@ -663,14 +903,13 @@ PythonScript::PythonScript(QString name)
 
 PythonScript::~PythonScript()
 {
-    if (this->ptr_Hook_MainLoaded != nullptr)
-    {
-        Py_DECREF(this->ptr_Hook_MainLoaded);
-    }
-    if (this->object != nullptr)
-    {
-        Py_DECREF(this->object);
-    }
+    if (this->ptr_Hook_MainLoaded != nullptr)  Py_DECREF(this->ptr_Hook_MainLoaded);
+    if (this->ptr_Hook_SpeedyFinished != nullptr)  Py_DECREF(this->ptr_Hook_SpeedyFinished);
+    if (this->ptr_Hook_GoodEdit != nullptr)  Py_DECREF(this->ptr_Hook_GoodEdit);
+    if (this->ptr_Hook_OnEditPostProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPostProcess);
+    if (this->ptr_Hook_OnEditPreProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPreProcess);
+    if (this->ptr_Hook_Shutdown != nullptr)  Py_DECREF(this->ptr_Hook_Shutdown);
+    if (this->object != nullptr) Py_DECREF(this->object);
 }
 
 PyObject *PythonScript::Hook(QString function)
@@ -727,6 +966,12 @@ QString PythonScript::CallInternal(QString function)
         return "<unknown>";
     }
     PyObject *value = PyObject_CallObject(ptr_python_, nullptr);
+    if (!value)
+    {
+        TryCatch(nullptr);
+        Syslog::HuggleLogs->DebugLog("Python::$" + function + "@" + this->Name + ": value must be not be null type");
+        return "<unknown>";
+    }
     PyObject *text_ = PyUnicode_AsUTF8String(value);
     Py_DECREF(value);
     if (text_ == nullptr || !PyBytes_Check(text_))
@@ -776,6 +1021,61 @@ void PythonScript::Hook_Shutdown()
     }
 }
 
+void PythonScript::Hook_OnEditPreProcess(WikiEdit *edit)
+{
+    if (edit == nullptr)
+        return;
+    if (this->ptr_Hook_OnEditPreProcess == 0)
+        return;
+    HUGGLE_DEBUG("Calling hook Hook_OnEditPreProcess @" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_OnEditPreProcess, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
+void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_OnEditPostProcess == nullptr)
+        return;
+
+    HUGGLE_DEBUG("Calling hook Hook_OnEditPostProcess @" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_OnEditPostProcess, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
+void PythonScript::Hook_GoodEdit(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_GoodEdit == nullptr)
+        return;
+
+    HUGGLE_DEBUG("Calling hook Hook_GoodEdit@" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    if (!args)
+        goto error;
+    if (!PyObject_CallObject(this->ptr_Hook_GoodEdit, args))
+        goto error;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+}
+
 void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
 {
     if (edit == nullptr)
@@ -811,7 +1111,6 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
-
 }
 
 void PythonScript::Hook_MainWindowIsLoaded()
@@ -859,6 +1158,9 @@ bool PythonScript::Init()
         this->ptr_Hook_Shutdown = this->Hook("hook_shutdown");
         this->ptr_Hook_SpeedyFinished = this->Hook("hook_speedy_finished");
         this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
+        this->ptr_Hook_GoodEdit = this->Hook("hook_good_edit");
+        this->ptr_Hook_OnEditPostProcess = this->Hook("hook_on_edit_post_process");
+        this->ptr_Hook_OnEditPreProcess = this->Hook("hook_on_edit_pre_process");
 
         // load the information about the plugin
         this->Author = this->CallInternal("get_author");

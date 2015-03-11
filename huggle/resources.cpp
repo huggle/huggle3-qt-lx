@@ -8,8 +8,9 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "resources.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
+#include "resources.hpp"
 #include "wikisite.hpp"
 
 QString Huggle::Resources::DiffFooter;
@@ -20,10 +21,21 @@ QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::CssRtl;
 
+QString Huggle::Resources::GetResource(QString path)
+{
+    QFile *vf = new QFile(":" + path);
+    if (!vf->open(QIODevice::ReadOnly))
+        throw new Huggle::Exception("Unable to open internal resource: " + path, BOOST_CURRENT_FUNCTION);
+
+    QString result = QString(vf->readAll());
+    vf->close();
+    delete vf;
+    return result;
+}
+
 void Huggle::Resources::Init()
 {
-    QFile *vf;
-    vf = new QFile(":/huggle/resources/Resources/html/Header.html");
+    QFile *vf = new QFile(":/huggle/resources/Resources/html/Header.html");
     vf->open(QIODevice::ReadOnly);
     HtmlHeader = QString(vf->readAll());
     vf->close();
