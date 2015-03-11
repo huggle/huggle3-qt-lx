@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "message.hpp"
-#include <QtXml>
+#include "apiqueryresult.hpp"
 #include "collectable.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -21,6 +21,7 @@
 #include "syslog.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 
@@ -169,40 +170,33 @@ void Message::Finish()
             return;
         }
         bool sent = false;
-        QDomDocument dResult_;
-        dResult_.setContent(this->query->Result->Data);
-        QDomNodeList e = dResult_.elementsByTagName("error");
-        if (e.count() > 0)
+        ApiQueryResultNode *e = this->query->GetApiQueryResult()->GetNode("error");
+        if (e != nullptr)
         {
-            QDomElement element = e.at(0).toElement();
-            if (element.attributes().contains("code"))
+            QString ec = e->GetAttribute("code", "no-ec");
+            if (ec == "editconflict")
             {
-                QString ec = element.attribute("code");
-                if (ec == "editconflict")
-                {
-                    // someone edit the page meanwhile which means that our token has expired
-                    this->Fail(_l("edit-conflict"));
-                    Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->User->Username);
-                    this->Error = MessageError_Obsolete;
-                } else if (ec == "articleexists")
-                {
-                    this->Fail(_l("edit-conflict"));
-                    this->Error = MessageError_ArticleExist;
-                } else
-                {
-                    this->Fail(_l("error-unknown-code",ec));
-                    this->Error = MessageError_Unknown;
-                }
-                return;
+                // someone edit the page meanwhile which means that our token has expired
+                this->Fail(_l("edit-conflict"));
+                Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->User->Username);
+                this->Error = MessageError_Obsolete;
+            } else if (ec == "articleexists")
+            {
+                this->Fail(_l("edit-conflict"));
+                this->Error = MessageError_ArticleExist;
+            } else
+            {
+                this->Fail(_l("error-unknown-code",ec));
+                this->Error = MessageError_Unknown;
             }
+            return;
         }
-        QDomNodeList editlist = dResult_.elementsByTagName("edit");
-        if (editlist.count() > 0)
+        ApiQueryResultNode *edit = this->query->GetApiQueryResult()->GetNode("edit");
+        if (edit != nullptr)
         {
-            QDomElement element = editlist.at(0).toElement();
-            if (element.attributes().contains("result"))
+            if (edit->Attributes.contains("result"))
             {
-                if (element.attribute("result") == "Success")
+                if (edit->GetAttribute("result") == "Success")
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
@@ -229,9 +223,9 @@ void Message::Finish()
             Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->User->Username));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
-        this->Dependency.Delete();
         this->_Status = Huggle::MessageStatus_Done;
-        this->query = nullptr;
+        this->Dependency.Delete();
+        this->query.Delete();
     }
 }
 
@@ -325,35 +319,21 @@ void Message::ProcessSend()
 
 void Message::ProcessTalk()
 {
-    QDomDocument d;
-    d.setContent(this->query->Result->Data);
     this->PreviousTalkPageRetrieved = true;
-    QDomNodeList page = d.elementsByTagName("rev");
-    QDomNodeList code = d.elementsByTagName("page");
+    ApiQueryResultNode *page = this->query->GetApiQueryResult()->GetNode("rev");
+    ApiQueryResultNode *code = this->query->GetApiQueryResult()->GetNode("page");
     bool missing = false;
-    if (code.count() > 0)
+    if (code != nullptr)
     {
-        QDomElement e = code.at(0).toElement();
-        if (e.attributes().contains("missing"))
-        {
+        if (code->Attributes.contains("missing"))
             missing = true;
-        }
     }
     // get last id
-    if (missing != true && page.count() > 0)
+    if (missing != true && page != nullptr)
     {
-        QDomElement e = page.at(0).toElement();
-        if (e.nodeName() == "rev")
-        {
-            this->Page = e.text();
-            this->PreviousTalkPageRetrieved = true;
-            return;
-        } else
-        {
-            // Unable to retrieve this->user->GetTalk() stopping message delivery to that user
-            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
-            return;
-        }
+        this->Page = page->Value;
+        this->PreviousTalkPageRetrieved = true;
+        return;
     } else
     {
         if (!missing)
