@@ -402,7 +402,7 @@ void Configuration::LoadSystemConfig(QString fn)
     item = 0;
     while (item < e.count())
     {
-        QDomElement option = l.at(item).toElement();
+        QDomElement option = e.at(item).toElement();
         item++;
         if (!option.attributes().contains("extension") || !option.attributes().contains("name"))
             continue;
