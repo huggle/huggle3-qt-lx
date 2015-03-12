@@ -71,6 +71,8 @@ namespace Huggle
             bool AutomaticallyResolveConflicts = false;
             bool IsSane = false;
             bool Approval = false;
+            bool UserlistSync = false;
+            QString UserlistUpdateSummary = "Adding [[Special:Contributions/$1|$1]]";
             QString ApprovalPage = "Project:Huggle/Users";
             QString ProjectName;
             WikiSite    *Site = nullptr;

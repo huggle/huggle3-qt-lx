@@ -605,7 +605,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             QStringList users = result.toLower().split("\n");
             QStringList sanitized;
             // sanitize user list
-            foreach (QString user, users)
+            foreach(QString user, users)
             {
                 user = user.replace("_", " ");
                 user = user.trimmed();
@@ -616,8 +616,22 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             sanitized_name = sanitized_name.replace("_", " ");
             if (!sanitized.contains("* [[special:contributions/" + sanitized_name + "|" + sanitized_name + "]]"))
             {
-                this->DisplayError(_l("login-error-approval", site->Name));
-                return;
+                if (site->GetProjectConfig()->Approval)
+                {
+                    this->DisplayError(_l("login-error-approval", site->Name));
+                    return;
+                }
+                if (site->GetProjectConfig()->UserlistSync)
+                {
+                    // we need to insert this user into the list
+                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_Username);
+                    QString line = "* [[Special:Contributions/" + un + "|" + un + "]]";
+                    result += "\n" + line;
+                    QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
+                    summary.replace("$1", hcfg->SystemConfig_Username);
+                    WikiUtil::EditPage(site->GetProjectConfig()->ApprovalPage, result, summary, false, "", 0, site);
+                    //WikiUtil::AppendTextToPage(site->GetProjectConfig()->ApprovalPage, line, site->GetProjectConfig()->UserlistUpdateSummary, true, site);
+                }
             }
             this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
             this->Statuses[site] = RetrievingUserConfig;
@@ -655,9 +669,8 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                     this->DisplayError(_l("login-error-projdisabled", site->Name));
                     return;
                 }
-                if (site->GetProjectConfig()->Approval)
+                if (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval)
                 {
-                    // we need to have approval in order to use huggle
                     this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
                     this->qApproval[site]->IncRef();
                     this->qApproval[site]->Process();

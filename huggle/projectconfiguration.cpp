@@ -73,6 +73,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     // we use these to understand which format they use on a wiki for dates
     this->Parser_Date_Suffix = HuggleParser::ConfigurationParse_QL("parser-date-suffix", config, this->Parser_Date_Suffix, true);
     this->Parser_Date_Prefix = HuggleParser::ConfigurationParse("parser-date-prefix", config, this->Parser_Date_Prefix);
+    this->UserlistUpdateSummary = HuggleParser::ConfigurationParse("userlist-update-summary", config, this->UserlistUpdateSummary);
+    this->UserlistSync = SafeBool(HuggleParser::ConfigurationParse("userlistsync", config, "false"));
     this->IPVTemplateReport = HuggleParser::ConfigurationParse("aiv-ip", config, "User $1: $2$3 ~~~~");
     this->RUTemplateReport = HuggleParser::ConfigurationParse("aiv-user", config, "User $1: $2$3 ~~~~");
     this->ReportDefaultReason = HuggleParser::ConfigurationParse("vandal-report-reason", config, "Persistent vandalism and/or "\

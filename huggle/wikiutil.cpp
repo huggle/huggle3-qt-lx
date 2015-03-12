@@ -154,9 +154,11 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
     return eq;
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section, WikiSite *site)
 {
     WikiPage tp(page);
+    if (site != nullptr)
+        tp.Site = site;
     return EditPage(&tp, text, summary, minor, BaseTimestamp, section);
 }
 
