@@ -348,6 +348,12 @@ void WikiUser::ParseTP(QDate bt)
         this->WarningLevel = HuggleParser::GetLevel(tp, bt, this->GetSite());
 }
 
+QString WikiUser::UnderscorelessUsername()
+{
+    QString name = this->Username;
+    return name.replace("_", " ");
+}
+
 QString WikiUser::GetTalk()
 {
     // get a usertalk prefix for this site

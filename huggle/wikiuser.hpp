@@ -82,6 +82,7 @@ namespace Huggle
             void TalkPage_SetContents(QString text);
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
+            QString UnderscorelessUsername();
             void Sanitize();
             /*!
              * \brief Change the IP property to true forcefully even if user isn't IP

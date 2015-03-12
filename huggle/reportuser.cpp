@@ -259,7 +259,7 @@ void ReportUser::Tick()
             this->InsertUser();
             // everything is ok we report user
             QString summary = this->ReportedUser->GetSite()->GetProjectConfig()->ReportSummary;
-            summary = summary.replace("$1",this->ReportedUser->Username);
+            summary = summary.replace("$1", this->ReportedUser->Username);
             this->qEdit = WikiUtil::EditPage(this->ReportedUser->GetSite()->GetProjectConfig()->AIVP, this->ReportContent, summary,
                                              false, this->ReportTs);
             this->ui->pushButton->setText(_l("report-write"));
@@ -533,7 +533,7 @@ void ReportUser::InsertUser()
     {
         text = this->ReportedUser->GetSite()->GetProjectConfig()->RUTemplateReport;
     }
-    text = text.replace("$1", this->ReportedUser->Username);
+    text = text.replace("$1", this->ReportedUser->UnderscorelessUsername());
     text = text.replace("$2", ReportText);
     text = text.replace("$3", ui->lineEdit->text());
     this->ReportContent = ReportContent + "\n" + text;
