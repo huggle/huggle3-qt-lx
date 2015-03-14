@@ -2,7 +2,7 @@
 # you will need to update it by hand
 cmake_minimum_required (VERSION 2.8.9)
 PROJECT(huggle)
-execute_process(COMMAND "${CMAKE_SOURCE_DIR}/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+execute_process(COMMAND "${CMAKE_SOURCE_DIR}/build/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 #  cmake <folder> -DQT5_BUILD=true
 option(LIBCORE "Build core library" FALSE)
