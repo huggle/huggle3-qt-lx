@@ -17,9 +17,9 @@
 
 #include "definitions.hpp"
 
-#include <QThread>
-#include <QMutex>
 #include <QList>
+
+class QMutex;
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
 #define HUGGLECONSUMER_QUEUE                    1

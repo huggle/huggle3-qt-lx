@@ -13,14 +13,15 @@
 
 #include "definitions.hpp"
 
-#include <QString>
-#include <QDateTime>
-#include <QTimer>
-#include "editquery.hpp"
-#include "wikiedit.hpp"
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "editquery.hpp"
 #include "mediawikiobject.hpp"
+#include "wikiedit.hpp"
+#include <QString>
+#include <QDateTime>
+
+class QTimer;
 
 namespace Huggle
 {

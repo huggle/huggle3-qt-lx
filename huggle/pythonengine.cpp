@@ -10,7 +10,6 @@
 
 #include "pythonengine.hpp"
 #ifdef HUGGLE_PYTHON
-#include <cstdint>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -22,6 +21,8 @@
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
+#include <cstdint>
+#include <QFile>
 
 using namespace Huggle;
 using namespace Huggle::Python;

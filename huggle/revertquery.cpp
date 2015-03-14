@@ -9,8 +9,6 @@
 //GNU General Public License for more details.
 
 #include "revertquery.hpp"
-#include <QMessageBox>
-#include <QUrl>
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
@@ -25,6 +23,9 @@
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
+#include <QUrl>
+#include <QMessageBox>
+#include <QTimer>
 
 using namespace Huggle;
 

@@ -9,8 +9,6 @@
 //GNU General Public License for more details.
 
 #include "core.hpp"
-#include <QtXml>
-#include <QPluginLoader>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionwindow.hpp"
@@ -30,6 +28,9 @@
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include <QtXml>
+#include <QFile>
+#include <QPluginLoader>
 
 using namespace Huggle;
 

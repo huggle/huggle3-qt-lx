@@ -13,11 +13,10 @@
 
 #include "definitions.hpp"
 
+#include "pythonengine.hpp"
 #include <QApplication>
 #include <QList>
 #include <QDateTime>
-#include <QFile>
-#include "pythonengine.hpp"
 
 namespace Huggle
 {

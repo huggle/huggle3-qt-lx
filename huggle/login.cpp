@@ -8,28 +8,29 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "apiqueryresult.hpp"
+#include "configuration.hpp"
+#include "core.hpp"
+#include "exception.hpp"
+#include "generic.hpp"
+#include "huggleprofiler.hpp"
+#include "hugglequeuefilter.hpp"
+#include "loadingform.hpp"
+#include "localization.hpp"
 #include "login.hpp"
+#include "mainwindow.hpp"
+#include "mediawiki.hpp"
+#include "proxy.hpp"
+#include "syslog.hpp"
+#include "ui_login.h"
+#include "updateform.hpp"
+#include "wikisite.hpp"
+#include "wikiutil.hpp"
 #include <QCheckBox>
+#include <QFile>
 #include <QUrl>
 #include <QSslSocket>
 #include <QDesktopServices>
-#include "apiqueryresult.hpp"
-#include "core.hpp"
-#include "configuration.hpp"
-#include "exception.hpp"
-#include "generic.hpp"
-#include "syslog.hpp"
-#include "mainwindow.hpp"
-#include "mediawiki.hpp"
-#include "localization.hpp"
-#include "loadingform.hpp"
-#include "huggleprofiler.hpp"
-#include "hugglequeuefilter.hpp"
-#include "proxy.hpp"
-#include "wikisite.hpp"
-#include "wikiutil.hpp"
-#include "ui_login.h"
-#include "updateform.hpp"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1

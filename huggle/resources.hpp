@@ -13,7 +13,6 @@
 
 #include "definitions.hpp"
 
-#include <QFile>
 #include <QString>
 
 namespace Huggle

@@ -16,6 +16,7 @@
 #include "collectable.hpp"
 #include "gc_thread.hpp"
 #include "exception.hpp"
+#include <QMutex>
 
 using namespace Huggle;
 

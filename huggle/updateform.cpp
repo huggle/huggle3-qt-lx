@@ -10,7 +10,6 @@
 
 #include "updateform.hpp"
 #include <QDesktopServices>
-#include <QtXml>
 #if QT_VERSION >= 0x050000
 #include <QTemporaryDir>
 #endif
@@ -31,6 +30,8 @@
 #include "syslog.hpp"
 #include "ui_updateform.h"
 #include "webserverquery.hpp"
+#include <QtXml>
+#include <QFile>
 
 #define LOG Syslog::HuggleLogs->Log
 
