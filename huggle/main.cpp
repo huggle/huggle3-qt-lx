@@ -57,13 +57,13 @@ int main(int argc, char *argv[])
     {
         // we need to create terminal parser now and rest later
         Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
+        // we need to do this before we init the qapp because otherwise it would not work on systems
+        // that don't have an X org
         if (parser->Init())
         {
-            // we need to do this before we init the qapp because otherwise it would not work on systems
-            // that don't have an X org
             delete parser;
             Huggle::Exception::ExitBreakpad();
-            return 0;
+            return ReturnCode;
         }
         Huggle::HgApplication a(argc, argv);
         QApplication::setApplicationName("Huggle");
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         {
             Huggle::Exception::ExitBreakpad();
             delete Huggle::Configuration::HuggleConfiguration;
-            return 0;
+            return ReturnCode;
         }
         if (hcfg->SystemConfig_UM)
         {
