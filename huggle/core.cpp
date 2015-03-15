@@ -487,7 +487,14 @@ void Core::Shutdown()
     this->gc = nullptr;
     delete Query::NetworkManager;
     delete Configuration::HuggleConfiguration;
+    // we need to change these to null so that functions that would want to access there later during destruction of Qt derived
+    // HW objects would know that they are no longer available and wouldn't crash huggle
+    Configuration::HuggleConfiguration = nullptr;
     delete Localizations::HuggleLocalizations;
+    Localizations::HuggleLocalizations = nullptr;
+    // syslog should be deleted last because since now there is no way to effectively report stuff to terminal
+    delete Syslog::HuggleLogs;
+    Syslog::HuggleLogs = nullptr;
     QApplication::quit();
 }
 
