@@ -13,11 +13,11 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
-#include <QList>
-#include <QHash>
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
+#include "hw.hpp"
+#include <QList>
+#include <QHash>
 
 class QCheckBox;
 
@@ -31,9 +31,9 @@ namespace Huggle
     class HuggleQueueFilter;
     class WikiSite;
     //! Preferences window
-    class HUGGLE_EX Preferences : public QDialog
+    class HUGGLE_EX Preferences : public HW
     {
-            Q_OBJECT
+        Q_OBJECT
         public:
             explicit Preferences(QWidget *parent = 0);
             ~Preferences();

@@ -43,7 +43,7 @@ using namespace Huggle;
 
 QString Login::Test = "<login result=\"NeedToken\" token=\"";
 
-Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
+Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 {
     HUGGLE_PROFILER_RESET;
     this->Loading = true;
@@ -114,6 +114,7 @@ Login::Login(QWidget *parent) :   QDialog(parent), ui(new Ui::Login)
         this->Processing = true;
         this->PressOK();
     }
+    this->RestoreWindow();
 }
 
 Login::~Login()

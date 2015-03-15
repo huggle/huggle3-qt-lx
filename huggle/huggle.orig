@@ -118,6 +118,7 @@ SOURCES += main.cpp\
     warnings.cpp \
     resources.cpp \
     mediawiki.cpp \
+    hw.cpp \
     warninglist.cpp \
     generic.cpp \
     huggleprofiler.cpp \
@@ -189,6 +190,7 @@ HEADERS  += mainwindow.hpp \
     revertquery.hpp \
     protectpage.hpp \
     vandalnw.hpp \
+    hw.hpp \
     networkirc.hpp \
     updateform.hpp \
     uaareport.hpp \

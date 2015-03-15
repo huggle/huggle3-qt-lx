@@ -15,7 +15,7 @@
 
 using namespace Huggle;
 
-Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
+Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
 {
     this->ui->setupUi(this);
     this->ui->label->setText(_l("login-proxyaddress"));
@@ -26,6 +26,7 @@ Proxy::Proxy(QWidget *parent) : QDialog(parent), ui(new Ui::Proxy)
     this->ui->comboBox->addItem("Http (caching proxy)");
     this->ui->comboBox->addItem("Ftp");
     this->ui->comboBox->setCurrentIndex(0);
+    this->RestoreWindow();
 }
 
 Proxy::~Proxy()

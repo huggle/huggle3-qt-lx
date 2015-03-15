@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QStandardItemModel>
 
 namespace Ui
@@ -24,10 +24,9 @@ namespace Ui
 namespace Huggle
 {
     //! A window that contains ignore list
-    class HUGGLE_EX IgnoreList : public QDialog
+    class HUGGLE_EX IgnoreList : public HW
     {
             Q_OBJECT
-
         public:
             explicit IgnoreList(QWidget *parent = nullptr);
             ~IgnoreList();

@@ -15,14 +15,14 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
+#include "hw.hpp"
+#include "oauthloginquery.hpp"
+#include "wlquery.hpp"
 #include <QThread>
 #include <QHash>
 #include <QTimer>
-#include "apiquery.hpp"
-#include "collectable_smartptr.hpp"
-#include "oauthloginquery.hpp"
-#include "wlquery.hpp"
 class QCheckBox;
 
 namespace Ui
@@ -54,7 +54,7 @@ namespace Huggle
     class WikiSite;
 
     //! Window that is displayed as first when huggle is started
-    class Login : public QDialog
+    class Login : public HW
     {
             Q_OBJECT
         public:

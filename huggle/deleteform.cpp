@@ -29,7 +29,7 @@
 
 using namespace Huggle;
 
-DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm)
+DeleteForm::DeleteForm(QWidget *parent) : HW("deleteform", this, parent), ui(new Ui::DeleteForm)
 {
     this->ui->setupUi(this);
     this->page = nullptr;
@@ -37,6 +37,7 @@ DeleteForm::DeleteForm(QWidget *parent) : QDialog(parent), ui(new Ui::DeleteForm
     this->TalkPage = nullptr;
     this->ui->comboBox->setCurrentIndex(0);
     this->PageUser = nullptr;
+    this->RestoreWindow();
 }
 
 DeleteForm::~DeleteForm()

@@ -14,7 +14,7 @@
 
 using namespace Huggle;
 
-IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList)
+IgnoreList::IgnoreList(QWidget *parent) : HW("ignorelist", this, parent), ui(new Ui::IgnoreList)
 {
     this->ui->setupUi(this);
     this->model = new QStandardItemModel(Configuration::HuggleConfiguration->ProjectConfig->Ignores.count(), 1, this);
@@ -31,6 +31,7 @@ IgnoreList::IgnoreList(QWidget *parent) : QDialog(parent), ui(new Ui::IgnoreList
         this->model->setItem(it, new QStandardItem("^.*" + Configuration::HuggleConfiguration->ProjectConfig->IgnorePatterns.at(it) + ".*$"));
         it++;
     }
+    this->RestoreWindow();
 }
 
 IgnoreList::~IgnoreList()

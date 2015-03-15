@@ -13,11 +13,11 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
-#include <QTimer>
-#include <QString>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "hw.hpp"
+#include <QTimer>
+#include <QString>
 
 namespace Ui
 {
@@ -31,10 +31,9 @@ namespace Huggle
     class WikiUser;
 
     //! This is a delete form
-    class HUGGLE_EX DeleteForm : public QDialog
+    class HUGGLE_EX DeleteForm : public HW
     {
             Q_OBJECT
-
         public:
             explicit DeleteForm(QWidget *parent = nullptr);
             ~DeleteForm();

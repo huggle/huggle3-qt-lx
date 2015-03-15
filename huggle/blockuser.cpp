@@ -30,7 +30,7 @@
 
 using namespace Huggle;
 
-BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
+BlockUser::BlockUser(QWidget *parent) : HW("blockuser", this, parent), ui(new Ui::BlockUser)
 {
     this->ui->setupUi(this);
     // we should initialise every variable
@@ -44,6 +44,7 @@ BlockUser::BlockUser(QWidget *parent) : QDialog(parent), ui(new Ui::BlockUser)
     this->t0 = new QTimer(this);
     connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->BlockReason);
+    this->RestoreWindow();
 }
 
 BlockUser::~BlockUser()

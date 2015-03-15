@@ -13,8 +13,8 @@
 
 #include "definitions.hpp"
 
+#include "hw.hpp"
 #include <QString>
-#include <QDialog>
 
 namespace Ui
 {
@@ -24,7 +24,7 @@ namespace Ui
 namespace Huggle
 {
     //! Form that can be displayed from help menu, should list all developers
-    class HUGGLE_EX AboutForm : public QDialog
+    class HUGGLE_EX AboutForm : public HW
     {
             Q_OBJECT
         public:

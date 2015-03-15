@@ -13,10 +13,10 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
 #include <QString>
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
+#include "hw.hpp"
 
 namespace Ui
 {
@@ -31,7 +31,7 @@ namespace Huggle
     class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
-    class BlockUser : public QDialog
+    class BlockUser : public HW
     {
             Q_OBJECT
         public:

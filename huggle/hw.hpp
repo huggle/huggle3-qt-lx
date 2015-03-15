@@ -8,38 +8,27 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef PROXY_H
-#define PROXY_H
+#ifndef HW_HPP
+#define HW_HPP
 
 #include "definitions.hpp"
-
-#include "hw.hpp"
-
-namespace Ui
-{
-    class Proxy;
-}
+#include <QString>
+#include <QDialog>
 
 namespace Huggle
 {
-    //! \todo make it
-    //! Proxy
-    class Proxy : public HW
+    class HUGGLE_EX HW : public QDialog
     {
-            Q_OBJECT
+        Q_OBJECT
         public:
-            explicit Proxy(QWidget *parent = nullptr);
-            ~Proxy();
-
-        private slots:
-            void on_buttonBox_accepted();
-            void on_buttonBox_rejected();
-
-            void on_comboBox_currentIndexChanged(int index);
-
+            HW(QString window_name, QWidget *widget, QWidget *parent = 0);
+            virtual ~HW();
+            void RestoreWindow();
         private:
-            Ui::Proxy *ui;
+            QString HW_Geometry;
+            QString HW_Name;
+            QWidget *HW_Widget;
     };
 }
 
-#endif // PROXY_H
+#endif

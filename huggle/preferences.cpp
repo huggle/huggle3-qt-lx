@@ -34,7 +34,7 @@ static void SetDefaults(QComboBox *item)
     item->setCurrentIndex(0);
 }
 
-Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferences)
+Preferences::Preferences(QWidget *parent) : ui(new Ui::Preferences), HW("preferences", this, parent)
 {
     this->ui->setupUi(this);
     this->ui->tableWidget_2->setColumnCount(3);
@@ -181,6 +181,8 @@ Preferences::Preferences(QWidget *parent) : QDialog(parent), ui(new Ui::Preferen
     this->ResetItems();
     this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
+
+    this->RestoreWindow();
 }
 
 Preferences::~Preferences()
