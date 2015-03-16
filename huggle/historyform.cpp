@@ -39,7 +39,8 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
     this->SelectedRow = -1;
     this->PreviouslySelectedRow = 2;
     QStringList header;
-    header << "" << _l("user")
+    header << ""
+        << _l("user")
         << _l("size")
         << _l("summary")
         << _l("id")
@@ -238,7 +239,8 @@ void HistoryForm::onTick01()
         if (x == 0)
             IsLatest = true;
         item->IsCurrent = true;
-        this->SelectedRow = x;
+        if (selected)
+            this->SelectedRow = x;
         QFont font;
         font.setItalic(founder);
         font.setBold(selected);
@@ -360,9 +362,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
     QueryPool::HugglePool->PreProcessEdit(w);
     QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != nullptr)
-    {
         delete this->t1;
-    }
     this->RetrievedEdit = w;
     MainWindow::HuggleMain->LockPage();
     MainWindow::HuggleMain->Browser->RenderHtml(html);
@@ -409,7 +409,10 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
     QItemSelection selection(this->ui->tableWidget->selectionModel()->selection());
     QList<int> rows;
     foreach(const QModelIndex & index, selection.indexes())
-        rows.append(index.row());
+    {
+        if (!rows.contains(index.row()))
+            rows.append(index.row());
+    }
     if (rows.count() == 1)
     {
         this->Display(rows[0], _l("wait"));
