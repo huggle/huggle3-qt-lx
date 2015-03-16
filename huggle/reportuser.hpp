@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QTimer>
 #include <QCheckBox>
 #include <QList>
@@ -35,7 +35,7 @@ namespace Huggle
     class BlockUser;
 
     //! Report user
-    class HUGGLE_EX ReportUser : public QDialog
+    class HUGGLE_EX ReportUser : public HW
     {
             Q_OBJECT
         public:

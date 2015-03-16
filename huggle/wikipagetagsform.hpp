@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QHash>
@@ -34,7 +34,7 @@ namespace Huggle
     void WikiPageTagsForm_FinishRead(Query *result);
 
     //! Form used to tag page
-    class HUGGLE_EX WikiPageTagsForm : public QDialog
+    class HUGGLE_EX WikiPageTagsForm : public HW
     {
             Q_OBJECT
         public:

@@ -22,7 +22,7 @@
 
 using namespace Huggle;
 
-ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectPage)
+ProtectPage::ProtectPage(QWidget *parent) : HW("protectpageform", this, parent), ui(new Ui::ProtectPage)
 {
     this->ui->setupUi(this);
     this->PageToProtect = nullptr;
@@ -32,6 +32,7 @@ ProtectPage::ProtectPage(QWidget *parent) : QDialog(parent), ui(new Ui::ProtectP
     this->ui->comboBox_3->setCurrentIndex(2);
     this->tt = nullptr;
     this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason);
+    this->RestoreWindow();
 }
 
 ProtectPage::~ProtectPage()

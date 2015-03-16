@@ -18,7 +18,7 @@
 #include "wikisite.hpp"
 
 using namespace Huggle;
-SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
+SessionForm::SessionForm(QWidget *parent) : HW("sessionform", this, parent), ui(new Ui::SessionForm)
 {
     this->ui->setupUi(this);
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
@@ -26,6 +26,7 @@ SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionF
     this->ui->comboBox->setEnabled(Configuration::HuggleConfiguration->Multiple);
     this->ui->comboBox->setCurrentIndex(0);
     this->Reload(0);
+    this->RestoreWindow();
 }
 
 SessionForm::~SessionForm()

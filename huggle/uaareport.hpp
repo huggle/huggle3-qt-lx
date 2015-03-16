@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QString>
 #include <QTimer>
 #include "apiquery.hpp"
@@ -30,7 +30,7 @@ namespace Huggle
     class WikiPage;
     class ApiQuery;
     //! Form to report users to UAA
-    class HUGGLE_EX UAAReport : public QDialog
+    class HUGGLE_EX UAAReport : public HW
     {
             Q_OBJECT
         public:

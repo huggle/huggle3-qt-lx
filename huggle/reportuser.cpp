@@ -27,7 +27,7 @@
 #include "ui_reportuser.h"
 using namespace Huggle;
 
-ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser)
+ReportUser::ReportUser(QWidget *parent) : HW("reportuser", this, parent), ui(new Ui::ReportUser)
 {
     this->ui->setupUi(this);
     this->ReportedUser = nullptr;
@@ -84,6 +84,7 @@ ReportUser::ReportUser(QWidget *parent) : QDialog(parent), ui(new Ui::ReportUser
     this->ui->tableWidget_2->setShowGrid(false);
     this->tReportUser = nullptr;
     this->ui->webView->setHtml(_l("report-select"));
+    this->RestoreWindow();
 }
 
 ReportUser::~ReportUser()

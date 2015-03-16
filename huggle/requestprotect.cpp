@@ -23,13 +23,14 @@
 
 using namespace Huggle;
 
-RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : QDialog(parent), ui(new Ui::RequestProtect)
+RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : HW("requestprotect", this, parent), ui(new Ui::RequestProtect)
 {
     this->page = new Huggle::WikiPage(wikiPage);
     this->ui->setupUi(this);
     this->setWindowTitle(_l("protect-request-title", this->page->PageName));
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
+    this->RestoreWindow();
 }
 
 RequestProtect::~RequestProtect()

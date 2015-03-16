@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QString>
 #include <QtXml>
 #include "collectable_smartptr.hpp"
@@ -34,7 +34,7 @@ namespace Huggle
     /*!
      * \brief The ProtectPage class display a window where user can protect a page given they have the permissions to do that
      */
-    class HUGGLE_EX ProtectPage : public QDialog
+    class HUGGLE_EX ProtectPage : public HW
     {
             Q_OBJECT
         public:

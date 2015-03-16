@@ -14,7 +14,7 @@
 #include "definitions.hpp"
 
 #include <QTimer>
-#include <QDialog>
+#include "hw.hpp"
 #include <QRegExp>
 #include "wikipage.hpp"
 #include "apiquery.hpp"
@@ -32,7 +32,7 @@ namespace Huggle
     class ApiQuery;
 
     //! This can be used to request protection of a page
-    class HUGGLE_EX RequestProtect : public QDialog
+    class HUGGLE_EX RequestProtect : public HW
     {
             Q_OBJECT
         public:

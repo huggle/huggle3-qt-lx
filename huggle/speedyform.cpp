@@ -25,13 +25,14 @@
 
 using namespace Huggle;
 
-SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm)
+SpeedyForm::SpeedyForm(QWidget *parent) : HW("speedyform", this, parent), ui(new Ui::SpeedyForm)
 {
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
     this->ui->checkBox->setText(_l("speedy-notifycreator"));
     this->ui->label->setText(_l("speedy-reason"));
+    this->RestoreWindow();
 }
 
 SpeedyForm::~SpeedyForm()

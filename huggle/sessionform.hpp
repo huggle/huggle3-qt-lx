@@ -13,7 +13,7 @@
 
 #include "definitions.hpp"
 
-#include <QDialog>
+#include "hw.hpp"
 
 namespace Ui
 {
@@ -25,7 +25,7 @@ namespace Huggle
     //! Session info
 
     //! Display which user, project, what rights and flags your session have
-    class HUGGLE_EX SessionForm : public QDialog
+    class HUGGLE_EX SessionForm : public HW
     {
             Q_OBJECT
         public:

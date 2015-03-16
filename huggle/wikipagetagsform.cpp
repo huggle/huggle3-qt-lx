@@ -24,7 +24,7 @@
 #include "ui_wikipagetagsform.h"
 
 using namespace Huggle;
-WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new Ui::WikiPageTagsForm)
+WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : HW("wptf", this, parent),  ui(new Ui::WikiPageTagsForm)
 {
     this->ui->setupUi(this);
     QStringList header;
@@ -36,6 +36,7 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : QDialog(parent),  ui(new U
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
+    this->RestoreWindow();
 }
 
 WikiPageTagsForm::~WikiPageTagsForm()

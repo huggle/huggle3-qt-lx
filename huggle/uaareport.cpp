@@ -26,7 +26,7 @@
 
 using namespace Huggle;
 
-UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
+UAAReport::UAAReport(QWidget *parent) : HW("uaareport", this, parent), ui(new Ui::UAAReport)
 {
     this->ui->setupUi(this);
     this->User = nullptr;
@@ -40,6 +40,7 @@ UAAReport::UAAReport(QWidget *parent) : QDialog(parent), ui(new Ui::UAAReport)
     this->OptionalReason = "";
     this->ta = "";
     this->UAAReportReason = "";
+    this->RestoreWindow();
 }
 
 UAAReport::~UAAReport()

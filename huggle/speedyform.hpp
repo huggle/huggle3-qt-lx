@@ -14,7 +14,7 @@
 #include "definitions.hpp"
 
 #include <QTimer>
-#include <QDialog>
+#include "hw.hpp"
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 #include "editquery.hpp"
@@ -35,7 +35,7 @@ namespace Huggle
     /*!
      * \brief The window that is used to report a page for deletion
      */
-    class HUGGLE_EX SpeedyForm : public QDialog
+    class HUGGLE_EX SpeedyForm : public HW
     {
             Q_OBJECT
         public:
