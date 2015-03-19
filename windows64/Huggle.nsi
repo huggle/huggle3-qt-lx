@@ -6,7 +6,7 @@
 
 !define MUI_ICON "huggle.ico"
 !define MUI_UNICON "huggle.ico"
-!define APP_NAME "Huggle"
+!define APP_NAME "Huggle (x64)"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
 !define VERSION "3.1.10.0"
@@ -144,7 +144,6 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
-CreateShortCut "$SMPROGRAMS\$SM_Folder\PyHuggle.lnk" "$INSTDIR\py_hug.exe" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
