@@ -30,6 +30,13 @@
 #  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
+param
+(
+    [bool]$pause = $true,
+    [bool]$qtcreator = $true,
+    [string]$compiler = "GCC"
+)
+
 $ErrorActionPreference = "Stop"
 
 if (!(Test-Path "update.sh"))
@@ -57,7 +64,7 @@ if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
     }
 }
 
-if (!(Test-Path "huggle.pro"))
+if ($qtcreator -and !(Test-Path "huggle.pro"))
 {
     echo "Creating huggle.pro"
     Copy-Item "huggle.orig" "huggle.pro"
@@ -96,4 +103,7 @@ if (!(Test-Path "definitions.hpp"))
 #}
 
 echo "It's all done, you can build huggle now from within Qt creator!"
-Read-Host -Prompt "Press Enter to continue"
+if ($pause)
+{
+    Read-Host -Prompt "Press Enter to continue"
+}
