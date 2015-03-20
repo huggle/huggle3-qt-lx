@@ -3,14 +3,10 @@ Windows
 
 This is used to build packages for windows, how-to:
 
-* Download http://nsis.sourceforge.net/Download
-* Install
+*Open Huggle.nsi and update the version of huggle to current one
+* Run powershell script release.ps1
+* You can pick generator using -cmake_generator
 
-Now it's a little bit tricky, you will need to create this structure in this folder:
+By default this script will try to use Visual Studio to compile huggle, you may want to pass parameter -mingw true
 
-* Make a folder called "release"
-* Build huggle both without python engine and call it just huggle.exe, then with python support and call it py_hug.exe
-* Copy huggle.ico from Resources folder to both root and other folder
-* Now, keep running NSIS compiler on the nsi file and look for the error it will require lot of files
-
-For each .dll file which is missing you need to browse the folder where Qt is installed and copy it there to location where it looks for it.
+We use MingW for 32bit version of huggle for release builds because it has fewer dependencies than Visual Studio and works on more versions of Windows with no need to install any redistributable files from MS

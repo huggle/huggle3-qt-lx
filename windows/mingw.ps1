@@ -1,0 +1,1 @@
+﻿.\release.ps1 -mingw $true -cmake_generator "MinGW Makefiles"

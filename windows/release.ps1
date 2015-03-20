@@ -29,216 +29,180 @@
 #  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 #  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+param
+(
+    [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe",
+    [string]$root_path = $PWD,
+    [string]$qt5_path = "C:\Qt\5.4\msvc2013\",
+    [string]$nsis_path = "C:\Program Files (x86)\NSIS\makensis.exe",
+    [string]$openssl_path = "C:\OpenSSL-Win32",
+    [string]$cmake_generator = "Visual Studio 12 2013",
+    [bool]$mingw = $false,
+    [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
+    [bool]$python = $true
+)
+
 $ErrorActionPreference = "Stop"
 
-$root_path=$PWD
+function PackageTest
+{
+    param
+    (
+        [parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string] $PackageName,
 
-function Build-VisualStudioSolution            
-{            
-    param            
-    (            
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [String] $SourceCodePath = "C:\SourceCode\Development\",            
-            
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [String] $SolutionFile,            
-                    
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [String] $Configuration = "Debug",            
-                    
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [Boolean] $AutoLaunchBuildLog = $false,            
-            
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [Switch] $MsBuildHelp,            
-                    
-        [parameter(Mandatory=$false)]            
-        [ValidateNotNullOrEmpty()]             
-        [Switch] $CleanFirst,            
-                    
-        [ValidateNotNullOrEmpty()]             
-        [string] $BuildLogFile,            
-               
-	[ValidateNotNullOrEmpty()]                  
-        [string] $BuildLogOutputPath = $env:userprofile + "\Desktop\"            
-    )            
-                
-    process            
-    {            
-        # Local Variables            
-        $MsBuild = $env:systemroot + "\Microsoft.NET\Framework\v2.0.50727\MSBuild.exe";            
-                
-        # Caller requested MsBuild Help?            
-        if($MsBuildHelp)            
-        {            
-                $BuildArgs = @{            
-                    FilePath = $MsBuild            
-                    ArgumentList = "/help"            
-                    Wait = $true            
-                    RedirectStandardOutput = "C:\MsBuildHelp.txt"            
-                }            
-            
-                # Get the help info and show            
-                Start-Process @BuildArgs            
-                Start-Process -verb Open "C:\MsBuildHelp.txt";            
-        }            
-        else            
-        {            
-            # Local Variables            
-            $SlnFilePath = $SourceCodePath + $SolutionFile;            
-            $SlnFileParts = $SolutionFile.Split("\");            
-            $SlnFileName = $SlnFileParts[$SlnFileParts.Length - 1];            
-            $BuildLog = $BuildLogOutputPath + $BuildLogFile            
-            $bOk = $true;            
-                        
-            try            
-            {            
-                # Clear first?            
-                if($CleanFirst)            
-                {            
-                    # Display Progress            
-                    Write-Progress -Id 20275 -Activity $SlnFileName  -Status "Cleaning..." -PercentComplete 10;            
-                            
-                    $BuildArgs = @{            
-                        FilePath = $MsBuild            
-                        ArgumentList = $SlnFilePath, "/t:clean", ("/p:Configuration=" + $Configuration), "/v:minimal"            
-                        RedirectStandardOutput = $BuildLog            
-                        Wait = $true            
-                        #WindowStyle = "Hidden"            
-                    }            
-            
-                    # Start the build            
-                    Start-Process @BuildArgs #| Out-String -stream -width 1024 > $DebugBuildLogFile             
-                                
-                    # Display Progress            
-                    Write-Progress -Id 20275 -Activity $SlnFileName  -Status "Done cleaning." -PercentComplete 50;            
-                }            
-            
-                # Display Progress            
-                Write-Progress -Id 20275 -Activity $SlnFileName  -Status "Building..." -PercentComplete 60;            
-                            
-                # Prepare the Args for the actual build            
-                $BuildArgs = @{            
-                    FilePath = $MsBuild            
-                    ArgumentList = $SlnFilePath, "/t:rebuild", ("/p:Configuration=" + $Configuration), "/v:minimal"            
-                    RedirectStandardOutput = $BuildLog            
-                    Wait = $true            
-                    #WindowStyle = "Hidden"            
-                }            
-            
-                # Start the build            
-                Start-Process @BuildArgs #| Out-String -stream -width 1024 > $DebugBuildLogFile             
-                            
-                # Display Progress            
-                Write-Progress -Id 20275 -Activity $SlnFileName  -Status "Done building." -PercentComplete 100;            
-            }            
-            catch            
-            {            
-                $bOk = $false;            
-                Write-Error ("Unexpect error occured while building " + $SlnFileParts[$SlnFileParts.Length - 1] + ": " + $_.Message);            
-            }            
-                        
-            # All good so far?            
-            if($bOk)            
-            {            
-                #Show projects which where built in the solution            
-                #Select-String -Path $BuildLog -Pattern "Done building project" -SimpleMatch            
-                            
-                # Show if build succeeded or failed...            
-                $successes = Select-String -Path $BuildLog -Pattern "Build succeeded." -SimpleMatch            
-                $failures = Select-String -Path $BuildLog -Pattern "Build failed." -SimpleMatch            
-                            
-                if($failures -ne $null)            
-                {            
-                    Write-Warning ($SlnFileName + ": A build failure occured. Please check the build log $BuildLog for details.");            
-                }            
-                            
-                # Show the build log...            
-                if($AutoLaunchBuildLog)            
-                {            
-                    Start-Process -verb "Open" $BuildLog;            
-                }            
-            }            
-        }            
-    }            
-                
-    <#
-        .SYNOPSIS
-        Executes the v2.0.50727\MSBuild.exe tool against the specified Visual Studio solution file.
-        
-        .Description
-        
-        .PARAMETER SourceCodePath
-        The source code root directory. $SolutionFile can be relative to this directory. 
-        
-        .PARAMETER SolutionFile
-        The relative path and filename of the Visual Studio solution file.
-        
-        .PARAMETER Configuration
-        The project configuration to build within the solution file. Default is "Debug".
-        
-        .PARAMETER AutoLaunchBuildLog
-        If true, the build log will be launched into the default viewer. Default is false.
-        
-        .PARAMETER MsBuildHelp
-        If set, this function will run MsBuild requesting the help listing.
-        
-        .PARAMETER CleanFirst
-        If set, this switch will cause the function to first run MsBuild as a "clean" operation, before executing the build.
-        
-        .PARAMETER BuildLogFile
-        The name of the file which will contain the build log after the build completes.
-        
-        .PARAMETER BuildLogOutputPath
-        The full path to the output folder where build log files will be placed. Defaults to the current user's desktop.
-        
-        .EXAMPLE
-        
-        .LINK
-        http://stackoverflow.com/questions/2560652/why-does-powershell-fail-to-build-my-net-solutions-file-is-being-used-by-anot
-        http://geekswithblogs.net/dwdii
-        
-        .NOTES
-        Name:   Build-VisualStudioSolution
-        Author: Daniel Dittenhafer
-    #>                
+        [parameter(Mandatory=$true)]      
+        [ValidateNotNullOrEmpty()]
+        [string] $PackageUrl,
+
+        [parameter(Mandatory=$true)]
+        [string] $VariableName
+    )
+
+    Write-Host "Looking for $PackageName...    " -NoNewLine
+    if (!(Test-Path $PackageUrl))
+    {
+        echo "ERROR"
+        echo "Unable to find $PackageName at $PackageUrl, you can set the alternative path using -$VariableName=path"
+        exit 1
+    }
+    echo ("OK");
 }
 
-
+Write-Host "Checking paths...     " -NoNewline
 
 if (!(Test-Path "gpl.txt"))
 {
+    echo "ERROR"
     echo "Unable to find license, are you in right folder?"
     exit 1
 }
 
 if (!(Test-Path "../huggle/configure.ps1"))
 {
+    echo "ERROR"
     echo "This isn't a huggle windows folder, you need to run this script from within the ROOT/windows folder"
     exit 1
 }
 
 if ((Test-Path ".\build"))
 {
+    echo "ERROR"
     echo "The build folder is already present, please remove it first"
     exit 1
 }
 
-echo "Configuring the project"
+if ((Test-Path ".\release"))
+{
+    echo "ERROR"
+    echo "The release folder is already present, please remove it first"
+    exit 1
+}
+
+echo "OK"
+
+if ($mingw)
+{
+    PackageTest "MingW" "$mingw_path" "mingw_path"
+} else
+{
+    PackageTest "MSBuild" "$msbuild_path" "msbuild_path"
+}
+PackageTest "Qt5" "$qt5_path" "qt5_path"
+PackageTest "OpenSSL" "$openssl_path" "openssl_path"
+PackageTest "nsis" "$nsis_path" "nsis_path"
+
+Write-Host "Looking for cmake...    " -NoNewline
+if (!(Get-Command cmake -errorAction SilentlyContinue))
+{
+    echo "ERROR"
+    echo "Unable to find cmake powershell snippet in this system"
+}
+echo "OK"
+
+echo "Configuring the project..."
 
 cd ..\huggle
 .\configure.ps1 -pause $false -qtcreator $false
 
 #let's try to invoke cmake now
 cd $root_path
-mkdir build
+echo "Running cmake"
+mkdir build | Out-Null
 cd build
-cmake ..\..\huggle\ -DCMAKE_PREFIX_PATH:STRING=C:\Qt\5.4\msvc2013\ -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true
-Build-VisualStudioSolution -SourceCodePath="$PWD" -SolutionFile="huggle.sln" -Configuration="Release" -BuildLogOutputPath="$PWD"
+if ($python)
+{
+    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true
+} else
+{
+    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true
+}
+& $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+cd $root_path
+echo "Preparing the package structure"
+mkdir release | Out-Null
+mkdir release\deps | Out-Null
+mkdir release\platforms | Out-Null
+cp .\build\extension_list\enwiki\Release\huggle_en.dll release
+cp .\build\extension_list\extension-thanks\Release\huggle_thanks.dll release
+cp .\build\extension_list\mass-delivery\Release\huggle_md.dll release
+cp .\build\Release\core.dll release
+cp .\build\Release\core.lib release
+cp .\build\Release\huggle.exe release
+if ($python)
+{
+    cp .\build\Release\py_hug.exe release
+}
+# get the qt
+cp $qt5_path\plugins\platforms\qminimal.dll release\platforms
+cp $qt5_path\plugins\platforms\qoffscreen.dll release\platforms
+cp $qt5_path\plugins\platforms\qwindows.dll release\platforms
+cp $qt5_path\bin\Enginio.dll release\deps
+cp $qt5_path\bin\icudt53.dll release\deps
+cp $qt5_path\bin\icuin53.dll release\deps
+cp $qt5_path\bin\Qt5Bluetooth.dll release\deps
+cp $qt5_path\bin\icuuc53.dll release\deps
+cp $qt5_path\bin\Qt5CLucene.dll release\deps
+cp $qt5_path\bin\Qt5Concurrent.dll release\deps
+cp $qt5_path\bin\Qt5Core.dll release\deps
+cp $qt5_path\bin\Qt5Declarative.dll release\deps
+cp $qt5_path\bin\Qt5Designer.dll release\deps
+cp $qt5_path\bin\Qt5DesignerComponents.dll release\deps
+cp $qt5_path\bin\Qt5Gui.dll release\deps
+cp $qt5_path\bin\Qt5Help.dll release\deps
+cp $qt5_path\bin\Qt5Location.dll release\deps
+cp $qt5_path\bin\Qt5Multimedia.dll release\deps
+cp $qt5_path\bin\Qt5MultimediaQuick_p.dll release\deps
+cp $qt5_path\bin\Qt5MultimediaWidgets.dll release\deps
+cp $qt5_path\bin\Qt5Network.dll release\deps
+cp $qt5_path\bin\Qt5Nfc.dll release\deps
+cp $qt5_path\bin\Qt5OpenGL.dll release\deps
+cp $qt5_path\bin\Qt5Positioning.dll release\deps
+cp $qt5_path\bin\Qt5PrintSupport.dll release\deps
+cp $qt5_path\bin\Qt5Widgets.dll release\deps
+cp $qt5_path\bin\Qt5WebKit.dll release\deps
+cp $qt5_path\bin\Qt5WebKitWidgets.dll release\deps
+cp $qt5_path\bin\Qt5Sensors.dll release\deps
+cp $qt5_path\bin\Qt5Quick.dll release\deps
+cp $qt5_path\bin\Qt5Script.dll release\deps
+cp $qt5_path\bin\Qt5Qml.dll release\deps
+cp $qt5_path\bin\Qt5XmlPatterns.dll release\deps
+cp $qt5_path\bin\Qt5WebChannel.dll release\deps
+cp $qt5_path\bin\Qt5Sql.dll release\deps
+cp $qt5_path\bin\Qt5Xml.dll release\deps
+cp ..\huggle\Resources\huggle.ico huggle.ico
+cp ..\huggle\Resources\huggle.ico release
+cp $openssl_path\bin\ssleay32.dll release\deps
+cp $openssl_path\bin\libeay32.dll release\deps
+echo "Making package out of this"
 
+$nsis_file = "Huggle.nsi"
+if ($mingw)
+{
+    $nsis_file = "HuggleMinGW.nsi"
+}
 
+& $nsis_path $nsis_file
+
+Read-Host -Prompt "Press Enter to continue"
