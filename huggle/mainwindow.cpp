@@ -74,6 +74,7 @@
 #include "uaareport.hpp"
 #include "ui_mainwindow.h"
 #include "requestprotect.hpp"
+#include "queuehelp.hpp"
 #ifdef DeleteForm
     #undef DeleteForm
 #endif
@@ -3000,4 +3001,11 @@ void Huggle::MainWindow::on_actionXmlRcs_triggered()
 void MainWindow::OnStatusBarRefreshTimerTick()
 {
     this->UpdateStatusBarData();
+}
+
+void Huggle::MainWindow::on_actionQueue_legend_triggered()
+{
+    QueueHelp *w = new QueueHelp(this);
+    w->setAttribute(Qt::WA_DeleteOnClose);
+    w->show();
 }

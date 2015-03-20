@@ -136,7 +136,8 @@ SOURCES += main.cpp\
     version.cpp \
     editbaritem.cpp \
     editbar.cpp \
-    hugglefeedproviderxml.cpp
+    hugglefeedproviderxml.cpp \
+    queuehelp.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -225,7 +226,8 @@ HEADERS  += mainwindow.hpp \
     editbaritem.hpp \
     editbar.hpp \
     edittype.hpp \
-    hugglefeedproviderxml.hpp
+    hugglefeedproviderxml.hpp \
+    queuehelp.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -262,7 +264,8 @@ FORMS    += mainwindow.ui \
     loadingform.ui \
     wikipagetagsform.ui \
     editbar.ui \
-    editbaritem.ui
+    editbaritem.ui \
+    queuehelp.ui
 
 RESOURCES += \
     pictures.qrc \

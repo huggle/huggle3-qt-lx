@@ -323,6 +323,8 @@ namespace Huggle
             void on_actionReload_tokens_triggered();
             void on_actionXmlRcs_triggered();
             void OnStatusBarRefreshTimerTick();
+            void on_actionQueue_legend_triggered();
+
         private:
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger

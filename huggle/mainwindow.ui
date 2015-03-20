@@ -123,6 +123,7 @@
      <addaction name="actionLog_out"/>
     </widget>
     <addaction name="actionContents"/>
+    <addaction name="actionQueue_legend"/>
     <addaction name="separator"/>
     <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
@@ -1062,6 +1063,11 @@
    </property>
    <property name="text">
     <string>XmlRcs</string>
+   </property>
+  </action>
+  <action name="actionQueue_legend">
+   <property name="text">
+    <string>Queue legend</string>
    </property>
   </action>
  </widget>
