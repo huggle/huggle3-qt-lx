@@ -1,6 +1,6 @@
 # This is a build file for tst_testmain (used with cmake)
 # you will need to update it by hand
-cmake_minimum_required (VERSION 3.0.0)
+cmake_minimum_required (VERSION 2.8.0)
 PROJECT(tst_testmain)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 #  cmake <folder> -DQT5_BUILD=true
