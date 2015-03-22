@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>421</width>
-    <height>384</height>
+    <height>414</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
@@ -60,6 +63,13 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>Blocked user</string>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
@@ -67,6 +77,13 @@
        </property>
        <property name="pixmap">
         <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-bot.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>Bot</string>
        </property>
       </widget>
      </item>
@@ -80,6 +97,13 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_17">
+       <property name="text">
+        <string>Whitelisted user</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_8">
        <property name="text">
@@ -87,6 +111,13 @@
        </property>
        <property name="pixmap">
         <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-me.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="label_18">
+       <property name="text">
+        <string>You</string>
        </property>
       </widget>
      </item>
@@ -100,6 +131,13 @@
        </property>
       </widget>
      </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="label_19">
+       <property name="text">
+        <string>New page</string>
+       </property>
+      </widget>
+     </item>
      <item row="7" column="0">
       <widget class="QLabel" name="label_10">
        <property name="text">
@@ -107,6 +145,13 @@
        </property>
        <property name="pixmap">
         <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-none.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLabel" name="label_20">
+       <property name="text">
+        <string>Registered</string>
        </property>
       </widget>
      </item>
@@ -137,6 +182,13 @@
        </property>
       </widget>
      </item>
+     <item row="9" column="1">
+      <widget class="QLabel" name="label_21">
+       <property name="text">
+        <string>User with l1 warning</string>
+       </property>
+      </widget>
+     </item>
      <item row="10" column="0">
       <widget class="QLabel" name="label_14">
        <property name="text">
@@ -144,55 +196,6 @@
        </property>
        <property name="pixmap">
         <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-2.png</pixmap>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label_15">
-       <property name="text">
-        <string>Blocked user</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="label_16">
-       <property name="text">
-        <string>Bot</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_17">
-       <property name="text">
-        <string>Whitelisted user</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="label_18">
-       <property name="text">
-        <string>You</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="label_19">
-       <property name="text">
-        <string>New page</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_20">
-       <property name="text">
-        <string>Registered</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QLabel" name="label_21">
-       <property name="text">
-        <string>User with l1 warning</string>
        </property>
       </widget>
      </item>
@@ -213,6 +216,13 @@
        </property>
       </widget>
      </item>
+     <item row="11" column="1">
+      <widget class="QLabel" name="label_27">
+       <property name="text">
+        <string>User with l3 warning</string>
+       </property>
+      </widget>
+     </item>
      <item row="12" column="0">
       <widget class="QLabel" name="label_24">
        <property name="text">
@@ -220,6 +230,13 @@
        </property>
        <property name="pixmap">
         <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-4.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="1">
+      <widget class="QLabel" name="label_28">
+       <property name="text">
+        <string>User with final warning</string>
        </property>
       </widget>
      </item>
@@ -233,6 +250,13 @@
        </property>
       </widget>
      </item>
+     <item row="13" column="1">
+      <widget class="QLabel" name="label_29">
+       <property name="text">
+        <string>Score higher than 1000</string>
+       </property>
+      </widget>
+     </item>
      <item row="14" column="0">
       <widget class="QLabel" name="label_26">
        <property name="text">
@@ -243,24 +267,10 @@
        </property>
       </widget>
      </item>
-     <item row="11" column="1">
-      <widget class="QLabel" name="label_27">
+     <item row="14" column="1">
+      <widget class="QLabel" name="label_31">
        <property name="text">
-        <string>User with l3 warning</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="1">
-      <widget class="QLabel" name="label_28">
-       <property name="text">
-        <string>User with final warning</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="1">
-      <widget class="QLabel" name="label_29">
-       <property name="text">
-        <string>Score higher than 1000</string>
+        <string>User has block note on their talk page</string>
        </property>
       </widget>
      </item>
@@ -274,17 +284,44 @@
        </property>
       </widget>
      </item>
-     <item row="14" column="1">
-      <widget class="QLabel" name="label_31">
-       <property name="text">
-        <string>User has block note on their talk page</string>
-       </property>
-      </widget>
-     </item>
      <item row="15" column="1">
       <widget class="QLabel" name="label_32">
        <property name="text">
         <string>User was reported in past</string>
+       </property>
+      </widget>
+     </item>
+     <item row="16" column="1">
+      <widget class="QLabel" name="label_33">
+       <property name="text">
+        <string>Edit is tag</string>
+       </property>
+      </widget>
+     </item>
+     <item row="16" column="0">
+      <widget class="QLabel" name="label_34">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-tag.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="1">
+      <widget class="QLabel" name="label_36">
+       <property name="text">
+        <string>Revert</string>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="0">
+      <widget class="QLabel" name="label_35">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-revert.png</pixmap>
        </property>
       </widget>
      </item>
