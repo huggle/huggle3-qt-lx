@@ -87,6 +87,8 @@ Section -MainProgram
 ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
+File "vcredist_x86.exe"
+ExecWait '"$INSTDIR\vcredist_x86.exe" /passive /norestart'
 RmDir /r "$INSTDIR\extensions"
 File "release\huggle.exe"
 File "release\huggle.ico"
@@ -179,6 +181,7 @@ Section Uninstall
 ${INSTALL_TYPE}
 Delete "$INSTDIR\${MAIN_APP_EXE}"
 Delete "$INSTDIR\icuin53.dll"
+Delete "$INSTDIR\vcredist_x86.exe"
 Delete "$INSTDIR\core.lib"
 Delete "$INSTDIR\core.dll"
 Delete "$INSTDIR\Qt5Core.dll"

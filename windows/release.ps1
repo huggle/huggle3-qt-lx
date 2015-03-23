@@ -39,7 +39,8 @@ param
     [string]$cmake_generator = "Visual Studio 12 2013",
     [bool]$mingw = $false,
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
-    [bool]$python = $true
+    [bool]$python = $true,
+    [string]$vcredist = "vcredist_x86.exe"
 )
 
 $ErrorActionPreference = "Stop"
@@ -100,6 +101,13 @@ if ((Test-Path ".\release"))
     exit 1
 }
 
+if (!(Test-Path $vcredist))
+{
+    echo "ERROR"
+    echo "There is no $vcredist package, please download one from http://www.microsoft.com/en-us/download/details.aspx?id=40784 and place it in this folder"
+    exit 1
+}
+
 echo "OK"
 
 if ($mingw)
@@ -112,19 +120,38 @@ if ($mingw)
 PackageTest "Qt5" "$qt5_path" "qt5_path"
 PackageTest "OpenSSL" "$openssl_path" "openssl_path"
 PackageTest "nsis" "$nsis_path" "nsis_path"
-
+$git_enabled = $true
+Write-Host "Looking for git...    " -NoNewline
+if (!(Get-Command git -errorAction SilentlyContinue))
+{
+    echo "NOT FOUND"
+    $git_enabled = $false
+    exit 1
+}
+echo "OK"
 Write-Host "Looking for cmake...    " -NoNewline
 if (!(Get-Command cmake -errorAction SilentlyContinue))
 {
     echo "ERROR"
     echo "Unable to find cmake powershell snippet in this system"
+    exit 1
 }
 echo "OK"
 
 echo "Configuring the project..."
 
 cd ..\huggle
-.\configure.ps1 -pause $false -qtcreator $false
+if ($git_enabled -and (Test-Path("..\.git")))
+{
+    $rev_list = git rev-list HEAD --count | Out-String
+    $rev_list = $rev_list.Replace("`n", "").Replace("`r", "")
+    $hash = git describe --always --tags | Out-String
+    $hash = $hash.Replace("`n", "").Replace("`r", "")
+    echo "build: $rev_list $hash" > version.txt
+} else
+{
+    echo "build: non-git build (windows)" > version.txt
+}
 
 #let's try to invoke cmake now
 cd $root_path

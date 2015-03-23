@@ -91,6 +91,8 @@ Section -MainProgram
 ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
+File "vcredist_x64.exe"
+ExecWait '"$INSTDIR\vcredist_x64.exe" /passive /norestart'
 RmDir /r "$INSTDIR\extensions"
 File "release\huggle.exe"
 File "release\huggle.ico"
@@ -180,6 +182,7 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 Delete "$INSTDIR\${MAIN_APP_EXE}"
+Delete "$INSTDIR\vcredist_x64.exe"
 Delete "$INSTDIR\icuin53.dll"
 Delete "$INSTDIR\core.lib"
 Delete "$INSTDIR\core.dll"
