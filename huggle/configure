@@ -73,6 +73,7 @@ do
         continue
     fi
     if [ "$_Q" = "1" ];then
+        _Q=0
         QTPATH=$var
         continue
     fi
