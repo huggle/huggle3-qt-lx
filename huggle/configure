@@ -38,6 +38,8 @@ QT5=10
 CMAKE_ARGS=''
 PYTHON=0
 _BUILD=0
+_Q=0
+QTPATH=''
 BUILD=huggle_release
 if [ x"$*" != x ];then
     echo "Options used: $*"
@@ -50,6 +52,7 @@ do
         echo "=========================================="
         echo " --disable-dependency-tracking: skip all package checks"
         echo " --extension: will build all extensions as well"
+        echo " --qtpath: path to Qt (for example C:\\Qt\\5.4\\mingw\\"
         echo " --qt4: execute QT4 checks"
         echo " --qt5: execute QT5 checks"
         echo " --python: will build huggle with p engine"
@@ -67,6 +70,14 @@ do
     if [ "$_BUILD" = "1" ];then
 	BUILD="$var"
         _BUILD=0
+        continue
+    fi
+    if [ "$_Q" = "1" ];then
+        QTPATH=$var
+        continue
+    fi
+    if [ "$var" = "--qtpath" ];then
+        _Q=1
         continue
     fi
     if [ "$var" = "--no-colors" ];then
@@ -229,6 +240,9 @@ if [ ! -f version.txt ];then
 	exit 1
 fi
 ok
+if [ x"$QTPATH" != "x" ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QTPATH"
+fi
 if [ $modules -gt 0 ];then
     ./build/extensions_init.sh || exit 1
     CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
