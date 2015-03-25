@@ -161,6 +161,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #endif
     #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "\\extensions"
 #elif defined HUGGLE_MACX
+    #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "/Extensions"
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "mac"
 #else
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
