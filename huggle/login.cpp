@@ -972,7 +972,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
         {
             // let's prepare a NS list
             site->ClearNS();
-            register int index = 0;
+            int index = 0;
             while (index < ns.count())
             {
                 ApiQueryResultNode *node = ns.at(index);
