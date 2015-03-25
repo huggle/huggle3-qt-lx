@@ -324,7 +324,7 @@ void Core::ExtensionLoad()
                 continue;
             }
             QString name = ename.toLower();
-            if (name.endsWith(".so") || name.endsWith(".dll"))
+            if (name.endsWith(".so") || name.endsWith(".dll") || name.endsWith(".dylib"))
             {
                 QPluginLoader *extension = new QPluginLoader(ename);
                 if (extension->load())
