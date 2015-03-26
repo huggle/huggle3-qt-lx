@@ -243,23 +243,12 @@ WikiUser::WikiUser(QString user)
     this->Bot = false;
     this->RegistrationDate = "";
     this->WhitelistInfo = HUGGLE_WL_UNKNOWN;
-    WikiUser::ProblematicUserListLock.lock();
-    while (c<ProblematicUsers.count())
+    if (!this->Resync())
     {
-        if (ProblematicUsers.at(c)->Username == this->Username)
-        {
-            this->BadnessScore = ProblematicUsers.at(c)->BadnessScore;
-            this->WarningLevel = ProblematicUsers.at(c)->WarningLevel;
-            this->IsReported = ProblematicUsers.at(c)->IsReported;
-            WikiUser::ProblematicUserListLock.unlock();
-            return;
-        }
-        ++c;
+        this->BadnessScore = 0;
+        this->WarningLevel = 0;
+        this->IsReported = false;
     }
-    WikiUser::ProblematicUserListLock.unlock();
-    this->BadnessScore = 0;
-    this->WarningLevel = 0;
-    this->IsReported = false;
 }
 
 WikiUser::~WikiUser()
@@ -267,10 +256,9 @@ WikiUser::~WikiUser()
     delete this->UserLock;
 }
 
-void WikiUser::Resync()
+bool WikiUser::Resync()
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    WikiUser::ProblematicUserListLock.lock();
     WikiUser *user = WikiUser::RetrieveUser(this);
     if (user && user != this)
     {
@@ -282,9 +270,11 @@ void WikiUser::Resync()
             this->WarningLevel = user->WarningLevel;
         if (this->EditCount < 0)
             this->EditCount = user->EditCount;
+        this->IsReported = user->IsReported;
+        this->IsBlocked = user->IsBlocked;
+        return true;
     }
-    // we can finally unlock it
-    WikiUser::ProblematicUserListLock.unlock();
+    return false;
 }
 
 QString WikiUser::TalkPage_GetContents()

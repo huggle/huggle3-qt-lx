@@ -98,7 +98,7 @@ namespace Huggle
 
             //! This is useful when you created user in past and since then a global user has changed
             //! so that you just call this to refresh all the scores and information or stuff
-            void Resync();
+            bool Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
             bool TalkPage_WasRetrieved();
