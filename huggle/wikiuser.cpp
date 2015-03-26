@@ -137,11 +137,13 @@ bool WikiUser::CompareUsernames(QString a, QString b)
 
 bool WikiUser::IsIPv4(QString user)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     return WikiUser::IPv4Regex.exactMatch(user);
 }
 
 bool WikiUser::IsIPv6(QString user)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     return WikiUser::IPv6Regex.exactMatch(user);
 }
 
@@ -378,6 +380,7 @@ bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 
 bool WikiUser::IsWhitelisted()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->WhitelistInfo == HUGGLE_WL_TRUE)
         return true;
     if (this->WhitelistInfo == HUGGLE_WL_FALSE)
@@ -400,6 +403,7 @@ bool WikiUser::IsWhitelisted()
 
 QString WikiUser::Flags()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     QString pflags = "";
     QString nflags = "";
     if (this->TalkPage_GetContents().length() == 0 && this->TalkPage_WasRetrieved())

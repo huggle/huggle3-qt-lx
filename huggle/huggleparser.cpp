@@ -604,6 +604,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
 
 byte_ht HuggleParser::GetIDOfMonth(QString month, WikiSite *site)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int i = 0;
     month = month.toLower();
     while (i < site->ProjectConfig->Months.count())
