@@ -297,7 +297,7 @@ void VandalNw::ProcessGood(WikiEdit *edit, QString user)
     QString sid = QString::number(edit->RevID);
     this->Insert("<font color=blue>" + user + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
                      + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
-    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
+    MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
@@ -313,7 +313,7 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
                 MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
     }
     if (MainWindow::HuggleMain != nullptr && MainWindow::HuggleMain->Queue1 != nullptr)
-        Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
+        MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
@@ -323,7 +323,7 @@ void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
                  + edit->User->Username + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) +
                  ") is likely a vandalism, but they didn't revert it </font>", HAN::MessageType_User);
     edit->Score += 600;
-    Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+    MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
 }
 
 void VandalNw::UpdateHeader()
@@ -428,7 +428,7 @@ void VandalNw::onTick()
                 if (Command == "GOOD")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID, site);
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
                     if (edit != nullptr)
                     {
                         this->ProcessGood(edit, m->user.Nick);
@@ -444,7 +444,7 @@ void VandalNw::onTick()
                 if (Command == "ROLLBACK")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID, site);
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
                     if (edit != nullptr)
                     {
                         this->ProcessRollback(edit, m->user.Nick);
@@ -460,7 +460,7 @@ void VandalNw::onTick()
                 if (Command == "SUSPICIOUS")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID, site);
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
                     if (edit != nullptr)
                     {
                         this->ProcessSusp(edit, m->user.Nick);
@@ -479,13 +479,13 @@ void VandalNw::onTick()
                     long Score = parameter.toLong();
                     if (Score != 0)
                     {
-                        WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID, site);
+                        WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
                         if (edit != nullptr)
                         {
                             this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
                                          "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
                             edit->Score += Score;
-                            Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                            MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
                         } else
                         {
                             while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)

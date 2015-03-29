@@ -878,7 +878,6 @@ void Login::DeveloperMode()
     hcfg->Restricted = true;
     MainWindow::HuggleMain = new MainWindow();
     MainWindow::HuggleMain->show();
-    Core::HuggleCore->Main = MainWindow::HuggleMain;
     this->hide();
 }
 
@@ -1027,8 +1026,7 @@ void Login::Finish()
     this->timer->stop();
     this->hide();
     MainWindow::HuggleMain = new MainWindow();
-    Core::HuggleCore->Main = MainWindow::HuggleMain;
-    Core::HuggleCore->Main->show();
+    MainWindow::HuggleMain->show();
     if (this->loadingForm != nullptr)
     {
         this->loadingForm->close();

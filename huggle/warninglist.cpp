@@ -78,7 +78,7 @@ void WarningList::on_pushButton_clicked()
                                                               " report them instead?", QMessageBox::Yes|QMessageBox::No);
         if (q == QMessageBox::Yes)
         {
-            Core::HuggleCore->Main->DisplayReportUserWindow(this->wikiEdit->User);
+            MainWindow::HuggleMain->DisplayReportUserWindow(this->wikiEdit->User);
         }
     }
     if (ptr_Warning_ != nullptr)

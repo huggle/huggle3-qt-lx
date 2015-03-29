@@ -1603,7 +1603,6 @@ void MainWindow::Exit()
     {
         this->tCheck->stop();
         this->GeneralTimer->stop();
-        Core::HuggleCore->Main = nullptr;
         this->deleteLater();
         this->close();
         Core::HuggleCore->Shutdown();

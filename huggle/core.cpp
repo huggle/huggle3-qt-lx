@@ -112,7 +112,6 @@ Core::Core()
 #ifdef HUGGLE_PYTHON
     this->Python = nullptr;
 #endif
-    this->Main = nullptr;
     this->fLogin = nullptr;
     this->Processor = nullptr;
     this->HuggleSyslog = nullptr;
@@ -123,7 +122,6 @@ Core::Core()
 
 Core::~Core()
 {
-    delete this->Main;
     delete this->fLogin;
     delete this->gc;
     delete this->Processor;
@@ -418,14 +416,14 @@ void Core::Shutdown()
     // now we can shutdown whole huggle
     this->Running = false;
     // grace time for subthreads to finish
-    if (this->Main != nullptr)
+    if (MainWindow::HuggleMain != nullptr)
     {
         foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         {
             if (site->Provider && site->Provider->IsWorking())
                 site->Provider->Stop();
         }
-        this->Main->hide();
+        MainWindow::HuggleMain->hide();
     }
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
     Sleeper::msleep(200);
@@ -448,12 +446,11 @@ void Core::Shutdown()
         delete this->fLogin;
         this->fLogin = nullptr;
     }
-    if (this->Main != nullptr)
+    if (MainWindow::HuggleMain != nullptr)
     {
-        delete this->Main;
-        this->Main = nullptr;
+        delete MainWindow::HuggleMain;
+        MainWindow::HuggleMain = nullptr;
     }
-    MainWindow::HuggleMain = nullptr;
     delete this->HGQP;
     this->HGQP = nullptr;
     QueryPool::HugglePool = nullptr;

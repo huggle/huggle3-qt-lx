@@ -34,7 +34,7 @@ static void SetDefaults(QComboBox *item)
     item->setCurrentIndex(0);
 }
 
-Preferences::Preferences(QWidget *parent) : ui(new Ui::Preferences), HW("preferences", this, parent)
+Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(new Ui::Preferences)
 {
     this->ui->setupUi(this);
     this->ui->tableWidget_2->setColumnCount(3);
@@ -425,7 +425,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         ns++;
     }
     filter->QueueName = this->ui->lineEdit->text();
-    Core::HuggleCore->Main->Queue1->Filters();
+    MainWindow::HuggleMain->Queue1->Filters();
     this->Reload();
 }
 
@@ -457,7 +457,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
     HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
     delete filter;
     this->Disable();
-    Core::HuggleCore->Main->Queue1->Filters();
+    MainWindow::HuggleMain->Queue1->Filters();
     this->Reload();
 }
 
@@ -468,7 +468,7 @@ void Huggle::Preferences::on_pushButton_3_clicked()
     HuggleQueueFilter *filter = new HuggleQueueFilter();
     filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->Site]->count());
     HuggleQueueFilter::Filters[this->Site]->append(filter);
-    Core::HuggleCore->Main->Queue1->Filters();
+    MainWindow::HuggleMain->Queue1->Filters();
     this->Reload();
 }
 
@@ -630,7 +630,7 @@ void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
     // update the filter
     this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
     this->Site->CurrentFilter = HuggleQueueFilter::GetFilter(this->ui->cbDefault->itemText(index), this->Site);
-    Core::HuggleCore->Main->Queue1->Filters();
+    MainWindow::HuggleMain->Queue1->Filters();
 }
 
 void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint &pos)

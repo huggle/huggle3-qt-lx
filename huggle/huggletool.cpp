@@ -222,7 +222,7 @@ void HuggleTool::FinishEdit()
         return;
     this->tick->stop();
     this->ui->pushButton->setEnabled(true);
-    Core::HuggleCore->Main->ProcessEdit(this->edit, false, false, false, true);
+    MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, false, true);
 }
 
 void Huggle::HuggleTool::on_lineEdit_3_returnPressed()

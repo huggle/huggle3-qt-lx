@@ -94,8 +94,6 @@ namespace Huggle
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
-            //! Pointer to main
-            MainWindow *Main;
             //! Login form
             Login *fLogin;
             Syslog *HuggleSyslog;
