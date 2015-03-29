@@ -9,7 +9,6 @@
 //GNU General Public License for more details.
 
 //! This file exist only for compiler options that can be changed before you build huggle
-//! Please do not commit any changes in this file
 
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
@@ -46,6 +45,7 @@ typedef long long revid_ht;
 // comment this out to disable multithreaded garbage collector
 // this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
 // is crashing with it only, it means your code suck and need a fix in destructor :))
+// #define HUGGLE_NO_MT_GC
 #ifdef __APPLE__
     #include <cstddef>
     #include "TargetConditionals.h"
