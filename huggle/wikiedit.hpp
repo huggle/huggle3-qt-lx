@@ -128,8 +128,13 @@ namespace Huggle
             WarningLevel CurrentUserWarningLevel;
             //! Summary of edit
             QString Summary;
+            //! If diff is split holds a new text of a diff
+            QString DiffText_New;
+            //! If diff is split this holds an old text of a diff
+            QString DiffText_Old;
             //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
+            bool IsSplit = false;
             //! Base time of last revision of talk page which is needed to check if someone changed the talk
             //! page meanwhile before we change it
             QString TPRevBaseTime;

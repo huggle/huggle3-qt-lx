@@ -14,6 +14,7 @@
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
+#include "hooks.hpp"
 #include "core.hpp"
 #include "querypool.hpp"
 #include "exception.hpp"
@@ -709,6 +710,7 @@ void ProcessorThread::Process(WikiEdit *edit)
             edit->CurrentUserWarningLevel = WarningLevel4;
             break;
     }
+    Hooks::EditPostProcess(edit);
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
     edit->Status = StatusPostProcessed;
