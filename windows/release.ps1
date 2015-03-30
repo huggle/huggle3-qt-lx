@@ -173,6 +173,7 @@ mkdir release\deps | Out-Null
 mkdir release\platforms | Out-Null
 cp .\build\extension_list\enwiki\Release\huggle_en.dll release
 cp .\build\extension_list\extension-thanks\Release\huggle_thanks.dll release
+cp .\build\extension_list\extension-splitter-helper\Release\huggle_sh.dll release
 cp .\build\extension_list\mass-delivery\Release\huggle_md.dll release
 cp .\build\Release\core.dll release
 cp .\build\Release\core.lib release

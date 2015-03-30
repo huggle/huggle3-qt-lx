@@ -446,8 +446,12 @@ static long ProcessWordsInWikiText(QStringList *list, QString text, QList<ScoreW
 
 void WikiEdit::ProcessWords()
 {
-    QString text = this->DiffText.toLower();
-    if (this->Page->Contents.length() > 0)
+    QString text;
+    if (this->IsSplit)
+        text = this->DiffText_New.toLower();
+    else
+        text = this->DiffText.toLower();
+    if (text.isEmpty() && this->Page->Contents.length() > 0)
     {
         text = this->Page->Contents.toLower();
     }
@@ -650,65 +654,71 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
-    bool IgnoreWords = false;
-    if (edit->IsRevert)
+    if (Hooks::EditBeforeScore(edit))
     {
+        bool IgnoreWords = false;
+        if (edit->IsRevert)
+        {
+            if (edit->User->IsIP())
+            {
+                edit->Score += 200;
+            } else
+            {
+                if (!edit->IsSplit)
+                {
+                    // we have to ignore the score words here because there is always lot of them in revert text
+                    IgnoreWords = true;
+                }
+            }
+        }
+        // score
         if (edit->User->IsIP())
         {
-            edit->Score += 200;
-        } else
-        {
-            // we have to ignore the score words here because there is always lot of them in revert text
-            IgnoreWords = true;
+            edit->Score += edit->GetSite()->GetProjectConfig()->IPScore;
         }
-    }
-    // score
-    if (edit->User->IsIP())
-    {
-        edit->Score += edit->GetSite()->GetProjectConfig()->IPScore;
-    }
-    if (edit->Bot)
-        edit->Score += edit->GetSite()->GetProjectConfig()->BotScore;
-    if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-        edit->Score += edit->GetSite()->GetProjectConfig()->ForeignUser;
-    else if (edit->Page->IsUserpage())
-        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreUser;
-    if (edit->Page->IsTalk())
-        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreTalk;
-    if (edit->Size > 1200 || edit->Size < -1200)
-        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreChange;
-    if (edit->Page->IsUserpage())
-        IgnoreWords = true;
-    if (edit->User->IsWhitelisted())
-        edit->Score += edit->GetSite()->GetProjectConfig()->WhitelistScore;
-    edit->Score += edit->User->GetBadnessScore();
-    if (!IgnoreWords)
-        edit->ProcessWords();
-    if (edit->SizeIsKnown && edit->Size < (-1*edit->GetSite()->GetProjectConfig()->LargeRemoval))
-        edit->Score += edit->GetSite()->GetProjectConfig()->ScoreRemoval;
-    edit->User->ParseTP(QDate::currentDate());
-    if (edit->Summary.size() == 0)
-        edit->Score += 10;
-    switch(edit->User->GetWarningLevel())
-    {
-        case 1:
-            edit->Score += 200;
-            edit->CurrentUserWarningLevel = WarningLevel1;
-            break;
-        case 2:
-            edit->Score += 1000;
-            edit->CurrentUserWarningLevel = WarningLevel2;
-            break;
-        case 3:
-            edit->Score += 2000;
-            edit->CurrentUserWarningLevel = WarningLevel3;
-            break;
-        case 4:
-            // people with 4 warnings are so much watched that someone probably revert them
-            // faster than you notice, let's put them lower than unattended vandals
-            edit->Score += 1000;
-            edit->CurrentUserWarningLevel = WarningLevel4;
-            break;
+        if (edit->Bot)
+            edit->Score += edit->GetSite()->GetProjectConfig()->BotScore;
+        if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
+            edit->Score += edit->GetSite()->GetProjectConfig()->ForeignUser;
+        else if (edit->Page->IsUserpage())
+            edit->Score += edit->GetSite()->GetProjectConfig()->ScoreUser;
+        if (edit->Page->IsTalk())
+            edit->Score += edit->GetSite()->GetProjectConfig()->ScoreTalk;
+        if (edit->Size > 1200 || edit->Size < -1200)
+            edit->Score += edit->GetSite()->GetProjectConfig()->ScoreChange;
+        if (edit->Page->IsUserpage())
+            IgnoreWords = true;
+        if (edit->User->IsWhitelisted())
+            edit->Score += edit->GetSite()->GetProjectConfig()->WhitelistScore;
+        edit->Score += edit->User->GetBadnessScore();
+        if (!IgnoreWords)
+            edit->ProcessWords();
+        if (edit->SizeIsKnown && edit->Size < (-1*edit->GetSite()->GetProjectConfig()->LargeRemoval))
+            edit->Score += edit->GetSite()->GetProjectConfig()->ScoreRemoval;
+        edit->User->ParseTP(QDate::currentDate());
+        if (edit->Summary.size() == 0)
+            edit->Score += 10;
+        switch(edit->User->GetWarningLevel())
+        {
+            case 1:
+                edit->Score += 200;
+                edit->CurrentUserWarningLevel = WarningLevel1;
+                break;
+            case 2:
+                edit->Score += 1000;
+                edit->CurrentUserWarningLevel = WarningLevel2;
+                break;
+            case 3:
+                edit->Score += 2000;
+                edit->CurrentUserWarningLevel = WarningLevel3;
+                break;
+            case 4:
+                // people with 4 warnings are so much watched that someone probably revert them
+                // faster than you notice, let's put them lower than unattended vandals
+                edit->Score += 1000;
+                edit->CurrentUserWarningLevel = WarningLevel4;
+                break;
+        }
     }
     Hooks::EditPostProcess(edit);
     edit->PostProcessing = false;

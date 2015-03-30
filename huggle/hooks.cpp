@@ -20,6 +20,23 @@
 #include "exception.hpp"
 #include "wikipage.hpp"
 
+bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *Edit)
+{
+    if (Edit == nullptr)
+        throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
+
+    bool result = true;
+    foreach (Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+        {
+            if (!extension->Hook_EditBeforeScore((void*)Edit))
+                result = false;
+        }
+    }
+    return result;
+}
+
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)

@@ -28,6 +28,7 @@ namespace Huggle
     class HUGGLE_EX Hooks
     {
         public:
+            static bool EditBeforeScore(WikiEdit *Edit);
             /*!
              * \brief Event that is called after edit pre process
              * \param Edit that was just pre processed

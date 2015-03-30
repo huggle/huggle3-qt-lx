@@ -7,3 +7,6 @@
 [submodule "huggle/extension_list/extension-thanks"]
 	path = huggle/extension_list/extension-thanks
 	url = http://github.com/huggle/extension-thanks
+[submodule "huggle/extension_list/extension-splitter-helper"]
+	path = huggle/extension_list/extension-splitter-helper
+	url = http://github.com/huggle/extension-splitter-helper

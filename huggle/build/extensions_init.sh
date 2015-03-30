@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-extensions='extension-thanks mass-delivery enwiki'
+extensions='extension-thanks extension-splitter-helper mass-delivery enwiki'
 orig=`pwd`
 
 for xx in $extensions
