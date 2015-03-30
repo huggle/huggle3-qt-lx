@@ -236,7 +236,6 @@ WikiUser::WikiUser(QString user)
     this->IsBlocked = false;
     this->_talkPageWasRetrieved = false;
     this->DateOfTalkPage = InvalidTime;
-    int c=0;
     this->ContentsOfTalkPage = "";
     this->Site = Configuration::HuggleConfiguration->Project;
     this->EditCount = -1;
