@@ -92,7 +92,7 @@ namespace Huggle
              */
             virtual void Hook_EditScore(void *edit) {}
             virtual void Hook_EditPostProcess(void *edit) {}
-            virtual bool Hook_EditBeforeScore(void *edit) {}
+            virtual bool Hook_EditBeforeScore(void *edit) { return true;  }
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }

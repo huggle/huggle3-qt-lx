@@ -84,7 +84,7 @@ namespace Huggle
         private:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;
-            //! Everytime we write to a file we need to log this
+            //! Everytime we write to a file we need to lock this
             QMutex *WriterLock;
     };
 }
