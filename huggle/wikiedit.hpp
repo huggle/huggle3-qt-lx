@@ -134,7 +134,7 @@ namespace Huggle
             QString DiffText_Old;
             //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
-            bool IsSplit = false;
+            bool DiffText_IsSplit = false;
             //! Base time of last revision of talk page which is needed to check if someone changed the talk
             //! page meanwhile before we change it
             QString TPRevBaseTime;

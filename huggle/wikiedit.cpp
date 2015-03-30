@@ -447,7 +447,7 @@ static long ProcessWordsInWikiText(QStringList *list, QString text, QList<ScoreW
 void WikiEdit::ProcessWords()
 {
     QString text;
-    if (this->IsSplit)
+    if (this->DiffText_IsSplit)
         text = this->DiffText_New.toLower();
     else
         text = this->DiffText.toLower();
@@ -664,7 +664,7 @@ void ProcessorThread::Process(WikiEdit *edit)
                 edit->Score += 200;
             } else
             {
-                if (!edit->IsSplit)
+                if (!edit->DiffText_IsSplit)
                 {
                     // we have to ignore the score words here because there is always lot of them in revert text
                     IgnoreWords = true;
