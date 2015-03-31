@@ -50,7 +50,7 @@ namespace Huggle
                 // version of huggle this extension was built for
                 return QString(HUGGLE_VERSION);
             }
-            virtual void Init();
+            HUGGLE_EX virtual void Init();
             /*!
              * \brief This is called when the extension is removed from system
              */
