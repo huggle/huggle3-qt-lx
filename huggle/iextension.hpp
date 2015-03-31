@@ -50,6 +50,7 @@ namespace Huggle
                 // version of huggle this extension was built for
                 return QString(HUGGLE_VERSION);
             }
+            virtual void Init();
             /*!
              * \brief This is called when the extension is removed from system
              */
@@ -96,12 +97,12 @@ namespace Huggle
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
-            //! Pointer to huggle core
-            void *HuggleCore;
-            //! Pointer to global system configuration
-            void *Configuration;
-            void *Localization;
-            QNetworkAccessManager *Networking;
+            //! Pointer to huggle core, set by extension loader
+            void *HuggleCore = nullptr;
+            //! Pointer to global system configuration, set by extension loader
+            void *Configuration = nullptr;
+            void *Localization = nullptr;
+            QNetworkAccessManager *Networking = nullptr;
         private:
             QString huggle__internal_ExtensionPath;
     };

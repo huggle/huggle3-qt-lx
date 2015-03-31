@@ -8,10 +8,28 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "configuration.hpp"
+#include "core.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
+#include "gc.hpp"
+#include "query.hpp"
+#include "querypool.hpp"
 #include "iextension.hpp"
 #include "exception.hpp"
 
 using namespace Huggle;
+
+void iExtension::Init()
+{
+    Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
+    Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
+    Huggle::Localizations::HuggleLocalizations = (Huggle::Localizations*) this->Localization;
+    Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
+    Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
+    Huggle::Query::NetworkManager = this->Networking;
+    Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
+}
 
 void iExtension::huggle__internal_SetPath(QString path)
 {
