@@ -99,12 +99,12 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
             status = _l("extension-ok");
         else
             status = _l("extension-kl");
-        this->ui->tableWidget->insertRow(0);
-        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(extension->GetExtensionName()));
-        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
-        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
-        this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(status));
-        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
+        this->ui->tableWidget->insertRow(c);
+        this->ui->tableWidget->setItem(c, 0, new QTableWidgetItem(extension->GetExtensionName()));
+        this->ui->tableWidget->setItem(c, 1, new QTableWidgetItem(extension->GetExtensionAuthor()));
+        this->ui->tableWidget->setItem(c, 2, new QTableWidgetItem(extension->GetExtensionDescription()));
+        this->ui->tableWidget->setItem(c, 3, new QTableWidgetItem(status));
+        this->ui->tableWidget->setItem(c, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
 #ifdef HUGGLE_PYTHON
@@ -647,7 +647,7 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
         foreach (QTableWidgetItem *extension, this->ui->tableWidget->selectedItems())
         {
             if (extension->row() >= Core::HuggleCore->Extensions.count())
-                throw new Huggle::Exception("ERROR: Invalid exception id", BOOST_CURRENT_FUNCTION);
+                throw new Huggle::Exception("ERROR: Invalid ext", BOOST_CURRENT_FUNCTION);
 
             iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
             if (hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
