@@ -642,14 +642,18 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
     menu.addAction(disable);
     menu.addAction(enable);
     QAction *selection = menu.exec(g_);
+    int lastrow = -1;
     if (selection == disable)
     {
         foreach (QTableWidgetItem *extension, this->ui->tableWidget->selectedItems())
         {
+            if (extension->row() == lastrow)
+                continue;
             if (extension->row() >= Core::HuggleCore->Extensions.count())
                 throw new Huggle::Exception("ERROR: Invalid ext", BOOST_CURRENT_FUNCTION);
 
             iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
+            lastrow = extension->row();
             if (hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
             {
                 Generic::MessageBox(_l("error"), _l("preferences-extension-disabled"));
@@ -665,6 +669,9 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
     {
         foreach (QTableWidgetItem *extension, this->ui->tableWidget->selectedItems())
         {
+            if (extension->row() == lastrow)
+                continue;
+            lastrow = extension->row();
             if (extension->row() >= Core::HuggleCore->Extensions.count())
                 throw new Huggle::Exception("ERROR: Invalid exception id", BOOST_CURRENT_FUNCTION);
 
