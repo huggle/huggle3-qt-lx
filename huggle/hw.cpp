@@ -29,12 +29,16 @@ HW::HW(QString window_name, QWidget *widget, QWidget *parent) : QDialog(parent)
 
 HW::~HW()
 {
+    // Check if we want to store the layout to file
+    if (Huggle::Configuration::HuggleConfiguration->SystemConfig_SaveLayout == false)
+        return;
     QFile *layout = new QFile(this->HW_Geometry);
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
         throw new Huggle::Exception("Unable to write geometry to a config file for " + this->HW_Name, BOOST_CURRENT_FUNCTION);
     else
         layout->write(this->HW_Widget->saveGeometry());
     layout->close();
+    delete layout;
 }
 
 void HW::RestoreWindow()

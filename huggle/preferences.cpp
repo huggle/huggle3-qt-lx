@@ -22,6 +22,8 @@
 #include "ui_preferences.h"
 #include <QMessageBox>
 #include <QSpinBox>
+#include <QFile>
+#include <QDir>
 #include <QMenu>
 
 using namespace Huggle;
@@ -749,4 +751,22 @@ void Preferences::ResetItems()
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
+}
+
+void Huggle::Preferences::on_pushButton_rs_clicked()
+{
+    if (Generic::pMessageBox(this, "Reset GUI", "This will restore factory layout of huggle as it had when you installed it. "\
+                             "Huggle will shut down. Continue?", MessageBoxStyleQuestion) == QMessageBox::No)
+        return;
+    Configuration::HuggleConfiguration->SystemConfig_SaveLayout = false;
+    // remove all layout files
+    QDir config(Configuration::HuggleConfiguration->GetConfigurationPath());
+    config.setNameFilters(QStringList() << "*_state" << "*_geometry");
+    config.setFilter(QDir::Files);
+    foreach(QString file, config.entryList())
+    {
+        if (!config.remove(file))
+            throw new Huggle::Exception("Unable to delete " + file, BOOST_CURRENT_FUNCTION);
+    }
+    MainWindow::HuggleMain->Exit();
 }

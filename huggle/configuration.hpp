@@ -342,10 +342,12 @@ namespace Huggle
             //! Port
             int     IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut = 2;
+
             //////////////////////////////////////////////
-            // Reverting
+            // Misc
             //////////////////////////////////////////////
 
+            bool        SystemConfig_SaveLayout = true;
             //! This is automatically changed to false everytime when new edit is loaded
             //! changing it to true will disable auto-jump to newer edit.
             //! Typical usage for this is when you want to display a diff that may not be

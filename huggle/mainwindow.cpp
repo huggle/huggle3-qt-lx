@@ -1585,20 +1585,23 @@ void MainWindow::Exit()
         return;
     this->ShuttingDown = true;
     this->VandalDock->Disconnect();
-    QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
-    if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
-        Syslog::HuggleLogs->ErrorLog("Unable to write state to a config file");
-    else
-        layout->write(this->saveState());
-    layout->close();
-    delete layout;
-    layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
-    if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
-        Syslog::HuggleLogs->ErrorLog("Unable to write geometry to a config file");
-    else
-        layout->write(this->saveGeometry());
-    layout->close();
-    delete layout;
+    if (hcfg->SystemConfig_SaveLayout)
+    {
+        QFile *layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
+        if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
+            Syslog::HuggleLogs->ErrorLog("Unable to write state to a config file");
+        else
+            layout->write(this->saveState());
+        layout->close();
+        delete layout;
+        layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
+        if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
+            Syslog::HuggleLogs->ErrorLog("Unable to write geometry to a config file");
+        else
+            layout->write(this->saveGeometry());
+        layout->close();
+        delete layout;
+    }
     if (Configuration::HuggleConfiguration->Restricted)
     {
         this->tCheck->stop();
