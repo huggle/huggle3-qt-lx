@@ -42,15 +42,10 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
     if (Edit == nullptr)
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
-        {
-            e->Hook_EditPreProcess((void*)Edit);
-        }
-        extension++;
+        if (extension->IsWorking())
+            extension->Hook_EditPreProcess((void*)Edit);
     }
 #ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
@@ -60,13 +55,11 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
 {
     bool result = true;
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension++);
-        if (e->IsWorking())
+        if (extension->IsWorking())
         {
-            if (!e->Hook_RevertPreflight((void*)Edit))
+            if (!extension->Hook_RevertPreflight((void*)Edit))
                 result = false;
         }
     }
@@ -78,15 +71,10 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
     if (Edit == nullptr)
         throw new NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
-        {
-            e->Hook_EditPostProcess((void*)Edit);
-        }
-        extension++;
+        if (extension->IsWorking())
+            extension->Hook_EditPostProcess((void*)Edit);
     }
 #ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_OnEditPostProcess(Edit);
@@ -126,15 +114,10 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
     if (User == nullptr)
         throw new NullPointerException("Huggle::WikiUser *User", BOOST_CURRENT_FUNCTION);
 
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
-        {
-            e->Hook_BadnessScore((void*)User, Score);
-        }
-        extension++;
+        if (extension->IsWorking())
+            extension->Hook_BadnessScore((void*)User, Score);
     }
 }
 
@@ -194,9 +177,7 @@ bool Huggle::Hooks::Speedy_BeforeOK(Huggle::WikiEdit *edit, Huggle::SpeedyForm *
         if (e->IsWorking())
         {
            if (!e->Hook_SpeedyBeforeOK((void*)edit, (void*)form))
-           {
                result = false;
-           }
         }
     }
     return result;
@@ -210,9 +191,7 @@ bool Huggle::Hooks::MainWindow_ReloadShortcut(Huggle::Shortcut *shortcut)
         if (e->IsWorking())
         {
             if (!e->Hook_MainWindowReloadShortcut((void*)shortcut))
-            {
                 result = false;
-            }
         }
     }
     return result;
