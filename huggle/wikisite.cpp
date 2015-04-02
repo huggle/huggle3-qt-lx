@@ -224,5 +224,5 @@ WikiSite_Ext::WikiSite_Ext(QString name, QString type, QString description, QStr
     this->Type = type;
     this->Author = author;
     this->URL = url;
-    this->Version = Huggle::Version(version);
+    this->MediaWikiExtVersion = Huggle::Version(version);
 }

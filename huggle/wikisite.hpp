@@ -73,7 +73,7 @@ namespace Huggle
             QString Description;
             QString Author;
             QString URL;
-            Version Version;
+            Version MediaWikiExtVersion;
     };
 
     //! Site
