@@ -150,6 +150,18 @@ void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool s
 #endif
 }
 
+void Huggle::Hooks::MainWindow_OnRender()
+{
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_MainWindowOnRender();
+    }
+#ifdef HUGGLE_PYTHON
+    //Huggle::Core::HuggleCore->Python->Hook_MainWindowOnRender();
+#endif
+}
+
 void Huggle::Hooks::MainWindow_OnLoad(Huggle::MainWindow *window)
 {
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)

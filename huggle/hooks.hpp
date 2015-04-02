@@ -73,6 +73,7 @@ namespace Huggle
              * \param window
              */
             static void MainWindow_OnLoad(MainWindow *window);
+            static void MainWindow_OnRender();
             static bool MainWindow_ReloadShortcut(Shortcut *shortcut);
             static void Shutdown();
     };

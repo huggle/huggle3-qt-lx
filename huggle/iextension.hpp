@@ -97,6 +97,7 @@ namespace Huggle
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
+            virtual void Hook_MainWindowOnRender() {}
             //! Pointer to huggle core, set by extension loader
             void *HuggleCore = nullptr;
             //! Pointer to global system configuration, set by extension loader

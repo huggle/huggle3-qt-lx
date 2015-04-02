@@ -487,6 +487,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());
+    Hooks::MainWindow_OnRender();
 }
 
 void MainWindow::RequestPD(WikiEdit *edit)

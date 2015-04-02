@@ -532,7 +532,7 @@ void Login::FinishLogin(WikiSite *site)
         this->qSiteInfo.insert(site, qr);
         qr->IncRef();
         this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOGIN), LoadingForm_Icon_Success);
-        qr->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general");
+        qr->Parameters = "meta=siteinfo&siprop=" + QUrl::toPercentEncoding("namespaces|general|extensions|restrictions|usergroups");
         qr->Process();
         qr = new ApiQuery(ActionQuery, site);
         this->qTokenInfo.insert(site, qr);
@@ -980,6 +980,15 @@ void Login::ProcessSiteInfo(WikiSite *site)
                     continue;
                 site->InsertNS(new WikiPageNS(node->GetAttribute("id").toInt(), node->Value, node->GetAttribute("canonical")));
             }
+        }
+        // extensions
+        site->Extensions.clear();
+        QList<ApiQueryResultNode*> extensionlist = this->qSiteInfo[site]->GetApiQueryResult()->GetNodes("ext");
+        foreach(ApiQueryResultNode *ext, extensionlist)
+        {
+            site->Extensions.append(WikiSite_Ext(ext->GetAttribute("name", "unknown"), ext->GetAttribute("type", "unknown"),
+                      ext->GetAttribute("descriptionmsg", "unknown"), ext->GetAttribute("author", "unknown"),
+                      ext->GetAttribute("url", "unknown"), ext->GetAttribute("version", "0")));
         }
         this->processedSiteinfos[site] = true;
         this->qSiteInfo[site]->DecRef();

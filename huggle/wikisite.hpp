@@ -63,6 +63,19 @@ namespace Huggle
         return this->ID;
     }
 
+    //! Extension info
+    class HUGGLE_EX WikiSite_Ext
+    {
+        public:
+            WikiSite_Ext(QString name, QString type, QString description, QString author, QString url, QString version);
+            QString Type;
+            QString Name;
+            QString Description;
+            QString Author;
+            QString URL;
+            Version Version;
+    };
+
     //! Site
     class HUGGLE_EX WikiSite
     {
@@ -112,6 +125,7 @@ namespace Huggle
             QString XmlRcsName;
             QString HANChannel;
             Version MediawikiVersion;
+            QList<WikiSite_Ext> Extensions;
             ProjectConfiguration *ProjectConfig = nullptr;
             UserConfiguration    *UserConfig = nullptr;
             //! URL of whitelist, every site needs to have some, if your site doesn't have it
