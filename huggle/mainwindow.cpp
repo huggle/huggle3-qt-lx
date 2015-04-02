@@ -484,6 +484,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         QStringList params;
         params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
         this->tb->SetInfo(_l("browser-diff", params));
+        Hooks::MainWindow_OnRender();
         return;
     }
     this->tb->SetTitle(this->Browser->CurrentPageName());
