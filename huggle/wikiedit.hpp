@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QString>
+#include <QVariant>
 #include <QHash>
 #include <QThread>
 #include <QDateTime>
@@ -152,7 +153,7 @@ namespace Huggle
             WikiEdit *Next;
             //! Badness score of this edit
             long Score;
-            QHash<QString, QString> PropertyBag;
+            QHash<QString, QVariant> PropertyBag;
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
             QString PatrolToken;
