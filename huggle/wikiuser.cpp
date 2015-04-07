@@ -242,12 +242,10 @@ WikiUser::WikiUser(QString user)
     this->Bot = false;
     this->RegistrationDate = "";
     this->WhitelistInfo = HUGGLE_WL_UNKNOWN;
-    if (!this->Resync())
-    {
-        this->BadnessScore = 0;
-        this->WarningLevel = 0;
-        this->IsReported = false;
-    }
+    this->BadnessScore = 0;
+    this->WarningLevel = 0;
+    this->IsReported = false;
+    this->Resync();
 }
 
 WikiUser::~WikiUser()
