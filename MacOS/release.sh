@@ -1,5 +1,13 @@
 #!/bin/sh
-QTDIR=~/Qt5.4.1/5.4/clang_64/
+if [ x"$1" != x ];then
+  QTDIR="$1"
+else
+  QTDIR=~/Qt5.4.1/5.4/clang_64/
+fi
+qtver="--qt5"
+if [ "$2" = "--qt4" ];then
+   qtver="--qt4"
+fi
 echo "Checking sanity of system..."
 of=`pwd`
 if [ -d huggle_release ];then
@@ -7,7 +15,7 @@ if [ -d huggle_release ];then
     exit 1
 fi
 cd ../huggle || exit 1
-./configure --qtpath ~/Qt5.4.1/5.4/clang_64/ --qt5 --extension || exit 1
+./configure --qtpath "$QTDIR" "$qtver" --extension || exit 1
 cd huggle_release || exit 1
 make || exit 1
 cd "$of"
