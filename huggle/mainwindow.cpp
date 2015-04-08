@@ -174,7 +174,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             this->ui->menuChange_provider->addMenu(menu);
             QAction *provider_irc = new QAction("IRC", menu);
             QAction *provider_wiki = new QAction("Wiki", menu);
-            QAction *provider_xml = new QAction("XmlRcp", menu);
+            QAction *provider_xml = new QAction("XmlRcs", menu);
             this->lXml.insert(site, provider_xml);
             this->lWikis.insert(site, provider_wiki);
             this->lIRC.insert(site, provider_irc);
