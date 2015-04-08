@@ -9,7 +9,7 @@ Building
 =========
 
 Libraries and tools you need to have to build:
-* GCC (gcc g++ make)
+* C++11 compiler
 * [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
 * QT4 sdk (libqt4-dev libqt4-webkit libqt4-network qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtdeclarative5-dev)
@@ -17,7 +17,7 @@ Libraries and tools you need to have to build:
 
 Windows
 -------------
-https://github.com/huggle/huggle3-qt-lx/wiki/Windows-building
+https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-Windows
 
 Linux
 -------------
@@ -33,7 +33,7 @@ sudo make install
 
 MacOS
 ------------
-https://github.com/huggle/huggle3-qt-lx/wiki/Guide-to-Mac-Building
+https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-MacOS
 
 Python
 ------------
