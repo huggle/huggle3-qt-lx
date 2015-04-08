@@ -425,7 +425,7 @@ bool RevertQuery::CheckRevert()
         this->Result->Data = this->qRevert->Result->Data;
         item->Target = this->qRevert->Target;
         item->Type = HistoryRollback;
-        item->Result = "Success";
+        item->Result = _l("successful");
         if (MainWindow::HuggleMain != nullptr)
             MainWindow::HuggleMain->_History->Prepend(item);
     }
