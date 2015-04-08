@@ -42,6 +42,10 @@ namespace Huggle
             void on_label_12_linkActivated(const QString &link);
             void on_label_13_linkActivated(const QString &link);
 
+            void on_label_3_linkHovered(const QString &link);
+
+            void on_label_4_linkHovered(const QString &link);
+
         private:
                 Ui::AboutForm *ui;
     };

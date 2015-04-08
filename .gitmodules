@@ -10,3 +10,6 @@
 [submodule "huggle/extension_list/extension-splitter-helper"]
 	path = huggle/extension_list/extension-splitter-helper
 	url = http://github.com/huggle/extension-splitter-helper
+[submodule "huggle/extension_list/extension-review"]
+	path = huggle/extension_list/extension-review
+	url = http://github.com/huggle/extension-review

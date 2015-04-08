@@ -125,6 +125,7 @@ namespace Huggle
             bool Warn(QString WarningType, RevertQuery *dependency);
             QString GetSummaryKey(QString item);
             QString GetSummaryText(QString text);
+            void EnableDev();
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
             void Exit();

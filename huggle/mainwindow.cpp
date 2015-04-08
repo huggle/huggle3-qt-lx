@@ -1574,6 +1574,12 @@ QString MainWindow::GetSummaryText(QString text)
     return conf->DefaultSummary;
 }
 
+void MainWindow::EnableDev()
+{
+    QAction *debugm = this->ui->menuDebug_2->menuAction();
+    this->ui->menuHelp->addAction(debugm);
+}
+
 void MainWindow::ForceWarn(int level)
 {
     if (!this->CheckExit())

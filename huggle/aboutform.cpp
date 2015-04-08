@@ -12,10 +12,15 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include "configuration.hpp"
+#include "generic.hpp"
+#include "mainwindow.hpp"
 #include "localization.hpp"
 #include "ui_aboutform.h"
 
 using namespace Huggle;
+
+int developer = 0;
+int last_dev = -1;
 
 AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui::AboutForm)
 {
@@ -83,4 +88,35 @@ void Huggle::AboutForm::on_label_12_linkActivated(const QString &link)
 void Huggle::AboutForm::on_label_13_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
+}
+
+static void check_dev()
+{
+    if (developer > 20)
+    {
+        Generic::MessageBox("Whee", "You entered a developer mode! Addshore stinks!");
+        hcfg->Verbosity = 1;
+        MainWindow::HuggleMain->EnableDev();
+        developer = -200;
+    }
+}
+
+void Huggle::AboutForm::on_label_3_linkHovered(const QString &link)
+{
+    // ignore
+    Q_UNUSED(link);
+    if (last_dev == 2)
+        developer++;
+    last_dev = 1;
+    check_dev();
+}
+
+void Huggle::AboutForm::on_label_4_linkHovered(const QString &link)
+{
+    // ignore
+    Q_UNUSED(link);
+    if (last_dev == 1)
+        developer++;
+    last_dev = 2;
+    check_dev();
 }
