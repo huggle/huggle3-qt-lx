@@ -162,9 +162,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 if (!form->Arguments.contains(tag))
                     throw new Huggle::Exception("No such a tag in hash table", BOOST_CURRENT_FUNCTION);
                 QString key = "{{" + form->page->GetSite()->GetProjectConfig()->Tags.at(xx) + "}}";
-                if (!form->page->GetSite()->GetProjectConfig()->TagsArgs.contains(tag))
-                    throw new Huggle::Exception("No such a tag in args hash: " + tag, BOOST_CURRENT_FUNCTION);
-                if (!form->page->GetSite()->GetProjectConfig()->TagsArgs[tag].isEmpty())
+                if (form->page->GetSite()->GetProjectConfig()->TagsArgs.contains(tag) && !form->page->GetSite()->GetProjectConfig()->TagsArgs[tag].isEmpty())
                 {
                     if (form->Arguments[tag]->text() == form->page->GetSite()->GetProjectConfig()->TagsArgs[tag])
                     {
