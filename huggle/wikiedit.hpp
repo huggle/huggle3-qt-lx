@@ -90,7 +90,7 @@ namespace Huggle
             WikiEdit();
             ~WikiEdit();
             //! This function is called by internals of huggle
-            void PostProcess();
+            void PostProcess(); 
             WikiSite *GetSite();
             void SetSize(long size);
             long GetSize();
