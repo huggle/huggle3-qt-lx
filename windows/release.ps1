@@ -40,7 +40,8 @@ param
     [bool]$mingw = $false,
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
     [bool]$python = $true,
-    [string]$vcredist = "vcredist_x86.exe"
+    [string]$vcredist = "vcredist_x86.exe",
+    [string]$cmake_param = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -164,12 +165,18 @@ mkdir build | Out-Null
 cd build
 if ($python)
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true
+    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
 } else
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true
+    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
 }
-& $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+if ($mingw)
+{
+    & mingw32-make.exe
+} else
+{
+    & $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+}
 cd $root_path
 echo "Preparing the package structure"
 mkdir release | Out-Null

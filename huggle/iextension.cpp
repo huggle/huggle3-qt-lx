@@ -20,17 +20,6 @@
 
 using namespace Huggle;
 
-void iExtension::Init()
-{
-    Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
-    Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
-    Huggle::Localizations::HuggleLocalizations = (Huggle::Localizations*) this->Localization;
-    Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
-    Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
-    Huggle::Query::NetworkManager = this->Networking;
-    Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
-}
-
 void iExtension::huggle__internal_SetPath(QString path)
 {
     if (!this->huggle__internal_ExtensionPath.isEmpty())
@@ -42,4 +31,15 @@ void iExtension::huggle__internal_SetPath(QString path)
 QString iExtension::GetExtensionFullPath()
 {
     return this->huggle__internal_ExtensionPath;
+}
+
+void iExtension::Init()
+{
+    Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
+    Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
+    Huggle::Localizations::HuggleLocalizations = (Huggle::Localizations*) this->Localization;
+    Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
+    Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
+    Huggle::Query::NetworkManager = this->Networking;
+    Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
 }

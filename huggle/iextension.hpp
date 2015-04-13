@@ -32,7 +32,7 @@ namespace Huggle
 
     //! Keep in mind that extensions are running in separate domain so that if you want to have access
     //! to resources like configuration or network, you need to explicitly request it.
-    class iExtension
+    class HUGGLE_EX iExtension
     {
         public:
             iExtension() {}
@@ -44,13 +44,13 @@ namespace Huggle
             virtual bool IsWorking() { return false; }
             virtual bool Register() { return false; }
             void huggle__internal_SetPath(QString path);
-            HUGGLE_EX QString GetExtensionFullPath();
+            QString GetExtensionFullPath();
             virtual QString CompiledFor()
             {
                 // version of huggle this extension was built for
                 return QString(HUGGLE_VERSION);
             }
-            HUGGLE_EX virtual void Init();
+            virtual void Init();
             /*!
              * \brief This is called when the extension is removed from system
              */
