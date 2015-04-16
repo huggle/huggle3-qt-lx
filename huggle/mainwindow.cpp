@@ -912,8 +912,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         return ptr_;
     if (this->CurrentEdit->NewPage)
     {
-        Generic::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal,
-                true);
+        Generic::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal, true);
         return ptr_;
     }
     if (!this->CurrentEdit->IsPostProcessed())
@@ -1385,6 +1384,7 @@ void MainWindow::OnTimerTick0()
             {
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
+                    //! \todo LOCALIZE THIS
                     if (Generic::pMessageBox(this, "Do you really want to store the configs",
                                               "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
                                               site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
@@ -1640,6 +1640,7 @@ bool MainWindow::BrowserPageIsEditable()
     return this->EditablePage;
 }
 
+//! \todo LOCALIZE THIS
 bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
