@@ -63,17 +63,16 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
     this->Reset();
     this->ui->checkBox->setChecked(hcfg->SystemConfig_UsingSSL);
-    // set the language to dummy english
-    int l=0;
-    int p=0;
-    while (l<Localizations::HuggleLocalizations->LocalizationData.count())
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    int localization_ix=0, preferred=0;
+    while (localization_ix<Localizations::HuggleLocalizations->LocalizationData.count())
     {
-        this->ui->Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(l)->LanguageID);
-        if (Localizations::HuggleLocalizations->LocalizationData.at(l)->LanguageName == Localizations::HuggleLocalizations->PreferredLanguage)
+        this->ui->Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageID);
+        if (Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageName == Localizations::HuggleLocalizations->PreferredLanguage)
         {
-            p = l;
+            preferred = localization_ix;
         }
-        l++;
+        localization_ix++;
     }
     QString title = "Huggle 3 QT-LX";
     if (hcfg->Verbosity > 0)
@@ -81,12 +80,12 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         // add debug lang "qqx" last
         this->ui->Language->addItem(Localizations::LANG_QQX);
         if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX)
-            p = l;
+            preferred = localization_ix;
         title += " [" + hcfg->HuggleVersion + "]";
-        l++;
+        localization_ix++;
     }
     this->setWindowTitle(title);
-    this->ui->Language->setCurrentIndex(p);
+    this->ui->Language->setCurrentIndex(preferred);
     this->Reload();
     if (!QSslSocket::supportsSsl())
     {
