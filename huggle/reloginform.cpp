@@ -26,6 +26,8 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
     this->ui->setupUi(this);
     this->Site = site;
     this->little_cute_timer = new QTimer();
+    if (hcfg->SystemConfig_StorePassword)
+        this->ui->lineEdit->setText(hcfg->SystemConfig_RememberedPassword);
     connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
 }
 

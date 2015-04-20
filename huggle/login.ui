@@ -229,6 +229,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Remember password (in plaintext)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
       <widget class="QLabel" name="labelProject">

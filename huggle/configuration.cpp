@@ -398,6 +398,16 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_SuppressWarnings = SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "RememberedPassword")
+        {
+            hcfg->SystemConfig_RememberedPassword = option.attribute("text");
+            continue;
+        }
+        if (key == "StorePassword")
+        {
+            hcfg->SystemConfig_StorePassword = SafeBool(option.attribute("text"));
+            continue;
+        }
     }
     item = 0;
     while (item < e.count())
@@ -459,6 +469,9 @@ void Configuration::SaveSystemConfig()
     InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
     InsertConfig("Multiple", Bool2String(hcfg->Multiple), writer);
     InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);
+    InsertConfig("StorePassword", Bool2String(hcfg->SystemConfig_StorePassword), writer);
+    if (hcfg->SystemConfig_StorePassword)
+        InsertConfig("RememberedPassword", hcfg->SystemConfig_RememberedPassword, writer);
     QString projects;
     foreach (QString wiki, hcfg->ProjectString)
     {

@@ -90,7 +90,7 @@ namespace Huggle
             void Reset();
             void RemoveQueries();
             //! Enable parts of interface
-            void Enable();
+            void Enable(bool value = true);
             void Reload();
             void DB();
             void Disable();

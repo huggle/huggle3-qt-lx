@@ -44,7 +44,7 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->page = nullptr;
     this->ui->label_2->setText(_l("page"));
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
-        this->ui->comboBox->addItem(site->Name);
+        this->ui->comboBox->addItem(site->Name);    
     this->ui->comboBox->setCurrentIndex(0);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
 }

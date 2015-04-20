@@ -326,6 +326,8 @@ namespace Huggle
             QString     WmfOAuthConsumerKey;
             //! Password
             QString     TemporaryConfig_Password = "";
+            bool        SystemConfig_StorePassword = false;
+            QString     SystemConfig_RememberedPassword;
 
             //////////////////////////////////////////////
             // IRC

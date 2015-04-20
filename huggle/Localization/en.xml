@@ -258,6 +258,7 @@
   <string name="login-progress-user">Checking user configuration for $1</string>
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-remember-password">Remember password</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
