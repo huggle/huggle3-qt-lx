@@ -25,6 +25,7 @@ HW::HW(QString window_name, QWidget *widget, QWidget *parent) : QDialog(parent)
     this->HW_Name = window_name;
     this->HW_Geometry = Configuration::GetConfigurationPath() + this->HW_Name + "_geometry";
     this->HW_Widget = widget;
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
 HW::~HW()
