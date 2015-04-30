@@ -148,7 +148,7 @@ if ($git_enabled -and (Test-Path("..\.git")))
     $rev_list = $rev_list.Replace("`n", "").Replace("`r", "")
     $hash = git describe --always --tags | Out-String
     $hash = $hash.Replace("`n", "").Replace("`r", "")
-    echo "build: $rev_list $hash" > version.txt
+    echo "build: $rev_list $hash" | Out-File -Encoding ascii version.txt
 } else
 {
     echo "build: non-git build (windows)" > version.txt
