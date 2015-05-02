@@ -12,10 +12,6 @@
 #define MEDIAWIKI_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QDateTime>
@@ -25,8 +21,8 @@ namespace Huggle
     //! Helper functions to convert some items to mediawiki format
     namespace MediaWiki
     {
-        QDateTime   FromMWTimestamp(QString timestamp);
-        QString     ToMWTimestamp(QDateTime DateTime_);
+        HUGGLE_EX QDateTime   FromMWTimestamp(QString timestamp);
+        HUGGLE_EX QString     ToMWTimestamp(QDateTime DateTime_);
     }
 }
 

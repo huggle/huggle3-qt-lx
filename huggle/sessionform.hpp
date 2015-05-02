@@ -12,11 +12,8 @@
 #define SESSIONFORM_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QDialog>
+#include "hw.hpp"
 
 namespace Ui
 {
@@ -28,18 +25,19 @@ namespace Huggle
     //! Session info
 
     //! Display which user, project, what rights and flags your session have
-    class SessionForm : public QDialog
+    class HUGGLE_EX SessionForm : public HW
     {
             Q_OBJECT
-
         public:
-            explicit SessionForm(QWidget *parent = 0);
+            explicit SessionForm(QWidget *parent = nullptr);
             ~SessionForm();
 
         private slots:
             void on_pushButton_clicked();
+            void on_comboBox_currentIndexChanged(int index);
 
         private:
+            void Reload(int x);
             Ui::SessionForm *ui;
     };
 }

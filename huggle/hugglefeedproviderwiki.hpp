@@ -12,34 +12,36 @@
 #define HUGGLEFEEDPROVIDERWIKI_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QList>
+#include <QDomElement>
 #include <QStringList>
 #include <QString>
 #include <QDateTime>
-#include "hugglefeed.hpp"
+#include "collectable_smartptr.hpp"
 #include "apiquery.hpp"
 #include "wikiedit.hpp"
+#include "hugglefeed.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
+    class WikiEdit;
 
     //! This is a very simple provider of changes that basically refresh recent changes every 6 seconds
-    class HuggleFeedProviderWiki : public HuggleFeed
+    class HUGGLE_EX HuggleFeedProviderWiki : public HuggleFeed
     {
         public:
-            HuggleFeedProviderWiki();
+            HuggleFeedProviderWiki(WikiSite *site);
             ~HuggleFeedProviderWiki();
             bool Start();
+            bool IsPaused();
+            void Resume();
+            void Pause();
             bool IsWorking();
             void Stop();
             bool Restart() { this->Stop(); return this->Start(); }
+            int GetID() { return HUGGLE_FEED_PROVIDER_WIKI; }
             bool ContainsEdit();
             void Refresh();
             WikiEdit *RetrieveEdit();
@@ -49,12 +51,28 @@ namespace Huggle
             void ProcessEdit(QDomElement item);
             void ProcessLog(QDomElement item);
             void InsertEdit(WikiEdit *edit);
+            bool Paused = false;
             bool Refreshing;
             QList<WikiEdit*> *Buffer;
-            ApiQuery *qReload;
+            Collectable_SmartPtr<ApiQuery> qReload;
             QDateTime LastRefresh;
             QDateTime LatestTime;
     };
+
+    inline bool HuggleFeedProviderWiki::IsPaused()
+    {
+        return this->Paused;
+    }
+
+    inline void HuggleFeedProviderWiki::Resume()
+    {
+        this->Paused = false;
+    }
+
+    inline void HuggleFeedProviderWiki::Pause()
+    {
+        this->Paused = true;
+    }
 }
 
 #endif // HUGGLEFEEDPROVIDERWIKI_H

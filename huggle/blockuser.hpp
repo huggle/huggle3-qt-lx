@@ -12,21 +12,18 @@
 #define BLOCKUSER_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QDialog>
 #include <QString>
-#include <QTimer>
 #include "apiquery.hpp"
-#include "wikiuser.hpp"
+#include "collectable_smartptr.hpp"
+#include "hw.hpp"
 
 namespace Ui
 {
     class BlockUser;
 }
+
+class QTimer;
 
 namespace Huggle
 {
@@ -34,17 +31,29 @@ namespace Huggle
     class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
-    class BlockUser : public QDialog
+    class BlockUser : public HW
     {
             Q_OBJECT
         public:
-            explicit BlockUser(QWidget *parent = 0);
+            explicit BlockUser(QWidget *parent = nullptr);
             ~BlockUser();
+            /*!
+            * \brief SetWikiUser Select the user/IP to block, display block expiry options from site
+            * \param User User to select
+            */
             void SetWikiUser(WikiUser *User);
-            void CheckToken();
-            void GetToken();
+            /*!
+            * \brief Failed Show failure message
+            * \param reason Reason why blocking failed
+            */
             void Failed(QString reason);
+            /*!
+            * \brief Block Block the selected user and show result
+            */
             void Block();
+            /*!
+            * \brief sendBlockNotice Send the relevant block notice to the user's talk page
+            */
             void sendBlockNotice(ApiQuery *dependency);
         private slots:
             void on_pushButton_clicked();
@@ -58,9 +67,7 @@ namespace Huggle
             QTimer *t0;
             WikiUser *user;
             //! Query to exec api to block user
-            ApiQuery *qUser;
-            ApiQuery *qTokenApi;
-            QString BlockToken;
+            Collectable_SmartPtr<ApiQuery> qUser;
             int QueryPhase;
     };
 }

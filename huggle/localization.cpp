@@ -13,15 +13,26 @@
 #include <QFile>
 #include "exception.hpp"
 #include "configuration.hpp"
+#include "generic.hpp"
+#include "syslog.hpp"
 
 using namespace Huggle;
-
-Localizations *Localizations::HuggleLocalizations = NULL;
+unsigned int Localizations::EnglishID = 0;
+Localizations *Localizations::HuggleLocalizations = nullptr;
 const QString Localizations::LANG_QQX = "qqx";
 
 Localizations::Localizations()
 {
     this->PreferredLanguage = "en";
+}
+
+Localizations::~Localizations()
+{
+    while (this->LocalizationData.count() > 0)
+    {
+        delete this->LocalizationData.at(0);
+        this->LocalizationData.removeAt(0);
+    }
 }
 
 Language *Localizations::MakeLanguage(QString text, QString name)
@@ -84,16 +95,26 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
         i++;
         if (!item.attributes().contains("name"))
         {
-            Syslog::HuggleLogs->DebugLog("Language " + name + " contains key with no name");
+            HUGGLE_DEBUG("Language " + name + " contains key with no name", 1);
             continue;
         }
         QString n_ = item.attribute("name");
+        if (n_ == "isrtl")
+        {
+            l->IsRTL = Generic::SafeBool(item.text());
+            continue;
+        }
         if (l->Messages.contains(n_))
         {
             Syslog::HuggleLogs->WarningLog("Language " + name + " contains more than 1 definition for " + n_);
             continue;
         }
-        l->Messages.insert(item.attribute("name"), item.text());
+        if (!Configuration::HuggleConfiguration->Fuzzy && item.attributes().contains("fuzzy") && item.attribute("fuzzy") == "true")
+        {
+            HUGGLE_DEBUG("Fuzzy key ignored: " + name + " " + n_, 12);
+            continue;
+        }
+        l->Messages.insert(item.attribute("name"), item.text().replace("\\\"", "\"").replace("\\'", "'"));
     }
     if (l->Messages.contains("name"))
     {
@@ -105,6 +126,11 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
 void Localizations::LocalInit(QString name, bool xml)
 {
     QFile *f;
+    if (name == "en")
+    {
+        // we need to remember ID of this language
+        Localizations::EnglishID = this->LocalizationData.count();
+    }
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
         // we don't want to load custom files in safe mode
@@ -141,63 +167,19 @@ void Localizations::LocalInit(QString name, bool xml)
 
 QString Localizations::Localize(QString key)
 {
-    /// \todo almost duplicates Localize(QString key, QStringList parameters)
-    QString id = key;
-    if (id.endsWith("]]"))
-    {
-        id = key.mid(0, key.length() - 2);
-    }
-    if (id.startsWith("[["))
-    {
-        id = id.mid(2);
-    }
-    if (this->LocalizationData.count() > 0)
-    {
-        int c=0;
-        while (c<this->LocalizationData.count())
-        {
-            if (this->LocalizationData.at(c)->LanguageName == this->PreferredLanguage)
-            {
-                Language *l = this->LocalizationData.at(c);
-                if (l->Messages.contains(id))
-                {
-                    QString result = l->Messages[id];
-                    if (result == "@")
-                    {
-                        // reference to english
-                        break;
-                    }
-                    return result;
-                }
-                // performance tweak
-                break;
-            }
-            c++;
-        }
-
-        // performance wise check this last
-        if (this->PreferredLanguage == LANG_QQX)
-        {
-            return "("+key+")";
-        }
-        if (this->LocalizationData.at(0)->Messages.contains(id))
-        {
-            return this->LocalizationData.at(0)->Messages[id];
-        }
-    }
-    return key;
+    return Localize(key, QStringList());
 }
 
 QString Localizations::Localize(QString key, QStringList parameters)
 {
     QString id = key;
-    if (id.endsWith("]]"))
-    {
-        id = key.mid(0, key.length() - 2);
-    }
-    if (id.startsWith("[["))
+    if (id.length() > 4 && id[0] == '[' && id[1] == '[')
     {
         id = id.mid(2);
+        if (key.endsWith("]]"))
+        {
+            id = id.mid(0, id.length() - 2);
+        }
     }
     if (this->LocalizationData.count() > 0)
     {
@@ -227,11 +209,19 @@ QString Localizations::Localize(QString key, QStringList parameters)
         // performance wise check this last
         if (this->PreferredLanguage == LANG_QQX)
         {
-            return "("+key+")";
+            QString result = "("+key;
+            int x = 0;
+            while (x<parameters.count())
+            {
+                result += "|$" + QString::number(x + 1) + "=" + parameters.at(x);
+                x++;
+            }
+            result = result + ")";
+            return result;
         }
-        if (this->LocalizationData.at(0)->Messages.contains(id))
+        if (this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(id))
         {
-            QString text = this->LocalizationData.at(0)->Messages[id];
+            QString text = this->LocalizationData.at(Localizations::EnglishID)->Messages[id];
             int x = 0;
             while (x<parameters.count())
             {
@@ -241,6 +231,8 @@ QString Localizations::Localize(QString key, QStringList parameters)
             return text;
         }
     }
+    if (hcfg->Verbosity > 0)
+        Syslog::HuggleLogs->WarningLog("There is no such a localization key: " + key);
     return key;
 }
 
@@ -256,6 +248,22 @@ QString Localizations::Localize(QString key, QString parameter)
     QStringList list;
     list << parameter;
     return Localize(key, list);
+}
+
+bool Localizations::IsRTL()
+{
+    bool rtl = false;
+    int c = 0;
+    while (c<this->LocalizationData.count())
+    {
+        if (this->LocalizationData.at(c)->LanguageName == this->PreferredLanguage)
+        {
+            Language *l = this->LocalizationData.at(c);
+            rtl = l->IsRTL;
+        }
+        c++;
+    }
+    return rtl;
 }
 
 Language::Language(QString name)

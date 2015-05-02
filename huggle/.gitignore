@@ -5,3 +5,4 @@ hunker/*.o
 hunker/Makefile
 hunker/makefilehunker
 version.txt
+/huggle.pro.user

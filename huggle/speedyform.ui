@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Request deletion of a page</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_2">
@@ -38,6 +42,20 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Parameter (optional):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit"/>
      </item>
     </layout>
    </item>
@@ -71,6 +89,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

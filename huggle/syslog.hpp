@@ -12,14 +12,19 @@
 #define SYSLOG_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <iostream>
-#include <QFile>
 #include <QStringList>
-#include <QMutex>
+
+// This macro should be used for all debug messages which are frequently called, so that we don't call DebugLog(QString, uint)
+// when we aren't in debug mode, this saves some CPU resources as these calls are very expensive sometimes (lot of conversions
+// of numbers and text)
+//! Sends a debug to system (text of a log, verbosity)
+#define HUGGLE_DEBUG(debug, verbosity) if (Huggle::Configuration::HuggleConfiguration->Verbosity >= verbosity) \
+                                           Syslog::HuggleLogs->DebugLog(debug, verbosity)
+#define HUGGLE_DEBUG1(debug) if (Huggle::Configuration::HuggleConfiguration->Verbosity >= 1) \
+                                           Syslog::HuggleLogs->DebugLog(debug, 1)
+
+class QMutex;
 
 namespace Huggle
 {
@@ -32,7 +37,7 @@ namespace Huggle
     };
 
     //! Line of log
-    class HuggleLog_Line
+    class HUGGLE_EX HuggleLog_Line
     {
         public:
             HuggleLog_Line(HuggleLog_Line *line);
@@ -44,7 +49,9 @@ namespace Huggle
     };
 
     //! Provides a logging to various places
-    class Syslog
+
+    //! There is an instance of this class that can be used to log from external modules using same facility
+    class HUGGLE_EX Syslog
     {
         public:
             static Syslog *HuggleLogs;
@@ -73,11 +80,11 @@ namespace Huggle
             //! other threads as well, writing to syslog from other thread would crash huggle
             QList<HuggleLog_Line> UnwrittenLogs;
             //! Mutex we lock unwritten logs with so that only 1 thread can write to it
-            QMutex lUnwrittenLogs;
+            QMutex *lUnwrittenLogs;
         private:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;
-            //! Everytime we write to a file we need to log this
+            //! Everytime we write to a file we need to lock this
             QMutex *WriterLock;
     };
 }

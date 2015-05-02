@@ -12,18 +12,12 @@
 #define WARNINGS_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QList>
 #include "apiquery.hpp"
-#include "message.hpp"
-#include "reportuser.hpp"
-#include "revertquery.hpp"
+#include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
-#include "wikiuser.hpp"
 
 namespace Huggle
 {
@@ -42,11 +36,9 @@ namespace Huggle
      * is stored in a list of these pending warnings and periodically checked using timer. If it's finished it's
      * removed, if it's not then it is checked and something is done with it.
      */
-    class PendingWarning
+    class HUGGLE_EX PendingWarning
     {
         public:
-            //! Unique garbage collector id used to lock the edit related to this warning
-            static int GCID;
             static QList<PendingWarning*> PendingWarnings;
 
             PendingWarning(Message *message, QString warning, WikiEdit *edit);
@@ -54,11 +46,10 @@ namespace Huggle
             //! The message of this warning
             Message *Warning;
             //! The edit because of which this warning was sent
-            WikiEdit *RelatedEdit;
+            Collectable_SmartPtr<WikiEdit> RelatedEdit;
             //! Template used in this warning so that we can use the same template for new attempt if any is needed
             QString Template;
-            int gcid;
-            ApiQuery *Query;
+            Collectable_SmartPtr<ApiQuery> Query;
     };
 
     //! This NS contains functions that generate warnings to users
@@ -72,16 +63,16 @@ namespace Huggle
          * \param Report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
-        PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
+        HUGGLE_EX PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
         //! This sends a warning to user no matter if they should receive it or not
-        void ForceWarn(int Level, WikiEdit *Edit);
+        HUGGLE_EX void ForceWarn(int Level, WikiEdit *Edit);
         //! Checks all warnings that weren't sent and try to send them
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
         void ResendWarnings();
-        QString RetrieveTemplateToWarn(QString type);
+        QString RetrieveTemplateToWarn(QString type, WikiSite *site);
         //! In case there is no shared IP
-        QString UpdateSharedIPTemplate(WikiUser *User, QString Text);
+        QString UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site);
     }
 }
 

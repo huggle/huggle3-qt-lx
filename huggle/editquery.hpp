@@ -12,31 +12,30 @@
 #define EDITQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
-#include <QUrl>
 #include "apiquery.hpp"
-#include "mainwindow.hpp"
-#include "history.hpp"
+#include "collectable_smartptr.hpp"
+#include "query.hpp"
 
 namespace Huggle
 {
     class ApiQuery;
+    class WikiPage;
 
     //! Modifications of mediawiki pages can be done using this query
-    class EditQuery : public Query
+    class HUGGLE_EX EditQuery : public Query
     {
         public:
             EditQuery();
             ~EditQuery();
             void Process();
             bool IsProcessed();
+            bool Append = false;
+            bool Prepend = false;
+            bool InsertTargetToWatchlist = false;
             //! Page that is going to be edited
-            QString Page;
+            WikiPage *Page = nullptr;
             //! Text a page will be replaced with
             QString text;
             //! Edit summary
@@ -55,9 +54,12 @@ namespace Huggle
             bool Minor;
         private:
             void EditPage();
-            ApiQuery *qToken;
+            void SetError(QString reason);
+            QString OriginalText = "";
+            Collectable_SmartPtr<ApiQuery> qRetrieve;
+            bool HasPreviousPageText = false;
             //! Api query to edit page
-            ApiQuery *qEdit;
+            Collectable_SmartPtr<ApiQuery> qEdit;
     };
 }
 

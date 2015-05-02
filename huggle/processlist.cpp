@@ -8,27 +8,38 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "processlist.hpp"
 #include "exception.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
+#include "localization.hpp"
+#include "huggleprofiler.hpp"
+#include "processlist.hpp"
 #include "ui_processlist.h"
+#include <QMenu>
+#include <QClipboard>
 
 using namespace Huggle;
 
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
     this->ui->setupUi(this);
-    this->ui->tableWidget->setColumnCount(4);
     QStringList header;
-    header << Huggle::Localizations::HuggleLocalizations->Localize("id")
-           << Huggle::Localizations::HuggleLocalizations->Localize("type")
-           << Huggle::Localizations::HuggleLocalizations->Localize("target")
-           << Huggle::Localizations::HuggleLocalizations->Localize("status");
+    this->IsDebuged = hcfg->Verbosity > 0;
+    header << _l("id") << _l("type") << _l("target") << _l("status");
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setColumnCount(6);
+        header << "Url" << "Debug info";
+    } else
+    {
+        this->ui->tableWidget->setColumnCount(4);
+    }
+    this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
     if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
     {
 #if QT_VERSION >= 0x050000
@@ -44,18 +55,28 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
         this->ui->tableWidget->setColumnWidth(1, 200);
         this->ui->tableWidget->setColumnWidth(2, 200);
         this->ui->tableWidget->setColumnWidth(3, 80);
+        if (this->IsDebuged)
+        {
+            this->ui->tableWidget->setColumnWidth(4, 800);
+        }
     }
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
-    this->Removed = new QList<ProcessListRemovedItem*> ();
+    this->Removed = new QList<ProcessListRemovedItem*>();
 }
 
-void ProcessList::InsertQuery(Query *query)
+ProcessList::~ProcessList()
 {
-    if (query == NULL)
+    delete this->ui;
+}
+
+void ProcessList::InsertQuery(Collectable_SmartPtr<Query> query)
+{
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+    if (query == nullptr)
     {
-        throw new Exception("NULL query");
+        throw new Huggle::NullPointerException("Collectable_SmartPtr<Query> query", BOOST_CURRENT_FUNCTION);
     }
     int size = this->ui->tableWidget->rowCount();
     this->ui->tableWidget->insertRow(size);
@@ -63,6 +84,11 @@ void ProcessList::InsertQuery(Query *query)
     this->ui->tableWidget->setItem(size, 1, new QTableWidgetItem(query->QueryTypeToString()));
     this->ui->tableWidget->setItem(size, 2, new QTableWidgetItem(query->QueryTargetToString()));
     this->ui->tableWidget->setItem(size, 3, new QTableWidgetItem(query->QueryStatusToString()));
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setItem(size, 4, new QTableWidgetItem(query->DebugURL()));
+        this->ui->tableWidget->setItem(size, 5, new QTableWidgetItem(query->GetFailureReason()));
+    }
     this->ui->tableWidget->resizeRowToContents(size);
 }
 
@@ -74,12 +100,14 @@ void ProcessList::Clear()
 
 bool ProcessList::ContainsQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int result = GetItem(query);
     return result != -1;
 }
 
 void ProcessList::RemoveQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!IsExpired(query))
     {
         this->Removed->append(new ProcessListRemovedItem(query->QueryID()));
@@ -88,6 +116,7 @@ void ProcessList::RemoveQuery(Query *query)
 
 void ProcessList::UpdateQuery(Query *query)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int query_ = GetItem(query);
     if (query_ == -1)
     {
@@ -99,56 +128,48 @@ void ProcessList::UpdateQuery(Query *query)
     this->ui->tableWidget->setItem(query_, 1, new QTableWidgetItem(query->QueryTypeToString()));
     this->ui->tableWidget->setItem(query_, 2, new QTableWidgetItem(query->QueryTargetToString()));
     this->ui->tableWidget->setItem(query_, 3, new QTableWidgetItem(query->QueryStatusToString()));
+    if (this->IsDebuged)
+    {
+        this->ui->tableWidget->setItem(query_, 4, new QTableWidgetItem(query->DebugURL()));
+        this->ui->tableWidget->setItem(query_, 5, new QTableWidgetItem(query->GetFailureReason()));
+    }
     this->ui->tableWidget->resizeRowToContents(query_);
 }
 
 bool ProcessList::IsExpired(Query *q)
 {
-    int i = 0;
-    while (i < this->Removed->count())
-    {
-        if ((unsigned int) this->Removed->at(i)->GetID() == q->QueryID())
-        {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+    foreach(ProcessListRemovedItem *item, *this->Removed)
+        if ((unsigned int) item->GetID() == q->QueryID())
             return true;
-        }
-        i++;
-    }
+
     return false;
 }
 
 void ProcessList::RemoveExpired()
 {
     if (this->Removed->count() == 0)
-    {
         return;
-    }
+
     QList<ProcessListRemovedItem*> rm;
-    int i = 0;
-    while (i < this->Removed->count())
+    foreach (ProcessListRemovedItem *item, *this->Removed)
+        if (item->Expired(this->IsDebuged))
+            rm.append(item);
+
+    foreach (ProcessListRemovedItem *item, rm)
     {
-        if (this->Removed->at(i)->Expired())
-        {
-            rm.append(this->Removed->at(i));
-        }
-        i++;
-    }
-    i = 0;
-    while (i<rm.count())
-    {
-        ProcessListRemovedItem *item = rm.at(i);
         this->Removed->removeOne(item);
         int row = this->GetItem(item->GetID());
         if (row != -1)
-        {
             this->ui->tableWidget->removeRow(row);
-        }
+
         delete item;
-        i++;
     }
 }
 
 int ProcessList::GetItem(Query *q)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int curr = 0;
     int size = this->ui->tableWidget->rowCount();
     while (curr < size)
@@ -164,6 +185,7 @@ int ProcessList::GetItem(Query *q)
 
 int ProcessList::GetItem(int Id)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int curr = 0;
     int size = this->ui->tableWidget->rowCount();
     while (curr < size)
@@ -177,9 +199,21 @@ int ProcessList::GetItem(int Id)
     return -1;
 }
 
-ProcessList::~ProcessList()
+void ProcessList::ContextMenu(const QPoint &position)
 {
-    delete this->ui;
+    QPoint g_ = this->ui->tableWidget->mapToGlobal(position);
+    QMenu menu;
+    QAction *copy = new QAction(_l("copy"), &menu);
+    menu.addAction(copy);
+    QAction *selection = menu.exec(g_);
+    if (selection == copy)
+    {
+        QString t = "";
+        foreach (QTableWidgetItem *text, this->ui->tableWidget->selectedItems())
+            t += text->text() + "\n";
+        if (!t.isEmpty())
+            QApplication::clipboard()->setText(t);
+    }
 }
 
 ProcessListRemovedItem::ProcessListRemovedItem(int ID)
@@ -193,8 +227,10 @@ int ProcessListRemovedItem::GetID()
     return this->id;
 }
 
-bool ProcessListRemovedItem::Expired()
+bool ProcessListRemovedItem::Expired(bool Debug)
 {
-    return this->time < QDateTime::currentDateTime().addSecs(-Configuration::HuggleConfiguration->SystemConfig_QueryListTimeLimit);
+    if (Debug)
+        return this->time < QDateTime::currentDateTime().addSecs(-120);
+    return this->time < QDateTime::currentDateTime().addSecs(-hcfg->SystemConfig_QueryListTimeLimit);
 }
 

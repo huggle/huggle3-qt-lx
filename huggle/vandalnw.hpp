@@ -12,16 +12,11 @@
 #define VANDALNW_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDockWidget>
+#include <QHash>
 #include <QTimer>
-#include "networkirc.hpp"
-#include "wikiedit.hpp"
+#include <QUrl>
 
 namespace Ui
 {
@@ -30,11 +25,15 @@ namespace Ui
 
 namespace Huggle
 {
+    class WikiPage;
+    class WikiEdit;
+    class WikiUser;
+    class WikiSite;
+
     namespace IRC
     {
         class NetworkIrc;
     }
-
     //! This namespace contains HAN classes
 
     //! Huggle Antivandalism Network is a system that allows users of huggle and other tools
@@ -53,15 +52,16 @@ namespace Huggle
 
         //! These "HAN items" are for example information about rollbacks, because they
         //! share common properties, they are all inherited from this GenericItem :o
-        class GenericItem
+        class HUGGLE_EX GenericItem
         {
             public:
-                GenericItem();
-                GenericItem(int _revID, QString _user);
+                GenericItem(WikiSite *site);
+                GenericItem(WikiSite *site, int _revID, QString _user);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
                 //! User who changed the edit
                 QString User;
+                WikiSite *Site;
                 //! ID of edit
                 int RevID;
         };
@@ -73,12 +73,13 @@ namespace Huggle
         //! can't be applied to edits that weren't parsed by huggle yet. So in case
         //! that other user has faster internet connection we cache the information
         //! using this class and use it later when edit is parsed
-        class RescoreItem : public GenericItem
+        class HUGGLE_EX RescoreItem : public GenericItem
         {
             public:
-                RescoreItem(int _revID, int _score, QString _user);
+                RescoreItem(WikiSite *site, int _revID, int _score, QString _user);
                 RescoreItem(const RescoreItem &item);
                 RescoreItem(RescoreItem *item);
+                WikiSite *Site;
                 int Score;
         };
 
@@ -88,7 +89,7 @@ namespace Huggle
 
     //! Huggle 3 comes with a system that allows all clients to operate together in order
     //! to be effective in reverting of vandalism
-    class VandalNw : public QDockWidget
+    class HUGGLE_EX VandalNw : public QDockWidget
     {
             Q_OBJECT
 
@@ -96,6 +97,9 @@ namespace Huggle
             /// \todo Share a version of your huggle with others in sane way
             /// \todo Hook to VERSION
         public:
+            static QString SafeHtml(QString text);
+            static QString GenerateWikiDiffLink(QString text, QString revid, WikiSite *site);
+
             explicit VandalNw(QWidget *parent = 0);
             ~VandalNw();
             /*!
@@ -111,11 +115,12 @@ namespace Huggle
             void Rollback(WikiEdit *Edit);
             void SuspiciousWikiEdit(WikiEdit *Edit);
             void WarningSent(WikiUser *user, byte_ht Level);
-            QString GetChannel();
+            void GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
             void Message();
-            QString Channel;
+            QHash<QString,WikiSite*> Ch2Site;
+            QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users
             QString Prefix;
             //! Timer that is used to connect to network
@@ -143,6 +148,7 @@ namespace Huggle
             void onTick();
             void on_pushButton_clicked();
             void on_lineEdit_returnPressed();
+            void on_textBrowser_anchorClicked(const QUrl &arg1);
     };
 }
 

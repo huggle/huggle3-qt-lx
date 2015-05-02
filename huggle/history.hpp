@@ -12,14 +12,17 @@
 #define HISTORY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QList>
+#include <QModelIndex>
 #include <QDockWidget>
+#include "collectable_smartptr.hpp"
+#include "apiquery.hpp"
+#include "historyitem.hpp"
+#include "editquery.hpp"
+#include "revertquery.hpp"
+#include "wikiedit.hpp"
 
 namespace Ui
 {
@@ -28,38 +31,10 @@ namespace Ui
 
 namespace Huggle
 {
-    //! Types of history items
-    enum HistoryType
-    {
-        HistoryUnknown,
-        HistoryEdit,
-        HistoryRollback,
-        HistoryMessage
-    };
-
-    //! History consist of these items
-    class HistoryItem
-    {
-        public:
-            static QString TypeToString(HistoryType type);
-
-            HistoryItem();
-            HistoryItem(const HistoryItem &item);
-            HistoryItem(HistoryItem * item);
-            //! Unique ID of this item
-            int ID;
-            HistoryItem *UndoDependency;
-            QString UndoRevBaseTime;
-            QString Result;
-            QString Target;
-            //! Type of item
-            HistoryType Type;
-    };
-
-    /// \todo It should be possible to go back in history to review what you have you done
-    /// currently nothing happens when you click on history items
-    /// \todo Function to revert your own changes
-    /// \todo Option to remove the items / trim them etc so that operating memory is not cluttered by these
+    class ApiQuery;
+    class EditQuery;
+    class HistoryItem;
+    class RevertQuery;
 
     //! History of actions done by user
 
@@ -72,12 +47,29 @@ namespace Huggle
             ~History();
             void Undo(HistoryItem *hist);
             //! Insert a new item to top of list
-            void Prepend(HistoryItem item);
-            void Refresh();
-            QList<HistoryItem> Items;
-            static int Last;
+            void Prepend(HistoryItem *item);
+            QList<HistoryItem*> Items;
+
+        private slots:
+            void ContextMenu(const QPoint& position);
+            void Tick();
+            void Display();
+            void on_tableWidget_clicked(const QModelIndex &index);
 
         private:
+            void DeleteItems();
+            void Fail();
+            QTimer *timerRetrievePageInformation;
+            Collectable_SmartPtr<HistoryItem> RevertingItem;
+            QTimer *timerDisplayEditFromHistLs;
+            //! This is a query we need to use to retrieve our own edit before we undo it
+            Collectable_SmartPtr<ApiQuery> qEdit;
+            //! This is for welcome message that is used to replace a talk page
+            Collectable_SmartPtr<EditQuery> qTalk;
+            //! Used to revert edits we made
+            Collectable_SmartPtr<RevertQuery> qSelf;
+            Collectable_SmartPtr<WikiEdit> DisplayedEdit;
+            int CurrentItem = -200;
             Ui::History *ui;
     };
 }

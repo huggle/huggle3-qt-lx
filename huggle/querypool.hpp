@@ -12,17 +12,8 @@
 #define QUERYPOOL_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QList>
-#include "query.hpp"
-#include "processlist.hpp"
-#include "message.hpp"
-#include "hugglefeed.hpp"
-#include "wikiedit.hpp"
-#include "editquery.hpp"
 
 namespace Huggle
 {
@@ -34,11 +25,15 @@ namespace Huggle
     class Query;
 
     //! Pool of all queries that are monitored by huggle itself
-    class QueryPool
+
+    //! Not every query is contained here, only these that are managed by something
+    //! it's generally a good idea to insert every query to this pool
+    class HUGGLE_EX QueryPool
     {
         public:
             static QueryPool *HugglePool;
             QueryPool();
+            ~QueryPool();
 
             /*!
              * \brief Insert a query to internal list of running queries, so that they can be watched
@@ -66,6 +61,7 @@ namespace Huggle
             //! whole list needs to be checked and probed everytime once a while
             QList<WikiEdit*> ProcessingEdits;
             QList<WikiEdit*> UncheckedReverts;
+            QList<ApiQuery*> PendingWatches;
         private:
             //! List of all running queries
             QList<Query*> RunningQueries;

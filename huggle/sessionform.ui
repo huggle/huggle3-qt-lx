@@ -7,13 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>491</width>
-    <height>454</height>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Session info</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
    <item>
     <widget class="QLabel" name="label">
      <property name="text">

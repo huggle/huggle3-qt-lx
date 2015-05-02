@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="pictures.qrc">
-    <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -55,6 +55,18 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>+</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -76,6 +88,7 @@
      </property>
      <addaction name="actionIRC"/>
      <addaction name="actionWiki"/>
+     <addaction name="actionXmlRcs"/>
     </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionReconnect_IRC"/>
@@ -83,6 +96,8 @@
     <addaction name="actionAbort_2"/>
     <addaction name="separator"/>
     <addaction name="menuChange_provider"/>
+    <addaction name="actionStop_provider"/>
+    <addaction name="actionResume_provider"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -100,8 +115,15 @@
      <addaction name="actionHtml_dump"/>
      <addaction name="actionEnforce_sysop_rights"/>
      <addaction name="actionRelog"/>
+     <addaction name="actionDryMode"/>
+     <addaction name="actionReload_menus"/>
+     <addaction name="actionVerbosity"/>
+     <addaction name="actionVerbosity_2"/>
+     <addaction name="actionReload_tokens"/>
+     <addaction name="actionLog_out"/>
     </widget>
     <addaction name="actionContents"/>
+    <addaction name="actionQueue_legend"/>
     <addaction name="separator"/>
     <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
@@ -118,9 +140,12 @@
     <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
     <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
     <addaction name="actionRevert_AGF"/>
+    <addaction name="actionRevert_only_this_revision"/>
+    <addaction name="actionRevert_only_this_revision_assuming_good_faith"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
+    <addaction name="actionDisplay_this_page"/>
     <addaction name="actionDisplay_history_in_browser"/>
     <addaction name="actionEdit_page_in_browser"/>
     <addaction name="separator"/>
@@ -135,6 +160,12 @@
     <addaction name="actionProtect"/>
     <addaction name="actionRequest_protection"/>
     <addaction name="actionRestore_this_revision"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsert_page_to_a_watchlist"/>
+    <addaction name="actionRemove_page_from_a_watchlist"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_current_tab"/>
+    <addaction name="actionOpen_new_tab"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -165,7 +196,6 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
-    <addaction name="actionClear_template_meta_data"/>
     <addaction name="actionUser_contributions"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
@@ -205,12 +235,20 @@
     <addaction name="actionDisplay_user_data"/>
     <addaction name="actionDisplay_bot_data"/>
    </widget>
+   <widget class="QMenu" name="menuGo_to">
+    <property name="title">
+     <string>Go to</string>
+    </property>
+    <addaction name="actionMy_talk_page"/>
+    <addaction name="actionMy_Contributions"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
    <addaction name="menuQueue"/>
    <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
+   <addaction name="menuGo_to"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -848,7 +886,7 @@
   </action>
   <action name="actionHtml_dump">
    <property name="text">
-    <string>Load in webpage</string>
+    <string>Dump page</string>
    </property>
   </action>
   <action name="actionEnforce_sysop_rights">
@@ -914,6 +952,122 @@
   <action name="actionUser_contributions">
    <property name="text">
     <string>User contributions</string>
+   </property>
+  </action>
+  <action name="actionDisplay_this_page">
+   <property name="text">
+    <string>Display this page</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionStop_provider">
+   <property name="text">
+    <string>Stop provider</string>
+   </property>
+  </action>
+  <action name="actionResume_provider">
+   <property name="text">
+    <string>Resume provider</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionDryMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>DryMode</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision">
+   <property name="text">
+    <string>Revert only this revision</string>
+   </property>
+  </action>
+  <action name="actionReload_menus">
+   <property name="text">
+    <string>Reload menus</string>
+   </property>
+  </action>
+  <action name="actionInsert_page_to_a_watchlist">
+   <property name="text">
+    <string>Insert page to a watchlist</string>
+   </property>
+  </action>
+  <action name="actionRemove_page_from_a_watchlist">
+   <property name="text">
+    <string>Remove page from a watchlist</string>
+   </property>
+  </action>
+  <action name="actionMy_talk_page">
+   <property name="text">
+    <string>My talk page</string>
+   </property>
+  </action>
+  <action name="actionMy_Contributions">
+   <property name="text">
+    <string>My Contributions</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision_assuming_good_faith">
+   <property name="text">
+    <string>Revert only this revision assuming good faith</string>
+   </property>
+  </action>
+  <action name="actionClose_current_tab">
+   <property name="text">
+    <string>Close current tab</string>
+   </property>
+   <property name="toolTip">
+    <string>Close tab</string>
+   </property>
+  </action>
+  <action name="actionOpen_new_tab">
+   <property name="text">
+    <string>Open new tab</string>
+   </property>
+  </action>
+  <action name="actionVerbosity">
+   <property name="text">
+    <string>verbosity--</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionVerbosity_2">
+   <property name="text">
+    <string>verbosity++</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionReload_tokens">
+   <property name="text">
+    <string>Reload tokens</string>
+   </property>
+  </action>
+  <action name="actionLog_out">
+   <property name="text">
+    <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionXmlRcs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>XmlRcs</string>
+   </property>
+  </action>
+  <action name="actionQueue_legend">
+   <property name="text">
+    <string>Queue legend</string>
    </property>
   </action>
  </widget>

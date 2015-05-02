@@ -12,9 +12,6 @@
 #define OAUTHLOGIN_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDialog>
 
@@ -31,7 +28,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit OAuthLogin(QWidget *parent = 0);
+            explicit OAuthLogin(QWidget *parent = nullptr);
             ~OAuthLogin();
 
         private:

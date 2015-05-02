@@ -34,6 +34,16 @@
      <number>0</number>
     </property>
     <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBox"/>
+    </item>
+    <item>
      <widget class="QLabel" name="label">
       <property name="text">
        <string>User</string>

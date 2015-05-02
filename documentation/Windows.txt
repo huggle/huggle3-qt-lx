@@ -1,0 +1,10 @@
+CMake
+=======
+
+It's recommended to use latest QT libs. Open cmake-gui and set all the paths. Check QT5_BUILD and run configure.
+
+It will ask you for cmake.exe path, give it path to cmake in your qt folder, then insert entry CMAKE_PREFIX_PATH and set it to path where your Qt is, for example:
+
+C:\\Qt\\5.3\\msvc2013\\
+
+Now run configure again and then generate

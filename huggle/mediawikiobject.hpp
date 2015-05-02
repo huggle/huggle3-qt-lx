@@ -8,34 +8,28 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef HUGGLENUKE_H
-#define HUGGLENUKE_H
+#ifndef MEDIAWIKIOBJECT_HPP
+#define MEDIAWIKIOBJECT_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
-
-#include <QDialog>
-
-namespace Ui
-{
-    class HuggleNuke;
-}
 
 namespace Huggle
 {
-    //! Window that allows user to mass delete pages made by certain users
-    class HuggleNuke : public QDialog
-    {
-            Q_OBJECT
-        public:
-            explicit HuggleNuke(QWidget *parent = 0);
-            ~HuggleNuke();
+    class WikiSite;
 
-        private:
-            Ui::HuggleNuke *ui;
+    //! Every mediawiki asset may be inherited from this
+
+    //! This class makes it simple to create cross-wiki support for various types that are bound to a given site
+    class HUGGLE_EX MediaWikiObject
+    {
+        public:
+            MediaWikiObject();
+            MediaWikiObject(MediaWikiObject *m);
+            MediaWikiObject(const MediaWikiObject &m);
+            virtual ~MediaWikiObject();
+            virtual WikiSite *GetSite();
+            WikiSite *Site;
     };
 }
-#endif // HUGGLENUKE_H
+
+#endif // MEDIAWIKIOBJECT_HPP

@@ -9,18 +9,26 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include "apiqueryresult.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
+#include "history.hpp"
+#include "historyitem.hpp"
+#include "localization.hpp"
+#include "mainwindow.hpp"
+#include "generic.hpp"
+#include "syslog.hpp"
 #include "querypool.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 
 EditQuery::EditQuery()
 {
     this->Summary = "";
-    this->Result = NULL;
-    this->qEdit = NULL;
     this->Minor = false;
-    this->Page = "";
-    this->qToken = NULL;
     this->Section = 0;
     this->BaseTimestamp = "";
     this->StartTimestamp = "";
@@ -30,107 +38,112 @@ EditQuery::EditQuery()
 
 EditQuery::~EditQuery()
 {
-    if (this->qToken != NULL)
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
+    delete this->Page;
+    this->HI.Delete();
 }
 
 void EditQuery::Process()
 {
+    if (this->Page == nullptr)
+    {
+        throw new Huggle::NullPointerException("local Page", BOOST_CURRENT_FUNCTION);
+    }
+
     this->Status = StatusProcessing;
     this->StartTime = QDateTime::currentDateTime();
-    if (Configuration::HuggleConfiguration->TemporaryConfig_EditToken == "")
+    if (this->Page->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty())
     {
-        this->qToken = new ApiQuery(ActionQuery);
-        this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(Page);
-        this->qToken->Target = Localizations::HuggleLocalizations->Localize("editquery-token", Page);
-        this->qToken->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        QueryPool::HugglePool->AppendQuery(qToken);
-        this->qToken->Process();
-    } else
-    {
-        this->EditPage();
+        this->SetError("No CSRF token");
+        return;
     }
+    this->EditPage();
 }
 
 bool EditQuery::IsProcessed()
 {
-    if (this->Result != NULL)
-    {
+    if (this->Result != nullptr)
         return true;
-    }
-    if (this->qToken != NULL)
+
+    if (this->qRetrieve != nullptr && this->qRetrieve->IsProcessed())
     {
-        if (!this->qToken->IsProcessed())
+        if (this->qRetrieve->IsFailed())
         {
-            return false;
-        }
-        if (this->qToken->Result->Failed)
-        {
-            this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error") + ": " +
-                                         this->qToken->Result->ErrorMessage;
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
+            this->SetError("Unable to retrieve the previous content of page: " + this->qRetrieve->Result->ErrorMessage);
+            this->qRetrieve.Delete();
             return true;
         }
-        QDomDocument dToken_;
-        dToken_.setContent(this->qToken->Result->Data);
-        QDomNodeList l = dToken_.elementsByTagName("page");
-        if (l.count() == 0)
+        bool failed = false;
+        QString ts;
+        this->OriginalText = Generic::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
+        this->qRetrieve.Delete();
+        if (failed)
         {
-            this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
-            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + qToken->Result->Data);
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
+            this->SetError("Unable to retrieve the previous content of page: " + this->OriginalText);
             return true;
         }
-        QDomElement element = l.at(0).toElement();
-        if (!element.attributes().contains("edittoken"))
-        {
-            this->Result = new QueryResult();
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = Localizations::HuggleLocalizations->Localize("editquery-token-error");
-            Huggle::Syslog::HuggleLogs->DebugLog("Debug message for edit: " + this->qToken->Result->Data);
-            this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-            this->qToken = NULL;
-            return true;
-        }
-        Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qToken = NULL;
+        this->HasPreviousPageText = true;
+        this->BaseTimestamp = ts;
         this->EditPage();
         return false;
     }
-    if (this->qEdit != NULL)
+
+    if (this->qEdit != nullptr)
     {
         if (!this->qEdit->IsProcessed())
-        {
             return false;
-        }
-        QDomDocument dEdit_;
-        dEdit_.setContent(this->qEdit->Result->Data);
-        QDomNodeList edits_ = dEdit_.elementsByTagName("edit");
+
+        ApiQueryResultNode *err = this->qEdit->GetApiQueryResult()->GetNode("error");
+        ApiQueryResultNode *edit = this->qEdit->GetApiQueryResult()->GetNode("edit");
         bool failed = true;
-        if (edits_.count() > 0)
+        if (err != nullptr)
         {
-            QDomElement element = edits_.at(0).toElement();
-            if (element.attributes().contains("result"))
+            if (err->Attributes.contains("code"))
             {
-                if (element.attribute("result") == "Success")
+                QString ec = err->GetAttribute("code");
+                int hec = HUGGLE_EUNKNOWN;
+                QString reason = ec;
+                if (ec == "assertuserfailed")
+                {
+                    reason = "Not logged in";
+                    hec = HUGGLE_ENOTLOGGEDIN;
+                    // this is some fine hacking here :)
+                    // we use this later in main form
+                    HUGGLE_DEBUG1("Session expired requesting a new login");
+                    Configuration::Logout(this->Page->GetSite());
+                }
+                if (ec == "badtoken")
+                {
+                    reason = "Bad token";
+                    hec = HUGGLE_ETOKEN;
+                    // we log off the site
+                    Configuration::Logout(this->Page->GetSite());
+                    Syslog::HuggleLogs->ErrorLog(_l("editquery-invalid-token", this->Page->PageName));
+                }
+                this->Result = new QueryResult(true);
+                this->Result->SetError(hec, reason);
+                this->qEdit = nullptr;
+                this->ProcessFailure();
+                return true;
+            }
+        }
+        if (edit != nullptr)
+        {
+            if (edit->Attributes.contains("result"))
+            {
+                if (edit->Attributes["result"] == "Success")
                 {
                     failed = false;
-                    if (MainWindow::HuggleMain != NULL)
+                    if (MainWindow::HuggleMain != nullptr)
                     {
-                        HistoryItem item;
-                        item.Result = Localizations::HuggleLocalizations->Localize("successful");
-                        item.Type = HistoryEdit;
-                        item.Target = this->Page;
+                        HistoryItem *item = new HistoryItem();
+                        item->Result = _l("successful");
+                        item->Type = HistoryEdit;
+                        item->Target = this->Page->PageName;
+                        this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
-                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("editquery-success", Page));
+                    this->ProcessCallback();
+                    Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName, this->Page->GetSite()->Name));
                 }
             }
         }
@@ -139,34 +152,68 @@ bool EditQuery::IsProcessed()
         {
             this->Result->Failed = true;
             this->Result->ErrorMessage = this->qEdit->Result->Data;
+            this->ProcessFailure();
         }
-        this->qEdit->UnregisterConsumer(HUGGLECONSUMER_EDITQUERY);
-        this->qEdit = NULL;
+        this->qEdit = nullptr;
     }
-    return true;
+    return false;
 }
 
 void EditQuery::EditPage()
 {
-    this->qEdit = new ApiQuery();
-    this->qEdit->Target = "Writing " + this->Page;
+    if (this->Append && this->Prepend)
+    {
+        throw Huggle::Exception("You can't use both Append and Prepend for edit of page", BOOST_CURRENT_FUNCTION);
+    }
+    if ((this->Append || this->Prepend) && !this->HasPreviousPageText)
+    {
+        // we first need to get a text of current page
+        this->qRetrieve = Generic::RetrieveWikiPageContents(this->Page);
+        QueryPool::HugglePool->AppendQuery(this->qRetrieve);
+        this->qRetrieve->Process();
+        return;
+    }
+    this->qEdit = new ApiQuery(ActionEdit, this->Page->Site);
+    this->qEdit->Target = _l("report-write") + " " + this->Page->PageName;
     this->qEdit->UsingPOST = true;
-    this->qEdit->RegisterConsumer(HUGGLECONSUMER_EDITQUERY);
-    this->qEdit->SetAction(ActionEdit);
+    if (this->Append)
+    {
+        // we append new text now
+        this->Section = 0;
+        this->text = this->OriginalText + this->text;
+    } else if (this->Prepend)
+    {
+        this->Section = 0;
+        this->text = this->text + this->OriginalText;
+    }
+    {
+        this->text = this->text;
+    }
     QString base = "";
     QString start_ = "";
     QString section = "";
+    QString wl = "&watchlist=nochange";
+    if (this->InsertTargetToWatchlist)
+        wl = "";
     if (this->Section > 0)
     {
         section = "&section=" + QString::number(this->Section);
     }
-    if (this->BaseTimestamp.length())
+    if (!this->BaseTimestamp.isEmpty())
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-    if (this->StartTimestamp.length())
+    if (!this->StartTimestamp.isEmpty())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(Page) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
-                              "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
-                              QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
-    QueryPool::HugglePool->AppendQuery(qEdit);
+    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
+                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
+                              QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
+    QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();
+}
+
+void EditQuery::SetError(QString reason)
+{
+    this->Result = new QueryResult(true);
+    this->Result->SetError(reason);
+    this->FailureReason = reason;
+    this->Status = StatusInError;
 }

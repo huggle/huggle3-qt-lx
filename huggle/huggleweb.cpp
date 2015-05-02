@@ -11,8 +11,13 @@
 #include "huggleweb.hpp"
 #include <QDesktopServices>
 #include "exception.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
 #include "configuration.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
+#include "wikiedit.hpp"
+#include "resources.hpp"
 #include "ui_huggleweb.h"
 
 using namespace Huggle;
@@ -20,7 +25,7 @@ using namespace Huggle;
 HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
-    this->CurrentPage = Localizations::HuggleLocalizations->Localize("browser-none");
+    this->CurrentPage = _l("browser-none");
 }
 
 HuggleWeb::~HuggleWeb()
@@ -35,12 +40,12 @@ QString HuggleWeb::CurrentPageName()
 
 void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
 {
-    if (page == NULL)
+    if (page == nullptr)
     {
-        throw new Exception("WikiPage *page must not be NULL", "void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)");
+        throw new Huggle::NullPointerException("WikiPage *page", BOOST_CURRENT_FUNCTION);
     }
     this->ui->webView->history()->clear();
-    this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + page->PageName + "&action=render"));
+    this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
     this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
@@ -75,13 +80,9 @@ QString HuggleWeb::Encode(const QString &string)
     {
         QChar ch = string.at(i);
         if(ch.unicode() > 255)
-        {
             encoded += QString("&#%1;").arg((int)ch.unicode());
-        }
         else
-        {
             encoded += ch;
-        }
     }
     encoded = encoded.replace("<", "&lt;");
     encoded = encoded.replace(">", "&gt;");
@@ -93,16 +94,27 @@ void HuggleWeb::Click(const QUrl &page)
     QDesktopServices::openUrl(page);
 }
 
+QString HuggleWeb::GetShortcut()
+{
+    QString incoming = Resources::HtmlIncoming;
+    if (!Configuration::HuggleConfiguration->Shortcuts.contains("main-mytalk"))
+        throw new Huggle::Exception("key", BOOST_CURRENT_FUNCTION);
+    Shortcut sh = Configuration::HuggleConfiguration->Shortcuts["main-mytalk"];
+    incoming.replace("$shortcut", sh.QAccel);
+    return incoming;
+}
+
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
+    this->CurrentEdit = edit;
     this->ui->webView->history()->clear();
-    if (edit == NULL)
-        throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
-    if (edit->Page == NULL)
-        throw new Exception("The page of edit was NULL in HuggleWeb::DisplayDiff(*edit)");
-    if (edit->NewPage && edit->Page->Contents == "")
+    if (edit == nullptr)
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
+    if (edit->Page == nullptr)
+        throw new Huggle::NullPointerException("*edit->Page", BOOST_CURRENT_FUNCTION);
+    if (edit->NewPage && !edit->Page->Contents.size())
     {
-        this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
+        this->ui->webView->setHtml(_l("browser-load"));
         this->DisplayPreFormattedPage(edit->Page);
         return;
     } else if (edit->NewPage)
@@ -113,40 +125,58 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     if (!edit->DiffText.length())
     {
         Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
-        this->ui->webView->setHtml(Localizations::HuggleLocalizations->Localize("browser-load"));
-        this->ui->webView->load(QString(Configuration::GetProjectScriptURL() + "index.php?title=" + edit->Page->PageName + "&diff="
+        this->ui->webView->setHtml(_l("browser-load"));
+        if (edit->DiffTo != "prev")
+        {
+            this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
+                                        + QString::number(edit->Diff) + "&oldid=" + edit->DiffTo + "&action=render"));
+        } else
+        {
+            this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
+        }
         return;
     }
     QString HTML = Resources::GetHtmlHeader();
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
-        HTML += Resources::HtmlIncoming;
+        HTML += this->GetShortcut();
     }
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
-    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary;
     QString size;
-    if (edit->Size > 0)
+    if (edit->SizeIsKnown)
     {
-        size = "+" + QString::number(edit->Size);
+        if (edit->GetSize() > 0)
+            size = "<font color=green>+" + QString::number(edit->GetSize()) + "</font>";
+        else if (edit->GetSize() == 0)
+            size = "<font color=blue>" + QString::number(edit->GetSize()) + "</font>";
+        else
+            size = "<font color=\"red\">" + QString::number(edit->GetSize()) + "</font>";
     } else
     {
-        size = QString::number(edit->Size);
+        size = "<font color=red>Unknown</font>";
     }
-    if (!edit->Summary.size())
+    if (edit->Summary.isEmpty())
     {
-        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+        if (hcfg->UserConfig->SummaryMode)
+            Summary = _l("browser-miss-summ");
+        else
+            Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else
     {
-        Summary = Encode(edit->Summary);
+        if (hcfg->UserConfig->SummaryMode)
+            Summary = "<font color=red> " + Encode(edit->Summary) + "</font>";
+        else
+            Summary = "<font> " + Encode(edit->Summary) + "</font>";
     }
     Summary += "<b> Size change: " + size + "</b>";
-    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary +
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary +
             "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
@@ -154,27 +184,28 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
 void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
 {
     if (!edit)
-        throw new Exception("Edit must not be NULL");
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
+    this->CurrentEdit = edit;
     QString HTML = Resources::GetHtmlHeader();
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
-        HTML += Resources::HtmlIncoming;
+        HTML += this->GetShortcut();
     }
-    if (Configuration::HuggleConfiguration->UserConfig_DisplayTitle)
+    if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary;
     if (!edit->Summary.size())
     {
-        Summary = "<font color=red> " + Localizations::HuggleLocalizations->Localize("browser-miss-summ") + "</font>";
+        Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else
     {
         Summary = Encode(edit->Summary);
     }
-    HTML += "<b>" + Localizations::HuggleLocalizations->Localize("summary") + ":</b> " + Summary + "<br>" +
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary + "<br>" +
             edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }

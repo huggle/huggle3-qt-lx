@@ -9,26 +9,30 @@
 //GNU General Public License for more details.
 
 #include "message.hpp"
-#include <QtXml>
-#include "core.hpp"
+#include "apiqueryresult.hpp"
 #include "collectable.hpp"
+#include "configuration.hpp"
+#include "exception.hpp"
+#include "history.hpp"
+#include "localization.hpp"
+#include "mainwindow.hpp"
+#include "generic.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
-#include "generic.hpp"
+#include "wikisite.hpp"
+#include "wikiuser.hpp"
+#include <QUrl>
 
 using namespace Huggle;
 
 Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 {
     // we copy the user here so that we can let the caller delete it
-    this->user = new WikiUser(target);
+    this->User = new WikiUser(target);
     this->Text = MessageText;
     this->Summary = MessageSummary;
     this->Suffix = true;
-    this->Dependency = nullptr;
-    this->qToken = nullptr;
     this->SectionKeep = false;
-    this->query = nullptr;
     this->_Status = Huggle::MessageStatus_None;
     this->PreviousTalkPageRetrieved = false;
     this->Page = "";
@@ -43,58 +47,32 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 
 Message::~Message()
 {
-    if (this->query != nullptr)
-    {
-        this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    }
-    delete this->user;
-}
-
-void Message::RetrieveToken()
-{
-    this->_Status = Huggle::MessageStatus_RetrievingToken;
-    if (this->qToken != nullptr)
-    {
-        Syslog::HuggleLogs->DebugLog("Memory leak at void Message::RetrieveToken()");
-    }
-    this->qToken = new ApiQuery();
-    this->qToken->SetAction(ActionQuery);
-    this->qToken->Parameters = "prop=info&intoken=edit&titles=" + QUrl::toPercentEncoding(this->user->GetTalk());
-    this->qToken->Target = Localizations::HuggleLocalizations->Localize("message-retrieve-new-token", this->user->GetTalk());
-    this->qToken->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    QueryPool::HugglePool->AppendQuery(this->qToken);
-    this->qToken->Process();
+    delete this->User;
 }
 
 void Message::Send()
 {
+    if (!this->User)
+        throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
+
     if (this->HasValidEditToken())
     {
         this->PreflightCheck();
         return;
     }
-    // first we need to get an edit token
-    this->RetrieveToken();
+    // there is no token to use
+    this->Fail("No token");
 }
 
 void Message::Fail(QString reason)
 {
     QStringList parameters;
-    parameters << this->user->Username << reason;
-    Huggle::Syslog::HuggleLogs->ErrorLog(Localizations::HuggleLocalizations->Localize("message-er", parameters));
+    parameters << this->User->Username << reason;
+    Huggle::Syslog::HuggleLogs->ErrorLog(_l("message-er", parameters));
     this->_Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
     this->ErrorText = reason;
-    if (this->qToken != nullptr)
-    {
-        this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->qToken = nullptr;
-    }
-    if (this->query != nullptr)
-    {
-        this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query = nullptr;
-    }
+    this->query.Delete();
 }
 
 bool Message::IsFinished()
@@ -108,35 +86,14 @@ bool Message::IsFinished()
         if (!this->Dependency->IsProcessed())
         {
             return false;
-        } else
+        } else if (this->Dependency->IsFailed())
         {
-            if (this->Dependency->IsFailed())
-            {
-                // we can't continue because the dependency is fucked
-                this->Dependency->UnregisterConsumer("keep");
-                this->Dependency = nullptr;
-                this->_Status = Huggle::MessageStatus_Failed;
-                this->Error = MessageError_Dependency;
-                if (this->query != nullptr)
-                {
-                    this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-                    this->query = nullptr;
-                }
-                return true;
-            }
-            // dependency finished OK so we can remove a pointer to it
-            this->Dependency->UnregisterConsumer("keep");
-            this->Dependency = nullptr;
-        }
-    }
-    if (this->RetrievingToken())
-    {
-        // we are retrieving token so we can check if the token
-        // has beed retrieved and if yes, we can continue
-        if (this->FinishToken())
-        {
-            // good, we have the token now so we can edit the page, however some checks are needed before we do that
-            this->PreflightCheck();
+            // we can't continue because the dependency is fucked
+            this->Dependency.Delete();
+            this->_Status = Huggle::MessageStatus_Failed;
+            this->Error = MessageError_Dependency;
+            this->query.Delete();
+            return true;
         }
     }
     this->Finish();
@@ -150,12 +107,7 @@ bool Message::IsFailed()
 
 bool Message::HasValidEditToken()
 {
-    return (Configuration::HuggleConfiguration->TemporaryConfig_EditToken.size() != 0);
-}
-
-bool Message::RetrievingToken()
-{
-    return (this->_Status == Huggle::MessageStatus_RetrievingToken);
+    return (!this->User->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty());
 }
 
 bool Message::IsSending()
@@ -178,16 +130,8 @@ void Message::Finish()
     // Check if we have a valid token
     if (!this->HasValidEditToken())
     {
-        // we need to get a token
-        if (this->_Status == Huggle::MessageStatus_RetrievingToken)
-        {
-            // we are already retrieving the token, so let's wait for it to finish
-            return;
-        } else
-        {
-            this->RetrieveToken();
-            return;
-        }
+        this->Fail("No token!");
+        return;
     }
     if (this->query == nullptr)
     {
@@ -201,14 +145,13 @@ void Message::Finish()
         {
             return;
         }
-        if (this->query->Result->Failed)
+        if (this->query->IsFailed())
         {
-            this->Fail(Localizations::HuggleLocalizations->Localize("message-fail-retrieve-talk"));
+            this->Fail(_l("message-fail-retrieve-talk"));
             return;
         }
         this->ProcessTalk();
-        this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-        this->query = nullptr;
+        this->query.Delete();
         // we should be able to finish sending now
         this->ProcessSend();
         return;
@@ -223,110 +166,67 @@ void Message::Finish()
         }
         if (this->query->IsFailed())
         {
-            this->Fail("Failed to deliver the message");
+            this->Fail(_l("message-fail"));
             return;
         }
         bool sent = false;
-        QDomDocument dResult_;
-        dResult_.setContent(query->Result->Data);
-        QDomNodeList e = dResult_.elementsByTagName("error");
-        if (e.count() > 0)
+        ApiQueryResultNode *e = this->query->GetApiQueryResult()->GetNode("error");
+        if (e != nullptr)
         {
-            QDomElement element = e.at(0).toElement();
-            if (element.attributes().contains("code"))
+            QString ec = e->GetAttribute("code", "no-ec");
+            if (ec == "editconflict")
             {
-                QString ec = element.attribute("code");
-                if (ec == "editconflict")
-                {
-                    // someone edit the page meanwhile which means that our token has expired
-                    this->Fail("Edit conflict");
-                    Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->user->Username);
-                    this->Error = MessageError_Obsolete;
-                } else if (ec == "articleexists")
-                {
-                    this->Fail("Edit conflict");
-                    this->Error = MessageError_ArticleExist;
-                } else
-                {
-                    this->Fail("Unknown error: " + ec);
-                    this->Error = MessageError_Unknown;
-                }
-                return;
+                // someone edit the page meanwhile which means that our token has expired
+                this->Fail(_l("edit-conflict"));
+                Huggle::Syslog::HuggleLogs->DebugLog("EC while delivering message to " + this->User->Username);
+                this->Error = MessageError_Obsolete;
+            } else if (ec == "articleexists")
+            {
+                this->Fail(_l("edit-conflict"));
+                this->Error = MessageError_ArticleExist;
+            } else
+            {
+                this->Fail(_l("error-unknown-code",ec));
+                this->Error = MessageError_Unknown;
             }
+            return;
         }
-        QDomNodeList editlist = dResult_.elementsByTagName("edit");
-        if (editlist.count() > 0)
+        ApiQueryResultNode *edit = this->query->GetApiQueryResult()->GetNode("edit");
+        if (edit != nullptr)
         {
-            QDomElement element = editlist.at(0).toElement();
-            if (element.attributes().contains("result"))
+            if (edit->Attributes.contains("result"))
             {
-                if (element.attribute("result") == "Success")
+                if (edit->GetAttribute("result") == "Success")
                 {
-                    Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("message-done", this->user->Username));
+                    Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
-                    HistoryItem item;
-                    item.Result = "Success";
-                    item.Type = HistoryMessage;
-                    item.Target = user->Username;
-                    if (Core::HuggleCore->Main != nullptr)
+                    HistoryItem *item = new HistoryItem();
+                    item->Result = _l("successful");
+                    item->NewPage = this->CreateOnly;
+                    item->Site = this->User->GetSite();
+                    item->Type = HistoryMessage;
+                    item->Target = User->Username;
+                    if (this->Dependency != nullptr && this->Dependency->HI != nullptr)
                     {
-                        Core::HuggleCore->Main->_History->Prepend(item);
+                        this->Dependency->HI->UndoDependency = item;
+                        item->ReferencedBy = this->Dependency->HI;
+                    }
+                    if (MainWindow::HuggleMain != nullptr)
+                    {
+                        MainWindow::HuggleMain->_History->Prepend(item);
                     }
                 }
             }
         }
-
         if (!sent)
         {
-            /// \todo LOCALIZE ME
-            Huggle::Syslog::HuggleLogs->Log("Failed to deliver a message to " + this->user->Username + " please check logs");
+            Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->User->Username));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
-
-        this->query->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
         this->_Status = Huggle::MessageStatus_Done;
-        this->query = nullptr;
+        this->Dependency.Delete();
+        this->query.Delete();
     }
-}
-
-bool Message::FinishToken()
-{
-    if (this->qToken == nullptr)
-    {
-        throw new Huggle::Exception("qToken must not be NULL in this context", "void Message::FinishToken()");
-    }
-    if (!this->qToken->IsProcessed())
-    {
-        return false;
-    }
-    if (this->qToken->Result->Failed)
-    {
-        /// \todo LOCALIZE ME
-        this->Fail("unable to retrieve the edit token");
-        return false;
-    }
-    QDomDocument dToken_;
-    dToken_.setContent(this->qToken->Result->Data);
-    QDomNodeList l = dToken_.elementsByTagName("page");
-    if (l.count() == 0)
-    {
-        /// \todo LOCALIZE ME
-        this->Fail("no token was returned by request");
-        Huggle::Syslog::HuggleLogs->DebugLog("No page");
-        return false;
-    }
-    QDomElement element = l.at(0).toElement();
-    if (!element.attributes().contains("edittoken"))
-    {
-        /// \todo LOCALIZE ME
-        this->Fail("the result doesn't contain the token");
-        Huggle::Syslog::HuggleLogs->DebugLog("No token");
-        return false;
-    }
-    Configuration::HuggleConfiguration->TemporaryConfig_EditToken = element.attribute("edittoken");
-    this->qToken->UnregisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    this->qToken = nullptr;
-    return true;
 }
 
 void Message::PreflightCheck()
@@ -334,18 +234,12 @@ void Message::PreflightCheck()
     // check if we can directly append the data or if we need to fetch the previous page content before we do that
     if ((!this->CreateInNewSection || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
     {
-        if (this->query != nullptr)
-        {
-            Syslog::HuggleLogs->DebugLog("Warning, Message::query != NULL on new allocation, possible memory leak in void Message::PreflightCheck()");
-        }
         this->_Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
-        this->query = Generic::RetrieveWikiPageContents(this->user->GetTalk());
-        this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
+        this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
         QueryPool::HugglePool->AppendQuery(this->query);
-        /// \todo LOCALIZE ME
-        this->query->Target = "Reading TP of " + this->user->Username;
+        this->query->Target = _l("main-user-retrieving-tp", this->User->Username);
         this->query->Process();
     } else
     {
@@ -357,46 +251,37 @@ void Message::PreflightCheck()
 void Message::ProcessSend()
 {
     this->_Status = MessageStatus_SendingMessage;
-    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness != 0)
+    if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
-        if (!this->CreateOnly && (this->user->TalkPage_RetrievalTime().addSecs(
-                                  Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness
-                                      ) < QDateTime::currentDateTime()))
+        if (!this->CreateOnly && (this->User->TalkPage_RetrievalTime().addSecs(hcfg->UserConfig->TalkPageFreshness) < QDateTime::currentDateTime()))
         {
             this->Error = Huggle::MessageError_Expired;
             this->_Status = Huggle::MessageStatus_Failed;
             return;
         } else if (!this->CreateOnly && Configuration::HuggleConfiguration->Verbosity >= 2)
         {
-            Syslog::HuggleLogs->DebugLog("Message to " + this->user->Username + " old " +
-                                         QString::number(this->user->TalkPage_RetrievalTime()
-                                         .addSecs(Configuration::HuggleConfiguration->UserConfig_TalkPageFreshness)
-                                         .secsTo(QDateTime::currentDateTime())), 2);
+            HUGGLE_DEBUG("Message to " + this->User->Username + " old " + QString::number(this->User->TalkPage_RetrievalTime()
+                           .addSecs(Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness)
+                           .secsTo(QDateTime::currentDateTime())), 2);
         }
     }
-    if (this->query != nullptr)
-    {
-        Syslog::HuggleLogs->DebugLog("Warning, Message::query != NULL on new allocation, possible memory leak in void Message::ProcessSend()");
-    }
-    this->query = new ApiQuery();
+    this->query = new ApiQuery(ActionEdit, this->User->GetSite());
     // prevent message from being sent twice
     this->query->RetryOnTimeoutFailure = false;
     this->query->Timeout = 600;
-    this->query->Target = "Writing " + this->user->GetTalk();
+    this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
-    this->query->RegisterConsumer(HUGGLECONSUMER_MESSAGE_SEND);
-    this->query->SetAction(ActionEdit);
-    QString s = Summary;
+    QString summary = this->Summary;
     QString parameters = "";
-    if (this->BaseTimestamp != "")
+    if (!this->BaseTimestamp.isEmpty())
     {
         parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
-        Syslog::HuggleLogs->DebugLog("Using base timestamp for edit of " + user->GetTalk() + ": " + this->BaseTimestamp, 2);
+        HUGGLE_DEBUG("Using base timestamp for edit of " + this->User->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
-    if (this->StartTimestamp != "")
+    if (!this->StartTimestamp.isEmpty())
     {
         parameters += "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-        Syslog::HuggleLogs->DebugLog("Using start timestamp for edit of " + user->GetTalk() + ": " + this->StartTimestamp, 2);
+        HUGGLE_DEBUG("Using start timestamp for edit of " + this->User->GetTalk() + ": " + this->StartTimestamp, 2);
     }
     if (this->CreateOnly)
     {
@@ -404,7 +289,7 @@ void Message::ProcessSend()
     }
     if (this->Suffix)
     {
-        s += " " + Configuration::HuggleConfiguration->ProjectConfig_EditSuffixOfHuggle;
+        summary = Configuration::GenerateSuffix(summary, this->User->Site->GetProjectConfig());
     }
     if (this->SectionKeep || !this->CreateInNewSection)
     {
@@ -414,63 +299,46 @@ void Message::ProcessSend()
         } else
         {
             // original page needs to be included in new value
-            if (this->Page != "")
-            {
+            if (!this->Page.isEmpty())
                 this->Text = this->Page + "\n\n" + this->Text;
-            }
         }
-        this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(s)
+        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
-                + "&token=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Token_Csrf);
     }else
     {
-        this->query->Parameters = "title=" + QUrl::toPercentEncoding(user->GetTalk()) + "&section=new&sectiontitle="
-                + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(s)
+        this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
+                + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
-                + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->TemporaryConfig_EditToken);
+                + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Token_Csrf);
     }
-    Syslog::HuggleLogs->DebugLog(QString(" Message to %1 with parameters: %2").arg(this->user->Username, parameters), 2);
+    HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
     QueryPool::HugglePool->AppendQuery(query);
     this->query->Process();
 }
 
 void Message::ProcessTalk()
 {
-    QDomDocument d;
-    d.setContent(this->query->Result->Data);
     this->PreviousTalkPageRetrieved = true;
-    QDomNodeList page = d.elementsByTagName("rev");
-    QDomNodeList code = d.elementsByTagName("page");
+    ApiQueryResultNode *page = this->query->GetApiQueryResult()->GetNode("rev");
+    ApiQueryResultNode *code = this->query->GetApiQueryResult()->GetNode("page");
     bool missing = false;
-    if (code.count() > 0)
+    if (code != nullptr)
     {
-        QDomElement e = code.at(0).toElement();
-        if (e.attributes().contains("missing"))
-        {
+        if (code->Attributes.contains("missing"))
             missing = true;
-        }
     }
     // get last id
-    if (missing != true && page.count() > 0)
+    if (missing != true && page != nullptr)
     {
-        QDomElement e = page.at(0).toElement();
-        if (e.nodeName() == "rev")
-        {
-            this->Page = e.text();
-            this->PreviousTalkPageRetrieved = true;
-            return;
-        } else
-        {
-            /// \todo LOCALIZE ME
-            this->Fail("Unable to retrieve " + this->user->GetTalk() + " stopping message delivery to that user");
-            return;
-        }
+        this->Page = page->Value;
+        this->PreviousTalkPageRetrieved = true;
+        return;
     } else
     {
         if (!missing)
         {
-            /// \todo LOCALIZE ME
-            this->Fail("Unable to retrieve " + this->user->GetTalk() + " stopping message delivery to that user");
+            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
             return;
         }
@@ -479,11 +347,16 @@ void Message::ProcessTalk()
 
 QString Message::Append(QString text, QString OriginalText, QString Label)
 {
+    if (Label.isEmpty())
+    {
+        // there is nothing to insert this to
+        return OriginalText += "\n\n" + text + "\n\n";
+    }
     QRegExp regex("\\s*==\\s*" + QRegExp::escape(Label) + "\\s*==");
     if (!OriginalText.contains(regex))
     {
         // there is no section to append to
-        if (OriginalText != "")
+        if (!OriginalText.isEmpty())
         {
             OriginalText = OriginalText + "\n\n";
         }

@@ -12,21 +12,17 @@
 #define WIKIEDIT_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
+#include <QVariant>
+#include <QHash>
 #include <QThread>
-#include <QMutex>
 #include <QDateTime>
-#include <QtXml>
 #include <QList>
 #include "apiquery.hpp"
-#include "definitions.hpp"
-#include "wikiuser.hpp"
-#include "wikipage.hpp"
+#include "collectable.hpp"
+#include "collectable_smartptr.hpp"
+#include "edittype.hpp"
 
 namespace Huggle
 {
@@ -46,9 +42,13 @@ namespace Huggle
         StatusPostProcessed
     };
 
+    class Query;
+    class ApiQuery;
+    class MainWindow;
     class WikiPage;
     class WikiEdit;
     class WikiUser;
+    class WikiSite;
 
     //! Edits are post processed in this thread
     class ProcessorThread :  public QThread
@@ -62,19 +62,26 @@ namespace Huggle
             void run();
     };
 
-    class Query;
-    class ApiQuery;
-
     //! Wiki edit
 
-    //! Basically all changes to pages can be represented by this class
+    //! Basically all changes to pages can be represented by this class.
+    //! Edits are representing an edit made to a page on a wiki, they
+    //! have always 3 basic statuses:
+    //! None - edit was just created and is not suitable for use
+    //! Processed - edit was pre processed, the basic information were properly set. This
+    //!             is a very quick serial operation that is handled by Core::Process
+    //! Postprocessed - edit was processed by processor thread and the detailed information
+    //!                 were downloaded using separate queries, in this phase the edit
+    //!                 structure contains all possible needed information we want.
     //! \image html ../documentation/providers.png
-    class WikiEdit : public Collectable
+    class HUGGLE_EX WikiEdit : public Collectable
     {
         public:
             //! This function will return a constant (which needs to be generated runtime)
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
+            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(revid_ht revid, QString prev = "prev");
+            static QString GetPixmapFromEditType(EditType edit_type);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
             static QMutex *Lock_EditList;
@@ -82,14 +89,17 @@ namespace Huggle
             //! Creates a new empty wiki edit
             WikiEdit();
             ~WikiEdit();
-            //! This function is called by core
-            bool FinalizePostProcessing();
             //! This function is called by internals of huggle
-            void PostProcess();
+            void PostProcess(); 
+            WikiSite *GetSite();
+            void SetSize(long size);
+            long GetSize();
+            QString GetPixmap();
             //! Return a full url to edit
             QString GetFullUrl();
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
+            //! Processes all score words in text
             void ProcessWords();
             void RemoveFromHistoryChain();
             //! Page that was changed by edit
@@ -102,30 +112,31 @@ namespace Huggle
             bool Bot;
             //! Edit is a new page
             bool NewPage;
-            //! Size of change of edit
-            int Size;
-            //! Diff id
-            int Diff;
+            bool SizeIsKnown = false;
+            QString DiffTo = "prev";
+            //! Diff id - this is probably same as RevID and can be safely removed
+            revid_ht Diff;
             //! Priority in queue
             int Priority;
+            bool IsValid = true;
             //! Old id
-            int OldID;
+            revid_ht OldID;
             bool IsRevert;
             //! Revision ID
-            int RevID;
+            revid_ht RevID;
             //! Indicator whether the edit was processed or not
             WEStatus Status;
             //! Current warning level
             WarningLevel CurrentUserWarningLevel;
             //! Summary of edit
             QString Summary;
-            //! Token that can be used to rollback this edit
-
-            //! This token needs to be retrieved in same time as information about edit, so that
-            //! it's not possible for other user to change the page meanwhile it's reviewed
-            QString RollbackToken;
+            //! If diff is split holds a new text of a diff
+            QString DiffText_New;
+            //! If diff is split this holds an old text of a diff
+            QString DiffText_Old;
             //! Text of diff, usually formatted in html style returned by mediawiki
             QString DiffText;
+            bool DiffText_IsSplit = false;
             //! Base time of last revision of talk page which is needed to check if someone changed the talk
             //! page meanwhile before we change it
             QString TPRevBaseTime;
@@ -142,6 +153,7 @@ namespace Huggle
             WikiEdit *Next;
             //! Badness score of this edit
             long Score;
+            QHash<QString, QVariant> PropertyBag;
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
             QString PatrolToken;
@@ -151,15 +163,43 @@ namespace Huggle
             //! This variable is used by worker thread and needs to be public so that it is working
             bool ProcessedByWorkerThread;
         private:
+            //! This function is called by core
+            bool FinalizePostProcessing();
+            friend class ProcessorThread;
+            friend class MainWindow;
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
-            ApiQuery* qTalkpage;
+            Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
-            ApiQuery* qUser;
-            ApiQuery* qDifference;
-            ApiQuery* qText;
+            Collectable_SmartPtr<ApiQuery> qUser;
+            Collectable_SmartPtr<ApiQuery> qDifference;
+            Collectable_SmartPtr<ApiQuery> qFounder;
+            Collectable_SmartPtr<ApiQuery> qText;
+            //! Size of change of edit
+            long Size;
     };
+
+    inline QDateTime WikiEdit::GetUnknownEditTime()
+    {
+        return QDateTime::fromMSecsSinceEpoch(0);
+    }
+
+    inline bool WikiEdit::IsPostProcessed()
+    {
+        return (this->Status == StatusPostProcessed);
+    }
+
+    inline long WikiEdit::GetSize()
+    {
+        return this->Size;
+    }
+
+    inline void WikiEdit::SetSize(long size)
+    {
+        this->SizeIsKnown = true;
+        this->Size = size;
+    }
 }
 
 #endif // WIKIEDIT_H

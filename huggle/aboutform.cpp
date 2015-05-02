@@ -10,22 +10,29 @@
 
 #include "aboutform.hpp"
 #include <QDesktopServices>
+#include <QUrl>
 #include "configuration.hpp"
+#include "generic.hpp"
+#include "mainwindow.hpp"
 #include "localization.hpp"
 #include "ui_aboutform.h"
 
 using namespace Huggle;
 
-AboutForm::AboutForm(QWidget *parent) : QDialog(parent), ui(new Ui::AboutForm)
+int developer = 0;
+int last_dev = -1;
+
+AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui::AboutForm)
 {
     this->ui->setupUi(this);
-    QString python = " without python support";
+    QString python = _l("about-python-without");
     if (Configuration::HuggleConfiguration->PythonEngine)
     {
-        python = ", with python support";
+        python = _l("about-python-with");
     }
-    QString version = ", compiled using QT " + QString(QT_VERSION_STR) + " Running on QT " + QString(qVersion());
-    this->ui->label_7->setText("Version: " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
+    QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
+    this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + python + version);
+    this->RestoreWindow();
 }
 
 AboutForm::~AboutForm()
@@ -71,4 +78,45 @@ void Huggle::AboutForm::on_label_9_linkActivated(const QString &link)
 void Huggle::AboutForm::on_label_11_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_12_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::AboutForm::on_label_13_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+static void check_dev()
+{
+    if (developer > 20)
+    {
+        Generic::MessageBox("Whee", "You entered a developer mode! Addshore stinks!");
+        hcfg->Verbosity = 1;
+        MainWindow::HuggleMain->EnableDev();
+        developer = -200;
+    }
+}
+
+void Huggle::AboutForm::on_label_3_linkHovered(const QString &link)
+{
+    // ignore
+    Q_UNUSED(link);
+    if (last_dev == 2)
+        developer++;
+    last_dev = 1;
+    check_dev();
+}
+
+void Huggle::AboutForm::on_label_4_linkHovered(const QString &link)
+{
+    // ignore
+    Q_UNUSED(link);
+    if (last_dev == 1)
+        developer++;
+    last_dev = 2;
+    check_dev();
 }

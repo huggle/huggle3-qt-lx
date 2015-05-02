@@ -12,17 +12,13 @@
 #define HUGGLETOOL_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QTimer>
 #include <QDockWidget>
 #include <QFont>
 #include "apiquery.hpp"
-#include "wikipage.hpp"
+#include "collectable_smartptr.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui
@@ -35,18 +31,20 @@ namespace Huggle
     class ApiQuery;
     class WikiEdit;
     class WikiPage;
+    class WikiSite;
 
     //! Toolbar on top of window
-    class HuggleTool : public QDockWidget
+    class HUGGLE_EX HuggleTool : public QDockWidget
     {
             Q_OBJECT
         public:
-            explicit HuggleTool(QWidget *parent = 0);
+            explicit HuggleTool(QWidget *parent = nullptr);
             ~HuggleTool();
             void SetTitle(QString title);
             void SetInfo(QString info);
             void SetUser(QString user);
             void SetPage(WikiPage* page);
+            WikiSite *GetSite();
             void RenderEdit();
 
         private slots:
@@ -59,11 +57,12 @@ namespace Huggle
             void FinishPage();
             void FinishEdit();
             Ui::HuggleTool *ui;
-            ApiQuery *query;
+            WikiPage *page;
+            Collectable_SmartPtr<ApiQuery> query;
             //! Timer that is used to switch between events that happen when the data for page are retrieved
             QTimer *tick;
             //! Pointer used to create an instance of page before passing it to processing function
-            WikiEdit *edit;
+            Collectable_SmartPtr<WikiEdit> edit;
             //! Page download phase
 
             //! When we download a page from wiki we need to do that in several steps, this variable holds

@@ -1,10 +1,17 @@
 /* snippet from RTL.css */
 td.diff-context {
 	text-align: right;
+	direction: rtl;
 }
 td.diff-addedline {
 	text-align: right;
+	direction: rtl;
 }
 td.diff-deletedline {
 	text-align: right;
+	direction: rtl;
+}
+
+body {
+	direction: rtl;
 }

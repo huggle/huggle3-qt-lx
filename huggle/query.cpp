@@ -8,28 +8,26 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "query.hpp"
 #include "exception.hpp"
 #include "gc.hpp"
+#include "syslog.hpp"
+#include "query.hpp"
+#include <QNetworkAccessManager>
 
 using namespace Huggle;
 
 unsigned int Query::LastID = 0;
-QNetworkAccessManager *Query::NetworkManager = NULL;
+QNetworkAccessManager *Query::NetworkManager = nullptr;
 
 Query::Query()
 {
-    this->Result = NULL;
     this->Type = QueryNull;
     this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
     this->CustomStatus = "";
-    this->callback = NULL;
     this->HiddenQuery = false;
-    this->Dependency = NULL;
     this->Timeout = 60;
-    this->CallbackResult = NULL;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;
 }
@@ -37,11 +35,7 @@ Query::Query()
 Query::~Query()
 {
     delete this->Result;
-    if (this->CallbackResult != NULL)
-    {
-        throw new Exception("Memory leak: Query::CallbackResult was not deleted before destructor was called");
-    }
-    this->Result = NULL;
+    this->Result = nullptr;
 }
 
 bool Query::IsProcessed()
@@ -50,6 +44,8 @@ bool Query::IsProcessed()
     {
         return true;
     }
+    if (this->Status == StatusNull)
+        return false;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
         if (!this->Repeated && this->RetryOnTimeoutFailure)
@@ -61,14 +57,13 @@ bool Query::IsProcessed()
             return false;
         }
         // query is timed out
-        if (this->Result == NULL)
-        {
+        if (this->Result == nullptr)
             this->Result = new QueryResult();
-        }
+
         this->Kill();
-        this->Result->Failed = true;
-        this->Result->ErrorMessage = "Timed out";
+        this->Result->SetError("Timed out");
         this->Status = StatusInError;
+        this->ProcessFailure();
         return true;
     }
     return false;
@@ -92,17 +87,10 @@ QString Query::QueryTypeToString()
     return "Unknown";
 }
 
-QString Query::QueryTargetToString()
-{
-    return "Invalid target";
-}
-
 QString Query::QueryStatusToString()
 {
-    if (this->CustomStatus != "")
-    {
+    if (this->CustomStatus.size())
         return CustomStatus;
-    }
 
     switch (this->Status)
     {
@@ -112,14 +100,12 @@ QString Query::QueryStatusToString()
             return "Done";
         case StatusProcessing:
             return "Processing";
+        case StatusKilled:
+            return "Killed";
         case StatusInError:
-            if (this->Result != NULL)
-            {
-                if (this->Result->Failed && this->Result->ErrorMessage != "")
-                {
-                    return "In error: " + this->Result->ErrorMessage;
-                }
-            }
+            if (this->Result != nullptr && this->Result->IsFailed() && !this->Result->ErrorMessage.isEmpty())
+                return "In error: " + this->Result->ErrorMessage;
+
             return "InError";
     }
     return "Unknown";
@@ -127,30 +113,51 @@ QString Query::QueryStatusToString()
 
 void Query::ProcessCallback()
 {
-    if (this->callback != NULL)
+    if (this->callback != nullptr)
     {
-        this->RegisterConsumer("delegate");
-        this->CallbackResult = this->callback(this);
+        this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
+        this->callback(this);
     }
 }
 
-unsigned int Query::QueryID()
+void Query::ProcessFailure()
 {
-    return this->ID;
+    if (this->FailureCallback != nullptr)
+    {
+        this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
+        this->FailureCallback(this);
+    }
 }
 
 bool Query::IsFailed()
 {
-    if (this->Result != NULL)
-    {
-        if (this->Result->Failed)
-        {
-            return true;
-        }
-    }
-    if (this->Status == Huggle::StatusInError)
-    {
+    if (this->Result != nullptr && this->Result->IsFailed())
         return true;
-    }
+
+    if (this->Status == Huggle::StatusInError)
+        return true;
+
     return false;
+}
+
+QString Query::GetFailureReason()
+{
+    if (this->Result != nullptr)
+        return this->Result->ErrorMessage;
+
+    return this->FailureReason;
+}
+
+QString Query::DebugURL()
+{
+    return "null";
+}
+
+void Query::ThrowOnValidResult()
+{
+    if (!this->Result)
+        return;
+
+    this->Status = StatusInError;
+    throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString::number((uintptr_t)this->Result, 16), BOOST_CURRENT_FUNCTION);
 }

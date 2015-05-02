@@ -12,11 +12,9 @@
 #define LOCALIZATION_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
+
+// localization tool
+#define _l Huggle::Localizations::HuggleLocalizations->Localize
 
 #include <QStringList>
 #include <QString>
@@ -28,7 +26,7 @@ namespace Huggle
     /*!
      * \brief The Language class is used to store localization data
      */
-    class Language
+    class HUGGLE_EX Language
     {
         public:
             //! Creates new instance of language
@@ -38,6 +36,7 @@ namespace Huggle
             QString LanguageName;
             //! Long identifier of language that is seen by user
             QString LanguageID;
+            bool IsRTL = false;
             QMap<QString, QString> Messages;
     };
 
@@ -47,14 +46,16 @@ namespace Huggle
     //! other 3rd localization system or libraries
     //! is strictly forbidden. Your commits that introduce
     //! those will be reverted mercillesly.
-    class Localizations
+    class HUGGLE_EX Localizations
     {
         public:
+            static unsigned int EnglishID;
             static Localizations *HuggleLocalizations;
             //! "qqx"-Language for outputting the used keys
             static const QString LANG_QQX;
 
             Localizations();
+            ~Localizations();
             /*!
              * \brief Initializes a localization with given name
              *
@@ -67,6 +68,9 @@ namespace Huggle
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameter);
             QString Localize(QString key, QString par1, QString par2);
+			
+            //! Check whether the preferred language is RightToLeft language.
+            bool IsRTL();
             //! Languages
             QList<Language*> LocalizationData;
             //! Language selected by user this is only a language of interface

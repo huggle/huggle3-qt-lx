@@ -12,17 +12,17 @@
 #define QUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
-#include <QNetworkAccessManager>
+#include "historyitem.hpp"
 #include "queryresult.hpp"
+#include "collectable_smartptr.hpp"
 #include "collectable.hpp"
+
+// we need to predefine this
+class QNetworkAccessManager;
 
 namespace Huggle
 {
@@ -34,6 +34,7 @@ namespace Huggle
     {
         StatusNull,
         StatusDone,
+        StatusKilled,
         StatusProcessing,
         StatusInError
     };
@@ -58,11 +59,11 @@ namespace Huggle
     //! Query base class for all http queries executed by huggle
 
     //! Every request to website is processed as a query, this is a base object that all
-    //! other queries are derived from. The query system is using own GC see a QueryGC
+    //! other queries are derived from. The query system is using GC.
     //! That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
-    class Query : public Collectable
+    class HUGGLE_EX Query : public Collectable
     {
         public:
             //! We need to have a shared manager for all queries
@@ -96,15 +97,16 @@ namespace Huggle
             //! typical example would be a page that is affected by ApiQuery
             virtual QString QueryTargetToString();
             virtual QString QueryStatusToString();
-            //! If you inherit query you should allways call this from a signal that
-            //! you receive when the query finish
-            void ProcessCallback();
             //! Every query has own unique ID which can be used to work with them
             //! this function returns that
             unsigned int QueryID();
-            bool IsFailed();
+            virtual bool IsFailed();
+            virtual QString GetFailureReason();
+            virtual QString DebugURL();
+            void ThrowOnValidResult();
+            QString FailureReason = "Unknown";
             //! Result of query, see documentation of QueryResult for more
-            QueryResult *Result;
+            QueryResult *Result = nullptr;
             //! Current status of a query
             enum _Status Status;
             //! Custom status
@@ -120,26 +122,35 @@ namespace Huggle
             //! Callback
 
             //! If this is not a NULL this function will be called by query
-            //! once it's finished, a consumer called "delegate" will be created and you
+            //! once it's finished, a consumer HUGGLECONSUMER_CALLBACK will be created and you
             //! will have to either replace it or remove in your function
             //! otherwise you create a leak in huggle
-            Callback callback;
+            Callback callback = nullptr;
+            Callback FailureCallback = nullptr;
             //! This is a pointer to object returned by your callback function
-            void* CallbackResult;
+            void* CallbackResult = nullptr;
+            //! You can use this to set a reference to a class which used this callback function
+            void* CallbackOwner = nullptr;
             bool RetryOnTimeoutFailure;
             QDateTime StartTime;
             int Timeout;
             //! Query doesn't have internal data displayed in debug log, this is usefull
             //! when you are working with passwords in parameters
             bool HiddenQuery;
+            //! History item
+            Collectable_SmartPtr<HistoryItem> HI;
             //! Dependency for query
 
             //! If you put anything in here, it either must be NULL or query
             //! that is processed. The query will not be flagged as processed
             //! until the dependency is processed as well, for most types
             //! of queries they will not even start before that
-            Query *Dependency;
-
+            Query *Dependency = nullptr;
+        protected:
+            //! If you inherit query you should allways call this from a signal that
+            //! you receive when the query finish
+            void ProcessCallback();
+            void ProcessFailure();
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;
@@ -148,6 +159,16 @@ namespace Huggle
             //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
             bool Repeated;
     };
+
+    inline QString Query::QueryTargetToString()
+    {
+        return "Invalid target";
+    }
+
+    inline unsigned int Query::QueryID()
+    {
+        return this->ID;
+    }
 }
 
 #endif // QUERY_H

@@ -12,19 +12,25 @@
 #define WIKISITE_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QHash>
+#include "projectconfiguration.hpp"
+#include "userconfiguration.hpp"
+#include "version.hpp"
 
 namespace Huggle
 {
-    class WikiPageNS
+    class HuggleFeed;
+    class HuggleQueueFilter;
+    //! Namespace (mediawiki)
+    class HUGGLE_EX WikiPageNS
     {
         public:
             WikiPageNS(int id, QString name, QString canonical_name);
+            WikiPageNS(const WikiPageNS &k);
+            WikiPageNS(WikiPageNS *k);
+            ~WikiPageNS();
             //~WikiPageNS();
             QString GetName();
             QString GetCanonicalName();
@@ -37,8 +43,41 @@ namespace Huggle
             int ID;
     };
 
+    inline QString WikiPageNS::GetName()
+    {
+        return this->Name;
+    }
+
+    inline QString WikiPageNS::GetCanonicalName()
+    {
+        return this->CanonicalName;
+    }
+
+    inline bool WikiPageNS::IsTalkPage()
+    {
+        return this->Talk;
+    }
+
+    inline int WikiPageNS::GetID()
+    {
+        return this->ID;
+    }
+
+    //! Extension info
+    class HUGGLE_EX WikiSite_Ext
+    {
+        public:
+            WikiSite_Ext(QString name, QString type, QString description, QString author, QString url, QString version);
+            QString Type;
+            QString Name;
+            QString Description;
+            QString Author;
+            QString URL;
+            Version MediaWikiExtVersion;
+    };
+
     //! Site
-    class WikiSite
+    class HUGGLE_EX WikiSite
     {
         public:
             //! This NS is used in case we can't find a match for page
@@ -58,17 +97,22 @@ namespace Huggle
               \param channel irc
               \param wl whitelist
             */
-            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl);
+            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl = false);
             ~WikiSite();
             WikiPageNS *RetrieveNSFromTitle(QString title);
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
+            ProjectConfiguration *GetProjectConfig();
+            UserConfiguration    *GetUserConfig();
             void InsertNS(WikiPageNS *Ns);
             void RemoveNS(int ns);
+            void ClearNS();
+            HuggleQueueFilter *CurrentFilter = nullptr;
             QHash<int, WikiPageNS*> NamespaceList;
             //! Name of wiki, used by huggle only
             QString Name;
             //! URL of wiki, no http prefix must be present
             QString URL;
+            HuggleFeed *Provider = nullptr;
             //! long article path (wiki/ for example on english wp)
             QString LongPath;
             //! short path
@@ -77,11 +121,19 @@ namespace Huggle
             QString OAuthURL;
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
+            //! Name of this site as known by XMLRPC server, if this is empty, alternative provider is used
+            QString XmlRcsName;
+            QString HANChannel;
+            Version MediawikiVersion;
+            QList<WikiSite_Ext> Extensions;
+            ProjectConfiguration *ProjectConfig = nullptr;
+            UserConfiguration    *UserConfig = nullptr;
             //! URL of whitelist, every site needs to have some, if your site doesn't have it
             //! leave it as test
             QString WhiteList;
             //! Whether the site supports the ssl
             bool SupportHttps;
+            bool IsRightToLeft = false;
             bool SupportOAuth;
     };
 }

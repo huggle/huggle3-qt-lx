@@ -13,20 +13,25 @@
 
 #include "definitions.hpp"
 
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
 
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H
 
+#define HUGGLE_EINVALIDQUERY 1
+
 #include <Python.h>
 #include <QString>
 #include <QThread>
+#include <QHash>
 #include <QMutex>
 #include <QList>
 
 namespace Huggle
 {
-    class Configuration;
+    class Query;
+    class WikiEdit;
+
     //! Python code goes here, this namespace doesn't exist when huggle isn't compiled in python mode so wrap in direct.
     namespace Python
     {
@@ -42,7 +47,13 @@ namespace Huggle
                 QString GetModule() const;
                 bool IsEnabled() const;
                 void SetEnabled(bool value);
+                void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
+                void Hook_Shutdown(); 
+                void Hook_OnEditPreProcess(WikiEdit *edit);
+                void Hook_OnEditPostProcess(WikiEdit *edit);
+                void Hook_GoodEdit(WikiEdit *edit);
+                PyObject *PythonObject();
                 //! Initialize the script
                 bool Init();
                 QString RetrieveSourceCode() const;
@@ -60,7 +71,12 @@ namespace Huggle
                 QString ModuleID;
                 QString CallInternal(QString function);
                 bool Enabled;
+                PyObject *ptr_Hook_SpeedyFinished;
                 PyObject *ptr_Hook_MainLoaded;
+                PyObject *ptr_Hook_OnEditPreProcess;
+                PyObject *ptr_Hook_Shutdown;
+                PyObject *ptr_Hook_OnEditPostProcess;
+                PyObject *ptr_Hook_GoodEdit;
                 QString SourceCode;
         };
 
@@ -74,12 +90,38 @@ namespace Huggle
         {
             public:
                 PythonEngine(QString ExtensionsFolder_);
+                ~PythonEngine();
+                unsigned int Count();
                 bool LoadScript(QString path);
+                void Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull);
                 void Hook_MainWindowIsLoaded();
+                void Hook_HuggleShutdown();
+                void Hook_OnEditPreProcess(WikiEdit *edit);
+                void Hook_OnEditPostProcess(WikiEdit *edit);
+                void Hook_GoodEdit(WikiEdit *edit);
+                QString HugglePyLibSource();
+                PythonScript *PythonScriptObjFromPyObj(PyObject *object);
                 QList<PythonScript*> ScriptsList();
+                Query *GetQuery(unsigned long ID);
+                /*!
+                 * \brief InsertQuery put a query to list of all queries that are referenced by python objects
+                 * \param query
+                 * \return reference ID of a query managed by python
+                 */
+                unsigned long InsertQuery(Query *query);
+                unsigned long RemoveQuery(unsigned long ID);
             private:
+                QHash<unsigned long, Query*> Queries;
+                unsigned long LastQuery = 0;
+                QString hugglePyLib;
+                friend class PythonScript;
                 QList<PythonScript*> Scripts;
         };
+
+        inline PyObject * PythonScript::PythonObject()
+        {
+            return this->object;
+        }
     }
 }
 

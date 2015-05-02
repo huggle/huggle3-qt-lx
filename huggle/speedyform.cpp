@@ -10,117 +10,118 @@
 
 #include "speedyform.hpp"
 #include <QMessageBox>
-#include "exception.hpp"
-#include "core.hpp"
-#include "wikiutil.hpp"
-#include "generic.hpp"
 #include "configuration.hpp"
+#include "core.hpp"
+#include "exception.hpp"
+#include "hooks.hpp"
+#include "mainwindow.hpp"
+#include "generic.hpp"
+#include "localization.hpp"
+#include "syslog.hpp"
 #include "ui_speedyform.h"
+#include "wikiuser.hpp"
+#include "wikisite.hpp"
+#include "wikiutil.hpp"
 
 using namespace Huggle;
 
-SpeedyForm::SpeedyForm(QWidget *parent) : QDialog(parent), ui(new Ui::SpeedyForm)
+SpeedyForm::SpeedyForm(QWidget *parent) : HW("speedyform", this, parent), ui(new Ui::SpeedyForm)
 {
-    this->edit = NULL;
-    this->Template = NULL;
-    this->qObtainText = NULL;
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
-    int i=0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig_SpeedyTemplates.count())
-    {
-        QString item = Configuration::HuggleConfiguration->ProjectConfig_SpeedyTemplates.at(i);
-        // now we need to get first 2 items
-        QStringList vals = item.split(";");
-        if (vals.count() < 4)
-        {
-            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
-            i++;
-            continue;
-        }
-        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
-        i++;
-    }
+    this->ui->checkBox->setText(_l("speedy-notifycreator"));
+    this->ui->label->setText(_l("speedy-reason"));
+    this->RestoreWindow();
 }
 
 SpeedyForm::~SpeedyForm()
 {
     delete this->ui;
-    this->Remove();
 }
 
 void SpeedyForm::on_pushButton_clicked()
 {
+    if (!Hooks::Speedy_BeforeOK(this->edit, this))
+        return;
     if (this->edit->Page->IsUserpage())
     {
-        QMessageBox::StandardButton qb = QMessageBox::question(Core::HuggleCore->Main, "Request",
-             "This page is in userspace, are you sure you want to delete it?",
-             QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton qb = QMessageBox::question(MainWindow::HuggleMain, "Request",  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
         if (qb == QMessageBox::No)
         {
             return;
         }
     }
-    if (this->ui->comboBox->currentText() == "")
+    if (this->ui->comboBox->currentText().isEmpty())
     {
-        QMessageBox mb;
-        mb.setText("The requested tag is not valid, please choose a different deletion reason");
-        mb.setWindowTitle("Wrong csd");
-        mb.exec();
+        Generic::MessageBox(_l("speedy-wrong"), "Wrong csd");
         return;
     }
     this->ui->checkBox->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
-    this->ui->pushButton->setText("Updating");
+    this->ui->label_3->setEnabled(false);
+    this->ui->lineEdit->setEnabled(false);
+    this->ui->pushButton->setText(_l("speedy-progress", this->edit->Page->PageName));
     this->ui->pushButton->setEnabled(false);
+    this->Header = this->ui->comboBox->currentText();
     // first we need to retrieve the content of page if we don't have it already
-    this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page->PageName);
+    this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page);
     this->timer->start(200);
-    this->qObtainText->IncRef();
     this->qObtainText->Process();
 }
 
-void SpeedyForm::Remove()
+void Finalize(Query *result)
 {
-    GC_DECREF(this->qObtainText);
-    GC_DECREF(this->Template);
+    SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
+    Hooks::Speedy_Finished(form->edit, form->Header, true);
+    result->CallbackResult = nullptr;
+    result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    form->close();
 }
 
 void SpeedyForm::Fail(QString reason)
 {
-    QMessageBox mb;
-    mb.setWindowTitle("Error");
-    mb.setText(reason);
-    mb.exec();
-    this->Remove();
+    this->qObtainText.Delete();
+    this->Template.Delete();
+    Generic::MessageBox("Error", reason, MessageBoxStyleError);
+    Hooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
     this->timer->stop();
 }
 
 void SpeedyForm::processTags()
 {
     // insert the template to bottom of the page
-    QStringList vals = Configuration::HuggleConfiguration->ProjectConfig_SpeedyTemplates
+    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
                        .at(this->ui->comboBox->currentIndex()).split(";");
     if (vals.count() < 4)
     {
-        this->Fail("Invalid CSD tag, there is no message and wiki tag to use");
+        this->Fail(_l("speedy-csd-invalid"));
         return;
     }
-    if (this->Text.contains("{{db"))
+    //! \todo make this cross wiki instead of checking random tag
+    QString lower = this->Text;
+    lower = lower.toLower();
+    if (lower.contains("{{db"))
     {
-        this->Fail("There is already a CSD tag on the page.");
+        this->Fail(_l("speedy-csd-existing"));
         this->close();
         return;
     }
+    if (this->ReplacePage)
+        this->Text = this->ReplacingText;
     // insert a tag to page
-    this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
+    if (this->ui->lineEdit->text().isEmpty())
+        this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
+    else
+        this->Text = "{{" + vals.at(2) + "|" + this->ui->lineEdit->text() + "}}\n" + this->Text;
     // store a message we later send to user (we need to check if edit is successful first)
     this->warning = vals.at(3);
     // let's modify the page now
-    QString summary = Configuration::HuggleConfiguration->ProjectConfig_SpeedyEditSummary;
+    QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
+    this->Template->CallbackResult = (void*)this;
+    this->Template->callback = (Callback)Finalize;
 }
 
 void SpeedyForm::on_pushButton_2_clicked()
@@ -131,17 +132,49 @@ void SpeedyForm::on_pushButton_2_clicked()
 
 void SpeedyForm::Init(WikiEdit *edit_)
 {
-    if (edit_ == NULL)
+    if (edit_ == nullptr)
     {
-        throw new Huggle::Exception("edit was NULL", "void SpeedyForm::Init(WikiEdit *edit_)");
+        throw new Huggle::NullPointerException("WikiEdit *edit_", BOOST_CURRENT_FUNCTION);
     }
     this->edit = edit_;
+    foreach (QString item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
+    {
+        // now we need to get first 2 items
+        QStringList vals = item.split(";");
+        if (vals.count() < 4)
+        {
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
+            continue;
+        }
+        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
+    }
     this->ui->label_2->setText(edit_->Page->PageName);
+}
+
+QString SpeedyForm::GetSelectedDBReason()
+{
+    return this->ui->comboBox->currentText();
+}
+
+QString SpeedyForm::GetSelectedTagID()
+{
+    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
+                       .at(this->ui->comboBox->currentIndex()).split(";");
+    if (vals.count() < 4)
+    {
+        return "";
+    }
+    return vals.at(2);
+}
+
+void SpeedyForm::SetMessageUserCheck(bool new_value)
+{
+    this->ui->checkBox->setChecked(new_value);
 }
 
 void SpeedyForm::OnTick()
 {
-    if (this->qObtainText != NULL)
+    if (this->qObtainText != nullptr)
     {
         if (!this->qObtainText->IsProcessed()) { return; }
         bool failed = false;
@@ -151,31 +184,29 @@ void SpeedyForm::OnTick()
             this->Fail(this->Text);
             return;
         }
-        this->qObtainText->DecRef();
-        this->qObtainText = NULL;
+        this->qObtainText = nullptr;
         this->processTags();
         return;
     }
-    if (this->Template != NULL)
+    if (this->Template != nullptr)
     {
         if (this->Template->IsProcessed())
         {
             if(this->Template->IsFailed())
             {
-                this->Fail("Unable to tag the page: " + this->Template->Result->ErrorMessage);
+                this->Fail(_l("speedy-fail", this->Template->Result->ErrorMessage));
                 return;
             }
-            this->Template->DecRef();
-            this->Template = NULL;
+            this->Template = nullptr;
             if (this->ui->checkBox->isChecked())
             {
-                QString summary = Configuration::HuggleConfiguration->ProjectConfig_SpeedyWarningSummary;
+                QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyWarningSummary;
                 summary.replace("$1", this->edit->Page->PageName);
                 this->warning.replace("$1", this->edit->Page->PageName);
                 WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
             }
             this->timer->stop();
-            this->ui->pushButton->setText("Finished");
+            this->ui->pushButton->setText(_l("speedy-finished"));
         }
     }
 }

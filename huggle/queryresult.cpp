@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "queryresult.hpp"
+#include "localization.hpp"
 
 using namespace Huggle;
 
@@ -17,4 +18,39 @@ QueryResult::QueryResult()
     this->Data = "";
     this->ErrorMessage = "";
     this->Failed = false;
+}
+
+QueryResult::QueryResult(bool failed)
+{
+    this->Data = "";
+    this->ErrorMessage = "";
+    if (!failed)
+    {
+        this->Failed = false;
+    }
+    else
+    {
+        this->SetError();
+    }
+}
+
+void QueryResult::SetError()
+{
+    this->ErrorCode = 1;
+    this->Failed = true;
+    this->ErrorMessage = _l("error-unknown");
+}
+
+void QueryResult::SetError(QString error)
+{
+    this->ErrorCode = 1;
+    this->ErrorMessage = error;
+    this->Failed = true;
+}
+
+void QueryResult::SetError(int error, QString details)
+{
+    this->ErrorMessage = details;
+    this->Failed = true;
+    this->ErrorCode = error;
 }

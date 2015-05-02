@@ -13,12 +13,47 @@
 #include <iostream>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "resources.hpp"
 using namespace Huggle;
 using namespace std;
 
 TerminalParser::TerminalParser(QStringList argv)
 {
     this->args = argv;
+}
+
+TerminalParser::TerminalParser(int argc, char *argv[])
+{
+    int i=0;
+    while (i<argc)
+    {
+        this->args.append(QString(argv[i]));
+        ++i;
+    }
+}
+
+bool TerminalParser::Init()
+{
+    int x = 1;
+    while (x < this->args.count())
+    {
+        //bool valid = false;
+        QString text = this->args.at(x);
+        ++x;
+        if (text == "-h" || text == "--help")
+        {
+            DisplayHelp();
+            return true;
+        }
+    }
+    return false;
+}
+
+static void DisplayVersion()
+{
+    // version is stored in built in resource which we need to extract using call to core here
+    Core::VersionRead();
+    cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
 }
 
 bool TerminalParser::Parse()
@@ -28,11 +63,6 @@ bool TerminalParser::Parse()
     {
         bool valid = false;
         QString text = this->args.at(x);
-        if (text == "-h" || text == "--help")
-        {
-            DisplayHelp();
-            return true;
-        }
         if (!text.startsWith("--") && text.startsWith("-"))
         {
             text = text.mid(1);
@@ -61,23 +91,42 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
             valid = true;
         }
+        if (text == "--huggleinternal-update")
+        {
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                hcfg->UpdaterRoot = this->args.at(x + 1);
+                hcfg->SystemConfig_UM = true;
+                valid = true;
+                x++;
+            } else
+            {
+                cerr << "Parameter --huggleinternal-update requires an argument for it to work!" << endl;
+                return true;
+            }
+        }
         if (text == "--version")
         {
-            // version is stored in built in resource which we need to extract using call to core here
-            Core::VersionRead();
-            cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
+            DisplayVersion();
             return true;
         }
         if (text == "--syslog")
         {
             Configuration::HuggleConfiguration->SystemConfig_Log2File = true;
-            if (this->args.count() > x + 1)
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
             {
-                if (!this->args.at(x + 1).startsWith("-"))
-                {
-                    Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
-                    x++;
-                }
+                Configuration::HuggleConfiguration->SystemConfig_SyslogPath = this->args.at(x + 1);
+                ++x;
+            }
+            valid = true;
+        }
+        if (text == "--qd")
+        {
+            Configuration::HuggleConfiguration->QueryDebugging = true;
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                ++x;
+                Configuration::HuggleConfiguration->QueryDebugPath = this->args.at(x);
             }
             valid = true;
         }
@@ -87,7 +136,7 @@ bool TerminalParser::Parse()
             {
                 Configuration::HuggleConfiguration->HomePath = this->args.at(x + 1);
                 valid = true;
-                x++;
+                ++x;
             } else
             {
                 cerr << "Parameter --chroot requires an argument for it to work!" << endl;
@@ -120,7 +169,7 @@ bool TerminalParser::Parse()
                 Configuration::HuggleConfiguration->SystemConfig_Username = credentials.mid(0, credentials.indexOf(":"));
                 Configuration::HuggleConfiguration->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
                 valid = true;
-                x++;
+                ++x;
             } else
             {
                 cerr << "Parameter --login-file requires an argument for it to work!" << endl;
@@ -132,6 +181,16 @@ bool TerminalParser::Parse()
             valid = true;
             Configuration::HuggleConfiguration->Login = true;
         }
+        if (text == "--fuzzy")
+        {
+            valid = true;
+            Configuration::HuggleConfiguration->Fuzzy = true;
+        }
+        if (text == "--pylibs-dump")
+        {
+            cout << Resources::GetResource("/huggle/text/Resources/Python/definitions.py").toStdString() << endl;
+            return true;
+        }
         if (!valid)
         {
             if (!this->Silent)
@@ -140,7 +199,7 @@ bool TerminalParser::Parse()
             }
             return true;
         }
-        x++;
+        ++x;
     }
     return false;
 }
@@ -149,11 +208,16 @@ bool TerminalParser::ParseChar(QChar x)
 {
     switch (x.toLatin1())
     {
+        case 'h':
+            //help
+            DisplayHelp();
+            //quit
+            return true;
         case 'v':
             Configuration::HuggleConfiguration->Verbosity++;
             return false;
-        case 'h':
-            this->DisplayHelp();
+        case 'V':
+            DisplayVersion();
             return true;
     }
     return false;
@@ -166,24 +230,30 @@ void TerminalParser::DisplayHelp()
         return;
     }
     cout << "Huggle 3 QT-LX\n\n"\
-            "Parameters:\n"\
+            "You can use following arguments to change the runtime settings:\n"\
             "  -v:              Increases verbosity\n"\
+            "  --fuzzy:         Enable fuzzy localizations (these which were translated in past\n"\
+            "                   but which were not updated since the source text has changed).\n"\
             "  --safe:          Start huggle in special mode where lot of stuff is skipped\n"\
             "                   during load\n"\
-            "  --dot:           Debug on terminal only mode\n"\
             "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\
             "                   reads a different configuration file and uses different data.\n"\
             "  --syslog [file]: Will write a logs to a file\n"\
-            "  --version:       Display a version\n"\
+            "  --version | -V:  Display a version\n"\
             "  --login:         Can be used in combination of --login-file only, this will tell huggle\n"\
             "                   to start login process immediately without letting you to change any login\n"\
             "                   preferences on login form\n"\
             "  --login-file:    Read a username and password from plain text file, separated by a colon\n"\
+            "  -h | --help:     Display this help\n\n"\
+            "Debugging options:\n"\
             "  --language-test: Will perform CPU expensive language test on startup, which reports\n"\
             "                   warnings found in localization files. This option is useful for\n"\
             "                   developers and people who create localization files\n"\
-            "  -h | --help:     Display this help\n\n"\
-            "Note: every argument in [brackets] is optional\n"\
+            "  --dot:           Debug on terminal only mode\n"\
+            "  --qd [file]:     Write all transferred data to a file\n\n"\
+            "Python related:\n"\
+            "  --pylibs-dump:   Dump all built-in python libraries to std out\n"\
+            "\nNote: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
 }

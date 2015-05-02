@@ -12,16 +12,16 @@
 #define USERINFOFORM_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDockWidget>
 #include <QString>
-#include "wikiedit.hpp"
+#include <QList>
 #include "apiquery.hpp"
-#include "wikiuser.hpp"
+#include "collectable_smartptr.hpp"
+#include "edittype.hpp"
+#include "mediawikiobject.hpp"
+#include "wikiedit.hpp"
+class QModelIndex;
 
 namespace Ui
 {
@@ -34,18 +34,32 @@ namespace Huggle
     class WikiEdit;
     class ApiQuery;
 
+    class HUGGLE_EX UserInfoFormHistoryItem : public MediaWikiObject
+    {
+        public:
+            QString  Page;
+            QString  Name;
+            QString  Date;
+            QString  Summary;
+            QString  RevID;
+            EditType Type = EditType_Normal;
+            bool     Top;
+    };
+
     /*!
      * \brief The UserinfoForm class is a widget that displays the information about user
      * including their history and some other information about the user
      */
-    class UserinfoForm : public QDockWidget
+    class HUGGLE_EX UserinfoForm : public QDockWidget
     {
             Q_OBJECT
         public:
-            explicit UserinfoForm(QWidget *parent = 0);
+            explicit UserinfoForm(QWidget *parent = nullptr);
             ~UserinfoForm();
             void ChangeUser(WikiUser *user);
             void Read();
+            void Render(long revid, QString page);
+            QList<UserInfoFormHistoryItem> Items;
 
         private slots:
             void OnTick();
@@ -55,9 +69,10 @@ namespace Huggle
         private:
             Ui::UserinfoForm *ui;
             WikiUser *User;
-            ApiQuery *qContributions;
+            Collectable_SmartPtr<WikiEdit> edit;
+            Collectable_SmartPtr<ApiQuery> qContributions;
             QTimer *timer;
-            WikiEdit *edit;
+
     };
 }
 

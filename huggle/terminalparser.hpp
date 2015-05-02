@@ -12,28 +12,38 @@
 #define TERMINALPARSER_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QStringList>
 #include <QString>
 
 namespace Huggle
 {
-    //! Parses the data provided by user
+    //! Parses the data provided by user in parameters to executable
     class TerminalParser
     {
         public:
+            TerminalParser(int argc, char *argv[]);
             TerminalParser(QStringList argv);
+            /*!
+             * \brief Checks the given arguments for an argument requesting help
+             * \return true if help was requested (-h or --help was there)
+             */
+            bool Init();
+            /*!
+             * \brief Parses the given arguments
+             * \returns true if it requests the application to terminate and false if it we can continue with run
+             */
             bool Parse();
+            /*!
+             * \brief Parses a single letter argument
+             * \returns true if it requests the application to terminate and false if it we can continue with run
+             */
             bool ParseChar(QChar x);
+            /*!
+             * \brief Displays help text listing the different arguments 
+             */
             void DisplayHelp();
+            //! Whether or not output should be displayed
             bool Silent = false;
         private:
             QStringList args;

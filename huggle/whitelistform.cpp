@@ -10,18 +10,26 @@
 
 #include "whitelistform.hpp"
 #include "configuration.hpp"
+#include "exception.hpp"
 #include "ui_whitelistform.h"
+#include "wikisite.hpp"
 
 using namespace Huggle;
 
 WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::WhitelistForm)
 {
     this->ui->setupUi(this);
-    Configuration::HuggleConfiguration->WhiteList.sort();
-    this->Whitelist += Configuration::HuggleConfiguration->WhiteList;
     this->timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(OnTick()));
-    this->timer->start(200);
+    foreach (WikiSite *wiki, Configuration::HuggleConfiguration->Projects)
+    {
+        // register every project we use
+        this->ui->comboBox->addItem(wiki->Name);
+    }
+    if (!Configuration::HuggleConfiguration->Multiple)
+        this->ui->comboBox->setEnabled(false);
+    this->ui->comboBox->setCurrentIndex(0);
+    this->Reload(0);
 }
 
 WhitelistForm::~WhitelistForm()
@@ -50,4 +58,30 @@ void WhitelistForm::OnTick()
 void WhitelistForm::on_pushButton_clicked()
 {
     this->close();
+}
+
+void Huggle::WhitelistForm::on_comboBox_currentIndexChanged(int index)
+{
+    this->Reload(index);
+}
+
+void WhitelistForm::Reload(int pn)
+{
+    WikiSite *site;
+    this->ui->listWidget->clear();
+    this->Whitelist.clear();
+    if (Configuration::HuggleConfiguration->Multiple)
+    {
+        if (Configuration::HuggleConfiguration->Projects.count() <= pn)
+        {
+            throw new Huggle::Exception("There is more projects in a list than in global list", BOOST_CURRENT_FUNCTION);
+        }
+        site = Configuration::HuggleConfiguration->Projects.at(pn);
+    } else
+    {
+        site = Configuration::HuggleConfiguration->Project;
+    }
+    site->GetProjectConfig()->WhiteList.sort();
+    this->Whitelist += site->GetProjectConfig()->WhiteList;
+    this->timer->start(HUGGLE_TIMER);
 }

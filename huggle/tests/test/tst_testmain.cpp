@@ -14,6 +14,9 @@
 #include "../../huggleparser.hpp"
 #include "../../configuration.hpp"
 #include "../../wikiedit.hpp"
+#include "../../wikipage.hpp"
+#include "../../wikisite.hpp"
+#include "../../sleeper.hpp"
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
 
@@ -56,8 +59,10 @@ HuggleTest::HuggleTest()
     QFile f(":/test/wikipage/config.txt");
     f.open(QIODevice::ReadOnly);
     Huggle::Configuration::HuggleConfiguration->Project = new Huggle::WikiSite("en", "en.wikipedia");
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig = new Huggle::ProjectConfiguration("enwiki");
+    Huggle::Configuration::HuggleConfiguration->Project->ProjectConfig = Huggle::Configuration::HuggleConfiguration->ProjectConfig;
     Huggle::Configuration::HuggleConfiguration->Verbosity=10;
-    Huggle::Configuration::HuggleConfiguration->ParseProjectConfig(f.readAll());
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->Parse(f.readAll(), nullptr, Huggle::Configuration::HuggleConfiguration->Project);
     f.close();
 }
 
@@ -85,7 +90,7 @@ static void testTalkPageWarningParser(QString id, QDate date, int level)
     QString text = QString(file->readAll());
     user->TalkPage_SetContents(text);
     user->ParseTP(date);
-    QVERIFY2(user->WarningLevel == level, QString("level parsed was " + QString::number(user->WarningLevel) + " should be " + QString::number(level) + "!!").toUtf8().data());
+    QVERIFY2(user->GetWarningLevel() == level, QString("level parsed was " + QString::number(user->GetWarningLevel()) + " should be " + QString::number(level) + "!!").toUtf8().data());
     file->close();
     delete file;
     delete user;
@@ -94,13 +99,13 @@ static void testTalkPageWarningParser(QString id, QDate date, int level)
 
 void HuggleTest::testCaseScores()
 {
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.clear();
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("suck", 60));
-    Huggle::Configuration::HuggleConfiguration->ProjectConfig_ScoreWords.append(new Huggle::ScoreWord("ass", 60));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.clear();
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fuck", 10));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fucking", 20));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("vagina", 50));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("fuck this bitch", 20));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("suck", 60));
+    Huggle::Configuration::HuggleConfiguration->ProjectConfig->ScoreWords.append(new Huggle::ScoreWord("ass", 60));
     Huggle::Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!" << "?" << "/";
     Huggle::GC::gc = new Huggle::GC();
     Huggle::WikiEdit *edit = new Huggle::WikiEdit();
@@ -174,6 +179,9 @@ void HuggleTest::testCaseScores()
     delete vf;
     QVERIFY2(edit->Score == 10, QString("26 Invalid result for score words: " + QString::number(edit->Score)).toUtf8().data());
     edit->SafeDelete();
+    Huggle::GC::gc->Stop();
+    while (Huggle::GC::gc->IsRunning())
+        Huggle::Sleeper::usleep(2);
     delete Huggle::GC::gc;
     Huggle::GC::gc = NULL;
 }

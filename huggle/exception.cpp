@@ -9,12 +9,25 @@
 //GNU General Public License for more details.
 
 #include "exception.hpp"
+#include <iostream>
+#include <QDir>
+#include "configuration.hpp"
+#include "syslog.hpp"
 
 #ifdef __linux__
     //linux code goes here
+#include <stdio.h>
+#include <execinfo.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
 QString Breakpad_DumpPath = "/tmp";
-#elif _WIN32
+#elif defined HUGGLE_WIN
     // windows code goes here
+#include <windows.h>
+#include <winbase.h>
+#include <dbghelp.h>
+#include <winnt.h>
 QString Breakpad_DumpPath = QDir::tempPath();
 #endif
 
@@ -63,27 +76,97 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
     #endif
 #endif
 
-Exception::Exception(QString Text, bool __IsRecoverable)
+Exception::Exception(QString text, bool isRecoverable)
 {
-    std::cerr << "FATAL Exception thrown: " + Text.toStdString() << std::endl;
-    this->Message = Text;
+    std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
+    this->Message = text;
     this->ErrorCode = 2;
+    this->StackTrace = GetCurrentStackTrace();
     this->Source = "{hidden}";
-    this->_IsRecoverable = __IsRecoverable;
+    this->_IsRecoverable = isRecoverable;
 }
 
-Exception::Exception(QString Text, QString _Source, bool __IsRecoverable)
+Exception::Exception(QString text, QString source, bool isRecoverable)
 {
-    std::cerr << "FATAL Exception thrown: " + Text.toStdString() << std::endl;
-    this->Source = _Source;
-    this->Message = Text;
-    this->ErrorCode = 2;
-    this->_IsRecoverable = __IsRecoverable;
+    this->construct(text, source, isRecoverable);
+}
+
+Exception::Exception(QString text, const char *source)
+{
+    this->construct(text, QString(source), true);
 }
 
 bool Exception::IsRecoverable() const
 {
     return this->_IsRecoverable;
+}
+
+void Exception::construct(QString text, QString source, bool isRecoverable)
+{
+    std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
+    this->Source = source;
+    this->StackTrace = GetCurrentStackTrace();
+    this->Message = text;
+    this->ErrorCode = 2;
+    this->_IsRecoverable = isRecoverable;
+}
+
+void Exception::ThrowSoftException(QString Text, QString Source)
+{
+    if (Configuration::HuggleConfiguration->Verbosity > 0)
+    {
+        throw new Huggle::Exception(Text, Source);
+    } else
+    {
+        Syslog::HuggleLogs->WarningLog("Soft exception: " + Text + " source: " + Source);
+    }
+}
+
+QString Exception::GetCurrentStackTrace()
+{
+    QString result;
+#ifdef __linux__
+    result = "";
+    void *array[HUGGLE_STACK];
+    unsigned int i;
+    size_t size;
+    char **messages;
+    size = backtrace(array, HUGGLE_STACK);
+    messages = backtrace_symbols(array, size);
+    for (i = 1; i < size && messages != NULL; ++i)
+    {
+        result += QString(QString::number(i) + QString(" ") + QString(messages[i]) + QString("\n"));
+    }
+    free(messages);
+#elif defined HUGGLE_WIN
+    result = "";
+    unsigned int   i;
+    void          *stack[HUGGLE_STACK];
+    unsigned short frames;
+    SYMBOL_INFO   *symbol;
+    HANDLE         process;
+    process = GetCurrentProcess();
+    SymInitialize( process, NULL, TRUE );
+    frames               = CaptureStackBackTrace( 0, HUGGLE_STACK, stack, NULL );
+    symbol               = ( SYMBOL_INFO * )calloc( sizeof( SYMBOL_INFO ) + 256 * sizeof( char ), 1 );
+    if (!symbol)
+        return "Failed to retrieve stack trace";
+    symbol->MaxNameLen   = 255;
+    symbol->SizeOfStruct = sizeof( SYMBOL_INFO );
+    for( i = 0; i < frames; i++ )
+    {
+        SymFromAddr( process, ( DWORD64 )( stack[ i ] ), 0, symbol );
+        QString symbol_name = "unknown symbol";
+        if (!QString(symbol->Name).isEmpty())
+        symbol_name = QString(symbol->Name);
+        result += QString(QString::number(frames - i - 1) + QString(" ") + symbol_name + QString(" 0x") +
+                          QString::number(symbol->Address, 16) + QString("\n"));
+    }
+    free( symbol );
+#else
+    result = "Stack trace not available for this OS";
+#endif
+    return result;
 }
 
 void Exception::InitBreakpad()
@@ -112,4 +195,11 @@ void Exception::ExitBreakpad()
     #endif
     delete Exception::GoogleBP_handler;
 #endif
+}
+
+
+NullPointerException::NullPointerException(QString name, QString source) : Exception("", source)
+{
+    this->ErrorCode = 1;
+    this->Message = QString("Null pointer exception. The variable you referenced (") + name + ") had null value.";
 }

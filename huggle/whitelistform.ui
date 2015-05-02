@@ -15,6 +15,9 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item>
     <widget class="QListWidget" name="listWidget"/>
    </item>
    <item>

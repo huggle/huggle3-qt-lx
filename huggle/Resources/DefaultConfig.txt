@@ -1,0 +1,532 @@
+enable-all:true
+min-version:0.9.11
+version:3.0.2
+
+revert-summaries:
+    Reverted unexplained removal of content,
+    Reverted addition of [[WP:BLP|unsourced negative content]] to a biographical article,
+    Reverted addition of dubious unsourced content,
+    Reverted addition of unsourced content and/or unexplained removal of content
+
+template-summ:
+    delete;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained content removal,
+    bio;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:BLP|negative unsourced content]] to a biographical article,
+    unsor;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:CITE|unsourced content]],
+    eh;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:CITE|unsourced content]] and/or unexplained content removal,
+    blank;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained page blanking,
+    warning;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): nonconstructive edits,
+    spam;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): violates [[WP:EL|external links]] policy,
+    test;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:SANDBOX|editing tests]],
+    npov;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): not adhering to [[WP:NPOV|neutral point of view]],
+    attack;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:NPA|personal attack]] toward another user,
+    speedy;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained [[WP:CSD|speedy deletion]] template removal,
+    afd;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained [[WP:AFD|AFD]] template removal,
+    error;Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:DISPUTED|factual errors]]
+
+
+rollback:true
+rollback-summary:Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2
+default-summary:Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2
+rollback-summary-unknown:Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])
+single-revert-summary:Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])
+undo-summary:Undoing own edit
+
+// ip addresses are more likely to be vandals
+score-ip:20
+// flagged bots are likely not vandals, even if they add swear words
+score-bot:-20000
+// people with high amount of flags are trusted even if not whitelisted
+score-flag:-200
+// userpages are frequently used to test stuff
+score-user:-250
+// userpages edited by other user than owner are typically vandalism
+score-foreign-user:100
+// talk pages are often false positives, let's put them low
+score-talk:-200
+// users with score lower than this are inserted to wl
+score-wl:-2000
+
+// The list bellow is called "score words" it contains words presence of increase the score of edit by value in brackets,
+// you can define as many score words as you want, these words must be lowercase, otherwise ignored (they are compared with diff text which
+// is lowercase so that it's case insensitive)
+
+// score-parts are parts of a word, they can be even in a middle of a word, so be careful here or you create too many false possitives
+
+score-parts(200):
+    haha, fuuuu, !!!!!!, ??????, --------------, Special:Contributions
+
+score-parts(600):
+    faggot, hihi, hahaha, fag
+
+// score-words are separate words, they don't even actually need to be words, they can be short phrases as well, but must not contain
+// comma (fuck off - is valid word)
+
+score-words(100):
+    cool, stupid, rape, raping, bla, sex, tits, porn, yeah, yea, yee, balls, weed, arse, stupid, hello, homosexual
+
+score-words(200):
+    crackhead, bieber, porn, bold text, italic text, crap, p3n1s, omg, lmao, rofl, blabla
+
+score-words(800):
+    pr0n, p0rn, sh1t, bullshit, wank, peace be upon him
+
+score-words(1000):
+    shit, gay, bitch, penis, piss, awesome, gays, faggots, suck, sucks, boobs, dick, pussy, cunt, poop, poo, lesbo, dyke, queer, whore, cockass
+
+score-words(2000):
+    :), :-), :P, :D, pen1s, b1tch, p1ss, fuck, asshole, retard, =), (:, asshat, fucknugget, motherfucker, fucktard, arsehole, swag, ass, butt, -.-,
+    dipshit, dipstick, asswipe, cunt, twat, yolo, fuckoff, fuck you, wanker, sucks dick, lol, boobs, masturbate, fucking, nigger, niga, nigga,
+    wiener, weiner, derp, derpy, weiner, butthole, tit, bum
+
+agf:Reverted [[WP:AGF|good faith]] edits by [[Special:Contributions/$2|$2]] [[User talk:$2|talk]]: $1
+
+warn-summary:Message re. [[$1]]
+warn-summary-2:Level 2 warning re. [[$1]]
+warn-summary-3:Level 3 warning re. [[$1]]
+warn-summary-4:Level 4 warning re. [[$1]]
+
+// how many days old templates are considered fresh (-30 means 30 day templates are fresh and counted, older than that are ignored)
+template-age:-5
+
+keep-section:true
+
+warning-im:true
+warning-mode:4
+// the following is a HG2-setting, see key "headings" for the HG3 version
+warning-month-headings:true
+warning-series:warning,spam,attack,test,delete,npov,error,bio,unsor
+
+shared-ip-template-tag:<!-- Template:Shared IP advice -->
+shared-ip-template:{{subst:Shared IP advice}}
+
+warning-template-tags:
+    1;<!-- Template:uw-vandalism1 -->,
+    1;<!-- Template:uw-spam1 -->,
+    1;<!-- Template:uw-biog1 -->,
+    1;<!-- Template:uw-npa1 -->,
+    1;<!-- Template:uw-disruptive1 -->,
+    1;<!-- Template:uw-test1 -->,
+    1;<!-- Template:uw-huggleafd1 -->,
+    1;<!-- Template:Huggle/warn-1 -->,
+    1;<!-- Template:Huggle/warn-blank-1 -->,
+    1;<!-- Template:Huggle/warn-bio-1 -->,
+    1;<!-- Template:Huggle/warn-unsor-1 -->,
+    1;<!-- Template:Huggle/warn-test-1 -->,
+    1;<!-- Template:uw-delete1 -->,
+    1;<!-- Template:uw-unsourced1 -->,
+    2;<!-- Template:uw-vandalism2 -->,
+    2;<!-- Template:uw-huggleafd2 -->,
+    2;<!-- Template:Huggle/warn-2 -->,
+    2;<!-- Template:Huggle/warn-blank-2 -->,
+    2;<!-- Template:Huggle/warn-bio-2 -->,
+    2;<!-- Template:uw-spam2 -->,
+    2;<!-- Template:uw-biog2 -->,
+    2;<!-- Template:uw-disruptive2 -->,
+    2;<!-- Template:uw-test2 -->,
+    2;<!-- Template:Huggle/warn-unsor-2 -->,
+    2;<!-- Template:Huggle/warn-test-2 -->,
+    2;<!-- Template:uw-npa2 -->,
+    2;<!-- Template:uw-delete2 -->,
+    2;<!-- Template:uw-unsourced2 -->,
+    3;<!-- Template:uw-vandalism3 -->,
+    3;<!-- Template:uw-biog3 -->,
+    3;<!-- Template:uw-huggleafd3 -->,
+    3;<!-- Template:Huggle/warn-3 -->,
+    3;<!-- Template:Huggle/warn-blank-3 -->,
+    3;<!-- Template:Huggle/warn-bio-3 -->,
+    3;<!-- Template:uw-spam3 -->,
+    3;<!-- Template:uw-npa3 -->,
+    3;<!-- Template:uw-disruptive3 -->,
+    3;<!-- Template:uw-test3 -->,
+    3;<!-- Template:Huggle/warn-unsor-3 -->,
+    3;<!-- Template:Huggle/warn-test-3 -->,
+    3;<!-- Template:uw-delete3 -->,
+    3;<!-- Template:uw-unsourced3 -->,
+    4;<!-- Template:uw-vandalism4 -->,
+    4;<!-- Template:Huggle/warn-4 -->,
+    4;<!-- Template:uw-spam4 -->,
+    4;<!-- Template:uw-spam4im -->,
+    4;<!-- Template:uw-huggleafd4 -->,
+    4;<!-- Template:Huggle/warn-blank-4 -->,
+    4;<!-- Template:Huggle/warn-bio-4 -->,
+    4;<!-- Template:Huggle/warn-unsor-4 -->,
+    4;<!-- Template:Huggle/warn-test-4 -->,
+    4;<!-- Template:uw-biog4 -->,
+    4;<!-- Template:uw-disruptive4 -->,
+    4;<!-- Template:uw-test4 -->,
+    4;<!-- Template:uw-vandalism4im -->,
+    4;<!-- Template:Huggle/warn-4im -->,
+    4;<!-- Template:Huggle/warn-blank-4im -->,
+    4;<!-- Template:Huggle/warn-bio-4im -->,
+    4;<!-- Template:Huggle/warn-unsor-4im -->,
+    4;<!-- Template:Huggle/warn-test-4im -->,
+    4;<!-- Template:uw-npa4 -->,
+    4;<!-- Template:uw-delete4 -->,
+    4;<!-- Template:uw-unsourced4 -->,
+    4;{{stop}},
+
+warning-types:
+    warning;Vandalism,
+    spam;Spam,
+    attack;Personal attack toward another user,
+    test;Editing tests,
+    delete;Removal of content,
+    blank;Blanking pages,
+    npov;Biased content,
+    error;Factual errors,
+    bio;Inappropriate biographical content,
+    speedy;Removal of speedy deletion template,
+    afd;Removal of an AfD template,
+    unsor;Failing to cite a verifiable reliable source
+
+expand-report:false
+
+warning1:{{subst:huggle/warn-1|1=$1|2=$2}}
+warning2:{{subst:huggle/warn-2|1=$1|2=$2}}
+warning3:{{subst:huggle/warn-3|1=$1|2=$2}}
+warning4:{{subst:huggle/warn-4|1=$1|2=$2}}
+warning4im:{{subst:huggle/warn-4im|1=$1|2=$2}}
+
+attack1:{{subst:huggle/warn-attack-1|1=$1|2=$2}}
+attack2:{{subst:huggle/warn-attack-2|1=$1|2=$2}}
+attack3:{{subst:huggle/warn-attack-3|1=$1|2=$2}}
+attack4:{{subst:huggle/warn-attack-4|1=$1|2=$2}}
+attack4im:{{subst:huggle/warn-attack-4im|1=$1|2=$2}}
+
+spam1:{{subst:huggle/warn-spam-1|1=$1|2=$2}}
+spam2:{{subst:huggle/warn-spam-2|1=$1|2=$2}}
+spam3:{{subst:huggle/warn-spam-3|1=$1|2=$2}}
+spam4:{{subst:huggle/warn-spam-4|1=$1|2=$2}}
+spam4im:{{subst:huggle/warn-spam-4im|1=$1|2=$2}}
+
+delete1:{{subst:huggle/warn-delete-1|1=$1|2=$2}}
+delete2:{{subst:huggle/warn-delete-2|1=$1|2=$2}}
+delete3:{{subst:huggle/warn-delete-3|1=$1|2=$2}}
+delete4:{{subst:huggle/warn-delete-4|1=$1|2=$2}}
+delete4im:{{subst:huggle/warn-delete-4im|1=$1|2=$2}}
+
+test1:{{subst:huggle/warn-test-1|1=$1|2=$2}}
+test2:{{subst:huggle/warn-test-2|1=$1|2=$2}}
+test3:{{subst:huggle/warn-test-3|1=$1|2=$2}}
+test4:{{subst:huggle/warn-test-4|1=$1|2=$2}}
+test4im:{{subst:huggle/warn-test-4im|1=$1|2=$2}}
+
+npov1:{{subst:huggle/warn-npov-1|1=$1|2=$2}}
+npov2:{{subst:huggle/warn-npov-2|1=$1|2=$2}}
+npov3:{{subst:huggle/warn-npov-3|1=$1|2=$2}}
+npov4:{{subst:huggle/warn-npov-4|1=$1|2=$2}}
+npov4im:{{subst:huggle/warn-npov-4im|1=$1|2=$2}}
+
+error1:{{subst:huggle/warn-error-1|1=$1|2=$2}}
+error2:{{subst:huggle/warn-error-2|1=$1|2=$2}}
+error3:{{subst:huggle/warn-error-3|1=$1|2=$2}}
+error4:{{subst:huggle/warn-error-4|1=$1|2=$2}}
+error4im:{{subst:huggle/warn-error-4im|1=$1|2=$2}}
+
+bio1:{{subst:huggle/warn-bio-1|1=$1|2=$2}}
+bio2:{{subst:huggle/warn-bio-2|1=$1|2=$2}}
+bio3:{{subst:huggle/warn-bio-3|1=$1|2=$2}}
+bio4:{{subst:huggle/warn-bio-4|1=$1|2=$2}}
+bio4im:{{subst:huggle/warn-bio-4im|1=$1|2=$2}}
+
+blank1:{{subst:huggle/warn-blank-1|1=$1|2=$2}}
+blank2:{{subst:huggle/warn-blank-2|1=$1|2=$2}}
+blank3:{{subst:huggle/warn-blank-3|1=$1|2=$2}}
+blank4:{{subst:huggle/warn-blank-4|1=$1|2=$2}}
+blank4im:{{subst:huggle/warn-blank-4im|1=$1|2=$2}}
+
+unsor1:{{subst:huggle/warn-unsor-1|1=$1|2=$2}}
+unsor2:{{subst:huggle/warn-unsor-2|1=$1|2=$2}}
+unsor3:{{subst:huggle/warn-unsor-3|1=$1|2=$2}}
+unsor4:{{subst:huggle/warn-4|1=$1|2=$2}}
+unsor4im:{{subst:huggle/warn-4im|1=$1|2=$2}}
+
+speedy1:{{subst:huggle/warn-speedy-1|1=$1|2=$2}}
+speedy2:{{subst:huggle/warn-speedy-2|1=$1|2=$2}}
+speedy3:{{subst:huggle/warn-speedy-3|1=$1|2=$2}}
+speedy4:{{subst:huggle/warn-speedy-4|1=$1|2=$2}}
+speedy4im:{{subst:huggle/warn-speedy-4im|1=$1|2=$2}}
+
+afd1:{{subst:huggle/warn-afd-1|1=$1|2=$2}}
+afd2:{{subst:huggle/warn-afd-2|1=$1|2=$2}}
+afd3:{{subst:huggle/warn-afd-3|1=$1|2=$2}}
+afd4:{{subst:huggle/warn-afd-4|1=$1|2=$2}}
+afd4im:{{subst:huggle/warn-4im|1=$1|2=$2}}
+
+
+
+report:auto
+report-summary:Reporting [[Special:Contributions/$1|$1]]
+
+aiv-reports:true
+aiv:Wikipedia:Administrator intervention against vandalism
+aivbot:Wikipedia:Administrator intervention against vandalism/TB2
+aiv-extend:true
+aiv-extend-summary:Extending report for [[Special:Contributions/$1|$1]]
+aiv-link-diffs:true
+aiv-single-note:Note: this user has only received one recent warning (level 4im)
+aiv-ip:* {{IPVandal|$1}} $3 $2 ~~~~
+aiv-user:* {{Vandal|$1}} $3 $2 ~~~~
+report-extend-summary:Extending report for [[Special:Contributions/$1|$1]]
+report-link-diffs:true
+aiv-section:2
+prod-log:false
+prod-page:Special:MyPage/ProdLog
+vandal-report-reason:– vandalism, including
+uaa:Wikipedia:Usernames for administrator attention
+rfpp-template:==== {{pagelinks|$title}} ====\n'''$protection:''' $reason ~~~~
+rfpp-template-user:==== {{lu|$title}} ====\n'''$protection:''' $reason ~~~~
+rfpp-mark:{{Wikipedia:Requests for page protection/PRheading}}
+// This is a regex used to check if the page is already in a list
+rfpp-verify:.*\{\{\s*l[au]\s*\|\s*$title\s*\}\}.*
+rfpp-section:1
+protection-request-page:Wikipedia:Requests for page protection
+protection-request-top:true
+protection-request-reason:Persistent vandalism.
+protection-request-summary:Requesting $1 of [[$2]]
+protection-requests:true
+
+prod:true
+prod-message:{{subst:Huggle/prod|1=$1|2=$2}}
+prod-message-summary:Notification: Proposed deletion of [[$1]]
+prod-message-title:
+prod-summary:Tagging page for [[WP:PRD|proposed deletion]], $1
+talk-associated-summary:G8. Page dependent on a non-existent or deleted page.
+
+speedy:true
+speedy-delete-summary:Speedy deleted, $1.
+speedy-message-summary:Notification: Speedy deletion of [[$1]]
+speedy-message-title:
+speedy-summary:Tagging page for [[WP:SD|speedy deletion]], $1
+
+speedy-options:
+    G1;patent nonsense;db-g1;{{subst:huggle/db-notice|1=$1|2=it is nonsense or gibberish.}};notify,
+    G2;test page;db-g2;{{subst:huggle/db-notice|1=$1|2=it is a test page. Use the [[Wikipedia:Sandbox|sandbox]] for testing.}};notify,
+    G3;vandalism;db-g3;{{subst:huggle/db-notice|1=$1|2=it is [[Wikipedia:Vandalism|vandalism]].|nothanks=yes}};notify,
+    G4;recreation of deleted content;db-g4;{{subst:huggle/db-notice|1=$1|2=it is recreation of content previously deleted following a [[Wikipedia:Deletion discussions|deletion discussion]].}};notify,
+    G5;created by banned user;db-g5;{{subst:huggle/db-notice|1=$1|2=it was created by a [[Wikipedia:Banning policy|banned user]].}},
+    G6;maintenance;db-g6;{{subst:huggle/db-notice|1=$1|2=it needed to be deleted for uncontroversial maintenance reasons.}},
+    G7;blanked or requested by creator;db-g7;{{subst:huggle/db-notice|1=$1|2=you removed all content from the page or otherwise requested its deletion.}},
+    G8;orphaned talk page;db-g8;{{subst:huggle/db-notice|1=$1|2=it is a [[Wikipedia:Talk page|talk page]] for a page that does not exist.}},
+    G10;attack page;db-g10;{{subst:huggle/db-notice|1=$1|2=it serves only to attack some entity. Please do not continue to create attack pages\, as you will be [[Wikipedia:Blocking policy|blocked]] from editing.|nothanks=yes}};notify,
+    G11;advertising or promotional material;db-g11;{{subst:huggle/db-notice|1=$1|2=it is obvious [[Wikipedia:Spam|advertising or promotional material]].}};notify,
+    G12;copyright infringment;db-g12|URL;{{subst:huggle/db-notice|1=$1|2=it is a blatant [[Wikipedia:Copyrights violation policy|copyright infringement]].}};notify,
+    A1;article provides no context;db-a1;{{subst:huggle/db-notice|1=$1|2=it is very short and provides little or no context.}};notify,
+    A2;wrong project;db-a2;{{subst:huggle/db-notice|1=$1|2=it is in a foreign language and exists on another Wikimedia project.}};notify,
+    A3;no content;db-a3;{{subst:huggle/db-notice|1=$1|2=it has no content\, other than external links\, categories\, "see also" sections\, rephrasing of the title\, and/or chat-like comments.}};notify,
+    A5;transwikied article;db-a5;{{subst:huggle/db-notice|1=$1|2=it has been moved to another wiki\, following a [[Wikipedia:Deletion discussions|deletion discussion]].}},
+    A7;importance/significance not asserted;db-a7;{{subst:huggle/db-notice|1=$1|2=it is about a real person\, group of people\, band\, club\, company\, organisation\, or web content\, but does not indicate why its subject is important or significant.}};notify,
+    A7-a;  – band;db-band;{{subst:huggle/db-band-notice|1=$1}};notify,
+    A7-b;  – biography;db-bio;{{subst:huggle/db-bio-notice|1=$1}};notify,
+    A7-c;  – club or group of people;db-club;{{subst:huggle/db-club-notice|1=$1}};notify,
+    A7-d;  – company or organization;db-inc;{{subst:huggle/db-inc-notice|1=$1}};notify,
+    A7-e;  – website;db-web;{{subst:huggle/db-web-notice|1=$1}};notify,
+    A9;song/music lacking artist article and assertion of notability;db-a9;{{subst:huggle/db-music-notice|1=$1}};notify,
+    I1;redundant image;db-i1|Other image;{{subst:huggle/db-notice|1=$1|2=it is a redundant copy of another file.}},
+    I2;corrupt or empty image;db-i2;{{subst:huggle/db-notice|1=$1|2=the file is corrupt or empty\, or the page is empty and the file does not exist.}},
+    I3;improper license;db-i3;{{subst:huggle/db-notice|1=$1|2=it is [[Wikipedia:Non-free media|non-free content]]\, but its use does not comply with the [[Wikipedia:Non-free content criteria|requirements]] for use of non-free content.}};notify,
+    I9;copyright infringement;db-i9;{{subst:huggle/db-notice|1=$1|2=the description page claims that it is available under a free license\, but this is obviously not the case.}};notify,
+    I10;useless file;db-i10;{{subst:huggle/db-notice|1=$1|2=it is not an image\, sound\, or video file and it has no foreseeable encyclopedic use.}};notify,
+    R1;redirect to nonexistent page;db-r1;{{subst:huggle/db-notice|1=$1|2=it redirects to a page that does not exist.}},
+    R2;cross-namespace redirect;db-r2;{{subst:huggle/db-notice|1=$1|2=it redirects to the Talk\, User or User talk [[Wikipedia:Namespace|namespace]] from the article namespace.}},
+    R3;implausible redirect;db-r3;{{subst:huggle/db-notice|1=$1|2=it redirects from an implausible misspelling.}};notify,
+    U1;requested by user;db-u1;{{subst:huggle/db-notice|1=$1|2=you requested deletion.}},
+    U2;nonexistent user;db-u2;{{subst:huggle/db-notice|1=$1|2=the user does not exist.}},
+    U3;non-free image gallery;db-u3;{{subst:huggle/db-notice|1=$1|2=it consists mostly of [[Wikipedia:Non-free media|non-free media]]\, the use of which is not permitted in user space.}};notify,
+    T2;policy misrepresentation;db-t2;{{subst:huggle/db-notice|1=$1|2=it misrepresents [[Wikipedia:Policies and guidelines|policy]].}};notify,
+    P1;portal that would be deleted as an article;db-p1;{{subst:huggle/db-notice|1=$1|2=it would be subject to speedy deletion as an article.}};notify,
+    P2;underpopulated portal;db-p2;{{subst:huggle/db-notice|1=$1|2=[[Wikipedia:Portal|portals]] must be of sufficient scope to encompass at least four non-stub articles.}};notify,
+
+xfd-discussion-summary:Nominating [[$1]] for deletion
+xfd-log-summary:Adding [[$1]]
+xfd-message:{{subst:huggle/xfd|1=$1|2=$2}}
+xfd-message-summary:Notification: [[$1]] has been listed for deletion
+xfd-message-title:'$1' listed for deletion
+xfd-summary:Nominating page for deletion, see [[$1|discussion]]
+
+afd:Wikipedia:Articles for deletion
+cfd:Wikipedia:Categories for discussion
+mfd:Wikipedia:Miscellany for deletion
+rfd:Wikipedia:Redirects for discussion
+tfd:Wikipedia:Templates for deletion
+
+tags:
+    advert,autobiography,BLP PROD,cleanup,coi,confusing,context,copyedit,disputed,essay-like,
+    expand,expert,hoax,in-universe,internallinks,introrewrite,nofootnotes,non-free,
+    notability,notenglish|INSERT LANGUAGE NAME,npov,original research,orphan,plot,
+    primarysources,prose,refimprove,sections,tone,tooshort,totally-disputed,uncategorized,underconstruction,
+    unencyclopedic,unreferenced,update,wikify
+
+tag-summary:Tagging a page
+
+template-message-summary:Notification: $1
+template-clear-talk-page:{{Huggle/Cleared}}
+// this is a HG3-setting, see key "warning-month-headings" for a HG2 version
+// standard: show a month and year
+// page: show "Your edits to pagename"
+// none: doesn't use any headings for templates
+headings:standard
+
+templates:
+    Adding copyrighted material;uw-copyright,
+    Conflict of interest;uw-coi,
+    Cut-paste page move;uw-c&pmove,
+    Edit summaries;uw-editsummary,
+    Inserting external links to images;uw-imageuse,
+    Reverting self tests;uw-selfrevert,
+    Inserting copyrighted lyrics;uw-lyrics,
+    Removing deletion tags;uw-speedy,
+    Signing articles;uw-articlesig,
+    Unnecessarily changing between English variants;uw-lang,
+    Unsourced contributions;uw-unsourced,
+    Edit warring;uw-3rr
+
+welcomes-user:true
+
+welcome-messages:
+    Welcome with menu;{{subst:WelcomeMenu}},
+    Welcome personal;{{subst:Huggle/Welcome-pers}},
+    Welcome vandal :);{{subst:Huggle/welcomevandal}}
+
+welcome:{{subst:welcome}}
+welcome-anon:{{subst:welcome-anon}}
+welcome-summary:Welcoming user
+
+admin:true
+
+block:true
+block-expiry-options:15 minutes,3 hours,12 hours,24 hours,31 hours,48 hours,55 hours,72 hours,1 week,2 weeks,1 month,3 months,6 months,1 year,indefinite
+blocktime:indefinite
+blocktime-anon:31 hours
+block-message:{{subst:huggle/block|1=$1|2=$2}}
+block-message-default:true
+block-message-indef:{{subst:huggle/block-indef|1=$1}}
+block-prompt:true
+block-reason:[[Wikipedia:Vandalism|Vandalism]]
+block-summary:Notification: Blocked
+
+delete:true
+protect:true
+protection-reason:Excessive [[Wikipedia:Vandalism|vandalism]]
+// I really have no idea what is default delete summary on english wikipedia, replace this
+deletion-reasons:
+    [[WP:CSD#G1|G1]]: [[WP:PN|Patent nonsense]], meaningless, or incomprehensible,
+    [[WP:CSD#G2|G2]]: Test page,
+    [[WP:CSD#G3|G3]]: [[WP:Vandalism|Vandalism]],
+    [[WP:CSD#G3|G3]]: Blatant [[WP:Do not create hoaxes|hoax]],
+    [[WP:CSD#G4|G4]]: Recreation of a page that was [[WP:DEL|deleted]] per a [[WP:XFD|deletion discussion]],
+    [[WP:CSD#G5|G5]]: Creation by a [[WP:BLOCK|blocked]] or [[WP:BAN|banned]] user in violation of block or ban,
+    [[WP:CSD#G6|G6]]: Housekeeping and routine (non-controversial) cleanup,
+    [[WP:CSD#G7|G7]]: One author who has requested deletion or blanked the page,
+    [[WP:CSD#G8|G8]]: Page dependent on a deleted or nonexistent page,
+    [[WP:CSD#G10|G10]]: [[WP:ATP|Attack page]] or negative unsourced [[WP:BLP|BLP]],
+    [[WP:CSD#G11|G11]]: Unambiguous [[WP:NOTADVERTISING|advertising]] or promotion,
+    [[WP:CSD#G12|G12]]: Unambiguous [[WP:C|copyright infringement]],
+    [[WP:CSD#G13|G13]]: Abandoned [[WP:AFC|Article for creation]] – to retrieve it, see [[WP:REFUND/G13]]
+
+months:
+  mn1;January,
+  mn2;February,
+  mn3;March,
+  mn4;April,
+  mn5;May,
+  mn6;June,
+  mn7;July,
+  mn8;August,
+  mn9;September,
+  mn10;October,
+  mn11;November,
+  mn12;December
+
+// these are needed especially for wikis where months in signatures are not same as these in months
+// every line is for 1 month, the alternative names are separated by a colon, for example:
+// January;Jan;J.;1.,
+// every line needs to be terminated with comma, except for last one, which shouldn't be
+alternative-months:
+  1.;Jan,
+  2.;Feb,
+  3.;Mar,
+  4.;Apr,
+  5.;May,
+  6.;Jun,
+  7.;Jul,
+  8.;Aug,
+  9.;Sep,
+  10.;Oct,
+  11.;Nov,
+  12.;Dec
+
+
+tag-summaries:
+    ^prod$,
+    prod .,
+    [\{:]prod,
+    prod[\}\-:2],
+    (nominated|prodding|proposed) for deletion,
+    proposed deletion,
+    ^db$,
+    db-,
+    db tag$,
+    (marked for|tagged for|tagging for|requesting) speedy deletion,
+    speedy deletion request,
+    adding \{\{.+\}\} to article,
+    ^afd$,
+    [\{:]afd,
+    afd[ \}],
+    ^orfud$,
+    ^non-free reduce$,
+    orphaned fair use image tagging,
+    tagging orphaned page for deletion,
+    image has no (rationale|valid rationale|source|license|source or license),
+    marking newly uploaded untagged file,
+    ^tag$
+
+queues:
+    Filtered edits:
+        diff:preload
+        filter-ignored:exclude
+        filter-notifications:exclude
+        filter-own-userspace:exclude
+        filter-reverts:exclude
+        filter-tags:exclude
+        filter-warnings:exclude
+        remove-old:true
+        sort-order:quality
+
+    Filtered new pages:
+        filter-ignored:exclude
+        filter-new-pages:require
+        sort-order:quality
+        spaces:0
+
+    All edits:
+
+    All new pages:
+        filter-new-pages:require
+
+    Assisted edits:
+        filter-assisted:require
+        filter-bot:exclude
+
+    Huggle edits:
+        filter-huggle:require
+
+    My edits:
+        filter-me:require
+        remove-viewed:false
+
+    Candidates for speedy deletion:
+        type:dynamic
+        source-type:category
+        source:Candidates for speedy deletion
+
+default-queue:Filtered edits
+default-queue-2:Filtered new pages
+
+go:
+    Wikipedia:Administrator intervention against vandalism;Administrator intervention against vandalism,
+    Wikipedia:Huggle/Sandbox;Huggle sandbox,
+    Template:Vandalism information;Vandalism information
+
+
+

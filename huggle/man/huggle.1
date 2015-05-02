@@ -1,26 +1,35 @@
 .\" Manpage for huggle
 .\" Contact benapetr@gmail.com for suggestions or questions
-.TH man 1 "3.0.0.0" "huggle man page"
+.TH man 1 "3" "huggle man page"
 .SH NAME
 huggle \- launch huggle
 .SH SYNOPSIS
 huggle [-vh]
 .SH DESCRIPTION
-Huggle is an anti-vandalism software for use on Wikimedia projects. It requires X server to run.
+Huggle is an anti-vandalism software (fast diff browser for use with MediaWiki software) for use on Wikimedia projects or any MediaWiki based wiki. It requires X server to run. You can find more information about huggle on its web page at https://en.wikipedia.org/wiki/Wikipedia:Huggle
 .SH OPTIONS
-Following options can be used to adjust huggle
+
+You can use following arguments to change the runtime settings:
 
  -h|--help:         Display help for program and its license.
- -v:                Increases verbosity, you can use multiple -vvv parameters to make the verbosity level much higher. In case you use high verbosity, the performance will be significantly slower unless you combine this with --dot mode.
+ --version | -V:    Display a version
+ -v:                Increases verbosity, you can use multiple -v parameters to make the verbosity level much higher. In case you use high verbosity, the performance will be significantly slower unless you combine this with --dot mode.
+  --fuzzy:          Enable fuzzy localizations (these which were translated in past but which were not updated since the source text has changed).
  --safe:            Start huggle in special mode where lot of stuff is skipped during load.
- --dot:             Debug on terminal only mode, in this mode debug lines are only stored on terminal. This is a very useful option in case that use are using high verbosity level.
  --chroot <path>:   Changes the home path of huggle to a given folder, so that huggle reads a different configuration file and uses different data.
- --login:           Can be used in combination of --login-file only, this will tell huggle to start login process immediately without letting you to change any login preferences on login form
- --login-file:      Read a username and password from plain text file, separated by a colon warnings found in localization files. This option is useful for developers and people who create localization files
- --language-test:   Will perform CPU expensive language test on startup, which report warnings found in localization files. This option is useful for developers and people who create localization files.
+ --login:           Can be used in combination of --login-file only, this will tell huggle to start login process immediately without letting you to change any login preferences on login form.
+ --login-file:      Read a username and password from plain text file, separated by a colon warnings found in localization files. This option is useful for developers and people who create localization files.
  --syslog [file]:   Will write a logs to a file. You can specify the file name. In case that no file is provided, huggle.log is used.
 
+Debugging options
+ --dot:             Debug on terminal only mode, in this mode debug lines are only stored on terminal. This is a very useful option in case that use are using high verbosity level.
+ --qd [file]:       Write all transferred data to a file
+ --language-test:   Will perform CPU expensive language test on startup, which reports warnings found in localization files. This option is useful for developers and people who create localization files
+
+Note: every argument in [brackets] is optional but argument in <brackets> is required!!!!
+
+
 .SH BUGS
-See http://bugzilla.wikimedia.org/ for bug reports
+See https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle for bug reports
 .SH AUTHOR
-See http://meta.wikimedia.org/Huggle/Members
+See https://meta.wikimedia.org/wiki/Huggle/Members

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "loadingform.hpp"
+#include "login.hpp"
 #include "exception.hpp"
 #include "core.hpp"
 #include "ui_loadingform.h"
@@ -44,7 +45,7 @@ void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)
 {
     if (this->ui->tableWidget->rowCount() < row + 1)
     {
-        throw new Huggle::Exception("There is no such an item in list");
+        throw new Huggle::Exception("There is no such an item in list", BOOST_CURRENT_FUNCTION);
     }
     QIcon icon;
     switch (it)

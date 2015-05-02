@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Block user</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
@@ -43,6 +47,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="cbMessageTarget">
+     <property name="text">
+      <string>Send message to target user with explanation for block</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="checkBox">
      <property name="text">
       <string>Remove talk page access</string>
@@ -59,7 +73,10 @@
    <item>
     <widget class="QCheckBox" name="checkBox_3">
      <property name="text">
-      <string>Disable autoblock</string>
+      <string>use autoblock</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -116,6 +133,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -12,70 +12,33 @@
 #define CORE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QApplication>
-#include <QNetworkAccessManager>
-#include <QList>
-#include <QPluginLoader>
-#include <QFile>
-#include <QMap>
-#include "query.hpp"
-#include "login.hpp"
-#include "wikiedit.hpp"
-#include "mainwindow.hpp"
-#include "exceptionwindow.hpp"
-#include "iextension.hpp"
-#include "hugglequeuefilter.hpp"
-#include "editquery.hpp"
-#include "resources.hpp"
-#include "history.hpp"
-#include "apiquery.hpp"
-#include "querypool.hpp"
-#include "sleeper.hpp"
-#include "revertquery.hpp"
-#include "huggleparser.hpp"
-
-#ifdef PYTHONENGINE
 #include "pythonengine.hpp"
-#endif
+#include <QApplication>
+#include <QList>
+#include <QDateTime>
 
 namespace Huggle
 {
     // Predeclaring some types
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
     namespace Python
     {
         class PythonEngine;
     }
 #endif
-    class Sleeper;
     class Login;
-    class Query;
-    class ApiQuery;
     class MainWindow;
-    class HuggleFeed;
-    class EditQuery;
+    class Exception;
+    class GC;
     class ProcessorThread;
-    class Collectable;
     class HuggleQueueFilter;
-    class WikiSite;
-    class WikiPage;
-    class OAuthLoginQuery;
-    class WikiUser;
-    class WikiEdit;
-    class RevertQuery;
     class Syslog;
     class QueryPool;
     class iExtension;
-    class Configuration;
-    class Localizations;
 
     //! Override of qapplication so that we can reimplement notify
-    class HgApplication : public QApplication
+    class HUGGLE_EX HgApplication : public QApplication
     {
         public:
             HgApplication(int& argc, char** argv) : QApplication(argc, argv) {}
@@ -92,7 +55,7 @@ namespace Huggle
      * core (in order to hook up into huggle internals) would get these memory addresses and can update these
      * static pointers which it has inside of its own domain, there is no other better way I know how to handle that
      */
-    class Core
+    class HUGGLE_EX Core
     {
         public:
             static void ExceptionHandler(Exception *exception);
@@ -102,9 +65,14 @@ namespace Huggle
              * This function may be called also from terminal parser
              */
             static void VersionRead();
-            //! Pointer to core, there should be only 1 core for whole application and this is that one
-            //! if you are running extension you need to update this pointer with that one you receive
-            //! using iExtension::HuggleCore
+            //! Pointer to core
+            //! When we compile an extension that links against the huggle core, it loads into a different stack,
+            //! which is pretty much like a separate application domain, so I will call it so in this
+            //! documentation. Because we want to have only 1 core, we create a dynamic instance here and let
+            //! modules that are loaded by huggle read a pointer to it, so that they can access the correct one
+            //! instead of creating own instance in different block of memory. There should be only 1 core for
+            //! whole application and this is that one. If you are running extension you need to update this pointer
+            //! with that one you receive using iExtension::HuggleCore()
             static Core *HuggleCore;
 
             Core();
@@ -121,29 +89,22 @@ namespace Huggle
             void LoadDefs();
             //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
             void SaveDefs();
-            double GetUptimeInSeconds();
+            qint64 GetUptimeInSeconds();
             void LoadLocalizations();
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
-            //! Pointer to main
-            MainWindow *Main;
             //! Login form
             Login *fLogin;
             Syslog *HuggleSyslog;
-            //! Pointer to primary feed provider
-            HuggleFeed *PrimaryFeedProvider;
-            //! Pointer to secondary feed provider
-            HuggleFeed *SecondaryFeedProvider;
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
             QList<HuggleQueueFilter *> FilterDB;
             //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
             bool Running;
-            Localizations *HuggleLocalizations;
             //! Garbage collector
-            GC *gc;
-#ifdef PYTHONENGINE
+            Huggle::GC *gc;
+#ifdef HUGGLE_PYTHON
             Python::PythonEngine *Python;
 #endif
         private:

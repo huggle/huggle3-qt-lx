@@ -12,31 +12,23 @@
 #define HOOKS_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
-#include "wikipage.hpp"
-#include "iextension.hpp"
-#include "wikiuser.hpp"
-#include "wikiedit.hpp"
-#include "mainwindow.hpp"
 
 namespace Huggle
 {
     class WikiUser;
     class WikiEdit;
-    class WikiPage;
+    class Shortcut;
     class Exception;
     class MainWindow;
+    class SpeedyForm;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
-    class Hooks
+    class HUGGLE_EX Hooks
     {
         public:
+            static bool EditBeforeScore(WikiEdit *Edit);
             /*!
              * \brief Event that is called after edit pre process
              * \param Edit that was just pre processed
@@ -57,6 +49,7 @@ namespace Huggle
              * \param Edit
              */
             static void OnRevert(WikiEdit *Edit);
+            static bool RevertPreflight(WikiEdit *Edit);
             /*!
              * \brief Event that happens when user attempt to send a warning to editor of page
              * \param User
@@ -73,11 +66,16 @@ namespace Huggle
              * \param Score New score of user
              */
             static void BadnessScore(WikiUser *User, int Score);
+            static bool Speedy_BeforeOK(Huggle::WikiEdit *edit, SpeedyForm *form);
+            static void Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool success);
             /*!
              * \brief Window is loaded
              * \param window
              */
-            static void MainWindowIsLoaded(MainWindow *window);
+            static void MainWindow_OnLoad(MainWindow *window);
+            static void MainWindow_OnRender();
+            static bool MainWindow_ReloadShortcut(Shortcut *shortcut);
+            static void Shutdown();
     };
 }
 

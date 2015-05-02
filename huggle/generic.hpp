@@ -12,14 +12,9 @@
 #define GENERIC_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
+#include <QAbstractSocket>
 #include <QString>
-#include "wikiedit.hpp"
-#include "apiquery.hpp"
 
 #define EvaluatePageErrorReason_Missing 0
 #define EvaluatePageErrorReason_Unknown 1
@@ -27,22 +22,59 @@
 #define EvaluatePageErrorReason_NoRevs  3
 #define EvaluatePageErrorReason_Running 4
 
+#ifdef MessageBox
+    // fix GCC for windows headers port
+    #undef MessageBox
+#endif
+
+class QWidget;
+
 namespace Huggle
 {
-    class WikiEdit;
-    class WikiUser;
-    class Query;
     class ApiQuery;
+    class WikiEdit;
+    class WikiPage;
+    class WikiSite;
 
-    //! Generic requests that are frequently issued to wiki
+    enum MessageBoxStyle
+    {
+        MessageBoxStyleNormal,
+        MessageBoxStyleQuestion,
+        MessageBoxStyleWarning,
+        MessageBoxStyleError
+    };
+
+    //! Generic C++ functions that are missing standard libs
     namespace Generic
     {
+        /*!
+         * \brief Bool2String Convert a bool to string
+         * \param b bool
+         * \return string
+         */
+        HUGGLE_EX QString Bool2String(bool b);
+        /*!
+         * \brief Safely turn a QString into a bool value
+         * \param value QString Text that needs to be changed to bool
+         * \param defaultvalue bool What value should bool have in case that text can't be parsed, by default it's false
+         */
+        HUGGLE_EX bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
-        bool ReportPreFlightCheck();
+        HUGGLE_EX bool ReportPreFlightCheck();
+        HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
+        HUGGLE_EX QString SanitizePath(QString name);
+        /*!
+         * \brief MessageBox Display a message box
+         * \param title Title of message box
+         * \param text What is displayed in a message
+         */
+        HUGGLE_EX int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         //! Display a message box telling user that function is not allowed during developer mode
-        void DeveloperError();
+        HUGGLE_EX void DeveloperError();
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
+         * This function can be only used to check the results of query that was created in order to
+         * retrieve contents of a wiki page.
          * \param query
          * \param failed In case the query has failed, this will be set to true
          * \param ts pointer where timestamp string should be stored (optional)
@@ -52,10 +84,14 @@ namespace Huggle
          * \param reason if there is a failure this is a number of error that happened
          * \return Text of wiki page or error message
          */
-        QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = NULL, QString *comment = NULL,
-                                         QString *user = NULL, int *revid = NULL, int *reason = NULL);
-        ApiQuery *RetrieveWikiPageContents(QString page, bool parse = false);
-        QString ShrinkText(QString text, int size, bool html = true);
+        HUGGLE_EX QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
+                                                   QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
+                                                   QString *title = nullptr);
+        HUGGLE_EX QString SocketError2Str(QAbstractSocket::SocketError error);
+        //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        HUGGLE_EX QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
     }
 }
 

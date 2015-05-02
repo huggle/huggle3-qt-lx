@@ -12,9 +12,14 @@
 #include <QMessageBox>
 #include "configuration.hpp"
 #include "core.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
+#include "mainwindow.hpp"
 #include "localization.hpp"
+#include "warnings.hpp"
 #include "ui_warninglist.h"
+#include "wikisite.hpp"
+#include "wikiuser.hpp"
 
 using namespace Huggle;
 
@@ -22,15 +27,20 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
 {
     this->ui->setupUi(this);
     this->wikiEdit = edit;
-    this->wikiEdit->RegisterConsumer("WarningList");
-    this->ui->pushButton->setText(Localizations::HuggleLocalizations->Localize(this->ui->pushButton->text()));
+    if (edit->User == nullptr)
+    {
+        // unlikely to happen
+        throw new Huggle::NullPointerException("WikiEdit *edit->User", BOOST_CURRENT_FUNCTION);
+    }
+    this->setWindowTitle(_l("warning-title", edit->User->Username));
+    this->ui->pushButton->setText(_l(this->ui->pushButton->text()));
     // insert all possible warnings now
-    if (Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count() > 0)
+    if (Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count() > 0)
     {
         int r=0;
-        while (r<Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.count())
+        while (r<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
         {
-            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig_WarningTypes.at(r)));
+            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)));
             r++;
         }
         this->ui->comboBox->setCurrentIndex(0);
@@ -39,17 +49,19 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
 
 WarningList::~WarningList()
 {
-    if (this->wikiEdit != NULL)
-    {
-        this->wikiEdit->UnregisterConsumer("WarningList");
-    }
+    this->wikiEdit.Delete();
     delete this->ui;
 }
 
 void WarningList::on_pushButton_clicked()
 {
-    QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText());
-    if (wt.size() < 1)
+    if (this->wikiEdit == nullptr)
+    {
+        // ERROR :'(
+        throw new Huggle::NullPointerException("local WikiEdit wikiEdit", BOOST_CURRENT_FUNCTION);
+    }
+    QString wt = HuggleParser::GetKeyOfWarningTypeFromWarningName(this->ui->comboBox->currentText(), this->wikiEdit->GetSite()->GetProjectConfig());
+    if (wt.isEmpty())
     {
         QMessageBox mb;
         mb.setWindowTitle("No warning");
@@ -58,23 +70,19 @@ void WarningList::on_pushButton_clicked()
         return;
     }
     bool Report_ = false;
-    PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, NULL, this->wikiEdit, &Report_);
+    PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, nullptr, this->wikiEdit, &Report_);
     if (Report_)
     {
-        QMessageBox::StandardButton q = QMessageBox::question(NULL, "Warning" , "This user has already received a final warning"\
+        QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Warning" , "This user has already received a final warning"\
                                                               ", so I will not send any more warnings to them, do you want to"\
                                                               " report them instead?", QMessageBox::Yes|QMessageBox::No);
         if (q == QMessageBox::Yes)
         {
-            Core::HuggleCore->Main->DisplayReportUserWindow(this->wikiEdit->User);
+            MainWindow::HuggleMain->DisplayReportUserWindow(this->wikiEdit->User);
         }
     }
-    if (ptr_Warning_ != NULL)
-    {
+    if (ptr_Warning_ != nullptr)
         PendingWarning::PendingWarnings.append(ptr_Warning_);
-        return;
-    }
-    this->wikiEdit->UnregisterConsumer("WarningList");
-    this->wikiEdit = NULL;
+    this->wikiEdit.Delete();
     this->hide();
 }

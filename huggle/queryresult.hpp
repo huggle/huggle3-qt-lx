@@ -12,26 +12,37 @@
 #define QUERYRESULT_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
+#include <QHash>
 #include <QString>
+
+#define HUGGLE_EUNKNOWN            1
+#define HUGGLE_ENOTLOGGEDIN        2
+#define HUGGLE_ETOKEN              4
 
 namespace Huggle
 {
     //! Result of query
-    class QueryResult
+
+    //! This is abstract result of every web query, it can be used for API queries as well and their result should be always parsed
+    //! using this, instead of native XML parsers so that we can change the API output format while keeping the code unchanged.
+    class HUGGLE_EX QueryResult
     {
         public:
             //! Creates a new instance of query result
             QueryResult();
-            //! Data retrieved by query
+            QueryResult(bool failed);
+            virtual ~QueryResult() {}
+            //! Data retrieved by query, this contains the JSON / XML for api requests
             QString Data;
-            //! If query is in error the reason for error is stored here
+            void SetError();
+            void SetError(QString error);
+            void SetError(int error, QString details = "");
+            //! Check whether query has failed
+            bool IsFailed() { return this->Failed; }
+            //! If query is in error the reason for error is stored here, otherwise it's null string
             QString ErrorMessage;
+            int ErrorCode = 0;
             bool Failed;
     };
 }

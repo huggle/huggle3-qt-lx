@@ -12,24 +12,22 @@
 #define WEBSERVERQUERY_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QList>
 #include <QString>
 #include <QObject>
-#include <QThread>
 #include "query.hpp"
+class QNetworkReply;
 
 namespace Huggle
 {
     //! This is a query that can be used to perform simple webserver requests
-    class WebserverQuery : public QObject, public Query
+    class HUGGLE_EX WebserverQuery : public QObject, public Query
     {
             Q_OBJECT
         public:
             WebserverQuery();
+            ~WebserverQuery();
             //! Whether the query will submit parameters using POST data
             bool UsingPOST;
             //! This is an url of api request, you probably don't want to change it unless
@@ -42,7 +40,7 @@ namespace Huggle
             //! Terminate the query
             void Kill();
         private:
-            QNetworkReply *reply;
+            QNetworkReply *reply = nullptr;
         private slots:
             void ReadData();
             void Finished();

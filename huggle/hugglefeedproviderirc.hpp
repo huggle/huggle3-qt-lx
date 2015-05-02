@@ -12,50 +12,29 @@
 #define HUGGLEFEEDPROVIDERIRC_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include <QThread>
 #include <QList>
+#include <QTimer>
 #include <QMutex>
 #include <QTcpSocket>
-#include "mainwindow.hpp"
-#include "networkirc.hpp"
 #include "hugglefeed.hpp"
-#include "wikiedit.hpp"
 
 namespace Huggle
 {
+    class WikiEdit;
     namespace IRC
     {
         class NetworkIrc;
     }
-    class HuggleFeedProviderIRC;
 
-    //! Thread which process the IRC feed
-    class HuggleFeedProviderIRC_t : public QThread
+    //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
+    class HUGGLE_EX HuggleFeedProviderIRC : public QObject, public HuggleFeed
     {
             Q_OBJECT
         public:
-            HuggleFeedProviderIRC_t();
-            ~HuggleFeedProviderIRC_t();
-            bool IsFinished();
-            bool Running;
-            HuggleFeedProviderIRC *p;
-        protected:
-            void run();
-        private:
-            bool Stopped;
-    };
-
-    //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
-    class HuggleFeedProviderIRC : public HuggleFeed
-    {
-        public:
-            HuggleFeedProviderIRC();
+            HuggleFeedProviderIRC(WikiSite *site);
             ~HuggleFeedProviderIRC();
             Huggle::IRC::NetworkIrc *Network;
             bool Start();
@@ -65,6 +44,7 @@ namespace Huggle
             void InsertEdit(WikiEdit *edit);
             void ParseEdit(QString line);
             bool IsStopped();
+            int GetID() { return HUGGLE_FEED_PROVIDER_IRC; }
             bool ContainsEdit();
             WikiEdit *RetrieveEdit();
             bool IsPaused() { return Paused; }
@@ -73,10 +53,11 @@ namespace Huggle
             bool IsConnected();
             QString ToString();
             bool Connected;
+        private slots:
+            void OnTick();
         private:
-            QMutex lock;
+            QTimer *timer;
             QList<WikiEdit*> Buffer;
-            HuggleFeedProviderIRC_t *thread;
             bool Paused;
     };
 }

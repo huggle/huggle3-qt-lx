@@ -1,23 +1,21 @@
+// IMPORTANT: this file has a different license than rest of huggle
+
 //This program is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
+//it under the terms of the GNU Lesser General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
 
 //This program is distributed in the hope that it will be useful,
 //but WITHOUT ANY WARRANTY; without even the implied warranty of
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//GNU Lesser General Public License for more details.
 
+// Copyright (c) Petr Bena 2014
 
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QMutex>
 #include <QList>
@@ -39,7 +37,7 @@ namespace Huggle
     //! object that has 0 consumers, will be deleted.
 
     //! \image html ../documentation/gc01.png
-    class Collectable
+    class HUGGLE_EX Collectable
     {
         public:
             /*!
@@ -47,6 +45,9 @@ namespace Huggle
              * \return pointer to last cid
              */
             static unsigned long *GetLastCIDPtr();
+#ifdef HUGGLE_PROFILING
+            static unsigned long LockCt;
+#endif
 
             Collectable();
             virtual ~Collectable();
@@ -102,7 +103,19 @@ namespace Huggle
              * \param consumer Unique string that unlock the object
              */
             void UnregisterConsumer(const QString consumer);
+            /*!
+             * \brief IncRef This function will add 1 to reference counter and change the collectable to managed in case it wasn't
+             *
+             * This function is thread safe, it's highly recommended to use Collectable_SmartPtr which
+             * will handle the reference counter for you!
+             */
             void IncRef();
+            /*!
+             * \brief DecRef Decrease reference counter
+             *
+             * If collectable isn't managed or reference counter is 0 it will throw exception, it's highly recommended to use
+             * Collectable_SmartPtr which will handle the reference counter for you
+             */
             void DecRef();
             /*!
              * \brief DebugHgc
@@ -114,13 +127,13 @@ namespace Huggle
              * \return
              */
             unsigned long CollectableID();
+            bool HasSomeConsumers();
         private:
             static QString ConsumerIdToString(const int id);
             static QMutex *WideLock;
             static unsigned long LastCID;
 
             void SetManaged();
-            bool HasSomeConsumers();
             unsigned long CID;
             //! Internal variable that contains a cache whether object is managed
             bool _collectableManaged;
@@ -142,5 +155,46 @@ namespace Huggle
             unsigned int _collectableRefs;
             bool _collectableLocked;
     };
+
+    //_________________________________________________________________________
+    // inline defs
+    // you will not see any interesting declarations of collectable here
+    //_________________________________________________________________________
+
+
+    inline bool Collectable::HasSomeConsumers()
+    {
+        return (this->_collectableRefs > 0 || this->iConsumers.count() > 0 || this->Consumers.count() > 0);
+    }
+
+    inline void Collectable::IncRef()
+    {
+        this->_collectableRefs++;
+        this->SetManaged();
+    }
+
+    inline unsigned long Collectable::CollectableID()
+    {
+        return this->CID;
+    }
+
+    inline bool Collectable::IsLocked()
+    {
+        return this->_collectableLocked;
+    }
+
+    inline unsigned long *Collectable::GetLastCIDPtr()
+    {
+        return &Collectable::LastCID;
+    }
+
+    inline bool Collectable::IsManaged()
+    {
+        if (this->_collectableManaged)
+        {
+            return true;
+        }
+        return this->HasSomeConsumers();
+    }
 }
 #endif // COLLECTABLE_H

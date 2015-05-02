@@ -12,10 +12,6 @@
 #define IEXTENSION_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QtPlugin>
 #include <QList>
@@ -36,7 +32,7 @@ namespace Huggle
 
     //! Keep in mind that extensions are running in separate domain so that if you want to have access
     //! to resources like configuration or network, you need to explicitly request it.
-    class iExtension
+    class HUGGLE_EX iExtension
     {
         public:
             iExtension() {}
@@ -44,27 +40,21 @@ namespace Huggle
              * \brief IsWorking
              * \return if extension work
              */
-            virtual bool IsWorking() { return false; }
             virtual ~iExtension() {}
+            virtual bool IsWorking() { return false; }
             virtual bool Register() { return false; }
+            void huggle__internal_SetPath(QString path);
+            QString GetExtensionFullPath();
+            virtual QString CompiledFor()
+            {
+                // version of huggle this extension was built for
+                return QString(HUGGLE_VERSION);
+            }
+            virtual void Init();
             /*!
              * \brief This is called when the extension is removed from system
              */
             virtual bool Quit() { return false; }
-            /*!
-             * \brief Hook_EditPreProcess is called when edit is being pre processed
-             * \param edit is a pointer to edit in question
-             */
-            virtual void Hook_EditPreProcess(void *edit) {}
-            /*!
-             * \brief Hook_EditScore is called after edit score is calculated
-             * \param edit
-             */
-            virtual void Hook_EditScore(void *edit) {}
-            virtual void Hook_EditPostProcess(void *edit) {}
-            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
-            virtual void Hook_MainWindowOnLoad(void *window) {}
-            virtual void Hook_BadnessScore(void *user, int score) {}
             //! Name of the extension
             virtual QString GetExtensionName() { return "Unknown"; }
             //! User who created this thing
@@ -76,11 +66,53 @@ namespace Huggle
             //! Whether this extension need access to core
             virtual bool RequestCore() { return false; }
             virtual bool RequestNetwork() { return false; }
-            //! Pointer to huggle core
-            void *HuggleCore;
-            //! Pointer to global system configuration
-            void *Configuration;
-            QNetworkAccessManager *Networking;
+            virtual void Hook_BadnessScore(void *user, int score) {}
+            /*!
+             * \brief Hook_EditPreProcess is called when edit is being pre processed
+             * \param edit is a pointer to edit in question
+             */
+            virtual void Hook_EditPreProcess(void *edit) {}
+            virtual void Hook_GoodEdit(void *edit) {}
+            /*!
+             * \brief Hook_RevertPreflight is called before preflight check is executed and if
+             * false is returned, the revert is cancelled with no warnings
+             */
+            virtual bool Hook_RevertPreflight(void *edit) { return true; }
+            virtual void Hook_SpeedyFinished(void *edit, QString tags, bool successfull) {}
+            /*!
+             * \brief Hook_SpeedyBeforeOK Called right after user request processing of speedy form
+             * \param edit
+             * \param form
+             * \return if false is returned whole operation is refused
+             */
+            virtual bool Hook_SpeedyBeforeOK(void *edit, void *form) { return true; }
+            virtual void Hook_Shutdown() {}
+            /*!
+             * \brief Hook_EditScore is called after edit score is calculated
+             * \param edit
+             */
+            virtual void Hook_EditScore(void *edit) {}
+            virtual void Hook_EditPostProcess(void *edit) {}
+            virtual bool Hook_EditBeforeScore(void *edit) { return true;  }
+            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
+            virtual void Hook_MainWindowOnLoad(void *window) {}
+            virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
+            virtual void Hook_MainWindowOnRender() {}
+            //! Pointer to huggle core, set by extension loader
+            void *HuggleCore = nullptr;
+            //! Pointer to global system configuration, set by extension loader
+            void *Configuration = nullptr;
+            void *Localization = nullptr;
+            QNetworkAccessManager *Networking = nullptr;
+        private:
+            QString huggle__internal_ExtensionPath;
+    };
+
+    class ExtensionHolder : public iExtension
+    {
+        public:
+            QString GetExtensionName() { return this->Name; }
+            QString Name;
     };
 }
 

@@ -12,12 +12,9 @@
 #define WIKIPAGE_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
-#include "wikisite.hpp"
+#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
@@ -25,7 +22,7 @@ namespace Huggle
     class WikiSite;
 
     //! Mediawiki page
-    class WikiPage
+    class HUGGLE_EX WikiPage : public MediaWikiObject
     {
         public:
             //! Create new empty instance of wiki page
@@ -38,17 +35,34 @@ namespace Huggle
             WikiPageNS *GetNS();
             //! Return true in case this is a talk page
             bool IsTalk();
+            //! True if original creator of this page is known
+            bool FounderKnown();
+            QString GetFounder();
+            void SetFounder(QString name);
+            //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();
             QString RootName();
             bool IsUserpage();
+            //! Writes a wikipage name that is encoded using percent encoding
+            QString EncodedName();
             QString Contents;
             //! Name of page
             QString PageName;
-            //! Site this page is on
-            WikiSite *Site;
         private:
             WikiPageNS *NS;
+            QString founder;
+            bool founderKnown = false;
     };
+
+    inline QString WikiPage::SanitizedName()
+    {
+        return this->PageName.replace(" ", "_");
+    }
+
+    inline WikiPageNS *WikiPage::GetNS()
+    {
+        return this->NS;
+    }
 }
 
 #endif // WIKIPAGE_H

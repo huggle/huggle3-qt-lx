@@ -8,17 +8,17 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "hugglemassrollback.hpp"
-#include "ui_hugglemassrollback.h"
+#include "queuehelp.hpp"
+#include "ui_queuehelp.h"
 
 using namespace Huggle;
 
-HuggleMassRollback::HuggleMassRollback(QWidget *parent) : QDialog(parent), ui(new Ui::HuggleMassRollback)
+QueueHelp::QueueHelp(QWidget *parent) : QDialog(parent), ui(new Ui::QueueHelp)
 {
     this->ui->setupUi(this);
 }
 
-HuggleMassRollback::~HuggleMassRollback()
+QueueHelp::~QueueHelp()
 {
     delete this->ui;
 }

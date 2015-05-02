@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>377</width>
-    <height>499</height>
+    <width>388</width>
+    <height>406</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>300</width>
-    <height>480</height>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -33,33 +33,43 @@
   </property>
   <property name="windowIcon">
    <iconset resource="pictures.qrc">
-    <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="labelHeader">
-     <property name="font">
-      <font>
-       <pointsize>18</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Huggle 3 QT-LX</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QLabel" name="labelLogo">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>800</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_newlogo.png</pixmap>
+      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -219,6 +229,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Remember password (in plaintext)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
       <widget class="QLabel" name="labelProject">
@@ -275,6 +295,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Projects &gt;&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="ButtonOK">
        <property name="enabled">
         <bool>false</bool>
@@ -290,11 +317,46 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="labelTranslate">
-     <property name="text">
-      <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://meta.wikimedia.org/wiki/Huggle/Localization&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Translate huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
      </property>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;a href=&quot;dummy&quot;&gt;Proxy&lt;/a&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelTranslate">
+       <property name="text">
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://meta.wikimedia.org/wiki/Huggle/Localization&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Translate huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

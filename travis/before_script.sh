@@ -7,27 +7,23 @@ gunzip *.gz
 cd /home/travis/build/huggle/huggle3-qt-lx/huggle
 
 if [ "$QTTYPE" = "4" ]; then
-	./configure --qt4
+	./configure --qt4 --extension
         cp definitions_prod.hpp definitions.hpp
-        cd huggle_prod
-	make
+        cd huggle_release
+	make || exit 1
         cd ..
-        #qmake
-        #make
-	#cd tests/test
-	#qmake
-	#make
+	cd tests/test
+	cmake .
+	make || exit 1
 fi
 
 if [ "$QTTYPE" = "5" ]; then
-	./configure --qt5
+	./configure --qt5 --extension
         cp definitions_prod.hpp definitions.hpp
-        cd huggle_prod
-	make
+        cd huggle_release
+	make || exit 1
         cd ..
-        /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-        make
 	cd tests/test
-	/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-	make
+        cmake . -DQT5_BUILD=true
+	make || exit 1
 fi

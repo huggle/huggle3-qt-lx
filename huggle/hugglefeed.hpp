@@ -12,28 +12,38 @@
 #define HUGGLEFEED_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <qdatetime.h>
+#include <QDateTime>
+#include <QList>
+#include <QMutex>
+#include "mediawikiobject.hpp"
+
+#define HUGGLE_FEED_PROVIDER_IRC          0
+#define HUGGLE_FEED_PROVIDER_WIKI         1
+#define HUGGLE_FEED_PROVIDER_XMLRPC       2
 
 namespace Huggle
 {
     class HuggleQueueFilter;
     class WikiEdit;
+    class WikiSite;
 
-    //! Feed provider stub class every provider must be derived from this one
-    class HuggleFeed
+    class HUGGLE_EX StatisticsBlock
     {
         public:
-            //! Pointer to primary feed provider
-            static HuggleFeed *PrimaryFeedProvider;
-            //! Pointer to secondary feed provider
-            static HuggleFeed *SecondaryFeedProvider;
+            StatisticsBlock();
+            QDateTime Uptime;
+            double Edits;
+            double Reverts;
+    };
 
-            HuggleFeed();
+    //! Feed provider stub class every provider must be derived from this one
+    class HUGGLE_EX HuggleFeed : public MediaWikiObject
+    {
+        public:
+            static QList<HuggleFeed*> Providers;
+
+            HuggleFeed(WikiSite *site);
             virtual ~HuggleFeed();
             //! Return true if this feed is operational or not
             virtual bool IsWorking() { return false; }
@@ -50,22 +60,35 @@ namespace Huggle
             //! Check if feed is containing some edits in buffer
             virtual bool ContainsEdit() { return false; }
             virtual bool IsPaused() { return false; }
+            virtual QString GetError();
+            virtual int GetID()=0;
+            //! If provider is not to be automatically inserted to a list of providers
+            //! Builtin providers have hardcoded menus, so they are ignored.
+            virtual bool IsBuiltin() { return true; }
             //! Returns true in case that a provider is stopped and can be safely deleted
 
             //! This is useful in case we are running some background threads and we need to
             //! wait for them to finish before we can delete the object
             virtual bool IsStopped() { return true; }
+            virtual double GetRevertsPerMinute();
+            virtual double GetEditsPerMinute();
             //! Return a last edit from cache or NULL
-            virtual WikiEdit *RetrieveEdit() { return NULL; }
+            virtual WikiEdit *RetrieveEdit() { return nullptr; }
             virtual QString ToString() = 0;
+            virtual void IncrementEdits();
+            virtual void IncrementReverts();
             double GetUptime();
             HuggleQueueFilter *Filter;
+        protected:
+            void RotateStats();
             //! Number of edits made since you logged in
             double EditCounter;
             //! Number of reverts made since you logged in
             double RvCounter;
-        protected:
+            QMutex *mutex;
+            StatisticsBlock *GetLatestStatisticsBlock();
             QDateTime UptimeDate;
+            QList<StatisticsBlock*> StatisticsBlocks;
     };
 }
 

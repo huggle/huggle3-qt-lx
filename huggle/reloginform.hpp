@@ -12,10 +12,13 @@
 #define RELOGINFORM_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
+
 #include <QDialog>
+#include <QTimer>
+#include <QString>
+#include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
+#include "wikisite.hpp"
 
 namespace Ui
 {
@@ -24,20 +27,28 @@ namespace Ui
 
 namespace Huggle
 {
+    class ApiQuery;
     //! Relogin form used to login back to mediawiki when session is removed
-    class ReloginForm : public QDialog
+    class HUGGLE_EX ReloginForm : public QDialog
     {
             Q_OBJECT
         public:
-            explicit ReloginForm(QWidget *parent = 0);
+            explicit ReloginForm(WikiSite *site, QWidget *parent = nullptr);
             ~ReloginForm();
 
         private slots:
             void on_pushButton_clicked();
-
             void on_pushButton_2_clicked();
+            void LittleTick();
 
         private:
+            void Fail(QString why);
+            void reject();
+            WikiSite *Site;
+            //! This is just a timer, it's called little and cute because I was bored when writing this piece of code
+            QTimer *little_cute_timer;
+            Collectable_SmartPtr<ApiQuery> qReloginTokenReq;
+            Collectable_SmartPtr<ApiQuery> qReloginPw;
             Ui::ReloginForm *ui;
     };
 }

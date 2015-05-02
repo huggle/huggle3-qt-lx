@@ -1,18 +1,27 @@
+// IMPORTANT: this file has a different license than rest of huggle
+
 //This program is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
+//it under the terms of the GNU Lesser General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
 
 //This program is distributed in the hope that it will be useful,
 //but WITHOUT ANY WARRANTY; without even the implied warranty of
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//GNU Lesser General Public License for more details.
+
+// Copyright (c) Petr Bena 2014
 
 #include "collectable.hpp"
 #include "exception.hpp"
+#include "huggleprofiler.hpp"
 #include "syslog.hpp"
 
 using namespace Huggle;
+
+#ifdef HUGGLE_PROFILING
+unsigned long Collectable::LockCt = 0;
+#endif
 
 unsigned long Collectable::LastCID = 0;
 QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
@@ -39,7 +48,7 @@ Collectable::~Collectable()
 {
     if (this->IsManaged())
     {
-        throw new Exception("Request to delete managed entity");
+        throw new Huggle::Exception("Request to delete managed entity", BOOST_CURRENT_FUNCTION);
     }
     this->Unlock();
     delete this->_collectableQL;
@@ -47,16 +56,24 @@ Collectable::~Collectable()
 
 bool Collectable::SafeDelete()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->_collectableRefs == 0 && this->Consumers.count() == 0 && this->iConsumers.count() == 0)
     {
-        if (GC::gc != NULL)
+        if (GC::gc != nullptr)
         {
             GC::gc->Lock->lock();
             if (GC::gc->list.contains(this))
             {
-                GC::gc->list.removeAll(this);
+                if (GC::gc->list.removeAll(this) < 1)
+                {
+                    // whoa, the application will crash soon
+                    Syslog::HuggleLogs->DebugLog("Collectable removed 0 references after its deletion from memory");
+                }
             }
             GC::gc->Lock->unlock();
+        } else
+        {
+            Syslog::HuggleLogs->DebugLog("SafeDelete() called after GC pointer was removed");
         }
         this->_collectableManaged = false;
         delete this;
@@ -72,14 +89,22 @@ void Collectable::SetReclaimable()
     this->ReclaimingAllowed = true;
 }
 
+void Collectable::DecRef()
+{
+    if (!this->_collectableRefs)
+    {
+        throw new Huggle::Exception("Decrementing negative reference", BOOST_CURRENT_FUNCTION);
+    }
+    this->_collectableRefs--;
+}
+
 void Collectable::RegisterConsumer(int consumer)
 {
     this->Lock();
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
     {
         this->Unlock();
-        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const "\
-                                    "int consumer = " +  QString::number(consumer) + ")");
+        throw new Huggle::Exception("You can't reclaim this managed resource", BOOST_CURRENT_FUNCTION);
     }
     if (!this->iConsumers.contains(consumer))
     {
@@ -97,7 +122,7 @@ void Collectable::UnregisterConsumer(int consumer)
         this->Unlock();
         Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
         //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-        //                            "void Collectable::UnregisterConsumer(const int consumer)");
+        //                            BOOST_CURRENT_FUNCTION);
     }
     this->iConsumers.removeOne(consumer);
     this->SetManaged();
@@ -110,8 +135,7 @@ void Collectable::RegisterConsumer(const QString consumer)
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
     {
         this->Unlock();
-        throw new Huggle::Exception("You can't reclaim this managed resource", "void Collectable::RegisterConsumer(const"\
-                                    " QString consumer = " + consumer + ")");
+        throw new Huggle::Exception("You can't reclaim this managed resource", BOOST_CURRENT_FUNCTION);
     }
     this->Consumers.append(consumer);
     this->Consumers.removeDuplicates();
@@ -125,38 +149,12 @@ void Collectable::UnregisterConsumer(const QString consumer)
     if (this->IsManaged() && !this->HasSomeConsumers())
     {
         this->Unlock();
-        Syslog::HuggleLogs->DebugLog("You are working with class that was already scheduled for collection!");
-        //throw new Huggle::Exception("You are working with class that was already scheduled for collection",
-        //                            "void Collectable::UnregisterConsumer(const int consumer)");
+        Huggle::Exception::ThrowSoftException("You are working with class that was already scheduled for collection",
+                                              BOOST_CURRENT_FUNCTION);
     }
     this->Consumers.removeOne(consumer);
     this->SetManaged();
     this->Unlock();
-}
-
-void Collectable::IncRef()
-{
-    this->_collectableRefs++;
-    this->SetManaged();
-}
-
-void Collectable::DecRef()
-{
-    if (!this->_collectableRefs)
-    {
-        throw new Huggle::Exception("Decrementing negative reference");
-    }
-    this->_collectableRefs--;
-}
-
-unsigned long Collectable::CollectableID()
-{
-    return this->CID;
-}
-
-unsigned long *Collectable::GetLastCIDPtr()
-{
-    return &Collectable::LastCID;
 }
 
 QString Collectable::ConsumerIdToString(const int id)
@@ -179,12 +177,13 @@ QString Collectable::ConsumerIdToString(const int id)
 
 void Collectable::SetManaged()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->_collectableManaged)
     {
         return;
     }
     this->_collectableManaged = true;
-    if (GC::gc == NULL)
+    if (GC::gc == nullptr)
     {
         // huggle is probably shutting down
         return;
@@ -193,11 +192,6 @@ void Collectable::SetManaged()
     {
         GC::gc->list.append(this);
     }
-}
-
-bool Collectable::HasSomeConsumers()
-{
-    return (this->_collectableRefs > 0 || this->iConsumers.count() > 0 || this->Consumers.count() > 0);
 }
 
 QString Collectable::DebugHgc()
@@ -229,13 +223,11 @@ QString Collectable::DebugHgc()
     return result;
 }
 
-bool Collectable::IsLocked()
-{
-    return this->_collectableLocked;
-}
-
 void Collectable::Lock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     // this is actually pretty lame check but better than nothing
     if (!this->_collectableLocked)
     {
@@ -246,18 +238,12 @@ void Collectable::Lock()
 
 void Collectable::Unlock()
 {
+#ifdef HUGGLE_PROFILING
+    Collectable::LockCt++;
+#endif
     if (this->_collectableLocked)
     {
         this->_collectableQL->unlock();
         this->_collectableLocked = false;
     }
-}
-
-bool Collectable::IsManaged()
-{
-    if (this->_collectableManaged)
-    {
-        return true;
-    }
-    return this->HasSomeConsumers();
 }

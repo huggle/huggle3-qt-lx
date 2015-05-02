@@ -12,18 +12,14 @@
 #define PREFERENCES_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QDialog>
-#include <QList>
 #include "iextension.hpp"
 #include "hugglequeuefilter.hpp"
-#ifdef PYTHONENGINE
-#include "pythonengine.hpp"
-#endif
+#include "hw.hpp"
+#include <QList>
+#include <QHash>
+
+class QCheckBox;
 
 namespace Ui
 {
@@ -33,23 +29,16 @@ namespace Ui
 namespace Huggle
 {
     class HuggleQueueFilter;
-#ifdef PYTHONENGINE
-    namespace Python
-    {
-        class PythonScript;
-    }
-#endif
+    class WikiSite;
     //! Preferences window
-    class Preferences : public QDialog
+    class HUGGLE_EX Preferences : public HW
     {
-            Q_OBJECT
-
+        Q_OBJECT
         public:
             explicit Preferences(QWidget *parent = 0);
             ~Preferences();
             void EnableQueues();
             void Disable();
-
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
@@ -61,9 +50,23 @@ namespace Huggle
             void on_pushButton_3_clicked();
             void on_checkBox_26_clicked();
             void on_checkBox_27_clicked();
-
+            void RecordKeys(int row, int column);
+            void on_pushButton_7_clicked();
+            void on_cbSites_currentIndexChanged(int index);
+            void on_cbDefault_currentIndexChanged(int index);
+            void on_tableWidget_customContextMenuRequested(const QPoint &pos);
+            void on_pushButton_rs_clicked();
         private:
+            void ResetItems();
             void Reload();
+            //! Used to reload shortcuts only
+            void Reload2();
+            QHash<QCheckBox*, int> NamespaceBoxes;
+            WikiSite *Site;
+            bool IgnoreConflicts = false;
+            bool isNowReloadingFilters = false;
+            bool RewritingForm = false;
+            bool ModifiedForm = false;
             Ui::Preferences *ui;
     };
 }

@@ -12,12 +12,8 @@
 #define IGNORELIST_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QStandardItemModel>
 
 namespace Ui
@@ -28,12 +24,11 @@ namespace Ui
 namespace Huggle
 {
     //! A window that contains ignore list
-    class IgnoreList : public QDialog
+    class HUGGLE_EX IgnoreList : public HW
     {
             Q_OBJECT
-
         public:
-            explicit IgnoreList(QWidget *parent = 0);
+            explicit IgnoreList(QWidget *parent = nullptr);
             ~IgnoreList();
 
         private slots:

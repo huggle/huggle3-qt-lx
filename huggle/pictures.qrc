@@ -2,6 +2,7 @@
     <qresource prefix="/huggle/pictures">
         <file>Resources/huggle3_newlogo.ico</file>
         <file>Resources/huggle3_newlogo.png</file>
+        <file>Resources/huggle3_logo.png</file>
         <file>Resources/blob-anon.png</file>
         <file>Resources/blob-blank.png</file>
         <file>Resources/blob-blanked.png</file>
@@ -31,7 +32,6 @@
         <file>Resources/diff-next.png</file>
         <file>Resources/diff-revert-warn.png</file>
         <file>Resources/diff-revert.png</file>
-        <file>Resources/huggle.ico</file>
         <file>Resources/page-delete.png</file>
         <file>Resources/sight-and-next.png</file>
         <file>Resources/user-block.png</file>
@@ -41,5 +41,6 @@
         <file>Resources/user-welcome.png</file>
         <file>Resources/done.png</file>
         <file>Resources/sc.png</file>
+        <file>Resources/huggle3_small.ico</file>
     </qresource>
 </RCC>

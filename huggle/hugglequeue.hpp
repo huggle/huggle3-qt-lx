@@ -12,10 +12,6 @@
 #define HUGGLEQUEUE_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QDockWidget>
 #include <QList>
@@ -23,7 +19,6 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "hugglequeuefilter.hpp"
-#include "hugglequeueitemlabel.hpp"
 #include "wikiedit.hpp"
 
 namespace Ui
@@ -35,9 +30,12 @@ namespace Huggle
 {
     class HuggleQueueFilter;
     class HuggleQueueItemLabel;
+    class WikiEdit;
+    class WikiSite;
+    class WikiUser;
 
     //! Queue of edits
-    class HuggleQueue : public QDockWidget
+    class HUGGLE_EX HuggleQueue : public QDockWidget
     {
             Q_OBJECT
         public:
@@ -50,28 +48,31 @@ namespace Huggle
              * \param page is a pointer to wiki edit you want to insert to queue
              */
             void AddItem(WikiEdit *page);
-            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = NULL);
+            void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = nullptr);
             /*!
              * \brief DeleteByScore deletes all edits that have lower than specified score
              * \param Score
              * \return number of records that matched the score
              */
             int DeleteByScore(long Score);
-            bool DeleteByRevID(int RevID);
+            bool DeleteByRevID(revid_ht RevID, WikiSite *site);
             //! Delete all edits to the page that are older than this edit
             void DeleteOlder(WikiEdit *edit);
+            void UpdateUser(WikiUser *user);
             //! Reload filters
             void Filters();
             //! Switch and render next edit in queue
             void Next();
-            WikiEdit *GetWikiEditByRevID(int RevID);
+            WikiEdit *GetWikiEditByRevID(revid_ht RevID, WikiSite *site);
             void Sort();
             void SortItemByEdit(WikiEdit *e);
-            void Trim(int i);
+            void Trim(unsigned int i);
             //! Remove 1 item
             void Trim();
             void Clear();
-            HuggleQueueFilter *CurrentFilter;
+            void RedrawTitle();
+            WikiSite *CurrentSite();
+            void ChangeSite(WikiSite *site);
             QList<HuggleQueueItemLabel*> Items;
         private slots:
             void on_comboBox_currentIndexChanged(int index);
@@ -80,6 +81,7 @@ namespace Huggle
             void ResortItem(QLayoutItem *item, int position = -1);
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
+            WikiSite *Site = nullptr;
             Ui::HuggleQueue *ui;
             bool loading;
     };

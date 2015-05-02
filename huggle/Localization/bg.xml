@@ -36,9 +36,9 @@
     <string name="block-usercontribs">Приноси</string>
     <string name="block-blockloglabel">Дневник на блокирането:</string>
     <string name="block-warnloglabel">Предупреждения:</string>
-    <string name="block-sharedipwarning">Забележка: {0} е отбелязан като споделен или динамичен IP адрес.</string>
-    <string name="block-sensitivewarning">This IP address is listed as 'sensitive' for the following reason:\n\n   {0}\n\nContinue anyway?</string>
-    <string name="block-rangeblockwarning">{0} вече е блокиран заради rangeblock на {1}.\nThis block will override the effect of the rangeblock. Continue?</string>
+    <string name="block-sharedipwarning">Забележка: $1 е отбелязан като споделен или динамичен IP адрес.</string>
+    <string name="block-sensitivewarning">This IP address is listed as 'sensitive' for the following reason:\n\n   $1\n\nContinue anyway?</string>
+    <string name="block-rangeblockwarning">$1 вече е блокиран заради rangeblock на {1}.\nThis block will override the effect of the rangeblock. Continue?</string>
     <string name="closing-whitelist">Обновяване на белия списък с потребители...</string>
     <string name="closing-config">Обновяване на подстраницата с настройки...</string>
     <string name="config-title">Настройки</string>
@@ -49,7 +49,7 @@
     <string name="edit-page">Страница</string>
     <string name="edit-edit">Редактиране</string>
     <string name="edit-page-cancel">Отказване</string>
-    <string name="email-title">Е-поща {0}</string>
+    <string name="email-title">Е-поща $1</string>
     <string name="email-subject">Тема:</string>
     <string name="email-message">Съобщение:</string>
     <string name="email-ccme">Изпращане до мен на копие от това писмо</string>
@@ -73,13 +73,13 @@
     <string name="login-progress-userlist">Проверка на списъка с потребители...</string>
     <string name="login-progress-whitelist">Получаване на белия списък с потребители...</string>
     <string name="login-error-admin">За използването на Huggle в този проект са нужни администраторски привилегии на потребителската сметка.</string>
-    <string name="login-error-age">За използването на Huggle в този проект е нужно потребителската сметка да е поне на {0} дни.</string>
+    <string name="login-error-age">За използването на Huggle в този проект е нужно потребителската сметка да е поне на $1 дни.</string>
     <string name="login-error-alldisabled">В момента Huggle е спрян във всички проекти.</string>
     <string name="login-error-approval">За използването на Huggle в този проект е нужно разрешение.</string>
     <string name="login-error-autoconfirmed">За използването на Huggle в този проект е нужно потребителската сметка да е автоматично одобрена.</string>
     <string name="login-error-captcha">Невярна парола или код за потвърждение.</string>
     <string name="login-error-config">Неуспех при зареждането на страниците с настройки.</string>
-    <string name="login-error-count">За използването на Huggle в този проект са нужни поне {0} редакции.</string>
+    <string name="login-error-count">За използването на Huggle в този проект са нужни поне $1 редакции.</string>
     <string name="login-error-disabled">Huggle is not enabled for your account, check user configuration page.</string>
     <string name="login-error-global">Неуспех при зареждането на общата страница с настройки.</string>
     <string name="login-error-invalid">Недействително потребителско име.</string>
@@ -103,10 +103,10 @@
     <string name="stats-title">Статистики</string>
     <string name="update-title">Има нова версия</string>
     <string name="update-notification">Тази версия на Huggle е остаряла.</string>
-    <string name="update-required">Трябва да използвате последната версия, {0}.</string>
-    <string name="update-optional">Използването на  последната версия, {0}, се препоръчва и в бъдеще може да стане задължително.</string>
+    <string name="update-required">Трябва да използвате последната версия, $1.</string>
+    <string name="update-optional">Използването на  последната версия, $1, се препоръчва и в бъдеще може да стане задължително.</string>
     <string name="update-download">Обновяване</string>
-    <string name="error-exception">Грешка при получаването на '{0}'</string>
-    <string name="error-fail">Неуспех при получаването на '{0}'</string>
+    <string name="error-exception">Грешка при получаването на '$1'</string>
+    <string name="error-fail">Неуспех при получаването на '$1'</string>
     <string name="retrying">Опитване отново...</string>
 </resource>

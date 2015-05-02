@@ -12,18 +12,11 @@
 #define WLQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-// seriously, Python.h is shitty enough that it requires to be
-// included first. Don't believe it? See this:
-// http://stackoverflow.com/questions/20300201/why-python-h-of-python-3-2-must-be-included-as-first-together-with-qt4
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QString>
 #include "query.hpp"
-
+#include "mediawikiobject.hpp"
+class QNetworkReply;
 namespace Huggle
 {
     enum WLQueryType
@@ -32,13 +25,14 @@ namespace Huggle
         WLQueryType_ReadWL,
         WLQueryType_SuspWL
     };
- 
+    class WikiSite;
+
     //! Whitelist query :o
-    class WLQuery : public QObject, public Query
+    class HUGGLE_EX WLQuery : public QObject, public MediaWikiObject, public Query
     {
             Q_OBJECT
         public:
-            WLQuery();
+            WLQuery(WikiSite *site);
             ~WLQuery();
             //! Get a query target as a string
             QString QueryTargetToString();
@@ -53,7 +47,7 @@ namespace Huggle
             void Finished();
             void WriteProgress(qint64 n, qint64 m);
         private:
-            QNetworkReply *r;
+            QNetworkReply *networkReply;
     };
 }
 

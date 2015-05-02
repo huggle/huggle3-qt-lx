@@ -55,7 +55,7 @@
     <string name="main-contribs">Contribucions</string>
     <string name="main-history">Istoric</string>
     <string name="main-system-options">Opcions...</string>
-    <string name="message-title">Messatge {0}</string>
+    <string name="message-title">Messatge $1</string>
     <string name="message-subject">Subjècte :</string>
     <string name="message-message">Messatge :</string>
     <string name="message-summary">Resumit :</string>

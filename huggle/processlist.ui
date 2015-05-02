@@ -52,6 +52,12 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
      </widget>
     </item>
    </layout>

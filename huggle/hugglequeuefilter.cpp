@@ -8,173 +8,161 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "configuration.hpp"
 #include "hugglequeuefilter.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
+#include "wikiedit.hpp"
+#include "wikiuser.hpp"
+#include "wikisite.hpp"
+#include "wikipage.hpp"
 
 using namespace Huggle;
 
 HuggleQueueFilter *HuggleQueueFilter::DefaultFilter = new HuggleQueueFilter();
-QList<HuggleQueueFilter*> HuggleQueueFilter::Filters;
+QHash<WikiSite*,QList<HuggleQueueFilter*>*> HuggleQueueFilter::Filters;
+
+void HuggleQueueFilter::Delete()
+{
+    foreach (QList<HuggleQueueFilter*>*list, Filters)
+    {
+        if (!list)
+            throw new Huggle::NullPointerException("QList<HuggleQueueFilter*> list", BOOST_CURRENT_FUNCTION);
+        while(list->count() > 0)
+        {
+            if (list->at(0) != DefaultFilter)
+                delete list->at(0);
+            list->removeAt(0);
+        }
+        delete list;
+    }
+    Filters.clear();
+}
+
+HuggleQueueFilter *HuggleQueueFilter::GetFilter(QString filter_name, WikiSite *site)
+{
+    if (!Filters.contains(site))
+        throw new Huggle::Exception("Invalid key", BOOST_CURRENT_FUNCTION);
+
+    foreach (HuggleQueueFilter *filter, *Filters[site])
+    {
+        if (filter->QueueName == filter_name)
+            return filter;
+    }
+    Syslog::HuggleLogs->WarningLog("There is no filter " + filter_name + " on " + site->Name + " falling back to default filter");
+    return DefaultFilter;
+}
+
+void HuggleQueueFilter::SetFilters()
+{
+    foreach (WikiSite *site, hcfg->Projects)
+        site->CurrentFilter = HuggleQueueFilter::GetFilter(site->GetUserConfig()->QueueID, site);
+}
 
 HuggleQueueFilter::HuggleQueueFilter()
 {
     this->QueueName = "default";
-    this->IgnoreBots = true;
-    this->IgnoreWL = true;
+    this->Bots = HuggleQueueFilterMatchExclude;
+    this->WL = HuggleQueueFilterMatchExclude;
     this->ProjectSpecific = false;
-    this->IgnoreFriends = true;
-    this->IgnoreIP = false;
-    this->IgnoreMinor = false;
-    this->IgnoreNP = false;
-    this->IgnoreSelf = true;
-    this->IgnoreReverts = false;
-    this->IgnoreUsers = false;
-    this->IgnoreTalk = true;
-    this->Ignore_UserSpace = false;
+    this->Friends = HuggleQueueFilterMatchExclude;
+    this->IP = HuggleQueueFilterMatchIgnore;
+    this->Minor = HuggleQueueFilterMatchIgnore;
+    this->NewPages = HuggleQueueFilterMatchIgnore;
+    this->Self = HuggleQueueFilterMatchExclude;
+    this->Reverts = HuggleQueueFilterMatchIgnore;
+    this->Users = HuggleQueueFilterMatchIgnore;
+    this->TalkPage = HuggleQueueFilterMatchExclude;
+    this->UserSpace = HuggleQueueFilterMatchIgnore;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
 {
-    if (edit == NULL)
-        throw new Exception("WikiEdit *edit must not be NULL in this context", "bool HuggleQueueFilter::Matches(WikiEdit *edit)");
-    if (this->Ignore_UserSpace && edit->Page->GetNS()->GetCanonicalName() == "User")
+    if (edit == nullptr)
+        throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
+
+    if (this->IgnoresNS(edit->Page->GetNS()->GetID()))
         return false;
-    if (edit->Page->IsTalk() && this->IgnoreTalk)
-        return false;
-    int i = 0;
-    while (i < Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.count())
+
+    if (this->UserSpace != HuggleQueueFilterMatchIgnore)
     {
-        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig_IgnorePatterns.at(i)))
-        {
+        if (this->UserSpace == HuggleQueueFilterMatchExclude && edit->Page->GetNS()->GetCanonicalName() == "User")
             return false;
-        }
+        if (this->UserSpace == HuggleQueueFilterMatchRequire && edit->Page->GetNS()->GetCanonicalName() != "User")
+            return false;
+    }
+    if (this->TalkPage != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->TalkPage == HuggleQueueFilterMatchExclude && edit->Page->IsTalk())
+            return false;
+        if (this->TalkPage == HuggleQueueFilterMatchRequire && !edit->Page->IsTalk())
+            return false;
+    }
+    int i = 0;
+    while (i < Configuration::HuggleConfiguration->ProjectConfig->IgnorePatterns.count())
+    {
+        if (edit->Page->PageName.contains(Configuration::HuggleConfiguration->ProjectConfig->IgnorePatterns.at(i)))
+            return false;
         i++;
     }
-    if (Configuration::HuggleConfiguration->ProjectConfig_Ignores.contains(edit->Page->PageName))
+    if (Configuration::HuggleConfiguration->ProjectConfig->Ignores.contains(edit->Page->PageName))
         return false;
-    if (edit->User->IsWhitelisted() && this->IgnoreWL)
-        return false;
-    if (edit->TrustworthEdit && this->IgnoreFriends)
-        return false;
-    if (edit->Minor && this->IgnoreMinor)
-        return false;
-    if (edit->IsRevert && this->IgnoreReverts)
-        return false;
-    if (edit->NewPage && this->IgnoreNP)
-        return false;
-    if (edit->Bot && this->IgnoreBots)
-        return false;
-    if (this->IgnoreSelf && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
-        return false;
+    if (this->WL != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->WL == HuggleQueueFilterMatchRequire && !edit->User->IsWhitelisted())
+            return false;
+        if (this->WL == HuggleQueueFilterMatchExclude && edit->User->IsWhitelisted())
+            return false;
+    }
+    if (this->Friends != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Friends == HuggleQueueFilterMatchExclude && edit->TrustworthEdit)
+            return false;
+        if (this->Friends == HuggleQueueFilterMatchRequire && edit->TrustworthEdit != true)
+            return false;
+    }
+    if (this->Minor != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Minor == HuggleQueueFilterMatchExclude && edit->Minor)
+            return false;
+        if (this->Minor == HuggleQueueFilterMatchRequire && !edit->Minor)
+            return false;
+    }
+    if (this->Reverts != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Reverts == HuggleQueueFilterMatchExclude && edit->IsRevert)
+            return false;
+        if (this->Reverts == HuggleQueueFilterMatchRequire && !edit->IsRevert)
+            return false;
+    }
+    if (this->NewPages != HuggleQueueFilterMatchIgnore)
+    {
+        if (edit->NewPage && this->NewPages == HuggleQueueFilterMatchExclude)
+            return false;
+        if (this->NewPages == HuggleQueueFilterMatchRequire && !edit->NewPage)
+            return false;
+    }
+    if (this->Bots != HuggleQueueFilterMatchIgnore)
+    {
+        if (edit->Bot && this->Bots == HuggleQueueFilterMatchExclude)
+            return false;
+        if (this->Bots == HuggleQueueFilterMatchRequire && !edit->Bot)
+            return false;
+    }
+    if (this->Self != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->Self == HuggleQueueFilterMatchExclude && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+            return false;
+        if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+            return false;
+    }
     return true;
 }
 
-bool HuggleQueueFilter::getIgnoreMinor() const
+bool HuggleQueueFilter::IgnoresNS(int ns)
 {
-    return this->IgnoreMinor;
-}
+    if (this->Namespaces.contains(ns))
+        return this->Namespaces[ns];
 
-void HuggleQueueFilter::setIgnoreMinor(bool value)
-{
-    this->IgnoreMinor = value;
-}
-
-bool HuggleQueueFilter::getIgnoreUsers() const
-{
-    return this->IgnoreUsers;
-}
-
-void HuggleQueueFilter::setIgnoreUsers(bool value)
-{
-    this->IgnoreUsers = value;
-}
-
-bool HuggleQueueFilter::getIgnoreWL() const
-{
-    return this->IgnoreWL;
-}
-
-void HuggleQueueFilter::setIgnoreWL(bool value)
-{
-    this->IgnoreWL = value;
-}
-
-bool HuggleQueueFilter::getIgnoreIP() const
-{
-    return this->IgnoreIP;
-}
-
-void HuggleQueueFilter::setIgnoreIP(bool value)
-{
-    this->IgnoreIP = value;
-}
-
-bool HuggleQueueFilter::getIgnoreBots() const
-{
-    return this->IgnoreBots;
-}
-
-void HuggleQueueFilter::setIgnoreBots(bool value)
-{
-    this->IgnoreBots = value;
-}
-
-bool HuggleQueueFilter::getIgnoreNP() const
-{
-    return this->IgnoreNP;
-}
-
-void HuggleQueueFilter::setIgnoreNP(bool value)
-{
-    this->IgnoreNP = value;
-}
-
-bool HuggleQueueFilter::getIgnoreFriends() const
-{
-    return this->IgnoreFriends;
-}
-
-bool HuggleQueueFilter::getIgnoreReverts() const
-{
-    return this->IgnoreReverts;
-}
-
-void HuggleQueueFilter::setIgnoreReverts(bool value)
-{
-    this->IgnoreReverts = value;
-}
-bool HuggleQueueFilter::getIgnore_UserSpace() const
-{
-    return Ignore_UserSpace;
-}
-
-void HuggleQueueFilter::setIgnore_UserSpace(bool value)
-{
-    Ignore_UserSpace = value;
-}
-
-
-void HuggleQueueFilter::setIgnoreFriends(bool value)
-{
-    this->IgnoreFriends = value;
-}
-
-bool HuggleQueueFilter::getIgnoreSelf() const
-{
-    return this->IgnoreSelf;
-}
-
-void HuggleQueueFilter::setIgnoreSelf(bool value)
-{
-    this->IgnoreSelf = value;
-}
-
-bool HuggleQueueFilter::IsDefault() const
-{
-    return this == HuggleQueueFilter::DefaultFilter;
-}
-
-bool HuggleQueueFilter::IsChangeable() const
-{
-    return !this->IsDefault() && !this->ProjectSpecific;
+    return false;
 }

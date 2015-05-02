@@ -12,11 +12,6 @@
 #define EXCEPTIONWINDOW_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it
-// simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #if _MSC_VER
 #define TRACING 0
@@ -25,10 +20,6 @@
 #endif
 
 #include <QDialog>
-#include "core.hpp"
-#if TRACING
-//#include <execinfo.h>
-#endif
 #include "exception.hpp"
 
 namespace Ui

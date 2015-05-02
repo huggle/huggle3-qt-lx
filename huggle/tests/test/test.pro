@@ -55,8 +55,6 @@ SOURCES += tst_testmain.cpp \
     ../../hugglequeuefilter.cpp \
     ../../hugglequeue.cpp \
     ../../warnings.cpp \
-    ../../hugglenuke.cpp \
-    ../../hugglemassrollback.cpp \
     ../../hugglelog.cpp \
     ../../hugglefeedproviderwiki.cpp \
     ../../hugglefeedproviderirc.cpp \
@@ -127,8 +125,6 @@ HEADERS += \
     ../../hugglequeueitemlabel.hpp \
     ../../hugglequeuefilter.hpp \
     ../../hugglequeue.hpp \
-    ../../hugglenuke.hpp \
-    ../../hugglemassrollback.hpp \
     ../../hugglelog.hpp \
     ../../hugglefeedproviderwiki.hpp \
     ../../hugglefeedproviderirc.hpp \

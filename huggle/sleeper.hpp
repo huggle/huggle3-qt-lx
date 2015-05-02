@@ -12,9 +12,6 @@
 #define SLEEPER_HPP
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QThread>
 
@@ -23,7 +20,7 @@ namespace Huggle
     /*!
      * \brief This is a workaround that allow us to use sleep
      */
-    class Sleeper : public QThread
+    class HUGGLE_EX Sleeper : public QThread
     {
         public:
             static void usleep(unsigned long usecs){QThread::usleep(usecs);}

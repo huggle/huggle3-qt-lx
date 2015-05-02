@@ -12,50 +12,54 @@
 #define REVERTQUERY_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
+#include "apiquery.hpp"
+#include "collectable_smartptr.hpp"
+#include "editquery.hpp"
+#include "mediawikiobject.hpp"
+#include "wikiedit.hpp"
 #include <QString>
 #include <QDateTime>
-#include <QTimer>
-#include "editquery.hpp"
-#include "wikiedit.hpp"
-#include "apiquery.hpp"
+
+class QTimer;
 
 namespace Huggle
 {
     class ApiQuery;
+    class QueryResult;
     class EditQuery;
     class WikiEdit;
+    class WikiSite;
 
     /*!
      * \brief The RevertQuery class can be used to rollback any edit
      */
-    class RevertQuery : public QObject, public Query
+    class HUGGLE_EX RevertQuery : public QObject, public Query, public MediaWikiObject
     {
             Q_OBJECT
-
         public:
-            static QString GetCustomRevertStatus(QString RevertData);
+            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed);
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
-            void Process();
-            void Kill();
+            RevertQuery(WikiEdit *Edit, WikiSite *site);
             ~RevertQuery();
+            void Process();
+            //! In case you want to revert only last edit, set this to true
+            void SetLast();
+            void Kill();
             QString QueryTargetToString();
             bool IsProcessed();
-            //! Whether software rollback should be used instead of regular rollback
-            bool UsingSR;
+            void SetUsingSR(bool software_rollback);
+            bool IsUsingSR();
+            WikiSite *GetSite();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
-            QString Summary;
+            QString Summary = "";
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
-            bool IgnorePreflightCheck;
-            QString Token;
-            bool MinorEdit;
+            bool IgnorePreflightCheck = false;
+            QString Token = "";
+            bool MinorEdit = false;
         public slots:
             void OnTick();
         private:
@@ -68,20 +72,34 @@ namespace Huggle
             void Rollback();
             void Revert();
             void Exit();
-            QString SR_EditToken;
-            ApiQuery *qPreflight;
-            ApiQuery *qRevert;
-            ApiQuery *qRetrieve;
-            ApiQuery *qSR_PageToken;
-            EditQuery *eqSoftwareRollback;
-            WikiEdit* edit;
-            QTimer *timer;
-            bool RollingBack;
-            bool PreflightFinished;
+            //! Whether software rollback should be used instead of regular rollback
+            bool UsingSR = false;
+            Collectable_SmartPtr<ApiQuery> qPreflight;
+            Collectable_SmartPtr<ApiQuery> qRevert;
+            Collectable_SmartPtr<ApiQuery> qHistoryInfo;
+            Collectable_SmartPtr<ApiQuery> qRetrieve;
+            Collectable_SmartPtr<EditQuery> eqSoftwareRollback;
+            Collectable_SmartPtr<WikiEdit> edit;
+            QTimer *timer = nullptr;
+            //! Revert only and only last edit
+            bool OneEditOnly = false;
+            bool RollingBack = false;
+            bool PreflightFinished = false;
             int SR_RevID;
             int SR_Depth;
-            QString SR_Target;
+            QString SR_Target = "";
     };
+
+    inline WikiSite *RevertQuery::GetSite()
+    {
+        if (this->Site == nullptr)
+            return (this->edit->GetSite());
+
+        // we know the site and despite it may be inconsistent we return it because that is what
+        // programmer wanted (by inconsistent I mean the query could have different site
+        // than the edit now had) :o
+        return this->Site;
+    }
 }
 
 #endif // REVERTQUERY_H

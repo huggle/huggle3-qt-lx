@@ -12,21 +12,18 @@
 #define NETWORKIRC_H
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QHash>
 #include <QString>
-#include <QtNetwork>
+#include <QStringList>
+#include <QAbstractSocket>
 #include <QThread>
-#include <QMutex>
-#include "configuration.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
 #include "sleeper.hpp"
 #include "exception.hpp"
+
+class QTcpSocket;
+class QTimer;
+class QMutex;
 
 namespace Huggle
 {
@@ -38,7 +35,7 @@ namespace Huggle
         class NetworkIrc;
 
         //! Represent a channel on IRC network
-        class Channel
+        class HUGGLE_EX Channel
         {
             public:
                 Channel(QString name);
@@ -58,7 +55,7 @@ namespace Huggle
         /*!
          * \brief The User class represent a user of irc network
          */
-        class User
+        class HUGGLE_EX User
         {
             public:
                 User(QString nick);
@@ -73,7 +70,7 @@ namespace Huggle
         };
 
         //! Represent a message on irc network sent either to a channel or to a user
-        class Message
+        class HUGGLE_EX Message
         {
             public:
                 Message(QString text, User us);
@@ -89,7 +86,7 @@ namespace Huggle
         /*!
          * \brief The NetworkIrc_th class is a network thread for Network Irc
          */
-        class NetworkIrc_th : public QThread
+        class HUGGLE_EX NetworkIrc_th : public QThread
         {
                 Q_OBJECT
             public:
@@ -124,11 +121,11 @@ namespace Huggle
         /*!
          * \brief The NetworkIrc provides connection to IRC servers
          */
-        class NetworkIrc : public QObject
+        class HUGGLE_EX NetworkIrc : public QObject
         {
                 Q_OBJECT
             public:
-                NetworkIrc(QString server, QString nick);
+                NetworkIrc(QString server, QString nick, bool is_async = false);
                 ~NetworkIrc();
                 //! Connect to server
                 bool Connect();
@@ -143,6 +140,7 @@ namespace Huggle
                 void Part(QString name);
                 void Data(QString text);
                 void Send(QString name, QString text);
+                bool IsAsync() { return this->async; }
                 /*!
                  * \brief GetMessage provides a last message from any channel and remove it from buffer
                  * \return NULL in case there is no message in buffer remaining or message
@@ -153,17 +151,22 @@ namespace Huggle
                 QString Nick;
                 QString UserName;
                 QString Ident;
+                QString ErrorMs;
                 QMutex *MessagesLock;
                 QHash<QString, Channel*> Channels;
                 QMutex *ChannelsLock;
                 int Port;
                 QList<Message> Messages;
             private slots:
+                void OnError(QAbstractSocket::SocketError er);
                 void OnReceive();
                 void OnTime();
+                void OnConnect();
             private:
                 void ClearList();
+                void Stop();
                 NetworkIrc_th *NetworkThread;
+                bool async;
                 QTcpSocket *NetworkSocket;
                 QTimer *Timer;
         };

@@ -10,97 +10,190 @@
 
 #include "hooks.hpp"
 #include "core.hpp"
+#include "configuration.hpp"
+#include "mainwindow.hpp"
+#include "vandalnw.hpp"
+#include "iextension.hpp"
+#include "wikiuser.hpp"
+#include "wikiedit.hpp"
 #include "syslog.hpp"
 #include "exception.hpp"
+#include "wikipage.hpp"
+
+bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *Edit)
+{
+    if (Edit == nullptr)
+        throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
+
+    bool result = true;
+    foreach (Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+        {
+            if (!extension->Hook_EditBeforeScore((void*)Edit))
+                result = false;
+        }
+    }
+    return result;
+}
 
 void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
+        throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
+
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        throw new Exception("Huggle::WikiEdit *Edit must not be nullptr", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+        if (extension->IsWorking())
+            extension->Hook_EditPreProcess((void*)Edit);
     }
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
+#endif
+}
+
+bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
+{
+    bool result = true;
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
+        if (extension->IsWorking())
         {
-            e->Hook_EditPreProcess((void*)Edit);
+            if (!extension->Hook_RevertPreflight((void*)Edit))
+                result = false;
         }
-        extension++;
     }
+    return result;
 }
 
 void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)
+        throw new NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
+
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        throw new Exception("Huggle::WikiEdit *Edit must not be nullptr", "void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)");
+        if (extension->IsWorking())
+            extension->Hook_EditPostProcess((void*)Edit);
     }
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
-    {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
-        {
-            e->Hook_EditPostProcess((void*)Edit);
-        }
-        extension++;
-    }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_OnEditPostProcess(Edit);
+#endif
 }
 
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
 {
-    Core::HuggleCore->Main->VandalDock->Good(Edit);
+    MainWindow::HuggleMain->VandalDock->Good(Edit);
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_GoodEdit((void*)Edit);
+    }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_GoodEdit(Edit);
+#endif
 }
 
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
 {
-    Core::HuggleCore->Main->VandalDock->Rollback(Edit);
+    MainWindow::HuggleMain->VandalDock->Rollback(Edit);
 }
 
 void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
 {
-    Core::HuggleCore->Main->VandalDock->WarningSent(User, User->WarningLevel);
+    MainWindow::HuggleMain->VandalDock->WarningSent(User, User->GetWarningLevel());
 }
 
 void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)
 {
-    Core::HuggleCore->Main->VandalDock->SuspiciousWikiEdit(Edit);
+    MainWindow::HuggleMain->VandalDock->SuspiciousWikiEdit(Edit);
 }
 
 void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
 {
     if (User == nullptr)
+        throw new NullPointerException("Huggle::WikiUser *User", BOOST_CURRENT_FUNCTION);
+
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
-        throw new Exception("Huggle::WikiUser *User must not be nullptr", "void Huggle::Hooks::BadnessScore(Huggle::WikiUser "\
-                            "*User, int Score)");
-    }
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
-    {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
-        if (e->IsWorking())
-        {
-            e->Hook_BadnessScore((void*)User, Score);
-        }
-        extension++;
+        if (extension->IsWorking())
+            extension->Hook_BadnessScore((void*)User, Score);
     }
 }
 
-void Huggle::Hooks::MainWindowIsLoaded(Huggle::MainWindow *window)
+void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool success)
 {
-    int extension = 0;
-    while (extension < Huggle::Core::HuggleCore->Extensions.count())
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        Huggle::iExtension *e = Huggle::Core::HuggleCore->Extensions.at(extension);
         if (e->IsWorking())
-        {
-            e->Hook_MainWindowOnLoad((void*)window);
-        }
-        extension++;
+            e->Hook_SpeedyFinished((void*)edit, tags, success);
     }
-#ifdef PYTHONENGINE
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, tags, success);
+#endif
+}
+
+void Huggle::Hooks::MainWindow_OnRender()
+{
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_MainWindowOnRender();
+    }
+#ifdef HUGGLE_PYTHON
+    //Huggle::Core::HuggleCore->Python->Hook_MainWindowOnRender();
+#endif
+}
+
+void Huggle::Hooks::MainWindow_OnLoad(Huggle::MainWindow *window)
+{
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_MainWindowOnLoad((void*)window);
+    }
+#ifdef HUGGLE_PYTHON
     Huggle::Core::HuggleCore->Python->Hook_MainWindowIsLoaded();
 #endif
 }
+
+void Huggle::Hooks::Shutdown()
+{
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if ( e->IsWorking() )
+           e->Hook_Shutdown();
+    }
+#ifdef HUGGLE_PYTHON
+    Huggle::Core::HuggleCore->Python->Hook_HuggleShutdown();
+#endif
+}
+
+bool Huggle::Hooks::Speedy_BeforeOK(Huggle::WikiEdit *edit, Huggle::SpeedyForm *form)
+{
+    bool result = true;
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+        {
+           if (!e->Hook_SpeedyBeforeOK((void*)edit, (void*)form))
+               result = false;
+        }
+    }
+    return result;
+}
+
+bool Huggle::Hooks::MainWindow_ReloadShortcut(Huggle::Shortcut *shortcut)
+{
+    bool result = true;
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+        {
+            if (!e->Hook_MainWindowReloadShortcut((void*)shortcut))
+                result = false;
+        }
+    }
+    return result;
+}
+

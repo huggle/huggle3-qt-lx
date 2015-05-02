@@ -11,23 +11,22 @@
 #include "sessionform.hpp"
 #include "configuration.hpp"
 #include "core.hpp"
+#include "exception.hpp"
+#include "generic.hpp"
+#include "hugglefeed.hpp"
 #include "ui_sessionform.h"
+#include "wikisite.hpp"
 
 using namespace Huggle;
-
-SessionForm::SessionForm(QWidget *parent) : QDialog(parent), ui(new Ui::SessionForm)
+SessionForm::SessionForm(QWidget *parent) : HW("sessionform", this, parent), ui(new Ui::SessionForm)
 {
     this->ui->setupUi(this);
-    /// \todo TRANSLATE ME
-    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
-                               "SSL: " + Configuration::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
-                               "RC feed: " + Core::HuggleCore->PrimaryFeedProvider->ToString());
-    int xx=0;
-    while (xx < Configuration::HuggleConfiguration->Rights.count())
-    {
-        this->ui->listWidget->addItem(Configuration::HuggleConfiguration->Rights.at(xx));
-        xx++;
-    }
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
+        this->ui->comboBox->addItem(site->Name);
+    this->ui->comboBox->setEnabled(Configuration::HuggleConfiguration->Multiple);
+    this->ui->comboBox->setCurrentIndex(0);
+    this->Reload(0);
+    this->RestoreWindow();
 }
 
 SessionForm::~SessionForm()
@@ -38,4 +37,22 @@ SessionForm::~SessionForm()
 void Huggle::SessionForm::on_pushButton_clicked()
 {
     this->close();
+}
+
+void Huggle::SessionForm::on_comboBox_currentIndexChanged(int index)
+{
+    this->Reload(index);
+}
+
+void SessionForm::Reload(int x)
+{
+    /// \todo TRANSLATE ME
+    WikiSite *site = Configuration::HuggleConfiguration->Projects.at(x);
+    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
+                               "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
+                               "RC feed: " + site->Provider->ToString() + "\n" +
+                               "MediaWiki: " + site->MediawikiVersion.ToString());
+    this->ui->listWidget->clear();
+    foreach (QString p, site->GetProjectConfig()->Rights)
+        this->ui->listWidget->addItem(p);
 }

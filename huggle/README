@@ -1,18 +1,19 @@
 This is a working directory of huggle, if you need to read the main
 readme file, please open the repository root/README.md
 
-If you downloaded this package using any other source than github,
+If you downloaded this package using any other source than GitHub,
 or there is no such a file like README.md, here is at least the
 minimal readme:
 
 What is this
 =============
-Please read http://en.wikipedia.org/wiki/Wikipedia:HG
+Please read https://en.wikipedia.org/wiki/Wikipedia:Huggle
 
 How to build:
 =============
 
 ./configure 
+cd huggle_release
 make
 
 Structure of this folder:
@@ -24,7 +25,6 @@ Other subfolders:
 ./Localizations - contains language files
 ./Resources - contains graphics and text files
 ./man - contains manual page
-./hunker - contains hunker that patches the makefile
 
 Please read the coding standards before you submit any new code to this
 repository, they are located in root directory as well

@@ -38,14 +38,14 @@ DEFINES *= QT_USE_QSTRINGBUILDER
 #PYTHON SUPPORT - uncomment me if you want to use python
 ##################################################################################################################################################
 #QMAKE_CXXFLAGS += -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
-#INCLUDEPATH += "/usr/include/python3.2mu"
+#INCLUDEPATH += "/usr/include/python3.4m"
 #LIBS += -lpython3.2mu
 # -L/usr/lib/python3.2/config-3.2mu -lpthread -ldl -lutil -lm -lpython3.2mu -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions
 ##################################################################################################################################################
 
 win32{
     INCLUDEPATH += "C:\\python33\\include"
-    LIBS += -LC:/OpenSSL-Win32/lib -lubsec
+    LIBS += -LC:/OpenSSL-Win32/lib -lubsec -ldbghelp
     INCLUDEPATH += C:/OpenSSL-Win32/include
 }
 
@@ -53,6 +53,7 @@ win32{
 SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
+    apiqueryresult.cpp \
     core.cpp \
     configuration.cpp \
     preferences.cpp \
@@ -106,27 +107,41 @@ SOURCES += main.cpp\
     uaareport.cpp \
     collectable.cpp \
     gc.cpp \
-    hugglemassrollback.cpp \
-    hugglenuke.cpp \
     requestprotect.cpp \
     sessionform.cpp \
     whitelistform.cpp \
     localization.cpp \
     syslog.cpp \
     huggleparser.cpp \
+    userconfiguration.cpp \
     sleeper.cpp \
     warnings.cpp \
     resources.cpp \
     mediawiki.cpp \
+    hw.cpp \
     warninglist.cpp \
     generic.cpp \
+    huggleprofiler.cpp \
     querypool.cpp \
     wikiutil.cpp \
     reloginform.cpp \
-    loadingform.cpp
+    loadingform.cpp \
+    historyitem.cpp \
+    gc_thread.cpp \
+    huggleoption.cpp \
+    projectconfiguration.cpp \
+    wikipagetagsform.cpp \
+    collectable_smartptr.cpp \
+    mediawikiobject.cpp \
+    version.cpp \
+    editbaritem.cpp \
+    editbar.cpp \
+    hugglefeedproviderxml.cpp \
+    queuehelp.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
+    apiqueryresult.hpp \
     core.hpp \
     configuration.hpp \
     preferences.hpp \
@@ -141,6 +156,7 @@ HEADERS  += mainwindow.hpp \
     aboutform.hpp \
     hugglequeue.hpp \
     hugglelog.hpp \
+    huggleprofiler.hpp \
     huggletool.hpp \
     huggleweb.hpp \
     terminalparser.hpp \
@@ -175,13 +191,12 @@ HEADERS  += mainwindow.hpp \
     revertquery.hpp \
     protectpage.hpp \
     vandalnw.hpp \
+    hw.hpp \
     networkirc.hpp \
     updateform.hpp \
     uaareport.hpp \
     collectable.hpp \
     gc.hpp \
-    hugglemassrollback.hpp \
-    hugglenuke.hpp \
     requestprotect.hpp \
     sessionform.hpp \
     whitelistform.hpp \
@@ -198,7 +213,21 @@ HEADERS  += mainwindow.hpp \
     querypool.hpp \
     wikiutil.hpp \
     reloginform.hpp \
-    loadingform.hpp
+    loadingform.hpp \
+    historyitem.hpp \
+    gc_thread.hpp \
+    projectconfiguration.hpp \
+    userconfiguration.hpp \
+    huggleoption.hpp \
+    wikipagetagsform.hpp \
+    collectable_smartptr.hpp \
+    mediawikiobject.hpp \
+    version.hpp \
+    editbaritem.hpp \
+    editbar.hpp \
+    edittype.hpp \
+    hugglefeedproviderxml.hpp \
+    queuehelp.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -227,14 +256,16 @@ FORMS    += mainwindow.ui \
     vandalnw.ui \
     updateform.ui \
     uaareport.ui \
-    hugglemassrollback.ui \
-    hugglenuke.ui \
     requestprotect.ui \
     sessionform.ui \
     whitelistform.ui \
     warninglist.ui \
     reloginform.ui \
-    loadingform.ui
+    loadingform.ui \
+    wikipagetagsform.ui \
+    editbar.ui \
+    editbaritem.ui \
+    queuehelp.ui
 
 RESOURCES += \
     pictures.qrc \

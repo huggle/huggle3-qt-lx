@@ -12,13 +12,11 @@
 #define PROTECTPAGE_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
-#include <QDialog>
+#include "hw.hpp"
 #include <QString>
 #include <QtXml>
+#include "collectable_smartptr.hpp"
 #include <QTimer>
 #include "apiquery.hpp"
 #include "wikipage.hpp"
@@ -36,7 +34,7 @@ namespace Huggle
     /*!
      * \brief The ProtectPage class display a window where user can protect a page given they have the permissions to do that
      */
-    class ProtectPage : public QDialog
+    class HUGGLE_EX ProtectPage : public HW
     {
             Q_OBJECT
         public:
@@ -54,20 +52,13 @@ namespace Huggle
         private:
             void Failed(QString reason);
             void Protect();
-            void getTokenToProtect();
-            void DelRefs();
-            void checkTokenToProtect();
-            QString ProtectToken;
-            //! Pointer to get first token
-            ApiQuery *qToken;
             //! Pointer for	protection
-            ApiQuery *qProtection;
+            Collectable_SmartPtr<ApiQuery> qProtection;
             Ui::ProtectPage *ui;
             //! Page that is about to be protected in this form
             WikiPage *PageToProtect;
             //! Timer that is used to switch between phases
             QTimer *tt;
-            int PtQueryPhase;
     };
 }
 

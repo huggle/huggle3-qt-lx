@@ -11,21 +11,73 @@
 #include "vandalnw.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
-#include "ui_vandalnw.h"
+#include "localization.hpp"
+#include "huggleweb.hpp"
+#include "hugglequeue.hpp"
+#include "mainwindow.hpp"
+#include "networkirc.hpp"
 #include "syslog.hpp"
+#include "ui_vandalnw.h"
+#include "wikiedit.hpp"
+#include "wikipage.hpp"
+#include "wikisite.hpp"
+#include "wikiuser.hpp"
+#include <QUrl>
 
 using namespace Huggle;
+
+QString VandalNw::SafeHtml(QString text)
+{
+    QString result;
+    QStringList AllowedTags;
+    AllowedTags << "b" << "big" << "font" << "i" << "s" << "u";
+    // we split the text by starting element
+    QStringList Part = text.split('<');
+    bool FirstPart = true;
+    foreach (QString part, Part)
+    {
+        if (FirstPart)
+            FirstPart = false;
+        else
+            part = "<" + part;
+        // if there is no closing we don't want to render this tag
+        if (!part.contains(">"))
+        {
+            result += HuggleWeb::Encode(part);
+            continue;
+        }
+        // now we need to find what tag it is
+        QString tag = part.mid(1, part.indexOf(">") - 1);
+        if (tag.startsWith("/"))
+            tag = tag.mid(1);
+        if (tag.contains(" "))
+        {
+            // this is some composite tag
+            tag = tag.mid(0, tag.indexOf(" "));
+        }
+        if (!AllowedTags.contains(tag))
+            part = HuggleWeb::Encode(part);
+        result += part;
+    }
+
+    return result;
+}
+
+QString VandalNw::GenerateWikiDiffLink(QString text, QString revid, WikiSite *site)
+{
+    return "<a href=\"huggle:///diff/" + site->Name + "/revid/" + revid + "\">" + text + "</a>";
+}
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     this->Irc = new IRC::NetworkIrc(Configuration::HuggleConfiguration->VandalNw_Server,
-                                    Configuration::HuggleConfiguration->SystemConfig_Username);
+                                    Configuration::HuggleConfiguration->SystemConfig_Username, true);
     this->ui->setupUi(this);
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->tm = new QTimer(this);
     this->Text = "";
     this->JoinedMain = false;
-    this->Channel = this->GetChannel();
+    this->GetChannel();
     this->UsersModified = false;
     connect(tm, SIGNAL(timeout()), this, SLOT(onTick()));
     this->Irc->UserName = Configuration::HuggleConfiguration->HuggleVersion;
@@ -48,23 +100,23 @@ void VandalNw::Connect()
 {
     if (this->Irc->IsConnected())
     {
-        Syslog::HuggleLogs->Log("Not connecting to HAN because it's already connected");
+        Syslog::HuggleLogs->Log(_l("han-already-connected"));
         return;
     }
     if (this->Irc->IsConnecting())
     {
-        Syslog::HuggleLogs->Log("Please wait, I am already connecting to HAN");
+        Syslog::HuggleLogs->Log(_l("han-already-connecting"));
         return;
     }
     if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
-        Huggle::Syslog::HuggleLogs->Log(Localizations::HuggleLocalizations->Localize("han-not"));
+        Huggle::Syslog::HuggleLogs->Log(_l("han-not"));
         return;
     } else
     {
-        this->Insert(Localizations::HuggleLocalizations->Localize("han-connecting"), HAN::MessageType_Info);
+        this->Insert(_l("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
-        this->tm->start(200);
+        this->tm->start(HUGGLE_TIMER);
     }
     this->UsersModified = true;
 }
@@ -73,50 +125,81 @@ void VandalNw::Disconnect()
 {
     this->Irc->Disconnect();
     this->JoinedMain = false;
-    /// \todo LOCALIZE ME
-    this->Insert("You are disconnected from HAN", HAN::MessageType_Info);
+    this->Insert(_l("han-disconnected"), HAN::MessageType_Info);
 }
 
 void VandalNw::Good(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Good(WikiEdit *Edit)");
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->Send(this->Channel, this->Prefix + "GOOD " + QString::number(Edit->RevID));
+    if (!this->Site2Channel.contains(Edit->GetSite()))
+    {
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
+    }
+    this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "GOOD " + QString::number(Edit->RevID));
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->Send(this->Channel, this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
+    if (!this->Site2Channel.contains(Edit->GetSite()))
+    {
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
+    }
+    this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "ROLLBACK " + QString::number(Edit->RevID));
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
 {
-    if (Edit == NULL)
+    if (Edit == nullptr)
     {
-        throw new Exception("WikiEdit *Edit was NULL", "void VandalNw::Rollback(WikiEdit *Edit)");
+        throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->Send(this->Channel, this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
+    if (!this->Site2Channel.contains(Edit->GetSite()))
+    {
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
+    }
+    this->Irc->Send(this->Site2Channel[Edit->GetSite()], this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID));
 }
 
 void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
 {
-    if (user == NULL)
+    if (user == nullptr)
     {
-        throw new Exception("WikiUser *user was NULL", "void VandalNw::WarningSent(WikiUser *user, int Level)");
+        throw new NullPointerException("WikiUser *user", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->Send(this->Channel, this->Prefix + "WARN " + QString::number(Level)
+    if (!this->Site2Channel.contains(user->GetSite()))
+    {
+        throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
+    }
+    this->Irc->Send(this->Site2Channel[user->GetSite()], this->Prefix + "WARN " + QString::number(Level)
                     + " " + QUrl::toPercentEncoding(user->Username));
 }
 
-QString VandalNw::GetChannel()
+void VandalNw::GetChannel()
 {
-    return QString(Configuration::HuggleConfiguration->Project->IRCChannel + ".huggle").toLower();
+    this->Site2Channel.clear();
+    foreach (WikiSite *ch, Configuration::HuggleConfiguration->Projects)
+    {
+        QString name;
+        if (!ch->HANChannel.isEmpty())
+        {
+            name = ch->HANChannel;
+        } else
+        {
+            name = Configuration::HuggleConfiguration->HANMask;
+            name.replace("$feed", ch->IRCChannel);
+            name.replace("$wiki", ch->Name);
+        }
+        // now we need to insert both site and channel to tables
+        this->Ch2Site.insert(name, ch);
+        this->Site2Channel.insert(ch, name);
+    }
 }
 
 bool VandalNw::IsParsed(WikiEdit *edit)
@@ -137,7 +220,7 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedSusp.at(item).RevID == edit->RevID)
         {
-            this->ProcessSusp(edit, this->UnparsedRoll.at(item).User);
+            this->ProcessSusp(edit, this->UnparsedSusp.at(item).User);
             this->UnparsedSusp.removeAt(item);
             return true;
         }
@@ -148,7 +231,7 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedGood.at(item).RevID == edit->RevID)
         {
-            this->ProcessGood(edit, this->UnparsedRoll.at(item).User);
+            this->ProcessGood(edit, this->UnparsedGood.at(item).User);
             this->UnparsedGood.removeAt(item);
             return true;
         }
@@ -164,7 +247,7 @@ void VandalNw::Rescore(WikiEdit *edit)
         return;
     }
     int item = 0;
-    HAN::RescoreItem *score = NULL;
+    HAN::RescoreItem *score = nullptr;
     while (item < this->UnparsedScores.count())
     {
         if (this->UnparsedScores.at(item).RevID == edit->RevID)
@@ -175,11 +258,12 @@ void VandalNw::Rescore(WikiEdit *edit)
         }
         item++;
     }
-    if (score != NULL)
+    if (score != nullptr)
     {
+        QString sid = QString::number(score->RevID);
         bool bot_ = score->User.toLower().contains("bot");
         QString message = "<font color=green>" + score->User + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" +
-                          edit->User->Username + "</b> (" + QString::number(score->RevID) + ") by " +
+                          edit->User->Username + "</b> (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ") by " +
                           QString::number(score->Score) + "</font>";
         if (bot_)
         {
@@ -197,8 +281,11 @@ void VandalNw::Message()
 {
     if (this->Irc->IsConnected())
     {
-        this->Irc->Send(this->Channel, this->ui->lineEdit->text());
-        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + ui->lineEdit->text(),
+        this->Irc->Send(this->Site2Channel[Configuration::HuggleConfiguration->Project], this->ui->lineEdit->text());
+        QString text = ui->lineEdit->text();
+        if (!hcfg->UserConfig->HtmlAllowedInIrc)
+            text = SafeHtml(text);
+        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + text,
                      HAN::MessageType_UserTalk);
     }
     this->ui->lineEdit->setText("");
@@ -207,37 +294,36 @@ void VandalNw::Message()
 void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 {
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() - 200);
-    this->Insert("<font color=blue>" + user + " seen a good edit to " + edit->Page->PageName + " by " + edit->User->Username
-                     + " (" + QString::number(edit->RevID) + ")" + "</font>", HAN::MessageType_User);
-    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
+    QString sid = QString::number(edit->RevID);
+    this->Insert("<font color=blue>" + user + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
+                     + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
+    MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
 {
-    this->Insert("<font color=orange>" + user + " did a rollback of " + edit->Page->PageName + " by " + edit->User->Username
-                 + " (" + QString::number(edit->RevID) + ")" + "</font>", HAN::MessageType_User);
+    QString sid = QString::number(edit->RevID);
+    this->Insert("<font color=orange>" + user + " did a rollback on " + edit->GetSite()->Name + " of " + edit->Page->PageName + " by " + edit->User->Username
+                 + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() + 200);
-    if (Huggle::Configuration::HuggleConfiguration->UserConfig_DeleteEditsAfterRevert)
+    if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
         // we need to delete older edits that we know and that is somewhere in queue
-        if (Core::HuggleCore->Main != NULL)
-        {
-            if (Core::HuggleCore->Main->Queue1 != NULL)
-            {
-                Core::HuggleCore->Main->Queue1->DeleteOlder(edit);
-            }
-        }
+        if (MainWindow::HuggleMain != nullptr && MainWindow::HuggleMain->Queue1 != nullptr)
+                MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
     }
-    Core::HuggleCore->Main->Queue1->DeleteByRevID(edit->RevID);
+    if (MainWindow::HuggleMain != nullptr && MainWindow::HuggleMain->Queue1 != nullptr)
+        MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
 {
-    this->Insert("<font color=red>" + user + " thinks that edit to " + edit->Page->PageName + " by "
-                 + edit->User->Username + " (" + QString::number(edit->RevID) +
+    QString sid = QString::number(edit->RevID);
+    this->Insert("<font color=red>" + user + " thinks that edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by "
+                 + edit->User->Username + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) +
                  ") is likely a vandalism, but they didn't revert it </font>", HAN::MessageType_User);
     edit->Score += 600;
-    Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+    MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
 }
 
 void VandalNw::UpdateHeader()
@@ -254,9 +340,9 @@ void VandalNw::UpdateHeader()
     {
         QList<IRC::User> users;
         this->Irc->ChannelsLock->lock();
-        if (this->Irc->Channels.contains(this->Channel))
+        if (this->Irc->Channels.contains(this->Site2Channel[Configuration::HuggleConfiguration->Project]))
         {
-            Huggle::IRC::Channel *channel_ = this->Irc->Channels[this->Channel];
+            Huggle::IRC::Channel *channel_ = this->Irc->Channels[this->Site2Channel[Configuration::HuggleConfiguration->Project]];
             if (channel_->UsersChanged())
             {
                 this->setWindowTitle(QString("Network (" + QString::number(channel_->Users.count()) + ")"));
@@ -303,11 +389,21 @@ void VandalNw::onTick()
         this->JoinedMain = true;
         /// \todo LOCALIZE ME
         this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
-        this->Irc->Join(this->Channel);
+        foreach(QString channel, this->Site2Channel.values())
+        {
+            if (channel.startsWith("#"))
+                this->Irc->Join(channel);
+        }
     }
     Huggle::IRC::Message *m = this->Irc->GetMessage();
-    if (m != NULL)
+    if (m != nullptr)
     {
+        if (!this->Ch2Site.contains(m->Channel))
+        {
+            Syslog::HuggleLogs->DebugLog("Ignoring message to channel " + m->Channel + " as we don't know which site it belongs to");
+            return;
+        }
+        WikiSite *site = this->Ch2Site[m->Channel];
         HAN::MessageType mt;
         if (!m->user.Nick.toLower().contains("bot"))
         {
@@ -332,8 +428,8 @@ void VandalNw::onTick()
                 if (Command == "GOOD")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+                    if (edit != nullptr)
                     {
                         this->ProcessGood(edit, m->user.Nick);
                     } else
@@ -342,14 +438,14 @@ void VandalNw::onTick()
                         {
                             this->UnparsedGood.removeAt(0);
                         }
-                        this->UnparsedGood.append(HAN::GenericItem(RevID, m->user.Nick));
+                        this->UnparsedGood.append(HAN::GenericItem(site, RevID, m->user.Nick));
                     }
                 }
                 if (Command == "ROLLBACK")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+                    if (edit != nullptr)
                     {
                         this->ProcessRollback(edit, m->user.Nick);
                     } else
@@ -358,14 +454,14 @@ void VandalNw::onTick()
                         {
                             this->UnparsedRoll.removeAt(0);
                         }
-                        this->UnparsedRoll.append(HAN::GenericItem(RevID, m->user.Nick));
+                        this->UnparsedRoll.append(HAN::GenericItem(site, RevID, m->user.Nick));
                     }
                 }
                 if (Command == "SUSPICIOUS")
                 {
                     int RevID = revid.toInt();
-                    WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                    if (edit != NULL)
+                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+                    if (edit != nullptr)
                     {
                         this->ProcessSusp(edit, m->user.Nick);
                     } else
@@ -374,37 +470,45 @@ void VandalNw::onTick()
                         {
                             this->UnparsedSusp.removeAt(0);
                         }
-                        this->UnparsedSusp.append(HAN::GenericItem(RevID, m->user.Nick));
+                        this->UnparsedSusp.append(HAN::GenericItem(site, RevID, m->user.Nick));
                     }
                 }
                 if (Command == "SCORED")
                 {
-                    int RevID = revid.toInt();
-                    int Score = parameter.toInt();
+                    revid_ht RevID = revid.toLongLong();
+                    long Score = parameter.toLong();
                     if (Score != 0)
                     {
-                        WikiEdit *edit = Core::HuggleCore->Main->Queue1->GetWikiEditByRevID(RevID);
-                        if (edit != NULL)
+                        WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+                        if (edit != nullptr)
                         {
-                            this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" +
-                                         edit->Page->PageName + "</b> by <b>" + edit->User->Username +
-                                         "</b> (" + revid + ") by " + QString::number(Score) + "</font>", mt);
+                            this->Insert("<font color=green>" + m->user.Nick + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
+                                         "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
                             edit->Score += Score;
-                            Core::HuggleCore->Main->Queue1->SortItemByEdit(edit);
+                            MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
                         } else
                         {
                             while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                             {
                                 this->UnparsedScores.removeAt(0);
                             }
-                            this->UnparsedScores.append(HAN::RescoreItem(RevID, Score, m->user.Nick));
+                            this->UnparsedScores.append(HAN::RescoreItem(site, RevID, Score, m->user.Nick));
                         }
                     }
                 }
             }
         } else
         {
-            this->Insert(m->user.Nick + ": " + m->Text, HAN::MessageType_UserTalk);
+            QString message_ = m->Text;
+            if (!hcfg->UserConfig->HtmlAllowedInIrc)
+                message_ = SafeHtml(message_);
+            if (hcfg->Multiple)
+            {
+                this->Insert(m->user.Nick + " (" + site->Name + "): " + message_, HAN::MessageType_UserTalk);
+            } else
+            {
+                this->Insert(m->user.Nick + ": " + message_, HAN::MessageType_UserTalk);
+            }
         }
         delete m;
     }
@@ -413,12 +517,18 @@ void VandalNw::onTick()
 
 void VandalNw::Insert(QString text, HAN::MessageType type)
 {
-    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayBots)      ||
-        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUser)     ||
-        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig_HAN_DisplayUserTalk))
+    if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots)      ||
+        (type == HAN::MessageType_User && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser)     ||
+        (type == HAN::MessageType_UserTalk && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk))
           return;
-    this->Text.prepend(text + "<br>");
-    this->ui->textEdit->setHtml(this->Text);
+    if (type == HAN::MessageType_Info)
+    {
+        this->Text.prepend("<font color=gray>" + text + "</font><br>");
+    } else
+    {
+        this->Text.prepend(text + "<br>");
+    }
+    this->ui->textBrowser->setHtml(this->Text);
 }
 
 void Huggle::VandalNw::on_pushButton_clicked()
@@ -426,10 +536,8 @@ void Huggle::VandalNw::on_pushButton_clicked()
     this->Message();
 }
 
-HAN::RescoreItem::RescoreItem(int _revID, int _score, QString _user)
+HAN::RescoreItem::RescoreItem(WikiSite *site, int _revID, int _score, QString _user) : GenericItem(site, _revID, _user)
 {
-    this->RevID = _revID;
-    this->User = _user;
     this->Score = _score;
 }
 
@@ -443,26 +551,30 @@ HAN::RescoreItem::RescoreItem(RescoreItem *item) : GenericItem(item)
     this->Score = item->Score;
 }
 
-HAN::GenericItem::GenericItem()
+HAN::GenericItem::GenericItem(WikiSite *site)
 {
-    this->RevID = -1;
+    this->Site = site;
     this->User = "none";
+    this->RevID = WIKI_UNKNOWN_REVID;
 }
 
-HAN::GenericItem::GenericItem(int _revID, QString _user)
+HAN::GenericItem::GenericItem(WikiSite *site, int _revID, QString _user)
 {
+    this->Site = site;
     this->RevID = _revID;
     this->User = _user;
 }
 
 HAN::GenericItem::GenericItem(const HAN::GenericItem &i)
 {
+    this->Site = i.Site;
     this->RevID = i.RevID;
     this->User = i.User;
 }
 
 HAN::GenericItem::GenericItem(HAN::GenericItem *i)
 {
+    this->Site = i->Site;
     this->RevID = i->RevID;
     this->User = i->User;
 }
@@ -470,4 +582,47 @@ HAN::GenericItem::GenericItem(HAN::GenericItem *i)
 void Huggle::VandalNw::on_lineEdit_returnPressed()
 {
     this->Message();
+}
+
+void Huggle::VandalNw::on_textBrowser_anchorClicked(const QUrl &arg1)
+{
+    QString path = arg1.path();
+    if (arg1.scheme() == "huggle")
+    {
+        // ok this is internal huggle link let's get a site
+        path = path.mid(1);
+        if (!path.contains("/"))
+            goto restore;
+        QStringList elements = path.split("/");
+        if (elements.size() < 4)
+            goto restore;
+        if (elements[0] == "diff")
+        {
+            QString wiki = elements[1];
+            QString type = elements[2];
+            if (type == "revid")
+            {
+                // we need to display a revid on given wiki, let's first get the wiki
+                WikiSite *site = nullptr;
+                foreach(WikiSite *sp, hcfg->Projects)
+                {
+                    if (wiki == sp->Name)
+                    {
+                        site = sp;
+                        break;
+                    }
+                }
+                if (site == nullptr)
+                {
+                    HUGGLE_DEBUG1("There is no such a wiki: " + wiki);
+                    goto restore;
+                }
+                revid_ht id = elements[3].toLongLong();
+                MainWindow::HuggleMain->DisplayRevid(id, site);
+            }
+        }
+    }
+    restore:
+        // for some reason this event clears the text box, so we need to refill it
+        this->ui->textBrowser->setHtml(this->Text);
 }

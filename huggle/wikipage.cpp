@@ -9,17 +9,20 @@
 //GNU General Public License for more details.
 
 #include "wikipage.hpp"
-#include "exception.hpp"
+#include <QUrl>
 #include "configuration.hpp"
+#include "exception.hpp"
+#include "wikisite.hpp"
+#include "localization.hpp"
 using namespace Huggle;
 
 WikiPage::WikiPage()
 {
     this->Site = Configuration::HuggleConfiguration->Project;
-    this->PageName = "Unknown page";
+    this->PageName = _l("page-unknown");
     this->Contents = "";
     if (!this->Site)
-        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+        throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
     this->NS = this->Site->Unknown;
 }
 
@@ -29,50 +32,37 @@ WikiPage::WikiPage(const QString &name)
     this->Site = Configuration::HuggleConfiguration->Project;
     this->Contents = "";
     if (!this->Site)
-        throw new Huggle::Exception("You can't create new page with a NULL ptr to site");
+        throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
     this->NS = this->Site->RetrieveNSFromTitle(this->PageName);
 }
 
-WikiPage::WikiPage(WikiPage *page)
+WikiPage::WikiPage(WikiPage *page) : MediaWikiObject(page)
 {
     this->PageName = page->PageName;
-    this->Site = page->Site;
     this->Contents = page->Contents;
+    this->founder = page->founder;
+    this->founderKnown = page->founderKnown;
     this->NS = page->NS;
 }
 
-WikiPage::WikiPage(const WikiPage &page)
+WikiPage::WikiPage(const WikiPage &page) : MediaWikiObject(page)
 {
     this->PageName = page.PageName;
-    this->Site = page.Site;
     this->Contents = page.Contents;
+    this->founder = page.founder;
+    this->founderKnown = page.founderKnown;
     this->NS = page.NS;
-}
-
-QString WikiPage::SanitizedName()
-{
-    return this->PageName.replace(" ", "_");
-}
-
-WikiPageNS *WikiPage::GetNS()
-{
-    return this->NS;
-}
-
-bool WikiPage::IsTalk()
-{
-    return this->NS->IsTalkPage();
 }
 
 WikiPage *WikiPage::RetrieveTalk()
 {
     if (this->IsTalk())
     {
-        return NULL;
+        return nullptr;
     }
     // now we need to get a talk namespace for this ns
     QString prefix = "Talk";
-    if (this->NS->GetName().size() > 0)
+    if (!this->NS->GetName().isEmpty())
     {
         prefix = this->Site->RetrieveNSByCanonicalName(this->NS->GetCanonicalName() + " talk")->GetName();
         if (!prefix.size())
@@ -84,10 +74,26 @@ WikiPage *WikiPage::RetrieveTalk()
     return new WikiPage(prefix + this->RootName());
 }
 
+bool WikiPage::FounderKnown()
+{
+    return this->founderKnown;
+}
+
+QString WikiPage::GetFounder()
+{
+    return this->founder;
+}
+
+void WikiPage::SetFounder(QString name)
+{
+    this->founderKnown = true;
+    this->founder = name;
+}
+
 QString WikiPage::RootName()
 {
     QString sanitized = this->PageName;
-    if (this->GetNS()->GetName().size())
+    if (!this->GetNS()->GetName().isEmpty())
     {
         // first we need to get a colon
         if (this->PageName.contains(":"))
@@ -102,7 +108,19 @@ QString WikiPage::RootName()
     return sanitized;
 }
 
+QString WikiPage::EncodedName()
+{
+    return QUrl::toPercentEncoding(this->PageName);
+}
+
+bool WikiPage::IsTalk()
+{
+    return this->NS->IsTalkPage();
+}
+
 bool WikiPage::IsUserpage()
 {
     return this->GetNS()->GetCanonicalName() == "User";
 }
+
+

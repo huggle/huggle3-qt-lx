@@ -9,7 +9,12 @@
 //GNU General Public License for more details.
 
 #include "hugglelog.hpp"
+#include <QDateTime>
+#include <QCursor>
+#include <QMutex>
+#include "localization.hpp"
 #include "exception.hpp"
+#include "huggleweb.hpp"
 #include "syslog.hpp"
 #include "ui_hugglelog.h"
 
@@ -18,7 +23,7 @@ using namespace Huggle;
 HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLog)
 {
     this->ui->setupUi(this);
-    this->setWindowTitle(Localizations::HuggleLocalizations->Localize("logs-widget-name"));
+    this->setWindowTitle(_l("logs-widget-name"));
     this->lock = new QMutex(QMutex::Recursive);
     this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
     this->Modified = false;
@@ -61,7 +66,7 @@ QString HuggleLog::Format(HuggleLog_Line line)
             break;
     }
 
-    if (color.length() == 0)
+    if (color.isEmpty())
     {
         return "<font color=blue>" + line.Date + "</font>" + "<font>&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
     } else
@@ -88,23 +93,3 @@ void HuggleLog::Render()
     }
 }
 
-HuggleLog_Line::HuggleLog_Line(HuggleLog_Line *line)
-{
-    this->Type = line->Type;
-    this->Date = line->Date;
-    this->Text = line->Text;
-}
-
-HuggleLog_Line::HuggleLog_Line(const HuggleLog_Line &line)
-{
-    this->Type = line.Type;
-    this->Date = line.Date;
-    this->Text = line.Text;
-}
-
-HuggleLog_Line::HuggleLog_Line(QString text, QString date)
-{
-    this->Type = HuggleLogType_Normal;
-    this->Text = text;
-    this->Date = date;
-}

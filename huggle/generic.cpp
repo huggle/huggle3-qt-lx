@@ -10,47 +10,141 @@
 
 #include "generic.hpp"
 #include <QMessageBox>
-#include <QtXml>
+#include <QUrl>
+#include "apiquery.hpp"
+#include "apiqueryresult.hpp"
+#include "configuration.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
+#include "wikiedit.hpp"
+#include "wikipage.hpp"
 
 using namespace Huggle;
 
 // we need to preload this thing so that we don't need to create this string so frequently and toast teh PC
 static QString options_ = QUrl::toPercentEncoding("timestamp|user|comment|content");
 
+QString Generic::Bool2String(bool b)
+{
+    if (b)
+    {
+        return "true";
+    }
+    return "false";
+}
+
+bool Generic::SafeBool(QString value, bool defaultvalue)
+{
+    if (value.toLower() == "true")
+    {
+        return true;
+    }
+    return defaultvalue;
+}
+
 bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
         return true;
-    QMessageBox::StandardButton q = QMessageBox::question(NULL, "Report user"
-                  , "This user has already reached warning level 4, so no further templates will be "\
-                    "delivered to them. You can report them now, but please, make sure that they already reached the proper "\
-                    "number of recent warnings! You can do so by clicking the \"talk page\" button in following form. "\
-                    "Keep in mind that this form and this warning is displayed no matter if your revert was successful "\
-                    "or not, so you might conflict with other users here (double check if user isn't already reported) "\
-                    "Do you want to report this user?"
-                  , QMessageBox::Yes|QMessageBox::No);
+    QMessageBox::StandardButton q = QMessageBox::question(nullptr, _l("report-tu"), _l("report-warn"), QMessageBox::Yes|QMessageBox::No);
     return (q != QMessageBox::No);
 }
 
-ApiQuery *Generic::RetrieveWikiPageContents(QString page, bool parse)
+QString Generic::SanitizePath(QString name)
 {
-    ApiQuery *query = new ApiQuery(ActionQuery);
-    query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options_ + "&titles=" + QUrl::toPercentEncoding(page);
+    QString new_name = name;
+    while (new_name.contains("//"))
+        new_name = new_name.replace("//", "/");
+#ifdef HUGGLE_WIN
+    return new_name.replace("/", "\\");
+#else
+    return name;
+#endif // HUGGLE_WIN
+}
+
+QString Generic::SocketError2Str(QAbstractSocket::SocketError error)
+{
+    switch (error)
+    {
+        case QAbstractSocket::ConnectionRefusedError:
+            return "Connection refused";
+        case QAbstractSocket::RemoteHostClosedError:
+            return "Remote host closed the connection unexpectedly";
+        case QAbstractSocket::HostNotFoundError:
+            return "Host not found";
+        case QAbstractSocket::SocketAccessError:
+            return "Socket access error";
+        case QAbstractSocket::SocketResourceError:
+            return "Socket resource error";
+        case QAbstractSocket::SocketTimeoutError:
+            return "Socket timeout error";
+        case QAbstractSocket::DatagramTooLargeError:
+            return "Datagram too large";
+        case QAbstractSocket::NetworkError:
+            return "Network error";
+        case QAbstractSocket::AddressInUseError:
+            return "AddressInUseError";
+        case QAbstractSocket::SocketAddressNotAvailableError:
+            return "SocketAdddressNotAvailableError";
+        case QAbstractSocket::UnsupportedSocketOperationError:
+            return "UnsupportedSocketOperationError";
+        case QAbstractSocket::UnfinishedSocketOperationError:
+            return "UnfinishedSocketOperationError";
+        case QAbstractSocket::ProxyAuthenticationRequiredError:
+            return "ProxyAuthenticationRequiredError";
+        case QAbstractSocket::SslHandshakeFailedError:
+            return "SslHandshakeFailedError";
+        case QAbstractSocket::ProxyConnectionRefusedError:
+            return "ProxyConnectionRefusedError";
+        case QAbstractSocket::ProxyConnectionClosedError:
+            return "ProxyConnectionClosedError";
+        case QAbstractSocket::ProxyConnectionTimeoutError:
+            return "ProxyConnectionTimeoutError";
+        case QAbstractSocket::ProxyNotFoundError:
+            return "ProxyNotFoundError";
+        case QAbstractSocket::ProxyProtocolError:
+            return "ProxyProtocolError";
+#ifdef HUGGLE_QTV5
+        case QAbstractSocket::OperationError:
+            return "OperationError";
+        case QAbstractSocket::SslInternalError:
+            return "SslInternalError";
+        case QAbstractSocket::SslInvalidUserDataError:
+            return "SslInvalidUserDataError";
+        case QAbstractSocket::TemporaryError:
+            return "TemporaryError";
+#endif
+        case QAbstractSocket::UnknownSocketError:
+            return "UnknownError";
+    }
+    return "Unknown";
+}
+
+ApiQuery *Generic::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
+{
+    WikiPage pt(page);
+    pt.Site = site;
+    return RetrieveWikiPageContents(&pt, parse);
+}
+
+ApiQuery *Generic::RetrieveWikiPageContents(WikiPage *page, bool parse)
+{
+    ApiQuery *query = new ApiQuery(ActionQuery, page->Site);
+    query->Target = "Retrieving contents of " + page->PageName;
+    query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options_ + "&titles=" + QUrl::toPercentEncoding(page->PageName);
     if (parse)
         query->Parameters += "&rvparse";
     return query;
 }
 
 QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user,
-                                          int *revid, int *reason)
+                                          long *revid, int *reason, QString *title)
 {
     if (!failed)
     {
-        throw new Huggle::Exception("failed was NULL", "QString Generic::EvaluateWikiPageContents(ApiQuery *query, "\
-                                    "bool *failed, QDateTime *base, QString *comment, QString *user, int *revid)");
+        throw new Huggle::NullPointerException("bool *failed", BOOST_CURRENT_FUNCTION);
     }
-    if (query == NULL)
+    if (query == nullptr)
     {
         if (reason) { *reason = EvaluatePageErrorReason_NULL; }
         *failed = true;
@@ -68,71 +162,72 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
         *failed = true;
         return query->Result->ErrorMessage;
     }
-    QDomDocument d;
-    d.setContent(query->Result->Data);
-    QDomNodeList page = d.elementsByTagName("rev");
-    QDomNodeList code = d.elementsByTagName("page");
-    if (code.count() > 0)
+    ApiQueryResultNode *rev = query->GetApiQueryResult()->GetNode("rev");
+    ApiQueryResultNode *page = query->GetApiQueryResult()->GetNode("page");
+    if (page != nullptr)
     {
-        QDomElement e = code.at(0).toElement();
-        if (e.attributes().contains("missing"))
+        if (title && page->Attributes.contains("title"))
+            *title = page->Attributes["title"];
+
+        if (page->Attributes.contains("missing"))
         {
             if (reason) { *reason = EvaluatePageErrorReason_Missing; }
             *failed = true;
             return "Page is missing";
         }
     }
-    if (page.count() == 0)
+    if (rev == nullptr)
     {
         if (reason) { *reason = EvaluatePageErrorReason_NoRevs; }
         *failed = true;
         return "No revisions were provided for this page";
     }
-    QDomElement e = page.at(0).toElement();
-    if (user != NULL && e.attributes().contains("user"))
+    if (user && rev->Attributes.contains("user"))
+        *user = rev->Attributes["user"];
+
+    if (comment && rev->Attributes.contains("comment"))
+        *comment = rev->Attributes["comment"];
+
+    if (ts && rev->Attributes.contains("timestamp"))
+        *ts = rev->Attributes["timestamp"];
+
+    if (revid)
     {
-        *user = e.attribute("user");
-    }
-    if (comment != NULL && e.attributes().contains("comment"))
-    {
-        *comment = e.attribute("comment");
-    }
-    if (ts != NULL && e.attributes().contains("timestamp"))
-    {
-        *ts = e.attribute("timestamp");
-    }
-    if (revid != NULL && e.attributes().contains("revid"))
-    {
-        *revid = e.attribute("revid").toInt();
+        if (rev->Attributes.contains("revid"))
+            *revid = rev->Attributes["revid"].toInt();
+        else
+            *revid = WIKI_UNKNOWN_REVID;
     }
     *failed = false;
-    return e.text();
+    return rev->Value;
 }
 
 void Generic::DeveloperError()
 {
-    QMessageBox *mb = new QMessageBox();
-    mb->setWindowTitle("Function is restricted now");
-    mb->setText("You can't perform this action in developer mode, because you aren't logged into the wiki");
-    mb->exec();
-    delete mb;
+    Generic::MessageBox("Function is restricted now", "You can't perform this action in"\
+                        " developer mode, because you aren't logged into the wiki");
 }
 
-QString Generic::ShrinkText(QString text, int size, bool html)
+QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned int minimum)
 {
-    if (size < 2)
+    if (size < minimum)
     {
-        throw new Huggle::Exception("Parameter size must be more than 2", "QString Core::ShrinkText(QString text, int size)");
+        throw new Huggle::Exception("Parameter size must be more than 2", BOOST_CURRENT_FUNCTION);
     }
     // let's copy the text into new variable so that we don't break the original
     // who knows how these mutable strings are going to behave in qt :D
     QString text_ = text;
-    int length = text_.length();
+    unsigned int length = (unsigned int)text_.length();
     if (length > size)
     {
-        text_ = text_.mid(0, size - 2);
-        text_ = text_ + "..";
-    } else while (text_.length() < size)
+        text_ = text_.mid(0, size - minimum);
+        unsigned int cd = minimum;
+        while (cd > 0)
+        {
+            text_ = text_ + ".";
+            cd--;
+        }
+    } else while ((unsigned int)text_.length() < size)
     {
         text_ += " ";
     }
@@ -141,4 +236,49 @@ QString Generic::ShrinkText(QString text, int size, bool html)
         text_.replace(" ", "&nbsp;");
     }
     return text_;
+}
+
+int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
+{
+    QMessageBox *mb = new QMessageBox(parent);
+    mb->setWindowTitle(title);
+    mb->setText(text);
+    int return_value = -1;
+    switch (st)
+    {
+        case MessageBoxStyleQuestion:
+            mb->setIcon(QMessageBox::Question);
+            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            mb->setDefaultButton(QMessageBox::Yes);
+            return_value = mb->exec();
+            break;
+        case MessageBoxStyleNormal:
+            mb->setIcon(QMessageBox::Information);
+            goto exec;
+        case MessageBoxStyleError:
+            mb->setIcon(QMessageBox::Critical);
+            goto exec;
+        case MessageBoxStyleWarning:
+            mb->setIcon(QMessageBox::Warning);
+            goto exec;
+    }
+    delete mb;
+    return return_value;
+    exec:
+        if (enforce_stop)
+        {
+            return_value = mb->exec();
+            delete mb;
+        }
+        else
+        {
+            mb->setAttribute(Qt::WA_DeleteOnClose, true);
+            mb->show();
+        }
+        return return_value;
+}
+
+int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
+{
+    return Generic::MessageBox(title, text, st, enforce_stop, parent);
 }

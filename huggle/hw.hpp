@@ -8,35 +8,27 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef HUGGLEMASSROLLBACK_H
-#define HUGGLEMASSROLLBACK_H
+#ifndef HW_HPP
+#define HW_HPP
 
 #include "definitions.hpp"
-// now we need to ensure that python is included first, because it simply suck :P
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
-
+#include <QString>
 #include <QDialog>
-
-namespace Ui
-{
-    class HuggleMassRollback;
-}
 
 namespace Huggle
 {
-    //! Window that allows users to mass rollback the edits done by a certain user
-    class HuggleMassRollback : public QDialog
+    class HUGGLE_EX HW : public QDialog
     {
-            Q_OBJECT
+        Q_OBJECT
         public:
-            explicit HuggleMassRollback(QWidget *parent = 0);
-            ~HuggleMassRollback();
-
+            HW(QString window_name, QWidget *widget, QWidget *parent = 0);
+            virtual ~HW();
+            void RestoreWindow();
         private:
-            Ui::HuggleMassRollback *ui;
+            QString HW_Geometry;
+            QString HW_Name;
+            QWidget *HW_Widget;
     };
 }
 
-#endif // HUGGLEMASSROLLBACK_H
+#endif

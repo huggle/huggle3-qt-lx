@@ -12,28 +12,27 @@
 #define WIKIUSER_H
 
 #include "definitions.hpp"
-#ifdef PYTHONENGINE
-#include <Python.h>
-#endif
 
 #include <QList>
-#include <QMutex>
+#include <QStringList>
+#include <QDateTime>
 #include <QString>
 #include <QRegExp>
-#include "huggleparser.hpp"
-#include "wikiedit.hpp"
-#include "wikisite.hpp"
+#include "mediawikiobject.hpp"
+
+class QMutex;
 
 namespace Huggle
 {
-    class WikiEdit;
+    class WikiSite;
 
     //! User
-    class WikiUser
+    class HUGGLE_EX WikiUser : public MediaWikiObject
     {
         public:
             //! Delete all users that have badness score 0 these users aren't necessary to be stored in a list
             static void TrimProblematicUsersList();
+            static bool CompareUsernames(QString a, QString b);
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
             static bool IsIPv4(QString user);
@@ -48,7 +47,7 @@ namespace Huggle
              * \param user
              * \return static user from list of problematic users
              */
-            static WikiUser *RetrieveUser(QString user);
+            static WikiUser *RetrieveUser(QString user, WikiSite *site);
             static WikiUser *RetrieveUser(WikiUser *user);
             /*!
              * \brief List of users that are scored in this instance of huggle
@@ -65,7 +64,7 @@ namespace Huggle
             WikiUser(QString user);
             ~WikiUser();
             /*!
-             * \brief GetContentsOfTalkPage returns a precached content of this users talk page
+             * \brief GetContentsOfTalkPage returns a precached content of this user's talk page
              * If there is a global instance of this user, the talk page is retrieved from it
              * so that in case there are multiple instances of this user, they all share same
              * cached talk page.
@@ -83,6 +82,7 @@ namespace Huggle
             void TalkPage_SetContents(QString text);
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
+            QString UnderscorelessUsername();
             void Sanitize();
             /*!
              * \brief Change the IP property to true forcefully even if user isn't IP
@@ -98,7 +98,7 @@ namespace Huggle
 
             //! This is useful when you created user in past and since then a global user has changed
             //! so that you just call this to refresh all the scores and information or stuff
-            void Resync();
+            bool Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
             bool TalkPage_WasRetrieved();
@@ -112,7 +112,7 @@ namespace Huggle
              * \return badness score
              */
             long GetBadnessScore(bool _resync = true);
-            void SetBadnessScore(long value);
+            void SetBadnessScore(long value, bool resync = true, bool update = true);
             //! Flags
 
             //! w - is warned
@@ -124,11 +124,13 @@ namespace Huggle
             QString Flags();
             bool GetBot() const;
             void SetBot(bool value);
+            void DecrementWarningLevel();
+            void IncrementWarningLevel();
+            void SetWarningLevel(byte_ht level);
+            byte_ht GetWarningLevel() const;
             //! Username
             QString Username;
-            //! Current warning level of user
-            byte_ht WarningLevel;
-            bool IsBanned;
+            bool IsBlocked;
             //! Local cache that holds information if user is reported or not. This information
             //! may be wrong, don't relly on it
             bool IsReported;
@@ -152,6 +154,8 @@ namespace Huggle
              * in case you want to change the score, don't forget to call WikiUser::UpdateUser(WikiUser *user)
              */
             long BadnessScore;
+            //! Current warning level of user
+            byte_ht WarningLevel;
             //! Status of whitelist 0 means user is not whitelisted, 1 that it is and different value means we don't know
             byte_ht WhitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
@@ -162,8 +166,50 @@ namespace Huggle
             QMutex *UserLock;
             bool Bot;
             bool IP;
-            WikiSite *Site;
     };
+
+    inline void WikiUser::Sanitize()
+    {
+        this->Username = this->Username.replace(" ", "_");
+    }
+
+    inline void WikiUser::ForceIP()
+    {
+        this->IP = true;
+    }
+
+    inline bool WikiUser::TalkPage_WasRetrieved()
+    {
+        return this->_talkPageWasRetrieved;
+    }
+
+    inline bool WikiUser::IsIP() const
+    {
+        return this->IP;
+    }
+
+    inline QDateTime WikiUser::TalkPage_RetrievalTime()
+    {
+        return this->DateOfTalkPage;
+    }
+
+    inline long WikiUser::GetBadnessScore(bool _resync)
+    {
+        if (_resync)
+        {
+            this->Resync();
+        }
+        return this->BadnessScore;
+    }
+
+    inline void WikiUser::SetBadnessScore(long value, bool resync, bool update)
+    {
+        if (resync)
+            this->Resync();
+        this->BadnessScore = value;
+        if (update)
+            this->Update(true);
+    }
 }
 
 #endif // WIKIUSER_H
