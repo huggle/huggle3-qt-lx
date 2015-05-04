@@ -202,7 +202,7 @@
   <string name="irc-connecting">Tentativo di connessione al feed IRC delle ultime modifiche su $1, potrebbe richiedere un pò di tempo...</string>
   <string name="irc-disconnected">Connessione persa al feed IRC delle ultime modifiche su $1. Riconnessione...</string>
   <string name="irc-nochannel">Canale IRC per $1 non trovato; al suo posto sto usando delle interrogazioni API più lente</string>
-  <string name="irc-error" fuzzy="true">Impossibile connettersi al feed IRC delle ultime modifiche ($1). Al suo posto sto usando delle interrogazioni API più lente</string>
+  <string name="irc-error">Impossibile connettersi al feed IRC delle ultime modifiche ($1: $2). Al suo posto sto usando delle interrogazioni API più lente</string>
   <string name="irc-stop">In attesa dell\'arresto del provider principale del feed su $1</string>
   <string name="irc-not">Feed: IRC è disattivato per configurazione di progetto</string>
   <string name="irc-failure">Il provider principale del feed ha fallito. Ritorno al provider del wiki...</string>
@@ -521,7 +521,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="shortcut-next">Vai alla prossima modifica</string>
   <string name="shortcut-suspicious">Marca la modifica come sospetta</string>
   <string name="shortcut-back">Vai alla modifica precedentemente mostrata</string>
-  <string name="shortcut-forward">Vai ad una modifica già caricata in passato ma da cui sei tornato</string>
+  <string name="shortcut-forward" fuzzy="true">Vai ad una modifica già caricata in passato ma da cui sei tornato</string>
   <string name="shortcut-warn">Invia un\'avvertimento all\'utente, senza annullare la modifica</string>
   <string name="shortcut-revert">Annulla la modifica</string>
   <string name="shortcut-x-raw">Avvia l\'elemento N del menu di ripristino e di avvertimento</string>
@@ -581,7 +581,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="history-not-found">Non è stato trovato nulla da annullare</string>
   <string name="history-already-done">Questo era già stato annullato</string>
   <string name="history-message-revert-body">Questo era un messaggio che è citato da un rollback, sei sicuro di voler annullare solo il template e non anche la tua modifica alla pagina? (hai bisogno di annullare il rollback se vuoi ripristinarli entrambi)</string>
-  <string name="history-revert-fail">Impossibile anullare la tua modifica a $1 errore durante il ripristino: $2</string>
+  <string name="history-revert-fail" fuzzy="true">Impossibile anullare la tua modifica a $1 errore durante il ripristino: $2</string>
   <string name="notify-fail">Impossibile inviare una notifica al creatore di $1</string>
   <string name="notify-unknowncreator">Impossibile trovare il creatore della pagina</string>
   <string name="protect-done">Cambiato il livello di protezione per $1</string>
@@ -628,6 +628,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
+  <string name="preferences-delete-using-filter">Non puoi cancellare un filtro attualmente in uso</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>
   <string name="requesting">Richiesta</string>

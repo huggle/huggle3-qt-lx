@@ -409,7 +409,7 @@
   <string name="history-message-revert-title">このメッセージを本当に取り消しますか?</string>
   <string name="history-not-found">取り消せるものが見つかりませんでした</string>
   <string name="history-already-done">既に取り消されていました</string>
-  <string name="history-revert-fail">エラーが発生したため、$1 の編集を取り消せませんでした: $2</string>
+  <string name="history-revert-fail" fuzzy="true">エラーが発生したため、$1 の編集を取り消せませんでした: $2</string>
   <string name="notify-fail">\'$1\' の作成者へ通知できませんでした</string>
   <string name="notify-unknowncreator">ページの作成者を同定できませんでした</string>
   <string name="protect-done">\'$1\' の保護レベルを変更しました</string>

@@ -52,6 +52,7 @@
   <string name="score-score">Score</string>
   <string name="score-word">Woord</string>
   <string name="score-range">Bereik</string>
+  <string name="browser-none">Er wordt geen pagina weergegeven</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
   <string name="about-contributors">Gebruikers:</string>
   <string name="block-not">Gebruiker is niet geblokkeerd</string>

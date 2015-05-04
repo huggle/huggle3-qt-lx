@@ -170,12 +170,16 @@
   <string name="login-proxyaddress">पता:</string>
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
+  <string name="login-password-empty">आपके द्वारा दिया हुआ पासवर्ड रिक्त है।</string>
   <string name="login-start">लॉग इन</string>
+  <string name="login-oauth-notsupported">यह विधि इस समय समर्थित नहीं है।</string>
   <string name="login-translate">हगल अनुवाद</string>
   <string name="login-progress-start">$1 में लॉग इन कर रहा है</string>
+  <string name="login-progress-retrieve-mw">$1 के लिए विकीमीडिया जानकारी प्राप्त हो रहा है।</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
   <string name="login-progress-config">समाकृति पृष्ठों की जाँच कर रहा है...</string>
+  <string name="login-progress-local">$1 की स्थानीय विन्यास की जाँच</string>
   <string name="login-progress-whitelist">श्वेतसूची पुनः प्राप्त कर रहा है...</string>
   <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
   <string name="login-error-age">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>

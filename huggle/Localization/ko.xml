@@ -12,6 +12,7 @@
   <string name="deleted">삭제됨</string>
   <string name="error">오류</string>
   <string name="exit">나가기</string>
+  <string name="done">완료</string>
   <string name="no">아니오</string>
   <string name="ok">확인</string>
   <string name="remove">제거</string>
@@ -23,6 +24,7 @@
   <string name="show">보이기</string>
   <string name="undo">되돌리기</string>
   <string name="yes">예</string>
+  <string name="editing-page">페이지 편집</string>
   <string name="agf">사용자 지정 이유로 좋은 편집으로 되돌리기</string>
   <string name="successful">성공</string>
   <string name="summary">요약</string>
@@ -45,6 +47,8 @@
   <string name="whitelisted">$3에서 $2점으로 된 $1 사용자를 허용 목록에 넣었습니다</string>
   <string name="expiry-time">만료 시간</string>
   <string name="duration">기간</string>
+  <string name="enable">활성화</string>
+  <string name="disable">비활성화</string>
   <string name="no-token">토큰 없음</string>
   <string name="flags">플래그</string>
   <string name="score-score">점수</string>
@@ -114,6 +118,7 @@
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르나 취소할 수 없다.)</string>
   <string name="config-revert">되돌리기</string>
   <string name="config-months-name">페이지 이름 대신 월(月)을 헤더로 사용하라.</string>
+  <string name="config-enable-irc">IRC 활성화</string>
   <string name="config-remove-reverted">다른 사용자에 의해 이미 되돌려진 수정 사항 삭제</string>
   <string name="config-auto-load-history">역사와 사용자 정보 자동 로드 (많은 네트워크 연결을 필요로함.)</string>
   <string name="config-display-text">다음글</string>
@@ -125,6 +130,7 @@
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
   <string name="config-message-notification">새로운 메시지를 받았을 때 당신의 토론 페이지에 알림을 표시한다.</string>
+  <string name="config-updates">업데이트 확인</string>
   <string name="config-beta">베타 버전을 체크</string>
   <string name="config-html-messages">HAN 은 HTML 메시지를 렌더링할 수 있다. (그러나 위험)</string>
   <string name="config-close-without">저장하지 않고 닫기</string>
@@ -311,7 +317,7 @@
   <string name="main-page-purge">새로 고침</string>
   <string name="main-page-curr-disp">현재 보여짐</string>
   <string name="main-page-display">이 문서 보기</string>
-  <string name="main-page-patrol">순찰한 것으로 표시</string>
+  <string name="main-page-patrol">점검한 것으로 표시</string>
   <string name="main-page-move">옮기기...</string>
   <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 행동은 사용자에게 +1점을 줍니다)</string>
   <string name="main-page-flag-good-edit">좋은 편집으로 플래그 (이 행동은 사용자에게 -200점을 줍니다)</string>

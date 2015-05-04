@@ -273,7 +273,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="delete-progress">Usuwanie $1...</string>
   <string name="history-message-revert-title">Czy chcesz cofnąć tylko tą wiadomość?</string>
   <string name="history-already-done">To już zostało cofnięte</string>
-  <string name="history-revert-fail">Nie można cofnąć twojej edycji na $1 błąd podczas przeglądania: $2</string>
+  <string name="history-revert-fail" fuzzy="true">Nie można cofnąć twojej edycji na $1 błąd podczas przeglądania: $2</string>
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
   <string name="relogin-fail">Nie można zalogować się na: $1</string>

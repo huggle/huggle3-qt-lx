@@ -75,14 +75,14 @@
   <string name="block-usertalk">discusión</string>
   <string name="block-usercontribs">contribuciones</string>
   <string name="block-blockloglabel">Registro de bloqueos:</string>
-  <string name="block-warnloglabel">Avisos</string>
-  <string name="block-sharedipwarning">Nota: $1 es una IP dinámica o está compartida.</string>
+  <string name="block-warnloglabel">Advertencias:</string>
+  <string name="block-sharedipwarning">Nota: $1 está etiquetada como una IP compartida o dinámica.</string>
   <string name="block-rangeblockwarning">$1 está afectado por el bloqueo del rango en {1}.
 Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de todos modos?</string>
   <string name="block-token-1">Obteniendo ficha para bloquear a $1</string>
-  <string name="block-fail">No se pudo bloquear a \'$1\'</string>
+  <string name="block-fail">No se puede bloquear al usuario, $1</string>
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
-  <string name="block-error-no-info">Ninguna información de usuario presente en la consulta (eres un sysop?)</string>
+  <string name="block-error-no-info">Ninguna información de usuario estaba presente en la consulta (¿Usted es un administrador?)</string>
   <string name="block-type">Bloquear/desbloquear</string>
   <string name="block-admin">Administrador que ha hecho el bloqueo</string>
   <string name="block-none">No hay ningún usuario que bloquear.</string>
@@ -201,9 +201,11 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="irc-disconnected">Se perdió la conexión al canal IRC de cambios recientes el $1. Reconectando...</string>
   <string name="irc-nochannel">Canal IRC para $1 no encontrado; usando peticiones API más lentas en lugar de ello</string>
   <string name="irc-error">No se puede conectar al canal IRC de cambios recientes ($1: $2). Usando peticiones API más lentas en lugar de ello</string>
+  <string name="login-old">Consultando configuración de usuario de antigua localización</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Acceder</string>
+  <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
   <string name="login-language">Idioma:</string>
   <string name="login-project">Proyecto:</string>
   <string name="login-username">Usuario:</string>
@@ -213,15 +215,28 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-proxyaddress">Dirección:</string>
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
+  <string name="login-retrieving-user-conf">Consultando configuración de usuario</string>
+  <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.
+Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
+  <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
+  <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
+  <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>
+  <string name="login-failed-autoconfirm-rights">Falló el acceso a $1: no tienes el permiso de autoconfirmado en este proyecto.</string>
+  <string name="login-failed-edit">Falló el acceso a $1: no tienes la cantidad mínima de ediciones en este proyecto.</string>
   <string name="login-retrieving-info">Obteniendo la información del usuario en $1</string>
   <string name="login-password-empty">No se proporcionó la contraseña</string>
+  <string name="login-fail-wrong-name">No se proporcionó un nombre de usuario correcto para acceder</string>
+  <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
   <string name="login-start">Ingresar</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
   <string name="login-translate">Traducir Huggle</string>
   <string name="login-progress-start">Accediendo a $1</string>
+  <string name="login-progress-retrieve-mw">Consultando información sobre MediaWiki para $1</string>
   <string name="login-progress-language">Actualizando archivos de mensaje...</string>
   <string name="login-progress-global">Revisando configuración global...</string>
   <string name="login-progress-config">Revisando páginas de configuración...</string>
+  <string name="login-progress-local">Revisando la configuración local de $1</string>
+  <string name="login-progress-user">Revisando la configuración de usuario de $1</string>
   <string name="login-progress-user-info">Comprobando la información del usuario en $1</string>
   <string name="login-progress-whitelist">Obteniendo lista blanca de usuarios...</string>
   <string name="login-ssl">Utilizar HTTPS (requiere OpenSSL)</string>
@@ -249,7 +264,9 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
   <string name="main-new-messages">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
+  <string name="main-space">El nombre de la página no puede terminar con un espacio, por favor, corrija el nombre de la página</string>
   <string name="main-system">Sistema</string>
+  <string name="main-shutting-down">Huggle se está cerrando, ignorado</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
   <string name="main-system-reconnectirc">Reconectar al canal IRC</string>
   <string name="main-system-savelog">Guardar registro...</string>
@@ -258,9 +275,11 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-system-options">Opciones...</string>
   <string name="main-system-logout">Cerrar sesión</string>
   <string name="main-system-abort">Interrumpir</string>
+  <string name="main-system-change-provider">Cambiar proveedor</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Salir</string>
+  <string name="main-tools-scoreword-list">Mostrar una lista de palabras de puntaje</string>
   <string name="main-queue">Cola de ediciones</string>
   <string name="main-queue-next">Siguiente</string>
   <string name="main-queue-clear">Limpiar actual</string>
@@ -276,6 +295,9 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-revision">Edición</string>
   <string name="main-revision-view">Ver</string>
   <string name="main-revision-revert">Revertir la edición actual</string>
+  <string name="main-revision-rv-stay">Revertir esta edición y permanecer en la página</string>
+  <string name="main-revision-revert-warn">Revertir la edición acutualmente mostrada y advertir al usuario</string>
+  <string name="main-revision-rws">Revertir la edición acutualmente mostrada, advertir al usuario y permanecer en la página</string>
   <string name="main-revision-faith">Revertir suponiendo buena fe</string>
   <string name="main-revision-previous">Previa</string>
   <string name="main-revision-next">Siguiente</string>
@@ -297,9 +319,12 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-page-watch">Vigilar</string>
   <string name="main-page-unwatch">Dejar de vigilar</string>
   <string name="main-page-purge">Purgar</string>
+  <string name="main-page-curr-disp">Actualmente mostrado</string>
   <string name="main-page-display">Mostrar esta página</string>
   <string name="main-page-patrol">Marcar como patrullado</string>
   <string name="main-page-move">Trasladar...</string>
+  <string name="main-page-flag-suspicious-edit">Marcar cono edición sospechosa (esta acción da +1 de puntuación para el usuario)</string>
+  <string name="main-page-flag-good-edit">Marcar como edición buena (esta acción da -200 de puntuación al usuario)</string>
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Borrar</string>
   <string name="main-page-load">Cargar</string>
@@ -316,6 +341,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-user-report">Reportar</string>
   <string name="main-user-ib">Aumentar la puntuación de maldad</string>
   <string name="main-user-clear-tp">Vaciar página de discusión del usuario</string>
+  <string name="main-user-retrieving-tp">Consultando página de discusión de $1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Atrás</string>
   <string name="main-browser-forward">Adelante</string>
@@ -348,6 +374,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="main-revision-acceptpend">Aceptar esta revisión pendiente</string>
   <string name="main-no-page">La acción que ha solicitado requiere que la página se cargue. Por favor, carga una página antes de volver a intentarlo.</string>
   <string name="main-revert-null">Imposible revertir, editar es null</string>
+  <string name="main-revert-newpage-title">No se puede revertir esto</string>
   <string name="message-title">Enviar mensaje a $1</string>
   <string name="message-help">Especifica uno o ambos de los espacios Asunto y Resumen. Si no especificas un resumen, se usará al asunto como tal; si no especificas un asunto, tu mensaje no tendrá título.</string>
   <string name="message-subject">Asunto:</string>
@@ -461,6 +488,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="update-error">No se ha podido descargar la versión nueva</string>
   <string name="updater-title">Hay una versión más reciente de Huggle</string>
   <string name="updater-update">Actualizar</string>
+  <string name="updater-update-available">Está disponible una versión más reciente de Huggle: versión $1</string>
   <string name="updater-open-manualdownloadpage">Abrir la página de descarga</string>
   <string name="updater-close">Cerrar</string>
   <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
@@ -515,6 +543,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="edit-progress">Editando $1...</string>
   <string name="history-fail">No se pudo obtener el historial de $1</string>
   <string name="history-progress">Obteniendo el historial de $1 ($2)…</string>
+  <string name="history-message-revert-title">¿Realmente quieres deshacer solo este mensaje?</string>
   <string name="history-not-found">No hay nada que deshacer</string>
   <string name="history-already-done">Esto ya se deshizo</string>
   <string name="notify-fail">No se pudo avisar al creador de $1</string>
@@ -548,6 +577,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
   <string name="report-no-user">Ningún usuario ha sido seleccionada para informar, por favor, seleccione un usuario primero</string>
   <string name="welcome-tp-empty-fail">Este usuario no tiene página de discusión vacía, ¿está seguro de que desea enviarle un mensaje?</string>
+  <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
   <string name="fail">Fallo</string>
   <string name="requested">Solicitado</string>
   <string name="message-fail">No se pudo entregar el mensaje</string>
@@ -557,6 +587,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="page-unknown">Página desconocida</string>
   <string name="speedy-csd-existing">Ya existe una etiqueta CSD en la página.</string>
   <string name="namespace">Espacio de nombre</string>
+  <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo reportar a \'$1\' porque</string>
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>

@@ -154,6 +154,7 @@ The column contains \"block\" and \"unblock\".</string>
   <string name="config-defaults">{{Identical|Default}}</string>
   <string name="config-revert">{{Identical|Revert}}</string>
   <string name="config-reverts">{{Identical|Revert}}</string>
+  <string name="config-new-page">{{Identical|New page}}</string>
   <string name="config-template">{{Identical|Template}}</string>
   <string name="config-blocktimeanon">{{Identical|Anonymous user}}</string>
   <string name="config-blocktimereg">{{Identical|Registered user}}</string>

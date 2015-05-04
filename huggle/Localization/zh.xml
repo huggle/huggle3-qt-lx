@@ -229,7 +229,7 @@
   <string name="login-proxygroup">代理设置</string>
   <string name="login-proxy">使用代理服务器</string>
   <string name="login-proxyaddress">地址：</string>
-  <string name="login-proxyport">端口:</string>
+  <string name="login-proxyport">端口：</string>
   <string name="login-proxydomain">域:</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>
   <string name="login-fail-css">登录$1失败：无法检索到用户配置。Special:MyPage/huggle3.css丢失。您在您的用户空间创建了huggle3.css吗？</string>
@@ -237,7 +237,7 @@
   <string name="login-fail-no-info">登录$1失败：无法检索用户信息：$2</string>
   <string name="login-fail-parse-config">登录$1失败：无法解析用户配置。请参见调试日志获取更多详细信息。</string>
   <string name="login-fail-user-data">登录$1失败：无法检索用户信息。API 查询未返回任何数据。</string>
-  <string name="login-fail-rollback-rights">登录$1失败：你在这个wiki上没有回退权限。</string>
+  <string name="login-fail-rollback-rights">登录$1失败：您在这个wiki上没有回退权限。</string>
   <string name="login-failed-autoconfirm-rights">登录$1失败：您在此项目不是自动确认用户。</string>
   <string name="login-failed-edit">登录$1失败：在此项目上您没有足够的编辑次数。</string>
   <string name="login-retrieving-info">在$1获取用户信息</string>
@@ -265,7 +265,7 @@
   <string name="login-error-cancelled">取消.</string>
   <string name="login-error-config">登录失败，无法解析用于$1的本地配置：$2</string>
   <string name="login-error-count">这个计划要求你至少有$1次编辑</string>
-  <string name="login-error-disabled">Huggle未对$1上你的账户启用。检查用户配置页。</string>
+  <string name="login-error-disabled">Huggle未对$1上您的账户启用。检查用户配置页。</string>
   <string name="login-error-global">登录失败：无法载入全域配置。参见调试日志获取详细信息。</string>
   <string name="login-error-invalid">无效的用户名</string>
   <string name="login-error-noconfig">$1没有Huggle配置页</string>
@@ -538,7 +538,7 @@
   <string name="shortcut-next">转到下一次编辑</string>
   <string name="shortcut-suspicious">标记编辑为可疑</string>
   <string name="shortcut-back">前往之前显示的编辑</string>
-  <string name="shortcut-forward">前往您过去载入而需返回的一次编辑</string>
+  <string name="shortcut-forward" fuzzy="true">前往您过去载入而需返回的一次编辑</string>
   <string name="shortcut-warn">给用户发送一个警告，而不回退其编辑</string>
   <string name="shortcut-revert">回退编辑</string>
   <string name="shortcut-x-raw">触发了N次回退和警告菜单</string>
@@ -604,7 +604,7 @@
   <string name="history-not-found">没有可以撤销的</string>
   <string name="history-already-done">这已经完成</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
-  <string name="history-revert-fail">无法在回退中撤销您对$1的编辑：$2</string>
+  <string name="history-revert-fail" fuzzy="true">无法在回退中撤销您对$1的编辑：$2</string>
   <string name="history-undone">成功撤销对$1的编辑</string>
   <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
   <string name="history-welcome-msg-title">改为发送欢迎消息？</string>

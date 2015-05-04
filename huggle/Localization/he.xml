@@ -482,7 +482,7 @@
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
   <string name="shortcut-suspicious">לסמן את העריכה סתור חשודה</string>
   <string name="shortcut-back">ללכת לעריכה שהוצגה קודם</string>
-  <string name="shortcut-forward">ללכת לעריכה שטענת קודם אבל עזבת</string>
+  <string name="shortcut-forward" fuzzy="true">ללכת לעריכה שטענת קודם אבל עזבת</string>
   <string name="shortcut-warn">לשלוח אזהרה למשתמש בלי לשחזר את העריכה</string>
   <string name="shortcut-revert">לשחזר את העריכה</string>
   <string name="shortcut-x-raw">להריץ את הפריט ה־N בתפריט שחזור ואזהרה</string>
@@ -541,7 +541,7 @@
   <string name="history-not-found">לא נמצא שום דבר לבטל</string>
   <string name="history-already-done">זה כבר בוטל</string>
   <string name="history-message-revert-body">זאת הייתה הודעה שיש אליה הפניה משחזור. האם ברצונך לבטל רק את התבנית ואפילו לא העריכה שלך לדף? (עליך לבטל את השחזור אם ברצונך לשחזר מה מאלה)</string>
-  <string name="history-revert-fail">לא ניתן לבטל את עריכתך ל־$1 שגיאה בעת שחזור: $2</string>
+  <string name="history-revert-fail" fuzzy="true">לא ניתן לבטל את עריכתך ל־$1 שגיאה בעת שחזור: $2</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>

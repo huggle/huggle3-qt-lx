@@ -26,7 +26,7 @@
   <string name="yes">Да</string>
   <string name="agf">Вернуть по обоснованным причинам как добросовестного редактора</string>
   <string name="successful">Успех</string>
-  <string name="summary">Итог</string>
+  <string name="summary">Описание</string>
   <string name="id">ID</string>
   <string name="type">Тип</string>
   <string name="target">Цель</string>
@@ -51,6 +51,7 @@
   <string name="score-range">Диапазон</string>
   <string name="score-only-whole-word">Соответствует только целым словам</string>
   <string name="score-take-any-word">Соответствует любому слову, содержащему эту строку</string>
+  <string name="browser-miss-summ">Описание правки отсутствует</string>
   <string name="about-contributors">Авторы:</string>
   <string name="block-title">Блокировка $1</string>
   <string name="block-reason">Причина:</string>
@@ -96,6 +97,11 @@
   <string name="config-watchlist">Добавлять в список наблюдения:</string>
   <string name="config-defaultsummary">Описание правки по умолчанию</string>
   <string name="config-undosummary">Описание правки при отмене собственных изменений</string>
+  <string name="config-confirm-wl">Для отката правки, сделанной пользователем из белого списка, требуется подтверждение</string>
+  <string name="config-revert">Откатить</string>
+  <string name="config-new-page">Новая страница</string>
+  <string name="config-friend">Друг</string>
+  <string name="config-talk">Страница обсуждения</string>
   <string name="config-updates">Проверить на наличие обновлений</string>
   <string name="config-confirmmultiple">Подтвердить откат нескольких правок участника к его же версии</string>
   <string name="config-confirmsame">Подтвердить откат правки участника к его же версии</string>
@@ -130,6 +136,7 @@
   <string name="delete-deletionlog">Журнал удалений:</string>
   <string name="delete-rem-talk">Delete associated talk</string>
   <string name="delete-notify">Уведомление автору</string>
+  <string name="delete-e1">Страница не может быть удалена: $1</string>
   <string name="delete-e2">Не удаётся удалить страницу</string>
   <string name="delete-edsc">Не удаётся удалить страницу, потому что $1</string>
   <string name="extension-kl">Не запущено</string>
@@ -142,7 +149,7 @@
   <string name="irc-connecting">Попытка соединения с IRC-каналом свежих правок на $1, это может занять несколько минут…</string>
   <string name="irc-disconnected">Соединение с IRC-каналом было утеряно на $1. Повторное подключение…</string>
   <string name="irc-nochannel">IRC-канал $1 не найден; будет использовано медленное соединение с применением API-запросов</string>
-  <string name="irc-error" fuzzy="true">Невозможно подключиться к IRC-каналу свежих правок. Будет использовано медленное соединение с применением API-запросов</string>
+  <string name="irc-error">Невозможно подключиться к IRC-каналу свежих правок ($1: $2). Будет использовано медленное соединение с применением API-запросов</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Войти</string>
   <string name="login-language">Язык:</string>

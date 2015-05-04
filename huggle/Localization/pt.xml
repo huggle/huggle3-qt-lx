@@ -53,6 +53,9 @@
   <string name="flags">Sinalizações</string>
   <string name="score-score">Pontuação</string>
   <string name="score-word">Palavra</string>
+  <string name="score-range">Intervalo</string>
+  <string name="score-only-whole-word">Corresponde a apenas palavras inteiras</string>
+  <string name="score-take-any-word">Corresponde a qualquer palavra que contenha esta sequência de caracteres</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
   <string name="browser-load">A descarregar dif usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Não foi fornecido nenhum resumo</string>
@@ -87,6 +90,8 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-description">Descrição</string>
   <string name="config-shortcut">Atalho</string>
   <string name="config-queue-filter-ignore">Ignorar (não importa)</string>
+  <string name="config-queue-filter-exclude">Excluir (não deve ser)</string>
+  <string name="config-queue-filter-require">Requer (Deve ser)</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-already-in-use">Este atalho já está a ser utilizado por $1 , por favor, escolha um diferente</string>
@@ -109,10 +114,19 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-watchlist">Adicionar às páginas vigiadas</string>
   <string name="config-defaultsummary">Sumário padrão para edições manuais</string>
   <string name="config-undosummary">Sumário para edições minhas que eu cancelar</string>
+  <string name="config-confirm-user">Necessita de confirmação para reverter a edição efectuada no espaço do usuário</string>
+  <string name="config-confirm-wl">Requer confirmação para reversão de edição feita por utilizador da lista branca de utilizadores</string>
+  <string name="config-confirm-talk">É necessária a confirmação para reverter a página de discussão</string>
   <string name="config-use-rollback">Usar software de reversão</string>
   <string name="config-welcome-empty-page">Enviar mensagens de boas-vindas, devido a uma uma boa edição, para utilizadores com uma página de discussão vazia</string>
+  <string name="config-conflicts-revert">Resolver automaticamente os conflitos com outros utilizadores que reverteram ou alteraram a página</string>
+  <string name="config-instant-reverts">Utilizar reversão instantânea (muito rápido, mas não pode ser cancelada)</string>
+  <string name="config-revert-wait">Espera para a reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
+  <string name="config-revert-diff">Reverter edições mais recentes para a página do diff apresentado, caso tenham sido efectuados pelo mesmo utilizador (o mesmo do vândalo)</string>
+  <string name="config-change-all">Alterar todas as configurações para um comportamento mais próximo do Huggle 2</string>
   <string name="config-merge-messages">Fundir as suas mensagens com outras em seções existentes</string>
+  <string name="config-months-name">Usar meses como cabeçalhos em vez do nome da página</string>
   <string name="config-enable-irc">Ativar IRC</string>
   <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
@@ -501,7 +515,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar edição como suspeita</string>
   <string name="shortcut-back">Voltar para a edição exibida anteriormente</string>
-  <string name="shortcut-forward">Indo para uma edição que você carregou no passado,mas retornou de</string>
+  <string name="shortcut-forward" fuzzy="true">Indo para uma edição que você carregou no passado,mas retornou de</string>
   <string name="shortcut-warn">Enviar um aviso ao utilizador sem desfazer edição</string>
   <string name="shortcut-revert">Reverter edição</string>
   <string name="shortcut-x-raw">N°do item para reverter e avisar no menu de disparo</string>

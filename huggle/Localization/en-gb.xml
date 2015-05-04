@@ -539,7 +539,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
   <string name="shortcut-back">Go to the previously displayed edit</string>
-  <string name="shortcut-forward">Go to an edit that you loaded in the past but moved back from</string>
+  <string name="shortcut-forward" fuzzy="true">Go to an edit that you loaded in the past but moved back from</string>
   <string name="shortcut-warn">Send a warning to the user, without reverting the edit</string>
   <string name="shortcut-revert">Revert edit</string>
   <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
@@ -605,7 +605,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="history-not-found">Nothing was found to undo</string>
   <string name="history-already-done">This was already undone</string>
   <string name="history-message-revert-body">This was a message that is referenced by a rollback: are you sure you want to undo only the template, not your edit to page? You will need to undo the rollback if you want to revert both of these.</string>
-  <string name="history-revert-fail">Unable to undo your edit to $1 as the following error was encountered: $2</string>
+  <string name="history-revert-fail" fuzzy="true">Unable to undo your edit to $1 as the following error was encountered: $2</string>
   <string name="history-undone">Successfully undid edit to $1</string>
   <string name="history-retrieve-fail">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>

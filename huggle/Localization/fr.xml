@@ -117,6 +117,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-confirm-user">Demander une confirmation pour révoquer les changements faits dans l\'espace utilisateur</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
+  <string name="config-friend">Ami</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
   <string name="config-confirmselfrevert">Confirmer la réversion de modifications propres (sauf annulation)</string>
@@ -152,7 +153,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="delete-deletionlog">Journal des suppressions :</string>
   <string name="delete-rem-talk">Supprimer la conversation associée</string>
   <string name="delete-notify">Notifier le créateur</string>
-  <string name="delete-error-token">Erreur : La récupération du jeton de suppression a échouée. Le motif fourni était : $1</string>
+  <string name="delete-error-token">Erreur : la récupération du jeton de suppression a échoué. Le motif fourni était : $1</string>
   <string name="delete-token01">Obtention du jeton pour supprimer $1</string>
   <string name="delete-token02">Aucun jeton n’a été renvoyé par la requête</string>
   <string name="delete-e1">La page ne peut pas être supprimée : $1</string>
@@ -489,7 +490,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
   <string name="shortcut-suspicious">Marquer la modification comme suspecte</string>
   <string name="shortcut-back">Aller à la modification précédemment affichée</string>
-  <string name="shortcut-forward">Aller à une modification que vous avez chargée dans le passé mais sur laquelle vous êtes revenu</string>
+  <string name="shortcut-forward" fuzzy="true">Aller à une modification que vous avez chargée dans le passé mais sur laquelle vous êtes revenu</string>
   <string name="shortcut-warn">Envoyer un avertissement à l’utilisateur, sans annuler la modification</string>
   <string name="shortcut-revert">Annuler la modification</string>
   <string name="shortcut-x-raw">Déclencher le Nème élément du menu d’annulation et avertissement</string>
@@ -548,7 +549,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="history-not-found">Rien n’a été trouvé à annuler</string>
   <string name="history-already-done">Ceci a déjà été annulé</string>
   <string name="history-message-revert-body">C’était un message référencé par une annulation ; êtes-vous sûr de vouloir annuler uniquement le modèle et pas même votre modification sur la page (vous devrez annuler le retour arrière si vous voulez revenir sur les deux) ?</string>
-  <string name="history-revert-fail">Impossible d’annuler votre modification de $1 ; erreur lors du retour arrière : $2</string>
+  <string name="history-revert-fail" fuzzy="true">Impossible d’annuler votre modification de $1 ; erreur lors du retour arrière : $2</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>
@@ -596,4 +597,5 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
   <string name="report-fail" fuzzy="true">Ne pas signaler $1</string>
+  <string name="error-unknown-code">Erreur inconnue: $1</string>
 </resources>

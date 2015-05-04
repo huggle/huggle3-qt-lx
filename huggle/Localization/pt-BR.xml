@@ -524,7 +524,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar como edição suspeita</string>
   <string name="shortcut-back">Vá para edição mostrada anteriormente</string>
-  <string name="shortcut-forward">Vai para uma edição que você carregou no passado,mas retornou de</string>
+  <string name="shortcut-forward" fuzzy="true">Vai para uma edição que você carregou no passado,mas retornou de</string>
   <string name="shortcut-warn">Enviar um aviso ao usuário, sem reverter a edição</string>
   <string name="shortcut-revert">Reverter edição</string>
   <string name="shortcut-x-raw">Acione Nº item no menu de aviso e reverso</string>
@@ -586,7 +586,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">isto já foi desfeito</string>
   <string name="history-message-revert-body">Essa foi uma mensagem modificada por um reversor, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou? (você terá que reverter o reversor se você quiser reverter os dois)</string>
-  <string name="history-revert-fail">Impossível de desfazer a sua edição em $1. Erro durante a reversão: $2</string>
+  <string name="history-revert-fail" fuzzy="true">Impossível de desfazer a sua edição em $1. Erro durante a reversão: $2</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>

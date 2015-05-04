@@ -119,9 +119,19 @@
   <string name="config-use-rollback">Yazılım geri alma kullan</string>
   <string name="config-welcome-empty-page">İyi düzenleme yapan, boş mesaj sayfasına sahip kullanıcılara hoşgeldin mesajı gönder</string>
   <string name="config-conflicts-revert">Geri alan veya sayfayı değiştiren diğer kullanıcılarla çatışmaları otomatik olarak kaldır</string>
+  <string name="config-instant-reverts">Ani geri alma kullan (çok hızlı, fakat başladıktan sonra durdurulamaz)</string>
+  <string name="config-revert-wait">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
+  <string name="config-revert-diff">Aynı kullanıcı (aynı vandal) tarafından sayfaya yapılan yeni değişiklerde farkı göstermek yerine geri al</string>
+  <string name="config-change-all">Huggle\'ın tüm ayarlarını huggle 2 versiyonuna çevir</string>
+  <string name="config-merge-messages">Mevcut bölümlerdeki mesajlarını birleştir</string>
+  <string name="config-months-name">Başlık olarak sayfanın adı yerine ayları kullan</string>
+  <string name="config-automatic-warning">\"Uyarı gönder\" fonksiyonunda otomatik uyarı türü ve seviyesini kullan</string>
   <string name="config-enable-irc">IRC\'i etkinleştir</string>
   <string name="config-remove-reverted">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
+  <string name="config-remove-old">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
+  <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
+  <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
   <string name="config-display-text">Sonrakini göster</string>
   <string name="config-nothing">Hiçbir şey</string>
   <string name="config-bot-edits">Bot düzenlemeleri (b)</string>
@@ -376,6 +386,7 @@
   <string name="main-revision-acceptpend">Bekleyen bu sürümü kabul et</string>
   <string name="main-no-page">Talebinizin gerçekleşmesi için bir sayfa yüklenmelidir. Lütfen tekrar denemeden önce bir sayfa yükleyin.</string>
   <string name="main-revert-null">Geri alınamadı: değişiklik boş</string>
+  <string name="main-revert-newpage-title">Geri alınamaz.</string>
   <string name="message-title">Mesaj $1</string>
   <string name="message-help">Bir konu ve/veya özet belirtin. Özet girilmemişse konu kullanılacak, o da yoksa başlık eklenmeyecek.</string>
   <string name="message-subject">Konu:</string>
@@ -488,6 +499,7 @@
   <string name="tag-title">Etiket $1</string>
   <string name="tag-tagselector">Etiket ekle:</string>
   <string name="tag-tags">Etiket(ler):</string>
+  <string name="tag-parameter">Parametre</string>
   <string name="tag-summary">Özet:</string>
   <string name="tag-insertatend">Sayfanın sonuna ekle</string>
   <string name="update-title">Yeni sürüm mevcut</string>
@@ -507,7 +519,7 @@
   <string name="shortcut-next">Sıradaki değişikliğe geç</string>
   <string name="shortcut-suspicious">Değişikliği şüpheli olarak işaretle</string>
   <string name="shortcut-back">Bir önce gösterilen değişikliğe geri dön</string>
-  <string name="shortcut-forward">Geçmişte yüklediğiniz; fakat sonra uzaklaştığınız bir değişikliğe gidin</string>
+  <string name="shortcut-forward" fuzzy="true">Geçmişte yüklediğiniz; fakat sonra uzaklaştığınız bir değişikliğe gidin</string>
   <string name="shortcut-warn">Değişikliği geri almadan kullanıcıya uyarı gönder</string>
   <string name="shortcut-revert">Değişikliği geri al</string>
   <string name="shortcut-x-raw">Geri dönüş ve uyarı menüsündeki N inci öğeyi tetikle</string>
@@ -536,6 +548,7 @@
   <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
+  <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanılmaya çalışılıyor.</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
   <string name="error-noresponse">Yanıt yok</string>
   <string name="error-pagemissing">Bu sayfa mevcut değil</string>
@@ -566,7 +579,7 @@
   <string name="history-not-found">Geri alınacak işlem bulunamadı</string>
   <string name="history-already-done">Bu işlem çoktan geri alındı</string>
   <string name="history-message-revert-body">Bu bir geri döndürme tarafından referans gösterilen bir mesajdı, sadece şablonu geri almak istediğinize ve sayfa üzerindeki değişikliğinizi bile geri almak istemediğinize emin misiniz? (İkisini de geri almak istiyorsanız geri döndürmeyi geri almalısınız)</string>
-  <string name="history-revert-fail">$1 üzerinde değişikliğiniz geri alınamadı: $2</string>
+  <string name="history-revert-fail" fuzzy="true">$1 üzerinde değişikliğiniz geri alınamadı: $2</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>
   <string name="notify-unknowncreator">Sayfa yaratıcısı bulunamadı</string>
   <string name="protect-done">$1\'in korunma seviyesi değişti</string>
@@ -616,12 +629,15 @@
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>
-  <string name="requested">Talep</string>
+  <string name="requested">Talep edildi</string>
+  <string name="edit-conflict">Değişiklik çakışması</string>
+  <string name="page-tag-nodescription">bu etiket için hiçbir açıklama yok :/</string>
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
   <string name="page-unknown">Bilinmeyen sayfa</string>
   <string name="namespace">Ad alanı</string>
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
   <string name="report-fail" fuzzy="true">$1 rapor edilmedi</string>
   <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
+  <string name="error-unknown-code">Bilinmeyen Hata: $1</string>
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
 </resources>
