@@ -54,6 +54,8 @@
   <string name="score-score">امتیاز</string>
   <string name="score-word">واژه</string>
   <string name="score-range">بازه</string>
+  <string name="score-take-any-no-talk-word">بر همهٔ واژه‌ها در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
+  <string name="score-take-whole-no-talk-word">تنها بر واژه‌های کامل در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
   <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
   <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
@@ -257,6 +259,7 @@
   <string name="login-progress-user">بررسی پیکربندی کاربر برای $1</string>
   <string name="login-progress-user-info">بررسی اطلاعات کاربر برای $1</string>
   <string name="login-progress-whitelist">بازیابی کاربر فهرست سفید...</string>
+  <string name="login-remember-password">گذرواژه را به خاطر بسپار</string>
   <string name="login-ssl">اجرای اچ‌تی‌تی‌پی‌اس (openssl نیاز دارد)</string>
   <string name="login-fail">ثبت ورود در $1 نافرجام ماند</string>
   <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند دسترسی مدیریت است.</string>
@@ -539,7 +542,7 @@
   <string name="shortcut-next">رفتن به ویرایش بعدی</string>
   <string name="shortcut-suspicious">علامت گذاری به عنوان ویرایش مشکوک</string>
   <string name="shortcut-back">دیدن ویرایش قبلا نشان داده شده</string>
-  <string name="shortcut-forward" fuzzy="true">به ویرایشی که قبلاً بار گذاشته بودید بروید اما از این یکی برگردید:</string>
+  <string name="shortcut-forward">به ویرایشی که در گذشته بارگذاشته‌اید اما از آن برگشته‌اید بروید</string>
   <string name="shortcut-warn">فرستادن هشدار به کاربر بدون واگردانی ویرایش</string>
   <string name="shortcut-revert">واگردانی ویرایش</string>
   <string name="shortcut-x-raw">آتش‌کردن مورد اِن‌اُم در گزینگان واگردانی‌ها و هشدار</string>
@@ -605,7 +608,7 @@
   <string name="history-not-found">چیزی برای واگردانی یافت نشد</string>
   <string name="history-already-done">از پیش واگردانی شده بود</string>
   <string name="history-message-revert-body">این پیام به یک واگردانی ارجاع داده شده است، آیا مطمئن هستید که می‌خواهید بدون واگردانی ویرایش‌تان روی صفحه تنها این پیام را واگردانی کنید؟ (اگر می‌خواهید هردو واگردانی شوند می‌باید واگردانی را نیز خنثی کنید)</string>
-  <string name="history-revert-fail" fuzzy="true">ناتوان در بازگرداندن ویرایش‌تان در $1 خطا هنگام بازگرداندن: $2</string>
+  <string name="history-revert-fail">ناتوان در بازگرداندن ویرایش‌تان به $1 چراکه با خطای زیر روبه‌رو شد: $2</string>
   <string name="history-undone">لغو موفقیت‌آمیز ویرایش  در $1</string>
   <string name="history-retrieve-fail">ناتوان در دریافت محتوای صفحه‌ای که می‌خواهیم ویرایش خودمان را لغو کنیم، پیام خطا: $1</string>
   <string name="history-welcome-msg-title">ارسال پیام خوش‌آمدگویی به جایش؟</string>

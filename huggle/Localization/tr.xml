@@ -133,6 +133,7 @@
   <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
   <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
   <string name="config-display-text">Sonrakini göster</string>
+  <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>
   <string name="config-bot-edits">Bot düzenlemeleri (b)</string>
   <string name="config-own-edits">Kendi düzenlemeleri</string>
@@ -247,6 +248,7 @@
   <string name="login-progress-user">$1 için kullanıcı yapılandırması denetleniyor</string>
   <string name="login-progress-user-info">$1 için kullanıcı bilgisi denetleniyor</string>
   <string name="login-progress-whitelist">Beyaz liste kullanıcıları yükleniyor...</string>
+  <string name="login-remember-password">Parolayı hatırla</string>
   <string name="login-ssl">HTTPS kullan (OpenSSL gerektirir)</string>
   <string name="login-fail">$1 üzerinde oturum açma başarısız</string>
   <string name="login-error-admin">Bu projede Huggle kullanımı yönetici hesabı gerektirir.</string>
@@ -507,6 +509,7 @@
   <string name="update-error">Yeni sürümü indirme başarısız</string>
   <string name="updater-title">Huggle\'ın yeni sürümü mevcut</string>
   <string name="updater-update">Güncelle</string>
+  <string name="updater-update-available">Yeni bir Huggle sürümü mevcut: sürüm $1</string>
   <string name="updater-open-manualdownloadpage">İndirme sayfasını aç</string>
   <string name="updater-close">Kapat</string>
   <string name="updater-disable-notify">Güncelleştirmeleri devre dışı bırak</string>
@@ -548,7 +551,9 @@
   <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
+  <string name="han-already-connected">HAN\'a zaten bağlı</string>
   <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanılmaya çalışılıyor.</string>
+  <string name="han-disconnected">HAN ile bağlantınız kesildi</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
   <string name="error-noresponse">Yanıt yok</string>
   <string name="error-pagemissing">Bu sayfa mevcut değil</string>
@@ -576,6 +581,7 @@
   <string name="history-progress">$1\'in ($2) geçmişi alınıyor...</string>
   <string name="history-work">$1 üzerinde yapılan değişiklik geri alınıyor</string>
   <string name="history-message-revert-title">Sadece bu iletiyi geri almak istediğinize emin misiniz?</string>
+  <string name="history-another-edit">Başka bir düzenlemeyi açıyorum, lütfen bekleyin</string>
   <string name="history-not-found">Geri alınacak işlem bulunamadı</string>
   <string name="history-already-done">Bu işlem çoktan geri alındı</string>
   <string name="history-message-revert-body">Bu bir geri döndürme tarafından referans gösterilen bir mesajdı, sadece şablonu geri almak istediğinize ve sayfa üzerindeki değişikliğinizi bile geri almak istemediğinize emin misiniz? (İkisini de geri almak istiyorsanız geri döndürmeyi geri almalısınız)</string>
@@ -636,7 +642,7 @@
   <string name="page-unknown">Bilinmeyen sayfa</string>
   <string name="namespace">Ad alanı</string>
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
-  <string name="report-fail" fuzzy="true">$1 rapor edilmedi</string>
+  <string name="report-fail">Rapor edilemedi çünkü: $1</string>
   <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
   <string name="error-unknown-code">Bilinmeyen Hata: $1</string>
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>

@@ -54,6 +54,8 @@
   <string name="score-score">Оценка</string>
   <string name="score-word">Збор</string>
   <string name="score-range">Опсег</string>
+  <string name="score-take-any-no-talk-word">Наоѓа било кој збор на неразговорни страници</string>
+  <string name="score-take-whole-no-talk-word">Наоѓа само цели зборови на неразговорни страници</string>
   <string name="score-only-whole-word">Најди само цели зборови</string>
   <string name="score-take-any-word">Најди било кој збор што ја содржи низава</string>
   <string name="browser-none">Сега не се прикажува ниедна страница</string>
@@ -257,6 +259,7 @@
   <string name="login-progress-user">Ги проверувам корисничките поставки за $1</string>
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
   <string name="login-progress-whitelist">Го вчитувам белиот список на корисници...</string>
+  <string name="login-remember-password">Запомни ја лозинката</string>
   <string name="login-ssl">Користи HTTPS (бара OpenSSL)</string>
   <string name="login-fail">Најавата не успеа на $1</string>
   <string name="login-error-admin">За да користите Huggle на овој проект ќе ви треба администраторска сметка.</string>
@@ -539,7 +542,7 @@
   <string name="shortcut-next">Прејди на следното уредување</string>
   <string name="shortcut-suspicious">Означи го уредувањето како сомнително</string>
   <string name="shortcut-back">Прејди на претходно прикажаното уредување</string>
-  <string name="shortcut-forward" fuzzy="true">Прејди на уредување што е некогаш вчитано, но прејдено</string>
+  <string name="shortcut-forward">Прејди на уредување што е некогаш вчитано, но преместено</string>
   <string name="shortcut-warn">Испрати му опомена на корисникот, без да го отповикаш уредувањето</string>
   <string name="shortcut-revert">Отповикај уредување</string>
   <string name="shortcut-x-raw">Повикај N-та ставка во менито за отповикување и опомена</string>
@@ -605,7 +608,7 @@
   <string name="history-not-found">Не најдов ништо за откажување</string>
   <string name="history-already-done">Ова е веќе откажано</string>
   <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само шаблонот, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>
-  <string name="history-revert-fail" fuzzy="true">Не можев да го откажам вашето уредување на $1. Грешка при враќањето: $2</string>
+  <string name="history-revert-fail">Не можев да го откажам вашето уредување на $1 бидејќи наидов на следнава грешка: $2</string>
   <string name="history-undone">Успешно отповикано уредувањето $1</string>
   <string name="history-retrieve-fail">Не можев да ја добијам содржината на страницата за која требаше да се отповика уредување. Грешката гласеше: $1</string>
   <string name="history-welcome-msg-title">Наместо тоа да испратам порака со добредојде?</string>

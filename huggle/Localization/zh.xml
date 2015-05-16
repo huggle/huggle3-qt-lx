@@ -54,6 +54,8 @@
   <string name="score-score">分数</string>
   <string name="score-word">文本</string>
   <string name="score-range">范围</string>
+  <string name="score-take-any-no-talk-word">匹配非讨论页面上的任何文字</string>
+  <string name="score-take-whole-no-talk-word">只匹配非讨论页面上的全部文字</string>
   <string name="score-only-whole-word">只匹配整个单词</string>
   <string name="score-take-any-word">匹配此字符串的任何单词</string>
   <string name="browser-none">现在没有页面可显示</string>
@@ -133,6 +135,7 @@
   <string name="config-remove-old">如果对同一页面的新编辑被解析，就移除旧编辑</string>
   <string name="config-auto-load-history">自动加载历史记录和用户信息（需进行大量的网络连接）</string>
   <string name="config-last-revision">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
+  <string name="config-require-delay">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
   <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
   <string name="config-display-text">显示下一个</string>
   <string name="config-retrieve-edit">取得自己的编辑</string>
@@ -256,6 +259,7 @@
   <string name="login-progress-user">检查$1的用户配置</string>
   <string name="login-progress-user-info">检查$1的用户信息</string>
   <string name="login-progress-whitelist">获取白名单...</string>
+  <string name="login-remember-password">记住密码</string>
   <string name="login-ssl">使用 HTTPS（需要 OpenSSL）</string>
   <string name="login-fail">登录$1失败</string>
   <string name="login-error-admin">这个计划上需要管理员权限才能使用Huggle。</string>
@@ -538,7 +542,7 @@
   <string name="shortcut-next">转到下一次编辑</string>
   <string name="shortcut-suspicious">标记编辑为可疑</string>
   <string name="shortcut-back">前往之前显示的编辑</string>
-  <string name="shortcut-forward" fuzzy="true">前往您过去载入而需返回的一次编辑</string>
+  <string name="shortcut-forward">前往您过去载入但后来移回的一次编辑</string>
   <string name="shortcut-warn">给用户发送一个警告，而不回退其编辑</string>
   <string name="shortcut-revert">回退编辑</string>
   <string name="shortcut-x-raw">触发了N次回退和警告菜单</string>
@@ -604,7 +608,7 @@
   <string name="history-not-found">没有可以撤销的</string>
   <string name="history-already-done">这已经完成</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
-  <string name="history-revert-fail" fuzzy="true">无法在回退中撤销您对$1的编辑：$2</string>
+  <string name="history-revert-fail">因为遇到以下错误，我们无法撤销您对$1的编辑：$2</string>
   <string name="history-undone">成功撤销对$1的编辑</string>
   <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
   <string name="history-welcome-msg-title">改为发送欢迎消息？</string>

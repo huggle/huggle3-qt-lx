@@ -54,6 +54,8 @@
   <string name="score-score">Score</string>
   <string name="score-word">Wort</string>
   <string name="score-range">Bereich</string>
+  <string name="score-take-any-no-talk-word">Entspricht einem beliebigen Wort auf Nicht-Diskussionsseiten</string>
+  <string name="score-take-whole-no-talk-word">Entspricht nur ganzen Wörtern auf Nicht-Diskussionsseiten</string>
   <string name="score-only-whole-word">Nur ganze Wörter finden</string>
   <string name="score-take-any-word">Jedes Wort finden, das diese Zeichenfolge enthält.</string>
   <string name="browser-none">Es wird jetzt keine Seite angezeigt</string>
@@ -257,6 +259,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-progress-user">Prüfe Benutzerkonfiguration für $1</string>
   <string name="login-progress-user-info">Prüfe Benutzerinformation für $1</string>
   <string name="login-progress-whitelist">Lade Benutzer-Whitelist herunter...</string>
+  <string name="login-remember-password">Passwort speichern</string>
   <string name="login-ssl">HTTPS benutzen (erfordert OpenSSL)</string>
   <string name="login-fail">Anmeldung auf $1 fehlgeschlagen</string>
   <string name="login-error-admin">Die Verwendung von Huggle auf diesem Projekt erfordert Administrator-Status.</string>
@@ -539,7 +542,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="shortcut-next">Gehe zur nächsten Bearbeitung</string>
   <string name="shortcut-suspicious">Bearbeitung als verdächtig markieren</string>
   <string name="shortcut-back">Gehe zur zuletzt angezeigten Bearbeitung</string>
-  <string name="shortcut-forward" fuzzy="true">Gehe zu einer Bearbeitung, die du in der Vergangenheit geladen hast, aber von der du zurückgegangen bist.</string>
+  <string name="shortcut-forward">Gehe zu einer Bearbeitung, die du in der Vergangenheit geladen hast, aber von der du zurückgegangen bist.</string>
   <string name="shortcut-warn">Sende eine Warnung an den Benutzer, ohne die Bearbeitung zurückzusetzen</string>
   <string name="shortcut-revert">Bearbeitung zurücksetzen</string>
   <string name="shortcut-x-raw">Objekt „N th“ im Zurücksetzungs- und Warnmenü auslösen</string>
@@ -605,7 +608,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="history-not-found">Nichts zum Rückgängigmachen gefunden</string>
   <string name="history-already-done">Dies wurde bereits rückgängig gemacht</string>
   <string name="history-message-revert-body">Dies war eine Nachricht, die sich auf eine Zurücksetzung bezieht. Bist du sicher, dass du nur die Vorlage und nicht deine Bearbeitung an der Seite rückgängig machen willst? Du musst die Zurücksetzung in dem Fall rückgängig machen, wo du beide zurücksetzen willst.</string>
-  <string name="history-revert-fail" fuzzy="true">Deine Bearbeitung an $1 konnte nicht rückgängig gemacht werden, da ein Fehler aufgetreten ist: $2</string>
+  <string name="history-revert-fail">Deine Bearbeitung an $1 konnte nicht rückgängig gemacht werden, da der folgende Fehler aufgetreten ist: $2</string>
   <string name="history-undone">Bearbeitung an $1 erfolgreich rückgängig gemacht</string>
   <string name="history-retrieve-fail">Der Inhalt für die Seite, für die die eigene Bearbeitung zurückgesetzt werden soll, konnte nicht abgerufen werden. Der Fehler war: $1</string>
   <string name="history-welcome-msg-title">Stattdessen Willkommensnachricht senden?</string>

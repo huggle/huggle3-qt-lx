@@ -46,6 +46,7 @@
   <string name="disable">Ußschallde</string>
   <string name="score-word">Woot</string>
   <string name="score-range">Berett</string>
+  <string name="score-take-any-no-talk-word">Pass op jehdes Wodd en ene Sigg, die kein Klaafsigg es.</string>
   <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
   <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
   <string name="browser-none">Kein Sigg weed em Momang aanjezeisch</string>
@@ -118,6 +119,7 @@
   <string name="login-oauth-notsupported">Di Metohd es em Momang nit ongerschtöz</string>
   <string name="login-translate">Huggle övversäze</string>
   <string name="login-progress-whitelist">Ben dem Metmaacher sing „wiiße Leß“ aam holle</string>
+  <string name="login-remember-password">Donn et Paßwood märke</string>
   <string name="login-error-invalid">Dä Metmaacher-Nahme es onjöltesch</string>
   <string name="login-error-nouser">Dä Metmaacher-Nahme jidd_et nit</string>
   <string name="login-error-password">Dat paßwood es verkihrt</string>

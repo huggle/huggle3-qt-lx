@@ -54,6 +54,8 @@
   <string name="score-score">Punteggio</string>
   <string name="score-word">Parola</string>
   <string name="score-range">Intervallo</string>
+  <string name="score-take-any-no-talk-word">Corrisponde a qualsiasi parola in pagine non di discussione</string>
+  <string name="score-take-whole-no-talk-word">Corrisponde solo a parole intere, in pagine non di discussione</string>
   <string name="score-only-whole-word">Corrisponde solo a parole intere</string>
   <string name="score-take-any-word">Corrisponde a qualsiasi parola che contiene questa stringa</string>
   <string name="browser-none">Non si sta visualizzando alcuna pagina</string>
@@ -116,18 +118,23 @@
   <string name="config-confirm-user">Richiesta di conferma per annullare una modifica in namespace utente</string>
   <string name="config-confirm-wl">Richiedere conferma per annullare una modifica realizzata da un utente in lista bianca</string>
   <string name="config-confirm-talk">Richiesta di conferma per annullare una modifica in pagina di discussione</string>
+  <string name="config-use-rollback">Usa rollback di software</string>
   <string name="config-welcome-empty-page">Invia un messaggio di benvenuto agli utenti con la pagina di discussione vuota quando effettuano una modifica corretta</string>
   <string name="config-conflicts-revert">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
   <string name="config-instant-reverts">Usa ripristino istantaneo (molto veloce, ma non può essere annullato una volta eseguito)</string>
+  <string name="config-revert-wait">Ripristina attesa (in secondi)</string>
   <string name="config-revert">Ripristina</string>
   <string name="config-revert-diff">Ripristina le modifiche più recenti delle differenze visualizzate, nel caso fossero state fatte dallo stesso utente (stesso vandalo)</string>
   <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
   <string name="config-merge-messages">Unisci i tuoi messaggi con gli altri nelle sezioni esistenti</string>
   <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
   <string name="config-enable-irc">Attiva IRC</string>
+  <string name="config-remove-reverted">Rimuovi modifiche che sono state già annullate da qualcun altro</string>
+  <string name="config-remove-old">Rimuovi vecchie modifiche se si sta esaminando una modifica più recente alla stessa pagina</string>
   <string name="config-auto-load-history">Carica automaticamente la cronologia e le informazioni dell\'utente (richiede molta connessione di rete)</string>
   <string name="config-last-revision">Mostra l\'ultima revisione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima revisione (la scaricherà in seguito bypassando la cache)</string>
   <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, per cui non è possibile usare alcuna funzionalità di scrittura (utile quando devi risolvere un bug da pressione multipla di più pulsanti sulla tastiera)</string>
+  <string name="config-wait-edit">Il tempo che è necessario attendere prima che siano abilitate le funzioni di modifica (secondi):</string>
   <string name="config-display-text">Mostra il successivo</string>
   <string name="config-retrieve-edit">Recupera le tue modifiche</string>
   <string name="config-nothing">Niente</string>
@@ -139,6 +146,9 @@
   <string name="config-friend">Amico</string>
   <string name="config-userspace">Spazio Utente</string>
   <string name="config-talk">Pagina di discussione</string>
+  <string name="config-columns-dynamic">Rendi le colonne dinamiche (larghezza automaticamente basata sulle dimensioni del contenuto) o manuali (sarà l\'utente a ridimensionarle a piacimento)</string>
+  <string name="config-message-notification">Visualizza una notifica quando ricevi un nuovo messaggio sulla tua pagina di discussione</string>
+  <string name="config-warning-api">Visualizza gli avvisi per le query con API</string>
   <string name="config-title-diff">Titolo della pagina in ogni diff (testo di grandi dimensioni che mostra solo il titolo di una pagina in alto ad ogni diff)</string>
   <string name="config-updates">Verifica aggiornamenti</string>
   <string name="config-beta">Verifica eventuali versioni beta</string>
@@ -248,6 +258,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="login-progress-user">Controllo della configurazione utente per $1</string>
   <string name="login-progress-user-info">Controllo delle informazioni utente per $1</string>
   <string name="login-progress-whitelist">Recupero della lista bianca degli utenti...</string>
+  <string name="login-remember-password">Ricorda la password</string>
   <string name="login-ssl">Usa HTTPS (richiede OpenSSL)</string>
   <string name="login-fail">Accesso non riuscito su $1</string>
   <string name="login-error-admin">L\'uso di Huggle su questo progetto richiede un\'utenza di amministratore.</string>
@@ -269,6 +280,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="login-error-whitelist">Impossibile caricare la lista bianca degli utenti per $1.</string>
   <string name="main-menu-provider-stop">Ferma il provider</string>
   <string name="main-menu-provider-resume">Riavvia il provider</string>
+  <string name="provider-up">Collegamento a flusso di ultime modifiche su $2 utilizzando il provider: $1</string>
   <string name="main-no-reason">Nessun motivo è stato fornito dall\'utente</string>
   <string name="main-restoring-slap">Attualmente sto ripristinando un altra modifica, per favore attendi...</string>
   <string name="main-page">Pagina</string>
@@ -292,6 +304,8 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Esci</string>
+  <string name="main-config-state-fail">Impossibile leggere lo stato da un file di configurazione</string>
+  <string name="main-config-geom-fail">Impossibile leggere la geometria da un file di configurazione</string>
   <string name="main-tools-scoreword-list">Mostra un elenco di scorewords</string>
   <string name="main-queue">Coda</string>
   <string name="main-queue-next">Successivo</string>
@@ -354,12 +368,14 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-user-report">Segnala</string>
   <string name="main-user-ib">Aumenta il punteggio di cattiveria dell\'utente</string>
   <string name="main-user-clear-tp">Pulisci la pagina di discussione dell\'utente</string>
+  <string name="main-user-retrieving-tp">Recupero Pagina di discussione di %1</string>
   <string name="main-user-block">Blocca...</string>
   <string name="main-browser-back">Indietro</string>
   <string name="main-browser-forward">Avanti</string>
   <string name="main-browser-open">Visualizza questo in un browser esterno</string>
   <string name="main-browser-newedits">Mostra le nuove modifiche alla pagina</string>
   <string name="main-browser-newcontribs">Mostra i nuovi contributi dell\'utente</string>
+  <string name="main-browser-lasttab">Non posso chiudere questa tab perché è l\'ultima, ci deve essere almeno 1 tab aperta</string>
   <string name="main-revert-manual">Nessun token di rollback, passo all\'annullamento manuale di $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Disconnetti</string>
@@ -389,6 +405,8 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-revert-null">Impossibile ripristinare: la modifica è nulla</string>
   <string name="main-revert-newpage-title">Non è possibile ripristinare questo</string>
   <string name="main-revert-newpage">Questa è una nuova pagina, quindi non può essere ripristinata, è possibile etichettarla, o eliminarla.</string>
+  <string name="main-restore-text-fail">Impossibile ripristinare la revisione, perché non c\'è nessun testo disponibile per poterlo fare</string>
+  <string name="main-restore-data-fail">Impossibile ripristinare la revisione, perché il wiki non ha fornito alcun dato per la versione selezionata</string>
   <string name="message-title">Messaggio $1</string>
   <string name="message-help">Specifica uno o entrambi tra Oggetto e Riassunto. Se non viene fornito un riassunto, verrà usato l\'oggetto; se non viene fornito l\'oggetto, non verrà aggiunta alcuna intestazione.</string>
   <string name="message-subject">Oggetto:</string>
@@ -418,6 +436,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="protect-message-title-fail">Impossibile da proteggere</string>
   <string name="protect-moveprotection">Protezione dagli spostamenti</string>
   <string name="protect-ft">Ottenimento del token per proteggere $1</string>
+  <string name="protect-request-proj-fail">Questo progetto non supporta richieste di protezione</string>
   <string name="queue-title">Code</string>
   <string name="queue-queues">Code:</string>
   <string name="queue-typegroup">Tipo di coda</string>
@@ -501,6 +520,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="tag-title">Etichetta $1</string>
   <string name="tag-tagselector">Aggiungi etichetta:</string>
   <string name="tag-tags">Etichetta/e:</string>
+  <string name="tag-parameter">Parametro</string>
   <string name="tag-summary">Riassunto:</string>
   <string name="tag-insertatend">Inserisci alla fine della pagina</string>
   <string name="update-title">Nuova versione disponibile</string>
@@ -521,7 +541,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="shortcut-next">Vai alla prossima modifica</string>
   <string name="shortcut-suspicious">Marca la modifica come sospetta</string>
   <string name="shortcut-back">Vai alla modifica precedentemente mostrata</string>
-  <string name="shortcut-forward" fuzzy="true">Vai ad una modifica già caricata in passato ma da cui sei tornato</string>
+  <string name="shortcut-forward">Vai ad una modifica già caricata in passato ma da cui ti sei allontanato</string>
   <string name="shortcut-warn">Invia un\'avvertimento all\'utente, senza annullare la modifica</string>
   <string name="shortcut-revert">Annulla la modifica</string>
   <string name="shortcut-x-raw">Avvia l\'elemento N del menu di ripristino e di avvertimento</string>
@@ -551,6 +571,9 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="missing-warning">Non c\'è un template di avviso $1</string>
   <string name="han-not">Vandalism network non è permesso nelle opzioni</string>
   <string name="han-connecting">Connessione a Huggle anti vandalism network</string>
+  <string name="han-already-connected">Non ci si connette con HAN perchè è già collegato</string>
+  <string name="han-already-connecting">Si prega di attendere con pazienza, sto già allestendo la connessione a HAN</string>
+  <string name="han-disconnected">Sei stato disconnesso da HAN</string>
   <string name="error-loggedout">L\'utenza è stata disconnessa, riconnessione...</string>
   <string name="error-noresponse">Nessuna risposta</string>
   <string name="error-pagemissing">La pagina non esiste</string>
@@ -577,11 +600,17 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="history-fail">Impossibile recuperare la cronologia di $1</string>
   <string name="history-progress">Recupero della cronologia di $1 ($2)...</string>
   <string name="history-work">Annullamento della propria modifica fatta a $1</string>
+  <string name="history-no-item-selected">Nessun elemento è stato selezionato nel widget della cronologia</string>
   <string name="history-message-revert-title">Vuoi davvero annullare solo questo messaggio?</string>
+  <string name="history-another-edit">Sto già annullando un\'altra modifica, si prega di attendere</string>
   <string name="history-not-found">Non è stato trovato nulla da annullare</string>
   <string name="history-already-done">Questo era già stato annullato</string>
   <string name="history-message-revert-body">Questo era un messaggio che è citato da un rollback, sei sicuro di voler annullare solo il template e non anche la tua modifica alla pagina? (hai bisogno di annullare il rollback se vuoi ripristinarli entrambi)</string>
-  <string name="history-revert-fail" fuzzy="true">Impossibile anullare la tua modifica a $1 errore durante il ripristino: $2</string>
+  <string name="history-revert-fail">Impossibile annullare la tua modifica a $1 perché si è verificato il seguente errore: $2</string>
+  <string name="history-undone">Correttamente annullata la modifica di $1</string>
+  <string name="history-retrieve-fail">Impossibile recuperare il contenuto della pagina di cui si voleva annullare la propria modifica, poiché si è verificato il seguente errore: $1</string>
+  <string name="history-welcome-msg-title">Vuoi inviare il messaggio di benvenuto, invece?</string>
+  <string name="history-welcome-msg">Questa pagina di discussione l\'hai creata tu, quindi la modifica non può essere annullata, vuoi per caso sostituirla con un accogliente template di benvenuto?</string>
   <string name="notify-fail">Impossibile inviare una notifica al creatore di $1</string>
   <string name="notify-unknowncreator">Impossibile trovare il creatore della pagina</string>
   <string name="protect-done">Cambiato il livello di protezione per $1</string>
@@ -629,10 +658,16 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
   <string name="preferences-delete-using-filter">Non puoi cancellare un filtro attualmente in uso</string>
+  <string name="preferences-extension-enabled">Questa estensione non è programmata per disattivare l\'avvio successivo di Huggle</string>
+  <string name="preferences-extension-enabled-restart">L\'estensione è stata attivata, tuttavia, è necessario riavviare huggle per farla partire</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>
   <string name="requesting">Richiesta</string>
   <string name="requested">Richiesto</string>
+  <string name="protect-request-fail">Impossibile recuperare l\'attuale pagina di report: $1</string>
+  <string name="protect-request-fail-notext">Impossibile recuperare l\'attuale pagina di report perché la query non restituisce alcun testo per quella pagina</string>
+  <string name="protect-request-fail-notime">La query non ha restituito alcun timestamp (bug di mediawiki?) - annullamento della query</string>
+  <string name="message-fail">Impossibile recapitare il messaggio</string>
   <string name="edit-conflict">Conflitto di edizione</string>
   <string name="page-tag-nodescription">non vi è alcuna descrizione per questo tag :/</string>
   <string name="page-tag-fail">Impossibile taggare la pagina</string>
@@ -643,8 +678,14 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="namespace">Namespace</string>
   <string name="block-alreadyblocked">L\'utente è già bloccato</string>
   <string name="report-fail">Impossibile segnalare l\'utente perché: $1</string>
+  <string name="report-page-fail">Errore: impossibile recuperare la pagina di report in $1</string>
+  <string name="report-page-fail-time">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'api:
+
+ $1</string>
+  <string name="report-unable">Impossibile segnalare l\'utente :(</string>
   <string name="about-python-with">, con supporto python</string>
   <string name="about-python-without">senza supporto python</string>
   <string name="about-qt">, compilato usando QT $1 In esecuzione su QT $1</string>
   <string name="error-unknown-code">Errore Sconosciuto: $1</string>
+  <string name="relogin-fail">Impossibile accedere al wiki: $1</string>
 </resources>

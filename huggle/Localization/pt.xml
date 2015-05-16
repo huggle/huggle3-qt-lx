@@ -240,6 +240,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="login-progress-user">A verificar configuração de utilizador(a) para $1</string>
   <string name="login-progress-user-info">A verificar informação de utilizador(a) para $1</string>
   <string name="login-progress-whitelist">A receber a lista branca de utilizadores...</string>
+  <string name="login-remember-password">Lembrar palavra-passe</string>
   <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
   <string name="login-fail">O início de sessão em $1 falhou</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>

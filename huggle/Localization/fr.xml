@@ -117,6 +117,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-confirm-user">Demander une confirmation pour révoquer les changements faits dans l\'espace utilisateur</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
+  <string name="config-revert">Rétablir</string>
   <string name="config-friend">Ami</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
@@ -160,7 +161,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="delete-e2">Impossible de supprimer la page</string>
   <string name="delete-edsc">Impossible de supprimer la page parce que $1</string>
   <string name="delete-failed-no-info">Aucune information de page n’était présente dans la requête (êtes-vous opérateur système ?)</string>
-  <string name="extension-kl" fuzzy="true">Tué</string>
+  <string name="extension-kl">Pas en cours d\'exécution</string>
+  <string name="extension-ok">Chargé et en cours d’exécution</string>
   <string name="historyform-no-info">Aucune information sur la modification</string>
   <string name="historyform-title">Historique</string>
   <string name="historyform-retrieve-history">Récupérer l’historique</string>
@@ -219,6 +221,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-progress-user">Vérification de la configuration utilisateur pour $1</string>
   <string name="login-progress-user-info">Vérification de l’information utilisateur pour $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-remember-password">Mémoriser le mot de passe</string>
   <string name="login-ssl">Utiliser HTTPS (nécessite OpenSSL)</string>
   <string name="login-fail">Échec de la connexion sur $1</string>
   <string name="login-error-admin">Un compte d\'administrateur est nécessaire pour utiliser Huggle sur ce projet.</string>
@@ -240,6 +243,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
   <string name="main-menu-provider-resume">Reprendre le fournisseur</string>
+  <string name="provider-up">Connexion au flux des changements récents sur $2 à l\'aide du fournisseur: $1</string>
   <string name="main-no-reason">Aucun motif n’a été fourni par l’utilisateur</string>
   <string name="main-restoring-slap">Je suis actuellement en train de restaurer une autre modification, veuillez patienter…</string>
   <string name="main-page">Page</string>
@@ -263,6 +267,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Quitter</string>
+  <string name="main-config-state-fail">Impossible de lire l\'état d\'un fichier de config</string>
   <string name="main-tools-scoreword-list">Afficher une liste de mots importants</string>
   <string name="main-queue">File</string>
   <string name="main-queue-next">Suivante</string>
@@ -325,12 +330,14 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter le score de mauvaise conduite</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
+  <string name="main-user-retrieving-tp">Récupération de la Page de Discussion de %1</string>
   <string name="main-user-block">Bloquer...</string>
   <string name="main-browser-back">Retour</string>
   <string name="main-browser-forward">Forward</string>
   <string name="main-browser-open">Afficher ceci dans un navigateur externe</string>
   <string name="main-browser-newedits">Show new edits to page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
+  <string name="main-browser-lasttab">Je ne peux pas fermer cet onglet car c\'est le dernier, vous devez avoir au moins 1 onglet ouvert</string>
   <string name="main-revert-manual">Aucun jeton d’annulation, passage en annulation manuelle de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Déconnecter</string>
@@ -358,6 +365,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-revision-acceptpend">Accepter cette révision en attente</string>
   <string name="main-no-page">L’action que vous avez demandée nécessite le chargement d’une page. Veuillez charger une page avant de réessayer.</string>
   <string name="main-revert-null">Impossible de revenir, la modification est nulle</string>
+  <string name="main-revert-newpage-title">Impossible de revenir sur ça</string>
+  <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée, vous pouvez soit la tagger soit la supprimer.</string>
+  <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Spécifiez un ou les deux champs Objet et Résumé. Si aucun résumé n\'est donné,, l\'objet sera utilisé; si aucun objet n\'est donné, aucune entête ne sera ajoutée.</string>
   <string name="message-subject">Objet :</string>
@@ -490,7 +500,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
   <string name="shortcut-suspicious">Marquer la modification comme suspecte</string>
   <string name="shortcut-back">Aller à la modification précédemment affichée</string>
-  <string name="shortcut-forward" fuzzy="true">Aller à une modification que vous avez chargée dans le passé mais sur laquelle vous êtes revenu</string>
+  <string name="shortcut-forward">Aller à une modification que vous avez chargée dans le passé mais sur laquelle vous êtes revenu</string>
   <string name="shortcut-warn">Envoyer un avertissement à l’utilisateur, sans annuler la modification</string>
   <string name="shortcut-revert">Annuler la modification</string>
   <string name="shortcut-x-raw">Déclencher le Nème élément du menu d’annulation et avertissement</string>

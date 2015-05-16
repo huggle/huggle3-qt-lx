@@ -152,6 +152,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="login-progress-global">Global Astellungen nokucken...</string>
   <string name="login-progress-config">Astellugssäiten nokucken...</string>
   <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
+  <string name="login-remember-password">Passwuert verhalen</string>
   <string name="login-ssl">HTTPS benotzen (brauch OpenSSL)</string>
   <string name="login-fail">Aloggen op $1 huet net funktionéiert</string>
   <string name="login-error-admin">Fir Huggle op dësem Projet ze benotze musst Dir Administrateur sinn.</string>
@@ -366,7 +367,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="history-message-revert-title">Wëllt Dir wierklech just dëse Message réckgängeg maachen?</string>
   <string name="history-not-found">Et gouf näischt fonnt fir réckgängeg ze maachen</string>
   <string name="history-already-done">Dëst gouf scho réckgängeg gemaach</string>
-  <string name="history-revert-fail" fuzzy="true">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well e Feeler beim zrécksetze geschitt ass: $2</string>
+  <string name="history-revert-fail">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well dëse Feeler beim zrécksetze geschitt ass: $2</string>
   <string name="saveuserconfig-progress">Aktualisatioun vun der säit vun de Benotzerastellungen...</string>
   <string name="loadglobalconfig-fail">Déi global Configuratiounssäit konnt net geluede ginn</string>
   <string name="reqprotection-badformat">Format vun der Säit mat der Ufro onbekannt</string>
