@@ -356,6 +356,8 @@
   <string name="update-title">नवीन संस्करण उपलब्ध</string>
   <string name="update-progress">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
+  <string name="updater-update">अद्यतनित करें</string>
+  <string name="updater-close">बंद करें</string>
   <string name="warning-title">$1 को चेतावनी दें</string>
   <string name="warning-levelgroup">चेतावनी स्तर</string>
   <string name="warning-levelauto">स्वतः</string>

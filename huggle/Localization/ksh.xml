@@ -35,7 +35,7 @@
   <string name="time">Zigg</string>
   <string name="version">Väsjohn</string>
   <string name="general-name">Nahme</string>
-  <string name="author">Schriiver</string>
+  <string name="author">Schrihver</string>
   <string name="description">Beschrevve met</string>
   <string name="status">Zohschtand</string>
   <string name="link">Lengk</string>
@@ -100,6 +100,12 @@
   <string name="config-blocktimeanon">Nahmeloose Metmaacher</string>
   <string name="config-blocktimereg">Ennjelogg Metmaacher</string>
   <string name="config-summaryprompt">Jivv en Zosammefaßong en</string>
+  <string name="delete-title">Schmiiß $1 fott</string>
+  <string name="delete-reason">Jrond:</string>
+  <string name="delete-e1">Di Sigg kam_mer nit fott schmiiße: $1</string>
+  <string name="delete-e2">Mer künne di Sigg nit fott schmiiße.</string>
+  <string name="delete-edsc">Mer künne di Sigg nit fott schmiiße, weil $1</string>
+  <string name="extension-kl">Leuf nit</string>
   <string name="historyform-title">Verjangeheit</string>
   <string name="historyform-retrieve-history">De ällder Väsjohne holle</string>
   <string name="historyform-retrieving-history">Ben de ällder Väsjohne aam holle</string>
@@ -118,8 +124,11 @@
   <string name="login-start">Enlogge</string>
   <string name="login-oauth-notsupported">Di Metohd es em Momang nit ongerschtöz</string>
   <string name="login-translate">Huggle övversäze</string>
+  <string name="login-progress-start">Ben op $1 aam enlogge.</string>
+  <string name="login-progress-retrieve-mw">Mer holle Aanjahbe övver MehdijaWikki för $1</string>
   <string name="login-progress-whitelist">Ben dem Metmaacher sing „wiiße Leß“ aam holle</string>
   <string name="login-remember-password">Donn et Paßwood märke</string>
+  <string name="login-error-cancelled">Affjebroche.</string>
   <string name="login-error-invalid">Dä Metmaacher-Nahme es onjöltesch</string>
   <string name="login-error-nouser">Dä Metmaacher-Nahme jidd_et nit</string>
   <string name="login-error-password">Dat paßwood es verkihrt</string>
@@ -136,6 +145,8 @@
   <string name="main-system-options">Enschtällonge …</string>
   <string name="main-system-logout">Ußlogge</string>
   <string name="main-system-abort">Afbräsche</string>
+  <string name="main-system-change-provider-irc">
+&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;</string>
   <string name="main-system-change-provider-wiki">Wikki</string>
   <string name="main-system-exit">Zohmaache</string>
   <string name="main-queue">Waadeschlang</string>
@@ -205,6 +216,7 @@
   <string name="main-revision-acceptpend">Donn heh di Änderong aannämme</string>
   <string name="main-revert-null">Dat künne mer nit zerök nämme, et es nix verändert woode.</string>
   <string name="main-revert-newpage-title">Dat künne mer nit zerök nämme.</string>
+  <string name="message-title">Nohreesch $1</string>
   <string name="message-subject">Övver:</string>
   <string name="message-message">Nohreesch:</string>
   <string name="message-summary">Zosammefaßong:</string>

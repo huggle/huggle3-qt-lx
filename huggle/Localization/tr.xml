@@ -54,6 +54,8 @@
   <string name="score-score">Derecelendirme</string>
   <string name="score-word">Kelime</string>
   <string name="score-range">Aralık</string>
+  <string name="score-take-any-no-talk-word">Tartışma sayfaları dışında herhangi bir kelime eşleşmesi</string>
+  <string name="score-take-whole-no-talk-word">Tartışma sayfaları dışındaki sayfalara tüm sayfalarla eşleştirme</string>
   <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
   <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
@@ -132,6 +134,7 @@
   <string name="config-remove-old">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
   <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
   <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
+  <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi arasına beklemeniz gereken süre (saniye):</string>
   <string name="config-display-text">Sonrakini göster</string>
   <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>

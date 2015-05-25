@@ -54,6 +54,8 @@
   <string name="score-score">Pontuação</string>
   <string name="score-word">Palavra</string>
   <string name="score-range">Gama</string>
+  <string name="score-take-any-no-talk-word">Coincide qualquer palavra em páginas que não são de discussão</string>
+  <string name="score-take-whole-no-talk-word">Coincide apenas palavras inteiras em páginas que não são de discussão</string>
   <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
   <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
@@ -123,6 +125,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-instant-reverts">Usar reversões instantâneas (muito rápidas, mas que não se pode cancelar uma vez executadas)</string>
   <string name="config-revert-wait">Espera de reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
+  <string name="config-revert-diff">Reverte as edições mais recentes do que a página diff exibida no caso terem sido feitas pelo mesmo usuário (mesmo vândalo)</string>
   <string name="config-change-all">Mudar todas as configurações do huggle para que funcione como huggle 2</string>
   <string name="config-merge-messages">Fundir suas mensagens com outras em seções existentes</string>
   <string name="config-months-name">Usar meses como títulos em vez do nome de página</string>
@@ -131,6 +134,9 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-remove-reverted">Remover edições que já tenham sido revertidas por alguém</string>
   <string name="config-remove-old">Remover edições antigas se uma edição mais nova para a mesma página é analisada</string>
   <string name="config-auto-load-history">Carregar automaticamente o histórico e as informações do usuário (requer muita conexão de rede)</string>
+  <string name="config-last-revision">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
+  <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa resolver erros no teclado multifunções)</string>
+  <string name="config-wait-edit">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
   <string name="config-display-text">Mostrar seguinte</string>
   <string name="config-retrieve-edit">Recuperar sua própria edição</string>
   <string name="config-nothing">Nada</string>
@@ -140,9 +146,16 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-new-page">Página nova</string>
   <string name="config-whitelisted">Na lista branca</string>
   <string name="config-friend">Amigo</string>
+  <string name="config-userspace">Espaço do usuário</string>
   <string name="config-talk">Página de discussão</string>
+  <string name="config-columns-dynamic">Torna as colunas de listas dinâmicas (redimensionam com base no tamanho de itens) ou manual (o usuário pode alterar seu tamanho)</string>
+  <string name="config-message-notification">Mostrar uma notificação quando você receber uma nova mensagem na sua página de discussão</string>
+  <string name="config-warning-api">Mostra avisos para consultas API</string>
+  <string name="config-title-diff">Título da página em cada diff (texto grande que aparece no topo de cada diff)</string>
   <string name="config-updates">Verificar atualizações</string>
   <string name="config-beta">Verificar versões beta</string>
+  <string name="config-html-messages">HAN pode mostrar mensagens HTML (perigoso)</string>
+  <string name="config-summary-present">Destacar o sumário quando existente em vez de quando estiver faltando</string>
   <string name="config-close-without">Fechar sem salvar</string>
   <string name="config-confirmmultiple">Pedir confirmação ao reverter várias edições do mesmo usuário</string>
   <string name="config-confirmsame">Pedir confirmação ao reverter para uma edição do mesmo usuário</string>
@@ -247,6 +260,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="login-progress-user">Verificando configuração do usuário para $1</string>
   <string name="login-progress-user-info">Verificando configuração de usuário para $1</string>
   <string name="login-progress-whitelist">Recebendo a lista branca de usuários...</string>
+  <string name="login-remember-password">Lembrar senha</string>
   <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
   <string name="login-fail">Falha na identificação em $1</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
@@ -268,6 +282,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="login-error-whitelist">Não foi possível carregar a lista branca de usuários em $1.</string>
   <string name="main-menu-provider-stop">Interromper provedor</string>
   <string name="main-menu-provider-resume">Reiniciar provedor</string>
+  <string name="provider-up">Conectando-se a mudanças recentes transmitidas com $2 usando o provedor: $1</string>
   <string name="main-no-reason">Nenhuma razão fornecida pelo usuário</string>
   <string name="main-restoring-slap">Eu estou restaurando outra edição, por favor aguarde...</string>
   <string name="main-page">Página</string>
@@ -291,6 +306,8 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Sair</string>
+  <string name="main-config-state-fail">Não foi possível ler o estado do arquivo de configuração</string>
+  <string name="main-config-geom-fail">Não foi possível ler a janela principal do arquivo de configuração</string>
   <string name="main-tools-scoreword-list">Mostar a lista de palavras marcadas</string>
   <string name="main-queue">Fila de edições</string>
   <string name="main-queue-next">Seguinte</string>
@@ -353,12 +370,14 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-user-report">Reportar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeita do usuário</string>
   <string name="main-user-clear-tp">Limpar página de discussão do(a) usuário(a)</string>
+  <string name="main-user-retrieving-tp">Obtendo a Página de Discussão de %1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Voltar</string>
   <string name="main-browser-forward">Avançar</string>
   <string name="main-browser-open">Ver página no navegador externo</string>
   <string name="main-browser-newedits">Mostrar automaticamente novas edições feitas na página</string>
   <string name="main-browser-newcontribs">Mostrar automaticamente novas edições feitas pelo(a) usuário(a)</string>
+  <string name="main-browser-lasttab">Não posso fechar esta aba porque é a última, você precisa de ao menos 1 aba aberta</string>
   <string name="main-revert-manual">Sem token de reversor, utilizando reversão manual de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Desconectar</string>
@@ -524,7 +543,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar como edição suspeita</string>
   <string name="shortcut-back">Vá para edição mostrada anteriormente</string>
-  <string name="shortcut-forward" fuzzy="true">Vai para uma edição que você carregou no passado,mas retornou de</string>
+  <string name="shortcut-forward">Vai para uma edição que você carregou no passado mas retornou de</string>
   <string name="shortcut-warn">Enviar um aviso ao usuário, sem reverter a edição</string>
   <string name="shortcut-revert">Reverter edição</string>
   <string name="shortcut-x-raw">Acione Nº item no menu de aviso e reverso</string>
@@ -582,11 +601,16 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="history-fail">Ocorreu um erro ao receber o histórico de \'$1\'</string>
   <string name="history-progress">A receber o histórico de \'$1\' ($2)...</string>
   <string name="history-work">Desfazendo a própria edição feita em $1</string>
+  <string name="history-no-item-selected">Nenhum item está selecionado no widget de histórico</string>
   <string name="history-message-revert-title">Você realmente quer desfazer somente essa mensagem?</string>
+  <string name="history-another-edit">Ainda estou desfazendo outra edição, por favor, aguarde</string>
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">isto já foi desfeito</string>
   <string name="history-message-revert-body">Essa foi uma mensagem modificada por um reversor, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou? (você terá que reverter o reversor se você quiser reverter os dois)</string>
   <string name="history-revert-fail" fuzzy="true">Impossível de desfazer a sua edição em $1. Erro durante a reversão: $2</string>
+  <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
+  <string name="history-welcome-msg-title">Enviar mensagem de boas-vindas?</string>
+  <string name="history-welcome-msg">Você criou esta página de discussão, por isso não pode ser desfeita, quer substituí-la por uma predefinição de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>
@@ -614,6 +638,9 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="provider-failure" fuzzy="true">Falha do provedor de feed primário, tentando recuperar</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
   <string name="rc-error">Impossível recuperar dados do feed da wiki, último erro: $1</string>
+  <string name="rc-timestamp-missing">RC Feed: Item estava sem o atributo de data: $1</string>
+  <string name="rc-type-missing">RC Feed: Item estava sem o atributo de tipo: $1</string>
+  <string name="rc-title-missing">RC Feed: Item estava sem o atributo título: $1</string>
   <string name="whitelist-download">Baixando a nova lista branca</string>
   <string name="logs-widget-name">Registro do sistema</string>
   <string name="wait">Por favor, aguarde...</string>
@@ -633,20 +660,34 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="cr-message-same">Existem múltiplas edições para $1 pelo mesmo usuário, tem certeza que quer revertê-las?</string>
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
+  <string name="preferences-delete-using-filter">Você não pode excluir um filtro que atualmente está sendo usado</string>
+  <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará reiniciar o Huggle para que isso aconteça</string>
   <string name="fail">Falha</string>
   <string name="request">Solicitar</string>
   <string name="requesting">Solicitando</string>
   <string name="requested">Solicitado</string>
+  <string name="protect-request-fail">Não foi possível recuperar a página do relatório atual: $1</string>
+  <string name="protect-request-fail-notext">Não foi possível recuperar a página do relatório atual, porque a consulta não retornou nenhum texto para esta página</string>
+  <string name="protect-request-fail-notime">A consulta não retornou nenhuma data (bug no mediawiki?) abortando a consulta</string>
   <string name="message-fail">Falha na entrega da mensagem</string>
   <string name="edit-conflict">Conflito de edição</string>
   <string name="page-tag-nodescription">não há descrição para esta etiqueta :/</string>
   <string name="page-tag-fail">A marcação da página falhou</string>
+  <string name="page-tag-error">Não foi possível marcar a página, o erro foi: $1</string>
   <string name="page-unknown">Página desconhecida</string>
+  <string name="speedy-csd-invalid">Tag CSD inválida, não há nenhuma mensagem e tag wiki para usar</string>
   <string name="speedy-csd-existing">Já há uma marcação CSD na página</string>
+  <string name="namespace">Espaço nominal</string>
   <string name="block-alreadyblocked">O usuário já está bloqueado</string>
   <string name="report-fail">Falha ao denunciar o usuário porque: $1</string>
+  <string name="report-page-fail">Erro. Não é possível recuperar a página de relatório em $1</string>
+  <string name="report-page-fail-time">Não foi possível recuperar data da página do relatório atual, falha da API:
+
+ $1</string>
   <string name="report-unable">Não é possível reportar o usuário :(</string>
   <string name="about-python-with">,com suporte para python</string>
   <string name="about-python-without">sem suporte para python</string>
+  <string name="about-qt">, compilado usando QT $1 Rodando em QT $1</string>
   <string name="error-unknown-code">Erro desconhecido: $1</string>
+  <string name="relogin-fail">Não foi possível fazer login na wiki: $1</string>
 </resources>

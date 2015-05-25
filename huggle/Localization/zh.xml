@@ -221,7 +221,7 @@
   <string name="irc-wait">等待IRC订阅提供商停止</string>
   <string name="irc-switch-rc">切换为wiki RC订阅</string>
   <string name="login-old">从旧位置检索用户配置</string>
-  <string name="login-intro">请选择一个项目并输入您的用户名和密码。您可通过按下“项目”按钮多次登陆多个项目。</string>
+  <string name="login-intro">请选择一个项目并输入您的用户名和密码。您也可通过按下“项目”按钮多次登陆多个项目。</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">登录</string>
   <string name="login-reload-tool-tip">重新加载可使用 Huggle 工具的项目的列表。这对您希望在已启用项目使用 Huggle 时非常有用。</string>
