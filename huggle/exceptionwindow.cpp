@@ -27,7 +27,7 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
                           "\n\nSystem log\n==================\n" + hr
                           + "\n\n\n\nException details\n===========================\nError code: "
                           + QString::number(e->ErrorCode) + "\nReason: "
-                          + e->Message + "\nSource:" + e->Source + "\nStack trace:\n" + e->StackTrace);
+                          + e->Message + "\nSource: " + e->Source + "\nStack trace:\n" + e->StackTrace);
 }
 
 ExceptionWindow::~ExceptionWindow()
