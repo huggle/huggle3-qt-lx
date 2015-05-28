@@ -279,8 +279,8 @@ namespace Huggle
             int             SystemConfig_CacheHAN = 100;
             //! Debug mode
             bool            SystemConfig_Dot = false;
-            bool            SystemConfig_InstantReverts = true;
-            int             SystemConfig_RevertDelay = 0;
+            bool            SystemConfig_InstantReverts = false;
+            int             SystemConfig_RevertDelay = 6;
             //! This is index for login form so that we can remember which was last wiki user logged to
 
             //! We are storing index instead of wiki name, because in case it was a wiki that later
