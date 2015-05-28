@@ -188,10 +188,12 @@ void Collectable::SetManaged()
         // huggle is probably shutting down
         return;
     }
+    GC::gc->Lock->lock();
     if (!GC::gc->list.contains(this))
     {
         GC::gc->list.append(this);
     }
+    GC::gc->Lock->unlock();
 }
 
 QString Collectable::DebugHgc()
