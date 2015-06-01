@@ -129,6 +129,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../sessionform.cpp
 ../../requestprotect.cpp
 ../../revertquery.cpp
+../../xmlutils.cpp
 ../../gc_thread.cpp
 ../../webserverquery.cpp
 ../../userconfiguration.cpp
