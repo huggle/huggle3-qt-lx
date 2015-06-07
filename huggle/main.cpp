@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
         Huggle::HgApplication a(argc, argv);
         QApplication::setApplicationName("Huggle");
         QApplication::setOrganizationName("Wikimedia");
+        #if QT_VERSION >= 0x050100
+            // enable HiDPI support (available since Qt 5.1, but off by default)
+            a.setAttribute(Qt::AA_UseHighDpiPixmaps);
+        #endif
         Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
         // check if arguments don't need to exit program
         if (!TerminalParse(parser))
