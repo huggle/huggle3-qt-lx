@@ -54,6 +54,8 @@
   <string name="score-score">Score</string>
   <string name="score-word">Mot</string>
   <string name="score-range">Plage</string>
+  <string name="score-take-any-no-talk-word">Correspond à n’importe quel mot sur les pages hors discussion</string>
+  <string name="score-take-whole-no-talk-word">Correspond uniquement aux mots complets sur les pages hors discussion</string>
   <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
   <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
