@@ -126,14 +126,14 @@ void UAAReport::whatToReport()
     this->OptionalReason = this->ui->lineEdit->text();
     QStringList reasons;
     if (this->ui->checkBox->isChecked())
-        reasons.append("disruptive");
+        reasons.append(" disruptive username");
     if (this->ui->checkBox_2->isChecked())
-        reasons.append("offensive");
+        reasons.append("n offensive username");
     if (this->ui->checkBox_3->isChecked())
-        reasons.append("promotional username");
+        reasons.append(" promotional username");
     if (this->ui->checkBox_4->isChecked())
-        reasons.append("misleading username");
-    this->UAAReportReason = "Violation of the username policy as a ";
+        reasons.append(" misleading username");
+    this->UAAReportReason = "Violation of the username policy as a";
     if (reasons.count() > 1)
     {
         int index = 0;
