@@ -15,8 +15,10 @@ using namespace Huggle;
 static void RecursiveFetch(QDomNode node, QList<QDomElement> *list)
 {
     list->append(node.toElement());
-    foreach (QDomNode nx, node.childNodes())
+    int index = 0;
+    while (index < node.childNodes().count())
     {
+        QDomNode nx = node.childNodes().at(index++);
         RecursiveFetch(nx, list);
     }
 }
@@ -25,8 +27,10 @@ static void RecursiveFetch(QDomNode node, QList<QDomElement> *list, QString name
 {
     if (node.nodeName() == name)
         list->append(node.toElement());
-    foreach (QDomNode nx, node.childNodes())
+    int index = 0;
+    while (index < node.childNodes().count())
     {
+        QDomNode nx = node.childNodes().at(index++);
         RecursiveFetch(nx, list);
     }
 }
@@ -34,8 +38,10 @@ static void RecursiveFetch(QDomNode node, QList<QDomElement> *list, QString name
 QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
 {
     QList<QDomElement> results;
-    foreach (QDomNode node, xmls.childNodes())
+    int index = 0;
+    while (index < xmls.childNodes().count())
     {
+        QDomNode node = xmls.childNodes().at(index++);
         RecursiveFetch(node, &results);
     }
     return results;
@@ -44,5 +50,7 @@ QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
 
 QList<QDomElement> XmlUtils::FetchAllElementsByName(QDomDocument xmls, QString name)
 {
-
+    //! \todo Finish this
+    QList<QDomElement> results;
+    return results;
 }

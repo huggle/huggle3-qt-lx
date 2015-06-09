@@ -550,18 +550,22 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
     Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
     Localizations::HuggleLocalizations->LocalInit("fr"); // French
+    Localizations::HuggleLocalizations->LocalInit("gu");
     Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
     Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
     Localizations::HuggleLocalizations->LocalInit("it"); // Italian
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
     Localizations::HuggleLocalizations->LocalInit("ka"); // ?
+    Localizations::HuggleLocalizations->LocalInit("kk-cyrl");
     //Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
+    Localizations::HuggleLocalizations->LocalInit("ksh");
     Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
     Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
     Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
     Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
+    Localizations::HuggleLocalizations->LocalInit("ms");
     Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
     Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
     Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
@@ -570,6 +574,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
+    Localizations::HuggleLocalizations->LocalInit("sa");
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
     Localizations::HuggleLocalizations->LocalInit("ta");
     Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
