@@ -133,7 +133,7 @@ void UAAReport::whatToReport()
         reasons.append("promotional username");
     if (this->ui->checkBox_4->isChecked())
         reasons.append("misleading username");
-    this->UAAReportReason = "Username is a policy violation because it is ";
+    this->UAAReportReason = "Violation of the username policy as a ";
     if (reasons.count() > 1)
     {
         int index = 0;
