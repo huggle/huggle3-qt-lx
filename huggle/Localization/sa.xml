@@ -241,7 +241,7 @@
   <string name="edit-fail">$1 न सम्पादितम्</string>
   <string name="edit-progress">$1 सम्पादयति...</string>
   <string name="speedy-finished">समाप्तम्</string>
-  <string name="warn-alreadyblocked">एषः योजकः पूर्वस्मादेव अवरुद्धः अस्ति</string>
+  <string name="warn-alreadyblocked">एषः योजकः पूर्वमेव अवरुद्धः अस्ति</string>
   <string name="editquery-success">$1 इत्यस्मिन् $2 सफलतया सम्पादितम्</string>
   <string name="fail">असफलम्</string>
   <string name="request">विनतिः</string>

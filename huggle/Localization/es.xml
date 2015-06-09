@@ -193,7 +193,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="delete-e1">La página no se puede eliminar: $1</string>
   <string name="delete-e2">No se puede eliminar la página</string>
   <string name="delete-edsc">No se puede eliminar la página porque $1</string>
-  <string name="delete-failed-no-info">Ninguna información de página presente en la consulta (eres un sysop?)</string>
+  <string name="delete-failed-no-info">La consulta no contiene información de la página (¿tienes permisos administrativos?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
   <string name="historyform-no-info">No hay información de edición</string>

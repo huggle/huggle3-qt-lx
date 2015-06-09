@@ -128,6 +128,7 @@
   <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
   <string name="config-merge-messages">Unisci i tuoi messaggi con gli altri nelle sezioni esistenti</string>
   <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
+  <string name="config-automatic-warning">Usa un tipo e un livello automatici di avviso quando usi la funzione \"invia avviso\"</string>
   <string name="config-enable-irc">Attiva IRC</string>
   <string name="config-remove-reverted">Rimuovi modifiche che sono state già annullate da qualcun altro</string>
   <string name="config-remove-old">Rimuovi vecchie modifiche se si sta esaminando una modifica più recente alla stessa pagina</string>
@@ -568,6 +569,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="warning-warntype">Tipo di avviso:</string>
   <string name="warning-warnlog">Avvertimenti per questo utente:</string>
   <string name="warning-submit">Invia</string>
+  <string name="wikiedit-tp-fail">Impossibile recuperare $1 il livello di avviso non sarà influenzato da ciò</string>
   <string name="missing-warning">Non c\'è un template di avviso $1</string>
   <string name="han-not">Vandalism network non è permesso nelle opzioni</string>
   <string name="han-connecting">Connessione a Huggle anti vandalism network</string>
@@ -635,9 +637,13 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="editquery-success">$1 modificata con successo su $2</string>
   <string name="editquery-token">Recupero del token per modificare $1</string>
   <string name="editquery-token-error">Impossibile recuperare il token di modifica</string>
-  <string name="provider-failure" fuzzy="true">Errore del provider del feed principale, tentativo di recupero</string>
+  <string name="editquery-invalid-token">Impossibile modificare $1 perché il token che era in cache non è più valido, per favore cerca di nuovo di modificare la pagina</string>
+  <string name="provider-failure">Errore del provider di feed $1 su $2, è in corso il tentativo di rintraccio di un provider alternativo</string>
   <string name="provider-primary-failure">Il provider del feed principale ha avuto un errore, passaggio al provider del wiki</string>
   <string name="rc-error">Impossibile recuperare i dati dal feed del wiki, ultimo errore: $1</string>
+  <string name="rc-timestamp-missing">RC Feed: L\'elemento è mancante dell\'attributo timestamp: $1</string>
+  <string name="rc-type-missing">RC Feed: L\'elemento non aveva l\'attributo tipo: $1</string>
+  <string name="rc-title-missing">RC Feed: L\'elemento non aveva l\'attributo titolo: $1</string>
   <string name="whitelist-download">Scaricamento della nuova lista bianca</string>
   <string name="logs-widget-name">Registri di sistema</string>
   <string name="wait">Attendere prego...</string>

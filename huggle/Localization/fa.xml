@@ -64,7 +64,7 @@
   <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
   <string name="browser-fail">ناتوان در بازیابی تفاوت: $1</string>
   <string name="about-contributors">توسعه‌دهنده‌ها:</string>
-  <string name="block-not">کاربر مسدود نشده‌است</string>
+  <string name="block-not">کاربر بسته نیست</string>
   <string name="block-title">بستن $1</string>
   <string name="block-reason">دلیل:</string>
   <string name="block-duration">مدت:</string>
@@ -130,7 +130,7 @@
   <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
   <string name="config-automatic-warning">استفادهٔ خودکار از نوع هشدار و سطح کارکرد «ارسال هشدار»</string>
-  <string name="config-enable-irc">فعال‌کردن آی‌آرسی</string>
+  <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
   <string name="config-remove-reverted">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
   <string name="config-remove-old">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
   <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی اتصال شبکه نیاز دارد)</string>
@@ -582,7 +582,7 @@
   <string name="error-reloginfail">ناموفق در ورود به سامانه، هاگل را راه‌اندازی مجدد نمایید.</string>
   <string name="error-timeout">اتمام زمان درخواست</string>
   <string name="error-unknown">خطای ناشناخته</string>
-  <string name="block-done">$1 مسدود شده است.</string>
+  <string name="block-done">$1 بسته‌شد.</string>
   <string name="block-progress">در حال مسدود کردن $1 ...</string>
   <string name="blocklog-fail">ناتوان از گرفتن سیاهه بسته‌شدن‌های $1</string>
   <string name="blocklog-none">سیاهه بسته‌شدنی برای $1 وجود ندارد.</string>
@@ -684,7 +684,7 @@
   <string name="speedy-csd-invalid">برچسب سی‌اس‌دی نامعتبر است، هیچ پیام و برچسب ویکی برای استفاده وجود ندارد</string>
   <string name="speedy-csd-existing">از پیش یک برچسب سی‌اس‌دی در صفحه وجود دارد.</string>
   <string name="namespace">فضای نام</string>
-  <string name="block-alreadyblocked">کاربر از پیش مسدود شده‌است</string>
+  <string name="block-alreadyblocked">کاربر از پیش بسته شده‌است</string>
   <string name="report-fail">ناموفق در گزارش کاربر به دلیل: $1</string>
   <string name="report-page-fail">خطای ناتوانی در دریافت صفحهٔ گزارش در $1</string>
   <string name="report-page-fail-time">ناتوان در دریافت برچسب زمان صفحهٔ گزارش کنونی، شکست رابط برنامه نویسی:

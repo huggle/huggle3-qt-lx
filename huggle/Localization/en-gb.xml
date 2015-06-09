@@ -54,6 +54,8 @@
   <string name="score-score">Score</string>
   <string name="score-word">Word</string>
   <string name="score-range">Range</string>
+  <string name="score-take-any-no-talk-word">Matches any word on non-talk pages</string>
+  <string name="score-take-whole-no-talk-word">Matches only whole words on non-talk pages</string>
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
   <string name="browser-none">No page is displayed now</string>
@@ -257,6 +259,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="login-progress-user">Checking user configuration for $1</string>
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-remember-password">Remember password</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
@@ -539,7 +542,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
   <string name="shortcut-back">Go to the previously displayed edit</string>
-  <string name="shortcut-forward" fuzzy="true">Go to an edit that you loaded in the past but moved back from</string>
+  <string name="shortcut-forward">Go to an edit that you loaded in past but moved back from</string>
   <string name="shortcut-warn">Send a warning to the user, without reverting the edit</string>
   <string name="shortcut-revert">Revert edit</string>
   <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
@@ -605,7 +608,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="history-not-found">Nothing was found to undo</string>
   <string name="history-already-done">This was already undone</string>
   <string name="history-message-revert-body">This was a message that is referenced by a rollback: are you sure you want to undo only the template, not your edit to page? You will need to undo the rollback if you want to revert both of these.</string>
-  <string name="history-revert-fail" fuzzy="true">Unable to undo your edit to $1 as the following error was encountered: $2</string>
+  <string name="history-revert-fail">Unable to undo your edit to $1 as the following error was encountered: $2</string>
   <string name="history-undone">Successfully undid edit to $1</string>
   <string name="history-retrieve-fail">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>

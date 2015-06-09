@@ -414,5 +414,6 @@
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>
   <string name="logs-widget-name">سجلات النظام</string>
   <string name="wait">يرجى الانتظار ...</string>
+  <string name="page-unknown">صفحة غير معروفة</string>
   <string name="report-fail" fuzzy="true">لم يتم الاخطار عن \'$1\'ء</string>
 </resources>

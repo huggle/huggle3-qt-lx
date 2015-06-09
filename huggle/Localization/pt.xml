@@ -54,6 +54,8 @@
   <string name="score-score">Pontuação</string>
   <string name="score-word">Palavra</string>
   <string name="score-range">Intervalo</string>
+  <string name="score-take-any-no-talk-word">Corresponde a qualquer palavra em páginas, exceto de Discussão</string>
+  <string name="score-take-whole-no-talk-word">Corresponde apenas a palavras inteiras em páginas que não sejam de Discussão</string>
   <string name="score-only-whole-word">Corresponde a apenas palavras inteiras</string>
   <string name="score-take-any-word">Corresponde a qualquer palavra que contenha esta sequência de caracteres</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
@@ -129,7 +131,10 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-months-name">Usar meses como cabeçalhos em vez do nome da página</string>
   <string name="config-enable-irc">Ativar IRC</string>
   <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
+  <string name="config-retrieve-edit">Recuperar minha edição</string>
+  <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
+  <string name="config-own-edits">Minhas edições</string>
   <string name="config-reverts">Reversões</string>
   <string name="config-new-page">Página nova</string>
   <string name="config-whitelisted">Na lista branca</string>
@@ -181,6 +186,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="delete-e2">Não é possível eliminar a página</string>
   <string name="delete-edsc">Não é possível eliminar a página porque $1</string>
   <string name="delete-failed-no-info">Sem informações sobre a página na consulta (é administrador(a)?)</string>
+  <string name="extension-ok">Carregado e em execução</string>
   <string name="historyform-no-info">Sem informações de edição</string>
   <string name="historyform-title">Histórico</string>
   <string name="historyform-retrieve-history">Recuperar histórico</string>
@@ -262,6 +268,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="login-error-whitelist">Não foi possível carregar a lista branca de utilizadores em $1.</string>
   <string name="main-menu-provider-stop">Interromper provedor</string>
   <string name="main-menu-provider-resume">Reiniciar provedor</string>
+  <string name="provider-up">A aceder às mudanças recentes em $2, utilizando o fornecedor $1</string>
   <string name="main-no-reason">Não foi apresentado nenhum motivo pelo utilizador</string>
   <string name="main-restoring-slap">Neste momento, estou a restaurar outra edição, por favor aguarde...</string>
   <string name="main-page">Página</string>
@@ -408,6 +415,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="protect-none">Nenhuma</string>
   <string name="protect-token">Código de verificação não pode ser recuperado. A razão foi: $1</string>
   <string name="protect-semiprotection">Semiproteção</string>
+  <string name="protect-error">Não foi possível proteger a página: $1</string>
   <string name="protect-fail-no-info">Nenhuma página de informação estava disponível (você é um administrador?)</string>
   <string name="protect-fullprotection">Proteção total</string>
   <string name="protect-message-title-fail">Impossível proteger</string>
@@ -456,6 +464,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="report-log">Avisos para este utilizador:</string>
   <string name="report-include">Incluir na denúncia</string>
   <string name="report-select">Por favor, selecione um dif na lista para abrir a visualização</string>
+  <string name="report-write">A escrever</string>
   <string name="reportuser-not">Este utilizador está agora denunciado</string>
   <string name="report-evidence-none-provid">Não foram fornecidos diff como evidência, portanto, será difícil para os administradores avaliar este caso. Tem a certeza de que pretende continuar?</string>
   <string name="report-duplicate">O utilizador já foi denunciado aos administradores</string>
@@ -496,6 +505,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="tag-title">Marcar $1</string>
   <string name="tag-tagselector">Adicionar marcação:</string>
   <string name="tag-tags">Marcações:</string>
+  <string name="tag-parameter">Parâmetro</string>
   <string name="tag-summary">Resumo:</string>
   <string name="tag-insertatend">Inserir no final da página e não no início</string>
   <string name="update-title">Nova versão disponível</string>
@@ -630,6 +640,9 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
 inicialização do huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará de reiniciar o huggle para que isso aconteça</string>
   <string name="fail">Falha</string>
+  <string name="request">Pedir</string>
+  <string name="requesting">A solicitar</string>
+  <string name="requested">Pedido efetuado</string>
   <string name="protect-request-fail">Não foi possível obter o conteúdo atual da página: $1</string>
   <string name="message-fail">Falha ao enviar a mensagem</string>
   <string name="edit-conflict">Conflito de edição</string>
