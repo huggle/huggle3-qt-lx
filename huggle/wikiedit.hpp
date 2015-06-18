@@ -156,7 +156,6 @@ namespace Huggle
             QHash<QString, QVariant> PropertyBag;
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
-            QString PatrolToken;
             QDateTime Time;
             //! This variable is used by worker thread and needs to be public so that it is working
             bool PostProcessing;

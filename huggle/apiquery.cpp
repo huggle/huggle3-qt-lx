@@ -309,9 +309,9 @@ void ApiQuery::SetAction(const Action action)
         case ActionLogout:
             this->ActionPart = "logout";
             return;
-        case ActionTokens:
-            this->ActionPart = "tokens";
-            return;
+        //case ActionTokens:
+        //    this->ActionPart = "tokens";
+        //    return;
         case ActionPurge:
             this->ActionPart = "purge";
             return;

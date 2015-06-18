@@ -135,7 +135,7 @@ namespace Huggle
              */
             bool CheckEditableBrowserPage();
             void SuspiciousEdit();
-            void PatrolThis(WikiEdit *e = nullptr);
+            void PatrolEdit(WikiEdit *e = nullptr);
             void Localize();
             void _BlockUser();
             void DisplayNext(Query *q = nullptr);
@@ -165,7 +165,6 @@ namespace Huggle
             bool QueueIsNowPaused = false;
             //! Pointer to queue
             HuggleQueue *Queue1;
-            QList<ApiQuery*> PatrolledEdits;
             //! Pointer to browser
             HuggleWeb *Browser;
             HistoryForm *wHistory;
@@ -329,6 +328,7 @@ namespace Huggle
             void on_actionXmlRcs_triggered();
             void OnStatusBarRefreshTimerTick();
             void on_actionQueue_legend_triggered();
+            void on_actionPatrol_triggered();
         private:
             void DisplayWelcomeMessage();
             void FinishRestore();
@@ -348,7 +348,6 @@ namespace Huggle
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
             void closeEvent(QCloseEvent *event);
-            void FinishPatrols();
             void UpdateStatusBarData();
             //! Perform all common tests that are needed before a page can be edited and return false if they fail
             bool EditingChecks();

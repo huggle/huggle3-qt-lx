@@ -933,6 +933,14 @@ void Login::ProcessSiteInfo(WikiSite *site)
                 {
                     HUGGLE_DEBUG1("No watch for " + site->Name + " result: " + this->qTokenInfo[site]->Result->Data);
                 }
+                if (tokens->Attributes.contains("patroltoken"))
+                {
+                    site->GetProjectConfig()->Token_Patrol = tokens->GetAttribute("patroltoken");
+                    HUGGLE_DEBUG("Token for " + site->Name + " patrol " + site->GetProjectConfig()->Token_Patrol, 2);
+                } else
+                {
+                    HUGGLE_DEBUG1("No patrol for " + site->Name + " result: " + this->qTokenInfo[site]->Result->Data);
+                }
             }
         } else
         {

@@ -144,6 +144,7 @@
     <addaction name="actionRevert_only_this_revision_assuming_good_faith"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
+    <addaction name="actionPatrol"/>
     <addaction name="actionDisplay_this_page_in_browser"/>
     <addaction name="actionDisplay_this_page"/>
     <addaction name="actionDisplay_history_in_browser"/>
@@ -497,6 +498,20 @@
   <action name="actionUser_page">
    <property name="text">
     <string notr="true">User page</string>
+   </property>
+  </action>
+  <action name="actionPatrol">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Patrol</string>
+   </property>
+   <property name="toolTip">
+    <string notr="true">Patrol</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionDisplay_this_page_in_browser">

@@ -148,6 +148,7 @@ namespace Huggle
             //! This is a token returned by tokens query from mw which should be same for all rollback execs
             QString         Token_Rollback;
             QString         Token_Watch;
+            QString         Token_Patrol;
             /// \todo use rollback summary at least at mw-rollback
             QString         RollbackSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2";
             QString         RollbackSummaryUnknownTarget = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";

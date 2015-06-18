@@ -53,7 +53,6 @@ WikiEdit::WikiEdit()
     this->Score = 0;
     this->IsRevert = false;
     this->TPRevBaseTime = "";
-    this->PatrolToken = "";
     this->Previous = nullptr;
     // this is a problem we can't do this if we don't know the datetime because then the older edits
     // become newer and preflight checks will slap us for no reason

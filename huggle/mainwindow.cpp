@@ -288,11 +288,6 @@ MainWindow::~MainWindow()
         this->RevertStack.at(0)->DecRef();
         this->RevertStack.removeAt(0);
     }
-    while (this->PatrolledEdits.count())
-    {
-        this->PatrolledEdits.at(0)->UnregisterConsumer("patrol");
-        this->PatrolledEdits.removeAt(0);
-    }
     while (this->Browsers.count())
     {
         delete this->Browsers.at(0);
@@ -538,63 +533,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
     this->Exit();
     event->ignore();
-}
-
-void MainWindow::FinishPatrols()
-{
-    int x = 0;
-    bool flaggedrevs = hcfg->ProjectConfig->PatrollingFlaggedRevs;
-    while (x < this->PatrolledEdits.count())
-    {
-        Collectable_SmartPtr<ApiQuery> query = this->PatrolledEdits.at(x);
-        // check if this query has actually some edit associated to it
-        if (query->CallbackResult == nullptr)
-        {
-            // we really don't want to mess up with this
-            query->UnregisterConsumer("patrol");
-            // get rid of it
-            this->PatrolledEdits.removeAt(x);
-            continue;
-        }
-        // check if it's done
-        if (query->IsProcessed())
-        {
-            // wheeee now we have a token
-            WikiEdit *edit = (WikiEdit*) query->CallbackResult;
-            QDomDocument d;
-            d.setContent(query->Result->Data);
-            QDomNodeList l = d.elementsByTagName("tokens");
-            if (l.count() > 0)
-            {
-                QDomElement element = l.at(0).toElement();
-                const char *tokenname = flaggedrevs ? "edittoken" : "patroltoken";
-                if (element.attributes().contains(tokenname))
-                {
-                    // we can finish this
-                    QString token = element.attribute(tokenname);
-                    edit->PatrolToken = token;
-                    this->PatrolThis(edit);
-                    // get rid of it
-                    this->PatrolledEdits.removeAt(x);
-                    edit->UnregisterConsumer("patrol");
-                    query->CallbackResult = nullptr;
-                    query->UnregisterConsumer("patrol");
-                    continue;
-                }
-            }
-            // this edit is fucked up
-            HUGGLE_DEBUG1("Unable to retrieve token for " + edit->Page->PageName);
-            // get rid of it
-            this->PatrolledEdits.removeAt(x);
-            edit->UnregisterConsumer("patrol");
-            query->CallbackResult = nullptr;
-            query->UnregisterConsumer("patrol");
-            continue;
-        } else
-        {
-            x++;
-        }
-    }
 }
 
 void MainWindow::UpdateStatusBarData()
@@ -1266,7 +1204,6 @@ void MainWindow::OnMainTimerTick()
         }
     }
     QueryPool::HugglePool->CheckQueries();
-    this->FinishPatrols();
     Syslog::HuggleLogs->lUnwrittenLogs->lock();
     if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
     {
@@ -1686,7 +1623,7 @@ void MainWindow::SuspiciousEdit()
     this->DisplayNext();
 }
 
-void MainWindow::PatrolThis(WikiEdit *e)
+void MainWindow::PatrolEdit(WikiEdit *e)
 {
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     if (e == nullptr)
@@ -1696,28 +1633,10 @@ void MainWindow::PatrolThis(WikiEdit *e)
     ApiQuery *query = nullptr;
     bool flaggedrevs = conf->PatrollingFlaggedRevs;
 
-    // if this edit doesn't have the patrol token we need to get one
-    // if we're using flaggedrevs this will actually be an edit token, but we pretend it's a patrol one
-    if (e->PatrolToken.isEmpty())
+    if (e->GetSite()->GetProjectConfig()->Token_Patrol.isEmpty())
     {
-        // register consumer so that gc doesn't delete this edit meanwhile
-        e->RegisterConsumer("patrol");
-        query = new ApiQuery(ActionTokens, this->GetCurrentWikiSite());
-        if (flaggedrevs)
-        {
-            query->Target = "Retrieving patrol token (FlaggedRevs) for " + e->Page->PageName;
-            query->Parameters = "type=edit";
-        } else
-        {
-            query->Target = "Retrieving patrol token for " + e->Page->PageName;
-            query->Parameters = "type=patrol";
-        }
-        // this ugly piece of code actually rocks
-        query->CallbackResult = (void*)e;
-        query->RegisterConsumer("patrol");
-        QueryPool::HugglePool->AppendQuery(query);
-        query->Process();
-        this->PatrolledEdits.append(query);
+        Syslog::HuggleLogs->ErrorLog("Unable to patrol this change because there is no patrol token for " + e->GetSite()->Name + " disabling patrolling for now");
+        e->GetSite()->GetProjectConfig()->Patrolling = false;
         return;
     }
 
@@ -1734,7 +1653,7 @@ void MainWindow::PatrolThis(WikiEdit *e)
         query->SetAction(ActionPatrol);
         query->Target = "Patrolling " + e->Page->PageName;
     }
-    query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->PatrolToken);
+    query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Patrol);
     if (flaggedrevs)
         query->Parameters += "&flag_accuracy=1";
 
@@ -1945,7 +1864,7 @@ void MainWindow::WelcomeGood()
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
     Hooks::OnGood(this->CurrentEdit);
-    this->PatrolThis();
+    this->PatrolEdit();
     this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
     if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood &&
             this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
@@ -3019,4 +2938,12 @@ void Huggle::MainWindow::on_actionQueue_legend_triggered()
     QueueHelp *w = new QueueHelp(this);
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->show();
+}
+
+void Huggle::MainWindow::on_actionPatrol_triggered()
+{
+    if (!this->CheckEditableBrowserPage())
+        return;
+
+    this->PatrolEdit();
 }
