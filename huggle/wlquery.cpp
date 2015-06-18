@@ -29,6 +29,8 @@ WLQuery::~WLQuery()
 {
     if (this->networkReply != nullptr)
     {
+        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
+        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
         this->networkReply->abort();
         this->networkReply->disconnect(this);
         this->networkReply->deleteLater();
@@ -47,6 +49,24 @@ QString WLQuery::QueryTargetToString()
         return "Writing users to WhiteList";
     else
         return "Reporting suspicious edit";
+}
+
+void WLQuery::Kill()
+{
+    if (this->networkReply != nullptr)
+    {
+        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
+        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+        if (this->Status == StatusProcessing)
+        {
+            this->Status = StatusKilled;
+            this->disconnect(this->networkReply);
+            this->networkReply->abort();
+            this->networkReply->disconnect(this);
+            this->networkReply->deleteLater();
+            this->networkReply = nullptr;
+        }
+    }
 }
 
 void WLQuery::Process()

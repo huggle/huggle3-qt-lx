@@ -38,6 +38,7 @@ namespace Huggle
             QString QueryTargetToString();
             //! Returns a type of query as a string
             QString QueryTypeToString();
+            void Kill();
             void Process();
             QString Parameters;
             WLQueryType Type;
