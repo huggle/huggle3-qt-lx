@@ -50,12 +50,6 @@
   <string name="disable">Өшіру</string>
   <string name="no-token">Токен жоқ</string>
   <string name="flags">Жалаушалары</string>
-  <string name="score-score">Есеп</string>
-  <string name="score-word">Сөз</string>
-  <string name="score-take-any-no-talk-word">Талқылау емес беттеріндегі кез келген сөзбен сәйкес</string>
-  <string name="score-take-whole-no-talk-word">Талқылау емес беттеріндегі тек бүтін сөзбен сәйкес</string>
-  <string name="score-only-whole-word">Тек бүтін сөздермен сәйкес</string>
-  <string name="score-take-any-word">Бұл жолда қамтылған кез келген сөз сәйкес</string>
   <string name="browser-none">Қазір бет көрсетілмейді</string>
   <string name="browser-diff">Мына беттегі нұсқалар арасындағы айырмашылық: $1 (ұпай: $2)</string>
   <string name="browser-fail">Нұсқалар арасындағы айырмашылық алынбады: $1</string>
@@ -376,6 +370,12 @@
   <string name="report-progress">$1 дегенді хабарлауда</string>
   <string name="report-done">Хабарланды</string>
   <string name="report-user">Хабарлау</string>
+  <string name="score-score">Есеп</string>
+  <string name="score-word">Сөз</string>
+  <string name="score-take-any-no-talk-word">Талқылау емес беттеріндегі кез келген сөзбен сәйкес</string>
+  <string name="score-take-whole-no-talk-word">Талқылау емес беттеріндегі тек бүтін сөзбен сәйкес</string>
+  <string name="score-only-whole-word">Тек бүтін сөздермен сәйкес</string>
+  <string name="score-take-any-word">Бұл жолда қамтылған кез келген сөз сәйкес</string>
   <string name="uaa-reported">Хабарланды</string>
   <string name="uaa-nr">Себебі көрсетілмеген</string>
   <string name="uaa-e2">бет контенті қолжетімді болмаған</string>

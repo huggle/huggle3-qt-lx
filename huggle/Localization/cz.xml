@@ -51,11 +51,6 @@
   <string name="disable">Vypnuto</string>
   <string name="no-token">Chybí token</string>
   <string name="flags">Flagy</string>
-  <string name="score-score">Skóre</string>
-  <string name="score-word">Slovo</string>
-  <string name="score-range">Rozsah</string>
-  <string name="score-only-whole-word">Odpovídá pouze celým slovům</string>
-  <string name="score-take-any-word">Odpovídá jakémukoliv slovu, které obsahuje tento řetězec</string>
   <string name="browser-none">Žádná stránka nyní není zobrazena</string>
   <string name="browser-load">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
   <string name="browser-miss-summ">žádné shrnutí</string>
@@ -455,6 +450,11 @@
   <string name="report-retrieving">Stahuji současnou stránku pro nahlášení...</string>
   <string name="report-done">Nahlášeno</string>
   <string name="report-user">Nahlásit</string>
+  <string name="score-score">Skóre</string>
+  <string name="score-word">Slovo</string>
+  <string name="score-range">Rozsah</string>
+  <string name="score-only-whole-word">Odpovídá pouze celým slovům</string>
+  <string name="score-take-any-word">Odpovídá jakémukoliv slovu, které obsahuje tento řetězec</string>
   <string name="uaa-not-supported">UAA není k dispozici.</string>
   <string name="uaa-not-supported-text">Funkce \"nahlásit uživatelské jméno\" není k dispozici na této wiki.</string>
   <string name="uaa-reporting">Reportuji $1 na UAA</string>

@@ -48,13 +48,6 @@
   <string name="enable">Enschallde</string>
   <string name="disable">Ußschallde</string>
   <string name="flags">Fähnsche</string>
-  <string name="score-score">Punkte</string>
-  <string name="score-word">Woot</string>
-  <string name="score-range">Berett</string>
-  <string name="score-take-any-no-talk-word">Pass op jehdes Wood en ene Sigg, die kein Klaafsigg es.</string>
-  <string name="score-take-whole-no-talk-word">Pass op jehdes Wood en ene Sigg, die kein Klaafsigg es.</string>
-  <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
-  <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
   <string name="browser-none">Kein Sigg weed em Momang aanjezeisch</string>
   <string name="browser-miss-summ">Kein Zosammefaßong</string>
   <string name="browser-fail">Kann keine Ongerscheid afrohfe: $1</string>
@@ -173,8 +166,8 @@
   <string name="login-project">Et Projäk:</string>
   <string name="login-username">Dä Metmaacher_Nahme:</string>
   <string name="login-password">Et Paßwoot:</string>
-  <string name="login-proxygroup">Enschtällonge för der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zweschescheijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;</string>
-  <string name="login-proxy">Donn ene &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zweschescheijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;-ẞööver bruche</string>
+  <string name="login-proxygroup">Enschtällonge för der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;</string>
+  <string name="login-proxy">Donn ene &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;-ẞööver bruche</string>
   <string name="login-proxyaddress">Adräß:</string>
   <string name="login-proxyport">Pooz (&lt;i lang=\"en\"&gt;port&lt;/i&gt;)</string>
   <string name="login-proxydomain">Domähn:</string>
@@ -187,7 +180,7 @@
   <string name="login-translate">Huggle övversäze</string>
   <string name="login-progress-start">Ben op $1 aam enlogge.</string>
   <string name="login-progress-retrieve-mw">Mer holle Aanjahbe övver MehdijaWikki för $1</string>
-  <string name="login-progress-language">Ben de datteije met de äxte un Nohreeschte op der neuje Schtand aam bränge …</string>
+  <string name="login-progress-language">Ben de Datteije met de Täxte un Nohreeschte op der neuje Schtand aam bränge …</string>
   <string name="login-progress-global">Ben de alljemeine Enschtällonge aam pröhfe</string>
   <string name="login-progress-config">Ben de Sigge met de Enschtällonge aam pröhfe</string>
   <string name="login-progress-local">Ben de hiisejje Enschtällonge aam pröhfe för $1</string>
@@ -343,6 +336,13 @@
   <string name="report-write" fuzzy="true">Schriive</string>
   <string name="report-done">Jemäldt</string>
   <string name="report-user">Bereesch</string>
+  <string name="score-score">Punkte</string>
+  <string name="score-word">Woot</string>
+  <string name="score-range">Berett</string>
+  <string name="score-take-any-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
+  <string name="score-take-whole-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
+  <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
+  <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
   <string name="uaa-nr">Keine Jrond wohd aanjejovve</string>
   <string name="revert-only">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
   <string name="revert-creator">Heh di Änderong wood vom Aanlähjer vun dä Sigg jemaat, $1</string>
@@ -388,8 +388,8 @@
   <string name="page-unknown">Onbikannte Sigg</string>
   <string name="namespace">Appachtemang</string>
   <string name="report-unable">Mer künne dä Metmaacher nit mällde.</string>
-  <string name="about-python-with"> met &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\"&gt;Python&lt;/i&gt;-Ongerschtözong</string>
-  <string name="about-python-without"> der ohne &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\"&gt;Python&lt;/i&gt;-Ongerschtözong</string>
+  <string name="about-python-with"> met &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt; -Ongerschtözong</string>
+  <string name="about-python-without"> der ohne &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt; -Ongerschtözong</string>
   <string name="about-qt">, övversaz met QT $1 un leuf op QT $1</string>
   <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>
   <string name="relogin-fail">Mer künne em Wikki nit enlogge, weil: $1</string>

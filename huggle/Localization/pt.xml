@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">inglês</string>
+  <string name="name">português</string>
   <string name="isrtl">falso</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
@@ -51,13 +51,6 @@
   <string name="disable">Desativar</string>
   <string name="no-token">Nenhum código de verificação</string>
   <string name="flags">Sinalizações</string>
-  <string name="score-score">Pontuação</string>
-  <string name="score-word">Palavra</string>
-  <string name="score-range">Intervalo</string>
-  <string name="score-take-any-no-talk-word">Corresponde a qualquer palavra em páginas, exceto de Discussão</string>
-  <string name="score-take-whole-no-talk-word">Corresponde apenas a palavras inteiras em páginas que não sejam de Discussão</string>
-  <string name="score-only-whole-word">Corresponde a apenas palavras inteiras</string>
-  <string name="score-take-any-word">Corresponde a qualquer palavra que contenha esta sequência de caracteres</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
   <string name="browser-load">A descarregar dif usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Não foi fornecido nenhum resumo</string>
@@ -473,6 +466,13 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="report-retrieving">A aceder à página de pedidos de bloqueio...</string>
   <string name="report-done">Denunciado</string>
   <string name="report-user">Denunciar</string>
+  <string name="score-score">Pontuação</string>
+  <string name="score-word">Palavra</string>
+  <string name="score-range">Intervalo</string>
+  <string name="score-take-any-no-talk-word">Corresponde a qualquer palavra em páginas, exceto de Discussão</string>
+  <string name="score-take-whole-no-talk-word">Corresponde apenas a palavras inteiras em páginas que não sejam de Discussão</string>
+  <string name="score-only-whole-word">Corresponde a apenas palavras inteiras</string>
+  <string name="score-take-any-word">Corresponde a qualquer palavra que contenha esta sequência de caracteres</string>
   <string name="uaa-not-supported">UAA não disponível</string>
   <string name="uaa-not-supported-text">O espaço para denúncias sobre nomes de utilizadores não está disponível na sua wiki.</string>
   <string name="uaa-reporting">A denunciar $1 em UAA</string>

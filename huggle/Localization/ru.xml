@@ -50,13 +50,6 @@
   <string name="disable">Отключить</string>
   <string name="no-token">Нет маркера</string>
   <string name="flags">Флаги</string>
-  <string name="score-score">Счёт</string>
-  <string name="score-word">Слово</string>
-  <string name="score-range">Диапазон</string>
-  <string name="score-take-any-no-talk-word">Совпадает с любым словом на не обсуждаемых страницах</string>
-  <string name="score-take-whole-no-talk-word">Совпадает только с целым словом на не обсуждаемых страницах</string>
-  <string name="score-only-whole-word">Соответствует только целым словам</string>
-  <string name="score-take-any-word">Соответствует любому слову, содержащему эту строку</string>
   <string name="browser-none">Страница сейчас не отображается</string>
   <string name="browser-miss-summ">Описание правки отсутствует</string>
   <string name="browser-diff">Различие между версиями на странице $1 (баллы: $2)</string>
@@ -412,6 +405,13 @@
   <string name="report-progress">Отправка сообщения \'$1\'...</string>
   <string name="report-done">Отчитавщийся</string>
   <string name="report-user">Отчет</string>
+  <string name="score-score">Счёт</string>
+  <string name="score-word">Слово</string>
+  <string name="score-range">Диапазон</string>
+  <string name="score-take-any-no-talk-word">Совпадает с любым словом на не обсуждаемых страницах</string>
+  <string name="score-take-whole-no-talk-word">Совпадает только с целым словом на не обсуждаемых страницах</string>
+  <string name="score-only-whole-word">Соответствует только целым словам</string>
+  <string name="score-take-any-word">Соответствует любому слову, содержащему эту строку</string>
   <string name="uaa-reported">Отчитавшийся</string>
   <string name="uaa-nr">Не была указана причина</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>

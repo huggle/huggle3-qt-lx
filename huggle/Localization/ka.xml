@@ -47,9 +47,6 @@
   <string name="enable">ჩართვა</string>
   <string name="disable">გათიშვა</string>
   <string name="flags">დროშები</string>
-  <string name="score-score">ანგარიში</string>
-  <string name="score-word">სიტყვა</string>
-  <string name="score-range">დიაპაზონი</string>
   <string name="about-contributors">Внёсшие свою лепту:</string>
   <string name="block-not">მომხმარებელი არ არის დაბლოკილი</string>
   <string name="block-title">$1-ს დაბლოკვა</string>
@@ -271,6 +268,9 @@
   <string name="report-message">შეტყობინება:</string>
   <string name="report-log">ამ მომხმარებლის გაფრთხილებები:</string>
   <string name="report-include">ანგარიშში ჩართვა</string>
+  <string name="score-score">ანგარიში</string>
+  <string name="score-word">სიტყვა</string>
+  <string name="score-range">დიაპაზონი</string>
   <string name="speedy-reason">მიზეზი:</string>
   <string name="speedy-parameters">პარამეტრები:</string>
   <string name="speedy-notifycreator">გვერდის შემქმნელისთვის შეტყობინება</string>

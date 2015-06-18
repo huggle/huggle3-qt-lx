@@ -51,11 +51,6 @@
   <string name="disable">अक्षम करें</string>
   <string name="no-token">कोई संकेत नहीं</string>
   <string name="flags">चिह्न</string>
-  <string name="score-score">स्कोर</string>
-  <string name="score-word">शब्द</string>
-  <string name="score-range">परास</string>
-  <string name="score-only-whole-word">केवल सभी शब्द मेल खाते हैं</string>
-  <string name="score-take-any-word">इस शृंखला वाले सभी शब्द मेल खाते हैं</string>
   <string name="browser-none">अभी कोई पृष्ठ प्रदर्शित नहीं हुआ</string>
   <string name="browser-miss-summ">कोई सारांश नहीं दिया गया</string>
   <string name="browser-diff">पृष्ठों में अन्तर: $1 (स्कोर: $2)</string>
@@ -332,6 +327,11 @@
   <string name="report-log">इस प्रयोक्ता के लिए चेतावनियाँ:</string>
   <string name="report-duplicate">ये सदस्य को पहले से रिपोर्ट कर दिया गया है</string>
   <string name="report-progress">\'$1\' को रिपोर्ट कर रहे है...</string>
+  <string name="score-score">स्कोर</string>
+  <string name="score-word">शब्द</string>
+  <string name="score-range">परास</string>
+  <string name="score-only-whole-word">केवल सभी शब्द मेल खाते हैं</string>
+  <string name="score-take-any-word">इस शृंखला वाले सभी शब्द मेल खाते हैं</string>
   <string name="revert-confirm-multiple">ये \'$1\' द्वारा एकाधिक संपादन को वापस ले लेगा। जारी रखें?</string>
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, $2, वर्तमान संशोधन के लेखक के समान सीमा में है, $1, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, $1, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
