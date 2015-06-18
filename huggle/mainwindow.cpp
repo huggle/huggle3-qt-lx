@@ -2946,5 +2946,11 @@ void Huggle::MainWindow::on_actionPatrol_triggered()
     if (!this->CheckEditableBrowserPage())
         return;
 
+    if (!this->CurrentEdit->GetSite()->GetProjectConfig()->Patrolling)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("main-patrol-not-enabled", this->CurrentEdit->GetSite()->Name));
+        return;
+    }
+
     this->PatrolEdit();
 }

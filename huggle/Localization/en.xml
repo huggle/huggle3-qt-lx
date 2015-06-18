@@ -348,6 +348,7 @@
   <string name="main-page-protect">Protect</string>
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
+  <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
   <string name="main-page-restore">Restore this revision</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
