@@ -190,6 +190,8 @@ void Core::LoadDB()
             site->HANChannel = e.attribute("han_irc");
         if (e.attributes().contains("xmlrcs_name"))
             site->XmlRcsName = e.attribute("xmlrcs_name");
+        if (e.attributes().contains("ssl_required"))
+            site->ForceSSL = Generic::SafeBool(e.attribute("ssl_required"));
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }

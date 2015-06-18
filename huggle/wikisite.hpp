@@ -31,7 +31,6 @@ namespace Huggle
             WikiPageNS(const WikiPageNS &k);
             WikiPageNS(WikiPageNS *k);
             ~WikiPageNS();
-            //~WikiPageNS();
             QString GetName();
             QString GetCanonicalName();
             bool IsTalkPage();
@@ -107,6 +106,8 @@ namespace Huggle
             void RemoveNS(int ns);
             void ClearNS();
             HuggleQueueFilter *CurrentFilter = nullptr;
+            //! If this is true it shouldn't be possible to login to wiki without SSL, it may be needed for some WMF sites which now require SSL
+            bool ForceSSL = false;
             QHash<int, WikiPageNS*> NamespaceList;
             //! Name of wiki, used by huggle only
             QString Name;

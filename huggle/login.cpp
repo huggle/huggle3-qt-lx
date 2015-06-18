@@ -356,7 +356,18 @@ void Login::PressOK()
         {
             if (!wiki->SupportHttps)
             {
-                this->DisplayError("You requested to use SSL but wiki " + wiki->Name + " doesn't support it.");
+                this->DisplayError(_l("ssl-is-not-supported", wiki->Name));
+                return;
+            }
+        }
+    }
+    else
+    {
+        foreach(WikiSite *wiki, hcfg->Projects)
+        {
+            if (wiki->ForceSSL)
+            {
+                this->DisplayError(_l("ssl-required", wiki->Name));
                 return;
             }
         }
