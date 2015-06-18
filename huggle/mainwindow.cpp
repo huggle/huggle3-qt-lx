@@ -1702,6 +1702,7 @@ void MainWindow::Localize()
     this->ui->actionFeedback->setText(_l("main-help-feedback"));
     this->ui->actionReport_user->setText(_l("main-user-report"));
     this->ui->actionUser_contributions->setText(_l("main-user-contribs"));
+    this->ui->actionPatrol->setText(_l("main-page-patrol"));
     this->ui->actionPreferences->setText(_l("main-system-options"));
     this->ui->actionReconnect_IRC->setText(_l("main-system-reconnectirc"));
     this->ui->actionShow_talk->setText(_l("main-goto-mytalk"));
