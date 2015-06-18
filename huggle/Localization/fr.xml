@@ -51,13 +51,6 @@
   <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
-  <string name="score-score">Score</string>
-  <string name="score-word">Mot</string>
-  <string name="score-range">Plage</string>
-  <string name="score-take-any-no-talk-word">Correspond à n’importe quel mot sur les pages hors discussion</string>
-  <string name="score-take-whole-no-talk-word">Correspond uniquement aux mots complets sur les pages hors discussion</string>
-  <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
-  <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
   <string name="browser-load">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>
@@ -450,6 +443,13 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="report-retrieving">Récupération de la page de rapport actuelle…</string>
   <string name="report-done">Signalé</string>
   <string name="report-user">Signalement</string>
+  <string name="score-score">Score</string>
+  <string name="score-word">Mot</string>
+  <string name="score-range">Plage</string>
+  <string name="score-take-any-no-talk-word">Correspond à n’importe quel mot sur les pages hors discussion</string>
+  <string name="score-take-whole-no-talk-word">Correspond uniquement aux mots complets sur les pages hors discussion</string>
+  <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
+  <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
   <string name="uaa-not-supported">UAA non disponible</string>
   <string name="uaa-not-supported-text">Le panneau d’affichage « Noms d’utilisateur à l’attention de l’administrateur » n’est pas disponible sur votre wiki.</string>
   <string name="uaa-reporting">Signaler $1 à UAA</string>

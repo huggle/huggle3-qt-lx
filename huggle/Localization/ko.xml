@@ -51,11 +51,6 @@
   <string name="disable">비활성화</string>
   <string name="no-token">토큰 없음</string>
   <string name="flags">플래그</string>
-  <string name="score-score">점수</string>
-  <string name="score-word">낱말</string>
-  <string name="score-range">범위</string>
-  <string name="score-only-whole-word">전체 낱말만 일치</string>
-  <string name="score-take-any-word">이 문자열을 포함하는 어떠한 낱말을 일치</string>
   <string name="browser-none">지금 보여지는 문서가 없습니다</string>
   <string name="browser-load">웹 렌더링 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
   <string name="browser-miss-summ">제공된 요약이 없습니다</string>
@@ -441,6 +436,11 @@
   <string name="report-retrieving">현재 보고 문서를 얻는 중...</string>
   <string name="report-done">보고됨</string>
   <string name="report-user">보고</string>
+  <string name="score-score">점수</string>
+  <string name="score-word">낱말</string>
+  <string name="score-range">범위</string>
+  <string name="score-only-whole-word">전체 낱말만 일치</string>
+  <string name="score-take-any-word">이 문자열을 포함하는 어떠한 낱말을 일치</string>
   <string name="uaa-not-supported">사용자 관리 신청 사용할 수 없음</string>
   <string name="uaa-not-supported-text">이 위키에는 \"관리자의 관심이 필요한 사용자명\" 알림판이 존재하지 않습니다.</string>
   <string name="uaa-reported">보고됨</string>

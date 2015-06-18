@@ -97,9 +97,6 @@ Used as column header. The column contains duration. e.g. \"2 hours\", \"infinit
 
 Used as column header. The column contains list of flags (comma-separated). e.g. \"nocreate,noautoblock\"
 {{Identical|Flag}}</string>
-  <string name="score-score">{{Identical|Score}}</string>
-  <string name="score-word">{{Identical|Word}}</string>
-  <string name="score-range">{{Identical|Range}}</string>
   <string name="browser-none">This is a title bar / error message that is shown when user wants to perform some action while no page is displayed</string>
   <string name="browser-load">This is shown in web browser window in case that api.php didn\'t return a proper diff so that huggle had to switch to \"web rendering\" mode, where page is retrieved using standard html method such as index.php?action=render</string>
   <string name="browser-miss-summ">Red label that appears in web browser window instead of edit summary in case there is none</string>
@@ -153,6 +150,7 @@ The column contains \"block\" and \"unblock\".</string>
   <string name="config-noshortcut">{{Identical|None}}</string>
   <string name="config-defaults">{{Identical|Default}}</string>
   <string name="config-revert">{{Identical|Revert}}</string>
+  <string name="config-bot-edits">The letter (b) is supposed to be the same as the \"bot\" abbreviation in RecentChanges - {{msg-mw|boteditletter}}.</string>
   <string name="config-reverts">{{Identical|Revert}}</string>
   <string name="config-new-page">{{Identical|New page}}</string>
   <string name="config-template">{{Identical|Template}}</string>
@@ -454,6 +452,9 @@ The windows has the message \"Unable to protect the page because \'\'reason\'\'\
   <string name="report-progress">{{Identical|Reporting}}</string>
   <string name="report-done">{{Identical|Reported}}</string>
   <string name="report-user">{{Identical|Report}}</string>
+  <string name="score-score">{{Identical|Score}}</string>
+  <string name="score-word">{{Identical|Word}}</string>
+  <string name="score-range">{{Identical|Range}}</string>
   <string name="uaa-not-supported">Used as title for the following message:
 * {{msg-huggle|Uaa-not-supported-text}}
 

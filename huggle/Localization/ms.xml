@@ -50,13 +50,6 @@
   <string name="disable">Matikan</string>
   <string name="no-token">Tiada token</string>
   <string name="flags">Bendera</string>
-  <string name="score-score">Markah</string>
-  <string name="score-word">Perkataan</string>
-  <string name="score-range">Julat</string>
-  <string name="score-take-any-no-talk-word">Padan dengan mana-mana perkataan di laman bukan perbincangan</string>
-  <string name="score-take-whole-no-talk-word">Padan dengan perkataan segenap sahaja di laman bukan perbincangan</string>
-  <string name="score-only-whole-word">Padan dengan perkataan segenap sahaja</string>
-  <string name="score-take-any-word">Padan dengan mana-mana perkataan yang mengandungi rentetan ini</string>
   <string name="browser-none">Tiada laman sedang dipaparkan</string>
   <string name="browser-load">Perbezaan sedang dimuat turun dengan sistem paparan web, sila tunggu...</string>
   <string name="browser-miss-summ">Tiada ringkasan diberikan</string>
@@ -247,6 +240,13 @@
   <string name="report-select">Sila pilih satu perbezaan dalam senarai untuk membuka pratayangan</string>
   <string name="report-evidence-none-provid">Tiada perbezaan yang diberikan sebagai bukti. Ini menyukarkan kerja penyelia untuk menentukan sama ada pengguna terbabit adalah pelaku musnah atau tidak. Adakah anda betul-betul mahu teruskan?</string>
   <string name="report-progress">Melaporkan $1...</string>
+  <string name="score-score">Markah</string>
+  <string name="score-word">Perkataan</string>
+  <string name="score-range">Julat</string>
+  <string name="score-take-any-no-talk-word">Padan dengan mana-mana perkataan di laman bukan perbincangan</string>
+  <string name="score-take-whole-no-talk-word">Padan dengan perkataan segenap sahaja di laman bukan perbincangan</string>
+  <string name="score-only-whole-word">Padan dengan perkataan segenap sahaja</string>
+  <string name="score-take-any-word">Padan dengan mana-mana perkataan yang mengandungi rentetan ini</string>
   <string name="revert-confirm-multiple">Ini akan membalikkan berbilang suntingan oleh $1. Teruskan?</string>
   <string name="revert-confirm-range">Pengarang semakan yang disasarkan iaitu $2 sama julat dengan pengarang semakan semasa iaitu $1, jangan-jangan sama orangnya. Pastikan semakan sasaran adalah betul sebelum meneruskan. Teruskan?</string>
   <string name="revert-confirm-same">Ini akan dibalikkan kepada satu lagi semakan oleh pengguna yang sedang dikenakan pembalikan iaitu $1. Teruskan?</string>

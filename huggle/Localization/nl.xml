@@ -51,13 +51,6 @@
   <string name="disable">Uitschakelen</string>
   <string name="no-token">Geen token</string>
   <string name="flags">Markeringen</string>
-  <string name="score-score">Score</string>
-  <string name="score-word">Woord</string>
-  <string name="score-range">Bereik</string>
-  <string name="score-take-any-no-talk-word">Overeenkomst met een woord op niet-overlegpagina\'s</string>
-  <string name="score-take-whole-no-talk-word">Overeenkomst alleen met hele woorden op niet-overlegpagina\'s</string>
-  <string name="score-only-whole-word">Overeenkomst alleen met hele woorden</string>
-  <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="browser-none">Er wordt geen pagina weergegeven</string>
   <string name="browser-load">De verschillen worden geladen door terugvallen op webrenderen. Even geduld...</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
@@ -327,6 +320,13 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="report-progress">$1 rapporteren...</string>
   <string name="report-done">Gerapporteerd</string>
   <string name="report-user">Rapporteren</string>
+  <string name="score-score">Score</string>
+  <string name="score-word">Woord</string>
+  <string name="score-range">Bereik</string>
+  <string name="score-take-any-no-talk-word">Overeenkomst met een woord op niet-overlegpagina\'s</string>
+  <string name="score-take-whole-no-talk-word">Overeenkomst alleen met hele woorden op niet-overlegpagina\'s</string>
+  <string name="score-only-whole-word">Overeenkomst alleen met hele woorden</string>
+  <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
   <string name="uaa-reported">Gerapporteerd</string>
   <string name="speedy-reason">Reden:</string>

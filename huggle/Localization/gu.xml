@@ -49,9 +49,6 @@
   <string name="disable">નિષ્ક્રિય</string>
   <string name="no-token">ટોકન નથી</string>
   <string name="flags">નિશાનીઓ</string>
-  <string name="score-score">સ્કોર</string>
-  <string name="score-word">શબ્દો</string>
-  <string name="score-range">વિસ્તાર</string>
   <string name="about-contributors">ડેવલપર્સ</string>
   <string name="block-not">સભ્ય પ્રતિબંધિત છે</string>
   <string name="block-title">પ્રતિબંધિત $1</string>
@@ -250,6 +247,9 @@
   <string name="report-retrieving">હાલનું અહેવાલપાનું લાવે છે...</string>
   <string name="report-done">અહેવાલ આપ્યો</string>
   <string name="report-user">અહેવાલ</string>
+  <string name="score-score">સ્કોર</string>
+  <string name="score-word">શબ્દો</string>
+  <string name="score-range">વિસ્તાર</string>
   <string name="uaa-not-supported">UAA ઉપલબ્ધ નથી</string>
   <string name="uaa-reporting">UAA માં $1 અહેવાલ કરે છે</string>
   <string name="uaa-reported">અહેવાલ આપ્યો</string>

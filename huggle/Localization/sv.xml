@@ -51,13 +51,6 @@
   <string name="disable">Inaktivera</string>
   <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
-  <string name="score-score">Poäng</string>
-  <string name="score-word">Ord</string>
-  <string name="score-range">Intervall</string>
-  <string name="score-take-any-no-talk-word">Matchar alla ord på sidor som inte är diskussionssidor</string>
-  <string name="score-take-whole-no-talk-word">Matchar endast hela ord på sidor som inte är diskussionssidor</string>
-  <string name="score-only-whole-word">Matchar endast hela ord</string>
-  <string name="score-take-any-word">Matchar alla ord som innehåller denna sträng</string>
   <string name="browser-none">Ingen sida visas nu</string>
   <string name="browser-load">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
@@ -387,6 +380,13 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="report-retrieving">Hämtar aktuell rapportsida...</string>
   <string name="report-done">Rapporterade</string>
   <string name="report-user">Rapportera</string>
+  <string name="score-score">Poäng</string>
+  <string name="score-word">Ord</string>
+  <string name="score-range">Intervall</string>
+  <string name="score-take-any-no-talk-word">Matchar alla ord på sidor som inte är diskussionssidor</string>
+  <string name="score-take-whole-no-talk-word">Matchar endast hela ord på sidor som inte är diskussionssidor</string>
+  <string name="score-only-whole-word">Matchar endast hela ord</string>
+  <string name="score-take-any-word">Matchar alla ord som innehåller denna sträng</string>
   <string name="uaa-not-supported">UAA är inte tillgänglig</string>
   <string name="uaa-reporting">Rapporterar$1 till UAA</string>
   <string name="uaa-reported">Rapporterad</string>

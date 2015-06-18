@@ -49,13 +49,6 @@
   <string name="disable">अक्षमं क्रियताम्</string>
   <string name="no-token">स्तोकं नास्ति</string>
   <string name="flags">ध्वजाः</string>
-  <string name="score-score">स्रोतः</string>
-  <string name="score-word">शब्दः</string>
-  <string name="score-range">विस्तारः</string>
-  <string name="score-take-any-no-talk-word">सम्भाषणपृष्ठं विहाय सर्वान् शब्दान् तोलति</string>
-  <string name="score-take-whole-no-talk-word">सम्भाषणपृष्ठं विहाय सर्वान् शब्दान् एव तोलति</string>
-  <string name="score-only-whole-word">सम्पूर्णशब्दान् एव तोलति</string>
-  <string name="score-take-any-word">वाक्ये विद्यमानं यं कमपि शब्दं तोलति</string>
   <string name="browser-none">अधुना नैकमपि पृष्ठे दर्शयति</string>
   <string name="browser-miss-summ">सारांशः न प्रदत्तः</string>
   <string name="browser-fail">भेदं ज्ञातम् अक्षमः : $1</string>
@@ -193,6 +186,13 @@
   <string name="report-message">सन्देशः :</string>
   <string name="report-log">एतस्मै योजकाय पूर्वसूचना :</string>
   <string name="report-write">लिखति</string>
+  <string name="score-score">स्रोतः</string>
+  <string name="score-word">शब्दः</string>
+  <string name="score-range">विस्तारः</string>
+  <string name="score-take-any-no-talk-word">सम्भाषणपृष्ठं विहाय सर्वान् शब्दान् तोलति</string>
+  <string name="score-take-whole-no-talk-word">सम्भाषणपृष्ठं विहाय सर्वान् शब्दान् एव तोलति</string>
+  <string name="score-only-whole-word">सम्पूर्णशब्दान् एव तोलति</string>
+  <string name="score-take-any-word">वाक्ये विद्यमानं यं कमपि शब्दं तोलति</string>
   <string name="speedy-reason">कारणम् :</string>
   <string name="speedy-parameters">परिमितिः :</string>
   <string name="tag-title">$1 अङ्कनम्</string>

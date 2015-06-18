@@ -51,13 +51,6 @@
   <string name="disable">Devre dışı bırak</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
-  <string name="score-score">Derecelendirme</string>
-  <string name="score-word">Kelime</string>
-  <string name="score-range">Aralık</string>
-  <string name="score-take-any-no-talk-word">Tartışma sayfaları dışında herhangi bir kelime eşleşmesi</string>
-  <string name="score-take-whole-no-talk-word">Tartışma sayfaları dışındaki sayfalara tüm sayfalarla eşleştirme</string>
-  <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
-  <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
   <string name="browser-load">Fark, web rendering geri dönüşü kullanılarak indiriliyor, lütfen bekleyin</string>
   <string name="browser-miss-summ">Özet girilmedi</string>
@@ -488,6 +481,13 @@
   <string name="report-retrieving">Geçerli rapor sayfası alınıyor...</string>
   <string name="report-done">Rapor edildi</string>
   <string name="report-user">Rapor et</string>
+  <string name="score-score">Derecelendirme</string>
+  <string name="score-word">Kelime</string>
+  <string name="score-range">Aralık</string>
+  <string name="score-take-any-no-talk-word">Tartışma sayfaları dışında herhangi bir kelime eşleşmesi</string>
+  <string name="score-take-whole-no-talk-word">Tartışma sayfaları dışındaki sayfalara tüm sayfalarla eşleştirme</string>
+  <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
+  <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
   <string name="uaa-not-supported">UAA mevcut değil</string>
   <string name="uaa-not-supported-text">\"Kullanıcı adları için hizmetli uyarı bildirimi\" tahtası Viki\'nizde kullanıma açık değildir.</string>
   <string name="uaa-reporting">UAA\'ya rapor ediliyor: $1</string>
@@ -658,10 +658,12 @@
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
   <string name="preferences-extension-disabled">Bu uzantı zaten huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
+  <string name="preferences-extension-disabled-restart">Bu uzantı zaten Huggle yeniden başladığında devre dışı kalmak üzere planlanmış</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>
   <string name="requested">Talep edildi</string>
+  <string name="message-fail">Mesajı iletme başarısız oldu</string>
   <string name="edit-conflict">Değişiklik çakışması</string>
   <string name="page-tag-nodescription">bu etiket için hiçbir açıklama yok :/</string>
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
@@ -670,6 +672,9 @@
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
   <string name="report-fail">Rapor edilemedi çünkü: $1</string>
   <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
+  <string name="about-python-with">,Python destekli</string>
+  <string name="about-python-without">,Python desteği olmadan</string>
+  <string name="about-qt">,QT $1 le derlenmiş QT $1 üzerinde çalışıyor</string>
   <string name="error-unknown-code">Bilinmeyen Hata: $1</string>
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
 </resources>

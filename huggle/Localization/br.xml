@@ -50,11 +50,6 @@
   <string name="disable">Diweredekaat</string>
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
-  <string name="score-score">Poentoù</string>
-  <string name="score-word">Ger</string>
-  <string name="score-range">Lijorenn</string>
-  <string name="score-only-whole-word">A glot gant ar gerioù klok hepken</string>
-  <string name="score-take-any-word">A glot gant n\'eus forzh peseurt ger a zo ar chadenn-mañ ennañ</string>
   <string name="browser-none">N\'eus diskwelet pajenn ebet bremañ</string>
   <string name="browser-load">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
@@ -267,6 +262,11 @@
   <string name="queue-filtertags">Balizenn</string>
   <string name="report-reason">Abeg :</string>
   <string name="report-message">Kemennadenn :</string>
+  <string name="score-score">Poentoù</string>
+  <string name="score-word">Ger</string>
+  <string name="score-range">Lijorenn</string>
+  <string name="score-only-whole-word">A glot gant ar gerioù klok hepken</string>
+  <string name="score-take-any-word">A glot gant n\'eus forzh peseurt ger a zo ar chadenn-mañ ennañ</string>
   <string name="uaa-nr">N\'eus bet roet abeg ebet</string>
   <string name="revert-delete-instead">Dilemel ar bajenn, kentoc\'h ?</string>
   <string name="speedy-reason">Abeg :</string>

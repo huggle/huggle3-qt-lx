@@ -46,7 +46,6 @@
   <string name="enable">Aschalten</string>
   <string name="disable">Ausschalten</string>
   <string name="flags">Markéierungen</string>
-  <string name="score-word">Wuert</string>
   <string name="browser-none">Elo gëtt keng Säit gewisen</string>
   <string name="browser-miss-summ">Et gouf kee Resumé uginn</string>
   <string name="browser-diff">Ënnerscheed vun der Säit: $1 (Score: $2)</string>
@@ -297,6 +296,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="report-write">Schreiwen</string>
   <string name="reportuser-not">Dëse Benotzer ass elo net gemellt</string>
   <string name="report-duplicate">De Benotzer gouf scho gemellt</string>
+  <string name="score-word">Wuert</string>
   <string name="uaa-not-supported">UAA net disponibel</string>
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>

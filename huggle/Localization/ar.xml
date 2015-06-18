@@ -47,7 +47,6 @@
   <string name="duration">المدة</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
-  <string name="score-word">كلمة</string>
   <string name="browser-none">ما من صفحات معروضة الآن</string>
   <string name="browser-miss-summ">لم يعطى أي ملخص</string>
   <string name="about-contributors">المطورون:</string>
@@ -321,6 +320,7 @@
   <string name="report-write">كتابة</string>
   <string name="report-duplicate">تم الاخطار عن هذا المستخدم</string>
   <string name="report-progress">قيد اخطار اداري عن \'$1\'...ء</string>
+  <string name="score-word">كلمة</string>
   <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'$1\'. استمر؟</string>
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, $2, في نفس نطاق مؤلف النسخة الحالية, $1, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
   <string name="revert-confirm-same">هذا سيسترجع الى نسخة اخرى بواسطة نفس المستخدم , $1 . استمر؟</string>

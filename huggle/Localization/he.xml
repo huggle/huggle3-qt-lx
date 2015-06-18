@@ -12,6 +12,7 @@
   <string name="deleted">נמחק</string>
   <string name="error">שגיאה</string>
   <string name="exit">יציאה</string>
+  <string name="done">בוצע</string>
   <string name="no">לא</string>
   <string name="ok">אישור</string>
   <string name="remove">הסרה</string>
@@ -46,13 +47,10 @@
   <string name="whitelisted">$1 עם ציון $2 באתר $3 הוכנס לרשימה הלבנה</string>
   <string name="expiry-time">זמן פקיעה</string>
   <string name="duration">משך</string>
+  <string name="enable">להפעיל</string>
+  <string name="disable">לכבות</string>
   <string name="no-token">אין אסימון</string>
   <string name="flags">דגלים</string>
-  <string name="score-score">ציון</string>
-  <string name="score-word">מילה</string>
-  <string name="score-range">טווח</string>
-  <string name="score-only-whole-word">מתאים רק למילים שלמות</string>
-  <string name="score-take-any-word">מתאים לכל מילה שמכילה את המחרוזת הזאת</string>
   <string name="browser-none">שום דף אינו מוצג עכשיו</string>
   <string name="browser-load">הורדת השוואה באמצעות גיבוי תצוגת וב, נא להמתין...</string>
   <string name="browser-miss-summ">לא ניתן תקציר</string>
@@ -111,6 +109,19 @@
   <string name="config-defaultsummary">תקציר בררת מחדל לעריכות ידניות</string>
   <string name="config-undosummary">תקציר בעת ביטול עריכות עצמיות</string>
   <string name="config-confirm-wl">לדרוש אישור על שחזור של עריכה שעשה משתמש ברשימה הלבנה</string>
+  <string name="config-revert">שחזור</string>
+  <string name="config-enable-irc">הפעלת IRC</string>
+  <string name="config-display-text">להציג את הבא</string>
+  <string name="config-retrieve-edit">שחזור עריכה של עצמך</string>
+  <string name="config-nothing">שום דבר</string>
+  <string name="config-bot-edits">עריכות בוט (b)</string>
+  <string name="config-own-edits">עריכות של עצמי</string>
+  <string name="config-reverts">שחזורים</string>
+  <string name="config-new-page">דף חדש</string>
+  <string name="config-whitelisted">רשימה לבנה</string>
+  <string name="config-friend">חברים</string>
+  <string name="config-userspace">מרחב משתמש</string>
+  <string name="config-talk">דף שיחה</string>
   <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
   <string name="config-confirmsame">לבקש אישר על שחזור לעריכה של המשתמש שעריכתו משוחזרת</string>
   <string name="config-confirmselfrevert">לבקש אישור לעריכות עצמיות (למעט ביטול)</string>
@@ -153,7 +164,7 @@
   <string name="delete-e2">אין אפשרות למחוק את דף</string>
   <string name="delete-edsc">אין אפשרות למחוק את הדף: $1</string>
   <string name="delete-failed-no-info">לא היה שום דף בשאילתה (האם יש לך הרשאת מפעיל?)</string>
-  <string name="extension-kl" fuzzy="true">הופסק</string>
+  <string name="extension-kl">לא רץ</string>
   <string name="historyform-no-info">אין מידע על עריכה</string>
   <string name="historyform-title">היסטוריה</string>
   <string name="historyform-retrieve-history">אחזור היסטוריה</string>
@@ -167,7 +178,7 @@
   <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת מספר רגעים...</string>
   <string name="irc-disconnected">התחברות להזנת שינויים אחרונים אבדה ב־$1. התחברות מחדש...</string>
   <string name="irc-nochannel">לא נמצא ערוץ IRC בשביל $1; תשמשנה שאילתות API אטיות יותר במקוםו</string>
-  <string name="irc-error" fuzzy="true">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1). תשמשנה שאילתות API אטיות יותר במקומו</string>
+  <string name="irc-error">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1: $2). תשמשנה שאילתות API אטיות יותר במקומו</string>
   <string name="irc-stop">ממתין לעצירת ספק ההזמנה העיקרי ב־$1</string>
   <string name="irc-not">הזנה: IRC כבוי בהגדרות מיזם</string>
   <string name="irc-failure">ספק ההזנה הראשי נכשל. מתבצע גיבוי לספק ויקי...</string>
@@ -431,6 +442,12 @@
   <string name="report-retrieving">אחזור דף הדיווח הנוכחי...</string>
   <string name="report-done">דווח</string>
   <string name="report-user">לדווח</string>
+  <string name="score-score">ציון</string>
+  <string name="score-word">מילה</string>
+  <string name="score-range">טווח</string>
+  <string name="score-take-any-no-talk-word">מתאים לכל מילה בדפים שאינם דפי שיחה</string>
+  <string name="score-only-whole-word">מתאים רק למילים שלמות</string>
+  <string name="score-take-any-word">מתאים לכל מילה שמכילה את המחרוזת הזאת</string>
   <string name="uaa-not-supported">דף UAA אינו זמין</string>
   <string name="uaa-not-supported-text">לוח מודעות על משתמשים שדורשים תשומת לב ממפעיל (UAA) אינו זמין בוויקי שלך.</string>
   <string name="uaa-reporting">דיווח $1 ל־UAA</string>
@@ -482,7 +499,7 @@
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
   <string name="shortcut-suspicious">לסמן את העריכה סתור חשודה</string>
   <string name="shortcut-back">ללכת לעריכה שהוצגה קודם</string>
-  <string name="shortcut-forward" fuzzy="true">ללכת לעריכה שטענת קודם אבל עזבת</string>
+  <string name="shortcut-forward">ללכת לעריכה שטענת קודם וחזרת ממנו</string>
   <string name="shortcut-warn">לשלוח אזהרה למשתמש בלי לשחזר את העריכה</string>
   <string name="shortcut-revert">לשחזר את העריכה</string>
   <string name="shortcut-x-raw">להריץ את הפריט ה־N בתפריט שחזור ואזהרה</string>
@@ -541,7 +558,7 @@
   <string name="history-not-found">לא נמצא שום דבר לבטל</string>
   <string name="history-already-done">זה כבר בוטל</string>
   <string name="history-message-revert-body">זאת הייתה הודעה שיש אליה הפניה משחזור. האם ברצונך לבטל רק את התבנית ואפילו לא העריכה שלך לדף? (עליך לבטל את השחזור אם ברצונך לשחזר מה מאלה)</string>
-  <string name="history-revert-fail" fuzzy="true">לא ניתן לבטל את עריכתך ל־$1 שגיאה בעת שחזור: $2</string>
+  <string name="history-revert-fail">לא ניתן לבטל את עריכתך ל־$1 כי אירעה השגיאה הבאה: $2</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>
@@ -566,7 +583,7 @@
   <string name="editquery-success">ערך בהצלחה את $1 ב־$2</string>
   <string name="editquery-token">אחזור אסימון לערוך את $1</string>
   <string name="editquery-token-error">לא ניתן לאחזר אסימון עריכה</string>
-  <string name="provider-failure" fuzzy="true">ספק ההזנה העיקרי נכשל, מתבצע ניסיון לתקן</string>
+  <string name="provider-failure">ספק ההזנה $1 ב־$2 נכשל, מתבצע ניסיון למצוא ספק חלופי</string>
   <string name="provider-primary-failure">ספק ההזנה העיקרי נכשל, מתבצע גיבוי לספק ויקי</string>
   <string name="rc-error">לא ניתן לאחזור נתונים מהזנת ויקי. שגיאה אחרונה: $1</string>
   <string name="whitelist-download">הורדת רשימה לבנה חדשה</string>
@@ -588,5 +605,5 @@
   <string name="cr-message-same">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
   <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
-  <string name="report-fail" fuzzy="true">לא דיווחת את $1</string>
+  <string name="report-fail">דיווח המשתמש נכשל כי: $1</string>
 </resources>

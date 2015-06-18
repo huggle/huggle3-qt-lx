@@ -51,13 +51,6 @@
   <string name="disable">Desabilitar</string>
   <string name="no-token">Sem token</string>
   <string name="flags">Sinalizações</string>
-  <string name="score-score">Pontuação</string>
-  <string name="score-word">Palavra</string>
-  <string name="score-range">Gama</string>
-  <string name="score-take-any-no-talk-word">Coincide qualquer palavra em páginas que não são de discussão</string>
-  <string name="score-take-whole-no-talk-word">Coincide apenas palavras inteiras em páginas que não são de discussão</string>
-  <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
-  <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
   <string name="browser-load">Baixando diff usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Nenhum sumário foi fornecido</string>
@@ -490,6 +483,13 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="report-retrieving">Recuperando página do relatório atual...</string>
   <string name="report-done">Reportado</string>
   <string name="report-user">Relatório</string>
+  <string name="score-score">Pontuação</string>
+  <string name="score-word">Palavra</string>
+  <string name="score-range">Gama</string>
+  <string name="score-take-any-no-talk-word">Coincide qualquer palavra em páginas que não são de discussão</string>
+  <string name="score-take-whole-no-talk-word">Coincide apenas palavras inteiras em páginas que não são de discussão</string>
+  <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
+  <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
   <string name="uaa-not-supported">UAA não disponível</string>
   <string name="uaa-not-supported-text">O painel de notícias \"Nomes de usuários que precisam de atenção do administrador\" não está disponível em sua wiki.</string>
   <string name="uaa-reporting">Denunciando $1 para UAA</string>

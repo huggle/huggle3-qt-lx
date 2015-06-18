@@ -51,13 +51,6 @@
   <string name="disable">غیرفعال</string>
   <string name="no-token">بدون رمز</string>
   <string name="flags">پرچم‌ها</string>
-  <string name="score-score">امتیاز</string>
-  <string name="score-word">واژه</string>
-  <string name="score-range">بازه</string>
-  <string name="score-take-any-no-talk-word">بر همهٔ واژه‌ها در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
-  <string name="score-take-whole-no-talk-word">تنها بر واژه‌های کامل در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
-  <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
-  <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
   <string name="browser-load">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
   <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده‌است</string>
@@ -489,6 +482,13 @@
   <string name="report-retrieving">در حال بازیابی صفحه گزارش کنونی...</string>
   <string name="report-done">گزارش شد.</string>
   <string name="report-user">گزارش</string>
+  <string name="score-score">امتیاز</string>
+  <string name="score-word">واژه</string>
+  <string name="score-range">بازه</string>
+  <string name="score-take-any-no-talk-word">بر همهٔ واژه‌ها در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
+  <string name="score-take-whole-no-talk-word">تنها بر واژه‌های کامل در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
+  <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
+  <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
   <string name="uaa-not-supported">وپ:تامنام موجود نیست</string>
   <string name="uaa-not-supported-text">وپ:تامنام در ویکی شما موجود نیست.</string>
   <string name="uaa-reporting">گزارش  $1  به وپ:تام</string>

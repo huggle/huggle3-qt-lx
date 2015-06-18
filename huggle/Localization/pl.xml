@@ -48,9 +48,6 @@
   <string name="duration">Czas trwania</string>
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
-  <string name="score-score">Wynik</string>
-  <string name="score-word">Słowo</string>
-  <string name="score-range">Zakres</string>
   <string name="browser-none">Strona nie wyświetli się teraz</string>
   <string name="browser-load">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Podsumowanie nie zostało dostarczone</string>
@@ -235,6 +232,9 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="report-reason">Powód:</string>
   <string name="reportuser-not">Ten użytkownik nie jest zgłoszony teraz.</string>
   <string name="report-user">Raport</string>
+  <string name="score-score">Wynik</string>
+  <string name="score-word">Słowo</string>
+  <string name="score-range">Zakres</string>
   <string name="uaa-not-supported">UAA nie jest dostępne</string>
   <string name="uaa-reporting">Zgłaszanie $1 do UAA</string>
   <string name="uaa-g1">Pobieranie zawartości UAA</string>

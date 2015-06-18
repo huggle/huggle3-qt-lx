@@ -51,13 +51,6 @@
   <string name="disable">Deaktivieren</string>
   <string name="no-token">Kein Token</string>
   <string name="flags">Markierungen</string>
-  <string name="score-score">Score</string>
-  <string name="score-word">Wort</string>
-  <string name="score-range">Bereich</string>
-  <string name="score-take-any-no-talk-word">Entspricht einem beliebigen Wort auf Nicht-Diskussionsseiten</string>
-  <string name="score-take-whole-no-talk-word">Entspricht nur ganzen Wörtern auf Nicht-Diskussionsseiten</string>
-  <string name="score-only-whole-word">Nur ganze Wörter finden</string>
-  <string name="score-take-any-word">Jedes Wort finden, das diese Zeichenfolge enthält.</string>
   <string name="browser-none">Es wird jetzt keine Seite angezeigt</string>
   <string name="browser-load">Lade Unterschied mithilfe eines Web-Rendering-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
@@ -489,6 +482,13 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="report-retrieving">Rufe aktuelle Berichtsseite ab …</string>
   <string name="report-done">Berichtet</string>
   <string name="report-user">Berichten</string>
+  <string name="score-score">Score</string>
+  <string name="score-word">Wort</string>
+  <string name="score-range">Bereich</string>
+  <string name="score-take-any-no-talk-word">Entspricht einem beliebigen Wort auf Nicht-Diskussionsseiten</string>
+  <string name="score-take-whole-no-talk-word">Entspricht nur ganzen Wörtern auf Nicht-Diskussionsseiten</string>
+  <string name="score-only-whole-word">Nur ganze Wörter finden</string>
+  <string name="score-take-any-word">Jedes Wort finden, das diese Zeichenfolge enthält.</string>
   <string name="uaa-not-supported">UAA nicht verfügbar</string>
   <string name="uaa-not-supported-text">Die Pinnwand „Benutzernamen für die Administratorbeachtung“ ist auf deinem Wiki nicht verfügbar.</string>
   <string name="uaa-reporting">Melde $1 an UAA</string>
