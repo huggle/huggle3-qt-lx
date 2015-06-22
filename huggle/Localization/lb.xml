@@ -297,6 +297,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="reportuser-not">Dëse Benotzer ass elo net gemellt</string>
   <string name="report-duplicate">De Benotzer gouf scho gemellt</string>
   <string name="score-word">Wuert</string>
+  <string name="ssl-is-not-supported">Dir hutt gefrot fir SSL ze benotzen awer $1 ënnerstëtzt dat net.</string>
   <string name="uaa-not-supported">UAA net disponibel</string>
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>

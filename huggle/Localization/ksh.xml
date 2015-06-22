@@ -343,6 +343,7 @@
   <string name="score-take-whole-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
   <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
   <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
+  <string name="ssl-required">{{ucfirst:{{GRAMMAR: Genitive s m |{{ucfirst:{{$1}}}}}}}} Wäßööver bruch &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt;. Donn dat ennschallde un ersöhg et norr_ens. Wann De dat it kanns, för e Beijschpell, weil dat Käßje för e Höhksche eren ze maache op jrau jeschtalld es, dann moß De velleijsch de Projramme vum &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; op Dingem Rääscher enschtallehre.</string>
   <string name="uaa-nr">Keine Jrond wohd aanjejovve</string>
   <string name="revert-only">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
   <string name="revert-creator">Heh di Änderong wood vom Aanlähjer vun dä Sigg jemaat, $1</string>

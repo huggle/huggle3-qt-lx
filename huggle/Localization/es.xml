@@ -461,6 +461,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="score-take-whole-no-talk-word">Coincide solo palabras completas en páginas que no sea de discusión</string>
   <string name="score-only-whole-word">Coincidir solo con palabras completas</string>
   <string name="score-take-any-word">Coincide con cualquier palabra que contenga esta cadena</string>
+  <string name="ssl-is-not-supported">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
   <string name="uaa-not-supported">UAA no está disponible</string>
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Informado sobre $1 a UAA</string>

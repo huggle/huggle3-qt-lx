@@ -489,6 +489,8 @@
   <string name="score-take-whole-no-talk-word">Наоѓа само цели зборови на неразговорни страници</string>
   <string name="score-only-whole-word">Најди само цели зборови</string>
   <string name="score-take-any-word">Најди било кој збор што ја содржи низава</string>
+  <string name="ssl-is-not-supported">Побаравте да користите SSL, но $1 не го поддржува.</string>
+  <string name="ssl-required">Опслужувачот на $1 бара SSL да биде овозможен. Вклучете го SSL и обидете се повторно. Ако не можете да го вклучите (т.е. ако можноста е посивена) можеби ќе треба да воспоставите отворени SSL-библиотеки во вашиот систем.</string>
   <string name="uaa-not-supported">UAA е недостапен</string>
   <string name="uaa-not-supported-text">Корисничките имиња за таблата за администраторско внимание не се достапни на вашето вики.</string>
   <string name="uaa-reporting">Го пријавувам $1 кај UAA</string>
