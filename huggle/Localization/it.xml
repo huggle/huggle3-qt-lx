@@ -489,6 +489,8 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="score-take-whole-no-talk-word">Corrisponde solo a parole intere, in pagine non di discussione</string>
   <string name="score-only-whole-word">Corrisponde solo a parole intere</string>
   <string name="score-take-any-word">Corrisponde a qualsiasi parola che contiene questa stringa</string>
+  <string name="ssl-is-not-supported">È richiesto per l\'utilizzo di SSL, ma $1 non lo supporta.</string>
+  <string name="ssl-required">Il Webserver di $1 richiede che l\'SSL sia abilitato. Si prega di attivare l\'SSL e di riprovare. Se non è possibile abilitare l\'SSL (opzione non è disponibile), potrebbe essere necessario installare le librerie di \"Open SSL\" nel tuo sistema.</string>
   <string name="uaa-not-supported">UAA non disponibile</string>
   <string name="uaa-not-supported-text">La bacheca \"Usernames for administrator attention\" non è disponibile sulla tua wiki.</string>
   <string name="uaa-reporting">Segnalazione di $1 su UAA</string>

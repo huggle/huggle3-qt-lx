@@ -489,6 +489,8 @@
   <string name="score-take-whole-no-talk-word">只匹配非讨论页面上的全部文字</string>
   <string name="score-only-whole-word">只匹配整个单词</string>
   <string name="score-take-any-word">匹配此字符串的任何单词</string>
+  <string name="ssl-is-not-supported">您请求使用SSL，但$1不支持它。</string>
+  <string name="ssl-required">$1的网络服务器需要SSL被启用。请启用SSL并重试。如果您不能启用SSL（选项变灰），您可能需要安装Open SSL库至您的系统。</string>
   <string name="uaa-not-supported">UAA不可用</string>
   <string name="uaa-not-supported-text">管理员布告板的用户名在您的wiki不可用。</string>
   <string name="uaa-reporting">报告$1至UAA</string>

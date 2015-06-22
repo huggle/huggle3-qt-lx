@@ -489,6 +489,8 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="score-take-whole-no-talk-word">Entspricht nur ganzen Wörtern auf Nicht-Diskussionsseiten</string>
   <string name="score-only-whole-word">Nur ganze Wörter finden</string>
   <string name="score-take-any-word">Jedes Wort finden, das diese Zeichenfolge enthält.</string>
+  <string name="ssl-is-not-supported">Du hast die Verwendung von SSL angefordert, aber $1 unterstützt es nicht.</string>
+  <string name="ssl-required">Der Webserver von $1 erfordert aktiviertes SSL. Bitte schalte SSL an und versuche es erneut. Falls du SSL nicht aktivieren kannst (die Option ist ausgegraut), musst du eventuell offene SSL-Bibliotheken auf deinem System installieren.</string>
   <string name="uaa-not-supported">UAA nicht verfügbar</string>
   <string name="uaa-not-supported-text">Die Pinnwand „Benutzernamen für die Administratorbeachtung“ ist auf deinem Wiki nicht verfügbar.</string>
   <string name="uaa-reporting">Melde $1 an UAA</string>
