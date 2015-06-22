@@ -1648,12 +1648,13 @@ void MainWindow::PatrolEdit(WikiEdit *e)
     {
         query->SetAction(ActionReview);
         query->Target = "Patrolling (FlaggedRevs) " + e->Page->PageName;
+        query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Csrf);
     } else
     {
         query->SetAction(ActionPatrol);
         query->Target = "Patrolling " + e->Page->PageName;
+        query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Patrol);
     }
-    query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Patrol);
     if (flaggedrevs)
         query->Parameters += "&flag_accuracy=1";
 

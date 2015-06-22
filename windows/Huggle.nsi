@@ -9,7 +9,7 @@
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
-!define VERSION "3.1.10.0"
+!define VERSION "3.1.13.0"
 !define COPYRIGHT "GPL"
 !define DESCRIPTION "Application"
 !define LICENSE_TXT "gpl.txt"
