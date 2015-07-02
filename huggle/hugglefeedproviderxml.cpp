@@ -228,7 +228,8 @@ void HuggleFeedProviderXml::InsertEdit(WikiEdit *edit)
                 this->Buffer.at(0)->DecRef();
                 this->Buffer.removeAt(0);
             }
-            Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in xml cache, increase ProviderCache size, otherwise you will be losing edits");
+            if (!this->IsPaused())
+                Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in xml cache, increase ProviderCache size, otherwise you will be losing edits");
         }
         this->Buffer.append(edit);
     } else

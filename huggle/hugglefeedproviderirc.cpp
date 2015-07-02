@@ -118,7 +118,9 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
                 this->Buffer.at(0)->DecRef();
                 this->Buffer.removeAt(0);
             }
-            Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in irc cache, increase ProviderCache size, otherwise you will be losing edits");
+            // This warning isn't useful if the provider is not running
+            if (!this->IsPaused())
+                Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in irc cache, increase ProviderCache size, otherwise you will be losing edits");
         }
         this->Buffer.append(edit);
     } else
