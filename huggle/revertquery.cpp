@@ -383,9 +383,7 @@ void RevertQuery::CheckPreflight()
                 }
             }
         }
-        int re;
-        re = Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion);
-        if (re == QMessageBox::No)
+        if (Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion) == QMessageBox::No)
         {
             // abort
             this->Exit();
