@@ -113,7 +113,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->Goto = HuggleParser::ConfigurationParse_QL("go", config);
     this->WarnSummary3 = HuggleParser::ConfigurationParse("warn-summary-3", config);
     this->WarnSummary4 = HuggleParser::ConfigurationParse("warn-summary-4", config);
-    this->InstantWarnings = SafeBool(HuggleParser::ConfigurationParse("instant-warn", config));
+    this->InstantWarnings = SafeBool(HuggleParser::ConfigurationParse("warning-im", config));
     this->RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
     if (!this->RevertSummaries.count())
     {
