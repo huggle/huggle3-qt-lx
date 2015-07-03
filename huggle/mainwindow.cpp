@@ -440,6 +440,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         if (this->CurrentEdit->Page == nullptr)
             throw new Huggle::NullPointerException("local CurrentEdit->Page", BOOST_CURRENT_FUNCTION);
 
+        this->ui->actionFinal->setVisible(this->GetCurrentWikiSite()->GetProjectConfig()->InstantWarnings);
         this->wEditBar->RemoveAll();
         if (!KeepUser)
         {
@@ -453,7 +454,6 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
             if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
                 this->wHistory->Read();
         }
-
         this->Title(this->CurrentEdit->Page->PageName);
         if (this->PreviousSite != this->GetCurrentWikiSite())
         {
@@ -2954,4 +2954,9 @@ void Huggle::MainWindow::on_actionPatrol_triggered()
     }
 
     this->PatrolEdit();
+}
+
+void Huggle::MainWindow::on_actionFinal_triggered()
+{
+    this->ForceWarn(0);
 }

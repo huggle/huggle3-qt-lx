@@ -309,11 +309,25 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         return;
     }
 
+    bool instant = false;
+
+    if (Level == 0)
+    {
+        Level = 4;
+        instant = true;
+    }
+
+    if (instant && !Edit->GetSite()->GetProjectConfig()->InstantWarnings)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("no-instant", Edit->GetSite()->Name, Edit->User->UnderscorelessUsername()));
+        return;
+    }
+
     if (Edit == nullptr)
         return;
 
     QString __template = "warning" + QString::number(Level);
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template, Edit->GetSite());
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template, Edit->GetSite(), instant);
 
     if (!MessageText_.size())
     {
@@ -354,14 +368,18 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
                               true, Edit->TPRevBaseTime);
 }
 
-QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site)
+QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool force)
 {
     int x=0;
+    QString result = "";
     while (x < site->GetProjectConfig()->WarningTemplates.count())
     {
         if (HuggleParser::GetKeyFromValue(site->GetProjectConfig()->WarningTemplates.at(x)) == type)
         {
-            return HuggleParser::GetValueFromKey(site->GetProjectConfig()->WarningTemplates.at(x));
+            result = HuggleParser::GetValueFromKey(site->GetProjectConfig()->WarningTemplates.at(x));
+            if (force)
+                result += "im";
+            return result;
         }
         x++;
     }

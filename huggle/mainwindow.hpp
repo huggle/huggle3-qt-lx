@@ -329,6 +329,8 @@ namespace Huggle
             void OnStatusBarRefreshTimerTick();
             void on_actionQueue_legend_triggered();
             void on_actionPatrol_triggered();
+            void on_actionFinal_triggered();
+
         private:
             void DisplayWelcomeMessage();
             void FinishRestore();

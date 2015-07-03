@@ -70,7 +70,7 @@ namespace Huggle
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
         void ResendWarnings();
-        QString RetrieveTemplateToWarn(QString type, WikiSite *site);
+        QString RetrieveTemplateToWarn(QString type, WikiSite *site, bool force = false);
         //! In case there is no shared IP
         QString UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site);
     }

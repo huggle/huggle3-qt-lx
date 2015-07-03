@@ -190,6 +190,7 @@
      <addaction name="actionWarning_2"/>
      <addaction name="actionWarning_3"/>
      <addaction name="actionWarning_4"/>
+     <addaction name="actionFinal"/>
     </widget>
     <addaction name="actionIncrease_badness_score_by_20"/>
     <addaction name="actionDecrease_badness_score_by_20"/>
@@ -1083,6 +1084,11 @@
   <action name="actionQueue_legend">
    <property name="text">
     <string>Queue legend</string>
+   </property>
+  </action>
+  <action name="actionFinal">
+   <property name="text">
+    <string>Final</string>
    </property>
   </action>
  </widget>

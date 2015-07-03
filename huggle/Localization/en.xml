@@ -22,6 +22,7 @@
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
+  <string name="no-instant">Instant warnings are not enabled on project $1, not sending message to $2, pick a different warning level</string>
   <string name="undo">Undo</string>
   <string name="yes">Yes</string>
   <string name="editing-page">Editing page</string>

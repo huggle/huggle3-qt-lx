@@ -170,6 +170,8 @@ namespace Huggle
             QString         WarnSummary3 = "Warning (level 3)";
             QString         WarnSummary4 = "Warning (level 4)";
             QStringList     WarningTemplates;
+            //! Instant level - last warning messages supported
+            bool            InstantWarnings = false;
             QStringList     WarningDefs;
             //! Data of wl (list of users)
             QStringList     WhiteList;
