@@ -51,6 +51,8 @@ bool Query::IsProcessed()
         if (!this->Repeated && this->RetryOnTimeoutFailure)
         {
             this->Kill();
+            delete this->Result;
+            this->Result = nullptr;
             this->StartTime = QDateTime::currentDateTime();
             this->Repeated = true;
             this->Process();
