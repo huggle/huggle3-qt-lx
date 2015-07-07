@@ -944,33 +944,6 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     return false;
 }
 
-QString MainWindow::GetSummaryKey(QString item)
-{
-    // first get the configuration for the project we are on
-    ProjectConfiguration *pr = this->GetCurrentWikiSite()->GetProjectConfig();
-    if (item.contains(";"))
-    {
-        QString type = item.mid(0, item.indexOf(";"));
-        int c=0;
-        while(c < pr->WarningTypes.count())
-        {
-            QString x = pr->WarningTypes.at(c);
-            if (x.startsWith(type + ";"))
-            {
-                x = pr->WarningTypes.at(c);
-                x = x.mid(x.indexOf(";") + 1);
-                if (x.endsWith(","))
-                {
-                    x = x.mid(0, x.length() - 1);
-                }
-                return x;
-            }
-            c++;
-        }
-    }
-    return item;
-}
-
 void MainWindow::on_actionExit_triggered()
 {
     this->Exit();
@@ -1488,27 +1461,6 @@ void MainWindow::CustomWarn()
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
     this->Warn(k, nullptr);
-}
-
-QString MainWindow::GetSummaryText(QString text)
-{
-    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    int id=0;
-    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
-    while (id <conf->RevertSummaries.count())
-    {
-        if (text == this->GetSummaryKey(conf->RevertSummaries.at(id)))
-        {
-            QString data = conf->RevertSummaries.at(id);
-            if (data.contains(";"))
-            {
-                data = data.mid(data.indexOf(";") + 1);
-            }
-            return data;
-        }
-        id++;
-    }
-    return conf->DefaultSummary;
 }
 
 void MainWindow::EnableDev()
