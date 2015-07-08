@@ -331,6 +331,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Borrar</string>
   <string name="main-page-load">Cargar</string>
+  <string name="main-patrol-not-enabled">El patrullaje no está activado en $1</string>
   <string name="main-page-restore">Restaurar esta revisión</string>
   <string name="main-user-info">Mostrar información</string>
   <string name="main-user-ignore">Ignorar</string>

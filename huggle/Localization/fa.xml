@@ -349,6 +349,7 @@
   <string name="main-page-protect">محافظت</string>
   <string name="main-page-delete">حذف</string>
   <string name="main-page-load">بارگیری</string>
+  <string name="main-patrol-not-enabled">گشت‌زنی در $1 فعال نشده‌است</string>
   <string name="main-page-restore">برگرداندن این نسخه</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
   <string name="main-user-ignore">نادیده گرفتن</string>
@@ -489,6 +490,8 @@
   <string name="score-take-whole-no-talk-word">تنها بر واژه‌های کامل در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
   <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
   <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
+  <string name="ssl-is-not-supported">شما درخواست استفاده از اس‌اس‌ال داده‌اید، اما $1 از آن پشتیبانی نمی‌کند.</string>
+  <string name="ssl-required">لازم است که اس‌اس‌ال در سرویس‌دهنده‌های وب $1 فعال باشد. اگر نمی‌توانید اس‌اس‌ال را فعال کنید (یعنی این اختیار غیرفعال است) شاید نیاز باشد تا کتابخانه‌های اوپن‌اس‌اس‌ال را در سامانهٔ خود نصب کنید.</string>
   <string name="uaa-not-supported">وپ:تامنام موجود نیست</string>
   <string name="uaa-not-supported-text">وپ:تامنام در ویکی شما موجود نیست.</string>
   <string name="uaa-reporting">گزارش  $1  به وپ:تام</string>
@@ -553,7 +556,7 @@
   <string name="shortcut-good">این ویرایش را به عنوان خوب علامت بزن</string>
   <string name="shortcut-open-in-huggle">بازکردن صفحه در حال حاضر نمایش داده‌شده</string>
   <string name="shortcut-open">این ویرایش را در یک مرورگر نمایش بده</string>
-  <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده‌است</string>
+  <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده است</string>
   <string name="shortcut-revert-agf-1">واگردانی آخرین نسخه با فرض حسن نیت</string>
   <string name="shortcut-browser-close-tab">بستن یک سربرگ مرورگر</string>
   <string name="shortcut-tab">بازکردن یک سربرگ تازه</string>
@@ -664,9 +667,9 @@
   <string name="cr-message-new">ویرایش‌های تازه‌ای  در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="preferences-delete-using-filter">شما نمی‌توانید فیلتری که در حال حاضر استفاده می‌شود را پاک کنید</string>
-  <string name="preferences-extension-disabled">این افزونه برای غیرفعال‌کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده‌است</string>
-  <string name="preferences-extension-disabled-restart">این افزونه برای غیرفعال‌کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده‌است</string>
-  <string name="preferences-extension-enabled">این افزونه برای غیرفعال‌کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده‌است</string>
+  <string name="preferences-extension-disabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
+  <string name="preferences-extension-disabled-restart">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
+  <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید  آن را دوباره راه‌اندازی کنید</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>

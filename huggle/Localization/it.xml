@@ -349,6 +349,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-page-protect">Proteggi</string>
   <string name="main-page-delete">Cancella</string>
   <string name="main-page-load">Carica</string>
+  <string name="main-patrol-not-enabled">Il patrolling non è abilitato su  $1</string>
   <string name="main-page-restore">Ripristina questa versione</string>
   <string name="main-user-info">Mostra le informazioni dell\'utente</string>
   <string name="main-user-ignore">Ignora</string>

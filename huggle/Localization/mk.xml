@@ -349,6 +349,7 @@
   <string name="main-page-protect">Заштити</string>
   <string name="main-page-delete">Избриши</string>
   <string name="main-page-load">Вчитај</string>
+  <string name="main-patrol-not-enabled">Патролирањето не е овозможено на $1</string>
   <string name="main-page-restore">Отповикај ја преработкава</string>
   <string name="main-user-info">Прикажи кориснички информации</string>
   <string name="main-user-ignore">Занемари</string>
