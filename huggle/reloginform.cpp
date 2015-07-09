@@ -142,11 +142,11 @@ void ReloginForm::LittleTick()
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QString t = QUrl::toPercentEncoding(login_->GetAttribute("token"));
+        QString token = QUrl::toPercentEncoding(login_->GetAttribute("token"));
         this->qReloginPw = new ApiQuery(ActionLogin);
         this->qReloginPw->HiddenQuery = true;
         this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
-                + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + t;
+            + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);
         this->qReloginPw->UsingPOST = true;
         this->qReloginPw->Process();
         return;
