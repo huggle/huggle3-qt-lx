@@ -221,6 +221,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-page-protect">Spären</string>
   <string name="main-page-delete">Läschen</string>
   <string name="main-page-load">Lueden</string>
+  <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
   <string name="main-user-info">Informatioun vum Benotzer weisen</string>
   <string name="main-user-ignore">Ignoréieren</string>

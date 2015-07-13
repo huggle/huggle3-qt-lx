@@ -335,6 +335,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
+  <string name="main-patrol-not-enabled">O patrulhamento não está disponível em $1</string>
   <string name="main-page-restore">Restaurar esta versão</string>
   <string name="main-user-info">Mostrar informações do(a) utilizador(a)</string>
   <string name="main-user-ignore">Ignorar</string>

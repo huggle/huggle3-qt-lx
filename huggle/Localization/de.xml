@@ -349,6 +349,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-page-protect">Seite schützen</string>
   <string name="main-page-delete">Seite löschen</string>
   <string name="main-page-load">Laden</string>
+  <string name="main-patrol-not-enabled">Das Überprüfen auf $1 ist nicht aktiviert</string>
   <string name="main-page-restore">Diese Artikelversion wiederherstellen</string>
   <string name="main-user-info">Benutzerinformation anzeigen</string>
   <string name="main-user-ignore">Ignoriere</string>
