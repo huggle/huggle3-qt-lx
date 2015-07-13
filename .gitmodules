@@ -13,3 +13,6 @@
 [submodule "huggle/extension_list/extension-review"]
 	path = huggle/extension_list/extension-review
 	url = http://github.com/huggle/extension-review
+[submodule "huggle/extension_list/extension-mass-delete"]
+	path = huggle/extension_list/extension-mass-delete
+	url = http://github.com/huggle/extension-mass-delete

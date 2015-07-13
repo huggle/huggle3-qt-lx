@@ -169,6 +169,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
 #endif
 
+// This help us clear any qlist that contains pointers
+#define HUGGLE_CLEAR_PQ_LIST(list) while(list.count())   { delete list.at(0); list.removeAt(0); }
+
 // stolen from boost/current_function.hpp
 // enhanced by Petr Bena, keep the enhancement in case you wanted to update this
 
