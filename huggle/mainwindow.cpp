@@ -1954,7 +1954,10 @@ void MainWindow::Welcome()
 void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 {
     if (!this->CheckExit())
+    {
+        delete provider;
         return;
+    }
 
     if (site->Provider != nullptr)
     {
