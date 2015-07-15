@@ -119,8 +119,8 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-revert-wait">Espera para revertir (segundos)</string>
   <string name="config-revert">Revertir</string>
   <string name="config-revert-diff">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
-  <string name="config-change-all">Cambiar todos los ajustes de Huglle para que se parezca más a Huggle 2</string>
-  <string name="config-merge-messages">Combinar sus mensajes con otros en las secciones existentes</string>
+  <string name="config-change-all">Cambiar todos los ajustes de Huggle para que se parezca más a Huggle 2</string>
+  <string name="config-merge-messages">Combinar tus mensajes con otros en las secciones existentes</string>
   <string name="config-months-name">Utilizar meses como titulares en lugar del nombre de la página</string>
   <string name="config-automatic-warning">Uso automático del tipo de advertencia y el nivel en la función \"enviar advertencia\"</string>
   <string name="config-enable-irc">Activar IRC</string>
@@ -626,7 +626,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="speedy-csd-existing">Ya existe una etiqueta CSD en la página.</string>
   <string name="namespace">Espacio de nombre</string>
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
-  <string name="report-fail">No se pudo reportar a \'$1\' porque</string>
+  <string name="report-fail">No se pudo reportar al usuario porque $1</string>
   <string name="report-page-fail">Error: no se puede recuperar la página de informe en $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
   <string name="about-python-with">, con soporte para python</string>

@@ -349,6 +349,7 @@
   <string name="main-page-protect">保护</string>
   <string name="main-page-delete">删除</string>
   <string name="main-page-load">载入</string>
+  <string name="main-patrol-not-enabled">在$1没有启用巡查</string>
   <string name="main-page-restore">恢复这个版本</string>
   <string name="main-user-info">查看用户信息</string>
   <string name="main-user-ignore">忽略</string>
