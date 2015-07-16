@@ -126,6 +126,7 @@ Login::~Login()
     delete this->Updater;
     delete this->ui;
     delete this->loadingForm;
+    LoadingForm::IsKilled = true;
     delete this->timer;
 }
 
@@ -198,6 +199,7 @@ void Login::RemoveQueries()
 void Login::CancelLogin()
 {
     this->Processing = false;
+    LoadingForm::IsKilled = true;
     this->timer->stop();
     this->Enable();
     if (this->loadingForm != nullptr)
@@ -378,6 +380,7 @@ void Login::PressOK()
         delete this->loadingForm;
 
     this->loadingForm = new LoadingForm(this);
+    LoadingForm::IsKilled = false;
     // set new status for all projects
     this->LoadedOldConfigs.clear();
     this->Statuses.clear();
@@ -1060,6 +1063,7 @@ void Login::Finish()
         this->loadingForm->close();
         delete this->loadingForm;
         this->loadingForm = nullptr;
+        LoadingForm::IsKilled = true;
     }
 }
 
