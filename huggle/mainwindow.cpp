@@ -1954,7 +1954,10 @@ void MainWindow::Welcome()
 void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 {
     if (!this->CheckExit())
+    {
+        delete provider;
         return;
+    }
 
     if (site->Provider != nullptr)
     {
@@ -2006,6 +2009,13 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
         switch (site->Provider->GetID())
         {
             case HUGGLE_FEED_PROVIDER_IRC:
+                if (!site->GetProjectConfig()->UseIrc)
+                {   
+                    Syslog::HuggleLogs->Log(_l("irc-not"));
+                    this->lIRC[site]->setEnabled(false);
+                    this->SwitchAlternativeFeedProvider(site);
+                    return;
+                }
                 this->lIRC[site]->setChecked(true);
                 break;
             case HUGGLE_FEED_PROVIDER_WIKI:

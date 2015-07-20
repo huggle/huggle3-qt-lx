@@ -16,6 +16,8 @@
 
 using namespace Huggle;
 
+bool LoadingForm::IsKilled = false;
+
 LoadingForm::LoadingForm(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingForm)
 {
     this->ui->setupUi(this);
@@ -43,6 +45,8 @@ void LoadingForm::Info(QString text)
 
 void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)
 {
+    if (IsKilled)
+        return;
     if (this->ui->tableWidget->rowCount() < row + 1)
     {
         throw new Huggle::Exception("There is no such an item in list", BOOST_CURRENT_FUNCTION);

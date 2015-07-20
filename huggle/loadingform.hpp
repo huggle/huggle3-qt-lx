@@ -35,6 +35,8 @@ namespace Huggle
     {
             Q_OBJECT
         public:
+            static bool IsKilled;
+
             explicit LoadingForm(QWidget *parent = nullptr);
             void Info(QString text);
             void ModifyIcon(int row, LoadingForm_Icon it);
