@@ -39,7 +39,7 @@ namespace Huggle
     //! History of actions done by user
 
     //! This is a widget that displays the user history
-    class History : public QDockWidget
+    class HUGGLE_EX History : public QDockWidget
     {
             Q_OBJECT
         public:
