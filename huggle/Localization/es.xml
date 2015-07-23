@@ -267,7 +267,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
   <string name="main-new-messages">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
-  <string name="main-space">El nombre de la página no puede terminar con un espacio, por favor, corrija el nombre de la página</string>
+  <string name="main-space">El nombre de la página no puede terminar con un espacio. Corrígelo</string>
   <string name="main-system">Sistema</string>
   <string name="main-shutting-down">Huggle se está cerrando, ignorado</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
@@ -417,7 +417,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="queue-diffsgroup">Diffs</string>
   <string name="queue-pagefiltersgroup">Filtros de títulos de páginas</string>
   <string name="queue-pageregex">El título coincide con la expresión regular:</string>
-  <string name="queue-namespaces">Espacios de nombre:</string>
+  <string name="queue-namespaces">Espacios de nombres:</string>
   <string name="queue-editfiltersgroup">Filtros de edición</string>
   <string name="queue-userregex">El nombre de usuario coincide con la expresión regular:</string>
   <string name="queue-summaryregex">El resumen coincide con la expresión regular:</string>
@@ -624,7 +624,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="page-unknown">Página desconocida</string>
   <string name="speedy-csd-invalid">Plantilla de borrado rápido no válida. No existe mensaje y plantilla para usar.</string>
   <string name="speedy-csd-existing">Ya existe una etiqueta CSD en la página.</string>
-  <string name="namespace">Espacio de nombre</string>
+  <string name="namespace">Espacio de nombres</string>
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo reportar al usuario porque $1</string>
   <string name="report-page-fail">Error: no se puede recuperar la página de informe en $1</string>

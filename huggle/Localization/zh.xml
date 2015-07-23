@@ -22,6 +22,7 @@
   <string name="result">结果</string>
   <string name="save">保存</string>
   <string name="show">显示</string>
+  <string name="no-instant">即时警告未在项目$1上启用，未向$2发送消息，选择一个不同的警告级别</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
@@ -680,7 +681,7 @@
   <string name="protect-request-fail-notime">查询未返回任何时间戳（mediawiki bug？），中止查询</string>
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
-  <string name="page-tag-nodescription">这个标记没有说明 :(</string>
+  <string name="page-tag-nodescription">这个标记没有说明 :/</string>
   <string name="page-tag-fail">无法标记页面</string>
   <string name="page-tag-error">无法标记页面，错误是:$1</string>
   <string name="page-unknown">未知页面</string>

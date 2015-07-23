@@ -22,6 +22,7 @@
   <string name="result">Résultat</string>
   <string name="save">Enregistrer</string>
   <string name="show">Afficher</string>
+  <string name="no-instant">Les avertissements instantanés ne sont pas activés sur le projet $1, et n\'envoient pas de messages à $2, choisir un autre niveau d\'avertissement</string>
   <string name="undo">Annuler</string>
   <string name="yes">Oui</string>
   <string name="editing-page">Modification de la page</string>
@@ -113,6 +114,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
   <string name="config-revert">Rétablir</string>
+  <string name="config-enable-irc">Permettre l\'IRC</string>
+  <string name="config-display-text">Afficher la suite</string>
   <string name="config-friend">Ami</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
