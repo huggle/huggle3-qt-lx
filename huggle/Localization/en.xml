@@ -615,7 +615,7 @@
   <string name="history-undone">Successfully undone edit to $1</string>
   <string name="history-retrieve-fail">Unable to retrieve content of page we wanted to undo own edit for, error was: $1</string>
   <string name="history-welcome-msg-title">Send welcome message instead?</string>
-  <string name="history-welcome-msg">You created this talk page, so it can&apos;t be undone, do you want to replace it with a welcome template?</string>
+  <string name="history-welcome-msg">You created this talk page, so it can&apos;t be undone. Do you want to replace it with a welcome template?</string>
   <string name="notify-fail">Did not notify the creator of $1</string>
   <string name="notify-unknowncreator">Cannot find page creator</string>
   <string name="protect-done">Changed protection level for $1</string>
