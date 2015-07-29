@@ -144,7 +144,7 @@
   <string name="config-columns-dynamic">Make the columns of lists dynamic (will resize based on size of items) or manual (user can change their size)</string>
   <string name="config-message-notification">Display a notification when you receive a new message on your talk page</string>
   <string name="config-warning-api">Display warnings for API queries</string>
-  <string name="config-title-diff">Page title in every diff (large text which show just a page title in top of every diff)</string>
+  <string name="config-title-diff">Page title in every diff (large text that shows just the page title on top of every diff)</string>
   <string name="config-updates">Check for updates</string>
   <string name="config-beta">Check for beta versions</string>
   <string name="config-html-messages">HAN can render HTML messages (dangerous)</string>
