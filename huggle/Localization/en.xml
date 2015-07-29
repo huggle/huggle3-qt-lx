@@ -399,7 +399,7 @@
   <string name="main-no-page">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can&apos;t revert this</string>
-  <string name="main-revert-newpage">This is a new page, so it can&apos;t be reverted, you can either tag it, or delete it.</string>
+  <string name="main-revert-newpage">This is a new page, so it can&apos;t be reverted. You can either tag it or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
   <string name="message-title">Message $1</string>
