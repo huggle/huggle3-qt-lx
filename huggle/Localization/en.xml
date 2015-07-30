@@ -689,7 +689,7 @@
   <string name="namespace">Namespace</string>
   <string name="block-alreadyblocked">User is already blocked</string>
   <string name="report-fail">Failed to report user because: $1</string>
-  <string name="report-page-fail">Error unable to retrieve report page at $1</string>
+  <string name="report-page-fail">Error: unable to retrieve report page at $1</string>
   <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
   <string name="report-unable">Unable to report user :(</string>
   <string name="about-python-with"> ,with python support</string>
