@@ -572,7 +572,7 @@
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>
-  <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level will not be scored by it</string>
+  <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn&apos;t allowed in options</string>
   <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
