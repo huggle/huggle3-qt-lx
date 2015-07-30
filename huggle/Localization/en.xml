@@ -126,7 +126,7 @@
   <string name="config-enable-irc">Enable IRC</string>
   <string name="config-remove-reverted">Remove edits that were already reverted by someone else</string>
   <string name="config-remove-old">Remove old edits if newer edit to same page is parsed</string>
-  <string name="config-auto-load-history">Automatically load history and user info (requires lot of network connection)</string>
+  <string name="config-auto-load-history">Automatically load history and user info (requires a lot of network bandwidth)</string>
   <string name="config-last-revision">Display last revision of page in case currently loaded edit is not a last revision (will post-download it bypassing cache)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, for which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>
   <string name="config-wait-edit">Time for which you need to wait between edit features are enabled (seconds):</string>
