@@ -118,7 +118,7 @@
   <string name="config-instant-reverts">Use instant reverts (very fast, but can&apos;t be cancelled once executed)</string>
   <string name="config-revert-wait">Revert wait (seconds)</string>
   <string name="config-revert">Revert</string>
-  <string name="config-revert-diff">Revert newer edits to page than displayed diff in case they were made by same user (same vandal)</string>
+  <string name="config-revert-diff">Revert edits to page that are newer than the displayed diff if they were made by the same vandal user</string>
   <string name="config-change-all">Change all huggle settings to behave more like huggle 2</string>
   <string name="config-merge-messages">Merge your messages with others in existing sections</string>
   <string name="config-months-name">Use months as headers instead of name of page</string>
