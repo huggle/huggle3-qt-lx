@@ -671,6 +671,10 @@
   <string name="preferences-extension-disabled-restart">This extension is already scheduled for disabling next startup of huggle</string>
   <string name="preferences-extension-enabled">This extension is not scheduled for disabling next startup of huggle</string>
   <string name="preferences-extension-enabled-restart">Extension was enabled, however you need to restart huggle for it to happen</string>
+  <string name="preferences-watchlist-watch">Add to watchlist</string>
+  <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
+  <string name="preferences-watchlist-preferences">Follow your on wiki preferences</string>
+  <string name="preferences-watchlist-nochange">Do nothing</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>

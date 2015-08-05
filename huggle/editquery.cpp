@@ -192,7 +192,7 @@ void EditQuery::EditPage()
     QString base = "";
     QString start_ = "";
     QString section = "";
-    QString wl = "&watchlist=nochange";
+    QString wl = "&watchlist=" + UserConfiguration::WatchListOptionToString(hcfg->UserConfig->Watchlist);
     if (this->InsertTargetToWatchlist)
         wl = "";
     if (this->Section > 0)

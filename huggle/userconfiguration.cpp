@@ -37,6 +37,37 @@ static QString Bool2ExcludeRequire(HuggleQueueFilterMatch match)
     throw Huggle::Exception("Invalid enum", BOOST_CURRENT_FUNCTION);
 }
 
+WatchlistOption UserConfiguration::WatchlistOptionFromString(QString string)
+{
+    if (string == "nochange")
+        return WatchlistOption_NoChange;
+    if (string == "preferences")
+        return WatchlistOption_Preferences;
+    if (string == "unwatch")
+        return WatchlistOption_Unwatch;
+    if (string == "watch")
+        return WatchlistOption_Watch;
+
+    return WatchlistOption_Preferences;
+}
+
+QString UserConfiguration::WatchListOptionToString(WatchlistOption option)
+{
+    switch (option)
+    {
+        case WatchlistOption_NoChange:
+            return "nochange";
+        case WatchlistOption_Preferences:
+            return "preferences";
+        case WatchlistOption_Unwatch:
+            return "unwatch";
+        case WatchlistOption_Watch:
+            return "watch";
+    }
+
+    return "preferences";
+}
+
 Huggle::UserConfiguration::UserConfiguration()
 {
     this->Previous_Version = new Version(HUGGLE_VERSION);
@@ -144,6 +175,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "HAN_DisplayUserTalk:" + Bool2String(this->HAN_DisplayUserTalk) + "\n";
     configuration_ += "HAN_DisplayBots:" + Bool2String(this->HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Bool2String(this->HAN_DisplayUser) + "\n";
+    configuration_ += "Watchlist:" + WatchListOptionToString(this->Watchlist) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
@@ -302,6 +334,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->RemoveAfterTrustedEdit = SafeBool(ConfigurationParse("RemoveAfterTrustedEdit", config), true);
     this->HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->HtmlAllowedInIrc = SafeBool(ConfigurationParse("HAN_Html", config, "false"));
+    this->Watchlist = WatchlistOptionFromString(ConfigurationParse("Watchlist", config));
     this->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->TalkPageFreshness)).toInt();
     this->RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
     this->QueueID = ConfigurationParse("QueueID", config);

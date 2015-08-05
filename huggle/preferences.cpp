@@ -91,6 +91,11 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     foreach (WikiSite *site, hcfg->Projects)
         this->ui->cbSites->addItem(site->Name);
     this->Reload();
+    this->ui->comboBox->addItem(_l("preferences-watchlist-watch"));
+    this->ui->comboBox->addItem(_l("preferences-watchlist-unwatch"));
+    this->ui->comboBox->addItem(_l("preferences-watchlist-preferences"));
+    this->ui->comboBox->addItem(_l("preferences-watchlist-nochange"));
+    this->ui->comboBox->setCurrentIndex(static_cast<int>(hcfg->UserConfig->Watchlist));
     this->ui->cbSites->setCurrentIndex(0);
     while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
@@ -324,6 +329,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     if (hcfg->UserConfig->FontSize < 1)
         hcfg->UserConfig->FontSize = 10;
 
+    hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox->currentIndex());
     hcfg->UserConfig->Font = this->ui->lineEdit_5->text();
 
     if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
