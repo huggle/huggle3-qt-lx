@@ -42,5 +42,7 @@
         <file>Resources/done.png</file>
         <file>Resources/sc.png</file>
         <file>Resources/huggle3_small.ico</file>
+        <file>Resources/empty.png</file>
+        <file>Resources/hold_fire.png</file>
     </qresource>
 </RCC>

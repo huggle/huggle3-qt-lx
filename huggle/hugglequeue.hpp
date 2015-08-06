@@ -62,7 +62,7 @@ namespace Huggle
             //! Reload filters
             void Filters();
             //! Switch and render next edit in queue
-            void Next();
+            bool Next();
             WikiEdit *GetWikiEditByRevID(revid_ht RevID, WikiSite *site);
             void Sort();
             void SortItemByEdit(WikiEdit *e);

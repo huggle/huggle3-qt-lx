@@ -137,6 +137,7 @@ namespace Huggle
             void Localize();
             void _BlockUser();
             void DisplayNext(Query *q = nullptr);
+            void ShowCat();
             void DeletePage();
             void DisplayTalk();
             /*!

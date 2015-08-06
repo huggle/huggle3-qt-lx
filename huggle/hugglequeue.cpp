@@ -141,22 +141,23 @@ void HuggleQueue::AddItem(WikiEdit *page)
     this->RedrawTitle();
 }
 
-void HuggleQueue::Next()
+bool HuggleQueue::Next()
 {
     if (this->Items.count() < 1)
     {
         // there are no items in a list
-        return;
+        return false;
     }
     QLayoutItem *i = this->ui->itemList->itemAt(0);
     if (i == this->ui->verticalSpacer)
     {
         // this should never happen
         HUGGLE_DEBUG("Reached spacer", 1);
-        return;
+        return false;
     }
     HuggleQueueItemLabel *label = (HuggleQueueItemLabel*)i->widget();
     label->Process(i);
+    return true;
 }
 
 WikiEdit *HuggleQueue::GetWikiEditByRevID(revid_ht RevID, WikiSite *site)

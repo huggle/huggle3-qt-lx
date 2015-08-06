@@ -48,6 +48,7 @@
 #include "preferences.hpp"
 #include "processlist.hpp"
 #include "protectpage.hpp"
+#include "resources.hpp"
 #include "reloginform.hpp"
 #include "reportuser.hpp"
 #include "collectable.hpp"
@@ -1337,12 +1338,14 @@ void MainWindow::OnTimerTick0()
 
 void MainWindow::on_actionNext_triggered()
 {
-    this->Queue1->Next();
+    if (!this->Queue1->Next())
+        this->ShowCat();
 }
 
 void MainWindow::on_actionNext_2_triggered()
 {
-    this->Queue1->Next();
+    if (!this->Queue1->Next())
+        this->ShowCat();
 }
 
 void MainWindow::on_actionWarn_triggered()
@@ -1714,7 +1717,8 @@ void MainWindow::DisplayNext(Query *q)
         case Configuration_OnNext_Stay:
             return;
         case Configuration_OnNext_Next:
-            this->Queue1->Next();
+            if (!this->Queue1->Next())
+                this->ShowCat();
             return;
         case Configuration_OnNext_Revert:
             //! \bug This doesn't seem to work
@@ -1722,7 +1726,8 @@ void MainWindow::DisplayNext(Query *q)
                 return;
             if (q == nullptr)
             {
-                this->Queue1->Next();
+                if (!this->Queue1->Next())
+                    this->ShowCat();
                 return;
             }
             if (this->OnNext_EvPage != nullptr)
@@ -1731,6 +1736,11 @@ void MainWindow::DisplayNext(Query *q)
             this->qNext = q;
             return;
     }
+}
+
+void MainWindow::ShowCat()
+{
+    this->Browser->RenderHtml(Resources::Html_EmptyList);
 }
 
 void MainWindow::DeletePage()
