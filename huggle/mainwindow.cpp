@@ -1741,6 +1741,7 @@ void MainWindow::DisplayNext(Query *q)
 void MainWindow::ShowCat()
 {
     this->Browser->RenderHtml(Resources::Html_EmptyList);
+    this->EditablePage = false;
 }
 
 void MainWindow::DeletePage()
