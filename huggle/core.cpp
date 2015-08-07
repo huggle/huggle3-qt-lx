@@ -39,7 +39,11 @@ Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
 {
+    // We check if this isn't an attempt to start huggle core which was already started, this can cause serious hard to debug problems with network
+    if (this->loaded)
+        throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION)
     HUGGLE_PROFILER_RESET;
+    this->loaded = true;
     this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Generic::SanitizePath(Configuration::GetConfigurationPath() + "wikidb.xml");

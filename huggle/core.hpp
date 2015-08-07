@@ -110,6 +110,7 @@ namespace Huggle
         private:
             //! This is a post-processor for edits
             ProcessorThread *Processor;
+            bool loaded = false;
     };
 }
 
