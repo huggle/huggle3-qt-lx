@@ -67,12 +67,13 @@ namespace Huggle
             explicit ApiQuery(Action action, WikiSite *site);
             ~ApiQuery();
             Action GetAction();
+            QString GetFailureReason();
+            //! Change the action type
+            void SetAction(const Action action);
             void SetCustomActionPart(QString action, bool editing = false, bool enforce_login = false, bool is_continuous = false);
             ApiQueryResult *GetApiQueryResult();
             //! Run
             void Process();
-            //! Change the action type
-            void SetAction(const Action action);
             //! Set the raw action type, you should not use this unless you have to
             void SetAction(const QString action);
             QString DebugURL();

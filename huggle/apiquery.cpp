@@ -133,6 +133,13 @@ Action ApiQuery::GetAction()
     return this->_action;
 }
 
+QString ApiQuery::GetFailureReason()
+{
+    if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
+        return "Query result doesn't contain any data";
+    return Query::GetFailureReason();
+}
+
 ApiQueryResult *ApiQuery::GetApiQueryResult()
 {
     return (ApiQueryResult*)this->Result;
@@ -203,11 +210,17 @@ void ApiQuery::Finished()
     this->reply = nullptr;
     if (!this->HiddenQuery)
         HUGGLE_DEBUG("Finished request " + this->URL, 6);
-    if (!result->IsFailed() && this->RequestFormat == XML)
+    WriteIn(this);
+    if (result->IsFailed())
+    {
+        this->Status = StatusInError;
+        this->ProcessFailure();
+        return;
+    }
+    if (this->RequestFormat == XML)
         result->Process();
     this->Status = StatusDone;
     this->ProcessCallback();
-    WriteIn(this);
 }
 
 void ApiQuery::Process()

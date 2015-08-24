@@ -147,6 +147,9 @@ QString Query::GetFailureReason()
     if (this->Result != nullptr)
         return this->Result->ErrorMessage;
 
+    if (this->FailureReason.isEmpty())
+        return "Unknown";
+
     return this->FailureReason;
 }
 

@@ -54,3 +54,8 @@ void QueryResult::SetError(int error, QString details)
     this->Failed = true;
     this->ErrorCode = error;
 }
+
+bool QueryResult::IsFailed()
+{
+    return this->Failed;
+}

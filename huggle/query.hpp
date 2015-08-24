@@ -104,7 +104,7 @@ namespace Huggle
             virtual QString GetFailureReason();
             virtual QString DebugURL();
             void ThrowOnValidResult();
-            QString FailureReason = "Unknown";
+            QString FailureReason;
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result = nullptr;
             //! Current status of a query
