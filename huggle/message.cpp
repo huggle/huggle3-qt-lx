@@ -272,10 +272,10 @@ void Message::ProcessSend()
     this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
     QString summary = this->Summary;
-    QString parameters = "";
+    QString parameters = "&watchlist=" + UserConfiguration::WatchListOptionToString(hcfg->UserConfig->Watchlist);
     if (!this->BaseTimestamp.isEmpty())
     {
-        parameters = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
+        parameters += "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
         HUGGLE_DEBUG("Using base timestamp for edit of " + this->User->GetTalk() + ": " + this->BaseTimestamp, 2);
     }
     if (!this->StartTimestamp.isEmpty())

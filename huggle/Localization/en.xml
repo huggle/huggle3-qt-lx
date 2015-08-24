@@ -668,7 +668,7 @@
   <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of old token.)</string>
   <string name="preferences-delete-using-filter">You can&apos;t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled">This extension is already scheduled for disabling next startup of huggle</string>
-  <string name="preferences-extension-disabled-restart">This extension is already scheduled for disabling next startup of huggle</string>
+  <string name="preferences-extension-disabled-restart">Extension was set to be disabled on next startup of huggle</string>
   <string name="preferences-extension-enabled">This extension is not scheduled for disabling next startup of huggle</string>
   <string name="preferences-extension-enabled-restart">Extension was enabled, however you need to restart huggle for it to happen</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
