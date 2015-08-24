@@ -127,7 +127,8 @@ bool ApiQueryResult::IsFailed()
 {
     if (this->Data.isEmpty())
         return true;
-    return this->Failed;
+
+    return QueryResult::IsFailed();
 }
 
 QString ApiQueryResultNode::GetAttribute(QString name, QString default_val)

@@ -104,7 +104,6 @@ namespace Huggle
             virtual QString GetFailureReason();
             virtual QString DebugURL();
             void ThrowOnValidResult();
-            QString FailureReason;
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result = nullptr;
             //! Current status of a query
@@ -151,6 +150,7 @@ namespace Huggle
             //! you receive when the query finish
             void ProcessCallback();
             void ProcessFailure();
+            QString FailureReason;
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;

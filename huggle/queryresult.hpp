@@ -43,6 +43,7 @@ namespace Huggle
             //! If query is in error the reason for error is stored here, otherwise it's null string
             QString ErrorMessage;
             int ErrorCode = 0;
+        protected:
             bool Failed;
     };
 }
