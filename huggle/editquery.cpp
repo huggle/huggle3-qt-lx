@@ -150,8 +150,7 @@ bool EditQuery::IsProcessed()
         this->Result = new QueryResult();
         if (failed)
         {
-            this->Result->Failed = true;
-            this->Result->ErrorMessage = this->qEdit->Result->Data;
+            this->Result->SetError(this->qEdit->Result->Data);
             this->ProcessFailure();
         }
         this->qEdit = nullptr;
