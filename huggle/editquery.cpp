@@ -109,20 +109,24 @@ bool EditQuery::IsProcessed()
                     // this is some fine hacking here :)
                     // we use this later in main form
                     HUGGLE_DEBUG1("Session expired requesting a new login");
+                    this->Suspend();
                     Configuration::Logout(this->Page->GetSite());
-                }
-                if (ec == "badtoken")
+                } else if (ec == "badtoken")
                 {
                     reason = "Bad token";
                     hec = HUGGLE_ETOKEN;
                     // we log off the site
+                    this->Suspend();
                     Configuration::Logout(this->Page->GetSite());
                     Syslog::HuggleLogs->ErrorLog(_l("editquery-invalid-token", this->Page->PageName));
+                } else
+                {
+                    // We don't want to process failure in case the query was suspended
+                    this->Result = new QueryResult(true);
+                    this->Result->SetError(hec, reason);
+                    this->ProcessFailure();
                 }
-                this->Result = new QueryResult(true);
-                this->Result->SetError(hec, reason);
                 this->qEdit = nullptr;
-                this->ProcessFailure();
                 return true;
             }
         }

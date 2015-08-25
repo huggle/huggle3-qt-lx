@@ -64,6 +64,7 @@ namespace Huggle
             void OnTick();
         private:
             void DisplayError(QString error, QString reason = "");
+            QString getCustomRevertStatus(bool *failed);
             void Preflight();
             void CheckPreflight();
             bool CheckRevert();

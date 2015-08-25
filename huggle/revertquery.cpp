@@ -73,6 +73,36 @@ void RevertQuery::DisplayError(QString error, QString reason)
     this->ProcessFailure();
 }
 
+QString RevertQuery::getCustomRevertStatus(bool *failed)
+{
+    ApiQueryResultNode *ms = this->qRevert->GetApiQueryResult()->GetNode("error");
+    if (ms != nullptr)
+    {
+        if (ms->Attributes.contains("code"))
+        {
+            *failed = true;
+            QString Error = ms->GetAttribute("code");
+            if (Error == "alreadyrolled")
+                return "Edit was reverted by someone else - skipping";
+            if (Error == "onlyauthor")
+                return "ERROR: Cannot rollback - page only has one author";
+            if (Error == "badtoken")
+            {
+                QString msg = "ERROR: Cannot rollback, token " + this->GetSite()->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
+                this->Suspend();
+                Configuration::Logout(this->GetSite());
+                //site->GetProjectConfig()->Token_Rollback.clear();
+                //site->UserConfig->EnforceManualSRT = true;
+                //Syslog::HuggleLogs->WarningLog("Temporarily enforcing software rollback in order to fix the mediawiki bug");
+                return msg;
+            }
+            return "In error (" + Error +")";
+        }
+    }
+    *failed = false;
+    return "Reverted";
+}
+
 void RevertQuery::Process()
 {
     if (this->Status == StatusProcessing)
@@ -195,6 +225,7 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
             if (Error == "badtoken")
             {
                 QString msg = "ERROR: Cannot rollback, token " + site->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
+                //this->Suspend();
                 Configuration::Logout(site);
                 //site->GetProjectConfig()->Token_Rollback.clear();
                 //site->UserConfig->EnforceManualSRT = true;
@@ -406,7 +437,9 @@ bool RevertQuery::CheckRevert()
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     bool failed = false;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite(), &failed);
+    this->CustomStatus = this->getCustomRevertStatus(&failed);
+    if (this->Status == StatusIsSuspended)
+        return;
     if (failed)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));

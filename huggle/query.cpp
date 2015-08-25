@@ -16,6 +16,7 @@
 
 using namespace Huggle;
 
+QList<Collectable_SmartPtr<Query>> Query::PendingRestart;
 unsigned int Query::LastID = 0;
 QNetworkAccessManager *Query::NetworkManager = nullptr;
 
@@ -40,6 +41,8 @@ Query::~Query()
 
 bool Query::IsProcessed()
 {
+    if (this->Status == StatusIsSuspended)
+        return false;
     if (this->Status == StatusDone || this->Status == StatusInError)
     {
         return true;
@@ -165,4 +168,25 @@ void Query::ThrowOnValidResult()
 
     this->Status = StatusInError;
     throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString::number((uintptr_t)this->Result, 16), BOOST_CURRENT_FUNCTION);
+}
+
+void Query::Restart()
+{
+    if (this->Status == StatusProcessing)
+        throw new Huggle::Exception("Can't restart query which is processing now");
+
+    delete this->Result;
+    this->Result = nullptr;
+    this->Status = StatusNull;
+    this->Repeated = false;
+    this->FailureReason = "";
+    this->Process();
+}
+
+void Query::Suspend(bool enqueue)
+{
+    this->Status == StatusIsSuspended;
+    Collectable_SmartPtr<Query> query = this;
+    if (enqueue)
+        Query::PendingRestart.append(query);
 }
