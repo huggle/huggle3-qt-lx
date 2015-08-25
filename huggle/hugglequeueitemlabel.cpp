@@ -87,11 +87,14 @@ void HuggleQueueItemLabel::RefreshInfo()
 {
     if (this->Edit == nullptr)
         return;
-    this->SetLabelToolTip("<b>Wiki: </b>" + this->Edit->GetSite()->Name + "<br><b>User: </b>" +
-                          this->Edit->User->Username +
-                          "<b><br>Date: </b>" + this->Edit->Time.toString() +
-                          "<br><b>Score: </b>" +
-                          QString::number(this->Edit->Score));
+    QString tooltip = "<b>Wiki: </b>" + this->Edit->GetSite()->Name + "<br><b>User: </b>" +
+            this->Edit->User->Username +
+            "<b><br>Date: </b>" + this->Edit->Time.toString() +
+            "<br><b>Score: </b>" +
+            QString::number(this->Edit->Score);
+    foreach (QString label, this->Edit->MetaLabels.keys())
+        tooltip += "<br><b>" + label + ": </b>" + this->Edit->MetaLabels[label];
+    this->SetLabelToolTip(tooltip);
 }
 
 QString HuggleQueueItemLabel::getColor(int id)

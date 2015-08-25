@@ -156,6 +156,8 @@ namespace Huggle
             //! Badness score of this edit
             long Score;
             QHash<QString, QVariant> PropertyBag;
+            //! You can insert special properties for this edit here that are displayed in huggle interface
+            QHash<QString, QString> MetaLabels;
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
             QDateTime Time;

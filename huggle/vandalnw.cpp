@@ -273,6 +273,8 @@ void VandalNw::Rescore(WikiEdit *edit)
             this->Insert(message, HAN::MessageType_User);
         }
         edit->Score += score->Score;
+        if (!edit->MetaLabels.contains("Bot score"))
+            edit->MetaLabels.insert("Bot score", QString::number(score->Score));
         delete score;
     }
 }
