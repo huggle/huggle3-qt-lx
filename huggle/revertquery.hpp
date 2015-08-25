@@ -38,13 +38,14 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed);
+            static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed, bool *suspend);
 
             RevertQuery();
             RevertQuery(WikiEdit *Edit);
             RevertQuery(WikiEdit *Edit, WikiSite *site);
             ~RevertQuery();
             void Process();
+            void Restart();
             //! In case you want to revert only last edit, set this to true
             void SetLast();
             void Kill();
@@ -58,12 +59,12 @@ namespace Huggle
             QString Summary = "";
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck = false;
-            QString Token = "";
             bool MinorEdit = false;
         public slots:
             void OnTick();
         private:
             void DisplayError(QString error, QString reason = "");
+            QString getCustomRevertStatus(bool *failed);
             void Preflight();
             void CheckPreflight();
             bool CheckRevert();

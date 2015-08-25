@@ -22,6 +22,44 @@
 
 using namespace Huggle;
 
+ApiQuery::ApiQuery()
+{
+    this->RequestFormat = XML;
+    this->Type = QueryApi;
+}
+
+ApiQuery::ApiQuery(Action action)
+{
+    this->RequestFormat = XML;
+    this->Type = QueryApi;
+    this->SetAction(action);
+}
+
+ApiQuery::ApiQuery(Action action, WikiSite *site)
+{
+    this->RequestFormat = XML;
+    this->Site = site;
+    this->Type = QueryApi;
+    this->SetAction(action);
+}
+
+ApiQuery::~ApiQuery()
+{
+    this->Kill();
+}
+
+Action ApiQuery::GetAction()
+{
+    return this->_action;
+}
+
+QString ApiQuery::GetFailureReason()
+{
+    if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
+        return "Query result doesn't contain any data";
+    return Query::GetFailureReason();
+}
+
 void ApiQuery::ConstructUrl()
 {
     if (this->ActionPart.isEmpty())
@@ -93,51 +131,18 @@ QString ApiQuery::GetAssertPartSuffix()
 // TODO: move this function to RevertQuery
 void ApiQuery::FinishRollback()
 {
-    bool Rollback_Failed;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result, this->GetSite(), &Rollback_Failed);
+    bool Rollback_Failed, Require_Suspend;
+    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->Result, this->GetSite(), &Rollback_Failed, &Require_Suspend);
+    if (Require_Suspend)
+    {
+        this->Suspend();
+        return;
+    }
     if (Rollback_Failed)
     {
         this->Result->SetError();
         this->ProcessFailure();
     }
-}
-
-ApiQuery::ApiQuery()
-{
-    this->RequestFormat = XML;
-    this->Type = QueryApi;
-}
-
-ApiQuery::ApiQuery(Action action)
-{
-    this->RequestFormat = XML;
-    this->Type = QueryApi;
-    this->SetAction(action);
-}
-
-ApiQuery::ApiQuery(Action action, WikiSite *site)
-{
-    this->RequestFormat = XML;
-    this->Site = site;
-    this->Type = QueryApi;
-    this->SetAction(action);
-}
-
-ApiQuery::~ApiQuery()
-{
-    this->Kill();
-}
-
-Action ApiQuery::GetAction()
-{
-    return this->_action;
-}
-
-QString ApiQuery::GetFailureReason()
-{
-    if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
-        return "Query result doesn't contain any data";
-    return Query::GetFailureReason();
 }
 
 ApiQueryResult *ApiQuery::GetApiQueryResult()
@@ -204,8 +209,13 @@ void ApiQuery::Finished()
         this->ProcessFailure();
         return;
     }
+    //! \todo This bellow needs to be fixed, rollback handling doesn't belong here
+    // BEGINING OF SHIT
     if (this->ActionPart == "rollback")
         FinishRollback();
+    if (this->Status == StatusIsSuspended)
+        return;
+    // END OF SHIT
     this->reply->deleteLater();
     this->reply = nullptr;
     if (!this->HiddenQuery)

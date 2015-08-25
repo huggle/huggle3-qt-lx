@@ -36,7 +36,8 @@ namespace Huggle
         StatusDone,
         StatusKilled,
         StatusProcessing,
-        StatusInError
+        StatusInError,
+        StatusIsSuspended
     };
 
     /*!
@@ -66,6 +67,9 @@ namespace Huggle
     class HUGGLE_EX Query : public Collectable
     {
         public:
+            //! List of queries that need to be restarted, used for relogin so that operation that was to be executed
+            //! can be resumed
+            static QList<Collectable_SmartPtr<Query>> PendingRestart;
             //! We need to have a shared manager for all queries
             //! so that sessions work in wiki
             static QNetworkAccessManager *NetworkManager;
@@ -104,6 +108,10 @@ namespace Huggle
             virtual QString GetFailureReason();
             virtual QString DebugURL();
             void ThrowOnValidResult();
+            //! Attempt to rerun same query which either finished or failed
+            virtual void Restart();
+            //! Prevents query from being finished
+            virtual void Suspend(bool enqueue = true);
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result = nullptr;
             //! Current status of a query
@@ -150,14 +158,14 @@ namespace Huggle
             //! you receive when the query finish
             void ProcessCallback();
             void ProcessFailure();
+            //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
+            bool Repeated;
             QString FailureReason;
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;
             //! This is a last ID used by a constructor of a query
             static unsigned int LastID;
-            //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
-            bool Repeated;
     };
 
     inline QString Query::QueryTargetToString()
