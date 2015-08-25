@@ -294,6 +294,11 @@ static void FinishTokens(Query *token)
     }
     token->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     token->DecRef();
+    foreach (Collectable_SmartPtr<Query> qx, Query::PendingRestart)
+    {
+        qx->Restart();
+    }
+    Query::PendingRestart.clear();
 }
 
 static void FailureTokens(Query *token)

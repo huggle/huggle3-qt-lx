@@ -73,8 +73,41 @@ void RevertQuery::DisplayError(QString error, QString reason)
     this->ProcessFailure();
 }
 
+QString RevertQuery::getCustomRevertStatus(bool *failed)
+{
+    ApiQueryResultNode *ms = this->qRevert->GetApiQueryResult()->GetNode("error");
+    if (ms != nullptr)
+    {
+        if (ms->Attributes.contains("code"))
+        {
+            *failed = true;
+            QString Error = ms->GetAttribute("code");
+            if (Error == "alreadyrolled")
+                return "Edit was reverted by someone else - skipping";
+            if (Error == "onlyauthor")
+                return "ERROR: Cannot rollback - page only has one author";
+            if (Error == "badtoken")
+            {
+                QString msg = "ERROR: Cannot rollback, token " + this->GetSite()->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), trying once more";
+                this->Suspend();
+                Configuration::Logout(this->GetSite());
+                return msg;
+            }
+            return "In error (" + Error +")";
+        }
+    }
+    *failed = false;
+    return "Reverted";
+}
+
 void RevertQuery::Process()
 {
+    if (!this->GetSite()->GetProjectConfig()->IsLoggedIn)
+    {
+        HUGGLE_DEBUG1("Postponing query " + QString::number(this->QueryID()) + " because the session is not valid");
+        this->Suspend();
+        return;
+    }
     if (this->Status == StatusProcessing)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
@@ -94,6 +127,12 @@ void RevertQuery::Process()
     this->Preflight();
 }
 
+void RevertQuery::Restart()
+{
+    this->Kill();
+    Query::Restart();
+}
+
 void RevertQuery::SetLast()
 {
     this->OneEditOnly = true;
@@ -102,12 +141,14 @@ void RevertQuery::SetLast()
 
 void RevertQuery::Kill()
 {
-    if (this->PreflightFinished && this->qRevert != nullptr)
+    if (this->qRevert != nullptr)
     {
         this->qRevert->Kill();
-    } else if (this->qPreflight != nullptr)
+    }
+    if (this->qPreflight != nullptr)
     {
         this->qPreflight->Kill();
+        this->qPreflight.Delete();
     }
     if (this->qHistoryInfo != nullptr)
     {
@@ -115,18 +156,25 @@ void RevertQuery::Kill()
         this->qHistoryInfo.Delete();
     }
     // set the status
-    this->Status = StatusInError;
-    if (this->Result == nullptr)
-        this->Result = new QueryResult();
+    this->Status = StatusKilled;
 
-    this->Result->SetError("Killed");
-    this->qRetrieve.Delete();
+    if (this->qRetrieve != nullptr)
+    {
+        this->qRetrieve->Kill();
+        this->qRetrieve.Delete();
+    }
+
+    this->qRevert.Delete();
     this->Exit();
-    this->ProcessFailure();
+    this->CustomStatus = "";
+    this->PreflightFinished = false;
+    this->RollingBack = false;
 }
 
 bool RevertQuery::IsProcessed()
 {
+    if (this->Status == StatusIsSuspended)
+        return false;
     if (this->Status == StatusDone || this->Status == StatusInError)
         return true;
     if (!this->PreflightFinished)
@@ -154,6 +202,8 @@ bool RevertQuery::IsUsingSR()
 
 void RevertQuery::OnTick()
 {
+    if (this->Status == StatusIsSuspended)
+        return;
     if (this->Status != StatusDone)
     {
         if (!this->PreflightFinished)
@@ -179,9 +229,10 @@ void RevertQuery::OnTick()
     }
 }
 
-QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed)
+QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed, bool *suspend)
 {
     ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
+    *suspend = false;
     if (ms != nullptr)
     {
         if (ms->Attributes.contains("code"))
@@ -195,10 +246,8 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
             if (Error == "badtoken")
             {
                 QString msg = "ERROR: Cannot rollback, token " + site->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
+                *suspend = true;
                 Configuration::Logout(site);
-                //site->GetProjectConfig()->Token_Rollback.clear();
-                //site->UserConfig->EnforceManualSRT = true;
-                //Syslog::HuggleLogs->WarningLog("Temporarily enforcing software rollback in order to fix the mediawiki bug");
                 return msg;
             }
             return "In error (" + Error +")";
@@ -406,7 +455,9 @@ bool RevertQuery::CheckRevert()
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     bool failed = false;
-    this->CustomStatus = RevertQuery::GetCustomRevertStatus(this->qRevert->Result, this->GetSite(), &failed);
+    this->CustomStatus = this->getCustomRevertStatus(&failed);
+    if (this->Status == StatusIsSuspended)
+        return false;
     if (failed)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
@@ -653,9 +704,7 @@ void RevertQuery::Rollback()
         this->Revert();
         return;
     }
-    if (this->Token.isEmpty())
-        this->Token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
-    if (this->Token.isEmpty())
+    if (this->edit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
     {
         Huggle::Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "rollback token was empty"));
         this->Result = new QueryResult();
@@ -666,7 +715,7 @@ void RevertQuery::Rollback()
         return;
     }
     this->qRevert = new ApiQuery(ActionRollback, this->GetSite());
-    QString token = this->Token;
+    QString token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
     if (token.endsWith("+\\"))
     {
         token = QUrl::toPercentEncoding(token);
