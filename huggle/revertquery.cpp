@@ -102,6 +102,12 @@ QString RevertQuery::getCustomRevertStatus(bool *failed)
 
 void RevertQuery::Process()
 {
+    if (!this->GetSite()->GetProjectConfig()->IsLoggedIn)
+    {
+        HUGGLE_DEBUG1("Postponing query " + QString::number(this->QueryID()) + " because the session is not valid");
+        this->Suspend();
+        return;
+    }
     if (this->Status == StatusProcessing)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
