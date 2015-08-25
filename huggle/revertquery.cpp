@@ -439,7 +439,7 @@ bool RevertQuery::CheckRevert()
     bool failed = false;
     this->CustomStatus = this->getCustomRevertStatus(&failed);
     if (this->Status == StatusIsSuspended)
-        return;
+        return false;
     if (failed)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
