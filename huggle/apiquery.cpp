@@ -211,7 +211,7 @@ void ApiQuery::Finished()
     if (!this->HiddenQuery)
         HUGGLE_DEBUG("Finished request " + this->URL, 6);
     WriteIn(this);
-    if (result->IsFailed())
+    if (result->Data.isEmpty() || result->IsFailed())
     {
         this->Status = StatusInError;
         this->ProcessFailure();

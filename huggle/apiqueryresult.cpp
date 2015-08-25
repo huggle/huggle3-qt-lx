@@ -123,14 +123,6 @@ bool ApiQueryResult::HasWarnings()
     return !this->Warning.isEmpty();
 }
 
-bool ApiQueryResult::IsFailed()
-{
-    if (this->Data.isEmpty())
-        return true;
-
-    return QueryResult::IsFailed();
-}
-
 QString ApiQueryResultNode::GetAttribute(QString name, QString default_val)
 {
     if (!this->Attributes.contains(name))

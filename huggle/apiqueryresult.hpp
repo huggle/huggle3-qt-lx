@@ -72,7 +72,6 @@ namespace Huggle
             * \return True if there are warnings, false otherwise
             */
             bool HasWarnings();
-            bool IsFailed();
             //! List of result nodes
             QList<ApiQueryResultNode*> Nodes;
             //! Warning from API query
