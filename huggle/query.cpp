@@ -173,7 +173,7 @@ void Query::ThrowOnValidResult()
 void Query::Restart()
 {
     if (this->Status == StatusProcessing)
-        throw new Huggle::Exception("Can't restart query which is processing now");
+        this->Kill();
 
     delete this->Result;
     this->Result = nullptr;
