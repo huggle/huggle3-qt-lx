@@ -40,6 +40,7 @@ namespace Huggle
             void SetName(QString name);
             QString GetName();
             void Process(QLayoutItem *qi = nullptr);
+            void RefreshInfo();
             void Remove(QLayoutItem *qi = nullptr);
             void UpdatePixmap();
             void SetLabelToolTip(QString text);
@@ -50,7 +51,6 @@ namespace Huggle
             void mousePressEvent(QMouseEvent *event);
 
         private:
-            void RefreshInfo();
             QString getColor(int id);
             Ui::HuggleQueueItemLabel *ui;
             QHash<int, QString> buffer;

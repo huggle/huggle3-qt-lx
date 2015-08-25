@@ -221,6 +221,7 @@ void HuggleQueue::SortItemByEdit(WikiEdit *e)
         HuggleQueueItemLabel *x = (HuggleQueueItemLabel*)i->widget();
         if (x && x->Edit == e)
         {
+            x->RefreshInfo();
             this->ResortItem(i, c);
             return;
         }
