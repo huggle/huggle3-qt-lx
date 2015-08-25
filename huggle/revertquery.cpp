@@ -91,9 +91,6 @@ QString RevertQuery::getCustomRevertStatus(bool *failed)
                 QString msg = "ERROR: Cannot rollback, token " + this->GetSite()->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
                 this->Suspend();
                 Configuration::Logout(this->GetSite());
-                //site->GetProjectConfig()->Token_Rollback.clear();
-                //site->UserConfig->EnforceManualSRT = true;
-                //Syslog::HuggleLogs->WarningLog("Temporarily enforcing software rollback in order to fix the mediawiki bug");
                 return msg;
             }
             return "In error (" + Error +")";
@@ -209,9 +206,10 @@ void RevertQuery::OnTick()
     }
 }
 
-QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed)
+QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed, bool *suspend)
 {
     ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
+    *suspend = false;
     if (ms != nullptr)
     {
         if (ms->Attributes.contains("code"))
@@ -225,11 +223,8 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
             if (Error == "badtoken")
             {
                 QString msg = "ERROR: Cannot rollback, token " + site->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
-                //this->Suspend();
+                *suspend = true;
                 Configuration::Logout(site);
-                //site->GetProjectConfig()->Token_Rollback.clear();
-                //site->UserConfig->EnforceManualSRT = true;
-                //Syslog::HuggleLogs->WarningLog("Temporarily enforcing software rollback in order to fix the mediawiki bug");
                 return msg;
             }
             return "In error (" + Error +")";
