@@ -99,6 +99,17 @@ void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
     MainWindow::HuggleMain->VandalDock->Rollback(Edit);
 }
 
+bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *Edit)
+{
+    bool result = true;
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_EditIsReady((void*)Edit))
+            result = false;
+    }
+    return result;
+}
+
 void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
 {
     MainWindow::HuggleMain->VandalDock->WarningSent(User, User->GetWarningLevel());

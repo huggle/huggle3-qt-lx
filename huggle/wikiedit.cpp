@@ -630,6 +630,11 @@ QString WikiEdit::GetFullUrl()
             "&diff=" + QString::number(this->RevID);
 }
 
+bool WikiEdit::IsReady()
+{
+    return Hooks::EditCheckIfReady(this);
+}
+
 QMutex ProcessorThread::EditLock(QMutex::Recursive);
 QList<WikiEdit*> ProcessorThread::PendingEdits;
 

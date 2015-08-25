@@ -1147,7 +1147,7 @@ void MainWindow::OnMainTimerTick()
         int c = 0;
         while (c < this->PendingEdits.count())
         {
-            if (this->PendingEdits.at(c)->IsPostProcessed())
+            if (this->PendingEdits.at(c)->IsReady() && this->PendingEdits.at(c)->IsPostProcessed())
             {
                 WikiEdit *edit = this->PendingEdits.at(c);
                 this->Queue1->AddItem(edit);

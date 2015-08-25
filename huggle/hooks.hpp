@@ -49,6 +49,19 @@ namespace Huggle
              * \param Edit
              */
             static void OnRevert(WikiEdit *Edit);
+            /*!
+             * \brief Event that checks if edit can be considered processed
+             *
+             * In case there are some extensions that add extra stuff to edit processing (such as extra queries) and need to wait
+             * for them to finish, they can return false here in case they are still waiting for some query to finish
+             * so that this edit is hold in a queue instead of being distributed to interface. This is useful in case you make
+             * extension that needs to execute asynchronous jobs during the processing of each edit.
+             *
+             * Until this function returns true edit is hold in a queue
+             * \param Edit
+             * \return
+             */
+            static bool EditCheckIfReady(WikiEdit *Edit);
             static bool RevertPreflight(WikiEdit *Edit);
             /*!
              * \brief Event that happens when user attempt to send a warning to editor of page

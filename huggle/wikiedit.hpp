@@ -99,6 +99,8 @@ namespace Huggle
             QString GetFullUrl();
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
+            //! If edit is ready to be added to queue
+            bool IsReady();
             //! Processes all score words in text
             void ProcessWords();
             void RemoveFromHistoryChain();
@@ -157,10 +159,6 @@ namespace Huggle
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
             QDateTime Time;
-            //! This variable is used by worker thread and needs to be public so that it is working
-            bool PostProcessing;
-            //! This variable is used by worker thread and needs to be public so that it is working
-            bool ProcessedByWorkerThread;
         private:
             //! This function is called by core
             bool FinalizePostProcessing();
@@ -169,6 +167,10 @@ namespace Huggle
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
             bool ProcessingDiff;
+            //! This variable is used by worker thread and needs to be public so that it is working
+            bool PostProcessing;
+            //! This variable is used by worker thread and needs to be public so that it is working
+            bool ProcessedByWorkerThread;
             Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
             Collectable_SmartPtr<ApiQuery> qUser;

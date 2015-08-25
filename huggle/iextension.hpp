@@ -68,6 +68,17 @@ namespace Huggle
             virtual bool RequestNetwork() { return false; }
             virtual void Hook_BadnessScore(void *user, int score) {}
             /*!
+             * \brief Hook_EditIsReady Event that checks if edit can be considered processed
+             *
+             * In case there are some extensions that add extra stuff to edit processing (such as extra queries) and need to wait
+             * for them to finish, they can return false here in case they are still waiting for some query to finish
+             * so that this edit is hold in a queue instead of being distributed to interface. This is useful in case you make
+             * extension that needs to execute asynchronous jobs during the processing of each edit.
+             * \param edit Pointer to WikiEdit
+             * \return
+             */
+            virtual bool Hook_EditIsReady(void *edit) { return true; }
+            /*!
              * \brief Hook_EditPreProcess is called when edit is being pre processed
              * \param edit is a pointer to edit in question
              */

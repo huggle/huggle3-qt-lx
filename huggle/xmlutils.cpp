@@ -47,7 +47,6 @@ QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
     return results;
 }
 
-
 QList<QDomElement> XmlUtils::FetchAllElementsByName(QDomDocument xmls, QString name)
 {
     //! \todo Finish this
