@@ -154,6 +154,8 @@ void RevertQuery::Kill()
 
 bool RevertQuery::IsProcessed()
 {
+    if (this->Status == StatusIsSuspended)
+        return false;
     if (this->Status == StatusDone || this->Status == StatusInError)
         return true;
     if (!this->PreflightFinished)
@@ -681,9 +683,7 @@ void RevertQuery::Rollback()
         this->Revert();
         return;
     }
-    if (this->Token.isEmpty())
-        this->Token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
-    if (this->Token.isEmpty())
+    if (this->edit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
     {
         Huggle::Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "rollback token was empty"));
         this->Result = new QueryResult();
@@ -694,7 +694,7 @@ void RevertQuery::Rollback()
         return;
     }
     this->qRevert = new ApiQuery(ActionRollback, this->GetSite());
-    QString token = this->Token;
+    QString token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
     if (token.endsWith("+\\"))
     {
         token = QUrl::toPercentEncoding(token);

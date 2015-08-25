@@ -209,8 +209,11 @@ void ApiQuery::Finished()
         this->ProcessFailure();
         return;
     }
+    //! \todo This bellow needs to be fixed, rollback handling doesn't belong here
+    // BEGINING OF SHIT
     if (this->ActionPart == "rollback")
         FinishRollback();
+    // END OF SHIT
     this->reply->deleteLater();
     this->reply = nullptr;
     if (!this->HiddenQuery)
