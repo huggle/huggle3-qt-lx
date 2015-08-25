@@ -45,6 +45,7 @@ namespace Huggle
             RevertQuery(WikiEdit *Edit, WikiSite *site);
             ~RevertQuery();
             void Process();
+            void Restart();
             //! In case you want to revert only last edit, set this to true
             void SetLast();
             void Kill();

@@ -127,6 +127,12 @@ void RevertQuery::Process()
     this->Preflight();
 }
 
+void RevertQuery::Restart()
+{
+    this->Kill();
+    Query::Restart();
+}
+
 void RevertQuery::SetLast()
 {
     this->OneEditOnly = true;
@@ -135,10 +141,11 @@ void RevertQuery::SetLast()
 
 void RevertQuery::Kill()
 {
-    if (this->PreflightFinished && this->qRevert != nullptr)
+    if (this->qRevert != nullptr)
     {
         this->qRevert->Kill();
-    } else if (this->qPreflight != nullptr)
+    }
+    if (this->qPreflight != nullptr)
     {
         this->qPreflight->Kill();
         this->qPreflight.Delete();
