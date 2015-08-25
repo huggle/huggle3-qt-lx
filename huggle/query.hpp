@@ -158,14 +158,14 @@ namespace Huggle
             //! you receive when the query finish
             void ProcessCallback();
             void ProcessFailure();
+            //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
+            bool Repeated;
             QString FailureReason;
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;
             //! This is a last ID used by a constructor of a query
             static unsigned int LastID;
-            //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
-            bool Repeated;
     };
 
     inline QString Query::QueryTargetToString()

@@ -88,7 +88,7 @@ QString RevertQuery::getCustomRevertStatus(bool *failed)
                 return "ERROR: Cannot rollback - page only has one author";
             if (Error == "badtoken")
             {
-                QString msg = "ERROR: Cannot rollback, token " + this->GetSite()->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), please try it once more";
+                QString msg = "ERROR: Cannot rollback, token " + this->GetSite()->GetProjectConfig()->Token_Rollback + " is not valid for some reason (mediawiki bug), trying once more";
                 this->Suspend();
                 Configuration::Logout(this->GetSite());
                 return msg;
@@ -141,6 +141,7 @@ void RevertQuery::Kill()
     } else if (this->qPreflight != nullptr)
     {
         this->qPreflight->Kill();
+        this->qPreflight.Delete();
     }
     if (this->qHistoryInfo != nullptr)
     {
@@ -148,14 +149,19 @@ void RevertQuery::Kill()
         this->qHistoryInfo.Delete();
     }
     // set the status
-    this->Status = StatusInError;
-    if (this->Result == nullptr)
-        this->Result = new QueryResult();
+    this->Status = StatusKilled;
 
-    this->Result->SetError("Killed");
-    this->qRetrieve.Delete();
+    if (this->qRetrieve != nullptr)
+    {
+        this->qRetrieve->Kill();
+        this->qRetrieve.Delete();
+    }
+
+    this->qRevert.Delete();
     this->Exit();
-    this->ProcessFailure();
+    this->CustomStatus = "";
+    this->PreflightFinished = false;
+    this->RollingBack = false;
 }
 
 bool RevertQuery::IsProcessed()
@@ -189,6 +195,8 @@ bool RevertQuery::IsUsingSR()
 
 void RevertQuery::OnTick()
 {
+    if (this->Status == StatusIsSuspended)
+        return;
     if (this->Status != StatusDone)
     {
         if (!this->PreflightFinished)

@@ -107,6 +107,8 @@ QString Query::QueryStatusToString()
             return "Processing";
         case StatusKilled:
             return "Killed";
+        case StatusIsSuspended:
+            return "Suspended";
         case StatusInError:
             if (this->Result != nullptr && this->Result->IsFailed() && !this->Result->ErrorMessage.isEmpty())
                 return "In error: " + this->Result->ErrorMessage;
@@ -185,7 +187,7 @@ void Query::Restart()
 
 void Query::Suspend(bool enqueue)
 {
-    this->Status == StatusIsSuspended;
+    this->Status = StatusIsSuspended;
     Collectable_SmartPtr<Query> query = this;
     if (enqueue)
         Query::PendingRestart.append(query);

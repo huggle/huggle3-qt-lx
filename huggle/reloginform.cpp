@@ -89,11 +89,6 @@ void ReloginForm::LittleTick()
             this->little_cute_timer->stop();
             WikiUtil::RetrieveTokens(this->Site);
             this->qReloginPw.Delete();
-            foreach (Collectable_SmartPtr<Query> qx, Query::PendingRestart)
-            {
-                qx->Restart();
-            }
-            Query::PendingRestart.clear();
             return;
         }
         if (Result == "EmptyPass")

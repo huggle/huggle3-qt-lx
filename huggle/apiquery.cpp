@@ -22,6 +22,44 @@
 
 using namespace Huggle;
 
+ApiQuery::ApiQuery()
+{
+    this->RequestFormat = XML;
+    this->Type = QueryApi;
+}
+
+ApiQuery::ApiQuery(Action action)
+{
+    this->RequestFormat = XML;
+    this->Type = QueryApi;
+    this->SetAction(action);
+}
+
+ApiQuery::ApiQuery(Action action, WikiSite *site)
+{
+    this->RequestFormat = XML;
+    this->Site = site;
+    this->Type = QueryApi;
+    this->SetAction(action);
+}
+
+ApiQuery::~ApiQuery()
+{
+    this->Kill();
+}
+
+Action ApiQuery::GetAction()
+{
+    return this->_action;
+}
+
+QString ApiQuery::GetFailureReason()
+{
+    if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
+        return "Query result doesn't contain any data";
+    return Query::GetFailureReason();
+}
+
 void ApiQuery::ConstructUrl()
 {
     if (this->ActionPart.isEmpty())
@@ -107,44 +145,6 @@ void ApiQuery::FinishRollback()
     }
 }
 
-ApiQuery::ApiQuery()
-{
-    this->RequestFormat = XML;
-    this->Type = QueryApi;
-}
-
-ApiQuery::ApiQuery(Action action)
-{
-    this->RequestFormat = XML;
-    this->Type = QueryApi;
-    this->SetAction(action);
-}
-
-ApiQuery::ApiQuery(Action action, WikiSite *site)
-{
-    this->RequestFormat = XML;
-    this->Site = site;
-    this->Type = QueryApi;
-    this->SetAction(action);
-}
-
-ApiQuery::~ApiQuery()
-{
-    this->Kill();
-}
-
-Action ApiQuery::GetAction()
-{
-    return this->_action;
-}
-
-QString ApiQuery::GetFailureReason()
-{
-    if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
-        return "Query result doesn't contain any data";
-    return Query::GetFailureReason();
-}
-
 ApiQueryResult *ApiQuery::GetApiQueryResult()
 {
     return (ApiQueryResult*)this->Result;
@@ -213,6 +213,8 @@ void ApiQuery::Finished()
     // BEGINING OF SHIT
     if (this->ActionPart == "rollback")
         FinishRollback();
+    if (this->Status == StatusIsSuspended)
+        return;
     // END OF SHIT
     this->reply->deleteLater();
     this->reply = nullptr;
