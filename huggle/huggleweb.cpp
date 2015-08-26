@@ -104,6 +104,21 @@ QString HuggleWeb::GetShortcut()
     return incoming;
 }
 
+static QString Extras(WikiEdit *e)
+{
+    QString result = "";
+    if (e->MetaLabels.count())
+    {
+        result += "<br><small><b>Meta information:</b><br>";
+        foreach (QString label, e->MetaLabels.keys())
+        {
+            result += "<b>" + label + ":</b> " + e->MetaLabels[label] + " ";
+        }
+        result += "</small>";
+    }
+    return result;
+}
+
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->CurrentEdit = edit;
@@ -176,8 +191,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
             Summary = "<font> " + Encode(edit->Summary) + "</font>";
     }
     Summary += "<b> Size change: " + size + "</b>";
-    HTML += "<b>" + _l("summary") + ":</b> " + Summary +
-            "</td></tr>" + edit->DiffText + Resources::DiffFooter + Resources::HtmlFooter;
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary + Extras(edit) + "</td></tr>" + edit->DiffText +
+            Resources::DiffFooter + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
 
@@ -205,7 +220,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     {
         Summary = Encode(edit->Summary);
     }
-    HTML += "<b>" + _l("summary") + ":</b> " + Summary + "<br>" +
+    HTML += "<b>" + _l("summary") + ":</b> " + Summary + Extras(edit) + "<br>" +
             edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
