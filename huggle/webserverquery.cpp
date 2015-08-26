@@ -23,6 +23,7 @@ WebserverQuery::WebserverQuery()
     this->URL = "";
     this->reply = NULL;
     this->Parameters = "";
+    this->Type = QueryWebServer;
     this->UsingPOST = false;
 }
 

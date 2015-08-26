@@ -80,6 +80,8 @@ QString Query::QueryTypeToString()
     {
         case QueryNull:
             return "null";
+        case QueryWebServer:
+            return "HTTP Query";
         case QueryWl:
             return "Wl Query";
         case QueryApi:
