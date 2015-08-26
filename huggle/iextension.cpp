@@ -43,3 +43,13 @@ void iExtension::Init()
     Huggle::Query::NetworkManager = this->Networking;
     Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
 }
+
+QString iExtension::GetConfig(QString key, QString dv)
+{
+    return hcfg->GetExtensionConfig(this->GetExtensionName(), key, dv);
+}
+
+void iExtension::SetConfig(QString key, QString value)
+{
+    hcfg->SetExtensionConfig(this->GetExtensionName(), key, value);
+}
