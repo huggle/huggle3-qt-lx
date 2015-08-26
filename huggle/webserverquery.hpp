@@ -28,6 +28,7 @@ namespace Huggle
         public:
             WebserverQuery();
             ~WebserverQuery();
+            QString QueryTargetToString() { return this->URL; }
             //! Whether the query will submit parameters using POST data
             bool UsingPOST;
             //! This is an url of api request, you probably don't want to change it unless
