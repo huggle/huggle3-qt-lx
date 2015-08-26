@@ -66,7 +66,12 @@ namespace Huggle
             //! Whether this extension need access to core
             virtual bool RequestCore() { return false; }
             virtual bool RequestNetwork() { return false; }
-            //
+            /*!
+             * \brief GetConfig Gets a value stored by extension from huggle configuration file
+             * \param key Key
+             * \param dv Default value
+             * \return Value
+             */
             virtual QString GetConfig(QString key, QString dv = "");
             virtual void SetConfig(QString key, QString value);
             virtual void Hook_BadnessScore(void *user, int score) {}
