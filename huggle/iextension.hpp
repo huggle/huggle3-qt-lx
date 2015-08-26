@@ -74,7 +74,37 @@ namespace Huggle
              */
             virtual QString GetConfig(QString key, QString dv = "");
             virtual void SetConfig(QString key, QString value);
+            /*!
+             * \brief Hook_BadnessScore When the score of user is changed
+             * \param user pointer to user whom score is changed
+             * \param score New score of user
+             */
             virtual void Hook_BadnessScore(void *user, int score) {}
+            /*!
+             * \brief Hook_EditScore is called after edit score is calculated
+             * \param edit
+             */
+            virtual void Hook_EditScore(void *edit) {}
+            /*!
+             * \brief Hook_EditPostProcess Event that is called after edit is post processed by internal edit processor
+             * \param edit Edit that was just post processed by huggle internal edit processor
+             */
+            virtual void Hook_EditPostProcess(void *edit) {}
+            /*!
+             * \brief Hook_EditBeforeScore This is called before internal edit scoring happens
+             * \param edit Pointer to edit
+             * \return If false is returned the internal scoring is skipped
+             */
+            virtual bool Hook_EditBeforeScore(void *edit) { return true;  }
+            /*!
+             * \brief Hook_EditBeforeScore This is called before internal edit scoring happens
+             * \param text Text of edit
+             * \param page Name of page
+             * \param editscore Pointer to integer that contains current score of edit
+             * \param userscore Score of user
+             * \return If false is returned the internal scoring is skipped
+             */
+            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             /*!
              * \brief Hook_EditIsReady Event that checks if edit can be considered processed
              *
@@ -106,14 +136,6 @@ namespace Huggle
              */
             virtual bool Hook_SpeedyBeforeOK(void *edit, void *form) { return true; }
             virtual void Hook_Shutdown() {}
-            /*!
-             * \brief Hook_EditScore is called after edit score is calculated
-             * \param edit
-             */
-            virtual void Hook_EditScore(void *edit) {}
-            virtual void Hook_EditPostProcess(void *edit) {}
-            virtual bool Hook_EditBeforeScore(void *edit) { return true;  }
-            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_MainWindowOnLoad(void *window) {}
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
             virtual void Hook_MainWindowOnRender() {}
