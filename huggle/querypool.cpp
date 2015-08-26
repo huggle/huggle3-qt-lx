@@ -197,3 +197,16 @@ int QueryPool::RunningQueriesGetCount()
     return this->RunningQueries.count();
 }
 
+int QueryPool::GetRunningEditingQueries()
+{
+    int n = 0;
+    foreach (Query *query, this->RunningQueries)
+    {
+        if (query->Type == QueryApi && ((ApiQuery*)query)->EditingQuery)
+        {
+            n++;
+        }
+    }
+    return n;
+}
+

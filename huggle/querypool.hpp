@@ -49,6 +49,7 @@ namespace Huggle
             //! edit processing
             void PostProcessEdit(WikiEdit *edit);
             int RunningQueriesGetCount();
+            int GetRunningEditingQueries();
             ProcessList *Processes;
             //! List of all messages that are being sent
             QList<Message*> Messages;

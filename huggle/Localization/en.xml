@@ -52,6 +52,7 @@
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
+  <string name="gracetime">Waiting for editing queries to end...</string>
   <string name="browser-none">No page is displayed now</string>
   <string name="browser-load">Downloading diff using a web rendering fallback, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>

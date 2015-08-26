@@ -84,7 +84,8 @@ namespace Huggle
         //! Huggle is updating the whitelist
         ShutdownOpUpdatingWhitelist,
         //! Huggle is updating a config of user
-        ShutdownOpUpdatingConf
+        ShutdownOpUpdatingConf,
+        ShutdownOpGracetimeQueries
     };
 
     //! Primary huggle window
@@ -329,7 +330,6 @@ namespace Huggle
             void on_actionQueue_legend_triggered();
             void on_actionPatrol_triggered();
             void on_actionFinal_triggered();
-
         private:
             void DisplayWelcomeMessage();
             void FinishRestore();
@@ -376,6 +376,7 @@ namespace Huggle
             QTimer *wlt = nullptr;
             //! Status bar
             QLabel *Status;
+            QDateTime Gracetime;
             bool EditablePage;
             WarningList *fWarningList = nullptr;
             WikiPageTagsForm *fWikiPageTags = nullptr;

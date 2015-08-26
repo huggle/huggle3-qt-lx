@@ -1240,12 +1240,12 @@ void MainWindow::OnTimerTick0()
             if (hcfg->SystemConfig_WhitelistDisabled)
             {
                 // we finished writing the wl
-                this->fWaiting->Status(90, _l("saveuserconfig-progress"));
-                this->Shutdown = ShutdownOpUpdatingConf;
+                this->fWaiting->Status(60, _l("saveuserconfig-progress"));
+                this->Shutdown = ShutdownOpGracetimeQueries;
                 return;
             }
             this->Shutdown = ShutdownOpUpdatingWhitelist;
-            this->fWaiting->Status(60, _l("updating-wl"));
+            this->fWaiting->Status(20, _l("updating-wl"));
             foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
             {
                 if (this->WhitelistQueries.contains(site))
@@ -1282,11 +1282,23 @@ void MainWindow::OnTimerTick0()
             }
             if (!finished)
             {
-                this->fWaiting->Status(60);
+                this->fWaiting->Status(20);
                 return;
             }
             // we finished writing the wl
-            this->fWaiting->Status(90, _l("saveuserconfig-progress"));
+            this->fWaiting->Status(60, _l("gracetime"));
+            this->Shutdown = ShutdownOpGracetimeQueries;
+            // now we need to give a gracetime to queries
+            this->Gracetime = QDateTime::currentDateTime();
+            return;
+        }
+        if (this->Shutdown == ShutdownOpGracetimeQueries)
+        {
+            // check if there are still some queries that need to finish
+            if (QueryPool::HugglePool->GetRunningEditingQueries() > 0 && this->Gracetime.addSecs(6) > QDateTime::currentDateTime())
+                return;
+            // we finished waiting for the editing queries
+            this->fWaiting->Status(80, _l("saveuserconfig-progress"));
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
