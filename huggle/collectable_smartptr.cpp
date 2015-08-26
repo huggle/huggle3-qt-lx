@@ -19,6 +19,7 @@
 #include "exception.hpp"
 #include "gc.hpp"
 #include "revertquery.hpp"
+#include "webserverquery.hpp"
 #include "wlquery.hpp"
 
 using namespace Huggle;
@@ -110,6 +111,7 @@ namespace Huggle
     template class Collectable_SmartPtr<RevertQuery>;
     template class Collectable_SmartPtr<EditQuery>;
     template class Collectable_SmartPtr<WikiEdit>;
+    template class Collectable_SmartPtr<WebserverQuery>;
     template class Collectable_SmartPtr<HistoryItem>;
     template class Collectable_SmartPtr<WLQuery>;
     template class Collectable_SmartPtr<ApiQuery>;
