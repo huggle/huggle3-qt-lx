@@ -507,6 +507,8 @@ void WikiEdit::PostProcess()
     if (this->Status != Huggle::StatusProcessed)
         throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status", BOOST_CURRENT_FUNCTION);
     this->PostProcessing = true;
+    // Send info to other functions
+    Hooks::EditBeforePostProcess(this);
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();

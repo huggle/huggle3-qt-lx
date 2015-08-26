@@ -52,6 +52,21 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
 #endif
 }
 
+void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *Edit)
+{
+    if (Edit == nullptr)
+        throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
+
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            extension->Hook_EditBeforePostProcessing((void*)Edit);
+    }
+#ifdef HUGGLE_PYTHON
+    //Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
+#endif
+}
+
 bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
 {
     bool result = true;

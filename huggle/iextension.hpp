@@ -105,6 +105,7 @@ namespace Huggle
              * \return If false is returned the internal scoring is skipped
              */
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
+            virtual void Hook_EditBeforePostProcessing(void *edit) {}
             /*!
              * \brief Hook_EditIsReady Event that checks if edit can be considered processed
              *

@@ -34,6 +34,7 @@ namespace Huggle
              * \param Edit that was just pre processed
              */
             static void EditPreProcess(WikiEdit *Edit);
+            static void EditBeforePostProcess(WikiEdit *Edit);
             /*!
              * \brief Event that is called after edit is post processed by internal edit processor
              * \param Edit was just post processed by huggle internal edit processor
