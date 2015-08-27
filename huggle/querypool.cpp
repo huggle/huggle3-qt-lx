@@ -14,6 +14,7 @@
 #include "editquery.hpp"
 #include "exception.hpp"
 #include "hugglequeue.hpp"
+#include "apiqueryresult.hpp"
 #include "mainwindow.hpp"
 #include "hugglefeed.hpp"
 #include "query.hpp"
@@ -137,6 +138,19 @@ void QueryPool::CheckQueries()
             continue;
         if (query->IsFailed())
         {
+            // Get the error code and check what the reason for this error was
+            ApiQueryResultNode *error = query->GetApiQueryResult()->GetNode("error");
+            if (error != nullptr)
+            {
+                QString code = error->GetAttribute("code");
+                if (code == "badtoken")
+                {
+                    // We got logged out of mediawiki
+                    hcfg->Logout(query->GetSite());
+                    query->Suspend();
+                    continue;
+                }
+            }
             Syslog::HuggleLogs->ErrorLog("Unable to (un)watchlist " + query->Target + " on " + query->GetSite()->Name +
                                          " because of: " + query->Result->ErrorMessage);
         } else
