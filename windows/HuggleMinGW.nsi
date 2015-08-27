@@ -162,7 +162,9 @@ SetOutPath "$INSTDIR\extensions"
 File "release\libhuggle_thanks.dll"
 File "release\libhuggle_md.dll"
 File "release\libhuggle_sh.dll"
+File "release\libhuggle_scoring.dll"
 File "release\libhuggle_en.dll"
+File "release\libhuggle_nuke.dll"
 SectionEnd
 
 ######################################################################

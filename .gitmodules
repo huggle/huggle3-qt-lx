@@ -16,3 +16,6 @@
 [submodule "huggle/extension_list/extension-mass-delete"]
 	path = huggle/extension_list/extension-mass-delete
 	url = http://github.com/huggle/extension-mass-delete
+[submodule "huggle/extension_list/extension-scoring"]
+	path = huggle/extension_list/extension-scoring
+	url = http://github.com/huggle/extension-scoring

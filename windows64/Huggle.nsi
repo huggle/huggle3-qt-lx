@@ -165,6 +165,8 @@ File "release\huggle_thanks.dll"
 File "release\huggle_sh.dll"
 File "release\huggle_md.dll"
 File "release\huggle_en.dll"
+File "release\huggle_scoring.dll"
+File "release\huggle_nuke.dll"
 SectionEnd
 
 ######################################################################
