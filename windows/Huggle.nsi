@@ -9,7 +9,7 @@
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
-!define VERSION "3.1.14.0"
+!define VERSION "3.1.15.0"
 !define COPYRIGHT "GPL"
 !define DESCRIPTION "Application"
 !define LICENSE_TXT "gpl.txt"
@@ -45,8 +45,6 @@ XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
 InstallDir "$PROGRAMFILES\Huggle"
 
-######################################################################
-
 !include "MUI.nsh"
 
 !define MUI_ABORTWARNING
@@ -80,6 +78,39 @@ InstallDir "$PROGRAMFILES\Huggle"
 !insertmacro MUI_UNPAGE_FINISH
 
 !insertmacro MUI_LANGUAGE "English"
+
+####################### UNINSTALL BEFORE UPGRADE #####################
+
+Section "" SecUninstallPrevious
+
+    Call UninstallPrevious
+
+SectionEnd
+
+Function UninstallPrevious
+
+    ; Check for uninstaller.
+    DetailPrint "Checking for previous huggle versions"    
+    ReadRegStr $R0 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" \
+  "UninstallString"
+
+    ${If} $R0 == ""        
+         ReadRegStr $R0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" \
+        "UninstallString"
+        ${If} $R0 == ""        
+            DetailPrint "No previous installation found"    
+            Goto Done
+        ${EndIf}
+    ${EndIf}
+
+    DetailPrint "Removing previous installation."    
+    ; Run the uninstaller silently.
+    ExecWait '"$R0" /S _?=$INSTDIR' $0
+    DetailPrint "Uninstaller returned $0"
+
+    Done:
+
+FunctionEnd
 
 ######################################################################
 
@@ -220,6 +251,7 @@ Delete "$INSTDIR\uninstall.exe"
 Delete "$INSTDIR\${APP_NAME} website.url"
 !endif
 RmDir /r "$INSTDIR\extensions"
+RmDir /r "$INSTDIR\platforms"
 RmDir "$INSTDIR"
 
 !ifdef REG_START_MENU
