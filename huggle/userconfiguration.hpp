@@ -84,7 +84,7 @@ namespace Huggle
             //! mediawiki reject token with no reason
             bool            EnforceManualSRT = false;
             //! Size of fonts in diff
-            int             FontSize = 16;
+            int             FontSize = 12;
             int             PreferredProvider = 2;
             //! Font that we use to render diffs and similar pages
             QString         Font = "Helvetica, Arial, sans-serif";
