@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "core.hpp"
 #include "syslog.hpp"
 #include "exceptionwindow.hpp"
 #include "ui_exceptionwindow.h"
@@ -43,4 +44,9 @@ void ExceptionWindow::on_pushButton_clicked()
 void ExceptionWindow::on_pushButton_3_clicked()
 {
     QApplication::exit(2);
+}
+
+void Huggle::ExceptionWindow::on_pushButton_2_clicked()
+{
+    Core::Shutdown();
 }

@@ -43,6 +43,7 @@
         <file>Resources/sc.png</file>
         <file>Resources/huggle3_small.ico</file>
         <file>Resources/empty.jpg</file>
+        <file>Resources/error.png</file>
         <file>Resources/hold_fire.png</file>
     </qresource>
 </RCC>
