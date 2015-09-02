@@ -258,6 +258,16 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_QueueSize = option.attribute("text").toInt();
             continue;
         }
+        if (key == "Font")
+        {
+            hcfg->SystemConfig_Font = option.attribute("text");
+            continue;
+        }
+        if (key == "FontSize")
+        {
+            hcfg->SystemConfig_FontSize = option.attribute("text").toInt();
+            continue;
+        }
         if (key == "GlobalConfigurationWikiAddress")
         {
             hcfg->GlobalConfigurationWikiAddress = option.attribute("text");
@@ -468,6 +478,8 @@ void Configuration::SaveSystemConfig()
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
     InsertConfig("Multiple", Bool2String(hcfg->Multiple), writer);
+    InsertConfig("Font", hcfg->SystemConfig_Font, writer);
+    InsertConfig("FontSize", QString::number(hcfg->SystemConfig_FontSize), writer);
     InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);
     InsertConfig("StorePassword", Bool2String(hcfg->SystemConfig_StorePassword), writer);
     if (hcfg->SystemConfig_StorePassword)

@@ -151,9 +151,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
-    configuration_ += "font:" + this->Font + "\n";
     configuration_ += "software-rollback:" + Bool2String(this->EnforceManualSoftwareRollback) + "\n";
-    configuration_ += "diff-font-size:" + QString::number(this->FontSize) + "\n";
     configuration_ += "HistoryLoad:" + Bool2String(this->HistoryLoad) + "\n";
     configuration_ += "OnNext:" + QString::number(static_cast<int>(this->GoNext)) + "\n";
     configuration_ += "DeleteEditsAfterRevert:" + Bool2String(this->DeleteEditsAfterRevert) + "\n";
@@ -299,8 +297,6 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, ProjectConfig->ScoreFlag).toInt();
     ProjectConfig->WarnSummary = this->SetOption("warn-summary", config, ProjectConfig->WarnSummary).toString();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
-    this->FontSize = ConfigurationParse("diff-font-size", config, "16").toInt();
-    this->Font = ConfigurationParse("font", config, this->Font);
     ProjectConfig->WarnSummary2 = this->SetOption("warn-summary-2", config, ProjectConfig->WarnSummary2).toString();
     ProjectConfig->WarnSummary3 = this->SetOption("warn-summary-3", config, ProjectConfig->WarnSummary3).toString();
     ProjectConfig->WarnSummary4 = this->SetOption("warn-summary-4", config, ProjectConfig->WarnSummary4).toString();

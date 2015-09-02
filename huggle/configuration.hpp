@@ -243,6 +243,10 @@ namespace Huggle
             bool            AskUserBeforeReport = true;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
             bool            TrimOldWarnings = true;
+            //! Size of fonts in diff
+            int             SystemConfig_FontSize = 12;
+            //! Font that we use to render diffs and similar pages
+            QString         SystemConfig_Font = "Helvetica, Arial, sans-serif";
             //! Whether new edits go to top or bottom (if true, they go to up)
             bool            SystemConfig_QueueNewEditsUp = false;
             //! If this is true some functionalities will be disabled

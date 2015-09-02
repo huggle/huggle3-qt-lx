@@ -324,13 +324,13 @@ void Huggle::Preferences::on_pushButton_2_clicked()
         hcfg->UserConfig->SummaryMode = 1;
     else
         hcfg->UserConfig->SummaryMode = 0;
-    hcfg->UserConfig->FontSize = this->ui->sxFontSize->value();
+    hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
 
-    if (hcfg->UserConfig->FontSize < 1)
-        hcfg->UserConfig->FontSize = 10;
+    if (hcfg->SystemConfig_FontSize < 1)
+        hcfg->SystemConfig_FontSize = 10;
 
     hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox->currentIndex());
-    hcfg->UserConfig->Font = this->ui->lineEdit_5->text();
+    hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
 
     if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
     {
@@ -752,8 +752,8 @@ void Preferences::ResetItems()
     this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
-    this->ui->lineEdit_5->setText(hcfg->UserConfig->Font);
-    this->ui->sxFontSize->setValue(hcfg->UserConfig->FontSize);
+    this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
+    this->ui->sxFontSize->setValue(hcfg->SystemConfig_FontSize);
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);

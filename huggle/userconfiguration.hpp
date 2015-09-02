@@ -83,11 +83,7 @@ namespace Huggle
             //! This will temporarily make huggle use software rollback as a workaround for bug where
             //! mediawiki reject token with no reason
             bool            EnforceManualSRT = false;
-            //! Size of fonts in diff
-            int             FontSize = 12;
             int             PreferredProvider = 2;
-            //! Font that we use to render diffs and similar pages
-            QString         Font = "Helvetica, Arial, sans-serif";
             unsigned int    TalkPageFreshness = 20;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits = false;

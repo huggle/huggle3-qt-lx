@@ -63,6 +63,6 @@ QString Huggle::Resources::GetHtmlHeader()
     }
 
     return QString(Resources::HtmlHeader).replace("<<<CUSTOM-CSS>>>", Css)
-            .replace("<<<FONT-FAMILY>>>", hcfg->UserConfig->Font)
-            .replace("<<<FONT-SIZE>>>", QString::number(hcfg->UserConfig->FontSize));
+            .replace("<<<FONT-FAMILY>>>", hcfg->SystemConfig_Font)
+            .replace("<<<FONT-SIZE>>>", QString::number(hcfg->SystemConfig_FontSize));
 }
