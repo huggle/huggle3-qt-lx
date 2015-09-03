@@ -82,11 +82,9 @@ void WebserverQuery::ReadData()
 {    // don't even try to do anything if query was killed
     if (this->Status == StatusKilled)
         return;
-    if (this->Result == nullptr)
-        throw new Huggle::NullPointerException("loc WebserverQuery::Result", BOOST_CURRENT_FUNCTION);
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc WebserverQuery::reply", BOOST_CURRENT_FUNCTION);
-    this->Result->Data += QString(this->reply->readAll());
+    this->temp += this->reply->readAll();
 }
 
 void WebserverQuery::Finished()
@@ -98,7 +96,9 @@ void WebserverQuery::Finished()
         throw new Huggle::NullPointerException("loc WebserverQuery::Result", BOOST_CURRENT_FUNCTION);
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc WebserverQuery::reply", BOOST_CURRENT_FUNCTION);
-    this->Result->Data += QString(this->reply->readAll());
+    this->temp += this->reply->readAll();
+    this->Result->Data = QString(this->temp);
+    this->temp.clear();
     // now we need to check if request was successful or not
     if (this->reply->error())
     {

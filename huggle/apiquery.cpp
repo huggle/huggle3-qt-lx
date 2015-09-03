@@ -198,7 +198,10 @@ void ApiQuery::Finished()
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc ApiQuery::reply", BOOST_CURRENT_FUNCTION);
     ApiQueryResult *result = (ApiQueryResult*)this->Result;
-    result->Data += QString(this->reply->readAll());
+    this->temp += this->reply->readAll();
+    result->Data = QString(this->temp);
+    // remove the temporary data so that we save the ram
+    this->temp.clear();
     // now we need to check if request was successful or not
     if (this->reply->error())
     {
@@ -242,6 +245,7 @@ void ApiQuery::Process()
     }
     this->StartTime = QDateTime::currentDateTime();
     this->ThrowOnValidResult();
+    this->temp.clear();
     if (!this->URL.size())
         this->ConstructUrl();
     this->Status = StatusProcessing;
@@ -305,11 +309,9 @@ void ApiQuery::ReadData()
     // don't even try to do anything if query was killed
     if (this->Status == StatusKilled)
         return;
-    if (this->Result == nullptr)
-        throw new Huggle::NullPointerException("loc ApiQuery::Result", BOOST_CURRENT_FUNCTION);
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc ApiQuery::reply", BOOST_CURRENT_FUNCTION);
-    this->Result->Data += QString(this->reply->readAll());
+    this->temp += this->reply->readAll();
 }
 
 void ApiQuery::SetAction(const Action action)
