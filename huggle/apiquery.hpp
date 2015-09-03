@@ -114,6 +114,7 @@ namespace Huggle
             //! This is only needed when you are using rollback
             void FinishRollback();
             QString ActionPart;
+            QByteArray temp;
             //! Reply from qnet
             QNetworkReply *reply = nullptr;
     };

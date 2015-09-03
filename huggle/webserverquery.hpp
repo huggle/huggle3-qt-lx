@@ -42,6 +42,7 @@ namespace Huggle
             void Kill();
         private:
             QNetworkReply *reply = nullptr;
+            QByteArray temp;
         private slots:
             void ReadData();
             void Finished();
