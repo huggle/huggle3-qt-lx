@@ -48,5 +48,5 @@ void ExceptionWindow::on_pushButton_3_clicked()
 
 void Huggle::ExceptionWindow::on_pushButton_2_clicked()
 {
-    Core::Shutdown();
+    Core::HuggleCore->Shutdown();
 }
