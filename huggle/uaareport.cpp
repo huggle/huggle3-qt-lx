@@ -166,7 +166,7 @@ void UAAReport::on_pushButton_clicked()
     {
         QMessageBox *g = new QMessageBox();
         g->setWindowTitle(_l("uaa-nr"));
-        // You didn't specify a reason as to why the username is a policy violatio
+        // You didn't specify a reason as to why the username is a policy violation
         g->setText(_l("uaa-no-reason-warn"));
         g->setAttribute(Qt::WA_DeleteOnClose);
         g->exec();
