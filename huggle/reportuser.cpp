@@ -132,6 +132,7 @@ void ReportUser::Tick()
         {
             QDomDocument BlockHistory;
             BlockHistory.setContent(this->qBlockHistory->Result->Data);
+            Syslog::HuggleLogs->Log(this->qBlockHistory->Result->Data);
             QDomNodeList results = BlockHistory.elementsByTagName("item");
             int CurrentId = 0;
             while (CurrentId < results.count())
@@ -166,21 +167,41 @@ void ReportUser::Tick()
                     expiration = "unblock";
                     flags = "unblock";
                 }
-                QDomNodeList qlflags = node.childNodes();
+                QDomNodeList qlparams = node.childNodes();
                 int flag_n = 0;
-                while (flag_n < qlflags.count())
+                while (flag_n < qlparams.count())
                 {
-                    QDomElement fe = qlflags.at(flag_n).toElement();
+                    QDomElement fe = qlparams.at(flag_n).toElement();
                     ++flag_n;
-                    if (fe.nodeName() != "block")
-                        continue;
-                    if (fe.attributes().contains("duration"))
-                        duration = fe.attribute("duration");
+                    if (fe.nodeName() == "params")
+                    {
+                        if (fe.attributes().contains("duration"))
+                            duration = fe.attribute("duration");
 
-                    if (fe.attributes().contains("expiry"))
-                        expiration = fe.attribute("expiry");
-                    if (fe.attributes().contains("flags"))
-                        flags = fe.attribute("flags");
+                        if (fe.attributes().contains("expiry"))
+                            expiration = fe.attribute("expiry");
+
+                        // Look for the flags
+                        QDomNodeList params_l = node.childNodes();
+                        int param_n = 0;
+                        while (param_n++ < params_l.count())
+                        {
+                            QDomElement parameter = params_l.at(param_n).toElement();
+                            if (parameter.nodeName() == "flags")
+                            {
+                                // Flags
+                                QDomNodeList flags_l = parameter.childNodes();
+                                int f = 0;
+                                while (f++ < flags_l.count())
+                                {
+                                    QDomElement fx = flags_l.at(f).toElement();
+                                    if (fx.nodeName() != "f")
+                                        continue;
+                                    flags += fx.text() + ", ";
+                                }
+                            }
+                        }
+                    }
                 }
                 this->ui->tableWidget_2->insertRow(0);
                 this->ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem(id));
