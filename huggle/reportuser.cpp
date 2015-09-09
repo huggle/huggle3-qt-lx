@@ -132,7 +132,6 @@ void ReportUser::Tick()
         {
             QDomDocument BlockHistory;
             BlockHistory.setContent(this->qBlockHistory->Result->Data);
-            Syslog::HuggleLogs->Log(this->qBlockHistory->Result->Data);
             QDomNodeList results = BlockHistory.elementsByTagName("item");
             int CurrentId = 0;
             while (CurrentId < results.count())
