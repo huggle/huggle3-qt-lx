@@ -19,6 +19,7 @@
 #include "../../sleeper.hpp"
 #include "../../terminalparser.hpp"
 #include "../../wikiuser.hpp"
+#include "../../version.hpp"
 
 static void testTalkPageWarningParser(QString id, QDate date, int level);
 //! This is a unit test
@@ -51,6 +52,7 @@ class HuggleTest : public QObject
         void testCaseTerminalParser();
         void testCaseConfigurationParse_QL();
         void testCaseScores();
+        void testCaseVersionComparison();
 };
 
 HuggleTest::HuggleTest()
@@ -238,6 +240,22 @@ void HuggleTest::testCaseTerminalParser()
     p->Silent = true;
     QVERIFY2(p->Parse() == true, "Invalid result for terminal parser");
     delete p;
+}
+
+void HuggleTest::testCaseVersionComparison()
+{
+    QVERIFY2(Huggle::Version("1.2.0") > Huggle::Version("1.0.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("3.1.1") > Huggle::Version("1.8.0-wmf1"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("3.0.1") > Huggle::Version("1.6.2"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("4.2.0") > Huggle::Version("1.0.0.5"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0.1") > Huggle::Version("1.0.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0") >= Huggle::Version("1.0.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.5") < Huggle::Version("1.4.0-wmf1"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0") <= Huggle::Version("1.2.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0") == Huggle::Version("1.2.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0") != Huggle::Version("2.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2") > Huggle::Version("1.0.0"), "Invalid version comparison results: fail");
+    QVERIFY2(Huggle::Version("1.2.0") > Huggle::Version("1.0.2.5462"), "Invalid version comparison results: fail");
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)
