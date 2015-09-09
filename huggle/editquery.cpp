@@ -231,6 +231,9 @@ void EditQuery::EditPage()
     QString base = "";
     QString start_ = "";
     QString section = "";
+    QString tag = "";
+    if (Huggle::Version("1.25.2") <= this->Page->GetSite()->MediawikiVersion && !this->Page->GetSite()->GetProjectConfig()->Tag.isEmpty())
+        tag = "&tags=" + QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Tag);
     QString wl = "&watchlist=" + UserConfiguration::WatchListOptionToString(hcfg->UserConfig->Watchlist);
     if (this->InsertTargetToWatchlist)
         wl = "&watchlist=" + UserConfiguration::WatchListOptionToString(WatchlistOption_Watch);
@@ -243,7 +246,7 @@ void EditQuery::EditPage()
     if (!this->StartTimestamp.isEmpty())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
-                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + base + start_ + "&token=" +
+                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + tag + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
     QueryPool::HugglePool->AppendQuery(this->qEdit);
     this->qEdit->Process();

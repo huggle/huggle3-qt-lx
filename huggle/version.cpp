@@ -78,7 +78,7 @@ Version::~Version()
 
 }
 
-bool Version::IsEqual(Version *b, bool ignore_suffix)
+bool Version::IsEqual(const Version *b, bool ignore_suffix) const
 {
     if (!this->isValid || !b->isValid)
         return false;
@@ -94,30 +94,42 @@ bool Version::IsEqual(Version *b, bool ignore_suffix)
         return true;
 }
 
-bool Version::IsLower(Version *b)
+bool Version::IsLower(const Version *b) const
 {
     if (!this->IsValid() || !b->IsValid())
         return false;
     if (this->GetMajor() > b->GetMajor())
         return false;
+    else if (this->GetMajor() < b->GetMajor())
+        return true;
     if (this->GetMinor() > b->GetMinor())
         return false;
+    else if (this->GetMinor() < b->GetMinor())
+        return true;
     if (this->GetRevision() > b->GetRevision())
         return false;
+    else if (this->GetRevision() < b->GetRevision())
+        return true;
 
     return !this->IsEqual(b, true);
 }
 
-bool Version::IsGreater(Version *b)
+bool Version::IsGreater(const Version *b) const
 {
     if (!this->IsValid() || !b->IsValid())
         return false;
     if (this->GetMajor() > b->GetMajor())
         return true;
+    else if (this->GetMajor() < b->GetMajor())
+        return false;
     if (this->GetMinor() > b->GetMinor())
         return true;
+    else if (this->GetMinor() < b->GetMinor())
+        return false;
     if (this->GetRevision() > b->GetRevision())
         return true;
+    else if (this->GetRevision() < b->GetRevision())
+        return false;
 
     return false;
 }
@@ -133,32 +145,32 @@ QString Version::getSuffixed(QString number)
     return number;
 }
 
-bool Huggle::operator!=(Version &a, Version &b)
+bool Huggle::operator!=(const Version &a, const Version &b)
 {
     return !a.IsEqual(&b);
 }
 
-bool Huggle::operator==(Version &a, Version &b)
+bool Huggle::operator==(const Version &a, const Version &b)
 {
     return a.IsEqual(&b);
 }
 
-bool Huggle::operator >=(Version &a, Version &b)
+bool Huggle::operator >=(const Version &a, const Version &b)
 {
     return a.IsEqual(&b) || a.IsGreater(&b);
 }
 
-bool Huggle::operator >(Version &a, Version &b)
+bool Huggle::operator >(const Version &a, const Version &b)
 {
     return a.IsGreater(&b);
 }
 
-bool Huggle::operator <(Version &a, Version &b)
+bool Huggle::operator <(const Version &a, const Version &b)
 {
     return a.IsLower(&b);
 }
 
-bool Huggle::operator <=(Version &a, Version &b)
+bool Huggle::operator <=(const Version &a, const Version &b)
 {
-    return a.IsEqual(&b) || &a < &b;
+    return a.IsEqual(&b) || a.IsLower(&b);
 }

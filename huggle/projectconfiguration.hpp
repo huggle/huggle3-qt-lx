@@ -144,6 +144,8 @@ namespace Huggle
             QStringList     RevertSummaries;
             QStringList     Goto;
             QString         SoftwareRevertDefaultSummary;
+            //! This is used to identify edits made by huggle, if empty no tags are inserted to meta information of edit
+            QString         Tag;
             QString         Token_Csrf;
             //! This is a token returned by tokens query from mw which should be same for all rollback execs
             QString         Token_Rollback;

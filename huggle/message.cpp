@@ -273,6 +273,8 @@ void Message::ProcessSend()
     this->query->UsingPOST = true;
     QString summary = this->Summary;
     QString parameters = "&watchlist=" + UserConfiguration::WatchListOptionToString(hcfg->UserConfig->Watchlist);
+    if (Huggle::Version("1.25.2") <= this->User->GetSite()->MediawikiVersion && !this->User->GetSite()->GetProjectConfig()->Tag.isEmpty())
+        parameters += "&tags=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Tag);
     if (!this->BaseTimestamp.isEmpty())
     {
         parameters += "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);

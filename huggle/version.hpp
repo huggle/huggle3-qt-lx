@@ -42,33 +42,33 @@ namespace Huggle
             /*!
              * \brief Returns the major section of the version number
              */
-            int GetMajor();
+            int GetMajor() const;
             /*!
              * \brief Returns the minor section of the version number
              */
-            int GetMinor();
+            int GetMinor() const;
             /*!
              * \brief Returns the revision section of the version number
              */
-            int GetRevision();
+            int GetRevision() const;
             /*!
              * \brief Returns whether or not 2 versions are equal
              * \param The version to check against
              * \param If the suffix of the version should be ignored
              */
-            bool IsEqual(Version *b, bool ignore_suffix = false);
+            bool IsEqual(const Version *b, bool ignore_suffix = false) const;
             /*!
             * \brief Returns whether or not  the current version is lower than another version
             * \param The version to check against
             */
-            bool IsLower(Version *b);
+            bool IsLower(const Version *b) const;
             /*!
              * \brief Returns whether or not  the current version is higher than another version
              * \param The version to check against
              */
-            bool IsGreater(Version *b);
+            bool IsGreater(const Version *b) const;
             //! Returns if the instance's version is valid
-            bool IsValid();
+            bool IsValid() const;
             //! Version as string
             QString ToString();
         private:
@@ -83,22 +83,22 @@ namespace Huggle
             QString suffix;
     };
 
-    inline int Version::GetMajor()
+    inline int Version::GetMajor() const
     {
         return this->major;
     }
 
-    inline int Version::GetMinor()
+    inline int Version::GetMinor() const
     {
         return this->minor;
     }
 
-    inline int Version::GetRevision()
+    inline int Version::GetRevision() const
     {
         return this->revision;
     }
 
-    inline bool Version::IsValid()
+    inline bool Version::IsValid() const
     {
         return this->isValid;
     }
@@ -108,12 +108,12 @@ namespace Huggle
         return this->original_string;
     }
 
-    bool operator !=(Version &a, Version &b);
-    bool operator ==(Version &a, Version &b);
-    bool operator <=(Version &a, Version &b);
-    bool operator >=(Version &a, Version &b);
-    bool operator >(Version &a, Version &b);
-    bool operator <(Version &a, Version &b);
+    bool operator !=(const Version &a, const Version &b);
+    bool operator ==(const Version &a, const Version &b);
+    bool operator <=(const Version &a, const Version &b);
+    bool operator >=(const Version &a, const Version &b);
+    bool operator >(const Version &a, const Version &b);
+    bool operator <(const Version &a, const Version &b);
 }
 
 #endif // VERSION_HPP

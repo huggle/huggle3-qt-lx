@@ -237,6 +237,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         this->BlockExpiryOptions.append(item);
         list.removeAt(0);
     }
+    this->Tag = HuggleParser::ConfigurationParse("tag", config);
     this->DeletionSummaries = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
     this->BlockSummary = HuggleParser::ConfigurationParse("block-summary", config, "Notification: Blocked");
     this->BlockTime = HuggleParser::ConfigurationParse("blocktime", config, "indef");
