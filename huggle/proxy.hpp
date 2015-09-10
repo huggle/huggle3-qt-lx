@@ -22,7 +22,6 @@ namespace Ui
 
 namespace Huggle
 {
-    //! \todo make it
     //! Proxy
     class Proxy : public HW
     {
@@ -34,7 +33,6 @@ namespace Huggle
         private slots:
             void on_buttonBox_accepted();
             void on_buttonBox_rejected();
-
             void on_comboBox_currentIndexChanged(int index);
 
         private:
