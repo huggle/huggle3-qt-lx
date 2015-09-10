@@ -24,6 +24,8 @@ namespace Huggle
     class HUGGLE_EX ApiQueryResultNode
     {
           public:
+            ApiQueryResultNode();
+            ~ApiQueryResultNode();
             /*!
             * \brief GetAttribute Return the specified attribute if it exists, otherwise return the default
             * \param name Name of attribute
@@ -37,6 +39,7 @@ namespace Huggle
             QString Value;
             //! Hashtable of attribtues
             QHash<QString, QString> Attributes;
+            QList<ApiQueryResultNode*> ChildNodes;
     };
 
     //! Api queries have their own result class so that we can use it to parse them
@@ -56,15 +59,16 @@ namespace Huggle
             void Process();
             /*!
             * \brief GetNode Get the first node with the specified name
-            * IMPORTANT: do not delete this node, it's a pointer to item in a list which will be deleted in destructor of class
+            * IMPORTANT: do not delete this node, it's a pointer to item in a list which get deleted in destructor of class
             * \param node_name Name of node
             * \return The specified node or a null pointer if none found
             */
             ApiQueryResultNode *GetNode(QString node_name);
             /*!
             * \brief GetNodes Get all nodes with the specified name
+            * IMPORTANT: do not delete these nodes, they point to items in a list which get deleted in destructor of class
             * \param node_name Name of node
-            * \return QList of found nodes
+            * \return QList of pointers to found nodes
             */
             QList<ApiQueryResultNode*> GetNodes(QString node_name);
             /*!
@@ -72,8 +76,9 @@ namespace Huggle
             * \return True if there are warnings, false otherwise
             */
             bool HasWarnings();
-            //! List of result nodes
+            //! List of result nodes unsorted with no hierarchy
             QList<ApiQueryResultNode*> Nodes;
+            ApiQueryResultNode *Root;
             //! Warning from API query
             QString Warning;
             //! If any error was encountered during the query
