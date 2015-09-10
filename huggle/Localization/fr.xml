@@ -113,10 +113,44 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-confirm-user">Demander une confirmation pour révoquer les changements faits dans l\'espace utilisateur</string>
   <string name="config-confirm-wl">Demander confirmation pour annuler une modification faite par un utilisateur en liste blanche</string>
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
+  <string name="config-use-rollback">Utiliser un retour en arrière logiciel</string>
+  <string name="config-welcome-empty-page">Envoyer des messages de bienvenue aux utilisateurs avec une page de discussion vide lors d’une bonne modification</string>
+  <string name="config-conflicts-revert">Résoudre automatiquement les conflits avec les autres utilisateurs qui reviennent en arrière ou modifient la page</string>
+  <string name="config-instant-reverts">Utiliser les retours arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
+  <string name="config-revert-wait">Attente de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
+  <string name="config-revert-diff" fuzzy="true">Revenir sur les modifications les plus récentes sur la page qui affichait la différence, dans le cas où elles sont faites par le même utilisateur (le même vandale)</string>
+  <string name="config-change-all">Modifier tous les paramètres de Huggle pour se comporter davantage comme Huggle 2</string>
+  <string name="config-merge-messages">Fusionner vos messages avec les autres dans les sections existantes</string>
+  <string name="config-months-name">Utiliser les mois comme entêtes au lieu du nom de la page</string>
+  <string name="config-automatic-warning">Utiliser des types et niveaux d’avertissement automatiques dans la fonction « envoi d’avertissement »</string>
   <string name="config-enable-irc">Permettre l\'IRC</string>
+  <string name="config-remove-reverted">Supprimer les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
+  <string name="config-remove-old">Supprimer les anciennes modifications si une modification plus récente sur la même page est analysée</string>
+  <string name="config-auto-load-history" fuzzy="true">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne connexion réseau)</string>
+  <string name="config-last-revision">Afficher la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache)</string>
+  <string name="config-require-delay" fuzzy="true">Nécessite un délai après chaque chargement de prochaine modification, pour laquelle il n’est pas possible d’utiliser une fonctionnalité d’écriture (utile si vous devez résoudre un problème de frappe multiple sur le clavier)</string>
+  <string name="config-wait-edit" fuzzy="true">Temps pendant lequel vous devez attendre avant que les fonctionnalités de modification soient activées (en secondes) :</string>
   <string name="config-display-text">Afficher la suite</string>
+  <string name="config-retrieve-edit">Retrouver votre propre modification</string>
+  <string name="config-nothing">Rien</string>
+  <string name="config-bot-edits">Modifications de robot (b)</string>
+  <string name="config-own-edits">Propres modifications</string>
+  <string name="config-reverts">Retours arière</string>
+  <string name="config-new-page">Nouvelle page</string>
+  <string name="config-whitelisted">En liste blanche</string>
   <string name="config-friend">Ami</string>
+  <string name="config-userspace">Espace utilisateur</string>
+  <string name="config-talk">Page de discussion</string>
+  <string name="config-columns-dynamic">Rendre les colonnes de liste dynamiques (seront redimensionnées d’après la taille des éléments) ou manuelles (l’utilisateur peut modifier leur taille)</string>
+  <string name="config-message-notification">Afficher une notification quand vous recevez un nouveau message sur votre page de discussion</string>
+  <string name="config-warning-api">Afficher les avertissements pour les requêtes de l’API</string>
+  <string name="config-title-diff" fuzzy="true">Titre de page dans chaque différence (texte en gros qui affichera uniquement un titre de page en haut de chaque différence)</string>
+  <string name="config-updates">Vérifier les mises à jour</string>
+  <string name="config-beta">Vérifier les versions bêta</string>
+  <string name="config-html-messages">HAN peut formater des messages HTML (dangereux)</string>
+  <string name="config-summary-present">Mettre en évidence le résumé quand il est présent plutôt que quand il est absent</string>
+  <string name="config-close-without">Fermer sans enregistrer</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d\'une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
   <string name="config-confirmselfrevert">Confirmer la réversion de modifications propres (sauf annulation)</string>
@@ -174,7 +208,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="irc-connecting">Tentative de connexion au flux IRC des changements récents sur $1, ceci peut prendre un peu de temps…</string>
   <string name="irc-disconnected">Connexion perdue au flux IRC des changements récentssur $1. Reconnexion en cours…</string>
   <string name="irc-nochannel">Canal IRC introuvable pour $1 ; utilisation à la place des requêtes d’API plus lentes</string>
-  <string name="irc-error" fuzzy="true">Impossible de se connecter au flux des changements récents sur IRC ($1). Utilise à la place des requêtes d’API plus lentes.</string>
+  <string name="irc-error">Impossible de se connecter au flux des changements récents sur IRC ($1: $2). Utilise à la place des requêtes d’API plus lentes.</string>
   <string name="irc-stop">En attente de l’arrêt du fournisseur principal de flux sur $1</string>
   <string name="irc-not">Flux : IRC est désactivé par la configuration du projet</string>
   <string name="irc-failure">Le fournisseur de flux principal a échoué. Recours au fournisseur du wiki…</string>
@@ -266,6 +300,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Quitter</string>
   <string name="main-config-state-fail">Impossible de lire l\'état d\'un fichier de config</string>
+  <string name="main-config-geom-fail">Impossible de lire l’aspect depuis un fichier de configuration</string>
   <string name="main-tools-scoreword-list">Afficher une liste de mots importants</string>
   <string name="main-queue">File</string>
   <string name="main-queue-next">Suivante</string>
@@ -315,6 +350,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-page-protect">Protéger</string>
   <string name="main-page-delete">Supprimer</string>
   <string name="main-page-load">Charger</string>
+  <string name="main-patrol-not-enabled">Patrouiller n’est pas activé sur $1</string>
   <string name="main-page-restore">Rétablir cette révision</string>
   <string name="main-user-info">Afficher les informations de l\'utiliasteur</string>
   <string name="main-user-ignore">Ignorer</string>
@@ -364,8 +400,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-no-page">L’action que vous avez demandée nécessite le chargement d’une page. Veuillez charger une page avant de réessayer.</string>
   <string name="main-revert-null">Impossible de revenir, la modification est nulle</string>
   <string name="main-revert-newpage-title">Impossible de revenir sur ça</string>
-  <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée, vous pouvez soit la tagger soit la supprimer.</string>
+  <string name="main-revert-newpage" fuzzy="true">Ceci est une nouvelle page, elle ne peut donc pas être restaurée, vous pouvez soit la tagger soit la supprimer.</string>
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
+  <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Spécifiez un ou les deux champs Objet et Résumé. Si aucun résumé n\'est donné,, l\'objet sera utilisé; si aucun objet n\'est donné, aucune entête ne sera ajoutée.</string>
   <string name="message-subject">Objet :</string>
@@ -395,6 +432,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="protect-message-title-fail">Impossible de protéger</string>
   <string name="protect-moveprotection">Protection de renommage</string>
   <string name="protect-ft">Recherche du jeton pour protéger $1</string>
+  <string name="protect-request-proj-fail">Ce projet ne supporte pas les demandes de protection</string>
   <string name="queue-title">Queues</string>
   <string name="queue-queues">Queues :</string>
   <string name="queue-typegroup">Type de queue</string>
@@ -453,6 +491,8 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="score-take-whole-no-talk-word">Correspond uniquement aux mots complets sur les pages hors discussion</string>
   <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
   <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
+  <string name="ssl-is-not-supported">Vous avez demandé à utiliser SSL mais $1 ne le supporte pas.</string>
+  <string name="ssl-required">Le webserveur de $1 nécessite SSL pour être activé. Veuillez activer SSL et réessayer. Si vous ne pouvez pas activer SSL (l’option est grisée), vous devrez installer les bibliothèques OpenSSL à votre système.</string>
   <string name="uaa-not-supported">UAA non disponible</string>
   <string name="uaa-not-supported-text">Le panneau d’affichage « Noms d’utilisateur à l’attention de l’administrateur » n’est pas disponible sur votre wiki.</string>
   <string name="uaa-reporting">Signaler $1 à UAA</string>
@@ -493,6 +533,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="update-error">Échec lors du téléchargement de la nouvelle version</string>
   <string name="updater-title">Une nouvelle version de Huggle est disponible</string>
   <string name="updater-update">Mettre à jour</string>
+  <string name="updater-update-available">Une version plus récente de Huggle est disponible : version $1</string>
   <string name="updater-open-manualdownloadpage">Ouvrir la page de téléchargement</string>
   <string name="updater-close">Fermer</string>
   <string name="updater-disable-notify">Désactiver les mises à jour</string>
@@ -521,6 +562,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-browser-close-tab">Fermer un onglet du navigateur</string>
   <string name="shortcut-tab">Ouvre un nouvel onglet</string>
   <string name="shortcut-rw-stay">Revenir à la modification actuelle, avertir un utilisateur et rester sur la page</string>
+  <string name="shortcut-revert-and-stay">Annuler la modification courante et rester sur la page</string>
   <string name="warning-title">Avertir $1</string>
   <string name="warning-levelgroup">Niveau d\'avertissement</string>
   <string name="warning-levelauto">Automatique</string>
@@ -531,9 +573,13 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="warning-warntype">Type d\'avertissement :</string>
   <string name="warning-warnlog">Avertissements pour cet utilisateur :</string>
   <string name="warning-submit">Envoyer</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">Impossible de récupérer $1 ; le niveau d’avertissement ne sera pas renseigné par lui</string>
   <string name="missing-warning">Il n’y a pas un tel modèle d’avertissement $1</string>
   <string name="han-not">Un réseau de vandalisme n’est pas autorisé dans les options</string>
   <string name="han-connecting">Connexion à Huggle, un réseau anti-vandalisme</string>
+  <string name="han-already-connected">Non connecté à HAN car déjà connecté</string>
+  <string name="han-already-connecting">Veuillez attendre, je suis déjà en train de me connecter à HAN</string>
+  <string name="han-disconnected">Vous avez été déconnecté de HAN</string>
   <string name="error-loggedout">Le compte a été déconnecté, reconnexion...</string>
   <string name="error-noresponse">Aucun réponse</string>
   <string name="error-pagemissing">La page n\'existe pas</string>
@@ -560,11 +606,17 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
   <string name="history-progress">Récupération de l’historique de $1 ($2)…</string>
   <string name="history-work">Annulation de sa propre modification effectuée sur $1</string>
+  <string name="history-no-item-selected">Aucun élément n’est sélectionné dans le widget historique</string>
   <string name="history-message-revert-title">Voulez-vous vraiment annuler simplement ce message ?</string>
+  <string name="history-another-edit">Je suis déjà en train d’annuler une autre modification, veuillez attendre</string>
   <string name="history-not-found">Rien n’a été trouvé à annuler</string>
   <string name="history-already-done">Ceci a déjà été annulé</string>
   <string name="history-message-revert-body">C’était un message référencé par une annulation ; êtes-vous sûr de vouloir annuler uniquement le modèle et pas même votre modification sur la page (vous devrez annuler le retour arrière si vous voulez revenir sur les deux) ?</string>
-  <string name="history-revert-fail" fuzzy="true">Impossible d’annuler votre modification de $1 ; erreur lors du retour arrière : $2</string>
+  <string name="history-revert-fail">Impossible d’annuler votre modification de $1  car l\'erreur suivante est apparue : $2</string>
+  <string name="history-undone">Annulation réussie de la modification de $1</string>
+  <string name="history-retrieve-fail">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification, l’erreur était : $1</string>
+  <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
+  <string name="history-welcome-msg" fuzzy="true">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée, voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>
@@ -589,9 +641,13 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="editquery-success">Modification réussie de $1 le $2</string>
   <string name="editquery-token">Récupération du jeton pour modifier $1</string>
   <string name="editquery-token-error">Impossible de récupérer le jeton de modification</string>
-  <string name="provider-failure" fuzzy="true">Échec du fournisseur de flux principal, tentative de récupération</string>
+  <string name="editquery-invalid-token" fuzzy="true">L\'impossibilité de modifier $1 car le jeton que j\'avais dans le cache n\'est plus valide, veuillez essayer de modifier cette page une fois de plus</string>
+  <string name="provider-failure">Échec du fournisseur de flux $1 sur $2, essais en cours pour trouver un fournisseur de remplacement</string>
   <string name="provider-primary-failure">Le fournisseur de flux principal a échoué, retour au fournisseur du wiki</string>
   <string name="rc-error">Impossible de récupérer des données du flux du wiki, dernière erreur : $1</string>
+  <string name="rc-timestamp-missing">Fil RC : L’élément n’avait pas d’attribut horodatage : $1</string>
+  <string name="rc-type-missing">Fil RC : L’élément n’avait pas d’attribut type : $1</string>
+  <string name="rc-title-missing">Fil RC : L’élément n’avait pas d’attribut titre : $1</string>
   <string name="whitelist-download">Téléchargement de la nouvelle liste blanche</string>
   <string name="logs-widget-name">Journaux système</string>
   <string name="wait">Veuillez patienter…</string>
@@ -611,6 +667,37 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
-  <string name="report-fail" fuzzy="true">Ne pas signaler $1</string>
+  <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
+  <string name="preferences-extension-disabled">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de huggle</string>
+  <string name="preferences-extension-enabled">Cette extension n\'est pas mémorisée pour désactiver le prochain démarrage de huggle</string>
+  <string name="preferences-extension-enabled-restart">L\'extension a été activée, cependant, vous devez redémarrer huggle pour la mettre en oeuvre</string>
+  <string name="fail">Echec</string>
+  <string name="request">Requête</string>
+  <string name="requesting">En cours de requête</string>
+  <string name="requested">Demandé</string>
+  <string name="protect-request-fail">Impossible de récupérer la page de rapport en cours: $1</string>
+  <string name="protect-request-fail-notext">Impossible de récupérer la page de rapport courante parce que la requête n\'a pas renvoyé de texte pour cette page</string>
+  <string name="protect-request-fail-notime" fuzzy="true">La requête n\'a pas renvoyé de date (bogue mediawiki?) la requête est abandonnée</string>
+  <string name="message-fail">Echec lors de la transmission du message</string>
+  <string name="edit-conflict">Conflit de modification.</string>
+  <string name="page-tag-nodescription">il n\'y a pas de description pour ce tag :/</string>
+  <string name="page-tag-fail">Échec pour baliser la page</string>
+  <string name="page-tag-error">Impossible de baliser la page, l\'erreur était: $1</string>
+  <string name="page-unknown">Page inconnue</string>
+  <string name="speedy-csd-invalid">Balise CDD invalide, il n\'y a pas de message ni de balise wiki à utiliser</string>
+  <string name="speedy-csd-existing">Il y a déjà une étiquette CSD sur la page.</string>
+  <string name="namespace">Espace de noms</string>
+  <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
+  <string name="report-fail">Erreur lors du signalement utilisateur, raison: $1</string>
+  <string name="report-page-fail" fuzzy="true">Erreur : impossible de récupérer la page de rapport à $1</string>
+  <string name="report-page-fail-time">Impossible de récupérer la date pour la page de rapport en cours, échec de l\'api:
+
+$1</string>
+  <string name="report-unable">Incapable de rapporter l\'utilisateur :(</string>
+  <string name="about-python-with">,avec le support python</string>
+  <string name="about-python-without">sans le support python</string>
+  <string name="about-qt">, compilé à l\'aide de QT $1 exécuté sur QT $1</string>
   <string name="error-unknown-code">Erreur inconnue: $1</string>
+  <string name="relogin-fail">Impossible de se connecter au wiki: $1</string>
 </resources>

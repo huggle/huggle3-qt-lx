@@ -119,10 +119,12 @@
   <string name="config-remove-reverted">Odstranit editace, které již někdo dříve revertoval</string>
   <string name="config-remove-old">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
   <string name="config-display-text">Zobrazit další</string>
+  <string name="config-nothing">Nic</string>
   <string name="config-own-edits">Vlastní úpravy</string>
   <string name="config-reverts">Reverty</string>
   <string name="config-new-page">Nová stránka</string>
   <string name="config-whitelisted">Whitelist</string>
+  <string name="config-friend">Přítel</string>
   <string name="config-userspace">Uživatelský prostor</string>
   <string name="config-talk">Diskuzní stránka</string>
   <string name="config-updates">Zkontrolovat aktualizace</string>
@@ -169,7 +171,7 @@
   <string name="delete-e2">Nelze odstranit stránku</string>
   <string name="delete-edsc">Nelze odstranit stránku, protože $1</string>
   <string name="delete-failed-no-info">Žádné informace o stránce nebyly přítomne v dotazu (jste sysop?)</string>
-  <string name="extension-kl" fuzzy="true">Vypnuta</string>
+  <string name="extension-kl">Neběží</string>
   <string name="historyform-no-info">Není otevřen diff</string>
   <string name="historyform-title">Historie</string>
   <string name="historyform-retrieve-history">Stáhnout historii</string>
@@ -228,6 +230,7 @@
   <string name="login-progress-user">Kontrola konfigurace uživatele pro $1</string>
   <string name="login-progress-user-info">Kontroluji informace o uživateli pro $1</string>
   <string name="login-progress-whitelist">Stahuji WL...</string>
+  <string name="login-remember-password">Zapamatovat heslo</string>
   <string name="login-ssl">Použití protokolu HTTPS (vyžaduje OpenSSL)</string>
   <string name="login-fail">Přihlášení k $1 selhalo</string>
   <string name="login-error-admin">Použití Huggle na tomto projektu vyžaduje účet správce.</string>
@@ -272,6 +275,7 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Ukončit</string>
+  <string name="main-config-geom-fail">Nelze číst geometrie z konfiguračního souboru</string>
   <string name="main-tools-scoreword-list">Zobrazit seznam scorewords</string>
   <string name="main-queue">Fronta</string>
   <string name="main-queue-next">Další</string>
@@ -368,7 +372,7 @@
   <string name="main-no-page">Akce, vyžaduje načtenou stránku.</string>
   <string name="main-revert-null">Nelze vrátit, edit je NULL</string>
   <string name="main-revert-newpage-title">Toto nelze revertovat</string>
-  <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat, ani tagovat nebo smazat.</string>
+  <string name="main-revert-newpage" fuzzy="true">Toto je nová stránka, není ji možné revertovat, ani tagovat nebo smazat.</string>
   <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
   <string name="message-help">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
@@ -571,7 +575,7 @@
   <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
   <string name="history-revert-fail" fuzzy="true">Nelze vrátit zpět editace $1 chyba při revertaci: $2</string>
   <string name="history-welcome-msg-title">Poslat namísto toho uvítací zprávu?</string>
-  <string name="history-welcome-msg">Vytvořili jste tuto diskuzní stránku, takže tuto editaci nemůžete odstranit. Chcete ji však přepsat uvítací šablonou?</string>
+  <string name="history-welcome-msg" fuzzy="true">Vytvořili jste tuto diskuzní stránku, takže tuto editaci nemůžete odstranit. Chcete ji však přepsat uvítací šablonou?</string>
   <string name="notify-fail">Nepodařilo se notifikovat autora $1</string>
   <string name="notify-unknowncreator">Nelze najít autora stránky</string>
   <string name="protect-done">Zámek $1 byl upraven</string>
@@ -618,10 +622,14 @@
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené stejným uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="fail">Neúspěšný</string>
   <string name="request">Požadavek</string>
+  <string name="edit-conflict">Editační konflikt</string>
+  <string name="page-tag-nodescription">neexistuje žádný popis pro tuto značku :/</string>
   <string name="page-unknown">Neznámá stránka</string>
   <string name="namespace">Jmenný prostor</string>
   <string name="block-alreadyblocked">Uživatel již je zablokován.</string>
   <string name="report-fail" fuzzy="true">Nepodařilo se nahlásit uživatele: $1</string>
   <string name="error-unknown-code">Neznámá chyba: $1</string>
+  <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
 </resources>

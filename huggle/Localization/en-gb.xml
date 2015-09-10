@@ -118,7 +118,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="config-instant-reverts">Use instant reverts (very fast, but can\'t be cancelled once executed)</string>
   <string name="config-revert-wait">Revert wait (seconds)</string>
   <string name="config-revert">Revert</string>
-  <string name="config-revert-diff">Revert all newer edits to the page than displayed diff, in case they were made by the same user (same vandal)</string>
+  <string name="config-revert-diff" fuzzy="true">Revert all newer edits to the page than displayed diff, in case they were made by the same user (same vandal)</string>
   <string name="config-change-all">Change all Huggle settings to behave more like Huggle 2</string>
   <string name="config-merge-messages">Merge your messages with others in existing sections</string>
   <string name="config-months-name">Use months as headers, instead of the name of the page</string>
@@ -126,10 +126,10 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="config-enable-irc">Enable IRC</string>
   <string name="config-remove-reverted">Remove edits that were already reverted by someone else</string>
   <string name="config-remove-old">Remove old edits if newer edit to same page is parsed</string>
-  <string name="config-auto-load-history">Automatically load history and user info (requires lot of bandwidth)</string>
+  <string name="config-auto-load-history" fuzzy="true">Automatically load history and user info (requires lot of bandwidth)</string>
   <string name="config-last-revision">Display last revision of page, in case the currently loaded edit is not the last revision (will post-download it, bypassing cache)</string>
-  <string name="config-require-delay">Require a delay after every load of next edit, during which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>
-  <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
+  <string name="config-require-delay" fuzzy="true">Require a delay after every load of next edit, during which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>
+  <string name="config-wait-edit" fuzzy="true">The amount of time that you must wait between edit features being enabled (in seconds):</string>
   <string name="config-display-text">Display next</string>
   <string name="config-retrieve-edit">Retrieve your own edit</string>
   <string name="config-nothing">Nothing</string>
@@ -144,7 +144,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="config-columns-dynamic">Make the columns of lists dynamic (will resize them based on size of items) or manual (user can change their size)</string>
   <string name="config-message-notification">Display a notification when you receive a new message on your talk page</string>
   <string name="config-warning-api">Display warnings for API queries</string>
-  <string name="config-title-diff">Page title in every diff (large text which show just a page title in top of every diff)</string>
+  <string name="config-title-diff" fuzzy="true">Page title in every diff (large text which show just a page title in top of every diff)</string>
   <string name="config-updates">Check for updates</string>
   <string name="config-beta">Check for beta versions</string>
   <string name="config-html-messages">HAN can render HTML messages (dangerous)</string>
@@ -398,7 +398,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="main-no-page">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can\'t revert this</string>
-  <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
+  <string name="main-revert-newpage" fuzzy="true">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
   <string name="message-title">Message $1</string>
@@ -569,7 +569,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>
-  <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level will not be scored by it</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">Unable to retrieve $1 warning level will not be scored by it</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn\'t allowed in options</string>
   <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
@@ -612,7 +612,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="history-undone">Successfully undid edit to $1</string>
   <string name="history-retrieve-fail">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>
-  <string name="history-welcome-msg">You created this talk page, so it can\'t be undone. Do you want to replace it with a welcome template?</string>
+  <string name="history-welcome-msg" fuzzy="true">You created this talk page, so it can\'t be undone. Do you want to replace it with a welcome template?</string>
   <string name="notify-fail">Did not notify the creator of $1</string>
   <string name="notify-unknowncreator">Cannot find page creator</string>
   <string name="protect-done">Changed protection level for $1</string>
@@ -637,7 +637,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="editquery-success">Successfully edit $1 on $2</string>
   <string name="editquery-token">Retrieving token to edit $1</string>
   <string name="editquery-token-error">Unable to retrieve edit token</string>
-  <string name="editquery-invalid-token">Unable to edit $1 because the  token in the cache is no longer valid. Try to edit the page again.</string>
+  <string name="editquery-invalid-token" fuzzy="true">Unable to edit $1 because the  token in the cache is no longer valid. Try to edit the page again.</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find an alternative provider</string>
   <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>
   <string name="rc-error">Unable to retrieve data from wiki feed, last error: $1</string>
@@ -665,7 +665,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of an old token.)</string>
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled">This extension is already scheduled for disabling the next startup of Huggle</string>
-  <string name="preferences-extension-disabled-restart">This extension is already scheduled for disabling the next startup of Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">This extension is already scheduled for disabling the next startup of Huggle</string>
   <string name="preferences-extension-enabled">This extension is not scheduled for disabling the next startup of Huggle</string>
   <string name="preferences-extension-enabled-restart">The extension was enabled, however you need to restart Huggle for it to happen</string>
   <string name="fail">Fail</string>
@@ -674,7 +674,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="requested">Requested</string>
   <string name="protect-request-fail">Unable to retrieve the current report page: $1</string>
   <string name="protect-request-fail-notext">Unable to retrieve the current report page because the query didn\'t return any text for this page</string>
-  <string name="protect-request-fail-notime">The query didn\'t return a timestamp (mediawiki bug?). Aborting the query</string>
+  <string name="protect-request-fail-notime" fuzzy="true">The query didn\'t return a timestamp (mediawiki bug?). Aborting the query</string>
   <string name="message-fail">Failed to deliver the message</string>
   <string name="edit-conflict">Edit conflict</string>
   <string name="page-tag-nodescription">there is no description for this tag</string>
@@ -686,7 +686,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="namespace">Namespace</string>
   <string name="block-alreadyblocked">User is already blocked</string>
   <string name="report-fail">Failed to report user because: $1</string>
-  <string name="report-page-fail">Error: unable to retrieve report page at $1</string>
+  <string name="report-page-fail" fuzzy="true">Error: unable to retrieve report page at $1</string>
   <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:
 
  $1</string>

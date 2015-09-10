@@ -116,7 +116,7 @@
   <string name="config-instant-reverts">Gunakan pengunduran segera (sangat cepat tetapi tidak boleh dibatalkan sekali dilakukan)</string>
   <string name="config-revert-wait">Masa tunggu pembalikan (saat)</string>
   <string name="config-revert">Undurkan</string>
-  <string name="config-revert-diff">Balikkan suntingan yang lebih baru daripada perbezaan yang dipaparkan sekiranya ia dibuat oleh pengguna (pelaku musnah) yang sama</string>
+  <string name="config-revert-diff" fuzzy="true">Balikkan suntingan yang lebih baru daripada perbezaan yang dipaparkan sekiranya ia dibuat oleh pengguna (pelaku musnah) yang sama</string>
   <string name="config-change-all">Tukarkan semua tetapan huggle supaya beragam seakan-akan huggle 2</string>
   <string name="config-merge-messages">Gabungkan pesanan anda dengan pesanan orang lain dalam bahagian-bahagian sedia ada</string>
   <string name="config-months-name">Gunakan bulan tarikh sebagai pengepala dan bukan nama laman</string>
@@ -124,10 +124,10 @@
   <string name="config-enable-irc">Bolehkan IRC</string>
   <string name="config-remove-reverted">Singkirkan suntingan yang sudah dibalikkan oleh orang lain</string>
   <string name="config-remove-old">Singkirkan suntingan lain jika suntingan baru pada laman yang sama terhurai</string>
-  <string name="config-auto-load-history">Muatkan sejarah dan maklumat pengguna secara automatik (memerlukan sambungan rangkaian yang amat laju)</string>
+  <string name="config-auto-load-history" fuzzy="true">Muatkan sejarah dan maklumat pengguna secara automatik (memerlukan sambungan rangkaian yang amat laju)</string>
   <string name="config-last-revision">Paparkan semakan terakhir laman sekiranya suntingan yang termuat semasa bukan semakan terbaru (akan dimuat turun melampaui cache)</string>
-  <string name="config-require-delay">Kehendaki penangguhan selepas setiap muatan suntingan seterusnya untuk melarang sebarang penggunaan ciri-ciri tulis (berguna jika perlu menyelesaikan pepijat dari berkali-kali menekan kekunci)</string>
-  <string name="config-wait-edit">Tempoh perlu menunggu antara ciri-ciri sunting dibolehkan (saat):</string>
+  <string name="config-require-delay" fuzzy="true">Kehendaki penangguhan selepas setiap muatan suntingan seterusnya untuk melarang sebarang penggunaan ciri-ciri tulis (berguna jika perlu menyelesaikan pepijat dari berkali-kali menekan kekunci)</string>
+  <string name="config-wait-edit" fuzzy="true">Tempoh perlu menunggu antara ciri-ciri sunting dibolehkan (saat):</string>
   <string name="config-display-text">Paparkan seterusnya</string>
   <string name="config-retrieve-edit">Ambil suntingan sendiri</string>
   <string name="config-nothing">Tiada apa-apa</string>
@@ -142,7 +142,7 @@
   <string name="config-columns-dynamic">Jadikan lajur-lajur senarai ini dinamik (saiz terlaras sendiri mengikut saiz perkara) atau manual (pengguna boleh melaraskan saiznya)</string>
   <string name="config-message-notification">Paparkan pemberitahuan apabila menerima pesanan baru di laman perbincangan</string>
   <string name="config-warning-api">Paparkan amaran untuk pertanyaan API</string>
-  <string name="config-title-diff">Tajuk laman di setiap perbezaan (teks besar yang memaparkan sekadar tajuk laman di atas setiap perbezaan)</string>
+  <string name="config-title-diff" fuzzy="true">Tajuk laman di setiap perbezaan (teks besar yang memaparkan sekadar tajuk laman di atas setiap perbezaan)</string>
   <string name="config-updates">Tanyakan kemaskini</string>
   <string name="config-beta">Tanyakan versi beta</string>
   <string name="config-html-messages">HAN boleh memaparkan pesanan HTML (bahaya!)</string>
@@ -217,7 +217,7 @@
   <string name="main-stats">$1 suntingan seminit, $2 pembalikan seminit</string>
   <string name="main-revert-custom-reson">Sila nyatakan sebab untuk membalikkan suntingan ini kepada semakan sebelumnya</string>
   <string name="main-revert-null">Tidak dapat dibalikkan: suntingan kosong</string>
-  <string name="main-revert-newpage">Ini laman baru, jadi tak boleh dibalikkan. Boleh diteg atau dihapuskan.</string>
+  <string name="main-revert-newpage" fuzzy="true">Ini laman baru, jadi tak boleh dibalikkan. Boleh diteg atau dihapuskan.</string>
   <string name="message-autosign">Tambahkan tandatangan secara automatik</string>
   <string name="message-retrieve-new-token">Mengambil token untuk menyunting $1</string>
   <string name="message-fail-re-user-tp">Tidak dapat mengambil $1. Menghentikan pengiriman pesanan kepada pengguna berkenaan</string>

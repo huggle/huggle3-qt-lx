@@ -119,7 +119,7 @@
   <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
   <string name="config-revert-wait">回退等待（秒）</string>
   <string name="config-revert">回退</string>
-  <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
+  <string name="config-revert-diff" fuzzy="true">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
   <string name="config-change-all">将所有设定更改以模拟Huggle 2的行为</string>
   <string name="config-merge-messages">将你的信息和其他人的一起合并到已有的段落中</string>
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
@@ -127,10 +127,10 @@
   <string name="config-enable-irc">启用IRC</string>
   <string name="config-remove-reverted">移除已经被别人恢复的编辑</string>
   <string name="config-remove-old">如果对同一页面的新编辑被解析，就移除旧编辑</string>
-  <string name="config-auto-load-history">自动加载历史记录和用户信息（需进行大量的网络连接）</string>
+  <string name="config-auto-load-history" fuzzy="true">自动加载历史记录和用户信息（需进行大量的网络连接）</string>
   <string name="config-last-revision">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
-  <string name="config-require-delay">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
-  <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
+  <string name="config-require-delay" fuzzy="true">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
+  <string name="config-wait-edit" fuzzy="true">您需要等待编辑功能之间被开启的时间（秒）：</string>
   <string name="config-display-text">显示下一个</string>
   <string name="config-retrieve-edit">取得自己的编辑</string>
   <string name="config-nothing">什么都没有</string>
@@ -145,7 +145,7 @@
   <string name="config-columns-dynamic">让列表的列动态（自动基于项目尺寸调整）或者手动（用户手动调整尺寸）</string>
   <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
   <string name="config-warning-api">显示API查询的警告</string>
-  <string name="config-title-diff">每个差异中的页面标题（在每个差异的顶部显示页面标题的大文本）</string>
+  <string name="config-title-diff" fuzzy="true">每个差异中的页面标题（在每个差异的顶部显示页面标题的大文本）</string>
   <string name="config-updates">检查更新</string>
   <string name="config-beta">检查测试版本</string>
   <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
@@ -391,7 +391,7 @@
   <string name="main-display-session-data">显示会话数据</string>
   <string name="main-display-whitelist">显示白名单</string>
   <string name="main-revert-custom-reson">请提供为什么您想要将恢复到以前的修订版本的理由</string>
-  <string name="main-log1">恢复$1的选定修订版本</string>
+  <string name="main-log1">正在恢复$1的选定修订版本</string>
   <string name="main-tip-pagetagdelete">提删此页面</string>
   <string name="main-tip-pagedelete">删除此页面</string>
   <string name="main-tip-userreport">报告此用户</string>
@@ -400,7 +400,7 @@
   <string name="main-no-page">您请求的操作需要页面已加载。请在重试前加载一个页面。</string>
   <string name="main-revert-null">无法回退：编辑为空</string>
   <string name="main-revert-newpage-title">不能回退这个</string>
-  <string name="main-revert-newpage">这是一个新页面，所以它不能被恢复，您可以标记它，或者删除它。</string>
+  <string name="main-revert-newpage" fuzzy="true">这是一个新页面，所以它不能被恢复，您可以标记它，或者删除它。</string>
   <string name="main-restore-text-fail">无法还原该修订，因为它没有可用的文本。</string>
   <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据。</string>
   <string name="message-title">消息$1</string>
@@ -573,7 +573,7 @@
   <string name="warning-warntype">警告类型：</string>
   <string name="warning-warnlog">该用户的警告：</string>
   <string name="warning-submit">发送</string>
-  <string name="wikiedit-tp-fail">无法检索$1警告等级，将不会被它计分</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">无法检索$1警告等级，将不会被它计分</string>
   <string name="missing-warning">没有这种警告模板$1</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
   <string name="han-connecting">连接Huggle反破坏网络</string>
@@ -616,7 +616,7 @@
   <string name="history-undone">成功撤销对$1的编辑</string>
   <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
   <string name="history-welcome-msg-title">改为发送欢迎消息？</string>
-  <string name="history-welcome-msg">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
+  <string name="history-welcome-msg" fuzzy="true">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
   <string name="notify-fail">未告知$1的创建者</string>
   <string name="notify-unknowncreator">无法找到页面创建者</string>
   <string name="protect-done">已更改$1的保护级别</string>
@@ -641,7 +641,7 @@
   <string name="editquery-success">成功编辑$2的$1</string>
   <string name="editquery-token">检索令牌以编辑$1</string>
   <string name="editquery-token-error">无法检索编辑令牌</string>
-  <string name="editquery-invalid-token">无法编辑$1，因为我在缓存中持有的令牌已经失效，请再次尝试编辑此页面</string>
+  <string name="editquery-invalid-token" fuzzy="true">无法编辑$1，因为我在缓存中持有的令牌已经失效，请再次尝试编辑此页面</string>
   <string name="provider-failure">$2上的订阅提供者$1失败，尝试找到一些提供商替代品</string>
   <string name="provider-primary-failure">首选订阅提供者失败，退回wiki提供</string>
   <string name="rc-error">无法从wiki订阅检索数据，最后错误：$1</string>
@@ -669,7 +669,7 @@
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">你无法删除一个正在使用的过滤器</string>
   <string name="preferences-extension-disabled">此扩展已计划于下次huggle启动时被禁用</string>
-  <string name="preferences-extension-disabled-restart">此扩展已计划于下次huggle启动时被禁用</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">此扩展已计划于下次huggle启动时被禁用</string>
   <string name="preferences-extension-enabled">此扩展未被计划于下次huggle启动时被禁用</string>
   <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启huggle才能使它生效</string>
   <string name="fail">失败</string>
@@ -678,7 +678,7 @@
   <string name="requested">已请求</string>
   <string name="protect-request-fail">无法获取当前举报页面：$1</string>
   <string name="protect-request-fail-notext">无法获取当前举报页面，因为查询没有返回任何文本</string>
-  <string name="protect-request-fail-notime">查询未返回任何时间戳（mediawiki bug？），中止查询</string>
+  <string name="protect-request-fail-notime" fuzzy="true">查询未返回任何时间戳（mediawiki bug？），中止查询</string>
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
   <string name="page-tag-nodescription">这个标记没有说明 :/</string>
@@ -690,7 +690,7 @@
   <string name="namespace">名字空间</string>
   <string name="block-alreadyblocked">用户已被封禁</string>
   <string name="report-fail">无法提报用户，因为：$1</string>
-  <string name="report-page-fail">错误 无法获取，请在$1汇报</string>
+  <string name="report-page-fail" fuzzy="true">错误 无法获取，请在$1汇报</string>
   <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：
 
 $1</string>

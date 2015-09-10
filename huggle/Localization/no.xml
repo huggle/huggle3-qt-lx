@@ -78,11 +78,11 @@
   <string name="delete-title">Slett $1</string>
   <string name="delete-reason">Begrunnelse:</string>
   <string name="delete-deletionlog">Slettingslogg:</string>
-  <string name="irc-connected" fuzzy="true">Koblet til siste endringer-strømmen på IRC</string>
-  <string name="irc-connecting" fuzzy="true">Forsøker å koble til IRC for siste endringer; dette kan ta noen øyeblikk...</string>
-  <string name="irc-disconnected" fuzzy="true">Tilkobling til IRC for siste endringer mistet; kobler til på nytt...</string>
+  <string name="irc-connected">$1: Koblet til siste endringer-strømmen på IRC</string>
+  <string name="irc-connecting">Forsøker å koble til IRC for siste endringer på $1, dette kan ta noen øyeblikk...</string>
+  <string name="irc-disconnected">Tilkobling til IRC for siste endringer feilet for $1. Kobler til på nytt...</string>
   <string name="irc-nochannel">IRC kanal for $1 ikke funnet, bruker tregere API-spørringer istedet</string>
-  <string name="irc-error" fuzzy="true">Kunne ikke koble til siste endringer-strømmen på IRC. Bruker tregere API-spørringer istedet</string>
+  <string name="irc-error">Kunne ikke koble til siste endringer-strømmen på IRC ($1: $2). Bruker tregere API-spørringer istedet</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Prosjekt:</string>
   <string name="login-username">Brukernavn:</string>
@@ -93,8 +93,8 @@
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domene:</string>
   <string name="login-start">Logg på</string>
-  <string name="login-translate" fuzzy="true">Oversett...</string>
-  <string name="login-progress-start" fuzzy="true">Logger på...</string>
+  <string name="login-translate">Oversett Huggle</string>
+  <string name="login-progress-start">Logger på $1</string>
   <string name="login-progress-language">Oppdaterer meldingsfiler...</string>
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
@@ -102,24 +102,24 @@
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
   <string name="login-error-age">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
   <string name="login-error-alldisabled">Huggle er for øyeblikket utilgjengelig på alle prosjekter.</string>
-  <string name="login-error-approval" fuzzy="true">Bruk av Huggle på dette prosjektet krever godkjenning.</string>
+  <string name="login-error-approval">Bruk av Huggle på $1 krever godkjenning.</string>
   <string name="login-error-cancelled">Avbrutt.</string>
-  <string name="login-error-config" fuzzy="true">Kunne ikke laste konfigurasjonssider.</string>
+  <string name="login-error-config">Innlogging var mislykket, kunne ikke laste konfigurasjonssider for $1: $2</string>
   <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst $1 redigeringer.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle er ikke skrudd på for din konto, sjekk innstillinger siden.</string>
-  <string name="login-error-global" fuzzy="true">Kunne ikke laste global konfigurasjonsside.</string>
+  <string name="login-error-disabled">Huggle er ikke skrudd på for din konto på $1. Sjekk instillingene for din brukerprofil.</string>
+  <string name="login-error-global">Innlogging var mislykket. Kunne ikke laste global konfigurasjonsside. Se logg for ytterligere detaljer.</string>
   <string name="login-error-invalid">Ugyldig brukernavn.</string>
-  <string name="login-error-noconfig" fuzzy="true">Dette prosjektet har ikke en Huggle konfigurasjonsside.</string>
-  <string name="login-error-nouser" fuzzy="true">Brukeren eksisterer ikke.</string>
+  <string name="login-error-noconfig">$1 har ikke en konfigurasjonsside for Huggle.</string>
+  <string name="login-error-nouser">Brukeren eksisterer ikke.</string>
   <string name="login-error-password">Feil passord.</string>
   <string name="login-error-projdisabled">Huggle er for øyeblikket skrudd av på dette prosjektet.</string>
-  <string name="login-error-unknown" fuzzy="true">Kunne ikke logge inn.</string>
-  <string name="login-error-version" fuzzy="true">Utdatert versjon. Vennligst oppdater til nyeste versjon.</string>
+  <string name="login-error-unknown">Kunne ikke logge inn på $1.</string>
+  <string name="login-error-version">Utdatert versjon. Vennligst oppdater til nyeste versjon.</string>
   <string name="main-page">Side</string>
   <string name="main-user">Bruker</string>
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historikk</string>
-  <string name="main-new-messages" fuzzy="true">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
+  <string name="main-new-messages">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Vis nye meldinger</string>
   <string name="main-system-reconnectirc">Koble til IRC-strøm på nytt</string>
@@ -132,7 +132,7 @@
   <string name="main-queue">Kø</string>
   <string name="main-queue-next">Neste</string>
   <string name="main-queue-clear">Tøm nåværende</string>
-  <string name="main-queue-count" fuzzy="true">$1 elementer</string>
+  <string name="main-queue-count">$1 elementer</string>
   <string name="main-queue-query">Kjører spørring...</string>
   <string name="main-queue-reset">Resett</string>
   <string name="main-queue-clearall">Tøm alle</string>
@@ -142,7 +142,7 @@
   <string name="main-goto-mycontribs">Mine bidrag</string>
   <string name="main-revision">Revisjon</string>
   <string name="main-revision-view">Vis</string>
-  <string name="main-revision-revert" fuzzy="true">Reverter</string>
+  <string name="main-revision-revert">Reverter redigeringen som vises her</string>
   <string name="main-revision-previous">Forrige</string>
   <string name="main-revision-next">Neste</string>
   <string name="main-revision-latest">Siste</string>
@@ -152,21 +152,21 @@
   <string name="main-page-viewlatest">Vis siste revisjon</string>
   <string name="main-page-history">Hent historikk</string>
   <string name="main-page-historypage">Vis historikkside</string>
-  <string name="main-page-edit" fuzzy="true">Rediger</string>
+  <string name="main-page-edit">Rediger side i nettleser</string>
   <string name="main-page-tag">Tagg</string>
-  <string name="main-page-reqdeletion" fuzzy="true">Be om sletting</string>
-  <string name="main-page-reqprotection" fuzzy="true">Be om beskyttelse</string>
+  <string name="main-page-reqdeletion">Be om hurtigsletting</string>
+  <string name="main-page-reqprotection">Be om beskyttelse av side</string>
   <string name="main-page-watch">Overvåk</string>
   <string name="main-page-unwatch">Avslutt overvåkning</string>
   <string name="main-page-purge">Tøm</string>
   <string name="main-page-patrol">Merk som patruljert</string>
   <string name="main-page-move">Flytt...</string>
-  <string name="main-page-protect" fuzzy="true">Beskytt...</string>
-  <string name="main-page-delete" fuzzy="true">Slett...</string>
+  <string name="main-page-protect">Beskytt</string>
+  <string name="main-page-delete">Slett</string>
   <string name="main-user-info">Vis brukerinformasjon</string>
   <string name="main-user-ignore">Ignorer</string>
   <string name="main-user-unignore">Avignorer</string>
-  <string name="main-user-contribs" fuzzy="true">Hent bidrag</string>
+  <string name="main-user-contribs">Vis brukerbidrag i en nettleser</string>
   <string name="main-user-talk">Vis brukerdiskusjon</string>
   <string name="main-user-message">Melding...</string>
   <string name="main-user-warn">Advar...</string>
@@ -249,7 +249,7 @@
   <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, $1, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
   <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, $1. Fortsett?</string>
   <string name="revert-confirm-warned">Dette vil tilbakestille til en revisjon av $1, som har blitt gitt advarsler. Forsett?</string>
-  <string name="revert-error-first" fuzzy="true">Redigeringen er den første som ble gjort på siden, kan ikke tilbakestille.</string>
+  <string name="revert-error-first">Redigeringen er den første som ble gjort på siden, og kan ikke tilbakestilles.</string>
   <string name="revert-only">Redigeringen er den eneste som er gjort på siden.</string>
   <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, $1.</string>
   <string name="revert-delete-instead">Slett siden istedet?</string>
@@ -317,8 +317,8 @@
   <string name="reqprotection-duplicate">Beskyttelses har allerede blitt forespurt</string>
   <string name="reqprotection-fail">Ba ikke om beskyttelse av \'$1\'</string>
   <string name="reqprotection-progress">Ber om beskyttelse av \'$1\'...</string>
-  <string name="speedy-fail" fuzzy="true">Tagget ikke \'$1\' for hurtigsletting</string>
-  <string name="speedy-progress" fuzzy="true">Tagger \'$1\' for hurtigsletting...</string>
+  <string name="speedy-fail">Kunne ikke tagge $1 for hurtigsletting</string>
+  <string name="speedy-progress">Tagger \'$1\' for hurtigsletting...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
-  <string name="report-fail" fuzzy="true">Rapporterte ikke \'$1\'</string>
+  <string name="report-fail">Kunne ikke rapportere bruker fordi: \'$1\'</string>
 </resources>

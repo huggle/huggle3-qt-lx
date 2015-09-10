@@ -22,6 +22,7 @@
   <string name="result">תוצאה</string>
   <string name="save">שמירה</string>
   <string name="show">הצגה</string>
+  <string name="no-instant">אזהרות מידיות אינן מופעלות במיזן $1, לא השלחת הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
   <string name="editing-page">עריכת דף</string>
@@ -62,6 +63,7 @@
   <string name="block-reason">סיבה:</string>
   <string name="block-duration">משך החסימה:</string>
   <string name="block-message">הודעת דף שיחה:</string>
+  <string name="block-message-user">שליחת הודעה למשתמש היעד עם הסבר לחסימה</string>
   <string name="block-anononly">חסימת משתמשים אלמוניים בלבד</string>
   <string name="block-creation">חסימת יצירת חשבונות</string>
   <string name="block-autoblock">לאפשר חסימה אוטומטית</string>
@@ -108,9 +110,27 @@
   <string name="config-watchlist">הוספה לרשימת המעקב</string>
   <string name="config-defaultsummary">תקציר בררת מחדל לעריכות ידניות</string>
   <string name="config-undosummary">תקציר בעת ביטול עריכות עצמיות</string>
+  <string name="config-confirm-user">דרישת אישור לשחזור עריכה נעשתה במרחב המשתמש</string>
   <string name="config-confirm-wl">לדרוש אישור על שחזור של עריכה שעשה משתמש ברשימה הלבנה</string>
+  <string name="config-confirm-talk">לדרוש אישור לשחזר דף שיחה</string>
+  <string name="config-use-rollback">שימוש בשחזור בתכנה</string>
+  <string name="config-welcome-empty-page">שליחת מסר ברוך־בואך למשתמשים עם דף שיחה ריק בעריכה טובה</string>
+  <string name="config-conflicts-revert">לפתור אוטומטית התנגשויות עם משתמשים אחרים שמשחזרים או משנים את הדף</string>
+  <string name="config-instant-reverts">להשתמש בשחזור מידי (מהיר מאוד, אבל לא ניתן לבטל אותם אחרי הביצוע)</string>
+  <string name="config-revert-wait">המתנה לשחזור (בשניות)</string>
   <string name="config-revert">שחזור</string>
+  <string name="config-revert-diff" fuzzy="true">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
+  <string name="config-change-all">לשנות את כל הגדרות האגל כדי להתנהג יותר כמו האגל 2</string>
+  <string name="config-merge-messages">למזג את ההודעות שלך עם אחרות בפסקאות קיימות</string>
+  <string name="config-months-name">להשתמש בחודשים בתור כותרות במקום בשם הדף</string>
+  <string name="config-automatic-warning">להשתמש בסוג ורמה אוטומטיים של אזהרה בפונקצייה \"שליחת אזהרה\"</string>
   <string name="config-enable-irc">הפעלת IRC</string>
+  <string name="config-remove-reverted">להסיר עריכות שכבר שוחזרו על־ידי מישהו אחר</string>
+  <string name="config-remove-old">להסיר עריכות ישנות אם עריכה חדשה יותר לאותו הדף מפוענחת</string>
+  <string name="config-auto-load-history" fuzzy="true">לטעון אוטומטית היסטוריה ומידע על המשתמש (דורש רוחב פס רב)</string>
+  <string name="config-last-revision">להציג את הגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן ויעקוף את המטמון)</string>
+  <string name="config-require-delay" fuzzy="true">לדרוש עיכוב אחרי כל טעינה של העריכה הבאה, שבמהלכו לא ניתן להשתמש בשום אפשרות כתיבה (זה שימושי להימנעות מבאגים של לחיצה מרובה במקלדת)</string>
+  <string name="config-wait-edit" fuzzy="true">זמן ההמתנה בשניות עד שאפשרויות העריכה מופעלות:</string>
   <string name="config-display-text">להציג את הבא</string>
   <string name="config-retrieve-edit">שחזור עריכה של עצמך</string>
   <string name="config-nothing">שום דבר</string>
@@ -122,6 +142,15 @@
   <string name="config-friend">חברים</string>
   <string name="config-userspace">מרחב משתמש</string>
   <string name="config-talk">דף שיחה</string>
+  <string name="config-columns-dynamic">לעשות את העמודות של הרשימות דינמיות (ישנה את הגודל שלהן לפי גודל הפריטים) או ידניות (המשתמש יכול לשנות את הגודל שלהן)</string>
+  <string name="config-message-notification">להציג התראה כשמגיעה לדף השיחה שלך הודעה חדשה</string>
+  <string name="config-warning-api">הצגות אזהרות לשאילתות API</string>
+  <string name="config-title-diff" fuzzy="true">כותרת הדף בכל השוואה (טקסט גדול שמראה רק כותרת דף בראש כל השוואה)</string>
+  <string name="config-updates">בדיקת עדכונים</string>
+  <string name="config-beta">בדיקת גרסאות בטא</string>
+  <string name="config-html-messages">HAN יכול לתצג הודעות HTML (מסוכן)</string>
+  <string name="config-summary-present">להאיר תקציר כאשר הוא נמצא ולא כאשר הוא חסר</string>
+  <string name="config-close-without">לסגור בלי לשמור</string>
   <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
   <string name="config-confirmsame">לבקש אישר על שחזור לעריכה של המשתמש שעריכתו משוחזרת</string>
   <string name="config-confirmselfrevert">לבקש אישור לעריכות עצמיות (למעט ביטול)</string>
@@ -165,6 +194,7 @@
   <string name="delete-edsc">אין אפשרות למחוק את הדף: $1</string>
   <string name="delete-failed-no-info">לא היה שום דף בשאילתה (האם יש לך הרשאת מפעיל?)</string>
   <string name="extension-kl">לא רץ</string>
+  <string name="extension-ok">נטען ורץ</string>
   <string name="historyform-no-info">אין מידע על עריכה</string>
   <string name="historyform-title">היסטוריה</string>
   <string name="historyform-retrieve-history">אחזור היסטוריה</string>
@@ -223,6 +253,7 @@
   <string name="login-progress-user">בדיקת הגדרות משתמש עבור $1</string>
   <string name="login-progress-user-info">בדיקת פרטי משתמש עבור $1</string>
   <string name="login-progress-whitelist">אחזור רשימה לבנה של משתמשים...</string>
+  <string name="login-remember-password">לזכור את הססמה</string>
   <string name="login-ssl">להשתמש ב־HTTPS (נדרש OpenSSL)</string>
   <string name="login-fail">הכניסה נכשלה ב־$1</string>
   <string name="login-error-admin">השימוש בהאגל במיזם הזה דורש חשבון מפעיל.</string>
@@ -244,6 +275,7 @@
   <string name="login-error-whitelist">טעינת רשימה לבנה של משתמשים ב־$1 לא הצליחה.</string>
   <string name="main-menu-provider-stop">לעצור את הספק</string>
   <string name="main-menu-provider-resume">להתחיל ספק מחדש</string>
+  <string name="provider-up">התחברות לזרם שינויים אחרונים ב־$2 באמצעות הספק: $1</string>
   <string name="main-no-reason">לא ניתנה סיבה על־ידי המשתמש</string>
   <string name="main-restoring-slap">אני משחזר עריכה אחרת, נא להמתין...</string>
   <string name="main-page">דף</string>
@@ -267,6 +299,8 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">ויקי</string>
   <string name="main-system-exit">יציאה</string>
+  <string name="main-config-state-fail">לא ניתן לקרוא מצב מקובץ הגדרות</string>
+  <string name="main-config-geom-fail">לא ניתן לקרוא גאומטריה מקובץ הגדרות</string>
   <string name="main-tools-scoreword-list">הצגת רשימת מילים חשודות</string>
   <string name="main-queue">תור</string>
   <string name="main-queue-next">הבא</string>
@@ -316,6 +350,7 @@
   <string name="main-page-protect">הגנה</string>
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">טעינה</string>
+  <string name="main-patrol-not-enabled">ניטור לא מופעל ב$1</string>
   <string name="main-page-restore">שחזור הגרסה הזאת</string>
   <string name="main-user-info">הצגת מידע על המשתמש</string>
   <string name="main-user-ignore">התעלמות</string>
@@ -329,12 +364,14 @@
   <string name="main-user-report">דיווח</string>
   <string name="main-user-ib">הגדלת ציון הגריעוּת של המשתמש</string>
   <string name="main-user-clear-tp">ניקוי דף שיחת המשתמש</string>
+  <string name="main-user-retrieving-tp">אחזור דף השיחה של %1</string>
   <string name="main-user-block">חסימה...</string>
   <string name="main-browser-back">הקודם</string>
   <string name="main-browser-forward">הבא</string>
   <string name="main-browser-open">להציג את זה בדפדפן חיצוני</string>
   <string name="main-browser-newedits">הצגת עריכות חדשות לדף</string>
   <string name="main-browser-newcontribs">הצגת התרומות החדשות של המשתמש</string>
+  <string name="main-browser-lasttab">אני לא יכול לסגור את הלשונית הזאת, כי היא האחרונה, צריך שתהיה פתוחה לך לפחות לשונית אחת</string>
   <string name="main-revert-manual">אין אסימון שחזור, גיבוי לשחזור ידני של $1</string>
   <string name="main-han">רמ\"ה</string>
   <string name="main-han-disconnect">התנתקות</string>
@@ -362,6 +399,10 @@
   <string name="main-revision-acceptpend">קבלת הגרסה הממתינה הזאת</string>
   <string name="main-no-page">הפעולה שביקשת דורשת שיהיה דף טעון. נא לטעון דף לפני ניסיון נוסף.</string>
   <string name="main-revert-null">לא ניתן לשחזר. זוהי עריכה אפסית.</string>
+  <string name="main-revert-newpage-title">אי־אפשר לשחזר את זה</string>
+  <string name="main-revert-newpage" fuzzy="true">זה דף חדש, אז אי־אפשר לשחזר אותו, אפשר לתייג אותו או למחוק אותו.</string>
+  <string name="main-restore-text-fail">לא ניתן לשחזר את הגרסה כי אין לה טקסט זמין</string>
+  <string name="main-restore-data-fail">לא ניתן לשחזר את הגרסה כי הוויקי לא סיפק נתונים לגרסה שנבחרה</string>
   <string name="message-title">שליחת הודעה אל $1</string>
   <string name="message-help">יש לציין נושא או תקציר. אם לא ניתן תקציר, הנושא ישמש בתור תקציר; אם לא יינתן נושא, לא תתווסף כותרת.</string>
   <string name="message-subject">נושא:</string>
@@ -391,6 +432,7 @@
   <string name="protect-message-title-fail">לא ניתן להגן</string>
   <string name="protect-moveprotection">הגנה מפני העברה</string>
   <string name="protect-ft">אחזור אסימון להגנת $1</string>
+  <string name="protect-request-proj-fail">המיזם הזה אינו תומך בבקשות להגנה</string>
   <string name="queue-title">תורים</string>
   <string name="queue-queues">תורים:</string>
   <string name="queue-typegroup">סוג התור</string>
@@ -446,8 +488,11 @@
   <string name="score-word">מילה</string>
   <string name="score-range">טווח</string>
   <string name="score-take-any-no-talk-word">מתאים לכל מילה בדפים שאינם דפי שיחה</string>
+  <string name="score-take-whole-no-talk-word">תואם רק מילים שלמות בדפים שאינם דפי שיחה</string>
   <string name="score-only-whole-word">מתאים רק למילים שלמות</string>
   <string name="score-take-any-word">מתאים לכל מילה שמכילה את המחרוזת הזאת</string>
+  <string name="ssl-is-not-supported">ביקשת להשתמש ב־SSL, אבל אין תמיכה בזה באתר $1.</string>
+  <string name="ssl-required">שרת הווב של $1 דורש הפעלת SSL. נא להפעיל SSL ולנסות שוב. אם אין ביכולתך להפעיל SSL (האפשרות אפורה) ייתכן שצריך להתקין ספריות ssl במערכת שלך.</string>
   <string name="uaa-not-supported">דף UAA אינו זמין</string>
   <string name="uaa-not-supported-text">לוח מודעות על משתמשים שדורשים תשומת לב ממפעיל (UAA) אינו זמין בוויקי שלך.</string>
   <string name="uaa-reporting">דיווח $1 ל־UAA</string>
@@ -480,6 +525,7 @@
   <string name="tag-title">לתייג את $1</string>
   <string name="tag-tagselector">להוסיף תג:</string>
   <string name="tag-tags">תגים:</string>
+  <string name="tag-parameter">פרמטר</string>
   <string name="tag-summary">תקציר:</string>
   <string name="tag-insertatend">להוסיף בסוף הדף</string>
   <string name="update-title">גרסה חדשה זמינה</string>
@@ -487,6 +533,7 @@
   <string name="update-error">הורדת הגרסה החדשה נכשלה</string>
   <string name="updater-title">זמינה גרסה חדשה של האגל</string>
   <string name="updater-update">עדכון</string>
+  <string name="updater-update-available">זמינה גרסה חדשה יותר של האגל: גרסה $1</string>
   <string name="updater-open-manualdownloadpage">פתיחת דף ההורדה</string>
   <string name="updater-close">סגירה</string>
   <string name="updater-disable-notify">ביטול עדכונים</string>
@@ -515,6 +562,7 @@
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
   <string name="shortcut-tab">פתיחת לשונית חדשה</string>
   <string name="shortcut-rw-stay">שחזור העריכה הנוכחית, הזהרת משתמש והישארות בדף</string>
+  <string name="shortcut-revert-and-stay">לשחזר את העריכה הנוכחית ולהישאר בדף</string>
   <string name="warning-title">להזהיר את $1</string>
   <string name="warning-levelgroup">רמת אזהרה</string>
   <string name="warning-levelauto">אוטומטית</string>
@@ -525,9 +573,13 @@
   <string name="warning-warntype">סוג האזהרה:</string>
   <string name="warning-warnlog">אזהרות למשתמש הזה:</string>
   <string name="warning-submit">שליחה</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
   <string name="missing-warning">אין תבנית אזהרה כזאת $1</string>
   <string name="han-not">רשת ההשחתות אינה מורשית באפשרויות</string>
   <string name="han-connecting">התחברות לרשת האגל למאבק בהשחתות</string>
+  <string name="han-already-connected">לא מתחבר ל־HAN, כי כבר התחברתי</string>
+  <string name="han-already-connecting">נא להמתין, אני כבר מתחבר ל־HAN</string>
+  <string name="han-disconnected">התנתקת מ־HAN</string>
   <string name="error-loggedout">החשבון יצא, מתבצעת כניסה חזרה...</string>
   <string name="error-noresponse">אין תשובה</string>
   <string name="error-pagemissing">הדף אינו קיים</string>
@@ -554,11 +606,17 @@
   <string name="history-fail">אחזור ההיסטוריה של $1 נכשל</string>
   <string name="history-progress">מתבצע אחזור ההיסטוריה של $1 ($2)...</string>
   <string name="history-work">ביטול עריכה של עצמך בדף $1</string>
+  <string name="history-no-item-selected">לא נבחר שום פריט בכלי ההיסטוריה</string>
   <string name="history-message-revert-title">האם באמת לבטל רק את ההודעה הזאת?</string>
+  <string name="history-another-edit">אני כבר מבטל עריכה אחרת, נא להמתין</string>
   <string name="history-not-found">לא נמצא שום דבר לבטל</string>
   <string name="history-already-done">זה כבר בוטל</string>
   <string name="history-message-revert-body">זאת הייתה הודעה שיש אליה הפניה משחזור. האם ברצונך לבטל רק את התבנית ואפילו לא העריכה שלך לדף? (עליך לבטל את השחזור אם ברצונך לשחזר מה מאלה)</string>
   <string name="history-revert-fail">לא ניתן לבטל את עריכתך ל־$1 כי אירעה השגיאה הבאה: $2</string>
+  <string name="history-undone">הצלחתי לבטל עריכה לדף $1</string>
+  <string name="history-retrieve-fail">לא ניתן לאחזר תוכן של דף שרצינו לבטל בו עריכה של עצמנו, השגיאה הייתה: $1</string>
+  <string name="history-welcome-msg-title">לשלוח במקום זאת הודעת ברוך־בואך?</string>
+  <string name="history-welcome-msg" fuzzy="true">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו, האם להחליף אותו בתבנית ברוך־בואך?</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>
@@ -583,9 +641,13 @@
   <string name="editquery-success">ערך בהצלחה את $1 ב־$2</string>
   <string name="editquery-token">אחזור אסימון לערוך את $1</string>
   <string name="editquery-token-error">לא ניתן לאחזר אסימון עריכה</string>
+  <string name="editquery-invalid-token" fuzzy="true">לא ניתן לבטל את $1 כי האסימון שהיה לי במטמון כבר אינו תקף, נא לנסות לערוך את הדף ההוא עוד פעם</string>
   <string name="provider-failure">ספק ההזנה $1 ב־$2 נכשל, מתבצע ניסיון למצוא ספק חלופי</string>
   <string name="provider-primary-failure">ספק ההזנה העיקרי נכשל, מתבצע גיבוי לספק ויקי</string>
   <string name="rc-error">לא ניתן לאחזור נתונים מהזנת ויקי. שגיאה אחרונה: $1</string>
+  <string name="rc-timestamp-missing">הזנת שינויים אחרונים: לפריט היה חסר מאפיין חותם־זמן: $1</string>
+  <string name="rc-type-missing">הזנת שינויים אחרונים: לפריט היה חסר מאפיין סוג: $1</string>
+  <string name="rc-title-missing">הזנת שינויים אחרונים: לפריט היה חסר מאפיין כותרות: $1</string>
   <string name="whitelist-download">הורדת רשימה לבנה חדשה</string>
   <string name="logs-widget-name">יומני מערכת</string>
   <string name="wait">נא להמתין...</string>
@@ -605,5 +667,37 @@
   <string name="cr-message-same">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
   <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
+  <string name="preferences-delete-using-filter">לא ניתן למחוק מסנן שנמצא בשימוש עכשיו</string>
+  <string name="preferences-extension-disabled">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
+  <string name="preferences-extension-enabled">ההרחבה הזאת אינה מתוזמנת לכיבוי בהפעלה הבאה של האגל</string>
+  <string name="preferences-extension-enabled-restart">ההרחבה הופעלה, אבל יש להפעיל מחדש את האגל כדי שזה יקרה</string>
+  <string name="fail">לא עבד</string>
+  <string name="request">בקשה</string>
+  <string name="requesting">שליחת בקשה</string>
+  <string name="requested">נשלחה בקשה</string>
+  <string name="protect-request-fail">לא ניתן לאחזר את דף הדו״ח הנוכחי: $1</string>
+  <string name="protect-request-fail-notext">לא ניתן לאחזר את דף הדו״ח הנוכחי כי השאילתה לא החזירה שום טקסט לדף הזה</string>
+  <string name="protect-request-fail-notime" fuzzy="true">השאילתה לא החזירה שום חותם־זמן (באג מדיה־ויקי?) זריקת השאילתה</string>
+  <string name="message-fail">מסירת ההודעה לא עבדה</string>
+  <string name="edit-conflict">התנגשות עריכה</string>
+  <string name="page-tag-nodescription">אין תיאור לג הזה :/</string>
+  <string name="page-tag-fail">תיוג הדף לא עבד</string>
+  <string name="page-tag-error">לא ניתן לתייג את הדף, השגיאה הייתה: $1</string>
+  <string name="page-unknown">דך בלתי־ידוע</string>
+  <string name="speedy-csd-invalid">תג CSD בלתי־תקין, אין הודעה ותג ויקי לשימוש</string>
+  <string name="speedy-csd-existing">כבר יש תג CSD בדף.</string>
+  <string name="namespace">מרחב שם</string>
+  <string name="block-alreadyblocked">המשתש כבר חסום</string>
   <string name="report-fail">דיווח המשתמש נכשל כי: $1</string>
+  <string name="report-page-fail" fuzzy="true">שגיאה לא ניתן לאחזר דף דו״ח ב$1</string>
+  <string name="report-page-fail-time">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:
+
+$1</string>
+  <string name="report-unable">לא ניתן לדווח את המשתמש :(</string>
+  <string name="about-python-with">, עם תמיכה בפייתון</string>
+  <string name="about-python-without">ללא תמיכה בפייתון</string>
+  <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
+  <string name="error-unknown-code">שגיאה בלתי ידועה: $1</string>
+  <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
 </resources>

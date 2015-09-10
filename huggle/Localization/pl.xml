@@ -220,6 +220,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="message-summary">Podsumowanie:</string>
   <string name="message-done">Pomyślnie dostarczona wiadomość w $2 do: $1</string>
   <string name="protect-reason">Powód:</string>
+  <string name="protect-expiry">Czas trwania:</string>
   <string name="queue-sortorder">Kolejność sortowania:</string>
   <string name="queue-namespaces">Przestrzenie nazw:</string>
   <string name="queue-filternewpage">Nowa strona</string>

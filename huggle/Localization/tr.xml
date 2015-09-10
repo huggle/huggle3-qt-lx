@@ -117,7 +117,7 @@
   <string name="config-instant-reverts">Ani geri alma kullan (çok hızlı, fakat başladıktan sonra durdurulamaz)</string>
   <string name="config-revert-wait">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
-  <string name="config-revert-diff">Aynı kullanıcı (aynı vandal) tarafından sayfaya yapılan yeni değişiklerde farkı göstermek yerine geri al</string>
+  <string name="config-revert-diff" fuzzy="true">Aynı kullanıcı (aynı vandal) tarafından sayfaya yapılan yeni değişiklerde farkı göstermek yerine geri al</string>
   <string name="config-change-all">Huggle\'ın tüm ayarlarını huggle 2 versiyonuna çevir</string>
   <string name="config-merge-messages">Mevcut bölümlerdeki mesajlarını birleştir</string>
   <string name="config-months-name">Başlık olarak sayfanın adı yerine ayları kullan</string>
@@ -125,10 +125,10 @@
   <string name="config-enable-irc">IRC\'i etkinleştir</string>
   <string name="config-remove-reverted">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
   <string name="config-remove-old">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
-  <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
+  <string name="config-auto-load-history" fuzzy="true">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
   <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
-  <string name="config-require-delay">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
-  <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi arasına beklemeniz gereken süre (saniye):</string>
+  <string name="config-require-delay" fuzzy="true">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
+  <string name="config-wait-edit" fuzzy="true">Düzenleme özelliklerinin etkinleştirilmesi arasına beklemeniz gereken süre (saniye):</string>
   <string name="config-display-text">Sonrakini göster</string>
   <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>
@@ -143,7 +143,7 @@
   <string name="config-columns-dynamic">Liste kolonlarını dinamik (öğelerin büyüklüğüne göre yeniden boyutlandırılacaktır) veya manuel (kullanıcı boyutu değiştirebilecektir) yap</string>
   <string name="config-message-notification">Konuşma sayfanızda yeni bir mesaj olduğunda bir bildirim gösterilsin</string>
   <string name="config-warning-api">API sorguları için uyarıları göster</string>
-  <string name="config-title-diff">Her değişiklikte sayfa başlığı (her değişikliğin tepesinde sadece bir sayfa başlığı gösteren büyük metin)</string>
+  <string name="config-title-diff" fuzzy="true">Her değişiklikte sayfa başlığı (her değişikliğin tepesinde sadece bir sayfa başlığı gösteren büyük metin)</string>
   <string name="config-updates">Güncelleştirmeleri denetle</string>
   <string name="config-beta">Beta sürümleri kontrol et</string>
   <string name="config-html-messages">HAN, HTML mesajlarını render edebilir (tehlikeli)</string>
@@ -332,7 +332,7 @@
   <string name="main-page-viewlatest">Son sürümü göster</string>
   <string name="main-page-history">Geçmişi getir</string>
   <string name="main-page-historypage">Geçmiş sayfasını göster</string>
-  <string name="main-page-edit">Sayfayı tarayıcıda düzenle</string>
+  <string name="main-page-edit">Sayfayı tarayıcıda değiştir</string>
   <string name="main-page-tag">Etiketle</string>
   <string name="main-page-reqdeletion">Hızlı silme talep et</string>
   <string name="main-page-reqprotection">Sayfa koruma talep et</string>
@@ -397,7 +397,7 @@
   <string name="main-no-page">Talebinizin gerçekleşmesi için bir sayfa yüklenmelidir. Lütfen tekrar denemeden önce bir sayfa yükleyin.</string>
   <string name="main-revert-null">Geri alınamadı: değişiklik boş</string>
   <string name="main-revert-newpage-title">Geri alınamaz.</string>
-  <string name="main-revert-newpage">Bu yeni bir sayfa olduğu için geri alınamıyor; sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
+  <string name="main-revert-newpage" fuzzy="true">Bu yeni bir sayfa olduğu için geri alınamıyor; sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
   <string name="main-restore-text-fail">Revizyon geri getirilemiyor çünkü kullanılabilir metin yok</string>
   <string name="main-restore-data-fail">Revizyon geri yüklemek mümkün değil çünkü wiki seçili sürümü için veri sağlamadı.</string>
   <string name="message-title">Mesaj $1</string>
@@ -444,7 +444,7 @@
   <string name="queue-pagefiltersgroup">Sayfa başlığı süzgeçleri</string>
   <string name="queue-pageregex">Başlık düzenli ifade ile eşleşiyor:</string>
   <string name="queue-namespaces">Ad alanı:</string>
-  <string name="queue-editfiltersgroup">Süzgeçleri düzenle</string>
+  <string name="queue-editfiltersgroup">Süzgeçleri değiştir</string>
   <string name="queue-userregex">Kullanıcı adı düzenli bir ifade ile eşleşiyor:</string>
   <string name="queue-summaryregex">Özet düzenli bir ifade ile eşleşiyor:</string>
   <string name="queue-filternewpage">Yeni sayfa</string>
@@ -609,7 +609,7 @@
   <string name="history-revert-fail">$1 üzerinde değişikliğiniz şu hatayla karşılaşılmasından dolayı geri alınamadı: $2</string>
   <string name="history-undone">$1 üzerindeki değişiklik başarıyla geri alındı.</string>
   <string name="history-welcome-msg-title">Bunun yerine \"Hoşgeldin\" mesajı gönderilsin mi?</string>
-  <string name="history-welcome-msg">Bu tartışma sayfasını yarattnız artık, bu yüzden geri alınamaz, sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
+  <string name="history-welcome-msg" fuzzy="true">Bu tartışma sayfasını yarattnız artık, bu yüzden geri alınamaz, sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>
   <string name="notify-unknowncreator">Sayfa yaratıcısı bulunamadı</string>
   <string name="protect-done">$1\'in korunma seviyesi değişti</string>
@@ -658,7 +658,7 @@
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
   <string name="preferences-extension-disabled">Bu uzantı zaten huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
-  <string name="preferences-extension-disabled-restart">Bu uzantı zaten Huggle yeniden başladığında devre dışı kalmak üzere planlanmış</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Bu uzantı zaten Huggle yeniden başladığında devre dışı kalmak üzere planlanmış</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>

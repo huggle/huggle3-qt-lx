@@ -22,6 +22,7 @@
   <string name="result">結果</string>
   <string name="save">儲存</string>
   <string name="show">顯示</string>
+  <string name="no-instant">即時警告未在項目$1上啟用，未向$2發送消息，選擇一個不同的警告級別</string>
   <string name="undo">撤銷</string>
   <string name="yes">是</string>
   <string name="editing-page">正在編輯頁面</string>
@@ -52,6 +53,7 @@
   <string name="no-token">無標記</string>
   <string name="flags">標記</string>
   <string name="browser-none">現在無頁面可以顯示</string>
+  <string name="browser-load">通過web渲染備選下載版本差異中，請耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">頁面差異：$1（得分：$2）</string>
   <string name="browser-fail">無法檢索版本差異：$1</string>
@@ -71,6 +73,8 @@
   <string name="block-blockloglabel">查封日誌</string>
   <string name="block-warnloglabel">警告：</string>
   <string name="block-sharedipwarning">注意：$1 已被標記爲共享或動態 IP 位址。</string>
+  <string name="block-rangeblockwarning">$1已經受到了自動封禁$2的影響。
+這次封禁將會覆蓋自動封禁設置。是否繼續？</string>
   <string name="block-token-1">獲取金鑰以封禁$1</string>
   <string name="block-fail">無法封禁使用者，$1</string>
   <string name="block-token-e1">無法檢索金鑰：$1</string>
@@ -105,9 +109,19 @@
   <string name="config-minor">小編輯</string>
   <string name="config-watchlist">增加至監視清單</string>
   <string name="config-defaultsummary">預設為手動編輯摘要</string>
+  <string name="config-undosummary">撤銷自身編輯的默認編輯摘要</string>
+  <string name="config-confirm-user">回退在用戶命名空間做出的編輯時需要確認</string>
+  <string name="config-confirm-wl">需要確認以回退白名單用戶做出的編輯</string>
+  <string name="config-confirm-talk">回退在討論頁上做出的編輯時需要確認</string>
   <string name="config-use-rollback">使用軟體還原</string>
+  <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空討論頁的用戶</string>
+  <string name="config-conflicts-revert">自動解決與其他用戶恢復或者更改該頁面的衝突</string>
+  <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
   <string name="config-revert-wait">還原等待 (秒)</string>
   <string name="config-revert">還原</string>
+  <string name="config-revert-diff" fuzzy="true">當他們是同一個用戶做出時，回退頁面上比顯示的差異更新的編輯</string>
+  <string name="config-change-all">將所有設定更改以模擬Huggle 2的行為</string>
+  <string name="config-merge-messages">將你的信息和其他人的一起合併到已有的段落中</string>
   <string name="config-enable-irc">開啟 IRC</string>
   <string name="config-display-text">顯示下一筆</string>
   <string name="config-retrieve-edit">取得您自己的編輯</string>
@@ -313,7 +327,7 @@
   <string name="main-tip-userreport">回報此使用者</string>
   <string name="main-tip-userblock">封鎖此使用者</string>
   <string name="main-revert-newpage-title">無法還原此頁面</string>
-  <string name="main-revert-newpage">此為新的頁面，所以不能被還原，您仍可以加入標籤或者刪除該頁面。</string>
+  <string name="main-revert-newpage" fuzzy="true">此為新的頁面，所以不能被還原，您仍可以加入標籤或者刪除該頁面。</string>
   <string name="message-title">訊息 $1</string>
   <string name="message-subject">主旨：</string>
   <string name="message-message">訊息：</string>
@@ -395,7 +409,7 @@
   <string name="warning-warnlog">給此使用者的警告：</string>
   <string name="warning-submit">傳送</string>
   <string name="error-noresponse">無回應</string>
-  <string name="error-pagemissing">該頁面並不存在</string>
+  <string name="error-pagemissing">此頁面不存在</string>
   <string name="error-unknown">不明錯誤</string>
   <string name="block-done">已封鎖 $1</string>
   <string name="block-progress">封鎖 $1 中...</string>

@@ -438,7 +438,7 @@
   <string name="history-message-revert-title">このメッセージを本当に取り消しますか?</string>
   <string name="history-not-found">取り消せるものが見つかりませんでした</string>
   <string name="history-already-done">既に取り消されていました</string>
-  <string name="history-revert-fail" fuzzy="true">エラーが発生したため、$1 の編集を取り消せませんでした: $2</string>
+  <string name="history-revert-fail">$1 の編集を取り消せませんでした。次のエラーが発生したため。: $2</string>
   <string name="notify-fail">\'$1\' の作成者へ通知できませんでした</string>
   <string name="notify-unknowncreator">ページの作成者を同定できませんでした</string>
   <string name="protect-done">\'$1\' の保護レベルを変更しました</string>
@@ -479,7 +479,7 @@
   <string name="edit-conflict">編集の競合</string>
   <string name="namespace">名前空間</string>
   <string name="block-alreadyblocked">ユーザーは既にブロックされています</string>
-  <string name="report-fail" fuzzy="true">\'$1\' の報告に失敗しました</string>
+  <string name="report-fail">報告に失敗しました。理由: $1</string>
   <string name="error-unknown-code">不明なエラー: $1</string>
   <string name="relogin-fail">wikiにログインできません: $1</string>
 </resources>

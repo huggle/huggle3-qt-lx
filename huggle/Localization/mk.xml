@@ -97,7 +97,7 @@
   <string name="config-ircport">IRC-порта</string>
   <string name="config-difffontsize">Големина на фонтот за разликите</string>
   <string name="config-logfile">Записник</string>
-  <string name="config-viewlocalconfig">Дај локална папка со поставки</string>
+  <string name="config-viewlocalconfig">Дај месна папка со поставки</string>
   <string name="config-trayicon">Прикажувај икона во долната лента</string>
   <string name="config-startupmessage">Прикажувај порака на почетокот</string>
   <string name="config-shownewmessages">Прикажувај лента со нови пораки</string>
@@ -119,7 +119,7 @@
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
   <string name="config-revert-wait">Чекање за отповикување (секунди)</string>
   <string name="config-revert">Отповикај</string>
-  <string name="config-revert-diff">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист корисник (ист вандал)</string>
+  <string name="config-revert-diff" fuzzy="true">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист корисник (ист вандал)</string>
   <string name="config-change-all">Смени ги сите поставки на Huggle за да се однесува повеќе како Huggle 2</string>
   <string name="config-merge-messages">Спој ги моите пораки со други од постоечките делови</string>
   <string name="config-months-name">Користи месеци како заглавија наместо имиња на страниците</string>
@@ -127,10 +127,10 @@
   <string name="config-enable-irc">Вклучи го IRC</string>
   <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг</string>
   <string name="config-remove-old">Отстрани стари уредувања ако е расчленето поново уредување на истата страница</string>
-  <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
+  <string name="config-auto-load-history" fuzzy="true">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
   <string name="config-last-revision">Прикажувај ја последната преработка на страница во случај тековно вчитаното уредување да не е последната верзиаја (се презема со заобиколување на меѓускладот)</string>
-  <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување за кое не е можно да се употреби никаква записна функција (корисно при решавање на проблем со стискање на повеќе копчиња на тастатурата)</string>
-  <string name="config-wait-edit">За колку да се одложи помеѓу вклучувањето на уредните можности (секунди):</string>
+  <string name="config-require-delay" fuzzy="true">Барај одложување по секое вчитување на следното уредување за кое не е можно да се употреби никаква записна функција (корисно при решавање на проблем со стискање на повеќе копчиња на тастатурата)</string>
+  <string name="config-wait-edit" fuzzy="true">За колку да се одложи помеѓу вклучувањето на уредните можности (секунди):</string>
   <string name="config-display-text">Прикажи следно</string>
   <string name="config-retrieve-edit">Дај мое уредување</string>
   <string name="config-nothing">Ништо</string>
@@ -145,7 +145,7 @@
   <string name="config-columns-dynamic">Направи ги колоните во списокот динамички (ќе ја сменат големината зависно од големината на ставките) или рачни (корисникот може да им ја менува големината)</string>
   <string name="config-message-notification">Прикажувај известување кога ќе примам нова порака во мојата страница за разговор</string>
   <string name="config-warning-api">Прикажувај предупредувања за барања од извршник</string>
-  <string name="config-title-diff">Наслов на страницата во сите разлики (голем текст со кој е испишан само насловот на страницата поставен врз секоја разлика)</string>
+  <string name="config-title-diff" fuzzy="true">Наслов на страницата во сите разлики (голем текст со кој е испишан само насловот на страницата поставен врз секоја разлика)</string>
   <string name="config-updates">Провери поднови</string>
   <string name="config-beta">Провери бета-верзии</string>
   <string name="config-html-messages">HAN може да испише HTML-пораки (опасно)</string>
@@ -400,7 +400,7 @@
   <string name="main-no-page">На дејството што го побаравте му треба вчитана страница. Вчитајте страница и обидете се повторно.</string>
   <string name="main-revert-null">Не можам да вратам. Уредувањето е ништовно.</string>
   <string name="main-revert-newpage-title">Не можам да го отповикам ова</string>
-  <string name="main-revert-newpage">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
+  <string name="main-revert-newpage" fuzzy="true">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
   <string name="main-restore-text-fail">Не можам да ја повратам преработката бидејќи за неа нема текст.</string>
   <string name="main-restore-data-fail">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
   <string name="message-title">Порака $1</string>
@@ -573,7 +573,7 @@
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
-  <string name="wikiedit-tp-fail">Не можам да ја добијам $1. Нема да може да го оцени степенот на опомена.</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">Не можам да ја добијам $1. Нема да може да го оцени степенот на опомена.</string>
   <string name="missing-warning">Нема таков предупредувачки шаблон „$1“</string>
   <string name="han-not">Противвандалистичката мрежа не е допуштена во нагодувањата</string>
   <string name="han-connecting">Се поврзувам со противвандалистичката мрежа на Huggle</string>
@@ -616,7 +616,7 @@
   <string name="history-undone">Успешно отповикано уредувањето $1</string>
   <string name="history-retrieve-fail">Не можев да ја добијам содржината на страницата за која требаше да се отповика уредување. Грешката гласеше: $1</string>
   <string name="history-welcome-msg-title">Наместо тоа да испратам порака со добредојде?</string>
-  <string name="history-welcome-msg">Вие ја создадовте оваа страница за разговор, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
+  <string name="history-welcome-msg" fuzzy="true">Вие ја создадовте оваа страница за разговор, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
   <string name="notify-fail">Не го известив создавачот на $1</string>
   <string name="notify-unknowncreator">Не можев да го најдам создавачот на страницата</string>
   <string name="protect-done">Изменет степенот на заштита на $1</string>
@@ -641,7 +641,7 @@
   <string name="editquery-success">Успешно изменета $1 на $2</string>
   <string name="editquery-token">Ја преземам шифрата за уредувањето $1</string>
   <string name="editquery-token-error">Не можев да ја добијам шифрата на уредувањето</string>
-  <string name="editquery-invalid-token">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
+  <string name="editquery-invalid-token" fuzzy="true">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
   <string name="provider-failure">Не успеав со главниот каналски добавувач $1 на $2. Се обидувам да најдам друг добавувач</string>
   <string name="provider-primary-failure">Не успеав со главниот каналски добавувач. Префрлам на викидобавувачот.</string>
   <string name="rc-error">Не можам да ги добијам податоците од викикаалот. Последната грешка гласи: $1</string>
@@ -669,7 +669,7 @@
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
   <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
   <string name="preferences-extension-disabled">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
-  <string name="preferences-extension-disabled-restart">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
   <string name="preferences-extension-enabled">Овој додаток не е предвиден да го оневозможи следното пуштање на Huggle</string>
   <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Higgle одново за да се доврши оневозможувањето.</string>
   <string name="fail">Неуспех</string>
@@ -678,7 +678,7 @@
   <string name="requested">Побарано</string>
   <string name="protect-request-fail">Не можам да ја добијам тековната пријавна страница: $1</string>
   <string name="protect-request-fail-notext">Не можам да ја добијам тековната приајвна страница бидејќи барањето не даде никаков текст од оваа страница</string>
-  <string name="protect-request-fail-notime">Барањето не даде никакакво време и датум (грешка во МедијаВики?). Запирам со барањето.</string>
+  <string name="protect-request-fail-notime" fuzzy="true">Барањето не даде никакакво време и датум (грешка во МедијаВики?). Запирам со барањето.</string>
   <string name="message-fail">Не успеав да ја доставам пораката</string>
   <string name="edit-conflict">Спротиставеност во уредувањето.</string>
   <string name="page-tag-nodescription">нема опис за оваа ознака :/</string>
@@ -690,7 +690,7 @@
   <string name="namespace">Именски простор</string>
   <string name="block-alreadyblocked">Корисникот е веќе блокиран</string>
   <string name="report-fail">Не можам да го пријавам корисникот бидејќи: $1</string>
-  <string name="report-page-fail">Грешка: не можам да ја добијам пријавната страница на $1</string>
+  <string name="report-page-fail" fuzzy="true">Грешка: не можам да ја добијам пријавната страница на $1</string>
   <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:
 
  $1</string>

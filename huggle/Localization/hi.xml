@@ -206,6 +206,7 @@
   <string name="main-system-showqueue">पंक्ति दिखाये</string>
   <string name="main-system-options">विकल्प...</string>
   <string name="main-system-logout">सत्रान्त</string>
+  <string name="main-system-change-provider-wiki">विकी</string>
   <string name="main-system-exit">निकास</string>
   <string name="main-queue">पंक्ति</string>
   <string name="main-queue-next">अगला</string>

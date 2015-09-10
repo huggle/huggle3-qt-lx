@@ -54,7 +54,7 @@
   <string name="flags">پرچم‌ها</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
   <string name="browser-load">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
-  <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده‌است</string>
+  <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده است</string>
   <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
   <string name="browser-fail">ناتوان در بازیابی تفاوت: $1</string>
   <string name="about-contributors">توسعه‌دهنده‌ها:</string>
@@ -119,7 +119,7 @@
   <string name="config-instant-reverts">استفاده از واگردانی‌های فوری (بسیار سریع، اما زمانی که اجرا شد نمی‌تواند لغو شود)</string>
   <string name="config-revert-wait">انتظار واگردانی (به ثانیه)</string>
   <string name="config-revert">واگردانی</string>
-  <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر صورت گرفته‌باشد (همان خرابکار)</string>
+  <string name="config-revert-diff" fuzzy="true">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر صورت گرفته‌باشد (همان خرابکار)</string>
   <string name="config-change-all">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
   <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
@@ -127,10 +127,10 @@
   <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
   <string name="config-remove-reverted">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
   <string name="config-remove-old">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
-  <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی اتصال شبکه نیاز دارد)</string>
+  <string name="config-auto-load-history" fuzzy="true">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی اتصال شبکه نیاز دارد)</string>
   <string name="config-last-revision">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
-  <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی که باید اشکال چند فشار صفحه کلید رفع شود)</string>
-  <string name="config-wait-edit">زمانی که باید بین ویژگی‌های ویرایشی که فعال شده‌اند صبر کنید (به ثانیه):</string>
+  <string name="config-require-delay" fuzzy="true">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی که باید اشکال چند فشار صفحه کلید رفع شود)</string>
+  <string name="config-wait-edit" fuzzy="true">زمانی که باید بین ویژگی‌های ویرایشی که فعال شده‌اند صبر کنید (به ثانیه):</string>
   <string name="config-display-text">نمایش بعدی</string>
   <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
   <string name="config-nothing">هیچ‌چیز</string>
@@ -145,7 +145,7 @@
   <string name="config-columns-dynamic">پویاساختن ستون‌های فهرست‌ها (بر اساس آیتم‌ها تغییر اندازه می‌دهند) یا تنظیم به صورت دستی (کاربر می‌تواند اندازه آنها را تغییر دهد)</string>
   <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
   <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
-  <string name="config-title-diff">عنوان صفحه در هر تفاوت (متن بزرگ که فقط عنوان صفحه را در بالای هر تفاوت نشان می‌دهد)</string>
+  <string name="config-title-diff" fuzzy="true">عنوان صفحه در هر تفاوت (متن بزرگ که فقط عنوان صفحه را در بالای هر تفاوت نشان می‌دهد)</string>
   <string name="config-updates">بررسی برای به‌روزرسانی‌ها</string>
   <string name="config-beta">بررسی برای نگارش‌های آزمایشی</string>
   <string name="config-html-messages">اچ‌ای‌ان می‌تواند پیام‌های اچ‌تی‌ام‌ال را اجرا کند (خطرناک است)</string>
@@ -400,7 +400,7 @@
   <string name="main-no-page">اقدام مورد درخواست شما نیاز به بارگیری یک صفحه دارد. لطفاُ پیش از تلاش دوباره یک صفحه را باربگیرید.</string>
   <string name="main-revert-null">واگردانی ناموفق، ویرایش خالی است</string>
   <string name="main-revert-newpage-title">نمی‌توان این را واگردانی کرد</string>
-  <string name="main-revert-newpage">این یک صفحهٔ تازه است، بنابراین نمی‌تواند واگردانی شود، شما می‌توانید به آن برچسب بزنید، یا حذفش کنید.</string>
+  <string name="main-revert-newpage" fuzzy="true">این یک صفحهٔ تازه است، بنابراین نمی‌تواند واگردانی شود، شما می‌توانید به آن برچسب بزنید، یا حذفش کنید.</string>
   <string name="main-restore-text-fail">ناتوان در برگرداندن بازبینی، به دلیل عدم وجود متنی برایش</string>
   <string name="main-restore-data-fail">ناتوان در برگرداندن بازبینی، به دلیل عدم ارائهٔ هیچ داده‌ای برای نگارش انتخاب‌شده از طرف ویکی</string>
   <string name="message-title">پیام $1</string>
@@ -573,7 +573,7 @@
   <string name="warning-warntype">نوع هشدار:</string>
   <string name="warning-warnlog">هشدار برای این کاربر:</string>
   <string name="warning-submit">ارسال</string>
-  <string name="wikiedit-tp-fail">ناتوان در دریافت $1، سطح هشدار توسط آن ثبت نخواهد شد</string>
+  <string name="wikiedit-tp-fail" fuzzy="true">ناتوان در دریافت $1، سطح هشدار توسط آن ثبت نخواهد شد</string>
   <string name="missing-warning">الگوی هشداری با نام $1 وجود ندارد</string>
   <string name="han-not">شبکه خرابکاری در گزینه‌ها نیست</string>
   <string name="han-connecting">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
@@ -616,7 +616,7 @@
   <string name="history-undone">لغو موفقیت‌آمیز ویرایش  در $1</string>
   <string name="history-retrieve-fail">ناتوان در دریافت محتوای صفحه‌ای که می‌خواهیم ویرایش خودمان را لغو کنیم، پیام خطا: $1</string>
   <string name="history-welcome-msg-title">ارسال پیام خوش‌آمدگویی به جایش؟</string>
-  <string name="history-welcome-msg">شما این صفحهٔ بحث را ایجاد کردید، بنابراین نمی‌تواند لغو شود، آیا می‌خواهید آن را با یک الگوی خوش‌آمدگویی جایگزین کنید؟</string>
+  <string name="history-welcome-msg" fuzzy="true">شما این صفحهٔ بحث را ایجاد کردید، بنابراین نمی‌تواند لغو شود، آیا می‌خواهید آن را با یک الگوی خوش‌آمدگویی جایگزین کنید؟</string>
   <string name="notify-fail">سازنده $1 مطلع نشد</string>
   <string name="notify-unknowncreator">سازنده صفحه پیدا نشد</string>
   <string name="protect-done">وضعیت محافظت  $1 تغییر کرد</string>
@@ -641,7 +641,7 @@
   <string name="editquery-success">ویرایش موفق $1 بر $2</string>
   <string name="editquery-token">در حال گرفتن توکن برای ویرایش $1</string>
   <string name="editquery-token-error">قادر به گرفتن توکن برای ویرایش نیستم.</string>
-  <string name="editquery-invalid-token">ناتوان در ویرایش $1 زیرا رمزی که من در نهان‌گاه داشتم دیگر معتبر نیست، لطفاً یک بار دیگر آن صفحه را ویرایش کنید</string>
+  <string name="editquery-invalid-token" fuzzy="true">ناتوان در ویرایش $1 زیرا رمزی که من در نهان‌گاه داشتم دیگر معتبر نیست، لطفاً یک بار دیگر آن صفحه را ویرایش کنید</string>
   <string name="provider-failure">ناکارائی ارائه‌دهندهٔ خوراک  $1 در $2، برای پیدا کردن مهیاکنندهٔ دیگر تلاش کنید</string>
   <string name="provider-primary-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. در حال عقب‌گرد به ارائه‌دهندهٔ ویکی</string>
   <string name="rc-error">ناتوان از گرفتن اطلاعات از فید ویکی، آخرین خطا: $1</string>
@@ -669,7 +669,7 @@
   <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="preferences-delete-using-filter">شما نمی‌توانید فیلتری که در حال حاضر استفاده می‌شود را پاک کنید</string>
   <string name="preferences-extension-disabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
-  <string name="preferences-extension-disabled-restart">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
   <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید  آن را دوباره راه‌اندازی کنید</string>
   <string name="fail">شکست</string>
@@ -678,7 +678,7 @@
   <string name="requested">درخواست‌شده</string>
   <string name="protect-request-fail">ناتوان در دریافت صفحهٔ گزارش کنونی: $1</string>
   <string name="protect-request-fail-notext">ناتوان در دریافت صفحهٔ گزارش کنونی به دلیل برنگرداندن هیچگونه متنی برای این صفحه از طرف کوئری</string>
-  <string name="protect-request-fail-notime">کوئری هیچ برچسب زمانی را برنگرداند (آیا اشکال از مدیاویکی است؟) بی‌نتیجه‌ماندن کوئری</string>
+  <string name="protect-request-fail-notime" fuzzy="true">کوئری هیچ برچسب زمانی را برنگرداند (آیا اشکال از مدیاویکی است؟) بی‌نتیجه‌ماندن کوئری</string>
   <string name="message-fail">شکست در رساندن پیام</string>
   <string name="edit-conflict">تعارض ویرایشی</string>
   <string name="page-tag-nodescription">توضیحی برای این برچسب وجود ندارد /:</string>
@@ -690,7 +690,7 @@
   <string name="namespace">فضای نام</string>
   <string name="block-alreadyblocked">کاربر از پیش بسته شده‌است</string>
   <string name="report-fail">ناموفق در گزارش کاربر به دلیل: $1</string>
-  <string name="report-page-fail">خطای ناتوانی در دریافت صفحهٔ گزارش در $1</string>
+  <string name="report-page-fail" fuzzy="true">خطای ناتوانی در دریافت صفحهٔ گزارش در $1</string>
   <string name="report-page-fail-time">ناتوان در دریافت برچسب زمان صفحهٔ گزارش کنونی، شکست رابط برنامه نویسی:
 
 $1</string>

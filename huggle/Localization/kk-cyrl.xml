@@ -306,7 +306,7 @@
   <string name="main-tip-userblock">Бұл қатысушыны бұғаттау</string>
   <string name="main-revert-null">Қайтарылмады: өңдеме жоқ</string>
   <string name="main-revert-newpage-title">Бұл қайтарылмайды</string>
-  <string name="main-revert-newpage">Бұл жаңа бет, сондықтан ол қайтарылмайды, сіз не белгілей аласыз не жойыңыз.</string>
+  <string name="main-revert-newpage" fuzzy="true">Бұл жаңа бет, сондықтан ол қайтарылмайды, сіз не белгілей аласыз не жойыңыз.</string>
   <string name="main-restore-text-fail">Нұсқаны қалпына келтіре алмайсыз, себебі оның мәтіні қолжетімді емес</string>
   <string name="main-restore-data-fail">Нұсқаны қалпына келтіре алмайсыз, себебі таңдалған нұсқа үшін уики дерек жоқ деп көрсетті</string>
   <string name="message-title">Хабарлама $1</string>
@@ -458,7 +458,7 @@
   <string name="history-already-done">Бұл әлдеқашан жоққа шығарылған</string>
   <string name="history-undone">$1 бетіндегі өңдеме сәтті жоққа шығарылды</string>
   <string name="history-welcome-msg-title">Қарсы алу хабарламасын жібересіз бе?</string>
-  <string name="history-welcome-msg">Сіз бұл талқылау бетін бастадыңыз, сондықтан ол жоққа шығарылмайды, қарсы алу үлгісімен алмастырғыңыз келе ме?</string>
+  <string name="history-welcome-msg" fuzzy="true">Сіз бұл талқылау бетін бастадыңыз, сондықтан ол жоққа шығарылмайды, қарсы алу үлгісімен алмастырғыңыз келе ме?</string>
   <string name="notify-fail">$1 бетін бастаушы ескертілмейді</string>
   <string name="notify-unknowncreator">Бетті бастаушы табылмады</string>
   <string name="protect-done">«$1» қорғау деңгейі өзгертілді</string>

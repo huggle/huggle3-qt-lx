@@ -115,7 +115,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-revert">Återställ</string>
   <string name="config-merge-messages">Sammanfoga dina meddelanden med andras i befintliga avsnitt</string>
   <string name="config-enable-irc">Aktivera IRC</string>
-  <string name="config-wait-edit">Tiden du behöver vänta när redigeringsfunktioner aktiveras (sekunder):</string>
+  <string name="config-wait-edit" fuzzy="true">Tiden du behöver vänta när redigeringsfunktioner aktiveras (sekunder):</string>
   <string name="config-display-text">Visa nästa</string>
   <string name="config-retrieve-edit">Hämta din egen redigering</string>
   <string name="config-nothing">Ingenting</string>
@@ -325,7 +325,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="main-tip-userblock">Blockera denna användare</string>
   <string name="main-revision-acceptpend">Acceptera denna väntande sidversion</string>
   <string name="main-revert-newpage-title">Kan inte återställa detta</string>
-  <string name="main-revert-newpage">Detta är en ny sida, då den kan inte återställas. Du kan antingen märka eller radera den.</string>
+  <string name="main-revert-newpage" fuzzy="true">Detta är en ny sida, då den kan inte återställas. Du kan antingen märka eller radera den.</string>
   <string name="message-title">Meddelande $1</string>
   <string name="message-subject">Ämne:</string>
   <string name="message-message">Meddelande:</string>

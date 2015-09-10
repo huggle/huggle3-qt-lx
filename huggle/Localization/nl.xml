@@ -118,7 +118,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-instant-reverts">Direct terugdraaien gebruiken (erg snel, maar kan niet geannuleerd worden als het wordt uitgevoerd)</string>
   <string name="config-revert-wait">Wachten met terugdraaien (in seconden)</string>
   <string name="config-revert">Terugdraaien</string>
-  <string name="config-revert-diff">Nieuwere bewerkingen dan weergegeven terugdraaien als deze zijn gemaakt door dezelfde gebruiker (zelfde vandaal)</string>
+  <string name="config-revert-diff" fuzzy="true">Nieuwere bewerkingen dan weergegeven terugdraaien als deze zijn gemaakt door dezelfde gebruiker (zelfde vandaal)</string>
   <string name="config-change-all">Alle instellingen van Huggle zo maken dat ze zich meer als Huggle 2 gedragen</string>
   <string name="config-merge-messages">Uw berichten samenvoegen met anderen berichten in bestaande secties</string>
   <string name="config-months-name">Maanden als kopteksten gebruiken in plaatsen van de paginanaam</string>
@@ -126,7 +126,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-enable-irc">IRC inschakelen</string>
   <string name="config-remove-reverted">Bewerkingen verwijderen die al zijn teruggedraaid door iemand anders</string>
   <string name="config-remove-old">Oude bewerkingen verwijderen als de nieuwere bewerking op dezelfde pagina verwerkt is</string>
-  <string name="config-auto-load-history">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel netwerkverbindingen)</string>
+  <string name="config-auto-load-history" fuzzy="true">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel netwerkverbindingen)</string>
   <string name="config-display-text">Volgende weergeven</string>
   <string name="config-retrieve-edit">Uw eigen bewerking ophalen</string>
   <string name="config-nothing">Niets</string>
@@ -139,7 +139,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-userspace">Gebruikersruimte</string>
   <string name="config-talk">Overlegpagina</string>
   <string name="config-warning-api">Waarschuwingen voor API-zoekopdrachten weergeven</string>
-  <string name="config-title-diff">Paginanaam bij alle verschillen (grote letters met de paginanaam bovenaan verschillen)</string>
+  <string name="config-title-diff" fuzzy="true">Paginanaam bij alle verschillen (grote letters met de paginanaam bovenaan verschillen)</string>
   <string name="config-updates">Controleren op updates</string>
   <string name="config-beta">Controleren op betaversies</string>
   <string name="config-close-without">Sluiten zonder opslaan</string>

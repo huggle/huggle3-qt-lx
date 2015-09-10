@@ -35,6 +35,7 @@ Tooltip for the button is:
   <string name="save">{{Identical|Save}}</string>
   <string name="show">Used as menu item.
 {{Identical|Show}}</string>
+  <string name="no-instant">This message is shown in case you want to send instant warning message (called final warning) but there is no such a warning type on target website.</string>
   <string name="undo">Used as context menu item.
 {{Identical|Undo}}</string>
   <string name="yes">{{Identical|Yes}}</string>
@@ -105,6 +106,7 @@ Used as column header. The column contains list of flags (comma-separated). e.g.
 * $1 - error message</string>
   <string name="about-contributors">List of developers in about form
 {{Identical|Developer}}</string>
+  <string name="block-not">Answer to query that is supposed to check if user is blocked or not. It says that user is not blocked.</string>
   <string name="block-title">Title of \"block user\" window where $1 is name of user who is to be blocked
 {{Identical|Block}}</string>
   <string name="block-reason">{{Identical|Reason}}</string>
@@ -137,6 +139,18 @@ The column contains \"block\" and \"unblock\".</string>
   <string name="config-function">{{Identical|Function}}</string>
   <string name="config-description">{{Identical|Description}}</string>
   <string name="config-shortcut">{{Identical|Shortcut}}</string>
+  <string name="config-queue-filter-ignore">One of items in queue filter settings. There is a combo box that contains options for each filter. They are:
+\"Ignore (doesn\'t matter)\" in which case the filter is completely ignored - it doesn\'t matter whether edit matches it or not
+\"Exclude (must not be)\" in this case edit is excluded from queue if it match the filter
+\"Require\" - in this case edit is exluded if it doesn\'t match the filter</string>
+  <string name="config-queue-filter-exclude">One of items in queue filter settings. There is a combo box that contains options for each filter. They are:
+\"Ignore (doesn\'t matter)\" in which case the filter is completely ignored - it doesn\'t matter whether edit matches it or not
+\"Exclude (must not be)\" in this case edit is excluded from queue if it match the filter
+\"Require\" - in this case edit is exluded if it doesn\'t match the filter</string>
+  <string name="config-queue-filter-require">One of items in queue filter settings. There is a combo box that contains options for each filter. They are:
+\"Ignore (doesn\'t matter)\" in which case the filter is completely ignored - it doesn\'t matter whether edit matches it or not
+\"Exclude (must not be)\" in this case edit is excluded from queue if it match the filter
+\"Require\" - in this case edit is exluded if it doesn\'t match the filter</string>
   <string name="config-title">{{Identical|Options}}</string>
   <string name="config-already-in-use">Parameters:
 * $1 - shortcut name</string>

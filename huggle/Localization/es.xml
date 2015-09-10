@@ -56,15 +56,15 @@
   <string name="browser-miss-summ">No se proporcionó ningún resumen</string>
   <string name="browser-diff">Diferencia de página: $1 (puntuación: $2)</string>
   <string name="browser-fail">No se puede recuperar diff: $1</string>
-  <string name="about-contributors">Contribuidores:</string>
+  <string name="about-contributors">Desarrolladores:</string>
   <string name="block-not">El usuario no está bloqueado</string>
   <string name="block-title">Bloquear a $1</string>
   <string name="block-reason">Razón:</string>
   <string name="block-duration">Duración:</string>
   <string name="block-message">Mensaje en página de discusión:</string>
   <string name="block-message-user">Enviar un mensaje a la cuenta de destino que explique el motivo del bloqueo</string>
-  <string name="block-anononly">Bloquear usuarios anónimos solamente.</string>
-  <string name="block-creation">Impedir la creación de cuentas de usuario.</string>
+  <string name="block-anononly">Bloquear sólo los usuarios anónimos</string>
+  <string name="block-creation">Impedir la creación de cuentas</string>
   <string name="block-autoblock">Activar bloqueos automáticos</string>
   <string name="block-email">Impedir que el usuario envíe correo electrónico.</string>
   <string name="block-usertalk">discusión</string>
@@ -83,10 +83,10 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="block-none">No hay ningún usuario que bloquear.</string>
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
-  <string name="config-shortcut">Acceso directo</string>
+  <string name="config-shortcut">Atajo</string>
   <string name="config-queue-filter-ignore">Ignorar (no importa)</string>
   <string name="config-queue-filter-exclude">Excluir (no debe ser)</string>
-  <string name="config-queue-filter-require">Requieren (debe ser)</string>
+  <string name="config-queue-filter-require">Requerir (debe ser)</string>
   <string name="config-summ">Resúmenes de reversión personalizados para plantillas</string>
   <string name="config-title">Opciones</string>
   <string name="config-already-in-use">Este atajo se está utilizando en $1. Elige uno distinto</string>
@@ -100,14 +100,14 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-trayicon">Mostrar icono en bandeja</string>
   <string name="config-startupmessage">Mostrar mensaje al principio</string>
   <string name="config-shownewmessages">Mostrar barra de nuevos mensajes</string>
-  <string name="config-shortcutlist">Accesos directos del teclado</string>
+  <string name="config-shortcutlist">Atajos de teclado</string>
   <string name="config-shortcutaction">Acción</string>
-  <string name="config-changeshortcut">Cambiar acceso directo de $1</string>
+  <string name="config-changeshortcut">Cambiar atajo de $1</string>
   <string name="config-noshortcut">Ninguno</string>
   <string name="config-defaults">Valores predeterminados</string>
   <string name="config-minor">Marcar como menor</string>
-  <string name="config-watchlist">Vigilar todas las páginas</string>
-  <string name="config-defaultsummary">Resumen por defecto para ediciones manuales</string>
+  <string name="config-watchlist">Añadir a la lista de seguimiento</string>
+  <string name="config-defaultsummary">Resumen predeterminado para ediciones manuales</string>
   <string name="config-undosummary">Resumen cuando se deshacen ediciones propias</string>
   <string name="config-confirm-user">Solicitar confirmación para revertir la edición que se hizo en el espacio de usuario</string>
   <string name="config-confirm-wl">Solicitar confirmación para revertir la edición que fue hecha por un usuario en la lista blanca</string>
@@ -118,7 +118,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-instant-reverts">Usa reversiones instantáneas (muy rápido, pero una vez ejecutado no se puede cancelar)</string>
   <string name="config-revert-wait">Espera para revertir (segundos)</string>
   <string name="config-revert">Revertir</string>
-  <string name="config-revert-diff">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
+  <string name="config-revert-diff" fuzzy="true">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
   <string name="config-change-all">Cambiar todos los ajustes de Huggle para que se parezca más a Huggle 2</string>
   <string name="config-merge-messages">Combinar tus mensajes con otros en las secciones existentes</string>
   <string name="config-months-name">Utilizar meses como titulares en lugar del nombre de la página</string>
@@ -126,9 +126,9 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-enable-irc">Activar IRC</string>
   <string name="config-remove-reverted">Borrar las ediciones que ya fueron revertidas por otra persona</string>
   <string name="config-remove-old">Eliminar las ediciones anteriores si se analiza una edición más reciente a la misma página</string>
-  <string name="config-auto-load-history">Cargar automáticamente el historial e información de usuario (requiere mucha conexión de red)</string>
+  <string name="config-auto-load-history" fuzzy="true">Cargar automáticamente el historial e información de usuario (requiere mucha conexión de red)</string>
   <string name="config-last-revision">Mostrar la última modificación de la página si la edición cargada no es la última (se descargará e invalidará la memoria intermedia)</string>
-  <string name="config-wait-edit">Tiempo que debes esperar para que se activen las funcionalidades de edición (segundos):</string>
+  <string name="config-wait-edit" fuzzy="true">Tiempo que debes esperar para que se activen las funcionalidades de edición (segundos):</string>
   <string name="config-display-text">Mostrar siguiente</string>
   <string name="config-retrieve-edit">Recuperar tu propia edición</string>
   <string name="config-nothing">Nada</string>
@@ -167,7 +167,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-blocktime">Duración de bloqueo para</string>
   <string name="config-blocktimeanon">usuarios anónimos</string>
   <string name="config-blocktimereg">usuarios registrados</string>
-  <string name="config-summaryprompt">Ingresar resumen</string>
+  <string name="config-summaryprompt">Escribir resumen</string>
   <string name="config-history">Descargar el historial completo de todos los artículos</string>
   <string name="config-defaultsprompt">¿Restaurar los predeterminados?</string>
   <string name="config-logbrowsetitle">Ubicación del archivo de registro</string>
@@ -194,7 +194,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="historyform-retrieve-history">Recuperar historial</string>
   <string name="historyform-retrieving-history">Recuperando historial</string>
   <string name="history-error-message-title">No se puede deshacer</string>
-  <string name="history-failure">No ha sido posible cargar el historial</string>
+  <string name="history-failure">No ha sido posible obtener el historial</string>
   <string name="userhistory-title">Historial de tus cambios</string>
   <string name="irc-connected">$1: conectado con el canal IRC de cambios recientes</string>
   <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1; esto puede tomar un momento...</string>
@@ -254,7 +254,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="login-error-invalid">Nombre de usuario no válido.</string>
   <string name="login-error-noconfig">$1 no tiene una página de configuración de Huggle</string>
   <string name="login-error-nouser">El usuario no existe</string>
-  <string name="login-error-password">Contraseña incorrecta.</string>
+  <string name="login-error-password">Contraseña incorrecta</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
   <string name="login-error-unknown">No se puede acceder a $1.</string>
   <string name="login-error-version">Esta versión está desactualizada. Actualízala a la versión más reciente.</string>
@@ -295,7 +295,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-goto-mytalk">Mi página de discusión</string>
   <string name="main-goto-mycontribs">Mis contribuciones</string>
   <string name="main-revision-decline">Rechazar la revisión</string>
-  <string name="main-revision">Edición</string>
+  <string name="main-revision">Revisión</string>
   <string name="main-revision-view">Ver</string>
   <string name="main-revision-revert">Revertir la edición actual</string>
   <string name="main-revision-rv-stay">Revertir esta edición y permanecer en la página</string>
@@ -316,7 +316,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-page-history">Obtener historial</string>
   <string name="main-page-historypage">Mostrar historial</string>
   <string name="main-page-edit">Editar página en el navegador</string>
-  <string name="main-page-tag">Colocar plantilla</string>
+  <string name="main-page-tag">Etiqueta</string>
   <string name="main-page-reqdeletion">Pedir borrado rápido</string>
   <string name="main-page-reqprotection">Pedir protección de la página</string>
   <string name="main-page-watch">Vigilar</string>
@@ -360,18 +360,18 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-han-display-user-messages">Mostrar mensajes del usuario</string>
   <string name="main-han-display-user-data">Mostrar datos del usuario</string>
   <string name="main-help-documentation">Documentación</string>
-  <string name="main-help-feedback">Realimentación</string>
+  <string name="main-help-feedback">Comentarios</string>
   <string name="main-help-about">Acerca de Huggle...</string>
   <string name="main-addqueue">Añadir...</string>
   <string name="main-savelogtitle">Guardar registro</string>
   <string name="main-usermessageother">Otro mensaje...</string>
   <string name="main-advanced">Avanzado...</string>
   <string name="main-stats">$1 ediciones por minuto, $2 reversiones por minuto</string>
-  <string name="main-display-session-data">Mostrar una sesión de datos</string>
+  <string name="main-display-session-data">Mostrar datos de la sesión</string>
   <string name="main-display-whitelist">Mostrar lista blanca</string>
-  <string name="main-revert-custom-reson">Por favor proporcione una razón por la que quieres revertir esta edición a la revisión anterior</string>
+  <string name="main-revert-custom-reson">Proporciona una razón por la que quieres revertir esta edición a la revisión anterior</string>
   <string name="main-log1">Restaurando la revisión seleccionada de $1</string>
-  <string name="main-tip-pagetagdelete">Colocar plantilla de borrado a esta página</string>
+  <string name="main-tip-pagetagdelete">Etiquetar esta página para su borrado</string>
   <string name="main-tip-pagedelete">Borrar esta página</string>
   <string name="main-tip-userreport">Reportar a este usuario</string>
   <string name="main-tip-userblock">Bloquear a este usuario</string>
@@ -388,7 +388,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="message-er">No se puede entregar el mensaje a $1: $2</string>
   <string name="message-error">Falló la entrega de un mensaje a $1. Revisa los registros.</string>
   <string name="message-fail-retrieve-talk">no se puede recuperar la página de discusión del usuario</string>
-  <string name="message-done">Mensaje entregado correctamente a: $1</string>
+  <string name="message-done">Mensaje entregado correctamente en $2 a: $1</string>
   <string name="protect-request-title">Pedir protección de $1</string>
   <string name="protect-reason">Razón:</string>
   <string name="protect-expiry">Caducidad:</string>
@@ -418,7 +418,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="queue-pagefiltersgroup">Filtros de títulos de páginas</string>
   <string name="queue-pageregex">El título coincide con la expresión regular:</string>
   <string name="queue-namespaces">Espacios de nombres:</string>
-  <string name="queue-editfiltersgroup">Filtros de edición</string>
+  <string name="queue-editfiltersgroup">Editar filtros</string>
   <string name="queue-userregex">El nombre de usuario coincide con la expresión regular:</string>
   <string name="queue-summaryregex">El resumen coincide con la expresión regular:</string>
   <string name="queue-filternewpage">Nueva página</string>
@@ -428,7 +428,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="queue-filterreverts">Reversión</string>
   <string name="queue-filternotifications">Notificación</string>
   <string name="queue-filterwarnings">Advertencia</string>
-  <string name="queue-filtertags">Plantilla</string>
+  <string name="queue-filtertags">Etiqueta</string>
   <string name="queue-filterbot">Edición de bot</string>
   <string name="queue-filterassisted">Edición automática</string>
   <string name="queue-filterhuggle">Edición con Huggle</string>
@@ -441,7 +441,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="report-warn">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más avisos. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario ha sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario. Por favor recuerda que este aviso y el formulario que ahora se presentan se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Deseas continuar?</string>
   <string name="report-tu">Informar de este usuario</string>
   <string name="report-reason">Motivo:</string>
-  <string name="report-intro">Usted va a informar de usuario $1</string>
+  <string name="report-intro">Vas a reportar al usuario $1</string>
   <string name="report-message">Mensaje:</string>
   <string name="report-log">Advertencias a este usuario:</string>
   <string name="report-include">Incluir en el informe</string>
@@ -493,8 +493,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="rollback">Revirtiendo $1</string>
   <string name="software-rollback">No dispones del permiso de reversor (rollback). Utilizando el sistema alternativo</string>
   <string name="tag-title">Etiquetar a $1</string>
-  <string name="tag-tagselector">Colocar plantilla:</string>
-  <string name="tag-tags">Plantilla(s):</string>
+  <string name="tag-tagselector">Añadir etiqueta:</string>
+  <string name="tag-tags">Etiqueta(s):</string>
   <string name="tag-parameter">Parámetro</string>
   <string name="tag-summary">Resumen:</string>
   <string name="tag-insertatend">Colocar al final de la página</string>
@@ -571,7 +571,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="history-already-done">Esto ya se deshizo</string>
   <string name="history-undone">Se deshizo con éxito la edición a $1</string>
   <string name="history-welcome-msg-title">¿Prefieres mandar un mensaje de bienvenida en su lugar?</string>
-  <string name="history-welcome-msg">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
+  <string name="history-welcome-msg" fuzzy="true">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
   <string name="notify-fail">No se pudo avisar al creador de $1</string>
   <string name="notify-unknowncreator">No se puede encontrar al creador de la página</string>
   <string name="protect-done">Cambiado el nivel de protección para \'$1\'</string>
@@ -615,7 +615,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="requested">Solicitado</string>
   <string name="protect-request-fail">No se puede recuperar la página de informe actual: $1</string>
   <string name="protect-request-fail-notext">No se puede recuperar la página de informe actual porque la consulta no devolvió ningún texto sobre esta página</string>
-  <string name="protect-request-fail-notime">La consulta no devolvió ninguna marca de tiempo (¿un error de mediawiki?). Se anula la consulta</string>
+  <string name="protect-request-fail-notime" fuzzy="true">La consulta no devolvió ninguna marca de tiempo (¿un error de mediawiki?). Se anula la consulta</string>
   <string name="message-fail">No se pudo entregar el mensaje</string>
   <string name="edit-conflict">Conflicto de edición</string>
   <string name="page-tag-nodescription">no hay descripción para esta etiqueta :/</string>
@@ -627,7 +627,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="namespace">Espacio de nombres</string>
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo reportar al usuario porque $1</string>
-  <string name="report-page-fail">Error: no se puede recuperar la página de informe en $1</string>
+  <string name="report-page-fail" fuzzy="true">Error: no se puede recuperar la página de informe en $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>

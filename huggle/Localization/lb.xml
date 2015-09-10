@@ -258,7 +258,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-tip-userblock">Dëse Benotzer spären</string>
   <string name="main-revert-null">Kann net zréckgesat ginn:Ännerung ass \'null\'</string>
   <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
-  <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn, Dir kënnt se entweder markéieren oder läschen.</string>
+  <string name="main-revert-newpage" fuzzy="true">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn, Dir kënnt se entweder markéieren oder läschen.</string>
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
@@ -313,7 +313,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="speedy-notifycreator">Auteur informéieren deen d\'Säit ugeluecht huet</string>
   <string name="rollback">$1 zréchsetzen</string>
   <string name="tag-title">Markéierung $1</string>
-  <string name="tag-tagselector">Markéierung derbäsetzen</string>
+  <string name="tag-tagselector">Markéierung derbäisetzen</string>
   <string name="tag-parameter">Parameter</string>
   <string name="tag-summary">Resumé:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
